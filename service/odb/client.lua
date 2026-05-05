@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("odb.endpoint_rules")
+local schemas = require("odb.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("odb.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptMarketplaceRegistration(input, options)
     return self:invokeOperation(input, {
         name = "AcceptMarketplaceRegistration",
-        input_schema = types.AcceptMarketplaceRegistrationInput,
-        output_schema = types.AcceptMarketplaceRegistrationOutput,
+        input_schema = schemas.AcceptMarketplaceRegistrationInput,
+        output_schema = schemas.AcceptMarketplaceRegistrationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:associateIamRoleToResource(input, options)
     return self:invokeOperation(input, {
         name = "AssociateIamRoleToResource",
-        input_schema = types.AssociateIamRoleToResourceInput,
-        output_schema = types.AssociateIamRoleToResourceOutput,
+        input_schema = schemas.AssociateIamRoleToResourceInput,
+        output_schema = schemas.AssociateIamRoleToResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createCloudAutonomousVmCluster(input, options)
     return self:invokeOperation(input, {
         name = "CreateCloudAutonomousVmCluster",
-        input_schema = types.CreateCloudAutonomousVmClusterInput,
-        output_schema = types.CreateCloudAutonomousVmClusterOutput,
+        input_schema = schemas.CreateCloudAutonomousVmClusterInput,
+        output_schema = schemas.CreateCloudAutonomousVmClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createCloudExadataInfrastructure(input, options)
     return self:invokeOperation(input, {
         name = "CreateCloudExadataInfrastructure",
-        input_schema = types.CreateCloudExadataInfrastructureInput,
-        output_schema = types.CreateCloudExadataInfrastructureOutput,
+        input_schema = schemas.CreateCloudExadataInfrastructureInput,
+        output_schema = schemas.CreateCloudExadataInfrastructureOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createCloudVmCluster(input, options)
     return self:invokeOperation(input, {
         name = "CreateCloudVmCluster",
-        input_schema = types.CreateCloudVmClusterInput,
-        output_schema = types.CreateCloudVmClusterOutput,
+        input_schema = schemas.CreateCloudVmClusterInput,
+        output_schema = schemas.CreateCloudVmClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createOdbNetwork(input, options)
     return self:invokeOperation(input, {
         name = "CreateOdbNetwork",
-        input_schema = types.CreateOdbNetworkInput,
-        output_schema = types.CreateOdbNetworkOutput,
+        input_schema = schemas.CreateOdbNetworkInput,
+        output_schema = schemas.CreateOdbNetworkOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createOdbPeeringConnection(input, options)
     return self:invokeOperation(input, {
         name = "CreateOdbPeeringConnection",
-        input_schema = types.CreateOdbPeeringConnectionInput,
-        output_schema = types.CreateOdbPeeringConnectionOutput,
+        input_schema = schemas.CreateOdbPeeringConnectionInput,
+        output_schema = schemas.CreateOdbPeeringConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteCloudAutonomousVmCluster(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCloudAutonomousVmCluster",
-        input_schema = types.DeleteCloudAutonomousVmClusterInput,
-        output_schema = types.DeleteCloudAutonomousVmClusterOutput,
+        input_schema = schemas.DeleteCloudAutonomousVmClusterInput,
+        output_schema = schemas.DeleteCloudAutonomousVmClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteCloudExadataInfrastructure(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCloudExadataInfrastructure",
-        input_schema = types.DeleteCloudExadataInfrastructureInput,
-        output_schema = types.DeleteCloudExadataInfrastructureOutput,
+        input_schema = schemas.DeleteCloudExadataInfrastructureInput,
+        output_schema = schemas.DeleteCloudExadataInfrastructureOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteCloudVmCluster(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCloudVmCluster",
-        input_schema = types.DeleteCloudVmClusterInput,
-        output_schema = types.DeleteCloudVmClusterOutput,
+        input_schema = schemas.DeleteCloudVmClusterInput,
+        output_schema = schemas.DeleteCloudVmClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteOdbNetwork(input, options)
     return self:invokeOperation(input, {
         name = "DeleteOdbNetwork",
-        input_schema = types.DeleteOdbNetworkInput,
-        output_schema = types.DeleteOdbNetworkOutput,
+        input_schema = schemas.DeleteOdbNetworkInput,
+        output_schema = schemas.DeleteOdbNetworkOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteOdbPeeringConnection(input, options)
     return self:invokeOperation(input, {
         name = "DeleteOdbPeeringConnection",
-        input_schema = types.DeleteOdbPeeringConnectionInput,
-        output_schema = types.DeleteOdbPeeringConnectionOutput,
+        input_schema = schemas.DeleteOdbPeeringConnectionInput,
+        output_schema = schemas.DeleteOdbPeeringConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:disassociateIamRoleFromResource(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateIamRoleFromResource",
-        input_schema = types.DisassociateIamRoleFromResourceInput,
-        output_schema = types.DisassociateIamRoleFromResourceOutput,
+        input_schema = schemas.DisassociateIamRoleFromResourceInput,
+        output_schema = schemas.DisassociateIamRoleFromResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getCloudAutonomousVmCluster(input, options)
     return self:invokeOperation(input, {
         name = "GetCloudAutonomousVmCluster",
-        input_schema = types.GetCloudAutonomousVmClusterInput,
-        output_schema = types.GetCloudAutonomousVmClusterOutput,
+        input_schema = schemas.GetCloudAutonomousVmClusterInput,
+        output_schema = schemas.GetCloudAutonomousVmClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getCloudExadataInfrastructure(input, options)
     return self:invokeOperation(input, {
         name = "GetCloudExadataInfrastructure",
-        input_schema = types.GetCloudExadataInfrastructureInput,
-        output_schema = types.GetCloudExadataInfrastructureOutput,
+        input_schema = schemas.GetCloudExadataInfrastructureInput,
+        output_schema = schemas.GetCloudExadataInfrastructureOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getCloudExadataInfrastructureUnallocatedResources(input, options)
     return self:invokeOperation(input, {
         name = "GetCloudExadataInfrastructureUnallocatedResources",
-        input_schema = types.GetCloudExadataInfrastructureUnallocatedResourcesInput,
-        output_schema = types.GetCloudExadataInfrastructureUnallocatedResourcesOutput,
+        input_schema = schemas.GetCloudExadataInfrastructureUnallocatedResourcesInput,
+        output_schema = schemas.GetCloudExadataInfrastructureUnallocatedResourcesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getCloudVmCluster(input, options)
     return self:invokeOperation(input, {
         name = "GetCloudVmCluster",
-        input_schema = types.GetCloudVmClusterInput,
-        output_schema = types.GetCloudVmClusterOutput,
+        input_schema = schemas.GetCloudVmClusterInput,
+        output_schema = schemas.GetCloudVmClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getDbNode(input, options)
     return self:invokeOperation(input, {
         name = "GetDbNode",
-        input_schema = types.GetDbNodeInput,
-        output_schema = types.GetDbNodeOutput,
+        input_schema = schemas.GetDbNodeInput,
+        output_schema = schemas.GetDbNodeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getDbServer(input, options)
     return self:invokeOperation(input, {
         name = "GetDbServer",
-        input_schema = types.GetDbServerInput,
-        output_schema = types.GetDbServerOutput,
+        input_schema = schemas.GetDbServerInput,
+        output_schema = schemas.GetDbServerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getOciOnboardingStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetOciOnboardingStatus",
-        input_schema = types.GetOciOnboardingStatusInput,
-        output_schema = types.GetOciOnboardingStatusOutput,
+        input_schema = schemas.GetOciOnboardingStatusInput,
+        output_schema = schemas.GetOciOnboardingStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:getOdbNetwork(input, options)
     return self:invokeOperation(input, {
         name = "GetOdbNetwork",
-        input_schema = types.GetOdbNetworkInput,
-        output_schema = types.GetOdbNetworkOutput,
+        input_schema = schemas.GetOdbNetworkInput,
+        output_schema = schemas.GetOdbNetworkOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:getOdbPeeringConnection(input, options)
     return self:invokeOperation(input, {
         name = "GetOdbPeeringConnection",
-        input_schema = types.GetOdbPeeringConnectionInput,
-        output_schema = types.GetOdbPeeringConnectionOutput,
+        input_schema = schemas.GetOdbPeeringConnectionInput,
+        output_schema = schemas.GetOdbPeeringConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:initializeService(input, options)
     return self:invokeOperation(input, {
         name = "InitializeService",
-        input_schema = types.InitializeServiceInput,
-        output_schema = types.InitializeServiceOutput,
+        input_schema = schemas.InitializeServiceInput,
+        output_schema = schemas.InitializeServiceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listAutonomousVirtualMachines(input, options)
     return self:invokeOperation(input, {
         name = "ListAutonomousVirtualMachines",
-        input_schema = types.ListAutonomousVirtualMachinesInput,
-        output_schema = types.ListAutonomousVirtualMachinesOutput,
+        input_schema = schemas.ListAutonomousVirtualMachinesInput,
+        output_schema = schemas.ListAutonomousVirtualMachinesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listCloudAutonomousVmClusters(input, options)
     return self:invokeOperation(input, {
         name = "ListCloudAutonomousVmClusters",
-        input_schema = types.ListCloudAutonomousVmClustersInput,
-        output_schema = types.ListCloudAutonomousVmClustersOutput,
+        input_schema = schemas.ListCloudAutonomousVmClustersInput,
+        output_schema = schemas.ListCloudAutonomousVmClustersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listCloudExadataInfrastructures(input, options)
     return self:invokeOperation(input, {
         name = "ListCloudExadataInfrastructures",
-        input_schema = types.ListCloudExadataInfrastructuresInput,
-        output_schema = types.ListCloudExadataInfrastructuresOutput,
+        input_schema = schemas.ListCloudExadataInfrastructuresInput,
+        output_schema = schemas.ListCloudExadataInfrastructuresOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listCloudVmClusters(input, options)
     return self:invokeOperation(input, {
         name = "ListCloudVmClusters",
-        input_schema = types.ListCloudVmClustersInput,
-        output_schema = types.ListCloudVmClustersOutput,
+        input_schema = schemas.ListCloudVmClustersInput,
+        output_schema = schemas.ListCloudVmClustersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listDbNodes(input, options)
     return self:invokeOperation(input, {
         name = "ListDbNodes",
-        input_schema = types.ListDbNodesInput,
-        output_schema = types.ListDbNodesOutput,
+        input_schema = schemas.ListDbNodesInput,
+        output_schema = schemas.ListDbNodesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listDbServers(input, options)
     return self:invokeOperation(input, {
         name = "ListDbServers",
-        input_schema = types.ListDbServersInput,
-        output_schema = types.ListDbServersOutput,
+        input_schema = schemas.ListDbServersInput,
+        output_schema = schemas.ListDbServersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:listDbSystemShapes(input, options)
     return self:invokeOperation(input, {
         name = "ListDbSystemShapes",
-        input_schema = types.ListDbSystemShapesInput,
-        output_schema = types.ListDbSystemShapesOutput,
+        input_schema = schemas.ListDbSystemShapesInput,
+        output_schema = schemas.ListDbSystemShapesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:listGiVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListGiVersions",
-        input_schema = types.ListGiVersionsInput,
-        output_schema = types.ListGiVersionsOutput,
+        input_schema = schemas.ListGiVersionsInput,
+        output_schema = schemas.ListGiVersionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:listOdbNetworks(input, options)
     return self:invokeOperation(input, {
         name = "ListOdbNetworks",
-        input_schema = types.ListOdbNetworksInput,
-        output_schema = types.ListOdbNetworksOutput,
+        input_schema = schemas.ListOdbNetworksInput,
+        output_schema = schemas.ListOdbNetworksOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:listOdbPeeringConnections(input, options)
     return self:invokeOperation(input, {
         name = "ListOdbPeeringConnections",
-        input_schema = types.ListOdbPeeringConnectionsInput,
-        output_schema = types.ListOdbPeeringConnectionsOutput,
+        input_schema = schemas.ListOdbPeeringConnectionsInput,
+        output_schema = schemas.ListOdbPeeringConnectionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listSystemVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListSystemVersions",
-        input_schema = types.ListSystemVersionsInput,
-        output_schema = types.ListSystemVersionsOutput,
+        input_schema = schemas.ListSystemVersionsInput,
+        output_schema = schemas.ListSystemVersionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:rebootDbNode(input, options)
     return self:invokeOperation(input, {
         name = "RebootDbNode",
-        input_schema = types.RebootDbNodeInput,
-        output_schema = types.RebootDbNodeOutput,
+        input_schema = schemas.RebootDbNodeInput,
+        output_schema = schemas.RebootDbNodeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:startDbNode(input, options)
     return self:invokeOperation(input, {
         name = "StartDbNode",
-        input_schema = types.StartDbNodeInput,
-        output_schema = types.StartDbNodeOutput,
+        input_schema = schemas.StartDbNodeInput,
+        output_schema = schemas.StartDbNodeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:stopDbNode(input, options)
     return self:invokeOperation(input, {
         name = "StopDbNode",
-        input_schema = types.StopDbNodeInput,
-        output_schema = types.StopDbNodeOutput,
+        input_schema = schemas.StopDbNodeInput,
+        output_schema = schemas.StopDbNodeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:updateCloudExadataInfrastructure(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCloudExadataInfrastructure",
-        input_schema = types.UpdateCloudExadataInfrastructureInput,
-        output_schema = types.UpdateCloudExadataInfrastructureOutput,
+        input_schema = schemas.UpdateCloudExadataInfrastructureInput,
+        output_schema = schemas.UpdateCloudExadataInfrastructureOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:updateOdbNetwork(input, options)
     return self:invokeOperation(input, {
         name = "UpdateOdbNetwork",
-        input_schema = types.UpdateOdbNetworkInput,
-        output_schema = types.UpdateOdbNetworkOutput,
+        input_schema = schemas.UpdateOdbNetworkInput,
+        output_schema = schemas.UpdateOdbNetworkOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:updateOdbPeeringConnection(input, options)
     return self:invokeOperation(input, {
         name = "UpdateOdbPeeringConnection",
-        input_schema = types.UpdateOdbPeeringConnectionInput,
-        output_schema = types.UpdateOdbPeeringConnectionOutput,
+        input_schema = schemas.UpdateOdbPeeringConnectionInput,
+        output_schema = schemas.UpdateOdbPeeringConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

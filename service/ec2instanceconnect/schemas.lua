@@ -1,0 +1,320 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.ec2instanceconnect"
+
+local M = {}
+
+M.AuthException = schema.new({
+    id = id.from(_N, "AuthException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "AuthException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EC2InstanceNotFoundException = schema.new({
+    id = id.from(_N, "EC2InstanceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "EC2InstanceNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EC2InstanceStateInvalidException = schema.new({
+    id = id.from(_N, "EC2InstanceStateInvalidException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "EC2InstanceStateInvalidException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EC2InstanceTypeInvalidException = schema.new({
+    id = id.from(_N, "EC2InstanceTypeInvalidException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "EC2InstanceTypeInvalidException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EC2InstanceUnavailableException = schema.new({
+    id = id.from(_N, "EC2InstanceUnavailableException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "EC2InstanceUnavailableException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidArgsException = schema.new({
+    id = id.from(_N, "InvalidArgsException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InvalidArgsException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SendSerialConsoleSSHPublicKeyInput = schema.new({
+    id = id.from(_N, "SendSerialConsoleSSHPublicKeyInput"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "SendSerialConsoleSSHPublicKeyInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SerialPort = schema.new({
+            id = id.from(_N, "SendSerialConsoleSSHPublicKeyInput", "SerialPort"),
+            type = "integer",
+            name = "SerialPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        SSHPublicKey = schema.new({
+            id = id.from(_N, "SendSerialConsoleSSHPublicKeyInput", "SSHPublicKey"),
+            type = "string",
+            name = "SSHPublicKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SendSerialConsoleSSHPublicKeyOutput = schema.new({
+    id = id.from(_N, "SendSerialConsoleSSHPublicKeyOutput"),
+    type = "structure",
+    members = {
+        RequestId = schema.new({
+            id = id.from(_N, "SendSerialConsoleSSHPublicKeyOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+        Success = schema.new({
+            id = id.from(_N, "SendSerialConsoleSSHPublicKeyOutput", "Success"),
+            type = "boolean",
+            name = "Success",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+    },
+})
+
+M.SerialConsoleAccessDisabledException = schema.new({
+    id = id.from(_N, "SerialConsoleAccessDisabledException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "SerialConsoleAccessDisabledException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SerialConsoleSessionLimitExceededException = schema.new({
+    id = id.from(_N, "SerialConsoleSessionLimitExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "SerialConsoleSessionLimitExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SerialConsoleSessionUnavailableException = schema.new({
+    id = id.from(_N, "SerialConsoleSessionUnavailableException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "SerialConsoleSessionUnavailableException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SerialConsoleSessionUnsupportedException = schema.new({
+    id = id.from(_N, "SerialConsoleSessionUnsupportedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "SerialConsoleSessionUnsupportedException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceException = schema.new({
+    id = id.from(_N, "ServiceException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ServiceException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ThrottlingException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SendSSHPublicKeyInput = schema.new({
+    id = id.from(_N, "SendSSHPublicKeyInput"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "SendSSHPublicKeyInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InstanceOSUser = schema.new({
+            id = id.from(_N, "SendSSHPublicKeyInput", "InstanceOSUser"),
+            type = "string",
+            name = "InstanceOSUser",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SSHPublicKey = schema.new({
+            id = id.from(_N, "SendSSHPublicKeyInput", "SSHPublicKey"),
+            type = "string",
+            name = "SSHPublicKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AvailabilityZone = schema.new({
+            id = id.from(_N, "SendSSHPublicKeyInput", "AvailabilityZone"),
+            type = "string",
+            name = "AvailabilityZone",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SendSSHPublicKeyOutput = schema.new({
+    id = id.from(_N, "SendSSHPublicKeyOutput"),
+    type = "structure",
+    members = {
+        RequestId = schema.new({
+            id = id.from(_N, "SendSSHPublicKeyOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+        Success = schema.new({
+            id = id.from(_N, "SendSSHPublicKeyOutput", "Success"),
+            type = "boolean",
+            name = "Success",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+    },
+})
+
+return M

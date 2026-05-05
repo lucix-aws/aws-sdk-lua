@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("machinelearning.endpoint_rules")
+local schemas = require("machinelearning.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("machinelearning.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addTags(input, options)
     return self:invokeOperation(input, {
         name = "AddTags",
-        input_schema = types.AddTagsInput,
-        output_schema = types.AddTagsOutput,
+        input_schema = schemas.AddTagsInput,
+        output_schema = schemas.AddTagsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createBatchPrediction(input, options)
     return self:invokeOperation(input, {
         name = "CreateBatchPrediction",
-        input_schema = types.CreateBatchPredictionInput,
-        output_schema = types.CreateBatchPredictionOutput,
+        input_schema = schemas.CreateBatchPredictionInput,
+        output_schema = schemas.CreateBatchPredictionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createDataSourceFromRDS(input, options)
     return self:invokeOperation(input, {
         name = "CreateDataSourceFromRDS",
-        input_schema = types.CreateDataSourceFromRDSInput,
-        output_schema = types.CreateDataSourceFromRDSOutput,
+        input_schema = schemas.CreateDataSourceFromRDSInput,
+        output_schema = schemas.CreateDataSourceFromRDSOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createDataSourceFromRedshift(input, options)
     return self:invokeOperation(input, {
         name = "CreateDataSourceFromRedshift",
-        input_schema = types.CreateDataSourceFromRedshiftInput,
-        output_schema = types.CreateDataSourceFromRedshiftOutput,
+        input_schema = schemas.CreateDataSourceFromRedshiftInput,
+        output_schema = schemas.CreateDataSourceFromRedshiftOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createDataSourceFromS3(input, options)
     return self:invokeOperation(input, {
         name = "CreateDataSourceFromS3",
-        input_schema = types.CreateDataSourceFromS3Input,
-        output_schema = types.CreateDataSourceFromS3Output,
+        input_schema = schemas.CreateDataSourceFromS3Input,
+        output_schema = schemas.CreateDataSourceFromS3Output,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createEvaluation(input, options)
     return self:invokeOperation(input, {
         name = "CreateEvaluation",
-        input_schema = types.CreateEvaluationInput,
-        output_schema = types.CreateEvaluationOutput,
+        input_schema = schemas.CreateEvaluationInput,
+        output_schema = schemas.CreateEvaluationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createMLModel(input, options)
     return self:invokeOperation(input, {
         name = "CreateMLModel",
-        input_schema = types.CreateMLModelInput,
-        output_schema = types.CreateMLModelOutput,
+        input_schema = schemas.CreateMLModelInput,
+        output_schema = schemas.CreateMLModelOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createRealtimeEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "CreateRealtimeEndpoint",
-        input_schema = types.CreateRealtimeEndpointInput,
-        output_schema = types.CreateRealtimeEndpointOutput,
+        input_schema = schemas.CreateRealtimeEndpointInput,
+        output_schema = schemas.CreateRealtimeEndpointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteBatchPrediction(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBatchPrediction",
-        input_schema = types.DeleteBatchPredictionInput,
-        output_schema = types.DeleteBatchPredictionOutput,
+        input_schema = schemas.DeleteBatchPredictionInput,
+        output_schema = schemas.DeleteBatchPredictionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteDataSource(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDataSource",
-        input_schema = types.DeleteDataSourceInput,
-        output_schema = types.DeleteDataSourceOutput,
+        input_schema = schemas.DeleteDataSourceInput,
+        output_schema = schemas.DeleteDataSourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteEvaluation(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEvaluation",
-        input_schema = types.DeleteEvaluationInput,
-        output_schema = types.DeleteEvaluationOutput,
+        input_schema = schemas.DeleteEvaluationInput,
+        output_schema = schemas.DeleteEvaluationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteMLModel(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMLModel",
-        input_schema = types.DeleteMLModelInput,
-        output_schema = types.DeleteMLModelOutput,
+        input_schema = schemas.DeleteMLModelInput,
+        output_schema = schemas.DeleteMLModelOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteRealtimeEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRealtimeEndpoint",
-        input_schema = types.DeleteRealtimeEndpointInput,
-        output_schema = types.DeleteRealtimeEndpointOutput,
+        input_schema = schemas.DeleteRealtimeEndpointInput,
+        output_schema = schemas.DeleteRealtimeEndpointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteTags(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTags",
-        input_schema = types.DeleteTagsInput,
-        output_schema = types.DeleteTagsOutput,
+        input_schema = schemas.DeleteTagsInput,
+        output_schema = schemas.DeleteTagsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:describeBatchPredictions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeBatchPredictions",
-        input_schema = types.DescribeBatchPredictionsInput,
-        output_schema = types.DescribeBatchPredictionsOutput,
+        input_schema = schemas.DescribeBatchPredictionsInput,
+        output_schema = schemas.DescribeBatchPredictionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:describeDataSources(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDataSources",
-        input_schema = types.DescribeDataSourcesInput,
-        output_schema = types.DescribeDataSourcesOutput,
+        input_schema = schemas.DescribeDataSourcesInput,
+        output_schema = schemas.DescribeDataSourcesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:describeEvaluations(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEvaluations",
-        input_schema = types.DescribeEvaluationsInput,
-        output_schema = types.DescribeEvaluationsOutput,
+        input_schema = schemas.DescribeEvaluationsInput,
+        output_schema = schemas.DescribeEvaluationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:describeMLModels(input, options)
     return self:invokeOperation(input, {
         name = "DescribeMLModels",
-        input_schema = types.DescribeMLModelsInput,
-        output_schema = types.DescribeMLModelsOutput,
+        input_schema = schemas.DescribeMLModelsInput,
+        output_schema = schemas.DescribeMLModelsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:describeTags(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTags",
-        input_schema = types.DescribeTagsInput,
-        output_schema = types.DescribeTagsOutput,
+        input_schema = schemas.DescribeTagsInput,
+        output_schema = schemas.DescribeTagsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getBatchPrediction(input, options)
     return self:invokeOperation(input, {
         name = "GetBatchPrediction",
-        input_schema = types.GetBatchPredictionInput,
-        output_schema = types.GetBatchPredictionOutput,
+        input_schema = schemas.GetBatchPredictionInput,
+        output_schema = schemas.GetBatchPredictionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:getDataSource(input, options)
     return self:invokeOperation(input, {
         name = "GetDataSource",
-        input_schema = types.GetDataSourceInput,
-        output_schema = types.GetDataSourceOutput,
+        input_schema = schemas.GetDataSourceInput,
+        output_schema = schemas.GetDataSourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:getEvaluation(input, options)
     return self:invokeOperation(input, {
         name = "GetEvaluation",
-        input_schema = types.GetEvaluationInput,
-        output_schema = types.GetEvaluationOutput,
+        input_schema = schemas.GetEvaluationInput,
+        output_schema = schemas.GetEvaluationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:getMLModel(input, options)
     return self:invokeOperation(input, {
         name = "GetMLModel",
-        input_schema = types.GetMLModelInput,
-        output_schema = types.GetMLModelOutput,
+        input_schema = schemas.GetMLModelInput,
+        output_schema = schemas.GetMLModelOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:predict(input, options)
     return self:invokeOperation(input, {
         name = "Predict",
-        input_schema = types.PredictInput,
-        output_schema = types.PredictOutput,
+        input_schema = schemas.PredictInput,
+        output_schema = schemas.PredictOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:updateBatchPrediction(input, options)
     return self:invokeOperation(input, {
         name = "UpdateBatchPrediction",
-        input_schema = types.UpdateBatchPredictionInput,
-        output_schema = types.UpdateBatchPredictionOutput,
+        input_schema = schemas.UpdateBatchPredictionInput,
+        output_schema = schemas.UpdateBatchPredictionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:updateDataSource(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDataSource",
-        input_schema = types.UpdateDataSourceInput,
-        output_schema = types.UpdateDataSourceOutput,
+        input_schema = schemas.UpdateDataSourceInput,
+        output_schema = schemas.UpdateDataSourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:updateEvaluation(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEvaluation",
-        input_schema = types.UpdateEvaluationInput,
-        output_schema = types.UpdateEvaluationOutput,
+        input_schema = schemas.UpdateEvaluationInput,
+        output_schema = schemas.UpdateEvaluationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:updateMLModel(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMLModel",
-        input_schema = types.UpdateMLModelInput,
-        output_schema = types.UpdateMLModelOutput,
+        input_schema = schemas.UpdateMLModelInput,
+        output_schema = schemas.UpdateMLModelOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

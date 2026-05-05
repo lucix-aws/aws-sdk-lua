@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("invoicing.endpoint_rules")
+local schemas = require("invoicing.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("invoicing.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchGetInvoiceProfile(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetInvoiceProfile",
-        input_schema = types.BatchGetInvoiceProfileInput,
-        output_schema = types.BatchGetInvoiceProfileOutput,
+        input_schema = schemas.BatchGetInvoiceProfileInput,
+        output_schema = schemas.BatchGetInvoiceProfileOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createInvoiceUnit(input, options)
     return self:invokeOperation(input, {
         name = "CreateInvoiceUnit",
-        input_schema = types.CreateInvoiceUnitInput,
-        output_schema = types.CreateInvoiceUnitOutput,
+        input_schema = schemas.CreateInvoiceUnitInput,
+        output_schema = schemas.CreateInvoiceUnitOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createProcurementPortalPreference(input, options)
     return self:invokeOperation(input, {
         name = "CreateProcurementPortalPreference",
-        input_schema = types.CreateProcurementPortalPreferenceInput,
-        output_schema = types.CreateProcurementPortalPreferenceOutput,
+        input_schema = schemas.CreateProcurementPortalPreferenceInput,
+        output_schema = schemas.CreateProcurementPortalPreferenceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteInvoiceUnit(input, options)
     return self:invokeOperation(input, {
         name = "DeleteInvoiceUnit",
-        input_schema = types.DeleteInvoiceUnitInput,
-        output_schema = types.DeleteInvoiceUnitOutput,
+        input_schema = schemas.DeleteInvoiceUnitInput,
+        output_schema = schemas.DeleteInvoiceUnitOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteProcurementPortalPreference(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProcurementPortalPreference",
-        input_schema = types.DeleteProcurementPortalPreferenceInput,
-        output_schema = types.DeleteProcurementPortalPreferenceOutput,
+        input_schema = schemas.DeleteProcurementPortalPreferenceInput,
+        output_schema = schemas.DeleteProcurementPortalPreferenceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getInvoicePDF(input, options)
     return self:invokeOperation(input, {
         name = "GetInvoicePDF",
-        input_schema = types.GetInvoicePDFInput,
-        output_schema = types.GetInvoicePDFOutput,
+        input_schema = schemas.GetInvoicePDFInput,
+        output_schema = schemas.GetInvoicePDFOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getInvoiceUnit(input, options)
     return self:invokeOperation(input, {
         name = "GetInvoiceUnit",
-        input_schema = types.GetInvoiceUnitInput,
-        output_schema = types.GetInvoiceUnitOutput,
+        input_schema = schemas.GetInvoiceUnitInput,
+        output_schema = schemas.GetInvoiceUnitOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getProcurementPortalPreference(input, options)
     return self:invokeOperation(input, {
         name = "GetProcurementPortalPreference",
-        input_schema = types.GetProcurementPortalPreferenceInput,
-        output_schema = types.GetProcurementPortalPreferenceOutput,
+        input_schema = schemas.GetProcurementPortalPreferenceInput,
+        output_schema = schemas.GetProcurementPortalPreferenceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listInvoiceSummaries(input, options)
     return self:invokeOperation(input, {
         name = "ListInvoiceSummaries",
-        input_schema = types.ListInvoiceSummariesInput,
-        output_schema = types.ListInvoiceSummariesOutput,
+        input_schema = schemas.ListInvoiceSummariesInput,
+        output_schema = schemas.ListInvoiceSummariesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listInvoiceUnits(input, options)
     return self:invokeOperation(input, {
         name = "ListInvoiceUnits",
-        input_schema = types.ListInvoiceUnitsInput,
-        output_schema = types.ListInvoiceUnitsOutput,
+        input_schema = schemas.ListInvoiceUnitsInput,
+        output_schema = schemas.ListInvoiceUnitsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listProcurementPortalPreferences(input, options)
     return self:invokeOperation(input, {
         name = "ListProcurementPortalPreferences",
-        input_schema = types.ListProcurementPortalPreferencesInput,
-        output_schema = types.ListProcurementPortalPreferencesOutput,
+        input_schema = schemas.ListProcurementPortalPreferencesInput,
+        output_schema = schemas.ListProcurementPortalPreferencesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:putProcurementPortalPreference(input, options)
     return self:invokeOperation(input, {
         name = "PutProcurementPortalPreference",
-        input_schema = types.PutProcurementPortalPreferenceInput,
-        output_schema = types.PutProcurementPortalPreferenceOutput,
+        input_schema = schemas.PutProcurementPortalPreferenceInput,
+        output_schema = schemas.PutProcurementPortalPreferenceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:updateInvoiceUnit(input, options)
     return self:invokeOperation(input, {
         name = "UpdateInvoiceUnit",
-        input_schema = types.UpdateInvoiceUnitInput,
-        output_schema = types.UpdateInvoiceUnitOutput,
+        input_schema = schemas.UpdateInvoiceUnitInput,
+        output_schema = schemas.UpdateInvoiceUnitOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:updateProcurementPortalPreferenceStatus(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProcurementPortalPreferenceStatus",
-        input_schema = types.UpdateProcurementPortalPreferenceStatusInput,
-        output_schema = types.UpdateProcurementPortalPreferenceStatusOutput,
+        input_schema = schemas.UpdateProcurementPortalPreferenceStatusInput,
+        output_schema = schemas.UpdateProcurementPortalPreferenceStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("guardduty.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("guardduty.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("guardduty.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptAdministratorInvitation(input, options)
     return self:invokeOperation(input, {
         name = "AcceptAdministratorInvitation",
-        input_schema = types.AcceptAdministratorInvitationInput,
-        output_schema = types.AcceptAdministratorInvitationOutput,
+        input_schema = schemas.AcceptAdministratorInvitationInput,
+        output_schema = schemas.AcceptAdministratorInvitationOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/administrator",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:acceptInvitation(input, options)
     return self:invokeOperation(input, {
         name = "AcceptInvitation",
-        input_schema = types.AcceptInvitationInput,
-        output_schema = types.AcceptInvitationOutput,
+        input_schema = schemas.AcceptInvitationInput,
+        output_schema = schemas.AcceptInvitationOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/master",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:archiveFindings(input, options)
     return self:invokeOperation(input, {
         name = "ArchiveFindings",
-        input_schema = types.ArchiveFindingsInput,
-        output_schema = types.ArchiveFindingsOutput,
+        input_schema = schemas.ArchiveFindingsInput,
+        output_schema = schemas.ArchiveFindingsOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/findings/archive",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createDetector(input, options)
     return self:invokeOperation(input, {
         name = "CreateDetector",
-        input_schema = types.CreateDetectorInput,
-        output_schema = types.CreateDetectorOutput,
+        input_schema = schemas.CreateDetectorInput,
+        output_schema = schemas.CreateDetectorOutput,
         http_method = "POST",
         http_path = "/detector",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createFilter(input, options)
     return self:invokeOperation(input, {
         name = "CreateFilter",
-        input_schema = types.CreateFilterInput,
-        output_schema = types.CreateFilterOutput,
+        input_schema = schemas.CreateFilterInput,
+        output_schema = schemas.CreateFilterOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/filter",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createIPSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateIPSet",
-        input_schema = types.CreateIPSetInput,
-        output_schema = types.CreateIPSetOutput,
+        input_schema = schemas.CreateIPSetInput,
+        output_schema = schemas.CreateIPSetOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/ipset",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createMalwareProtectionPlan(input, options)
     return self:invokeOperation(input, {
         name = "CreateMalwareProtectionPlan",
-        input_schema = types.CreateMalwareProtectionPlanInput,
-        output_schema = types.CreateMalwareProtectionPlanOutput,
+        input_schema = schemas.CreateMalwareProtectionPlanInput,
+        output_schema = schemas.CreateMalwareProtectionPlanOutput,
         http_method = "POST",
         http_path = "/malware-protection-plan",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createMembers(input, options)
     return self:invokeOperation(input, {
         name = "CreateMembers",
-        input_schema = types.CreateMembersInput,
-        output_schema = types.CreateMembersOutput,
+        input_schema = schemas.CreateMembersInput,
+        output_schema = schemas.CreateMembersOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/member",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createPublishingDestination(input, options)
     return self:invokeOperation(input, {
         name = "CreatePublishingDestination",
-        input_schema = types.CreatePublishingDestinationInput,
-        output_schema = types.CreatePublishingDestinationOutput,
+        input_schema = schemas.CreatePublishingDestinationInput,
+        output_schema = schemas.CreatePublishingDestinationOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/publishingDestination",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createSampleFindings(input, options)
     return self:invokeOperation(input, {
         name = "CreateSampleFindings",
-        input_schema = types.CreateSampleFindingsInput,
-        output_schema = types.CreateSampleFindingsOutput,
+        input_schema = schemas.CreateSampleFindingsInput,
+        output_schema = schemas.CreateSampleFindingsOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/findings/create",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createThreatEntitySet(input, options)
     return self:invokeOperation(input, {
         name = "CreateThreatEntitySet",
-        input_schema = types.CreateThreatEntitySetInput,
-        output_schema = types.CreateThreatEntitySetOutput,
+        input_schema = schemas.CreateThreatEntitySetInput,
+        output_schema = schemas.CreateThreatEntitySetOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/threatentityset",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createThreatIntelSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateThreatIntelSet",
-        input_schema = types.CreateThreatIntelSetInput,
-        output_schema = types.CreateThreatIntelSetOutput,
+        input_schema = schemas.CreateThreatIntelSetInput,
+        output_schema = schemas.CreateThreatIntelSetOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/threatintelset",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createTrustedEntitySet(input, options)
     return self:invokeOperation(input, {
         name = "CreateTrustedEntitySet",
-        input_schema = types.CreateTrustedEntitySetInput,
-        output_schema = types.CreateTrustedEntitySetOutput,
+        input_schema = schemas.CreateTrustedEntitySetInput,
+        output_schema = schemas.CreateTrustedEntitySetOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/trustedentityset",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:declineInvitations(input, options)
     return self:invokeOperation(input, {
         name = "DeclineInvitations",
-        input_schema = types.DeclineInvitationsInput,
-        output_schema = types.DeclineInvitationsOutput,
+        input_schema = schemas.DeclineInvitationsInput,
+        output_schema = schemas.DeclineInvitationsOutput,
         http_method = "POST",
         http_path = "/invitation/decline",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteDetector(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDetector",
-        input_schema = types.DeleteDetectorInput,
-        output_schema = types.DeleteDetectorOutput,
+        input_schema = schemas.DeleteDetectorInput,
+        output_schema = schemas.DeleteDetectorOutput,
         http_method = "DELETE",
         http_path = "/detector/{DetectorId}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteFilter(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFilter",
-        input_schema = types.DeleteFilterInput,
-        output_schema = types.DeleteFilterOutput,
+        input_schema = schemas.DeleteFilterInput,
+        output_schema = schemas.DeleteFilterOutput,
         http_method = "DELETE",
         http_path = "/detector/{DetectorId}/filter/{FilterName}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteInvitations(input, options)
     return self:invokeOperation(input, {
         name = "DeleteInvitations",
-        input_schema = types.DeleteInvitationsInput,
-        output_schema = types.DeleteInvitationsOutput,
+        input_schema = schemas.DeleteInvitationsInput,
+        output_schema = schemas.DeleteInvitationsOutput,
         http_method = "POST",
         http_path = "/invitation/delete",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteIPSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIPSet",
-        input_schema = types.DeleteIPSetInput,
-        output_schema = types.DeleteIPSetOutput,
+        input_schema = schemas.DeleteIPSetInput,
+        output_schema = schemas.DeleteIPSetOutput,
         http_method = "DELETE",
         http_path = "/detector/{DetectorId}/ipset/{IpSetId}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteMalwareProtectionPlan(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMalwareProtectionPlan",
-        input_schema = types.DeleteMalwareProtectionPlanInput,
-        output_schema = types.DeleteMalwareProtectionPlanOutput,
+        input_schema = schemas.DeleteMalwareProtectionPlanInput,
+        output_schema = schemas.DeleteMalwareProtectionPlanOutput,
         http_method = "DELETE",
         http_path = "/malware-protection-plan/{MalwareProtectionPlanId}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deleteMembers(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMembers",
-        input_schema = types.DeleteMembersInput,
-        output_schema = types.DeleteMembersOutput,
+        input_schema = schemas.DeleteMembersInput,
+        output_schema = schemas.DeleteMembersOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/member/delete",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deletePublishingDestination(input, options)
     return self:invokeOperation(input, {
         name = "DeletePublishingDestination",
-        input_schema = types.DeletePublishingDestinationInput,
-        output_schema = types.DeletePublishingDestinationOutput,
+        input_schema = schemas.DeletePublishingDestinationInput,
+        output_schema = schemas.DeletePublishingDestinationOutput,
         http_method = "DELETE",
         http_path = "/detector/{DetectorId}/publishingDestination/{DestinationId}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:deleteThreatEntitySet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteThreatEntitySet",
-        input_schema = types.DeleteThreatEntitySetInput,
-        output_schema = types.DeleteThreatEntitySetOutput,
+        input_schema = schemas.DeleteThreatEntitySetInput,
+        output_schema = schemas.DeleteThreatEntitySetOutput,
         http_method = "DELETE",
         http_path = "/detector/{DetectorId}/threatentityset/{ThreatEntitySetId}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:deleteThreatIntelSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteThreatIntelSet",
-        input_schema = types.DeleteThreatIntelSetInput,
-        output_schema = types.DeleteThreatIntelSetOutput,
+        input_schema = schemas.DeleteThreatIntelSetInput,
+        output_schema = schemas.DeleteThreatIntelSetOutput,
         http_method = "DELETE",
         http_path = "/detector/{DetectorId}/threatintelset/{ThreatIntelSetId}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:deleteTrustedEntitySet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTrustedEntitySet",
-        input_schema = types.DeleteTrustedEntitySetInput,
-        output_schema = types.DeleteTrustedEntitySetOutput,
+        input_schema = schemas.DeleteTrustedEntitySetInput,
+        output_schema = schemas.DeleteTrustedEntitySetOutput,
         http_method = "DELETE",
         http_path = "/detector/{DetectorId}/trustedentityset/{TrustedEntitySetId}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:describeMalwareScans(input, options)
     return self:invokeOperation(input, {
         name = "DescribeMalwareScans",
-        input_schema = types.DescribeMalwareScansInput,
-        output_schema = types.DescribeMalwareScansOutput,
+        input_schema = schemas.DescribeMalwareScansInput,
+        output_schema = schemas.DescribeMalwareScansOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/malware-scans",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:describeOrganizationConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DescribeOrganizationConfiguration",
-        input_schema = types.DescribeOrganizationConfigurationInput,
-        output_schema = types.DescribeOrganizationConfigurationOutput,
+        input_schema = schemas.DescribeOrganizationConfigurationInput,
+        output_schema = schemas.DescribeOrganizationConfigurationOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/admin",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:describePublishingDestination(input, options)
     return self:invokeOperation(input, {
         name = "DescribePublishingDestination",
-        input_schema = types.DescribePublishingDestinationInput,
-        output_schema = types.DescribePublishingDestinationOutput,
+        input_schema = schemas.DescribePublishingDestinationInput,
+        output_schema = schemas.DescribePublishingDestinationOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/publishingDestination/{DestinationId}",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:disableOrganizationAdminAccount(input, options)
     return self:invokeOperation(input, {
         name = "DisableOrganizationAdminAccount",
-        input_schema = types.DisableOrganizationAdminAccountInput,
-        output_schema = types.DisableOrganizationAdminAccountOutput,
+        input_schema = schemas.DisableOrganizationAdminAccountInput,
+        output_schema = schemas.DisableOrganizationAdminAccountOutput,
         http_method = "POST",
         http_path = "/admin/disable",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:disassociateFromAdministratorAccount(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateFromAdministratorAccount",
-        input_schema = types.DisassociateFromAdministratorAccountInput,
-        output_schema = types.DisassociateFromAdministratorAccountOutput,
+        input_schema = schemas.DisassociateFromAdministratorAccountInput,
+        output_schema = schemas.DisassociateFromAdministratorAccountOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/administrator/disassociate",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:disassociateFromMasterAccount(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateFromMasterAccount",
-        input_schema = types.DisassociateFromMasterAccountInput,
-        output_schema = types.DisassociateFromMasterAccountOutput,
+        input_schema = schemas.DisassociateFromMasterAccountInput,
+        output_schema = schemas.DisassociateFromMasterAccountOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/master/disassociate",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:disassociateMembers(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateMembers",
-        input_schema = types.DisassociateMembersInput,
-        output_schema = types.DisassociateMembersOutput,
+        input_schema = schemas.DisassociateMembersInput,
+        output_schema = schemas.DisassociateMembersOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/member/disassociate",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:enableOrganizationAdminAccount(input, options)
     return self:invokeOperation(input, {
         name = "EnableOrganizationAdminAccount",
-        input_schema = types.EnableOrganizationAdminAccountInput,
-        output_schema = types.EnableOrganizationAdminAccountOutput,
+        input_schema = schemas.EnableOrganizationAdminAccountInput,
+        output_schema = schemas.EnableOrganizationAdminAccountOutput,
         http_method = "POST",
         http_path = "/admin/enable",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:getAdministratorAccount(input, options)
     return self:invokeOperation(input, {
         name = "GetAdministratorAccount",
-        input_schema = types.GetAdministratorAccountInput,
-        output_schema = types.GetAdministratorAccountOutput,
+        input_schema = schemas.GetAdministratorAccountInput,
+        output_schema = schemas.GetAdministratorAccountOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/administrator",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:getCoverageStatistics(input, options)
     return self:invokeOperation(input, {
         name = "GetCoverageStatistics",
-        input_schema = types.GetCoverageStatisticsInput,
-        output_schema = types.GetCoverageStatisticsOutput,
+        input_schema = schemas.GetCoverageStatisticsInput,
+        output_schema = schemas.GetCoverageStatisticsOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/coverage/statistics",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:getDetector(input, options)
     return self:invokeOperation(input, {
         name = "GetDetector",
-        input_schema = types.GetDetectorInput,
-        output_schema = types.GetDetectorOutput,
+        input_schema = schemas.GetDetectorInput,
+        output_schema = schemas.GetDetectorOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:getFilter(input, options)
     return self:invokeOperation(input, {
         name = "GetFilter",
-        input_schema = types.GetFilterInput,
-        output_schema = types.GetFilterOutput,
+        input_schema = schemas.GetFilterInput,
+        output_schema = schemas.GetFilterOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/filter/{FilterName}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:getFindings(input, options)
     return self:invokeOperation(input, {
         name = "GetFindings",
-        input_schema = types.GetFindingsInput,
-        output_schema = types.GetFindingsOutput,
+        input_schema = schemas.GetFindingsInput,
+        output_schema = schemas.GetFindingsOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/findings/get",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:getFindingsStatistics(input, options)
     return self:invokeOperation(input, {
         name = "GetFindingsStatistics",
-        input_schema = types.GetFindingsStatisticsInput,
-        output_schema = types.GetFindingsStatisticsOutput,
+        input_schema = schemas.GetFindingsStatisticsInput,
+        output_schema = schemas.GetFindingsStatisticsOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/findings/statistics",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:getInvitationsCount(input, options)
     return self:invokeOperation(input, {
         name = "GetInvitationsCount",
-        input_schema = types.GetInvitationsCountInput,
-        output_schema = types.GetInvitationsCountOutput,
+        input_schema = schemas.GetInvitationsCountInput,
+        output_schema = schemas.GetInvitationsCountOutput,
         http_method = "GET",
         http_path = "/invitation/count",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:getIPSet(input, options)
     return self:invokeOperation(input, {
         name = "GetIPSet",
-        input_schema = types.GetIPSetInput,
-        output_schema = types.GetIPSetOutput,
+        input_schema = schemas.GetIPSetInput,
+        output_schema = schemas.GetIPSetOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/ipset/{IpSetId}",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:getMalwareProtectionPlan(input, options)
     return self:invokeOperation(input, {
         name = "GetMalwareProtectionPlan",
-        input_schema = types.GetMalwareProtectionPlanInput,
-        output_schema = types.GetMalwareProtectionPlanOutput,
+        input_schema = schemas.GetMalwareProtectionPlanInput,
+        output_schema = schemas.GetMalwareProtectionPlanOutput,
         http_method = "GET",
         http_path = "/malware-protection-plan/{MalwareProtectionPlanId}",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:getMalwareScan(input, options)
     return self:invokeOperation(input, {
         name = "GetMalwareScan",
-        input_schema = types.GetMalwareScanInput,
-        output_schema = types.GetMalwareScanOutput,
+        input_schema = schemas.GetMalwareScanInput,
+        output_schema = schemas.GetMalwareScanOutput,
         http_method = "GET",
         http_path = "/malware-scan/{ScanId}",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:getMalwareScanSettings(input, options)
     return self:invokeOperation(input, {
         name = "GetMalwareScanSettings",
-        input_schema = types.GetMalwareScanSettingsInput,
-        output_schema = types.GetMalwareScanSettingsOutput,
+        input_schema = schemas.GetMalwareScanSettingsInput,
+        output_schema = schemas.GetMalwareScanSettingsOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/malware-scan-settings",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:getMasterAccount(input, options)
     return self:invokeOperation(input, {
         name = "GetMasterAccount",
-        input_schema = types.GetMasterAccountInput,
-        output_schema = types.GetMasterAccountOutput,
+        input_schema = schemas.GetMasterAccountInput,
+        output_schema = schemas.GetMasterAccountOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/master",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:getMemberDetectors(input, options)
     return self:invokeOperation(input, {
         name = "GetMemberDetectors",
-        input_schema = types.GetMemberDetectorsInput,
-        output_schema = types.GetMemberDetectorsOutput,
+        input_schema = schemas.GetMemberDetectorsInput,
+        output_schema = schemas.GetMemberDetectorsOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/member/detector/get",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:getMembers(input, options)
     return self:invokeOperation(input, {
         name = "GetMembers",
-        input_schema = types.GetMembersInput,
-        output_schema = types.GetMembersOutput,
+        input_schema = schemas.GetMembersInput,
+        output_schema = schemas.GetMembersOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/member/get",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:getOrganizationStatistics(input, options)
     return self:invokeOperation(input, {
         name = "GetOrganizationStatistics",
-        input_schema = types.GetOrganizationStatisticsInput,
-        output_schema = types.GetOrganizationStatisticsOutput,
+        input_schema = schemas.GetOrganizationStatisticsInput,
+        output_schema = schemas.GetOrganizationStatisticsOutput,
         http_method = "GET",
         http_path = "/organization/statistics",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:getRemainingFreeTrialDays(input, options)
     return self:invokeOperation(input, {
         name = "GetRemainingFreeTrialDays",
-        input_schema = types.GetRemainingFreeTrialDaysInput,
-        output_schema = types.GetRemainingFreeTrialDaysOutput,
+        input_schema = schemas.GetRemainingFreeTrialDaysInput,
+        output_schema = schemas.GetRemainingFreeTrialDaysOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/freeTrial/daysRemaining",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:getThreatEntitySet(input, options)
     return self:invokeOperation(input, {
         name = "GetThreatEntitySet",
-        input_schema = types.GetThreatEntitySetInput,
-        output_schema = types.GetThreatEntitySetOutput,
+        input_schema = schemas.GetThreatEntitySetInput,
+        output_schema = schemas.GetThreatEntitySetOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/threatentityset/{ThreatEntitySetId}",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:getThreatIntelSet(input, options)
     return self:invokeOperation(input, {
         name = "GetThreatIntelSet",
-        input_schema = types.GetThreatIntelSetInput,
-        output_schema = types.GetThreatIntelSetOutput,
+        input_schema = schemas.GetThreatIntelSetInput,
+        output_schema = schemas.GetThreatIntelSetOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/threatintelset/{ThreatIntelSetId}",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:getTrustedEntitySet(input, options)
     return self:invokeOperation(input, {
         name = "GetTrustedEntitySet",
-        input_schema = types.GetTrustedEntitySetInput,
-        output_schema = types.GetTrustedEntitySetOutput,
+        input_schema = schemas.GetTrustedEntitySetInput,
+        output_schema = schemas.GetTrustedEntitySetOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/trustedentityset/{TrustedEntitySetId}",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:getUsageStatistics(input, options)
     return self:invokeOperation(input, {
         name = "GetUsageStatistics",
-        input_schema = types.GetUsageStatisticsInput,
-        output_schema = types.GetUsageStatisticsOutput,
+        input_schema = schemas.GetUsageStatisticsInput,
+        output_schema = schemas.GetUsageStatisticsOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/usage/statistics",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:inviteMembers(input, options)
     return self:invokeOperation(input, {
         name = "InviteMembers",
-        input_schema = types.InviteMembersInput,
-        output_schema = types.InviteMembersOutput,
+        input_schema = schemas.InviteMembersInput,
+        output_schema = schemas.InviteMembersOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/member/invite",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:listCoverage(input, options)
     return self:invokeOperation(input, {
         name = "ListCoverage",
-        input_schema = types.ListCoverageInput,
-        output_schema = types.ListCoverageOutput,
+        input_schema = schemas.ListCoverageInput,
+        output_schema = schemas.ListCoverageOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/coverage",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:listDetectors(input, options)
     return self:invokeOperation(input, {
         name = "ListDetectors",
-        input_schema = types.ListDetectorsInput,
-        output_schema = types.ListDetectorsOutput,
+        input_schema = schemas.ListDetectorsInput,
+        output_schema = schemas.ListDetectorsOutput,
         http_method = "GET",
         http_path = "/detector",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:listFilters(input, options)
     return self:invokeOperation(input, {
         name = "ListFilters",
-        input_schema = types.ListFiltersInput,
-        output_schema = types.ListFiltersOutput,
+        input_schema = schemas.ListFiltersInput,
+        output_schema = schemas.ListFiltersOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/filter",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:listFindings(input, options)
     return self:invokeOperation(input, {
         name = "ListFindings",
-        input_schema = types.ListFindingsInput,
-        output_schema = types.ListFindingsOutput,
+        input_schema = schemas.ListFindingsInput,
+        output_schema = schemas.ListFindingsOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/findings",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:listInvitations(input, options)
     return self:invokeOperation(input, {
         name = "ListInvitations",
-        input_schema = types.ListInvitationsInput,
-        output_schema = types.ListInvitationsOutput,
+        input_schema = schemas.ListInvitationsInput,
+        output_schema = schemas.ListInvitationsOutput,
         http_method = "GET",
         http_path = "/invitation",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:listIPSets(input, options)
     return self:invokeOperation(input, {
         name = "ListIPSets",
-        input_schema = types.ListIPSetsInput,
-        output_schema = types.ListIPSetsOutput,
+        input_schema = schemas.ListIPSetsInput,
+        output_schema = schemas.ListIPSetsOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/ipset",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:listMalwareProtectionPlans(input, options)
     return self:invokeOperation(input, {
         name = "ListMalwareProtectionPlans",
-        input_schema = types.ListMalwareProtectionPlansInput,
-        output_schema = types.ListMalwareProtectionPlansOutput,
+        input_schema = schemas.ListMalwareProtectionPlansInput,
+        output_schema = schemas.ListMalwareProtectionPlansOutput,
         http_method = "GET",
         http_path = "/malware-protection-plan",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:listMalwareScans(input, options)
     return self:invokeOperation(input, {
         name = "ListMalwareScans",
-        input_schema = types.ListMalwareScansInput,
-        output_schema = types.ListMalwareScansOutput,
+        input_schema = schemas.ListMalwareScansInput,
+        output_schema = schemas.ListMalwareScansOutput,
         http_method = "POST",
         http_path = "/malware-scan",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:listMembers(input, options)
     return self:invokeOperation(input, {
         name = "ListMembers",
-        input_schema = types.ListMembersInput,
-        output_schema = types.ListMembersOutput,
+        input_schema = schemas.ListMembersInput,
+        output_schema = schemas.ListMembersOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/member",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:listOrganizationAdminAccounts(input, options)
     return self:invokeOperation(input, {
         name = "ListOrganizationAdminAccounts",
-        input_schema = types.ListOrganizationAdminAccountsInput,
-        output_schema = types.ListOrganizationAdminAccountsOutput,
+        input_schema = schemas.ListOrganizationAdminAccountsInput,
+        output_schema = schemas.ListOrganizationAdminAccountsOutput,
         http_method = "GET",
         http_path = "/admin",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:listPublishingDestinations(input, options)
     return self:invokeOperation(input, {
         name = "ListPublishingDestinations",
-        input_schema = types.ListPublishingDestinationsInput,
-        output_schema = types.ListPublishingDestinationsOutput,
+        input_schema = schemas.ListPublishingDestinationsInput,
+        output_schema = schemas.ListPublishingDestinationsOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/publishingDestination",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:listThreatEntitySets(input, options)
     return self:invokeOperation(input, {
         name = "ListThreatEntitySets",
-        input_schema = types.ListThreatEntitySetsInput,
-        output_schema = types.ListThreatEntitySetsOutput,
+        input_schema = schemas.ListThreatEntitySetsInput,
+        output_schema = schemas.ListThreatEntitySetsOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/threatentityset",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:listThreatIntelSets(input, options)
     return self:invokeOperation(input, {
         name = "ListThreatIntelSets",
-        input_schema = types.ListThreatIntelSetsInput,
-        output_schema = types.ListThreatIntelSetsOutput,
+        input_schema = schemas.ListThreatIntelSetsInput,
+        output_schema = schemas.ListThreatIntelSetsOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/threatintelset",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:listTrustedEntitySets(input, options)
     return self:invokeOperation(input, {
         name = "ListTrustedEntitySets",
-        input_schema = types.ListTrustedEntitySetsInput,
-        output_schema = types.ListTrustedEntitySetsOutput,
+        input_schema = schemas.ListTrustedEntitySetsInput,
+        output_schema = schemas.ListTrustedEntitySetsOutput,
         http_method = "GET",
         http_path = "/detector/{DetectorId}/trustedentityset",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:sendObjectMalwareScan(input, options)
     return self:invokeOperation(input, {
         name = "SendObjectMalwareScan",
-        input_schema = types.SendObjectMalwareScanInput,
-        output_schema = types.SendObjectMalwareScanOutput,
+        input_schema = schemas.SendObjectMalwareScanInput,
+        output_schema = schemas.SendObjectMalwareScanOutput,
         http_method = "POST",
         http_path = "/object-malware-scan/send",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:startMalwareScan(input, options)
     return self:invokeOperation(input, {
         name = "StartMalwareScan",
-        input_schema = types.StartMalwareScanInput,
-        output_schema = types.StartMalwareScanOutput,
+        input_schema = schemas.StartMalwareScanInput,
+        output_schema = schemas.StartMalwareScanOutput,
         http_method = "POST",
         http_path = "/malware-scan/start",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:startMonitoringMembers(input, options)
     return self:invokeOperation(input, {
         name = "StartMonitoringMembers",
-        input_schema = types.StartMonitoringMembersInput,
-        output_schema = types.StartMonitoringMembersOutput,
+        input_schema = schemas.StartMonitoringMembersInput,
+        output_schema = schemas.StartMonitoringMembersOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/member/start",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:stopMonitoringMembers(input, options)
     return self:invokeOperation(input, {
         name = "StopMonitoringMembers",
-        input_schema = types.StopMonitoringMembersInput,
-        output_schema = types.StopMonitoringMembersOutput,
+        input_schema = schemas.StopMonitoringMembersInput,
+        output_schema = schemas.StopMonitoringMembersOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/member/stop",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:unarchiveFindings(input, options)
     return self:invokeOperation(input, {
         name = "UnarchiveFindings",
-        input_schema = types.UnarchiveFindingsInput,
-        output_schema = types.UnarchiveFindingsOutput,
+        input_schema = schemas.UnarchiveFindingsInput,
+        output_schema = schemas.UnarchiveFindingsOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/findings/unarchive",
         effective_auth_schemes = {
@@ -1011,8 +1011,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -1024,8 +1024,8 @@ end
 function Client:updateDetector(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDetector",
-        input_schema = types.UpdateDetectorInput,
-        output_schema = types.UpdateDetectorOutput,
+        input_schema = schemas.UpdateDetectorInput,
+        output_schema = schemas.UpdateDetectorOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}",
         effective_auth_schemes = {
@@ -1037,8 +1037,8 @@ end
 function Client:updateFilter(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFilter",
-        input_schema = types.UpdateFilterInput,
-        output_schema = types.UpdateFilterOutput,
+        input_schema = schemas.UpdateFilterInput,
+        output_schema = schemas.UpdateFilterOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/filter/{FilterName}",
         effective_auth_schemes = {
@@ -1050,8 +1050,8 @@ end
 function Client:updateFindingsFeedback(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFindingsFeedback",
-        input_schema = types.UpdateFindingsFeedbackInput,
-        output_schema = types.UpdateFindingsFeedbackOutput,
+        input_schema = schemas.UpdateFindingsFeedbackInput,
+        output_schema = schemas.UpdateFindingsFeedbackOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/findings/feedback",
         effective_auth_schemes = {
@@ -1063,8 +1063,8 @@ end
 function Client:updateIPSet(input, options)
     return self:invokeOperation(input, {
         name = "UpdateIPSet",
-        input_schema = types.UpdateIPSetInput,
-        output_schema = types.UpdateIPSetOutput,
+        input_schema = schemas.UpdateIPSetInput,
+        output_schema = schemas.UpdateIPSetOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/ipset/{IpSetId}",
         effective_auth_schemes = {
@@ -1076,8 +1076,8 @@ end
 function Client:updateMalwareProtectionPlan(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMalwareProtectionPlan",
-        input_schema = types.UpdateMalwareProtectionPlanInput,
-        output_schema = types.UpdateMalwareProtectionPlanOutput,
+        input_schema = schemas.UpdateMalwareProtectionPlanInput,
+        output_schema = schemas.UpdateMalwareProtectionPlanOutput,
         http_method = "PATCH",
         http_path = "/malware-protection-plan/{MalwareProtectionPlanId}",
         effective_auth_schemes = {
@@ -1089,8 +1089,8 @@ end
 function Client:updateMalwareScanSettings(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMalwareScanSettings",
-        input_schema = types.UpdateMalwareScanSettingsInput,
-        output_schema = types.UpdateMalwareScanSettingsOutput,
+        input_schema = schemas.UpdateMalwareScanSettingsInput,
+        output_schema = schemas.UpdateMalwareScanSettingsOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/malware-scan-settings",
         effective_auth_schemes = {
@@ -1102,8 +1102,8 @@ end
 function Client:updateMemberDetectors(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMemberDetectors",
-        input_schema = types.UpdateMemberDetectorsInput,
-        output_schema = types.UpdateMemberDetectorsOutput,
+        input_schema = schemas.UpdateMemberDetectorsInput,
+        output_schema = schemas.UpdateMemberDetectorsOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/member/detector/update",
         effective_auth_schemes = {
@@ -1115,8 +1115,8 @@ end
 function Client:updateOrganizationConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateOrganizationConfiguration",
-        input_schema = types.UpdateOrganizationConfigurationInput,
-        output_schema = types.UpdateOrganizationConfigurationOutput,
+        input_schema = schemas.UpdateOrganizationConfigurationInput,
+        output_schema = schemas.UpdateOrganizationConfigurationOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/admin",
         effective_auth_schemes = {
@@ -1128,8 +1128,8 @@ end
 function Client:updatePublishingDestination(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePublishingDestination",
-        input_schema = types.UpdatePublishingDestinationInput,
-        output_schema = types.UpdatePublishingDestinationOutput,
+        input_schema = schemas.UpdatePublishingDestinationInput,
+        output_schema = schemas.UpdatePublishingDestinationOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/publishingDestination/{DestinationId}",
         effective_auth_schemes = {
@@ -1141,8 +1141,8 @@ end
 function Client:updateThreatEntitySet(input, options)
     return self:invokeOperation(input, {
         name = "UpdateThreatEntitySet",
-        input_schema = types.UpdateThreatEntitySetInput,
-        output_schema = types.UpdateThreatEntitySetOutput,
+        input_schema = schemas.UpdateThreatEntitySetInput,
+        output_schema = schemas.UpdateThreatEntitySetOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/threatentityset/{ThreatEntitySetId}",
         effective_auth_schemes = {
@@ -1154,8 +1154,8 @@ end
 function Client:updateThreatIntelSet(input, options)
     return self:invokeOperation(input, {
         name = "UpdateThreatIntelSet",
-        input_schema = types.UpdateThreatIntelSetInput,
-        output_schema = types.UpdateThreatIntelSetOutput,
+        input_schema = schemas.UpdateThreatIntelSetInput,
+        output_schema = schemas.UpdateThreatIntelSetOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/threatintelset/{ThreatIntelSetId}",
         effective_auth_schemes = {
@@ -1167,8 +1167,8 @@ end
 function Client:updateTrustedEntitySet(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTrustedEntitySet",
-        input_schema = types.UpdateTrustedEntitySetInput,
-        output_schema = types.UpdateTrustedEntitySetOutput,
+        input_schema = schemas.UpdateTrustedEntitySetInput,
+        output_schema = schemas.UpdateTrustedEntitySetOutput,
         http_method = "POST",
         http_path = "/detector/{DetectorId}/trustedentityset/{TrustedEntitySetId}",
         effective_auth_schemes = {

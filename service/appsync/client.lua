@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("appsync.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("appsync.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("appsync.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateApi(input, options)
     return self:invokeOperation(input, {
         name = "AssociateApi",
-        input_schema = types.AssociateApiInput,
-        output_schema = types.AssociateApiOutput,
+        input_schema = schemas.AssociateApiInput,
+        output_schema = schemas.AssociateApiOutput,
         http_method = "POST",
         http_path = "/v1/domainnames/{domainName}/apiassociation",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:associateMergedGraphqlApi(input, options)
     return self:invokeOperation(input, {
         name = "AssociateMergedGraphqlApi",
-        input_schema = types.AssociateMergedGraphqlApiInput,
-        output_schema = types.AssociateMergedGraphqlApiOutput,
+        input_schema = schemas.AssociateMergedGraphqlApiInput,
+        output_schema = schemas.AssociateMergedGraphqlApiOutput,
         http_method = "POST",
         http_path = "/v1/sourceApis/{sourceApiIdentifier}/mergedApiAssociations",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:associateSourceGraphqlApi(input, options)
     return self:invokeOperation(input, {
         name = "AssociateSourceGraphqlApi",
-        input_schema = types.AssociateSourceGraphqlApiInput,
-        output_schema = types.AssociateSourceGraphqlApiOutput,
+        input_schema = schemas.AssociateSourceGraphqlApiInput,
+        output_schema = schemas.AssociateSourceGraphqlApiOutput,
         http_method = "POST",
         http_path = "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createApi(input, options)
     return self:invokeOperation(input, {
         name = "CreateApi",
-        input_schema = types.CreateApiInput,
-        output_schema = types.CreateApiOutput,
+        input_schema = schemas.CreateApiInput,
+        output_schema = schemas.CreateApiOutput,
         http_method = "POST",
         http_path = "/v2/apis",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createApiCache(input, options)
     return self:invokeOperation(input, {
         name = "CreateApiCache",
-        input_schema = types.CreateApiCacheInput,
-        output_schema = types.CreateApiCacheOutput,
+        input_schema = schemas.CreateApiCacheInput,
+        output_schema = schemas.CreateApiCacheOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/ApiCaches",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createApiKey(input, options)
     return self:invokeOperation(input, {
         name = "CreateApiKey",
-        input_schema = types.CreateApiKeyInput,
-        output_schema = types.CreateApiKeyOutput,
+        input_schema = schemas.CreateApiKeyInput,
+        output_schema = schemas.CreateApiKeyOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/apikeys",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createChannelNamespace(input, options)
     return self:invokeOperation(input, {
         name = "CreateChannelNamespace",
-        input_schema = types.CreateChannelNamespaceInput,
-        output_schema = types.CreateChannelNamespaceOutput,
+        input_schema = schemas.CreateChannelNamespaceInput,
+        output_schema = schemas.CreateChannelNamespaceOutput,
         http_method = "POST",
         http_path = "/v2/apis/{apiId}/channelNamespaces",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createDataSource(input, options)
     return self:invokeOperation(input, {
         name = "CreateDataSource",
-        input_schema = types.CreateDataSourceInput,
-        output_schema = types.CreateDataSourceOutput,
+        input_schema = schemas.CreateDataSourceInput,
+        output_schema = schemas.CreateDataSourceOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/datasources",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createDomainName(input, options)
     return self:invokeOperation(input, {
         name = "CreateDomainName",
-        input_schema = types.CreateDomainNameInput,
-        output_schema = types.CreateDomainNameOutput,
+        input_schema = schemas.CreateDomainNameInput,
+        output_schema = schemas.CreateDomainNameOutput,
         http_method = "POST",
         http_path = "/v1/domainnames",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createFunction(input, options)
     return self:invokeOperation(input, {
         name = "CreateFunction",
-        input_schema = types.CreateFunctionInput,
-        output_schema = types.CreateFunctionOutput,
+        input_schema = schemas.CreateFunctionInput,
+        output_schema = schemas.CreateFunctionOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/functions",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createGraphqlApi(input, options)
     return self:invokeOperation(input, {
         name = "CreateGraphqlApi",
-        input_schema = types.CreateGraphqlApiInput,
-        output_schema = types.CreateGraphqlApiOutput,
+        input_schema = schemas.CreateGraphqlApiInput,
+        output_schema = schemas.CreateGraphqlApiOutput,
         http_method = "POST",
         http_path = "/v1/apis",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createResolver(input, options)
     return self:invokeOperation(input, {
         name = "CreateResolver",
-        input_schema = types.CreateResolverInput,
-        output_schema = types.CreateResolverOutput,
+        input_schema = schemas.CreateResolverInput,
+        output_schema = schemas.CreateResolverOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/types/{typeName}/resolvers",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createType(input, options)
     return self:invokeOperation(input, {
         name = "CreateType",
-        input_schema = types.CreateTypeInput,
-        output_schema = types.CreateTypeOutput,
+        input_schema = schemas.CreateTypeInput,
+        output_schema = schemas.CreateTypeOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/types",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteApi(input, options)
     return self:invokeOperation(input, {
         name = "DeleteApi",
-        input_schema = types.DeleteApiInput,
-        output_schema = types.DeleteApiOutput,
+        input_schema = schemas.DeleteApiInput,
+        output_schema = schemas.DeleteApiOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{apiId}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteApiCache(input, options)
     return self:invokeOperation(input, {
         name = "DeleteApiCache",
-        input_schema = types.DeleteApiCacheInput,
-        output_schema = types.DeleteApiCacheOutput,
+        input_schema = schemas.DeleteApiCacheInput,
+        output_schema = schemas.DeleteApiCacheOutput,
         http_method = "DELETE",
         http_path = "/v1/apis/{apiId}/ApiCaches",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteApiKey(input, options)
     return self:invokeOperation(input, {
         name = "DeleteApiKey",
-        input_schema = types.DeleteApiKeyInput,
-        output_schema = types.DeleteApiKeyOutput,
+        input_schema = schemas.DeleteApiKeyInput,
+        output_schema = schemas.DeleteApiKeyOutput,
         http_method = "DELETE",
         http_path = "/v1/apis/{apiId}/apikeys/{id}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteChannelNamespace(input, options)
     return self:invokeOperation(input, {
         name = "DeleteChannelNamespace",
-        input_schema = types.DeleteChannelNamespaceInput,
-        output_schema = types.DeleteChannelNamespaceOutput,
+        input_schema = schemas.DeleteChannelNamespaceInput,
+        output_schema = schemas.DeleteChannelNamespaceOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{apiId}/channelNamespaces/{name}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteDataSource(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDataSource",
-        input_schema = types.DeleteDataSourceInput,
-        output_schema = types.DeleteDataSourceOutput,
+        input_schema = schemas.DeleteDataSourceInput,
+        output_schema = schemas.DeleteDataSourceOutput,
         http_method = "DELETE",
         http_path = "/v1/apis/{apiId}/datasources/{name}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteDomainName(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDomainName",
-        input_schema = types.DeleteDomainNameInput,
-        output_schema = types.DeleteDomainNameOutput,
+        input_schema = schemas.DeleteDomainNameInput,
+        output_schema = schemas.DeleteDomainNameOutput,
         http_method = "DELETE",
         http_path = "/v1/domainnames/{domainName}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deleteFunction(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFunction",
-        input_schema = types.DeleteFunctionInput,
-        output_schema = types.DeleteFunctionOutput,
+        input_schema = schemas.DeleteFunctionInput,
+        output_schema = schemas.DeleteFunctionOutput,
         http_method = "DELETE",
         http_path = "/v1/apis/{apiId}/functions/{functionId}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteGraphqlApi(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGraphqlApi",
-        input_schema = types.DeleteGraphqlApiInput,
-        output_schema = types.DeleteGraphqlApiOutput,
+        input_schema = schemas.DeleteGraphqlApiInput,
+        output_schema = schemas.DeleteGraphqlApiOutput,
         http_method = "DELETE",
         http_path = "/v1/apis/{apiId}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:deleteResolver(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResolver",
-        input_schema = types.DeleteResolverInput,
-        output_schema = types.DeleteResolverOutput,
+        input_schema = schemas.DeleteResolverInput,
+        output_schema = schemas.DeleteResolverOutput,
         http_method = "DELETE",
         http_path = "/v1/apis/{apiId}/types/{typeName}/resolvers/{fieldName}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:deleteType(input, options)
     return self:invokeOperation(input, {
         name = "DeleteType",
-        input_schema = types.DeleteTypeInput,
-        output_schema = types.DeleteTypeOutput,
+        input_schema = schemas.DeleteTypeInput,
+        output_schema = schemas.DeleteTypeOutput,
         http_method = "DELETE",
         http_path = "/v1/apis/{apiId}/types/{typeName}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:disassociateApi(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateApi",
-        input_schema = types.DisassociateApiInput,
-        output_schema = types.DisassociateApiOutput,
+        input_schema = schemas.DisassociateApiInput,
+        output_schema = schemas.DisassociateApiOutput,
         http_method = "DELETE",
         http_path = "/v1/domainnames/{domainName}/apiassociation",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:disassociateMergedGraphqlApi(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateMergedGraphqlApi",
-        input_schema = types.DisassociateMergedGraphqlApiInput,
-        output_schema = types.DisassociateMergedGraphqlApiOutput,
+        input_schema = schemas.DisassociateMergedGraphqlApiInput,
+        output_schema = schemas.DisassociateMergedGraphqlApiOutput,
         http_method = "DELETE",
         http_path = "/v1/sourceApis/{sourceApiIdentifier}/mergedApiAssociations/{associationId}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:disassociateSourceGraphqlApi(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateSourceGraphqlApi",
-        input_schema = types.DisassociateSourceGraphqlApiInput,
-        output_schema = types.DisassociateSourceGraphqlApiOutput,
+        input_schema = schemas.DisassociateSourceGraphqlApiInput,
+        output_schema = schemas.DisassociateSourceGraphqlApiOutput,
         http_method = "DELETE",
         http_path = "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:evaluateCode(input, options)
     return self:invokeOperation(input, {
         name = "EvaluateCode",
-        input_schema = types.EvaluateCodeInput,
-        output_schema = types.EvaluateCodeOutput,
+        input_schema = schemas.EvaluateCodeInput,
+        output_schema = schemas.EvaluateCodeOutput,
         http_method = "POST",
         http_path = "/v1/dataplane-evaluatecode",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:evaluateMappingTemplate(input, options)
     return self:invokeOperation(input, {
         name = "EvaluateMappingTemplate",
-        input_schema = types.EvaluateMappingTemplateInput,
-        output_schema = types.EvaluateMappingTemplateOutput,
+        input_schema = schemas.EvaluateMappingTemplateInput,
+        output_schema = schemas.EvaluateMappingTemplateOutput,
         http_method = "POST",
         http_path = "/v1/dataplane-evaluatetemplate",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:flushApiCache(input, options)
     return self:invokeOperation(input, {
         name = "FlushApiCache",
-        input_schema = types.FlushApiCacheInput,
-        output_schema = types.FlushApiCacheOutput,
+        input_schema = schemas.FlushApiCacheInput,
+        output_schema = schemas.FlushApiCacheOutput,
         http_method = "DELETE",
         http_path = "/v1/apis/{apiId}/FlushCache",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:getApi(input, options)
     return self:invokeOperation(input, {
         name = "GetApi",
-        input_schema = types.GetApiInput,
-        output_schema = types.GetApiOutput,
+        input_schema = schemas.GetApiInput,
+        output_schema = schemas.GetApiOutput,
         http_method = "GET",
         http_path = "/v2/apis/{apiId}",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:getApiAssociation(input, options)
     return self:invokeOperation(input, {
         name = "GetApiAssociation",
-        input_schema = types.GetApiAssociationInput,
-        output_schema = types.GetApiAssociationOutput,
+        input_schema = schemas.GetApiAssociationInput,
+        output_schema = schemas.GetApiAssociationOutput,
         http_method = "GET",
         http_path = "/v1/domainnames/{domainName}/apiassociation",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:getApiCache(input, options)
     return self:invokeOperation(input, {
         name = "GetApiCache",
-        input_schema = types.GetApiCacheInput,
-        output_schema = types.GetApiCacheOutput,
+        input_schema = schemas.GetApiCacheInput,
+        output_schema = schemas.GetApiCacheOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/ApiCaches",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:getChannelNamespace(input, options)
     return self:invokeOperation(input, {
         name = "GetChannelNamespace",
-        input_schema = types.GetChannelNamespaceInput,
-        output_schema = types.GetChannelNamespaceOutput,
+        input_schema = schemas.GetChannelNamespaceInput,
+        output_schema = schemas.GetChannelNamespaceOutput,
         http_method = "GET",
         http_path = "/v2/apis/{apiId}/channelNamespaces/{name}",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:getDataSource(input, options)
     return self:invokeOperation(input, {
         name = "GetDataSource",
-        input_schema = types.GetDataSourceInput,
-        output_schema = types.GetDataSourceOutput,
+        input_schema = schemas.GetDataSourceInput,
+        output_schema = schemas.GetDataSourceOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/datasources/{name}",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:getDataSourceIntrospection(input, options)
     return self:invokeOperation(input, {
         name = "GetDataSourceIntrospection",
-        input_schema = types.GetDataSourceIntrospectionInput,
-        output_schema = types.GetDataSourceIntrospectionOutput,
+        input_schema = schemas.GetDataSourceIntrospectionInput,
+        output_schema = schemas.GetDataSourceIntrospectionOutput,
         http_method = "GET",
         http_path = "/v1/datasources/introspections/{introspectionId}",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:getDomainName(input, options)
     return self:invokeOperation(input, {
         name = "GetDomainName",
-        input_schema = types.GetDomainNameInput,
-        output_schema = types.GetDomainNameOutput,
+        input_schema = schemas.GetDomainNameInput,
+        output_schema = schemas.GetDomainNameOutput,
         http_method = "GET",
         http_path = "/v1/domainnames/{domainName}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:getFunction(input, options)
     return self:invokeOperation(input, {
         name = "GetFunction",
-        input_schema = types.GetFunctionInput,
-        output_schema = types.GetFunctionOutput,
+        input_schema = schemas.GetFunctionInput,
+        output_schema = schemas.GetFunctionOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/functions/{functionId}",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:getGraphqlApi(input, options)
     return self:invokeOperation(input, {
         name = "GetGraphqlApi",
-        input_schema = types.GetGraphqlApiInput,
-        output_schema = types.GetGraphqlApiOutput,
+        input_schema = schemas.GetGraphqlApiInput,
+        output_schema = schemas.GetGraphqlApiOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:getGraphqlApiEnvironmentVariables(input, options)
     return self:invokeOperation(input, {
         name = "GetGraphqlApiEnvironmentVariables",
-        input_schema = types.GetGraphqlApiEnvironmentVariablesInput,
-        output_schema = types.GetGraphqlApiEnvironmentVariablesOutput,
+        input_schema = schemas.GetGraphqlApiEnvironmentVariablesInput,
+        output_schema = schemas.GetGraphqlApiEnvironmentVariablesOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/environmentVariables",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:getIntrospectionSchema(input, options)
     return self:invokeOperation(input, {
         name = "GetIntrospectionSchema",
-        input_schema = types.GetIntrospectionSchemaInput,
-        output_schema = types.GetIntrospectionSchemaOutput,
+        input_schema = schemas.GetIntrospectionSchemaInput,
+        output_schema = schemas.GetIntrospectionSchemaOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/schema",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:getResolver(input, options)
     return self:invokeOperation(input, {
         name = "GetResolver",
-        input_schema = types.GetResolverInput,
-        output_schema = types.GetResolverOutput,
+        input_schema = schemas.GetResolverInput,
+        output_schema = schemas.GetResolverOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/types/{typeName}/resolvers/{fieldName}",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:getSchemaCreationStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetSchemaCreationStatus",
-        input_schema = types.GetSchemaCreationStatusInput,
-        output_schema = types.GetSchemaCreationStatusOutput,
+        input_schema = schemas.GetSchemaCreationStatusInput,
+        output_schema = schemas.GetSchemaCreationStatusOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/schemacreation",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:getSourceApiAssociation(input, options)
     return self:invokeOperation(input, {
         name = "GetSourceApiAssociation",
-        input_schema = types.GetSourceApiAssociationInput,
-        output_schema = types.GetSourceApiAssociationOutput,
+        input_schema = schemas.GetSourceApiAssociationInput,
+        output_schema = schemas.GetSourceApiAssociationOutput,
         http_method = "GET",
         http_path = "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:getType(input, options)
     return self:invokeOperation(input, {
         name = "GetType",
-        input_schema = types.GetTypeInput,
-        output_schema = types.GetTypeOutput,
+        input_schema = schemas.GetTypeInput,
+        output_schema = schemas.GetTypeOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/types/{typeName}",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:listApiKeys(input, options)
     return self:invokeOperation(input, {
         name = "ListApiKeys",
-        input_schema = types.ListApiKeysInput,
-        output_schema = types.ListApiKeysOutput,
+        input_schema = schemas.ListApiKeysInput,
+        output_schema = schemas.ListApiKeysOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/apikeys",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:listApis(input, options)
     return self:invokeOperation(input, {
         name = "ListApis",
-        input_schema = types.ListApisInput,
-        output_schema = types.ListApisOutput,
+        input_schema = schemas.ListApisInput,
+        output_schema = schemas.ListApisOutput,
         http_method = "GET",
         http_path = "/v2/apis",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:listChannelNamespaces(input, options)
     return self:invokeOperation(input, {
         name = "ListChannelNamespaces",
-        input_schema = types.ListChannelNamespacesInput,
-        output_schema = types.ListChannelNamespacesOutput,
+        input_schema = schemas.ListChannelNamespacesInput,
+        output_schema = schemas.ListChannelNamespacesOutput,
         http_method = "GET",
         http_path = "/v2/apis/{apiId}/channelNamespaces",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:listDataSources(input, options)
     return self:invokeOperation(input, {
         name = "ListDataSources",
-        input_schema = types.ListDataSourcesInput,
-        output_schema = types.ListDataSourcesOutput,
+        input_schema = schemas.ListDataSourcesInput,
+        output_schema = schemas.ListDataSourcesOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/datasources",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:listDomainNames(input, options)
     return self:invokeOperation(input, {
         name = "ListDomainNames",
-        input_schema = types.ListDomainNamesInput,
-        output_schema = types.ListDomainNamesOutput,
+        input_schema = schemas.ListDomainNamesInput,
+        output_schema = schemas.ListDomainNamesOutput,
         http_method = "GET",
         http_path = "/v1/domainnames",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:listFunctions(input, options)
     return self:invokeOperation(input, {
         name = "ListFunctions",
-        input_schema = types.ListFunctionsInput,
-        output_schema = types.ListFunctionsOutput,
+        input_schema = schemas.ListFunctionsInput,
+        output_schema = schemas.ListFunctionsOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/functions",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:listGraphqlApis(input, options)
     return self:invokeOperation(input, {
         name = "ListGraphqlApis",
-        input_schema = types.ListGraphqlApisInput,
-        output_schema = types.ListGraphqlApisOutput,
+        input_schema = schemas.ListGraphqlApisInput,
+        output_schema = schemas.ListGraphqlApisOutput,
         http_method = "GET",
         http_path = "/v1/apis",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:listResolvers(input, options)
     return self:invokeOperation(input, {
         name = "ListResolvers",
-        input_schema = types.ListResolversInput,
-        output_schema = types.ListResolversOutput,
+        input_schema = schemas.ListResolversInput,
+        output_schema = schemas.ListResolversOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/types/{typeName}/resolvers",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:listResolversByFunction(input, options)
     return self:invokeOperation(input, {
         name = "ListResolversByFunction",
-        input_schema = types.ListResolversByFunctionInput,
-        output_schema = types.ListResolversByFunctionOutput,
+        input_schema = schemas.ListResolversByFunctionInput,
+        output_schema = schemas.ListResolversByFunctionOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/functions/{functionId}/resolvers",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:listSourceApiAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListSourceApiAssociations",
-        input_schema = types.ListSourceApiAssociationsInput,
-        output_schema = types.ListSourceApiAssociationsOutput,
+        input_schema = schemas.ListSourceApiAssociationsInput,
+        output_schema = schemas.ListSourceApiAssociationsOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/sourceApiAssociations",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/v1/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:listTypes(input, options)
     return self:invokeOperation(input, {
         name = "ListTypes",
-        input_schema = types.ListTypesInput,
-        output_schema = types.ListTypesOutput,
+        input_schema = schemas.ListTypesInput,
+        output_schema = schemas.ListTypesOutput,
         http_method = "GET",
         http_path = "/v1/apis/{apiId}/types",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:listTypesByAssociation(input, options)
     return self:invokeOperation(input, {
         name = "ListTypesByAssociation",
-        input_schema = types.ListTypesByAssociationInput,
-        output_schema = types.ListTypesByAssociationOutput,
+        input_schema = schemas.ListTypesByAssociationInput,
+        output_schema = schemas.ListTypesByAssociationOutput,
         http_method = "GET",
         http_path = "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}/types",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:putGraphqlApiEnvironmentVariables(input, options)
     return self:invokeOperation(input, {
         name = "PutGraphqlApiEnvironmentVariables",
-        input_schema = types.PutGraphqlApiEnvironmentVariablesInput,
-        output_schema = types.PutGraphqlApiEnvironmentVariablesOutput,
+        input_schema = schemas.PutGraphqlApiEnvironmentVariablesInput,
+        output_schema = schemas.PutGraphqlApiEnvironmentVariablesOutput,
         http_method = "PUT",
         http_path = "/v1/apis/{apiId}/environmentVariables",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:startDataSourceIntrospection(input, options)
     return self:invokeOperation(input, {
         name = "StartDataSourceIntrospection",
-        input_schema = types.StartDataSourceIntrospectionInput,
-        output_schema = types.StartDataSourceIntrospectionOutput,
+        input_schema = schemas.StartDataSourceIntrospectionInput,
+        output_schema = schemas.StartDataSourceIntrospectionOutput,
         http_method = "POST",
         http_path = "/v1/datasources/introspections",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:startSchemaCreation(input, options)
     return self:invokeOperation(input, {
         name = "StartSchemaCreation",
-        input_schema = types.StartSchemaCreationInput,
-        output_schema = types.StartSchemaCreationOutput,
+        input_schema = schemas.StartSchemaCreationInput,
+        output_schema = schemas.StartSchemaCreationOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/schemacreation",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:startSchemaMerge(input, options)
     return self:invokeOperation(input, {
         name = "StartSchemaMerge",
-        input_schema = types.StartSchemaMergeInput,
-        output_schema = types.StartSchemaMergeOutput,
+        input_schema = schemas.StartSchemaMergeInput,
+        output_schema = schemas.StartSchemaMergeOutput,
         http_method = "POST",
         http_path = "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}/merge",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/v1/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/v1/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:updateApi(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApi",
-        input_schema = types.UpdateApiInput,
-        output_schema = types.UpdateApiOutput,
+        input_schema = schemas.UpdateApiInput,
+        output_schema = schemas.UpdateApiOutput,
         http_method = "POST",
         http_path = "/v2/apis/{apiId}",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:updateApiCache(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApiCache",
-        input_schema = types.UpdateApiCacheInput,
-        output_schema = types.UpdateApiCacheOutput,
+        input_schema = schemas.UpdateApiCacheInput,
+        output_schema = schemas.UpdateApiCacheOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/ApiCaches/update",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:updateApiKey(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApiKey",
-        input_schema = types.UpdateApiKeyInput,
-        output_schema = types.UpdateApiKeyOutput,
+        input_schema = schemas.UpdateApiKeyInput,
+        output_schema = schemas.UpdateApiKeyOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/apikeys/{id}",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:updateChannelNamespace(input, options)
     return self:invokeOperation(input, {
         name = "UpdateChannelNamespace",
-        input_schema = types.UpdateChannelNamespaceInput,
-        output_schema = types.UpdateChannelNamespaceOutput,
+        input_schema = schemas.UpdateChannelNamespaceInput,
+        output_schema = schemas.UpdateChannelNamespaceOutput,
         http_method = "POST",
         http_path = "/v2/apis/{apiId}/channelNamespaces/{name}",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:updateDataSource(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDataSource",
-        input_schema = types.UpdateDataSourceInput,
-        output_schema = types.UpdateDataSourceOutput,
+        input_schema = schemas.UpdateDataSourceInput,
+        output_schema = schemas.UpdateDataSourceOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/datasources/{name}",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:updateDomainName(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDomainName",
-        input_schema = types.UpdateDomainNameInput,
-        output_schema = types.UpdateDomainNameOutput,
+        input_schema = schemas.UpdateDomainNameInput,
+        output_schema = schemas.UpdateDomainNameOutput,
         http_method = "POST",
         http_path = "/v1/domainnames/{domainName}",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:updateFunction(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFunction",
-        input_schema = types.UpdateFunctionInput,
-        output_schema = types.UpdateFunctionOutput,
+        input_schema = schemas.UpdateFunctionInput,
+        output_schema = schemas.UpdateFunctionOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/functions/{functionId}",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:updateGraphqlApi(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGraphqlApi",
-        input_schema = types.UpdateGraphqlApiInput,
-        output_schema = types.UpdateGraphqlApiOutput,
+        input_schema = schemas.UpdateGraphqlApiInput,
+        output_schema = schemas.UpdateGraphqlApiOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:updateResolver(input, options)
     return self:invokeOperation(input, {
         name = "UpdateResolver",
-        input_schema = types.UpdateResolverInput,
-        output_schema = types.UpdateResolverOutput,
+        input_schema = schemas.UpdateResolverInput,
+        output_schema = schemas.UpdateResolverOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/types/{typeName}/resolvers/{fieldName}",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:updateSourceApiAssociation(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSourceApiAssociation",
-        input_schema = types.UpdateSourceApiAssociationInput,
-        output_schema = types.UpdateSourceApiAssociationOutput,
+        input_schema = schemas.UpdateSourceApiAssociationInput,
+        output_schema = schemas.UpdateSourceApiAssociationOutput,
         http_method = "POST",
         http_path = "/v1/mergedApis/{mergedApiIdentifier}/sourceApiAssociations/{associationId}",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:updateType(input, options)
     return self:invokeOperation(input, {
         name = "UpdateType",
-        input_schema = types.UpdateTypeInput,
-        output_schema = types.UpdateTypeOutput,
+        input_schema = schemas.UpdateTypeInput,
+        output_schema = schemas.UpdateTypeOutput,
         http_method = "POST",
         http_path = "/v1/apis/{apiId}/types/{typeName}",
         effective_auth_schemes = {

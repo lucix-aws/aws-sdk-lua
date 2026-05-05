@@ -1,0 +1,2278 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.connecthealth"
+
+local M = {}
+
+M.AccessDeniedException = schema.new({
+    id = id.from(_N, "AccessDeniedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "AccessDeniedException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ActivateSubscriptionInput = schema.new({
+    id = id.from(_N, "ActivateSubscriptionInput"),
+    type = "structure",
+    members = {
+        domainId = schema.new({
+            id = id.from(_N, "ActivateSubscriptionInput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        subscriptionId = schema.new({
+            id = id.from(_N, "ActivateSubscriptionInput", "subscriptionId"),
+            type = "string",
+            name = "subscriptionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.SubscriptionDescription = schema.new({
+    id = id.from(_N, "SubscriptionDescription"),
+    type = "structure",
+    members = {
+        domainId = schema.new({
+            id = id.from(_N, "SubscriptionDescription", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        subscriptionId = schema.new({
+            id = id.from(_N, "SubscriptionDescription", "subscriptionId"),
+            type = "string",
+            name = "subscriptionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "SubscriptionDescription", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "SubscriptionDescription", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "SubscriptionDescription", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lastUpdatedAt = schema.new({
+            id = id.from(_N, "SubscriptionDescription", "lastUpdatedAt"),
+            type = "timestamp",
+            name = "lastUpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        activatedAt = schema.new({
+            id = id.from(_N, "SubscriptionDescription", "activatedAt"),
+            type = "timestamp",
+            name = "activatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        deactivatedAt = schema.new({
+            id = id.from(_N, "SubscriptionDescription", "deactivatedAt"),
+            type = "timestamp",
+            name = "deactivatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ActivateSubscriptionOutput = schema.new({
+    id = id.from(_N, "ActivateSubscriptionOutput"),
+    type = "structure",
+    members = {
+        subscription = schema.new({
+            id = id.from(_N, "ActivateSubscriptionOutput", "subscription"),
+            type = "structure",
+            name = "subscription",
+            target_id = id.from(_N, "SubscriptionDescription"),
+            target = M.SubscriptionDescription,
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InternalServerException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ArtifactDetails = schema.new({
+    id = id.from(_N, "ArtifactDetails"),
+    type = "structure",
+    members = {
+        outputLocation = schema.new({
+            id = id.from(_N, "ArtifactDetails", "outputLocation"),
+            type = "string",
+            name = "outputLocation",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "ArtifactDetails", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        failureReason = schema.new({
+            id = id.from(_N, "ArtifactDetails", "failureReason"),
+            type = "string",
+            name = "failureReason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ClinicalNoteGenerationResult = schema.new({
+    id = id.from(_N, "ClinicalNoteGenerationResult"),
+    type = "structure",
+    members = {
+        noteResult = schema.new({
+            id = id.from(_N, "ClinicalNoteGenerationResult", "noteResult"),
+            type = "structure",
+            name = "noteResult",
+            target_id = id.from(_N, "ArtifactDetails"),
+            target = M.ArtifactDetails,
+        }),
+        transcriptResult = schema.new({
+            id = id.from(_N, "ClinicalNoteGenerationResult", "transcriptResult"),
+            type = "structure",
+            name = "transcriptResult",
+            target_id = id.from(_N, "ArtifactDetails"),
+            target = M.ArtifactDetails,
+        }),
+        afterVisitSummaryResult = schema.new({
+            id = id.from(_N, "ClinicalNoteGenerationResult", "afterVisitSummaryResult"),
+            type = "structure",
+            name = "afterVisitSummaryResult",
+            target_id = id.from(_N, "ArtifactDetails"),
+            target = M.ArtifactDetails,
+        }),
+    },
+})
+
+M.TemplateSectionInstruction = schema.new({
+    id = id.from(_N, "TemplateSectionInstruction"),
+    type = "structure",
+    members = {
+        sectionHeader = schema.new({
+            id = id.from(_N, "TemplateSectionInstruction", "sectionHeader"),
+            type = "string",
+            name = "sectionHeader",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sectionInstruction = schema.new({
+            id = id.from(_N, "TemplateSectionInstruction", "sectionInstruction"),
+            type = "string",
+            name = "sectionInstruction",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CustomTemplate = schema.new({
+    id = id.from(_N, "CustomTemplate"),
+    type = "structure",
+    members = {
+        templateType = schema.new({
+            id = id.from(_N, "CustomTemplate", "templateType"),
+            type = "string",
+            name = "templateType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        templateInstructions = schema.new({
+            id = id.from(_N, "CustomTemplate", "templateInstructions"),
+            type = "list",
+            name = "templateInstructions",
+            target_id = prelude.Document.id,
+            list_member = M.TemplateSectionInstruction,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ManagedTemplate = schema.new({
+    id = id.from(_N, "ManagedTemplate"),
+    type = "structure",
+    members = {
+        templateType = schema.new({
+            id = id.from(_N, "ManagedTemplate", "templateType"),
+            type = "string",
+            name = "templateType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.NoteTemplateSettings = schema.new({
+    id = id.from(_N, "NoteTemplateSettings"),
+    type = "union",
+    members = {
+        managedTemplate = schema.new({
+            id = id.from(_N, "NoteTemplateSettings", "managedTemplate"),
+            type = "structure",
+            name = "managedTemplate",
+            target_id = id.from(_N, "ManagedTemplate"),
+            target = M.ManagedTemplate,
+        }),
+        customTemplate = schema.new({
+            id = id.from(_N, "NoteTemplateSettings", "customTemplate"),
+            type = "structure",
+            name = "customTemplate",
+            target_id = id.from(_N, "CustomTemplate"),
+            target = M.CustomTemplate,
+        }),
+    },
+})
+
+M.ClinicalNoteGenerationSettings = schema.new({
+    id = id.from(_N, "ClinicalNoteGenerationSettings"),
+    type = "structure",
+    members = {
+        noteTemplateSettings = schema.new({
+            id = id.from(_N, "ClinicalNoteGenerationSettings", "noteTemplateSettings"),
+            type = "union",
+            name = "noteTemplateSettings",
+            target_id = id.from(_N, "NoteTemplateSettings"),
+            target = M.NoteTemplateSettings,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CustomTemplateResponse = schema.new({
+    id = id.from(_N, "CustomTemplateResponse"),
+    type = "structure",
+    members = {
+        templateType = schema.new({
+            id = id.from(_N, "CustomTemplateResponse", "templateType"),
+            type = "string",
+            name = "templateType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ManagedTemplateResponse = schema.new({
+    id = id.from(_N, "ManagedTemplateResponse"),
+    type = "structure",
+    members = {
+        templateType = schema.new({
+            id = id.from(_N, "ManagedTemplateResponse", "templateType"),
+            type = "string",
+            name = "templateType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.NoteTemplateSettingsResponse = schema.new({
+    id = id.from(_N, "NoteTemplateSettingsResponse"),
+    type = "union",
+    members = {
+        managedTemplate = schema.new({
+            id = id.from(_N, "NoteTemplateSettingsResponse", "managedTemplate"),
+            type = "structure",
+            name = "managedTemplate",
+            target_id = id.from(_N, "ManagedTemplateResponse"),
+            target = M.ManagedTemplateResponse,
+        }),
+        customTemplate = schema.new({
+            id = id.from(_N, "NoteTemplateSettingsResponse", "customTemplate"),
+            type = "structure",
+            name = "customTemplate",
+            target_id = id.from(_N, "CustomTemplateResponse"),
+            target = M.CustomTemplateResponse,
+        }),
+    },
+})
+
+M.ClinicalNoteGenerationSettingsResponse = schema.new({
+    id = id.from(_N, "ClinicalNoteGenerationSettingsResponse"),
+    type = "structure",
+    members = {
+        noteTemplateSettings = schema.new({
+            id = id.from(_N, "ClinicalNoteGenerationSettingsResponse", "noteTemplateSettings"),
+            type = "union",
+            name = "noteTemplateSettings",
+            target_id = id.from(_N, "NoteTemplateSettingsResponse"),
+            target = M.NoteTemplateSettingsResponse,
+        }),
+    },
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ConflictException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateWebAppConfiguration = schema.new({
+    id = id.from(_N, "CreateWebAppConfiguration"),
+    type = "structure",
+    members = {
+        ehrRole = schema.new({
+            id = id.from(_N, "CreateWebAppConfiguration", "ehrRole"),
+            type = "string",
+            name = "ehrRole",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        idcInstanceId = schema.new({
+            id = id.from(_N, "CreateWebAppConfiguration", "idcInstanceId"),
+            type = "string",
+            name = "idcInstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        idcRegion = schema.new({
+            id = id.from(_N, "CreateWebAppConfiguration", "idcRegion"),
+            type = "string",
+            name = "idcRegion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateDomainInput = schema.new({
+    id = id.from(_N, "CreateDomainInput"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "CreateDomainInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "CreateDomainInput", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+        webAppSetupConfiguration = schema.new({
+            id = id.from(_N, "CreateDomainInput", "webAppSetupConfiguration"),
+            type = "structure",
+            name = "webAppSetupConfiguration",
+            target_id = id.from(_N, "CreateWebAppConfiguration"),
+            target = M.CreateWebAppConfiguration,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateDomainInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.EncryptionContext = schema.new({
+    id = id.from(_N, "EncryptionContext"),
+    type = "structure",
+    members = {
+        encryptionType = schema.new({
+            id = id.from(_N, "EncryptionContext", "encryptionType"),
+            type = "string",
+            name = "encryptionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "EncryptionContext", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.WebAppConfiguration = schema.new({
+    id = id.from(_N, "WebAppConfiguration"),
+    type = "structure",
+    members = {
+        ehrRole = schema.new({
+            id = id.from(_N, "WebAppConfiguration", "ehrRole"),
+            type = "string",
+            name = "ehrRole",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        idcApplicationId = schema.new({
+            id = id.from(_N, "WebAppConfiguration", "idcApplicationId"),
+            type = "string",
+            name = "idcApplicationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        idcRegion = schema.new({
+            id = id.from(_N, "WebAppConfiguration", "idcRegion"),
+            type = "string",
+            name = "idcRegion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateDomainOutput = schema.new({
+    id = id.from(_N, "CreateDomainOutput"),
+    type = "structure",
+    members = {
+        domainId = schema.new({
+            id = id.from(_N, "CreateDomainOutput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "CreateDomainOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "CreateDomainOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "CreateDomainOutput", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+        encryptionContext = schema.new({
+            id = id.from(_N, "CreateDomainOutput", "encryptionContext"),
+            type = "structure",
+            name = "encryptionContext",
+            target_id = id.from(_N, "EncryptionContext"),
+            target = M.EncryptionContext,
+        }),
+        status = schema.new({
+            id = id.from(_N, "CreateDomainOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        webAppUrl = schema.new({
+            id = id.from(_N, "CreateDomainOutput", "webAppUrl"),
+            type = "string",
+            name = "webAppUrl",
+            target_id = prelude.String.id,
+        }),
+        webAppConfiguration = schema.new({
+            id = id.from(_N, "CreateDomainOutput", "webAppConfiguration"),
+            type = "structure",
+            name = "webAppConfiguration",
+            target_id = id.from(_N, "WebAppConfiguration"),
+            target = M.WebAppConfiguration,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CreateDomainOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateSubscriptionInput = schema.new({
+    id = id.from(_N, "CreateSubscriptionInput"),
+    type = "structure",
+    members = {
+        domainId = schema.new({
+            id = id.from(_N, "CreateSubscriptionInput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.CreateSubscriptionOutput = schema.new({
+    id = id.from(_N, "CreateSubscriptionOutput"),
+    type = "structure",
+    members = {
+        domainId = schema.new({
+            id = id.from(_N, "CreateSubscriptionOutput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        subscriptionId = schema.new({
+            id = id.from(_N, "CreateSubscriptionOutput", "subscriptionId"),
+            type = "string",
+            name = "subscriptionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "CreateSubscriptionOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "CreateSubscriptionOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CreateSubscriptionOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lastUpdatedAt = schema.new({
+            id = id.from(_N, "CreateSubscriptionOutput", "lastUpdatedAt"),
+            type = "timestamp",
+            name = "lastUpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        activatedAt = schema.new({
+            id = id.from(_N, "CreateSubscriptionOutput", "activatedAt"),
+            type = "timestamp",
+            name = "activatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        deactivatedAt = schema.new({
+            id = id.from(_N, "CreateSubscriptionOutput", "deactivatedAt"),
+            type = "timestamp",
+            name = "deactivatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.DeactivateSubscriptionInput = schema.new({
+    id = id.from(_N, "DeactivateSubscriptionInput"),
+    type = "structure",
+    members = {
+        domainId = schema.new({
+            id = id.from(_N, "DeactivateSubscriptionInput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        subscriptionId = schema.new({
+            id = id.from(_N, "DeactivateSubscriptionInput", "subscriptionId"),
+            type = "string",
+            name = "subscriptionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeactivateSubscriptionOutput = schema.new({
+    id = id.from(_N, "DeactivateSubscriptionOutput"),
+    type = "structure",
+    members = {
+        subscription = schema.new({
+            id = id.from(_N, "DeactivateSubscriptionOutput", "subscription"),
+            type = "structure",
+            name = "subscription",
+            target_id = id.from(_N, "SubscriptionDescription"),
+            target = M.SubscriptionDescription,
+        }),
+    },
+})
+
+M.DeleteDomainInput = schema.new({
+    id = id.from(_N, "DeleteDomainInput"),
+    type = "structure",
+    members = {
+        domainId = schema.new({
+            id = id.from(_N, "DeleteDomainInput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteDomainOutput = schema.new({
+    id = id.from(_N, "DeleteDomainOutput"),
+    type = "structure",
+    members = {
+        domainId = schema.new({
+            id = id.from(_N, "DeleteDomainOutput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "DeleteDomainOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "DeleteDomainOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetDomainInput = schema.new({
+    id = id.from(_N, "GetDomainInput"),
+    type = "structure",
+    members = {
+        domainId = schema.new({
+            id = id.from(_N, "GetDomainInput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetDomainOutput = schema.new({
+    id = id.from(_N, "GetDomainOutput"),
+    type = "structure",
+    members = {
+        domainId = schema.new({
+            id = id.from(_N, "GetDomainOutput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "GetDomainOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "GetDomainOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "GetDomainOutput", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+        encryptionContext = schema.new({
+            id = id.from(_N, "GetDomainOutput", "encryptionContext"),
+            type = "structure",
+            name = "encryptionContext",
+            target_id = id.from(_N, "EncryptionContext"),
+            target = M.EncryptionContext,
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetDomainOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        webAppUrl = schema.new({
+            id = id.from(_N, "GetDomainOutput", "webAppUrl"),
+            type = "string",
+            name = "webAppUrl",
+            target_id = prelude.String.id,
+        }),
+        webAppConfiguration = schema.new({
+            id = id.from(_N, "GetDomainOutput", "webAppConfiguration"),
+            type = "structure",
+            name = "webAppConfiguration",
+            target_id = id.from(_N, "WebAppConfiguration"),
+            target = M.WebAppConfiguration,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetDomainOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "GetDomainOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.GetMedicalScribeListeningSessionInput = schema.new({
+    id = id.from(_N, "GetMedicalScribeListeningSessionInput"),
+    type = "structure",
+    members = {
+        sessionId = schema.new({
+            id = id.from(_N, "GetMedicalScribeListeningSessionInput", "sessionId"),
+            type = "string",
+            name = "sessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        domainId = schema.new({
+            id = id.from(_N, "GetMedicalScribeListeningSessionInput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        subscriptionId = schema.new({
+            id = id.from(_N, "GetMedicalScribeListeningSessionInput", "subscriptionId"),
+            type = "string",
+            name = "subscriptionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.MedicalScribeChannelDefinition = schema.new({
+    id = id.from(_N, "MedicalScribeChannelDefinition"),
+    type = "structure",
+    members = {
+        channelId = schema.new({
+            id = id.from(_N, "MedicalScribeChannelDefinition", "channelId"),
+            type = "integer",
+            name = "channelId",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        participantRole = schema.new({
+            id = id.from(_N, "MedicalScribeChannelDefinition", "participantRole"),
+            type = "string",
+            name = "participantRole",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.MedicalScribePostStreamActionsResult = schema.new({
+    id = id.from(_N, "MedicalScribePostStreamActionsResult"),
+    type = "structure",
+    members = {
+        clinicalNoteGenerationResult = schema.new({
+            id = id.from(_N, "MedicalScribePostStreamActionsResult", "clinicalNoteGenerationResult"),
+            type = "structure",
+            name = "clinicalNoteGenerationResult",
+            target_id = id.from(_N, "ClinicalNoteGenerationResult"),
+            target = M.ClinicalNoteGenerationResult,
+        }),
+    },
+})
+
+M.MedicalScribePostStreamActionSettingsResponse = schema.new({
+    id = id.from(_N, "MedicalScribePostStreamActionSettingsResponse"),
+    type = "structure",
+    members = {
+        outputS3Uri = schema.new({
+            id = id.from(_N, "MedicalScribePostStreamActionSettingsResponse", "outputS3Uri"),
+            type = "string",
+            name = "outputS3Uri",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clinicalNoteGenerationSettings = schema.new({
+            id = id.from(_N, "MedicalScribePostStreamActionSettingsResponse", "clinicalNoteGenerationSettings"),
+            type = "structure",
+            name = "clinicalNoteGenerationSettings",
+            target_id = id.from(_N, "ClinicalNoteGenerationSettingsResponse"),
+            target = M.ClinicalNoteGenerationSettingsResponse,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.MedicalScribeListeningSessionDetails = schema.new({
+    id = id.from(_N, "MedicalScribeListeningSessionDetails"),
+    type = "structure",
+    members = {
+        sessionId = schema.new({
+            id = id.from(_N, "MedicalScribeListeningSessionDetails", "sessionId"),
+            type = "string",
+            name = "sessionId",
+            target_id = prelude.String.id,
+        }),
+        domainId = schema.new({
+            id = id.from(_N, "MedicalScribeListeningSessionDetails", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+        }),
+        subscriptionId = schema.new({
+            id = id.from(_N, "MedicalScribeListeningSessionDetails", "subscriptionId"),
+            type = "string",
+            name = "subscriptionId",
+            target_id = prelude.String.id,
+        }),
+        languageCode = schema.new({
+            id = id.from(_N, "MedicalScribeListeningSessionDetails", "languageCode"),
+            type = "string",
+            name = "languageCode",
+            target_id = prelude.String.id,
+        }),
+        mediaSampleRateHertz = schema.new({
+            id = id.from(_N, "MedicalScribeListeningSessionDetails", "mediaSampleRateHertz"),
+            type = "integer",
+            name = "mediaSampleRateHertz",
+            target_id = prelude.Integer.id,
+        }),
+        mediaEncoding = schema.new({
+            id = id.from(_N, "MedicalScribeListeningSessionDetails", "mediaEncoding"),
+            type = "string",
+            name = "mediaEncoding",
+            target_id = prelude.String.id,
+        }),
+        channelDefinitions = schema.new({
+            id = id.from(_N, "MedicalScribeListeningSessionDetails", "channelDefinitions"),
+            type = "list",
+            name = "channelDefinitions",
+            target_id = prelude.Document.id,
+            list_member = M.MedicalScribeChannelDefinition,
+        }),
+        postStreamActionSettings = schema.new({
+            id = id.from(_N, "MedicalScribeListeningSessionDetails", "postStreamActionSettings"),
+            type = "structure",
+            name = "postStreamActionSettings",
+            target_id = id.from(_N, "MedicalScribePostStreamActionSettingsResponse"),
+            target = M.MedicalScribePostStreamActionSettingsResponse,
+        }),
+        postStreamActionResult = schema.new({
+            id = id.from(_N, "MedicalScribeListeningSessionDetails", "postStreamActionResult"),
+            type = "structure",
+            name = "postStreamActionResult",
+            target_id = id.from(_N, "MedicalScribePostStreamActionsResult"),
+            target = M.MedicalScribePostStreamActionsResult,
+        }),
+        encounterContextProvided = schema.new({
+            id = id.from(_N, "MedicalScribeListeningSessionDetails", "encounterContextProvided"),
+            type = "boolean",
+            name = "encounterContextProvided",
+            target_id = prelude.Boolean.id,
+        }),
+        streamStatus = schema.new({
+            id = id.from(_N, "MedicalScribeListeningSessionDetails", "streamStatus"),
+            type = "string",
+            name = "streamStatus",
+            target_id = prelude.String.id,
+        }),
+        streamCreationTime = schema.new({
+            id = id.from(_N, "MedicalScribeListeningSessionDetails", "streamCreationTime"),
+            type = "timestamp",
+            name = "streamCreationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        streamEndTime = schema.new({
+            id = id.from(_N, "MedicalScribeListeningSessionDetails", "streamEndTime"),
+            type = "timestamp",
+            name = "streamEndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.GetMedicalScribeListeningSessionOutput = schema.new({
+    id = id.from(_N, "GetMedicalScribeListeningSessionOutput"),
+    type = "structure",
+    members = {
+        medicalScribeListeningSessionDetails = schema.new({
+            id = id.from(_N, "GetMedicalScribeListeningSessionOutput", "medicalScribeListeningSessionDetails"),
+            type = "structure",
+            name = "medicalScribeListeningSessionDetails",
+            target_id = id.from(_N, "MedicalScribeListeningSessionDetails"),
+            target = M.MedicalScribeListeningSessionDetails,
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ThrottlingException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetPatientInsightsJobInput = schema.new({
+    id = id.from(_N, "GetPatientInsightsJobInput"),
+    type = "structure",
+    members = {
+        domainId = schema.new({
+            id = id.from(_N, "GetPatientInsightsJobInput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        jobId = schema.new({
+            id = id.from(_N, "GetPatientInsightsJobInput", "jobId"),
+            type = "string",
+            name = "jobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.PatientInsightsEncounterContext = schema.new({
+    id = id.from(_N, "PatientInsightsEncounterContext"),
+    type = "structure",
+    members = {
+        encounterReason = schema.new({
+            id = id.from(_N, "PatientInsightsEncounterContext", "encounterReason"),
+            type = "string",
+            name = "encounterReason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.FHIRServer = schema.new({
+    id = id.from(_N, "FHIRServer"),
+    type = "structure",
+    members = {
+        fhirEndpoint = schema.new({
+            id = id.from(_N, "FHIRServer", "fhirEndpoint"),
+            type = "string",
+            name = "fhirEndpoint",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        oauthToken = schema.new({
+            id = id.from(_N, "FHIRServer", "oauthToken"),
+            type = "string",
+            name = "oauthToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.S3Source = schema.new({
+    id = id.from(_N, "S3Source"),
+    type = "structure",
+    members = {
+        uri = schema.new({
+            id = id.from(_N, "S3Source", "uri"),
+            type = "string",
+            name = "uri",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InputDataConfig = schema.new({
+    id = id.from(_N, "InputDataConfig"),
+    type = "structure",
+    members = {
+        fhirServer = schema.new({
+            id = id.from(_N, "InputDataConfig", "fhirServer"),
+            type = "structure",
+            name = "fhirServer",
+            target_id = id.from(_N, "FHIRServer"),
+            target = M.FHIRServer,
+        }),
+        s3Sources = schema.new({
+            id = id.from(_N, "InputDataConfig", "s3Sources"),
+            type = "list",
+            name = "s3Sources",
+            target_id = prelude.Document.id,
+            list_member = M.S3Source,
+        }),
+    },
+})
+
+M.InsightsContext = schema.new({
+    id = id.from(_N, "InsightsContext"),
+    type = "structure",
+    members = {
+        insightsType = schema.new({
+            id = id.from(_N, "InsightsContext", "insightsType"),
+            type = "string",
+            name = "insightsType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InsightsOutput = schema.new({
+    id = id.from(_N, "InsightsOutput"),
+    type = "structure",
+    members = {
+        uri = schema.new({
+            id = id.from(_N, "InsightsOutput", "uri"),
+            type = "string",
+            name = "uri",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.OutputDataConfig = schema.new({
+    id = id.from(_N, "OutputDataConfig"),
+    type = "structure",
+    members = {
+        s3OutputPath = schema.new({
+            id = id.from(_N, "OutputDataConfig", "s3OutputPath"),
+            type = "string",
+            name = "s3OutputPath",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PatientInsightsPatientContext = schema.new({
+    id = id.from(_N, "PatientInsightsPatientContext"),
+    type = "structure",
+    members = {
+        patientId = schema.new({
+            id = id.from(_N, "PatientInsightsPatientContext", "patientId"),
+            type = "string",
+            name = "patientId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        dateOfBirth = schema.new({
+            id = id.from(_N, "PatientInsightsPatientContext", "dateOfBirth"),
+            type = "string",
+            name = "dateOfBirth",
+            target_id = prelude.String.id,
+        }),
+        pronouns = schema.new({
+            id = id.from(_N, "PatientInsightsPatientContext", "pronouns"),
+            type = "string",
+            name = "pronouns",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UserContext = schema.new({
+    id = id.from(_N, "UserContext"),
+    type = "structure",
+    members = {
+        role = schema.new({
+            id = id.from(_N, "UserContext", "role"),
+            type = "string",
+            name = "role",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        userId = schema.new({
+            id = id.from(_N, "UserContext", "userId"),
+            type = "string",
+            name = "userId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        specialty = schema.new({
+            id = id.from(_N, "UserContext", "specialty"),
+            type = "string",
+            name = "specialty",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetPatientInsightsJobOutput = schema.new({
+    id = id.from(_N, "GetPatientInsightsJobOutput"),
+    type = "structure",
+    members = {
+        jobId = schema.new({
+            id = id.from(_N, "GetPatientInsightsJobOutput", "jobId"),
+            type = "string",
+            name = "jobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        jobArn = schema.new({
+            id = id.from(_N, "GetPatientInsightsJobOutput", "jobArn"),
+            type = "string",
+            name = "jobArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        jobStatus = schema.new({
+            id = id.from(_N, "GetPatientInsightsJobOutput", "jobStatus"),
+            type = "string",
+            name = "jobStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creationTime = schema.new({
+            id = id.from(_N, "GetPatientInsightsJobOutput", "creationTime"),
+            type = "timestamp",
+            name = "creationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        updatedTime = schema.new({
+            id = id.from(_N, "GetPatientInsightsJobOutput", "updatedTime"),
+            type = "timestamp",
+            name = "updatedTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        insightsOutput = schema.new({
+            id = id.from(_N, "GetPatientInsightsJobOutput", "insightsOutput"),
+            type = "structure",
+            name = "insightsOutput",
+            target_id = id.from(_N, "InsightsOutput"),
+            target = M.InsightsOutput,
+        }),
+        statusDetails = schema.new({
+            id = id.from(_N, "GetPatientInsightsJobOutput", "statusDetails"),
+            type = "string",
+            name = "statusDetails",
+            target_id = prelude.String.id,
+        }),
+        patientContext = schema.new({
+            id = id.from(_N, "GetPatientInsightsJobOutput", "patientContext"),
+            type = "structure",
+            name = "patientContext",
+            target_id = id.from(_N, "PatientInsightsPatientContext"),
+            target = M.PatientInsightsPatientContext,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        insightsContext = schema.new({
+            id = id.from(_N, "GetPatientInsightsJobOutput", "insightsContext"),
+            type = "structure",
+            name = "insightsContext",
+            target_id = id.from(_N, "InsightsContext"),
+            target = M.InsightsContext,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        encounterContext = schema.new({
+            id = id.from(_N, "GetPatientInsightsJobOutput", "encounterContext"),
+            type = "structure",
+            name = "encounterContext",
+            target_id = id.from(_N, "PatientInsightsEncounterContext"),
+            target = M.PatientInsightsEncounterContext,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        userContext = schema.new({
+            id = id.from(_N, "GetPatientInsightsJobOutput", "userContext"),
+            type = "structure",
+            name = "userContext",
+            target_id = id.from(_N, "UserContext"),
+            target = M.UserContext,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        inputDataConfig = schema.new({
+            id = id.from(_N, "GetPatientInsightsJobOutput", "inputDataConfig"),
+            type = "structure",
+            name = "inputDataConfig",
+            target_id = id.from(_N, "InputDataConfig"),
+            target = M.InputDataConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        outputDataConfig = schema.new({
+            id = id.from(_N, "GetPatientInsightsJobOutput", "outputDataConfig"),
+            type = "structure",
+            name = "outputDataConfig",
+            target_id = id.from(_N, "OutputDataConfig"),
+            target = M.OutputDataConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetSubscriptionInput = schema.new({
+    id = id.from(_N, "GetSubscriptionInput"),
+    type = "structure",
+    members = {
+        domainId = schema.new({
+            id = id.from(_N, "GetSubscriptionInput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        subscriptionId = schema.new({
+            id = id.from(_N, "GetSubscriptionInput", "subscriptionId"),
+            type = "string",
+            name = "subscriptionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetSubscriptionOutput = schema.new({
+    id = id.from(_N, "GetSubscriptionOutput"),
+    type = "structure",
+    members = {
+        subscription = schema.new({
+            id = id.from(_N, "GetSubscriptionOutput", "subscription"),
+            type = "structure",
+            name = "subscription",
+            target_id = id.from(_N, "SubscriptionDescription"),
+            target = M.SubscriptionDescription,
+        }),
+    },
+})
+
+M.ListDomainsInput = schema.new({
+    id = id.from(_N, "ListDomainsInput"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "ListDomainsInput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "status" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListDomainsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListDomainsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.DomainSummary = schema.new({
+    id = id.from(_N, "DomainSummary"),
+    type = "structure",
+    members = {
+        domainId = schema.new({
+            id = id.from(_N, "DomainSummary", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "DomainSummary", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "DomainSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "DomainSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "DomainSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListDomainsOutput = schema.new({
+    id = id.from(_N, "ListDomainsOutput"),
+    type = "structure",
+    members = {
+        domains = schema.new({
+            id = id.from(_N, "ListDomainsOutput", "domains"),
+            type = "list",
+            name = "domains",
+            target_id = prelude.Document.id,
+            list_member = M.DomainSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListDomainsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListSubscriptionsInput = schema.new({
+    id = id.from(_N, "ListSubscriptionsInput"),
+    type = "structure",
+    members = {
+        domainId = schema.new({
+            id = id.from(_N, "ListSubscriptionsInput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListSubscriptionsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListSubscriptionsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListSubscriptionsOutput = schema.new({
+    id = id.from(_N, "ListSubscriptionsOutput"),
+    type = "structure",
+    members = {
+        subscriptions = schema.new({
+            id = id.from(_N, "ListSubscriptionsOutput", "subscriptions"),
+            type = "list",
+            name = "subscriptions",
+            target_id = prelude.Document.id,
+            list_member = M.SubscriptionDescription,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListSubscriptionsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceOutput"),
+    type = "structure",
+    members = {
+        tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.MedicalScribeAudioEvent = schema.new({
+    id = id.from(_N, "MedicalScribeAudioEvent"),
+    type = "structure",
+    members = {
+        audioChunk = schema.new({
+            id = id.from(_N, "MedicalScribeAudioEvent", "audioChunk"),
+            type = "blob",
+            name = "audioChunk",
+            target_id = prelude.Blob.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.EncounterContext = schema.new({
+    id = id.from(_N, "EncounterContext"),
+    type = "structure",
+    members = {
+        unstructuredContext = schema.new({
+            id = id.from(_N, "EncounterContext", "unstructuredContext"),
+            type = "string",
+            name = "unstructuredContext",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.MedicalScribePostStreamActionSettings = schema.new({
+    id = id.from(_N, "MedicalScribePostStreamActionSettings"),
+    type = "structure",
+    members = {
+        outputS3Uri = schema.new({
+            id = id.from(_N, "MedicalScribePostStreamActionSettings", "outputS3Uri"),
+            type = "string",
+            name = "outputS3Uri",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clinicalNoteGenerationSettings = schema.new({
+            id = id.from(_N, "MedicalScribePostStreamActionSettings", "clinicalNoteGenerationSettings"),
+            type = "structure",
+            name = "clinicalNoteGenerationSettings",
+            target_id = id.from(_N, "ClinicalNoteGenerationSettings"),
+            target = M.ClinicalNoteGenerationSettings,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.MedicalScribeConfigurationEvent = schema.new({
+    id = id.from(_N, "MedicalScribeConfigurationEvent"),
+    type = "structure",
+    members = {
+        postStreamActionSettings = schema.new({
+            id = id.from(_N, "MedicalScribeConfigurationEvent", "postStreamActionSettings"),
+            type = "structure",
+            name = "postStreamActionSettings",
+            target_id = id.from(_N, "MedicalScribePostStreamActionSettings"),
+            target = M.MedicalScribePostStreamActionSettings,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        channelDefinitions = schema.new({
+            id = id.from(_N, "MedicalScribeConfigurationEvent", "channelDefinitions"),
+            type = "list",
+            name = "channelDefinitions",
+            target_id = prelude.Document.id,
+            list_member = M.MedicalScribeChannelDefinition,
+        }),
+        encounterContext = schema.new({
+            id = id.from(_N, "MedicalScribeConfigurationEvent", "encounterContext"),
+            type = "structure",
+            name = "encounterContext",
+            target_id = id.from(_N, "EncounterContext"),
+            target = M.EncounterContext,
+        }),
+    },
+})
+
+M.MedicalScribeSessionControlEvent = schema.new({
+    id = id.from(_N, "MedicalScribeSessionControlEvent"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "MedicalScribeSessionControlEvent", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.MedicalScribeInputStream = schema.new({
+    id = id.from(_N, "MedicalScribeInputStream"),
+    type = "union",
+    members = {
+        audioEvent = schema.new({
+            id = id.from(_N, "MedicalScribeInputStream", "audioEvent"),
+            type = "structure",
+            name = "audioEvent",
+            target_id = id.from(_N, "MedicalScribeAudioEvent"),
+            target = M.MedicalScribeAudioEvent,
+        }),
+        sessionControlEvent = schema.new({
+            id = id.from(_N, "MedicalScribeInputStream", "sessionControlEvent"),
+            type = "structure",
+            name = "sessionControlEvent",
+            target_id = id.from(_N, "MedicalScribeSessionControlEvent"),
+            target = M.MedicalScribeSessionControlEvent,
+        }),
+        configurationEvent = schema.new({
+            id = id.from(_N, "MedicalScribeInputStream", "configurationEvent"),
+            type = "structure",
+            name = "configurationEvent",
+            target_id = id.from(_N, "MedicalScribeConfigurationEvent"),
+            target = M.MedicalScribeConfigurationEvent,
+        }),
+    },
+})
+
+M.StartMedicalScribeListeningSessionInput = schema.new({
+    id = id.from(_N, "StartMedicalScribeListeningSessionInput"),
+    type = "structure",
+    members = {
+        sessionId = schema.new({
+            id = id.from(_N, "StartMedicalScribeListeningSessionInput", "sessionId"),
+            type = "string",
+            name = "sessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amzn-medscribe-session-id" },
+            },
+        }),
+        domainId = schema.new({
+            id = id.from(_N, "StartMedicalScribeListeningSessionInput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amzn-medscribe-domain-id" },
+            },
+        }),
+        subscriptionId = schema.new({
+            id = id.from(_N, "StartMedicalScribeListeningSessionInput", "subscriptionId"),
+            type = "string",
+            name = "subscriptionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amzn-medscribe-subscription-id" },
+            },
+        }),
+        languageCode = schema.new({
+            id = id.from(_N, "StartMedicalScribeListeningSessionInput", "languageCode"),
+            type = "string",
+            name = "languageCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amzn-medscribe-language-code" },
+            },
+        }),
+        mediaSampleRateHertz = schema.new({
+            id = id.from(_N, "StartMedicalScribeListeningSessionInput", "mediaSampleRateHertz"),
+            type = "integer",
+            name = "mediaSampleRateHertz",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amzn-medscribe-sample-rate" },
+            },
+        }),
+        mediaEncoding = schema.new({
+            id = id.from(_N, "StartMedicalScribeListeningSessionInput", "mediaEncoding"),
+            type = "string",
+            name = "mediaEncoding",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amzn-medscribe-media-encoding" },
+            },
+        }),
+        inputStream = schema.new({
+            id = id.from(_N, "StartMedicalScribeListeningSessionInput", "inputStream"),
+            type = "union",
+            name = "inputStream",
+            target_id = id.from(_N, "MedicalScribeInputStream"),
+            target = M.MedicalScribeInputStream,
+            traits = {
+                [traits.HTTP_PAYLOAD] = {},
+            },
+        }),
+    },
+})
+
+M.MedicalScribeTranscriptSegment = schema.new({
+    id = id.from(_N, "MedicalScribeTranscriptSegment"),
+    type = "structure",
+    members = {
+        segmentId = schema.new({
+            id = id.from(_N, "MedicalScribeTranscriptSegment", "segmentId"),
+            type = "string",
+            name = "segmentId",
+            target_id = prelude.String.id,
+        }),
+        audioBeginOffset = schema.new({
+            id = id.from(_N, "MedicalScribeTranscriptSegment", "audioBeginOffset"),
+            type = "double",
+            name = "audioBeginOffset",
+            target_id = prelude.Double.id,
+        }),
+        audioEndOffset = schema.new({
+            id = id.from(_N, "MedicalScribeTranscriptSegment", "audioEndOffset"),
+            type = "double",
+            name = "audioEndOffset",
+            target_id = prelude.Double.id,
+        }),
+        isPartial = schema.new({
+            id = id.from(_N, "MedicalScribeTranscriptSegment", "isPartial"),
+            type = "boolean",
+            name = "isPartial",
+            target_id = prelude.Boolean.id,
+        }),
+        channelId = schema.new({
+            id = id.from(_N, "MedicalScribeTranscriptSegment", "channelId"),
+            type = "string",
+            name = "channelId",
+            target_id = prelude.String.id,
+        }),
+        content = schema.new({
+            id = id.from(_N, "MedicalScribeTranscriptSegment", "content"),
+            type = "string",
+            name = "content",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.MedicalScribeTranscriptEvent = schema.new({
+    id = id.from(_N, "MedicalScribeTranscriptEvent"),
+    type = "structure",
+    members = {
+        transcriptSegment = schema.new({
+            id = id.from(_N, "MedicalScribeTranscriptEvent", "transcriptSegment"),
+            type = "structure",
+            name = "transcriptSegment",
+            target_id = id.from(_N, "MedicalScribeTranscriptSegment"),
+            target = M.MedicalScribeTranscriptSegment,
+        }),
+    },
+})
+
+M.MedicalScribeOutputStream = schema.new({
+    id = id.from(_N, "MedicalScribeOutputStream"),
+    type = "union",
+    members = {
+        transcriptEvent = schema.new({
+            id = id.from(_N, "MedicalScribeOutputStream", "transcriptEvent"),
+            type = "structure",
+            name = "transcriptEvent",
+            target_id = id.from(_N, "MedicalScribeTranscriptEvent"),
+            target = M.MedicalScribeTranscriptEvent,
+        }),
+        internalFailureException = schema.new({
+            id = id.from(_N, "MedicalScribeOutputStream", "internalFailureException"),
+            type = "structure",
+            name = "internalFailureException",
+            target_id = id.from(_N, "InternalServerException"),
+            target = M.InternalServerException,
+        }),
+        validationException = schema.new({
+            id = id.from(_N, "MedicalScribeOutputStream", "validationException"),
+            type = "structure",
+            name = "validationException",
+            target_id = id.from(_N, "ValidationException"),
+            target = M.ValidationException,
+        }),
+    },
+})
+
+M.StartMedicalScribeListeningSessionOutput = schema.new({
+    id = id.from(_N, "StartMedicalScribeListeningSessionOutput"),
+    type = "structure",
+    members = {
+        sessionId = schema.new({
+            id = id.from(_N, "StartMedicalScribeListeningSessionOutput", "sessionId"),
+            type = "string",
+            name = "sessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-medscribe-session-id" },
+            },
+        }),
+        domainId = schema.new({
+            id = id.from(_N, "StartMedicalScribeListeningSessionOutput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-medscribe-domain-id" },
+            },
+        }),
+        subscriptionId = schema.new({
+            id = id.from(_N, "StartMedicalScribeListeningSessionOutput", "subscriptionId"),
+            type = "string",
+            name = "subscriptionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-medscribe-subscription-id" },
+            },
+        }),
+        requestId = schema.new({
+            id = id.from(_N, "StartMedicalScribeListeningSessionOutput", "requestId"),
+            type = "string",
+            name = "requestId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-request-id" },
+            },
+        }),
+        languageCode = schema.new({
+            id = id.from(_N, "StartMedicalScribeListeningSessionOutput", "languageCode"),
+            type = "string",
+            name = "languageCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-medscribe-language-code" },
+            },
+        }),
+        mediaSampleRateHertz = schema.new({
+            id = id.from(_N, "StartMedicalScribeListeningSessionOutput", "mediaSampleRateHertz"),
+            type = "integer",
+            name = "mediaSampleRateHertz",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-medscribe-sample-rate" },
+            },
+        }),
+        mediaEncoding = schema.new({
+            id = id.from(_N, "StartMedicalScribeListeningSessionOutput", "mediaEncoding"),
+            type = "string",
+            name = "mediaEncoding",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-medscribe-media-encoding" },
+            },
+        }),
+        responseStream = schema.new({
+            id = id.from(_N, "StartMedicalScribeListeningSessionOutput", "responseStream"),
+            type = "union",
+            name = "responseStream",
+            target_id = id.from(_N, "MedicalScribeOutputStream"),
+            target = M.MedicalScribeOutputStream,
+            traits = {
+                [traits.HTTP_PAYLOAD] = {},
+            },
+        }),
+    },
+})
+
+M.StartPatientInsightsJobInput = schema.new({
+    id = id.from(_N, "StartPatientInsightsJobInput"),
+    type = "structure",
+    members = {
+        domainId = schema.new({
+            id = id.from(_N, "StartPatientInsightsJobInput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        patientContext = schema.new({
+            id = id.from(_N, "StartPatientInsightsJobInput", "patientContext"),
+            type = "structure",
+            name = "patientContext",
+            target_id = id.from(_N, "PatientInsightsPatientContext"),
+            target = M.PatientInsightsPatientContext,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        insightsContext = schema.new({
+            id = id.from(_N, "StartPatientInsightsJobInput", "insightsContext"),
+            type = "structure",
+            name = "insightsContext",
+            target_id = id.from(_N, "InsightsContext"),
+            target = M.InsightsContext,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        encounterContext = schema.new({
+            id = id.from(_N, "StartPatientInsightsJobInput", "encounterContext"),
+            type = "structure",
+            name = "encounterContext",
+            target_id = id.from(_N, "PatientInsightsEncounterContext"),
+            target = M.PatientInsightsEncounterContext,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        userContext = schema.new({
+            id = id.from(_N, "StartPatientInsightsJobInput", "userContext"),
+            type = "structure",
+            name = "userContext",
+            target_id = id.from(_N, "UserContext"),
+            target = M.UserContext,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        inputDataConfig = schema.new({
+            id = id.from(_N, "StartPatientInsightsJobInput", "inputDataConfig"),
+            type = "structure",
+            name = "inputDataConfig",
+            target_id = id.from(_N, "InputDataConfig"),
+            target = M.InputDataConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        outputDataConfig = schema.new({
+            id = id.from(_N, "StartPatientInsightsJobInput", "outputDataConfig"),
+            type = "structure",
+            name = "outputDataConfig",
+            target_id = id.from(_N, "OutputDataConfig"),
+            target = M.OutputDataConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "StartPatientInsightsJobInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.StartPatientInsightsJobOutput = schema.new({
+    id = id.from(_N, "StartPatientInsightsJobOutput"),
+    type = "structure",
+    members = {
+        jobArn = schema.new({
+            id = id.from(_N, "StartPatientInsightsJobOutput", "jobArn"),
+            type = "string",
+            name = "jobArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        jobId = schema.new({
+            id = id.from(_N, "StartPatientInsightsJobOutput", "jobId"),
+            type = "string",
+            name = "jobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creationTime = schema.new({
+            id = id.from(_N, "StartPatientInsightsJobOutput", "creationTime"),
+            type = "timestamp",
+            name = "creationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "TagResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceOutput"),
+    type = "structure",
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "UntagResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        tagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "tagKeys"),
+            type = "list",
+            name = "tagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "tagKeys" },
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
+return M

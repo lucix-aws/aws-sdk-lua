@@ -499,9 +499,9 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type EntitlementType = "WINDOWS_SERVER"
-
 local type ConnectorType = "VCENTER"
+
+local type EntitlementType = "WINDOWS_SERVER"
 
 local type VcfVersion = "VCF-5.2.1" | "VCF-5.2.2"
 

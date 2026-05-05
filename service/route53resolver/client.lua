@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("route53resolver.endpoint_rules")
+local schemas = require("route53resolver.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("route53resolver.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateFirewallRuleGroup(input, options)
     return self:invokeOperation(input, {
         name = "AssociateFirewallRuleGroup",
-        input_schema = types.AssociateFirewallRuleGroupInput,
-        output_schema = types.AssociateFirewallRuleGroupOutput,
+        input_schema = schemas.AssociateFirewallRuleGroupInput,
+        output_schema = schemas.AssociateFirewallRuleGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:associateResolverEndpointIpAddress(input, options)
     return self:invokeOperation(input, {
         name = "AssociateResolverEndpointIpAddress",
-        input_schema = types.AssociateResolverEndpointIpAddressInput,
-        output_schema = types.AssociateResolverEndpointIpAddressOutput,
+        input_schema = schemas.AssociateResolverEndpointIpAddressInput,
+        output_schema = schemas.AssociateResolverEndpointIpAddressOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:associateResolverQueryLogConfig(input, options)
     return self:invokeOperation(input, {
         name = "AssociateResolverQueryLogConfig",
-        input_schema = types.AssociateResolverQueryLogConfigInput,
-        output_schema = types.AssociateResolverQueryLogConfigOutput,
+        input_schema = schemas.AssociateResolverQueryLogConfigInput,
+        output_schema = schemas.AssociateResolverQueryLogConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:associateResolverRule(input, options)
     return self:invokeOperation(input, {
         name = "AssociateResolverRule",
-        input_schema = types.AssociateResolverRuleInput,
-        output_schema = types.AssociateResolverRuleOutput,
+        input_schema = schemas.AssociateResolverRuleInput,
+        output_schema = schemas.AssociateResolverRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createFirewallDomainList(input, options)
     return self:invokeOperation(input, {
         name = "CreateFirewallDomainList",
-        input_schema = types.CreateFirewallDomainListInput,
-        output_schema = types.CreateFirewallDomainListOutput,
+        input_schema = schemas.CreateFirewallDomainListInput,
+        output_schema = schemas.CreateFirewallDomainListOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createFirewallRule(input, options)
     return self:invokeOperation(input, {
         name = "CreateFirewallRule",
-        input_schema = types.CreateFirewallRuleInput,
-        output_schema = types.CreateFirewallRuleOutput,
+        input_schema = schemas.CreateFirewallRuleInput,
+        output_schema = schemas.CreateFirewallRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createFirewallRuleGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateFirewallRuleGroup",
-        input_schema = types.CreateFirewallRuleGroupInput,
-        output_schema = types.CreateFirewallRuleGroupOutput,
+        input_schema = schemas.CreateFirewallRuleGroupInput,
+        output_schema = schemas.CreateFirewallRuleGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createOutpostResolver(input, options)
     return self:invokeOperation(input, {
         name = "CreateOutpostResolver",
-        input_schema = types.CreateOutpostResolverInput,
-        output_schema = types.CreateOutpostResolverOutput,
+        input_schema = schemas.CreateOutpostResolverInput,
+        output_schema = schemas.CreateOutpostResolverOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createResolverEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "CreateResolverEndpoint",
-        input_schema = types.CreateResolverEndpointInput,
-        output_schema = types.CreateResolverEndpointOutput,
+        input_schema = schemas.CreateResolverEndpointInput,
+        output_schema = schemas.CreateResolverEndpointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createResolverQueryLogConfig(input, options)
     return self:invokeOperation(input, {
         name = "CreateResolverQueryLogConfig",
-        input_schema = types.CreateResolverQueryLogConfigInput,
-        output_schema = types.CreateResolverQueryLogConfigOutput,
+        input_schema = schemas.CreateResolverQueryLogConfigInput,
+        output_schema = schemas.CreateResolverQueryLogConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createResolverRule(input, options)
     return self:invokeOperation(input, {
         name = "CreateResolverRule",
-        input_schema = types.CreateResolverRuleInput,
-        output_schema = types.CreateResolverRuleOutput,
+        input_schema = schemas.CreateResolverRuleInput,
+        output_schema = schemas.CreateResolverRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteFirewallDomainList(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFirewallDomainList",
-        input_schema = types.DeleteFirewallDomainListInput,
-        output_schema = types.DeleteFirewallDomainListOutput,
+        input_schema = schemas.DeleteFirewallDomainListInput,
+        output_schema = schemas.DeleteFirewallDomainListOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteFirewallRule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFirewallRule",
-        input_schema = types.DeleteFirewallRuleInput,
-        output_schema = types.DeleteFirewallRuleOutput,
+        input_schema = schemas.DeleteFirewallRuleInput,
+        output_schema = schemas.DeleteFirewallRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteFirewallRuleGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFirewallRuleGroup",
-        input_schema = types.DeleteFirewallRuleGroupInput,
-        output_schema = types.DeleteFirewallRuleGroupOutput,
+        input_schema = schemas.DeleteFirewallRuleGroupInput,
+        output_schema = schemas.DeleteFirewallRuleGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteOutpostResolver(input, options)
     return self:invokeOperation(input, {
         name = "DeleteOutpostResolver",
-        input_schema = types.DeleteOutpostResolverInput,
-        output_schema = types.DeleteOutpostResolverOutput,
+        input_schema = schemas.DeleteOutpostResolverInput,
+        output_schema = schemas.DeleteOutpostResolverOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteResolverEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResolverEndpoint",
-        input_schema = types.DeleteResolverEndpointInput,
-        output_schema = types.DeleteResolverEndpointOutput,
+        input_schema = schemas.DeleteResolverEndpointInput,
+        output_schema = schemas.DeleteResolverEndpointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteResolverQueryLogConfig(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResolverQueryLogConfig",
-        input_schema = types.DeleteResolverQueryLogConfigInput,
-        output_schema = types.DeleteResolverQueryLogConfigOutput,
+        input_schema = schemas.DeleteResolverQueryLogConfigInput,
+        output_schema = schemas.DeleteResolverQueryLogConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteResolverRule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResolverRule",
-        input_schema = types.DeleteResolverRuleInput,
-        output_schema = types.DeleteResolverRuleOutput,
+        input_schema = schemas.DeleteResolverRuleInput,
+        output_schema = schemas.DeleteResolverRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:disassociateFirewallRuleGroup(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateFirewallRuleGroup",
-        input_schema = types.DisassociateFirewallRuleGroupInput,
-        output_schema = types.DisassociateFirewallRuleGroupOutput,
+        input_schema = schemas.DisassociateFirewallRuleGroupInput,
+        output_schema = schemas.DisassociateFirewallRuleGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:disassociateResolverEndpointIpAddress(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateResolverEndpointIpAddress",
-        input_schema = types.DisassociateResolverEndpointIpAddressInput,
-        output_schema = types.DisassociateResolverEndpointIpAddressOutput,
+        input_schema = schemas.DisassociateResolverEndpointIpAddressInput,
+        output_schema = schemas.DisassociateResolverEndpointIpAddressOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:disassociateResolverQueryLogConfig(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateResolverQueryLogConfig",
-        input_schema = types.DisassociateResolverQueryLogConfigInput,
-        output_schema = types.DisassociateResolverQueryLogConfigOutput,
+        input_schema = schemas.DisassociateResolverQueryLogConfigInput,
+        output_schema = schemas.DisassociateResolverQueryLogConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:disassociateResolverRule(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateResolverRule",
-        input_schema = types.DisassociateResolverRuleInput,
-        output_schema = types.DisassociateResolverRuleOutput,
+        input_schema = schemas.DisassociateResolverRuleInput,
+        output_schema = schemas.DisassociateResolverRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:getFirewallConfig(input, options)
     return self:invokeOperation(input, {
         name = "GetFirewallConfig",
-        input_schema = types.GetFirewallConfigInput,
-        output_schema = types.GetFirewallConfigOutput,
+        input_schema = schemas.GetFirewallConfigInput,
+        output_schema = schemas.GetFirewallConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:getFirewallDomainList(input, options)
     return self:invokeOperation(input, {
         name = "GetFirewallDomainList",
-        input_schema = types.GetFirewallDomainListInput,
-        output_schema = types.GetFirewallDomainListOutput,
+        input_schema = schemas.GetFirewallDomainListInput,
+        output_schema = schemas.GetFirewallDomainListOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getFirewallRuleGroup(input, options)
     return self:invokeOperation(input, {
         name = "GetFirewallRuleGroup",
-        input_schema = types.GetFirewallRuleGroupInput,
-        output_schema = types.GetFirewallRuleGroupOutput,
+        input_schema = schemas.GetFirewallRuleGroupInput,
+        output_schema = schemas.GetFirewallRuleGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:getFirewallRuleGroupAssociation(input, options)
     return self:invokeOperation(input, {
         name = "GetFirewallRuleGroupAssociation",
-        input_schema = types.GetFirewallRuleGroupAssociationInput,
-        output_schema = types.GetFirewallRuleGroupAssociationOutput,
+        input_schema = schemas.GetFirewallRuleGroupAssociationInput,
+        output_schema = schemas.GetFirewallRuleGroupAssociationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:getFirewallRuleGroupPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetFirewallRuleGroupPolicy",
-        input_schema = types.GetFirewallRuleGroupPolicyInput,
-        output_schema = types.GetFirewallRuleGroupPolicyOutput,
+        input_schema = schemas.GetFirewallRuleGroupPolicyInput,
+        output_schema = schemas.GetFirewallRuleGroupPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:getOutpostResolver(input, options)
     return self:invokeOperation(input, {
         name = "GetOutpostResolver",
-        input_schema = types.GetOutpostResolverInput,
-        output_schema = types.GetOutpostResolverOutput,
+        input_schema = schemas.GetOutpostResolverInput,
+        output_schema = schemas.GetOutpostResolverOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:getResolverConfig(input, options)
     return self:invokeOperation(input, {
         name = "GetResolverConfig",
-        input_schema = types.GetResolverConfigInput,
-        output_schema = types.GetResolverConfigOutput,
+        input_schema = schemas.GetResolverConfigInput,
+        output_schema = schemas.GetResolverConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:getResolverDnssecConfig(input, options)
     return self:invokeOperation(input, {
         name = "GetResolverDnssecConfig",
-        input_schema = types.GetResolverDnssecConfigInput,
-        output_schema = types.GetResolverDnssecConfigOutput,
+        input_schema = schemas.GetResolverDnssecConfigInput,
+        output_schema = schemas.GetResolverDnssecConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:getResolverEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "GetResolverEndpoint",
-        input_schema = types.GetResolverEndpointInput,
-        output_schema = types.GetResolverEndpointOutput,
+        input_schema = schemas.GetResolverEndpointInput,
+        output_schema = schemas.GetResolverEndpointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:getResolverQueryLogConfig(input, options)
     return self:invokeOperation(input, {
         name = "GetResolverQueryLogConfig",
-        input_schema = types.GetResolverQueryLogConfigInput,
-        output_schema = types.GetResolverQueryLogConfigOutput,
+        input_schema = schemas.GetResolverQueryLogConfigInput,
+        output_schema = schemas.GetResolverQueryLogConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:getResolverQueryLogConfigAssociation(input, options)
     return self:invokeOperation(input, {
         name = "GetResolverQueryLogConfigAssociation",
-        input_schema = types.GetResolverQueryLogConfigAssociationInput,
-        output_schema = types.GetResolverQueryLogConfigAssociationOutput,
+        input_schema = schemas.GetResolverQueryLogConfigAssociationInput,
+        output_schema = schemas.GetResolverQueryLogConfigAssociationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:getResolverQueryLogConfigPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetResolverQueryLogConfigPolicy",
-        input_schema = types.GetResolverQueryLogConfigPolicyInput,
-        output_schema = types.GetResolverQueryLogConfigPolicyOutput,
+        input_schema = schemas.GetResolverQueryLogConfigPolicyInput,
+        output_schema = schemas.GetResolverQueryLogConfigPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:getResolverRule(input, options)
     return self:invokeOperation(input, {
         name = "GetResolverRule",
-        input_schema = types.GetResolverRuleInput,
-        output_schema = types.GetResolverRuleOutput,
+        input_schema = schemas.GetResolverRuleInput,
+        output_schema = schemas.GetResolverRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:getResolverRuleAssociation(input, options)
     return self:invokeOperation(input, {
         name = "GetResolverRuleAssociation",
-        input_schema = types.GetResolverRuleAssociationInput,
-        output_schema = types.GetResolverRuleAssociationOutput,
+        input_schema = schemas.GetResolverRuleAssociationInput,
+        output_schema = schemas.GetResolverRuleAssociationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:getResolverRulePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetResolverRulePolicy",
-        input_schema = types.GetResolverRulePolicyInput,
-        output_schema = types.GetResolverRulePolicyOutput,
+        input_schema = schemas.GetResolverRulePolicyInput,
+        output_schema = schemas.GetResolverRulePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:importFirewallDomains(input, options)
     return self:invokeOperation(input, {
         name = "ImportFirewallDomains",
-        input_schema = types.ImportFirewallDomainsInput,
-        output_schema = types.ImportFirewallDomainsOutput,
+        input_schema = schemas.ImportFirewallDomainsInput,
+        output_schema = schemas.ImportFirewallDomainsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:listFirewallConfigs(input, options)
     return self:invokeOperation(input, {
         name = "ListFirewallConfigs",
-        input_schema = types.ListFirewallConfigsInput,
-        output_schema = types.ListFirewallConfigsOutput,
+        input_schema = schemas.ListFirewallConfigsInput,
+        output_schema = schemas.ListFirewallConfigsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:listFirewallDomainLists(input, options)
     return self:invokeOperation(input, {
         name = "ListFirewallDomainLists",
-        input_schema = types.ListFirewallDomainListsInput,
-        output_schema = types.ListFirewallDomainListsOutput,
+        input_schema = schemas.ListFirewallDomainListsInput,
+        output_schema = schemas.ListFirewallDomainListsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:listFirewallDomains(input, options)
     return self:invokeOperation(input, {
         name = "ListFirewallDomains",
-        input_schema = types.ListFirewallDomainsInput,
-        output_schema = types.ListFirewallDomainsOutput,
+        input_schema = schemas.ListFirewallDomainsInput,
+        output_schema = schemas.ListFirewallDomainsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:listFirewallRuleGroupAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListFirewallRuleGroupAssociations",
-        input_schema = types.ListFirewallRuleGroupAssociationsInput,
-        output_schema = types.ListFirewallRuleGroupAssociationsOutput,
+        input_schema = schemas.ListFirewallRuleGroupAssociationsInput,
+        output_schema = schemas.ListFirewallRuleGroupAssociationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:listFirewallRuleGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListFirewallRuleGroups",
-        input_schema = types.ListFirewallRuleGroupsInput,
-        output_schema = types.ListFirewallRuleGroupsOutput,
+        input_schema = schemas.ListFirewallRuleGroupsInput,
+        output_schema = schemas.ListFirewallRuleGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:listFirewallRules(input, options)
     return self:invokeOperation(input, {
         name = "ListFirewallRules",
-        input_schema = types.ListFirewallRulesInput,
-        output_schema = types.ListFirewallRulesOutput,
+        input_schema = schemas.ListFirewallRulesInput,
+        output_schema = schemas.ListFirewallRulesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:listOutpostResolvers(input, options)
     return self:invokeOperation(input, {
         name = "ListOutpostResolvers",
-        input_schema = types.ListOutpostResolversInput,
-        output_schema = types.ListOutpostResolversOutput,
+        input_schema = schemas.ListOutpostResolversInput,
+        output_schema = schemas.ListOutpostResolversOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:listResolverConfigs(input, options)
     return self:invokeOperation(input, {
         name = "ListResolverConfigs",
-        input_schema = types.ListResolverConfigsInput,
-        output_schema = types.ListResolverConfigsOutput,
+        input_schema = schemas.ListResolverConfigsInput,
+        output_schema = schemas.ListResolverConfigsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:listResolverDnssecConfigs(input, options)
     return self:invokeOperation(input, {
         name = "ListResolverDnssecConfigs",
-        input_schema = types.ListResolverDnssecConfigsInput,
-        output_schema = types.ListResolverDnssecConfigsOutput,
+        input_schema = schemas.ListResolverDnssecConfigsInput,
+        output_schema = schemas.ListResolverDnssecConfigsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:listResolverEndpointIpAddresses(input, options)
     return self:invokeOperation(input, {
         name = "ListResolverEndpointIpAddresses",
-        input_schema = types.ListResolverEndpointIpAddressesInput,
-        output_schema = types.ListResolverEndpointIpAddressesOutput,
+        input_schema = schemas.ListResolverEndpointIpAddressesInput,
+        output_schema = schemas.ListResolverEndpointIpAddressesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:listResolverEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "ListResolverEndpoints",
-        input_schema = types.ListResolverEndpointsInput,
-        output_schema = types.ListResolverEndpointsOutput,
+        input_schema = schemas.ListResolverEndpointsInput,
+        output_schema = schemas.ListResolverEndpointsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:listResolverQueryLogConfigAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListResolverQueryLogConfigAssociations",
-        input_schema = types.ListResolverQueryLogConfigAssociationsInput,
-        output_schema = types.ListResolverQueryLogConfigAssociationsOutput,
+        input_schema = schemas.ListResolverQueryLogConfigAssociationsInput,
+        output_schema = schemas.ListResolverQueryLogConfigAssociationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:listResolverQueryLogConfigs(input, options)
     return self:invokeOperation(input, {
         name = "ListResolverQueryLogConfigs",
-        input_schema = types.ListResolverQueryLogConfigsInput,
-        output_schema = types.ListResolverQueryLogConfigsOutput,
+        input_schema = schemas.ListResolverQueryLogConfigsInput,
+        output_schema = schemas.ListResolverQueryLogConfigsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:listResolverRuleAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListResolverRuleAssociations",
-        input_schema = types.ListResolverRuleAssociationsInput,
-        output_schema = types.ListResolverRuleAssociationsOutput,
+        input_schema = schemas.ListResolverRuleAssociationsInput,
+        output_schema = schemas.ListResolverRuleAssociationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:listResolverRules(input, options)
     return self:invokeOperation(input, {
         name = "ListResolverRules",
-        input_schema = types.ListResolverRulesInput,
-        output_schema = types.ListResolverRulesOutput,
+        input_schema = schemas.ListResolverRulesInput,
+        output_schema = schemas.ListResolverRulesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:putFirewallRuleGroupPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutFirewallRuleGroupPolicy",
-        input_schema = types.PutFirewallRuleGroupPolicyInput,
-        output_schema = types.PutFirewallRuleGroupPolicyOutput,
+        input_schema = schemas.PutFirewallRuleGroupPolicyInput,
+        output_schema = schemas.PutFirewallRuleGroupPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:putResolverQueryLogConfigPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutResolverQueryLogConfigPolicy",
-        input_schema = types.PutResolverQueryLogConfigPolicyInput,
-        output_schema = types.PutResolverQueryLogConfigPolicyOutput,
+        input_schema = schemas.PutResolverQueryLogConfigPolicyInput,
+        output_schema = schemas.PutResolverQueryLogConfigPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:putResolverRulePolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutResolverRulePolicy",
-        input_schema = types.PutResolverRulePolicyInput,
-        output_schema = types.PutResolverRulePolicyOutput,
+        input_schema = schemas.PutResolverRulePolicyInput,
+        output_schema = schemas.PutResolverRulePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:updateFirewallConfig(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFirewallConfig",
-        input_schema = types.UpdateFirewallConfigInput,
-        output_schema = types.UpdateFirewallConfigOutput,
+        input_schema = schemas.UpdateFirewallConfigInput,
+        output_schema = schemas.UpdateFirewallConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:updateFirewallDomains(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFirewallDomains",
-        input_schema = types.UpdateFirewallDomainsInput,
-        output_schema = types.UpdateFirewallDomainsOutput,
+        input_schema = schemas.UpdateFirewallDomainsInput,
+        output_schema = schemas.UpdateFirewallDomainsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:updateFirewallRule(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFirewallRule",
-        input_schema = types.UpdateFirewallRuleInput,
-        output_schema = types.UpdateFirewallRuleOutput,
+        input_schema = schemas.UpdateFirewallRuleInput,
+        output_schema = schemas.UpdateFirewallRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:updateFirewallRuleGroupAssociation(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFirewallRuleGroupAssociation",
-        input_schema = types.UpdateFirewallRuleGroupAssociationInput,
-        output_schema = types.UpdateFirewallRuleGroupAssociationOutput,
+        input_schema = schemas.UpdateFirewallRuleGroupAssociationInput,
+        output_schema = schemas.UpdateFirewallRuleGroupAssociationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:updateOutpostResolver(input, options)
     return self:invokeOperation(input, {
         name = "UpdateOutpostResolver",
-        input_schema = types.UpdateOutpostResolverInput,
-        output_schema = types.UpdateOutpostResolverOutput,
+        input_schema = schemas.UpdateOutpostResolverInput,
+        output_schema = schemas.UpdateOutpostResolverOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:updateResolverConfig(input, options)
     return self:invokeOperation(input, {
         name = "UpdateResolverConfig",
-        input_schema = types.UpdateResolverConfigInput,
-        output_schema = types.UpdateResolverConfigOutput,
+        input_schema = schemas.UpdateResolverConfigInput,
+        output_schema = schemas.UpdateResolverConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:updateResolverDnssecConfig(input, options)
     return self:invokeOperation(input, {
         name = "UpdateResolverDnssecConfig",
-        input_schema = types.UpdateResolverDnssecConfigInput,
-        output_schema = types.UpdateResolverDnssecConfigOutput,
+        input_schema = schemas.UpdateResolverDnssecConfigInput,
+        output_schema = schemas.UpdateResolverDnssecConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:updateResolverEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "UpdateResolverEndpoint",
-        input_schema = types.UpdateResolverEndpointInput,
-        output_schema = types.UpdateResolverEndpointOutput,
+        input_schema = schemas.UpdateResolverEndpointInput,
+        output_schema = schemas.UpdateResolverEndpointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:updateResolverRule(input, options)
     return self:invokeOperation(input, {
         name = "UpdateResolverRule",
-        input_schema = types.UpdateResolverRuleInput,
-        output_schema = types.UpdateResolverRuleOutput,
+        input_schema = schemas.UpdateResolverRuleInput,
+        output_schema = schemas.UpdateResolverRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

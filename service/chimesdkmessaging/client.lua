@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("chimesdkmessaging.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("chimesdkmessaging.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("chimesdkmessaging.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateChannelFlow(input, options)
     return self:invokeOperation(input, {
         name = "AssociateChannelFlow",
-        input_schema = types.AssociateChannelFlowInput,
-        output_schema = types.AssociateChannelFlowOutput,
+        input_schema = schemas.AssociateChannelFlowInput,
+        output_schema = schemas.AssociateChannelFlowOutput,
         http_method = "PUT",
         http_path = "/channels/{ChannelArn}/channel-flow",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchCreateChannelMembership(input, options)
     return self:invokeOperation(input, {
         name = "BatchCreateChannelMembership",
-        input_schema = types.BatchCreateChannelMembershipInput,
-        output_schema = types.BatchCreateChannelMembershipOutput,
+        input_schema = schemas.BatchCreateChannelMembershipInput,
+        output_schema = schemas.BatchCreateChannelMembershipOutput,
         http_method = "POST",
         http_path = "/channels/{ChannelArn}/memberships?operation=batch-create",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:channelFlowCallback(input, options)
     return self:invokeOperation(input, {
         name = "ChannelFlowCallback",
-        input_schema = types.ChannelFlowCallbackInput,
-        output_schema = types.ChannelFlowCallbackOutput,
+        input_schema = schemas.ChannelFlowCallbackInput,
+        output_schema = schemas.ChannelFlowCallbackOutput,
         http_method = "POST",
         http_path = "/channels/{ChannelArn}?operation=channel-flow-callback",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createChannel(input, options)
     return self:invokeOperation(input, {
         name = "CreateChannel",
-        input_schema = types.CreateChannelInput,
-        output_schema = types.CreateChannelOutput,
+        input_schema = schemas.CreateChannelInput,
+        output_schema = schemas.CreateChannelOutput,
         http_method = "POST",
         http_path = "/channels",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createChannelBan(input, options)
     return self:invokeOperation(input, {
         name = "CreateChannelBan",
-        input_schema = types.CreateChannelBanInput,
-        output_schema = types.CreateChannelBanOutput,
+        input_schema = schemas.CreateChannelBanInput,
+        output_schema = schemas.CreateChannelBanOutput,
         http_method = "POST",
         http_path = "/channels/{ChannelArn}/bans",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createChannelFlow(input, options)
     return self:invokeOperation(input, {
         name = "CreateChannelFlow",
-        input_schema = types.CreateChannelFlowInput,
-        output_schema = types.CreateChannelFlowOutput,
+        input_schema = schemas.CreateChannelFlowInput,
+        output_schema = schemas.CreateChannelFlowOutput,
         http_method = "POST",
         http_path = "/channel-flows",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createChannelMembership(input, options)
     return self:invokeOperation(input, {
         name = "CreateChannelMembership",
-        input_schema = types.CreateChannelMembershipInput,
-        output_schema = types.CreateChannelMembershipOutput,
+        input_schema = schemas.CreateChannelMembershipInput,
+        output_schema = schemas.CreateChannelMembershipOutput,
         http_method = "POST",
         http_path = "/channels/{ChannelArn}/memberships",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createChannelModerator(input, options)
     return self:invokeOperation(input, {
         name = "CreateChannelModerator",
-        input_schema = types.CreateChannelModeratorInput,
-        output_schema = types.CreateChannelModeratorOutput,
+        input_schema = schemas.CreateChannelModeratorInput,
+        output_schema = schemas.CreateChannelModeratorOutput,
         http_method = "POST",
         http_path = "/channels/{ChannelArn}/moderators",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteChannel(input, options)
     return self:invokeOperation(input, {
         name = "DeleteChannel",
-        input_schema = types.DeleteChannelInput,
-        output_schema = types.DeleteChannelOutput,
+        input_schema = schemas.DeleteChannelInput,
+        output_schema = schemas.DeleteChannelOutput,
         http_method = "DELETE",
         http_path = "/channels/{ChannelArn}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteChannelBan(input, options)
     return self:invokeOperation(input, {
         name = "DeleteChannelBan",
-        input_schema = types.DeleteChannelBanInput,
-        output_schema = types.DeleteChannelBanOutput,
+        input_schema = schemas.DeleteChannelBanInput,
+        output_schema = schemas.DeleteChannelBanOutput,
         http_method = "DELETE",
         http_path = "/channels/{ChannelArn}/bans/{MemberArn}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteChannelFlow(input, options)
     return self:invokeOperation(input, {
         name = "DeleteChannelFlow",
-        input_schema = types.DeleteChannelFlowInput,
-        output_schema = types.DeleteChannelFlowOutput,
+        input_schema = schemas.DeleteChannelFlowInput,
+        output_schema = schemas.DeleteChannelFlowOutput,
         http_method = "DELETE",
         http_path = "/channel-flows/{ChannelFlowArn}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteChannelMembership(input, options)
     return self:invokeOperation(input, {
         name = "DeleteChannelMembership",
-        input_schema = types.DeleteChannelMembershipInput,
-        output_schema = types.DeleteChannelMembershipOutput,
+        input_schema = schemas.DeleteChannelMembershipInput,
+        output_schema = schemas.DeleteChannelMembershipOutput,
         http_method = "DELETE",
         http_path = "/channels/{ChannelArn}/memberships/{MemberArn}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteChannelMessage(input, options)
     return self:invokeOperation(input, {
         name = "DeleteChannelMessage",
-        input_schema = types.DeleteChannelMessageInput,
-        output_schema = types.DeleteChannelMessageOutput,
+        input_schema = schemas.DeleteChannelMessageInput,
+        output_schema = schemas.DeleteChannelMessageOutput,
         http_method = "DELETE",
         http_path = "/channels/{ChannelArn}/messages/{MessageId}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteChannelModerator(input, options)
     return self:invokeOperation(input, {
         name = "DeleteChannelModerator",
-        input_schema = types.DeleteChannelModeratorInput,
-        output_schema = types.DeleteChannelModeratorOutput,
+        input_schema = schemas.DeleteChannelModeratorInput,
+        output_schema = schemas.DeleteChannelModeratorOutput,
         http_method = "DELETE",
         http_path = "/channels/{ChannelArn}/moderators/{ChannelModeratorArn}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteMessagingStreamingConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMessagingStreamingConfigurations",
-        input_schema = types.DeleteMessagingStreamingConfigurationsInput,
-        output_schema = types.DeleteMessagingStreamingConfigurationsOutput,
+        input_schema = schemas.DeleteMessagingStreamingConfigurationsInput,
+        output_schema = schemas.DeleteMessagingStreamingConfigurationsOutput,
         http_method = "DELETE",
         http_path = "/app-instances/{AppInstanceArn}/streaming-configurations",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:describeChannel(input, options)
     return self:invokeOperation(input, {
         name = "DescribeChannel",
-        input_schema = types.DescribeChannelInput,
-        output_schema = types.DescribeChannelOutput,
+        input_schema = schemas.DescribeChannelInput,
+        output_schema = schemas.DescribeChannelOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:describeChannelBan(input, options)
     return self:invokeOperation(input, {
         name = "DescribeChannelBan",
-        input_schema = types.DescribeChannelBanInput,
-        output_schema = types.DescribeChannelBanOutput,
+        input_schema = schemas.DescribeChannelBanInput,
+        output_schema = schemas.DescribeChannelBanOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}/bans/{MemberArn}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:describeChannelFlow(input, options)
     return self:invokeOperation(input, {
         name = "DescribeChannelFlow",
-        input_schema = types.DescribeChannelFlowInput,
-        output_schema = types.DescribeChannelFlowOutput,
+        input_schema = schemas.DescribeChannelFlowInput,
+        output_schema = schemas.DescribeChannelFlowOutput,
         http_method = "GET",
         http_path = "/channel-flows/{ChannelFlowArn}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:describeChannelMembership(input, options)
     return self:invokeOperation(input, {
         name = "DescribeChannelMembership",
-        input_schema = types.DescribeChannelMembershipInput,
-        output_schema = types.DescribeChannelMembershipOutput,
+        input_schema = schemas.DescribeChannelMembershipInput,
+        output_schema = schemas.DescribeChannelMembershipOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}/memberships/{MemberArn}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:describeChannelMembershipForAppInstanceUser(input, options)
     return self:invokeOperation(input, {
         name = "DescribeChannelMembershipForAppInstanceUser",
-        input_schema = types.DescribeChannelMembershipForAppInstanceUserInput,
-        output_schema = types.DescribeChannelMembershipForAppInstanceUserOutput,
+        input_schema = schemas.DescribeChannelMembershipForAppInstanceUserInput,
+        output_schema = schemas.DescribeChannelMembershipForAppInstanceUserOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}?scope=app-instance-user-membership",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:describeChannelModeratedByAppInstanceUser(input, options)
     return self:invokeOperation(input, {
         name = "DescribeChannelModeratedByAppInstanceUser",
-        input_schema = types.DescribeChannelModeratedByAppInstanceUserInput,
-        output_schema = types.DescribeChannelModeratedByAppInstanceUserOutput,
+        input_schema = schemas.DescribeChannelModeratedByAppInstanceUserInput,
+        output_schema = schemas.DescribeChannelModeratedByAppInstanceUserOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}?scope=app-instance-user-moderated-channel",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:describeChannelModerator(input, options)
     return self:invokeOperation(input, {
         name = "DescribeChannelModerator",
-        input_schema = types.DescribeChannelModeratorInput,
-        output_schema = types.DescribeChannelModeratorOutput,
+        input_schema = schemas.DescribeChannelModeratorInput,
+        output_schema = schemas.DescribeChannelModeratorOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}/moderators/{ChannelModeratorArn}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:disassociateChannelFlow(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateChannelFlow",
-        input_schema = types.DisassociateChannelFlowInput,
-        output_schema = types.DisassociateChannelFlowOutput,
+        input_schema = schemas.DisassociateChannelFlowInput,
+        output_schema = schemas.DisassociateChannelFlowOutput,
         http_method = "DELETE",
         http_path = "/channels/{ChannelArn}/channel-flow/{ChannelFlowArn}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:getChannelMembershipPreferences(input, options)
     return self:invokeOperation(input, {
         name = "GetChannelMembershipPreferences",
-        input_schema = types.GetChannelMembershipPreferencesInput,
-        output_schema = types.GetChannelMembershipPreferencesOutput,
+        input_schema = schemas.GetChannelMembershipPreferencesInput,
+        output_schema = schemas.GetChannelMembershipPreferencesOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}/memberships/{MemberArn}/preferences",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getChannelMessage(input, options)
     return self:invokeOperation(input, {
         name = "GetChannelMessage",
-        input_schema = types.GetChannelMessageInput,
-        output_schema = types.GetChannelMessageOutput,
+        input_schema = schemas.GetChannelMessageInput,
+        output_schema = schemas.GetChannelMessageOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}/messages/{MessageId}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:getChannelMessageStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetChannelMessageStatus",
-        input_schema = types.GetChannelMessageStatusInput,
-        output_schema = types.GetChannelMessageStatusOutput,
+        input_schema = schemas.GetChannelMessageStatusInput,
+        output_schema = schemas.GetChannelMessageStatusOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}/messages/{MessageId}?scope=message-status",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:getMessagingSessionEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "GetMessagingSessionEndpoint",
-        input_schema = types.GetMessagingSessionEndpointInput,
-        output_schema = types.GetMessagingSessionEndpointOutput,
+        input_schema = schemas.GetMessagingSessionEndpointInput,
+        output_schema = schemas.GetMessagingSessionEndpointOutput,
         http_method = "GET",
         http_path = "/endpoints/messaging-session",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:getMessagingStreamingConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "GetMessagingStreamingConfigurations",
-        input_schema = types.GetMessagingStreamingConfigurationsInput,
-        output_schema = types.GetMessagingStreamingConfigurationsOutput,
+        input_schema = schemas.GetMessagingStreamingConfigurationsInput,
+        output_schema = schemas.GetMessagingStreamingConfigurationsOutput,
         http_method = "GET",
         http_path = "/app-instances/{AppInstanceArn}/streaming-configurations",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listChannelBans(input, options)
     return self:invokeOperation(input, {
         name = "ListChannelBans",
-        input_schema = types.ListChannelBansInput,
-        output_schema = types.ListChannelBansOutput,
+        input_schema = schemas.ListChannelBansInput,
+        output_schema = schemas.ListChannelBansOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}/bans",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:listChannelFlows(input, options)
     return self:invokeOperation(input, {
         name = "ListChannelFlows",
-        input_schema = types.ListChannelFlowsInput,
-        output_schema = types.ListChannelFlowsOutput,
+        input_schema = schemas.ListChannelFlowsInput,
+        output_schema = schemas.ListChannelFlowsOutput,
         http_method = "GET",
         http_path = "/channel-flows",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:listChannelMemberships(input, options)
     return self:invokeOperation(input, {
         name = "ListChannelMemberships",
-        input_schema = types.ListChannelMembershipsInput,
-        output_schema = types.ListChannelMembershipsOutput,
+        input_schema = schemas.ListChannelMembershipsInput,
+        output_schema = schemas.ListChannelMembershipsOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}/memberships",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:listChannelMembershipsForAppInstanceUser(input, options)
     return self:invokeOperation(input, {
         name = "ListChannelMembershipsForAppInstanceUser",
-        input_schema = types.ListChannelMembershipsForAppInstanceUserInput,
-        output_schema = types.ListChannelMembershipsForAppInstanceUserOutput,
+        input_schema = schemas.ListChannelMembershipsForAppInstanceUserInput,
+        output_schema = schemas.ListChannelMembershipsForAppInstanceUserOutput,
         http_method = "GET",
         http_path = "/channels?scope=app-instance-user-memberships",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:listChannelMessages(input, options)
     return self:invokeOperation(input, {
         name = "ListChannelMessages",
-        input_schema = types.ListChannelMessagesInput,
-        output_schema = types.ListChannelMessagesOutput,
+        input_schema = schemas.ListChannelMessagesInput,
+        output_schema = schemas.ListChannelMessagesOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}/messages",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listChannelModerators(input, options)
     return self:invokeOperation(input, {
         name = "ListChannelModerators",
-        input_schema = types.ListChannelModeratorsInput,
-        output_schema = types.ListChannelModeratorsOutput,
+        input_schema = schemas.ListChannelModeratorsInput,
+        output_schema = schemas.ListChannelModeratorsOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}/moderators",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:listChannels(input, options)
     return self:invokeOperation(input, {
         name = "ListChannels",
-        input_schema = types.ListChannelsInput,
-        output_schema = types.ListChannelsOutput,
+        input_schema = schemas.ListChannelsInput,
+        output_schema = schemas.ListChannelsOutput,
         http_method = "GET",
         http_path = "/channels",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:listChannelsAssociatedWithChannelFlow(input, options)
     return self:invokeOperation(input, {
         name = "ListChannelsAssociatedWithChannelFlow",
-        input_schema = types.ListChannelsAssociatedWithChannelFlowInput,
-        output_schema = types.ListChannelsAssociatedWithChannelFlowOutput,
+        input_schema = schemas.ListChannelsAssociatedWithChannelFlowInput,
+        output_schema = schemas.ListChannelsAssociatedWithChannelFlowOutput,
         http_method = "GET",
         http_path = "/channels?scope=channel-flow-associations",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:listChannelsModeratedByAppInstanceUser(input, options)
     return self:invokeOperation(input, {
         name = "ListChannelsModeratedByAppInstanceUser",
-        input_schema = types.ListChannelsModeratedByAppInstanceUserInput,
-        output_schema = types.ListChannelsModeratedByAppInstanceUserOutput,
+        input_schema = schemas.ListChannelsModeratedByAppInstanceUserInput,
+        output_schema = schemas.ListChannelsModeratedByAppInstanceUserOutput,
         http_method = "GET",
         http_path = "/channels?scope=app-instance-user-moderated-channels",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:listSubChannels(input, options)
     return self:invokeOperation(input, {
         name = "ListSubChannels",
-        input_schema = types.ListSubChannelsInput,
-        output_schema = types.ListSubChannelsOutput,
+        input_schema = schemas.ListSubChannelsInput,
+        output_schema = schemas.ListSubChannelsOutput,
         http_method = "GET",
         http_path = "/channels/{ChannelArn}/subchannels",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:putChannelExpirationSettings(input, options)
     return self:invokeOperation(input, {
         name = "PutChannelExpirationSettings",
-        input_schema = types.PutChannelExpirationSettingsInput,
-        output_schema = types.PutChannelExpirationSettingsOutput,
+        input_schema = schemas.PutChannelExpirationSettingsInput,
+        output_schema = schemas.PutChannelExpirationSettingsOutput,
         http_method = "PUT",
         http_path = "/channels/{ChannelArn}/expiration-settings",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:putChannelMembershipPreferences(input, options)
     return self:invokeOperation(input, {
         name = "PutChannelMembershipPreferences",
-        input_schema = types.PutChannelMembershipPreferencesInput,
-        output_schema = types.PutChannelMembershipPreferencesOutput,
+        input_schema = schemas.PutChannelMembershipPreferencesInput,
+        output_schema = schemas.PutChannelMembershipPreferencesOutput,
         http_method = "PUT",
         http_path = "/channels/{ChannelArn}/memberships/{MemberArn}/preferences",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:putMessagingStreamingConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "PutMessagingStreamingConfigurations",
-        input_schema = types.PutMessagingStreamingConfigurationsInput,
-        output_schema = types.PutMessagingStreamingConfigurationsOutput,
+        input_schema = schemas.PutMessagingStreamingConfigurationsInput,
+        output_schema = schemas.PutMessagingStreamingConfigurationsOutput,
         http_method = "PUT",
         http_path = "/app-instances/{AppInstanceArn}/streaming-configurations",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:redactChannelMessage(input, options)
     return self:invokeOperation(input, {
         name = "RedactChannelMessage",
-        input_schema = types.RedactChannelMessageInput,
-        output_schema = types.RedactChannelMessageOutput,
+        input_schema = schemas.RedactChannelMessageInput,
+        output_schema = schemas.RedactChannelMessageOutput,
         http_method = "POST",
         http_path = "/channels/{ChannelArn}/messages/{MessageId}?operation=redact",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:searchChannels(input, options)
     return self:invokeOperation(input, {
         name = "SearchChannels",
-        input_schema = types.SearchChannelsInput,
-        output_schema = types.SearchChannelsOutput,
+        input_schema = schemas.SearchChannelsInput,
+        output_schema = schemas.SearchChannelsOutput,
         http_method = "POST",
         http_path = "/channels?operation=search",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:sendChannelMessage(input, options)
     return self:invokeOperation(input, {
         name = "SendChannelMessage",
-        input_schema = types.SendChannelMessageInput,
-        output_schema = types.SendChannelMessageOutput,
+        input_schema = schemas.SendChannelMessageInput,
+        output_schema = schemas.SendChannelMessageOutput,
         http_method = "POST",
         http_path = "/channels/{ChannelArn}/messages",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags?operation=tag-resource",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/tags?operation=untag-resource",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:updateChannel(input, options)
     return self:invokeOperation(input, {
         name = "UpdateChannel",
-        input_schema = types.UpdateChannelInput,
-        output_schema = types.UpdateChannelOutput,
+        input_schema = schemas.UpdateChannelInput,
+        output_schema = schemas.UpdateChannelOutput,
         http_method = "PUT",
         http_path = "/channels/{ChannelArn}",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:updateChannelFlow(input, options)
     return self:invokeOperation(input, {
         name = "UpdateChannelFlow",
-        input_schema = types.UpdateChannelFlowInput,
-        output_schema = types.UpdateChannelFlowOutput,
+        input_schema = schemas.UpdateChannelFlowInput,
+        output_schema = schemas.UpdateChannelFlowOutput,
         http_method = "PUT",
         http_path = "/channel-flows/{ChannelFlowArn}",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:updateChannelMessage(input, options)
     return self:invokeOperation(input, {
         name = "UpdateChannelMessage",
-        input_schema = types.UpdateChannelMessageInput,
-        output_schema = types.UpdateChannelMessageOutput,
+        input_schema = schemas.UpdateChannelMessageInput,
+        output_schema = schemas.UpdateChannelMessageOutput,
         http_method = "PUT",
         http_path = "/channels/{ChannelArn}/messages/{MessageId}",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:updateChannelReadMarker(input, options)
     return self:invokeOperation(input, {
         name = "UpdateChannelReadMarker",
-        input_schema = types.UpdateChannelReadMarkerInput,
-        output_schema = types.UpdateChannelReadMarkerOutput,
+        input_schema = schemas.UpdateChannelReadMarkerInput,
+        output_schema = schemas.UpdateChannelReadMarkerOutput,
         http_method = "PUT",
         http_path = "/channels/{ChannelArn}/readMarker",
         effective_auth_schemes = {

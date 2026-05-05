@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("pcaconnectorscep.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("pcaconnectorscep.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("pcaconnectorscep.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createChallenge(input, options)
     return self:invokeOperation(input, {
         name = "CreateChallenge",
-        input_schema = types.CreateChallengeInput,
-        output_schema = types.CreateChallengeOutput,
+        input_schema = schemas.CreateChallengeInput,
+        output_schema = schemas.CreateChallengeOutput,
         http_method = "POST",
         http_path = "/challenges",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createConnector(input, options)
     return self:invokeOperation(input, {
         name = "CreateConnector",
-        input_schema = types.CreateConnectorInput,
-        output_schema = types.CreateConnectorOutput,
+        input_schema = schemas.CreateConnectorInput,
+        output_schema = schemas.CreateConnectorOutput,
         http_method = "POST",
         http_path = "/connectors",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteChallenge(input, options)
     return self:invokeOperation(input, {
         name = "DeleteChallenge",
-        input_schema = types.DeleteChallengeInput,
-        output_schema = types.DeleteChallengeOutput,
+        input_schema = schemas.DeleteChallengeInput,
+        output_schema = schemas.DeleteChallengeOutput,
         http_method = "DELETE",
         http_path = "/challenges/{ChallengeArn}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteConnector(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConnector",
-        input_schema = types.DeleteConnectorInput,
-        output_schema = types.DeleteConnectorOutput,
+        input_schema = schemas.DeleteConnectorInput,
+        output_schema = schemas.DeleteConnectorOutput,
         http_method = "DELETE",
         http_path = "/connectors/{ConnectorArn}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getChallengeMetadata(input, options)
     return self:invokeOperation(input, {
         name = "GetChallengeMetadata",
-        input_schema = types.GetChallengeMetadataInput,
-        output_schema = types.GetChallengeMetadataOutput,
+        input_schema = schemas.GetChallengeMetadataInput,
+        output_schema = schemas.GetChallengeMetadataOutput,
         http_method = "GET",
         http_path = "/challengeMetadata/{ChallengeArn}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getChallengePassword(input, options)
     return self:invokeOperation(input, {
         name = "GetChallengePassword",
-        input_schema = types.GetChallengePasswordInput,
-        output_schema = types.GetChallengePasswordOutput,
+        input_schema = schemas.GetChallengePasswordInput,
+        output_schema = schemas.GetChallengePasswordOutput,
         http_method = "GET",
         http_path = "/challengePasswords/{ChallengeArn}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getConnector(input, options)
     return self:invokeOperation(input, {
         name = "GetConnector",
-        input_schema = types.GetConnectorInput,
-        output_schema = types.GetConnectorOutput,
+        input_schema = schemas.GetConnectorInput,
+        output_schema = schemas.GetConnectorOutput,
         http_method = "GET",
         http_path = "/connectors/{ConnectorArn}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listChallengeMetadata(input, options)
     return self:invokeOperation(input, {
         name = "ListChallengeMetadata",
-        input_schema = types.ListChallengeMetadataInput,
-        output_schema = types.ListChallengeMetadataOutput,
+        input_schema = schemas.ListChallengeMetadataInput,
+        output_schema = schemas.ListChallengeMetadataOutput,
         http_method = "GET",
         http_path = "/challengeMetadata",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listConnectors(input, options)
     return self:invokeOperation(input, {
         name = "ListConnectors",
-        input_schema = types.ListConnectorsInput,
-        output_schema = types.ListConnectorsOutput,
+        input_schema = schemas.ListConnectorsInput,
+        output_schema = schemas.ListConnectorsOutput,
         http_method = "GET",
         http_path = "/connectors",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {

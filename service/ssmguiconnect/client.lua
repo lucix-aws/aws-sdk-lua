@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("ssmguiconnect.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("ssmguiconnect.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("ssmguiconnect.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:deleteConnectionRecordingPreferences(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConnectionRecordingPreferences",
-        input_schema = types.DeleteConnectionRecordingPreferencesInput,
-        output_schema = types.DeleteConnectionRecordingPreferencesOutput,
+        input_schema = schemas.DeleteConnectionRecordingPreferencesInput,
+        output_schema = schemas.DeleteConnectionRecordingPreferencesOutput,
         http_method = "POST",
         http_path = "/DeleteConnectionRecordingPreferences",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:getConnectionRecordingPreferences(input, options)
     return self:invokeOperation(input, {
         name = "GetConnectionRecordingPreferences",
-        input_schema = types.GetConnectionRecordingPreferencesInput,
-        output_schema = types.GetConnectionRecordingPreferencesOutput,
+        input_schema = schemas.GetConnectionRecordingPreferencesInput,
+        output_schema = schemas.GetConnectionRecordingPreferencesOutput,
         http_method = "POST",
         http_path = "/GetConnectionRecordingPreferences",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:updateConnectionRecordingPreferences(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConnectionRecordingPreferences",
-        input_schema = types.UpdateConnectionRecordingPreferencesInput,
-        output_schema = types.UpdateConnectionRecordingPreferencesOutput,
+        input_schema = schemas.UpdateConnectionRecordingPreferencesInput,
+        output_schema = schemas.UpdateConnectionRecordingPreferencesOutput,
         http_method = "POST",
         http_path = "/UpdateConnectionRecordingPreferences",
         effective_auth_schemes = {

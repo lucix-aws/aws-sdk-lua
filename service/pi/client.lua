@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("pi.endpoint_rules")
+local schemas = require("pi.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("pi.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createPerformanceAnalysisReport(input, options)
     return self:invokeOperation(input, {
         name = "CreatePerformanceAnalysisReport",
-        input_schema = types.CreatePerformanceAnalysisReportInput,
-        output_schema = types.CreatePerformanceAnalysisReportOutput,
+        input_schema = schemas.CreatePerformanceAnalysisReportInput,
+        output_schema = schemas.CreatePerformanceAnalysisReportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deletePerformanceAnalysisReport(input, options)
     return self:invokeOperation(input, {
         name = "DeletePerformanceAnalysisReport",
-        input_schema = types.DeletePerformanceAnalysisReportInput,
-        output_schema = types.DeletePerformanceAnalysisReportOutput,
+        input_schema = schemas.DeletePerformanceAnalysisReportInput,
+        output_schema = schemas.DeletePerformanceAnalysisReportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:describeDimensionKeys(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDimensionKeys",
-        input_schema = types.DescribeDimensionKeysInput,
-        output_schema = types.DescribeDimensionKeysOutput,
+        input_schema = schemas.DescribeDimensionKeysInput,
+        output_schema = schemas.DescribeDimensionKeysOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getDimensionKeyDetails(input, options)
     return self:invokeOperation(input, {
         name = "GetDimensionKeyDetails",
-        input_schema = types.GetDimensionKeyDetailsInput,
-        output_schema = types.GetDimensionKeyDetailsOutput,
+        input_schema = schemas.GetDimensionKeyDetailsInput,
+        output_schema = schemas.GetDimensionKeyDetailsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getPerformanceAnalysisReport(input, options)
     return self:invokeOperation(input, {
         name = "GetPerformanceAnalysisReport",
-        input_schema = types.GetPerformanceAnalysisReportInput,
-        output_schema = types.GetPerformanceAnalysisReportOutput,
+        input_schema = schemas.GetPerformanceAnalysisReportInput,
+        output_schema = schemas.GetPerformanceAnalysisReportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getResourceMetadata(input, options)
     return self:invokeOperation(input, {
         name = "GetResourceMetadata",
-        input_schema = types.GetResourceMetadataInput,
-        output_schema = types.GetResourceMetadataOutput,
+        input_schema = schemas.GetResourceMetadataInput,
+        output_schema = schemas.GetResourceMetadataOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getResourceMetrics(input, options)
     return self:invokeOperation(input, {
         name = "GetResourceMetrics",
-        input_schema = types.GetResourceMetricsInput,
-        output_schema = types.GetResourceMetricsOutput,
+        input_schema = schemas.GetResourceMetricsInput,
+        output_schema = schemas.GetResourceMetricsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listAvailableResourceDimensions(input, options)
     return self:invokeOperation(input, {
         name = "ListAvailableResourceDimensions",
-        input_schema = types.ListAvailableResourceDimensionsInput,
-        output_schema = types.ListAvailableResourceDimensionsOutput,
+        input_schema = schemas.ListAvailableResourceDimensionsInput,
+        output_schema = schemas.ListAvailableResourceDimensionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listAvailableResourceMetrics(input, options)
     return self:invokeOperation(input, {
         name = "ListAvailableResourceMetrics",
-        input_schema = types.ListAvailableResourceMetricsInput,
-        output_schema = types.ListAvailableResourceMetricsOutput,
+        input_schema = schemas.ListAvailableResourceMetricsInput,
+        output_schema = schemas.ListAvailableResourceMetricsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listPerformanceAnalysisReports(input, options)
     return self:invokeOperation(input, {
         name = "ListPerformanceAnalysisReports",
-        input_schema = types.ListPerformanceAnalysisReportsInput,
-        output_schema = types.ListPerformanceAnalysisReportsOutput,
+        input_schema = schemas.ListPerformanceAnalysisReportsInput,
+        output_schema = schemas.ListPerformanceAnalysisReportsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

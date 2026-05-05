@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("marketplacereporting.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("marketplacereporting.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("marketplacereporting.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getBuyerDashboard(input, options)
     return self:invokeOperation(input, {
         name = "GetBuyerDashboard",
-        input_schema = types.GetBuyerDashboardInput,
-        output_schema = types.GetBuyerDashboardOutput,
+        input_schema = schemas.GetBuyerDashboardInput,
+        output_schema = schemas.GetBuyerDashboardOutput,
         http_method = "POST",
         http_path = "/getBuyerDashboard",
         effective_auth_schemes = {

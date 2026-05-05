@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("pinpointemail.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("pinpointemail.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("pinpointemail.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createConfigurationSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateConfigurationSet",
-        input_schema = types.CreateConfigurationSetInput,
-        output_schema = types.CreateConfigurationSetOutput,
+        input_schema = schemas.CreateConfigurationSetInput,
+        output_schema = schemas.CreateConfigurationSetOutput,
         http_method = "POST",
         http_path = "/v1/email/configuration-sets",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createConfigurationSetEventDestination(input, options)
     return self:invokeOperation(input, {
         name = "CreateConfigurationSetEventDestination",
-        input_schema = types.CreateConfigurationSetEventDestinationInput,
-        output_schema = types.CreateConfigurationSetEventDestinationOutput,
+        input_schema = schemas.CreateConfigurationSetEventDestinationInput,
+        output_schema = schemas.CreateConfigurationSetEventDestinationOutput,
         http_method = "POST",
         http_path = "/v1/email/configuration-sets/{ConfigurationSetName}/event-destinations",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createDedicatedIpPool(input, options)
     return self:invokeOperation(input, {
         name = "CreateDedicatedIpPool",
-        input_schema = types.CreateDedicatedIpPoolInput,
-        output_schema = types.CreateDedicatedIpPoolOutput,
+        input_schema = schemas.CreateDedicatedIpPoolInput,
+        output_schema = schemas.CreateDedicatedIpPoolOutput,
         http_method = "POST",
         http_path = "/v1/email/dedicated-ip-pools",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createDeliverabilityTestReport(input, options)
     return self:invokeOperation(input, {
         name = "CreateDeliverabilityTestReport",
-        input_schema = types.CreateDeliverabilityTestReportInput,
-        output_schema = types.CreateDeliverabilityTestReportOutput,
+        input_schema = schemas.CreateDeliverabilityTestReportInput,
+        output_schema = schemas.CreateDeliverabilityTestReportOutput,
         http_method = "POST",
         http_path = "/v1/email/deliverability-dashboard/test",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createEmailIdentity(input, options)
     return self:invokeOperation(input, {
         name = "CreateEmailIdentity",
-        input_schema = types.CreateEmailIdentityInput,
-        output_schema = types.CreateEmailIdentityOutput,
+        input_schema = schemas.CreateEmailIdentityInput,
+        output_schema = schemas.CreateEmailIdentityOutput,
         http_method = "POST",
         http_path = "/v1/email/identities",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteConfigurationSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfigurationSet",
-        input_schema = types.DeleteConfigurationSetInput,
-        output_schema = types.DeleteConfigurationSetOutput,
+        input_schema = schemas.DeleteConfigurationSetInput,
+        output_schema = schemas.DeleteConfigurationSetOutput,
         http_method = "DELETE",
         http_path = "/v1/email/configuration-sets/{ConfigurationSetName}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteConfigurationSetEventDestination(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfigurationSetEventDestination",
-        input_schema = types.DeleteConfigurationSetEventDestinationInput,
-        output_schema = types.DeleteConfigurationSetEventDestinationOutput,
+        input_schema = schemas.DeleteConfigurationSetEventDestinationInput,
+        output_schema = schemas.DeleteConfigurationSetEventDestinationOutput,
         http_method = "DELETE",
         http_path = "/v1/email/configuration-sets/{ConfigurationSetName}/event-destinations/{EventDestinationName}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteDedicatedIpPool(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDedicatedIpPool",
-        input_schema = types.DeleteDedicatedIpPoolInput,
-        output_schema = types.DeleteDedicatedIpPoolOutput,
+        input_schema = schemas.DeleteDedicatedIpPoolInput,
+        output_schema = schemas.DeleteDedicatedIpPoolOutput,
         http_method = "DELETE",
         http_path = "/v1/email/dedicated-ip-pools/{PoolName}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteEmailIdentity(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEmailIdentity",
-        input_schema = types.DeleteEmailIdentityInput,
-        output_schema = types.DeleteEmailIdentityOutput,
+        input_schema = schemas.DeleteEmailIdentityInput,
+        output_schema = schemas.DeleteEmailIdentityOutput,
         http_method = "DELETE",
         http_path = "/v1/email/identities/{EmailIdentity}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getAccount(input, options)
     return self:invokeOperation(input, {
         name = "GetAccount",
-        input_schema = types.GetAccountInput,
-        output_schema = types.GetAccountOutput,
+        input_schema = schemas.GetAccountInput,
+        output_schema = schemas.GetAccountOutput,
         http_method = "GET",
         http_path = "/v1/email/account",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getBlacklistReports(input, options)
     return self:invokeOperation(input, {
         name = "GetBlacklistReports",
-        input_schema = types.GetBlacklistReportsInput,
-        output_schema = types.GetBlacklistReportsOutput,
+        input_schema = schemas.GetBlacklistReportsInput,
+        output_schema = schemas.GetBlacklistReportsOutput,
         http_method = "GET",
         http_path = "/v1/email/deliverability-dashboard/blacklist-report",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getConfigurationSet(input, options)
     return self:invokeOperation(input, {
         name = "GetConfigurationSet",
-        input_schema = types.GetConfigurationSetInput,
-        output_schema = types.GetConfigurationSetOutput,
+        input_schema = schemas.GetConfigurationSetInput,
+        output_schema = schemas.GetConfigurationSetOutput,
         http_method = "GET",
         http_path = "/v1/email/configuration-sets/{ConfigurationSetName}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getConfigurationSetEventDestinations(input, options)
     return self:invokeOperation(input, {
         name = "GetConfigurationSetEventDestinations",
-        input_schema = types.GetConfigurationSetEventDestinationsInput,
-        output_schema = types.GetConfigurationSetEventDestinationsOutput,
+        input_schema = schemas.GetConfigurationSetEventDestinationsInput,
+        output_schema = schemas.GetConfigurationSetEventDestinationsOutput,
         http_method = "GET",
         http_path = "/v1/email/configuration-sets/{ConfigurationSetName}/event-destinations",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getDedicatedIp(input, options)
     return self:invokeOperation(input, {
         name = "GetDedicatedIp",
-        input_schema = types.GetDedicatedIpInput,
-        output_schema = types.GetDedicatedIpOutput,
+        input_schema = schemas.GetDedicatedIpInput,
+        output_schema = schemas.GetDedicatedIpOutput,
         http_method = "GET",
         http_path = "/v1/email/dedicated-ips/{Ip}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getDedicatedIps(input, options)
     return self:invokeOperation(input, {
         name = "GetDedicatedIps",
-        input_schema = types.GetDedicatedIpsInput,
-        output_schema = types.GetDedicatedIpsOutput,
+        input_schema = schemas.GetDedicatedIpsInput,
+        output_schema = schemas.GetDedicatedIpsOutput,
         http_method = "GET",
         http_path = "/v1/email/dedicated-ips",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getDeliverabilityDashboardOptions(input, options)
     return self:invokeOperation(input, {
         name = "GetDeliverabilityDashboardOptions",
-        input_schema = types.GetDeliverabilityDashboardOptionsInput,
-        output_schema = types.GetDeliverabilityDashboardOptionsOutput,
+        input_schema = schemas.GetDeliverabilityDashboardOptionsInput,
+        output_schema = schemas.GetDeliverabilityDashboardOptionsOutput,
         http_method = "GET",
         http_path = "/v1/email/deliverability-dashboard",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getDeliverabilityTestReport(input, options)
     return self:invokeOperation(input, {
         name = "GetDeliverabilityTestReport",
-        input_schema = types.GetDeliverabilityTestReportInput,
-        output_schema = types.GetDeliverabilityTestReportOutput,
+        input_schema = schemas.GetDeliverabilityTestReportInput,
+        output_schema = schemas.GetDeliverabilityTestReportOutput,
         http_method = "GET",
         http_path = "/v1/email/deliverability-dashboard/test-reports/{ReportId}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getDomainDeliverabilityCampaign(input, options)
     return self:invokeOperation(input, {
         name = "GetDomainDeliverabilityCampaign",
-        input_schema = types.GetDomainDeliverabilityCampaignInput,
-        output_schema = types.GetDomainDeliverabilityCampaignOutput,
+        input_schema = schemas.GetDomainDeliverabilityCampaignInput,
+        output_schema = schemas.GetDomainDeliverabilityCampaignOutput,
         http_method = "GET",
         http_path = "/v1/email/deliverability-dashboard/campaigns/{CampaignId}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getDomainStatisticsReport(input, options)
     return self:invokeOperation(input, {
         name = "GetDomainStatisticsReport",
-        input_schema = types.GetDomainStatisticsReportInput,
-        output_schema = types.GetDomainStatisticsReportOutput,
+        input_schema = schemas.GetDomainStatisticsReportInput,
+        output_schema = schemas.GetDomainStatisticsReportOutput,
         http_method = "GET",
         http_path = "/v1/email/deliverability-dashboard/statistics-report/{Domain}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getEmailIdentity(input, options)
     return self:invokeOperation(input, {
         name = "GetEmailIdentity",
-        input_schema = types.GetEmailIdentityInput,
-        output_schema = types.GetEmailIdentityOutput,
+        input_schema = schemas.GetEmailIdentityInput,
+        output_schema = schemas.GetEmailIdentityOutput,
         http_method = "GET",
         http_path = "/v1/email/identities/{EmailIdentity}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listConfigurationSets(input, options)
     return self:invokeOperation(input, {
         name = "ListConfigurationSets",
-        input_schema = types.ListConfigurationSetsInput,
-        output_schema = types.ListConfigurationSetsOutput,
+        input_schema = schemas.ListConfigurationSetsInput,
+        output_schema = schemas.ListConfigurationSetsOutput,
         http_method = "GET",
         http_path = "/v1/email/configuration-sets",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listDedicatedIpPools(input, options)
     return self:invokeOperation(input, {
         name = "ListDedicatedIpPools",
-        input_schema = types.ListDedicatedIpPoolsInput,
-        output_schema = types.ListDedicatedIpPoolsOutput,
+        input_schema = schemas.ListDedicatedIpPoolsInput,
+        output_schema = schemas.ListDedicatedIpPoolsOutput,
         http_method = "GET",
         http_path = "/v1/email/dedicated-ip-pools",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listDeliverabilityTestReports(input, options)
     return self:invokeOperation(input, {
         name = "ListDeliverabilityTestReports",
-        input_schema = types.ListDeliverabilityTestReportsInput,
-        output_schema = types.ListDeliverabilityTestReportsOutput,
+        input_schema = schemas.ListDeliverabilityTestReportsInput,
+        output_schema = schemas.ListDeliverabilityTestReportsOutput,
         http_method = "GET",
         http_path = "/v1/email/deliverability-dashboard/test-reports",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listDomainDeliverabilityCampaigns(input, options)
     return self:invokeOperation(input, {
         name = "ListDomainDeliverabilityCampaigns",
-        input_schema = types.ListDomainDeliverabilityCampaignsInput,
-        output_schema = types.ListDomainDeliverabilityCampaignsOutput,
+        input_schema = schemas.ListDomainDeliverabilityCampaignsInput,
+        output_schema = schemas.ListDomainDeliverabilityCampaignsOutput,
         http_method = "GET",
         http_path = "/v1/email/deliverability-dashboard/domains/{SubscribedDomain}/campaigns",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listEmailIdentities(input, options)
     return self:invokeOperation(input, {
         name = "ListEmailIdentities",
-        input_schema = types.ListEmailIdentitiesInput,
-        output_schema = types.ListEmailIdentitiesOutput,
+        input_schema = schemas.ListEmailIdentitiesInput,
+        output_schema = schemas.ListEmailIdentitiesOutput,
         http_method = "GET",
         http_path = "/v1/email/identities",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/v1/email/tags",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:putAccountDedicatedIpWarmupAttributes(input, options)
     return self:invokeOperation(input, {
         name = "PutAccountDedicatedIpWarmupAttributes",
-        input_schema = types.PutAccountDedicatedIpWarmupAttributesInput,
-        output_schema = types.PutAccountDedicatedIpWarmupAttributesOutput,
+        input_schema = schemas.PutAccountDedicatedIpWarmupAttributesInput,
+        output_schema = schemas.PutAccountDedicatedIpWarmupAttributesOutput,
         http_method = "PUT",
         http_path = "/v1/email/account/dedicated-ips/warmup",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:putAccountSendingAttributes(input, options)
     return self:invokeOperation(input, {
         name = "PutAccountSendingAttributes",
-        input_schema = types.PutAccountSendingAttributesInput,
-        output_schema = types.PutAccountSendingAttributesOutput,
+        input_schema = schemas.PutAccountSendingAttributesInput,
+        output_schema = schemas.PutAccountSendingAttributesOutput,
         http_method = "PUT",
         http_path = "/v1/email/account/sending",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:putConfigurationSetDeliveryOptions(input, options)
     return self:invokeOperation(input, {
         name = "PutConfigurationSetDeliveryOptions",
-        input_schema = types.PutConfigurationSetDeliveryOptionsInput,
-        output_schema = types.PutConfigurationSetDeliveryOptionsOutput,
+        input_schema = schemas.PutConfigurationSetDeliveryOptionsInput,
+        output_schema = schemas.PutConfigurationSetDeliveryOptionsOutput,
         http_method = "PUT",
         http_path = "/v1/email/configuration-sets/{ConfigurationSetName}/delivery-options",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:putConfigurationSetReputationOptions(input, options)
     return self:invokeOperation(input, {
         name = "PutConfigurationSetReputationOptions",
-        input_schema = types.PutConfigurationSetReputationOptionsInput,
-        output_schema = types.PutConfigurationSetReputationOptionsOutput,
+        input_schema = schemas.PutConfigurationSetReputationOptionsInput,
+        output_schema = schemas.PutConfigurationSetReputationOptionsOutput,
         http_method = "PUT",
         http_path = "/v1/email/configuration-sets/{ConfigurationSetName}/reputation-options",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:putConfigurationSetSendingOptions(input, options)
     return self:invokeOperation(input, {
         name = "PutConfigurationSetSendingOptions",
-        input_schema = types.PutConfigurationSetSendingOptionsInput,
-        output_schema = types.PutConfigurationSetSendingOptionsOutput,
+        input_schema = schemas.PutConfigurationSetSendingOptionsInput,
+        output_schema = schemas.PutConfigurationSetSendingOptionsOutput,
         http_method = "PUT",
         http_path = "/v1/email/configuration-sets/{ConfigurationSetName}/sending",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:putConfigurationSetTrackingOptions(input, options)
     return self:invokeOperation(input, {
         name = "PutConfigurationSetTrackingOptions",
-        input_schema = types.PutConfigurationSetTrackingOptionsInput,
-        output_schema = types.PutConfigurationSetTrackingOptionsOutput,
+        input_schema = schemas.PutConfigurationSetTrackingOptionsInput,
+        output_schema = schemas.PutConfigurationSetTrackingOptionsOutput,
         http_method = "PUT",
         http_path = "/v1/email/configuration-sets/{ConfigurationSetName}/tracking-options",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:putDedicatedIpInPool(input, options)
     return self:invokeOperation(input, {
         name = "PutDedicatedIpInPool",
-        input_schema = types.PutDedicatedIpInPoolInput,
-        output_schema = types.PutDedicatedIpInPoolOutput,
+        input_schema = schemas.PutDedicatedIpInPoolInput,
+        output_schema = schemas.PutDedicatedIpInPoolOutput,
         http_method = "PUT",
         http_path = "/v1/email/dedicated-ips/{Ip}/pool",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:putDedicatedIpWarmupAttributes(input, options)
     return self:invokeOperation(input, {
         name = "PutDedicatedIpWarmupAttributes",
-        input_schema = types.PutDedicatedIpWarmupAttributesInput,
-        output_schema = types.PutDedicatedIpWarmupAttributesOutput,
+        input_schema = schemas.PutDedicatedIpWarmupAttributesInput,
+        output_schema = schemas.PutDedicatedIpWarmupAttributesOutput,
         http_method = "PUT",
         http_path = "/v1/email/dedicated-ips/{Ip}/warmup",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:putDeliverabilityDashboardOption(input, options)
     return self:invokeOperation(input, {
         name = "PutDeliverabilityDashboardOption",
-        input_schema = types.PutDeliverabilityDashboardOptionInput,
-        output_schema = types.PutDeliverabilityDashboardOptionOutput,
+        input_schema = schemas.PutDeliverabilityDashboardOptionInput,
+        output_schema = schemas.PutDeliverabilityDashboardOptionOutput,
         http_method = "PUT",
         http_path = "/v1/email/deliverability-dashboard",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:putEmailIdentityDkimAttributes(input, options)
     return self:invokeOperation(input, {
         name = "PutEmailIdentityDkimAttributes",
-        input_schema = types.PutEmailIdentityDkimAttributesInput,
-        output_schema = types.PutEmailIdentityDkimAttributesOutput,
+        input_schema = schemas.PutEmailIdentityDkimAttributesInput,
+        output_schema = schemas.PutEmailIdentityDkimAttributesOutput,
         http_method = "PUT",
         http_path = "/v1/email/identities/{EmailIdentity}/dkim",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:putEmailIdentityFeedbackAttributes(input, options)
     return self:invokeOperation(input, {
         name = "PutEmailIdentityFeedbackAttributes",
-        input_schema = types.PutEmailIdentityFeedbackAttributesInput,
-        output_schema = types.PutEmailIdentityFeedbackAttributesOutput,
+        input_schema = schemas.PutEmailIdentityFeedbackAttributesInput,
+        output_schema = schemas.PutEmailIdentityFeedbackAttributesOutput,
         http_method = "PUT",
         http_path = "/v1/email/identities/{EmailIdentity}/feedback",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:putEmailIdentityMailFromAttributes(input, options)
     return self:invokeOperation(input, {
         name = "PutEmailIdentityMailFromAttributes",
-        input_schema = types.PutEmailIdentityMailFromAttributesInput,
-        output_schema = types.PutEmailIdentityMailFromAttributesOutput,
+        input_schema = schemas.PutEmailIdentityMailFromAttributesInput,
+        output_schema = schemas.PutEmailIdentityMailFromAttributesOutput,
         http_method = "PUT",
         http_path = "/v1/email/identities/{EmailIdentity}/mail-from",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:sendEmail(input, options)
     return self:invokeOperation(input, {
         name = "SendEmail",
-        input_schema = types.SendEmailInput,
-        output_schema = types.SendEmailOutput,
+        input_schema = schemas.SendEmailInput,
+        output_schema = schemas.SendEmailOutput,
         http_method = "POST",
         http_path = "/v1/email/outbound-emails",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/v1/email/tags",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/v1/email/tags",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:updateConfigurationSetEventDestination(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConfigurationSetEventDestination",
-        input_schema = types.UpdateConfigurationSetEventDestinationInput,
-        output_schema = types.UpdateConfigurationSetEventDestinationOutput,
+        input_schema = schemas.UpdateConfigurationSetEventDestinationInput,
+        output_schema = schemas.UpdateConfigurationSetEventDestinationOutput,
         http_method = "PUT",
         http_path = "/v1/email/configuration-sets/{ConfigurationSetName}/event-destinations/{EventDestinationName}",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("polly.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("polly.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("polly.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:deleteLexicon(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLexicon",
-        input_schema = types.DeleteLexiconInput,
-        output_schema = types.DeleteLexiconOutput,
+        input_schema = schemas.DeleteLexiconInput,
+        output_schema = schemas.DeleteLexiconOutput,
         http_method = "DELETE",
         http_path = "/v1/lexicons/{Name}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:describeVoices(input, options)
     return self:invokeOperation(input, {
         name = "DescribeVoices",
-        input_schema = types.DescribeVoicesInput,
-        output_schema = types.DescribeVoicesOutput,
+        input_schema = schemas.DescribeVoicesInput,
+        output_schema = schemas.DescribeVoicesOutput,
         http_method = "GET",
         http_path = "/v1/voices",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getLexicon(input, options)
     return self:invokeOperation(input, {
         name = "GetLexicon",
-        input_schema = types.GetLexiconInput,
-        output_schema = types.GetLexiconOutput,
+        input_schema = schemas.GetLexiconInput,
+        output_schema = schemas.GetLexiconOutput,
         http_method = "GET",
         http_path = "/v1/lexicons/{Name}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getSpeechSynthesisTask(input, options)
     return self:invokeOperation(input, {
         name = "GetSpeechSynthesisTask",
-        input_schema = types.GetSpeechSynthesisTaskInput,
-        output_schema = types.GetSpeechSynthesisTaskOutput,
+        input_schema = schemas.GetSpeechSynthesisTaskInput,
+        output_schema = schemas.GetSpeechSynthesisTaskOutput,
         http_method = "GET",
         http_path = "/v1/synthesisTasks/{TaskId}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:listLexicons(input, options)
     return self:invokeOperation(input, {
         name = "ListLexicons",
-        input_schema = types.ListLexiconsInput,
-        output_schema = types.ListLexiconsOutput,
+        input_schema = schemas.ListLexiconsInput,
+        output_schema = schemas.ListLexiconsOutput,
         http_method = "GET",
         http_path = "/v1/lexicons",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:listSpeechSynthesisTasks(input, options)
     return self:invokeOperation(input, {
         name = "ListSpeechSynthesisTasks",
-        input_schema = types.ListSpeechSynthesisTasksInput,
-        output_schema = types.ListSpeechSynthesisTasksOutput,
+        input_schema = schemas.ListSpeechSynthesisTasksInput,
+        output_schema = schemas.ListSpeechSynthesisTasksOutput,
         http_method = "GET",
         http_path = "/v1/synthesisTasks",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:putLexicon(input, options)
     return self:invokeOperation(input, {
         name = "PutLexicon",
-        input_schema = types.PutLexiconInput,
-        output_schema = types.PutLexiconOutput,
+        input_schema = schemas.PutLexiconInput,
+        output_schema = schemas.PutLexiconOutput,
         http_method = "PUT",
         http_path = "/v1/lexicons/{Name}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:startSpeechSynthesisTask(input, options)
     return self:invokeOperation(input, {
         name = "StartSpeechSynthesisTask",
-        input_schema = types.StartSpeechSynthesisTaskInput,
-        output_schema = types.StartSpeechSynthesisTaskOutput,
+        input_schema = schemas.StartSpeechSynthesisTaskInput,
+        output_schema = schemas.StartSpeechSynthesisTaskOutput,
         http_method = "POST",
         http_path = "/v1/synthesisTasks",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:synthesizeSpeech(input, options)
     return self:invokeOperation(input, {
         name = "SynthesizeSpeech",
-        input_schema = types.SynthesizeSpeechInput,
-        output_schema = types.SynthesizeSpeechOutput,
+        input_schema = schemas.SynthesizeSpeechInput,
+        output_schema = schemas.SynthesizeSpeechOutput,
         http_method = "POST",
         http_path = "/v1/speech",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("migrationhubconfig.endpoint_rules")
+local schemas = require("migrationhubconfig.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("migrationhubconfig.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createHomeRegionControl(input, options)
     return self:invokeOperation(input, {
         name = "CreateHomeRegionControl",
-        input_schema = types.CreateHomeRegionControlInput,
-        output_schema = types.CreateHomeRegionControlOutput,
+        input_schema = schemas.CreateHomeRegionControlInput,
+        output_schema = schemas.CreateHomeRegionControlOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteHomeRegionControl(input, options)
     return self:invokeOperation(input, {
         name = "DeleteHomeRegionControl",
-        input_schema = types.DeleteHomeRegionControlInput,
-        output_schema = types.DeleteHomeRegionControlOutput,
+        input_schema = schemas.DeleteHomeRegionControlInput,
+        output_schema = schemas.DeleteHomeRegionControlOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:describeHomeRegionControls(input, options)
     return self:invokeOperation(input, {
         name = "DescribeHomeRegionControls",
-        input_schema = types.DescribeHomeRegionControlsInput,
-        output_schema = types.DescribeHomeRegionControlsOutput,
+        input_schema = schemas.DescribeHomeRegionControlsInput,
+        output_schema = schemas.DescribeHomeRegionControlsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getHomeRegion(input, options)
     return self:invokeOperation(input, {
         name = "GetHomeRegion",
-        input_schema = types.GetHomeRegionInput,
-        output_schema = types.GetHomeRegionOutput,
+        input_schema = schemas.GetHomeRegionInput,
+        output_schema = schemas.GetHomeRegionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

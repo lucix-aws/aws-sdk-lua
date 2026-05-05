@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("cognitoidentity.endpoint_rules")
+local schemas = require("cognitoidentity.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("cognitoidentity.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createIdentityPool(input, options)
     return self:invokeOperation(input, {
         name = "CreateIdentityPool",
-        input_schema = types.CreateIdentityPoolInput,
-        output_schema = types.CreateIdentityPoolOutput,
+        input_schema = schemas.CreateIdentityPoolInput,
+        output_schema = schemas.CreateIdentityPoolOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteIdentities(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIdentities",
-        input_schema = types.DeleteIdentitiesInput,
-        output_schema = types.DeleteIdentitiesOutput,
+        input_schema = schemas.DeleteIdentitiesInput,
+        output_schema = schemas.DeleteIdentitiesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteIdentityPool(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIdentityPool",
-        input_schema = types.DeleteIdentityPoolInput,
-        output_schema = types.DeleteIdentityPoolOutput,
+        input_schema = schemas.DeleteIdentityPoolInput,
+        output_schema = schemas.DeleteIdentityPoolOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:describeIdentity(input, options)
     return self:invokeOperation(input, {
         name = "DescribeIdentity",
-        input_schema = types.DescribeIdentityInput,
-        output_schema = types.DescribeIdentityOutput,
+        input_schema = schemas.DescribeIdentityInput,
+        output_schema = schemas.DescribeIdentityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:describeIdentityPool(input, options)
     return self:invokeOperation(input, {
         name = "DescribeIdentityPool",
-        input_schema = types.DescribeIdentityPoolInput,
-        output_schema = types.DescribeIdentityPoolOutput,
+        input_schema = schemas.DescribeIdentityPoolInput,
+        output_schema = schemas.DescribeIdentityPoolOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getCredentialsForIdentity(input, options)
     return self:invokeOperation(input, {
         name = "GetCredentialsForIdentity",
-        input_schema = types.GetCredentialsForIdentityInput,
-        output_schema = types.GetCredentialsForIdentityOutput,
+        input_schema = schemas.GetCredentialsForIdentityInput,
+        output_schema = schemas.GetCredentialsForIdentityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -126,8 +126,8 @@ end
 function Client:getId(input, options)
     return self:invokeOperation(input, {
         name = "GetId",
-        input_schema = types.GetIdInput,
-        output_schema = types.GetIdOutput,
+        input_schema = schemas.GetIdInput,
+        output_schema = schemas.GetIdOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -138,8 +138,8 @@ end
 function Client:getIdentityPoolRoles(input, options)
     return self:invokeOperation(input, {
         name = "GetIdentityPoolRoles",
-        input_schema = types.GetIdentityPoolRolesInput,
-        output_schema = types.GetIdentityPoolRolesOutput,
+        input_schema = schemas.GetIdentityPoolRolesInput,
+        output_schema = schemas.GetIdentityPoolRolesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -151,8 +151,8 @@ end
 function Client:getOpenIdToken(input, options)
     return self:invokeOperation(input, {
         name = "GetOpenIdToken",
-        input_schema = types.GetOpenIdTokenInput,
-        output_schema = types.GetOpenIdTokenOutput,
+        input_schema = schemas.GetOpenIdTokenInput,
+        output_schema = schemas.GetOpenIdTokenOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -163,8 +163,8 @@ end
 function Client:getOpenIdTokenForDeveloperIdentity(input, options)
     return self:invokeOperation(input, {
         name = "GetOpenIdTokenForDeveloperIdentity",
-        input_schema = types.GetOpenIdTokenForDeveloperIdentityInput,
-        output_schema = types.GetOpenIdTokenForDeveloperIdentityOutput,
+        input_schema = schemas.GetOpenIdTokenForDeveloperIdentityInput,
+        output_schema = schemas.GetOpenIdTokenForDeveloperIdentityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -176,8 +176,8 @@ end
 function Client:getPrincipalTagAttributeMap(input, options)
     return self:invokeOperation(input, {
         name = "GetPrincipalTagAttributeMap",
-        input_schema = types.GetPrincipalTagAttributeMapInput,
-        output_schema = types.GetPrincipalTagAttributeMapOutput,
+        input_schema = schemas.GetPrincipalTagAttributeMapInput,
+        output_schema = schemas.GetPrincipalTagAttributeMapOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -189,8 +189,8 @@ end
 function Client:listIdentities(input, options)
     return self:invokeOperation(input, {
         name = "ListIdentities",
-        input_schema = types.ListIdentitiesInput,
-        output_schema = types.ListIdentitiesOutput,
+        input_schema = schemas.ListIdentitiesInput,
+        output_schema = schemas.ListIdentitiesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -202,8 +202,8 @@ end
 function Client:listIdentityPools(input, options)
     return self:invokeOperation(input, {
         name = "ListIdentityPools",
-        input_schema = types.ListIdentityPoolsInput,
-        output_schema = types.ListIdentityPoolsOutput,
+        input_schema = schemas.ListIdentityPoolsInput,
+        output_schema = schemas.ListIdentityPoolsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -215,8 +215,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -228,8 +228,8 @@ end
 function Client:lookupDeveloperIdentity(input, options)
     return self:invokeOperation(input, {
         name = "LookupDeveloperIdentity",
-        input_schema = types.LookupDeveloperIdentityInput,
-        output_schema = types.LookupDeveloperIdentityOutput,
+        input_schema = schemas.LookupDeveloperIdentityInput,
+        output_schema = schemas.LookupDeveloperIdentityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -241,8 +241,8 @@ end
 function Client:mergeDeveloperIdentities(input, options)
     return self:invokeOperation(input, {
         name = "MergeDeveloperIdentities",
-        input_schema = types.MergeDeveloperIdentitiesInput,
-        output_schema = types.MergeDeveloperIdentitiesOutput,
+        input_schema = schemas.MergeDeveloperIdentitiesInput,
+        output_schema = schemas.MergeDeveloperIdentitiesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -254,8 +254,8 @@ end
 function Client:setIdentityPoolRoles(input, options)
     return self:invokeOperation(input, {
         name = "SetIdentityPoolRoles",
-        input_schema = types.SetIdentityPoolRolesInput,
-        output_schema = types.SetIdentityPoolRolesOutput,
+        input_schema = schemas.SetIdentityPoolRolesInput,
+        output_schema = schemas.SetIdentityPoolRolesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -267,8 +267,8 @@ end
 function Client:setPrincipalTagAttributeMap(input, options)
     return self:invokeOperation(input, {
         name = "SetPrincipalTagAttributeMap",
-        input_schema = types.SetPrincipalTagAttributeMapInput,
-        output_schema = types.SetPrincipalTagAttributeMapOutput,
+        input_schema = schemas.SetPrincipalTagAttributeMapInput,
+        output_schema = schemas.SetPrincipalTagAttributeMapOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -280,8 +280,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -293,8 +293,8 @@ end
 function Client:unlinkDeveloperIdentity(input, options)
     return self:invokeOperation(input, {
         name = "UnlinkDeveloperIdentity",
-        input_schema = types.UnlinkDeveloperIdentityInput,
-        output_schema = types.UnlinkDeveloperIdentityOutput,
+        input_schema = schemas.UnlinkDeveloperIdentityInput,
+        output_schema = schemas.UnlinkDeveloperIdentityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -306,8 +306,8 @@ end
 function Client:unlinkIdentity(input, options)
     return self:invokeOperation(input, {
         name = "UnlinkIdentity",
-        input_schema = types.UnlinkIdentityInput,
-        output_schema = types.UnlinkIdentityOutput,
+        input_schema = schemas.UnlinkIdentityInput,
+        output_schema = schemas.UnlinkIdentityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -318,8 +318,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -331,8 +331,8 @@ end
 function Client:updateIdentityPool(input, options)
     return self:invokeOperation(input, {
         name = "UpdateIdentityPool",
-        input_schema = types.UpdateIdentityPoolInput,
-        output_schema = types.UpdateIdentityPoolOutput,
+        input_schema = schemas.UpdateIdentityPoolInput,
+        output_schema = schemas.UpdateIdentityPoolOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

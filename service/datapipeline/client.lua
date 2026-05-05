@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("datapipeline.endpoint_rules")
+local schemas = require("datapipeline.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("datapipeline.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:activatePipeline(input, options)
     return self:invokeOperation(input, {
         name = "ActivatePipeline",
-        input_schema = types.ActivatePipelineInput,
-        output_schema = types.ActivatePipelineOutput,
+        input_schema = schemas.ActivatePipelineInput,
+        output_schema = schemas.ActivatePipelineOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:addTags(input, options)
     return self:invokeOperation(input, {
         name = "AddTags",
-        input_schema = types.AddTagsInput,
-        output_schema = types.AddTagsOutput,
+        input_schema = schemas.AddTagsInput,
+        output_schema = schemas.AddTagsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createPipeline(input, options)
     return self:invokeOperation(input, {
         name = "CreatePipeline",
-        input_schema = types.CreatePipelineInput,
-        output_schema = types.CreatePipelineOutput,
+        input_schema = schemas.CreatePipelineInput,
+        output_schema = schemas.CreatePipelineOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deactivatePipeline(input, options)
     return self:invokeOperation(input, {
         name = "DeactivatePipeline",
-        input_schema = types.DeactivatePipelineInput,
-        output_schema = types.DeactivatePipelineOutput,
+        input_schema = schemas.DeactivatePipelineInput,
+        output_schema = schemas.DeactivatePipelineOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deletePipeline(input, options)
     return self:invokeOperation(input, {
         name = "DeletePipeline",
-        input_schema = types.DeletePipelineInput,
-        output_schema = types.DeletePipelineOutput,
+        input_schema = schemas.DeletePipelineInput,
+        output_schema = schemas.DeletePipelineOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:describeObjects(input, options)
     return self:invokeOperation(input, {
         name = "DescribeObjects",
-        input_schema = types.DescribeObjectsInput,
-        output_schema = types.DescribeObjectsOutput,
+        input_schema = schemas.DescribeObjectsInput,
+        output_schema = schemas.DescribeObjectsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:describePipelines(input, options)
     return self:invokeOperation(input, {
         name = "DescribePipelines",
-        input_schema = types.DescribePipelinesInput,
-        output_schema = types.DescribePipelinesOutput,
+        input_schema = schemas.DescribePipelinesInput,
+        output_schema = schemas.DescribePipelinesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:evaluateExpression(input, options)
     return self:invokeOperation(input, {
         name = "EvaluateExpression",
-        input_schema = types.EvaluateExpressionInput,
-        output_schema = types.EvaluateExpressionOutput,
+        input_schema = schemas.EvaluateExpressionInput,
+        output_schema = schemas.EvaluateExpressionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getPipelineDefinition(input, options)
     return self:invokeOperation(input, {
         name = "GetPipelineDefinition",
-        input_schema = types.GetPipelineDefinitionInput,
-        output_schema = types.GetPipelineDefinitionOutput,
+        input_schema = schemas.GetPipelineDefinitionInput,
+        output_schema = schemas.GetPipelineDefinitionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listPipelines(input, options)
     return self:invokeOperation(input, {
         name = "ListPipelines",
-        input_schema = types.ListPipelinesInput,
-        output_schema = types.ListPipelinesOutput,
+        input_schema = schemas.ListPipelinesInput,
+        output_schema = schemas.ListPipelinesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:pollForTask(input, options)
     return self:invokeOperation(input, {
         name = "PollForTask",
-        input_schema = types.PollForTaskInput,
-        output_schema = types.PollForTaskOutput,
+        input_schema = schemas.PollForTaskInput,
+        output_schema = schemas.PollForTaskOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:putPipelineDefinition(input, options)
     return self:invokeOperation(input, {
         name = "PutPipelineDefinition",
-        input_schema = types.PutPipelineDefinitionInput,
-        output_schema = types.PutPipelineDefinitionOutput,
+        input_schema = schemas.PutPipelineDefinitionInput,
+        output_schema = schemas.PutPipelineDefinitionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:queryObjects(input, options)
     return self:invokeOperation(input, {
         name = "QueryObjects",
-        input_schema = types.QueryObjectsInput,
-        output_schema = types.QueryObjectsOutput,
+        input_schema = schemas.QueryObjectsInput,
+        output_schema = schemas.QueryObjectsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:removeTags(input, options)
     return self:invokeOperation(input, {
         name = "RemoveTags",
-        input_schema = types.RemoveTagsInput,
-        output_schema = types.RemoveTagsOutput,
+        input_schema = schemas.RemoveTagsInput,
+        output_schema = schemas.RemoveTagsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:reportTaskProgress(input, options)
     return self:invokeOperation(input, {
         name = "ReportTaskProgress",
-        input_schema = types.ReportTaskProgressInput,
-        output_schema = types.ReportTaskProgressOutput,
+        input_schema = schemas.ReportTaskProgressInput,
+        output_schema = schemas.ReportTaskProgressOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:reportTaskRunnerHeartbeat(input, options)
     return self:invokeOperation(input, {
         name = "ReportTaskRunnerHeartbeat",
-        input_schema = types.ReportTaskRunnerHeartbeatInput,
-        output_schema = types.ReportTaskRunnerHeartbeatOutput,
+        input_schema = schemas.ReportTaskRunnerHeartbeatInput,
+        output_schema = schemas.ReportTaskRunnerHeartbeatOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:setStatus(input, options)
     return self:invokeOperation(input, {
         name = "SetStatus",
-        input_schema = types.SetStatusInput,
-        output_schema = types.SetStatusOutput,
+        input_schema = schemas.SetStatusInput,
+        output_schema = schemas.SetStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:setTaskStatus(input, options)
     return self:invokeOperation(input, {
         name = "SetTaskStatus",
-        input_schema = types.SetTaskStatusInput,
-        output_schema = types.SetTaskStatusOutput,
+        input_schema = schemas.SetTaskStatusInput,
+        output_schema = schemas.SetTaskStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:validatePipelineDefinition(input, options)
     return self:invokeOperation(input, {
         name = "ValidatePipelineDefinition",
-        input_schema = types.ValidatePipelineDefinitionInput,
-        output_schema = types.ValidatePipelineDefinitionOutput,
+        input_schema = schemas.ValidatePipelineDefinitionInput,
+        output_schema = schemas.ValidatePipelineDefinitionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

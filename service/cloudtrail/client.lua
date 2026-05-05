@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("cloudtrail.endpoint_rules")
+local schemas = require("cloudtrail.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("cloudtrail.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addTags(input, options)
     return self:invokeOperation(input, {
         name = "AddTags",
-        input_schema = types.AddTagsInput,
-        output_schema = types.AddTagsOutput,
+        input_schema = schemas.AddTagsInput,
+        output_schema = schemas.AddTagsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:cancelQuery(input, options)
     return self:invokeOperation(input, {
         name = "CancelQuery",
-        input_schema = types.CancelQueryInput,
-        output_schema = types.CancelQueryOutput,
+        input_schema = schemas.CancelQueryInput,
+        output_schema = schemas.CancelQueryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createChannel(input, options)
     return self:invokeOperation(input, {
         name = "CreateChannel",
-        input_schema = types.CreateChannelInput,
-        output_schema = types.CreateChannelOutput,
+        input_schema = schemas.CreateChannelInput,
+        output_schema = schemas.CreateChannelOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createDashboard(input, options)
     return self:invokeOperation(input, {
         name = "CreateDashboard",
-        input_schema = types.CreateDashboardInput,
-        output_schema = types.CreateDashboardOutput,
+        input_schema = schemas.CreateDashboardInput,
+        output_schema = schemas.CreateDashboardOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createEventDataStore(input, options)
     return self:invokeOperation(input, {
         name = "CreateEventDataStore",
-        input_schema = types.CreateEventDataStoreInput,
-        output_schema = types.CreateEventDataStoreOutput,
+        input_schema = schemas.CreateEventDataStoreInput,
+        output_schema = schemas.CreateEventDataStoreOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createTrail(input, options)
     return self:invokeOperation(input, {
         name = "CreateTrail",
-        input_schema = types.CreateTrailInput,
-        output_schema = types.CreateTrailOutput,
+        input_schema = schemas.CreateTrailInput,
+        output_schema = schemas.CreateTrailOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteChannel(input, options)
     return self:invokeOperation(input, {
         name = "DeleteChannel",
-        input_schema = types.DeleteChannelInput,
-        output_schema = types.DeleteChannelOutput,
+        input_schema = schemas.DeleteChannelInput,
+        output_schema = schemas.DeleteChannelOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteDashboard(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDashboard",
-        input_schema = types.DeleteDashboardInput,
-        output_schema = types.DeleteDashboardOutput,
+        input_schema = schemas.DeleteDashboardInput,
+        output_schema = schemas.DeleteDashboardOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteEventDataStore(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEventDataStore",
-        input_schema = types.DeleteEventDataStoreInput,
-        output_schema = types.DeleteEventDataStoreOutput,
+        input_schema = schemas.DeleteEventDataStoreInput,
+        output_schema = schemas.DeleteEventDataStoreOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourcePolicy",
-        input_schema = types.DeleteResourcePolicyInput,
-        output_schema = types.DeleteResourcePolicyOutput,
+        input_schema = schemas.DeleteResourcePolicyInput,
+        output_schema = schemas.DeleteResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteTrail(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTrail",
-        input_schema = types.DeleteTrailInput,
-        output_schema = types.DeleteTrailOutput,
+        input_schema = schemas.DeleteTrailInput,
+        output_schema = schemas.DeleteTrailOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deregisterOrganizationDelegatedAdmin(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterOrganizationDelegatedAdmin",
-        input_schema = types.DeregisterOrganizationDelegatedAdminInput,
-        output_schema = types.DeregisterOrganizationDelegatedAdminOutput,
+        input_schema = schemas.DeregisterOrganizationDelegatedAdminInput,
+        output_schema = schemas.DeregisterOrganizationDelegatedAdminOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:describeQuery(input, options)
     return self:invokeOperation(input, {
         name = "DescribeQuery",
-        input_schema = types.DescribeQueryInput,
-        output_schema = types.DescribeQueryOutput,
+        input_schema = schemas.DescribeQueryInput,
+        output_schema = schemas.DescribeQueryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:describeTrails(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTrails",
-        input_schema = types.DescribeTrailsInput,
-        output_schema = types.DescribeTrailsOutput,
+        input_schema = schemas.DescribeTrailsInput,
+        output_schema = schemas.DescribeTrailsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:disableFederation(input, options)
     return self:invokeOperation(input, {
         name = "DisableFederation",
-        input_schema = types.DisableFederationInput,
-        output_schema = types.DisableFederationOutput,
+        input_schema = schemas.DisableFederationInput,
+        output_schema = schemas.DisableFederationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:enableFederation(input, options)
     return self:invokeOperation(input, {
         name = "EnableFederation",
-        input_schema = types.EnableFederationInput,
-        output_schema = types.EnableFederationOutput,
+        input_schema = schemas.EnableFederationInput,
+        output_schema = schemas.EnableFederationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:generateQuery(input, options)
     return self:invokeOperation(input, {
         name = "GenerateQuery",
-        input_schema = types.GenerateQueryInput,
-        output_schema = types.GenerateQueryOutput,
+        input_schema = schemas.GenerateQueryInput,
+        output_schema = schemas.GenerateQueryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getChannel(input, options)
     return self:invokeOperation(input, {
         name = "GetChannel",
-        input_schema = types.GetChannelInput,
-        output_schema = types.GetChannelOutput,
+        input_schema = schemas.GetChannelInput,
+        output_schema = schemas.GetChannelOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getDashboard(input, options)
     return self:invokeOperation(input, {
         name = "GetDashboard",
-        input_schema = types.GetDashboardInput,
-        output_schema = types.GetDashboardOutput,
+        input_schema = schemas.GetDashboardInput,
+        output_schema = schemas.GetDashboardOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getEventConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetEventConfiguration",
-        input_schema = types.GetEventConfigurationInput,
-        output_schema = types.GetEventConfigurationOutput,
+        input_schema = schemas.GetEventConfigurationInput,
+        output_schema = schemas.GetEventConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:getEventDataStore(input, options)
     return self:invokeOperation(input, {
         name = "GetEventDataStore",
-        input_schema = types.GetEventDataStoreInput,
-        output_schema = types.GetEventDataStoreOutput,
+        input_schema = schemas.GetEventDataStoreInput,
+        output_schema = schemas.GetEventDataStoreOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:getEventSelectors(input, options)
     return self:invokeOperation(input, {
         name = "GetEventSelectors",
-        input_schema = types.GetEventSelectorsInput,
-        output_schema = types.GetEventSelectorsOutput,
+        input_schema = schemas.GetEventSelectorsInput,
+        output_schema = schemas.GetEventSelectorsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:getImport(input, options)
     return self:invokeOperation(input, {
         name = "GetImport",
-        input_schema = types.GetImportInput,
-        output_schema = types.GetImportOutput,
+        input_schema = schemas.GetImportInput,
+        output_schema = schemas.GetImportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:getInsightSelectors(input, options)
     return self:invokeOperation(input, {
         name = "GetInsightSelectors",
-        input_schema = types.GetInsightSelectorsInput,
-        output_schema = types.GetInsightSelectorsOutput,
+        input_schema = schemas.GetInsightSelectorsInput,
+        output_schema = schemas.GetInsightSelectorsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getQueryResults(input, options)
     return self:invokeOperation(input, {
         name = "GetQueryResults",
-        input_schema = types.GetQueryResultsInput,
-        output_schema = types.GetQueryResultsOutput,
+        input_schema = schemas.GetQueryResultsInput,
+        output_schema = schemas.GetQueryResultsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:getResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcePolicy",
-        input_schema = types.GetResourcePolicyInput,
-        output_schema = types.GetResourcePolicyOutput,
+        input_schema = schemas.GetResourcePolicyInput,
+        output_schema = schemas.GetResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:getTrail(input, options)
     return self:invokeOperation(input, {
         name = "GetTrail",
-        input_schema = types.GetTrailInput,
-        output_schema = types.GetTrailOutput,
+        input_schema = schemas.GetTrailInput,
+        output_schema = schemas.GetTrailOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:getTrailStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetTrailStatus",
-        input_schema = types.GetTrailStatusInput,
-        output_schema = types.GetTrailStatusOutput,
+        input_schema = schemas.GetTrailStatusInput,
+        output_schema = schemas.GetTrailStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listChannels(input, options)
     return self:invokeOperation(input, {
         name = "ListChannels",
-        input_schema = types.ListChannelsInput,
-        output_schema = types.ListChannelsOutput,
+        input_schema = schemas.ListChannelsInput,
+        output_schema = schemas.ListChannelsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:listDashboards(input, options)
     return self:invokeOperation(input, {
         name = "ListDashboards",
-        input_schema = types.ListDashboardsInput,
-        output_schema = types.ListDashboardsOutput,
+        input_schema = schemas.ListDashboardsInput,
+        output_schema = schemas.ListDashboardsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:listEventDataStores(input, options)
     return self:invokeOperation(input, {
         name = "ListEventDataStores",
-        input_schema = types.ListEventDataStoresInput,
-        output_schema = types.ListEventDataStoresOutput,
+        input_schema = schemas.ListEventDataStoresInput,
+        output_schema = schemas.ListEventDataStoresOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:listImportFailures(input, options)
     return self:invokeOperation(input, {
         name = "ListImportFailures",
-        input_schema = types.ListImportFailuresInput,
-        output_schema = types.ListImportFailuresOutput,
+        input_schema = schemas.ListImportFailuresInput,
+        output_schema = schemas.ListImportFailuresOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:listImports(input, options)
     return self:invokeOperation(input, {
         name = "ListImports",
-        input_schema = types.ListImportsInput,
-        output_schema = types.ListImportsOutput,
+        input_schema = schemas.ListImportsInput,
+        output_schema = schemas.ListImportsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listInsightsData(input, options)
     return self:invokeOperation(input, {
         name = "ListInsightsData",
-        input_schema = types.ListInsightsDataInput,
-        output_schema = types.ListInsightsDataOutput,
+        input_schema = schemas.ListInsightsDataInput,
+        output_schema = schemas.ListInsightsDataOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:listInsightsMetricData(input, options)
     return self:invokeOperation(input, {
         name = "ListInsightsMetricData",
-        input_schema = types.ListInsightsMetricDataInput,
-        output_schema = types.ListInsightsMetricDataOutput,
+        input_schema = schemas.ListInsightsMetricDataInput,
+        output_schema = schemas.ListInsightsMetricDataOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:listPublicKeys(input, options)
     return self:invokeOperation(input, {
         name = "ListPublicKeys",
-        input_schema = types.ListPublicKeysInput,
-        output_schema = types.ListPublicKeysOutput,
+        input_schema = schemas.ListPublicKeysInput,
+        output_schema = schemas.ListPublicKeysOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:listQueries(input, options)
     return self:invokeOperation(input, {
         name = "ListQueries",
-        input_schema = types.ListQueriesInput,
-        output_schema = types.ListQueriesOutput,
+        input_schema = schemas.ListQueriesInput,
+        output_schema = schemas.ListQueriesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:listTags(input, options)
     return self:invokeOperation(input, {
         name = "ListTags",
-        input_schema = types.ListTagsInput,
-        output_schema = types.ListTagsOutput,
+        input_schema = schemas.ListTagsInput,
+        output_schema = schemas.ListTagsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:listTrails(input, options)
     return self:invokeOperation(input, {
         name = "ListTrails",
-        input_schema = types.ListTrailsInput,
-        output_schema = types.ListTrailsOutput,
+        input_schema = schemas.ListTrailsInput,
+        output_schema = schemas.ListTrailsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:lookupEvents(input, options)
     return self:invokeOperation(input, {
         name = "LookupEvents",
-        input_schema = types.LookupEventsInput,
-        output_schema = types.LookupEventsOutput,
+        input_schema = schemas.LookupEventsInput,
+        output_schema = schemas.LookupEventsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:putEventConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutEventConfiguration",
-        input_schema = types.PutEventConfigurationInput,
-        output_schema = types.PutEventConfigurationOutput,
+        input_schema = schemas.PutEventConfigurationInput,
+        output_schema = schemas.PutEventConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:putEventSelectors(input, options)
     return self:invokeOperation(input, {
         name = "PutEventSelectors",
-        input_schema = types.PutEventSelectorsInput,
-        output_schema = types.PutEventSelectorsOutput,
+        input_schema = schemas.PutEventSelectorsInput,
+        output_schema = schemas.PutEventSelectorsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:putInsightSelectors(input, options)
     return self:invokeOperation(input, {
         name = "PutInsightSelectors",
-        input_schema = types.PutInsightSelectorsInput,
-        output_schema = types.PutInsightSelectorsOutput,
+        input_schema = schemas.PutInsightSelectorsInput,
+        output_schema = schemas.PutInsightSelectorsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:putResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutResourcePolicy",
-        input_schema = types.PutResourcePolicyInput,
-        output_schema = types.PutResourcePolicyOutput,
+        input_schema = schemas.PutResourcePolicyInput,
+        output_schema = schemas.PutResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:registerOrganizationDelegatedAdmin(input, options)
     return self:invokeOperation(input, {
         name = "RegisterOrganizationDelegatedAdmin",
-        input_schema = types.RegisterOrganizationDelegatedAdminInput,
-        output_schema = types.RegisterOrganizationDelegatedAdminOutput,
+        input_schema = schemas.RegisterOrganizationDelegatedAdminInput,
+        output_schema = schemas.RegisterOrganizationDelegatedAdminOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:removeTags(input, options)
     return self:invokeOperation(input, {
         name = "RemoveTags",
-        input_schema = types.RemoveTagsInput,
-        output_schema = types.RemoveTagsOutput,
+        input_schema = schemas.RemoveTagsInput,
+        output_schema = schemas.RemoveTagsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:restoreEventDataStore(input, options)
     return self:invokeOperation(input, {
         name = "RestoreEventDataStore",
-        input_schema = types.RestoreEventDataStoreInput,
-        output_schema = types.RestoreEventDataStoreOutput,
+        input_schema = schemas.RestoreEventDataStoreInput,
+        output_schema = schemas.RestoreEventDataStoreOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:searchSampleQueries(input, options)
     return self:invokeOperation(input, {
         name = "SearchSampleQueries",
-        input_schema = types.SearchSampleQueriesInput,
-        output_schema = types.SearchSampleQueriesOutput,
+        input_schema = schemas.SearchSampleQueriesInput,
+        output_schema = schemas.SearchSampleQueriesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:startDashboardRefresh(input, options)
     return self:invokeOperation(input, {
         name = "StartDashboardRefresh",
-        input_schema = types.StartDashboardRefreshInput,
-        output_schema = types.StartDashboardRefreshOutput,
+        input_schema = schemas.StartDashboardRefreshInput,
+        output_schema = schemas.StartDashboardRefreshOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:startEventDataStoreIngestion(input, options)
     return self:invokeOperation(input, {
         name = "StartEventDataStoreIngestion",
-        input_schema = types.StartEventDataStoreIngestionInput,
-        output_schema = types.StartEventDataStoreIngestionOutput,
+        input_schema = schemas.StartEventDataStoreIngestionInput,
+        output_schema = schemas.StartEventDataStoreIngestionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:startImport(input, options)
     return self:invokeOperation(input, {
         name = "StartImport",
-        input_schema = types.StartImportInput,
-        output_schema = types.StartImportOutput,
+        input_schema = schemas.StartImportInput,
+        output_schema = schemas.StartImportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:startLogging(input, options)
     return self:invokeOperation(input, {
         name = "StartLogging",
-        input_schema = types.StartLoggingInput,
-        output_schema = types.StartLoggingOutput,
+        input_schema = schemas.StartLoggingInput,
+        output_schema = schemas.StartLoggingOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:startQuery(input, options)
     return self:invokeOperation(input, {
         name = "StartQuery",
-        input_schema = types.StartQueryInput,
-        output_schema = types.StartQueryOutput,
+        input_schema = schemas.StartQueryInput,
+        output_schema = schemas.StartQueryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:stopEventDataStoreIngestion(input, options)
     return self:invokeOperation(input, {
         name = "StopEventDataStoreIngestion",
-        input_schema = types.StopEventDataStoreIngestionInput,
-        output_schema = types.StopEventDataStoreIngestionOutput,
+        input_schema = schemas.StopEventDataStoreIngestionInput,
+        output_schema = schemas.StopEventDataStoreIngestionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:stopImport(input, options)
     return self:invokeOperation(input, {
         name = "StopImport",
-        input_schema = types.StopImportInput,
-        output_schema = types.StopImportOutput,
+        input_schema = schemas.StopImportInput,
+        output_schema = schemas.StopImportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:stopLogging(input, options)
     return self:invokeOperation(input, {
         name = "StopLogging",
-        input_schema = types.StopLoggingInput,
-        output_schema = types.StopLoggingOutput,
+        input_schema = schemas.StopLoggingInput,
+        output_schema = schemas.StopLoggingOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:updateChannel(input, options)
     return self:invokeOperation(input, {
         name = "UpdateChannel",
-        input_schema = types.UpdateChannelInput,
-        output_schema = types.UpdateChannelOutput,
+        input_schema = schemas.UpdateChannelInput,
+        output_schema = schemas.UpdateChannelOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:updateDashboard(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDashboard",
-        input_schema = types.UpdateDashboardInput,
-        output_schema = types.UpdateDashboardOutput,
+        input_schema = schemas.UpdateDashboardInput,
+        output_schema = schemas.UpdateDashboardOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:updateEventDataStore(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEventDataStore",
-        input_schema = types.UpdateEventDataStoreInput,
-        output_schema = types.UpdateEventDataStoreOutput,
+        input_schema = schemas.UpdateEventDataStoreInput,
+        output_schema = schemas.UpdateEventDataStoreOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:updateTrail(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTrail",
-        input_schema = types.UpdateTrailInput,
-        output_schema = types.UpdateTrailOutput,
+        input_schema = schemas.UpdateTrailInput,
+        output_schema = schemas.UpdateTrailOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

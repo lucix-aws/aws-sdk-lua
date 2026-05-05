@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("timestreamquery.endpoint_rules")
+local schemas = require("timestreamquery.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("timestreamquery.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:cancelQuery(input, options)
     return self:invokeOperation(input, {
         name = "CancelQuery",
-        input_schema = types.CancelQueryInput,
-        output_schema = types.CancelQueryOutput,
+        input_schema = schemas.CancelQueryInput,
+        output_schema = schemas.CancelQueryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createScheduledQuery(input, options)
     return self:invokeOperation(input, {
         name = "CreateScheduledQuery",
-        input_schema = types.CreateScheduledQueryInput,
-        output_schema = types.CreateScheduledQueryOutput,
+        input_schema = schemas.CreateScheduledQueryInput,
+        output_schema = schemas.CreateScheduledQueryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteScheduledQuery(input, options)
     return self:invokeOperation(input, {
         name = "DeleteScheduledQuery",
-        input_schema = types.DeleteScheduledQueryInput,
-        output_schema = types.DeleteScheduledQueryOutput,
+        input_schema = schemas.DeleteScheduledQueryInput,
+        output_schema = schemas.DeleteScheduledQueryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:describeAccountSettings(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAccountSettings",
-        input_schema = types.DescribeAccountSettingsInput,
-        output_schema = types.DescribeAccountSettingsOutput,
+        input_schema = schemas.DescribeAccountSettingsInput,
+        output_schema = schemas.DescribeAccountSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:describeEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEndpoints",
-        input_schema = types.DescribeEndpointsInput,
-        output_schema = types.DescribeEndpointsOutput,
+        input_schema = schemas.DescribeEndpointsInput,
+        output_schema = schemas.DescribeEndpointsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:describeScheduledQuery(input, options)
     return self:invokeOperation(input, {
         name = "DescribeScheduledQuery",
-        input_schema = types.DescribeScheduledQueryInput,
-        output_schema = types.DescribeScheduledQueryOutput,
+        input_schema = schemas.DescribeScheduledQueryInput,
+        output_schema = schemas.DescribeScheduledQueryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:executeScheduledQuery(input, options)
     return self:invokeOperation(input, {
         name = "ExecuteScheduledQuery",
-        input_schema = types.ExecuteScheduledQueryInput,
-        output_schema = types.ExecuteScheduledQueryOutput,
+        input_schema = schemas.ExecuteScheduledQueryInput,
+        output_schema = schemas.ExecuteScheduledQueryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listScheduledQueries(input, options)
     return self:invokeOperation(input, {
         name = "ListScheduledQueries",
-        input_schema = types.ListScheduledQueriesInput,
-        output_schema = types.ListScheduledQueriesOutput,
+        input_schema = schemas.ListScheduledQueriesInput,
+        output_schema = schemas.ListScheduledQueriesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:prepareQuery(input, options)
     return self:invokeOperation(input, {
         name = "PrepareQuery",
-        input_schema = types.PrepareQueryInput,
-        output_schema = types.PrepareQueryOutput,
+        input_schema = schemas.PrepareQueryInput,
+        output_schema = schemas.PrepareQueryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:query(input, options)
     return self:invokeOperation(input, {
         name = "Query",
-        input_schema = types.QueryInput,
-        output_schema = types.QueryOutput,
+        input_schema = schemas.QueryInput,
+        output_schema = schemas.QueryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:updateAccountSettings(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAccountSettings",
-        input_schema = types.UpdateAccountSettingsInput,
-        output_schema = types.UpdateAccountSettingsOutput,
+        input_schema = schemas.UpdateAccountSettingsInput,
+        output_schema = schemas.UpdateAccountSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:updateScheduledQuery(input, options)
     return self:invokeOperation(input, {
         name = "UpdateScheduledQuery",
-        input_schema = types.UpdateScheduledQueryInput,
-        output_schema = types.UpdateScheduledQueryOutput,
+        input_schema = schemas.UpdateScheduledQueryInput,
+        output_schema = schemas.UpdateScheduledQueryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

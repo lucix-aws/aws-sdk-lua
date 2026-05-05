@@ -1,0 +1,1260 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.networkmonitor"
+
+local M = {}
+
+M.AccessDeniedException = schema.new({
+    id = id.from(_N, "AccessDeniedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "AccessDeniedException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ConflictException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateMonitorProbeInput = schema.new({
+    id = id.from(_N, "CreateMonitorProbeInput"),
+    type = "structure",
+    members = {
+        sourceArn = schema.new({
+            id = id.from(_N, "CreateMonitorProbeInput", "sourceArn"),
+            type = "string",
+            name = "sourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        destination = schema.new({
+            id = id.from(_N, "CreateMonitorProbeInput", "destination"),
+            type = "string",
+            name = "destination",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        destinationPort = schema.new({
+            id = id.from(_N, "CreateMonitorProbeInput", "destinationPort"),
+            type = "integer",
+            name = "destinationPort",
+            target_id = prelude.Integer.id,
+        }),
+        protocol = schema.new({
+            id = id.from(_N, "CreateMonitorProbeInput", "protocol"),
+            type = "string",
+            name = "protocol",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        packetSize = schema.new({
+            id = id.from(_N, "CreateMonitorProbeInput", "packetSize"),
+            type = "integer",
+            name = "packetSize",
+            target_id = prelude.Integer.id,
+        }),
+        probeTags = schema.new({
+            id = id.from(_N, "CreateMonitorProbeInput", "probeTags"),
+            type = "map",
+            name = "probeTags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateMonitorInput = schema.new({
+    id = id.from(_N, "CreateMonitorInput"),
+    type = "structure",
+    members = {
+        monitorName = schema.new({
+            id = id.from(_N, "CreateMonitorInput", "monitorName"),
+            type = "string",
+            name = "monitorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        probes = schema.new({
+            id = id.from(_N, "CreateMonitorInput", "probes"),
+            type = "list",
+            name = "probes",
+            target_id = prelude.Document.id,
+            list_member = M.CreateMonitorProbeInput,
+        }),
+        aggregationPeriod = schema.new({
+            id = id.from(_N, "CreateMonitorInput", "aggregationPeriod"),
+            type = "long",
+            name = "aggregationPeriod",
+            target_id = prelude.Long.id,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateMonitorInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateMonitorInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateMonitorOutput = schema.new({
+    id = id.from(_N, "CreateMonitorOutput"),
+    type = "structure",
+    members = {
+        monitorArn = schema.new({
+            id = id.from(_N, "CreateMonitorOutput", "monitorArn"),
+            type = "string",
+            name = "monitorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        monitorName = schema.new({
+            id = id.from(_N, "CreateMonitorOutput", "monitorName"),
+            type = "string",
+            name = "monitorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "CreateMonitorOutput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        aggregationPeriod = schema.new({
+            id = id.from(_N, "CreateMonitorOutput", "aggregationPeriod"),
+            type = "long",
+            name = "aggregationPeriod",
+            target_id = prelude.Long.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateMonitorOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InternalServerException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ThrottlingException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ProbeInput = schema.new({
+    id = id.from(_N, "ProbeInput"),
+    type = "structure",
+    members = {
+        sourceArn = schema.new({
+            id = id.from(_N, "ProbeInput", "sourceArn"),
+            type = "string",
+            name = "sourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        destination = schema.new({
+            id = id.from(_N, "ProbeInput", "destination"),
+            type = "string",
+            name = "destination",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        destinationPort = schema.new({
+            id = id.from(_N, "ProbeInput", "destinationPort"),
+            type = "integer",
+            name = "destinationPort",
+            target_id = prelude.Integer.id,
+        }),
+        protocol = schema.new({
+            id = id.from(_N, "ProbeInput", "protocol"),
+            type = "string",
+            name = "protocol",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        packetSize = schema.new({
+            id = id.from(_N, "ProbeInput", "packetSize"),
+            type = "integer",
+            name = "packetSize",
+            target_id = prelude.Integer.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "ProbeInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateProbeInput = schema.new({
+    id = id.from(_N, "CreateProbeInput"),
+    type = "structure",
+    members = {
+        monitorName = schema.new({
+            id = id.from(_N, "CreateProbeInput", "monitorName"),
+            type = "string",
+            name = "monitorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        probe = schema.new({
+            id = id.from(_N, "CreateProbeInput", "probe"),
+            type = "structure",
+            name = "probe",
+            target_id = id.from(_N, "ProbeInput"),
+            target = M.ProbeInput,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateProbeInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateProbeInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateProbeOutput = schema.new({
+    id = id.from(_N, "CreateProbeOutput"),
+    type = "structure",
+    members = {
+        probeId = schema.new({
+            id = id.from(_N, "CreateProbeOutput", "probeId"),
+            type = "string",
+            name = "probeId",
+            target_id = prelude.String.id,
+        }),
+        probeArn = schema.new({
+            id = id.from(_N, "CreateProbeOutput", "probeArn"),
+            type = "string",
+            name = "probeArn",
+            target_id = prelude.String.id,
+        }),
+        sourceArn = schema.new({
+            id = id.from(_N, "CreateProbeOutput", "sourceArn"),
+            type = "string",
+            name = "sourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        destination = schema.new({
+            id = id.from(_N, "CreateProbeOutput", "destination"),
+            type = "string",
+            name = "destination",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        destinationPort = schema.new({
+            id = id.from(_N, "CreateProbeOutput", "destinationPort"),
+            type = "integer",
+            name = "destinationPort",
+            target_id = prelude.Integer.id,
+        }),
+        protocol = schema.new({
+            id = id.from(_N, "CreateProbeOutput", "protocol"),
+            type = "string",
+            name = "protocol",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        packetSize = schema.new({
+            id = id.from(_N, "CreateProbeOutput", "packetSize"),
+            type = "integer",
+            name = "packetSize",
+            target_id = prelude.Integer.id,
+        }),
+        addressFamily = schema.new({
+            id = id.from(_N, "CreateProbeOutput", "addressFamily"),
+            type = "string",
+            name = "addressFamily",
+            target_id = prelude.String.id,
+        }),
+        vpcId = schema.new({
+            id = id.from(_N, "CreateProbeOutput", "vpcId"),
+            type = "string",
+            name = "vpcId",
+            target_id = prelude.String.id,
+        }),
+        state = schema.new({
+            id = id.from(_N, "CreateProbeOutput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CreateProbeOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        modifiedAt = schema.new({
+            id = id.from(_N, "CreateProbeOutput", "modifiedAt"),
+            type = "timestamp",
+            name = "modifiedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateProbeOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteMonitorInput = schema.new({
+    id = id.from(_N, "DeleteMonitorInput"),
+    type = "structure",
+    members = {
+        monitorName = schema.new({
+            id = id.from(_N, "DeleteMonitorInput", "monitorName"),
+            type = "string",
+            name = "monitorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteMonitorOutput = schema.new({
+    id = id.from(_N, "DeleteMonitorOutput"),
+    type = "structure",
+})
+
+M.DeleteProbeInput = schema.new({
+    id = id.from(_N, "DeleteProbeInput"),
+    type = "structure",
+    members = {
+        monitorName = schema.new({
+            id = id.from(_N, "DeleteProbeInput", "monitorName"),
+            type = "string",
+            name = "monitorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        probeId = schema.new({
+            id = id.from(_N, "DeleteProbeInput", "probeId"),
+            type = "string",
+            name = "probeId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteProbeOutput = schema.new({
+    id = id.from(_N, "DeleteProbeOutput"),
+    type = "structure",
+})
+
+M.GetMonitorInput = schema.new({
+    id = id.from(_N, "GetMonitorInput"),
+    type = "structure",
+    members = {
+        monitorName = schema.new({
+            id = id.from(_N, "GetMonitorInput", "monitorName"),
+            type = "string",
+            name = "monitorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.Probe = schema.new({
+    id = id.from(_N, "Probe"),
+    type = "structure",
+    members = {
+        probeId = schema.new({
+            id = id.from(_N, "Probe", "probeId"),
+            type = "string",
+            name = "probeId",
+            target_id = prelude.String.id,
+        }),
+        probeArn = schema.new({
+            id = id.from(_N, "Probe", "probeArn"),
+            type = "string",
+            name = "probeArn",
+            target_id = prelude.String.id,
+        }),
+        sourceArn = schema.new({
+            id = id.from(_N, "Probe", "sourceArn"),
+            type = "string",
+            name = "sourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        destination = schema.new({
+            id = id.from(_N, "Probe", "destination"),
+            type = "string",
+            name = "destination",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        destinationPort = schema.new({
+            id = id.from(_N, "Probe", "destinationPort"),
+            type = "integer",
+            name = "destinationPort",
+            target_id = prelude.Integer.id,
+        }),
+        protocol = schema.new({
+            id = id.from(_N, "Probe", "protocol"),
+            type = "string",
+            name = "protocol",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        packetSize = schema.new({
+            id = id.from(_N, "Probe", "packetSize"),
+            type = "integer",
+            name = "packetSize",
+            target_id = prelude.Integer.id,
+        }),
+        addressFamily = schema.new({
+            id = id.from(_N, "Probe", "addressFamily"),
+            type = "string",
+            name = "addressFamily",
+            target_id = prelude.String.id,
+        }),
+        vpcId = schema.new({
+            id = id.from(_N, "Probe", "vpcId"),
+            type = "string",
+            name = "vpcId",
+            target_id = prelude.String.id,
+        }),
+        state = schema.new({
+            id = id.from(_N, "Probe", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "Probe", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        modifiedAt = schema.new({
+            id = id.from(_N, "Probe", "modifiedAt"),
+            type = "timestamp",
+            name = "modifiedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "Probe", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.GetMonitorOutput = schema.new({
+    id = id.from(_N, "GetMonitorOutput"),
+    type = "structure",
+    members = {
+        monitorArn = schema.new({
+            id = id.from(_N, "GetMonitorOutput", "monitorArn"),
+            type = "string",
+            name = "monitorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        monitorName = schema.new({
+            id = id.from(_N, "GetMonitorOutput", "monitorName"),
+            type = "string",
+            name = "monitorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "GetMonitorOutput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        aggregationPeriod = schema.new({
+            id = id.from(_N, "GetMonitorOutput", "aggregationPeriod"),
+            type = "long",
+            name = "aggregationPeriod",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "GetMonitorOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        probes = schema.new({
+            id = id.from(_N, "GetMonitorOutput", "probes"),
+            type = "list",
+            name = "probes",
+            target_id = prelude.Document.id,
+            list_member = M.Probe,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetMonitorOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        modifiedAt = schema.new({
+            id = id.from(_N, "GetMonitorOutput", "modifiedAt"),
+            type = "timestamp",
+            name = "modifiedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetProbeInput = schema.new({
+    id = id.from(_N, "GetProbeInput"),
+    type = "structure",
+    members = {
+        monitorName = schema.new({
+            id = id.from(_N, "GetProbeInput", "monitorName"),
+            type = "string",
+            name = "monitorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        probeId = schema.new({
+            id = id.from(_N, "GetProbeInput", "probeId"),
+            type = "string",
+            name = "probeId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetProbeOutput = schema.new({
+    id = id.from(_N, "GetProbeOutput"),
+    type = "structure",
+    members = {
+        probeId = schema.new({
+            id = id.from(_N, "GetProbeOutput", "probeId"),
+            type = "string",
+            name = "probeId",
+            target_id = prelude.String.id,
+        }),
+        probeArn = schema.new({
+            id = id.from(_N, "GetProbeOutput", "probeArn"),
+            type = "string",
+            name = "probeArn",
+            target_id = prelude.String.id,
+        }),
+        sourceArn = schema.new({
+            id = id.from(_N, "GetProbeOutput", "sourceArn"),
+            type = "string",
+            name = "sourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        destination = schema.new({
+            id = id.from(_N, "GetProbeOutput", "destination"),
+            type = "string",
+            name = "destination",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        destinationPort = schema.new({
+            id = id.from(_N, "GetProbeOutput", "destinationPort"),
+            type = "integer",
+            name = "destinationPort",
+            target_id = prelude.Integer.id,
+        }),
+        protocol = schema.new({
+            id = id.from(_N, "GetProbeOutput", "protocol"),
+            type = "string",
+            name = "protocol",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        packetSize = schema.new({
+            id = id.from(_N, "GetProbeOutput", "packetSize"),
+            type = "integer",
+            name = "packetSize",
+            target_id = prelude.Integer.id,
+        }),
+        addressFamily = schema.new({
+            id = id.from(_N, "GetProbeOutput", "addressFamily"),
+            type = "string",
+            name = "addressFamily",
+            target_id = prelude.String.id,
+        }),
+        vpcId = schema.new({
+            id = id.from(_N, "GetProbeOutput", "vpcId"),
+            type = "string",
+            name = "vpcId",
+            target_id = prelude.String.id,
+        }),
+        state = schema.new({
+            id = id.from(_N, "GetProbeOutput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetProbeOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        modifiedAt = schema.new({
+            id = id.from(_N, "GetProbeOutput", "modifiedAt"),
+            type = "timestamp",
+            name = "modifiedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "GetProbeOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.ListMonitorsInput = schema.new({
+    id = id.from(_N, "ListMonitorsInput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListMonitorsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListMonitorsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "ListMonitorsInput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "state" },
+            },
+        }),
+    },
+})
+
+M.MonitorSummary = schema.new({
+    id = id.from(_N, "MonitorSummary"),
+    type = "structure",
+    members = {
+        monitorArn = schema.new({
+            id = id.from(_N, "MonitorSummary", "monitorArn"),
+            type = "string",
+            name = "monitorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        monitorName = schema.new({
+            id = id.from(_N, "MonitorSummary", "monitorName"),
+            type = "string",
+            name = "monitorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "MonitorSummary", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        aggregationPeriod = schema.new({
+            id = id.from(_N, "MonitorSummary", "aggregationPeriod"),
+            type = "long",
+            name = "aggregationPeriod",
+            target_id = prelude.Long.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "MonitorSummary", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.ListMonitorsOutput = schema.new({
+    id = id.from(_N, "ListMonitorsOutput"),
+    type = "structure",
+    members = {
+        monitors = schema.new({
+            id = id.from(_N, "ListMonitorsOutput", "monitors"),
+            type = "list",
+            name = "monitors",
+            target_id = prelude.Document.id,
+            list_member = M.MonitorSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListMonitorsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceOutput"),
+    type = "structure",
+    members = {
+        tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.UpdateMonitorInput = schema.new({
+    id = id.from(_N, "UpdateMonitorInput"),
+    type = "structure",
+    members = {
+        monitorName = schema.new({
+            id = id.from(_N, "UpdateMonitorInput", "monitorName"),
+            type = "string",
+            name = "monitorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        aggregationPeriod = schema.new({
+            id = id.from(_N, "UpdateMonitorInput", "aggregationPeriod"),
+            type = "long",
+            name = "aggregationPeriod",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateMonitorOutput = schema.new({
+    id = id.from(_N, "UpdateMonitorOutput"),
+    type = "structure",
+    members = {
+        monitorArn = schema.new({
+            id = id.from(_N, "UpdateMonitorOutput", "monitorArn"),
+            type = "string",
+            name = "monitorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        monitorName = schema.new({
+            id = id.from(_N, "UpdateMonitorOutput", "monitorName"),
+            type = "string",
+            name = "monitorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "UpdateMonitorOutput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        aggregationPeriod = schema.new({
+            id = id.from(_N, "UpdateMonitorOutput", "aggregationPeriod"),
+            type = "long",
+            name = "aggregationPeriod",
+            target_id = prelude.Long.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "UpdateMonitorOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.UpdateProbeInput = schema.new({
+    id = id.from(_N, "UpdateProbeInput"),
+    type = "structure",
+    members = {
+        monitorName = schema.new({
+            id = id.from(_N, "UpdateProbeInput", "monitorName"),
+            type = "string",
+            name = "monitorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        probeId = schema.new({
+            id = id.from(_N, "UpdateProbeInput", "probeId"),
+            type = "string",
+            name = "probeId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "UpdateProbeInput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+        }),
+        destination = schema.new({
+            id = id.from(_N, "UpdateProbeInput", "destination"),
+            type = "string",
+            name = "destination",
+            target_id = prelude.String.id,
+        }),
+        destinationPort = schema.new({
+            id = id.from(_N, "UpdateProbeInput", "destinationPort"),
+            type = "integer",
+            name = "destinationPort",
+            target_id = prelude.Integer.id,
+        }),
+        protocol = schema.new({
+            id = id.from(_N, "UpdateProbeInput", "protocol"),
+            type = "string",
+            name = "protocol",
+            target_id = prelude.String.id,
+        }),
+        packetSize = schema.new({
+            id = id.from(_N, "UpdateProbeInput", "packetSize"),
+            type = "integer",
+            name = "packetSize",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.UpdateProbeOutput = schema.new({
+    id = id.from(_N, "UpdateProbeOutput"),
+    type = "structure",
+    members = {
+        probeId = schema.new({
+            id = id.from(_N, "UpdateProbeOutput", "probeId"),
+            type = "string",
+            name = "probeId",
+            target_id = prelude.String.id,
+        }),
+        probeArn = schema.new({
+            id = id.from(_N, "UpdateProbeOutput", "probeArn"),
+            type = "string",
+            name = "probeArn",
+            target_id = prelude.String.id,
+        }),
+        sourceArn = schema.new({
+            id = id.from(_N, "UpdateProbeOutput", "sourceArn"),
+            type = "string",
+            name = "sourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        destination = schema.new({
+            id = id.from(_N, "UpdateProbeOutput", "destination"),
+            type = "string",
+            name = "destination",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        destinationPort = schema.new({
+            id = id.from(_N, "UpdateProbeOutput", "destinationPort"),
+            type = "integer",
+            name = "destinationPort",
+            target_id = prelude.Integer.id,
+        }),
+        protocol = schema.new({
+            id = id.from(_N, "UpdateProbeOutput", "protocol"),
+            type = "string",
+            name = "protocol",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        packetSize = schema.new({
+            id = id.from(_N, "UpdateProbeOutput", "packetSize"),
+            type = "integer",
+            name = "packetSize",
+            target_id = prelude.Integer.id,
+        }),
+        addressFamily = schema.new({
+            id = id.from(_N, "UpdateProbeOutput", "addressFamily"),
+            type = "string",
+            name = "addressFamily",
+            target_id = prelude.String.id,
+        }),
+        vpcId = schema.new({
+            id = id.from(_N, "UpdateProbeOutput", "vpcId"),
+            type = "string",
+            name = "vpcId",
+            target_id = prelude.String.id,
+        }),
+        state = schema.new({
+            id = id.from(_N, "UpdateProbeOutput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "UpdateProbeOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        modifiedAt = schema.new({
+            id = id.from(_N, "UpdateProbeOutput", "modifiedAt"),
+            type = "timestamp",
+            name = "modifiedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "UpdateProbeOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "TagResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceOutput"),
+    type = "structure",
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "UntagResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        tagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "tagKeys"),
+            type = "list",
+            name = "tagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "tagKeys" },
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
+return M

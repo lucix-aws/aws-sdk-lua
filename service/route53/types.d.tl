@@ -1755,21 +1755,21 @@ local record PriorRequestNotComplete
     message: string
 end
 
+local type AccountLimitType = "MAX_HEALTH_CHECKS_BY_OWNER" | "MAX_HOSTED_ZONES_BY_OWNER" | "MAX_TRAFFIC_POLICY_INSTANCES_BY_OWNER" | "MAX_REUSABLE_DELEGATION_SETS_BY_OWNER" | "MAX_TRAFFIC_POLICIES_BY_OWNER"
+
+local type InsufficientDataHealthStatus = "Healthy" | "Unhealthy" | "LastKnownStatus"
+
+local type HostedZoneLimitType = "MAX_RRSETS_BY_ZONE" | "MAX_VPCS_ASSOCIATED_BY_ZONE"
+
 local type VPCRegion = "us-east-1" | "us-east-2" | "us-west-1" | "us-west-2" | "eu-west-1" | "eu-west-2" | "eu-west-3" | "eu-central-1" | "eu-central-2" | "ap-east-1" | "me-south-1" | "us-gov-west-1" | "us-gov-east-1" | "us-iso-east-1" | "us-iso-west-1" | "us-isob-east-1" | "me-central-1" | "ap-southeast-1" | "ap-southeast-2" | "ap-southeast-3" | "ap-south-1" | "ap-south-2" | "ap-northeast-1" | "ap-northeast-2" | "ap-northeast-3" | "eu-north-1" | "sa-east-1" | "ca-central-1" | "cn-north-1" | "cn-northwest-1" | "af-south-1" | "eu-south-1" | "eu-south-2" | "ap-southeast-4" | "il-central-1" | "ca-west-1" | "ap-southeast-5" | "mx-central-1" | "us-isof-south-1" | "us-isof-east-1" | "ap-southeast-7" | "ap-east-2" | "eu-isoe-west-1" | "ap-southeast-6" | "us-isob-west-1" | "eusc-de-east-1"
 
 local type HostedZoneType = "PrivateHostedZone"
 
-local type TagResourceType = "healthcheck" | "hostedzone"
+local type ReusableDelegationSetLimitType = "MAX_ZONES_BY_REUSABLE_DELEGATION_SET"
 
 local type RRType = "SOA" | "A" | "TXT" | "NS" | "CNAME" | "MX" | "NAPTR" | "PTR" | "SRV" | "SPF" | "AAAA" | "CAA" | "DS" | "TLSA" | "SSHFP" | "SVCB" | "HTTPS"
 
-local type AccountLimitType = "MAX_HEALTH_CHECKS_BY_OWNER" | "MAX_HOSTED_ZONES_BY_OWNER" | "MAX_TRAFFIC_POLICY_INSTANCES_BY_OWNER" | "MAX_REUSABLE_DELEGATION_SETS_BY_OWNER" | "MAX_TRAFFIC_POLICIES_BY_OWNER"
-
-local type ReusableDelegationSetLimitType = "MAX_ZONES_BY_REUSABLE_DELEGATION_SET"
-
-local type HostedZoneLimitType = "MAX_RRSETS_BY_ZONE" | "MAX_VPCS_ASSOCIATED_BY_ZONE"
-
-local type InsufficientDataHealthStatus = "Healthy" | "Unhealthy" | "LastKnownStatus"
+local type TagResourceType = "healthcheck" | "hostedzone"
 
 local record M
     ActivateKeySigningKeyInput: ActivateKeySigningKeyInput

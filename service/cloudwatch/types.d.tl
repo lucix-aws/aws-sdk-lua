@@ -956,25 +956,25 @@ local record ResourceNotFoundException
     Message: string
 end
 
-local type StateValue = "OK" | "ALARM" | "INSUFFICIENT_DATA"
-
-local type StandardUnit = "Seconds" | "Microseconds" | "Milliseconds" | "Bytes" | "Kilobytes" | "Megabytes" | "Gigabytes" | "Terabytes" | "Bits" | "Kilobits" | "Megabits" | "Gigabits" | "Terabits" | "Percent" | "Count" | "Bytes/Second" | "Kilobytes/Second" | "Megabytes/Second" | "Gigabytes/Second" | "Terabytes/Second" | "Bits/Second" | "Kilobits/Second" | "Megabits/Second" | "Gigabits/Second" | "Terabits/Second" | "Count/Second" | "None"
-
-local type ScanBy = "TimestampDescending" | "TimestampAscending"
-
 local type AlarmMuteRuleStatus = "SCHEDULED" | "ACTIVE" | "EXPIRED"
 
 local type MetricStreamOutputFormat = "json" | "opentelemetry0.7" | "opentelemetry1.0"
-
-local type ComparisonOperator = "GreaterThanOrEqualToThreshold" | "GreaterThanThreshold" | "LessThanThreshold" | "LessThanOrEqualToThreshold" | "LessThanLowerOrGreaterThanUpperThreshold" | "LessThanLowerThreshold" | "GreaterThanUpperThreshold"
-
-local type Statistic = "SampleCount" | "Average" | "Sum" | "Minimum" | "Maximum"
 
 local type HistoryItemType = "ConfigurationUpdate" | "StateUpdate" | "Action" | "AlarmContributorStateUpdate" | "AlarmContributorAction"
 
 local type OTelEnrichmentStatus = "Running" | "Stopped"
 
+local type StandardUnit = "Seconds" | "Microseconds" | "Milliseconds" | "Bytes" | "Kilobytes" | "Megabytes" | "Gigabytes" | "Terabytes" | "Bits" | "Kilobits" | "Megabits" | "Gigabits" | "Terabits" | "Percent" | "Count" | "Bytes/Second" | "Kilobytes/Second" | "Megabytes/Second" | "Gigabytes/Second" | "Terabytes/Second" | "Bits/Second" | "Kilobits/Second" | "Megabits/Second" | "Gigabits/Second" | "Terabits/Second" | "Count/Second" | "None"
+
 local type RecentlyActive = "PT3H"
+
+local type ComparisonOperator = "GreaterThanOrEqualToThreshold" | "GreaterThanThreshold" | "LessThanThreshold" | "LessThanOrEqualToThreshold" | "LessThanLowerOrGreaterThanUpperThreshold" | "LessThanLowerThreshold" | "GreaterThanUpperThreshold"
+
+local type ScanBy = "TimestampDescending" | "TimestampAscending"
+
+local type Statistic = "SampleCount" | "Average" | "Sum" | "Minimum" | "Maximum"
+
+local type StateValue = "OK" | "ALARM" | "INSUFFICIENT_DATA"
 
 local record M
     DeleteAlarmMuteRuleInput: DeleteAlarmMuteRuleInput

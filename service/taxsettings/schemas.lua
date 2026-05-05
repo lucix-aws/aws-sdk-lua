@@ -1,0 +1,2358 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.taxsettings"
+
+local M = {}
+
+M.AccessDeniedException = schema.new({
+    id = id.from(_N, "AccessDeniedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "AccessDeniedException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Address = schema.new({
+    id = id.from(_N, "Address"),
+    type = "structure",
+    members = {
+        addressLine1 = schema.new({
+            id = id.from(_N, "Address", "addressLine1"),
+            type = "string",
+            name = "addressLine1",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        addressLine2 = schema.new({
+            id = id.from(_N, "Address", "addressLine2"),
+            type = "string",
+            name = "addressLine2",
+            target_id = prelude.String.id,
+        }),
+        addressLine3 = schema.new({
+            id = id.from(_N, "Address", "addressLine3"),
+            type = "string",
+            name = "addressLine3",
+            target_id = prelude.String.id,
+        }),
+        districtOrCounty = schema.new({
+            id = id.from(_N, "Address", "districtOrCounty"),
+            type = "string",
+            name = "districtOrCounty",
+            target_id = prelude.String.id,
+        }),
+        city = schema.new({
+            id = id.from(_N, "Address", "city"),
+            type = "string",
+            name = "city",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        stateOrRegion = schema.new({
+            id = id.from(_N, "Address", "stateOrRegion"),
+            type = "string",
+            name = "stateOrRegion",
+            target_id = prelude.String.id,
+        }),
+        postalCode = schema.new({
+            id = id.from(_N, "Address", "postalCode"),
+            type = "string",
+            name = "postalCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        countryCode = schema.new({
+            id = id.from(_N, "Address", "countryCode"),
+            type = "string",
+            name = "countryCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Jurisdiction = schema.new({
+    id = id.from(_N, "Jurisdiction"),
+    type = "structure",
+    members = {
+        stateOrRegion = schema.new({
+            id = id.from(_N, "Jurisdiction", "stateOrRegion"),
+            type = "string",
+            name = "stateOrRegion",
+            target_id = prelude.String.id,
+        }),
+        countryCode = schema.new({
+            id = id.from(_N, "Jurisdiction", "countryCode"),
+            type = "string",
+            name = "countryCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AccountMetaData = schema.new({
+    id = id.from(_N, "AccountMetaData"),
+    type = "structure",
+    members = {
+        accountName = schema.new({
+            id = id.from(_N, "AccountMetaData", "accountName"),
+            type = "string",
+            name = "accountName",
+            target_id = prelude.String.id,
+        }),
+        seller = schema.new({
+            id = id.from(_N, "AccountMetaData", "seller"),
+            type = "string",
+            name = "seller",
+            target_id = prelude.String.id,
+        }),
+        address = schema.new({
+            id = id.from(_N, "AccountMetaData", "address"),
+            type = "structure",
+            name = "address",
+            target_id = id.from(_N, "Address"),
+            target = M.Address,
+        }),
+        addressType = schema.new({
+            id = id.from(_N, "AccountMetaData", "addressType"),
+            type = "string",
+            name = "addressType",
+            target_id = prelude.String.id,
+        }),
+        addressRoleMap = schema.new({
+            id = id.from(_N, "AccountMetaData", "addressRoleMap"),
+            type = "map",
+            name = "addressRoleMap",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.Jurisdiction,
+        }),
+    },
+})
+
+M.TaxInheritanceDetails = schema.new({
+    id = id.from(_N, "TaxInheritanceDetails"),
+    type = "structure",
+    members = {
+        parentEntityId = schema.new({
+            id = id.from(_N, "TaxInheritanceDetails", "parentEntityId"),
+            type = "string",
+            name = "parentEntityId",
+            target_id = prelude.String.id,
+        }),
+        inheritanceObtainedReason = schema.new({
+            id = id.from(_N, "TaxInheritanceDetails", "inheritanceObtainedReason"),
+            type = "string",
+            name = "inheritanceObtainedReason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BrazilAdditionalInfo = schema.new({
+    id = id.from(_N, "BrazilAdditionalInfo"),
+    type = "structure",
+    members = {
+        ccmCode = schema.new({
+            id = id.from(_N, "BrazilAdditionalInfo", "ccmCode"),
+            type = "string",
+            name = "ccmCode",
+            target_id = prelude.String.id,
+        }),
+        legalNatureCode = schema.new({
+            id = id.from(_N, "BrazilAdditionalInfo", "legalNatureCode"),
+            type = "string",
+            name = "legalNatureCode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CanadaAdditionalInfo = schema.new({
+    id = id.from(_N, "CanadaAdditionalInfo"),
+    type = "structure",
+    members = {
+        provincialSalesTaxId = schema.new({
+            id = id.from(_N, "CanadaAdditionalInfo", "provincialSalesTaxId"),
+            type = "string",
+            name = "provincialSalesTaxId",
+            target_id = prelude.String.id,
+        }),
+        canadaQuebecSalesTaxNumber = schema.new({
+            id = id.from(_N, "CanadaAdditionalInfo", "canadaQuebecSalesTaxNumber"),
+            type = "string",
+            name = "canadaQuebecSalesTaxNumber",
+            target_id = prelude.String.id,
+        }),
+        canadaRetailSalesTaxNumber = schema.new({
+            id = id.from(_N, "CanadaAdditionalInfo", "canadaRetailSalesTaxNumber"),
+            type = "string",
+            name = "canadaRetailSalesTaxNumber",
+            target_id = prelude.String.id,
+        }),
+        isResellerAccount = schema.new({
+            id = id.from(_N, "CanadaAdditionalInfo", "isResellerAccount"),
+            type = "boolean",
+            name = "isResellerAccount",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.EgyptAdditionalInfo = schema.new({
+    id = id.from(_N, "EgyptAdditionalInfo"),
+    type = "structure",
+    members = {
+        uniqueIdentificationNumber = schema.new({
+            id = id.from(_N, "EgyptAdditionalInfo", "uniqueIdentificationNumber"),
+            type = "string",
+            name = "uniqueIdentificationNumber",
+            target_id = prelude.String.id,
+        }),
+        uniqueIdentificationNumberExpirationDate = schema.new({
+            id = id.from(_N, "EgyptAdditionalInfo", "uniqueIdentificationNumberExpirationDate"),
+            type = "string",
+            name = "uniqueIdentificationNumberExpirationDate",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EstoniaAdditionalInfo = schema.new({
+    id = id.from(_N, "EstoniaAdditionalInfo"),
+    type = "structure",
+    members = {
+        registryCommercialCode = schema.new({
+            id = id.from(_N, "EstoniaAdditionalInfo", "registryCommercialCode"),
+            type = "string",
+            name = "registryCommercialCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GeorgiaAdditionalInfo = schema.new({
+    id = id.from(_N, "GeorgiaAdditionalInfo"),
+    type = "structure",
+    members = {
+        personType = schema.new({
+            id = id.from(_N, "GeorgiaAdditionalInfo", "personType"),
+            type = "string",
+            name = "personType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GreeceAdditionalInfo = schema.new({
+    id = id.from(_N, "GreeceAdditionalInfo"),
+    type = "structure",
+    members = {
+        contractingAuthorityCode = schema.new({
+            id = id.from(_N, "GreeceAdditionalInfo", "contractingAuthorityCode"),
+            type = "string",
+            name = "contractingAuthorityCode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.IndiaAdditionalInfo = schema.new({
+    id = id.from(_N, "IndiaAdditionalInfo"),
+    type = "structure",
+    members = {
+        pan = schema.new({
+            id = id.from(_N, "IndiaAdditionalInfo", "pan"),
+            type = "string",
+            name = "pan",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.IndonesiaAdditionalInfo = schema.new({
+    id = id.from(_N, "IndonesiaAdditionalInfo"),
+    type = "structure",
+    members = {
+        taxRegistrationNumberType = schema.new({
+            id = id.from(_N, "IndonesiaAdditionalInfo", "taxRegistrationNumberType"),
+            type = "string",
+            name = "taxRegistrationNumberType",
+            target_id = prelude.String.id,
+        }),
+        ppnExceptionDesignationCode = schema.new({
+            id = id.from(_N, "IndonesiaAdditionalInfo", "ppnExceptionDesignationCode"),
+            type = "string",
+            name = "ppnExceptionDesignationCode",
+            target_id = prelude.String.id,
+        }),
+        decisionNumber = schema.new({
+            id = id.from(_N, "IndonesiaAdditionalInfo", "decisionNumber"),
+            type = "string",
+            name = "decisionNumber",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.IsraelAdditionalInfo = schema.new({
+    id = id.from(_N, "IsraelAdditionalInfo"),
+    type = "structure",
+    members = {
+        dealerType = schema.new({
+            id = id.from(_N, "IsraelAdditionalInfo", "dealerType"),
+            type = "string",
+            name = "dealerType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        customerType = schema.new({
+            id = id.from(_N, "IsraelAdditionalInfo", "customerType"),
+            type = "string",
+            name = "customerType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ItalyAdditionalInfo = schema.new({
+    id = id.from(_N, "ItalyAdditionalInfo"),
+    type = "structure",
+    members = {
+        sdiAccountId = schema.new({
+            id = id.from(_N, "ItalyAdditionalInfo", "sdiAccountId"),
+            type = "string",
+            name = "sdiAccountId",
+            target_id = prelude.String.id,
+        }),
+        cigNumber = schema.new({
+            id = id.from(_N, "ItalyAdditionalInfo", "cigNumber"),
+            type = "string",
+            name = "cigNumber",
+            target_id = prelude.String.id,
+        }),
+        cupNumber = schema.new({
+            id = id.from(_N, "ItalyAdditionalInfo", "cupNumber"),
+            type = "string",
+            name = "cupNumber",
+            target_id = prelude.String.id,
+        }),
+        taxCode = schema.new({
+            id = id.from(_N, "ItalyAdditionalInfo", "taxCode"),
+            type = "string",
+            name = "taxCode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.KenyaAdditionalInfo = schema.new({
+    id = id.from(_N, "KenyaAdditionalInfo"),
+    type = "structure",
+    members = {
+        personType = schema.new({
+            id = id.from(_N, "KenyaAdditionalInfo", "personType"),
+            type = "string",
+            name = "personType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.MalaysiaAdditionalInfo = schema.new({
+    id = id.from(_N, "MalaysiaAdditionalInfo"),
+    type = "structure",
+    members = {
+        serviceTaxCodes = schema.new({
+            id = id.from(_N, "MalaysiaAdditionalInfo", "serviceTaxCodes"),
+            type = "list",
+            name = "serviceTaxCodes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.DEFAULT] = { value = {} },
+            },
+        }),
+        taxInformationNumber = schema.new({
+            id = id.from(_N, "MalaysiaAdditionalInfo", "taxInformationNumber"),
+            type = "string",
+            name = "taxInformationNumber",
+            target_id = prelude.String.id,
+        }),
+        businessRegistrationNumber = schema.new({
+            id = id.from(_N, "MalaysiaAdditionalInfo", "businessRegistrationNumber"),
+            type = "string",
+            name = "businessRegistrationNumber",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PolandAdditionalInfo = schema.new({
+    id = id.from(_N, "PolandAdditionalInfo"),
+    type = "structure",
+    members = {
+        individualRegistrationNumber = schema.new({
+            id = id.from(_N, "PolandAdditionalInfo", "individualRegistrationNumber"),
+            type = "string",
+            name = "individualRegistrationNumber",
+            target_id = prelude.String.id,
+        }),
+        isGroupVatEnabled = schema.new({
+            id = id.from(_N, "PolandAdditionalInfo", "isGroupVatEnabled"),
+            type = "boolean",
+            name = "isGroupVatEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.RomaniaAdditionalInfo = schema.new({
+    id = id.from(_N, "RomaniaAdditionalInfo"),
+    type = "structure",
+    members = {
+        taxRegistrationNumberType = schema.new({
+            id = id.from(_N, "RomaniaAdditionalInfo", "taxRegistrationNumberType"),
+            type = "string",
+            name = "taxRegistrationNumberType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SaudiArabiaAdditionalInfo = schema.new({
+    id = id.from(_N, "SaudiArabiaAdditionalInfo"),
+    type = "structure",
+    members = {
+        taxRegistrationNumberType = schema.new({
+            id = id.from(_N, "SaudiArabiaAdditionalInfo", "taxRegistrationNumberType"),
+            type = "string",
+            name = "taxRegistrationNumberType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SouthKoreaAdditionalInfo = schema.new({
+    id = id.from(_N, "SouthKoreaAdditionalInfo"),
+    type = "structure",
+    members = {
+        businessRepresentativeName = schema.new({
+            id = id.from(_N, "SouthKoreaAdditionalInfo", "businessRepresentativeName"),
+            type = "string",
+            name = "businessRepresentativeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lineOfBusiness = schema.new({
+            id = id.from(_N, "SouthKoreaAdditionalInfo", "lineOfBusiness"),
+            type = "string",
+            name = "lineOfBusiness",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        itemOfBusiness = schema.new({
+            id = id.from(_N, "SouthKoreaAdditionalInfo", "itemOfBusiness"),
+            type = "string",
+            name = "itemOfBusiness",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SpainAdditionalInfo = schema.new({
+    id = id.from(_N, "SpainAdditionalInfo"),
+    type = "structure",
+    members = {
+        registrationType = schema.new({
+            id = id.from(_N, "SpainAdditionalInfo", "registrationType"),
+            type = "string",
+            name = "registrationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TurkeyAdditionalInfo = schema.new({
+    id = id.from(_N, "TurkeyAdditionalInfo"),
+    type = "structure",
+    members = {
+        taxOffice = schema.new({
+            id = id.from(_N, "TurkeyAdditionalInfo", "taxOffice"),
+            type = "string",
+            name = "taxOffice",
+            target_id = prelude.String.id,
+        }),
+        kepEmailId = schema.new({
+            id = id.from(_N, "TurkeyAdditionalInfo", "kepEmailId"),
+            type = "string",
+            name = "kepEmailId",
+            target_id = prelude.String.id,
+        }),
+        secondaryTaxId = schema.new({
+            id = id.from(_N, "TurkeyAdditionalInfo", "secondaryTaxId"),
+            type = "string",
+            name = "secondaryTaxId",
+            target_id = prelude.String.id,
+        }),
+        industries = schema.new({
+            id = id.from(_N, "TurkeyAdditionalInfo", "industries"),
+            type = "string",
+            name = "industries",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UkraineAdditionalInfo = schema.new({
+    id = id.from(_N, "UkraineAdditionalInfo"),
+    type = "structure",
+    members = {
+        ukraineTrnType = schema.new({
+            id = id.from(_N, "UkraineAdditionalInfo", "ukraineTrnType"),
+            type = "string",
+            name = "ukraineTrnType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UzbekistanAdditionalInfo = schema.new({
+    id = id.from(_N, "UzbekistanAdditionalInfo"),
+    type = "structure",
+    members = {
+        taxRegistrationNumberType = schema.new({
+            id = id.from(_N, "UzbekistanAdditionalInfo", "taxRegistrationNumberType"),
+            type = "string",
+            name = "taxRegistrationNumberType",
+            target_id = prelude.String.id,
+        }),
+        vatRegistrationNumber = schema.new({
+            id = id.from(_N, "UzbekistanAdditionalInfo", "vatRegistrationNumber"),
+            type = "string",
+            name = "vatRegistrationNumber",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.VietnamAdditionalInfo = schema.new({
+    id = id.from(_N, "VietnamAdditionalInfo"),
+    type = "structure",
+    members = {
+        enterpriseIdentificationNumber = schema.new({
+            id = id.from(_N, "VietnamAdditionalInfo", "enterpriseIdentificationNumber"),
+            type = "string",
+            name = "enterpriseIdentificationNumber",
+            target_id = prelude.String.id,
+        }),
+        electronicTransactionCodeNumber = schema.new({
+            id = id.from(_N, "VietnamAdditionalInfo", "electronicTransactionCodeNumber"),
+            type = "string",
+            name = "electronicTransactionCodeNumber",
+            target_id = prelude.String.id,
+        }),
+        paymentVoucherNumber = schema.new({
+            id = id.from(_N, "VietnamAdditionalInfo", "paymentVoucherNumber"),
+            type = "string",
+            name = "paymentVoucherNumber",
+            target_id = prelude.String.id,
+        }),
+        paymentVoucherNumberDate = schema.new({
+            id = id.from(_N, "VietnamAdditionalInfo", "paymentVoucherNumberDate"),
+            type = "string",
+            name = "paymentVoucherNumberDate",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AdditionalInfoResponse = schema.new({
+    id = id.from(_N, "AdditionalInfoResponse"),
+    type = "structure",
+    members = {
+        malaysiaAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "malaysiaAdditionalInfo"),
+            type = "structure",
+            name = "malaysiaAdditionalInfo",
+            target_id = id.from(_N, "MalaysiaAdditionalInfo"),
+            target = M.MalaysiaAdditionalInfo,
+        }),
+        israelAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "israelAdditionalInfo"),
+            type = "structure",
+            name = "israelAdditionalInfo",
+            target_id = id.from(_N, "IsraelAdditionalInfo"),
+            target = M.IsraelAdditionalInfo,
+        }),
+        estoniaAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "estoniaAdditionalInfo"),
+            type = "structure",
+            name = "estoniaAdditionalInfo",
+            target_id = id.from(_N, "EstoniaAdditionalInfo"),
+            target = M.EstoniaAdditionalInfo,
+        }),
+        canadaAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "canadaAdditionalInfo"),
+            type = "structure",
+            name = "canadaAdditionalInfo",
+            target_id = id.from(_N, "CanadaAdditionalInfo"),
+            target = M.CanadaAdditionalInfo,
+        }),
+        brazilAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "brazilAdditionalInfo"),
+            type = "structure",
+            name = "brazilAdditionalInfo",
+            target_id = id.from(_N, "BrazilAdditionalInfo"),
+            target = M.BrazilAdditionalInfo,
+        }),
+        spainAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "spainAdditionalInfo"),
+            type = "structure",
+            name = "spainAdditionalInfo",
+            target_id = id.from(_N, "SpainAdditionalInfo"),
+            target = M.SpainAdditionalInfo,
+        }),
+        kenyaAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "kenyaAdditionalInfo"),
+            type = "structure",
+            name = "kenyaAdditionalInfo",
+            target_id = id.from(_N, "KenyaAdditionalInfo"),
+            target = M.KenyaAdditionalInfo,
+        }),
+        southKoreaAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "southKoreaAdditionalInfo"),
+            type = "structure",
+            name = "southKoreaAdditionalInfo",
+            target_id = id.from(_N, "SouthKoreaAdditionalInfo"),
+            target = M.SouthKoreaAdditionalInfo,
+        }),
+        turkeyAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "turkeyAdditionalInfo"),
+            type = "structure",
+            name = "turkeyAdditionalInfo",
+            target_id = id.from(_N, "TurkeyAdditionalInfo"),
+            target = M.TurkeyAdditionalInfo,
+        }),
+        georgiaAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "georgiaAdditionalInfo"),
+            type = "structure",
+            name = "georgiaAdditionalInfo",
+            target_id = id.from(_N, "GeorgiaAdditionalInfo"),
+            target = M.GeorgiaAdditionalInfo,
+        }),
+        italyAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "italyAdditionalInfo"),
+            type = "structure",
+            name = "italyAdditionalInfo",
+            target_id = id.from(_N, "ItalyAdditionalInfo"),
+            target = M.ItalyAdditionalInfo,
+        }),
+        romaniaAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "romaniaAdditionalInfo"),
+            type = "structure",
+            name = "romaniaAdditionalInfo",
+            target_id = id.from(_N, "RomaniaAdditionalInfo"),
+            target = M.RomaniaAdditionalInfo,
+        }),
+        ukraineAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "ukraineAdditionalInfo"),
+            type = "structure",
+            name = "ukraineAdditionalInfo",
+            target_id = id.from(_N, "UkraineAdditionalInfo"),
+            target = M.UkraineAdditionalInfo,
+        }),
+        polandAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "polandAdditionalInfo"),
+            type = "structure",
+            name = "polandAdditionalInfo",
+            target_id = id.from(_N, "PolandAdditionalInfo"),
+            target = M.PolandAdditionalInfo,
+        }),
+        saudiArabiaAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "saudiArabiaAdditionalInfo"),
+            type = "structure",
+            name = "saudiArabiaAdditionalInfo",
+            target_id = id.from(_N, "SaudiArabiaAdditionalInfo"),
+            target = M.SaudiArabiaAdditionalInfo,
+        }),
+        indiaAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "indiaAdditionalInfo"),
+            type = "structure",
+            name = "indiaAdditionalInfo",
+            target_id = id.from(_N, "IndiaAdditionalInfo"),
+            target = M.IndiaAdditionalInfo,
+        }),
+        indonesiaAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "indonesiaAdditionalInfo"),
+            type = "structure",
+            name = "indonesiaAdditionalInfo",
+            target_id = id.from(_N, "IndonesiaAdditionalInfo"),
+            target = M.IndonesiaAdditionalInfo,
+        }),
+        vietnamAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "vietnamAdditionalInfo"),
+            type = "structure",
+            name = "vietnamAdditionalInfo",
+            target_id = id.from(_N, "VietnamAdditionalInfo"),
+            target = M.VietnamAdditionalInfo,
+        }),
+        egyptAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "egyptAdditionalInfo"),
+            type = "structure",
+            name = "egyptAdditionalInfo",
+            target_id = id.from(_N, "EgyptAdditionalInfo"),
+            target = M.EgyptAdditionalInfo,
+        }),
+        greeceAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "greeceAdditionalInfo"),
+            type = "structure",
+            name = "greeceAdditionalInfo",
+            target_id = id.from(_N, "GreeceAdditionalInfo"),
+            target = M.GreeceAdditionalInfo,
+        }),
+        uzbekistanAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "uzbekistanAdditionalInfo"),
+            type = "structure",
+            name = "uzbekistanAdditionalInfo",
+            target_id = id.from(_N, "UzbekistanAdditionalInfo"),
+            target = M.UzbekistanAdditionalInfo,
+        }),
+    },
+})
+
+M.TaxDocumentMetadata = schema.new({
+    id = id.from(_N, "TaxDocumentMetadata"),
+    type = "structure",
+    members = {
+        taxDocumentAccessToken = schema.new({
+            id = id.from(_N, "TaxDocumentMetadata", "taxDocumentAccessToken"),
+            type = "string",
+            name = "taxDocumentAccessToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        taxDocumentName = schema.new({
+            id = id.from(_N, "TaxDocumentMetadata", "taxDocumentName"),
+            type = "string",
+            name = "taxDocumentName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TaxRegistrationWithJurisdiction = schema.new({
+    id = id.from(_N, "TaxRegistrationWithJurisdiction"),
+    type = "structure",
+    members = {
+        registrationId = schema.new({
+            id = id.from(_N, "TaxRegistrationWithJurisdiction", "registrationId"),
+            type = "string",
+            name = "registrationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        registrationType = schema.new({
+            id = id.from(_N, "TaxRegistrationWithJurisdiction", "registrationType"),
+            type = "string",
+            name = "registrationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        legalName = schema.new({
+            id = id.from(_N, "TaxRegistrationWithJurisdiction", "legalName"),
+            type = "string",
+            name = "legalName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "TaxRegistrationWithJurisdiction", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sector = schema.new({
+            id = id.from(_N, "TaxRegistrationWithJurisdiction", "sector"),
+            type = "string",
+            name = "sector",
+            target_id = prelude.String.id,
+        }),
+        taxDocumentMetadatas = schema.new({
+            id = id.from(_N, "TaxRegistrationWithJurisdiction", "taxDocumentMetadatas"),
+            type = "list",
+            name = "taxDocumentMetadatas",
+            target_id = prelude.Document.id,
+            list_member = M.TaxDocumentMetadata,
+        }),
+        certifiedEmailId = schema.new({
+            id = id.from(_N, "TaxRegistrationWithJurisdiction", "certifiedEmailId"),
+            type = "string",
+            name = "certifiedEmailId",
+            target_id = prelude.String.id,
+        }),
+        additionalTaxInformation = schema.new({
+            id = id.from(_N, "TaxRegistrationWithJurisdiction", "additionalTaxInformation"),
+            type = "structure",
+            name = "additionalTaxInformation",
+            target_id = id.from(_N, "AdditionalInfoResponse"),
+            target = M.AdditionalInfoResponse,
+        }),
+        jurisdiction = schema.new({
+            id = id.from(_N, "TaxRegistrationWithJurisdiction", "jurisdiction"),
+            type = "structure",
+            name = "jurisdiction",
+            target_id = id.from(_N, "Jurisdiction"),
+            target = M.Jurisdiction,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AccountDetails = schema.new({
+    id = id.from(_N, "AccountDetails"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "AccountDetails", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+        }),
+        taxRegistration = schema.new({
+            id = id.from(_N, "AccountDetails", "taxRegistration"),
+            type = "structure",
+            name = "taxRegistration",
+            target_id = id.from(_N, "TaxRegistrationWithJurisdiction"),
+            target = M.TaxRegistrationWithJurisdiction,
+        }),
+        taxInheritanceDetails = schema.new({
+            id = id.from(_N, "AccountDetails", "taxInheritanceDetails"),
+            type = "structure",
+            name = "taxInheritanceDetails",
+            target_id = id.from(_N, "TaxInheritanceDetails"),
+            target = M.TaxInheritanceDetails,
+        }),
+        accountMetaData = schema.new({
+            id = id.from(_N, "AccountDetails", "accountMetaData"),
+            type = "structure",
+            name = "accountMetaData",
+            target_id = id.from(_N, "AccountMetaData"),
+            target = M.AccountMetaData,
+        }),
+    },
+})
+
+M.AdditionalInfoRequest = schema.new({
+    id = id.from(_N, "AdditionalInfoRequest"),
+    type = "structure",
+    members = {
+        malaysiaAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "malaysiaAdditionalInfo"),
+            type = "structure",
+            name = "malaysiaAdditionalInfo",
+            target_id = id.from(_N, "MalaysiaAdditionalInfo"),
+            target = M.MalaysiaAdditionalInfo,
+        }),
+        israelAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "israelAdditionalInfo"),
+            type = "structure",
+            name = "israelAdditionalInfo",
+            target_id = id.from(_N, "IsraelAdditionalInfo"),
+            target = M.IsraelAdditionalInfo,
+        }),
+        estoniaAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "estoniaAdditionalInfo"),
+            type = "structure",
+            name = "estoniaAdditionalInfo",
+            target_id = id.from(_N, "EstoniaAdditionalInfo"),
+            target = M.EstoniaAdditionalInfo,
+        }),
+        canadaAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "canadaAdditionalInfo"),
+            type = "structure",
+            name = "canadaAdditionalInfo",
+            target_id = id.from(_N, "CanadaAdditionalInfo"),
+            target = M.CanadaAdditionalInfo,
+        }),
+        spainAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "spainAdditionalInfo"),
+            type = "structure",
+            name = "spainAdditionalInfo",
+            target_id = id.from(_N, "SpainAdditionalInfo"),
+            target = M.SpainAdditionalInfo,
+        }),
+        kenyaAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "kenyaAdditionalInfo"),
+            type = "structure",
+            name = "kenyaAdditionalInfo",
+            target_id = id.from(_N, "KenyaAdditionalInfo"),
+            target = M.KenyaAdditionalInfo,
+        }),
+        southKoreaAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "southKoreaAdditionalInfo"),
+            type = "structure",
+            name = "southKoreaAdditionalInfo",
+            target_id = id.from(_N, "SouthKoreaAdditionalInfo"),
+            target = M.SouthKoreaAdditionalInfo,
+        }),
+        turkeyAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "turkeyAdditionalInfo"),
+            type = "structure",
+            name = "turkeyAdditionalInfo",
+            target_id = id.from(_N, "TurkeyAdditionalInfo"),
+            target = M.TurkeyAdditionalInfo,
+        }),
+        georgiaAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "georgiaAdditionalInfo"),
+            type = "structure",
+            name = "georgiaAdditionalInfo",
+            target_id = id.from(_N, "GeorgiaAdditionalInfo"),
+            target = M.GeorgiaAdditionalInfo,
+        }),
+        italyAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "italyAdditionalInfo"),
+            type = "structure",
+            name = "italyAdditionalInfo",
+            target_id = id.from(_N, "ItalyAdditionalInfo"),
+            target = M.ItalyAdditionalInfo,
+        }),
+        romaniaAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "romaniaAdditionalInfo"),
+            type = "structure",
+            name = "romaniaAdditionalInfo",
+            target_id = id.from(_N, "RomaniaAdditionalInfo"),
+            target = M.RomaniaAdditionalInfo,
+        }),
+        ukraineAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "ukraineAdditionalInfo"),
+            type = "structure",
+            name = "ukraineAdditionalInfo",
+            target_id = id.from(_N, "UkraineAdditionalInfo"),
+            target = M.UkraineAdditionalInfo,
+        }),
+        polandAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "polandAdditionalInfo"),
+            type = "structure",
+            name = "polandAdditionalInfo",
+            target_id = id.from(_N, "PolandAdditionalInfo"),
+            target = M.PolandAdditionalInfo,
+        }),
+        saudiArabiaAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "saudiArabiaAdditionalInfo"),
+            type = "structure",
+            name = "saudiArabiaAdditionalInfo",
+            target_id = id.from(_N, "SaudiArabiaAdditionalInfo"),
+            target = M.SaudiArabiaAdditionalInfo,
+        }),
+        indonesiaAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "indonesiaAdditionalInfo"),
+            type = "structure",
+            name = "indonesiaAdditionalInfo",
+            target_id = id.from(_N, "IndonesiaAdditionalInfo"),
+            target = M.IndonesiaAdditionalInfo,
+        }),
+        vietnamAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "vietnamAdditionalInfo"),
+            type = "structure",
+            name = "vietnamAdditionalInfo",
+            target_id = id.from(_N, "VietnamAdditionalInfo"),
+            target = M.VietnamAdditionalInfo,
+        }),
+        egyptAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "egyptAdditionalInfo"),
+            type = "structure",
+            name = "egyptAdditionalInfo",
+            target_id = id.from(_N, "EgyptAdditionalInfo"),
+            target = M.EgyptAdditionalInfo,
+        }),
+        greeceAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "greeceAdditionalInfo"),
+            type = "structure",
+            name = "greeceAdditionalInfo",
+            target_id = id.from(_N, "GreeceAdditionalInfo"),
+            target = M.GreeceAdditionalInfo,
+        }),
+        uzbekistanAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "uzbekistanAdditionalInfo"),
+            type = "structure",
+            name = "uzbekistanAdditionalInfo",
+            target_id = id.from(_N, "UzbekistanAdditionalInfo"),
+            target = M.UzbekistanAdditionalInfo,
+        }),
+    },
+})
+
+M.AttachmentUploadException = schema.new({
+    id = id.from(_N, "AttachmentUploadException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "AttachmentUploadException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Authority = schema.new({
+    id = id.from(_N, "Authority"),
+    type = "structure",
+    members = {
+        country = schema.new({
+            id = id.from(_N, "Authority", "country"),
+            type = "string",
+            name = "country",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "Authority", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchDeleteTaxRegistrationInput = schema.new({
+    id = id.from(_N, "BatchDeleteTaxRegistrationInput"),
+    type = "structure",
+    members = {
+        accountIds = schema.new({
+            id = id.from(_N, "BatchDeleteTaxRegistrationInput", "accountIds"),
+            type = "list",
+            name = "accountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchDeleteTaxRegistrationError = schema.new({
+    id = id.from(_N, "BatchDeleteTaxRegistrationError"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "BatchDeleteTaxRegistrationError", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "BatchDeleteTaxRegistrationError", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        code = schema.new({
+            id = id.from(_N, "BatchDeleteTaxRegistrationError", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchDeleteTaxRegistrationOutput = schema.new({
+    id = id.from(_N, "BatchDeleteTaxRegistrationOutput"),
+    type = "structure",
+    members = {
+        errors = schema.new({
+            id = id.from(_N, "BatchDeleteTaxRegistrationOutput", "errors"),
+            type = "list",
+            name = "errors",
+            target_id = prelude.Document.id,
+            list_member = M.BatchDeleteTaxRegistrationError,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ConflictException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errorCode = schema.new({
+            id = id.from(_N, "ConflictException", "errorCode"),
+            type = "string",
+            name = "errorCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InternalServerException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errorCode = schema.new({
+            id = id.from(_N, "InternalServerException", "errorCode"),
+            type = "string",
+            name = "errorCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ValidationExceptionField = schema.new({
+    id = id.from(_N, "ValidationExceptionField"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "ValidationExceptionField", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errorCode = schema.new({
+            id = id.from(_N, "ValidationException", "errorCode"),
+            type = "string",
+            name = "errorCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fieldList = schema.new({
+            id = id.from(_N, "ValidationException", "fieldList"),
+            type = "list",
+            name = "fieldList",
+            target_id = prelude.Document.id,
+            list_member = M.ValidationExceptionField,
+        }),
+    },
+})
+
+M.BatchGetTaxExemptionsInput = schema.new({
+    id = id.from(_N, "BatchGetTaxExemptionsInput"),
+    type = "structure",
+    members = {
+        accountIds = schema.new({
+            id = id.from(_N, "BatchGetTaxExemptionsInput", "accountIds"),
+            type = "list",
+            name = "accountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TaxExemptionType = schema.new({
+    id = id.from(_N, "TaxExemptionType"),
+    type = "structure",
+    members = {
+        displayName = schema.new({
+            id = id.from(_N, "TaxExemptionType", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "TaxExemptionType", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        applicableJurisdictions = schema.new({
+            id = id.from(_N, "TaxExemptionType", "applicableJurisdictions"),
+            type = "list",
+            name = "applicableJurisdictions",
+            target_id = prelude.Document.id,
+            list_member = M.Authority,
+        }),
+    },
+})
+
+M.TaxExemption = schema.new({
+    id = id.from(_N, "TaxExemption"),
+    type = "structure",
+    members = {
+        authority = schema.new({
+            id = id.from(_N, "TaxExemption", "authority"),
+            type = "structure",
+            name = "authority",
+            target_id = id.from(_N, "Authority"),
+            target = M.Authority,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        taxExemptionType = schema.new({
+            id = id.from(_N, "TaxExemption", "taxExemptionType"),
+            type = "structure",
+            name = "taxExemptionType",
+            target_id = id.from(_N, "TaxExemptionType"),
+            target = M.TaxExemptionType,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        effectiveDate = schema.new({
+            id = id.from(_N, "TaxExemption", "effectiveDate"),
+            type = "timestamp",
+            name = "effectiveDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        expirationDate = schema.new({
+            id = id.from(_N, "TaxExemption", "expirationDate"),
+            type = "timestamp",
+            name = "expirationDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        systemEffectiveDate = schema.new({
+            id = id.from(_N, "TaxExemption", "systemEffectiveDate"),
+            type = "timestamp",
+            name = "systemEffectiveDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "TaxExemption", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TaxExemptionDetails = schema.new({
+    id = id.from(_N, "TaxExemptionDetails"),
+    type = "structure",
+    members = {
+        taxExemptions = schema.new({
+            id = id.from(_N, "TaxExemptionDetails", "taxExemptions"),
+            type = "list",
+            name = "taxExemptions",
+            target_id = prelude.Document.id,
+            list_member = M.TaxExemption,
+        }),
+        heritageObtainedDetails = schema.new({
+            id = id.from(_N, "TaxExemptionDetails", "heritageObtainedDetails"),
+            type = "boolean",
+            name = "heritageObtainedDetails",
+            target_id = prelude.Boolean.id,
+        }),
+        heritageObtainedParentEntity = schema.new({
+            id = id.from(_N, "TaxExemptionDetails", "heritageObtainedParentEntity"),
+            type = "string",
+            name = "heritageObtainedParentEntity",
+            target_id = prelude.String.id,
+        }),
+        heritageObtainedReason = schema.new({
+            id = id.from(_N, "TaxExemptionDetails", "heritageObtainedReason"),
+            type = "string",
+            name = "heritageObtainedReason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchGetTaxExemptionsOutput = schema.new({
+    id = id.from(_N, "BatchGetTaxExemptionsOutput"),
+    type = "structure",
+    members = {
+        taxExemptionDetailsMap = schema.new({
+            id = id.from(_N, "BatchGetTaxExemptionsOutput", "taxExemptionDetailsMap"),
+            type = "map",
+            name = "taxExemptionDetailsMap",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.TaxExemptionDetails,
+        }),
+        failedAccounts = schema.new({
+            id = id.from(_N, "BatchGetTaxExemptionsOutput", "failedAccounts"),
+            type = "list",
+            name = "failedAccounts",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errorCode = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "errorCode"),
+            type = "string",
+            name = "errorCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TaxRegistrationDocFile = schema.new({
+    id = id.from(_N, "TaxRegistrationDocFile"),
+    type = "structure",
+    members = {
+        fileName = schema.new({
+            id = id.from(_N, "TaxRegistrationDocFile", "fileName"),
+            type = "string",
+            name = "fileName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fileContent = schema.new({
+            id = id.from(_N, "TaxRegistrationDocFile", "fileContent"),
+            type = "blob",
+            name = "fileContent",
+            target_id = prelude.Blob.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SourceS3Location = schema.new({
+    id = id.from(_N, "SourceS3Location"),
+    type = "structure",
+    members = {
+        bucket = schema.new({
+            id = id.from(_N, "SourceS3Location", "bucket"),
+            type = "string",
+            name = "bucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        key = schema.new({
+            id = id.from(_N, "SourceS3Location", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TaxRegistrationDocument = schema.new({
+    id = id.from(_N, "TaxRegistrationDocument"),
+    type = "structure",
+    members = {
+        s3Location = schema.new({
+            id = id.from(_N, "TaxRegistrationDocument", "s3Location"),
+            type = "structure",
+            name = "s3Location",
+            target_id = id.from(_N, "SourceS3Location"),
+            target = M.SourceS3Location,
+        }),
+        file = schema.new({
+            id = id.from(_N, "TaxRegistrationDocument", "file"),
+            type = "structure",
+            name = "file",
+            target_id = id.from(_N, "TaxRegistrationDocFile"),
+            target = M.TaxRegistrationDocFile,
+        }),
+    },
+})
+
+M.VerificationDetails = schema.new({
+    id = id.from(_N, "VerificationDetails"),
+    type = "structure",
+    members = {
+        dateOfBirth = schema.new({
+            id = id.from(_N, "VerificationDetails", "dateOfBirth"),
+            type = "string",
+            name = "dateOfBirth",
+            target_id = prelude.String.id,
+        }),
+        taxRegistrationDocuments = schema.new({
+            id = id.from(_N, "VerificationDetails", "taxRegistrationDocuments"),
+            type = "list",
+            name = "taxRegistrationDocuments",
+            target_id = prelude.Document.id,
+            list_member = M.TaxRegistrationDocument,
+        }),
+    },
+})
+
+M.TaxRegistrationEntry = schema.new({
+    id = id.from(_N, "TaxRegistrationEntry"),
+    type = "structure",
+    members = {
+        registrationId = schema.new({
+            id = id.from(_N, "TaxRegistrationEntry", "registrationId"),
+            type = "string",
+            name = "registrationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        registrationType = schema.new({
+            id = id.from(_N, "TaxRegistrationEntry", "registrationType"),
+            type = "string",
+            name = "registrationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        legalName = schema.new({
+            id = id.from(_N, "TaxRegistrationEntry", "legalName"),
+            type = "string",
+            name = "legalName",
+            target_id = prelude.String.id,
+        }),
+        legalAddress = schema.new({
+            id = id.from(_N, "TaxRegistrationEntry", "legalAddress"),
+            type = "structure",
+            name = "legalAddress",
+            target_id = id.from(_N, "Address"),
+            target = M.Address,
+        }),
+        sector = schema.new({
+            id = id.from(_N, "TaxRegistrationEntry", "sector"),
+            type = "string",
+            name = "sector",
+            target_id = prelude.String.id,
+        }),
+        additionalTaxInformation = schema.new({
+            id = id.from(_N, "TaxRegistrationEntry", "additionalTaxInformation"),
+            type = "structure",
+            name = "additionalTaxInformation",
+            target_id = id.from(_N, "AdditionalInfoRequest"),
+            target = M.AdditionalInfoRequest,
+        }),
+        verificationDetails = schema.new({
+            id = id.from(_N, "TaxRegistrationEntry", "verificationDetails"),
+            type = "structure",
+            name = "verificationDetails",
+            target_id = id.from(_N, "VerificationDetails"),
+            target = M.VerificationDetails,
+        }),
+        certifiedEmailId = schema.new({
+            id = id.from(_N, "TaxRegistrationEntry", "certifiedEmailId"),
+            type = "string",
+            name = "certifiedEmailId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchPutTaxRegistrationInput = schema.new({
+    id = id.from(_N, "BatchPutTaxRegistrationInput"),
+    type = "structure",
+    members = {
+        accountIds = schema.new({
+            id = id.from(_N, "BatchPutTaxRegistrationInput", "accountIds"),
+            type = "list",
+            name = "accountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        taxRegistrationEntry = schema.new({
+            id = id.from(_N, "BatchPutTaxRegistrationInput", "taxRegistrationEntry"),
+            type = "structure",
+            name = "taxRegistrationEntry",
+            target_id = id.from(_N, "TaxRegistrationEntry"),
+            target = M.TaxRegistrationEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchPutTaxRegistrationError = schema.new({
+    id = id.from(_N, "BatchPutTaxRegistrationError"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "BatchPutTaxRegistrationError", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "BatchPutTaxRegistrationError", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        code = schema.new({
+            id = id.from(_N, "BatchPutTaxRegistrationError", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchPutTaxRegistrationOutput = schema.new({
+    id = id.from(_N, "BatchPutTaxRegistrationOutput"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "BatchPutTaxRegistrationOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        errors = schema.new({
+            id = id.from(_N, "BatchPutTaxRegistrationOutput", "errors"),
+            type = "list",
+            name = "errors",
+            target_id = prelude.Document.id,
+            list_member = M.BatchPutTaxRegistrationError,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CaseCreationLimitExceededException = schema.new({
+    id = id.from(_N, "CaseCreationLimitExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "CaseCreationLimitExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteSupplementalTaxRegistrationInput = schema.new({
+    id = id.from(_N, "DeleteSupplementalTaxRegistrationInput"),
+    type = "structure",
+    members = {
+        authorityId = schema.new({
+            id = id.from(_N, "DeleteSupplementalTaxRegistrationInput", "authorityId"),
+            type = "string",
+            name = "authorityId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteSupplementalTaxRegistrationOutput = schema.new({
+    id = id.from(_N, "DeleteSupplementalTaxRegistrationOutput"),
+    type = "structure",
+})
+
+M.DeleteTaxRegistrationInput = schema.new({
+    id = id.from(_N, "DeleteTaxRegistrationInput"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "DeleteTaxRegistrationInput", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteTaxRegistrationOutput = schema.new({
+    id = id.from(_N, "DeleteTaxRegistrationOutput"),
+    type = "structure",
+})
+
+M.DestinationS3Location = schema.new({
+    id = id.from(_N, "DestinationS3Location"),
+    type = "structure",
+    members = {
+        bucket = schema.new({
+            id = id.from(_N, "DestinationS3Location", "bucket"),
+            type = "string",
+            name = "bucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        prefix = schema.new({
+            id = id.from(_N, "DestinationS3Location", "prefix"),
+            type = "string",
+            name = "prefix",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ExemptionCertificate = schema.new({
+    id = id.from(_N, "ExemptionCertificate"),
+    type = "structure",
+    members = {
+        documentName = schema.new({
+            id = id.from(_N, "ExemptionCertificate", "documentName"),
+            type = "string",
+            name = "documentName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        documentFile = schema.new({
+            id = id.from(_N, "ExemptionCertificate", "documentFile"),
+            type = "blob",
+            name = "documentFile",
+            target_id = prelude.Blob.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetTaxExemptionTypesInput = schema.new({
+    id = id.from(_N, "GetTaxExemptionTypesInput"),
+    type = "structure",
+})
+
+M.GetTaxExemptionTypesOutput = schema.new({
+    id = id.from(_N, "GetTaxExemptionTypesOutput"),
+    type = "structure",
+    members = {
+        taxExemptionTypes = schema.new({
+            id = id.from(_N, "GetTaxExemptionTypesOutput", "taxExemptionTypes"),
+            type = "list",
+            name = "taxExemptionTypes",
+            target_id = prelude.Document.id,
+            list_member = M.TaxExemptionType,
+        }),
+    },
+})
+
+M.GetTaxInheritanceInput = schema.new({
+    id = id.from(_N, "GetTaxInheritanceInput"),
+    type = "structure",
+})
+
+M.GetTaxInheritanceOutput = schema.new({
+    id = id.from(_N, "GetTaxInheritanceOutput"),
+    type = "structure",
+    members = {
+        heritageStatus = schema.new({
+            id = id.from(_N, "GetTaxInheritanceOutput", "heritageStatus"),
+            type = "string",
+            name = "heritageStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetTaxRegistrationInput = schema.new({
+    id = id.from(_N, "GetTaxRegistrationInput"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "GetTaxRegistrationInput", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TaxRegistration = schema.new({
+    id = id.from(_N, "TaxRegistration"),
+    type = "structure",
+    members = {
+        registrationId = schema.new({
+            id = id.from(_N, "TaxRegistration", "registrationId"),
+            type = "string",
+            name = "registrationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        registrationType = schema.new({
+            id = id.from(_N, "TaxRegistration", "registrationType"),
+            type = "string",
+            name = "registrationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        legalName = schema.new({
+            id = id.from(_N, "TaxRegistration", "legalName"),
+            type = "string",
+            name = "legalName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "TaxRegistration", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sector = schema.new({
+            id = id.from(_N, "TaxRegistration", "sector"),
+            type = "string",
+            name = "sector",
+            target_id = prelude.String.id,
+        }),
+        taxDocumentMetadatas = schema.new({
+            id = id.from(_N, "TaxRegistration", "taxDocumentMetadatas"),
+            type = "list",
+            name = "taxDocumentMetadatas",
+            target_id = prelude.Document.id,
+            list_member = M.TaxDocumentMetadata,
+        }),
+        certifiedEmailId = schema.new({
+            id = id.from(_N, "TaxRegistration", "certifiedEmailId"),
+            type = "string",
+            name = "certifiedEmailId",
+            target_id = prelude.String.id,
+        }),
+        additionalTaxInformation = schema.new({
+            id = id.from(_N, "TaxRegistration", "additionalTaxInformation"),
+            type = "structure",
+            name = "additionalTaxInformation",
+            target_id = id.from(_N, "AdditionalInfoResponse"),
+            target = M.AdditionalInfoResponse,
+        }),
+        legalAddress = schema.new({
+            id = id.from(_N, "TaxRegistration", "legalAddress"),
+            type = "structure",
+            name = "legalAddress",
+            target_id = id.from(_N, "Address"),
+            target = M.Address,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetTaxRegistrationOutput = schema.new({
+    id = id.from(_N, "GetTaxRegistrationOutput"),
+    type = "structure",
+    members = {
+        taxRegistration = schema.new({
+            id = id.from(_N, "GetTaxRegistrationOutput", "taxRegistration"),
+            type = "structure",
+            name = "taxRegistration",
+            target_id = id.from(_N, "TaxRegistration"),
+            target = M.TaxRegistration,
+        }),
+    },
+})
+
+M.GetTaxRegistrationDocumentInput = schema.new({
+    id = id.from(_N, "GetTaxRegistrationDocumentInput"),
+    type = "structure",
+    members = {
+        destinationS3Location = schema.new({
+            id = id.from(_N, "GetTaxRegistrationDocumentInput", "destinationS3Location"),
+            type = "structure",
+            name = "destinationS3Location",
+            target_id = id.from(_N, "DestinationS3Location"),
+            target = M.DestinationS3Location,
+        }),
+        taxDocumentMetadata = schema.new({
+            id = id.from(_N, "GetTaxRegistrationDocumentInput", "taxDocumentMetadata"),
+            type = "structure",
+            name = "taxDocumentMetadata",
+            target_id = id.from(_N, "TaxDocumentMetadata"),
+            target = M.TaxDocumentMetadata,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetTaxRegistrationDocumentOutput = schema.new({
+    id = id.from(_N, "GetTaxRegistrationDocumentOutput"),
+    type = "structure",
+    members = {
+        destinationFilePath = schema.new({
+            id = id.from(_N, "GetTaxRegistrationDocumentOutput", "destinationFilePath"),
+            type = "string",
+            name = "destinationFilePath",
+            target_id = prelude.String.id,
+        }),
+        presignedS3Url = schema.new({
+            id = id.from(_N, "GetTaxRegistrationDocumentOutput", "presignedS3Url"),
+            type = "string",
+            name = "presignedS3Url",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListSupplementalTaxRegistrationsInput = schema.new({
+    id = id.from(_N, "ListSupplementalTaxRegistrationsInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListSupplementalTaxRegistrationsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListSupplementalTaxRegistrationsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SupplementalTaxRegistration = schema.new({
+    id = id.from(_N, "SupplementalTaxRegistration"),
+    type = "structure",
+    members = {
+        registrationId = schema.new({
+            id = id.from(_N, "SupplementalTaxRegistration", "registrationId"),
+            type = "string",
+            name = "registrationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        registrationType = schema.new({
+            id = id.from(_N, "SupplementalTaxRegistration", "registrationType"),
+            type = "string",
+            name = "registrationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        legalName = schema.new({
+            id = id.from(_N, "SupplementalTaxRegistration", "legalName"),
+            type = "string",
+            name = "legalName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        address = schema.new({
+            id = id.from(_N, "SupplementalTaxRegistration", "address"),
+            type = "structure",
+            name = "address",
+            target_id = id.from(_N, "Address"),
+            target = M.Address,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        authorityId = schema.new({
+            id = id.from(_N, "SupplementalTaxRegistration", "authorityId"),
+            type = "string",
+            name = "authorityId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "SupplementalTaxRegistration", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListSupplementalTaxRegistrationsOutput = schema.new({
+    id = id.from(_N, "ListSupplementalTaxRegistrationsOutput"),
+    type = "structure",
+    members = {
+        taxRegistrations = schema.new({
+            id = id.from(_N, "ListSupplementalTaxRegistrationsOutput", "taxRegistrations"),
+            type = "list",
+            name = "taxRegistrations",
+            target_id = prelude.Document.id,
+            list_member = M.SupplementalTaxRegistration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListSupplementalTaxRegistrationsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTaxExemptionsInput = schema.new({
+    id = id.from(_N, "ListTaxExemptionsInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListTaxExemptionsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListTaxExemptionsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTaxExemptionsOutput = schema.new({
+    id = id.from(_N, "ListTaxExemptionsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListTaxExemptionsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        taxExemptionDetailsMap = schema.new({
+            id = id.from(_N, "ListTaxExemptionsOutput", "taxExemptionDetailsMap"),
+            type = "map",
+            name = "taxExemptionDetailsMap",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.TaxExemptionDetails,
+        }),
+    },
+})
+
+M.ListTaxRegistrationsInput = schema.new({
+    id = id.from(_N, "ListTaxRegistrationsInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListTaxRegistrationsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListTaxRegistrationsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTaxRegistrationsOutput = schema.new({
+    id = id.from(_N, "ListTaxRegistrationsOutput"),
+    type = "structure",
+    members = {
+        accountDetails = schema.new({
+            id = id.from(_N, "ListTaxRegistrationsOutput", "accountDetails"),
+            type = "list",
+            name = "accountDetails",
+            target_id = prelude.Document.id,
+            list_member = M.AccountDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListTaxRegistrationsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SupplementalTaxRegistrationEntry = schema.new({
+    id = id.from(_N, "SupplementalTaxRegistrationEntry"),
+    type = "structure",
+    members = {
+        registrationId = schema.new({
+            id = id.from(_N, "SupplementalTaxRegistrationEntry", "registrationId"),
+            type = "string",
+            name = "registrationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        registrationType = schema.new({
+            id = id.from(_N, "SupplementalTaxRegistrationEntry", "registrationType"),
+            type = "string",
+            name = "registrationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        legalName = schema.new({
+            id = id.from(_N, "SupplementalTaxRegistrationEntry", "legalName"),
+            type = "string",
+            name = "legalName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        address = schema.new({
+            id = id.from(_N, "SupplementalTaxRegistrationEntry", "address"),
+            type = "structure",
+            name = "address",
+            target_id = id.from(_N, "Address"),
+            target = M.Address,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutSupplementalTaxRegistrationInput = schema.new({
+    id = id.from(_N, "PutSupplementalTaxRegistrationInput"),
+    type = "structure",
+    members = {
+        taxRegistrationEntry = schema.new({
+            id = id.from(_N, "PutSupplementalTaxRegistrationInput", "taxRegistrationEntry"),
+            type = "structure",
+            name = "taxRegistrationEntry",
+            target_id = id.from(_N, "SupplementalTaxRegistrationEntry"),
+            target = M.SupplementalTaxRegistrationEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutSupplementalTaxRegistrationOutput = schema.new({
+    id = id.from(_N, "PutSupplementalTaxRegistrationOutput"),
+    type = "structure",
+    members = {
+        authorityId = schema.new({
+            id = id.from(_N, "PutSupplementalTaxRegistrationOutput", "authorityId"),
+            type = "string",
+            name = "authorityId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "PutSupplementalTaxRegistrationOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutTaxExemptionInput = schema.new({
+    id = id.from(_N, "PutTaxExemptionInput"),
+    type = "structure",
+    members = {
+        accountIds = schema.new({
+            id = id.from(_N, "PutTaxExemptionInput", "accountIds"),
+            type = "list",
+            name = "accountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        authority = schema.new({
+            id = id.from(_N, "PutTaxExemptionInput", "authority"),
+            type = "structure",
+            name = "authority",
+            target_id = id.from(_N, "Authority"),
+            target = M.Authority,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        exemptionType = schema.new({
+            id = id.from(_N, "PutTaxExemptionInput", "exemptionType"),
+            type = "string",
+            name = "exemptionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        exemptionCertificate = schema.new({
+            id = id.from(_N, "PutTaxExemptionInput", "exemptionCertificate"),
+            type = "structure",
+            name = "exemptionCertificate",
+            target_id = id.from(_N, "ExemptionCertificate"),
+            target = M.ExemptionCertificate,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutTaxExemptionOutput = schema.new({
+    id = id.from(_N, "PutTaxExemptionOutput"),
+    type = "structure",
+    members = {
+        caseId = schema.new({
+            id = id.from(_N, "PutTaxExemptionOutput", "caseId"),
+            type = "string",
+            name = "caseId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PutTaxInheritanceInput = schema.new({
+    id = id.from(_N, "PutTaxInheritanceInput"),
+    type = "structure",
+    members = {
+        heritageStatus = schema.new({
+            id = id.from(_N, "PutTaxInheritanceInput", "heritageStatus"),
+            type = "string",
+            name = "heritageStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PutTaxInheritanceOutput = schema.new({
+    id = id.from(_N, "PutTaxInheritanceOutput"),
+    type = "structure",
+})
+
+M.PutTaxRegistrationInput = schema.new({
+    id = id.from(_N, "PutTaxRegistrationInput"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "PutTaxRegistrationInput", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+        }),
+        taxRegistrationEntry = schema.new({
+            id = id.from(_N, "PutTaxRegistrationInput", "taxRegistrationEntry"),
+            type = "structure",
+            name = "taxRegistrationEntry",
+            target_id = id.from(_N, "TaxRegistrationEntry"),
+            target = M.TaxRegistrationEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutTaxRegistrationOutput = schema.new({
+    id = id.from(_N, "PutTaxRegistrationOutput"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "PutTaxRegistrationOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+return M

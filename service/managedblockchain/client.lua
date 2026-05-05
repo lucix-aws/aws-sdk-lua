@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("managedblockchain.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("managedblockchain.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("managedblockchain.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createAccessor(input, options)
     return self:invokeOperation(input, {
         name = "CreateAccessor",
-        input_schema = types.CreateAccessorInput,
-        output_schema = types.CreateAccessorOutput,
+        input_schema = schemas.CreateAccessorInput,
+        output_schema = schemas.CreateAccessorOutput,
         http_method = "POST",
         http_path = "/accessors",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createMember(input, options)
     return self:invokeOperation(input, {
         name = "CreateMember",
-        input_schema = types.CreateMemberInput,
-        output_schema = types.CreateMemberOutput,
+        input_schema = schemas.CreateMemberInput,
+        output_schema = schemas.CreateMemberOutput,
         http_method = "POST",
         http_path = "/networks/{NetworkId}/members",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createNetwork(input, options)
     return self:invokeOperation(input, {
         name = "CreateNetwork",
-        input_schema = types.CreateNetworkInput,
-        output_schema = types.CreateNetworkOutput,
+        input_schema = schemas.CreateNetworkInput,
+        output_schema = schemas.CreateNetworkOutput,
         http_method = "POST",
         http_path = "/networks",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createNode(input, options)
     return self:invokeOperation(input, {
         name = "CreateNode",
-        input_schema = types.CreateNodeInput,
-        output_schema = types.CreateNodeOutput,
+        input_schema = schemas.CreateNodeInput,
+        output_schema = schemas.CreateNodeOutput,
         http_method = "POST",
         http_path = "/networks/{NetworkId}/nodes",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createProposal(input, options)
     return self:invokeOperation(input, {
         name = "CreateProposal",
-        input_schema = types.CreateProposalInput,
-        output_schema = types.CreateProposalOutput,
+        input_schema = schemas.CreateProposalInput,
+        output_schema = schemas.CreateProposalOutput,
         http_method = "POST",
         http_path = "/networks/{NetworkId}/proposals",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteAccessor(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAccessor",
-        input_schema = types.DeleteAccessorInput,
-        output_schema = types.DeleteAccessorOutput,
+        input_schema = schemas.DeleteAccessorInput,
+        output_schema = schemas.DeleteAccessorOutput,
         http_method = "DELETE",
         http_path = "/accessors/{AccessorId}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteMember(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMember",
-        input_schema = types.DeleteMemberInput,
-        output_schema = types.DeleteMemberOutput,
+        input_schema = schemas.DeleteMemberInput,
+        output_schema = schemas.DeleteMemberOutput,
         http_method = "DELETE",
         http_path = "/networks/{NetworkId}/members/{MemberId}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteNode(input, options)
     return self:invokeOperation(input, {
         name = "DeleteNode",
-        input_schema = types.DeleteNodeInput,
-        output_schema = types.DeleteNodeOutput,
+        input_schema = schemas.DeleteNodeInput,
+        output_schema = schemas.DeleteNodeOutput,
         http_method = "DELETE",
         http_path = "/networks/{NetworkId}/nodes/{NodeId}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getAccessor(input, options)
     return self:invokeOperation(input, {
         name = "GetAccessor",
-        input_schema = types.GetAccessorInput,
-        output_schema = types.GetAccessorOutput,
+        input_schema = schemas.GetAccessorInput,
+        output_schema = schemas.GetAccessorOutput,
         http_method = "GET",
         http_path = "/accessors/{AccessorId}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getMember(input, options)
     return self:invokeOperation(input, {
         name = "GetMember",
-        input_schema = types.GetMemberInput,
-        output_schema = types.GetMemberOutput,
+        input_schema = schemas.GetMemberInput,
+        output_schema = schemas.GetMemberOutput,
         http_method = "GET",
         http_path = "/networks/{NetworkId}/members/{MemberId}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getNetwork(input, options)
     return self:invokeOperation(input, {
         name = "GetNetwork",
-        input_schema = types.GetNetworkInput,
-        output_schema = types.GetNetworkOutput,
+        input_schema = schemas.GetNetworkInput,
+        output_schema = schemas.GetNetworkOutput,
         http_method = "GET",
         http_path = "/networks/{NetworkId}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getNode(input, options)
     return self:invokeOperation(input, {
         name = "GetNode",
-        input_schema = types.GetNodeInput,
-        output_schema = types.GetNodeOutput,
+        input_schema = schemas.GetNodeInput,
+        output_schema = schemas.GetNodeOutput,
         http_method = "GET",
         http_path = "/networks/{NetworkId}/nodes/{NodeId}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getProposal(input, options)
     return self:invokeOperation(input, {
         name = "GetProposal",
-        input_schema = types.GetProposalInput,
-        output_schema = types.GetProposalOutput,
+        input_schema = schemas.GetProposalInput,
+        output_schema = schemas.GetProposalOutput,
         http_method = "GET",
         http_path = "/networks/{NetworkId}/proposals/{ProposalId}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listAccessors(input, options)
     return self:invokeOperation(input, {
         name = "ListAccessors",
-        input_schema = types.ListAccessorsInput,
-        output_schema = types.ListAccessorsOutput,
+        input_schema = schemas.ListAccessorsInput,
+        output_schema = schemas.ListAccessorsOutput,
         http_method = "GET",
         http_path = "/accessors",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listInvitations(input, options)
     return self:invokeOperation(input, {
         name = "ListInvitations",
-        input_schema = types.ListInvitationsInput,
-        output_schema = types.ListInvitationsOutput,
+        input_schema = schemas.ListInvitationsInput,
+        output_schema = schemas.ListInvitationsOutput,
         http_method = "GET",
         http_path = "/invitations",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listMembers(input, options)
     return self:invokeOperation(input, {
         name = "ListMembers",
-        input_schema = types.ListMembersInput,
-        output_schema = types.ListMembersOutput,
+        input_schema = schemas.ListMembersInput,
+        output_schema = schemas.ListMembersOutput,
         http_method = "GET",
         http_path = "/networks/{NetworkId}/members",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listNetworks(input, options)
     return self:invokeOperation(input, {
         name = "ListNetworks",
-        input_schema = types.ListNetworksInput,
-        output_schema = types.ListNetworksOutput,
+        input_schema = schemas.ListNetworksInput,
+        output_schema = schemas.ListNetworksOutput,
         http_method = "GET",
         http_path = "/networks",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listNodes(input, options)
     return self:invokeOperation(input, {
         name = "ListNodes",
-        input_schema = types.ListNodesInput,
-        output_schema = types.ListNodesOutput,
+        input_schema = schemas.ListNodesInput,
+        output_schema = schemas.ListNodesOutput,
         http_method = "GET",
         http_path = "/networks/{NetworkId}/nodes",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listProposals(input, options)
     return self:invokeOperation(input, {
         name = "ListProposals",
-        input_schema = types.ListProposalsInput,
-        output_schema = types.ListProposalsOutput,
+        input_schema = schemas.ListProposalsInput,
+        output_schema = schemas.ListProposalsOutput,
         http_method = "GET",
         http_path = "/networks/{NetworkId}/proposals",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listProposalVotes(input, options)
     return self:invokeOperation(input, {
         name = "ListProposalVotes",
-        input_schema = types.ListProposalVotesInput,
-        output_schema = types.ListProposalVotesOutput,
+        input_schema = schemas.ListProposalVotesInput,
+        output_schema = schemas.ListProposalVotesOutput,
         http_method = "GET",
         http_path = "/networks/{NetworkId}/proposals/{ProposalId}/votes",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:rejectInvitation(input, options)
     return self:invokeOperation(input, {
         name = "RejectInvitation",
-        input_schema = types.RejectInvitationInput,
-        output_schema = types.RejectInvitationOutput,
+        input_schema = schemas.RejectInvitationInput,
+        output_schema = schemas.RejectInvitationOutput,
         http_method = "DELETE",
         http_path = "/invitations/{InvitationId}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:updateMember(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMember",
-        input_schema = types.UpdateMemberInput,
-        output_schema = types.UpdateMemberOutput,
+        input_schema = schemas.UpdateMemberInput,
+        output_schema = schemas.UpdateMemberOutput,
         http_method = "PATCH",
         http_path = "/networks/{NetworkId}/members/{MemberId}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:updateNode(input, options)
     return self:invokeOperation(input, {
         name = "UpdateNode",
-        input_schema = types.UpdateNodeInput,
-        output_schema = types.UpdateNodeOutput,
+        input_schema = schemas.UpdateNodeInput,
+        output_schema = schemas.UpdateNodeOutput,
         http_method = "PATCH",
         http_path = "/networks/{NetworkId}/nodes/{NodeId}",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:voteOnProposal(input, options)
     return self:invokeOperation(input, {
         name = "VoteOnProposal",
-        input_schema = types.VoteOnProposalInput,
-        output_schema = types.VoteOnProposalOutput,
+        input_schema = schemas.VoteOnProposalInput,
+        output_schema = schemas.VoteOnProposalOutput,
         http_method = "POST",
         http_path = "/networks/{NetworkId}/proposals/{ProposalId}/votes",
         effective_auth_schemes = {

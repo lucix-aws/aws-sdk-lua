@@ -1,0 +1,972 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.pcaconnectorscep"
+
+local M = {}
+
+M.AccessDeniedException = schema.new({
+    id = id.from(_N, "AccessDeniedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "AccessDeniedException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BadRequestException = schema.new({
+    id = id.from(_N, "BadRequestException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "BadRequestException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Challenge = schema.new({
+    id = id.from(_N, "Challenge"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "Challenge", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        ConnectorArn = schema.new({
+            id = id.from(_N, "Challenge", "ConnectorArn"),
+            type = "string",
+            name = "ConnectorArn",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "Challenge", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "Challenge", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        Password = schema.new({
+            id = id.from(_N, "Challenge", "Password"),
+            type = "string",
+            name = "Password",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ChallengeMetadata = schema.new({
+    id = id.from(_N, "ChallengeMetadata"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "ChallengeMetadata", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        ConnectorArn = schema.new({
+            id = id.from(_N, "ChallengeMetadata", "ConnectorArn"),
+            type = "string",
+            name = "ConnectorArn",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "ChallengeMetadata", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "ChallengeMetadata", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ChallengeMetadataSummary = schema.new({
+    id = id.from(_N, "ChallengeMetadataSummary"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "ChallengeMetadataSummary", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        ConnectorArn = schema.new({
+            id = id.from(_N, "ChallengeMetadataSummary", "ConnectorArn"),
+            type = "string",
+            name = "ConnectorArn",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "ChallengeMetadataSummary", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "ChallengeMetadataSummary", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ConflictException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceId = schema.new({
+            id = id.from(_N, "ConflictException", "ResourceId"),
+            type = "string",
+            name = "ResourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "ConflictException", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateChallengeInput = schema.new({
+    id = id.from(_N, "CreateChallengeInput"),
+    type = "structure",
+    members = {
+        ConnectorArn = schema.new({
+            id = id.from(_N, "CreateChallengeInput", "ConnectorArn"),
+            type = "string",
+            name = "ConnectorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateChallengeInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateChallengeInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateChallengeOutput = schema.new({
+    id = id.from(_N, "CreateChallengeOutput"),
+    type = "structure",
+    members = {
+        Challenge = schema.new({
+            id = id.from(_N, "CreateChallengeOutput", "Challenge"),
+            type = "structure",
+            name = "Challenge",
+            target_id = id.from(_N, "Challenge"),
+            target = M.Challenge,
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InternalServerException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceId = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "ResourceId"),
+            type = "string",
+            name = "ResourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ServiceCode = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "ServiceCode"),
+            type = "string",
+            name = "ServiceCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        QuotaCode = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "QuotaCode"),
+            type = "string",
+            name = "QuotaCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ThrottlingException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ValidationException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Reason = schema.new({
+            id = id.from(_N, "ValidationException", "Reason"),
+            type = "string",
+            name = "Reason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteChallengeInput = schema.new({
+    id = id.from(_N, "DeleteChallengeInput"),
+    type = "structure",
+    members = {
+        ChallengeArn = schema.new({
+            id = id.from(_N, "DeleteChallengeInput", "ChallengeArn"),
+            type = "string",
+            name = "ChallengeArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteChallengeOutput = schema.new({
+    id = id.from(_N, "DeleteChallengeOutput"),
+    type = "structure",
+})
+
+M.GetChallengeMetadataInput = schema.new({
+    id = id.from(_N, "GetChallengeMetadataInput"),
+    type = "structure",
+    members = {
+        ChallengeArn = schema.new({
+            id = id.from(_N, "GetChallengeMetadataInput", "ChallengeArn"),
+            type = "string",
+            name = "ChallengeArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetChallengeMetadataOutput = schema.new({
+    id = id.from(_N, "GetChallengeMetadataOutput"),
+    type = "structure",
+    members = {
+        ChallengeMetadata = schema.new({
+            id = id.from(_N, "GetChallengeMetadataOutput", "ChallengeMetadata"),
+            type = "structure",
+            name = "ChallengeMetadata",
+            target_id = id.from(_N, "ChallengeMetadata"),
+            target = M.ChallengeMetadata,
+        }),
+    },
+})
+
+M.GetChallengePasswordInput = schema.new({
+    id = id.from(_N, "GetChallengePasswordInput"),
+    type = "structure",
+    members = {
+        ChallengeArn = schema.new({
+            id = id.from(_N, "GetChallengePasswordInput", "ChallengeArn"),
+            type = "string",
+            name = "ChallengeArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetChallengePasswordOutput = schema.new({
+    id = id.from(_N, "GetChallengePasswordOutput"),
+    type = "structure",
+    members = {
+        Password = schema.new({
+            id = id.from(_N, "GetChallengePasswordOutput", "Password"),
+            type = "string",
+            name = "Password",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListChallengeMetadataInput = schema.new({
+    id = id.from(_N, "ListChallengeMetadataInput"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListChallengeMetadataInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "MaxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListChallengeMetadataInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "NextToken" },
+            },
+        }),
+        ConnectorArn = schema.new({
+            id = id.from(_N, "ListChallengeMetadataInput", "ConnectorArn"),
+            type = "string",
+            name = "ConnectorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "ConnectorArn" },
+            },
+        }),
+    },
+})
+
+M.ListChallengeMetadataOutput = schema.new({
+    id = id.from(_N, "ListChallengeMetadataOutput"),
+    type = "structure",
+    members = {
+        Challenges = schema.new({
+            id = id.from(_N, "ListChallengeMetadataOutput", "Challenges"),
+            type = "list",
+            name = "Challenges",
+            target_id = prelude.Document.id,
+            list_member = M.ChallengeMetadataSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListChallengeMetadataOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.IntuneConfiguration = schema.new({
+    id = id.from(_N, "IntuneConfiguration"),
+    type = "structure",
+    members = {
+        AzureApplicationId = schema.new({
+            id = id.from(_N, "IntuneConfiguration", "AzureApplicationId"),
+            type = "string",
+            name = "AzureApplicationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Domain = schema.new({
+            id = id.from(_N, "IntuneConfiguration", "Domain"),
+            type = "string",
+            name = "Domain",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.MobileDeviceManagement = schema.new({
+    id = id.from(_N, "MobileDeviceManagement"),
+    type = "union",
+    members = {
+        Intune = schema.new({
+            id = id.from(_N, "MobileDeviceManagement", "Intune"),
+            type = "structure",
+            name = "Intune",
+            target_id = id.from(_N, "IntuneConfiguration"),
+            target = M.IntuneConfiguration,
+        }),
+    },
+})
+
+M.OpenIdConfiguration = schema.new({
+    id = id.from(_N, "OpenIdConfiguration"),
+    type = "structure",
+    members = {
+        Issuer = schema.new({
+            id = id.from(_N, "OpenIdConfiguration", "Issuer"),
+            type = "string",
+            name = "Issuer",
+            target_id = prelude.String.id,
+        }),
+        Subject = schema.new({
+            id = id.from(_N, "OpenIdConfiguration", "Subject"),
+            type = "string",
+            name = "Subject",
+            target_id = prelude.String.id,
+        }),
+        Audience = schema.new({
+            id = id.from(_N, "OpenIdConfiguration", "Audience"),
+            type = "string",
+            name = "Audience",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Connector = schema.new({
+    id = id.from(_N, "Connector"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "Connector", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        CertificateAuthorityArn = schema.new({
+            id = id.from(_N, "Connector", "CertificateAuthorityArn"),
+            type = "string",
+            name = "CertificateAuthorityArn",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "Connector", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        MobileDeviceManagement = schema.new({
+            id = id.from(_N, "Connector", "MobileDeviceManagement"),
+            type = "union",
+            name = "MobileDeviceManagement",
+            target_id = id.from(_N, "MobileDeviceManagement"),
+            target = M.MobileDeviceManagement,
+        }),
+        OpenIdConfiguration = schema.new({
+            id = id.from(_N, "Connector", "OpenIdConfiguration"),
+            type = "structure",
+            name = "OpenIdConfiguration",
+            target_id = id.from(_N, "OpenIdConfiguration"),
+            target = M.OpenIdConfiguration,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "Connector", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        StatusReason = schema.new({
+            id = id.from(_N, "Connector", "StatusReason"),
+            type = "string",
+            name = "StatusReason",
+            target_id = prelude.String.id,
+        }),
+        Endpoint = schema.new({
+            id = id.from(_N, "Connector", "Endpoint"),
+            type = "string",
+            name = "Endpoint",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "Connector", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "Connector", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ConnectorSummary = schema.new({
+    id = id.from(_N, "ConnectorSummary"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "ConnectorSummary", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        CertificateAuthorityArn = schema.new({
+            id = id.from(_N, "ConnectorSummary", "CertificateAuthorityArn"),
+            type = "string",
+            name = "CertificateAuthorityArn",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "ConnectorSummary", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        MobileDeviceManagement = schema.new({
+            id = id.from(_N, "ConnectorSummary", "MobileDeviceManagement"),
+            type = "union",
+            name = "MobileDeviceManagement",
+            target_id = id.from(_N, "MobileDeviceManagement"),
+            target = M.MobileDeviceManagement,
+        }),
+        OpenIdConfiguration = schema.new({
+            id = id.from(_N, "ConnectorSummary", "OpenIdConfiguration"),
+            type = "structure",
+            name = "OpenIdConfiguration",
+            target_id = id.from(_N, "OpenIdConfiguration"),
+            target = M.OpenIdConfiguration,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ConnectorSummary", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        StatusReason = schema.new({
+            id = id.from(_N, "ConnectorSummary", "StatusReason"),
+            type = "string",
+            name = "StatusReason",
+            target_id = prelude.String.id,
+        }),
+        Endpoint = schema.new({
+            id = id.from(_N, "ConnectorSummary", "Endpoint"),
+            type = "string",
+            name = "Endpoint",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "ConnectorSummary", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "ConnectorSummary", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.CreateConnectorInput = schema.new({
+    id = id.from(_N, "CreateConnectorInput"),
+    type = "structure",
+    members = {
+        CertificateAuthorityArn = schema.new({
+            id = id.from(_N, "CreateConnectorInput", "CertificateAuthorityArn"),
+            type = "string",
+            name = "CertificateAuthorityArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MobileDeviceManagement = schema.new({
+            id = id.from(_N, "CreateConnectorInput", "MobileDeviceManagement"),
+            type = "union",
+            name = "MobileDeviceManagement",
+            target_id = id.from(_N, "MobileDeviceManagement"),
+            target = M.MobileDeviceManagement,
+        }),
+        VpcEndpointId = schema.new({
+            id = id.from(_N, "CreateConnectorInput", "VpcEndpointId"),
+            type = "string",
+            name = "VpcEndpointId",
+            target_id = prelude.String.id,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateConnectorInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateConnectorInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateConnectorOutput = schema.new({
+    id = id.from(_N, "CreateConnectorOutput"),
+    type = "structure",
+    members = {
+        ConnectorArn = schema.new({
+            id = id.from(_N, "CreateConnectorOutput", "ConnectorArn"),
+            type = "string",
+            name = "ConnectorArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteConnectorInput = schema.new({
+    id = id.from(_N, "DeleteConnectorInput"),
+    type = "structure",
+    members = {
+        ConnectorArn = schema.new({
+            id = id.from(_N, "DeleteConnectorInput", "ConnectorArn"),
+            type = "string",
+            name = "ConnectorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteConnectorOutput = schema.new({
+    id = id.from(_N, "DeleteConnectorOutput"),
+    type = "structure",
+})
+
+M.GetConnectorInput = schema.new({
+    id = id.from(_N, "GetConnectorInput"),
+    type = "structure",
+    members = {
+        ConnectorArn = schema.new({
+            id = id.from(_N, "GetConnectorInput", "ConnectorArn"),
+            type = "string",
+            name = "ConnectorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetConnectorOutput = schema.new({
+    id = id.from(_N, "GetConnectorOutput"),
+    type = "structure",
+    members = {
+        Connector = schema.new({
+            id = id.from(_N, "GetConnectorOutput", "Connector"),
+            type = "structure",
+            name = "Connector",
+            target_id = id.from(_N, "Connector"),
+            target = M.Connector,
+        }),
+    },
+})
+
+M.ListConnectorsInput = schema.new({
+    id = id.from(_N, "ListConnectorsInput"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListConnectorsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "MaxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListConnectorsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "NextToken" },
+            },
+        }),
+    },
+})
+
+M.ListConnectorsOutput = schema.new({
+    id = id.from(_N, "ListConnectorsOutput"),
+    type = "structure",
+    members = {
+        Connectors = schema.new({
+            id = id.from(_N, "ListConnectorsOutput", "Connectors"),
+            type = "list",
+            name = "Connectors",
+            target_id = prelude.Document.id,
+            list_member = M.ConnectorSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListConnectorsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceOutput"),
+    type = "structure",
+    members = {
+        Tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "TagResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceOutput"),
+    type = "structure",
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "UntagResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        TagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "TagKeys"),
+            type = "list",
+            name = "TagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "tagKeys" },
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
+return M

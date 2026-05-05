@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("scheduler.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("scheduler.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("scheduler.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createSchedule(input, options)
     return self:invokeOperation(input, {
         name = "CreateSchedule",
-        input_schema = types.CreateScheduleInput,
-        output_schema = types.CreateScheduleOutput,
+        input_schema = schemas.CreateScheduleInput,
+        output_schema = schemas.CreateScheduleOutput,
         http_method = "POST",
         http_path = "/schedules/{Name}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createScheduleGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateScheduleGroup",
-        input_schema = types.CreateScheduleGroupInput,
-        output_schema = types.CreateScheduleGroupOutput,
+        input_schema = schemas.CreateScheduleGroupInput,
+        output_schema = schemas.CreateScheduleGroupOutput,
         http_method = "POST",
         http_path = "/schedule-groups/{Name}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteSchedule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSchedule",
-        input_schema = types.DeleteScheduleInput,
-        output_schema = types.DeleteScheduleOutput,
+        input_schema = schemas.DeleteScheduleInput,
+        output_schema = schemas.DeleteScheduleOutput,
         http_method = "DELETE",
         http_path = "/schedules/{Name}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteScheduleGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteScheduleGroup",
-        input_schema = types.DeleteScheduleGroupInput,
-        output_schema = types.DeleteScheduleGroupOutput,
+        input_schema = schemas.DeleteScheduleGroupInput,
+        output_schema = schemas.DeleteScheduleGroupOutput,
         http_method = "DELETE",
         http_path = "/schedule-groups/{Name}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getSchedule(input, options)
     return self:invokeOperation(input, {
         name = "GetSchedule",
-        input_schema = types.GetScheduleInput,
-        output_schema = types.GetScheduleOutput,
+        input_schema = schemas.GetScheduleInput,
+        output_schema = schemas.GetScheduleOutput,
         http_method = "GET",
         http_path = "/schedules/{Name}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getScheduleGroup(input, options)
     return self:invokeOperation(input, {
         name = "GetScheduleGroup",
-        input_schema = types.GetScheduleGroupInput,
-        output_schema = types.GetScheduleGroupOutput,
+        input_schema = schemas.GetScheduleGroupInput,
+        output_schema = schemas.GetScheduleGroupOutput,
         http_method = "GET",
         http_path = "/schedule-groups/{Name}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listScheduleGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListScheduleGroups",
-        input_schema = types.ListScheduleGroupsInput,
-        output_schema = types.ListScheduleGroupsOutput,
+        input_schema = schemas.ListScheduleGroupsInput,
+        output_schema = schemas.ListScheduleGroupsOutput,
         http_method = "GET",
         http_path = "/schedule-groups",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listSchedules(input, options)
     return self:invokeOperation(input, {
         name = "ListSchedules",
-        input_schema = types.ListSchedulesInput,
-        output_schema = types.ListSchedulesOutput,
+        input_schema = schemas.ListSchedulesInput,
+        output_schema = schemas.ListSchedulesOutput,
         http_method = "GET",
         http_path = "/schedules",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:updateSchedule(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSchedule",
-        input_schema = types.UpdateScheduleInput,
-        output_schema = types.UpdateScheduleOutput,
+        input_schema = schemas.UpdateScheduleInput,
+        output_schema = schemas.UpdateScheduleOutput,
         http_method = "PUT",
         http_path = "/schedules/{Name}",
         effective_auth_schemes = {

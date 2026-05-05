@@ -1507,15 +1507,15 @@ local record ResourceNotFoundException
     Message: string
 end
 
-local type Domain = "RETAIL" | "CUSTOM" | "INVENTORY_PLANNING" | "EC2_CAPACITY" | "WORK_FORCE" | "WEB_TRAFFIC" | "METRICS"
-
-local type OptimizationMetric = "WAPE" | "RMSE" | "AverageWeightedQuantileLoss" | "MASE" | "MAPE"
-
-local type ImportMode = "FULL" | "INCREMENTAL"
-
 local type DatasetType = "TARGET_TIME_SERIES" | "RELATED_TIME_SERIES" | "ITEM_METADATA"
 
 local type AutoMLOverrideStrategy = "LatencyOptimized" | "AccuracyOptimized"
+
+local type Domain = "RETAIL" | "CUSTOM" | "INVENTORY_PLANNING" | "EC2_CAPACITY" | "WORK_FORCE" | "WEB_TRAFFIC" | "METRICS"
+
+local type ImportMode = "FULL" | "INCREMENTAL"
+
+local type OptimizationMetric = "WAPE" | "RMSE" | "AverageWeightedQuantileLoss" | "MASE" | "MAPE"
 
 local record M
     CreateAutoPredictorInput: CreateAutoPredictorInput

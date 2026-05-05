@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("osis.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("osis.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("osis.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createPipeline(input, options)
     return self:invokeOperation(input, {
         name = "CreatePipeline",
-        input_schema = types.CreatePipelineInput,
-        output_schema = types.CreatePipelineOutput,
+        input_schema = schemas.CreatePipelineInput,
+        output_schema = schemas.CreatePipelineOutput,
         http_method = "POST",
         http_path = "/2022-01-01/osis/createPipeline",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createPipelineEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "CreatePipelineEndpoint",
-        input_schema = types.CreatePipelineEndpointInput,
-        output_schema = types.CreatePipelineEndpointOutput,
+        input_schema = schemas.CreatePipelineEndpointInput,
+        output_schema = schemas.CreatePipelineEndpointOutput,
         http_method = "POST",
         http_path = "/2022-01-01/osis/createPipelineEndpoint",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deletePipeline(input, options)
     return self:invokeOperation(input, {
         name = "DeletePipeline",
-        input_schema = types.DeletePipelineInput,
-        output_schema = types.DeletePipelineOutput,
+        input_schema = schemas.DeletePipelineInput,
+        output_schema = schemas.DeletePipelineOutput,
         http_method = "DELETE",
         http_path = "/2022-01-01/osis/deletePipeline/{PipelineName}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deletePipelineEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "DeletePipelineEndpoint",
-        input_schema = types.DeletePipelineEndpointInput,
-        output_schema = types.DeletePipelineEndpointOutput,
+        input_schema = schemas.DeletePipelineEndpointInput,
+        output_schema = schemas.DeletePipelineEndpointOutput,
         http_method = "DELETE",
         http_path = "/2022-01-01/osis/deletePipelineEndpoint/{EndpointId}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourcePolicy",
-        input_schema = types.DeleteResourcePolicyInput,
-        output_schema = types.DeleteResourcePolicyOutput,
+        input_schema = schemas.DeleteResourcePolicyInput,
+        output_schema = schemas.DeleteResourcePolicyOutput,
         http_method = "DELETE",
         http_path = "/2022-01-01/osis/resourcePolicy/{ResourceArn}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getPipeline(input, options)
     return self:invokeOperation(input, {
         name = "GetPipeline",
-        input_schema = types.GetPipelineInput,
-        output_schema = types.GetPipelineOutput,
+        input_schema = schemas.GetPipelineInput,
+        output_schema = schemas.GetPipelineOutput,
         http_method = "GET",
         http_path = "/2022-01-01/osis/getPipeline/{PipelineName}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getPipelineBlueprint(input, options)
     return self:invokeOperation(input, {
         name = "GetPipelineBlueprint",
-        input_schema = types.GetPipelineBlueprintInput,
-        output_schema = types.GetPipelineBlueprintOutput,
+        input_schema = schemas.GetPipelineBlueprintInput,
+        output_schema = schemas.GetPipelineBlueprintOutput,
         http_method = "GET",
         http_path = "/2022-01-01/osis/getPipelineBlueprint/{BlueprintName}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getPipelineChangeProgress(input, options)
     return self:invokeOperation(input, {
         name = "GetPipelineChangeProgress",
-        input_schema = types.GetPipelineChangeProgressInput,
-        output_schema = types.GetPipelineChangeProgressOutput,
+        input_schema = schemas.GetPipelineChangeProgressInput,
+        output_schema = schemas.GetPipelineChangeProgressOutput,
         http_method = "GET",
         http_path = "/2022-01-01/osis/getPipelineChangeProgress/{PipelineName}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcePolicy",
-        input_schema = types.GetResourcePolicyInput,
-        output_schema = types.GetResourcePolicyOutput,
+        input_schema = schemas.GetResourcePolicyInput,
+        output_schema = schemas.GetResourcePolicyOutput,
         http_method = "GET",
         http_path = "/2022-01-01/osis/resourcePolicy/{ResourceArn}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listPipelineBlueprints(input, options)
     return self:invokeOperation(input, {
         name = "ListPipelineBlueprints",
-        input_schema = types.ListPipelineBlueprintsInput,
-        output_schema = types.ListPipelineBlueprintsOutput,
+        input_schema = schemas.ListPipelineBlueprintsInput,
+        output_schema = schemas.ListPipelineBlueprintsOutput,
         http_method = "POST",
         http_path = "/2022-01-01/osis/listPipelineBlueprints",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listPipelineEndpointConnections(input, options)
     return self:invokeOperation(input, {
         name = "ListPipelineEndpointConnections",
-        input_schema = types.ListPipelineEndpointConnectionsInput,
-        output_schema = types.ListPipelineEndpointConnectionsOutput,
+        input_schema = schemas.ListPipelineEndpointConnectionsInput,
+        output_schema = schemas.ListPipelineEndpointConnectionsOutput,
         http_method = "GET",
         http_path = "/2022-01-01/osis/listPipelineEndpointConnections",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listPipelineEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "ListPipelineEndpoints",
-        input_schema = types.ListPipelineEndpointsInput,
-        output_schema = types.ListPipelineEndpointsOutput,
+        input_schema = schemas.ListPipelineEndpointsInput,
+        output_schema = schemas.ListPipelineEndpointsOutput,
         http_method = "GET",
         http_path = "/2022-01-01/osis/listPipelineEndpoints",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listPipelines(input, options)
     return self:invokeOperation(input, {
         name = "ListPipelines",
-        input_schema = types.ListPipelinesInput,
-        output_schema = types.ListPipelinesOutput,
+        input_schema = schemas.ListPipelinesInput,
+        output_schema = schemas.ListPipelinesOutput,
         http_method = "GET",
         http_path = "/2022-01-01/osis/listPipelines",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/2022-01-01/osis/listTagsForResource",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:putResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutResourcePolicy",
-        input_schema = types.PutResourcePolicyInput,
-        output_schema = types.PutResourcePolicyOutput,
+        input_schema = schemas.PutResourcePolicyInput,
+        output_schema = schemas.PutResourcePolicyOutput,
         http_method = "PUT",
         http_path = "/2022-01-01/osis/resourcePolicy/{ResourceArn}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:revokePipelineEndpointConnections(input, options)
     return self:invokeOperation(input, {
         name = "RevokePipelineEndpointConnections",
-        input_schema = types.RevokePipelineEndpointConnectionsInput,
-        output_schema = types.RevokePipelineEndpointConnectionsOutput,
+        input_schema = schemas.RevokePipelineEndpointConnectionsInput,
+        output_schema = schemas.RevokePipelineEndpointConnectionsOutput,
         http_method = "POST",
         http_path = "/2022-01-01/osis/revokePipelineEndpointConnections",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:startPipeline(input, options)
     return self:invokeOperation(input, {
         name = "StartPipeline",
-        input_schema = types.StartPipelineInput,
-        output_schema = types.StartPipelineOutput,
+        input_schema = schemas.StartPipelineInput,
+        output_schema = schemas.StartPipelineOutput,
         http_method = "PUT",
         http_path = "/2022-01-01/osis/startPipeline/{PipelineName}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:stopPipeline(input, options)
     return self:invokeOperation(input, {
         name = "StopPipeline",
-        input_schema = types.StopPipelineInput,
-        output_schema = types.StopPipelineOutput,
+        input_schema = schemas.StopPipelineInput,
+        output_schema = schemas.StopPipelineOutput,
         http_method = "PUT",
         http_path = "/2022-01-01/osis/stopPipeline/{PipelineName}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/2022-01-01/osis/tagResource",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/2022-01-01/osis/untagResource",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:updatePipeline(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePipeline",
-        input_schema = types.UpdatePipelineInput,
-        output_schema = types.UpdatePipelineOutput,
+        input_schema = schemas.UpdatePipelineInput,
+        output_schema = schemas.UpdatePipelineOutput,
         http_method = "PUT",
         http_path = "/2022-01-01/osis/updatePipeline/{PipelineName}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:validatePipeline(input, options)
     return self:invokeOperation(input, {
         name = "ValidatePipeline",
-        input_schema = types.ValidatePipelineInput,
-        output_schema = types.ValidatePipelineOutput,
+        input_schema = schemas.ValidatePipelineInput,
+        output_schema = schemas.ValidatePipelineOutput,
         http_method = "POST",
         http_path = "/2022-01-01/osis/validatePipeline",
         effective_auth_schemes = {

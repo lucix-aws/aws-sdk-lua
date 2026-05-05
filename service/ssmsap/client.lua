@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("ssmsap.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("ssmsap.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("ssmsap.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:deleteResourcePermission(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourcePermission",
-        input_schema = types.DeleteResourcePermissionInput,
-        output_schema = types.DeleteResourcePermissionOutput,
+        input_schema = schemas.DeleteResourcePermissionInput,
+        output_schema = schemas.DeleteResourcePermissionOutput,
         http_method = "POST",
         http_path = "/delete-resource-permission",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deregisterApplication(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterApplication",
-        input_schema = types.DeregisterApplicationInput,
-        output_schema = types.DeregisterApplicationOutput,
+        input_schema = schemas.DeregisterApplicationInput,
+        output_schema = schemas.DeregisterApplicationOutput,
         http_method = "POST",
         http_path = "/deregister-application",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getApplication(input, options)
     return self:invokeOperation(input, {
         name = "GetApplication",
-        input_schema = types.GetApplicationInput,
-        output_schema = types.GetApplicationOutput,
+        input_schema = schemas.GetApplicationInput,
+        output_schema = schemas.GetApplicationOutput,
         http_method = "POST",
         http_path = "/get-application",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getComponent(input, options)
     return self:invokeOperation(input, {
         name = "GetComponent",
-        input_schema = types.GetComponentInput,
-        output_schema = types.GetComponentOutput,
+        input_schema = schemas.GetComponentInput,
+        output_schema = schemas.GetComponentOutput,
         http_method = "POST",
         http_path = "/get-component",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getConfigurationCheckOperation(input, options)
     return self:invokeOperation(input, {
         name = "GetConfigurationCheckOperation",
-        input_schema = types.GetConfigurationCheckOperationInput,
-        output_schema = types.GetConfigurationCheckOperationOutput,
+        input_schema = schemas.GetConfigurationCheckOperationInput,
+        output_schema = schemas.GetConfigurationCheckOperationOutput,
         http_method = "POST",
         http_path = "/get-configuration-check-operation",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getDatabase(input, options)
     return self:invokeOperation(input, {
         name = "GetDatabase",
-        input_schema = types.GetDatabaseInput,
-        output_schema = types.GetDatabaseOutput,
+        input_schema = schemas.GetDatabaseInput,
+        output_schema = schemas.GetDatabaseOutput,
         http_method = "POST",
         http_path = "/get-database",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getOperation(input, options)
     return self:invokeOperation(input, {
         name = "GetOperation",
-        input_schema = types.GetOperationInput,
-        output_schema = types.GetOperationOutput,
+        input_schema = schemas.GetOperationInput,
+        output_schema = schemas.GetOperationOutput,
         http_method = "POST",
         http_path = "/get-operation",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getResourcePermission(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcePermission",
-        input_schema = types.GetResourcePermissionInput,
-        output_schema = types.GetResourcePermissionOutput,
+        input_schema = schemas.GetResourcePermissionInput,
+        output_schema = schemas.GetResourcePermissionOutput,
         http_method = "POST",
         http_path = "/get-resource-permission",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listApplications(input, options)
     return self:invokeOperation(input, {
         name = "ListApplications",
-        input_schema = types.ListApplicationsInput,
-        output_schema = types.ListApplicationsOutput,
+        input_schema = schemas.ListApplicationsInput,
+        output_schema = schemas.ListApplicationsOutput,
         http_method = "POST",
         http_path = "/list-applications",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listComponents(input, options)
     return self:invokeOperation(input, {
         name = "ListComponents",
-        input_schema = types.ListComponentsInput,
-        output_schema = types.ListComponentsOutput,
+        input_schema = schemas.ListComponentsInput,
+        output_schema = schemas.ListComponentsOutput,
         http_method = "POST",
         http_path = "/list-components",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listConfigurationCheckDefinitions(input, options)
     return self:invokeOperation(input, {
         name = "ListConfigurationCheckDefinitions",
-        input_schema = types.ListConfigurationCheckDefinitionsInput,
-        output_schema = types.ListConfigurationCheckDefinitionsOutput,
+        input_schema = schemas.ListConfigurationCheckDefinitionsInput,
+        output_schema = schemas.ListConfigurationCheckDefinitionsOutput,
         http_method = "POST",
         http_path = "/list-configuration-check-definitions",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listConfigurationCheckOperations(input, options)
     return self:invokeOperation(input, {
         name = "ListConfigurationCheckOperations",
-        input_schema = types.ListConfigurationCheckOperationsInput,
-        output_schema = types.ListConfigurationCheckOperationsOutput,
+        input_schema = schemas.ListConfigurationCheckOperationsInput,
+        output_schema = schemas.ListConfigurationCheckOperationsOutput,
         http_method = "POST",
         http_path = "/list-configuration-check-operations",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listDatabases(input, options)
     return self:invokeOperation(input, {
         name = "ListDatabases",
-        input_schema = types.ListDatabasesInput,
-        output_schema = types.ListDatabasesOutput,
+        input_schema = schemas.ListDatabasesInput,
+        output_schema = schemas.ListDatabasesOutput,
         http_method = "POST",
         http_path = "/list-databases",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listOperationEvents(input, options)
     return self:invokeOperation(input, {
         name = "ListOperationEvents",
-        input_schema = types.ListOperationEventsInput,
-        output_schema = types.ListOperationEventsOutput,
+        input_schema = schemas.ListOperationEventsInput,
+        output_schema = schemas.ListOperationEventsOutput,
         http_method = "POST",
         http_path = "/list-operation-events",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listOperations(input, options)
     return self:invokeOperation(input, {
         name = "ListOperations",
-        input_schema = types.ListOperationsInput,
-        output_schema = types.ListOperationsOutput,
+        input_schema = schemas.ListOperationsInput,
+        output_schema = schemas.ListOperationsOutput,
         http_method = "POST",
         http_path = "/list-operations",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listSubCheckResults(input, options)
     return self:invokeOperation(input, {
         name = "ListSubCheckResults",
-        input_schema = types.ListSubCheckResultsInput,
-        output_schema = types.ListSubCheckResultsOutput,
+        input_schema = schemas.ListSubCheckResultsInput,
+        output_schema = schemas.ListSubCheckResultsOutput,
         http_method = "POST",
         http_path = "/list-sub-check-results",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listSubCheckRuleResults(input, options)
     return self:invokeOperation(input, {
         name = "ListSubCheckRuleResults",
-        input_schema = types.ListSubCheckRuleResultsInput,
-        output_schema = types.ListSubCheckRuleResultsOutput,
+        input_schema = schemas.ListSubCheckRuleResultsInput,
+        output_schema = schemas.ListSubCheckRuleResultsOutput,
         http_method = "POST",
         http_path = "/list-sub-check-rule-results",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:putResourcePermission(input, options)
     return self:invokeOperation(input, {
         name = "PutResourcePermission",
-        input_schema = types.PutResourcePermissionInput,
-        output_schema = types.PutResourcePermissionOutput,
+        input_schema = schemas.PutResourcePermissionInput,
+        output_schema = schemas.PutResourcePermissionOutput,
         http_method = "POST",
         http_path = "/put-resource-permission",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:registerApplication(input, options)
     return self:invokeOperation(input, {
         name = "RegisterApplication",
-        input_schema = types.RegisterApplicationInput,
-        output_schema = types.RegisterApplicationOutput,
+        input_schema = schemas.RegisterApplicationInput,
+        output_schema = schemas.RegisterApplicationOutput,
         http_method = "POST",
         http_path = "/register-application",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:startApplication(input, options)
     return self:invokeOperation(input, {
         name = "StartApplication",
-        input_schema = types.StartApplicationInput,
-        output_schema = types.StartApplicationOutput,
+        input_schema = schemas.StartApplicationInput,
+        output_schema = schemas.StartApplicationOutput,
         http_method = "POST",
         http_path = "/start-application",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:startApplicationRefresh(input, options)
     return self:invokeOperation(input, {
         name = "StartApplicationRefresh",
-        input_schema = types.StartApplicationRefreshInput,
-        output_schema = types.StartApplicationRefreshOutput,
+        input_schema = schemas.StartApplicationRefreshInput,
+        output_schema = schemas.StartApplicationRefreshOutput,
         http_method = "POST",
         http_path = "/start-application-refresh",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:startConfigurationChecks(input, options)
     return self:invokeOperation(input, {
         name = "StartConfigurationChecks",
-        input_schema = types.StartConfigurationChecksInput,
-        output_schema = types.StartConfigurationChecksOutput,
+        input_schema = schemas.StartConfigurationChecksInput,
+        output_schema = schemas.StartConfigurationChecksOutput,
         http_method = "POST",
         http_path = "/start-configuration-checks",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:stopApplication(input, options)
     return self:invokeOperation(input, {
         name = "StopApplication",
-        input_schema = types.StopApplicationInput,
-        output_schema = types.StopApplicationOutput,
+        input_schema = schemas.StopApplicationInput,
+        output_schema = schemas.StopApplicationOutput,
         http_method = "POST",
         http_path = "/stop-application",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:updateApplicationSettings(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApplicationSettings",
-        input_schema = types.UpdateApplicationSettingsInput,
-        output_schema = types.UpdateApplicationSettingsOutput,
+        input_schema = schemas.UpdateApplicationSettingsInput,
+        output_schema = schemas.UpdateApplicationSettingsOutput,
         http_method = "POST",
         http_path = "/update-application-settings",
         effective_auth_schemes = {

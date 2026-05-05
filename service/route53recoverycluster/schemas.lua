@@ -1,0 +1,515 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.route53recoverycluster"
+
+local M = {}
+
+M.AccessDeniedException = schema.new({
+    id = id.from(_N, "AccessDeniedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "AccessDeniedException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ConflictException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "ConflictException", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "ConflictException", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.EndpointTemporarilyUnavailableException = schema.new({
+    id = id.from(_N, "EndpointTemporarilyUnavailableException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "EndpointTemporarilyUnavailableException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetRoutingControlStateInput = schema.new({
+    id = id.from(_N, "GetRoutingControlStateInput"),
+    type = "structure",
+    members = {
+        RoutingControlArn = schema.new({
+            id = id.from(_N, "GetRoutingControlStateInput", "RoutingControlArn"),
+            type = "string",
+            name = "RoutingControlArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetRoutingControlStateOutput = schema.new({
+    id = id.from(_N, "GetRoutingControlStateOutput"),
+    type = "structure",
+    members = {
+        RoutingControlArn = schema.new({
+            id = id.from(_N, "GetRoutingControlStateOutput", "RoutingControlArn"),
+            type = "string",
+            name = "RoutingControlArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoutingControlState = schema.new({
+            id = id.from(_N, "GetRoutingControlStateOutput", "RoutingControlState"),
+            type = "string",
+            name = "RoutingControlState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoutingControlName = schema.new({
+            id = id.from(_N, "GetRoutingControlStateOutput", "RoutingControlName"),
+            type = "string",
+            name = "RoutingControlName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InternalServerException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        retryAfterSeconds = schema.new({
+            id = id.from(_N, "InternalServerException", "retryAfterSeconds"),
+            type = "integer",
+            name = "retryAfterSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_HEADER] = { name = "Retry-After" },
+            },
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ThrottlingException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        retryAfterSeconds = schema.new({
+            id = id.from(_N, "ThrottlingException", "retryAfterSeconds"),
+            type = "integer",
+            name = "retryAfterSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_HEADER] = { name = "Retry-After" },
+            },
+        }),
+    },
+})
+
+M.ValidationExceptionField = schema.new({
+    id = id.from(_N, "ValidationExceptionField"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "ValidationExceptionField", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "ValidationExceptionField", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        reason = schema.new({
+            id = id.from(_N, "ValidationException", "reason"),
+            type = "string",
+            name = "reason",
+            target_id = prelude.String.id,
+        }),
+        fields = schema.new({
+            id = id.from(_N, "ValidationException", "fields"),
+            type = "list",
+            name = "fields",
+            target_id = prelude.Document.id,
+            list_member = M.ValidationExceptionField,
+        }),
+    },
+})
+
+M.ListRoutingControlsInput = schema.new({
+    id = id.from(_N, "ListRoutingControlsInput"),
+    type = "structure",
+    members = {
+        ControlPanelArn = schema.new({
+            id = id.from(_N, "ListRoutingControlsInput", "ControlPanelArn"),
+            type = "string",
+            name = "ControlPanelArn",
+            target_id = prelude.String.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListRoutingControlsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListRoutingControlsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.RoutingControl = schema.new({
+    id = id.from(_N, "RoutingControl"),
+    type = "structure",
+    members = {
+        ControlPanelArn = schema.new({
+            id = id.from(_N, "RoutingControl", "ControlPanelArn"),
+            type = "string",
+            name = "ControlPanelArn",
+            target_id = prelude.String.id,
+        }),
+        ControlPanelName = schema.new({
+            id = id.from(_N, "RoutingControl", "ControlPanelName"),
+            type = "string",
+            name = "ControlPanelName",
+            target_id = prelude.String.id,
+        }),
+        RoutingControlArn = schema.new({
+            id = id.from(_N, "RoutingControl", "RoutingControlArn"),
+            type = "string",
+            name = "RoutingControlArn",
+            target_id = prelude.String.id,
+        }),
+        RoutingControlName = schema.new({
+            id = id.from(_N, "RoutingControl", "RoutingControlName"),
+            type = "string",
+            name = "RoutingControlName",
+            target_id = prelude.String.id,
+        }),
+        RoutingControlState = schema.new({
+            id = id.from(_N, "RoutingControl", "RoutingControlState"),
+            type = "string",
+            name = "RoutingControlState",
+            target_id = prelude.String.id,
+        }),
+        Owner = schema.new({
+            id = id.from(_N, "RoutingControl", "Owner"),
+            type = "string",
+            name = "Owner",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListRoutingControlsOutput = schema.new({
+    id = id.from(_N, "ListRoutingControlsOutput"),
+    type = "structure",
+    members = {
+        RoutingControls = schema.new({
+            id = id.from(_N, "ListRoutingControlsOutput", "RoutingControls"),
+            type = "list",
+            name = "RoutingControls",
+            target_id = prelude.Document.id,
+            list_member = M.RoutingControl,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListRoutingControlsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceLimitExceededException = schema.new({
+    id = id.from(_N, "ServiceLimitExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceLimitExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "ServiceLimitExceededException", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "ServiceLimitExceededException", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+        }),
+        limitCode = schema.new({
+            id = id.from(_N, "ServiceLimitExceededException", "limitCode"),
+            type = "string",
+            name = "limitCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        serviceCode = schema.new({
+            id = id.from(_N, "ServiceLimitExceededException", "serviceCode"),
+            type = "string",
+            name = "serviceCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateRoutingControlStateInput = schema.new({
+    id = id.from(_N, "UpdateRoutingControlStateInput"),
+    type = "structure",
+    members = {
+        RoutingControlArn = schema.new({
+            id = id.from(_N, "UpdateRoutingControlStateInput", "RoutingControlArn"),
+            type = "string",
+            name = "RoutingControlArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoutingControlState = schema.new({
+            id = id.from(_N, "UpdateRoutingControlStateInput", "RoutingControlState"),
+            type = "string",
+            name = "RoutingControlState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SafetyRulesToOverride = schema.new({
+            id = id.from(_N, "UpdateRoutingControlStateInput", "SafetyRulesToOverride"),
+            type = "list",
+            name = "SafetyRulesToOverride",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.UpdateRoutingControlStateOutput = schema.new({
+    id = id.from(_N, "UpdateRoutingControlStateOutput"),
+    type = "structure",
+})
+
+M.UpdateRoutingControlStateEntry = schema.new({
+    id = id.from(_N, "UpdateRoutingControlStateEntry"),
+    type = "structure",
+    members = {
+        RoutingControlArn = schema.new({
+            id = id.from(_N, "UpdateRoutingControlStateEntry", "RoutingControlArn"),
+            type = "string",
+            name = "RoutingControlArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoutingControlState = schema.new({
+            id = id.from(_N, "UpdateRoutingControlStateEntry", "RoutingControlState"),
+            type = "string",
+            name = "RoutingControlState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateRoutingControlStatesInput = schema.new({
+    id = id.from(_N, "UpdateRoutingControlStatesInput"),
+    type = "structure",
+    members = {
+        UpdateRoutingControlStateEntries = schema.new({
+            id = id.from(_N, "UpdateRoutingControlStatesInput", "UpdateRoutingControlStateEntries"),
+            type = "list",
+            name = "UpdateRoutingControlStateEntries",
+            target_id = prelude.Document.id,
+            list_member = M.UpdateRoutingControlStateEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SafetyRulesToOverride = schema.new({
+            id = id.from(_N, "UpdateRoutingControlStatesInput", "SafetyRulesToOverride"),
+            type = "list",
+            name = "SafetyRulesToOverride",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.UpdateRoutingControlStatesOutput = schema.new({
+    id = id.from(_N, "UpdateRoutingControlStatesOutput"),
+    type = "structure",
+})
+
+return M

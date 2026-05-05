@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("acm.endpoint_rules")
+local schemas = require("acm.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("acm.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addTagsToCertificate(input, options)
     return self:invokeOperation(input, {
         name = "AddTagsToCertificate",
-        input_schema = types.AddTagsToCertificateInput,
-        output_schema = types.AddTagsToCertificateOutput,
+        input_schema = schemas.AddTagsToCertificateInput,
+        output_schema = schemas.AddTagsToCertificateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteCertificate(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCertificate",
-        input_schema = types.DeleteCertificateInput,
-        output_schema = types.DeleteCertificateOutput,
+        input_schema = schemas.DeleteCertificateInput,
+        output_schema = schemas.DeleteCertificateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:describeCertificate(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCertificate",
-        input_schema = types.DescribeCertificateInput,
-        output_schema = types.DescribeCertificateOutput,
+        input_schema = schemas.DescribeCertificateInput,
+        output_schema = schemas.DescribeCertificateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:exportCertificate(input, options)
     return self:invokeOperation(input, {
         name = "ExportCertificate",
-        input_schema = types.ExportCertificateInput,
-        output_schema = types.ExportCertificateOutput,
+        input_schema = schemas.ExportCertificateInput,
+        output_schema = schemas.ExportCertificateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getAccountConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetAccountConfiguration",
-        input_schema = types.GetAccountConfigurationInput,
-        output_schema = types.GetAccountConfigurationOutput,
+        input_schema = schemas.GetAccountConfigurationInput,
+        output_schema = schemas.GetAccountConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getCertificate(input, options)
     return self:invokeOperation(input, {
         name = "GetCertificate",
-        input_schema = types.GetCertificateInput,
-        output_schema = types.GetCertificateOutput,
+        input_schema = schemas.GetCertificateInput,
+        output_schema = schemas.GetCertificateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:importCertificate(input, options)
     return self:invokeOperation(input, {
         name = "ImportCertificate",
-        input_schema = types.ImportCertificateInput,
-        output_schema = types.ImportCertificateOutput,
+        input_schema = schemas.ImportCertificateInput,
+        output_schema = schemas.ImportCertificateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listCertificates(input, options)
     return self:invokeOperation(input, {
         name = "ListCertificates",
-        input_schema = types.ListCertificatesInput,
-        output_schema = types.ListCertificatesOutput,
+        input_schema = schemas.ListCertificatesInput,
+        output_schema = schemas.ListCertificatesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listTagsForCertificate(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForCertificate",
-        input_schema = types.ListTagsForCertificateInput,
-        output_schema = types.ListTagsForCertificateOutput,
+        input_schema = schemas.ListTagsForCertificateInput,
+        output_schema = schemas.ListTagsForCertificateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:putAccountConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutAccountConfiguration",
-        input_schema = types.PutAccountConfigurationInput,
-        output_schema = types.PutAccountConfigurationOutput,
+        input_schema = schemas.PutAccountConfigurationInput,
+        output_schema = schemas.PutAccountConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:removeTagsFromCertificate(input, options)
     return self:invokeOperation(input, {
         name = "RemoveTagsFromCertificate",
-        input_schema = types.RemoveTagsFromCertificateInput,
-        output_schema = types.RemoveTagsFromCertificateOutput,
+        input_schema = schemas.RemoveTagsFromCertificateInput,
+        output_schema = schemas.RemoveTagsFromCertificateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:renewCertificate(input, options)
     return self:invokeOperation(input, {
         name = "RenewCertificate",
-        input_schema = types.RenewCertificateInput,
-        output_schema = types.RenewCertificateOutput,
+        input_schema = schemas.RenewCertificateInput,
+        output_schema = schemas.RenewCertificateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:requestCertificate(input, options)
     return self:invokeOperation(input, {
         name = "RequestCertificate",
-        input_schema = types.RequestCertificateInput,
-        output_schema = types.RequestCertificateOutput,
+        input_schema = schemas.RequestCertificateInput,
+        output_schema = schemas.RequestCertificateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:resendValidationEmail(input, options)
     return self:invokeOperation(input, {
         name = "ResendValidationEmail",
-        input_schema = types.ResendValidationEmailInput,
-        output_schema = types.ResendValidationEmailOutput,
+        input_schema = schemas.ResendValidationEmailInput,
+        output_schema = schemas.ResendValidationEmailOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:revokeCertificate(input, options)
     return self:invokeOperation(input, {
         name = "RevokeCertificate",
-        input_schema = types.RevokeCertificateInput,
-        output_schema = types.RevokeCertificateOutput,
+        input_schema = schemas.RevokeCertificateInput,
+        output_schema = schemas.RevokeCertificateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:searchCertificates(input, options)
     return self:invokeOperation(input, {
         name = "SearchCertificates",
-        input_schema = types.SearchCertificatesInput,
-        output_schema = types.SearchCertificatesOutput,
+        input_schema = schemas.SearchCertificatesInput,
+        output_schema = schemas.SearchCertificatesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:updateCertificateOptions(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCertificateOptions",
-        input_schema = types.UpdateCertificateOptionsInput,
-        output_schema = types.UpdateCertificateOptionsOutput,
+        input_schema = schemas.UpdateCertificateOptionsInput,
+        output_schema = schemas.UpdateCertificateOptionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

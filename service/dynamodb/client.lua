@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("dynamodb.endpoint_rules")
+local schemas = require("dynamodb.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("dynamodb.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchExecuteStatement(input, options)
     return self:invokeOperation(input, {
         name = "BatchExecuteStatement",
-        input_schema = types.BatchExecuteStatementInput,
-        output_schema = types.BatchExecuteStatementOutput,
+        input_schema = schemas.BatchExecuteStatementInput,
+        output_schema = schemas.BatchExecuteStatementOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchGetItem(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetItem",
-        input_schema = types.BatchGetItemInput,
-        output_schema = types.BatchGetItemOutput,
+        input_schema = schemas.BatchGetItemInput,
+        output_schema = schemas.BatchGetItemOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchWriteItem(input, options)
     return self:invokeOperation(input, {
         name = "BatchWriteItem",
-        input_schema = types.BatchWriteItemInput,
-        output_schema = types.BatchWriteItemOutput,
+        input_schema = schemas.BatchWriteItemInput,
+        output_schema = schemas.BatchWriteItemOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createBackup(input, options)
     return self:invokeOperation(input, {
         name = "CreateBackup",
-        input_schema = types.CreateBackupInput,
-        output_schema = types.CreateBackupOutput,
+        input_schema = schemas.CreateBackupInput,
+        output_schema = schemas.CreateBackupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -104,8 +104,8 @@ end
 function Client:createGlobalTable(input, options)
     return self:invokeOperation(input, {
         name = "CreateGlobalTable",
-        input_schema = types.CreateGlobalTableInput,
-        output_schema = types.CreateGlobalTableOutput,
+        input_schema = schemas.CreateGlobalTableInput,
+        output_schema = schemas.CreateGlobalTableOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -120,8 +120,8 @@ end
 function Client:createTable(input, options)
     return self:invokeOperation(input, {
         name = "CreateTable",
-        input_schema = types.CreateTableInput,
-        output_schema = types.CreateTableOutput,
+        input_schema = schemas.CreateTableInput,
+        output_schema = schemas.CreateTableOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -136,8 +136,8 @@ end
 function Client:deleteBackup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBackup",
-        input_schema = types.DeleteBackupInput,
-        output_schema = types.DeleteBackupOutput,
+        input_schema = schemas.DeleteBackupInput,
+        output_schema = schemas.DeleteBackupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -152,8 +152,8 @@ end
 function Client:deleteItem(input, options)
     return self:invokeOperation(input, {
         name = "DeleteItem",
-        input_schema = types.DeleteItemInput,
-        output_schema = types.DeleteItemOutput,
+        input_schema = schemas.DeleteItemInput,
+        output_schema = schemas.DeleteItemOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -168,8 +168,8 @@ end
 function Client:deleteResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourcePolicy",
-        input_schema = types.DeleteResourcePolicyInput,
-        output_schema = types.DeleteResourcePolicyOutput,
+        input_schema = schemas.DeleteResourcePolicyInput,
+        output_schema = schemas.DeleteResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -184,8 +184,8 @@ end
 function Client:deleteTable(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTable",
-        input_schema = types.DeleteTableInput,
-        output_schema = types.DeleteTableOutput,
+        input_schema = schemas.DeleteTableInput,
+        output_schema = schemas.DeleteTableOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -200,8 +200,8 @@ end
 function Client:describeBackup(input, options)
     return self:invokeOperation(input, {
         name = "DescribeBackup",
-        input_schema = types.DescribeBackupInput,
-        output_schema = types.DescribeBackupOutput,
+        input_schema = schemas.DescribeBackupInput,
+        output_schema = schemas.DescribeBackupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -216,8 +216,8 @@ end
 function Client:describeContinuousBackups(input, options)
     return self:invokeOperation(input, {
         name = "DescribeContinuousBackups",
-        input_schema = types.DescribeContinuousBackupsInput,
-        output_schema = types.DescribeContinuousBackupsOutput,
+        input_schema = schemas.DescribeContinuousBackupsInput,
+        output_schema = schemas.DescribeContinuousBackupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -232,8 +232,8 @@ end
 function Client:describeContributorInsights(input, options)
     return self:invokeOperation(input, {
         name = "DescribeContributorInsights",
-        input_schema = types.DescribeContributorInsightsInput,
-        output_schema = types.DescribeContributorInsightsOutput,
+        input_schema = schemas.DescribeContributorInsightsInput,
+        output_schema = schemas.DescribeContributorInsightsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -248,8 +248,8 @@ end
 function Client:describeEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEndpoints",
-        input_schema = types.DescribeEndpointsInput,
-        output_schema = types.DescribeEndpointsOutput,
+        input_schema = schemas.DescribeEndpointsInput,
+        output_schema = schemas.DescribeEndpointsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -261,8 +261,8 @@ end
 function Client:describeExport(input, options)
     return self:invokeOperation(input, {
         name = "DescribeExport",
-        input_schema = types.DescribeExportInput,
-        output_schema = types.DescribeExportOutput,
+        input_schema = schemas.DescribeExportInput,
+        output_schema = schemas.DescribeExportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -277,8 +277,8 @@ end
 function Client:describeGlobalTable(input, options)
     return self:invokeOperation(input, {
         name = "DescribeGlobalTable",
-        input_schema = types.DescribeGlobalTableInput,
-        output_schema = types.DescribeGlobalTableOutput,
+        input_schema = schemas.DescribeGlobalTableInput,
+        output_schema = schemas.DescribeGlobalTableOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -293,8 +293,8 @@ end
 function Client:describeGlobalTableSettings(input, options)
     return self:invokeOperation(input, {
         name = "DescribeGlobalTableSettings",
-        input_schema = types.DescribeGlobalTableSettingsInput,
-        output_schema = types.DescribeGlobalTableSettingsOutput,
+        input_schema = schemas.DescribeGlobalTableSettingsInput,
+        output_schema = schemas.DescribeGlobalTableSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:describeImport(input, options)
     return self:invokeOperation(input, {
         name = "DescribeImport",
-        input_schema = types.DescribeImportInput,
-        output_schema = types.DescribeImportOutput,
+        input_schema = schemas.DescribeImportInput,
+        output_schema = schemas.DescribeImportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -325,8 +325,8 @@ end
 function Client:describeKinesisStreamingDestination(input, options)
     return self:invokeOperation(input, {
         name = "DescribeKinesisStreamingDestination",
-        input_schema = types.DescribeKinesisStreamingDestinationInput,
-        output_schema = types.DescribeKinesisStreamingDestinationOutput,
+        input_schema = schemas.DescribeKinesisStreamingDestinationInput,
+        output_schema = schemas.DescribeKinesisStreamingDestinationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -341,8 +341,8 @@ end
 function Client:describeLimits(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLimits",
-        input_schema = types.DescribeLimitsInput,
-        output_schema = types.DescribeLimitsOutput,
+        input_schema = schemas.DescribeLimitsInput,
+        output_schema = schemas.DescribeLimitsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -354,8 +354,8 @@ end
 function Client:describeTable(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTable",
-        input_schema = types.DescribeTableInput,
-        output_schema = types.DescribeTableOutput,
+        input_schema = schemas.DescribeTableInput,
+        output_schema = schemas.DescribeTableOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -370,8 +370,8 @@ end
 function Client:describeTableReplicaAutoScaling(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTableReplicaAutoScaling",
-        input_schema = types.DescribeTableReplicaAutoScalingInput,
-        output_schema = types.DescribeTableReplicaAutoScalingOutput,
+        input_schema = schemas.DescribeTableReplicaAutoScalingInput,
+        output_schema = schemas.DescribeTableReplicaAutoScalingOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -386,8 +386,8 @@ end
 function Client:describeTimeToLive(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTimeToLive",
-        input_schema = types.DescribeTimeToLiveInput,
-        output_schema = types.DescribeTimeToLiveOutput,
+        input_schema = schemas.DescribeTimeToLiveInput,
+        output_schema = schemas.DescribeTimeToLiveOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -402,8 +402,8 @@ end
 function Client:disableKinesisStreamingDestination(input, options)
     return self:invokeOperation(input, {
         name = "DisableKinesisStreamingDestination",
-        input_schema = types.DisableKinesisStreamingDestinationInput,
-        output_schema = types.DisableKinesisStreamingDestinationOutput,
+        input_schema = schemas.DisableKinesisStreamingDestinationInput,
+        output_schema = schemas.DisableKinesisStreamingDestinationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -418,8 +418,8 @@ end
 function Client:enableKinesisStreamingDestination(input, options)
     return self:invokeOperation(input, {
         name = "EnableKinesisStreamingDestination",
-        input_schema = types.EnableKinesisStreamingDestinationInput,
-        output_schema = types.EnableKinesisStreamingDestinationOutput,
+        input_schema = schemas.EnableKinesisStreamingDestinationInput,
+        output_schema = schemas.EnableKinesisStreamingDestinationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -434,8 +434,8 @@ end
 function Client:executeStatement(input, options)
     return self:invokeOperation(input, {
         name = "ExecuteStatement",
-        input_schema = types.ExecuteStatementInput,
-        output_schema = types.ExecuteStatementOutput,
+        input_schema = schemas.ExecuteStatementInput,
+        output_schema = schemas.ExecuteStatementOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -447,8 +447,8 @@ end
 function Client:executeTransaction(input, options)
     return self:invokeOperation(input, {
         name = "ExecuteTransaction",
-        input_schema = types.ExecuteTransactionInput,
-        output_schema = types.ExecuteTransactionOutput,
+        input_schema = schemas.ExecuteTransactionInput,
+        output_schema = schemas.ExecuteTransactionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -460,8 +460,8 @@ end
 function Client:exportTableToPointInTime(input, options)
     return self:invokeOperation(input, {
         name = "ExportTableToPointInTime",
-        input_schema = types.ExportTableToPointInTimeInput,
-        output_schema = types.ExportTableToPointInTimeOutput,
+        input_schema = schemas.ExportTableToPointInTimeInput,
+        output_schema = schemas.ExportTableToPointInTimeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -476,8 +476,8 @@ end
 function Client:getItem(input, options)
     return self:invokeOperation(input, {
         name = "GetItem",
-        input_schema = types.GetItemInput,
-        output_schema = types.GetItemOutput,
+        input_schema = schemas.GetItemInput,
+        output_schema = schemas.GetItemOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -492,8 +492,8 @@ end
 function Client:getResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcePolicy",
-        input_schema = types.GetResourcePolicyInput,
-        output_schema = types.GetResourcePolicyOutput,
+        input_schema = schemas.GetResourcePolicyInput,
+        output_schema = schemas.GetResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -508,8 +508,8 @@ end
 function Client:importTable(input, options)
     return self:invokeOperation(input, {
         name = "ImportTable",
-        input_schema = types.ImportTableInput,
-        output_schema = types.ImportTableOutput,
+        input_schema = schemas.ImportTableInput,
+        output_schema = schemas.ImportTableOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -521,8 +521,8 @@ end
 function Client:listBackups(input, options)
     return self:invokeOperation(input, {
         name = "ListBackups",
-        input_schema = types.ListBackupsInput,
-        output_schema = types.ListBackupsOutput,
+        input_schema = schemas.ListBackupsInput,
+        output_schema = schemas.ListBackupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -537,8 +537,8 @@ end
 function Client:listContributorInsights(input, options)
     return self:invokeOperation(input, {
         name = "ListContributorInsights",
-        input_schema = types.ListContributorInsightsInput,
-        output_schema = types.ListContributorInsightsOutput,
+        input_schema = schemas.ListContributorInsightsInput,
+        output_schema = schemas.ListContributorInsightsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -553,8 +553,8 @@ end
 function Client:listExports(input, options)
     return self:invokeOperation(input, {
         name = "ListExports",
-        input_schema = types.ListExportsInput,
-        output_schema = types.ListExportsOutput,
+        input_schema = schemas.ListExportsInput,
+        output_schema = schemas.ListExportsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:listGlobalTables(input, options)
     return self:invokeOperation(input, {
         name = "ListGlobalTables",
-        input_schema = types.ListGlobalTablesInput,
-        output_schema = types.ListGlobalTablesOutput,
+        input_schema = schemas.ListGlobalTablesInput,
+        output_schema = schemas.ListGlobalTablesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:listImports(input, options)
     return self:invokeOperation(input, {
         name = "ListImports",
-        input_schema = types.ListImportsInput,
-        output_schema = types.ListImportsOutput,
+        input_schema = schemas.ListImportsInput,
+        output_schema = schemas.ListImportsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -598,8 +598,8 @@ end
 function Client:listTables(input, options)
     return self:invokeOperation(input, {
         name = "ListTables",
-        input_schema = types.ListTablesInput,
-        output_schema = types.ListTablesOutput,
+        input_schema = schemas.ListTablesInput,
+        output_schema = schemas.ListTablesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -611,8 +611,8 @@ end
 function Client:listTagsOfResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsOfResource",
-        input_schema = types.ListTagsOfResourceInput,
-        output_schema = types.ListTagsOfResourceOutput,
+        input_schema = schemas.ListTagsOfResourceInput,
+        output_schema = schemas.ListTagsOfResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -627,8 +627,8 @@ end
 function Client:putItem(input, options)
     return self:invokeOperation(input, {
         name = "PutItem",
-        input_schema = types.PutItemInput,
-        output_schema = types.PutItemOutput,
+        input_schema = schemas.PutItemInput,
+        output_schema = schemas.PutItemOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -643,8 +643,8 @@ end
 function Client:putResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutResourcePolicy",
-        input_schema = types.PutResourcePolicyInput,
-        output_schema = types.PutResourcePolicyOutput,
+        input_schema = schemas.PutResourcePolicyInput,
+        output_schema = schemas.PutResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -659,8 +659,8 @@ end
 function Client:query(input, options)
     return self:invokeOperation(input, {
         name = "Query",
-        input_schema = types.QueryInput,
-        output_schema = types.QueryOutput,
+        input_schema = schemas.QueryInput,
+        output_schema = schemas.QueryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -675,8 +675,8 @@ end
 function Client:restoreTableFromBackup(input, options)
     return self:invokeOperation(input, {
         name = "RestoreTableFromBackup",
-        input_schema = types.RestoreTableFromBackupInput,
-        output_schema = types.RestoreTableFromBackupOutput,
+        input_schema = schemas.RestoreTableFromBackupInput,
+        output_schema = schemas.RestoreTableFromBackupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -691,8 +691,8 @@ end
 function Client:restoreTableToPointInTime(input, options)
     return self:invokeOperation(input, {
         name = "RestoreTableToPointInTime",
-        input_schema = types.RestoreTableToPointInTimeInput,
-        output_schema = types.RestoreTableToPointInTimeOutput,
+        input_schema = schemas.RestoreTableToPointInTimeInput,
+        output_schema = schemas.RestoreTableToPointInTimeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -707,8 +707,8 @@ end
 function Client:scan(input, options)
     return self:invokeOperation(input, {
         name = "Scan",
-        input_schema = types.ScanInput,
-        output_schema = types.ScanOutput,
+        input_schema = schemas.ScanInput,
+        output_schema = schemas.ScanOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -723,8 +723,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -739,8 +739,8 @@ end
 function Client:transactGetItems(input, options)
     return self:invokeOperation(input, {
         name = "TransactGetItems",
-        input_schema = types.TransactGetItemsInput,
-        output_schema = types.TransactGetItemsOutput,
+        input_schema = schemas.TransactGetItemsInput,
+        output_schema = schemas.TransactGetItemsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -752,8 +752,8 @@ end
 function Client:transactWriteItems(input, options)
     return self:invokeOperation(input, {
         name = "TransactWriteItems",
-        input_schema = types.TransactWriteItemsInput,
-        output_schema = types.TransactWriteItemsOutput,
+        input_schema = schemas.TransactWriteItemsInput,
+        output_schema = schemas.TransactWriteItemsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -765,8 +765,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -781,8 +781,8 @@ end
 function Client:updateContinuousBackups(input, options)
     return self:invokeOperation(input, {
         name = "UpdateContinuousBackups",
-        input_schema = types.UpdateContinuousBackupsInput,
-        output_schema = types.UpdateContinuousBackupsOutput,
+        input_schema = schemas.UpdateContinuousBackupsInput,
+        output_schema = schemas.UpdateContinuousBackupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -797,8 +797,8 @@ end
 function Client:updateContributorInsights(input, options)
     return self:invokeOperation(input, {
         name = "UpdateContributorInsights",
-        input_schema = types.UpdateContributorInsightsInput,
-        output_schema = types.UpdateContributorInsightsOutput,
+        input_schema = schemas.UpdateContributorInsightsInput,
+        output_schema = schemas.UpdateContributorInsightsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -813,8 +813,8 @@ end
 function Client:updateGlobalTable(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGlobalTable",
-        input_schema = types.UpdateGlobalTableInput,
-        output_schema = types.UpdateGlobalTableOutput,
+        input_schema = schemas.UpdateGlobalTableInput,
+        output_schema = schemas.UpdateGlobalTableOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:updateGlobalTableSettings(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGlobalTableSettings",
-        input_schema = types.UpdateGlobalTableSettingsInput,
-        output_schema = types.UpdateGlobalTableSettingsOutput,
+        input_schema = schemas.UpdateGlobalTableSettingsInput,
+        output_schema = schemas.UpdateGlobalTableSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -845,8 +845,8 @@ end
 function Client:updateItem(input, options)
     return self:invokeOperation(input, {
         name = "UpdateItem",
-        input_schema = types.UpdateItemInput,
-        output_schema = types.UpdateItemOutput,
+        input_schema = schemas.UpdateItemInput,
+        output_schema = schemas.UpdateItemOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -861,8 +861,8 @@ end
 function Client:updateKinesisStreamingDestination(input, options)
     return self:invokeOperation(input, {
         name = "UpdateKinesisStreamingDestination",
-        input_schema = types.UpdateKinesisStreamingDestinationInput,
-        output_schema = types.UpdateKinesisStreamingDestinationOutput,
+        input_schema = schemas.UpdateKinesisStreamingDestinationInput,
+        output_schema = schemas.UpdateKinesisStreamingDestinationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -877,8 +877,8 @@ end
 function Client:updateTable(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTable",
-        input_schema = types.UpdateTableInput,
-        output_schema = types.UpdateTableOutput,
+        input_schema = schemas.UpdateTableInput,
+        output_schema = schemas.UpdateTableOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -893,8 +893,8 @@ end
 function Client:updateTableReplicaAutoScaling(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTableReplicaAutoScaling",
-        input_schema = types.UpdateTableReplicaAutoScalingInput,
-        output_schema = types.UpdateTableReplicaAutoScalingOutput,
+        input_schema = schemas.UpdateTableReplicaAutoScalingInput,
+        output_schema = schemas.UpdateTableReplicaAutoScalingOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -909,8 +909,8 @@ end
 function Client:updateTimeToLive(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTimeToLive",
-        input_schema = types.UpdateTimeToLiveInput,
-        output_schema = types.UpdateTimeToLiveOutput,
+        input_schema = schemas.UpdateTimeToLiveInput,
+        output_schema = schemas.UpdateTimeToLiveOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

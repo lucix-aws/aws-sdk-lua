@@ -3022,13 +3022,13 @@ local record ValidationException
     Message: string
 end
 
-local type DirectoryState = "ENABLED" | "DISABLED" | "DELETED"
-
-local type ObjectType = "NODE" | "LEAF_NODE" | "POLICY" | "INDEX"
-
 local type ConsistencyLevel = "SERIALIZABLE" | "EVENTUAL"
 
 local type FacetStyle = "STATIC" | "DYNAMIC"
+
+local type DirectoryState = "ENABLED" | "DISABLED" | "DELETED"
+
+local type ObjectType = "NODE" | "LEAF_NODE" | "POLICY" | "INDEX"
 
 local record M
     AddFacetToObjectInput: AddFacetToObjectInput

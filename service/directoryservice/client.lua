@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("directoryservice.endpoint_rules")
+local schemas = require("directoryservice.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("directoryservice.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptSharedDirectory(input, options)
     return self:invokeOperation(input, {
         name = "AcceptSharedDirectory",
-        input_schema = types.AcceptSharedDirectoryInput,
-        output_schema = types.AcceptSharedDirectoryOutput,
+        input_schema = schemas.AcceptSharedDirectoryInput,
+        output_schema = schemas.AcceptSharedDirectoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:addIpRoutes(input, options)
     return self:invokeOperation(input, {
         name = "AddIpRoutes",
-        input_schema = types.AddIpRoutesInput,
-        output_schema = types.AddIpRoutesOutput,
+        input_schema = schemas.AddIpRoutesInput,
+        output_schema = schemas.AddIpRoutesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:addRegion(input, options)
     return self:invokeOperation(input, {
         name = "AddRegion",
-        input_schema = types.AddRegionInput,
-        output_schema = types.AddRegionOutput,
+        input_schema = schemas.AddRegionInput,
+        output_schema = schemas.AddRegionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:addTagsToResource(input, options)
     return self:invokeOperation(input, {
         name = "AddTagsToResource",
-        input_schema = types.AddTagsToResourceInput,
-        output_schema = types.AddTagsToResourceOutput,
+        input_schema = schemas.AddTagsToResourceInput,
+        output_schema = schemas.AddTagsToResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:cancelSchemaExtension(input, options)
     return self:invokeOperation(input, {
         name = "CancelSchemaExtension",
-        input_schema = types.CancelSchemaExtensionInput,
-        output_schema = types.CancelSchemaExtensionOutput,
+        input_schema = schemas.CancelSchemaExtensionInput,
+        output_schema = schemas.CancelSchemaExtensionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:connectDirectory(input, options)
     return self:invokeOperation(input, {
         name = "ConnectDirectory",
-        input_schema = types.ConnectDirectoryInput,
-        output_schema = types.ConnectDirectoryOutput,
+        input_schema = schemas.ConnectDirectoryInput,
+        output_schema = schemas.ConnectDirectoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createAlias(input, options)
     return self:invokeOperation(input, {
         name = "CreateAlias",
-        input_schema = types.CreateAliasInput,
-        output_schema = types.CreateAliasOutput,
+        input_schema = schemas.CreateAliasInput,
+        output_schema = schemas.CreateAliasOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createComputer(input, options)
     return self:invokeOperation(input, {
         name = "CreateComputer",
-        input_schema = types.CreateComputerInput,
-        output_schema = types.CreateComputerOutput,
+        input_schema = schemas.CreateComputerInput,
+        output_schema = schemas.CreateComputerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createConditionalForwarder(input, options)
     return self:invokeOperation(input, {
         name = "CreateConditionalForwarder",
-        input_schema = types.CreateConditionalForwarderInput,
-        output_schema = types.CreateConditionalForwarderOutput,
+        input_schema = schemas.CreateConditionalForwarderInput,
+        output_schema = schemas.CreateConditionalForwarderOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createDirectory(input, options)
     return self:invokeOperation(input, {
         name = "CreateDirectory",
-        input_schema = types.CreateDirectoryInput,
-        output_schema = types.CreateDirectoryOutput,
+        input_schema = schemas.CreateDirectoryInput,
+        output_schema = schemas.CreateDirectoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createHybridAD(input, options)
     return self:invokeOperation(input, {
         name = "CreateHybridAD",
-        input_schema = types.CreateHybridADInput,
-        output_schema = types.CreateHybridADOutput,
+        input_schema = schemas.CreateHybridADInput,
+        output_schema = schemas.CreateHybridADOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createLogSubscription(input, options)
     return self:invokeOperation(input, {
         name = "CreateLogSubscription",
-        input_schema = types.CreateLogSubscriptionInput,
-        output_schema = types.CreateLogSubscriptionOutput,
+        input_schema = schemas.CreateLogSubscriptionInput,
+        output_schema = schemas.CreateLogSubscriptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createMicrosoftAD(input, options)
     return self:invokeOperation(input, {
         name = "CreateMicrosoftAD",
-        input_schema = types.CreateMicrosoftADInput,
-        output_schema = types.CreateMicrosoftADOutput,
+        input_schema = schemas.CreateMicrosoftADInput,
+        output_schema = schemas.CreateMicrosoftADOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:createSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "CreateSnapshot",
-        input_schema = types.CreateSnapshotInput,
-        output_schema = types.CreateSnapshotOutput,
+        input_schema = schemas.CreateSnapshotInput,
+        output_schema = schemas.CreateSnapshotOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:createTrust(input, options)
     return self:invokeOperation(input, {
         name = "CreateTrust",
-        input_schema = types.CreateTrustInput,
-        output_schema = types.CreateTrustOutput,
+        input_schema = schemas.CreateTrustInput,
+        output_schema = schemas.CreateTrustOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteADAssessment(input, options)
     return self:invokeOperation(input, {
         name = "DeleteADAssessment",
-        input_schema = types.DeleteADAssessmentInput,
-        output_schema = types.DeleteADAssessmentOutput,
+        input_schema = schemas.DeleteADAssessmentInput,
+        output_schema = schemas.DeleteADAssessmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteConditionalForwarder(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConditionalForwarder",
-        input_schema = types.DeleteConditionalForwarderInput,
-        output_schema = types.DeleteConditionalForwarderOutput,
+        input_schema = schemas.DeleteConditionalForwarderInput,
+        output_schema = schemas.DeleteConditionalForwarderOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteDirectory(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDirectory",
-        input_schema = types.DeleteDirectoryInput,
-        output_schema = types.DeleteDirectoryOutput,
+        input_schema = schemas.DeleteDirectoryInput,
+        output_schema = schemas.DeleteDirectoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteLogSubscription(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLogSubscription",
-        input_schema = types.DeleteLogSubscriptionInput,
-        output_schema = types.DeleteLogSubscriptionOutput,
+        input_schema = schemas.DeleteLogSubscriptionInput,
+        output_schema = schemas.DeleteLogSubscriptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deleteSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSnapshot",
-        input_schema = types.DeleteSnapshotInput,
-        output_schema = types.DeleteSnapshotOutput,
+        input_schema = schemas.DeleteSnapshotInput,
+        output_schema = schemas.DeleteSnapshotOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteTrust(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTrust",
-        input_schema = types.DeleteTrustInput,
-        output_schema = types.DeleteTrustOutput,
+        input_schema = schemas.DeleteTrustInput,
+        output_schema = schemas.DeleteTrustOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:deregisterCertificate(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterCertificate",
-        input_schema = types.DeregisterCertificateInput,
-        output_schema = types.DeregisterCertificateOutput,
+        input_schema = schemas.DeregisterCertificateInput,
+        output_schema = schemas.DeregisterCertificateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:deregisterEventTopic(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterEventTopic",
-        input_schema = types.DeregisterEventTopicInput,
-        output_schema = types.DeregisterEventTopicOutput,
+        input_schema = schemas.DeregisterEventTopicInput,
+        output_schema = schemas.DeregisterEventTopicOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:describeADAssessment(input, options)
     return self:invokeOperation(input, {
         name = "DescribeADAssessment",
-        input_schema = types.DescribeADAssessmentInput,
-        output_schema = types.DescribeADAssessmentOutput,
+        input_schema = schemas.DescribeADAssessmentInput,
+        output_schema = schemas.DescribeADAssessmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:describeCAEnrollmentPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCAEnrollmentPolicy",
-        input_schema = types.DescribeCAEnrollmentPolicyInput,
-        output_schema = types.DescribeCAEnrollmentPolicyOutput,
+        input_schema = schemas.DescribeCAEnrollmentPolicyInput,
+        output_schema = schemas.DescribeCAEnrollmentPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:describeCertificate(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCertificate",
-        input_schema = types.DescribeCertificateInput,
-        output_schema = types.DescribeCertificateOutput,
+        input_schema = schemas.DescribeCertificateInput,
+        output_schema = schemas.DescribeCertificateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:describeClientAuthenticationSettings(input, options)
     return self:invokeOperation(input, {
         name = "DescribeClientAuthenticationSettings",
-        input_schema = types.DescribeClientAuthenticationSettingsInput,
-        output_schema = types.DescribeClientAuthenticationSettingsOutput,
+        input_schema = schemas.DescribeClientAuthenticationSettingsInput,
+        output_schema = schemas.DescribeClientAuthenticationSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:describeConditionalForwarders(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConditionalForwarders",
-        input_schema = types.DescribeConditionalForwardersInput,
-        output_schema = types.DescribeConditionalForwardersOutput,
+        input_schema = schemas.DescribeConditionalForwardersInput,
+        output_schema = schemas.DescribeConditionalForwardersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:describeDirectories(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDirectories",
-        input_schema = types.DescribeDirectoriesInput,
-        output_schema = types.DescribeDirectoriesOutput,
+        input_schema = schemas.DescribeDirectoriesInput,
+        output_schema = schemas.DescribeDirectoriesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:describeDirectoryDataAccess(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDirectoryDataAccess",
-        input_schema = types.DescribeDirectoryDataAccessInput,
-        output_schema = types.DescribeDirectoryDataAccessOutput,
+        input_schema = schemas.DescribeDirectoryDataAccessInput,
+        output_schema = schemas.DescribeDirectoryDataAccessOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:describeDomainControllers(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDomainControllers",
-        input_schema = types.DescribeDomainControllersInput,
-        output_schema = types.DescribeDomainControllersOutput,
+        input_schema = schemas.DescribeDomainControllersInput,
+        output_schema = schemas.DescribeDomainControllersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:describeEventTopics(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEventTopics",
-        input_schema = types.DescribeEventTopicsInput,
-        output_schema = types.DescribeEventTopicsOutput,
+        input_schema = schemas.DescribeEventTopicsInput,
+        output_schema = schemas.DescribeEventTopicsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:describeHybridADUpdate(input, options)
     return self:invokeOperation(input, {
         name = "DescribeHybridADUpdate",
-        input_schema = types.DescribeHybridADUpdateInput,
-        output_schema = types.DescribeHybridADUpdateOutput,
+        input_schema = schemas.DescribeHybridADUpdateInput,
+        output_schema = schemas.DescribeHybridADUpdateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:describeLDAPSSettings(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLDAPSSettings",
-        input_schema = types.DescribeLDAPSSettingsInput,
-        output_schema = types.DescribeLDAPSSettingsOutput,
+        input_schema = schemas.DescribeLDAPSSettingsInput,
+        output_schema = schemas.DescribeLDAPSSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:describeRegions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRegions",
-        input_schema = types.DescribeRegionsInput,
-        output_schema = types.DescribeRegionsOutput,
+        input_schema = schemas.DescribeRegionsInput,
+        output_schema = schemas.DescribeRegionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:describeSettings(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSettings",
-        input_schema = types.DescribeSettingsInput,
-        output_schema = types.DescribeSettingsOutput,
+        input_schema = schemas.DescribeSettingsInput,
+        output_schema = schemas.DescribeSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:describeSharedDirectories(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSharedDirectories",
-        input_schema = types.DescribeSharedDirectoriesInput,
-        output_schema = types.DescribeSharedDirectoriesOutput,
+        input_schema = schemas.DescribeSharedDirectoriesInput,
+        output_schema = schemas.DescribeSharedDirectoriesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:describeSnapshots(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSnapshots",
-        input_schema = types.DescribeSnapshotsInput,
-        output_schema = types.DescribeSnapshotsOutput,
+        input_schema = schemas.DescribeSnapshotsInput,
+        output_schema = schemas.DescribeSnapshotsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:describeTrusts(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTrusts",
-        input_schema = types.DescribeTrustsInput,
-        output_schema = types.DescribeTrustsOutput,
+        input_schema = schemas.DescribeTrustsInput,
+        output_schema = schemas.DescribeTrustsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:describeUpdateDirectory(input, options)
     return self:invokeOperation(input, {
         name = "DescribeUpdateDirectory",
-        input_schema = types.DescribeUpdateDirectoryInput,
-        output_schema = types.DescribeUpdateDirectoryOutput,
+        input_schema = schemas.DescribeUpdateDirectoryInput,
+        output_schema = schemas.DescribeUpdateDirectoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:disableCAEnrollmentPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DisableCAEnrollmentPolicy",
-        input_schema = types.DisableCAEnrollmentPolicyInput,
-        output_schema = types.DisableCAEnrollmentPolicyOutput,
+        input_schema = schemas.DisableCAEnrollmentPolicyInput,
+        output_schema = schemas.DisableCAEnrollmentPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:disableClientAuthentication(input, options)
     return self:invokeOperation(input, {
         name = "DisableClientAuthentication",
-        input_schema = types.DisableClientAuthenticationInput,
-        output_schema = types.DisableClientAuthenticationOutput,
+        input_schema = schemas.DisableClientAuthenticationInput,
+        output_schema = schemas.DisableClientAuthenticationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:disableDirectoryDataAccess(input, options)
     return self:invokeOperation(input, {
         name = "DisableDirectoryDataAccess",
-        input_schema = types.DisableDirectoryDataAccessInput,
-        output_schema = types.DisableDirectoryDataAccessOutput,
+        input_schema = schemas.DisableDirectoryDataAccessInput,
+        output_schema = schemas.DisableDirectoryDataAccessOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:disableLDAPS(input, options)
     return self:invokeOperation(input, {
         name = "DisableLDAPS",
-        input_schema = types.DisableLDAPSInput,
-        output_schema = types.DisableLDAPSOutput,
+        input_schema = schemas.DisableLDAPSInput,
+        output_schema = schemas.DisableLDAPSOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:disableRadius(input, options)
     return self:invokeOperation(input, {
         name = "DisableRadius",
-        input_schema = types.DisableRadiusInput,
-        output_schema = types.DisableRadiusOutput,
+        input_schema = schemas.DisableRadiusInput,
+        output_schema = schemas.DisableRadiusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:disableSso(input, options)
     return self:invokeOperation(input, {
         name = "DisableSso",
-        input_schema = types.DisableSsoInput,
-        output_schema = types.DisableSsoOutput,
+        input_schema = schemas.DisableSsoInput,
+        output_schema = schemas.DisableSsoOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:enableCAEnrollmentPolicy(input, options)
     return self:invokeOperation(input, {
         name = "EnableCAEnrollmentPolicy",
-        input_schema = types.EnableCAEnrollmentPolicyInput,
-        output_schema = types.EnableCAEnrollmentPolicyOutput,
+        input_schema = schemas.EnableCAEnrollmentPolicyInput,
+        output_schema = schemas.EnableCAEnrollmentPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:enableClientAuthentication(input, options)
     return self:invokeOperation(input, {
         name = "EnableClientAuthentication",
-        input_schema = types.EnableClientAuthenticationInput,
-        output_schema = types.EnableClientAuthenticationOutput,
+        input_schema = schemas.EnableClientAuthenticationInput,
+        output_schema = schemas.EnableClientAuthenticationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:enableDirectoryDataAccess(input, options)
     return self:invokeOperation(input, {
         name = "EnableDirectoryDataAccess",
-        input_schema = types.EnableDirectoryDataAccessInput,
-        output_schema = types.EnableDirectoryDataAccessOutput,
+        input_schema = schemas.EnableDirectoryDataAccessInput,
+        output_schema = schemas.EnableDirectoryDataAccessOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:enableLDAPS(input, options)
     return self:invokeOperation(input, {
         name = "EnableLDAPS",
-        input_schema = types.EnableLDAPSInput,
-        output_schema = types.EnableLDAPSOutput,
+        input_schema = schemas.EnableLDAPSInput,
+        output_schema = schemas.EnableLDAPSOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:enableRadius(input, options)
     return self:invokeOperation(input, {
         name = "EnableRadius",
-        input_schema = types.EnableRadiusInput,
-        output_schema = types.EnableRadiusOutput,
+        input_schema = schemas.EnableRadiusInput,
+        output_schema = schemas.EnableRadiusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:enableSso(input, options)
     return self:invokeOperation(input, {
         name = "EnableSso",
-        input_schema = types.EnableSsoInput,
-        output_schema = types.EnableSsoOutput,
+        input_schema = schemas.EnableSsoInput,
+        output_schema = schemas.EnableSsoOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:getDirectoryLimits(input, options)
     return self:invokeOperation(input, {
         name = "GetDirectoryLimits",
-        input_schema = types.GetDirectoryLimitsInput,
-        output_schema = types.GetDirectoryLimitsOutput,
+        input_schema = schemas.GetDirectoryLimitsInput,
+        output_schema = schemas.GetDirectoryLimitsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:getSnapshotLimits(input, options)
     return self:invokeOperation(input, {
         name = "GetSnapshotLimits",
-        input_schema = types.GetSnapshotLimitsInput,
-        output_schema = types.GetSnapshotLimitsOutput,
+        input_schema = schemas.GetSnapshotLimitsInput,
+        output_schema = schemas.GetSnapshotLimitsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:listADAssessments(input, options)
     return self:invokeOperation(input, {
         name = "ListADAssessments",
-        input_schema = types.ListADAssessmentsInput,
-        output_schema = types.ListADAssessmentsOutput,
+        input_schema = schemas.ListADAssessmentsInput,
+        output_schema = schemas.ListADAssessmentsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:listCertificates(input, options)
     return self:invokeOperation(input, {
         name = "ListCertificates",
-        input_schema = types.ListCertificatesInput,
-        output_schema = types.ListCertificatesOutput,
+        input_schema = schemas.ListCertificatesInput,
+        output_schema = schemas.ListCertificatesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:listIpRoutes(input, options)
     return self:invokeOperation(input, {
         name = "ListIpRoutes",
-        input_schema = types.ListIpRoutesInput,
-        output_schema = types.ListIpRoutesOutput,
+        input_schema = schemas.ListIpRoutesInput,
+        output_schema = schemas.ListIpRoutesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:listLogSubscriptions(input, options)
     return self:invokeOperation(input, {
         name = "ListLogSubscriptions",
-        input_schema = types.ListLogSubscriptionsInput,
-        output_schema = types.ListLogSubscriptionsOutput,
+        input_schema = schemas.ListLogSubscriptionsInput,
+        output_schema = schemas.ListLogSubscriptionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:listSchemaExtensions(input, options)
     return self:invokeOperation(input, {
         name = "ListSchemaExtensions",
-        input_schema = types.ListSchemaExtensionsInput,
-        output_schema = types.ListSchemaExtensionsOutput,
+        input_schema = schemas.ListSchemaExtensionsInput,
+        output_schema = schemas.ListSchemaExtensionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:registerCertificate(input, options)
     return self:invokeOperation(input, {
         name = "RegisterCertificate",
-        input_schema = types.RegisterCertificateInput,
-        output_schema = types.RegisterCertificateOutput,
+        input_schema = schemas.RegisterCertificateInput,
+        output_schema = schemas.RegisterCertificateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:registerEventTopic(input, options)
     return self:invokeOperation(input, {
         name = "RegisterEventTopic",
-        input_schema = types.RegisterEventTopicInput,
-        output_schema = types.RegisterEventTopicOutput,
+        input_schema = schemas.RegisterEventTopicInput,
+        output_schema = schemas.RegisterEventTopicOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:rejectSharedDirectory(input, options)
     return self:invokeOperation(input, {
         name = "RejectSharedDirectory",
-        input_schema = types.RejectSharedDirectoryInput,
-        output_schema = types.RejectSharedDirectoryOutput,
+        input_schema = schemas.RejectSharedDirectoryInput,
+        output_schema = schemas.RejectSharedDirectoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:removeIpRoutes(input, options)
     return self:invokeOperation(input, {
         name = "RemoveIpRoutes",
-        input_schema = types.RemoveIpRoutesInput,
-        output_schema = types.RemoveIpRoutesOutput,
+        input_schema = schemas.RemoveIpRoutesInput,
+        output_schema = schemas.RemoveIpRoutesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:removeRegion(input, options)
     return self:invokeOperation(input, {
         name = "RemoveRegion",
-        input_schema = types.RemoveRegionInput,
-        output_schema = types.RemoveRegionOutput,
+        input_schema = schemas.RemoveRegionInput,
+        output_schema = schemas.RemoveRegionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:removeTagsFromResource(input, options)
     return self:invokeOperation(input, {
         name = "RemoveTagsFromResource",
-        input_schema = types.RemoveTagsFromResourceInput,
-        output_schema = types.RemoveTagsFromResourceOutput,
+        input_schema = schemas.RemoveTagsFromResourceInput,
+        output_schema = schemas.RemoveTagsFromResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:resetUserPassword(input, options)
     return self:invokeOperation(input, {
         name = "ResetUserPassword",
-        input_schema = types.ResetUserPasswordInput,
-        output_schema = types.ResetUserPasswordOutput,
+        input_schema = schemas.ResetUserPasswordInput,
+        output_schema = schemas.ResetUserPasswordOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:restoreFromSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "RestoreFromSnapshot",
-        input_schema = types.RestoreFromSnapshotInput,
-        output_schema = types.RestoreFromSnapshotOutput,
+        input_schema = schemas.RestoreFromSnapshotInput,
+        output_schema = schemas.RestoreFromSnapshotOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:shareDirectory(input, options)
     return self:invokeOperation(input, {
         name = "ShareDirectory",
-        input_schema = types.ShareDirectoryInput,
-        output_schema = types.ShareDirectoryOutput,
+        input_schema = schemas.ShareDirectoryInput,
+        output_schema = schemas.ShareDirectoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:startADAssessment(input, options)
     return self:invokeOperation(input, {
         name = "StartADAssessment",
-        input_schema = types.StartADAssessmentInput,
-        output_schema = types.StartADAssessmentOutput,
+        input_schema = schemas.StartADAssessmentInput,
+        output_schema = schemas.StartADAssessmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:startSchemaExtension(input, options)
     return self:invokeOperation(input, {
         name = "StartSchemaExtension",
-        input_schema = types.StartSchemaExtensionInput,
-        output_schema = types.StartSchemaExtensionOutput,
+        input_schema = schemas.StartSchemaExtensionInput,
+        output_schema = schemas.StartSchemaExtensionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:unshareDirectory(input, options)
     return self:invokeOperation(input, {
         name = "UnshareDirectory",
-        input_schema = types.UnshareDirectoryInput,
-        output_schema = types.UnshareDirectoryOutput,
+        input_schema = schemas.UnshareDirectoryInput,
+        output_schema = schemas.UnshareDirectoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:updateConditionalForwarder(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConditionalForwarder",
-        input_schema = types.UpdateConditionalForwarderInput,
-        output_schema = types.UpdateConditionalForwarderOutput,
+        input_schema = schemas.UpdateConditionalForwarderInput,
+        output_schema = schemas.UpdateConditionalForwarderOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:updateDirectorySetup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDirectorySetup",
-        input_schema = types.UpdateDirectorySetupInput,
-        output_schema = types.UpdateDirectorySetupOutput,
+        input_schema = schemas.UpdateDirectorySetupInput,
+        output_schema = schemas.UpdateDirectorySetupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1011,8 +1011,8 @@ end
 function Client:updateHybridAD(input, options)
     return self:invokeOperation(input, {
         name = "UpdateHybridAD",
-        input_schema = types.UpdateHybridADInput,
-        output_schema = types.UpdateHybridADOutput,
+        input_schema = schemas.UpdateHybridADInput,
+        output_schema = schemas.UpdateHybridADOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1024,8 +1024,8 @@ end
 function Client:updateNumberOfDomainControllers(input, options)
     return self:invokeOperation(input, {
         name = "UpdateNumberOfDomainControllers",
-        input_schema = types.UpdateNumberOfDomainControllersInput,
-        output_schema = types.UpdateNumberOfDomainControllersOutput,
+        input_schema = schemas.UpdateNumberOfDomainControllersInput,
+        output_schema = schemas.UpdateNumberOfDomainControllersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1037,8 +1037,8 @@ end
 function Client:updateRadius(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRadius",
-        input_schema = types.UpdateRadiusInput,
-        output_schema = types.UpdateRadiusOutput,
+        input_schema = schemas.UpdateRadiusInput,
+        output_schema = schemas.UpdateRadiusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1050,8 +1050,8 @@ end
 function Client:updateSettings(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSettings",
-        input_schema = types.UpdateSettingsInput,
-        output_schema = types.UpdateSettingsOutput,
+        input_schema = schemas.UpdateSettingsInput,
+        output_schema = schemas.UpdateSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1063,8 +1063,8 @@ end
 function Client:updateTrust(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTrust",
-        input_schema = types.UpdateTrustInput,
-        output_schema = types.UpdateTrustOutput,
+        input_schema = schemas.UpdateTrustInput,
+        output_schema = schemas.UpdateTrustOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1076,8 +1076,8 @@ end
 function Client:verifyTrust(input, options)
     return self:invokeOperation(input, {
         name = "VerifyTrust",
-        input_schema = types.VerifyTrustInput,
-        output_schema = types.VerifyTrustOutput,
+        input_schema = schemas.VerifyTrustInput,
+        output_schema = schemas.VerifyTrustOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

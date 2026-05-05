@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("location.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("location.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("location.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateTrackerConsumer(input, options)
     return self:invokeOperation(input, {
         name = "AssociateTrackerConsumer",
-        input_schema = types.AssociateTrackerConsumerInput,
-        output_schema = types.AssociateTrackerConsumerOutput,
+        input_schema = schemas.AssociateTrackerConsumerInput,
+        output_schema = schemas.AssociateTrackerConsumerOutput,
         http_method = "POST",
         http_path = "/tracking/v0/trackers/{TrackerName}/consumers",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchDeleteDevicePositionHistory(input, options)
     return self:invokeOperation(input, {
         name = "BatchDeleteDevicePositionHistory",
-        input_schema = types.BatchDeleteDevicePositionHistoryInput,
-        output_schema = types.BatchDeleteDevicePositionHistoryOutput,
+        input_schema = schemas.BatchDeleteDevicePositionHistoryInput,
+        output_schema = schemas.BatchDeleteDevicePositionHistoryOutput,
         http_method = "POST",
         http_path = "/tracking/v0/trackers/{TrackerName}/delete-positions",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchDeleteGeofence(input, options)
     return self:invokeOperation(input, {
         name = "BatchDeleteGeofence",
-        input_schema = types.BatchDeleteGeofenceInput,
-        output_schema = types.BatchDeleteGeofenceOutput,
+        input_schema = schemas.BatchDeleteGeofenceInput,
+        output_schema = schemas.BatchDeleteGeofenceOutput,
         http_method = "POST",
         http_path = "/geofencing/v0/collections/{CollectionName}/delete-geofences",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:batchEvaluateGeofences(input, options)
     return self:invokeOperation(input, {
         name = "BatchEvaluateGeofences",
-        input_schema = types.BatchEvaluateGeofencesInput,
-        output_schema = types.BatchEvaluateGeofencesOutput,
+        input_schema = schemas.BatchEvaluateGeofencesInput,
+        output_schema = schemas.BatchEvaluateGeofencesOutput,
         http_method = "POST",
         http_path = "/geofencing/v0/collections/{CollectionName}/positions",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:batchGetDevicePosition(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetDevicePosition",
-        input_schema = types.BatchGetDevicePositionInput,
-        output_schema = types.BatchGetDevicePositionOutput,
+        input_schema = schemas.BatchGetDevicePositionInput,
+        output_schema = schemas.BatchGetDevicePositionOutput,
         http_method = "POST",
         http_path = "/tracking/v0/trackers/{TrackerName}/get-positions",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:batchPutGeofence(input, options)
     return self:invokeOperation(input, {
         name = "BatchPutGeofence",
-        input_schema = types.BatchPutGeofenceInput,
-        output_schema = types.BatchPutGeofenceOutput,
+        input_schema = schemas.BatchPutGeofenceInput,
+        output_schema = schemas.BatchPutGeofenceOutput,
         http_method = "POST",
         http_path = "/geofencing/v0/collections/{CollectionName}/put-geofences",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:batchUpdateDevicePosition(input, options)
     return self:invokeOperation(input, {
         name = "BatchUpdateDevicePosition",
-        input_schema = types.BatchUpdateDevicePositionInput,
-        output_schema = types.BatchUpdateDevicePositionOutput,
+        input_schema = schemas.BatchUpdateDevicePositionInput,
+        output_schema = schemas.BatchUpdateDevicePositionOutput,
         http_method = "POST",
         http_path = "/tracking/v0/trackers/{TrackerName}/positions",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:calculateRoute(input, options)
     return self:invokeOperation(input, {
         name = "CalculateRoute",
-        input_schema = types.CalculateRouteInput,
-        output_schema = types.CalculateRouteOutput,
+        input_schema = schemas.CalculateRouteInput,
+        output_schema = schemas.CalculateRouteOutput,
         http_method = "POST",
         http_path = "/routes/v0/calculators/{CalculatorName}/calculate/route",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:calculateRouteMatrix(input, options)
     return self:invokeOperation(input, {
         name = "CalculateRouteMatrix",
-        input_schema = types.CalculateRouteMatrixInput,
-        output_schema = types.CalculateRouteMatrixOutput,
+        input_schema = schemas.CalculateRouteMatrixInput,
+        output_schema = schemas.CalculateRouteMatrixOutput,
         http_method = "POST",
         http_path = "/routes/v0/calculators/{CalculatorName}/calculate/route-matrix",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:cancelJob(input, options)
     return self:invokeOperation(input, {
         name = "CancelJob",
-        input_schema = types.CancelJobInput,
-        output_schema = types.CancelJobOutput,
+        input_schema = schemas.CancelJobInput,
+        output_schema = schemas.CancelJobOutput,
         http_method = "POST",
         http_path = "/metadata/v0/jobs/cancel-job",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createGeofenceCollection(input, options)
     return self:invokeOperation(input, {
         name = "CreateGeofenceCollection",
-        input_schema = types.CreateGeofenceCollectionInput,
-        output_schema = types.CreateGeofenceCollectionOutput,
+        input_schema = schemas.CreateGeofenceCollectionInput,
+        output_schema = schemas.CreateGeofenceCollectionOutput,
         http_method = "POST",
         http_path = "/geofencing/v0/collections",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createKey(input, options)
     return self:invokeOperation(input, {
         name = "CreateKey",
-        input_schema = types.CreateKeyInput,
-        output_schema = types.CreateKeyOutput,
+        input_schema = schemas.CreateKeyInput,
+        output_schema = schemas.CreateKeyOutput,
         http_method = "POST",
         http_path = "/metadata/v0/keys",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createMap(input, options)
     return self:invokeOperation(input, {
         name = "CreateMap",
-        input_schema = types.CreateMapInput,
-        output_schema = types.CreateMapOutput,
+        input_schema = schemas.CreateMapInput,
+        output_schema = schemas.CreateMapOutput,
         http_method = "POST",
         http_path = "/maps/v0/maps",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:createPlaceIndex(input, options)
     return self:invokeOperation(input, {
         name = "CreatePlaceIndex",
-        input_schema = types.CreatePlaceIndexInput,
-        output_schema = types.CreatePlaceIndexOutput,
+        input_schema = schemas.CreatePlaceIndexInput,
+        output_schema = schemas.CreatePlaceIndexOutput,
         http_method = "POST",
         http_path = "/places/v0/indexes",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:createRouteCalculator(input, options)
     return self:invokeOperation(input, {
         name = "CreateRouteCalculator",
-        input_schema = types.CreateRouteCalculatorInput,
-        output_schema = types.CreateRouteCalculatorOutput,
+        input_schema = schemas.CreateRouteCalculatorInput,
+        output_schema = schemas.CreateRouteCalculatorOutput,
         http_method = "POST",
         http_path = "/routes/v0/calculators",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:createTracker(input, options)
     return self:invokeOperation(input, {
         name = "CreateTracker",
-        input_schema = types.CreateTrackerInput,
-        output_schema = types.CreateTrackerOutput,
+        input_schema = schemas.CreateTrackerInput,
+        output_schema = schemas.CreateTrackerOutput,
         http_method = "POST",
         http_path = "/tracking/v0/trackers",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteGeofenceCollection(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGeofenceCollection",
-        input_schema = types.DeleteGeofenceCollectionInput,
-        output_schema = types.DeleteGeofenceCollectionOutput,
+        input_schema = schemas.DeleteGeofenceCollectionInput,
+        output_schema = schemas.DeleteGeofenceCollectionOutput,
         http_method = "DELETE",
         http_path = "/geofencing/v0/collections/{CollectionName}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteKey(input, options)
     return self:invokeOperation(input, {
         name = "DeleteKey",
-        input_schema = types.DeleteKeyInput,
-        output_schema = types.DeleteKeyOutput,
+        input_schema = schemas.DeleteKeyInput,
+        output_schema = schemas.DeleteKeyOutput,
         http_method = "DELETE",
         http_path = "/metadata/v0/keys/{KeyName}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteMap(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMap",
-        input_schema = types.DeleteMapInput,
-        output_schema = types.DeleteMapOutput,
+        input_schema = schemas.DeleteMapInput,
+        output_schema = schemas.DeleteMapOutput,
         http_method = "DELETE",
         http_path = "/maps/v0/maps/{MapName}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deletePlaceIndex(input, options)
     return self:invokeOperation(input, {
         name = "DeletePlaceIndex",
-        input_schema = types.DeletePlaceIndexInput,
-        output_schema = types.DeletePlaceIndexOutput,
+        input_schema = schemas.DeletePlaceIndexInput,
+        output_schema = schemas.DeletePlaceIndexOutput,
         http_method = "DELETE",
         http_path = "/places/v0/indexes/{IndexName}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteRouteCalculator(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRouteCalculator",
-        input_schema = types.DeleteRouteCalculatorInput,
-        output_schema = types.DeleteRouteCalculatorOutput,
+        input_schema = schemas.DeleteRouteCalculatorInput,
+        output_schema = schemas.DeleteRouteCalculatorOutput,
         http_method = "DELETE",
         http_path = "/routes/v0/calculators/{CalculatorName}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:deleteTracker(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTracker",
-        input_schema = types.DeleteTrackerInput,
-        output_schema = types.DeleteTrackerOutput,
+        input_schema = schemas.DeleteTrackerInput,
+        output_schema = schemas.DeleteTrackerOutput,
         http_method = "DELETE",
         http_path = "/tracking/v0/trackers/{TrackerName}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:describeGeofenceCollection(input, options)
     return self:invokeOperation(input, {
         name = "DescribeGeofenceCollection",
-        input_schema = types.DescribeGeofenceCollectionInput,
-        output_schema = types.DescribeGeofenceCollectionOutput,
+        input_schema = schemas.DescribeGeofenceCollectionInput,
+        output_schema = schemas.DescribeGeofenceCollectionOutput,
         http_method = "GET",
         http_path = "/geofencing/v0/collections/{CollectionName}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:describeKey(input, options)
     return self:invokeOperation(input, {
         name = "DescribeKey",
-        input_schema = types.DescribeKeyInput,
-        output_schema = types.DescribeKeyOutput,
+        input_schema = schemas.DescribeKeyInput,
+        output_schema = schemas.DescribeKeyOutput,
         http_method = "GET",
         http_path = "/metadata/v0/keys/{KeyName}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:describeMap(input, options)
     return self:invokeOperation(input, {
         name = "DescribeMap",
-        input_schema = types.DescribeMapInput,
-        output_schema = types.DescribeMapOutput,
+        input_schema = schemas.DescribeMapInput,
+        output_schema = schemas.DescribeMapOutput,
         http_method = "GET",
         http_path = "/maps/v0/maps/{MapName}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:describePlaceIndex(input, options)
     return self:invokeOperation(input, {
         name = "DescribePlaceIndex",
-        input_schema = types.DescribePlaceIndexInput,
-        output_schema = types.DescribePlaceIndexOutput,
+        input_schema = schemas.DescribePlaceIndexInput,
+        output_schema = schemas.DescribePlaceIndexOutput,
         http_method = "GET",
         http_path = "/places/v0/indexes/{IndexName}",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:describeRouteCalculator(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRouteCalculator",
-        input_schema = types.DescribeRouteCalculatorInput,
-        output_schema = types.DescribeRouteCalculatorOutput,
+        input_schema = schemas.DescribeRouteCalculatorInput,
+        output_schema = schemas.DescribeRouteCalculatorOutput,
         http_method = "GET",
         http_path = "/routes/v0/calculators/{CalculatorName}",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:describeTracker(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTracker",
-        input_schema = types.DescribeTrackerInput,
-        output_schema = types.DescribeTrackerOutput,
+        input_schema = schemas.DescribeTrackerInput,
+        output_schema = schemas.DescribeTrackerOutput,
         http_method = "GET",
         http_path = "/tracking/v0/trackers/{TrackerName}",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:disassociateTrackerConsumer(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateTrackerConsumer",
-        input_schema = types.DisassociateTrackerConsumerInput,
-        output_schema = types.DisassociateTrackerConsumerOutput,
+        input_schema = schemas.DisassociateTrackerConsumerInput,
+        output_schema = schemas.DisassociateTrackerConsumerOutput,
         http_method = "DELETE",
         http_path = "/tracking/v0/trackers/{TrackerName}/consumers/{ConsumerArn}",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:forecastGeofenceEvents(input, options)
     return self:invokeOperation(input, {
         name = "ForecastGeofenceEvents",
-        input_schema = types.ForecastGeofenceEventsInput,
-        output_schema = types.ForecastGeofenceEventsOutput,
+        input_schema = schemas.ForecastGeofenceEventsInput,
+        output_schema = schemas.ForecastGeofenceEventsOutput,
         http_method = "POST",
         http_path = "/geofencing/v0/collections/{CollectionName}/forecast-geofence-events",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:getDevicePosition(input, options)
     return self:invokeOperation(input, {
         name = "GetDevicePosition",
-        input_schema = types.GetDevicePositionInput,
-        output_schema = types.GetDevicePositionOutput,
+        input_schema = schemas.GetDevicePositionInput,
+        output_schema = schemas.GetDevicePositionOutput,
         http_method = "GET",
         http_path = "/tracking/v0/trackers/{TrackerName}/devices/{DeviceId}/positions/latest",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:getDevicePositionHistory(input, options)
     return self:invokeOperation(input, {
         name = "GetDevicePositionHistory",
-        input_schema = types.GetDevicePositionHistoryInput,
-        output_schema = types.GetDevicePositionHistoryOutput,
+        input_schema = schemas.GetDevicePositionHistoryInput,
+        output_schema = schemas.GetDevicePositionHistoryOutput,
         http_method = "POST",
         http_path = "/tracking/v0/trackers/{TrackerName}/devices/{DeviceId}/list-positions",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:getGeofence(input, options)
     return self:invokeOperation(input, {
         name = "GetGeofence",
-        input_schema = types.GetGeofenceInput,
-        output_schema = types.GetGeofenceOutput,
+        input_schema = schemas.GetGeofenceInput,
+        output_schema = schemas.GetGeofenceOutput,
         http_method = "GET",
         http_path = "/geofencing/v0/collections/{CollectionName}/geofences/{GeofenceId}",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:getJob(input, options)
     return self:invokeOperation(input, {
         name = "GetJob",
-        input_schema = types.GetJobInput,
-        output_schema = types.GetJobOutput,
+        input_schema = schemas.GetJobInput,
+        output_schema = schemas.GetJobOutput,
         http_method = "GET",
         http_path = "/metadata/v0/jobs/{JobId}",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:getMapGlyphs(input, options)
     return self:invokeOperation(input, {
         name = "GetMapGlyphs",
-        input_schema = types.GetMapGlyphsInput,
-        output_schema = types.GetMapGlyphsOutput,
+        input_schema = schemas.GetMapGlyphsInput,
+        output_schema = schemas.GetMapGlyphsOutput,
         http_method = "GET",
         http_path = "/maps/v0/maps/{MapName}/glyphs/{FontStack}/{FontUnicodeRange}",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:getMapSprites(input, options)
     return self:invokeOperation(input, {
         name = "GetMapSprites",
-        input_schema = types.GetMapSpritesInput,
-        output_schema = types.GetMapSpritesOutput,
+        input_schema = schemas.GetMapSpritesInput,
+        output_schema = schemas.GetMapSpritesOutput,
         http_method = "GET",
         http_path = "/maps/v0/maps/{MapName}/sprites/{FileName}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:getMapStyleDescriptor(input, options)
     return self:invokeOperation(input, {
         name = "GetMapStyleDescriptor",
-        input_schema = types.GetMapStyleDescriptorInput,
-        output_schema = types.GetMapStyleDescriptorOutput,
+        input_schema = schemas.GetMapStyleDescriptorInput,
+        output_schema = schemas.GetMapStyleDescriptorOutput,
         http_method = "GET",
         http_path = "/maps/v0/maps/{MapName}/style-descriptor",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:getMapTile(input, options)
     return self:invokeOperation(input, {
         name = "GetMapTile",
-        input_schema = types.GetMapTileInput,
-        output_schema = types.GetMapTileOutput,
+        input_schema = schemas.GetMapTileInput,
+        output_schema = schemas.GetMapTileOutput,
         http_method = "GET",
         http_path = "/maps/v0/maps/{MapName}/tiles/{Z}/{X}/{Y}",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:getPlace(input, options)
     return self:invokeOperation(input, {
         name = "GetPlace",
-        input_schema = types.GetPlaceInput,
-        output_schema = types.GetPlaceOutput,
+        input_schema = schemas.GetPlaceInput,
+        output_schema = schemas.GetPlaceOutput,
         http_method = "GET",
         http_path = "/places/v0/indexes/{IndexName}/places/{PlaceId}",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:listDevicePositions(input, options)
     return self:invokeOperation(input, {
         name = "ListDevicePositions",
-        input_schema = types.ListDevicePositionsInput,
-        output_schema = types.ListDevicePositionsOutput,
+        input_schema = schemas.ListDevicePositionsInput,
+        output_schema = schemas.ListDevicePositionsOutput,
         http_method = "POST",
         http_path = "/tracking/v0/trackers/{TrackerName}/list-positions",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:listGeofenceCollections(input, options)
     return self:invokeOperation(input, {
         name = "ListGeofenceCollections",
-        input_schema = types.ListGeofenceCollectionsInput,
-        output_schema = types.ListGeofenceCollectionsOutput,
+        input_schema = schemas.ListGeofenceCollectionsInput,
+        output_schema = schemas.ListGeofenceCollectionsOutput,
         http_method = "POST",
         http_path = "/geofencing/v0/list-collections",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:listGeofences(input, options)
     return self:invokeOperation(input, {
         name = "ListGeofences",
-        input_schema = types.ListGeofencesInput,
-        output_schema = types.ListGeofencesOutput,
+        input_schema = schemas.ListGeofencesInput,
+        output_schema = schemas.ListGeofencesOutput,
         http_method = "POST",
         http_path = "/geofencing/v0/collections/{CollectionName}/list-geofences",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:listJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListJobs",
-        input_schema = types.ListJobsInput,
-        output_schema = types.ListJobsOutput,
+        input_schema = schemas.ListJobsInput,
+        output_schema = schemas.ListJobsOutput,
         http_method = "POST",
         http_path = "/metadata/v0/jobs/list-jobs",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:listKeys(input, options)
     return self:invokeOperation(input, {
         name = "ListKeys",
-        input_schema = types.ListKeysInput,
-        output_schema = types.ListKeysOutput,
+        input_schema = schemas.ListKeysInput,
+        output_schema = schemas.ListKeysOutput,
         http_method = "POST",
         http_path = "/metadata/v0/list-keys",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:listMaps(input, options)
     return self:invokeOperation(input, {
         name = "ListMaps",
-        input_schema = types.ListMapsInput,
-        output_schema = types.ListMapsOutput,
+        input_schema = schemas.ListMapsInput,
+        output_schema = schemas.ListMapsOutput,
         http_method = "POST",
         http_path = "/maps/v0/list-maps",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:listPlaceIndexes(input, options)
     return self:invokeOperation(input, {
         name = "ListPlaceIndexes",
-        input_schema = types.ListPlaceIndexesInput,
-        output_schema = types.ListPlaceIndexesOutput,
+        input_schema = schemas.ListPlaceIndexesInput,
+        output_schema = schemas.ListPlaceIndexesOutput,
         http_method = "POST",
         http_path = "/places/v0/list-indexes",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:listRouteCalculators(input, options)
     return self:invokeOperation(input, {
         name = "ListRouteCalculators",
-        input_schema = types.ListRouteCalculatorsInput,
-        output_schema = types.ListRouteCalculatorsOutput,
+        input_schema = schemas.ListRouteCalculatorsInput,
+        output_schema = schemas.ListRouteCalculatorsOutput,
         http_method = "POST",
         http_path = "/routes/v0/list-calculators",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:listTrackerConsumers(input, options)
     return self:invokeOperation(input, {
         name = "ListTrackerConsumers",
-        input_schema = types.ListTrackerConsumersInput,
-        output_schema = types.ListTrackerConsumersOutput,
+        input_schema = schemas.ListTrackerConsumersInput,
+        output_schema = schemas.ListTrackerConsumersOutput,
         http_method = "POST",
         http_path = "/tracking/v0/trackers/{TrackerName}/list-consumers",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:listTrackers(input, options)
     return self:invokeOperation(input, {
         name = "ListTrackers",
-        input_schema = types.ListTrackersInput,
-        output_schema = types.ListTrackersOutput,
+        input_schema = schemas.ListTrackersInput,
+        output_schema = schemas.ListTrackersOutput,
         http_method = "POST",
         http_path = "/tracking/v0/list-trackers",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:putGeofence(input, options)
     return self:invokeOperation(input, {
         name = "PutGeofence",
-        input_schema = types.PutGeofenceInput,
-        output_schema = types.PutGeofenceOutput,
+        input_schema = schemas.PutGeofenceInput,
+        output_schema = schemas.PutGeofenceOutput,
         http_method = "PUT",
         http_path = "/geofencing/v0/collections/{CollectionName}/geofences/{GeofenceId}",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:searchPlaceIndexForPosition(input, options)
     return self:invokeOperation(input, {
         name = "SearchPlaceIndexForPosition",
-        input_schema = types.SearchPlaceIndexForPositionInput,
-        output_schema = types.SearchPlaceIndexForPositionOutput,
+        input_schema = schemas.SearchPlaceIndexForPositionInput,
+        output_schema = schemas.SearchPlaceIndexForPositionOutput,
         http_method = "POST",
         http_path = "/places/v0/indexes/{IndexName}/search/position",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:searchPlaceIndexForSuggestions(input, options)
     return self:invokeOperation(input, {
         name = "SearchPlaceIndexForSuggestions",
-        input_schema = types.SearchPlaceIndexForSuggestionsInput,
-        output_schema = types.SearchPlaceIndexForSuggestionsOutput,
+        input_schema = schemas.SearchPlaceIndexForSuggestionsInput,
+        output_schema = schemas.SearchPlaceIndexForSuggestionsOutput,
         http_method = "POST",
         http_path = "/places/v0/indexes/{IndexName}/search/suggestions",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:searchPlaceIndexForText(input, options)
     return self:invokeOperation(input, {
         name = "SearchPlaceIndexForText",
-        input_schema = types.SearchPlaceIndexForTextInput,
-        output_schema = types.SearchPlaceIndexForTextOutput,
+        input_schema = schemas.SearchPlaceIndexForTextInput,
+        output_schema = schemas.SearchPlaceIndexForTextOutput,
         http_method = "POST",
         http_path = "/places/v0/indexes/{IndexName}/search/text",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:startJob(input, options)
     return self:invokeOperation(input, {
         name = "StartJob",
-        input_schema = types.StartJobInput,
-        output_schema = types.StartJobOutput,
+        input_schema = schemas.StartJobInput,
+        output_schema = schemas.StartJobOutput,
         http_method = "POST",
         http_path = "/metadata/v0/jobs",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:updateGeofenceCollection(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGeofenceCollection",
-        input_schema = types.UpdateGeofenceCollectionInput,
-        output_schema = types.UpdateGeofenceCollectionOutput,
+        input_schema = schemas.UpdateGeofenceCollectionInput,
+        output_schema = schemas.UpdateGeofenceCollectionOutput,
         http_method = "PATCH",
         http_path = "/geofencing/v0/collections/{CollectionName}",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:updateKey(input, options)
     return self:invokeOperation(input, {
         name = "UpdateKey",
-        input_schema = types.UpdateKeyInput,
-        output_schema = types.UpdateKeyOutput,
+        input_schema = schemas.UpdateKeyInput,
+        output_schema = schemas.UpdateKeyOutput,
         http_method = "PATCH",
         http_path = "/metadata/v0/keys/{KeyName}",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:updateMap(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMap",
-        input_schema = types.UpdateMapInput,
-        output_schema = types.UpdateMapOutput,
+        input_schema = schemas.UpdateMapInput,
+        output_schema = schemas.UpdateMapOutput,
         http_method = "PATCH",
         http_path = "/maps/v0/maps/{MapName}",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:updatePlaceIndex(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePlaceIndex",
-        input_schema = types.UpdatePlaceIndexInput,
-        output_schema = types.UpdatePlaceIndexOutput,
+        input_schema = schemas.UpdatePlaceIndexInput,
+        output_schema = schemas.UpdatePlaceIndexOutput,
         http_method = "PATCH",
         http_path = "/places/v0/indexes/{IndexName}",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:updateRouteCalculator(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRouteCalculator",
-        input_schema = types.UpdateRouteCalculatorInput,
-        output_schema = types.UpdateRouteCalculatorOutput,
+        input_schema = schemas.UpdateRouteCalculatorInput,
+        output_schema = schemas.UpdateRouteCalculatorOutput,
         http_method = "PATCH",
         http_path = "/routes/v0/calculators/{CalculatorName}",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:updateTracker(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTracker",
-        input_schema = types.UpdateTrackerInput,
-        output_schema = types.UpdateTrackerOutput,
+        input_schema = schemas.UpdateTrackerInput,
+        output_schema = schemas.UpdateTrackerOutput,
         http_method = "PATCH",
         http_path = "/tracking/v0/trackers/{TrackerName}",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:verifyDevicePosition(input, options)
     return self:invokeOperation(input, {
         name = "VerifyDevicePosition",
-        input_schema = types.VerifyDevicePositionInput,
-        output_schema = types.VerifyDevicePositionOutput,
+        input_schema = schemas.VerifyDevicePositionInput,
+        output_schema = schemas.VerifyDevicePositionOutput,
         http_method = "POST",
         http_path = "/tracking/v0/trackers/{TrackerName}/positions/verify",
         effective_auth_schemes = {

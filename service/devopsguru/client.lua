@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("devopsguru.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("devopsguru.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("devopsguru.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addNotificationChannel(input, options)
     return self:invokeOperation(input, {
         name = "AddNotificationChannel",
-        input_schema = types.AddNotificationChannelInput,
-        output_schema = types.AddNotificationChannelOutput,
+        input_schema = schemas.AddNotificationChannelInput,
+        output_schema = schemas.AddNotificationChannelOutput,
         http_method = "PUT",
         http_path = "/channels",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteInsight(input, options)
     return self:invokeOperation(input, {
         name = "DeleteInsight",
-        input_schema = types.DeleteInsightInput,
-        output_schema = types.DeleteInsightOutput,
+        input_schema = schemas.DeleteInsightInput,
+        output_schema = schemas.DeleteInsightOutput,
         http_method = "DELETE",
         http_path = "/insights/{Id}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:describeAccountHealth(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAccountHealth",
-        input_schema = types.DescribeAccountHealthInput,
-        output_schema = types.DescribeAccountHealthOutput,
+        input_schema = schemas.DescribeAccountHealthInput,
+        output_schema = schemas.DescribeAccountHealthOutput,
         http_method = "GET",
         http_path = "/accounts/health",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:describeAccountOverview(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAccountOverview",
-        input_schema = types.DescribeAccountOverviewInput,
-        output_schema = types.DescribeAccountOverviewOutput,
+        input_schema = schemas.DescribeAccountOverviewInput,
+        output_schema = schemas.DescribeAccountOverviewOutput,
         http_method = "POST",
         http_path = "/accounts/overview",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:describeAnomaly(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAnomaly",
-        input_schema = types.DescribeAnomalyInput,
-        output_schema = types.DescribeAnomalyOutput,
+        input_schema = schemas.DescribeAnomalyInput,
+        output_schema = schemas.DescribeAnomalyOutput,
         http_method = "GET",
         http_path = "/anomalies/{Id}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:describeEventSourcesConfig(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEventSourcesConfig",
-        input_schema = types.DescribeEventSourcesConfigInput,
-        output_schema = types.DescribeEventSourcesConfigOutput,
+        input_schema = schemas.DescribeEventSourcesConfigInput,
+        output_schema = schemas.DescribeEventSourcesConfigOutput,
         http_method = "POST",
         http_path = "/event-sources",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:describeFeedback(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFeedback",
-        input_schema = types.DescribeFeedbackInput,
-        output_schema = types.DescribeFeedbackOutput,
+        input_schema = schemas.DescribeFeedbackInput,
+        output_schema = schemas.DescribeFeedbackOutput,
         http_method = "POST",
         http_path = "/feedback",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:describeInsight(input, options)
     return self:invokeOperation(input, {
         name = "DescribeInsight",
-        input_schema = types.DescribeInsightInput,
-        output_schema = types.DescribeInsightOutput,
+        input_schema = schemas.DescribeInsightInput,
+        output_schema = schemas.DescribeInsightOutput,
         http_method = "GET",
         http_path = "/insights/{Id}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:describeOrganizationHealth(input, options)
     return self:invokeOperation(input, {
         name = "DescribeOrganizationHealth",
-        input_schema = types.DescribeOrganizationHealthInput,
-        output_schema = types.DescribeOrganizationHealthOutput,
+        input_schema = schemas.DescribeOrganizationHealthInput,
+        output_schema = schemas.DescribeOrganizationHealthOutput,
         http_method = "POST",
         http_path = "/organization/health",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:describeOrganizationOverview(input, options)
     return self:invokeOperation(input, {
         name = "DescribeOrganizationOverview",
-        input_schema = types.DescribeOrganizationOverviewInput,
-        output_schema = types.DescribeOrganizationOverviewOutput,
+        input_schema = schemas.DescribeOrganizationOverviewInput,
+        output_schema = schemas.DescribeOrganizationOverviewOutput,
         http_method = "POST",
         http_path = "/organization/overview",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:describeOrganizationResourceCollectionHealth(input, options)
     return self:invokeOperation(input, {
         name = "DescribeOrganizationResourceCollectionHealth",
-        input_schema = types.DescribeOrganizationResourceCollectionHealthInput,
-        output_schema = types.DescribeOrganizationResourceCollectionHealthOutput,
+        input_schema = schemas.DescribeOrganizationResourceCollectionHealthInput,
+        output_schema = schemas.DescribeOrganizationResourceCollectionHealthOutput,
         http_method = "POST",
         http_path = "/organization/health/resource-collection",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:describeResourceCollectionHealth(input, options)
     return self:invokeOperation(input, {
         name = "DescribeResourceCollectionHealth",
-        input_schema = types.DescribeResourceCollectionHealthInput,
-        output_schema = types.DescribeResourceCollectionHealthOutput,
+        input_schema = schemas.DescribeResourceCollectionHealthInput,
+        output_schema = schemas.DescribeResourceCollectionHealthOutput,
         http_method = "GET",
         http_path = "/accounts/health/resource-collection/{ResourceCollectionType}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:describeServiceIntegration(input, options)
     return self:invokeOperation(input, {
         name = "DescribeServiceIntegration",
-        input_schema = types.DescribeServiceIntegrationInput,
-        output_schema = types.DescribeServiceIntegrationOutput,
+        input_schema = schemas.DescribeServiceIntegrationInput,
+        output_schema = schemas.DescribeServiceIntegrationOutput,
         http_method = "GET",
         http_path = "/service-integrations",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getCostEstimation(input, options)
     return self:invokeOperation(input, {
         name = "GetCostEstimation",
-        input_schema = types.GetCostEstimationInput,
-        output_schema = types.GetCostEstimationOutput,
+        input_schema = schemas.GetCostEstimationInput,
+        output_schema = schemas.GetCostEstimationOutput,
         http_method = "GET",
         http_path = "/cost-estimation",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getResourceCollection(input, options)
     return self:invokeOperation(input, {
         name = "GetResourceCollection",
-        input_schema = types.GetResourceCollectionInput,
-        output_schema = types.GetResourceCollectionOutput,
+        input_schema = schemas.GetResourceCollectionInput,
+        output_schema = schemas.GetResourceCollectionOutput,
         http_method = "GET",
         http_path = "/resource-collections/{ResourceCollectionType}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listAnomaliesForInsight(input, options)
     return self:invokeOperation(input, {
         name = "ListAnomaliesForInsight",
-        input_schema = types.ListAnomaliesForInsightInput,
-        output_schema = types.ListAnomaliesForInsightOutput,
+        input_schema = schemas.ListAnomaliesForInsightInput,
+        output_schema = schemas.ListAnomaliesForInsightOutput,
         http_method = "POST",
         http_path = "/anomalies/insight/{InsightId}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listAnomalousLogGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListAnomalousLogGroups",
-        input_schema = types.ListAnomalousLogGroupsInput,
-        output_schema = types.ListAnomalousLogGroupsOutput,
+        input_schema = schemas.ListAnomalousLogGroupsInput,
+        output_schema = schemas.ListAnomalousLogGroupsOutput,
         http_method = "POST",
         http_path = "/list-log-anomalies",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listEvents(input, options)
     return self:invokeOperation(input, {
         name = "ListEvents",
-        input_schema = types.ListEventsInput,
-        output_schema = types.ListEventsOutput,
+        input_schema = schemas.ListEventsInput,
+        output_schema = schemas.ListEventsOutput,
         http_method = "POST",
         http_path = "/events",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listInsights(input, options)
     return self:invokeOperation(input, {
         name = "ListInsights",
-        input_schema = types.ListInsightsInput,
-        output_schema = types.ListInsightsOutput,
+        input_schema = schemas.ListInsightsInput,
+        output_schema = schemas.ListInsightsOutput,
         http_method = "POST",
         http_path = "/insights",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listMonitoredResources(input, options)
     return self:invokeOperation(input, {
         name = "ListMonitoredResources",
-        input_schema = types.ListMonitoredResourcesInput,
-        output_schema = types.ListMonitoredResourcesOutput,
+        input_schema = schemas.ListMonitoredResourcesInput,
+        output_schema = schemas.ListMonitoredResourcesOutput,
         http_method = "POST",
         http_path = "/monitoredResources",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listNotificationChannels(input, options)
     return self:invokeOperation(input, {
         name = "ListNotificationChannels",
-        input_schema = types.ListNotificationChannelsInput,
-        output_schema = types.ListNotificationChannelsOutput,
+        input_schema = schemas.ListNotificationChannelsInput,
+        output_schema = schemas.ListNotificationChannelsOutput,
         http_method = "POST",
         http_path = "/channels",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listOrganizationInsights(input, options)
     return self:invokeOperation(input, {
         name = "ListOrganizationInsights",
-        input_schema = types.ListOrganizationInsightsInput,
-        output_schema = types.ListOrganizationInsightsOutput,
+        input_schema = schemas.ListOrganizationInsightsInput,
+        output_schema = schemas.ListOrganizationInsightsOutput,
         http_method = "POST",
         http_path = "/organization/insights",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "ListRecommendations",
-        input_schema = types.ListRecommendationsInput,
-        output_schema = types.ListRecommendationsOutput,
+        input_schema = schemas.ListRecommendationsInput,
+        output_schema = schemas.ListRecommendationsOutput,
         http_method = "POST",
         http_path = "/recommendations",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:putFeedback(input, options)
     return self:invokeOperation(input, {
         name = "PutFeedback",
-        input_schema = types.PutFeedbackInput,
-        output_schema = types.PutFeedbackOutput,
+        input_schema = schemas.PutFeedbackInput,
+        output_schema = schemas.PutFeedbackOutput,
         http_method = "PUT",
         http_path = "/feedback",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:removeNotificationChannel(input, options)
     return self:invokeOperation(input, {
         name = "RemoveNotificationChannel",
-        input_schema = types.RemoveNotificationChannelInput,
-        output_schema = types.RemoveNotificationChannelOutput,
+        input_schema = schemas.RemoveNotificationChannelInput,
+        output_schema = schemas.RemoveNotificationChannelOutput,
         http_method = "DELETE",
         http_path = "/channels/{Id}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:searchInsights(input, options)
     return self:invokeOperation(input, {
         name = "SearchInsights",
-        input_schema = types.SearchInsightsInput,
-        output_schema = types.SearchInsightsOutput,
+        input_schema = schemas.SearchInsightsInput,
+        output_schema = schemas.SearchInsightsOutput,
         http_method = "POST",
         http_path = "/insights/search",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:searchOrganizationInsights(input, options)
     return self:invokeOperation(input, {
         name = "SearchOrganizationInsights",
-        input_schema = types.SearchOrganizationInsightsInput,
-        output_schema = types.SearchOrganizationInsightsOutput,
+        input_schema = schemas.SearchOrganizationInsightsInput,
+        output_schema = schemas.SearchOrganizationInsightsOutput,
         http_method = "POST",
         http_path = "/organization/insights/search",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:startCostEstimation(input, options)
     return self:invokeOperation(input, {
         name = "StartCostEstimation",
-        input_schema = types.StartCostEstimationInput,
-        output_schema = types.StartCostEstimationOutput,
+        input_schema = schemas.StartCostEstimationInput,
+        output_schema = schemas.StartCostEstimationOutput,
         http_method = "PUT",
         http_path = "/cost-estimation",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:updateEventSourcesConfig(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEventSourcesConfig",
-        input_schema = types.UpdateEventSourcesConfigInput,
-        output_schema = types.UpdateEventSourcesConfigOutput,
+        input_schema = schemas.UpdateEventSourcesConfigInput,
+        output_schema = schemas.UpdateEventSourcesConfigOutput,
         http_method = "PUT",
         http_path = "/event-sources",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:updateResourceCollection(input, options)
     return self:invokeOperation(input, {
         name = "UpdateResourceCollection",
-        input_schema = types.UpdateResourceCollectionInput,
-        output_schema = types.UpdateResourceCollectionOutput,
+        input_schema = schemas.UpdateResourceCollectionInput,
+        output_schema = schemas.UpdateResourceCollectionOutput,
         http_method = "PUT",
         http_path = "/resource-collections",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:updateServiceIntegration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateServiceIntegration",
-        input_schema = types.UpdateServiceIntegrationInput,
-        output_schema = types.UpdateServiceIntegrationOutput,
+        input_schema = schemas.UpdateServiceIntegrationInput,
+        output_schema = schemas.UpdateServiceIntegrationOutput,
         http_method = "PUT",
         http_path = "/service-integrations",
         effective_auth_schemes = {

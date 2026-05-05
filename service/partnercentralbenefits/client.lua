@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("partnercentralbenefits.endpoint_rules")
+local schemas = require("partnercentralbenefits.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("partnercentralbenefits.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:amendBenefitApplication(input, options)
     return self:invokeOperation(input, {
         name = "AmendBenefitApplication",
-        input_schema = types.AmendBenefitApplicationInput,
-        output_schema = types.AmendBenefitApplicationOutput,
+        input_schema = schemas.AmendBenefitApplicationInput,
+        output_schema = schemas.AmendBenefitApplicationOutput,
         http_method = "POST",
         http_path = "/AmendBenefitApplication",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:associateBenefitApplicationResource(input, options)
     return self:invokeOperation(input, {
         name = "AssociateBenefitApplicationResource",
-        input_schema = types.AssociateBenefitApplicationResourceInput,
-        output_schema = types.AssociateBenefitApplicationResourceOutput,
+        input_schema = schemas.AssociateBenefitApplicationResourceInput,
+        output_schema = schemas.AssociateBenefitApplicationResourceOutput,
         http_method = "POST",
         http_path = "/AssociateBenefitApplicationResource",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:cancelBenefitApplication(input, options)
     return self:invokeOperation(input, {
         name = "CancelBenefitApplication",
-        input_schema = types.CancelBenefitApplicationInput,
-        output_schema = types.CancelBenefitApplicationOutput,
+        input_schema = schemas.CancelBenefitApplicationInput,
+        output_schema = schemas.CancelBenefitApplicationOutput,
         http_method = "POST",
         http_path = "/CancelBenefitApplication",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createBenefitApplication(input, options)
     return self:invokeOperation(input, {
         name = "CreateBenefitApplication",
-        input_schema = types.CreateBenefitApplicationInput,
-        output_schema = types.CreateBenefitApplicationOutput,
+        input_schema = schemas.CreateBenefitApplicationInput,
+        output_schema = schemas.CreateBenefitApplicationOutput,
         http_method = "POST",
         http_path = "/CreateBenefitApplication",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:disassociateBenefitApplicationResource(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateBenefitApplicationResource",
-        input_schema = types.DisassociateBenefitApplicationResourceInput,
-        output_schema = types.DisassociateBenefitApplicationResourceOutput,
+        input_schema = schemas.DisassociateBenefitApplicationResourceInput,
+        output_schema = schemas.DisassociateBenefitApplicationResourceOutput,
         http_method = "POST",
         http_path = "/DisassociateBenefitApplicationResource",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getBenefit(input, options)
     return self:invokeOperation(input, {
         name = "GetBenefit",
-        input_schema = types.GetBenefitInput,
-        output_schema = types.GetBenefitOutput,
+        input_schema = schemas.GetBenefitInput,
+        output_schema = schemas.GetBenefitOutput,
         http_method = "POST",
         http_path = "/GetBenefit",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getBenefitAllocation(input, options)
     return self:invokeOperation(input, {
         name = "GetBenefitAllocation",
-        input_schema = types.GetBenefitAllocationInput,
-        output_schema = types.GetBenefitAllocationOutput,
+        input_schema = schemas.GetBenefitAllocationInput,
+        output_schema = schemas.GetBenefitAllocationOutput,
         http_method = "POST",
         http_path = "/GetBenefitAllocation",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getBenefitApplication(input, options)
     return self:invokeOperation(input, {
         name = "GetBenefitApplication",
-        input_schema = types.GetBenefitApplicationInput,
-        output_schema = types.GetBenefitApplicationOutput,
+        input_schema = schemas.GetBenefitApplicationInput,
+        output_schema = schemas.GetBenefitApplicationOutput,
         http_method = "POST",
         http_path = "/GetBenefitApplication",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listBenefitAllocations(input, options)
     return self:invokeOperation(input, {
         name = "ListBenefitAllocations",
-        input_schema = types.ListBenefitAllocationsInput,
-        output_schema = types.ListBenefitAllocationsOutput,
+        input_schema = schemas.ListBenefitAllocationsInput,
+        output_schema = schemas.ListBenefitAllocationsOutput,
         http_method = "POST",
         http_path = "/ListBenefitAllocations",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listBenefitApplications(input, options)
     return self:invokeOperation(input, {
         name = "ListBenefitApplications",
-        input_schema = types.ListBenefitApplicationsInput,
-        output_schema = types.ListBenefitApplicationsOutput,
+        input_schema = schemas.ListBenefitApplicationsInput,
+        output_schema = schemas.ListBenefitApplicationsOutput,
         http_method = "POST",
         http_path = "/ListBenefitApplications",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listBenefits(input, options)
     return self:invokeOperation(input, {
         name = "ListBenefits",
-        input_schema = types.ListBenefitsInput,
-        output_schema = types.ListBenefitsOutput,
+        input_schema = schemas.ListBenefitsInput,
+        output_schema = schemas.ListBenefitsOutput,
         http_method = "POST",
         http_path = "/ListBenefits",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/ListTagsForResource",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:recallBenefitApplication(input, options)
     return self:invokeOperation(input, {
         name = "RecallBenefitApplication",
-        input_schema = types.RecallBenefitApplicationInput,
-        output_schema = types.RecallBenefitApplicationOutput,
+        input_schema = schemas.RecallBenefitApplicationInput,
+        output_schema = schemas.RecallBenefitApplicationOutput,
         http_method = "POST",
         http_path = "/RecallBenefitApplication",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:submitBenefitApplication(input, options)
     return self:invokeOperation(input, {
         name = "SubmitBenefitApplication",
-        input_schema = types.SubmitBenefitApplicationInput,
-        output_schema = types.SubmitBenefitApplicationOutput,
+        input_schema = schemas.SubmitBenefitApplicationInput,
+        output_schema = schemas.SubmitBenefitApplicationOutput,
         http_method = "POST",
         http_path = "/SubmitBenefitApplication",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/TagResource",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/UntagResource",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:updateBenefitApplication(input, options)
     return self:invokeOperation(input, {
         name = "UpdateBenefitApplication",
-        input_schema = types.UpdateBenefitApplicationInput,
-        output_schema = types.UpdateBenefitApplicationOutput,
+        input_schema = schemas.UpdateBenefitApplicationInput,
+        output_schema = schemas.UpdateBenefitApplicationOutput,
         http_method = "POST",
         http_path = "/UpdateBenefitApplication",
         effective_auth_schemes = {

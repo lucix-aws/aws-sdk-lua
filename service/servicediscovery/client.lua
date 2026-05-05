@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("servicediscovery.endpoint_rules")
+local schemas = require("servicediscovery.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("servicediscovery.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createHttpNamespace(input, options)
     return self:invokeOperation(input, {
         name = "CreateHttpNamespace",
-        input_schema = types.CreateHttpNamespaceInput,
-        output_schema = types.CreateHttpNamespaceOutput,
+        input_schema = schemas.CreateHttpNamespaceInput,
+        output_schema = schemas.CreateHttpNamespaceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createPrivateDnsNamespace(input, options)
     return self:invokeOperation(input, {
         name = "CreatePrivateDnsNamespace",
-        input_schema = types.CreatePrivateDnsNamespaceInput,
-        output_schema = types.CreatePrivateDnsNamespaceOutput,
+        input_schema = schemas.CreatePrivateDnsNamespaceInput,
+        output_schema = schemas.CreatePrivateDnsNamespaceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createPublicDnsNamespace(input, options)
     return self:invokeOperation(input, {
         name = "CreatePublicDnsNamespace",
-        input_schema = types.CreatePublicDnsNamespaceInput,
-        output_schema = types.CreatePublicDnsNamespaceOutput,
+        input_schema = schemas.CreatePublicDnsNamespaceInput,
+        output_schema = schemas.CreatePublicDnsNamespaceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createService(input, options)
     return self:invokeOperation(input, {
         name = "CreateService",
-        input_schema = types.CreateServiceInput,
-        output_schema = types.CreateServiceOutput,
+        input_schema = schemas.CreateServiceInput,
+        output_schema = schemas.CreateServiceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteNamespace(input, options)
     return self:invokeOperation(input, {
         name = "DeleteNamespace",
-        input_schema = types.DeleteNamespaceInput,
-        output_schema = types.DeleteNamespaceOutput,
+        input_schema = schemas.DeleteNamespaceInput,
+        output_schema = schemas.DeleteNamespaceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteService(input, options)
     return self:invokeOperation(input, {
         name = "DeleteService",
-        input_schema = types.DeleteServiceInput,
-        output_schema = types.DeleteServiceOutput,
+        input_schema = schemas.DeleteServiceInput,
+        output_schema = schemas.DeleteServiceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteServiceAttributes(input, options)
     return self:invokeOperation(input, {
         name = "DeleteServiceAttributes",
-        input_schema = types.DeleteServiceAttributesInput,
-        output_schema = types.DeleteServiceAttributesOutput,
+        input_schema = schemas.DeleteServiceAttributesInput,
+        output_schema = schemas.DeleteServiceAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deregisterInstance(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterInstance",
-        input_schema = types.DeregisterInstanceInput,
-        output_schema = types.DeregisterInstanceOutput,
+        input_schema = schemas.DeregisterInstanceInput,
+        output_schema = schemas.DeregisterInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:discoverInstances(input, options)
     return self:invokeOperation(input, {
         name = "DiscoverInstances",
-        input_schema = types.DiscoverInstancesInput,
-        output_schema = types.DiscoverInstancesOutput,
+        input_schema = schemas.DiscoverInstancesInput,
+        output_schema = schemas.DiscoverInstancesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:discoverInstancesRevision(input, options)
     return self:invokeOperation(input, {
         name = "DiscoverInstancesRevision",
-        input_schema = types.DiscoverInstancesRevisionInput,
-        output_schema = types.DiscoverInstancesRevisionOutput,
+        input_schema = schemas.DiscoverInstancesRevisionInput,
+        output_schema = schemas.DiscoverInstancesRevisionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getInstance(input, options)
     return self:invokeOperation(input, {
         name = "GetInstance",
-        input_schema = types.GetInstanceInput,
-        output_schema = types.GetInstanceOutput,
+        input_schema = schemas.GetInstanceInput,
+        output_schema = schemas.GetInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getInstancesHealthStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetInstancesHealthStatus",
-        input_schema = types.GetInstancesHealthStatusInput,
-        output_schema = types.GetInstancesHealthStatusOutput,
+        input_schema = schemas.GetInstancesHealthStatusInput,
+        output_schema = schemas.GetInstancesHealthStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getNamespace(input, options)
     return self:invokeOperation(input, {
         name = "GetNamespace",
-        input_schema = types.GetNamespaceInput,
-        output_schema = types.GetNamespaceOutput,
+        input_schema = schemas.GetNamespaceInput,
+        output_schema = schemas.GetNamespaceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getOperation(input, options)
     return self:invokeOperation(input, {
         name = "GetOperation",
-        input_schema = types.GetOperationInput,
-        output_schema = types.GetOperationOutput,
+        input_schema = schemas.GetOperationInput,
+        output_schema = schemas.GetOperationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getService(input, options)
     return self:invokeOperation(input, {
         name = "GetService",
-        input_schema = types.GetServiceInput,
-        output_schema = types.GetServiceOutput,
+        input_schema = schemas.GetServiceInput,
+        output_schema = schemas.GetServiceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getServiceAttributes(input, options)
     return self:invokeOperation(input, {
         name = "GetServiceAttributes",
-        input_schema = types.GetServiceAttributesInput,
-        output_schema = types.GetServiceAttributesOutput,
+        input_schema = schemas.GetServiceAttributesInput,
+        output_schema = schemas.GetServiceAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listInstances(input, options)
     return self:invokeOperation(input, {
         name = "ListInstances",
-        input_schema = types.ListInstancesInput,
-        output_schema = types.ListInstancesOutput,
+        input_schema = schemas.ListInstancesInput,
+        output_schema = schemas.ListInstancesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listNamespaces(input, options)
     return self:invokeOperation(input, {
         name = "ListNamespaces",
-        input_schema = types.ListNamespacesInput,
-        output_schema = types.ListNamespacesOutput,
+        input_schema = schemas.ListNamespacesInput,
+        output_schema = schemas.ListNamespacesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listOperations(input, options)
     return self:invokeOperation(input, {
         name = "ListOperations",
-        input_schema = types.ListOperationsInput,
-        output_schema = types.ListOperationsOutput,
+        input_schema = schemas.ListOperationsInput,
+        output_schema = schemas.ListOperationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listServices(input, options)
     return self:invokeOperation(input, {
         name = "ListServices",
-        input_schema = types.ListServicesInput,
-        output_schema = types.ListServicesOutput,
+        input_schema = schemas.ListServicesInput,
+        output_schema = schemas.ListServicesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:registerInstance(input, options)
     return self:invokeOperation(input, {
         name = "RegisterInstance",
-        input_schema = types.RegisterInstanceInput,
-        output_schema = types.RegisterInstanceOutput,
+        input_schema = schemas.RegisterInstanceInput,
+        output_schema = schemas.RegisterInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:updateHttpNamespace(input, options)
     return self:invokeOperation(input, {
         name = "UpdateHttpNamespace",
-        input_schema = types.UpdateHttpNamespaceInput,
-        output_schema = types.UpdateHttpNamespaceOutput,
+        input_schema = schemas.UpdateHttpNamespaceInput,
+        output_schema = schemas.UpdateHttpNamespaceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:updateInstanceCustomHealthStatus(input, options)
     return self:invokeOperation(input, {
         name = "UpdateInstanceCustomHealthStatus",
-        input_schema = types.UpdateInstanceCustomHealthStatusInput,
-        output_schema = types.UpdateInstanceCustomHealthStatusOutput,
+        input_schema = schemas.UpdateInstanceCustomHealthStatusInput,
+        output_schema = schemas.UpdateInstanceCustomHealthStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:updatePrivateDnsNamespace(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePrivateDnsNamespace",
-        input_schema = types.UpdatePrivateDnsNamespaceInput,
-        output_schema = types.UpdatePrivateDnsNamespaceOutput,
+        input_schema = schemas.UpdatePrivateDnsNamespaceInput,
+        output_schema = schemas.UpdatePrivateDnsNamespaceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:updatePublicDnsNamespace(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePublicDnsNamespace",
-        input_schema = types.UpdatePublicDnsNamespaceInput,
-        output_schema = types.UpdatePublicDnsNamespaceOutput,
+        input_schema = schemas.UpdatePublicDnsNamespaceInput,
+        output_schema = schemas.UpdatePublicDnsNamespaceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:updateService(input, options)
     return self:invokeOperation(input, {
         name = "UpdateService",
-        input_schema = types.UpdateServiceInput,
-        output_schema = types.UpdateServiceOutput,
+        input_schema = schemas.UpdateServiceInput,
+        output_schema = schemas.UpdateServiceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:updateServiceAttributes(input, options)
     return self:invokeOperation(input, {
         name = "UpdateServiceAttributes",
-        input_schema = types.UpdateServiceAttributesInput,
-        output_schema = types.UpdateServiceAttributesOutput,
+        input_schema = schemas.UpdateServiceAttributesInput,
+        output_schema = schemas.UpdateServiceAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

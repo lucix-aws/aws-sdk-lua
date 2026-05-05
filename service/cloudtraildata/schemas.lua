@@ -1,0 +1,259 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.cloudtraildata"
+
+local M = {}
+
+M.AuditEvent = schema.new({
+    id = id.from(_N, "AuditEvent"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "AuditEvent", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventData = schema.new({
+            id = id.from(_N, "AuditEvent", "eventData"),
+            type = "string",
+            name = "eventData",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventDataChecksum = schema.new({
+            id = id.from(_N, "AuditEvent", "eventDataChecksum"),
+            type = "string",
+            name = "eventDataChecksum",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AuditEventResultEntry = schema.new({
+    id = id.from(_N, "AuditEventResultEntry"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "AuditEventResultEntry", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventID = schema.new({
+            id = id.from(_N, "AuditEventResultEntry", "eventID"),
+            type = "string",
+            name = "eventID",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ChannelInsufficientPermission = schema.new({
+    id = id.from(_N, "ChannelInsufficientPermission"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ChannelInsufficientPermission", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ChannelNotFound = schema.new({
+    id = id.from(_N, "ChannelNotFound"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ChannelNotFound", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ChannelUnsupportedSchema = schema.new({
+    id = id.from(_N, "ChannelUnsupportedSchema"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ChannelUnsupportedSchema", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DuplicatedAuditEventId = schema.new({
+    id = id.from(_N, "DuplicatedAuditEventId"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "DuplicatedAuditEventId", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidChannelARN = schema.new({
+    id = id.from(_N, "InvalidChannelARN"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidChannelARN", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PutAuditEventsInput = schema.new({
+    id = id.from(_N, "PutAuditEventsInput"),
+    type = "structure",
+    members = {
+        auditEvents = schema.new({
+            id = id.from(_N, "PutAuditEventsInput", "auditEvents"),
+            type = "list",
+            name = "auditEvents",
+            target_id = prelude.Document.id,
+            list_member = M.AuditEvent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        channelArn = schema.new({
+            id = id.from(_N, "PutAuditEventsInput", "channelArn"),
+            type = "string",
+            name = "channelArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "channelArn" },
+            },
+        }),
+        externalId = schema.new({
+            id = id.from(_N, "PutAuditEventsInput", "externalId"),
+            type = "string",
+            name = "externalId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "externalId" },
+            },
+        }),
+    },
+})
+
+M.ResultErrorEntry = schema.new({
+    id = id.from(_N, "ResultErrorEntry"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "ResultErrorEntry", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errorCode = schema.new({
+            id = id.from(_N, "ResultErrorEntry", "errorCode"),
+            type = "string",
+            name = "errorCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errorMessage = schema.new({
+            id = id.from(_N, "ResultErrorEntry", "errorMessage"),
+            type = "string",
+            name = "errorMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutAuditEventsOutput = schema.new({
+    id = id.from(_N, "PutAuditEventsOutput"),
+    type = "structure",
+    members = {
+        successful = schema.new({
+            id = id.from(_N, "PutAuditEventsOutput", "successful"),
+            type = "list",
+            name = "successful",
+            target_id = prelude.Document.id,
+            list_member = M.AuditEventResultEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        failed = schema.new({
+            id = id.from(_N, "PutAuditEventsOutput", "failed"),
+            type = "list",
+            name = "failed",
+            target_id = prelude.Document.id,
+            list_member = M.ResultErrorEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UnsupportedOperationException = schema.new({
+    id = id.from(_N, "UnsupportedOperationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "UnsupportedOperationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+return M

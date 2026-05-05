@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("securityagent.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("securityagent.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("securityagent.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addArtifact(input, options)
     return self:invokeOperation(input, {
         name = "AddArtifact",
-        input_schema = types.AddArtifactInput,
-        output_schema = types.AddArtifactOutput,
+        input_schema = schemas.AddArtifactInput,
+        output_schema = schemas.AddArtifactOutput,
         http_method = "POST",
         http_path = "/AddArtifact",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchDeletePentests(input, options)
     return self:invokeOperation(input, {
         name = "BatchDeletePentests",
-        input_schema = types.BatchDeletePentestsInput,
-        output_schema = types.BatchDeletePentestsOutput,
+        input_schema = schemas.BatchDeletePentestsInput,
+        output_schema = schemas.BatchDeletePentestsOutput,
         http_method = "POST",
         http_path = "/BatchDeletePentests",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchGetAgentSpaces(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetAgentSpaces",
-        input_schema = types.BatchGetAgentSpacesInput,
-        output_schema = types.BatchGetAgentSpacesOutput,
+        input_schema = schemas.BatchGetAgentSpacesInput,
+        output_schema = schemas.BatchGetAgentSpacesOutput,
         http_method = "POST",
         http_path = "/BatchGetAgentSpaces",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:batchGetArtifactMetadata(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetArtifactMetadata",
-        input_schema = types.BatchGetArtifactMetadataInput,
-        output_schema = types.BatchGetArtifactMetadataOutput,
+        input_schema = schemas.BatchGetArtifactMetadataInput,
+        output_schema = schemas.BatchGetArtifactMetadataOutput,
         http_method = "POST",
         http_path = "/BatchGetArtifactMetadata",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:batchGetFindings(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetFindings",
-        input_schema = types.BatchGetFindingsInput,
-        output_schema = types.BatchGetFindingsOutput,
+        input_schema = schemas.BatchGetFindingsInput,
+        output_schema = schemas.BatchGetFindingsOutput,
         http_method = "POST",
         http_path = "/BatchGetFindings",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:batchGetPentestJobs(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetPentestJobs",
-        input_schema = types.BatchGetPentestJobsInput,
-        output_schema = types.BatchGetPentestJobsOutput,
+        input_schema = schemas.BatchGetPentestJobsInput,
+        output_schema = schemas.BatchGetPentestJobsOutput,
         http_method = "POST",
         http_path = "/BatchGetPentestJobs",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:batchGetPentestJobTasks(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetPentestJobTasks",
-        input_schema = types.BatchGetPentestJobTasksInput,
-        output_schema = types.BatchGetPentestJobTasksOutput,
+        input_schema = schemas.BatchGetPentestJobTasksInput,
+        output_schema = schemas.BatchGetPentestJobTasksOutput,
         http_method = "POST",
         http_path = "/BatchGetPentestJobTasks",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:batchGetPentests(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetPentests",
-        input_schema = types.BatchGetPentestsInput,
-        output_schema = types.BatchGetPentestsOutput,
+        input_schema = schemas.BatchGetPentestsInput,
+        output_schema = schemas.BatchGetPentestsOutput,
         http_method = "POST",
         http_path = "/BatchGetPentests",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:batchGetTargetDomains(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetTargetDomains",
-        input_schema = types.BatchGetTargetDomainsInput,
-        output_schema = types.BatchGetTargetDomainsOutput,
+        input_schema = schemas.BatchGetTargetDomainsInput,
+        output_schema = schemas.BatchGetTargetDomainsOutput,
         http_method = "POST",
         http_path = "/BatchGetTargetDomains",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createAgentSpace(input, options)
     return self:invokeOperation(input, {
         name = "CreateAgentSpace",
-        input_schema = types.CreateAgentSpaceInput,
-        output_schema = types.CreateAgentSpaceOutput,
+        input_schema = schemas.CreateAgentSpaceInput,
+        output_schema = schemas.CreateAgentSpaceOutput,
         http_method = "POST",
         http_path = "/CreateAgentSpace",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createApplication(input, options)
     return self:invokeOperation(input, {
         name = "CreateApplication",
-        input_schema = types.CreateApplicationInput,
-        output_schema = types.CreateApplicationOutput,
+        input_schema = schemas.CreateApplicationInput,
+        output_schema = schemas.CreateApplicationOutput,
         http_method = "POST",
         http_path = "/CreateApplication",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createIntegration(input, options)
     return self:invokeOperation(input, {
         name = "CreateIntegration",
-        input_schema = types.CreateIntegrationInput,
-        output_schema = types.CreateIntegrationOutput,
+        input_schema = schemas.CreateIntegrationInput,
+        output_schema = schemas.CreateIntegrationOutput,
         http_method = "POST",
         http_path = "/CreateIntegration",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createMembership(input, options)
     return self:invokeOperation(input, {
         name = "CreateMembership",
-        input_schema = types.CreateMembershipInput,
-        output_schema = types.CreateMembershipOutput,
+        input_schema = schemas.CreateMembershipInput,
+        output_schema = schemas.CreateMembershipOutput,
         http_method = "POST",
         http_path = "/CreateMembership",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:createPentest(input, options)
     return self:invokeOperation(input, {
         name = "CreatePentest",
-        input_schema = types.CreatePentestInput,
-        output_schema = types.CreatePentestOutput,
+        input_schema = schemas.CreatePentestInput,
+        output_schema = schemas.CreatePentestOutput,
         http_method = "POST",
         http_path = "/CreatePentest",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:createTargetDomain(input, options)
     return self:invokeOperation(input, {
         name = "CreateTargetDomain",
-        input_schema = types.CreateTargetDomainInput,
-        output_schema = types.CreateTargetDomainOutput,
+        input_schema = schemas.CreateTargetDomainInput,
+        output_schema = schemas.CreateTargetDomainOutput,
         http_method = "POST",
         http_path = "/CreateTargetDomain",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteAgentSpace(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAgentSpace",
-        input_schema = types.DeleteAgentSpaceInput,
-        output_schema = types.DeleteAgentSpaceOutput,
+        input_schema = schemas.DeleteAgentSpaceInput,
+        output_schema = schemas.DeleteAgentSpaceOutput,
         http_method = "POST",
         http_path = "/DeleteAgentSpace",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteApplication(input, options)
     return self:invokeOperation(input, {
         name = "DeleteApplication",
-        input_schema = types.DeleteApplicationInput,
-        output_schema = types.DeleteApplicationOutput,
+        input_schema = schemas.DeleteApplicationInput,
+        output_schema = schemas.DeleteApplicationOutput,
         http_method = "POST",
         http_path = "/DeleteApplication",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteArtifact(input, options)
     return self:invokeOperation(input, {
         name = "DeleteArtifact",
-        input_schema = types.DeleteArtifactInput,
-        output_schema = types.DeleteArtifactOutput,
+        input_schema = schemas.DeleteArtifactInput,
+        output_schema = schemas.DeleteArtifactOutput,
         http_method = "POST",
         http_path = "/DeleteArtifact",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteIntegration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIntegration",
-        input_schema = types.DeleteIntegrationInput,
-        output_schema = types.DeleteIntegrationOutput,
+        input_schema = schemas.DeleteIntegrationInput,
+        output_schema = schemas.DeleteIntegrationOutput,
         http_method = "POST",
         http_path = "/DeleteIntegration",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deleteMembership(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMembership",
-        input_schema = types.DeleteMembershipInput,
-        output_schema = types.DeleteMembershipOutput,
+        input_schema = schemas.DeleteMembershipInput,
+        output_schema = schemas.DeleteMembershipOutput,
         http_method = "POST",
         http_path = "/DeleteMembership",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteTargetDomain(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTargetDomain",
-        input_schema = types.DeleteTargetDomainInput,
-        output_schema = types.DeleteTargetDomainOutput,
+        input_schema = schemas.DeleteTargetDomainInput,
+        output_schema = schemas.DeleteTargetDomainOutput,
         http_method = "POST",
         http_path = "/DeleteTargetDomain",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:getApplication(input, options)
     return self:invokeOperation(input, {
         name = "GetApplication",
-        input_schema = types.GetApplicationInput,
-        output_schema = types.GetApplicationOutput,
+        input_schema = schemas.GetApplicationInput,
+        output_schema = schemas.GetApplicationOutput,
         http_method = "POST",
         http_path = "/GetApplication",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:getArtifact(input, options)
     return self:invokeOperation(input, {
         name = "GetArtifact",
-        input_schema = types.GetArtifactInput,
-        output_schema = types.GetArtifactOutput,
+        input_schema = schemas.GetArtifactInput,
+        output_schema = schemas.GetArtifactOutput,
         http_method = "POST",
         http_path = "/GetArtifact",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:getIntegration(input, options)
     return self:invokeOperation(input, {
         name = "GetIntegration",
-        input_schema = types.GetIntegrationInput,
-        output_schema = types.GetIntegrationOutput,
+        input_schema = schemas.GetIntegrationInput,
+        output_schema = schemas.GetIntegrationOutput,
         http_method = "POST",
         http_path = "/GetIntegration",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:initiateProviderRegistration(input, options)
     return self:invokeOperation(input, {
         name = "InitiateProviderRegistration",
-        input_schema = types.InitiateProviderRegistrationInput,
-        output_schema = types.InitiateProviderRegistrationOutput,
+        input_schema = schemas.InitiateProviderRegistrationInput,
+        output_schema = schemas.InitiateProviderRegistrationOutput,
         http_method = "POST",
         http_path = "/oauth2/provider/register",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listAgentSpaces(input, options)
     return self:invokeOperation(input, {
         name = "ListAgentSpaces",
-        input_schema = types.ListAgentSpacesInput,
-        output_schema = types.ListAgentSpacesOutput,
+        input_schema = schemas.ListAgentSpacesInput,
+        output_schema = schemas.ListAgentSpacesOutput,
         http_method = "POST",
         http_path = "/ListAgentSpaces",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listApplications(input, options)
     return self:invokeOperation(input, {
         name = "ListApplications",
-        input_schema = types.ListApplicationsInput,
-        output_schema = types.ListApplicationsOutput,
+        input_schema = schemas.ListApplicationsInput,
+        output_schema = schemas.ListApplicationsOutput,
         http_method = "POST",
         http_path = "/ListApplications",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listArtifacts(input, options)
     return self:invokeOperation(input, {
         name = "ListArtifacts",
-        input_schema = types.ListArtifactsInput,
-        output_schema = types.ListArtifactsOutput,
+        input_schema = schemas.ListArtifactsInput,
+        output_schema = schemas.ListArtifactsOutput,
         http_method = "POST",
         http_path = "/ListArtifacts",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listDiscoveredEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "ListDiscoveredEndpoints",
-        input_schema = types.ListDiscoveredEndpointsInput,
-        output_schema = types.ListDiscoveredEndpointsOutput,
+        input_schema = schemas.ListDiscoveredEndpointsInput,
+        output_schema = schemas.ListDiscoveredEndpointsOutput,
         http_method = "POST",
         http_path = "/ListDiscoveredEndpoints",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:listFindings(input, options)
     return self:invokeOperation(input, {
         name = "ListFindings",
-        input_schema = types.ListFindingsInput,
-        output_schema = types.ListFindingsOutput,
+        input_schema = schemas.ListFindingsInput,
+        output_schema = schemas.ListFindingsOutput,
         http_method = "POST",
         http_path = "/ListFindings",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:listIntegratedResources(input, options)
     return self:invokeOperation(input, {
         name = "ListIntegratedResources",
-        input_schema = types.ListIntegratedResourcesInput,
-        output_schema = types.ListIntegratedResourcesOutput,
+        input_schema = schemas.ListIntegratedResourcesInput,
+        output_schema = schemas.ListIntegratedResourcesOutput,
         http_method = "POST",
         http_path = "/ListIntegratedResources",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:listIntegrations(input, options)
     return self:invokeOperation(input, {
         name = "ListIntegrations",
-        input_schema = types.ListIntegrationsInput,
-        output_schema = types.ListIntegrationsOutput,
+        input_schema = schemas.ListIntegrationsInput,
+        output_schema = schemas.ListIntegrationsOutput,
         http_method = "POST",
         http_path = "/ListIntegrations",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:listMemberships(input, options)
     return self:invokeOperation(input, {
         name = "ListMemberships",
-        input_schema = types.ListMembershipsInput,
-        output_schema = types.ListMembershipsOutput,
+        input_schema = schemas.ListMembershipsInput,
+        output_schema = schemas.ListMembershipsOutput,
         http_method = "POST",
         http_path = "/ListMemberships",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listPentestJobsForPentest(input, options)
     return self:invokeOperation(input, {
         name = "ListPentestJobsForPentest",
-        input_schema = types.ListPentestJobsForPentestInput,
-        output_schema = types.ListPentestJobsForPentestOutput,
+        input_schema = schemas.ListPentestJobsForPentestInput,
+        output_schema = schemas.ListPentestJobsForPentestOutput,
         http_method = "POST",
         http_path = "/ListPentestJobsForPentest",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:listPentestJobTasks(input, options)
     return self:invokeOperation(input, {
         name = "ListPentestJobTasks",
-        input_schema = types.ListPentestJobTasksInput,
-        output_schema = types.ListPentestJobTasksOutput,
+        input_schema = schemas.ListPentestJobTasksInput,
+        output_schema = schemas.ListPentestJobTasksOutput,
         http_method = "POST",
         http_path = "/ListPentestJobTasks",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:listPentests(input, options)
     return self:invokeOperation(input, {
         name = "ListPentests",
-        input_schema = types.ListPentestsInput,
-        output_schema = types.ListPentestsOutput,
+        input_schema = schemas.ListPentestsInput,
+        output_schema = schemas.ListPentestsOutput,
         http_method = "POST",
         http_path = "/ListPentests",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:listTargetDomains(input, options)
     return self:invokeOperation(input, {
         name = "ListTargetDomains",
-        input_schema = types.ListTargetDomainsInput,
-        output_schema = types.ListTargetDomainsOutput,
+        input_schema = schemas.ListTargetDomainsInput,
+        output_schema = schemas.ListTargetDomainsOutput,
         http_method = "POST",
         http_path = "/ListTargetDomains",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:startCodeRemediation(input, options)
     return self:invokeOperation(input, {
         name = "StartCodeRemediation",
-        input_schema = types.StartCodeRemediationInput,
-        output_schema = types.StartCodeRemediationOutput,
+        input_schema = schemas.StartCodeRemediationInput,
+        output_schema = schemas.StartCodeRemediationOutput,
         http_method = "POST",
         http_path = "/StartCodeRemediation",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:startPentestJob(input, options)
     return self:invokeOperation(input, {
         name = "StartPentestJob",
-        input_schema = types.StartPentestJobInput,
-        output_schema = types.StartPentestJobOutput,
+        input_schema = schemas.StartPentestJobInput,
+        output_schema = schemas.StartPentestJobOutput,
         http_method = "POST",
         http_path = "/StartPentestJob",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:stopPentestJob(input, options)
     return self:invokeOperation(input, {
         name = "StopPentestJob",
-        input_schema = types.StopPentestJobInput,
-        output_schema = types.StopPentestJobOutput,
+        input_schema = schemas.StopPentestJobInput,
+        output_schema = schemas.StopPentestJobOutput,
         http_method = "POST",
         http_path = "/StopPentestJob",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:updateAgentSpace(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAgentSpace",
-        input_schema = types.UpdateAgentSpaceInput,
-        output_schema = types.UpdateAgentSpaceOutput,
+        input_schema = schemas.UpdateAgentSpaceInput,
+        output_schema = schemas.UpdateAgentSpaceOutput,
         http_method = "POST",
         http_path = "/UpdateAgentSpace",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:updateApplication(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApplication",
-        input_schema = types.UpdateApplicationInput,
-        output_schema = types.UpdateApplicationOutput,
+        input_schema = schemas.UpdateApplicationInput,
+        output_schema = schemas.UpdateApplicationOutput,
         http_method = "POST",
         http_path = "/UpdateApplication",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:updateFinding(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFinding",
-        input_schema = types.UpdateFindingInput,
-        output_schema = types.UpdateFindingOutput,
+        input_schema = schemas.UpdateFindingInput,
+        output_schema = schemas.UpdateFindingOutput,
         http_method = "POST",
         http_path = "/UpdateFinding",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:updateIntegratedResources(input, options)
     return self:invokeOperation(input, {
         name = "UpdateIntegratedResources",
-        input_schema = types.UpdateIntegratedResourcesInput,
-        output_schema = types.UpdateIntegratedResourcesOutput,
+        input_schema = schemas.UpdateIntegratedResourcesInput,
+        output_schema = schemas.UpdateIntegratedResourcesOutput,
         http_method = "POST",
         http_path = "/UpdateIntegratedResources",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:updatePentest(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePentest",
-        input_schema = types.UpdatePentestInput,
-        output_schema = types.UpdatePentestOutput,
+        input_schema = schemas.UpdatePentestInput,
+        output_schema = schemas.UpdatePentestOutput,
         http_method = "POST",
         http_path = "/UpdatePentest",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:updateTargetDomain(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTargetDomain",
-        input_schema = types.UpdateTargetDomainInput,
-        output_schema = types.UpdateTargetDomainOutput,
+        input_schema = schemas.UpdateTargetDomainInput,
+        output_schema = schemas.UpdateTargetDomainOutput,
         http_method = "POST",
         http_path = "/UpdateTargetDomain",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:verifyTargetDomain(input, options)
     return self:invokeOperation(input, {
         name = "VerifyTargetDomain",
-        input_schema = types.VerifyTargetDomainInput,
-        output_schema = types.VerifyTargetDomainOutput,
+        input_schema = schemas.VerifyTargetDomainInput,
+        output_schema = schemas.VerifyTargetDomainOutput,
         http_method = "POST",
         http_path = "/VerifyTargetDomain",
         effective_auth_schemes = {

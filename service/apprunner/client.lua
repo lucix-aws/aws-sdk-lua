@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("apprunner.endpoint_rules")
+local schemas = require("apprunner.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("apprunner.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateCustomDomain(input, options)
     return self:invokeOperation(input, {
         name = "AssociateCustomDomain",
-        input_schema = types.AssociateCustomDomainInput,
-        output_schema = types.AssociateCustomDomainOutput,
+        input_schema = schemas.AssociateCustomDomainInput,
+        output_schema = schemas.AssociateCustomDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createAutoScalingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateAutoScalingConfiguration",
-        input_schema = types.CreateAutoScalingConfigurationInput,
-        output_schema = types.CreateAutoScalingConfigurationOutput,
+        input_schema = schemas.CreateAutoScalingConfigurationInput,
+        output_schema = schemas.CreateAutoScalingConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createConnection(input, options)
     return self:invokeOperation(input, {
         name = "CreateConnection",
-        input_schema = types.CreateConnectionInput,
-        output_schema = types.CreateConnectionOutput,
+        input_schema = schemas.CreateConnectionInput,
+        output_schema = schemas.CreateConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createObservabilityConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateObservabilityConfiguration",
-        input_schema = types.CreateObservabilityConfigurationInput,
-        output_schema = types.CreateObservabilityConfigurationOutput,
+        input_schema = schemas.CreateObservabilityConfigurationInput,
+        output_schema = schemas.CreateObservabilityConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createService(input, options)
     return self:invokeOperation(input, {
         name = "CreateService",
-        input_schema = types.CreateServiceInput,
-        output_schema = types.CreateServiceOutput,
+        input_schema = schemas.CreateServiceInput,
+        output_schema = schemas.CreateServiceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createVpcConnector(input, options)
     return self:invokeOperation(input, {
         name = "CreateVpcConnector",
-        input_schema = types.CreateVpcConnectorInput,
-        output_schema = types.CreateVpcConnectorOutput,
+        input_schema = schemas.CreateVpcConnectorInput,
+        output_schema = schemas.CreateVpcConnectorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createVpcIngressConnection(input, options)
     return self:invokeOperation(input, {
         name = "CreateVpcIngressConnection",
-        input_schema = types.CreateVpcIngressConnectionInput,
-        output_schema = types.CreateVpcIngressConnectionOutput,
+        input_schema = schemas.CreateVpcIngressConnectionInput,
+        output_schema = schemas.CreateVpcIngressConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteAutoScalingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAutoScalingConfiguration",
-        input_schema = types.DeleteAutoScalingConfigurationInput,
-        output_schema = types.DeleteAutoScalingConfigurationOutput,
+        input_schema = schemas.DeleteAutoScalingConfigurationInput,
+        output_schema = schemas.DeleteAutoScalingConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteConnection(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConnection",
-        input_schema = types.DeleteConnectionInput,
-        output_schema = types.DeleteConnectionOutput,
+        input_schema = schemas.DeleteConnectionInput,
+        output_schema = schemas.DeleteConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteObservabilityConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteObservabilityConfiguration",
-        input_schema = types.DeleteObservabilityConfigurationInput,
-        output_schema = types.DeleteObservabilityConfigurationOutput,
+        input_schema = schemas.DeleteObservabilityConfigurationInput,
+        output_schema = schemas.DeleteObservabilityConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteService(input, options)
     return self:invokeOperation(input, {
         name = "DeleteService",
-        input_schema = types.DeleteServiceInput,
-        output_schema = types.DeleteServiceOutput,
+        input_schema = schemas.DeleteServiceInput,
+        output_schema = schemas.DeleteServiceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteVpcConnector(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVpcConnector",
-        input_schema = types.DeleteVpcConnectorInput,
-        output_schema = types.DeleteVpcConnectorOutput,
+        input_schema = schemas.DeleteVpcConnectorInput,
+        output_schema = schemas.DeleteVpcConnectorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteVpcIngressConnection(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVpcIngressConnection",
-        input_schema = types.DeleteVpcIngressConnectionInput,
-        output_schema = types.DeleteVpcIngressConnectionOutput,
+        input_schema = schemas.DeleteVpcIngressConnectionInput,
+        output_schema = schemas.DeleteVpcIngressConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:describeAutoScalingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAutoScalingConfiguration",
-        input_schema = types.DescribeAutoScalingConfigurationInput,
-        output_schema = types.DescribeAutoScalingConfigurationOutput,
+        input_schema = schemas.DescribeAutoScalingConfigurationInput,
+        output_schema = schemas.DescribeAutoScalingConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:describeCustomDomains(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCustomDomains",
-        input_schema = types.DescribeCustomDomainsInput,
-        output_schema = types.DescribeCustomDomainsOutput,
+        input_schema = schemas.DescribeCustomDomainsInput,
+        output_schema = schemas.DescribeCustomDomainsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:describeObservabilityConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DescribeObservabilityConfiguration",
-        input_schema = types.DescribeObservabilityConfigurationInput,
-        output_schema = types.DescribeObservabilityConfigurationOutput,
+        input_schema = schemas.DescribeObservabilityConfigurationInput,
+        output_schema = schemas.DescribeObservabilityConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:describeService(input, options)
     return self:invokeOperation(input, {
         name = "DescribeService",
-        input_schema = types.DescribeServiceInput,
-        output_schema = types.DescribeServiceOutput,
+        input_schema = schemas.DescribeServiceInput,
+        output_schema = schemas.DescribeServiceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:describeVpcConnector(input, options)
     return self:invokeOperation(input, {
         name = "DescribeVpcConnector",
-        input_schema = types.DescribeVpcConnectorInput,
-        output_schema = types.DescribeVpcConnectorOutput,
+        input_schema = schemas.DescribeVpcConnectorInput,
+        output_schema = schemas.DescribeVpcConnectorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:describeVpcIngressConnection(input, options)
     return self:invokeOperation(input, {
         name = "DescribeVpcIngressConnection",
-        input_schema = types.DescribeVpcIngressConnectionInput,
-        output_schema = types.DescribeVpcIngressConnectionOutput,
+        input_schema = schemas.DescribeVpcIngressConnectionInput,
+        output_schema = schemas.DescribeVpcIngressConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:disassociateCustomDomain(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateCustomDomain",
-        input_schema = types.DisassociateCustomDomainInput,
-        output_schema = types.DisassociateCustomDomainOutput,
+        input_schema = schemas.DisassociateCustomDomainInput,
+        output_schema = schemas.DisassociateCustomDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listAutoScalingConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListAutoScalingConfigurations",
-        input_schema = types.ListAutoScalingConfigurationsInput,
-        output_schema = types.ListAutoScalingConfigurationsOutput,
+        input_schema = schemas.ListAutoScalingConfigurationsInput,
+        output_schema = schemas.ListAutoScalingConfigurationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listConnections(input, options)
     return self:invokeOperation(input, {
         name = "ListConnections",
-        input_schema = types.ListConnectionsInput,
-        output_schema = types.ListConnectionsOutput,
+        input_schema = schemas.ListConnectionsInput,
+        output_schema = schemas.ListConnectionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listObservabilityConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListObservabilityConfigurations",
-        input_schema = types.ListObservabilityConfigurationsInput,
-        output_schema = types.ListObservabilityConfigurationsOutput,
+        input_schema = schemas.ListObservabilityConfigurationsInput,
+        output_schema = schemas.ListObservabilityConfigurationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listOperations(input, options)
     return self:invokeOperation(input, {
         name = "ListOperations",
-        input_schema = types.ListOperationsInput,
-        output_schema = types.ListOperationsOutput,
+        input_schema = schemas.ListOperationsInput,
+        output_schema = schemas.ListOperationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listServices(input, options)
     return self:invokeOperation(input, {
         name = "ListServices",
-        input_schema = types.ListServicesInput,
-        output_schema = types.ListServicesOutput,
+        input_schema = schemas.ListServicesInput,
+        output_schema = schemas.ListServicesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listServicesForAutoScalingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "ListServicesForAutoScalingConfiguration",
-        input_schema = types.ListServicesForAutoScalingConfigurationInput,
-        output_schema = types.ListServicesForAutoScalingConfigurationOutput,
+        input_schema = schemas.ListServicesForAutoScalingConfigurationInput,
+        output_schema = schemas.ListServicesForAutoScalingConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listVpcConnectors(input, options)
     return self:invokeOperation(input, {
         name = "ListVpcConnectors",
-        input_schema = types.ListVpcConnectorsInput,
-        output_schema = types.ListVpcConnectorsOutput,
+        input_schema = schemas.ListVpcConnectorsInput,
+        output_schema = schemas.ListVpcConnectorsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listVpcIngressConnections(input, options)
     return self:invokeOperation(input, {
         name = "ListVpcIngressConnections",
-        input_schema = types.ListVpcIngressConnectionsInput,
-        output_schema = types.ListVpcIngressConnectionsOutput,
+        input_schema = schemas.ListVpcIngressConnectionsInput,
+        output_schema = schemas.ListVpcIngressConnectionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:pauseService(input, options)
     return self:invokeOperation(input, {
         name = "PauseService",
-        input_schema = types.PauseServiceInput,
-        output_schema = types.PauseServiceOutput,
+        input_schema = schemas.PauseServiceInput,
+        output_schema = schemas.PauseServiceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:resumeService(input, options)
     return self:invokeOperation(input, {
         name = "ResumeService",
-        input_schema = types.ResumeServiceInput,
-        output_schema = types.ResumeServiceOutput,
+        input_schema = schemas.ResumeServiceInput,
+        output_schema = schemas.ResumeServiceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:startDeployment(input, options)
     return self:invokeOperation(input, {
         name = "StartDeployment",
-        input_schema = types.StartDeploymentInput,
-        output_schema = types.StartDeploymentOutput,
+        input_schema = schemas.StartDeploymentInput,
+        output_schema = schemas.StartDeploymentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:updateDefaultAutoScalingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDefaultAutoScalingConfiguration",
-        input_schema = types.UpdateDefaultAutoScalingConfigurationInput,
-        output_schema = types.UpdateDefaultAutoScalingConfigurationOutput,
+        input_schema = schemas.UpdateDefaultAutoScalingConfigurationInput,
+        output_schema = schemas.UpdateDefaultAutoScalingConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:updateService(input, options)
     return self:invokeOperation(input, {
         name = "UpdateService",
-        input_schema = types.UpdateServiceInput,
-        output_schema = types.UpdateServiceOutput,
+        input_schema = schemas.UpdateServiceInput,
+        output_schema = schemas.UpdateServiceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:updateVpcIngressConnection(input, options)
     return self:invokeOperation(input, {
         name = "UpdateVpcIngressConnection",
-        input_schema = types.UpdateVpcIngressConnectionInput,
-        output_schema = types.UpdateVpcIngressConnectionOutput,
+        input_schema = schemas.UpdateVpcIngressConnectionInput,
+        output_schema = schemas.UpdateVpcIngressConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

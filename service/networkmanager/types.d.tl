@@ -4007,17 +4007,17 @@ local record ValidationException
     Fields: {ValidationExceptionField}
 end
 
-local type CoreNetworkPolicyAlias = "LIVE" | "LATEST"
-
-local type AttachmentState = "REJECTED" | "PENDING_ATTACHMENT_ACCEPTANCE" | "CREATING" | "FAILED" | "AVAILABLE" | "UPDATING" | "PENDING_NETWORK_UPDATE" | "PENDING_TAG_ACCEPTANCE" | "DELETING"
-
-local type RouteTableType = "TRANSIT_GATEWAY_ROUTE_TABLE" | "CORE_NETWORK_SEGMENT" | "NETWORK_FUNCTION_GROUP"
-
 local type AttachmentType = "CONNECT" | "SITE_TO_SITE_VPN" | "VPC" | "DIRECT_CONNECT_GATEWAY" | "TRANSIT_GATEWAY_ROUTE_TABLE"
 
 local type PeeringType = "TRANSIT_GATEWAY"
 
 local type PeeringState = "CREATING" | "FAILED" | "AVAILABLE" | "DELETING"
+
+local type AttachmentState = "REJECTED" | "PENDING_ATTACHMENT_ACCEPTANCE" | "CREATING" | "FAILED" | "AVAILABLE" | "UPDATING" | "PENDING_NETWORK_UPDATE" | "PENDING_TAG_ACCEPTANCE" | "DELETING"
+
+local type CoreNetworkPolicyAlias = "LIVE" | "LATEST"
+
+local type RouteTableType = "TRANSIT_GATEWAY_ROUTE_TABLE" | "CORE_NETWORK_SEGMENT" | "NETWORK_FUNCTION_GROUP"
 
 local record M
     AcceptAttachmentInput: AcceptAttachmentInput

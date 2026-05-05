@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("connectcontactlens.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("connectcontactlens.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("connectcontactlens.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:listRealtimeContactAnalysisSegments(input, options)
     return self:invokeOperation(input, {
         name = "ListRealtimeContactAnalysisSegments",
-        input_schema = types.ListRealtimeContactAnalysisSegmentsInput,
-        output_schema = types.ListRealtimeContactAnalysisSegmentsOutput,
+        input_schema = schemas.ListRealtimeContactAnalysisSegmentsInput,
+        output_schema = schemas.ListRealtimeContactAnalysisSegmentsOutput,
         http_method = "POST",
         http_path = "/realtime-contact-analysis/analysis-segments",
         effective_auth_schemes = {

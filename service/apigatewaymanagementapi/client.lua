@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("apigatewaymanagementapi.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("apigatewaymanagementapi.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("apigatewaymanagementapi.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:deleteConnection(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConnection",
-        input_schema = types.DeleteConnectionInput,
-        output_schema = types.DeleteConnectionOutput,
+        input_schema = schemas.DeleteConnectionInput,
+        output_schema = schemas.DeleteConnectionOutput,
         http_method = "DELETE",
         http_path = "/@connections/{ConnectionId}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:getConnection(input, options)
     return self:invokeOperation(input, {
         name = "GetConnection",
-        input_schema = types.GetConnectionInput,
-        output_schema = types.GetConnectionOutput,
+        input_schema = schemas.GetConnectionInput,
+        output_schema = schemas.GetConnectionOutput,
         http_method = "GET",
         http_path = "/@connections/{ConnectionId}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:postToConnection(input, options)
     return self:invokeOperation(input, {
         name = "PostToConnection",
-        input_schema = types.PostToConnectionInput,
-        output_schema = types.PostToConnectionOutput,
+        input_schema = schemas.PostToConnectionInput,
+        output_schema = schemas.PostToConnectionOutput,
         http_method = "POST",
         http_path = "/@connections/{ConnectionId}",
         effective_auth_schemes = {

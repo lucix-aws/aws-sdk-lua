@@ -1256,35 +1256,35 @@ local record ValidationException
     reason: string
 end
 
-local type BlankNodeHandling = "convertToIri"
-
-local type GraphStatus = "CREATING" | "AVAILABLE" | "DELETING" | "RESETTING" | "UPDATING" | "SNAPSHOTTING" | "FAILED" | "IMPORTING" | "STARTING" | "STOPPING" | "STOPPED"
-
-local type QueryState = "RUNNING" | "WAITING" | "CANCELLING"
-
-local type ExportFormat = "PARQUET" | "CSV"
-
-local type ExplainMode = "STATIC" | "DETAILS"
-
-local type PrivateGraphEndpointStatus = "CREATING" | "AVAILABLE" | "DELETING" | "FAILED"
-
-local type QueryLanguage = "OPEN_CYPHER"
-
-local type GraphSummaryMode = "BASIC" | "DETAILED"
-
 local type ExportTaskStatus = "INITIALIZING" | "EXPORTING" | "SUCCEEDED" | "FAILED" | "CANCELLING" | "CANCELLED" | "DELETED"
-
-local type PlanCacheType = "ENABLED" | "DISABLED" | "AUTO"
-
-local type SnapshotStatus = "CREATING" | "AVAILABLE" | "DELETING" | "FAILED"
 
 local type QueryStateInput = "ALL" | "RUNNING" | "WAITING" | "CANCELLING"
 
-local type ImportTaskStatus = "INITIALIZING" | "EXPORTING" | "ANALYZING_DATA" | "IMPORTING" | "REPROVISIONING" | "ROLLING_BACK" | "SUCCEEDED" | "FAILED" | "CANCELLING" | "CANCELLED" | "DELETED"
+local type PlanCacheType = "ENABLED" | "DISABLED" | "AUTO"
+
+local type ParquetType = "COLUMNAR"
+
+local type GraphSummaryMode = "BASIC" | "DETAILED"
 
 local type Format = "CSV" | "OPEN_CYPHER" | "PARQUET" | "NTRIPLES"
 
-local type ParquetType = "COLUMNAR"
+local type ExplainMode = "STATIC" | "DETAILS"
+
+local type QueryLanguage = "OPEN_CYPHER"
+
+local type PrivateGraphEndpointStatus = "CREATING" | "AVAILABLE" | "DELETING" | "FAILED"
+
+local type BlankNodeHandling = "convertToIri"
+
+local type ExportFormat = "PARQUET" | "CSV"
+
+local type QueryState = "RUNNING" | "WAITING" | "CANCELLING"
+
+local type SnapshotStatus = "CREATING" | "AVAILABLE" | "DELETING" | "FAILED"
+
+local type ImportTaskStatus = "INITIALIZING" | "EXPORTING" | "ANALYZING_DATA" | "IMPORTING" | "REPROVISIONING" | "ROLLING_BACK" | "SUCCEEDED" | "FAILED" | "CANCELLING" | "CANCELLED" | "DELETED"
+
+local type GraphStatus = "CREATING" | "AVAILABLE" | "DELETING" | "RESETTING" | "UPDATING" | "SNAPSHOTTING" | "FAILED" | "IMPORTING" | "STARTING" | "STOPPING" | "STOPPED"
 
 local record M
     CancelExportTaskInput: CancelExportTaskInput

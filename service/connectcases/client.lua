@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("connectcases.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("connectcases.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("connectcases.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchGetCaseRule(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetCaseRule",
-        input_schema = types.BatchGetCaseRuleInput,
-        output_schema = types.BatchGetCaseRuleOutput,
+        input_schema = schemas.BatchGetCaseRuleInput,
+        output_schema = schemas.BatchGetCaseRuleOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/rules-batch",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchGetField(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetField",
-        input_schema = types.BatchGetFieldInput,
-        output_schema = types.BatchGetFieldOutput,
+        input_schema = schemas.BatchGetFieldInput,
+        output_schema = schemas.BatchGetFieldOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/fields-batch",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchPutFieldOptions(input, options)
     return self:invokeOperation(input, {
         name = "BatchPutFieldOptions",
-        input_schema = types.BatchPutFieldOptionsInput,
-        output_schema = types.BatchPutFieldOptionsOutput,
+        input_schema = schemas.BatchPutFieldOptionsInput,
+        output_schema = schemas.BatchPutFieldOptionsOutput,
         http_method = "PUT",
         http_path = "/domains/{domainId}/fields/{fieldId}/options",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createCase(input, options)
     return self:invokeOperation(input, {
         name = "CreateCase",
-        input_schema = types.CreateCaseInput,
-        output_schema = types.CreateCaseOutput,
+        input_schema = schemas.CreateCaseInput,
+        output_schema = schemas.CreateCaseOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/cases",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createCaseRule(input, options)
     return self:invokeOperation(input, {
         name = "CreateCaseRule",
-        input_schema = types.CreateCaseRuleInput,
-        output_schema = types.CreateCaseRuleOutput,
+        input_schema = schemas.CreateCaseRuleInput,
+        output_schema = schemas.CreateCaseRuleOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/case-rules",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createDomain(input, options)
     return self:invokeOperation(input, {
         name = "CreateDomain",
-        input_schema = types.CreateDomainInput,
-        output_schema = types.CreateDomainOutput,
+        input_schema = schemas.CreateDomainInput,
+        output_schema = schemas.CreateDomainOutput,
         http_method = "POST",
         http_path = "/domains",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createField(input, options)
     return self:invokeOperation(input, {
         name = "CreateField",
-        input_schema = types.CreateFieldInput,
-        output_schema = types.CreateFieldOutput,
+        input_schema = schemas.CreateFieldInput,
+        output_schema = schemas.CreateFieldOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/fields",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createLayout(input, options)
     return self:invokeOperation(input, {
         name = "CreateLayout",
-        input_schema = types.CreateLayoutInput,
-        output_schema = types.CreateLayoutOutput,
+        input_schema = schemas.CreateLayoutInput,
+        output_schema = schemas.CreateLayoutOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/layouts",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createRelatedItem(input, options)
     return self:invokeOperation(input, {
         name = "CreateRelatedItem",
-        input_schema = types.CreateRelatedItemInput,
-        output_schema = types.CreateRelatedItemOutput,
+        input_schema = schemas.CreateRelatedItemInput,
+        output_schema = schemas.CreateRelatedItemOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/cases/{caseId}/related-items/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createTemplate(input, options)
     return self:invokeOperation(input, {
         name = "CreateTemplate",
-        input_schema = types.CreateTemplateInput,
-        output_schema = types.CreateTemplateOutput,
+        input_schema = schemas.CreateTemplateInput,
+        output_schema = schemas.CreateTemplateOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/templates",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteCase(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCase",
-        input_schema = types.DeleteCaseInput,
-        output_schema = types.DeleteCaseOutput,
+        input_schema = schemas.DeleteCaseInput,
+        output_schema = schemas.DeleteCaseOutput,
         http_method = "DELETE",
         http_path = "/domains/{domainId}/cases/{caseId}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteCaseRule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCaseRule",
-        input_schema = types.DeleteCaseRuleInput,
-        output_schema = types.DeleteCaseRuleOutput,
+        input_schema = schemas.DeleteCaseRuleInput,
+        output_schema = schemas.DeleteCaseRuleOutput,
         http_method = "DELETE",
         http_path = "/domains/{domainId}/case-rules/{caseRuleId}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteDomain(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDomain",
-        input_schema = types.DeleteDomainInput,
-        output_schema = types.DeleteDomainOutput,
+        input_schema = schemas.DeleteDomainInput,
+        output_schema = schemas.DeleteDomainOutput,
         http_method = "DELETE",
         http_path = "/domains/{domainId}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteField(input, options)
     return self:invokeOperation(input, {
         name = "DeleteField",
-        input_schema = types.DeleteFieldInput,
-        output_schema = types.DeleteFieldOutput,
+        input_schema = schemas.DeleteFieldInput,
+        output_schema = schemas.DeleteFieldOutput,
         http_method = "DELETE",
         http_path = "/domains/{domainId}/fields/{fieldId}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteLayout(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLayout",
-        input_schema = types.DeleteLayoutInput,
-        output_schema = types.DeleteLayoutOutput,
+        input_schema = schemas.DeleteLayoutInput,
+        output_schema = schemas.DeleteLayoutOutput,
         http_method = "DELETE",
         http_path = "/domains/{domainId}/layouts/{layoutId}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteRelatedItem(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRelatedItem",
-        input_schema = types.DeleteRelatedItemInput,
-        output_schema = types.DeleteRelatedItemOutput,
+        input_schema = schemas.DeleteRelatedItemInput,
+        output_schema = schemas.DeleteRelatedItemOutput,
         http_method = "DELETE",
         http_path = "/domains/{domainId}/cases/{caseId}/related-items/{relatedItemId}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTemplate",
-        input_schema = types.DeleteTemplateInput,
-        output_schema = types.DeleteTemplateOutput,
+        input_schema = schemas.DeleteTemplateInput,
+        output_schema = schemas.DeleteTemplateOutput,
         http_method = "DELETE",
         http_path = "/domains/{domainId}/templates/{templateId}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getCase(input, options)
     return self:invokeOperation(input, {
         name = "GetCase",
-        input_schema = types.GetCaseInput,
-        output_schema = types.GetCaseOutput,
+        input_schema = schemas.GetCaseInput,
+        output_schema = schemas.GetCaseOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/cases/{caseId}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getCaseAuditEvents(input, options)
     return self:invokeOperation(input, {
         name = "GetCaseAuditEvents",
-        input_schema = types.GetCaseAuditEventsInput,
-        output_schema = types.GetCaseAuditEventsOutput,
+        input_schema = schemas.GetCaseAuditEventsInput,
+        output_schema = schemas.GetCaseAuditEventsOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/cases/{caseId}/audit-history",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getCaseEventConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetCaseEventConfiguration",
-        input_schema = types.GetCaseEventConfigurationInput,
-        output_schema = types.GetCaseEventConfigurationOutput,
+        input_schema = schemas.GetCaseEventConfigurationInput,
+        output_schema = schemas.GetCaseEventConfigurationOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/case-event-configuration",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:getDomain(input, options)
     return self:invokeOperation(input, {
         name = "GetDomain",
-        input_schema = types.GetDomainInput,
-        output_schema = types.GetDomainOutput,
+        input_schema = schemas.GetDomainInput,
+        output_schema = schemas.GetDomainOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:getLayout(input, options)
     return self:invokeOperation(input, {
         name = "GetLayout",
-        input_schema = types.GetLayoutInput,
-        output_schema = types.GetLayoutOutput,
+        input_schema = schemas.GetLayoutInput,
+        output_schema = schemas.GetLayoutOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/layouts/{layoutId}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:getTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetTemplate",
-        input_schema = types.GetTemplateInput,
-        output_schema = types.GetTemplateOutput,
+        input_schema = schemas.GetTemplateInput,
+        output_schema = schemas.GetTemplateOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/templates/{templateId}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listCaseRules(input, options)
     return self:invokeOperation(input, {
         name = "ListCaseRules",
-        input_schema = types.ListCaseRulesInput,
-        output_schema = types.ListCaseRulesOutput,
+        input_schema = schemas.ListCaseRulesInput,
+        output_schema = schemas.ListCaseRulesOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/rules-list/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listCasesForContact(input, options)
     return self:invokeOperation(input, {
         name = "ListCasesForContact",
-        input_schema = types.ListCasesForContactInput,
-        output_schema = types.ListCasesForContactOutput,
+        input_schema = schemas.ListCasesForContactInput,
+        output_schema = schemas.ListCasesForContactOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/list-cases-for-contact",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listDomains(input, options)
     return self:invokeOperation(input, {
         name = "ListDomains",
-        input_schema = types.ListDomainsInput,
-        output_schema = types.ListDomainsOutput,
+        input_schema = schemas.ListDomainsInput,
+        output_schema = schemas.ListDomainsOutput,
         http_method = "POST",
         http_path = "/domains-list",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listFieldOptions(input, options)
     return self:invokeOperation(input, {
         name = "ListFieldOptions",
-        input_schema = types.ListFieldOptionsInput,
-        output_schema = types.ListFieldOptionsOutput,
+        input_schema = schemas.ListFieldOptionsInput,
+        output_schema = schemas.ListFieldOptionsOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/fields/{fieldId}/options-list",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listFields(input, options)
     return self:invokeOperation(input, {
         name = "ListFields",
-        input_schema = types.ListFieldsInput,
-        output_schema = types.ListFieldsOutput,
+        input_schema = schemas.ListFieldsInput,
+        output_schema = schemas.ListFieldsOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/fields-list",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listLayouts(input, options)
     return self:invokeOperation(input, {
         name = "ListLayouts",
-        input_schema = types.ListLayoutsInput,
-        output_schema = types.ListLayoutsOutput,
+        input_schema = schemas.ListLayoutsInput,
+        output_schema = schemas.ListLayoutsOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/layouts-list",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{arn}",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:listTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListTemplates",
-        input_schema = types.ListTemplatesInput,
-        output_schema = types.ListTemplatesOutput,
+        input_schema = schemas.ListTemplatesInput,
+        output_schema = schemas.ListTemplatesOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/templates-list",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:putCaseEventConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutCaseEventConfiguration",
-        input_schema = types.PutCaseEventConfigurationInput,
-        output_schema = types.PutCaseEventConfigurationOutput,
+        input_schema = schemas.PutCaseEventConfigurationInput,
+        output_schema = schemas.PutCaseEventConfigurationOutput,
         http_method = "PUT",
         http_path = "/domains/{domainId}/case-event-configuration",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:searchAllRelatedItems(input, options)
     return self:invokeOperation(input, {
         name = "SearchAllRelatedItems",
-        input_schema = types.SearchAllRelatedItemsInput,
-        output_schema = types.SearchAllRelatedItemsOutput,
+        input_schema = schemas.SearchAllRelatedItemsInput,
+        output_schema = schemas.SearchAllRelatedItemsOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/related-items-search",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:searchCases(input, options)
     return self:invokeOperation(input, {
         name = "SearchCases",
-        input_schema = types.SearchCasesInput,
-        output_schema = types.SearchCasesOutput,
+        input_schema = schemas.SearchCasesInput,
+        output_schema = schemas.SearchCasesOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/cases-search",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:searchRelatedItems(input, options)
     return self:invokeOperation(input, {
         name = "SearchRelatedItems",
-        input_schema = types.SearchRelatedItemsInput,
-        output_schema = types.SearchRelatedItemsOutput,
+        input_schema = schemas.SearchRelatedItemsInput,
+        output_schema = schemas.SearchRelatedItemsOutput,
         http_method = "POST",
         http_path = "/domains/{domainId}/cases/{caseId}/related-items-search",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{arn}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{arn}",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:updateCase(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCase",
-        input_schema = types.UpdateCaseInput,
-        output_schema = types.UpdateCaseOutput,
+        input_schema = schemas.UpdateCaseInput,
+        output_schema = schemas.UpdateCaseOutput,
         http_method = "PUT",
         http_path = "/domains/{domainId}/cases/{caseId}",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:updateCaseRule(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCaseRule",
-        input_schema = types.UpdateCaseRuleInput,
-        output_schema = types.UpdateCaseRuleOutput,
+        input_schema = schemas.UpdateCaseRuleInput,
+        output_schema = schemas.UpdateCaseRuleOutput,
         http_method = "PUT",
         http_path = "/domains/{domainId}/case-rules/{caseRuleId}",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:updateField(input, options)
     return self:invokeOperation(input, {
         name = "UpdateField",
-        input_schema = types.UpdateFieldInput,
-        output_schema = types.UpdateFieldOutput,
+        input_schema = schemas.UpdateFieldInput,
+        output_schema = schemas.UpdateFieldOutput,
         http_method = "PUT",
         http_path = "/domains/{domainId}/fields/{fieldId}",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:updateLayout(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLayout",
-        input_schema = types.UpdateLayoutInput,
-        output_schema = types.UpdateLayoutOutput,
+        input_schema = schemas.UpdateLayoutInput,
+        output_schema = schemas.UpdateLayoutOutput,
         http_method = "PUT",
         http_path = "/domains/{domainId}/layouts/{layoutId}",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:updateRelatedItem(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRelatedItem",
-        input_schema = types.UpdateRelatedItemInput,
-        output_schema = types.UpdateRelatedItemOutput,
+        input_schema = schemas.UpdateRelatedItemInput,
+        output_schema = schemas.UpdateRelatedItemOutput,
         http_method = "PUT",
         http_path = "/domains/{domainId}/cases/{caseId}/related-items/{relatedItemId}",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:updateTemplate(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTemplate",
-        input_schema = types.UpdateTemplateInput,
-        output_schema = types.UpdateTemplateOutput,
+        input_schema = schemas.UpdateTemplateInput,
+        output_schema = schemas.UpdateTemplateOutput,
         http_method = "PUT",
         http_path = "/domains/{domainId}/templates/{templateId}",
         effective_auth_schemes = {

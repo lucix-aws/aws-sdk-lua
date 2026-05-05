@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("pricing.endpoint_rules")
+local schemas = require("pricing.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("pricing.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:describeServices(input, options)
     return self:invokeOperation(input, {
         name = "DescribeServices",
-        input_schema = types.DescribeServicesInput,
-        output_schema = types.DescribeServicesOutput,
+        input_schema = schemas.DescribeServicesInput,
+        output_schema = schemas.DescribeServicesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:getAttributeValues(input, options)
     return self:invokeOperation(input, {
         name = "GetAttributeValues",
-        input_schema = types.GetAttributeValuesInput,
-        output_schema = types.GetAttributeValuesOutput,
+        input_schema = schemas.GetAttributeValuesInput,
+        output_schema = schemas.GetAttributeValuesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getPriceListFileUrl(input, options)
     return self:invokeOperation(input, {
         name = "GetPriceListFileUrl",
-        input_schema = types.GetPriceListFileUrlInput,
-        output_schema = types.GetPriceListFileUrlOutput,
+        input_schema = schemas.GetPriceListFileUrlInput,
+        output_schema = schemas.GetPriceListFileUrlOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getProducts(input, options)
     return self:invokeOperation(input, {
         name = "GetProducts",
-        input_schema = types.GetProductsInput,
-        output_schema = types.GetProductsOutput,
+        input_schema = schemas.GetProductsInput,
+        output_schema = schemas.GetProductsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:listPriceLists(input, options)
     return self:invokeOperation(input, {
         name = "ListPriceLists",
-        input_schema = types.ListPriceListsInput,
-        output_schema = types.ListPriceListsOutput,
+        input_schema = schemas.ListPriceListsInput,
+        output_schema = schemas.ListPriceListsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

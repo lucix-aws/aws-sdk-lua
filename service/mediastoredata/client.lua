@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("mediastoredata.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("mediastoredata.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("mediastoredata.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:deleteObject(input, options)
     return self:invokeOperation(input, {
         name = "DeleteObject",
-        input_schema = types.DeleteObjectInput,
-        output_schema = types.DeleteObjectOutput,
+        input_schema = schemas.DeleteObjectInput,
+        output_schema = schemas.DeleteObjectOutput,
         http_method = "DELETE",
         http_path = "/{Path+}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:describeObject(input, options)
     return self:invokeOperation(input, {
         name = "DescribeObject",
-        input_schema = types.DescribeObjectInput,
-        output_schema = types.DescribeObjectOutput,
+        input_schema = schemas.DescribeObjectInput,
+        output_schema = schemas.DescribeObjectOutput,
         http_method = "HEAD",
         http_path = "/{Path+}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getObject(input, options)
     return self:invokeOperation(input, {
         name = "GetObject",
-        input_schema = types.GetObjectInput,
-        output_schema = types.GetObjectOutput,
+        input_schema = schemas.GetObjectInput,
+        output_schema = schemas.GetObjectOutput,
         http_method = "GET",
         http_path = "/{Path+}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:listItems(input, options)
     return self:invokeOperation(input, {
         name = "ListItems",
-        input_schema = types.ListItemsInput,
-        output_schema = types.ListItemsOutput,
+        input_schema = schemas.ListItemsInput,
+        output_schema = schemas.ListItemsOutput,
         http_method = "GET",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:putObject(input, options)
     return self:invokeOperation(input, {
         name = "PutObject",
-        input_schema = types.PutObjectInput,
-        output_schema = types.PutObjectOutput,
+        input_schema = schemas.PutObjectInput,
+        output_schema = schemas.PutObjectOutput,
         http_method = "PUT",
         http_path = "/{Path+}",
         effective_auth_schemes = {

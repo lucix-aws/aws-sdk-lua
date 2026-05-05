@@ -58,9 +58,9 @@ local record DocumentServiceException
     message: string
 end
 
-local type QueryParser = "simple" | "structured" | "lucene" | "dismax"
-
 local type ContentType = "application/json" | "application/xml"
+
+local type QueryParser = "simple" | "structured" | "lucene" | "dismax"
 
 local record M
     SearchInput: SearchInput

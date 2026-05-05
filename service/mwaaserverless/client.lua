@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("mwaaserverless.endpoint_rules")
+local schemas = require("mwaaserverless.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("mwaaserverless.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createWorkflow(input, options)
     return self:invokeOperation(input, {
         name = "CreateWorkflow",
-        input_schema = types.CreateWorkflowInput,
-        output_schema = types.CreateWorkflowOutput,
+        input_schema = schemas.CreateWorkflowInput,
+        output_schema = schemas.CreateWorkflowOutput,
         http_method = "POST",
         http_path = "/workflows",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteWorkflow(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWorkflow",
-        input_schema = types.DeleteWorkflowInput,
-        output_schema = types.DeleteWorkflowOutput,
+        input_schema = schemas.DeleteWorkflowInput,
+        output_schema = schemas.DeleteWorkflowOutput,
         http_method = "DELETE",
         http_path = "/workflows/{WorkflowArn}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getTaskInstance(input, options)
     return self:invokeOperation(input, {
         name = "GetTaskInstance",
-        input_schema = types.GetTaskInstanceInput,
-        output_schema = types.GetTaskInstanceOutput,
+        input_schema = schemas.GetTaskInstanceInput,
+        output_schema = schemas.GetTaskInstanceOutput,
         http_method = "GET",
         http_path = "/workflows/{WorkflowArn}/runs/{RunId}/tasks/{TaskInstanceId}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getWorkflow(input, options)
     return self:invokeOperation(input, {
         name = "GetWorkflow",
-        input_schema = types.GetWorkflowInput,
-        output_schema = types.GetWorkflowOutput,
+        input_schema = schemas.GetWorkflowInput,
+        output_schema = schemas.GetWorkflowOutput,
         http_method = "GET",
         http_path = "/workflows/{WorkflowArn}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getWorkflowRun(input, options)
     return self:invokeOperation(input, {
         name = "GetWorkflowRun",
-        input_schema = types.GetWorkflowRunInput,
-        output_schema = types.GetWorkflowRunOutput,
+        input_schema = schemas.GetWorkflowRunInput,
+        output_schema = schemas.GetWorkflowRunOutput,
         http_method = "GET",
         http_path = "/workflows/{WorkflowArn}/runs/{RunId}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listTaskInstances(input, options)
     return self:invokeOperation(input, {
         name = "ListTaskInstances",
-        input_schema = types.ListTaskInstancesInput,
-        output_schema = types.ListTaskInstancesOutput,
+        input_schema = schemas.ListTaskInstancesInput,
+        output_schema = schemas.ListTaskInstancesOutput,
         http_method = "GET",
         http_path = "/workflows/{WorkflowArn}/runs/{RunId}/tasks",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listWorkflowRuns(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkflowRuns",
-        input_schema = types.ListWorkflowRunsInput,
-        output_schema = types.ListWorkflowRunsOutput,
+        input_schema = schemas.ListWorkflowRunsInput,
+        output_schema = schemas.ListWorkflowRunsOutput,
         http_method = "GET",
         http_path = "/workflows/{WorkflowArn}/runs",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listWorkflows(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkflows",
-        input_schema = types.ListWorkflowsInput,
-        output_schema = types.ListWorkflowsOutput,
+        input_schema = schemas.ListWorkflowsInput,
+        output_schema = schemas.ListWorkflowsOutput,
         http_method = "GET",
         http_path = "/workflows",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listWorkflowVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkflowVersions",
-        input_schema = types.ListWorkflowVersionsInput,
-        output_schema = types.ListWorkflowVersionsOutput,
+        input_schema = schemas.ListWorkflowVersionsInput,
+        output_schema = schemas.ListWorkflowVersionsOutput,
         http_method = "GET",
         http_path = "/workflows/{WorkflowArn}/versions",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:startWorkflowRun(input, options)
     return self:invokeOperation(input, {
         name = "StartWorkflowRun",
-        input_schema = types.StartWorkflowRunInput,
-        output_schema = types.StartWorkflowRunOutput,
+        input_schema = schemas.StartWorkflowRunInput,
+        output_schema = schemas.StartWorkflowRunOutput,
         http_method = "POST",
         http_path = "/workflows/{WorkflowArn}/runs",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:stopWorkflowRun(input, options)
     return self:invokeOperation(input, {
         name = "StopWorkflowRun",
-        input_schema = types.StopWorkflowRunInput,
-        output_schema = types.StopWorkflowRunOutput,
+        input_schema = schemas.StopWorkflowRunInput,
+        output_schema = schemas.StopWorkflowRunOutput,
         http_method = "DELETE",
         http_path = "/workflows/{WorkflowArn}/runs/{RunId}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:updateWorkflow(input, options)
     return self:invokeOperation(input, {
         name = "UpdateWorkflow",
-        input_schema = types.UpdateWorkflowInput,
-        output_schema = types.UpdateWorkflowOutput,
+        input_schema = schemas.UpdateWorkflowInput,
+        output_schema = schemas.UpdateWorkflowOutput,
         http_method = "PUT",
         http_path = "/workflows/{WorkflowArn}",
         effective_auth_schemes = {

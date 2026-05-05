@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("elasticbeanstalk.endpoint_rules")
 local query_protocol = require("protocol.query")
+local schemas = require("elasticbeanstalk.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("elasticbeanstalk.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:abortEnvironmentUpdate(input, options)
     return self:invokeOperation(input, {
         name = "AbortEnvironmentUpdate",
-        input_schema = types.AbortEnvironmentUpdateInput,
-        output_schema = types.AbortEnvironmentUpdateOutput,
+        input_schema = schemas.AbortEnvironmentUpdateInput,
+        output_schema = schemas.AbortEnvironmentUpdateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:applyEnvironmentManagedAction(input, options)
     return self:invokeOperation(input, {
         name = "ApplyEnvironmentManagedAction",
-        input_schema = types.ApplyEnvironmentManagedActionInput,
-        output_schema = types.ApplyEnvironmentManagedActionOutput,
+        input_schema = schemas.ApplyEnvironmentManagedActionInput,
+        output_schema = schemas.ApplyEnvironmentManagedActionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:associateEnvironmentOperationsRole(input, options)
     return self:invokeOperation(input, {
         name = "AssociateEnvironmentOperationsRole",
-        input_schema = types.AssociateEnvironmentOperationsRoleInput,
-        output_schema = types.AssociateEnvironmentOperationsRoleOutput,
+        input_schema = schemas.AssociateEnvironmentOperationsRoleInput,
+        output_schema = schemas.AssociateEnvironmentOperationsRoleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:checkDNSAvailability(input, options)
     return self:invokeOperation(input, {
         name = "CheckDNSAvailability",
-        input_schema = types.CheckDNSAvailabilityInput,
-        output_schema = types.CheckDNSAvailabilityOutput,
+        input_schema = schemas.CheckDNSAvailabilityInput,
+        output_schema = schemas.CheckDNSAvailabilityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:composeEnvironments(input, options)
     return self:invokeOperation(input, {
         name = "ComposeEnvironments",
-        input_schema = types.ComposeEnvironmentsInput,
-        output_schema = types.ComposeEnvironmentsOutput,
+        input_schema = schemas.ComposeEnvironmentsInput,
+        output_schema = schemas.ComposeEnvironmentsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createApplication(input, options)
     return self:invokeOperation(input, {
         name = "CreateApplication",
-        input_schema = types.CreateApplicationInput,
-        output_schema = types.CreateApplicationOutput,
+        input_schema = schemas.CreateApplicationInput,
+        output_schema = schemas.CreateApplicationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createApplicationVersion(input, options)
     return self:invokeOperation(input, {
         name = "CreateApplicationVersion",
-        input_schema = types.CreateApplicationVersionInput,
-        output_schema = types.CreateApplicationVersionOutput,
+        input_schema = schemas.CreateApplicationVersionInput,
+        output_schema = schemas.CreateApplicationVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createConfigurationTemplate(input, options)
     return self:invokeOperation(input, {
         name = "CreateConfigurationTemplate",
-        input_schema = types.CreateConfigurationTemplateInput,
-        output_schema = types.CreateConfigurationTemplateOutput,
+        input_schema = schemas.CreateConfigurationTemplateInput,
+        output_schema = schemas.CreateConfigurationTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "CreateEnvironment",
-        input_schema = types.CreateEnvironmentInput,
-        output_schema = types.CreateEnvironmentOutput,
+        input_schema = schemas.CreateEnvironmentInput,
+        output_schema = schemas.CreateEnvironmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createPlatformVersion(input, options)
     return self:invokeOperation(input, {
         name = "CreatePlatformVersion",
-        input_schema = types.CreatePlatformVersionInput,
-        output_schema = types.CreatePlatformVersionOutput,
+        input_schema = schemas.CreatePlatformVersionInput,
+        output_schema = schemas.CreatePlatformVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createStorageLocation(input, options)
     return self:invokeOperation(input, {
         name = "CreateStorageLocation",
-        input_schema = types.CreateStorageLocationInput,
-        output_schema = types.CreateStorageLocationOutput,
+        input_schema = schemas.CreateStorageLocationInput,
+        output_schema = schemas.CreateStorageLocationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteApplication(input, options)
     return self:invokeOperation(input, {
         name = "DeleteApplication",
-        input_schema = types.DeleteApplicationInput,
-        output_schema = types.DeleteApplicationOutput,
+        input_schema = schemas.DeleteApplicationInput,
+        output_schema = schemas.DeleteApplicationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteApplicationVersion(input, options)
     return self:invokeOperation(input, {
         name = "DeleteApplicationVersion",
-        input_schema = types.DeleteApplicationVersionInput,
-        output_schema = types.DeleteApplicationVersionOutput,
+        input_schema = schemas.DeleteApplicationVersionInput,
+        output_schema = schemas.DeleteApplicationVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteConfigurationTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfigurationTemplate",
-        input_schema = types.DeleteConfigurationTemplateInput,
-        output_schema = types.DeleteConfigurationTemplateOutput,
+        input_schema = schemas.DeleteConfigurationTemplateInput,
+        output_schema = schemas.DeleteConfigurationTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteEnvironmentConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEnvironmentConfiguration",
-        input_schema = types.DeleteEnvironmentConfigurationInput,
-        output_schema = types.DeleteEnvironmentConfigurationOutput,
+        input_schema = schemas.DeleteEnvironmentConfigurationInput,
+        output_schema = schemas.DeleteEnvironmentConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deletePlatformVersion(input, options)
     return self:invokeOperation(input, {
         name = "DeletePlatformVersion",
-        input_schema = types.DeletePlatformVersionInput,
-        output_schema = types.DeletePlatformVersionOutput,
+        input_schema = schemas.DeletePlatformVersionInput,
+        output_schema = schemas.DeletePlatformVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:describeAccountAttributes(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAccountAttributes",
-        input_schema = types.DescribeAccountAttributesInput,
-        output_schema = types.DescribeAccountAttributesOutput,
+        input_schema = schemas.DescribeAccountAttributesInput,
+        output_schema = schemas.DescribeAccountAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:describeApplications(input, options)
     return self:invokeOperation(input, {
         name = "DescribeApplications",
-        input_schema = types.DescribeApplicationsInput,
-        output_schema = types.DescribeApplicationsOutput,
+        input_schema = schemas.DescribeApplicationsInput,
+        output_schema = schemas.DescribeApplicationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:describeApplicationVersions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeApplicationVersions",
-        input_schema = types.DescribeApplicationVersionsInput,
-        output_schema = types.DescribeApplicationVersionsOutput,
+        input_schema = schemas.DescribeApplicationVersionsInput,
+        output_schema = schemas.DescribeApplicationVersionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:describeConfigurationOptions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConfigurationOptions",
-        input_schema = types.DescribeConfigurationOptionsInput,
-        output_schema = types.DescribeConfigurationOptionsOutput,
+        input_schema = schemas.DescribeConfigurationOptionsInput,
+        output_schema = schemas.DescribeConfigurationOptionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:describeConfigurationSettings(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConfigurationSettings",
-        input_schema = types.DescribeConfigurationSettingsInput,
-        output_schema = types.DescribeConfigurationSettingsOutput,
+        input_schema = schemas.DescribeConfigurationSettingsInput,
+        output_schema = schemas.DescribeConfigurationSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:describeEnvironmentHealth(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEnvironmentHealth",
-        input_schema = types.DescribeEnvironmentHealthInput,
-        output_schema = types.DescribeEnvironmentHealthOutput,
+        input_schema = schemas.DescribeEnvironmentHealthInput,
+        output_schema = schemas.DescribeEnvironmentHealthOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:describeEnvironmentManagedActionHistory(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEnvironmentManagedActionHistory",
-        input_schema = types.DescribeEnvironmentManagedActionHistoryInput,
-        output_schema = types.DescribeEnvironmentManagedActionHistoryOutput,
+        input_schema = schemas.DescribeEnvironmentManagedActionHistoryInput,
+        output_schema = schemas.DescribeEnvironmentManagedActionHistoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:describeEnvironmentManagedActions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEnvironmentManagedActions",
-        input_schema = types.DescribeEnvironmentManagedActionsInput,
-        output_schema = types.DescribeEnvironmentManagedActionsOutput,
+        input_schema = schemas.DescribeEnvironmentManagedActionsInput,
+        output_schema = schemas.DescribeEnvironmentManagedActionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:describeEnvironmentResources(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEnvironmentResources",
-        input_schema = types.DescribeEnvironmentResourcesInput,
-        output_schema = types.DescribeEnvironmentResourcesOutput,
+        input_schema = schemas.DescribeEnvironmentResourcesInput,
+        output_schema = schemas.DescribeEnvironmentResourcesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:describeEnvironments(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEnvironments",
-        input_schema = types.DescribeEnvironmentsInput,
-        output_schema = types.DescribeEnvironmentsOutput,
+        input_schema = schemas.DescribeEnvironmentsInput,
+        output_schema = schemas.DescribeEnvironmentsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:describeEvents(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEvents",
-        input_schema = types.DescribeEventsInput,
-        output_schema = types.DescribeEventsOutput,
+        input_schema = schemas.DescribeEventsInput,
+        output_schema = schemas.DescribeEventsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:describeInstancesHealth(input, options)
     return self:invokeOperation(input, {
         name = "DescribeInstancesHealth",
-        input_schema = types.DescribeInstancesHealthInput,
-        output_schema = types.DescribeInstancesHealthOutput,
+        input_schema = schemas.DescribeInstancesHealthInput,
+        output_schema = schemas.DescribeInstancesHealthOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:describePlatformVersion(input, options)
     return self:invokeOperation(input, {
         name = "DescribePlatformVersion",
-        input_schema = types.DescribePlatformVersionInput,
-        output_schema = types.DescribePlatformVersionOutput,
+        input_schema = schemas.DescribePlatformVersionInput,
+        output_schema = schemas.DescribePlatformVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:disassociateEnvironmentOperationsRole(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateEnvironmentOperationsRole",
-        input_schema = types.DisassociateEnvironmentOperationsRoleInput,
-        output_schema = types.DisassociateEnvironmentOperationsRoleOutput,
+        input_schema = schemas.DisassociateEnvironmentOperationsRoleInput,
+        output_schema = schemas.DisassociateEnvironmentOperationsRoleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:listAvailableSolutionStacks(input, options)
     return self:invokeOperation(input, {
         name = "ListAvailableSolutionStacks",
-        input_schema = types.ListAvailableSolutionStacksInput,
-        output_schema = types.ListAvailableSolutionStacksOutput,
+        input_schema = schemas.ListAvailableSolutionStacksInput,
+        output_schema = schemas.ListAvailableSolutionStacksOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:listPlatformBranches(input, options)
     return self:invokeOperation(input, {
         name = "ListPlatformBranches",
-        input_schema = types.ListPlatformBranchesInput,
-        output_schema = types.ListPlatformBranchesOutput,
+        input_schema = schemas.ListPlatformBranchesInput,
+        output_schema = schemas.ListPlatformBranchesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:listPlatformVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListPlatformVersions",
-        input_schema = types.ListPlatformVersionsInput,
-        output_schema = types.ListPlatformVersionsOutput,
+        input_schema = schemas.ListPlatformVersionsInput,
+        output_schema = schemas.ListPlatformVersionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:rebuildEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "RebuildEnvironment",
-        input_schema = types.RebuildEnvironmentInput,
-        output_schema = types.RebuildEnvironmentOutput,
+        input_schema = schemas.RebuildEnvironmentInput,
+        output_schema = schemas.RebuildEnvironmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:requestEnvironmentInfo(input, options)
     return self:invokeOperation(input, {
         name = "RequestEnvironmentInfo",
-        input_schema = types.RequestEnvironmentInfoInput,
-        output_schema = types.RequestEnvironmentInfoOutput,
+        input_schema = schemas.RequestEnvironmentInfoInput,
+        output_schema = schemas.RequestEnvironmentInfoOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:restartAppServer(input, options)
     return self:invokeOperation(input, {
         name = "RestartAppServer",
-        input_schema = types.RestartAppServerInput,
-        output_schema = types.RestartAppServerOutput,
+        input_schema = schemas.RestartAppServerInput,
+        output_schema = schemas.RestartAppServerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:retrieveEnvironmentInfo(input, options)
     return self:invokeOperation(input, {
         name = "RetrieveEnvironmentInfo",
-        input_schema = types.RetrieveEnvironmentInfoInput,
-        output_schema = types.RetrieveEnvironmentInfoOutput,
+        input_schema = schemas.RetrieveEnvironmentInfoInput,
+        output_schema = schemas.RetrieveEnvironmentInfoOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:swapEnvironmentCNAMEs(input, options)
     return self:invokeOperation(input, {
         name = "SwapEnvironmentCNAMEs",
-        input_schema = types.SwapEnvironmentCNAMEsInput,
-        output_schema = types.SwapEnvironmentCNAMEsOutput,
+        input_schema = schemas.SwapEnvironmentCNAMEsInput,
+        output_schema = schemas.SwapEnvironmentCNAMEsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:terminateEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "TerminateEnvironment",
-        input_schema = types.TerminateEnvironmentInput,
-        output_schema = types.TerminateEnvironmentOutput,
+        input_schema = schemas.TerminateEnvironmentInput,
+        output_schema = schemas.TerminateEnvironmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:updateApplication(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApplication",
-        input_schema = types.UpdateApplicationInput,
-        output_schema = types.UpdateApplicationOutput,
+        input_schema = schemas.UpdateApplicationInput,
+        output_schema = schemas.UpdateApplicationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:updateApplicationResourceLifecycle(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApplicationResourceLifecycle",
-        input_schema = types.UpdateApplicationResourceLifecycleInput,
-        output_schema = types.UpdateApplicationResourceLifecycleOutput,
+        input_schema = schemas.UpdateApplicationResourceLifecycleInput,
+        output_schema = schemas.UpdateApplicationResourceLifecycleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:updateApplicationVersion(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApplicationVersion",
-        input_schema = types.UpdateApplicationVersionInput,
-        output_schema = types.UpdateApplicationVersionOutput,
+        input_schema = schemas.UpdateApplicationVersionInput,
+        output_schema = schemas.UpdateApplicationVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:updateConfigurationTemplate(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConfigurationTemplate",
-        input_schema = types.UpdateConfigurationTemplateInput,
-        output_schema = types.UpdateConfigurationTemplateOutput,
+        input_schema = schemas.UpdateConfigurationTemplateInput,
+        output_schema = schemas.UpdateConfigurationTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:updateEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEnvironment",
-        input_schema = types.UpdateEnvironmentInput,
-        output_schema = types.UpdateEnvironmentOutput,
+        input_schema = schemas.UpdateEnvironmentInput,
+        output_schema = schemas.UpdateEnvironmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:updateTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTagsForResource",
-        input_schema = types.UpdateTagsForResourceInput,
-        output_schema = types.UpdateTagsForResourceOutput,
+        input_schema = schemas.UpdateTagsForResourceInput,
+        output_schema = schemas.UpdateTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:validateConfigurationSettings(input, options)
     return self:invokeOperation(input, {
         name = "ValidateConfigurationSettings",
-        input_schema = types.ValidateConfigurationSettingsInput,
-        output_schema = types.ValidateConfigurationSettingsOutput,
+        input_schema = schemas.ValidateConfigurationSettingsInput,
+        output_schema = schemas.ValidateConfigurationSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

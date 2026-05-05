@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("kinesis.endpoint_rules")
+local schemas = require("kinesis.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("kinesis.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addTagsToStream(input, options)
     return self:invokeOperation(input, {
         name = "AddTagsToStream",
-        input_schema = types.AddTagsToStreamInput,
-        output_schema = types.AddTagsToStreamOutput,
+        input_schema = schemas.AddTagsToStreamInput,
+        output_schema = schemas.AddTagsToStreamOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -66,8 +66,8 @@ end
 function Client:createStream(input, options)
     return self:invokeOperation(input, {
         name = "CreateStream",
-        input_schema = types.CreateStreamInput,
-        output_schema = types.CreateStreamOutput,
+        input_schema = schemas.CreateStreamInput,
+        output_schema = schemas.CreateStreamOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -79,8 +79,8 @@ end
 function Client:decreaseStreamRetentionPeriod(input, options)
     return self:invokeOperation(input, {
         name = "DecreaseStreamRetentionPeriod",
-        input_schema = types.DecreaseStreamRetentionPeriodInput,
-        output_schema = types.DecreaseStreamRetentionPeriodOutput,
+        input_schema = schemas.DecreaseStreamRetentionPeriodInput,
+        output_schema = schemas.DecreaseStreamRetentionPeriodOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -96,8 +96,8 @@ end
 function Client:deleteResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourcePolicy",
-        input_schema = types.DeleteResourcePolicyInput,
-        output_schema = types.DeleteResourcePolicyOutput,
+        input_schema = schemas.DeleteResourcePolicyInput,
+        output_schema = schemas.DeleteResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -113,8 +113,8 @@ end
 function Client:deleteStream(input, options)
     return self:invokeOperation(input, {
         name = "DeleteStream",
-        input_schema = types.DeleteStreamInput,
-        output_schema = types.DeleteStreamOutput,
+        input_schema = schemas.DeleteStreamInput,
+        output_schema = schemas.DeleteStreamOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -130,8 +130,8 @@ end
 function Client:deregisterStreamConsumer(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterStreamConsumer",
-        input_schema = types.DeregisterStreamConsumerInput,
-        output_schema = types.DeregisterStreamConsumerOutput,
+        input_schema = schemas.DeregisterStreamConsumerInput,
+        output_schema = schemas.DeregisterStreamConsumerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -148,8 +148,8 @@ end
 function Client:describeAccountSettings(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAccountSettings",
-        input_schema = types.DescribeAccountSettingsInput,
-        output_schema = types.DescribeAccountSettingsOutput,
+        input_schema = schemas.DescribeAccountSettingsInput,
+        output_schema = schemas.DescribeAccountSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -161,8 +161,8 @@ end
 function Client:describeLimits(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLimits",
-        input_schema = types.DescribeLimitsInput,
-        output_schema = types.DescribeLimitsOutput,
+        input_schema = schemas.DescribeLimitsInput,
+        output_schema = schemas.DescribeLimitsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -174,8 +174,8 @@ end
 function Client:describeStream(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStream",
-        input_schema = types.DescribeStreamInput,
-        output_schema = types.DescribeStreamOutput,
+        input_schema = schemas.DescribeStreamInput,
+        output_schema = schemas.DescribeStreamOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -191,8 +191,8 @@ end
 function Client:describeStreamConsumer(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStreamConsumer",
-        input_schema = types.DescribeStreamConsumerInput,
-        output_schema = types.DescribeStreamConsumerOutput,
+        input_schema = schemas.DescribeStreamConsumerInput,
+        output_schema = schemas.DescribeStreamConsumerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -209,8 +209,8 @@ end
 function Client:describeStreamSummary(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStreamSummary",
-        input_schema = types.DescribeStreamSummaryInput,
-        output_schema = types.DescribeStreamSummaryOutput,
+        input_schema = schemas.DescribeStreamSummaryInput,
+        output_schema = schemas.DescribeStreamSummaryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -226,8 +226,8 @@ end
 function Client:disableEnhancedMonitoring(input, options)
     return self:invokeOperation(input, {
         name = "DisableEnhancedMonitoring",
-        input_schema = types.DisableEnhancedMonitoringInput,
-        output_schema = types.DisableEnhancedMonitoringOutput,
+        input_schema = schemas.DisableEnhancedMonitoringInput,
+        output_schema = schemas.DisableEnhancedMonitoringOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -243,8 +243,8 @@ end
 function Client:enableEnhancedMonitoring(input, options)
     return self:invokeOperation(input, {
         name = "EnableEnhancedMonitoring",
-        input_schema = types.EnableEnhancedMonitoringInput,
-        output_schema = types.EnableEnhancedMonitoringOutput,
+        input_schema = schemas.EnableEnhancedMonitoringInput,
+        output_schema = schemas.EnableEnhancedMonitoringOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -260,8 +260,8 @@ end
 function Client:getRecords(input, options)
     return self:invokeOperation(input, {
         name = "GetRecords",
-        input_schema = types.GetRecordsInput,
-        output_schema = types.GetRecordsOutput,
+        input_schema = schemas.GetRecordsInput,
+        output_schema = schemas.GetRecordsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -277,8 +277,8 @@ end
 function Client:getResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcePolicy",
-        input_schema = types.GetResourcePolicyInput,
-        output_schema = types.GetResourcePolicyOutput,
+        input_schema = schemas.GetResourcePolicyInput,
+        output_schema = schemas.GetResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -294,8 +294,8 @@ end
 function Client:getShardIterator(input, options)
     return self:invokeOperation(input, {
         name = "GetShardIterator",
-        input_schema = types.GetShardIteratorInput,
-        output_schema = types.GetShardIteratorOutput,
+        input_schema = schemas.GetShardIteratorInput,
+        output_schema = schemas.GetShardIteratorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -311,8 +311,8 @@ end
 function Client:increaseStreamRetentionPeriod(input, options)
     return self:invokeOperation(input, {
         name = "IncreaseStreamRetentionPeriod",
-        input_schema = types.IncreaseStreamRetentionPeriodInput,
-        output_schema = types.IncreaseStreamRetentionPeriodOutput,
+        input_schema = schemas.IncreaseStreamRetentionPeriodInput,
+        output_schema = schemas.IncreaseStreamRetentionPeriodOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -328,8 +328,8 @@ end
 function Client:listShards(input, options)
     return self:invokeOperation(input, {
         name = "ListShards",
-        input_schema = types.ListShardsInput,
-        output_schema = types.ListShardsOutput,
+        input_schema = schemas.ListShardsInput,
+        output_schema = schemas.ListShardsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -345,8 +345,8 @@ end
 function Client:listStreamConsumers(input, options)
     return self:invokeOperation(input, {
         name = "ListStreamConsumers",
-        input_schema = types.ListStreamConsumersInput,
-        output_schema = types.ListStreamConsumersOutput,
+        input_schema = schemas.ListStreamConsumersInput,
+        output_schema = schemas.ListStreamConsumersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -362,8 +362,8 @@ end
 function Client:listStreams(input, options)
     return self:invokeOperation(input, {
         name = "ListStreams",
-        input_schema = types.ListStreamsInput,
-        output_schema = types.ListStreamsOutput,
+        input_schema = schemas.ListStreamsInput,
+        output_schema = schemas.ListStreamsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -375,8 +375,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -392,8 +392,8 @@ end
 function Client:listTagsForStream(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForStream",
-        input_schema = types.ListTagsForStreamInput,
-        output_schema = types.ListTagsForStreamOutput,
+        input_schema = schemas.ListTagsForStreamInput,
+        output_schema = schemas.ListTagsForStreamOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -409,8 +409,8 @@ end
 function Client:mergeShards(input, options)
     return self:invokeOperation(input, {
         name = "MergeShards",
-        input_schema = types.MergeShardsInput,
-        output_schema = types.MergeShardsOutput,
+        input_schema = schemas.MergeShardsInput,
+        output_schema = schemas.MergeShardsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:putRecord(input, options)
     return self:invokeOperation(input, {
         name = "PutRecord",
-        input_schema = types.PutRecordInput,
-        output_schema = types.PutRecordOutput,
+        input_schema = schemas.PutRecordInput,
+        output_schema = schemas.PutRecordOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -443,8 +443,8 @@ end
 function Client:putRecords(input, options)
     return self:invokeOperation(input, {
         name = "PutRecords",
-        input_schema = types.PutRecordsInput,
-        output_schema = types.PutRecordsOutput,
+        input_schema = schemas.PutRecordsInput,
+        output_schema = schemas.PutRecordsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -460,8 +460,8 @@ end
 function Client:putResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutResourcePolicy",
-        input_schema = types.PutResourcePolicyInput,
-        output_schema = types.PutResourcePolicyOutput,
+        input_schema = schemas.PutResourcePolicyInput,
+        output_schema = schemas.PutResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -477,8 +477,8 @@ end
 function Client:registerStreamConsumer(input, options)
     return self:invokeOperation(input, {
         name = "RegisterStreamConsumer",
-        input_schema = types.RegisterStreamConsumerInput,
-        output_schema = types.RegisterStreamConsumerOutput,
+        input_schema = schemas.RegisterStreamConsumerInput,
+        output_schema = schemas.RegisterStreamConsumerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -494,8 +494,8 @@ end
 function Client:removeTagsFromStream(input, options)
     return self:invokeOperation(input, {
         name = "RemoveTagsFromStream",
-        input_schema = types.RemoveTagsFromStreamInput,
-        output_schema = types.RemoveTagsFromStreamOutput,
+        input_schema = schemas.RemoveTagsFromStreamInput,
+        output_schema = schemas.RemoveTagsFromStreamOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -511,8 +511,8 @@ end
 function Client:splitShard(input, options)
     return self:invokeOperation(input, {
         name = "SplitShard",
-        input_schema = types.SplitShardInput,
-        output_schema = types.SplitShardOutput,
+        input_schema = schemas.SplitShardInput,
+        output_schema = schemas.SplitShardOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -528,8 +528,8 @@ end
 function Client:startStreamEncryption(input, options)
     return self:invokeOperation(input, {
         name = "StartStreamEncryption",
-        input_schema = types.StartStreamEncryptionInput,
-        output_schema = types.StartStreamEncryptionOutput,
+        input_schema = schemas.StartStreamEncryptionInput,
+        output_schema = schemas.StartStreamEncryptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -545,8 +545,8 @@ end
 function Client:stopStreamEncryption(input, options)
     return self:invokeOperation(input, {
         name = "StopStreamEncryption",
-        input_schema = types.StopStreamEncryptionInput,
-        output_schema = types.StopStreamEncryptionOutput,
+        input_schema = schemas.StopStreamEncryptionInput,
+        output_schema = schemas.StopStreamEncryptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -562,11 +562,11 @@ end
 function Client:subscribeToShard(input, options)
     return self:invokeOperation(input, {
         name = "SubscribeToShard",
-        input_schema = types.SubscribeToShardInput,
-        output_schema = types.SubscribeToShardOutput,
+        input_schema = schemas.SubscribeToShardInput,
+        output_schema = schemas.SubscribeToShardOutput,
         http_method = "POST",
         http_path = "/",
-        event_stream = types.SubscribeToShardEventStream,
+        event_stream = schemas.SubscribeToShardEventStream,
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -580,8 +580,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -597,8 +597,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -614,8 +614,8 @@ end
 function Client:updateAccountSettings(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAccountSettings",
-        input_schema = types.UpdateAccountSettingsInput,
-        output_schema = types.UpdateAccountSettingsOutput,
+        input_schema = schemas.UpdateAccountSettingsInput,
+        output_schema = schemas.UpdateAccountSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -627,8 +627,8 @@ end
 function Client:updateMaxRecordSize(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMaxRecordSize",
-        input_schema = types.UpdateMaxRecordSizeInput,
-        output_schema = types.UpdateMaxRecordSizeOutput,
+        input_schema = schemas.UpdateMaxRecordSizeInput,
+        output_schema = schemas.UpdateMaxRecordSizeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -644,8 +644,8 @@ end
 function Client:updateShardCount(input, options)
     return self:invokeOperation(input, {
         name = "UpdateShardCount",
-        input_schema = types.UpdateShardCountInput,
-        output_schema = types.UpdateShardCountOutput,
+        input_schema = schemas.UpdateShardCountInput,
+        output_schema = schemas.UpdateShardCountOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -661,8 +661,8 @@ end
 function Client:updateStreamMode(input, options)
     return self:invokeOperation(input, {
         name = "UpdateStreamMode",
-        input_schema = types.UpdateStreamModeInput,
-        output_schema = types.UpdateStreamModeOutput,
+        input_schema = schemas.UpdateStreamModeInput,
+        output_schema = schemas.UpdateStreamModeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -678,8 +678,8 @@ end
 function Client:updateStreamWarmThroughput(input, options)
     return self:invokeOperation(input, {
         name = "UpdateStreamWarmThroughput",
-        input_schema = types.UpdateStreamWarmThroughputInput,
-        output_schema = types.UpdateStreamWarmThroughputOutput,
+        input_schema = schemas.UpdateStreamWarmThroughputInput,
+        output_schema = schemas.UpdateStreamWarmThroughputOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("marketplaceagreement.endpoint_rules")
+local schemas = require("marketplaceagreement.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("marketplaceagreement.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchCreateBillingAdjustmentRequest(input, options)
     return self:invokeOperation(input, {
         name = "BatchCreateBillingAdjustmentRequest",
-        input_schema = types.BatchCreateBillingAdjustmentRequestInput,
-        output_schema = types.BatchCreateBillingAdjustmentRequestOutput,
+        input_schema = schemas.BatchCreateBillingAdjustmentRequestInput,
+        output_schema = schemas.BatchCreateBillingAdjustmentRequestOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:cancelAgreementCancellationRequest(input, options)
     return self:invokeOperation(input, {
         name = "CancelAgreementCancellationRequest",
-        input_schema = types.CancelAgreementCancellationRequestInput,
-        output_schema = types.CancelAgreementCancellationRequestOutput,
+        input_schema = schemas.CancelAgreementCancellationRequestInput,
+        output_schema = schemas.CancelAgreementCancellationRequestOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:cancelAgreementPaymentRequest(input, options)
     return self:invokeOperation(input, {
         name = "CancelAgreementPaymentRequest",
-        input_schema = types.CancelAgreementPaymentRequestInput,
-        output_schema = types.CancelAgreementPaymentRequestOutput,
+        input_schema = schemas.CancelAgreementPaymentRequestInput,
+        output_schema = schemas.CancelAgreementPaymentRequestOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:describeAgreement(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAgreement",
-        input_schema = types.DescribeAgreementInput,
-        output_schema = types.DescribeAgreementOutput,
+        input_schema = schemas.DescribeAgreementInput,
+        output_schema = schemas.DescribeAgreementOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getAgreementCancellationRequest(input, options)
     return self:invokeOperation(input, {
         name = "GetAgreementCancellationRequest",
-        input_schema = types.GetAgreementCancellationRequestInput,
-        output_schema = types.GetAgreementCancellationRequestOutput,
+        input_schema = schemas.GetAgreementCancellationRequestInput,
+        output_schema = schemas.GetAgreementCancellationRequestOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getAgreementPaymentRequest(input, options)
     return self:invokeOperation(input, {
         name = "GetAgreementPaymentRequest",
-        input_schema = types.GetAgreementPaymentRequestInput,
-        output_schema = types.GetAgreementPaymentRequestOutput,
+        input_schema = schemas.GetAgreementPaymentRequestInput,
+        output_schema = schemas.GetAgreementPaymentRequestOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getAgreementTerms(input, options)
     return self:invokeOperation(input, {
         name = "GetAgreementTerms",
-        input_schema = types.GetAgreementTermsInput,
-        output_schema = types.GetAgreementTermsOutput,
+        input_schema = schemas.GetAgreementTermsInput,
+        output_schema = schemas.GetAgreementTermsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getBillingAdjustmentRequest(input, options)
     return self:invokeOperation(input, {
         name = "GetBillingAdjustmentRequest",
-        input_schema = types.GetBillingAdjustmentRequestInput,
-        output_schema = types.GetBillingAdjustmentRequestOutput,
+        input_schema = schemas.GetBillingAdjustmentRequestInput,
+        output_schema = schemas.GetBillingAdjustmentRequestOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listAgreementCancellationRequests(input, options)
     return self:invokeOperation(input, {
         name = "ListAgreementCancellationRequests",
-        input_schema = types.ListAgreementCancellationRequestsInput,
-        output_schema = types.ListAgreementCancellationRequestsOutput,
+        input_schema = schemas.ListAgreementCancellationRequestsInput,
+        output_schema = schemas.ListAgreementCancellationRequestsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listAgreementInvoiceLineItems(input, options)
     return self:invokeOperation(input, {
         name = "ListAgreementInvoiceLineItems",
-        input_schema = types.ListAgreementInvoiceLineItemsInput,
-        output_schema = types.ListAgreementInvoiceLineItemsOutput,
+        input_schema = schemas.ListAgreementInvoiceLineItemsInput,
+        output_schema = schemas.ListAgreementInvoiceLineItemsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listAgreementPaymentRequests(input, options)
     return self:invokeOperation(input, {
         name = "ListAgreementPaymentRequests",
-        input_schema = types.ListAgreementPaymentRequestsInput,
-        output_schema = types.ListAgreementPaymentRequestsOutput,
+        input_schema = schemas.ListAgreementPaymentRequestsInput,
+        output_schema = schemas.ListAgreementPaymentRequestsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listBillingAdjustmentRequests(input, options)
     return self:invokeOperation(input, {
         name = "ListBillingAdjustmentRequests",
-        input_schema = types.ListBillingAdjustmentRequestsInput,
-        output_schema = types.ListBillingAdjustmentRequestsOutput,
+        input_schema = schemas.ListBillingAdjustmentRequestsInput,
+        output_schema = schemas.ListBillingAdjustmentRequestsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:searchAgreements(input, options)
     return self:invokeOperation(input, {
         name = "SearchAgreements",
-        input_schema = types.SearchAgreementsInput,
-        output_schema = types.SearchAgreementsOutput,
+        input_schema = schemas.SearchAgreementsInput,
+        output_schema = schemas.SearchAgreementsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:sendAgreementCancellationRequest(input, options)
     return self:invokeOperation(input, {
         name = "SendAgreementCancellationRequest",
-        input_schema = types.SendAgreementCancellationRequestInput,
-        output_schema = types.SendAgreementCancellationRequestOutput,
+        input_schema = schemas.SendAgreementCancellationRequestInput,
+        output_schema = schemas.SendAgreementCancellationRequestOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:sendAgreementPaymentRequest(input, options)
     return self:invokeOperation(input, {
         name = "SendAgreementPaymentRequest",
-        input_schema = types.SendAgreementPaymentRequestInput,
-        output_schema = types.SendAgreementPaymentRequestOutput,
+        input_schema = schemas.SendAgreementPaymentRequestInput,
+        output_schema = schemas.SendAgreementPaymentRequestOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

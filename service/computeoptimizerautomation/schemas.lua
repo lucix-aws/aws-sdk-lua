@@ -1,0 +1,2865 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.computeoptimizerautomation"
+
+local M = {}
+
+M.AccessDeniedException = schema.new({
+    id = id.from(_N, "AccessDeniedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "AccessDeniedException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AccountInfo = schema.new({
+    id = id.from(_N, "AccountInfo"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "AccountInfo", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "AccountInfo", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        organizationRuleMode = schema.new({
+            id = id.from(_N, "AccountInfo", "organizationRuleMode"),
+            type = "string",
+            name = "organizationRuleMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "AccountInfo", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        lastUpdatedTimestamp = schema.new({
+            id = id.from(_N, "AccountInfo", "lastUpdatedTimestamp"),
+            type = "timestamp",
+            name = "lastUpdatedTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssociateAccountsInput = schema.new({
+    id = id.from(_N, "AssociateAccountsInput"),
+    type = "structure",
+    members = {
+        accountIds = schema.new({
+            id = id.from(_N, "AssociateAccountsInput", "accountIds"),
+            type = "list",
+            name = "accountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "AssociateAccountsInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.AssociateAccountsOutput = schema.new({
+    id = id.from(_N, "AssociateAccountsOutput"),
+    type = "structure",
+    members = {
+        accountIds = schema.new({
+            id = id.from(_N, "AssociateAccountsOutput", "accountIds"),
+            type = "list",
+            name = "accountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        errors = schema.new({
+            id = id.from(_N, "AssociateAccountsOutput", "errors"),
+            type = "list",
+            name = "errors",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ForbiddenException = schema.new({
+    id = id.from(_N, "ForbiddenException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ForbiddenException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.IdempotencyTokenInUseException = schema.new({
+    id = id.from(_N, "IdempotencyTokenInUseException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "IdempotencyTokenInUseException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.IdempotentParameterMismatchException = schema.new({
+    id = id.from(_N, "IdempotentParameterMismatchException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "IdempotentParameterMismatchException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InternalServerException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidParameterValueException = schema.new({
+    id = id.from(_N, "InvalidParameterValueException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidParameterValueException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.NotManagementAccountException = schema.new({
+    id = id.from(_N, "NotManagementAccountException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "NotManagementAccountException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.OptInRequiredException = schema.new({
+    id = id.from(_N, "OptInRequiredException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "OptInRequiredException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceUnavailableException = schema.new({
+    id = id.from(_N, "ServiceUnavailableException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceUnavailableException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ThrottlingException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EstimatedMonthlySavings = schema.new({
+    id = id.from(_N, "EstimatedMonthlySavings"),
+    type = "structure",
+    members = {
+        currency = schema.new({
+            id = id.from(_N, "EstimatedMonthlySavings", "currency"),
+            type = "string",
+            name = "currency",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        beforeDiscountSavings = schema.new({
+            id = id.from(_N, "EstimatedMonthlySavings", "beforeDiscountSavings"),
+            type = "double",
+            name = "beforeDiscountSavings",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        afterDiscountSavings = schema.new({
+            id = id.from(_N, "EstimatedMonthlySavings", "afterDiscountSavings"),
+            type = "double",
+            name = "afterDiscountSavings",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        savingsEstimationMode = schema.new({
+            id = id.from(_N, "EstimatedMonthlySavings", "savingsEstimationMode"),
+            type = "string",
+            name = "savingsEstimationMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AutomationEvent = schema.new({
+    id = id.from(_N, "AutomationEvent"),
+    type = "structure",
+    members = {
+        eventId = schema.new({
+            id = id.from(_N, "AutomationEvent", "eventId"),
+            type = "string",
+            name = "eventId",
+            target_id = prelude.String.id,
+        }),
+        eventDescription = schema.new({
+            id = id.from(_N, "AutomationEvent", "eventDescription"),
+            type = "string",
+            name = "eventDescription",
+            target_id = prelude.String.id,
+        }),
+        eventType = schema.new({
+            id = id.from(_N, "AutomationEvent", "eventType"),
+            type = "string",
+            name = "eventType",
+            target_id = prelude.String.id,
+        }),
+        eventStatus = schema.new({
+            id = id.from(_N, "AutomationEvent", "eventStatus"),
+            type = "string",
+            name = "eventStatus",
+            target_id = prelude.String.id,
+        }),
+        eventStatusReason = schema.new({
+            id = id.from(_N, "AutomationEvent", "eventStatusReason"),
+            type = "string",
+            name = "eventStatusReason",
+            target_id = prelude.String.id,
+        }),
+        resourceArn = schema.new({
+            id = id.from(_N, "AutomationEvent", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "AutomationEvent", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+        }),
+        recommendedActionId = schema.new({
+            id = id.from(_N, "AutomationEvent", "recommendedActionId"),
+            type = "string",
+            name = "recommendedActionId",
+            target_id = prelude.String.id,
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "AutomationEvent", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+        }),
+        region = schema.new({
+            id = id.from(_N, "AutomationEvent", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+        }),
+        ruleId = schema.new({
+            id = id.from(_N, "AutomationEvent", "ruleId"),
+            type = "string",
+            name = "ruleId",
+            target_id = prelude.String.id,
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "AutomationEvent", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+        }),
+        createdTimestamp = schema.new({
+            id = id.from(_N, "AutomationEvent", "createdTimestamp"),
+            type = "timestamp",
+            name = "createdTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        completedTimestamp = schema.new({
+            id = id.from(_N, "AutomationEvent", "completedTimestamp"),
+            type = "timestamp",
+            name = "completedTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        estimatedMonthlySavings = schema.new({
+            id = id.from(_N, "AutomationEvent", "estimatedMonthlySavings"),
+            type = "structure",
+            name = "estimatedMonthlySavings",
+            target_id = id.from(_N, "EstimatedMonthlySavings"),
+            target = M.EstimatedMonthlySavings,
+        }),
+    },
+})
+
+M.AutomationEventFilter = schema.new({
+    id = id.from(_N, "AutomationEventFilter"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "AutomationEventFilter", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        values = schema.new({
+            id = id.from(_N, "AutomationEventFilter", "values"),
+            type = "list",
+            name = "values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AutomationEventStep = schema.new({
+    id = id.from(_N, "AutomationEventStep"),
+    type = "structure",
+    members = {
+        eventId = schema.new({
+            id = id.from(_N, "AutomationEventStep", "eventId"),
+            type = "string",
+            name = "eventId",
+            target_id = prelude.String.id,
+        }),
+        stepId = schema.new({
+            id = id.from(_N, "AutomationEventStep", "stepId"),
+            type = "string",
+            name = "stepId",
+            target_id = prelude.String.id,
+        }),
+        stepType = schema.new({
+            id = id.from(_N, "AutomationEventStep", "stepType"),
+            type = "string",
+            name = "stepType",
+            target_id = prelude.String.id,
+        }),
+        stepStatus = schema.new({
+            id = id.from(_N, "AutomationEventStep", "stepStatus"),
+            type = "string",
+            name = "stepStatus",
+            target_id = prelude.String.id,
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "AutomationEventStep", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+        }),
+        startTimestamp = schema.new({
+            id = id.from(_N, "AutomationEventStep", "startTimestamp"),
+            type = "timestamp",
+            name = "startTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        completedTimestamp = schema.new({
+            id = id.from(_N, "AutomationEventStep", "completedTimestamp"),
+            type = "timestamp",
+            name = "completedTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        estimatedMonthlySavings = schema.new({
+            id = id.from(_N, "AutomationEventStep", "estimatedMonthlySavings"),
+            type = "structure",
+            name = "estimatedMonthlySavings",
+            target_id = id.from(_N, "EstimatedMonthlySavings"),
+            target = M.EstimatedMonthlySavings,
+        }),
+    },
+})
+
+M.SummaryDimension = schema.new({
+    id = id.from(_N, "SummaryDimension"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "SummaryDimension", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "SummaryDimension", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TimePeriod = schema.new({
+    id = id.from(_N, "TimePeriod"),
+    type = "structure",
+    members = {
+        startTimeInclusive = schema.new({
+            id = id.from(_N, "TimePeriod", "startTimeInclusive"),
+            type = "timestamp",
+            name = "startTimeInclusive",
+            target_id = prelude.Timestamp.id,
+        }),
+        endTimeExclusive = schema.new({
+            id = id.from(_N, "TimePeriod", "endTimeExclusive"),
+            type = "timestamp",
+            name = "endTimeExclusive",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.SummaryTotals = schema.new({
+    id = id.from(_N, "SummaryTotals"),
+    type = "structure",
+    members = {
+        automationEventCount = schema.new({
+            id = id.from(_N, "SummaryTotals", "automationEventCount"),
+            type = "integer",
+            name = "automationEventCount",
+            target_id = prelude.Integer.id,
+        }),
+        estimatedMonthlySavings = schema.new({
+            id = id.from(_N, "SummaryTotals", "estimatedMonthlySavings"),
+            type = "structure",
+            name = "estimatedMonthlySavings",
+            target_id = id.from(_N, "EstimatedMonthlySavings"),
+            target = M.EstimatedMonthlySavings,
+        }),
+    },
+})
+
+M.AutomationEventSummary = schema.new({
+    id = id.from(_N, "AutomationEventSummary"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "AutomationEventSummary", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+        }),
+        dimensions = schema.new({
+            id = id.from(_N, "AutomationEventSummary", "dimensions"),
+            type = "list",
+            name = "dimensions",
+            target_id = prelude.Document.id,
+            list_member = M.SummaryDimension,
+        }),
+        timePeriod = schema.new({
+            id = id.from(_N, "AutomationEventSummary", "timePeriod"),
+            type = "structure",
+            name = "timePeriod",
+            target_id = id.from(_N, "TimePeriod"),
+            target = M.TimePeriod,
+        }),
+        total = schema.new({
+            id = id.from(_N, "AutomationEventSummary", "total"),
+            type = "structure",
+            name = "total",
+            target_id = id.from(_N, "SummaryTotals"),
+            target = M.SummaryTotals,
+        }),
+    },
+})
+
+M.OrganizationConfiguration = schema.new({
+    id = id.from(_N, "OrganizationConfiguration"),
+    type = "structure",
+    members = {
+        ruleApplyOrder = schema.new({
+            id = id.from(_N, "OrganizationConfiguration", "ruleApplyOrder"),
+            type = "string",
+            name = "ruleApplyOrder",
+            target_id = prelude.String.id,
+        }),
+        accountIds = schema.new({
+            id = id.from(_N, "OrganizationConfiguration", "accountIds"),
+            type = "list",
+            name = "accountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.Schedule = schema.new({
+    id = id.from(_N, "Schedule"),
+    type = "structure",
+    members = {
+        scheduleExpression = schema.new({
+            id = id.from(_N, "Schedule", "scheduleExpression"),
+            type = "string",
+            name = "scheduleExpression",
+            target_id = prelude.String.id,
+        }),
+        scheduleExpressionTimezone = schema.new({
+            id = id.from(_N, "Schedule", "scheduleExpressionTimezone"),
+            type = "string",
+            name = "scheduleExpressionTimezone",
+            target_id = prelude.String.id,
+        }),
+        executionWindowInMinutes = schema.new({
+            id = id.from(_N, "Schedule", "executionWindowInMinutes"),
+            type = "integer",
+            name = "executionWindowInMinutes",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.AutomationRule = schema.new({
+    id = id.from(_N, "AutomationRule"),
+    type = "structure",
+    members = {
+        ruleArn = schema.new({
+            id = id.from(_N, "AutomationRule", "ruleArn"),
+            type = "string",
+            name = "ruleArn",
+            target_id = prelude.String.id,
+        }),
+        ruleId = schema.new({
+            id = id.from(_N, "AutomationRule", "ruleId"),
+            type = "string",
+            name = "ruleId",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "AutomationRule", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "AutomationRule", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        ruleType = schema.new({
+            id = id.from(_N, "AutomationRule", "ruleType"),
+            type = "string",
+            name = "ruleType",
+            target_id = prelude.String.id,
+        }),
+        ruleRevision = schema.new({
+            id = id.from(_N, "AutomationRule", "ruleRevision"),
+            type = "long",
+            name = "ruleRevision",
+            target_id = prelude.Long.id,
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "AutomationRule", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+        }),
+        organizationConfiguration = schema.new({
+            id = id.from(_N, "AutomationRule", "organizationConfiguration"),
+            type = "structure",
+            name = "organizationConfiguration",
+            target_id = id.from(_N, "OrganizationConfiguration"),
+            target = M.OrganizationConfiguration,
+        }),
+        priority = schema.new({
+            id = id.from(_N, "AutomationRule", "priority"),
+            type = "string",
+            name = "priority",
+            target_id = prelude.String.id,
+        }),
+        recommendedActionTypes = schema.new({
+            id = id.from(_N, "AutomationRule", "recommendedActionTypes"),
+            type = "list",
+            name = "recommendedActionTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        schedule = schema.new({
+            id = id.from(_N, "AutomationRule", "schedule"),
+            type = "structure",
+            name = "schedule",
+            target_id = id.from(_N, "Schedule"),
+            target = M.Schedule,
+        }),
+        status = schema.new({
+            id = id.from(_N, "AutomationRule", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        createdTimestamp = schema.new({
+            id = id.from(_N, "AutomationRule", "createdTimestamp"),
+            type = "timestamp",
+            name = "createdTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        lastUpdatedTimestamp = schema.new({
+            id = id.from(_N, "AutomationRule", "lastUpdatedTimestamp"),
+            type = "timestamp",
+            name = "lastUpdatedTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.IntegerCriteriaCondition = schema.new({
+    id = id.from(_N, "IntegerCriteriaCondition"),
+    type = "structure",
+    members = {
+        comparison = schema.new({
+            id = id.from(_N, "IntegerCriteriaCondition", "comparison"),
+            type = "string",
+            name = "comparison",
+            target_id = prelude.String.id,
+        }),
+        values = schema.new({
+            id = id.from(_N, "IntegerCriteriaCondition", "values"),
+            type = "list",
+            name = "values",
+            target_id = prelude.Document.id,
+            list_member = prelude.Integer,
+        }),
+    },
+})
+
+M.StringCriteriaCondition = schema.new({
+    id = id.from(_N, "StringCriteriaCondition"),
+    type = "structure",
+    members = {
+        comparison = schema.new({
+            id = id.from(_N, "StringCriteriaCondition", "comparison"),
+            type = "string",
+            name = "comparison",
+            target_id = prelude.String.id,
+        }),
+        values = schema.new({
+            id = id.from(_N, "StringCriteriaCondition", "values"),
+            type = "list",
+            name = "values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.DoubleCriteriaCondition = schema.new({
+    id = id.from(_N, "DoubleCriteriaCondition"),
+    type = "structure",
+    members = {
+        comparison = schema.new({
+            id = id.from(_N, "DoubleCriteriaCondition", "comparison"),
+            type = "string",
+            name = "comparison",
+            target_id = prelude.String.id,
+        }),
+        values = schema.new({
+            id = id.from(_N, "DoubleCriteriaCondition", "values"),
+            type = "list",
+            name = "values",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+    },
+})
+
+M.ResourceTagsCriteriaCondition = schema.new({
+    id = id.from(_N, "ResourceTagsCriteriaCondition"),
+    type = "structure",
+    members = {
+        comparison = schema.new({
+            id = id.from(_N, "ResourceTagsCriteriaCondition", "comparison"),
+            type = "string",
+            name = "comparison",
+            target_id = prelude.String.id,
+        }),
+        key = schema.new({
+            id = id.from(_N, "ResourceTagsCriteriaCondition", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+        }),
+        values = schema.new({
+            id = id.from(_N, "ResourceTagsCriteriaCondition", "values"),
+            type = "list",
+            name = "values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.Criteria = schema.new({
+    id = id.from(_N, "Criteria"),
+    type = "structure",
+    members = {
+        region = schema.new({
+            id = id.from(_N, "Criteria", "region"),
+            type = "list",
+            name = "region",
+            target_id = prelude.Document.id,
+            list_member = M.StringCriteriaCondition,
+        }),
+        resourceArn = schema.new({
+            id = id.from(_N, "Criteria", "resourceArn"),
+            type = "list",
+            name = "resourceArn",
+            target_id = prelude.Document.id,
+            list_member = M.StringCriteriaCondition,
+        }),
+        ebsVolumeType = schema.new({
+            id = id.from(_N, "Criteria", "ebsVolumeType"),
+            type = "list",
+            name = "ebsVolumeType",
+            target_id = prelude.Document.id,
+            list_member = M.StringCriteriaCondition,
+        }),
+        ebsVolumeSizeInGib = schema.new({
+            id = id.from(_N, "Criteria", "ebsVolumeSizeInGib"),
+            type = "list",
+            name = "ebsVolumeSizeInGib",
+            target_id = prelude.Document.id,
+            list_member = M.IntegerCriteriaCondition,
+        }),
+        estimatedMonthlySavings = schema.new({
+            id = id.from(_N, "Criteria", "estimatedMonthlySavings"),
+            type = "list",
+            name = "estimatedMonthlySavings",
+            target_id = prelude.Document.id,
+            list_member = M.DoubleCriteriaCondition,
+        }),
+        resourceTag = schema.new({
+            id = id.from(_N, "Criteria", "resourceTag"),
+            type = "list",
+            name = "resourceTag",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceTagsCriteriaCondition,
+        }),
+        lookBackPeriodInDays = schema.new({
+            id = id.from(_N, "Criteria", "lookBackPeriodInDays"),
+            type = "list",
+            name = "lookBackPeriodInDays",
+            target_id = prelude.Document.id,
+            list_member = M.IntegerCriteriaCondition,
+        }),
+        restartNeeded = schema.new({
+            id = id.from(_N, "Criteria", "restartNeeded"),
+            type = "list",
+            name = "restartNeeded",
+            target_id = prelude.Document.id,
+            list_member = M.StringCriteriaCondition,
+        }),
+    },
+})
+
+M.Tag = schema.new({
+    id = id.from(_N, "Tag"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "Tag", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "Tag", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateAutomationRuleInput = schema.new({
+    id = id.from(_N, "CreateAutomationRuleInput"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "CreateAutomationRuleInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateAutomationRuleInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        ruleType = schema.new({
+            id = id.from(_N, "CreateAutomationRuleInput", "ruleType"),
+            type = "string",
+            name = "ruleType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        organizationConfiguration = schema.new({
+            id = id.from(_N, "CreateAutomationRuleInput", "organizationConfiguration"),
+            type = "structure",
+            name = "organizationConfiguration",
+            target_id = id.from(_N, "OrganizationConfiguration"),
+            target = M.OrganizationConfiguration,
+        }),
+        priority = schema.new({
+            id = id.from(_N, "CreateAutomationRuleInput", "priority"),
+            type = "string",
+            name = "priority",
+            target_id = prelude.String.id,
+        }),
+        recommendedActionTypes = schema.new({
+            id = id.from(_N, "CreateAutomationRuleInput", "recommendedActionTypes"),
+            type = "list",
+            name = "recommendedActionTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        criteria = schema.new({
+            id = id.from(_N, "CreateAutomationRuleInput", "criteria"),
+            type = "structure",
+            name = "criteria",
+            target_id = id.from(_N, "Criteria"),
+            target = M.Criteria,
+        }),
+        schedule = schema.new({
+            id = id.from(_N, "CreateAutomationRuleInput", "schedule"),
+            type = "structure",
+            name = "schedule",
+            target_id = id.from(_N, "Schedule"),
+            target = M.Schedule,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "CreateAutomationRuleInput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateAutomationRuleInput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateAutomationRuleInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CreateAutomationRuleOutput = schema.new({
+    id = id.from(_N, "CreateAutomationRuleOutput"),
+    type = "structure",
+    members = {
+        ruleArn = schema.new({
+            id = id.from(_N, "CreateAutomationRuleOutput", "ruleArn"),
+            type = "string",
+            name = "ruleArn",
+            target_id = prelude.String.id,
+        }),
+        ruleId = schema.new({
+            id = id.from(_N, "CreateAutomationRuleOutput", "ruleId"),
+            type = "string",
+            name = "ruleId",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "CreateAutomationRuleOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateAutomationRuleOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        ruleType = schema.new({
+            id = id.from(_N, "CreateAutomationRuleOutput", "ruleType"),
+            type = "string",
+            name = "ruleType",
+            target_id = prelude.String.id,
+        }),
+        ruleRevision = schema.new({
+            id = id.from(_N, "CreateAutomationRuleOutput", "ruleRevision"),
+            type = "long",
+            name = "ruleRevision",
+            target_id = prelude.Long.id,
+        }),
+        organizationConfiguration = schema.new({
+            id = id.from(_N, "CreateAutomationRuleOutput", "organizationConfiguration"),
+            type = "structure",
+            name = "organizationConfiguration",
+            target_id = id.from(_N, "OrganizationConfiguration"),
+            target = M.OrganizationConfiguration,
+        }),
+        priority = schema.new({
+            id = id.from(_N, "CreateAutomationRuleOutput", "priority"),
+            type = "string",
+            name = "priority",
+            target_id = prelude.String.id,
+        }),
+        recommendedActionTypes = schema.new({
+            id = id.from(_N, "CreateAutomationRuleOutput", "recommendedActionTypes"),
+            type = "list",
+            name = "recommendedActionTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        criteria = schema.new({
+            id = id.from(_N, "CreateAutomationRuleOutput", "criteria"),
+            type = "structure",
+            name = "criteria",
+            target_id = id.from(_N, "Criteria"),
+            target = M.Criteria,
+        }),
+        schedule = schema.new({
+            id = id.from(_N, "CreateAutomationRuleOutput", "schedule"),
+            type = "structure",
+            name = "schedule",
+            target_id = id.from(_N, "Schedule"),
+            target = M.Schedule,
+        }),
+        status = schema.new({
+            id = id.from(_N, "CreateAutomationRuleOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateAutomationRuleOutput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        createdTimestamp = schema.new({
+            id = id.from(_N, "CreateAutomationRuleOutput", "createdTimestamp"),
+            type = "timestamp",
+            name = "createdTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteAutomationRuleInput = schema.new({
+    id = id.from(_N, "DeleteAutomationRuleInput"),
+    type = "structure",
+    members = {
+        ruleArn = schema.new({
+            id = id.from(_N, "DeleteAutomationRuleInput", "ruleArn"),
+            type = "string",
+            name = "ruleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ruleRevision = schema.new({
+            id = id.from(_N, "DeleteAutomationRuleInput", "ruleRevision"),
+            type = "long",
+            name = "ruleRevision",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "DeleteAutomationRuleInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAutomationRuleOutput = schema.new({
+    id = id.from(_N, "DeleteAutomationRuleOutput"),
+    type = "structure",
+})
+
+M.DisassociateAccountsInput = schema.new({
+    id = id.from(_N, "DisassociateAccountsInput"),
+    type = "structure",
+    members = {
+        accountIds = schema.new({
+            id = id.from(_N, "DisassociateAccountsInput", "accountIds"),
+            type = "list",
+            name = "accountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "DisassociateAccountsInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.DisassociateAccountsOutput = schema.new({
+    id = id.from(_N, "DisassociateAccountsOutput"),
+    type = "structure",
+    members = {
+        accountIds = schema.new({
+            id = id.from(_N, "DisassociateAccountsOutput", "accountIds"),
+            type = "list",
+            name = "accountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        errors = schema.new({
+            id = id.from(_N, "DisassociateAccountsOutput", "errors"),
+            type = "list",
+            name = "errors",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.GetAutomationEventInput = schema.new({
+    id = id.from(_N, "GetAutomationEventInput"),
+    type = "structure",
+    members = {
+        eventId = schema.new({
+            id = id.from(_N, "GetAutomationEventInput", "eventId"),
+            type = "string",
+            name = "eventId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetAutomationEventOutput = schema.new({
+    id = id.from(_N, "GetAutomationEventOutput"),
+    type = "structure",
+    members = {
+        eventId = schema.new({
+            id = id.from(_N, "GetAutomationEventOutput", "eventId"),
+            type = "string",
+            name = "eventId",
+            target_id = prelude.String.id,
+        }),
+        eventDescription = schema.new({
+            id = id.from(_N, "GetAutomationEventOutput", "eventDescription"),
+            type = "string",
+            name = "eventDescription",
+            target_id = prelude.String.id,
+        }),
+        eventType = schema.new({
+            id = id.from(_N, "GetAutomationEventOutput", "eventType"),
+            type = "string",
+            name = "eventType",
+            target_id = prelude.String.id,
+        }),
+        eventStatus = schema.new({
+            id = id.from(_N, "GetAutomationEventOutput", "eventStatus"),
+            type = "string",
+            name = "eventStatus",
+            target_id = prelude.String.id,
+        }),
+        eventStatusReason = schema.new({
+            id = id.from(_N, "GetAutomationEventOutput", "eventStatusReason"),
+            type = "string",
+            name = "eventStatusReason",
+            target_id = prelude.String.id,
+        }),
+        resourceArn = schema.new({
+            id = id.from(_N, "GetAutomationEventOutput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "GetAutomationEventOutput", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+        }),
+        recommendedActionId = schema.new({
+            id = id.from(_N, "GetAutomationEventOutput", "recommendedActionId"),
+            type = "string",
+            name = "recommendedActionId",
+            target_id = prelude.String.id,
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "GetAutomationEventOutput", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+        }),
+        region = schema.new({
+            id = id.from(_N, "GetAutomationEventOutput", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+        }),
+        ruleId = schema.new({
+            id = id.from(_N, "GetAutomationEventOutput", "ruleId"),
+            type = "string",
+            name = "ruleId",
+            target_id = prelude.String.id,
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "GetAutomationEventOutput", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+        }),
+        createdTimestamp = schema.new({
+            id = id.from(_N, "GetAutomationEventOutput", "createdTimestamp"),
+            type = "timestamp",
+            name = "createdTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        completedTimestamp = schema.new({
+            id = id.from(_N, "GetAutomationEventOutput", "completedTimestamp"),
+            type = "timestamp",
+            name = "completedTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        estimatedMonthlySavings = schema.new({
+            id = id.from(_N, "GetAutomationEventOutput", "estimatedMonthlySavings"),
+            type = "structure",
+            name = "estimatedMonthlySavings",
+            target_id = id.from(_N, "EstimatedMonthlySavings"),
+            target = M.EstimatedMonthlySavings,
+        }),
+    },
+})
+
+M.GetAutomationRuleInput = schema.new({
+    id = id.from(_N, "GetAutomationRuleInput"),
+    type = "structure",
+    members = {
+        ruleArn = schema.new({
+            id = id.from(_N, "GetAutomationRuleInput", "ruleArn"),
+            type = "string",
+            name = "ruleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetAutomationRuleOutput = schema.new({
+    id = id.from(_N, "GetAutomationRuleOutput"),
+    type = "structure",
+    members = {
+        ruleArn = schema.new({
+            id = id.from(_N, "GetAutomationRuleOutput", "ruleArn"),
+            type = "string",
+            name = "ruleArn",
+            target_id = prelude.String.id,
+        }),
+        ruleId = schema.new({
+            id = id.from(_N, "GetAutomationRuleOutput", "ruleId"),
+            type = "string",
+            name = "ruleId",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "GetAutomationRuleOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "GetAutomationRuleOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        ruleType = schema.new({
+            id = id.from(_N, "GetAutomationRuleOutput", "ruleType"),
+            type = "string",
+            name = "ruleType",
+            target_id = prelude.String.id,
+        }),
+        ruleRevision = schema.new({
+            id = id.from(_N, "GetAutomationRuleOutput", "ruleRevision"),
+            type = "long",
+            name = "ruleRevision",
+            target_id = prelude.Long.id,
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "GetAutomationRuleOutput", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+        }),
+        organizationConfiguration = schema.new({
+            id = id.from(_N, "GetAutomationRuleOutput", "organizationConfiguration"),
+            type = "structure",
+            name = "organizationConfiguration",
+            target_id = id.from(_N, "OrganizationConfiguration"),
+            target = M.OrganizationConfiguration,
+        }),
+        priority = schema.new({
+            id = id.from(_N, "GetAutomationRuleOutput", "priority"),
+            type = "string",
+            name = "priority",
+            target_id = prelude.String.id,
+        }),
+        recommendedActionTypes = schema.new({
+            id = id.from(_N, "GetAutomationRuleOutput", "recommendedActionTypes"),
+            type = "list",
+            name = "recommendedActionTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        criteria = schema.new({
+            id = id.from(_N, "GetAutomationRuleOutput", "criteria"),
+            type = "structure",
+            name = "criteria",
+            target_id = id.from(_N, "Criteria"),
+            target = M.Criteria,
+        }),
+        schedule = schema.new({
+            id = id.from(_N, "GetAutomationRuleOutput", "schedule"),
+            type = "structure",
+            name = "schedule",
+            target_id = id.from(_N, "Schedule"),
+            target = M.Schedule,
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetAutomationRuleOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "GetAutomationRuleOutput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        createdTimestamp = schema.new({
+            id = id.from(_N, "GetAutomationRuleOutput", "createdTimestamp"),
+            type = "timestamp",
+            name = "createdTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        lastUpdatedTimestamp = schema.new({
+            id = id.from(_N, "GetAutomationRuleOutput", "lastUpdatedTimestamp"),
+            type = "timestamp",
+            name = "lastUpdatedTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.GetEnrollmentConfigurationInput = schema.new({
+    id = id.from(_N, "GetEnrollmentConfigurationInput"),
+    type = "structure",
+})
+
+M.GetEnrollmentConfigurationOutput = schema.new({
+    id = id.from(_N, "GetEnrollmentConfigurationOutput"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "GetEnrollmentConfigurationOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "GetEnrollmentConfigurationOutput", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        organizationRuleMode = schema.new({
+            id = id.from(_N, "GetEnrollmentConfigurationOutput", "organizationRuleMode"),
+            type = "string",
+            name = "organizationRuleMode",
+            target_id = prelude.String.id,
+        }),
+        lastUpdatedTimestamp = schema.new({
+            id = id.from(_N, "GetEnrollmentConfigurationOutput", "lastUpdatedTimestamp"),
+            type = "timestamp",
+            name = "lastUpdatedTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListAccountsInput = schema.new({
+    id = id.from(_N, "ListAccountsInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListAccountsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAccountsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAccountsOutput = schema.new({
+    id = id.from(_N, "ListAccountsOutput"),
+    type = "structure",
+    members = {
+        accounts = schema.new({
+            id = id.from(_N, "ListAccountsOutput", "accounts"),
+            type = "list",
+            name = "accounts",
+            target_id = prelude.Document.id,
+            list_member = M.AccountInfo,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAccountsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAutomationEventsInput = schema.new({
+    id = id.from(_N, "ListAutomationEventsInput"),
+    type = "structure",
+    members = {
+        filters = schema.new({
+            id = id.from(_N, "ListAutomationEventsInput", "filters"),
+            type = "list",
+            name = "filters",
+            target_id = prelude.Document.id,
+            list_member = M.AutomationEventFilter,
+        }),
+        startTimeInclusive = schema.new({
+            id = id.from(_N, "ListAutomationEventsInput", "startTimeInclusive"),
+            type = "timestamp",
+            name = "startTimeInclusive",
+            target_id = prelude.Timestamp.id,
+        }),
+        endTimeExclusive = schema.new({
+            id = id.from(_N, "ListAutomationEventsInput", "endTimeExclusive"),
+            type = "timestamp",
+            name = "endTimeExclusive",
+            target_id = prelude.Timestamp.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListAutomationEventsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutomationEventsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAutomationEventsOutput = schema.new({
+    id = id.from(_N, "ListAutomationEventsOutput"),
+    type = "structure",
+    members = {
+        automationEvents = schema.new({
+            id = id.from(_N, "ListAutomationEventsOutput", "automationEvents"),
+            type = "list",
+            name = "automationEvents",
+            target_id = prelude.Document.id,
+            list_member = M.AutomationEvent,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutomationEventsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAutomationEventStepsInput = schema.new({
+    id = id.from(_N, "ListAutomationEventStepsInput"),
+    type = "structure",
+    members = {
+        eventId = schema.new({
+            id = id.from(_N, "ListAutomationEventStepsInput", "eventId"),
+            type = "string",
+            name = "eventId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListAutomationEventStepsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutomationEventStepsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAutomationEventStepsOutput = schema.new({
+    id = id.from(_N, "ListAutomationEventStepsOutput"),
+    type = "structure",
+    members = {
+        automationEventSteps = schema.new({
+            id = id.from(_N, "ListAutomationEventStepsOutput", "automationEventSteps"),
+            type = "list",
+            name = "automationEventSteps",
+            target_id = prelude.Document.id,
+            list_member = M.AutomationEventStep,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutomationEventStepsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAutomationEventSummariesInput = schema.new({
+    id = id.from(_N, "ListAutomationEventSummariesInput"),
+    type = "structure",
+    members = {
+        filters = schema.new({
+            id = id.from(_N, "ListAutomationEventSummariesInput", "filters"),
+            type = "list",
+            name = "filters",
+            target_id = prelude.Document.id,
+            list_member = M.AutomationEventFilter,
+        }),
+        startDateInclusive = schema.new({
+            id = id.from(_N, "ListAutomationEventSummariesInput", "startDateInclusive"),
+            type = "string",
+            name = "startDateInclusive",
+            target_id = prelude.String.id,
+        }),
+        endDateExclusive = schema.new({
+            id = id.from(_N, "ListAutomationEventSummariesInput", "endDateExclusive"),
+            type = "string",
+            name = "endDateExclusive",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListAutomationEventSummariesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutomationEventSummariesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAutomationEventSummariesOutput = schema.new({
+    id = id.from(_N, "ListAutomationEventSummariesOutput"),
+    type = "structure",
+    members = {
+        automationEventSummaries = schema.new({
+            id = id.from(_N, "ListAutomationEventSummariesOutput", "automationEventSummaries"),
+            type = "list",
+            name = "automationEventSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.AutomationEventSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutomationEventSummariesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.OrganizationScope = schema.new({
+    id = id.from(_N, "OrganizationScope"),
+    type = "structure",
+    members = {
+        accountIds = schema.new({
+            id = id.from(_N, "OrganizationScope", "accountIds"),
+            type = "list",
+            name = "accountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ListAutomationRulePreviewInput = schema.new({
+    id = id.from(_N, "ListAutomationRulePreviewInput"),
+    type = "structure",
+    members = {
+        ruleType = schema.new({
+            id = id.from(_N, "ListAutomationRulePreviewInput", "ruleType"),
+            type = "string",
+            name = "ruleType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        organizationScope = schema.new({
+            id = id.from(_N, "ListAutomationRulePreviewInput", "organizationScope"),
+            type = "structure",
+            name = "organizationScope",
+            target_id = id.from(_N, "OrganizationScope"),
+            target = M.OrganizationScope,
+        }),
+        recommendedActionTypes = schema.new({
+            id = id.from(_N, "ListAutomationRulePreviewInput", "recommendedActionTypes"),
+            type = "list",
+            name = "recommendedActionTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        criteria = schema.new({
+            id = id.from(_N, "ListAutomationRulePreviewInput", "criteria"),
+            type = "structure",
+            name = "criteria",
+            target_id = id.from(_N, "Criteria"),
+            target = M.Criteria,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListAutomationRulePreviewInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutomationRulePreviewInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EbsVolumeConfiguration = schema.new({
+    id = id.from(_N, "EbsVolumeConfiguration"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "EbsVolumeConfiguration", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        sizeInGib = schema.new({
+            id = id.from(_N, "EbsVolumeConfiguration", "sizeInGib"),
+            type = "integer",
+            name = "sizeInGib",
+            target_id = prelude.Integer.id,
+        }),
+        iops = schema.new({
+            id = id.from(_N, "EbsVolumeConfiguration", "iops"),
+            type = "integer",
+            name = "iops",
+            target_id = prelude.Integer.id,
+        }),
+        throughput = schema.new({
+            id = id.from(_N, "EbsVolumeConfiguration", "throughput"),
+            type = "integer",
+            name = "throughput",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.EbsVolume = schema.new({
+    id = id.from(_N, "EbsVolume"),
+    type = "structure",
+    members = {
+        configuration = schema.new({
+            id = id.from(_N, "EbsVolume", "configuration"),
+            type = "structure",
+            name = "configuration",
+            target_id = id.from(_N, "EbsVolumeConfiguration"),
+            target = M.EbsVolumeConfiguration,
+        }),
+    },
+})
+
+M.ResourceDetails = schema.new({
+    id = id.from(_N, "ResourceDetails"),
+    type = "union",
+    members = {
+        ebsVolume = schema.new({
+            id = id.from(_N, "ResourceDetails", "ebsVolume"),
+            type = "structure",
+            name = "ebsVolume",
+            target_id = id.from(_N, "EbsVolume"),
+            target = M.EbsVolume,
+        }),
+    },
+})
+
+M.PreviewResult = schema.new({
+    id = id.from(_N, "PreviewResult"),
+    type = "structure",
+    members = {
+        recommendedActionId = schema.new({
+            id = id.from(_N, "PreviewResult", "recommendedActionId"),
+            type = "string",
+            name = "recommendedActionId",
+            target_id = prelude.String.id,
+        }),
+        resourceArn = schema.new({
+            id = id.from(_N, "PreviewResult", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "PreviewResult", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "PreviewResult", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+        }),
+        region = schema.new({
+            id = id.from(_N, "PreviewResult", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "PreviewResult", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+        }),
+        lookBackPeriodInDays = schema.new({
+            id = id.from(_N, "PreviewResult", "lookBackPeriodInDays"),
+            type = "integer",
+            name = "lookBackPeriodInDays",
+            target_id = prelude.Integer.id,
+        }),
+        recommendedActionType = schema.new({
+            id = id.from(_N, "PreviewResult", "recommendedActionType"),
+            type = "string",
+            name = "recommendedActionType",
+            target_id = prelude.String.id,
+        }),
+        currentResourceSummary = schema.new({
+            id = id.from(_N, "PreviewResult", "currentResourceSummary"),
+            type = "string",
+            name = "currentResourceSummary",
+            target_id = prelude.String.id,
+        }),
+        currentResourceDetails = schema.new({
+            id = id.from(_N, "PreviewResult", "currentResourceDetails"),
+            type = "union",
+            name = "currentResourceDetails",
+            target_id = id.from(_N, "ResourceDetails"),
+            target = M.ResourceDetails,
+        }),
+        recommendedResourceSummary = schema.new({
+            id = id.from(_N, "PreviewResult", "recommendedResourceSummary"),
+            type = "string",
+            name = "recommendedResourceSummary",
+            target_id = prelude.String.id,
+        }),
+        recommendedResourceDetails = schema.new({
+            id = id.from(_N, "PreviewResult", "recommendedResourceDetails"),
+            type = "union",
+            name = "recommendedResourceDetails",
+            target_id = id.from(_N, "ResourceDetails"),
+            target = M.ResourceDetails,
+        }),
+        restartNeeded = schema.new({
+            id = id.from(_N, "PreviewResult", "restartNeeded"),
+            type = "boolean",
+            name = "restartNeeded",
+            target_id = prelude.Boolean.id,
+        }),
+        estimatedMonthlySavings = schema.new({
+            id = id.from(_N, "PreviewResult", "estimatedMonthlySavings"),
+            type = "structure",
+            name = "estimatedMonthlySavings",
+            target_id = id.from(_N, "EstimatedMonthlySavings"),
+            target = M.EstimatedMonthlySavings,
+        }),
+        resourceTags = schema.new({
+            id = id.from(_N, "PreviewResult", "resourceTags"),
+            type = "list",
+            name = "resourceTags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.ListAutomationRulePreviewOutput = schema.new({
+    id = id.from(_N, "ListAutomationRulePreviewOutput"),
+    type = "structure",
+    members = {
+        previewResults = schema.new({
+            id = id.from(_N, "ListAutomationRulePreviewOutput", "previewResults"),
+            type = "list",
+            name = "previewResults",
+            target_id = prelude.Document.id,
+            list_member = M.PreviewResult,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutomationRulePreviewOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAutomationRulePreviewSummariesInput = schema.new({
+    id = id.from(_N, "ListAutomationRulePreviewSummariesInput"),
+    type = "structure",
+    members = {
+        ruleType = schema.new({
+            id = id.from(_N, "ListAutomationRulePreviewSummariesInput", "ruleType"),
+            type = "string",
+            name = "ruleType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        organizationScope = schema.new({
+            id = id.from(_N, "ListAutomationRulePreviewSummariesInput", "organizationScope"),
+            type = "structure",
+            name = "organizationScope",
+            target_id = id.from(_N, "OrganizationScope"),
+            target = M.OrganizationScope,
+        }),
+        recommendedActionTypes = schema.new({
+            id = id.from(_N, "ListAutomationRulePreviewSummariesInput", "recommendedActionTypes"),
+            type = "list",
+            name = "recommendedActionTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        criteria = schema.new({
+            id = id.from(_N, "ListAutomationRulePreviewSummariesInput", "criteria"),
+            type = "structure",
+            name = "criteria",
+            target_id = id.from(_N, "Criteria"),
+            target = M.Criteria,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListAutomationRulePreviewSummariesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutomationRulePreviewSummariesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RulePreviewTotal = schema.new({
+    id = id.from(_N, "RulePreviewTotal"),
+    type = "structure",
+    members = {
+        recommendedActionCount = schema.new({
+            id = id.from(_N, "RulePreviewTotal", "recommendedActionCount"),
+            type = "integer",
+            name = "recommendedActionCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        estimatedMonthlySavings = schema.new({
+            id = id.from(_N, "RulePreviewTotal", "estimatedMonthlySavings"),
+            type = "structure",
+            name = "estimatedMonthlySavings",
+            target_id = id.from(_N, "EstimatedMonthlySavings"),
+            target = M.EstimatedMonthlySavings,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PreviewResultSummary = schema.new({
+    id = id.from(_N, "PreviewResultSummary"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "PreviewResultSummary", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        total = schema.new({
+            id = id.from(_N, "PreviewResultSummary", "total"),
+            type = "structure",
+            name = "total",
+            target_id = id.from(_N, "RulePreviewTotal"),
+            target = M.RulePreviewTotal,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListAutomationRulePreviewSummariesOutput = schema.new({
+    id = id.from(_N, "ListAutomationRulePreviewSummariesOutput"),
+    type = "structure",
+    members = {
+        previewResultSummaries = schema.new({
+            id = id.from(_N, "ListAutomationRulePreviewSummariesOutput", "previewResultSummaries"),
+            type = "list",
+            name = "previewResultSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.PreviewResultSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutomationRulePreviewSummariesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Filter = schema.new({
+    id = id.from(_N, "Filter"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "Filter", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        values = schema.new({
+            id = id.from(_N, "Filter", "values"),
+            type = "list",
+            name = "values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListAutomationRulesInput = schema.new({
+    id = id.from(_N, "ListAutomationRulesInput"),
+    type = "structure",
+    members = {
+        filters = schema.new({
+            id = id.from(_N, "ListAutomationRulesInput", "filters"),
+            type = "list",
+            name = "filters",
+            target_id = prelude.Document.id,
+            list_member = M.Filter,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListAutomationRulesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutomationRulesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAutomationRulesOutput = schema.new({
+    id = id.from(_N, "ListAutomationRulesOutput"),
+    type = "structure",
+    members = {
+        automationRules = schema.new({
+            id = id.from(_N, "ListAutomationRulesOutput", "automationRules"),
+            type = "list",
+            name = "automationRules",
+            target_id = prelude.Document.id,
+            list_member = M.AutomationRule,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutomationRulesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RecommendedActionFilter = schema.new({
+    id = id.from(_N, "RecommendedActionFilter"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "RecommendedActionFilter", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        values = schema.new({
+            id = id.from(_N, "RecommendedActionFilter", "values"),
+            type = "list",
+            name = "values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListRecommendedActionsInput = schema.new({
+    id = id.from(_N, "ListRecommendedActionsInput"),
+    type = "structure",
+    members = {
+        filters = schema.new({
+            id = id.from(_N, "ListRecommendedActionsInput", "filters"),
+            type = "list",
+            name = "filters",
+            target_id = prelude.Document.id,
+            list_member = M.RecommendedActionFilter,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListRecommendedActionsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListRecommendedActionsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RecommendedAction = schema.new({
+    id = id.from(_N, "RecommendedAction"),
+    type = "structure",
+    members = {
+        recommendedActionId = schema.new({
+            id = id.from(_N, "RecommendedAction", "recommendedActionId"),
+            type = "string",
+            name = "recommendedActionId",
+            target_id = prelude.String.id,
+        }),
+        resourceArn = schema.new({
+            id = id.from(_N, "RecommendedAction", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "RecommendedAction", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "RecommendedAction", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+        }),
+        region = schema.new({
+            id = id.from(_N, "RecommendedAction", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "RecommendedAction", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+        }),
+        lookBackPeriodInDays = schema.new({
+            id = id.from(_N, "RecommendedAction", "lookBackPeriodInDays"),
+            type = "integer",
+            name = "lookBackPeriodInDays",
+            target_id = prelude.Integer.id,
+        }),
+        recommendedActionType = schema.new({
+            id = id.from(_N, "RecommendedAction", "recommendedActionType"),
+            type = "string",
+            name = "recommendedActionType",
+            target_id = prelude.String.id,
+        }),
+        currentResourceSummary = schema.new({
+            id = id.from(_N, "RecommendedAction", "currentResourceSummary"),
+            type = "string",
+            name = "currentResourceSummary",
+            target_id = prelude.String.id,
+        }),
+        currentResourceDetails = schema.new({
+            id = id.from(_N, "RecommendedAction", "currentResourceDetails"),
+            type = "union",
+            name = "currentResourceDetails",
+            target_id = id.from(_N, "ResourceDetails"),
+            target = M.ResourceDetails,
+        }),
+        recommendedResourceSummary = schema.new({
+            id = id.from(_N, "RecommendedAction", "recommendedResourceSummary"),
+            type = "string",
+            name = "recommendedResourceSummary",
+            target_id = prelude.String.id,
+        }),
+        recommendedResourceDetails = schema.new({
+            id = id.from(_N, "RecommendedAction", "recommendedResourceDetails"),
+            type = "union",
+            name = "recommendedResourceDetails",
+            target_id = id.from(_N, "ResourceDetails"),
+            target = M.ResourceDetails,
+        }),
+        restartNeeded = schema.new({
+            id = id.from(_N, "RecommendedAction", "restartNeeded"),
+            type = "boolean",
+            name = "restartNeeded",
+            target_id = prelude.Boolean.id,
+        }),
+        estimatedMonthlySavings = schema.new({
+            id = id.from(_N, "RecommendedAction", "estimatedMonthlySavings"),
+            type = "structure",
+            name = "estimatedMonthlySavings",
+            target_id = id.from(_N, "EstimatedMonthlySavings"),
+            target = M.EstimatedMonthlySavings,
+        }),
+        resourceTags = schema.new({
+            id = id.from(_N, "RecommendedAction", "resourceTags"),
+            type = "list",
+            name = "resourceTags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.ListRecommendedActionsOutput = schema.new({
+    id = id.from(_N, "ListRecommendedActionsOutput"),
+    type = "structure",
+    members = {
+        recommendedActions = schema.new({
+            id = id.from(_N, "ListRecommendedActionsOutput", "recommendedActions"),
+            type = "list",
+            name = "recommendedActions",
+            target_id = prelude.Document.id,
+            list_member = M.RecommendedAction,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListRecommendedActionsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListRecommendedActionSummariesInput = schema.new({
+    id = id.from(_N, "ListRecommendedActionSummariesInput"),
+    type = "structure",
+    members = {
+        filters = schema.new({
+            id = id.from(_N, "ListRecommendedActionSummariesInput", "filters"),
+            type = "list",
+            name = "filters",
+            target_id = prelude.Document.id,
+            list_member = M.RecommendedActionFilter,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListRecommendedActionSummariesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListRecommendedActionSummariesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RecommendedActionTotal = schema.new({
+    id = id.from(_N, "RecommendedActionTotal"),
+    type = "structure",
+    members = {
+        recommendedActionCount = schema.new({
+            id = id.from(_N, "RecommendedActionTotal", "recommendedActionCount"),
+            type = "integer",
+            name = "recommendedActionCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        estimatedMonthlySavings = schema.new({
+            id = id.from(_N, "RecommendedActionTotal", "estimatedMonthlySavings"),
+            type = "structure",
+            name = "estimatedMonthlySavings",
+            target_id = id.from(_N, "EstimatedMonthlySavings"),
+            target = M.EstimatedMonthlySavings,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RecommendedActionSummary = schema.new({
+    id = id.from(_N, "RecommendedActionSummary"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "RecommendedActionSummary", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        total = schema.new({
+            id = id.from(_N, "RecommendedActionSummary", "total"),
+            type = "structure",
+            name = "total",
+            target_id = id.from(_N, "RecommendedActionTotal"),
+            target = M.RecommendedActionTotal,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListRecommendedActionSummariesOutput = schema.new({
+    id = id.from(_N, "ListRecommendedActionSummariesOutput"),
+    type = "structure",
+    members = {
+        recommendedActionSummaries = schema.new({
+            id = id.from(_N, "ListRecommendedActionSummariesOutput", "recommendedActionSummaries"),
+            type = "list",
+            name = "recommendedActionSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.RecommendedActionSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListRecommendedActionSummariesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceOutput"),
+    type = "structure",
+    members = {
+        tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.RollbackAutomationEventInput = schema.new({
+    id = id.from(_N, "RollbackAutomationEventInput"),
+    type = "structure",
+    members = {
+        eventId = schema.new({
+            id = id.from(_N, "RollbackAutomationEventInput", "eventId"),
+            type = "string",
+            name = "eventId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "RollbackAutomationEventInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.RollbackAutomationEventOutput = schema.new({
+    id = id.from(_N, "RollbackAutomationEventOutput"),
+    type = "structure",
+    members = {
+        eventId = schema.new({
+            id = id.from(_N, "RollbackAutomationEventOutput", "eventId"),
+            type = "string",
+            name = "eventId",
+            target_id = prelude.String.id,
+        }),
+        eventStatus = schema.new({
+            id = id.from(_N, "RollbackAutomationEventOutput", "eventStatus"),
+            type = "string",
+            name = "eventStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StartAutomationEventInput = schema.new({
+    id = id.from(_N, "StartAutomationEventInput"),
+    type = "structure",
+    members = {
+        recommendedActionId = schema.new({
+            id = id.from(_N, "StartAutomationEventInput", "recommendedActionId"),
+            type = "string",
+            name = "recommendedActionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "StartAutomationEventInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.StartAutomationEventOutput = schema.new({
+    id = id.from(_N, "StartAutomationEventOutput"),
+    type = "structure",
+    members = {
+        recommendedActionId = schema.new({
+            id = id.from(_N, "StartAutomationEventOutput", "recommendedActionId"),
+            type = "string",
+            name = "recommendedActionId",
+            target_id = prelude.String.id,
+        }),
+        eventId = schema.new({
+            id = id.from(_N, "StartAutomationEventOutput", "eventId"),
+            type = "string",
+            name = "eventId",
+            target_id = prelude.String.id,
+        }),
+        eventStatus = schema.new({
+            id = id.from(_N, "StartAutomationEventOutput", "eventStatus"),
+            type = "string",
+            name = "eventStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "TagResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ruleRevision = schema.new({
+            id = id.from(_N, "TagResourceInput", "ruleRevision"),
+            type = "long",
+            name = "ruleRevision",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "TagResourceInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceOutput"),
+    type = "structure",
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "UntagResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ruleRevision = schema.new({
+            id = id.from(_N, "UntagResourceInput", "ruleRevision"),
+            type = "long",
+            name = "ruleRevision",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "tagKeys"),
+            type = "list",
+            name = "tagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "UntagResourceInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
+M.UpdateAutomationRuleInput = schema.new({
+    id = id.from(_N, "UpdateAutomationRuleInput"),
+    type = "structure",
+    members = {
+        ruleArn = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleInput", "ruleArn"),
+            type = "string",
+            name = "ruleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ruleRevision = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleInput", "ruleRevision"),
+            type = "long",
+            name = "ruleRevision",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        ruleType = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleInput", "ruleType"),
+            type = "string",
+            name = "ruleType",
+            target_id = prelude.String.id,
+        }),
+        organizationConfiguration = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleInput", "organizationConfiguration"),
+            type = "structure",
+            name = "organizationConfiguration",
+            target_id = id.from(_N, "OrganizationConfiguration"),
+            target = M.OrganizationConfiguration,
+        }),
+        priority = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleInput", "priority"),
+            type = "string",
+            name = "priority",
+            target_id = prelude.String.id,
+        }),
+        recommendedActionTypes = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleInput", "recommendedActionTypes"),
+            type = "list",
+            name = "recommendedActionTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        criteria = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleInput", "criteria"),
+            type = "structure",
+            name = "criteria",
+            target_id = id.from(_N, "Criteria"),
+            target = M.Criteria,
+        }),
+        schedule = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleInput", "schedule"),
+            type = "structure",
+            name = "schedule",
+            target_id = id.from(_N, "Schedule"),
+            target = M.Schedule,
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleInput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateAutomationRuleOutput = schema.new({
+    id = id.from(_N, "UpdateAutomationRuleOutput"),
+    type = "structure",
+    members = {
+        ruleArn = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleOutput", "ruleArn"),
+            type = "string",
+            name = "ruleArn",
+            target_id = prelude.String.id,
+        }),
+        ruleRevision = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleOutput", "ruleRevision"),
+            type = "long",
+            name = "ruleRevision",
+            target_id = prelude.Long.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        ruleType = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleOutput", "ruleType"),
+            type = "string",
+            name = "ruleType",
+            target_id = prelude.String.id,
+        }),
+        organizationConfiguration = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleOutput", "organizationConfiguration"),
+            type = "structure",
+            name = "organizationConfiguration",
+            target_id = id.from(_N, "OrganizationConfiguration"),
+            target = M.OrganizationConfiguration,
+        }),
+        priority = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleOutput", "priority"),
+            type = "string",
+            name = "priority",
+            target_id = prelude.String.id,
+        }),
+        recommendedActionTypes = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleOutput", "recommendedActionTypes"),
+            type = "list",
+            name = "recommendedActionTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        criteria = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleOutput", "criteria"),
+            type = "structure",
+            name = "criteria",
+            target_id = id.from(_N, "Criteria"),
+            target = M.Criteria,
+        }),
+        schedule = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleOutput", "schedule"),
+            type = "structure",
+            name = "schedule",
+            target_id = id.from(_N, "Schedule"),
+            target = M.Schedule,
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        createdTimestamp = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleOutput", "createdTimestamp"),
+            type = "timestamp",
+            name = "createdTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        lastUpdatedTimestamp = schema.new({
+            id = id.from(_N, "UpdateAutomationRuleOutput", "lastUpdatedTimestamp"),
+            type = "timestamp",
+            name = "lastUpdatedTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.UpdateEnrollmentConfigurationInput = schema.new({
+    id = id.from(_N, "UpdateEnrollmentConfigurationInput"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "UpdateEnrollmentConfigurationInput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "UpdateEnrollmentConfigurationInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateEnrollmentConfigurationOutput = schema.new({
+    id = id.from(_N, "UpdateEnrollmentConfigurationOutput"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "UpdateEnrollmentConfigurationOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "UpdateEnrollmentConfigurationOutput", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        lastUpdatedTimestamp = schema.new({
+            id = id.from(_N, "UpdateEnrollmentConfigurationOutput", "lastUpdatedTimestamp"),
+            type = "timestamp",
+            name = "lastUpdatedTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+return M

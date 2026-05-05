@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("bedrockdataautomation.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("bedrockdataautomation.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("bedrockdataautomation.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:copyBlueprintStage(input, options)
     return self:invokeOperation(input, {
         name = "CopyBlueprintStage",
-        input_schema = types.CopyBlueprintStageInput,
-        output_schema = types.CopyBlueprintStageOutput,
+        input_schema = schemas.CopyBlueprintStageInput,
+        output_schema = schemas.CopyBlueprintStageOutput,
         http_method = "PUT",
         http_path = "/blueprints/{blueprintArn}/copy-stage",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createBlueprint(input, options)
     return self:invokeOperation(input, {
         name = "CreateBlueprint",
-        input_schema = types.CreateBlueprintInput,
-        output_schema = types.CreateBlueprintOutput,
+        input_schema = schemas.CreateBlueprintInput,
+        output_schema = schemas.CreateBlueprintOutput,
         http_method = "PUT",
         http_path = "/blueprints/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createBlueprintVersion(input, options)
     return self:invokeOperation(input, {
         name = "CreateBlueprintVersion",
-        input_schema = types.CreateBlueprintVersionInput,
-        output_schema = types.CreateBlueprintVersionOutput,
+        input_schema = schemas.CreateBlueprintVersionInput,
+        output_schema = schemas.CreateBlueprintVersionOutput,
         http_method = "POST",
         http_path = "/blueprints/{blueprintArn}/versions/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createDataAutomationLibrary(input, options)
     return self:invokeOperation(input, {
         name = "CreateDataAutomationLibrary",
-        input_schema = types.CreateDataAutomationLibraryInput,
-        output_schema = types.CreateDataAutomationLibraryOutput,
+        input_schema = schemas.CreateDataAutomationLibraryInput,
+        output_schema = schemas.CreateDataAutomationLibraryOutput,
         http_method = "PUT",
         http_path = "/data-automation-libraries/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createDataAutomationProject(input, options)
     return self:invokeOperation(input, {
         name = "CreateDataAutomationProject",
-        input_schema = types.CreateDataAutomationProjectInput,
-        output_schema = types.CreateDataAutomationProjectOutput,
+        input_schema = schemas.CreateDataAutomationProjectInput,
+        output_schema = schemas.CreateDataAutomationProjectOutput,
         http_method = "PUT",
         http_path = "/data-automation-projects/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteBlueprint(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBlueprint",
-        input_schema = types.DeleteBlueprintInput,
-        output_schema = types.DeleteBlueprintOutput,
+        input_schema = schemas.DeleteBlueprintInput,
+        output_schema = schemas.DeleteBlueprintOutput,
         http_method = "DELETE",
         http_path = "/blueprints/{blueprintArn}/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteDataAutomationLibrary(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDataAutomationLibrary",
-        input_schema = types.DeleteDataAutomationLibraryInput,
-        output_schema = types.DeleteDataAutomationLibraryOutput,
+        input_schema = schemas.DeleteDataAutomationLibraryInput,
+        output_schema = schemas.DeleteDataAutomationLibraryOutput,
         http_method = "DELETE",
         http_path = "/data-automation-libraries/{libraryArn}/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteDataAutomationProject(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDataAutomationProject",
-        input_schema = types.DeleteDataAutomationProjectInput,
-        output_schema = types.DeleteDataAutomationProjectOutput,
+        input_schema = schemas.DeleteDataAutomationProjectInput,
+        output_schema = schemas.DeleteDataAutomationProjectOutput,
         http_method = "DELETE",
         http_path = "/data-automation-projects/{projectArn}/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getBlueprint(input, options)
     return self:invokeOperation(input, {
         name = "GetBlueprint",
-        input_schema = types.GetBlueprintInput,
-        output_schema = types.GetBlueprintOutput,
+        input_schema = schemas.GetBlueprintInput,
+        output_schema = schemas.GetBlueprintOutput,
         http_method = "POST",
         http_path = "/blueprints/{blueprintArn}/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getBlueprintOptimizationStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetBlueprintOptimizationStatus",
-        input_schema = types.GetBlueprintOptimizationStatusInput,
-        output_schema = types.GetBlueprintOptimizationStatusOutput,
+        input_schema = schemas.GetBlueprintOptimizationStatusInput,
+        output_schema = schemas.GetBlueprintOptimizationStatusOutput,
         http_method = "POST",
         http_path = "/getBlueprintOptimizationStatus/{invocationArn}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getDataAutomationLibrary(input, options)
     return self:invokeOperation(input, {
         name = "GetDataAutomationLibrary",
-        input_schema = types.GetDataAutomationLibraryInput,
-        output_schema = types.GetDataAutomationLibraryOutput,
+        input_schema = schemas.GetDataAutomationLibraryInput,
+        output_schema = schemas.GetDataAutomationLibraryOutput,
         http_method = "POST",
         http_path = "/data-automation-libraries/{libraryArn}/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getDataAutomationLibraryEntity(input, options)
     return self:invokeOperation(input, {
         name = "GetDataAutomationLibraryEntity",
-        input_schema = types.GetDataAutomationLibraryEntityInput,
-        output_schema = types.GetDataAutomationLibraryEntityOutput,
+        input_schema = schemas.GetDataAutomationLibraryEntityInput,
+        output_schema = schemas.GetDataAutomationLibraryEntityOutput,
         http_method = "POST",
         http_path = "/data-automation-libraries/{libraryArn}/entityType/{entityType}/entities/{entityId}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getDataAutomationLibraryIngestionJob(input, options)
     return self:invokeOperation(input, {
         name = "GetDataAutomationLibraryIngestionJob",
-        input_schema = types.GetDataAutomationLibraryIngestionJobInput,
-        output_schema = types.GetDataAutomationLibraryIngestionJobOutput,
+        input_schema = schemas.GetDataAutomationLibraryIngestionJobInput,
+        output_schema = schemas.GetDataAutomationLibraryIngestionJobOutput,
         http_method = "POST",
         http_path = "/data-automation-libraries/{libraryArn}/library-ingestion-jobs/{jobArn}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getDataAutomationProject(input, options)
     return self:invokeOperation(input, {
         name = "GetDataAutomationProject",
-        input_schema = types.GetDataAutomationProjectInput,
-        output_schema = types.GetDataAutomationProjectOutput,
+        input_schema = schemas.GetDataAutomationProjectInput,
+        output_schema = schemas.GetDataAutomationProjectOutput,
         http_method = "POST",
         http_path = "/data-automation-projects/{projectArn}/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:invokeBlueprintOptimizationAsync(input, options)
     return self:invokeOperation(input, {
         name = "InvokeBlueprintOptimizationAsync",
-        input_schema = types.InvokeBlueprintOptimizationAsyncInput,
-        output_schema = types.InvokeBlueprintOptimizationAsyncOutput,
+        input_schema = schemas.InvokeBlueprintOptimizationAsyncInput,
+        output_schema = schemas.InvokeBlueprintOptimizationAsyncOutput,
         http_method = "POST",
         http_path = "/invokeBlueprintOptimizationAsync",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:invokeDataAutomationLibraryIngestionJob(input, options)
     return self:invokeOperation(input, {
         name = "InvokeDataAutomationLibraryIngestionJob",
-        input_schema = types.InvokeDataAutomationLibraryIngestionJobInput,
-        output_schema = types.InvokeDataAutomationLibraryIngestionJobOutput,
+        input_schema = schemas.InvokeDataAutomationLibraryIngestionJobInput,
+        output_schema = schemas.InvokeDataAutomationLibraryIngestionJobOutput,
         http_method = "PUT",
         http_path = "/data-automation-libraries/{libraryArn}/library-ingestion-jobs/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listBlueprints(input, options)
     return self:invokeOperation(input, {
         name = "ListBlueprints",
-        input_schema = types.ListBlueprintsInput,
-        output_schema = types.ListBlueprintsOutput,
+        input_schema = schemas.ListBlueprintsInput,
+        output_schema = schemas.ListBlueprintsOutput,
         http_method = "POST",
         http_path = "/blueprints/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listDataAutomationLibraries(input, options)
     return self:invokeOperation(input, {
         name = "ListDataAutomationLibraries",
-        input_schema = types.ListDataAutomationLibrariesInput,
-        output_schema = types.ListDataAutomationLibrariesOutput,
+        input_schema = schemas.ListDataAutomationLibrariesInput,
+        output_schema = schemas.ListDataAutomationLibrariesOutput,
         http_method = "POST",
         http_path = "/data-automation-libraries/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listDataAutomationLibraryEntities(input, options)
     return self:invokeOperation(input, {
         name = "ListDataAutomationLibraryEntities",
-        input_schema = types.ListDataAutomationLibraryEntitiesInput,
-        output_schema = types.ListDataAutomationLibraryEntitiesOutput,
+        input_schema = schemas.ListDataAutomationLibraryEntitiesInput,
+        output_schema = schemas.ListDataAutomationLibraryEntitiesOutput,
         http_method = "POST",
         http_path = "/data-automation-libraries/{libraryArn}/entityType/{entityType}/entities/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listDataAutomationLibraryIngestionJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListDataAutomationLibraryIngestionJobs",
-        input_schema = types.ListDataAutomationLibraryIngestionJobsInput,
-        output_schema = types.ListDataAutomationLibraryIngestionJobsOutput,
+        input_schema = schemas.ListDataAutomationLibraryIngestionJobsInput,
+        output_schema = schemas.ListDataAutomationLibraryIngestionJobsOutput,
         http_method = "POST",
         http_path = "/data-automation-libraries/{libraryArn}/library-ingestion-jobs/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listDataAutomationProjects(input, options)
     return self:invokeOperation(input, {
         name = "ListDataAutomationProjects",
-        input_schema = types.ListDataAutomationProjectsInput,
-        output_schema = types.ListDataAutomationProjectsOutput,
+        input_schema = schemas.ListDataAutomationProjectsInput,
+        output_schema = schemas.ListDataAutomationProjectsOutput,
         http_method = "POST",
         http_path = "/data-automation-projects/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/listTagsForResource",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tagResource",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/untagResource",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:updateBlueprint(input, options)
     return self:invokeOperation(input, {
         name = "UpdateBlueprint",
-        input_schema = types.UpdateBlueprintInput,
-        output_schema = types.UpdateBlueprintOutput,
+        input_schema = schemas.UpdateBlueprintInput,
+        output_schema = schemas.UpdateBlueprintOutput,
         http_method = "PUT",
         http_path = "/blueprints/{blueprintArn}/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:updateDataAutomationLibrary(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDataAutomationLibrary",
-        input_schema = types.UpdateDataAutomationLibraryInput,
-        output_schema = types.UpdateDataAutomationLibraryOutput,
+        input_schema = schemas.UpdateDataAutomationLibraryInput,
+        output_schema = schemas.UpdateDataAutomationLibraryOutput,
         http_method = "PUT",
         http_path = "/data-automation-libraries/{libraryArn}/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:updateDataAutomationProject(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDataAutomationProject",
-        input_schema = types.UpdateDataAutomationProjectInput,
-        output_schema = types.UpdateDataAutomationProjectOutput,
+        input_schema = schemas.UpdateDataAutomationProjectInput,
+        output_schema = schemas.UpdateDataAutomationProjectOutput,
         http_method = "PUT",
         http_path = "/data-automation-projects/{projectArn}/",
         effective_auth_schemes = {

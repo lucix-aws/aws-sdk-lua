@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("controlcatalog.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("controlcatalog.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("controlcatalog.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getControl(input, options)
     return self:invokeOperation(input, {
         name = "GetControl",
-        input_schema = types.GetControlInput,
-        output_schema = types.GetControlOutput,
+        input_schema = schemas.GetControlInput,
+        output_schema = schemas.GetControlOutput,
         http_method = "POST",
         http_path = "/get-control",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:listCommonControls(input, options)
     return self:invokeOperation(input, {
         name = "ListCommonControls",
-        input_schema = types.ListCommonControlsInput,
-        output_schema = types.ListCommonControlsOutput,
+        input_schema = schemas.ListCommonControlsInput,
+        output_schema = schemas.ListCommonControlsOutput,
         http_method = "POST",
         http_path = "/common-controls",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:listControlMappings(input, options)
     return self:invokeOperation(input, {
         name = "ListControlMappings",
-        input_schema = types.ListControlMappingsInput,
-        output_schema = types.ListControlMappingsOutput,
+        input_schema = schemas.ListControlMappingsInput,
+        output_schema = schemas.ListControlMappingsOutput,
         http_method = "POST",
         http_path = "/list-control-mappings",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:listControls(input, options)
     return self:invokeOperation(input, {
         name = "ListControls",
-        input_schema = types.ListControlsInput,
-        output_schema = types.ListControlsOutput,
+        input_schema = schemas.ListControlsInput,
+        output_schema = schemas.ListControlsOutput,
         http_method = "POST",
         http_path = "/list-controls",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:listDomains(input, options)
     return self:invokeOperation(input, {
         name = "ListDomains",
-        input_schema = types.ListDomainsInput,
-        output_schema = types.ListDomainsOutput,
+        input_schema = schemas.ListDomainsInput,
+        output_schema = schemas.ListDomainsOutput,
         http_method = "POST",
         http_path = "/domains",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:listObjectives(input, options)
     return self:invokeOperation(input, {
         name = "ListObjectives",
-        input_schema = types.ListObjectivesInput,
-        output_schema = types.ListObjectivesOutput,
+        input_schema = schemas.ListObjectivesInput,
+        output_schema = schemas.ListObjectivesOutput,
         http_method = "POST",
         http_path = "/objectives",
         effective_auth_schemes = {

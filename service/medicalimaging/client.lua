@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("medicalimaging.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("medicalimaging.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("medicalimaging.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:copyImageSet(input, options)
     return self:invokeOperation(input, {
         name = "CopyImageSet",
-        input_schema = types.CopyImageSetInput,
-        output_schema = types.CopyImageSetOutput,
+        input_schema = schemas.CopyImageSetInput,
+        output_schema = schemas.CopyImageSetOutput,
         http_method = "POST",
         http_path = "/datastore/{datastoreId}/imageSet/{sourceImageSetId}/copyImageSet",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createDatastore(input, options)
     return self:invokeOperation(input, {
         name = "CreateDatastore",
-        input_schema = types.CreateDatastoreInput,
-        output_schema = types.CreateDatastoreOutput,
+        input_schema = schemas.CreateDatastoreInput,
+        output_schema = schemas.CreateDatastoreOutput,
         http_method = "POST",
         http_path = "/datastore",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteDatastore(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDatastore",
-        input_schema = types.DeleteDatastoreInput,
-        output_schema = types.DeleteDatastoreOutput,
+        input_schema = schemas.DeleteDatastoreInput,
+        output_schema = schemas.DeleteDatastoreOutput,
         http_method = "DELETE",
         http_path = "/datastore/{datastoreId}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteImageSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteImageSet",
-        input_schema = types.DeleteImageSetInput,
-        output_schema = types.DeleteImageSetOutput,
+        input_schema = schemas.DeleteImageSetInput,
+        output_schema = schemas.DeleteImageSetOutput,
         http_method = "POST",
         http_path = "/datastore/{datastoreId}/imageSet/{imageSetId}/deleteImageSet",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getDatastore(input, options)
     return self:invokeOperation(input, {
         name = "GetDatastore",
-        input_schema = types.GetDatastoreInput,
-        output_schema = types.GetDatastoreOutput,
+        input_schema = schemas.GetDatastoreInput,
+        output_schema = schemas.GetDatastoreOutput,
         http_method = "GET",
         http_path = "/datastore/{datastoreId}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getDICOMImportJob(input, options)
     return self:invokeOperation(input, {
         name = "GetDICOMImportJob",
-        input_schema = types.GetDICOMImportJobInput,
-        output_schema = types.GetDICOMImportJobOutput,
+        input_schema = schemas.GetDICOMImportJobInput,
+        output_schema = schemas.GetDICOMImportJobOutput,
         http_method = "GET",
         http_path = "/getDICOMImportJob/datastore/{datastoreId}/job/{jobId}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getImageFrame(input, options)
     return self:invokeOperation(input, {
         name = "GetImageFrame",
-        input_schema = types.GetImageFrameInput,
-        output_schema = types.GetImageFrameOutput,
+        input_schema = schemas.GetImageFrameInput,
+        output_schema = schemas.GetImageFrameOutput,
         http_method = "POST",
         http_path = "/datastore/{datastoreId}/imageSet/{imageSetId}/getImageFrame",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getImageSet(input, options)
     return self:invokeOperation(input, {
         name = "GetImageSet",
-        input_schema = types.GetImageSetInput,
-        output_schema = types.GetImageSetOutput,
+        input_schema = schemas.GetImageSetInput,
+        output_schema = schemas.GetImageSetOutput,
         http_method = "POST",
         http_path = "/datastore/{datastoreId}/imageSet/{imageSetId}/getImageSet",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getImageSetMetadata(input, options)
     return self:invokeOperation(input, {
         name = "GetImageSetMetadata",
-        input_schema = types.GetImageSetMetadataInput,
-        output_schema = types.GetImageSetMetadataOutput,
+        input_schema = schemas.GetImageSetMetadataInput,
+        output_schema = schemas.GetImageSetMetadataOutput,
         http_method = "POST",
         http_path = "/datastore/{datastoreId}/imageSet/{imageSetId}/getImageSetMetadata",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listDatastores(input, options)
     return self:invokeOperation(input, {
         name = "ListDatastores",
-        input_schema = types.ListDatastoresInput,
-        output_schema = types.ListDatastoresOutput,
+        input_schema = schemas.ListDatastoresInput,
+        output_schema = schemas.ListDatastoresOutput,
         http_method = "GET",
         http_path = "/datastore",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listDICOMImportJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListDICOMImportJobs",
-        input_schema = types.ListDICOMImportJobsInput,
-        output_schema = types.ListDICOMImportJobsOutput,
+        input_schema = schemas.ListDICOMImportJobsInput,
+        output_schema = schemas.ListDICOMImportJobsOutput,
         http_method = "GET",
         http_path = "/listDICOMImportJobs/datastore/{datastoreId}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listImageSetVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListImageSetVersions",
-        input_schema = types.ListImageSetVersionsInput,
-        output_schema = types.ListImageSetVersionsOutput,
+        input_schema = schemas.ListImageSetVersionsInput,
+        output_schema = schemas.ListImageSetVersionsOutput,
         http_method = "POST",
         http_path = "/datastore/{datastoreId}/imageSet/{imageSetId}/listImageSetVersions",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:searchImageSets(input, options)
     return self:invokeOperation(input, {
         name = "SearchImageSets",
-        input_schema = types.SearchImageSetsInput,
-        output_schema = types.SearchImageSetsOutput,
+        input_schema = schemas.SearchImageSetsInput,
+        output_schema = schemas.SearchImageSetsOutput,
         http_method = "POST",
         http_path = "/datastore/{datastoreId}/searchImageSets",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:startDICOMImportJob(input, options)
     return self:invokeOperation(input, {
         name = "StartDICOMImportJob",
-        input_schema = types.StartDICOMImportJobInput,
-        output_schema = types.StartDICOMImportJobOutput,
+        input_schema = schemas.StartDICOMImportJobInput,
+        output_schema = schemas.StartDICOMImportJobOutput,
         http_method = "POST",
         http_path = "/startDICOMImportJob/datastore/{datastoreId}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:updateImageSetMetadata(input, options)
     return self:invokeOperation(input, {
         name = "UpdateImageSetMetadata",
-        input_schema = types.UpdateImageSetMetadataInput,
-        output_schema = types.UpdateImageSetMetadataOutput,
+        input_schema = schemas.UpdateImageSetMetadataInput,
+        output_schema = schemas.UpdateImageSetMetadataOutput,
         http_method = "POST",
         http_path = "/datastore/{datastoreId}/imageSet/{imageSetId}/updateImageSetMetadata",
         effective_auth_schemes = {

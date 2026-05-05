@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("opensearchserverless.endpoint_rules")
+local schemas = require("opensearchserverless.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("opensearchserverless.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchGetCollection(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetCollection",
-        input_schema = types.BatchGetCollectionInput,
-        output_schema = types.BatchGetCollectionOutput,
+        input_schema = schemas.BatchGetCollectionInput,
+        output_schema = schemas.BatchGetCollectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchGetCollectionGroup(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetCollectionGroup",
-        input_schema = types.BatchGetCollectionGroupInput,
-        output_schema = types.BatchGetCollectionGroupOutput,
+        input_schema = schemas.BatchGetCollectionGroupInput,
+        output_schema = schemas.BatchGetCollectionGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchGetEffectiveLifecyclePolicy(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetEffectiveLifecyclePolicy",
-        input_schema = types.BatchGetEffectiveLifecyclePolicyInput,
-        output_schema = types.BatchGetEffectiveLifecyclePolicyOutput,
+        input_schema = schemas.BatchGetEffectiveLifecyclePolicyInput,
+        output_schema = schemas.BatchGetEffectiveLifecyclePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:batchGetLifecyclePolicy(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetLifecyclePolicy",
-        input_schema = types.BatchGetLifecyclePolicyInput,
-        output_schema = types.BatchGetLifecyclePolicyOutput,
+        input_schema = schemas.BatchGetLifecyclePolicyInput,
+        output_schema = schemas.BatchGetLifecyclePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:batchGetVpcEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetVpcEndpoint",
-        input_schema = types.BatchGetVpcEndpointInput,
-        output_schema = types.BatchGetVpcEndpointOutput,
+        input_schema = schemas.BatchGetVpcEndpointInput,
+        output_schema = schemas.BatchGetVpcEndpointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createAccessPolicy(input, options)
     return self:invokeOperation(input, {
         name = "CreateAccessPolicy",
-        input_schema = types.CreateAccessPolicyInput,
-        output_schema = types.CreateAccessPolicyOutput,
+        input_schema = schemas.CreateAccessPolicyInput,
+        output_schema = schemas.CreateAccessPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createCollection(input, options)
     return self:invokeOperation(input, {
         name = "CreateCollection",
-        input_schema = types.CreateCollectionInput,
-        output_schema = types.CreateCollectionOutput,
+        input_schema = schemas.CreateCollectionInput,
+        output_schema = schemas.CreateCollectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createCollectionGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateCollectionGroup",
-        input_schema = types.CreateCollectionGroupInput,
-        output_schema = types.CreateCollectionGroupOutput,
+        input_schema = schemas.CreateCollectionGroupInput,
+        output_schema = schemas.CreateCollectionGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createIndex(input, options)
     return self:invokeOperation(input, {
         name = "CreateIndex",
-        input_schema = types.CreateIndexInput,
-        output_schema = types.CreateIndexOutput,
+        input_schema = schemas.CreateIndexInput,
+        output_schema = schemas.CreateIndexOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createLifecyclePolicy(input, options)
     return self:invokeOperation(input, {
         name = "CreateLifecyclePolicy",
-        input_schema = types.CreateLifecyclePolicyInput,
-        output_schema = types.CreateLifecyclePolicyOutput,
+        input_schema = schemas.CreateLifecyclePolicyInput,
+        output_schema = schemas.CreateLifecyclePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createSecurityConfig(input, options)
     return self:invokeOperation(input, {
         name = "CreateSecurityConfig",
-        input_schema = types.CreateSecurityConfigInput,
-        output_schema = types.CreateSecurityConfigOutput,
+        input_schema = schemas.CreateSecurityConfigInput,
+        output_schema = schemas.CreateSecurityConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createSecurityPolicy(input, options)
     return self:invokeOperation(input, {
         name = "CreateSecurityPolicy",
-        input_schema = types.CreateSecurityPolicyInput,
-        output_schema = types.CreateSecurityPolicyOutput,
+        input_schema = schemas.CreateSecurityPolicyInput,
+        output_schema = schemas.CreateSecurityPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createVpcEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "CreateVpcEndpoint",
-        input_schema = types.CreateVpcEndpointInput,
-        output_schema = types.CreateVpcEndpointOutput,
+        input_schema = schemas.CreateVpcEndpointInput,
+        output_schema = schemas.CreateVpcEndpointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteAccessPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAccessPolicy",
-        input_schema = types.DeleteAccessPolicyInput,
-        output_schema = types.DeleteAccessPolicyOutput,
+        input_schema = schemas.DeleteAccessPolicyInput,
+        output_schema = schemas.DeleteAccessPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteCollection(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCollection",
-        input_schema = types.DeleteCollectionInput,
-        output_schema = types.DeleteCollectionOutput,
+        input_schema = schemas.DeleteCollectionInput,
+        output_schema = schemas.DeleteCollectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteCollectionGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCollectionGroup",
-        input_schema = types.DeleteCollectionGroupInput,
-        output_schema = types.DeleteCollectionGroupOutput,
+        input_schema = schemas.DeleteCollectionGroupInput,
+        output_schema = schemas.DeleteCollectionGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteIndex(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIndex",
-        input_schema = types.DeleteIndexInput,
-        output_schema = types.DeleteIndexOutput,
+        input_schema = schemas.DeleteIndexInput,
+        output_schema = schemas.DeleteIndexOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteLifecyclePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLifecyclePolicy",
-        input_schema = types.DeleteLifecyclePolicyInput,
-        output_schema = types.DeleteLifecyclePolicyOutput,
+        input_schema = schemas.DeleteLifecyclePolicyInput,
+        output_schema = schemas.DeleteLifecyclePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteSecurityConfig(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSecurityConfig",
-        input_schema = types.DeleteSecurityConfigInput,
-        output_schema = types.DeleteSecurityConfigOutput,
+        input_schema = schemas.DeleteSecurityConfigInput,
+        output_schema = schemas.DeleteSecurityConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deleteSecurityPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSecurityPolicy",
-        input_schema = types.DeleteSecurityPolicyInput,
-        output_schema = types.DeleteSecurityPolicyOutput,
+        input_schema = schemas.DeleteSecurityPolicyInput,
+        output_schema = schemas.DeleteSecurityPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteVpcEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVpcEndpoint",
-        input_schema = types.DeleteVpcEndpointInput,
-        output_schema = types.DeleteVpcEndpointOutput,
+        input_schema = schemas.DeleteVpcEndpointInput,
+        output_schema = schemas.DeleteVpcEndpointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:getAccessPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetAccessPolicy",
-        input_schema = types.GetAccessPolicyInput,
-        output_schema = types.GetAccessPolicyOutput,
+        input_schema = schemas.GetAccessPolicyInput,
+        output_schema = schemas.GetAccessPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:getAccountSettings(input, options)
     return self:invokeOperation(input, {
         name = "GetAccountSettings",
-        input_schema = types.GetAccountSettingsInput,
-        output_schema = types.GetAccountSettingsOutput,
+        input_schema = schemas.GetAccountSettingsInput,
+        output_schema = schemas.GetAccountSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:getIndex(input, options)
     return self:invokeOperation(input, {
         name = "GetIndex",
-        input_schema = types.GetIndexInput,
-        output_schema = types.GetIndexOutput,
+        input_schema = schemas.GetIndexInput,
+        output_schema = schemas.GetIndexOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getPoliciesStats(input, options)
     return self:invokeOperation(input, {
         name = "GetPoliciesStats",
-        input_schema = types.GetPoliciesStatsInput,
-        output_schema = types.GetPoliciesStatsOutput,
+        input_schema = schemas.GetPoliciesStatsInput,
+        output_schema = schemas.GetPoliciesStatsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:getSecurityConfig(input, options)
     return self:invokeOperation(input, {
         name = "GetSecurityConfig",
-        input_schema = types.GetSecurityConfigInput,
-        output_schema = types.GetSecurityConfigOutput,
+        input_schema = schemas.GetSecurityConfigInput,
+        output_schema = schemas.GetSecurityConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:getSecurityPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetSecurityPolicy",
-        input_schema = types.GetSecurityPolicyInput,
-        output_schema = types.GetSecurityPolicyOutput,
+        input_schema = schemas.GetSecurityPolicyInput,
+        output_schema = schemas.GetSecurityPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listAccessPolicies(input, options)
     return self:invokeOperation(input, {
         name = "ListAccessPolicies",
-        input_schema = types.ListAccessPoliciesInput,
-        output_schema = types.ListAccessPoliciesOutput,
+        input_schema = schemas.ListAccessPoliciesInput,
+        output_schema = schemas.ListAccessPoliciesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listCollectionGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListCollectionGroups",
-        input_schema = types.ListCollectionGroupsInput,
-        output_schema = types.ListCollectionGroupsOutput,
+        input_schema = schemas.ListCollectionGroupsInput,
+        output_schema = schemas.ListCollectionGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:listCollections(input, options)
     return self:invokeOperation(input, {
         name = "ListCollections",
-        input_schema = types.ListCollectionsInput,
-        output_schema = types.ListCollectionsOutput,
+        input_schema = schemas.ListCollectionsInput,
+        output_schema = schemas.ListCollectionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:listLifecyclePolicies(input, options)
     return self:invokeOperation(input, {
         name = "ListLifecyclePolicies",
-        input_schema = types.ListLifecyclePoliciesInput,
-        output_schema = types.ListLifecyclePoliciesOutput,
+        input_schema = schemas.ListLifecyclePoliciesInput,
+        output_schema = schemas.ListLifecyclePoliciesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:listSecurityConfigs(input, options)
     return self:invokeOperation(input, {
         name = "ListSecurityConfigs",
-        input_schema = types.ListSecurityConfigsInput,
-        output_schema = types.ListSecurityConfigsOutput,
+        input_schema = schemas.ListSecurityConfigsInput,
+        output_schema = schemas.ListSecurityConfigsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:listSecurityPolicies(input, options)
     return self:invokeOperation(input, {
         name = "ListSecurityPolicies",
-        input_schema = types.ListSecurityPoliciesInput,
-        output_schema = types.ListSecurityPoliciesOutput,
+        input_schema = schemas.ListSecurityPoliciesInput,
+        output_schema = schemas.ListSecurityPoliciesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:listVpcEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "ListVpcEndpoints",
-        input_schema = types.ListVpcEndpointsInput,
-        output_schema = types.ListVpcEndpointsOutput,
+        input_schema = schemas.ListVpcEndpointsInput,
+        output_schema = schemas.ListVpcEndpointsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:updateAccessPolicy(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAccessPolicy",
-        input_schema = types.UpdateAccessPolicyInput,
-        output_schema = types.UpdateAccessPolicyOutput,
+        input_schema = schemas.UpdateAccessPolicyInput,
+        output_schema = schemas.UpdateAccessPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:updateAccountSettings(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAccountSettings",
-        input_schema = types.UpdateAccountSettingsInput,
-        output_schema = types.UpdateAccountSettingsOutput,
+        input_schema = schemas.UpdateAccountSettingsInput,
+        output_schema = schemas.UpdateAccountSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:updateCollection(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCollection",
-        input_schema = types.UpdateCollectionInput,
-        output_schema = types.UpdateCollectionOutput,
+        input_schema = schemas.UpdateCollectionInput,
+        output_schema = schemas.UpdateCollectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:updateCollectionGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCollectionGroup",
-        input_schema = types.UpdateCollectionGroupInput,
-        output_schema = types.UpdateCollectionGroupOutput,
+        input_schema = schemas.UpdateCollectionGroupInput,
+        output_schema = schemas.UpdateCollectionGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:updateIndex(input, options)
     return self:invokeOperation(input, {
         name = "UpdateIndex",
-        input_schema = types.UpdateIndexInput,
-        output_schema = types.UpdateIndexOutput,
+        input_schema = schemas.UpdateIndexInput,
+        output_schema = schemas.UpdateIndexOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:updateLifecyclePolicy(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLifecyclePolicy",
-        input_schema = types.UpdateLifecyclePolicyInput,
-        output_schema = types.UpdateLifecyclePolicyOutput,
+        input_schema = schemas.UpdateLifecyclePolicyInput,
+        output_schema = schemas.UpdateLifecyclePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:updateSecurityConfig(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSecurityConfig",
-        input_schema = types.UpdateSecurityConfigInput,
-        output_schema = types.UpdateSecurityConfigOutput,
+        input_schema = schemas.UpdateSecurityConfigInput,
+        output_schema = schemas.UpdateSecurityConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:updateSecurityPolicy(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSecurityPolicy",
-        input_schema = types.UpdateSecurityPolicyInput,
-        output_schema = types.UpdateSecurityPolicyOutput,
+        input_schema = schemas.UpdateSecurityPolicyInput,
+        output_schema = schemas.UpdateSecurityPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:updateVpcEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "UpdateVpcEndpoint",
-        input_schema = types.UpdateVpcEndpointInput,
-        output_schema = types.UpdateVpcEndpointOutput,
+        input_schema = schemas.UpdateVpcEndpointInput,
+        output_schema = schemas.UpdateVpcEndpointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

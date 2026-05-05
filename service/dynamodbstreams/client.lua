@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("dynamodbstreams.endpoint_rules")
+local schemas = require("dynamodbstreams.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("dynamodbstreams.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:describeStream(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStream",
-        input_schema = types.DescribeStreamInput,
-        output_schema = types.DescribeStreamOutput,
+        input_schema = schemas.DescribeStreamInput,
+        output_schema = schemas.DescribeStreamOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:getRecords(input, options)
     return self:invokeOperation(input, {
         name = "GetRecords",
-        input_schema = types.GetRecordsInput,
-        output_schema = types.GetRecordsOutput,
+        input_schema = schemas.GetRecordsInput,
+        output_schema = schemas.GetRecordsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getShardIterator(input, options)
     return self:invokeOperation(input, {
         name = "GetShardIterator",
-        input_schema = types.GetShardIteratorInput,
-        output_schema = types.GetShardIteratorOutput,
+        input_schema = schemas.GetShardIteratorInput,
+        output_schema = schemas.GetShardIteratorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:listStreams(input, options)
     return self:invokeOperation(input, {
         name = "ListStreams",
-        input_schema = types.ListStreamsInput,
-        output_schema = types.ListStreamsOutput,
+        input_schema = schemas.ListStreamsInput,
+        output_schema = schemas.ListStreamsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

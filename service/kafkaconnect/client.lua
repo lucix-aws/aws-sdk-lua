@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("kafkaconnect.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("kafkaconnect.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("kafkaconnect.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createConnector(input, options)
     return self:invokeOperation(input, {
         name = "CreateConnector",
-        input_schema = types.CreateConnectorInput,
-        output_schema = types.CreateConnectorOutput,
+        input_schema = schemas.CreateConnectorInput,
+        output_schema = schemas.CreateConnectorOutput,
         http_method = "POST",
         http_path = "/v1/connectors",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createCustomPlugin(input, options)
     return self:invokeOperation(input, {
         name = "CreateCustomPlugin",
-        input_schema = types.CreateCustomPluginInput,
-        output_schema = types.CreateCustomPluginOutput,
+        input_schema = schemas.CreateCustomPluginInput,
+        output_schema = schemas.CreateCustomPluginOutput,
         http_method = "POST",
         http_path = "/v1/custom-plugins",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createWorkerConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateWorkerConfiguration",
-        input_schema = types.CreateWorkerConfigurationInput,
-        output_schema = types.CreateWorkerConfigurationOutput,
+        input_schema = schemas.CreateWorkerConfigurationInput,
+        output_schema = schemas.CreateWorkerConfigurationOutput,
         http_method = "POST",
         http_path = "/v1/worker-configurations",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteConnector(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConnector",
-        input_schema = types.DeleteConnectorInput,
-        output_schema = types.DeleteConnectorOutput,
+        input_schema = schemas.DeleteConnectorInput,
+        output_schema = schemas.DeleteConnectorOutput,
         http_method = "DELETE",
         http_path = "/v1/connectors/{connectorArn}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteCustomPlugin(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCustomPlugin",
-        input_schema = types.DeleteCustomPluginInput,
-        output_schema = types.DeleteCustomPluginOutput,
+        input_schema = schemas.DeleteCustomPluginInput,
+        output_schema = schemas.DeleteCustomPluginOutput,
         http_method = "DELETE",
         http_path = "/v1/custom-plugins/{customPluginArn}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteWorkerConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWorkerConfiguration",
-        input_schema = types.DeleteWorkerConfigurationInput,
-        output_schema = types.DeleteWorkerConfigurationOutput,
+        input_schema = schemas.DeleteWorkerConfigurationInput,
+        output_schema = schemas.DeleteWorkerConfigurationOutput,
         http_method = "DELETE",
         http_path = "/v1/worker-configurations/{workerConfigurationArn}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:describeConnector(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConnector",
-        input_schema = types.DescribeConnectorInput,
-        output_schema = types.DescribeConnectorOutput,
+        input_schema = schemas.DescribeConnectorInput,
+        output_schema = schemas.DescribeConnectorOutput,
         http_method = "GET",
         http_path = "/v1/connectors/{connectorArn}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:describeConnectorOperation(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConnectorOperation",
-        input_schema = types.DescribeConnectorOperationInput,
-        output_schema = types.DescribeConnectorOperationOutput,
+        input_schema = schemas.DescribeConnectorOperationInput,
+        output_schema = schemas.DescribeConnectorOperationOutput,
         http_method = "GET",
         http_path = "/v1/connectorOperations/{connectorOperationArn}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:describeCustomPlugin(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCustomPlugin",
-        input_schema = types.DescribeCustomPluginInput,
-        output_schema = types.DescribeCustomPluginOutput,
+        input_schema = schemas.DescribeCustomPluginInput,
+        output_schema = schemas.DescribeCustomPluginOutput,
         http_method = "GET",
         http_path = "/v1/custom-plugins/{customPluginArn}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:describeWorkerConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DescribeWorkerConfiguration",
-        input_schema = types.DescribeWorkerConfigurationInput,
-        output_schema = types.DescribeWorkerConfigurationOutput,
+        input_schema = schemas.DescribeWorkerConfigurationInput,
+        output_schema = schemas.DescribeWorkerConfigurationOutput,
         http_method = "GET",
         http_path = "/v1/worker-configurations/{workerConfigurationArn}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listConnectorOperations(input, options)
     return self:invokeOperation(input, {
         name = "ListConnectorOperations",
-        input_schema = types.ListConnectorOperationsInput,
-        output_schema = types.ListConnectorOperationsOutput,
+        input_schema = schemas.ListConnectorOperationsInput,
+        output_schema = schemas.ListConnectorOperationsOutput,
         http_method = "GET",
         http_path = "/v1/connectors/{connectorArn}/operations",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listConnectors(input, options)
     return self:invokeOperation(input, {
         name = "ListConnectors",
-        input_schema = types.ListConnectorsInput,
-        output_schema = types.ListConnectorsOutput,
+        input_schema = schemas.ListConnectorsInput,
+        output_schema = schemas.ListConnectorsOutput,
         http_method = "GET",
         http_path = "/v1/connectors",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listCustomPlugins(input, options)
     return self:invokeOperation(input, {
         name = "ListCustomPlugins",
-        input_schema = types.ListCustomPluginsInput,
-        output_schema = types.ListCustomPluginsOutput,
+        input_schema = schemas.ListCustomPluginsInput,
+        output_schema = schemas.ListCustomPluginsOutput,
         http_method = "GET",
         http_path = "/v1/custom-plugins",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/v1/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listWorkerConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkerConfigurations",
-        input_schema = types.ListWorkerConfigurationsInput,
-        output_schema = types.ListWorkerConfigurationsOutput,
+        input_schema = schemas.ListWorkerConfigurationsInput,
+        output_schema = schemas.ListWorkerConfigurationsOutput,
         http_method = "GET",
         http_path = "/v1/worker-configurations",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/v1/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/v1/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:updateConnector(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConnector",
-        input_schema = types.UpdateConnectorInput,
-        output_schema = types.UpdateConnectorOutput,
+        input_schema = schemas.UpdateConnectorInput,
+        output_schema = schemas.UpdateConnectorOutput,
         http_method = "PUT",
         http_path = "/v1/connectors/{connectorArn}",
         effective_auth_schemes = {

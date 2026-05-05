@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("keyspaces.endpoint_rules")
+local schemas = require("keyspaces.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("keyspaces.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createKeyspace(input, options)
     return self:invokeOperation(input, {
         name = "CreateKeyspace",
-        input_schema = types.CreateKeyspaceInput,
-        output_schema = types.CreateKeyspaceOutput,
+        input_schema = schemas.CreateKeyspaceInput,
+        output_schema = schemas.CreateKeyspaceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createTable(input, options)
     return self:invokeOperation(input, {
         name = "CreateTable",
-        input_schema = types.CreateTableInput,
-        output_schema = types.CreateTableOutput,
+        input_schema = schemas.CreateTableInput,
+        output_schema = schemas.CreateTableOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createType(input, options)
     return self:invokeOperation(input, {
         name = "CreateType",
-        input_schema = types.CreateTypeInput,
-        output_schema = types.CreateTypeOutput,
+        input_schema = schemas.CreateTypeInput,
+        output_schema = schemas.CreateTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteKeyspace(input, options)
     return self:invokeOperation(input, {
         name = "DeleteKeyspace",
-        input_schema = types.DeleteKeyspaceInput,
-        output_schema = types.DeleteKeyspaceOutput,
+        input_schema = schemas.DeleteKeyspaceInput,
+        output_schema = schemas.DeleteKeyspaceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteTable(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTable",
-        input_schema = types.DeleteTableInput,
-        output_schema = types.DeleteTableOutput,
+        input_schema = schemas.DeleteTableInput,
+        output_schema = schemas.DeleteTableOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteType(input, options)
     return self:invokeOperation(input, {
         name = "DeleteType",
-        input_schema = types.DeleteTypeInput,
-        output_schema = types.DeleteTypeOutput,
+        input_schema = schemas.DeleteTypeInput,
+        output_schema = schemas.DeleteTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getKeyspace(input, options)
     return self:invokeOperation(input, {
         name = "GetKeyspace",
-        input_schema = types.GetKeyspaceInput,
-        output_schema = types.GetKeyspaceOutput,
+        input_schema = schemas.GetKeyspaceInput,
+        output_schema = schemas.GetKeyspaceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getTable(input, options)
     return self:invokeOperation(input, {
         name = "GetTable",
-        input_schema = types.GetTableInput,
-        output_schema = types.GetTableOutput,
+        input_schema = schemas.GetTableInput,
+        output_schema = schemas.GetTableOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getTableAutoScalingSettings(input, options)
     return self:invokeOperation(input, {
         name = "GetTableAutoScalingSettings",
-        input_schema = types.GetTableAutoScalingSettingsInput,
-        output_schema = types.GetTableAutoScalingSettingsOutput,
+        input_schema = schemas.GetTableAutoScalingSettingsInput,
+        output_schema = schemas.GetTableAutoScalingSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getType(input, options)
     return self:invokeOperation(input, {
         name = "GetType",
-        input_schema = types.GetTypeInput,
-        output_schema = types.GetTypeOutput,
+        input_schema = schemas.GetTypeInput,
+        output_schema = schemas.GetTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listKeyspaces(input, options)
     return self:invokeOperation(input, {
         name = "ListKeyspaces",
-        input_schema = types.ListKeyspacesInput,
-        output_schema = types.ListKeyspacesOutput,
+        input_schema = schemas.ListKeyspacesInput,
+        output_schema = schemas.ListKeyspacesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listTables(input, options)
     return self:invokeOperation(input, {
         name = "ListTables",
-        input_schema = types.ListTablesInput,
-        output_schema = types.ListTablesOutput,
+        input_schema = schemas.ListTablesInput,
+        output_schema = schemas.ListTablesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listTypes(input, options)
     return self:invokeOperation(input, {
         name = "ListTypes",
-        input_schema = types.ListTypesInput,
-        output_schema = types.ListTypesOutput,
+        input_schema = schemas.ListTypesInput,
+        output_schema = schemas.ListTypesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:restoreTable(input, options)
     return self:invokeOperation(input, {
         name = "RestoreTable",
-        input_schema = types.RestoreTableInput,
-        output_schema = types.RestoreTableOutput,
+        input_schema = schemas.RestoreTableInput,
+        output_schema = schemas.RestoreTableOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:updateKeyspace(input, options)
     return self:invokeOperation(input, {
         name = "UpdateKeyspace",
-        input_schema = types.UpdateKeyspaceInput,
-        output_schema = types.UpdateKeyspaceOutput,
+        input_schema = schemas.UpdateKeyspaceInput,
+        output_schema = schemas.UpdateKeyspaceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:updateTable(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTable",
-        input_schema = types.UpdateTableInput,
-        output_schema = types.UpdateTableOutput,
+        input_schema = schemas.UpdateTableInput,
+        output_schema = schemas.UpdateTableOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

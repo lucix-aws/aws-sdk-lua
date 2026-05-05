@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("freetier.endpoint_rules")
+local schemas = require("freetier.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("freetier.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getAccountActivity(input, options)
     return self:invokeOperation(input, {
         name = "GetAccountActivity",
-        input_schema = types.GetAccountActivityInput,
-        output_schema = types.GetAccountActivityOutput,
+        input_schema = schemas.GetAccountActivityInput,
+        output_schema = schemas.GetAccountActivityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:getAccountPlanState(input, options)
     return self:invokeOperation(input, {
         name = "GetAccountPlanState",
-        input_schema = types.GetAccountPlanStateInput,
-        output_schema = types.GetAccountPlanStateOutput,
+        input_schema = schemas.GetAccountPlanStateInput,
+        output_schema = schemas.GetAccountPlanStateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getFreeTierUsage(input, options)
     return self:invokeOperation(input, {
         name = "GetFreeTierUsage",
-        input_schema = types.GetFreeTierUsageInput,
-        output_schema = types.GetFreeTierUsageOutput,
+        input_schema = schemas.GetFreeTierUsageInput,
+        output_schema = schemas.GetFreeTierUsageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:listAccountActivities(input, options)
     return self:invokeOperation(input, {
         name = "ListAccountActivities",
-        input_schema = types.ListAccountActivitiesInput,
-        output_schema = types.ListAccountActivitiesOutput,
+        input_schema = schemas.ListAccountActivitiesInput,
+        output_schema = schemas.ListAccountActivitiesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:upgradeAccountPlan(input, options)
     return self:invokeOperation(input, {
         name = "UpgradeAccountPlan",
-        input_schema = types.UpgradeAccountPlanInput,
-        output_schema = types.UpgradeAccountPlanOutput,
+        input_schema = schemas.UpgradeAccountPlanInput,
+        output_schema = schemas.UpgradeAccountPlanOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

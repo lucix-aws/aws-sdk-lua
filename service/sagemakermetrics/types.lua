@@ -21,63 +21,6 @@ M.XAxisType = {
     TIMESTAMP = "Timestamp",
 }
 
-M.MetricQuery = {
-    type = "structure",
-    id = "MetricQuery",
-    members = {
-        MetricName = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-        ResourceArn = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-        MetricStat = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-        Period = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-        XAxisType = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-        Start = {
-            type = "long",
-        },
-        End = {
-            type = "long",
-        },
-    },
-}
-
-M.BatchGetMetricsInput = {
-    type = "structure",
-    id = "BatchGetMetricsInput",
-    members = {
-        MetricQueries = {
-            type = "list",
-            member = M.MetricQuery,
-            traits = {
-                required = true,
-            },
-        },
-    },
-}
-
 M.MetricQueryResultStatus = {
     COMPLETE = "Complete",
     TRUNCATED = "Truncated",
@@ -85,124 +28,11 @@ M.MetricQueryResultStatus = {
     VALIDATION_ERROR = "ValidationError",
 }
 
-M.MetricQueryResult = {
-    type = "structure",
-    id = "MetricQueryResult",
-    members = {
-        Status = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-        Message = {
-            type = "string",
-        },
-        XAxisValues = {
-            type = "list",
-            member = { type = "long" },
-            traits = {
-                required = true,
-            },
-        },
-        MetricValues = {
-            type = "list",
-            member = { type = "double" },
-            traits = {
-                required = true,
-            },
-        },
-    },
-}
-
-M.BatchGetMetricsOutput = {
-    type = "structure",
-    id = "BatchGetMetricsOutput",
-    members = {
-        MetricQueryResults = {
-            type = "list",
-            member = M.MetricQueryResult,
-        },
-    },
-}
-
-M.RawMetricData = {
-    type = "structure",
-    id = "RawMetricData",
-    members = {
-        MetricName = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-        Timestamp = {
-            type = "timestamp",
-            traits = {
-                required = true,
-            },
-        },
-        Step = {
-            type = "integer",
-        },
-        Value = {
-            type = "double",
-            traits = {
-                required = true,
-            },
-        },
-    },
-}
-
-M.BatchPutMetricsInput = {
-    type = "structure",
-    id = "BatchPutMetricsInput",
-    members = {
-        TrialComponentName = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-        MetricData = {
-            type = "list",
-            member = M.RawMetricData,
-            traits = {
-                required = true,
-            },
-        },
-    },
-}
-
 M.PutMetricsErrorCode = {
     METRIC_LIMIT_EXCEEDED = "METRIC_LIMIT_EXCEEDED",
     INTERNAL_ERROR = "INTERNAL_ERROR",
     VALIDATION_ERROR = "VALIDATION_ERROR",
     CONFLICT_ERROR = "CONFLICT_ERROR",
-}
-
-M.BatchPutMetricsError = {
-    type = "structure",
-    id = "BatchPutMetricsError",
-    members = {
-        Code = {
-            type = "string",
-        },
-        MetricIndex = {
-            type = "integer",
-        },
-    },
-}
-
-M.BatchPutMetricsOutput = {
-    type = "structure",
-    id = "BatchPutMetricsOutput",
-    members = {
-        Errors = {
-            type = "list",
-            member = M.BatchPutMetricsError,
-        },
-    },
 }
 
 return M

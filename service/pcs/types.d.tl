@@ -737,9 +737,9 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type PurchaseOption = "ONDEMAND" | "SPOT" | "CAPACITY_BLOCK"
-
 local type Size = "SMALL" | "MEDIUM" | "LARGE"
+
+local type PurchaseOption = "ONDEMAND" | "SPOT" | "CAPACITY_BLOCK"
 
 local record M
     CreateClusterInput: CreateClusterInput

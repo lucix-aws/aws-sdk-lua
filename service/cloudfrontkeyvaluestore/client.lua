@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("cloudfrontkeyvaluestore.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("cloudfrontkeyvaluestore.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("cloudfrontkeyvaluestore.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:deleteKey(input, options)
     return self:invokeOperation(input, {
         name = "DeleteKey",
-        input_schema = types.DeleteKeyInput,
-        output_schema = types.DeleteKeyOutput,
+        input_schema = schemas.DeleteKeyInput,
+        output_schema = schemas.DeleteKeyOutput,
         http_method = "DELETE",
         http_path = "/key-value-stores/{KvsARN}/keys/{Key}",
         effective_auth_schemes = {
@@ -65,8 +65,8 @@ end
 function Client:describeKeyValueStore(input, options)
     return self:invokeOperation(input, {
         name = "DescribeKeyValueStore",
-        input_schema = types.DescribeKeyValueStoreInput,
-        output_schema = types.DescribeKeyValueStoreOutput,
+        input_schema = schemas.DescribeKeyValueStoreInput,
+        output_schema = schemas.DescribeKeyValueStoreOutput,
         http_method = "GET",
         http_path = "/key-value-stores/{KvsARN}",
         effective_auth_schemes = {
@@ -81,8 +81,8 @@ end
 function Client:getKey(input, options)
     return self:invokeOperation(input, {
         name = "GetKey",
-        input_schema = types.GetKeyInput,
-        output_schema = types.GetKeyOutput,
+        input_schema = schemas.GetKeyInput,
+        output_schema = schemas.GetKeyOutput,
         http_method = "GET",
         http_path = "/key-value-stores/{KvsARN}/keys/{Key}",
         effective_auth_schemes = {
@@ -97,8 +97,8 @@ end
 function Client:listKeys(input, options)
     return self:invokeOperation(input, {
         name = "ListKeys",
-        input_schema = types.ListKeysInput,
-        output_schema = types.ListKeysOutput,
+        input_schema = schemas.ListKeysInput,
+        output_schema = schemas.ListKeysOutput,
         http_method = "GET",
         http_path = "/key-value-stores/{KvsARN}/keys",
         effective_auth_schemes = {
@@ -113,8 +113,8 @@ end
 function Client:putKey(input, options)
     return self:invokeOperation(input, {
         name = "PutKey",
-        input_schema = types.PutKeyInput,
-        output_schema = types.PutKeyOutput,
+        input_schema = schemas.PutKeyInput,
+        output_schema = schemas.PutKeyOutput,
         http_method = "PUT",
         http_path = "/key-value-stores/{KvsARN}/keys/{Key}",
         effective_auth_schemes = {
@@ -129,8 +129,8 @@ end
 function Client:updateKeys(input, options)
     return self:invokeOperation(input, {
         name = "UpdateKeys",
-        input_schema = types.UpdateKeysInput,
-        output_schema = types.UpdateKeysOutput,
+        input_schema = schemas.UpdateKeysInput,
+        output_schema = schemas.UpdateKeysOutput,
         http_method = "POST",
         http_path = "/key-value-stores/{KvsARN}/keys",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("gamelift.endpoint_rules")
+local schemas = require("gamelift.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("gamelift.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptMatch(input, options)
     return self:invokeOperation(input, {
         name = "AcceptMatch",
-        input_schema = types.AcceptMatchInput,
-        output_schema = types.AcceptMatchOutput,
+        input_schema = schemas.AcceptMatchInput,
+        output_schema = schemas.AcceptMatchOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:claimGameServer(input, options)
     return self:invokeOperation(input, {
         name = "ClaimGameServer",
-        input_schema = types.ClaimGameServerInput,
-        output_schema = types.ClaimGameServerOutput,
+        input_schema = schemas.ClaimGameServerInput,
+        output_schema = schemas.ClaimGameServerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createAlias(input, options)
     return self:invokeOperation(input, {
         name = "CreateAlias",
-        input_schema = types.CreateAliasInput,
-        output_schema = types.CreateAliasOutput,
+        input_schema = schemas.CreateAliasInput,
+        output_schema = schemas.CreateAliasOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createBuild(input, options)
     return self:invokeOperation(input, {
         name = "CreateBuild",
-        input_schema = types.CreateBuildInput,
-        output_schema = types.CreateBuildOutput,
+        input_schema = schemas.CreateBuildInput,
+        output_schema = schemas.CreateBuildOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createContainerFleet(input, options)
     return self:invokeOperation(input, {
         name = "CreateContainerFleet",
-        input_schema = types.CreateContainerFleetInput,
-        output_schema = types.CreateContainerFleetOutput,
+        input_schema = schemas.CreateContainerFleetInput,
+        output_schema = schemas.CreateContainerFleetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createContainerGroupDefinition(input, options)
     return self:invokeOperation(input, {
         name = "CreateContainerGroupDefinition",
-        input_schema = types.CreateContainerGroupDefinitionInput,
-        output_schema = types.CreateContainerGroupDefinitionOutput,
+        input_schema = schemas.CreateContainerGroupDefinitionInput,
+        output_schema = schemas.CreateContainerGroupDefinitionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createFleet(input, options)
     return self:invokeOperation(input, {
         name = "CreateFleet",
-        input_schema = types.CreateFleetInput,
-        output_schema = types.CreateFleetOutput,
+        input_schema = schemas.CreateFleetInput,
+        output_schema = schemas.CreateFleetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createFleetLocations(input, options)
     return self:invokeOperation(input, {
         name = "CreateFleetLocations",
-        input_schema = types.CreateFleetLocationsInput,
-        output_schema = types.CreateFleetLocationsOutput,
+        input_schema = schemas.CreateFleetLocationsInput,
+        output_schema = schemas.CreateFleetLocationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createGameServerGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateGameServerGroup",
-        input_schema = types.CreateGameServerGroupInput,
-        output_schema = types.CreateGameServerGroupOutput,
+        input_schema = schemas.CreateGameServerGroupInput,
+        output_schema = schemas.CreateGameServerGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createGameSession(input, options)
     return self:invokeOperation(input, {
         name = "CreateGameSession",
-        input_schema = types.CreateGameSessionInput,
-        output_schema = types.CreateGameSessionOutput,
+        input_schema = schemas.CreateGameSessionInput,
+        output_schema = schemas.CreateGameSessionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createGameSessionQueue(input, options)
     return self:invokeOperation(input, {
         name = "CreateGameSessionQueue",
-        input_schema = types.CreateGameSessionQueueInput,
-        output_schema = types.CreateGameSessionQueueOutput,
+        input_schema = schemas.CreateGameSessionQueueInput,
+        output_schema = schemas.CreateGameSessionQueueOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createLocation(input, options)
     return self:invokeOperation(input, {
         name = "CreateLocation",
-        input_schema = types.CreateLocationInput,
-        output_schema = types.CreateLocationOutput,
+        input_schema = schemas.CreateLocationInput,
+        output_schema = schemas.CreateLocationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createMatchmakingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateMatchmakingConfiguration",
-        input_schema = types.CreateMatchmakingConfigurationInput,
-        output_schema = types.CreateMatchmakingConfigurationOutput,
+        input_schema = schemas.CreateMatchmakingConfigurationInput,
+        output_schema = schemas.CreateMatchmakingConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:createMatchmakingRuleSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateMatchmakingRuleSet",
-        input_schema = types.CreateMatchmakingRuleSetInput,
-        output_schema = types.CreateMatchmakingRuleSetOutput,
+        input_schema = schemas.CreateMatchmakingRuleSetInput,
+        output_schema = schemas.CreateMatchmakingRuleSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:createPlayerSession(input, options)
     return self:invokeOperation(input, {
         name = "CreatePlayerSession",
-        input_schema = types.CreatePlayerSessionInput,
-        output_schema = types.CreatePlayerSessionOutput,
+        input_schema = schemas.CreatePlayerSessionInput,
+        output_schema = schemas.CreatePlayerSessionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:createPlayerSessions(input, options)
     return self:invokeOperation(input, {
         name = "CreatePlayerSessions",
-        input_schema = types.CreatePlayerSessionsInput,
-        output_schema = types.CreatePlayerSessionsOutput,
+        input_schema = schemas.CreatePlayerSessionsInput,
+        output_schema = schemas.CreatePlayerSessionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:createScript(input, options)
     return self:invokeOperation(input, {
         name = "CreateScript",
-        input_schema = types.CreateScriptInput,
-        output_schema = types.CreateScriptOutput,
+        input_schema = schemas.CreateScriptInput,
+        output_schema = schemas.CreateScriptOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:createVpcPeeringAuthorization(input, options)
     return self:invokeOperation(input, {
         name = "CreateVpcPeeringAuthorization",
-        input_schema = types.CreateVpcPeeringAuthorizationInput,
-        output_schema = types.CreateVpcPeeringAuthorizationOutput,
+        input_schema = schemas.CreateVpcPeeringAuthorizationInput,
+        output_schema = schemas.CreateVpcPeeringAuthorizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:createVpcPeeringConnection(input, options)
     return self:invokeOperation(input, {
         name = "CreateVpcPeeringConnection",
-        input_schema = types.CreateVpcPeeringConnectionInput,
-        output_schema = types.CreateVpcPeeringConnectionOutput,
+        input_schema = schemas.CreateVpcPeeringConnectionInput,
+        output_schema = schemas.CreateVpcPeeringConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deleteAlias(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAlias",
-        input_schema = types.DeleteAliasInput,
-        output_schema = types.DeleteAliasOutput,
+        input_schema = schemas.DeleteAliasInput,
+        output_schema = schemas.DeleteAliasOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteBuild(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBuild",
-        input_schema = types.DeleteBuildInput,
-        output_schema = types.DeleteBuildOutput,
+        input_schema = schemas.DeleteBuildInput,
+        output_schema = schemas.DeleteBuildOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:deleteContainerFleet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteContainerFleet",
-        input_schema = types.DeleteContainerFleetInput,
-        output_schema = types.DeleteContainerFleetOutput,
+        input_schema = schemas.DeleteContainerFleetInput,
+        output_schema = schemas.DeleteContainerFleetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:deleteContainerGroupDefinition(input, options)
     return self:invokeOperation(input, {
         name = "DeleteContainerGroupDefinition",
-        input_schema = types.DeleteContainerGroupDefinitionInput,
-        output_schema = types.DeleteContainerGroupDefinitionOutput,
+        input_schema = schemas.DeleteContainerGroupDefinitionInput,
+        output_schema = schemas.DeleteContainerGroupDefinitionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:deleteFleet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFleet",
-        input_schema = types.DeleteFleetInput,
-        output_schema = types.DeleteFleetOutput,
+        input_schema = schemas.DeleteFleetInput,
+        output_schema = schemas.DeleteFleetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:deleteFleetLocations(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFleetLocations",
-        input_schema = types.DeleteFleetLocationsInput,
-        output_schema = types.DeleteFleetLocationsOutput,
+        input_schema = schemas.DeleteFleetLocationsInput,
+        output_schema = schemas.DeleteFleetLocationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:deleteGameServerGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGameServerGroup",
-        input_schema = types.DeleteGameServerGroupInput,
-        output_schema = types.DeleteGameServerGroupOutput,
+        input_schema = schemas.DeleteGameServerGroupInput,
+        output_schema = schemas.DeleteGameServerGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:deleteGameSessionQueue(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGameSessionQueue",
-        input_schema = types.DeleteGameSessionQueueInput,
-        output_schema = types.DeleteGameSessionQueueOutput,
+        input_schema = schemas.DeleteGameSessionQueueInput,
+        output_schema = schemas.DeleteGameSessionQueueOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:deleteLocation(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLocation",
-        input_schema = types.DeleteLocationInput,
-        output_schema = types.DeleteLocationOutput,
+        input_schema = schemas.DeleteLocationInput,
+        output_schema = schemas.DeleteLocationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:deleteMatchmakingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMatchmakingConfiguration",
-        input_schema = types.DeleteMatchmakingConfigurationInput,
-        output_schema = types.DeleteMatchmakingConfigurationOutput,
+        input_schema = schemas.DeleteMatchmakingConfigurationInput,
+        output_schema = schemas.DeleteMatchmakingConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:deleteMatchmakingRuleSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMatchmakingRuleSet",
-        input_schema = types.DeleteMatchmakingRuleSetInput,
-        output_schema = types.DeleteMatchmakingRuleSetOutput,
+        input_schema = schemas.DeleteMatchmakingRuleSetInput,
+        output_schema = schemas.DeleteMatchmakingRuleSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:deleteScalingPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteScalingPolicy",
-        input_schema = types.DeleteScalingPolicyInput,
-        output_schema = types.DeleteScalingPolicyOutput,
+        input_schema = schemas.DeleteScalingPolicyInput,
+        output_schema = schemas.DeleteScalingPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:deleteScript(input, options)
     return self:invokeOperation(input, {
         name = "DeleteScript",
-        input_schema = types.DeleteScriptInput,
-        output_schema = types.DeleteScriptOutput,
+        input_schema = schemas.DeleteScriptInput,
+        output_schema = schemas.DeleteScriptOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:deleteVpcPeeringAuthorization(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVpcPeeringAuthorization",
-        input_schema = types.DeleteVpcPeeringAuthorizationInput,
-        output_schema = types.DeleteVpcPeeringAuthorizationOutput,
+        input_schema = schemas.DeleteVpcPeeringAuthorizationInput,
+        output_schema = schemas.DeleteVpcPeeringAuthorizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:deleteVpcPeeringConnection(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVpcPeeringConnection",
-        input_schema = types.DeleteVpcPeeringConnectionInput,
-        output_schema = types.DeleteVpcPeeringConnectionOutput,
+        input_schema = schemas.DeleteVpcPeeringConnectionInput,
+        output_schema = schemas.DeleteVpcPeeringConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:deregisterCompute(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterCompute",
-        input_schema = types.DeregisterComputeInput,
-        output_schema = types.DeregisterComputeOutput,
+        input_schema = schemas.DeregisterComputeInput,
+        output_schema = schemas.DeregisterComputeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:deregisterGameServer(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterGameServer",
-        input_schema = types.DeregisterGameServerInput,
-        output_schema = types.DeregisterGameServerOutput,
+        input_schema = schemas.DeregisterGameServerInput,
+        output_schema = schemas.DeregisterGameServerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:describeAlias(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAlias",
-        input_schema = types.DescribeAliasInput,
-        output_schema = types.DescribeAliasOutput,
+        input_schema = schemas.DescribeAliasInput,
+        output_schema = schemas.DescribeAliasOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:describeBuild(input, options)
     return self:invokeOperation(input, {
         name = "DescribeBuild",
-        input_schema = types.DescribeBuildInput,
-        output_schema = types.DescribeBuildOutput,
+        input_schema = schemas.DescribeBuildInput,
+        output_schema = schemas.DescribeBuildOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:describeCompute(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCompute",
-        input_schema = types.DescribeComputeInput,
-        output_schema = types.DescribeComputeOutput,
+        input_schema = schemas.DescribeComputeInput,
+        output_schema = schemas.DescribeComputeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:describeContainerFleet(input, options)
     return self:invokeOperation(input, {
         name = "DescribeContainerFleet",
-        input_schema = types.DescribeContainerFleetInput,
-        output_schema = types.DescribeContainerFleetOutput,
+        input_schema = schemas.DescribeContainerFleetInput,
+        output_schema = schemas.DescribeContainerFleetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:describeContainerGroupDefinition(input, options)
     return self:invokeOperation(input, {
         name = "DescribeContainerGroupDefinition",
-        input_schema = types.DescribeContainerGroupDefinitionInput,
-        output_schema = types.DescribeContainerGroupDefinitionOutput,
+        input_schema = schemas.DescribeContainerGroupDefinitionInput,
+        output_schema = schemas.DescribeContainerGroupDefinitionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:describeContainerGroupPortMappings(input, options)
     return self:invokeOperation(input, {
         name = "DescribeContainerGroupPortMappings",
-        input_schema = types.DescribeContainerGroupPortMappingsInput,
-        output_schema = types.DescribeContainerGroupPortMappingsOutput,
+        input_schema = schemas.DescribeContainerGroupPortMappingsInput,
+        output_schema = schemas.DescribeContainerGroupPortMappingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:describeEC2InstanceLimits(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEC2InstanceLimits",
-        input_schema = types.DescribeEC2InstanceLimitsInput,
-        output_schema = types.DescribeEC2InstanceLimitsOutput,
+        input_schema = schemas.DescribeEC2InstanceLimitsInput,
+        output_schema = schemas.DescribeEC2InstanceLimitsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:describeFleetAttributes(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFleetAttributes",
-        input_schema = types.DescribeFleetAttributesInput,
-        output_schema = types.DescribeFleetAttributesOutput,
+        input_schema = schemas.DescribeFleetAttributesInput,
+        output_schema = schemas.DescribeFleetAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:describeFleetCapacity(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFleetCapacity",
-        input_schema = types.DescribeFleetCapacityInput,
-        output_schema = types.DescribeFleetCapacityOutput,
+        input_schema = schemas.DescribeFleetCapacityInput,
+        output_schema = schemas.DescribeFleetCapacityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:describeFleetDeployment(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFleetDeployment",
-        input_schema = types.DescribeFleetDeploymentInput,
-        output_schema = types.DescribeFleetDeploymentOutput,
+        input_schema = schemas.DescribeFleetDeploymentInput,
+        output_schema = schemas.DescribeFleetDeploymentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:describeFleetEvents(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFleetEvents",
-        input_schema = types.DescribeFleetEventsInput,
-        output_schema = types.DescribeFleetEventsOutput,
+        input_schema = schemas.DescribeFleetEventsInput,
+        output_schema = schemas.DescribeFleetEventsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:describeFleetLocationAttributes(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFleetLocationAttributes",
-        input_schema = types.DescribeFleetLocationAttributesInput,
-        output_schema = types.DescribeFleetLocationAttributesOutput,
+        input_schema = schemas.DescribeFleetLocationAttributesInput,
+        output_schema = schemas.DescribeFleetLocationAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:describeFleetLocationCapacity(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFleetLocationCapacity",
-        input_schema = types.DescribeFleetLocationCapacityInput,
-        output_schema = types.DescribeFleetLocationCapacityOutput,
+        input_schema = schemas.DescribeFleetLocationCapacityInput,
+        output_schema = schemas.DescribeFleetLocationCapacityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:describeFleetLocationUtilization(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFleetLocationUtilization",
-        input_schema = types.DescribeFleetLocationUtilizationInput,
-        output_schema = types.DescribeFleetLocationUtilizationOutput,
+        input_schema = schemas.DescribeFleetLocationUtilizationInput,
+        output_schema = schemas.DescribeFleetLocationUtilizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:describeFleetPortSettings(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFleetPortSettings",
-        input_schema = types.DescribeFleetPortSettingsInput,
-        output_schema = types.DescribeFleetPortSettingsOutput,
+        input_schema = schemas.DescribeFleetPortSettingsInput,
+        output_schema = schemas.DescribeFleetPortSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:describeFleetUtilization(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFleetUtilization",
-        input_schema = types.DescribeFleetUtilizationInput,
-        output_schema = types.DescribeFleetUtilizationOutput,
+        input_schema = schemas.DescribeFleetUtilizationInput,
+        output_schema = schemas.DescribeFleetUtilizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:describeGameServer(input, options)
     return self:invokeOperation(input, {
         name = "DescribeGameServer",
-        input_schema = types.DescribeGameServerInput,
-        output_schema = types.DescribeGameServerOutput,
+        input_schema = schemas.DescribeGameServerInput,
+        output_schema = schemas.DescribeGameServerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:describeGameServerGroup(input, options)
     return self:invokeOperation(input, {
         name = "DescribeGameServerGroup",
-        input_schema = types.DescribeGameServerGroupInput,
-        output_schema = types.DescribeGameServerGroupOutput,
+        input_schema = schemas.DescribeGameServerGroupInput,
+        output_schema = schemas.DescribeGameServerGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:describeGameServerInstances(input, options)
     return self:invokeOperation(input, {
         name = "DescribeGameServerInstances",
-        input_schema = types.DescribeGameServerInstancesInput,
-        output_schema = types.DescribeGameServerInstancesOutput,
+        input_schema = schemas.DescribeGameServerInstancesInput,
+        output_schema = schemas.DescribeGameServerInstancesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:describeGameSessionDetails(input, options)
     return self:invokeOperation(input, {
         name = "DescribeGameSessionDetails",
-        input_schema = types.DescribeGameSessionDetailsInput,
-        output_schema = types.DescribeGameSessionDetailsOutput,
+        input_schema = schemas.DescribeGameSessionDetailsInput,
+        output_schema = schemas.DescribeGameSessionDetailsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:describeGameSessionPlacement(input, options)
     return self:invokeOperation(input, {
         name = "DescribeGameSessionPlacement",
-        input_schema = types.DescribeGameSessionPlacementInput,
-        output_schema = types.DescribeGameSessionPlacementOutput,
+        input_schema = schemas.DescribeGameSessionPlacementInput,
+        output_schema = schemas.DescribeGameSessionPlacementOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:describeGameSessionQueues(input, options)
     return self:invokeOperation(input, {
         name = "DescribeGameSessionQueues",
-        input_schema = types.DescribeGameSessionQueuesInput,
-        output_schema = types.DescribeGameSessionQueuesOutput,
+        input_schema = schemas.DescribeGameSessionQueuesInput,
+        output_schema = schemas.DescribeGameSessionQueuesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:describeGameSessions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeGameSessions",
-        input_schema = types.DescribeGameSessionsInput,
-        output_schema = types.DescribeGameSessionsOutput,
+        input_schema = schemas.DescribeGameSessionsInput,
+        output_schema = schemas.DescribeGameSessionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:describeInstances(input, options)
     return self:invokeOperation(input, {
         name = "DescribeInstances",
-        input_schema = types.DescribeInstancesInput,
-        output_schema = types.DescribeInstancesOutput,
+        input_schema = schemas.DescribeInstancesInput,
+        output_schema = schemas.DescribeInstancesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:describeMatchmaking(input, options)
     return self:invokeOperation(input, {
         name = "DescribeMatchmaking",
-        input_schema = types.DescribeMatchmakingInput,
-        output_schema = types.DescribeMatchmakingOutput,
+        input_schema = schemas.DescribeMatchmakingInput,
+        output_schema = schemas.DescribeMatchmakingOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:describeMatchmakingConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "DescribeMatchmakingConfigurations",
-        input_schema = types.DescribeMatchmakingConfigurationsInput,
-        output_schema = types.DescribeMatchmakingConfigurationsOutput,
+        input_schema = schemas.DescribeMatchmakingConfigurationsInput,
+        output_schema = schemas.DescribeMatchmakingConfigurationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:describeMatchmakingRuleSets(input, options)
     return self:invokeOperation(input, {
         name = "DescribeMatchmakingRuleSets",
-        input_schema = types.DescribeMatchmakingRuleSetsInput,
-        output_schema = types.DescribeMatchmakingRuleSetsOutput,
+        input_schema = schemas.DescribeMatchmakingRuleSetsInput,
+        output_schema = schemas.DescribeMatchmakingRuleSetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:describePlayerSessions(input, options)
     return self:invokeOperation(input, {
         name = "DescribePlayerSessions",
-        input_schema = types.DescribePlayerSessionsInput,
-        output_schema = types.DescribePlayerSessionsOutput,
+        input_schema = schemas.DescribePlayerSessionsInput,
+        output_schema = schemas.DescribePlayerSessionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:describeRuntimeConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRuntimeConfiguration",
-        input_schema = types.DescribeRuntimeConfigurationInput,
-        output_schema = types.DescribeRuntimeConfigurationOutput,
+        input_schema = schemas.DescribeRuntimeConfigurationInput,
+        output_schema = schemas.DescribeRuntimeConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:describeScalingPolicies(input, options)
     return self:invokeOperation(input, {
         name = "DescribeScalingPolicies",
-        input_schema = types.DescribeScalingPoliciesInput,
-        output_schema = types.DescribeScalingPoliciesOutput,
+        input_schema = schemas.DescribeScalingPoliciesInput,
+        output_schema = schemas.DescribeScalingPoliciesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:describeScript(input, options)
     return self:invokeOperation(input, {
         name = "DescribeScript",
-        input_schema = types.DescribeScriptInput,
-        output_schema = types.DescribeScriptOutput,
+        input_schema = schemas.DescribeScriptInput,
+        output_schema = schemas.DescribeScriptOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:describeVpcPeeringAuthorizations(input, options)
     return self:invokeOperation(input, {
         name = "DescribeVpcPeeringAuthorizations",
-        input_schema = types.DescribeVpcPeeringAuthorizationsInput,
-        output_schema = types.DescribeVpcPeeringAuthorizationsOutput,
+        input_schema = schemas.DescribeVpcPeeringAuthorizationsInput,
+        output_schema = schemas.DescribeVpcPeeringAuthorizationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:describeVpcPeeringConnections(input, options)
     return self:invokeOperation(input, {
         name = "DescribeVpcPeeringConnections",
-        input_schema = types.DescribeVpcPeeringConnectionsInput,
-        output_schema = types.DescribeVpcPeeringConnectionsOutput,
+        input_schema = schemas.DescribeVpcPeeringConnectionsInput,
+        output_schema = schemas.DescribeVpcPeeringConnectionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:getComputeAccess(input, options)
     return self:invokeOperation(input, {
         name = "GetComputeAccess",
-        input_schema = types.GetComputeAccessInput,
-        output_schema = types.GetComputeAccessOutput,
+        input_schema = schemas.GetComputeAccessInput,
+        output_schema = schemas.GetComputeAccessOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:getComputeAuthToken(input, options)
     return self:invokeOperation(input, {
         name = "GetComputeAuthToken",
-        input_schema = types.GetComputeAuthTokenInput,
-        output_schema = types.GetComputeAuthTokenOutput,
+        input_schema = schemas.GetComputeAuthTokenInput,
+        output_schema = schemas.GetComputeAuthTokenOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:getGameSessionLogUrl(input, options)
     return self:invokeOperation(input, {
         name = "GetGameSessionLogUrl",
-        input_schema = types.GetGameSessionLogUrlInput,
-        output_schema = types.GetGameSessionLogUrlOutput,
+        input_schema = schemas.GetGameSessionLogUrlInput,
+        output_schema = schemas.GetGameSessionLogUrlOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:getInstanceAccess(input, options)
     return self:invokeOperation(input, {
         name = "GetInstanceAccess",
-        input_schema = types.GetInstanceAccessInput,
-        output_schema = types.GetInstanceAccessOutput,
+        input_schema = schemas.GetInstanceAccessInput,
+        output_schema = schemas.GetInstanceAccessOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:getPlayerConnectionDetails(input, options)
     return self:invokeOperation(input, {
         name = "GetPlayerConnectionDetails",
-        input_schema = types.GetPlayerConnectionDetailsInput,
-        output_schema = types.GetPlayerConnectionDetailsOutput,
+        input_schema = schemas.GetPlayerConnectionDetailsInput,
+        output_schema = schemas.GetPlayerConnectionDetailsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1011,8 +1011,8 @@ end
 function Client:listAliases(input, options)
     return self:invokeOperation(input, {
         name = "ListAliases",
-        input_schema = types.ListAliasesInput,
-        output_schema = types.ListAliasesOutput,
+        input_schema = schemas.ListAliasesInput,
+        output_schema = schemas.ListAliasesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1024,8 +1024,8 @@ end
 function Client:listBuilds(input, options)
     return self:invokeOperation(input, {
         name = "ListBuilds",
-        input_schema = types.ListBuildsInput,
-        output_schema = types.ListBuildsOutput,
+        input_schema = schemas.ListBuildsInput,
+        output_schema = schemas.ListBuildsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1037,8 +1037,8 @@ end
 function Client:listCompute(input, options)
     return self:invokeOperation(input, {
         name = "ListCompute",
-        input_schema = types.ListComputeInput,
-        output_schema = types.ListComputeOutput,
+        input_schema = schemas.ListComputeInput,
+        output_schema = schemas.ListComputeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1050,8 +1050,8 @@ end
 function Client:listContainerFleets(input, options)
     return self:invokeOperation(input, {
         name = "ListContainerFleets",
-        input_schema = types.ListContainerFleetsInput,
-        output_schema = types.ListContainerFleetsOutput,
+        input_schema = schemas.ListContainerFleetsInput,
+        output_schema = schemas.ListContainerFleetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1063,8 +1063,8 @@ end
 function Client:listContainerGroupDefinitions(input, options)
     return self:invokeOperation(input, {
         name = "ListContainerGroupDefinitions",
-        input_schema = types.ListContainerGroupDefinitionsInput,
-        output_schema = types.ListContainerGroupDefinitionsOutput,
+        input_schema = schemas.ListContainerGroupDefinitionsInput,
+        output_schema = schemas.ListContainerGroupDefinitionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1076,8 +1076,8 @@ end
 function Client:listContainerGroupDefinitionVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListContainerGroupDefinitionVersions",
-        input_schema = types.ListContainerGroupDefinitionVersionsInput,
-        output_schema = types.ListContainerGroupDefinitionVersionsOutput,
+        input_schema = schemas.ListContainerGroupDefinitionVersionsInput,
+        output_schema = schemas.ListContainerGroupDefinitionVersionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1089,8 +1089,8 @@ end
 function Client:listFleetDeployments(input, options)
     return self:invokeOperation(input, {
         name = "ListFleetDeployments",
-        input_schema = types.ListFleetDeploymentsInput,
-        output_schema = types.ListFleetDeploymentsOutput,
+        input_schema = schemas.ListFleetDeploymentsInput,
+        output_schema = schemas.ListFleetDeploymentsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1102,8 +1102,8 @@ end
 function Client:listFleets(input, options)
     return self:invokeOperation(input, {
         name = "ListFleets",
-        input_schema = types.ListFleetsInput,
-        output_schema = types.ListFleetsOutput,
+        input_schema = schemas.ListFleetsInput,
+        output_schema = schemas.ListFleetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1115,8 +1115,8 @@ end
 function Client:listGameServerGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListGameServerGroups",
-        input_schema = types.ListGameServerGroupsInput,
-        output_schema = types.ListGameServerGroupsOutput,
+        input_schema = schemas.ListGameServerGroupsInput,
+        output_schema = schemas.ListGameServerGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1128,8 +1128,8 @@ end
 function Client:listGameServers(input, options)
     return self:invokeOperation(input, {
         name = "ListGameServers",
-        input_schema = types.ListGameServersInput,
-        output_schema = types.ListGameServersOutput,
+        input_schema = schemas.ListGameServersInput,
+        output_schema = schemas.ListGameServersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1141,8 +1141,8 @@ end
 function Client:listLocations(input, options)
     return self:invokeOperation(input, {
         name = "ListLocations",
-        input_schema = types.ListLocationsInput,
-        output_schema = types.ListLocationsOutput,
+        input_schema = schemas.ListLocationsInput,
+        output_schema = schemas.ListLocationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1154,8 +1154,8 @@ end
 function Client:listScripts(input, options)
     return self:invokeOperation(input, {
         name = "ListScripts",
-        input_schema = types.ListScriptsInput,
-        output_schema = types.ListScriptsOutput,
+        input_schema = schemas.ListScriptsInput,
+        output_schema = schemas.ListScriptsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1167,8 +1167,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1180,8 +1180,8 @@ end
 function Client:putScalingPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutScalingPolicy",
-        input_schema = types.PutScalingPolicyInput,
-        output_schema = types.PutScalingPolicyOutput,
+        input_schema = schemas.PutScalingPolicyInput,
+        output_schema = schemas.PutScalingPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1193,8 +1193,8 @@ end
 function Client:registerCompute(input, options)
     return self:invokeOperation(input, {
         name = "RegisterCompute",
-        input_schema = types.RegisterComputeInput,
-        output_schema = types.RegisterComputeOutput,
+        input_schema = schemas.RegisterComputeInput,
+        output_schema = schemas.RegisterComputeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1206,8 +1206,8 @@ end
 function Client:registerGameServer(input, options)
     return self:invokeOperation(input, {
         name = "RegisterGameServer",
-        input_schema = types.RegisterGameServerInput,
-        output_schema = types.RegisterGameServerOutput,
+        input_schema = schemas.RegisterGameServerInput,
+        output_schema = schemas.RegisterGameServerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1219,8 +1219,8 @@ end
 function Client:requestUploadCredentials(input, options)
     return self:invokeOperation(input, {
         name = "RequestUploadCredentials",
-        input_schema = types.RequestUploadCredentialsInput,
-        output_schema = types.RequestUploadCredentialsOutput,
+        input_schema = schemas.RequestUploadCredentialsInput,
+        output_schema = schemas.RequestUploadCredentialsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1232,8 +1232,8 @@ end
 function Client:resolveAlias(input, options)
     return self:invokeOperation(input, {
         name = "ResolveAlias",
-        input_schema = types.ResolveAliasInput,
-        output_schema = types.ResolveAliasOutput,
+        input_schema = schemas.ResolveAliasInput,
+        output_schema = schemas.ResolveAliasOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1245,8 +1245,8 @@ end
 function Client:resumeGameServerGroup(input, options)
     return self:invokeOperation(input, {
         name = "ResumeGameServerGroup",
-        input_schema = types.ResumeGameServerGroupInput,
-        output_schema = types.ResumeGameServerGroupOutput,
+        input_schema = schemas.ResumeGameServerGroupInput,
+        output_schema = schemas.ResumeGameServerGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1258,8 +1258,8 @@ end
 function Client:searchGameSessions(input, options)
     return self:invokeOperation(input, {
         name = "SearchGameSessions",
-        input_schema = types.SearchGameSessionsInput,
-        output_schema = types.SearchGameSessionsOutput,
+        input_schema = schemas.SearchGameSessionsInput,
+        output_schema = schemas.SearchGameSessionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1271,8 +1271,8 @@ end
 function Client:startFleetActions(input, options)
     return self:invokeOperation(input, {
         name = "StartFleetActions",
-        input_schema = types.StartFleetActionsInput,
-        output_schema = types.StartFleetActionsOutput,
+        input_schema = schemas.StartFleetActionsInput,
+        output_schema = schemas.StartFleetActionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1284,8 +1284,8 @@ end
 function Client:startGameSessionPlacement(input, options)
     return self:invokeOperation(input, {
         name = "StartGameSessionPlacement",
-        input_schema = types.StartGameSessionPlacementInput,
-        output_schema = types.StartGameSessionPlacementOutput,
+        input_schema = schemas.StartGameSessionPlacementInput,
+        output_schema = schemas.StartGameSessionPlacementOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1297,8 +1297,8 @@ end
 function Client:startMatchBackfill(input, options)
     return self:invokeOperation(input, {
         name = "StartMatchBackfill",
-        input_schema = types.StartMatchBackfillInput,
-        output_schema = types.StartMatchBackfillOutput,
+        input_schema = schemas.StartMatchBackfillInput,
+        output_schema = schemas.StartMatchBackfillOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1310,8 +1310,8 @@ end
 function Client:startMatchmaking(input, options)
     return self:invokeOperation(input, {
         name = "StartMatchmaking",
-        input_schema = types.StartMatchmakingInput,
-        output_schema = types.StartMatchmakingOutput,
+        input_schema = schemas.StartMatchmakingInput,
+        output_schema = schemas.StartMatchmakingOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1323,8 +1323,8 @@ end
 function Client:stopFleetActions(input, options)
     return self:invokeOperation(input, {
         name = "StopFleetActions",
-        input_schema = types.StopFleetActionsInput,
-        output_schema = types.StopFleetActionsOutput,
+        input_schema = schemas.StopFleetActionsInput,
+        output_schema = schemas.StopFleetActionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1336,8 +1336,8 @@ end
 function Client:stopGameSessionPlacement(input, options)
     return self:invokeOperation(input, {
         name = "StopGameSessionPlacement",
-        input_schema = types.StopGameSessionPlacementInput,
-        output_schema = types.StopGameSessionPlacementOutput,
+        input_schema = schemas.StopGameSessionPlacementInput,
+        output_schema = schemas.StopGameSessionPlacementOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1349,8 +1349,8 @@ end
 function Client:stopMatchmaking(input, options)
     return self:invokeOperation(input, {
         name = "StopMatchmaking",
-        input_schema = types.StopMatchmakingInput,
-        output_schema = types.StopMatchmakingOutput,
+        input_schema = schemas.StopMatchmakingInput,
+        output_schema = schemas.StopMatchmakingOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1362,8 +1362,8 @@ end
 function Client:suspendGameServerGroup(input, options)
     return self:invokeOperation(input, {
         name = "SuspendGameServerGroup",
-        input_schema = types.SuspendGameServerGroupInput,
-        output_schema = types.SuspendGameServerGroupOutput,
+        input_schema = schemas.SuspendGameServerGroupInput,
+        output_schema = schemas.SuspendGameServerGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1375,8 +1375,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1388,8 +1388,8 @@ end
 function Client:terminateGameSession(input, options)
     return self:invokeOperation(input, {
         name = "TerminateGameSession",
-        input_schema = types.TerminateGameSessionInput,
-        output_schema = types.TerminateGameSessionOutput,
+        input_schema = schemas.TerminateGameSessionInput,
+        output_schema = schemas.TerminateGameSessionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1401,8 +1401,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1414,8 +1414,8 @@ end
 function Client:updateAlias(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAlias",
-        input_schema = types.UpdateAliasInput,
-        output_schema = types.UpdateAliasOutput,
+        input_schema = schemas.UpdateAliasInput,
+        output_schema = schemas.UpdateAliasOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1427,8 +1427,8 @@ end
 function Client:updateBuild(input, options)
     return self:invokeOperation(input, {
         name = "UpdateBuild",
-        input_schema = types.UpdateBuildInput,
-        output_schema = types.UpdateBuildOutput,
+        input_schema = schemas.UpdateBuildInput,
+        output_schema = schemas.UpdateBuildOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1440,8 +1440,8 @@ end
 function Client:updateContainerFleet(input, options)
     return self:invokeOperation(input, {
         name = "UpdateContainerFleet",
-        input_schema = types.UpdateContainerFleetInput,
-        output_schema = types.UpdateContainerFleetOutput,
+        input_schema = schemas.UpdateContainerFleetInput,
+        output_schema = schemas.UpdateContainerFleetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1453,8 +1453,8 @@ end
 function Client:updateContainerGroupDefinition(input, options)
     return self:invokeOperation(input, {
         name = "UpdateContainerGroupDefinition",
-        input_schema = types.UpdateContainerGroupDefinitionInput,
-        output_schema = types.UpdateContainerGroupDefinitionOutput,
+        input_schema = schemas.UpdateContainerGroupDefinitionInput,
+        output_schema = schemas.UpdateContainerGroupDefinitionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1466,8 +1466,8 @@ end
 function Client:updateFleetAttributes(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFleetAttributes",
-        input_schema = types.UpdateFleetAttributesInput,
-        output_schema = types.UpdateFleetAttributesOutput,
+        input_schema = schemas.UpdateFleetAttributesInput,
+        output_schema = schemas.UpdateFleetAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1479,8 +1479,8 @@ end
 function Client:updateFleetCapacity(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFleetCapacity",
-        input_schema = types.UpdateFleetCapacityInput,
-        output_schema = types.UpdateFleetCapacityOutput,
+        input_schema = schemas.UpdateFleetCapacityInput,
+        output_schema = schemas.UpdateFleetCapacityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1492,8 +1492,8 @@ end
 function Client:updateFleetPortSettings(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFleetPortSettings",
-        input_schema = types.UpdateFleetPortSettingsInput,
-        output_schema = types.UpdateFleetPortSettingsOutput,
+        input_schema = schemas.UpdateFleetPortSettingsInput,
+        output_schema = schemas.UpdateFleetPortSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1505,8 +1505,8 @@ end
 function Client:updateGameServer(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGameServer",
-        input_schema = types.UpdateGameServerInput,
-        output_schema = types.UpdateGameServerOutput,
+        input_schema = schemas.UpdateGameServerInput,
+        output_schema = schemas.UpdateGameServerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1518,8 +1518,8 @@ end
 function Client:updateGameServerGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGameServerGroup",
-        input_schema = types.UpdateGameServerGroupInput,
-        output_schema = types.UpdateGameServerGroupOutput,
+        input_schema = schemas.UpdateGameServerGroupInput,
+        output_schema = schemas.UpdateGameServerGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1531,8 +1531,8 @@ end
 function Client:updateGameSession(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGameSession",
-        input_schema = types.UpdateGameSessionInput,
-        output_schema = types.UpdateGameSessionOutput,
+        input_schema = schemas.UpdateGameSessionInput,
+        output_schema = schemas.UpdateGameSessionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1544,8 +1544,8 @@ end
 function Client:updateGameSessionQueue(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGameSessionQueue",
-        input_schema = types.UpdateGameSessionQueueInput,
-        output_schema = types.UpdateGameSessionQueueOutput,
+        input_schema = schemas.UpdateGameSessionQueueInput,
+        output_schema = schemas.UpdateGameSessionQueueOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1557,8 +1557,8 @@ end
 function Client:updateMatchmakingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMatchmakingConfiguration",
-        input_schema = types.UpdateMatchmakingConfigurationInput,
-        output_schema = types.UpdateMatchmakingConfigurationOutput,
+        input_schema = schemas.UpdateMatchmakingConfigurationInput,
+        output_schema = schemas.UpdateMatchmakingConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1570,8 +1570,8 @@ end
 function Client:updateRuntimeConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRuntimeConfiguration",
-        input_schema = types.UpdateRuntimeConfigurationInput,
-        output_schema = types.UpdateRuntimeConfigurationOutput,
+        input_schema = schemas.UpdateRuntimeConfigurationInput,
+        output_schema = schemas.UpdateRuntimeConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1583,8 +1583,8 @@ end
 function Client:updateScript(input, options)
     return self:invokeOperation(input, {
         name = "UpdateScript",
-        input_schema = types.UpdateScriptInput,
-        output_schema = types.UpdateScriptOutput,
+        input_schema = schemas.UpdateScriptInput,
+        output_schema = schemas.UpdateScriptOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1596,8 +1596,8 @@ end
 function Client:validateMatchmakingRuleSet(input, options)
     return self:invokeOperation(input, {
         name = "ValidateMatchmakingRuleSet",
-        input_schema = types.ValidateMatchmakingRuleSetInput,
-        output_schema = types.ValidateMatchmakingRuleSetOutput,
+        input_schema = schemas.ValidateMatchmakingRuleSetInput,
+        output_schema = schemas.ValidateMatchmakingRuleSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

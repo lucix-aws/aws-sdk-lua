@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("computeoptimizer.endpoint_rules")
+local schemas = require("computeoptimizer.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("computeoptimizer.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:deleteRecommendationPreferences(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRecommendationPreferences",
-        input_schema = types.DeleteRecommendationPreferencesInput,
-        output_schema = types.DeleteRecommendationPreferencesOutput,
+        input_schema = schemas.DeleteRecommendationPreferencesInput,
+        output_schema = schemas.DeleteRecommendationPreferencesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:describeRecommendationExportJobs(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRecommendationExportJobs",
-        input_schema = types.DescribeRecommendationExportJobsInput,
-        output_schema = types.DescribeRecommendationExportJobsOutput,
+        input_schema = schemas.DescribeRecommendationExportJobsInput,
+        output_schema = schemas.DescribeRecommendationExportJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:exportAutoScalingGroupRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "ExportAutoScalingGroupRecommendations",
-        input_schema = types.ExportAutoScalingGroupRecommendationsInput,
-        output_schema = types.ExportAutoScalingGroupRecommendationsOutput,
+        input_schema = schemas.ExportAutoScalingGroupRecommendationsInput,
+        output_schema = schemas.ExportAutoScalingGroupRecommendationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:exportEBSVolumeRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "ExportEBSVolumeRecommendations",
-        input_schema = types.ExportEBSVolumeRecommendationsInput,
-        output_schema = types.ExportEBSVolumeRecommendationsOutput,
+        input_schema = schemas.ExportEBSVolumeRecommendationsInput,
+        output_schema = schemas.ExportEBSVolumeRecommendationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:exportEC2InstanceRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "ExportEC2InstanceRecommendations",
-        input_schema = types.ExportEC2InstanceRecommendationsInput,
-        output_schema = types.ExportEC2InstanceRecommendationsOutput,
+        input_schema = schemas.ExportEC2InstanceRecommendationsInput,
+        output_schema = schemas.ExportEC2InstanceRecommendationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:exportECSServiceRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "ExportECSServiceRecommendations",
-        input_schema = types.ExportECSServiceRecommendationsInput,
-        output_schema = types.ExportECSServiceRecommendationsOutput,
+        input_schema = schemas.ExportECSServiceRecommendationsInput,
+        output_schema = schemas.ExportECSServiceRecommendationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:exportIdleRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "ExportIdleRecommendations",
-        input_schema = types.ExportIdleRecommendationsInput,
-        output_schema = types.ExportIdleRecommendationsOutput,
+        input_schema = schemas.ExportIdleRecommendationsInput,
+        output_schema = schemas.ExportIdleRecommendationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:exportLambdaFunctionRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "ExportLambdaFunctionRecommendations",
-        input_schema = types.ExportLambdaFunctionRecommendationsInput,
-        output_schema = types.ExportLambdaFunctionRecommendationsOutput,
+        input_schema = schemas.ExportLambdaFunctionRecommendationsInput,
+        output_schema = schemas.ExportLambdaFunctionRecommendationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:exportLicenseRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "ExportLicenseRecommendations",
-        input_schema = types.ExportLicenseRecommendationsInput,
-        output_schema = types.ExportLicenseRecommendationsOutput,
+        input_schema = schemas.ExportLicenseRecommendationsInput,
+        output_schema = schemas.ExportLicenseRecommendationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:exportRDSDatabaseRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "ExportRDSDatabaseRecommendations",
-        input_schema = types.ExportRDSDatabaseRecommendationsInput,
-        output_schema = types.ExportRDSDatabaseRecommendationsOutput,
+        input_schema = schemas.ExportRDSDatabaseRecommendationsInput,
+        output_schema = schemas.ExportRDSDatabaseRecommendationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getAutoScalingGroupRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "GetAutoScalingGroupRecommendations",
-        input_schema = types.GetAutoScalingGroupRecommendationsInput,
-        output_schema = types.GetAutoScalingGroupRecommendationsOutput,
+        input_schema = schemas.GetAutoScalingGroupRecommendationsInput,
+        output_schema = schemas.GetAutoScalingGroupRecommendationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getEBSVolumeRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "GetEBSVolumeRecommendations",
-        input_schema = types.GetEBSVolumeRecommendationsInput,
-        output_schema = types.GetEBSVolumeRecommendationsOutput,
+        input_schema = schemas.GetEBSVolumeRecommendationsInput,
+        output_schema = schemas.GetEBSVolumeRecommendationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getEC2InstanceRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "GetEC2InstanceRecommendations",
-        input_schema = types.GetEC2InstanceRecommendationsInput,
-        output_schema = types.GetEC2InstanceRecommendationsOutput,
+        input_schema = schemas.GetEC2InstanceRecommendationsInput,
+        output_schema = schemas.GetEC2InstanceRecommendationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getEC2RecommendationProjectedMetrics(input, options)
     return self:invokeOperation(input, {
         name = "GetEC2RecommendationProjectedMetrics",
-        input_schema = types.GetEC2RecommendationProjectedMetricsInput,
-        output_schema = types.GetEC2RecommendationProjectedMetricsOutput,
+        input_schema = schemas.GetEC2RecommendationProjectedMetricsInput,
+        output_schema = schemas.GetEC2RecommendationProjectedMetricsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getECSServiceRecommendationProjectedMetrics(input, options)
     return self:invokeOperation(input, {
         name = "GetECSServiceRecommendationProjectedMetrics",
-        input_schema = types.GetECSServiceRecommendationProjectedMetricsInput,
-        output_schema = types.GetECSServiceRecommendationProjectedMetricsOutput,
+        input_schema = schemas.GetECSServiceRecommendationProjectedMetricsInput,
+        output_schema = schemas.GetECSServiceRecommendationProjectedMetricsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getECSServiceRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "GetECSServiceRecommendations",
-        input_schema = types.GetECSServiceRecommendationsInput,
-        output_schema = types.GetECSServiceRecommendationsOutput,
+        input_schema = schemas.GetECSServiceRecommendationsInput,
+        output_schema = schemas.GetECSServiceRecommendationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getEffectiveRecommendationPreferences(input, options)
     return self:invokeOperation(input, {
         name = "GetEffectiveRecommendationPreferences",
-        input_schema = types.GetEffectiveRecommendationPreferencesInput,
-        output_schema = types.GetEffectiveRecommendationPreferencesOutput,
+        input_schema = schemas.GetEffectiveRecommendationPreferencesInput,
+        output_schema = schemas.GetEffectiveRecommendationPreferencesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getEnrollmentStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetEnrollmentStatus",
-        input_schema = types.GetEnrollmentStatusInput,
-        output_schema = types.GetEnrollmentStatusOutput,
+        input_schema = schemas.GetEnrollmentStatusInput,
+        output_schema = schemas.GetEnrollmentStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getEnrollmentStatusesForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "GetEnrollmentStatusesForOrganization",
-        input_schema = types.GetEnrollmentStatusesForOrganizationInput,
-        output_schema = types.GetEnrollmentStatusesForOrganizationOutput,
+        input_schema = schemas.GetEnrollmentStatusesForOrganizationInput,
+        output_schema = schemas.GetEnrollmentStatusesForOrganizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getIdleRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "GetIdleRecommendations",
-        input_schema = types.GetIdleRecommendationsInput,
-        output_schema = types.GetIdleRecommendationsOutput,
+        input_schema = schemas.GetIdleRecommendationsInput,
+        output_schema = schemas.GetIdleRecommendationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:getLambdaFunctionRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "GetLambdaFunctionRecommendations",
-        input_schema = types.GetLambdaFunctionRecommendationsInput,
-        output_schema = types.GetLambdaFunctionRecommendationsOutput,
+        input_schema = schemas.GetLambdaFunctionRecommendationsInput,
+        output_schema = schemas.GetLambdaFunctionRecommendationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:getLicenseRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "GetLicenseRecommendations",
-        input_schema = types.GetLicenseRecommendationsInput,
-        output_schema = types.GetLicenseRecommendationsOutput,
+        input_schema = schemas.GetLicenseRecommendationsInput,
+        output_schema = schemas.GetLicenseRecommendationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:getRDSDatabaseRecommendationProjectedMetrics(input, options)
     return self:invokeOperation(input, {
         name = "GetRDSDatabaseRecommendationProjectedMetrics",
-        input_schema = types.GetRDSDatabaseRecommendationProjectedMetricsInput,
-        output_schema = types.GetRDSDatabaseRecommendationProjectedMetricsOutput,
+        input_schema = schemas.GetRDSDatabaseRecommendationProjectedMetricsInput,
+        output_schema = schemas.GetRDSDatabaseRecommendationProjectedMetricsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:getRDSDatabaseRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "GetRDSDatabaseRecommendations",
-        input_schema = types.GetRDSDatabaseRecommendationsInput,
-        output_schema = types.GetRDSDatabaseRecommendationsOutput,
+        input_schema = schemas.GetRDSDatabaseRecommendationsInput,
+        output_schema = schemas.GetRDSDatabaseRecommendationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getRecommendationPreferences(input, options)
     return self:invokeOperation(input, {
         name = "GetRecommendationPreferences",
-        input_schema = types.GetRecommendationPreferencesInput,
-        output_schema = types.GetRecommendationPreferencesOutput,
+        input_schema = schemas.GetRecommendationPreferencesInput,
+        output_schema = schemas.GetRecommendationPreferencesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:getRecommendationSummaries(input, options)
     return self:invokeOperation(input, {
         name = "GetRecommendationSummaries",
-        input_schema = types.GetRecommendationSummariesInput,
-        output_schema = types.GetRecommendationSummariesOutput,
+        input_schema = schemas.GetRecommendationSummariesInput,
+        output_schema = schemas.GetRecommendationSummariesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:putRecommendationPreferences(input, options)
     return self:invokeOperation(input, {
         name = "PutRecommendationPreferences",
-        input_schema = types.PutRecommendationPreferencesInput,
-        output_schema = types.PutRecommendationPreferencesOutput,
+        input_schema = schemas.PutRecommendationPreferencesInput,
+        output_schema = schemas.PutRecommendationPreferencesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:updateEnrollmentStatus(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEnrollmentStatus",
-        input_schema = types.UpdateEnrollmentStatusInput,
-        output_schema = types.UpdateEnrollmentStatusOutput,
+        input_schema = schemas.UpdateEnrollmentStatusInput,
+        output_schema = schemas.UpdateEnrollmentStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

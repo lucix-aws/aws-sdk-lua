@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("proton.endpoint_rules")
+local schemas = require("proton.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("proton.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptEnvironmentAccountConnection(input, options)
     return self:invokeOperation(input, {
         name = "AcceptEnvironmentAccountConnection",
-        input_schema = types.AcceptEnvironmentAccountConnectionInput,
-        output_schema = types.AcceptEnvironmentAccountConnectionOutput,
+        input_schema = schemas.AcceptEnvironmentAccountConnectionInput,
+        output_schema = schemas.AcceptEnvironmentAccountConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:cancelComponentDeployment(input, options)
     return self:invokeOperation(input, {
         name = "CancelComponentDeployment",
-        input_schema = types.CancelComponentDeploymentInput,
-        output_schema = types.CancelComponentDeploymentOutput,
+        input_schema = schemas.CancelComponentDeploymentInput,
+        output_schema = schemas.CancelComponentDeploymentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:cancelEnvironmentDeployment(input, options)
     return self:invokeOperation(input, {
         name = "CancelEnvironmentDeployment",
-        input_schema = types.CancelEnvironmentDeploymentInput,
-        output_schema = types.CancelEnvironmentDeploymentOutput,
+        input_schema = schemas.CancelEnvironmentDeploymentInput,
+        output_schema = schemas.CancelEnvironmentDeploymentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:cancelServiceInstanceDeployment(input, options)
     return self:invokeOperation(input, {
         name = "CancelServiceInstanceDeployment",
-        input_schema = types.CancelServiceInstanceDeploymentInput,
-        output_schema = types.CancelServiceInstanceDeploymentOutput,
+        input_schema = schemas.CancelServiceInstanceDeploymentInput,
+        output_schema = schemas.CancelServiceInstanceDeploymentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:cancelServicePipelineDeployment(input, options)
     return self:invokeOperation(input, {
         name = "CancelServicePipelineDeployment",
-        input_schema = types.CancelServicePipelineDeploymentInput,
-        output_schema = types.CancelServicePipelineDeploymentOutput,
+        input_schema = schemas.CancelServicePipelineDeploymentInput,
+        output_schema = schemas.CancelServicePipelineDeploymentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createComponent(input, options)
     return self:invokeOperation(input, {
         name = "CreateComponent",
-        input_schema = types.CreateComponentInput,
-        output_schema = types.CreateComponentOutput,
+        input_schema = schemas.CreateComponentInput,
+        output_schema = schemas.CreateComponentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "CreateEnvironment",
-        input_schema = types.CreateEnvironmentInput,
-        output_schema = types.CreateEnvironmentOutput,
+        input_schema = schemas.CreateEnvironmentInput,
+        output_schema = schemas.CreateEnvironmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createEnvironmentAccountConnection(input, options)
     return self:invokeOperation(input, {
         name = "CreateEnvironmentAccountConnection",
-        input_schema = types.CreateEnvironmentAccountConnectionInput,
-        output_schema = types.CreateEnvironmentAccountConnectionOutput,
+        input_schema = schemas.CreateEnvironmentAccountConnectionInput,
+        output_schema = schemas.CreateEnvironmentAccountConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createEnvironmentTemplate(input, options)
     return self:invokeOperation(input, {
         name = "CreateEnvironmentTemplate",
-        input_schema = types.CreateEnvironmentTemplateInput,
-        output_schema = types.CreateEnvironmentTemplateOutput,
+        input_schema = schemas.CreateEnvironmentTemplateInput,
+        output_schema = schemas.CreateEnvironmentTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createEnvironmentTemplateVersion(input, options)
     return self:invokeOperation(input, {
         name = "CreateEnvironmentTemplateVersion",
-        input_schema = types.CreateEnvironmentTemplateVersionInput,
-        output_schema = types.CreateEnvironmentTemplateVersionOutput,
+        input_schema = schemas.CreateEnvironmentTemplateVersionInput,
+        output_schema = schemas.CreateEnvironmentTemplateVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createRepository(input, options)
     return self:invokeOperation(input, {
         name = "CreateRepository",
-        input_schema = types.CreateRepositoryInput,
-        output_schema = types.CreateRepositoryOutput,
+        input_schema = schemas.CreateRepositoryInput,
+        output_schema = schemas.CreateRepositoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createService(input, options)
     return self:invokeOperation(input, {
         name = "CreateService",
-        input_schema = types.CreateServiceInput,
-        output_schema = types.CreateServiceOutput,
+        input_schema = schemas.CreateServiceInput,
+        output_schema = schemas.CreateServiceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createServiceInstance(input, options)
     return self:invokeOperation(input, {
         name = "CreateServiceInstance",
-        input_schema = types.CreateServiceInstanceInput,
-        output_schema = types.CreateServiceInstanceOutput,
+        input_schema = schemas.CreateServiceInstanceInput,
+        output_schema = schemas.CreateServiceInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:createServiceSyncConfig(input, options)
     return self:invokeOperation(input, {
         name = "CreateServiceSyncConfig",
-        input_schema = types.CreateServiceSyncConfigInput,
-        output_schema = types.CreateServiceSyncConfigOutput,
+        input_schema = schemas.CreateServiceSyncConfigInput,
+        output_schema = schemas.CreateServiceSyncConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:createServiceTemplate(input, options)
     return self:invokeOperation(input, {
         name = "CreateServiceTemplate",
-        input_schema = types.CreateServiceTemplateInput,
-        output_schema = types.CreateServiceTemplateOutput,
+        input_schema = schemas.CreateServiceTemplateInput,
+        output_schema = schemas.CreateServiceTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:createServiceTemplateVersion(input, options)
     return self:invokeOperation(input, {
         name = "CreateServiceTemplateVersion",
-        input_schema = types.CreateServiceTemplateVersionInput,
-        output_schema = types.CreateServiceTemplateVersionOutput,
+        input_schema = schemas.CreateServiceTemplateVersionInput,
+        output_schema = schemas.CreateServiceTemplateVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:createTemplateSyncConfig(input, options)
     return self:invokeOperation(input, {
         name = "CreateTemplateSyncConfig",
-        input_schema = types.CreateTemplateSyncConfigInput,
-        output_schema = types.CreateTemplateSyncConfigOutput,
+        input_schema = schemas.CreateTemplateSyncConfigInput,
+        output_schema = schemas.CreateTemplateSyncConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteComponent(input, options)
     return self:invokeOperation(input, {
         name = "DeleteComponent",
-        input_schema = types.DeleteComponentInput,
-        output_schema = types.DeleteComponentOutput,
+        input_schema = schemas.DeleteComponentInput,
+        output_schema = schemas.DeleteComponentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteDeployment(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDeployment",
-        input_schema = types.DeleteDeploymentInput,
-        output_schema = types.DeleteDeploymentOutput,
+        input_schema = schemas.DeleteDeploymentInput,
+        output_schema = schemas.DeleteDeploymentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deleteEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEnvironment",
-        input_schema = types.DeleteEnvironmentInput,
-        output_schema = types.DeleteEnvironmentOutput,
+        input_schema = schemas.DeleteEnvironmentInput,
+        output_schema = schemas.DeleteEnvironmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteEnvironmentAccountConnection(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEnvironmentAccountConnection",
-        input_schema = types.DeleteEnvironmentAccountConnectionInput,
-        output_schema = types.DeleteEnvironmentAccountConnectionOutput,
+        input_schema = schemas.DeleteEnvironmentAccountConnectionInput,
+        output_schema = schemas.DeleteEnvironmentAccountConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:deleteEnvironmentTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEnvironmentTemplate",
-        input_schema = types.DeleteEnvironmentTemplateInput,
-        output_schema = types.DeleteEnvironmentTemplateOutput,
+        input_schema = schemas.DeleteEnvironmentTemplateInput,
+        output_schema = schemas.DeleteEnvironmentTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:deleteEnvironmentTemplateVersion(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEnvironmentTemplateVersion",
-        input_schema = types.DeleteEnvironmentTemplateVersionInput,
-        output_schema = types.DeleteEnvironmentTemplateVersionOutput,
+        input_schema = schemas.DeleteEnvironmentTemplateVersionInput,
+        output_schema = schemas.DeleteEnvironmentTemplateVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:deleteRepository(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRepository",
-        input_schema = types.DeleteRepositoryInput,
-        output_schema = types.DeleteRepositoryOutput,
+        input_schema = schemas.DeleteRepositoryInput,
+        output_schema = schemas.DeleteRepositoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:deleteService(input, options)
     return self:invokeOperation(input, {
         name = "DeleteService",
-        input_schema = types.DeleteServiceInput,
-        output_schema = types.DeleteServiceOutput,
+        input_schema = schemas.DeleteServiceInput,
+        output_schema = schemas.DeleteServiceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:deleteServiceSyncConfig(input, options)
     return self:invokeOperation(input, {
         name = "DeleteServiceSyncConfig",
-        input_schema = types.DeleteServiceSyncConfigInput,
-        output_schema = types.DeleteServiceSyncConfigOutput,
+        input_schema = schemas.DeleteServiceSyncConfigInput,
+        output_schema = schemas.DeleteServiceSyncConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:deleteServiceTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DeleteServiceTemplate",
-        input_schema = types.DeleteServiceTemplateInput,
-        output_schema = types.DeleteServiceTemplateOutput,
+        input_schema = schemas.DeleteServiceTemplateInput,
+        output_schema = schemas.DeleteServiceTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:deleteServiceTemplateVersion(input, options)
     return self:invokeOperation(input, {
         name = "DeleteServiceTemplateVersion",
-        input_schema = types.DeleteServiceTemplateVersionInput,
-        output_schema = types.DeleteServiceTemplateVersionOutput,
+        input_schema = schemas.DeleteServiceTemplateVersionInput,
+        output_schema = schemas.DeleteServiceTemplateVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:deleteTemplateSyncConfig(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTemplateSyncConfig",
-        input_schema = types.DeleteTemplateSyncConfigInput,
-        output_schema = types.DeleteTemplateSyncConfigOutput,
+        input_schema = schemas.DeleteTemplateSyncConfigInput,
+        output_schema = schemas.DeleteTemplateSyncConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:getAccountSettings(input, options)
     return self:invokeOperation(input, {
         name = "GetAccountSettings",
-        input_schema = types.GetAccountSettingsInput,
-        output_schema = types.GetAccountSettingsOutput,
+        input_schema = schemas.GetAccountSettingsInput,
+        output_schema = schemas.GetAccountSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:getComponent(input, options)
     return self:invokeOperation(input, {
         name = "GetComponent",
-        input_schema = types.GetComponentInput,
-        output_schema = types.GetComponentOutput,
+        input_schema = schemas.GetComponentInput,
+        output_schema = schemas.GetComponentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:getDeployment(input, options)
     return self:invokeOperation(input, {
         name = "GetDeployment",
-        input_schema = types.GetDeploymentInput,
-        output_schema = types.GetDeploymentOutput,
+        input_schema = schemas.GetDeploymentInput,
+        output_schema = schemas.GetDeploymentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:getEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "GetEnvironment",
-        input_schema = types.GetEnvironmentInput,
-        output_schema = types.GetEnvironmentOutput,
+        input_schema = schemas.GetEnvironmentInput,
+        output_schema = schemas.GetEnvironmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:getEnvironmentAccountConnection(input, options)
     return self:invokeOperation(input, {
         name = "GetEnvironmentAccountConnection",
-        input_schema = types.GetEnvironmentAccountConnectionInput,
-        output_schema = types.GetEnvironmentAccountConnectionOutput,
+        input_schema = schemas.GetEnvironmentAccountConnectionInput,
+        output_schema = schemas.GetEnvironmentAccountConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:getEnvironmentTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetEnvironmentTemplate",
-        input_schema = types.GetEnvironmentTemplateInput,
-        output_schema = types.GetEnvironmentTemplateOutput,
+        input_schema = schemas.GetEnvironmentTemplateInput,
+        output_schema = schemas.GetEnvironmentTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:getEnvironmentTemplateVersion(input, options)
     return self:invokeOperation(input, {
         name = "GetEnvironmentTemplateVersion",
-        input_schema = types.GetEnvironmentTemplateVersionInput,
-        output_schema = types.GetEnvironmentTemplateVersionOutput,
+        input_schema = schemas.GetEnvironmentTemplateVersionInput,
+        output_schema = schemas.GetEnvironmentTemplateVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:getRepository(input, options)
     return self:invokeOperation(input, {
         name = "GetRepository",
-        input_schema = types.GetRepositoryInput,
-        output_schema = types.GetRepositoryOutput,
+        input_schema = schemas.GetRepositoryInput,
+        output_schema = schemas.GetRepositoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:getRepositorySyncStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetRepositorySyncStatus",
-        input_schema = types.GetRepositorySyncStatusInput,
-        output_schema = types.GetRepositorySyncStatusOutput,
+        input_schema = schemas.GetRepositorySyncStatusInput,
+        output_schema = schemas.GetRepositorySyncStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:getResourcesSummary(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcesSummary",
-        input_schema = types.GetResourcesSummaryInput,
-        output_schema = types.GetResourcesSummaryOutput,
+        input_schema = schemas.GetResourcesSummaryInput,
+        output_schema = schemas.GetResourcesSummaryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:getService(input, options)
     return self:invokeOperation(input, {
         name = "GetService",
-        input_schema = types.GetServiceInput,
-        output_schema = types.GetServiceOutput,
+        input_schema = schemas.GetServiceInput,
+        output_schema = schemas.GetServiceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:getServiceInstance(input, options)
     return self:invokeOperation(input, {
         name = "GetServiceInstance",
-        input_schema = types.GetServiceInstanceInput,
-        output_schema = types.GetServiceInstanceOutput,
+        input_schema = schemas.GetServiceInstanceInput,
+        output_schema = schemas.GetServiceInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:getServiceInstanceSyncStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetServiceInstanceSyncStatus",
-        input_schema = types.GetServiceInstanceSyncStatusInput,
-        output_schema = types.GetServiceInstanceSyncStatusOutput,
+        input_schema = schemas.GetServiceInstanceSyncStatusInput,
+        output_schema = schemas.GetServiceInstanceSyncStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:getServiceSyncBlockerSummary(input, options)
     return self:invokeOperation(input, {
         name = "GetServiceSyncBlockerSummary",
-        input_schema = types.GetServiceSyncBlockerSummaryInput,
-        output_schema = types.GetServiceSyncBlockerSummaryOutput,
+        input_schema = schemas.GetServiceSyncBlockerSummaryInput,
+        output_schema = schemas.GetServiceSyncBlockerSummaryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:getServiceSyncConfig(input, options)
     return self:invokeOperation(input, {
         name = "GetServiceSyncConfig",
-        input_schema = types.GetServiceSyncConfigInput,
-        output_schema = types.GetServiceSyncConfigOutput,
+        input_schema = schemas.GetServiceSyncConfigInput,
+        output_schema = schemas.GetServiceSyncConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:getServiceTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetServiceTemplate",
-        input_schema = types.GetServiceTemplateInput,
-        output_schema = types.GetServiceTemplateOutput,
+        input_schema = schemas.GetServiceTemplateInput,
+        output_schema = schemas.GetServiceTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:getServiceTemplateVersion(input, options)
     return self:invokeOperation(input, {
         name = "GetServiceTemplateVersion",
-        input_schema = types.GetServiceTemplateVersionInput,
-        output_schema = types.GetServiceTemplateVersionOutput,
+        input_schema = schemas.GetServiceTemplateVersionInput,
+        output_schema = schemas.GetServiceTemplateVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:getTemplateSyncConfig(input, options)
     return self:invokeOperation(input, {
         name = "GetTemplateSyncConfig",
-        input_schema = types.GetTemplateSyncConfigInput,
-        output_schema = types.GetTemplateSyncConfigOutput,
+        input_schema = schemas.GetTemplateSyncConfigInput,
+        output_schema = schemas.GetTemplateSyncConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:getTemplateSyncStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetTemplateSyncStatus",
-        input_schema = types.GetTemplateSyncStatusInput,
-        output_schema = types.GetTemplateSyncStatusOutput,
+        input_schema = schemas.GetTemplateSyncStatusInput,
+        output_schema = schemas.GetTemplateSyncStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:listComponentOutputs(input, options)
     return self:invokeOperation(input, {
         name = "ListComponentOutputs",
-        input_schema = types.ListComponentOutputsInput,
-        output_schema = types.ListComponentOutputsOutput,
+        input_schema = schemas.ListComponentOutputsInput,
+        output_schema = schemas.ListComponentOutputsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:listComponentProvisionedResources(input, options)
     return self:invokeOperation(input, {
         name = "ListComponentProvisionedResources",
-        input_schema = types.ListComponentProvisionedResourcesInput,
-        output_schema = types.ListComponentProvisionedResourcesOutput,
+        input_schema = schemas.ListComponentProvisionedResourcesInput,
+        output_schema = schemas.ListComponentProvisionedResourcesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:listComponents(input, options)
     return self:invokeOperation(input, {
         name = "ListComponents",
-        input_schema = types.ListComponentsInput,
-        output_schema = types.ListComponentsOutput,
+        input_schema = schemas.ListComponentsInput,
+        output_schema = schemas.ListComponentsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:listDeployments(input, options)
     return self:invokeOperation(input, {
         name = "ListDeployments",
-        input_schema = types.ListDeploymentsInput,
-        output_schema = types.ListDeploymentsOutput,
+        input_schema = schemas.ListDeploymentsInput,
+        output_schema = schemas.ListDeploymentsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:listEnvironmentAccountConnections(input, options)
     return self:invokeOperation(input, {
         name = "ListEnvironmentAccountConnections",
-        input_schema = types.ListEnvironmentAccountConnectionsInput,
-        output_schema = types.ListEnvironmentAccountConnectionsOutput,
+        input_schema = schemas.ListEnvironmentAccountConnectionsInput,
+        output_schema = schemas.ListEnvironmentAccountConnectionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:listEnvironmentOutputs(input, options)
     return self:invokeOperation(input, {
         name = "ListEnvironmentOutputs",
-        input_schema = types.ListEnvironmentOutputsInput,
-        output_schema = types.ListEnvironmentOutputsOutput,
+        input_schema = schemas.ListEnvironmentOutputsInput,
+        output_schema = schemas.ListEnvironmentOutputsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:listEnvironmentProvisionedResources(input, options)
     return self:invokeOperation(input, {
         name = "ListEnvironmentProvisionedResources",
-        input_schema = types.ListEnvironmentProvisionedResourcesInput,
-        output_schema = types.ListEnvironmentProvisionedResourcesOutput,
+        input_schema = schemas.ListEnvironmentProvisionedResourcesInput,
+        output_schema = schemas.ListEnvironmentProvisionedResourcesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:listEnvironments(input, options)
     return self:invokeOperation(input, {
         name = "ListEnvironments",
-        input_schema = types.ListEnvironmentsInput,
-        output_schema = types.ListEnvironmentsOutput,
+        input_schema = schemas.ListEnvironmentsInput,
+        output_schema = schemas.ListEnvironmentsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:listEnvironmentTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListEnvironmentTemplates",
-        input_schema = types.ListEnvironmentTemplatesInput,
-        output_schema = types.ListEnvironmentTemplatesOutput,
+        input_schema = schemas.ListEnvironmentTemplatesInput,
+        output_schema = schemas.ListEnvironmentTemplatesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:listEnvironmentTemplateVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListEnvironmentTemplateVersions",
-        input_schema = types.ListEnvironmentTemplateVersionsInput,
-        output_schema = types.ListEnvironmentTemplateVersionsOutput,
+        input_schema = schemas.ListEnvironmentTemplateVersionsInput,
+        output_schema = schemas.ListEnvironmentTemplateVersionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:listRepositories(input, options)
     return self:invokeOperation(input, {
         name = "ListRepositories",
-        input_schema = types.ListRepositoriesInput,
-        output_schema = types.ListRepositoriesOutput,
+        input_schema = schemas.ListRepositoriesInput,
+        output_schema = schemas.ListRepositoriesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:listRepositorySyncDefinitions(input, options)
     return self:invokeOperation(input, {
         name = "ListRepositorySyncDefinitions",
-        input_schema = types.ListRepositorySyncDefinitionsInput,
-        output_schema = types.ListRepositorySyncDefinitionsOutput,
+        input_schema = schemas.ListRepositorySyncDefinitionsInput,
+        output_schema = schemas.ListRepositorySyncDefinitionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:listServiceInstanceOutputs(input, options)
     return self:invokeOperation(input, {
         name = "ListServiceInstanceOutputs",
-        input_schema = types.ListServiceInstanceOutputsInput,
-        output_schema = types.ListServiceInstanceOutputsOutput,
+        input_schema = schemas.ListServiceInstanceOutputsInput,
+        output_schema = schemas.ListServiceInstanceOutputsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:listServiceInstanceProvisionedResources(input, options)
     return self:invokeOperation(input, {
         name = "ListServiceInstanceProvisionedResources",
-        input_schema = types.ListServiceInstanceProvisionedResourcesInput,
-        output_schema = types.ListServiceInstanceProvisionedResourcesOutput,
+        input_schema = schemas.ListServiceInstanceProvisionedResourcesInput,
+        output_schema = schemas.ListServiceInstanceProvisionedResourcesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:listServiceInstances(input, options)
     return self:invokeOperation(input, {
         name = "ListServiceInstances",
-        input_schema = types.ListServiceInstancesInput,
-        output_schema = types.ListServiceInstancesOutput,
+        input_schema = schemas.ListServiceInstancesInput,
+        output_schema = schemas.ListServiceInstancesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:listServicePipelineOutputs(input, options)
     return self:invokeOperation(input, {
         name = "ListServicePipelineOutputs",
-        input_schema = types.ListServicePipelineOutputsInput,
-        output_schema = types.ListServicePipelineOutputsOutput,
+        input_schema = schemas.ListServicePipelineOutputsInput,
+        output_schema = schemas.ListServicePipelineOutputsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:listServicePipelineProvisionedResources(input, options)
     return self:invokeOperation(input, {
         name = "ListServicePipelineProvisionedResources",
-        input_schema = types.ListServicePipelineProvisionedResourcesInput,
-        output_schema = types.ListServicePipelineProvisionedResourcesOutput,
+        input_schema = schemas.ListServicePipelineProvisionedResourcesInput,
+        output_schema = schemas.ListServicePipelineProvisionedResourcesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:listServices(input, options)
     return self:invokeOperation(input, {
         name = "ListServices",
-        input_schema = types.ListServicesInput,
-        output_schema = types.ListServicesOutput,
+        input_schema = schemas.ListServicesInput,
+        output_schema = schemas.ListServicesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:listServiceTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListServiceTemplates",
-        input_schema = types.ListServiceTemplatesInput,
-        output_schema = types.ListServiceTemplatesOutput,
+        input_schema = schemas.ListServiceTemplatesInput,
+        output_schema = schemas.ListServiceTemplatesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:listServiceTemplateVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListServiceTemplateVersions",
-        input_schema = types.ListServiceTemplateVersionsInput,
-        output_schema = types.ListServiceTemplateVersionsOutput,
+        input_schema = schemas.ListServiceTemplateVersionsInput,
+        output_schema = schemas.ListServiceTemplateVersionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:notifyResourceDeploymentStatusChange(input, options)
     return self:invokeOperation(input, {
         name = "NotifyResourceDeploymentStatusChange",
-        input_schema = types.NotifyResourceDeploymentStatusChangeInput,
-        output_schema = types.NotifyResourceDeploymentStatusChangeOutput,
+        input_schema = schemas.NotifyResourceDeploymentStatusChangeInput,
+        output_schema = schemas.NotifyResourceDeploymentStatusChangeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:rejectEnvironmentAccountConnection(input, options)
     return self:invokeOperation(input, {
         name = "RejectEnvironmentAccountConnection",
-        input_schema = types.RejectEnvironmentAccountConnectionInput,
-        output_schema = types.RejectEnvironmentAccountConnectionOutput,
+        input_schema = schemas.RejectEnvironmentAccountConnectionInput,
+        output_schema = schemas.RejectEnvironmentAccountConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:updateAccountSettings(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAccountSettings",
-        input_schema = types.UpdateAccountSettingsInput,
-        output_schema = types.UpdateAccountSettingsOutput,
+        input_schema = schemas.UpdateAccountSettingsInput,
+        output_schema = schemas.UpdateAccountSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1011,8 +1011,8 @@ end
 function Client:updateComponent(input, options)
     return self:invokeOperation(input, {
         name = "UpdateComponent",
-        input_schema = types.UpdateComponentInput,
-        output_schema = types.UpdateComponentOutput,
+        input_schema = schemas.UpdateComponentInput,
+        output_schema = schemas.UpdateComponentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1024,8 +1024,8 @@ end
 function Client:updateEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEnvironment",
-        input_schema = types.UpdateEnvironmentInput,
-        output_schema = types.UpdateEnvironmentOutput,
+        input_schema = schemas.UpdateEnvironmentInput,
+        output_schema = schemas.UpdateEnvironmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1037,8 +1037,8 @@ end
 function Client:updateEnvironmentAccountConnection(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEnvironmentAccountConnection",
-        input_schema = types.UpdateEnvironmentAccountConnectionInput,
-        output_schema = types.UpdateEnvironmentAccountConnectionOutput,
+        input_schema = schemas.UpdateEnvironmentAccountConnectionInput,
+        output_schema = schemas.UpdateEnvironmentAccountConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1050,8 +1050,8 @@ end
 function Client:updateEnvironmentTemplate(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEnvironmentTemplate",
-        input_schema = types.UpdateEnvironmentTemplateInput,
-        output_schema = types.UpdateEnvironmentTemplateOutput,
+        input_schema = schemas.UpdateEnvironmentTemplateInput,
+        output_schema = schemas.UpdateEnvironmentTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1063,8 +1063,8 @@ end
 function Client:updateEnvironmentTemplateVersion(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEnvironmentTemplateVersion",
-        input_schema = types.UpdateEnvironmentTemplateVersionInput,
-        output_schema = types.UpdateEnvironmentTemplateVersionOutput,
+        input_schema = schemas.UpdateEnvironmentTemplateVersionInput,
+        output_schema = schemas.UpdateEnvironmentTemplateVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1076,8 +1076,8 @@ end
 function Client:updateService(input, options)
     return self:invokeOperation(input, {
         name = "UpdateService",
-        input_schema = types.UpdateServiceInput,
-        output_schema = types.UpdateServiceOutput,
+        input_schema = schemas.UpdateServiceInput,
+        output_schema = schemas.UpdateServiceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1089,8 +1089,8 @@ end
 function Client:updateServiceInstance(input, options)
     return self:invokeOperation(input, {
         name = "UpdateServiceInstance",
-        input_schema = types.UpdateServiceInstanceInput,
-        output_schema = types.UpdateServiceInstanceOutput,
+        input_schema = schemas.UpdateServiceInstanceInput,
+        output_schema = schemas.UpdateServiceInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1102,8 +1102,8 @@ end
 function Client:updateServicePipeline(input, options)
     return self:invokeOperation(input, {
         name = "UpdateServicePipeline",
-        input_schema = types.UpdateServicePipelineInput,
-        output_schema = types.UpdateServicePipelineOutput,
+        input_schema = schemas.UpdateServicePipelineInput,
+        output_schema = schemas.UpdateServicePipelineOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1115,8 +1115,8 @@ end
 function Client:updateServiceSyncBlocker(input, options)
     return self:invokeOperation(input, {
         name = "UpdateServiceSyncBlocker",
-        input_schema = types.UpdateServiceSyncBlockerInput,
-        output_schema = types.UpdateServiceSyncBlockerOutput,
+        input_schema = schemas.UpdateServiceSyncBlockerInput,
+        output_schema = schemas.UpdateServiceSyncBlockerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1128,8 +1128,8 @@ end
 function Client:updateServiceSyncConfig(input, options)
     return self:invokeOperation(input, {
         name = "UpdateServiceSyncConfig",
-        input_schema = types.UpdateServiceSyncConfigInput,
-        output_schema = types.UpdateServiceSyncConfigOutput,
+        input_schema = schemas.UpdateServiceSyncConfigInput,
+        output_schema = schemas.UpdateServiceSyncConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1141,8 +1141,8 @@ end
 function Client:updateServiceTemplate(input, options)
     return self:invokeOperation(input, {
         name = "UpdateServiceTemplate",
-        input_schema = types.UpdateServiceTemplateInput,
-        output_schema = types.UpdateServiceTemplateOutput,
+        input_schema = schemas.UpdateServiceTemplateInput,
+        output_schema = schemas.UpdateServiceTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1154,8 +1154,8 @@ end
 function Client:updateServiceTemplateVersion(input, options)
     return self:invokeOperation(input, {
         name = "UpdateServiceTemplateVersion",
-        input_schema = types.UpdateServiceTemplateVersionInput,
-        output_schema = types.UpdateServiceTemplateVersionOutput,
+        input_schema = schemas.UpdateServiceTemplateVersionInput,
+        output_schema = schemas.UpdateServiceTemplateVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1167,8 +1167,8 @@ end
 function Client:updateTemplateSyncConfig(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTemplateSyncConfig",
-        input_schema = types.UpdateTemplateSyncConfigInput,
-        output_schema = types.UpdateTemplateSyncConfigOutput,
+        input_schema = schemas.UpdateTemplateSyncConfigInput,
+        output_schema = schemas.UpdateTemplateSyncConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

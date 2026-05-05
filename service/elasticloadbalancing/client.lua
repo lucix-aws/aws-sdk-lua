@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("elasticloadbalancing.endpoint_rules")
 local query_protocol = require("protocol.query")
+local schemas = require("elasticloadbalancing.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("elasticloadbalancing.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addTags(input, options)
     return self:invokeOperation(input, {
         name = "AddTags",
-        input_schema = types.AddTagsInput,
-        output_schema = types.AddTagsOutput,
+        input_schema = schemas.AddTagsInput,
+        output_schema = schemas.AddTagsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:applySecurityGroupsToLoadBalancer(input, options)
     return self:invokeOperation(input, {
         name = "ApplySecurityGroupsToLoadBalancer",
-        input_schema = types.ApplySecurityGroupsToLoadBalancerInput,
-        output_schema = types.ApplySecurityGroupsToLoadBalancerOutput,
+        input_schema = schemas.ApplySecurityGroupsToLoadBalancerInput,
+        output_schema = schemas.ApplySecurityGroupsToLoadBalancerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:attachLoadBalancerToSubnets(input, options)
     return self:invokeOperation(input, {
         name = "AttachLoadBalancerToSubnets",
-        input_schema = types.AttachLoadBalancerToSubnetsInput,
-        output_schema = types.AttachLoadBalancerToSubnetsOutput,
+        input_schema = schemas.AttachLoadBalancerToSubnetsInput,
+        output_schema = schemas.AttachLoadBalancerToSubnetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:configureHealthCheck(input, options)
     return self:invokeOperation(input, {
         name = "ConfigureHealthCheck",
-        input_schema = types.ConfigureHealthCheckInput,
-        output_schema = types.ConfigureHealthCheckOutput,
+        input_schema = schemas.ConfigureHealthCheckInput,
+        output_schema = schemas.ConfigureHealthCheckOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createAppCookieStickinessPolicy(input, options)
     return self:invokeOperation(input, {
         name = "CreateAppCookieStickinessPolicy",
-        input_schema = types.CreateAppCookieStickinessPolicyInput,
-        output_schema = types.CreateAppCookieStickinessPolicyOutput,
+        input_schema = schemas.CreateAppCookieStickinessPolicyInput,
+        output_schema = schemas.CreateAppCookieStickinessPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createLBCookieStickinessPolicy(input, options)
     return self:invokeOperation(input, {
         name = "CreateLBCookieStickinessPolicy",
-        input_schema = types.CreateLBCookieStickinessPolicyInput,
-        output_schema = types.CreateLBCookieStickinessPolicyOutput,
+        input_schema = schemas.CreateLBCookieStickinessPolicyInput,
+        output_schema = schemas.CreateLBCookieStickinessPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createLoadBalancer(input, options)
     return self:invokeOperation(input, {
         name = "CreateLoadBalancer",
-        input_schema = types.CreateLoadBalancerInput,
-        output_schema = types.CreateLoadBalancerOutput,
+        input_schema = schemas.CreateLoadBalancerInput,
+        output_schema = schemas.CreateLoadBalancerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createLoadBalancerListeners(input, options)
     return self:invokeOperation(input, {
         name = "CreateLoadBalancerListeners",
-        input_schema = types.CreateLoadBalancerListenersInput,
-        output_schema = types.CreateLoadBalancerListenersOutput,
+        input_schema = schemas.CreateLoadBalancerListenersInput,
+        output_schema = schemas.CreateLoadBalancerListenersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createLoadBalancerPolicy(input, options)
     return self:invokeOperation(input, {
         name = "CreateLoadBalancerPolicy",
-        input_schema = types.CreateLoadBalancerPolicyInput,
-        output_schema = types.CreateLoadBalancerPolicyOutput,
+        input_schema = schemas.CreateLoadBalancerPolicyInput,
+        output_schema = schemas.CreateLoadBalancerPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteLoadBalancer(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLoadBalancer",
-        input_schema = types.DeleteLoadBalancerInput,
-        output_schema = types.DeleteLoadBalancerOutput,
+        input_schema = schemas.DeleteLoadBalancerInput,
+        output_schema = schemas.DeleteLoadBalancerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteLoadBalancerListeners(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLoadBalancerListeners",
-        input_schema = types.DeleteLoadBalancerListenersInput,
-        output_schema = types.DeleteLoadBalancerListenersOutput,
+        input_schema = schemas.DeleteLoadBalancerListenersInput,
+        output_schema = schemas.DeleteLoadBalancerListenersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteLoadBalancerPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLoadBalancerPolicy",
-        input_schema = types.DeleteLoadBalancerPolicyInput,
-        output_schema = types.DeleteLoadBalancerPolicyOutput,
+        input_schema = schemas.DeleteLoadBalancerPolicyInput,
+        output_schema = schemas.DeleteLoadBalancerPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deregisterInstancesFromLoadBalancer(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterInstancesFromLoadBalancer",
-        input_schema = types.DeregisterInstancesFromLoadBalancerInput,
-        output_schema = types.DeregisterInstancesFromLoadBalancerOutput,
+        input_schema = schemas.DeregisterInstancesFromLoadBalancerInput,
+        output_schema = schemas.DeregisterInstancesFromLoadBalancerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:describeAccountLimits(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAccountLimits",
-        input_schema = types.DescribeAccountLimitsInput,
-        output_schema = types.DescribeAccountLimitsOutput,
+        input_schema = schemas.DescribeAccountLimitsInput,
+        output_schema = schemas.DescribeAccountLimitsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:describeInstanceHealth(input, options)
     return self:invokeOperation(input, {
         name = "DescribeInstanceHealth",
-        input_schema = types.DescribeInstanceHealthInput,
-        output_schema = types.DescribeInstanceHealthOutput,
+        input_schema = schemas.DescribeInstanceHealthInput,
+        output_schema = schemas.DescribeInstanceHealthOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:describeLoadBalancerAttributes(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLoadBalancerAttributes",
-        input_schema = types.DescribeLoadBalancerAttributesInput,
-        output_schema = types.DescribeLoadBalancerAttributesOutput,
+        input_schema = schemas.DescribeLoadBalancerAttributesInput,
+        output_schema = schemas.DescribeLoadBalancerAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:describeLoadBalancerPolicies(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLoadBalancerPolicies",
-        input_schema = types.DescribeLoadBalancerPoliciesInput,
-        output_schema = types.DescribeLoadBalancerPoliciesOutput,
+        input_schema = schemas.DescribeLoadBalancerPoliciesInput,
+        output_schema = schemas.DescribeLoadBalancerPoliciesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:describeLoadBalancerPolicyTypes(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLoadBalancerPolicyTypes",
-        input_schema = types.DescribeLoadBalancerPolicyTypesInput,
-        output_schema = types.DescribeLoadBalancerPolicyTypesOutput,
+        input_schema = schemas.DescribeLoadBalancerPolicyTypesInput,
+        output_schema = schemas.DescribeLoadBalancerPolicyTypesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:describeLoadBalancers(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLoadBalancers",
-        input_schema = types.DescribeLoadBalancersInput,
-        output_schema = types.DescribeLoadBalancersOutput,
+        input_schema = schemas.DescribeLoadBalancersInput,
+        output_schema = schemas.DescribeLoadBalancersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:describeTags(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTags",
-        input_schema = types.DescribeTagsInput,
-        output_schema = types.DescribeTagsOutput,
+        input_schema = schemas.DescribeTagsInput,
+        output_schema = schemas.DescribeTagsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:detachLoadBalancerFromSubnets(input, options)
     return self:invokeOperation(input, {
         name = "DetachLoadBalancerFromSubnets",
-        input_schema = types.DetachLoadBalancerFromSubnetsInput,
-        output_schema = types.DetachLoadBalancerFromSubnetsOutput,
+        input_schema = schemas.DetachLoadBalancerFromSubnetsInput,
+        output_schema = schemas.DetachLoadBalancerFromSubnetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:disableAvailabilityZonesForLoadBalancer(input, options)
     return self:invokeOperation(input, {
         name = "DisableAvailabilityZonesForLoadBalancer",
-        input_schema = types.DisableAvailabilityZonesForLoadBalancerInput,
-        output_schema = types.DisableAvailabilityZonesForLoadBalancerOutput,
+        input_schema = schemas.DisableAvailabilityZonesForLoadBalancerInput,
+        output_schema = schemas.DisableAvailabilityZonesForLoadBalancerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:enableAvailabilityZonesForLoadBalancer(input, options)
     return self:invokeOperation(input, {
         name = "EnableAvailabilityZonesForLoadBalancer",
-        input_schema = types.EnableAvailabilityZonesForLoadBalancerInput,
-        output_schema = types.EnableAvailabilityZonesForLoadBalancerOutput,
+        input_schema = schemas.EnableAvailabilityZonesForLoadBalancerInput,
+        output_schema = schemas.EnableAvailabilityZonesForLoadBalancerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:modifyLoadBalancerAttributes(input, options)
     return self:invokeOperation(input, {
         name = "ModifyLoadBalancerAttributes",
-        input_schema = types.ModifyLoadBalancerAttributesInput,
-        output_schema = types.ModifyLoadBalancerAttributesOutput,
+        input_schema = schemas.ModifyLoadBalancerAttributesInput,
+        output_schema = schemas.ModifyLoadBalancerAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:registerInstancesWithLoadBalancer(input, options)
     return self:invokeOperation(input, {
         name = "RegisterInstancesWithLoadBalancer",
-        input_schema = types.RegisterInstancesWithLoadBalancerInput,
-        output_schema = types.RegisterInstancesWithLoadBalancerOutput,
+        input_schema = schemas.RegisterInstancesWithLoadBalancerInput,
+        output_schema = schemas.RegisterInstancesWithLoadBalancerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:removeTags(input, options)
     return self:invokeOperation(input, {
         name = "RemoveTags",
-        input_schema = types.RemoveTagsInput,
-        output_schema = types.RemoveTagsOutput,
+        input_schema = schemas.RemoveTagsInput,
+        output_schema = schemas.RemoveTagsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:setLoadBalancerListenerSSLCertificate(input, options)
     return self:invokeOperation(input, {
         name = "SetLoadBalancerListenerSSLCertificate",
-        input_schema = types.SetLoadBalancerListenerSSLCertificateInput,
-        output_schema = types.SetLoadBalancerListenerSSLCertificateOutput,
+        input_schema = schemas.SetLoadBalancerListenerSSLCertificateInput,
+        output_schema = schemas.SetLoadBalancerListenerSSLCertificateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:setLoadBalancerPoliciesForBackendServer(input, options)
     return self:invokeOperation(input, {
         name = "SetLoadBalancerPoliciesForBackendServer",
-        input_schema = types.SetLoadBalancerPoliciesForBackendServerInput,
-        output_schema = types.SetLoadBalancerPoliciesForBackendServerOutput,
+        input_schema = schemas.SetLoadBalancerPoliciesForBackendServerInput,
+        output_schema = schemas.SetLoadBalancerPoliciesForBackendServerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:setLoadBalancerPoliciesOfListener(input, options)
     return self:invokeOperation(input, {
         name = "SetLoadBalancerPoliciesOfListener",
-        input_schema = types.SetLoadBalancerPoliciesOfListenerInput,
-        output_schema = types.SetLoadBalancerPoliciesOfListenerOutput,
+        input_schema = schemas.SetLoadBalancerPoliciesOfListenerInput,
+        output_schema = schemas.SetLoadBalancerPoliciesOfListenerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

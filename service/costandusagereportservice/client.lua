@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("costandusagereportservice.endpoint_rules")
+local schemas = require("costandusagereportservice.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("costandusagereportservice.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:deleteReportDefinition(input, options)
     return self:invokeOperation(input, {
         name = "DeleteReportDefinition",
-        input_schema = types.DeleteReportDefinitionInput,
-        output_schema = types.DeleteReportDefinitionOutput,
+        input_schema = schemas.DeleteReportDefinitionInput,
+        output_schema = schemas.DeleteReportDefinitionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:describeReportDefinitions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeReportDefinitions",
-        input_schema = types.DescribeReportDefinitionsInput,
-        output_schema = types.DescribeReportDefinitionsOutput,
+        input_schema = schemas.DescribeReportDefinitionsInput,
+        output_schema = schemas.DescribeReportDefinitionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:modifyReportDefinition(input, options)
     return self:invokeOperation(input, {
         name = "ModifyReportDefinition",
-        input_schema = types.ModifyReportDefinitionInput,
-        output_schema = types.ModifyReportDefinitionOutput,
+        input_schema = schemas.ModifyReportDefinitionInput,
+        output_schema = schemas.ModifyReportDefinitionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:putReportDefinition(input, options)
     return self:invokeOperation(input, {
         name = "PutReportDefinition",
-        input_schema = types.PutReportDefinitionInput,
-        output_schema = types.PutReportDefinitionOutput,
+        input_schema = schemas.PutReportDefinitionInput,
+        output_schema = schemas.PutReportDefinitionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

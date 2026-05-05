@@ -1,0 +1,1973 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.sqs"
+
+local M = {}
+
+M.AddPermissionInput = schema.new({
+    id = id.from(_N, "AddPermissionInput"),
+    type = "structure",
+    members = {
+        QueueUrl = schema.new({
+            id = id.from(_N, "AddPermissionInput", "QueueUrl"),
+            type = "string",
+            name = "QueueUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Label = schema.new({
+            id = id.from(_N, "AddPermissionInput", "Label"),
+            type = "string",
+            name = "Label",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AWSAccountIds = schema.new({
+            id = id.from(_N, "AddPermissionInput", "AWSAccountIds"),
+            type = "list",
+            name = "AWSAccountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.XML_NAME] = { name = "AWSAccountId" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+        Actions = schema.new({
+            id = id.from(_N, "AddPermissionInput", "Actions"),
+            type = "list",
+            name = "Actions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.XML_NAME] = { name = "ActionName" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+    },
+})
+
+M.AddPermissionOutput = schema.new({
+    id = id.from(_N, "AddPermissionOutput"),
+    type = "structure",
+})
+
+M.InvalidAddress = schema.new({
+    id = id.from(_N, "InvalidAddress"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidAddress", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidSecurity = schema.new({
+    id = id.from(_N, "InvalidSecurity"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidSecurity", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.OverLimit = schema.new({
+    id = id.from(_N, "OverLimit"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "OverLimit", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.QueueDoesNotExist = schema.new({
+    id = id.from(_N, "QueueDoesNotExist"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "QueueDoesNotExist", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RequestThrottled = schema.new({
+    id = id.from(_N, "RequestThrottled"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "RequestThrottled", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UnsupportedOperation = schema.new({
+    id = id.from(_N, "UnsupportedOperation"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "UnsupportedOperation", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CancelMessageMoveTaskInput = schema.new({
+    id = id.from(_N, "CancelMessageMoveTaskInput"),
+    type = "structure",
+    members = {
+        TaskHandle = schema.new({
+            id = id.from(_N, "CancelMessageMoveTaskInput", "TaskHandle"),
+            type = "string",
+            name = "TaskHandle",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CancelMessageMoveTaskOutput = schema.new({
+    id = id.from(_N, "CancelMessageMoveTaskOutput"),
+    type = "structure",
+    members = {
+        ApproximateNumberOfMessagesMoved = schema.new({
+            id = id.from(_N, "CancelMessageMoveTaskOutput", "ApproximateNumberOfMessagesMoved"),
+            type = "long",
+            name = "ApproximateNumberOfMessagesMoved",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ChangeMessageVisibilityInput = schema.new({
+    id = id.from(_N, "ChangeMessageVisibilityInput"),
+    type = "structure",
+    members = {
+        QueueUrl = schema.new({
+            id = id.from(_N, "ChangeMessageVisibilityInput", "QueueUrl"),
+            type = "string",
+            name = "QueueUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ReceiptHandle = schema.new({
+            id = id.from(_N, "ChangeMessageVisibilityInput", "ReceiptHandle"),
+            type = "string",
+            name = "ReceiptHandle",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        VisibilityTimeout = schema.new({
+            id = id.from(_N, "ChangeMessageVisibilityInput", "VisibilityTimeout"),
+            type = "integer",
+            name = "VisibilityTimeout",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ChangeMessageVisibilityOutput = schema.new({
+    id = id.from(_N, "ChangeMessageVisibilityOutput"),
+    type = "structure",
+})
+
+M.MessageNotInflight = schema.new({
+    id = id.from(_N, "MessageNotInflight"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+})
+
+M.ReceiptHandleIsInvalid = schema.new({
+    id = id.from(_N, "ReceiptHandleIsInvalid"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ReceiptHandleIsInvalid", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchEntryIdsNotDistinct = schema.new({
+    id = id.from(_N, "BatchEntryIdsNotDistinct"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "BatchEntryIdsNotDistinct", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ChangeMessageVisibilityBatchRequestEntry = schema.new({
+    id = id.from(_N, "ChangeMessageVisibilityBatchRequestEntry"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "ChangeMessageVisibilityBatchRequestEntry", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ReceiptHandle = schema.new({
+            id = id.from(_N, "ChangeMessageVisibilityBatchRequestEntry", "ReceiptHandle"),
+            type = "string",
+            name = "ReceiptHandle",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        VisibilityTimeout = schema.new({
+            id = id.from(_N, "ChangeMessageVisibilityBatchRequestEntry", "VisibilityTimeout"),
+            type = "integer",
+            name = "VisibilityTimeout",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ChangeMessageVisibilityBatchInput = schema.new({
+    id = id.from(_N, "ChangeMessageVisibilityBatchInput"),
+    type = "structure",
+    members = {
+        QueueUrl = schema.new({
+            id = id.from(_N, "ChangeMessageVisibilityBatchInput", "QueueUrl"),
+            type = "string",
+            name = "QueueUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Entries = schema.new({
+            id = id.from(_N, "ChangeMessageVisibilityBatchInput", "Entries"),
+            type = "list",
+            name = "Entries",
+            target_id = prelude.Document.id,
+            list_member = M.ChangeMessageVisibilityBatchRequestEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.XML_NAME] = { name = "ChangeMessageVisibilityBatchRequestEntry" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchResultErrorEntry = schema.new({
+    id = id.from(_N, "BatchResultErrorEntry"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "BatchResultErrorEntry", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SenderFault = schema.new({
+            id = id.from(_N, "BatchResultErrorEntry", "SenderFault"),
+            type = "boolean",
+            name = "SenderFault",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        Code = schema.new({
+            id = id.from(_N, "BatchResultErrorEntry", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Message = schema.new({
+            id = id.from(_N, "BatchResultErrorEntry", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ChangeMessageVisibilityBatchResultEntry = schema.new({
+    id = id.from(_N, "ChangeMessageVisibilityBatchResultEntry"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "ChangeMessageVisibilityBatchResultEntry", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ChangeMessageVisibilityBatchOutput = schema.new({
+    id = id.from(_N, "ChangeMessageVisibilityBatchOutput"),
+    type = "structure",
+    members = {
+        Successful = schema.new({
+            id = id.from(_N, "ChangeMessageVisibilityBatchOutput", "Successful"),
+            type = "list",
+            name = "Successful",
+            target_id = prelude.Document.id,
+            list_member = M.ChangeMessageVisibilityBatchResultEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.XML_NAME] = { name = "ChangeMessageVisibilityBatchResultEntry" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+        Failed = schema.new({
+            id = id.from(_N, "ChangeMessageVisibilityBatchOutput", "Failed"),
+            type = "list",
+            name = "Failed",
+            target_id = prelude.Document.id,
+            list_member = M.BatchResultErrorEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.XML_NAME] = { name = "BatchResultErrorEntry" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+    },
+})
+
+M.EmptyBatchRequest = schema.new({
+    id = id.from(_N, "EmptyBatchRequest"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "EmptyBatchRequest", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidBatchEntryId = schema.new({
+    id = id.from(_N, "InvalidBatchEntryId"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidBatchEntryId", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TooManyEntriesInBatchRequest = schema.new({
+    id = id.from(_N, "TooManyEntriesInBatchRequest"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "TooManyEntriesInBatchRequest", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateQueueInput = schema.new({
+    id = id.from(_N, "CreateQueueInput"),
+    type = "structure",
+    members = {
+        QueueName = schema.new({
+            id = id.from(_N, "CreateQueueInput", "QueueName"),
+            type = "string",
+            name = "QueueName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Attributes = schema.new({
+            id = id.from(_N, "CreateQueueInput", "Attributes"),
+            type = "map",
+            name = "Attributes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.XML_NAME] = { name = "Attribute" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateQueueInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.XML_NAME] = { name = "Tag" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateQueueOutput = schema.new({
+    id = id.from(_N, "CreateQueueOutput"),
+    type = "structure",
+    members = {
+        QueueUrl = schema.new({
+            id = id.from(_N, "CreateQueueOutput", "QueueUrl"),
+            type = "string",
+            name = "QueueUrl",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidAttributeName = schema.new({
+    id = id.from(_N, "InvalidAttributeName"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidAttributeName", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidAttributeValue = schema.new({
+    id = id.from(_N, "InvalidAttributeValue"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidAttributeValue", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.QueueDeletedRecently = schema.new({
+    id = id.from(_N, "QueueDeletedRecently"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "QueueDeletedRecently", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.QueueNameExists = schema.new({
+    id = id.from(_N, "QueueNameExists"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "QueueNameExists", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteMessageInput = schema.new({
+    id = id.from(_N, "DeleteMessageInput"),
+    type = "structure",
+    members = {
+        QueueUrl = schema.new({
+            id = id.from(_N, "DeleteMessageInput", "QueueUrl"),
+            type = "string",
+            name = "QueueUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ReceiptHandle = schema.new({
+            id = id.from(_N, "DeleteMessageInput", "ReceiptHandle"),
+            type = "string",
+            name = "ReceiptHandle",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteMessageOutput = schema.new({
+    id = id.from(_N, "DeleteMessageOutput"),
+    type = "structure",
+})
+
+M.InvalidIdFormat = schema.new({
+    id = id.from(_N, "InvalidIdFormat"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+})
+
+M.DeleteMessageBatchRequestEntry = schema.new({
+    id = id.from(_N, "DeleteMessageBatchRequestEntry"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "DeleteMessageBatchRequestEntry", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ReceiptHandle = schema.new({
+            id = id.from(_N, "DeleteMessageBatchRequestEntry", "ReceiptHandle"),
+            type = "string",
+            name = "ReceiptHandle",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteMessageBatchInput = schema.new({
+    id = id.from(_N, "DeleteMessageBatchInput"),
+    type = "structure",
+    members = {
+        QueueUrl = schema.new({
+            id = id.from(_N, "DeleteMessageBatchInput", "QueueUrl"),
+            type = "string",
+            name = "QueueUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Entries = schema.new({
+            id = id.from(_N, "DeleteMessageBatchInput", "Entries"),
+            type = "list",
+            name = "Entries",
+            target_id = prelude.Document.id,
+            list_member = M.DeleteMessageBatchRequestEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.XML_NAME] = { name = "DeleteMessageBatchRequestEntry" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteMessageBatchResultEntry = schema.new({
+    id = id.from(_N, "DeleteMessageBatchResultEntry"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "DeleteMessageBatchResultEntry", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteMessageBatchOutput = schema.new({
+    id = id.from(_N, "DeleteMessageBatchOutput"),
+    type = "structure",
+    members = {
+        Successful = schema.new({
+            id = id.from(_N, "DeleteMessageBatchOutput", "Successful"),
+            type = "list",
+            name = "Successful",
+            target_id = prelude.Document.id,
+            list_member = M.DeleteMessageBatchResultEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.XML_NAME] = { name = "DeleteMessageBatchResultEntry" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+        Failed = schema.new({
+            id = id.from(_N, "DeleteMessageBatchOutput", "Failed"),
+            type = "list",
+            name = "Failed",
+            target_id = prelude.Document.id,
+            list_member = M.BatchResultErrorEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.XML_NAME] = { name = "BatchResultErrorEntry" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteQueueInput = schema.new({
+    id = id.from(_N, "DeleteQueueInput"),
+    type = "structure",
+    members = {
+        QueueUrl = schema.new({
+            id = id.from(_N, "DeleteQueueInput", "QueueUrl"),
+            type = "string",
+            name = "QueueUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteQueueOutput = schema.new({
+    id = id.from(_N, "DeleteQueueOutput"),
+    type = "structure",
+})
+
+M.GetQueueAttributesInput = schema.new({
+    id = id.from(_N, "GetQueueAttributesInput"),
+    type = "structure",
+    members = {
+        QueueUrl = schema.new({
+            id = id.from(_N, "GetQueueAttributesInput", "QueueUrl"),
+            type = "string",
+            name = "QueueUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AttributeNames = schema.new({
+            id = id.from(_N, "GetQueueAttributesInput", "AttributeNames"),
+            type = "list",
+            name = "AttributeNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.XML_NAME] = { name = "AttributeName" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+    },
+})
+
+M.GetQueueAttributesOutput = schema.new({
+    id = id.from(_N, "GetQueueAttributesOutput"),
+    type = "structure",
+    members = {
+        Attributes = schema.new({
+            id = id.from(_N, "GetQueueAttributesOutput", "Attributes"),
+            type = "map",
+            name = "Attributes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.XML_NAME] = { name = "Attribute" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+    },
+})
+
+M.GetQueueUrlInput = schema.new({
+    id = id.from(_N, "GetQueueUrlInput"),
+    type = "structure",
+    members = {
+        QueueName = schema.new({
+            id = id.from(_N, "GetQueueUrlInput", "QueueName"),
+            type = "string",
+            name = "QueueName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        QueueOwnerAWSAccountId = schema.new({
+            id = id.from(_N, "GetQueueUrlInput", "QueueOwnerAWSAccountId"),
+            type = "string",
+            name = "QueueOwnerAWSAccountId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetQueueUrlOutput = schema.new({
+    id = id.from(_N, "GetQueueUrlOutput"),
+    type = "structure",
+    members = {
+        QueueUrl = schema.new({
+            id = id.from(_N, "GetQueueUrlOutput", "QueueUrl"),
+            type = "string",
+            name = "QueueUrl",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListDeadLetterSourceQueuesInput = schema.new({
+    id = id.from(_N, "ListDeadLetterSourceQueuesInput"),
+    type = "structure",
+    members = {
+        QueueUrl = schema.new({
+            id = id.from(_N, "ListDeadLetterSourceQueuesInput", "QueueUrl"),
+            type = "string",
+            name = "QueueUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListDeadLetterSourceQueuesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListDeadLetterSourceQueuesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ListDeadLetterSourceQueuesOutput = schema.new({
+    id = id.from(_N, "ListDeadLetterSourceQueuesOutput"),
+    type = "structure",
+    members = {
+        queueUrls = schema.new({
+            id = id.from(_N, "ListDeadLetterSourceQueuesOutput", "queueUrls"),
+            type = "list",
+            name = "queueUrls",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.XML_NAME] = { name = "QueueUrl" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListDeadLetterSourceQueuesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListMessageMoveTasksInput = schema.new({
+    id = id.from(_N, "ListMessageMoveTasksInput"),
+    type = "structure",
+    members = {
+        SourceArn = schema.new({
+            id = id.from(_N, "ListMessageMoveTasksInput", "SourceArn"),
+            type = "string",
+            name = "SourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListMessageMoveTasksInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ListMessageMoveTasksResultEntry = schema.new({
+    id = id.from(_N, "ListMessageMoveTasksResultEntry"),
+    type = "structure",
+    members = {
+        TaskHandle = schema.new({
+            id = id.from(_N, "ListMessageMoveTasksResultEntry", "TaskHandle"),
+            type = "string",
+            name = "TaskHandle",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ListMessageMoveTasksResultEntry", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        SourceArn = schema.new({
+            id = id.from(_N, "ListMessageMoveTasksResultEntry", "SourceArn"),
+            type = "string",
+            name = "SourceArn",
+            target_id = prelude.String.id,
+        }),
+        DestinationArn = schema.new({
+            id = id.from(_N, "ListMessageMoveTasksResultEntry", "DestinationArn"),
+            type = "string",
+            name = "DestinationArn",
+            target_id = prelude.String.id,
+        }),
+        MaxNumberOfMessagesPerSecond = schema.new({
+            id = id.from(_N, "ListMessageMoveTasksResultEntry", "MaxNumberOfMessagesPerSecond"),
+            type = "integer",
+            name = "MaxNumberOfMessagesPerSecond",
+            target_id = prelude.Integer.id,
+        }),
+        ApproximateNumberOfMessagesMoved = schema.new({
+            id = id.from(_N, "ListMessageMoveTasksResultEntry", "ApproximateNumberOfMessagesMoved"),
+            type = "long",
+            name = "ApproximateNumberOfMessagesMoved",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        ApproximateNumberOfMessagesToMove = schema.new({
+            id = id.from(_N, "ListMessageMoveTasksResultEntry", "ApproximateNumberOfMessagesToMove"),
+            type = "long",
+            name = "ApproximateNumberOfMessagesToMove",
+            target_id = prelude.Long.id,
+        }),
+        FailureReason = schema.new({
+            id = id.from(_N, "ListMessageMoveTasksResultEntry", "FailureReason"),
+            type = "string",
+            name = "FailureReason",
+            target_id = prelude.String.id,
+        }),
+        StartedTimestamp = schema.new({
+            id = id.from(_N, "ListMessageMoveTasksResultEntry", "StartedTimestamp"),
+            type = "long",
+            name = "StartedTimestamp",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
+M.ListMessageMoveTasksOutput = schema.new({
+    id = id.from(_N, "ListMessageMoveTasksOutput"),
+    type = "structure",
+    traits = {
+        [traits.XML_NAME] = { name = "ListMessageMoveTasksResult" },
+    },
+    members = {
+        Results = schema.new({
+            id = id.from(_N, "ListMessageMoveTasksOutput", "Results"),
+            type = "list",
+            name = "Results",
+            target_id = prelude.Document.id,
+            list_member = M.ListMessageMoveTasksResultEntry,
+            traits = {
+                [traits.XML_NAME] = { name = "ListMessageMoveTasksResultEntry" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+    },
+})
+
+M.ListQueuesInput = schema.new({
+    id = id.from(_N, "ListQueuesInput"),
+    type = "structure",
+    members = {
+        QueueNamePrefix = schema.new({
+            id = id.from(_N, "ListQueuesInput", "QueueNamePrefix"),
+            type = "string",
+            name = "QueueNamePrefix",
+            target_id = prelude.String.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListQueuesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListQueuesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ListQueuesOutput = schema.new({
+    id = id.from(_N, "ListQueuesOutput"),
+    type = "structure",
+    members = {
+        QueueUrls = schema.new({
+            id = id.from(_N, "ListQueuesOutput", "QueueUrls"),
+            type = "list",
+            name = "QueueUrls",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.XML_NAME] = { name = "QueueUrl" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListQueuesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListQueueTagsInput = schema.new({
+    id = id.from(_N, "ListQueueTagsInput"),
+    type = "structure",
+    members = {
+        QueueUrl = schema.new({
+            id = id.from(_N, "ListQueueTagsInput", "QueueUrl"),
+            type = "string",
+            name = "QueueUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListQueueTagsOutput = schema.new({
+    id = id.from(_N, "ListQueueTagsOutput"),
+    type = "structure",
+    members = {
+        Tags = schema.new({
+            id = id.from(_N, "ListQueueTagsOutput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.XML_NAME] = { name = "Tag" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+    },
+})
+
+M.PurgeQueueInProgress = schema.new({
+    id = id.from(_N, "PurgeQueueInProgress"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "PurgeQueueInProgress", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PurgeQueueInput = schema.new({
+    id = id.from(_N, "PurgeQueueInput"),
+    type = "structure",
+    members = {
+        QueueUrl = schema.new({
+            id = id.from(_N, "PurgeQueueInput", "QueueUrl"),
+            type = "string",
+            name = "QueueUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PurgeQueueOutput = schema.new({
+    id = id.from(_N, "PurgeQueueOutput"),
+    type = "structure",
+})
+
+M.KmsAccessDenied = schema.new({
+    id = id.from(_N, "KmsAccessDenied"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "KmsAccessDenied", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.KmsDisabled = schema.new({
+    id = id.from(_N, "KmsDisabled"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "KmsDisabled", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.KmsInvalidKeyUsage = schema.new({
+    id = id.from(_N, "KmsInvalidKeyUsage"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "KmsInvalidKeyUsage", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.KmsInvalidState = schema.new({
+    id = id.from(_N, "KmsInvalidState"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "KmsInvalidState", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.KmsNotFound = schema.new({
+    id = id.from(_N, "KmsNotFound"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "KmsNotFound", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.KmsOptInRequired = schema.new({
+    id = id.from(_N, "KmsOptInRequired"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "KmsOptInRequired", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.KmsThrottled = schema.new({
+    id = id.from(_N, "KmsThrottled"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "KmsThrottled", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ReceiveMessageInput = schema.new({
+    id = id.from(_N, "ReceiveMessageInput"),
+    type = "structure",
+    members = {
+        QueueUrl = schema.new({
+            id = id.from(_N, "ReceiveMessageInput", "QueueUrl"),
+            type = "string",
+            name = "QueueUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AttributeNames = schema.new({
+            id = id.from(_N, "ReceiveMessageInput", "AttributeNames"),
+            type = "list",
+            name = "AttributeNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.XML_NAME] = { name = "AttributeName" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+        MessageSystemAttributeNames = schema.new({
+            id = id.from(_N, "ReceiveMessageInput", "MessageSystemAttributeNames"),
+            type = "list",
+            name = "MessageSystemAttributeNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.XML_NAME] = { name = "AttributeName" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+        MessageAttributeNames = schema.new({
+            id = id.from(_N, "ReceiveMessageInput", "MessageAttributeNames"),
+            type = "list",
+            name = "MessageAttributeNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.XML_NAME] = { name = "MessageAttributeName" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+        MaxNumberOfMessages = schema.new({
+            id = id.from(_N, "ReceiveMessageInput", "MaxNumberOfMessages"),
+            type = "integer",
+            name = "MaxNumberOfMessages",
+            target_id = prelude.Integer.id,
+        }),
+        VisibilityTimeout = schema.new({
+            id = id.from(_N, "ReceiveMessageInput", "VisibilityTimeout"),
+            type = "integer",
+            name = "VisibilityTimeout",
+            target_id = prelude.Integer.id,
+        }),
+        WaitTimeSeconds = schema.new({
+            id = id.from(_N, "ReceiveMessageInput", "WaitTimeSeconds"),
+            type = "integer",
+            name = "WaitTimeSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        ReceiveRequestAttemptId = schema.new({
+            id = id.from(_N, "ReceiveMessageInput", "ReceiveRequestAttemptId"),
+            type = "string",
+            name = "ReceiveRequestAttemptId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.MessageAttributeValue = schema.new({
+    id = id.from(_N, "MessageAttributeValue"),
+    type = "structure",
+    members = {
+        StringValue = schema.new({
+            id = id.from(_N, "MessageAttributeValue", "StringValue"),
+            type = "string",
+            name = "StringValue",
+            target_id = prelude.String.id,
+        }),
+        BinaryValue = schema.new({
+            id = id.from(_N, "MessageAttributeValue", "BinaryValue"),
+            type = "blob",
+            name = "BinaryValue",
+            target_id = prelude.Blob.id,
+        }),
+        StringListValues = schema.new({
+            id = id.from(_N, "MessageAttributeValue", "StringListValues"),
+            type = "list",
+            name = "StringListValues",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.XML_NAME] = { name = "StringListValue" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+        BinaryListValues = schema.new({
+            id = id.from(_N, "MessageAttributeValue", "BinaryListValues"),
+            type = "list",
+            name = "BinaryListValues",
+            target_id = prelude.Document.id,
+            list_member = prelude.Blob,
+            traits = {
+                [traits.XML_NAME] = { name = "BinaryListValue" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+        DataType = schema.new({
+            id = id.from(_N, "MessageAttributeValue", "DataType"),
+            type = "string",
+            name = "DataType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Message = schema.new({
+    id = id.from(_N, "Message"),
+    type = "structure",
+    members = {
+        MessageId = schema.new({
+            id = id.from(_N, "Message", "MessageId"),
+            type = "string",
+            name = "MessageId",
+            target_id = prelude.String.id,
+        }),
+        ReceiptHandle = schema.new({
+            id = id.from(_N, "Message", "ReceiptHandle"),
+            type = "string",
+            name = "ReceiptHandle",
+            target_id = prelude.String.id,
+        }),
+        MD5OfBody = schema.new({
+            id = id.from(_N, "Message", "MD5OfBody"),
+            type = "string",
+            name = "MD5OfBody",
+            target_id = prelude.String.id,
+        }),
+        Body = schema.new({
+            id = id.from(_N, "Message", "Body"),
+            type = "string",
+            name = "Body",
+            target_id = prelude.String.id,
+        }),
+        Attributes = schema.new({
+            id = id.from(_N, "Message", "Attributes"),
+            type = "map",
+            name = "Attributes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.XML_NAME] = { name = "Attribute" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+        MD5OfMessageAttributes = schema.new({
+            id = id.from(_N, "Message", "MD5OfMessageAttributes"),
+            type = "string",
+            name = "MD5OfMessageAttributes",
+            target_id = prelude.String.id,
+        }),
+        MessageAttributes = schema.new({
+            id = id.from(_N, "Message", "MessageAttributes"),
+            type = "map",
+            name = "MessageAttributes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.MessageAttributeValue,
+            traits = {
+                [traits.XML_NAME] = { name = "MessageAttribute" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+    },
+})
+
+M.ReceiveMessageOutput = schema.new({
+    id = id.from(_N, "ReceiveMessageOutput"),
+    type = "structure",
+    members = {
+        Messages = schema.new({
+            id = id.from(_N, "ReceiveMessageOutput", "Messages"),
+            type = "list",
+            name = "Messages",
+            target_id = prelude.Document.id,
+            list_member = M.Message,
+            traits = {
+                [traits.XML_NAME] = { name = "Message" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+    },
+})
+
+M.RemovePermissionInput = schema.new({
+    id = id.from(_N, "RemovePermissionInput"),
+    type = "structure",
+    members = {
+        QueueUrl = schema.new({
+            id = id.from(_N, "RemovePermissionInput", "QueueUrl"),
+            type = "string",
+            name = "QueueUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Label = schema.new({
+            id = id.from(_N, "RemovePermissionInput", "Label"),
+            type = "string",
+            name = "Label",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RemovePermissionOutput = schema.new({
+    id = id.from(_N, "RemovePermissionOutput"),
+    type = "structure",
+})
+
+M.InvalidMessageContents = schema.new({
+    id = id.from(_N, "InvalidMessageContents"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidMessageContents", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.MessageSystemAttributeValue = schema.new({
+    id = id.from(_N, "MessageSystemAttributeValue"),
+    type = "structure",
+    members = {
+        StringValue = schema.new({
+            id = id.from(_N, "MessageSystemAttributeValue", "StringValue"),
+            type = "string",
+            name = "StringValue",
+            target_id = prelude.String.id,
+        }),
+        BinaryValue = schema.new({
+            id = id.from(_N, "MessageSystemAttributeValue", "BinaryValue"),
+            type = "blob",
+            name = "BinaryValue",
+            target_id = prelude.Blob.id,
+        }),
+        StringListValues = schema.new({
+            id = id.from(_N, "MessageSystemAttributeValue", "StringListValues"),
+            type = "list",
+            name = "StringListValues",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.XML_NAME] = { name = "StringListValue" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+        BinaryListValues = schema.new({
+            id = id.from(_N, "MessageSystemAttributeValue", "BinaryListValues"),
+            type = "list",
+            name = "BinaryListValues",
+            target_id = prelude.Document.id,
+            list_member = prelude.Blob,
+            traits = {
+                [traits.XML_NAME] = { name = "BinaryListValue" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+        DataType = schema.new({
+            id = id.from(_N, "MessageSystemAttributeValue", "DataType"),
+            type = "string",
+            name = "DataType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SendMessageInput = schema.new({
+    id = id.from(_N, "SendMessageInput"),
+    type = "structure",
+    members = {
+        QueueUrl = schema.new({
+            id = id.from(_N, "SendMessageInput", "QueueUrl"),
+            type = "string",
+            name = "QueueUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MessageBody = schema.new({
+            id = id.from(_N, "SendMessageInput", "MessageBody"),
+            type = "string",
+            name = "MessageBody",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DelaySeconds = schema.new({
+            id = id.from(_N, "SendMessageInput", "DelaySeconds"),
+            type = "integer",
+            name = "DelaySeconds",
+            target_id = prelude.Integer.id,
+        }),
+        MessageAttributes = schema.new({
+            id = id.from(_N, "SendMessageInput", "MessageAttributes"),
+            type = "map",
+            name = "MessageAttributes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.MessageAttributeValue,
+            traits = {
+                [traits.XML_NAME] = { name = "MessageAttribute" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+        MessageSystemAttributes = schema.new({
+            id = id.from(_N, "SendMessageInput", "MessageSystemAttributes"),
+            type = "map",
+            name = "MessageSystemAttributes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.MessageSystemAttributeValue,
+            traits = {
+                [traits.XML_NAME] = { name = "MessageSystemAttribute" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+        MessageDeduplicationId = schema.new({
+            id = id.from(_N, "SendMessageInput", "MessageDeduplicationId"),
+            type = "string",
+            name = "MessageDeduplicationId",
+            target_id = prelude.String.id,
+        }),
+        MessageGroupId = schema.new({
+            id = id.from(_N, "SendMessageInput", "MessageGroupId"),
+            type = "string",
+            name = "MessageGroupId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SendMessageOutput = schema.new({
+    id = id.from(_N, "SendMessageOutput"),
+    type = "structure",
+    members = {
+        MD5OfMessageBody = schema.new({
+            id = id.from(_N, "SendMessageOutput", "MD5OfMessageBody"),
+            type = "string",
+            name = "MD5OfMessageBody",
+            target_id = prelude.String.id,
+        }),
+        MD5OfMessageAttributes = schema.new({
+            id = id.from(_N, "SendMessageOutput", "MD5OfMessageAttributes"),
+            type = "string",
+            name = "MD5OfMessageAttributes",
+            target_id = prelude.String.id,
+        }),
+        MD5OfMessageSystemAttributes = schema.new({
+            id = id.from(_N, "SendMessageOutput", "MD5OfMessageSystemAttributes"),
+            type = "string",
+            name = "MD5OfMessageSystemAttributes",
+            target_id = prelude.String.id,
+        }),
+        MessageId = schema.new({
+            id = id.from(_N, "SendMessageOutput", "MessageId"),
+            type = "string",
+            name = "MessageId",
+            target_id = prelude.String.id,
+        }),
+        SequenceNumber = schema.new({
+            id = id.from(_N, "SendMessageOutput", "SequenceNumber"),
+            type = "string",
+            name = "SequenceNumber",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchRequestTooLong = schema.new({
+    id = id.from(_N, "BatchRequestTooLong"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "BatchRequestTooLong", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SendMessageBatchRequestEntry = schema.new({
+    id = id.from(_N, "SendMessageBatchRequestEntry"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "SendMessageBatchRequestEntry", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MessageBody = schema.new({
+            id = id.from(_N, "SendMessageBatchRequestEntry", "MessageBody"),
+            type = "string",
+            name = "MessageBody",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DelaySeconds = schema.new({
+            id = id.from(_N, "SendMessageBatchRequestEntry", "DelaySeconds"),
+            type = "integer",
+            name = "DelaySeconds",
+            target_id = prelude.Integer.id,
+        }),
+        MessageAttributes = schema.new({
+            id = id.from(_N, "SendMessageBatchRequestEntry", "MessageAttributes"),
+            type = "map",
+            name = "MessageAttributes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.MessageAttributeValue,
+            traits = {
+                [traits.XML_NAME] = { name = "MessageAttribute" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+        MessageSystemAttributes = schema.new({
+            id = id.from(_N, "SendMessageBatchRequestEntry", "MessageSystemAttributes"),
+            type = "map",
+            name = "MessageSystemAttributes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.MessageSystemAttributeValue,
+            traits = {
+                [traits.XML_NAME] = { name = "MessageSystemAttribute" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+        MessageDeduplicationId = schema.new({
+            id = id.from(_N, "SendMessageBatchRequestEntry", "MessageDeduplicationId"),
+            type = "string",
+            name = "MessageDeduplicationId",
+            target_id = prelude.String.id,
+        }),
+        MessageGroupId = schema.new({
+            id = id.from(_N, "SendMessageBatchRequestEntry", "MessageGroupId"),
+            type = "string",
+            name = "MessageGroupId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SendMessageBatchInput = schema.new({
+    id = id.from(_N, "SendMessageBatchInput"),
+    type = "structure",
+    members = {
+        QueueUrl = schema.new({
+            id = id.from(_N, "SendMessageBatchInput", "QueueUrl"),
+            type = "string",
+            name = "QueueUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Entries = schema.new({
+            id = id.from(_N, "SendMessageBatchInput", "Entries"),
+            type = "list",
+            name = "Entries",
+            target_id = prelude.Document.id,
+            list_member = M.SendMessageBatchRequestEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.XML_NAME] = { name = "SendMessageBatchRequestEntry" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+    },
+})
+
+M.SendMessageBatchResultEntry = schema.new({
+    id = id.from(_N, "SendMessageBatchResultEntry"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "SendMessageBatchResultEntry", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MessageId = schema.new({
+            id = id.from(_N, "SendMessageBatchResultEntry", "MessageId"),
+            type = "string",
+            name = "MessageId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MD5OfMessageBody = schema.new({
+            id = id.from(_N, "SendMessageBatchResultEntry", "MD5OfMessageBody"),
+            type = "string",
+            name = "MD5OfMessageBody",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MD5OfMessageAttributes = schema.new({
+            id = id.from(_N, "SendMessageBatchResultEntry", "MD5OfMessageAttributes"),
+            type = "string",
+            name = "MD5OfMessageAttributes",
+            target_id = prelude.String.id,
+        }),
+        MD5OfMessageSystemAttributes = schema.new({
+            id = id.from(_N, "SendMessageBatchResultEntry", "MD5OfMessageSystemAttributes"),
+            type = "string",
+            name = "MD5OfMessageSystemAttributes",
+            target_id = prelude.String.id,
+        }),
+        SequenceNumber = schema.new({
+            id = id.from(_N, "SendMessageBatchResultEntry", "SequenceNumber"),
+            type = "string",
+            name = "SequenceNumber",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SendMessageBatchOutput = schema.new({
+    id = id.from(_N, "SendMessageBatchOutput"),
+    type = "structure",
+    members = {
+        Successful = schema.new({
+            id = id.from(_N, "SendMessageBatchOutput", "Successful"),
+            type = "list",
+            name = "Successful",
+            target_id = prelude.Document.id,
+            list_member = M.SendMessageBatchResultEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.XML_NAME] = { name = "SendMessageBatchResultEntry" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+        Failed = schema.new({
+            id = id.from(_N, "SendMessageBatchOutput", "Failed"),
+            type = "list",
+            name = "Failed",
+            target_id = prelude.Document.id,
+            list_member = M.BatchResultErrorEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.XML_NAME] = { name = "BatchResultErrorEntry" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+    },
+})
+
+M.SetQueueAttributesInput = schema.new({
+    id = id.from(_N, "SetQueueAttributesInput"),
+    type = "structure",
+    members = {
+        QueueUrl = schema.new({
+            id = id.from(_N, "SetQueueAttributesInput", "QueueUrl"),
+            type = "string",
+            name = "QueueUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Attributes = schema.new({
+            id = id.from(_N, "SetQueueAttributesInput", "Attributes"),
+            type = "map",
+            name = "Attributes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.XML_NAME] = { name = "Attribute" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+    },
+})
+
+M.SetQueueAttributesOutput = schema.new({
+    id = id.from(_N, "SetQueueAttributesOutput"),
+    type = "structure",
+})
+
+M.StartMessageMoveTaskInput = schema.new({
+    id = id.from(_N, "StartMessageMoveTaskInput"),
+    type = "structure",
+    members = {
+        SourceArn = schema.new({
+            id = id.from(_N, "StartMessageMoveTaskInput", "SourceArn"),
+            type = "string",
+            name = "SourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DestinationArn = schema.new({
+            id = id.from(_N, "StartMessageMoveTaskInput", "DestinationArn"),
+            type = "string",
+            name = "DestinationArn",
+            target_id = prelude.String.id,
+        }),
+        MaxNumberOfMessagesPerSecond = schema.new({
+            id = id.from(_N, "StartMessageMoveTaskInput", "MaxNumberOfMessagesPerSecond"),
+            type = "integer",
+            name = "MaxNumberOfMessagesPerSecond",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.StartMessageMoveTaskOutput = schema.new({
+    id = id.from(_N, "StartMessageMoveTaskOutput"),
+    type = "structure",
+    members = {
+        TaskHandle = schema.new({
+            id = id.from(_N, "StartMessageMoveTaskOutput", "TaskHandle"),
+            type = "string",
+            name = "TaskHandle",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TagQueueInput = schema.new({
+    id = id.from(_N, "TagQueueInput"),
+    type = "structure",
+    members = {
+        QueueUrl = schema.new({
+            id = id.from(_N, "TagQueueInput", "QueueUrl"),
+            type = "string",
+            name = "QueueUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "TagQueueInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.XML_NAME] = { name = "Tag" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+    },
+})
+
+M.TagQueueOutput = schema.new({
+    id = id.from(_N, "TagQueueOutput"),
+    type = "structure",
+})
+
+M.UntagQueueInput = schema.new({
+    id = id.from(_N, "UntagQueueInput"),
+    type = "structure",
+    members = {
+        QueueUrl = schema.new({
+            id = id.from(_N, "UntagQueueInput", "QueueUrl"),
+            type = "string",
+            name = "QueueUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TagKeys = schema.new({
+            id = id.from(_N, "UntagQueueInput", "TagKeys"),
+            type = "list",
+            name = "TagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.XML_NAME] = { name = "TagKey" },
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+    },
+})
+
+M.UntagQueueOutput = schema.new({
+    id = id.from(_N, "UntagQueueOutput"),
+    type = "structure",
+})
+
+return M

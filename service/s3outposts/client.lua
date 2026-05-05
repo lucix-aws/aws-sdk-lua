@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("s3outposts.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("s3outposts.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("s3outposts.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "CreateEndpoint",
-        input_schema = types.CreateEndpointInput,
-        output_schema = types.CreateEndpointOutput,
+        input_schema = schemas.CreateEndpointInput,
+        output_schema = schemas.CreateEndpointOutput,
         http_method = "POST",
         http_path = "/S3Outposts/CreateEndpoint",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEndpoint",
-        input_schema = types.DeleteEndpointInput,
-        output_schema = types.DeleteEndpointOutput,
+        input_schema = schemas.DeleteEndpointInput,
+        output_schema = schemas.DeleteEndpointOutput,
         http_method = "DELETE",
         http_path = "/S3Outposts/DeleteEndpoint",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:listEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "ListEndpoints",
-        input_schema = types.ListEndpointsInput,
-        output_schema = types.ListEndpointsOutput,
+        input_schema = schemas.ListEndpointsInput,
+        output_schema = schemas.ListEndpointsOutput,
         http_method = "GET",
         http_path = "/S3Outposts/ListEndpoints",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:listOutpostsWithS3(input, options)
     return self:invokeOperation(input, {
         name = "ListOutpostsWithS3",
-        input_schema = types.ListOutpostsWithS3Input,
-        output_schema = types.ListOutpostsWithS3Output,
+        input_schema = schemas.ListOutpostsWithS3Input,
+        output_schema = schemas.ListOutpostsWithS3Output,
         http_method = "GET",
         http_path = "/S3Outposts/ListOutpostsWithS3",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:listSharedEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "ListSharedEndpoints",
-        input_schema = types.ListSharedEndpointsInput,
-        output_schema = types.ListSharedEndpointsOutput,
+        input_schema = schemas.ListSharedEndpointsInput,
+        output_schema = schemas.ListSharedEndpointsOutput,
         http_method = "GET",
         http_path = "/S3Outposts/ListSharedEndpoints",
         effective_auth_schemes = {

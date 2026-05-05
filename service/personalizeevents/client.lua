@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("personalizeevents.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("personalizeevents.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("personalizeevents.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:putActionInteractions(input, options)
     return self:invokeOperation(input, {
         name = "PutActionInteractions",
-        input_schema = types.PutActionInteractionsInput,
-        output_schema = types.PutActionInteractionsOutput,
+        input_schema = schemas.PutActionInteractionsInput,
+        output_schema = schemas.PutActionInteractionsOutput,
         http_method = "POST",
         http_path = "/action-interactions",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:putActions(input, options)
     return self:invokeOperation(input, {
         name = "PutActions",
-        input_schema = types.PutActionsInput,
-        output_schema = types.PutActionsOutput,
+        input_schema = schemas.PutActionsInput,
+        output_schema = schemas.PutActionsOutput,
         http_method = "POST",
         http_path = "/actions",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:putEvents(input, options)
     return self:invokeOperation(input, {
         name = "PutEvents",
-        input_schema = types.PutEventsInput,
-        output_schema = types.PutEventsOutput,
+        input_schema = schemas.PutEventsInput,
+        output_schema = schemas.PutEventsOutput,
         http_method = "POST",
         http_path = "/events",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:putItems(input, options)
     return self:invokeOperation(input, {
         name = "PutItems",
-        input_schema = types.PutItemsInput,
-        output_schema = types.PutItemsOutput,
+        input_schema = schemas.PutItemsInput,
+        output_schema = schemas.PutItemsOutput,
         http_method = "POST",
         http_path = "/items",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:putUsers(input, options)
     return self:invokeOperation(input, {
         name = "PutUsers",
-        input_schema = types.PutUsersInput,
-        output_schema = types.PutUsersOutput,
+        input_schema = schemas.PutUsersInput,
+        output_schema = schemas.PutUsersOutput,
         http_method = "POST",
         http_path = "/users",
         effective_auth_schemes = {

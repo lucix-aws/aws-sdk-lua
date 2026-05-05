@@ -1,0 +1,815 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.geomaps"
+
+local M = {}
+
+M.AccessDeniedException = schema.new({
+    id = id.from(_N, "AccessDeniedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "AccessDeniedException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.GetGlyphsInput = schema.new({
+    id = id.from(_N, "GetGlyphsInput"),
+    type = "structure",
+    members = {
+        FontStack = schema.new({
+            id = id.from(_N, "GetGlyphsInput", "FontStack"),
+            type = "string",
+            name = "FontStack",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        FontUnicodeRange = schema.new({
+            id = id.from(_N, "GetGlyphsInput", "FontUnicodeRange"),
+            type = "string",
+            name = "FontUnicodeRange",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetGlyphsOutput = schema.new({
+    id = id.from(_N, "GetGlyphsOutput"),
+    type = "structure",
+    members = {
+        Blob = schema.new({
+            id = id.from(_N, "GetGlyphsOutput", "Blob"),
+            type = "blob",
+            name = "Blob",
+            target_id = prelude.Blob.id,
+            traits = {
+                [traits.HTTP_PAYLOAD] = {},
+            },
+        }),
+        ContentType = schema.new({
+            id = id.from(_N, "GetGlyphsOutput", "ContentType"),
+            type = "string",
+            name = "ContentType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Content-Type" },
+            },
+        }),
+        CacheControl = schema.new({
+            id = id.from(_N, "GetGlyphsOutput", "CacheControl"),
+            type = "string",
+            name = "CacheControl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Cache-Control" },
+            },
+        }),
+        ETag = schema.new({
+            id = id.from(_N, "GetGlyphsOutput", "ETag"),
+            type = "string",
+            name = "ETag",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "ETag" },
+            },
+        }),
+    },
+})
+
+M.GetSpritesInput = schema.new({
+    id = id.from(_N, "GetSpritesInput"),
+    type = "structure",
+    members = {
+        FileName = schema.new({
+            id = id.from(_N, "GetSpritesInput", "FileName"),
+            type = "string",
+            name = "FileName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Style = schema.new({
+            id = id.from(_N, "GetSpritesInput", "Style"),
+            type = "string",
+            name = "Style",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ColorScheme = schema.new({
+            id = id.from(_N, "GetSpritesInput", "ColorScheme"),
+            type = "string",
+            name = "ColorScheme",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Variant = schema.new({
+            id = id.from(_N, "GetSpritesInput", "Variant"),
+            type = "string",
+            name = "Variant",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetSpritesOutput = schema.new({
+    id = id.from(_N, "GetSpritesOutput"),
+    type = "structure",
+    members = {
+        Blob = schema.new({
+            id = id.from(_N, "GetSpritesOutput", "Blob"),
+            type = "blob",
+            name = "Blob",
+            target_id = prelude.Blob.id,
+            traits = {
+                [traits.HTTP_PAYLOAD] = {},
+            },
+        }),
+        ContentType = schema.new({
+            id = id.from(_N, "GetSpritesOutput", "ContentType"),
+            type = "string",
+            name = "ContentType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Content-Type" },
+            },
+        }),
+        CacheControl = schema.new({
+            id = id.from(_N, "GetSpritesOutput", "CacheControl"),
+            type = "string",
+            name = "CacheControl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Cache-Control" },
+            },
+        }),
+        ETag = schema.new({
+            id = id.from(_N, "GetSpritesOutput", "ETag"),
+            type = "string",
+            name = "ETag",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "ETag" },
+            },
+        }),
+    },
+})
+
+M.GetStaticMapInput = schema.new({
+    id = id.from(_N, "GetStaticMapInput"),
+    type = "structure",
+    members = {
+        BoundingBox = schema.new({
+            id = id.from(_N, "GetStaticMapInput", "BoundingBox"),
+            type = "string",
+            name = "BoundingBox",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "bounding-box" },
+            },
+        }),
+        BoundedPositions = schema.new({
+            id = id.from(_N, "GetStaticMapInput", "BoundedPositions"),
+            type = "string",
+            name = "BoundedPositions",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "bounded-positions" },
+            },
+        }),
+        Center = schema.new({
+            id = id.from(_N, "GetStaticMapInput", "Center"),
+            type = "string",
+            name = "Center",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "center" },
+            },
+        }),
+        ColorScheme = schema.new({
+            id = id.from(_N, "GetStaticMapInput", "ColorScheme"),
+            type = "string",
+            name = "ColorScheme",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "color-scheme" },
+            },
+        }),
+        CompactOverlay = schema.new({
+            id = id.from(_N, "GetStaticMapInput", "CompactOverlay"),
+            type = "string",
+            name = "CompactOverlay",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "compact-overlay" },
+            },
+        }),
+        CropLabels = schema.new({
+            id = id.from(_N, "GetStaticMapInput", "CropLabels"),
+            type = "boolean",
+            name = "CropLabels",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "crop-labels" },
+            },
+        }),
+        GeoJsonOverlay = schema.new({
+            id = id.from(_N, "GetStaticMapInput", "GeoJsonOverlay"),
+            type = "string",
+            name = "GeoJsonOverlay",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "geojson-overlay" },
+            },
+        }),
+        Height = schema.new({
+            id = id.from(_N, "GetStaticMapInput", "Height"),
+            type = "integer",
+            name = "Height",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "height" },
+            },
+        }),
+        Key = schema.new({
+            id = id.from(_N, "GetStaticMapInput", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "key" },
+            },
+        }),
+        LabelSize = schema.new({
+            id = id.from(_N, "GetStaticMapInput", "LabelSize"),
+            type = "string",
+            name = "LabelSize",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "label-size" },
+            },
+        }),
+        Language = schema.new({
+            id = id.from(_N, "GetStaticMapInput", "Language"),
+            type = "string",
+            name = "Language",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "lang" },
+            },
+        }),
+        Padding = schema.new({
+            id = id.from(_N, "GetStaticMapInput", "Padding"),
+            type = "integer",
+            name = "Padding",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "padding" },
+            },
+        }),
+        PoliticalView = schema.new({
+            id = id.from(_N, "GetStaticMapInput", "PoliticalView"),
+            type = "string",
+            name = "PoliticalView",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "political-view" },
+            },
+        }),
+        PointsOfInterests = schema.new({
+            id = id.from(_N, "GetStaticMapInput", "PointsOfInterests"),
+            type = "string",
+            name = "PointsOfInterests",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "pois" },
+            },
+        }),
+        Radius = schema.new({
+            id = id.from(_N, "GetStaticMapInput", "Radius"),
+            type = "long",
+            name = "Radius",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+                [traits.HTTP_QUERY] = { name = "radius" },
+            },
+        }),
+        FileName = schema.new({
+            id = id.from(_N, "GetStaticMapInput", "FileName"),
+            type = "string",
+            name = "FileName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ScaleBarUnit = schema.new({
+            id = id.from(_N, "GetStaticMapInput", "ScaleBarUnit"),
+            type = "string",
+            name = "ScaleBarUnit",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "scale-unit" },
+            },
+        }),
+        Style = schema.new({
+            id = id.from(_N, "GetStaticMapInput", "Style"),
+            type = "string",
+            name = "Style",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "style" },
+            },
+        }),
+        Width = schema.new({
+            id = id.from(_N, "GetStaticMapInput", "Width"),
+            type = "integer",
+            name = "Width",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "width" },
+            },
+        }),
+        Zoom = schema.new({
+            id = id.from(_N, "GetStaticMapInput", "Zoom"),
+            type = "float",
+            name = "Zoom",
+            target_id = prelude.Float.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+                [traits.HTTP_QUERY] = { name = "zoom" },
+            },
+        }),
+    },
+})
+
+M.GetStaticMapOutput = schema.new({
+    id = id.from(_N, "GetStaticMapOutput"),
+    type = "structure",
+    members = {
+        Blob = schema.new({
+            id = id.from(_N, "GetStaticMapOutput", "Blob"),
+            type = "blob",
+            name = "Blob",
+            target_id = prelude.Blob.id,
+            traits = {
+                [traits.HTTP_PAYLOAD] = {},
+            },
+        }),
+        ContentType = schema.new({
+            id = id.from(_N, "GetStaticMapOutput", "ContentType"),
+            type = "string",
+            name = "ContentType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Content-Type" },
+            },
+        }),
+        CacheControl = schema.new({
+            id = id.from(_N, "GetStaticMapOutput", "CacheControl"),
+            type = "string",
+            name = "CacheControl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Cache-Control" },
+            },
+        }),
+        ETag = schema.new({
+            id = id.from(_N, "GetStaticMapOutput", "ETag"),
+            type = "string",
+            name = "ETag",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "ETag" },
+            },
+        }),
+        PricingBucket = schema.new({
+            id = id.from(_N, "GetStaticMapOutput", "PricingBucket"),
+            type = "string",
+            name = "PricingBucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-geo-pricing-bucket" },
+            },
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InternalServerException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ThrottlingException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.ValidationExceptionField = schema.new({
+    id = id.from(_N, "ValidationExceptionField"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "ValidationExceptionField", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ValidationExceptionField", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ValidationException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+        Reason = schema.new({
+            id = id.from(_N, "ValidationException", "Reason"),
+            type = "string",
+            name = "Reason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "reason" },
+            },
+        }),
+        FieldList = schema.new({
+            id = id.from(_N, "ValidationException", "FieldList"),
+            type = "list",
+            name = "FieldList",
+            target_id = prelude.Document.id,
+            list_member = M.ValidationExceptionField,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "fieldList" },
+            },
+        }),
+    },
+})
+
+M.GetStyleDescriptorInput = schema.new({
+    id = id.from(_N, "GetStyleDescriptorInput"),
+    type = "structure",
+    members = {
+        Style = schema.new({
+            id = id.from(_N, "GetStyleDescriptorInput", "Style"),
+            type = "string",
+            name = "Style",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ColorScheme = schema.new({
+            id = id.from(_N, "GetStyleDescriptorInput", "ColorScheme"),
+            type = "string",
+            name = "ColorScheme",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "color-scheme" },
+            },
+        }),
+        PoliticalView = schema.new({
+            id = id.from(_N, "GetStyleDescriptorInput", "PoliticalView"),
+            type = "string",
+            name = "PoliticalView",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "political-view" },
+            },
+        }),
+        Terrain = schema.new({
+            id = id.from(_N, "GetStyleDescriptorInput", "Terrain"),
+            type = "string",
+            name = "Terrain",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "terrain" },
+            },
+        }),
+        ContourDensity = schema.new({
+            id = id.from(_N, "GetStyleDescriptorInput", "ContourDensity"),
+            type = "string",
+            name = "ContourDensity",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "contour-density" },
+            },
+        }),
+        Traffic = schema.new({
+            id = id.from(_N, "GetStyleDescriptorInput", "Traffic"),
+            type = "string",
+            name = "Traffic",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "traffic" },
+            },
+        }),
+        TravelModes = schema.new({
+            id = id.from(_N, "GetStyleDescriptorInput", "TravelModes"),
+            type = "list",
+            name = "TravelModes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "travel-modes" },
+            },
+        }),
+        Buildings = schema.new({
+            id = id.from(_N, "GetStyleDescriptorInput", "Buildings"),
+            type = "string",
+            name = "Buildings",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "buildings" },
+            },
+        }),
+        Key = schema.new({
+            id = id.from(_N, "GetStyleDescriptorInput", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "key" },
+            },
+        }),
+    },
+})
+
+M.GetStyleDescriptorOutput = schema.new({
+    id = id.from(_N, "GetStyleDescriptorOutput"),
+    type = "structure",
+    members = {
+        Blob = schema.new({
+            id = id.from(_N, "GetStyleDescriptorOutput", "Blob"),
+            type = "blob",
+            name = "Blob",
+            target_id = prelude.Blob.id,
+            traits = {
+                [traits.HTTP_PAYLOAD] = {},
+            },
+        }),
+        ContentType = schema.new({
+            id = id.from(_N, "GetStyleDescriptorOutput", "ContentType"),
+            type = "string",
+            name = "ContentType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Content-Type" },
+            },
+        }),
+        CacheControl = schema.new({
+            id = id.from(_N, "GetStyleDescriptorOutput", "CacheControl"),
+            type = "string",
+            name = "CacheControl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Cache-Control" },
+            },
+        }),
+        ETag = schema.new({
+            id = id.from(_N, "GetStyleDescriptorOutput", "ETag"),
+            type = "string",
+            name = "ETag",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "ETag" },
+            },
+        }),
+    },
+})
+
+M.GetTileInput = schema.new({
+    id = id.from(_N, "GetTileInput"),
+    type = "structure",
+    members = {
+        AdditionalFeatures = schema.new({
+            id = id.from(_N, "GetTileInput", "AdditionalFeatures"),
+            type = "list",
+            name = "AdditionalFeatures",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "additional-features" },
+            },
+        }),
+        Tileset = schema.new({
+            id = id.from(_N, "GetTileInput", "Tileset"),
+            type = "string",
+            name = "Tileset",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Z = schema.new({
+            id = id.from(_N, "GetTileInput", "Z"),
+            type = "string",
+            name = "Z",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        X = schema.new({
+            id = id.from(_N, "GetTileInput", "X"),
+            type = "string",
+            name = "X",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Y = schema.new({
+            id = id.from(_N, "GetTileInput", "Y"),
+            type = "string",
+            name = "Y",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Key = schema.new({
+            id = id.from(_N, "GetTileInput", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "key" },
+            },
+        }),
+    },
+})
+
+M.GetTileOutput = schema.new({
+    id = id.from(_N, "GetTileOutput"),
+    type = "structure",
+    members = {
+        Blob = schema.new({
+            id = id.from(_N, "GetTileOutput", "Blob"),
+            type = "blob",
+            name = "Blob",
+            target_id = prelude.Blob.id,
+            traits = {
+                [traits.HTTP_PAYLOAD] = {},
+            },
+        }),
+        ContentType = schema.new({
+            id = id.from(_N, "GetTileOutput", "ContentType"),
+            type = "string",
+            name = "ContentType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Content-Type" },
+            },
+        }),
+        CacheControl = schema.new({
+            id = id.from(_N, "GetTileOutput", "CacheControl"),
+            type = "string",
+            name = "CacheControl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Cache-Control" },
+            },
+        }),
+        ETag = schema.new({
+            id = id.from(_N, "GetTileOutput", "ETag"),
+            type = "string",
+            name = "ETag",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "ETag" },
+            },
+        }),
+        PricingBucket = schema.new({
+            id = id.from(_N, "GetTileOutput", "PricingBucket"),
+            type = "string",
+            name = "PricingBucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-geo-pricing-bucket" },
+            },
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+return M

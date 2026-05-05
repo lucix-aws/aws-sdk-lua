@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("appfabric.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("appfabric.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("appfabric.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchGetUserAccessTasks(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetUserAccessTasks",
-        input_schema = types.BatchGetUserAccessTasksInput,
-        output_schema = types.BatchGetUserAccessTasksOutput,
+        input_schema = schemas.BatchGetUserAccessTasksInput,
+        output_schema = schemas.BatchGetUserAccessTasksOutput,
         http_method = "POST",
         http_path = "/useraccess/batchget",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:connectAppAuthorization(input, options)
     return self:invokeOperation(input, {
         name = "ConnectAppAuthorization",
-        input_schema = types.ConnectAppAuthorizationInput,
-        output_schema = types.ConnectAppAuthorizationOutput,
+        input_schema = schemas.ConnectAppAuthorizationInput,
+        output_schema = schemas.ConnectAppAuthorizationOutput,
         http_method = "POST",
         http_path = "/appbundles/{appBundleIdentifier}/appauthorizations/{appAuthorizationIdentifier}/connect",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createAppAuthorization(input, options)
     return self:invokeOperation(input, {
         name = "CreateAppAuthorization",
-        input_schema = types.CreateAppAuthorizationInput,
-        output_schema = types.CreateAppAuthorizationOutput,
+        input_schema = schemas.CreateAppAuthorizationInput,
+        output_schema = schemas.CreateAppAuthorizationOutput,
         http_method = "POST",
         http_path = "/appbundles/{appBundleIdentifier}/appauthorizations",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createAppBundle(input, options)
     return self:invokeOperation(input, {
         name = "CreateAppBundle",
-        input_schema = types.CreateAppBundleInput,
-        output_schema = types.CreateAppBundleOutput,
+        input_schema = schemas.CreateAppBundleInput,
+        output_schema = schemas.CreateAppBundleOutput,
         http_method = "POST",
         http_path = "/appbundles",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createIngestion(input, options)
     return self:invokeOperation(input, {
         name = "CreateIngestion",
-        input_schema = types.CreateIngestionInput,
-        output_schema = types.CreateIngestionOutput,
+        input_schema = schemas.CreateIngestionInput,
+        output_schema = schemas.CreateIngestionOutput,
         http_method = "POST",
         http_path = "/appbundles/{appBundleIdentifier}/ingestions",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createIngestionDestination(input, options)
     return self:invokeOperation(input, {
         name = "CreateIngestionDestination",
-        input_schema = types.CreateIngestionDestinationInput,
-        output_schema = types.CreateIngestionDestinationOutput,
+        input_schema = schemas.CreateIngestionDestinationInput,
+        output_schema = schemas.CreateIngestionDestinationOutput,
         http_method = "POST",
         http_path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/ingestiondestinations",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteAppAuthorization(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAppAuthorization",
-        input_schema = types.DeleteAppAuthorizationInput,
-        output_schema = types.DeleteAppAuthorizationOutput,
+        input_schema = schemas.DeleteAppAuthorizationInput,
+        output_schema = schemas.DeleteAppAuthorizationOutput,
         http_method = "DELETE",
         http_path = "/appbundles/{appBundleIdentifier}/appauthorizations/{appAuthorizationIdentifier}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteAppBundle(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAppBundle",
-        input_schema = types.DeleteAppBundleInput,
-        output_schema = types.DeleteAppBundleOutput,
+        input_schema = schemas.DeleteAppBundleInput,
+        output_schema = schemas.DeleteAppBundleOutput,
         http_method = "DELETE",
         http_path = "/appbundles/{appBundleIdentifier}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteIngestion(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIngestion",
-        input_schema = types.DeleteIngestionInput,
-        output_schema = types.DeleteIngestionOutput,
+        input_schema = schemas.DeleteIngestionInput,
+        output_schema = schemas.DeleteIngestionOutput,
         http_method = "DELETE",
         http_path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteIngestionDestination(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIngestionDestination",
-        input_schema = types.DeleteIngestionDestinationInput,
-        output_schema = types.DeleteIngestionDestinationOutput,
+        input_schema = schemas.DeleteIngestionDestinationInput,
+        output_schema = schemas.DeleteIngestionDestinationOutput,
         http_method = "DELETE",
         http_path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/ingestiondestinations/{ingestionDestinationIdentifier}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getAppAuthorization(input, options)
     return self:invokeOperation(input, {
         name = "GetAppAuthorization",
-        input_schema = types.GetAppAuthorizationInput,
-        output_schema = types.GetAppAuthorizationOutput,
+        input_schema = schemas.GetAppAuthorizationInput,
+        output_schema = schemas.GetAppAuthorizationOutput,
         http_method = "GET",
         http_path = "/appbundles/{appBundleIdentifier}/appauthorizations/{appAuthorizationIdentifier}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getAppBundle(input, options)
     return self:invokeOperation(input, {
         name = "GetAppBundle",
-        input_schema = types.GetAppBundleInput,
-        output_schema = types.GetAppBundleOutput,
+        input_schema = schemas.GetAppBundleInput,
+        output_schema = schemas.GetAppBundleOutput,
         http_method = "GET",
         http_path = "/appbundles/{appBundleIdentifier}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getIngestion(input, options)
     return self:invokeOperation(input, {
         name = "GetIngestion",
-        input_schema = types.GetIngestionInput,
-        output_schema = types.GetIngestionOutput,
+        input_schema = schemas.GetIngestionInput,
+        output_schema = schemas.GetIngestionOutput,
         http_method = "GET",
         http_path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getIngestionDestination(input, options)
     return self:invokeOperation(input, {
         name = "GetIngestionDestination",
-        input_schema = types.GetIngestionDestinationInput,
-        output_schema = types.GetIngestionDestinationOutput,
+        input_schema = schemas.GetIngestionDestinationInput,
+        output_schema = schemas.GetIngestionDestinationOutput,
         http_method = "GET",
         http_path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/ingestiondestinations/{ingestionDestinationIdentifier}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listAppAuthorizations(input, options)
     return self:invokeOperation(input, {
         name = "ListAppAuthorizations",
-        input_schema = types.ListAppAuthorizationsInput,
-        output_schema = types.ListAppAuthorizationsOutput,
+        input_schema = schemas.ListAppAuthorizationsInput,
+        output_schema = schemas.ListAppAuthorizationsOutput,
         http_method = "GET",
         http_path = "/appbundles/{appBundleIdentifier}/appauthorizations",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listAppBundles(input, options)
     return self:invokeOperation(input, {
         name = "ListAppBundles",
-        input_schema = types.ListAppBundlesInput,
-        output_schema = types.ListAppBundlesOutput,
+        input_schema = schemas.ListAppBundlesInput,
+        output_schema = schemas.ListAppBundlesOutput,
         http_method = "GET",
         http_path = "/appbundles",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listIngestionDestinations(input, options)
     return self:invokeOperation(input, {
         name = "ListIngestionDestinations",
-        input_schema = types.ListIngestionDestinationsInput,
-        output_schema = types.ListIngestionDestinationsOutput,
+        input_schema = schemas.ListIngestionDestinationsInput,
+        output_schema = schemas.ListIngestionDestinationsOutput,
         http_method = "GET",
         http_path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/ingestiondestinations",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listIngestions(input, options)
     return self:invokeOperation(input, {
         name = "ListIngestions",
-        input_schema = types.ListIngestionsInput,
-        output_schema = types.ListIngestionsOutput,
+        input_schema = schemas.ListIngestionsInput,
+        output_schema = schemas.ListIngestionsOutput,
         http_method = "GET",
         http_path = "/appbundles/{appBundleIdentifier}/ingestions",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:startIngestion(input, options)
     return self:invokeOperation(input, {
         name = "StartIngestion",
-        input_schema = types.StartIngestionInput,
-        output_schema = types.StartIngestionOutput,
+        input_schema = schemas.StartIngestionInput,
+        output_schema = schemas.StartIngestionOutput,
         http_method = "POST",
         http_path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/start",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:startUserAccessTasks(input, options)
     return self:invokeOperation(input, {
         name = "StartUserAccessTasks",
-        input_schema = types.StartUserAccessTasksInput,
-        output_schema = types.StartUserAccessTasksOutput,
+        input_schema = schemas.StartUserAccessTasksInput,
+        output_schema = schemas.StartUserAccessTasksOutput,
         http_method = "POST",
         http_path = "/useraccess/start",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:stopIngestion(input, options)
     return self:invokeOperation(input, {
         name = "StopIngestion",
-        input_schema = types.StopIngestionInput,
-        output_schema = types.StopIngestionOutput,
+        input_schema = schemas.StopIngestionInput,
+        output_schema = schemas.StopIngestionOutput,
         http_method = "POST",
         http_path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/stop",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:updateAppAuthorization(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAppAuthorization",
-        input_schema = types.UpdateAppAuthorizationInput,
-        output_schema = types.UpdateAppAuthorizationOutput,
+        input_schema = schemas.UpdateAppAuthorizationInput,
+        output_schema = schemas.UpdateAppAuthorizationOutput,
         http_method = "PATCH",
         http_path = "/appbundles/{appBundleIdentifier}/appauthorizations/{appAuthorizationIdentifier}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:updateIngestionDestination(input, options)
     return self:invokeOperation(input, {
         name = "UpdateIngestionDestination",
-        input_schema = types.UpdateIngestionDestinationInput,
-        output_schema = types.UpdateIngestionDestinationOutput,
+        input_schema = schemas.UpdateIngestionDestinationInput,
+        output_schema = schemas.UpdateIngestionDestinationOutput,
         http_method = "PATCH",
         http_path = "/appbundles/{appBundleIdentifier}/ingestions/{ingestionIdentifier}/ingestiondestinations/{ingestionDestinationIdentifier}",
         effective_auth_schemes = {

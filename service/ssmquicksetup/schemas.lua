@@ -1,0 +1,1084 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.ssmquicksetup"
+
+local M = {}
+
+M.AccessDeniedException = schema.new({
+    id = id.from(_N, "AccessDeniedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "AccessDeniedException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConfigurationDefinition = schema.new({
+    id = id.from(_N, "ConfigurationDefinition"),
+    type = "structure",
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "ConfigurationDefinition", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Parameters = schema.new({
+            id = id.from(_N, "ConfigurationDefinition", "Parameters"),
+            type = "map",
+            name = "Parameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TypeVersion = schema.new({
+            id = id.from(_N, "ConfigurationDefinition", "TypeVersion"),
+            type = "string",
+            name = "TypeVersion",
+            target_id = prelude.String.id,
+        }),
+        LocalDeploymentExecutionRoleName = schema.new({
+            id = id.from(_N, "ConfigurationDefinition", "LocalDeploymentExecutionRoleName"),
+            type = "string",
+            name = "LocalDeploymentExecutionRoleName",
+            target_id = prelude.String.id,
+        }),
+        LocalDeploymentAdministrationRoleArn = schema.new({
+            id = id.from(_N, "ConfigurationDefinition", "LocalDeploymentAdministrationRoleArn"),
+            type = "string",
+            name = "LocalDeploymentAdministrationRoleArn",
+            target_id = prelude.String.id,
+        }),
+        Id = schema.new({
+            id = id.from(_N, "ConfigurationDefinition", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConfigurationDefinitionInput = schema.new({
+    id = id.from(_N, "ConfigurationDefinitionInput"),
+    type = "structure",
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "ConfigurationDefinitionInput", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Parameters = schema.new({
+            id = id.from(_N, "ConfigurationDefinitionInput", "Parameters"),
+            type = "map",
+            name = "Parameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TypeVersion = schema.new({
+            id = id.from(_N, "ConfigurationDefinitionInput", "TypeVersion"),
+            type = "string",
+            name = "TypeVersion",
+            target_id = prelude.String.id,
+        }),
+        LocalDeploymentExecutionRoleName = schema.new({
+            id = id.from(_N, "ConfigurationDefinitionInput", "LocalDeploymentExecutionRoleName"),
+            type = "string",
+            name = "LocalDeploymentExecutionRoleName",
+            target_id = prelude.String.id,
+        }),
+        LocalDeploymentAdministrationRoleArn = schema.new({
+            id = id.from(_N, "ConfigurationDefinitionInput", "LocalDeploymentAdministrationRoleArn"),
+            type = "string",
+            name = "LocalDeploymentAdministrationRoleArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConfigurationDefinitionSummary = schema.new({
+    id = id.from(_N, "ConfigurationDefinitionSummary"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "ConfigurationDefinitionSummary", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "ConfigurationDefinitionSummary", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        TypeVersion = schema.new({
+            id = id.from(_N, "ConfigurationDefinitionSummary", "TypeVersion"),
+            type = "string",
+            name = "TypeVersion",
+            target_id = prelude.String.id,
+        }),
+        FirstClassParameters = schema.new({
+            id = id.from(_N, "ConfigurationDefinitionSummary", "FirstClassParameters"),
+            type = "map",
+            name = "FirstClassParameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.StatusSummary = schema.new({
+    id = id.from(_N, "StatusSummary"),
+    type = "structure",
+    members = {
+        StatusType = schema.new({
+            id = id.from(_N, "StatusSummary", "StatusType"),
+            type = "string",
+            name = "StatusType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "StatusSummary", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        StatusMessage = schema.new({
+            id = id.from(_N, "StatusSummary", "StatusMessage"),
+            type = "string",
+            name = "StatusMessage",
+            target_id = prelude.String.id,
+        }),
+        LastUpdatedAt = schema.new({
+            id = id.from(_N, "StatusSummary", "LastUpdatedAt"),
+            type = "timestamp",
+            name = "LastUpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        StatusDetails = schema.new({
+            id = id.from(_N, "StatusSummary", "StatusDetails"),
+            type = "map",
+            name = "StatusDetails",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.ConfigurationManagerSummary = schema.new({
+    id = id.from(_N, "ConfigurationManagerSummary"),
+    type = "structure",
+    members = {
+        ManagerArn = schema.new({
+            id = id.from(_N, "ConfigurationManagerSummary", "ManagerArn"),
+            type = "string",
+            name = "ManagerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "ConfigurationManagerSummary", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "ConfigurationManagerSummary", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        StatusSummaries = schema.new({
+            id = id.from(_N, "ConfigurationManagerSummary", "StatusSummaries"),
+            type = "list",
+            name = "StatusSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.StatusSummary,
+        }),
+        ConfigurationDefinitionSummaries = schema.new({
+            id = id.from(_N, "ConfigurationManagerSummary", "ConfigurationDefinitionSummaries"),
+            type = "list",
+            name = "ConfigurationDefinitionSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.ConfigurationDefinitionSummary,
+        }),
+    },
+})
+
+M.ConfigurationSummary = schema.new({
+    id = id.from(_N, "ConfigurationSummary"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "ConfigurationSummary", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        ManagerArn = schema.new({
+            id = id.from(_N, "ConfigurationSummary", "ManagerArn"),
+            type = "string",
+            name = "ManagerArn",
+            target_id = prelude.String.id,
+        }),
+        ConfigurationDefinitionId = schema.new({
+            id = id.from(_N, "ConfigurationSummary", "ConfigurationDefinitionId"),
+            type = "string",
+            name = "ConfigurationDefinitionId",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "ConfigurationSummary", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        TypeVersion = schema.new({
+            id = id.from(_N, "ConfigurationSummary", "TypeVersion"),
+            type = "string",
+            name = "TypeVersion",
+            target_id = prelude.String.id,
+        }),
+        Region = schema.new({
+            id = id.from(_N, "ConfigurationSummary", "Region"),
+            type = "string",
+            name = "Region",
+            target_id = prelude.String.id,
+        }),
+        Account = schema.new({
+            id = id.from(_N, "ConfigurationSummary", "Account"),
+            type = "string",
+            name = "Account",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "ConfigurationSummary", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        FirstClassParameters = schema.new({
+            id = id.from(_N, "ConfigurationSummary", "FirstClassParameters"),
+            type = "map",
+            name = "FirstClassParameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        StatusSummaries = schema.new({
+            id = id.from(_N, "ConfigurationSummary", "StatusSummaries"),
+            type = "list",
+            name = "StatusSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.StatusSummary,
+        }),
+    },
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ConflictException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateConfigurationManagerInput = schema.new({
+    id = id.from(_N, "CreateConfigurationManagerInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateConfigurationManagerInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateConfigurationManagerInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        ConfigurationDefinitions = schema.new({
+            id = id.from(_N, "CreateConfigurationManagerInput", "ConfigurationDefinitions"),
+            type = "list",
+            name = "ConfigurationDefinitions",
+            target_id = prelude.Document.id,
+            list_member = M.ConfigurationDefinitionInput,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateConfigurationManagerInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateConfigurationManagerOutput = schema.new({
+    id = id.from(_N, "CreateConfigurationManagerOutput"),
+    type = "structure",
+    members = {
+        ManagerArn = schema.new({
+            id = id.from(_N, "CreateConfigurationManagerOutput", "ManagerArn"),
+            type = "string",
+            name = "ManagerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InternalServerException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ThrottlingException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ValidationException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteConfigurationManagerInput = schema.new({
+    id = id.from(_N, "DeleteConfigurationManagerInput"),
+    type = "structure",
+    members = {
+        ManagerArn = schema.new({
+            id = id.from(_N, "DeleteConfigurationManagerInput", "ManagerArn"),
+            type = "string",
+            name = "ManagerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteConfigurationManagerOutput = schema.new({
+    id = id.from(_N, "DeleteConfigurationManagerOutput"),
+    type = "structure",
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Filter = schema.new({
+    id = id.from(_N, "Filter"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "Filter", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Values = schema.new({
+            id = id.from(_N, "Filter", "Values"),
+            type = "list",
+            name = "Values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetConfigurationInput = schema.new({
+    id = id.from(_N, "GetConfigurationInput"),
+    type = "structure",
+    members = {
+        ConfigurationId = schema.new({
+            id = id.from(_N, "GetConfigurationInput", "ConfigurationId"),
+            type = "string",
+            name = "ConfigurationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetConfigurationOutput = schema.new({
+    id = id.from(_N, "GetConfigurationOutput"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "GetConfigurationOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        ManagerArn = schema.new({
+            id = id.from(_N, "GetConfigurationOutput", "ManagerArn"),
+            type = "string",
+            name = "ManagerArn",
+            target_id = prelude.String.id,
+        }),
+        ConfigurationDefinitionId = schema.new({
+            id = id.from(_N, "GetConfigurationOutput", "ConfigurationDefinitionId"),
+            type = "string",
+            name = "ConfigurationDefinitionId",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "GetConfigurationOutput", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        TypeVersion = schema.new({
+            id = id.from(_N, "GetConfigurationOutput", "TypeVersion"),
+            type = "string",
+            name = "TypeVersion",
+            target_id = prelude.String.id,
+        }),
+        Account = schema.new({
+            id = id.from(_N, "GetConfigurationOutput", "Account"),
+            type = "string",
+            name = "Account",
+            target_id = prelude.String.id,
+        }),
+        Region = schema.new({
+            id = id.from(_N, "GetConfigurationOutput", "Region"),
+            type = "string",
+            name = "Region",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "GetConfigurationOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        LastModifiedAt = schema.new({
+            id = id.from(_N, "GetConfigurationOutput", "LastModifiedAt"),
+            type = "timestamp",
+            name = "LastModifiedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        StatusSummaries = schema.new({
+            id = id.from(_N, "GetConfigurationOutput", "StatusSummaries"),
+            type = "list",
+            name = "StatusSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.StatusSummary,
+        }),
+        Parameters = schema.new({
+            id = id.from(_N, "GetConfigurationOutput", "Parameters"),
+            type = "map",
+            name = "Parameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.GetConfigurationManagerInput = schema.new({
+    id = id.from(_N, "GetConfigurationManagerInput"),
+    type = "structure",
+    members = {
+        ManagerArn = schema.new({
+            id = id.from(_N, "GetConfigurationManagerInput", "ManagerArn"),
+            type = "string",
+            name = "ManagerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetConfigurationManagerOutput = schema.new({
+    id = id.from(_N, "GetConfigurationManagerOutput"),
+    type = "structure",
+    members = {
+        ManagerArn = schema.new({
+            id = id.from(_N, "GetConfigurationManagerOutput", "ManagerArn"),
+            type = "string",
+            name = "ManagerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "GetConfigurationManagerOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "GetConfigurationManagerOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "GetConfigurationManagerOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        LastModifiedAt = schema.new({
+            id = id.from(_N, "GetConfigurationManagerOutput", "LastModifiedAt"),
+            type = "timestamp",
+            name = "LastModifiedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        StatusSummaries = schema.new({
+            id = id.from(_N, "GetConfigurationManagerOutput", "StatusSummaries"),
+            type = "list",
+            name = "StatusSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.StatusSummary,
+        }),
+        ConfigurationDefinitions = schema.new({
+            id = id.from(_N, "GetConfigurationManagerOutput", "ConfigurationDefinitions"),
+            type = "list",
+            name = "ConfigurationDefinitions",
+            target_id = prelude.Document.id,
+            list_member = M.ConfigurationDefinition,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "GetConfigurationManagerOutput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.GetServiceSettingsInput = schema.new({
+    id = id.from(_N, "GetServiceSettingsInput"),
+    type = "structure",
+})
+
+M.ServiceSettings = schema.new({
+    id = id.from(_N, "ServiceSettings"),
+    type = "structure",
+    members = {
+        ExplorerEnablingRoleArn = schema.new({
+            id = id.from(_N, "ServiceSettings", "ExplorerEnablingRoleArn"),
+            type = "string",
+            name = "ExplorerEnablingRoleArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetServiceSettingsOutput = schema.new({
+    id = id.from(_N, "GetServiceSettingsOutput"),
+    type = "structure",
+    members = {
+        ServiceSettings = schema.new({
+            id = id.from(_N, "GetServiceSettingsOutput", "ServiceSettings"),
+            type = "structure",
+            name = "ServiceSettings",
+            target_id = id.from(_N, "ServiceSettings"),
+            target = M.ServiceSettings,
+        }),
+    },
+})
+
+M.ListConfigurationManagersInput = schema.new({
+    id = id.from(_N, "ListConfigurationManagersInput"),
+    type = "structure",
+    members = {
+        StartingToken = schema.new({
+            id = id.from(_N, "ListConfigurationManagersInput", "StartingToken"),
+            type = "string",
+            name = "StartingToken",
+            target_id = prelude.String.id,
+        }),
+        MaxItems = schema.new({
+            id = id.from(_N, "ListConfigurationManagersInput", "MaxItems"),
+            type = "integer",
+            name = "MaxItems",
+            target_id = prelude.Integer.id,
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "ListConfigurationManagersInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.Filter,
+        }),
+    },
+})
+
+M.ListConfigurationManagersOutput = schema.new({
+    id = id.from(_N, "ListConfigurationManagersOutput"),
+    type = "structure",
+    members = {
+        ConfigurationManagersList = schema.new({
+            id = id.from(_N, "ListConfigurationManagersOutput", "ConfigurationManagersList"),
+            type = "list",
+            name = "ConfigurationManagersList",
+            target_id = prelude.Document.id,
+            list_member = M.ConfigurationManagerSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListConfigurationManagersOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListConfigurationsInput = schema.new({
+    id = id.from(_N, "ListConfigurationsInput"),
+    type = "structure",
+    members = {
+        StartingToken = schema.new({
+            id = id.from(_N, "ListConfigurationsInput", "StartingToken"),
+            type = "string",
+            name = "StartingToken",
+            target_id = prelude.String.id,
+        }),
+        MaxItems = schema.new({
+            id = id.from(_N, "ListConfigurationsInput", "MaxItems"),
+            type = "integer",
+            name = "MaxItems",
+            target_id = prelude.Integer.id,
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "ListConfigurationsInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.Filter,
+        }),
+        ManagerArn = schema.new({
+            id = id.from(_N, "ListConfigurationsInput", "ManagerArn"),
+            type = "string",
+            name = "ManagerArn",
+            target_id = prelude.String.id,
+        }),
+        ConfigurationDefinitionId = schema.new({
+            id = id.from(_N, "ListConfigurationsInput", "ConfigurationDefinitionId"),
+            type = "string",
+            name = "ConfigurationDefinitionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListConfigurationsOutput = schema.new({
+    id = id.from(_N, "ListConfigurationsOutput"),
+    type = "structure",
+    members = {
+        ConfigurationsList = schema.new({
+            id = id.from(_N, "ListConfigurationsOutput", "ConfigurationsList"),
+            type = "list",
+            name = "ConfigurationsList",
+            target_id = prelude.Document.id,
+            list_member = M.ConfigurationSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListConfigurationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListQuickSetupTypesInput = schema.new({
+    id = id.from(_N, "ListQuickSetupTypesInput"),
+    type = "structure",
+})
+
+M.QuickSetupTypeOutput = schema.new({
+    id = id.from(_N, "QuickSetupTypeOutput"),
+    type = "structure",
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "QuickSetupTypeOutput", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        LatestVersion = schema.new({
+            id = id.from(_N, "QuickSetupTypeOutput", "LatestVersion"),
+            type = "string",
+            name = "LatestVersion",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListQuickSetupTypesOutput = schema.new({
+    id = id.from(_N, "ListQuickSetupTypesOutput"),
+    type = "structure",
+    members = {
+        QuickSetupTypeList = schema.new({
+            id = id.from(_N, "ListQuickSetupTypesOutput", "QuickSetupTypeList"),
+            type = "list",
+            name = "QuickSetupTypeList",
+            target_id = prelude.Document.id,
+            list_member = M.QuickSetupTypeOutput,
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.TagEntry = schema.new({
+    id = id.from(_N, "TagEntry"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "TagEntry", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+        }),
+        Value = schema.new({
+            id = id.from(_N, "TagEntry", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceOutput"),
+    type = "structure",
+    members = {
+        Tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.TagEntry,
+        }),
+    },
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "TagResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceOutput"),
+    type = "structure",
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "UntagResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        TagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "TagKeys"),
+            type = "list",
+            name = "TagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "tagKeys" },
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
+M.UpdateConfigurationDefinitionInput = schema.new({
+    id = id.from(_N, "UpdateConfigurationDefinitionInput"),
+    type = "structure",
+    members = {
+        ManagerArn = schema.new({
+            id = id.from(_N, "UpdateConfigurationDefinitionInput", "ManagerArn"),
+            type = "string",
+            name = "ManagerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Id = schema.new({
+            id = id.from(_N, "UpdateConfigurationDefinitionInput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        TypeVersion = schema.new({
+            id = id.from(_N, "UpdateConfigurationDefinitionInput", "TypeVersion"),
+            type = "string",
+            name = "TypeVersion",
+            target_id = prelude.String.id,
+        }),
+        Parameters = schema.new({
+            id = id.from(_N, "UpdateConfigurationDefinitionInput", "Parameters"),
+            type = "map",
+            name = "Parameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        LocalDeploymentExecutionRoleName = schema.new({
+            id = id.from(_N, "UpdateConfigurationDefinitionInput", "LocalDeploymentExecutionRoleName"),
+            type = "string",
+            name = "LocalDeploymentExecutionRoleName",
+            target_id = prelude.String.id,
+        }),
+        LocalDeploymentAdministrationRoleArn = schema.new({
+            id = id.from(_N, "UpdateConfigurationDefinitionInput", "LocalDeploymentAdministrationRoleArn"),
+            type = "string",
+            name = "LocalDeploymentAdministrationRoleArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateConfigurationDefinitionOutput = schema.new({
+    id = id.from(_N, "UpdateConfigurationDefinitionOutput"),
+    type = "structure",
+})
+
+M.UpdateConfigurationManagerInput = schema.new({
+    id = id.from(_N, "UpdateConfigurationManagerInput"),
+    type = "structure",
+    members = {
+        ManagerArn = schema.new({
+            id = id.from(_N, "UpdateConfigurationManagerInput", "ManagerArn"),
+            type = "string",
+            name = "ManagerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateConfigurationManagerInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateConfigurationManagerInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateConfigurationManagerOutput = schema.new({
+    id = id.from(_N, "UpdateConfigurationManagerOutput"),
+    type = "structure",
+})
+
+M.UpdateServiceSettingsInput = schema.new({
+    id = id.from(_N, "UpdateServiceSettingsInput"),
+    type = "structure",
+    members = {
+        ExplorerEnablingRoleArn = schema.new({
+            id = id.from(_N, "UpdateServiceSettingsInput", "ExplorerEnablingRoleArn"),
+            type = "string",
+            name = "ExplorerEnablingRoleArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateServiceSettingsOutput = schema.new({
+    id = id.from(_N, "UpdateServiceSettingsOutput"),
+    type = "structure",
+})
+
+return M

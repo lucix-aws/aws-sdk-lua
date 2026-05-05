@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("codeguruprofiler.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("codeguruprofiler.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("codeguruprofiler.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addNotificationChannels(input, options)
     return self:invokeOperation(input, {
         name = "AddNotificationChannels",
-        input_schema = types.AddNotificationChannelsInput,
-        output_schema = types.AddNotificationChannelsOutput,
+        input_schema = schemas.AddNotificationChannelsInput,
+        output_schema = schemas.AddNotificationChannelsOutput,
         http_method = "POST",
         http_path = "/profilingGroups/{profilingGroupName}/notificationConfiguration",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchGetFrameMetricData(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetFrameMetricData",
-        input_schema = types.BatchGetFrameMetricDataInput,
-        output_schema = types.BatchGetFrameMetricDataOutput,
+        input_schema = schemas.BatchGetFrameMetricDataInput,
+        output_schema = schemas.BatchGetFrameMetricDataOutput,
         http_method = "POST",
         http_path = "/profilingGroups/{profilingGroupName}/frames/-/metrics",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:configureAgent(input, options)
     return self:invokeOperation(input, {
         name = "ConfigureAgent",
-        input_schema = types.ConfigureAgentInput,
-        output_schema = types.ConfigureAgentOutput,
+        input_schema = schemas.ConfigureAgentInput,
+        output_schema = schemas.ConfigureAgentOutput,
         http_method = "POST",
         http_path = "/profilingGroups/{profilingGroupName}/configureAgent",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createProfilingGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateProfilingGroup",
-        input_schema = types.CreateProfilingGroupInput,
-        output_schema = types.CreateProfilingGroupOutput,
+        input_schema = schemas.CreateProfilingGroupInput,
+        output_schema = schemas.CreateProfilingGroupOutput,
         http_method = "POST",
         http_path = "/profilingGroups",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteProfilingGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProfilingGroup",
-        input_schema = types.DeleteProfilingGroupInput,
-        output_schema = types.DeleteProfilingGroupOutput,
+        input_schema = schemas.DeleteProfilingGroupInput,
+        output_schema = schemas.DeleteProfilingGroupOutput,
         http_method = "DELETE",
         http_path = "/profilingGroups/{profilingGroupName}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:describeProfilingGroup(input, options)
     return self:invokeOperation(input, {
         name = "DescribeProfilingGroup",
-        input_schema = types.DescribeProfilingGroupInput,
-        output_schema = types.DescribeProfilingGroupOutput,
+        input_schema = schemas.DescribeProfilingGroupInput,
+        output_schema = schemas.DescribeProfilingGroupOutput,
         http_method = "GET",
         http_path = "/profilingGroups/{profilingGroupName}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getFindingsReportAccountSummary(input, options)
     return self:invokeOperation(input, {
         name = "GetFindingsReportAccountSummary",
-        input_schema = types.GetFindingsReportAccountSummaryInput,
-        output_schema = types.GetFindingsReportAccountSummaryOutput,
+        input_schema = schemas.GetFindingsReportAccountSummaryInput,
+        output_schema = schemas.GetFindingsReportAccountSummaryOutput,
         http_method = "GET",
         http_path = "/internal/findingsReports",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getNotificationConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetNotificationConfiguration",
-        input_schema = types.GetNotificationConfigurationInput,
-        output_schema = types.GetNotificationConfigurationOutput,
+        input_schema = schemas.GetNotificationConfigurationInput,
+        output_schema = schemas.GetNotificationConfigurationOutput,
         http_method = "GET",
         http_path = "/profilingGroups/{profilingGroupName}/notificationConfiguration",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetPolicy",
-        input_schema = types.GetPolicyInput,
-        output_schema = types.GetPolicyOutput,
+        input_schema = schemas.GetPolicyInput,
+        output_schema = schemas.GetPolicyOutput,
         http_method = "GET",
         http_path = "/profilingGroups/{profilingGroupName}/policy",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getProfile(input, options)
     return self:invokeOperation(input, {
         name = "GetProfile",
-        input_schema = types.GetProfileInput,
-        output_schema = types.GetProfileOutput,
+        input_schema = schemas.GetProfileInput,
+        output_schema = schemas.GetProfileOutput,
         http_method = "GET",
         http_path = "/profilingGroups/{profilingGroupName}/profile",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "GetRecommendations",
-        input_schema = types.GetRecommendationsInput,
-        output_schema = types.GetRecommendationsOutput,
+        input_schema = schemas.GetRecommendationsInput,
+        output_schema = schemas.GetRecommendationsOutput,
         http_method = "GET",
         http_path = "/internal/profilingGroups/{profilingGroupName}/recommendations",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listFindingsReports(input, options)
     return self:invokeOperation(input, {
         name = "ListFindingsReports",
-        input_schema = types.ListFindingsReportsInput,
-        output_schema = types.ListFindingsReportsOutput,
+        input_schema = schemas.ListFindingsReportsInput,
+        output_schema = schemas.ListFindingsReportsOutput,
         http_method = "GET",
         http_path = "/internal/profilingGroups/{profilingGroupName}/findingsReports",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listProfileTimes(input, options)
     return self:invokeOperation(input, {
         name = "ListProfileTimes",
-        input_schema = types.ListProfileTimesInput,
-        output_schema = types.ListProfileTimesOutput,
+        input_schema = schemas.ListProfileTimesInput,
+        output_schema = schemas.ListProfileTimesOutput,
         http_method = "GET",
         http_path = "/profilingGroups/{profilingGroupName}/profileTimes",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listProfilingGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListProfilingGroups",
-        input_schema = types.ListProfilingGroupsInput,
-        output_schema = types.ListProfilingGroupsOutput,
+        input_schema = schemas.ListProfilingGroupsInput,
+        output_schema = schemas.ListProfilingGroupsOutput,
         http_method = "GET",
         http_path = "/profilingGroups",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:postAgentProfile(input, options)
     return self:invokeOperation(input, {
         name = "PostAgentProfile",
-        input_schema = types.PostAgentProfileInput,
-        output_schema = types.PostAgentProfileOutput,
+        input_schema = schemas.PostAgentProfileInput,
+        output_schema = schemas.PostAgentProfileOutput,
         http_method = "POST",
         http_path = "/profilingGroups/{profilingGroupName}/agentProfile",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:putPermission(input, options)
     return self:invokeOperation(input, {
         name = "PutPermission",
-        input_schema = types.PutPermissionInput,
-        output_schema = types.PutPermissionOutput,
+        input_schema = schemas.PutPermissionInput,
+        output_schema = schemas.PutPermissionOutput,
         http_method = "PUT",
         http_path = "/profilingGroups/{profilingGroupName}/policy/{actionGroup}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:removeNotificationChannel(input, options)
     return self:invokeOperation(input, {
         name = "RemoveNotificationChannel",
-        input_schema = types.RemoveNotificationChannelInput,
-        output_schema = types.RemoveNotificationChannelOutput,
+        input_schema = schemas.RemoveNotificationChannelInput,
+        output_schema = schemas.RemoveNotificationChannelOutput,
         http_method = "DELETE",
         http_path = "/profilingGroups/{profilingGroupName}/notificationConfiguration/{channelId}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:removePermission(input, options)
     return self:invokeOperation(input, {
         name = "RemovePermission",
-        input_schema = types.RemovePermissionInput,
-        output_schema = types.RemovePermissionOutput,
+        input_schema = schemas.RemovePermissionInput,
+        output_schema = schemas.RemovePermissionOutput,
         http_method = "DELETE",
         http_path = "/profilingGroups/{profilingGroupName}/policy/{actionGroup}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:submitFeedback(input, options)
     return self:invokeOperation(input, {
         name = "SubmitFeedback",
-        input_schema = types.SubmitFeedbackInput,
-        output_schema = types.SubmitFeedbackOutput,
+        input_schema = schemas.SubmitFeedbackInput,
+        output_schema = schemas.SubmitFeedbackOutput,
         http_method = "POST",
         http_path = "/internal/profilingGroups/{profilingGroupName}/anomalies/{anomalyInstanceId}/feedback",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:updateProfilingGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProfilingGroup",
-        input_schema = types.UpdateProfilingGroupInput,
-        output_schema = types.UpdateProfilingGroupOutput,
+        input_schema = schemas.UpdateProfilingGroupInput,
+        output_schema = schemas.UpdateProfilingGroupOutput,
         http_method = "PUT",
         http_path = "/profilingGroups/{profilingGroupName}",
         effective_auth_schemes = {

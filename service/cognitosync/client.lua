@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("cognitosync.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("cognitosync.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("cognitosync.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:bulkPublish(input, options)
     return self:invokeOperation(input, {
         name = "BulkPublish",
-        input_schema = types.BulkPublishInput,
-        output_schema = types.BulkPublishOutput,
+        input_schema = schemas.BulkPublishInput,
+        output_schema = schemas.BulkPublishOutput,
         http_method = "POST",
         http_path = "/identitypools/{IdentityPoolId}/bulkpublish",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteDataset(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDataset",
-        input_schema = types.DeleteDatasetInput,
-        output_schema = types.DeleteDatasetOutput,
+        input_schema = schemas.DeleteDatasetInput,
+        output_schema = schemas.DeleteDatasetOutput,
         http_method = "DELETE",
         http_path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:describeDataset(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDataset",
-        input_schema = types.DescribeDatasetInput,
-        output_schema = types.DescribeDatasetOutput,
+        input_schema = schemas.DescribeDatasetInput,
+        output_schema = schemas.DescribeDatasetOutput,
         http_method = "GET",
         http_path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:describeIdentityPoolUsage(input, options)
     return self:invokeOperation(input, {
         name = "DescribeIdentityPoolUsage",
-        input_schema = types.DescribeIdentityPoolUsageInput,
-        output_schema = types.DescribeIdentityPoolUsageOutput,
+        input_schema = schemas.DescribeIdentityPoolUsageInput,
+        output_schema = schemas.DescribeIdentityPoolUsageOutput,
         http_method = "GET",
         http_path = "/identitypools/{IdentityPoolId}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:describeIdentityUsage(input, options)
     return self:invokeOperation(input, {
         name = "DescribeIdentityUsage",
-        input_schema = types.DescribeIdentityUsageInput,
-        output_schema = types.DescribeIdentityUsageOutput,
+        input_schema = schemas.DescribeIdentityUsageInput,
+        output_schema = schemas.DescribeIdentityUsageOutput,
         http_method = "GET",
         http_path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getBulkPublishDetails(input, options)
     return self:invokeOperation(input, {
         name = "GetBulkPublishDetails",
-        input_schema = types.GetBulkPublishDetailsInput,
-        output_schema = types.GetBulkPublishDetailsOutput,
+        input_schema = schemas.GetBulkPublishDetailsInput,
+        output_schema = schemas.GetBulkPublishDetailsOutput,
         http_method = "POST",
         http_path = "/identitypools/{IdentityPoolId}/getBulkPublishDetails",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getCognitoEvents(input, options)
     return self:invokeOperation(input, {
         name = "GetCognitoEvents",
-        input_schema = types.GetCognitoEventsInput,
-        output_schema = types.GetCognitoEventsOutput,
+        input_schema = schemas.GetCognitoEventsInput,
+        output_schema = schemas.GetCognitoEventsOutput,
         http_method = "GET",
         http_path = "/identitypools/{IdentityPoolId}/events",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getIdentityPoolConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetIdentityPoolConfiguration",
-        input_schema = types.GetIdentityPoolConfigurationInput,
-        output_schema = types.GetIdentityPoolConfigurationOutput,
+        input_schema = schemas.GetIdentityPoolConfigurationInput,
+        output_schema = schemas.GetIdentityPoolConfigurationOutput,
         http_method = "GET",
         http_path = "/identitypools/{IdentityPoolId}/configuration",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listDatasets(input, options)
     return self:invokeOperation(input, {
         name = "ListDatasets",
-        input_schema = types.ListDatasetsInput,
-        output_schema = types.ListDatasetsOutput,
+        input_schema = schemas.ListDatasetsInput,
+        output_schema = schemas.ListDatasetsOutput,
         http_method = "GET",
         http_path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listIdentityPoolUsage(input, options)
     return self:invokeOperation(input, {
         name = "ListIdentityPoolUsage",
-        input_schema = types.ListIdentityPoolUsageInput,
-        output_schema = types.ListIdentityPoolUsageOutput,
+        input_schema = schemas.ListIdentityPoolUsageInput,
+        output_schema = schemas.ListIdentityPoolUsageOutput,
         http_method = "GET",
         http_path = "/identitypools",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listRecords(input, options)
     return self:invokeOperation(input, {
         name = "ListRecords",
-        input_schema = types.ListRecordsInput,
-        output_schema = types.ListRecordsOutput,
+        input_schema = schemas.ListRecordsInput,
+        output_schema = schemas.ListRecordsOutput,
         http_method = "GET",
         http_path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/records",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:registerDevice(input, options)
     return self:invokeOperation(input, {
         name = "RegisterDevice",
-        input_schema = types.RegisterDeviceInput,
-        output_schema = types.RegisterDeviceOutput,
+        input_schema = schemas.RegisterDeviceInput,
+        output_schema = schemas.RegisterDeviceOutput,
         http_method = "POST",
         http_path = "/identitypools/{IdentityPoolId}/identity/{IdentityId}/device",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:setCognitoEvents(input, options)
     return self:invokeOperation(input, {
         name = "SetCognitoEvents",
-        input_schema = types.SetCognitoEventsInput,
-        output_schema = types.SetCognitoEventsOutput,
+        input_schema = schemas.SetCognitoEventsInput,
+        output_schema = schemas.SetCognitoEventsOutput,
         http_method = "POST",
         http_path = "/identitypools/{IdentityPoolId}/events",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:setIdentityPoolConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "SetIdentityPoolConfiguration",
-        input_schema = types.SetIdentityPoolConfigurationInput,
-        output_schema = types.SetIdentityPoolConfigurationOutput,
+        input_schema = schemas.SetIdentityPoolConfigurationInput,
+        output_schema = schemas.SetIdentityPoolConfigurationOutput,
         http_method = "POST",
         http_path = "/identitypools/{IdentityPoolId}/configuration",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:subscribeToDataset(input, options)
     return self:invokeOperation(input, {
         name = "SubscribeToDataset",
-        input_schema = types.SubscribeToDatasetInput,
-        output_schema = types.SubscribeToDatasetOutput,
+        input_schema = schemas.SubscribeToDatasetInput,
+        output_schema = schemas.SubscribeToDatasetOutput,
         http_method = "POST",
         http_path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/subscriptions/{DeviceId}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:unsubscribeFromDataset(input, options)
     return self:invokeOperation(input, {
         name = "UnsubscribeFromDataset",
-        input_schema = types.UnsubscribeFromDatasetInput,
-        output_schema = types.UnsubscribeFromDatasetOutput,
+        input_schema = schemas.UnsubscribeFromDatasetInput,
+        output_schema = schemas.UnsubscribeFromDatasetOutput,
         http_method = "DELETE",
         http_path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/subscriptions/{DeviceId}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:updateRecords(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRecords",
-        input_schema = types.UpdateRecordsInput,
-        output_schema = types.UpdateRecordsOutput,
+        input_schema = schemas.UpdateRecordsInput,
+        output_schema = schemas.UpdateRecordsOutput,
         http_method = "POST",
         http_path = "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
         effective_auth_schemes = {

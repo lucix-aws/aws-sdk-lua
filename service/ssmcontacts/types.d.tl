@@ -1636,13 +1636,13 @@ local record ValidationException
     Fields: {ValidationExceptionField}
 end
 
-local type ActivationStatus = "ACTIVATED" | "NOT_ACTIVATED"
-
-local type AcceptCodeValidation = "IGNORE" | "ENFORCE"
+local type ContactType = "PERSONAL" | "ESCALATION" | "ONCALL_SCHEDULE"
 
 local type AcceptType = "DELIVERED" | "READ"
 
-local type ContactType = "PERSONAL" | "ESCALATION" | "ONCALL_SCHEDULE"
+local type AcceptCodeValidation = "IGNORE" | "ENFORCE"
+
+local type ActivationStatus = "ACTIVATED" | "NOT_ACTIVATED"
 
 local type ChannelType = "SMS" | "VOICE" | "EMAIL"
 

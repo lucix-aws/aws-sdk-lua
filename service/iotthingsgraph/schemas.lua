@@ -1,0 +1,2087 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.iotthingsgraph"
+
+local M = {}
+
+M.AssociateEntityToThingInput = schema.new({
+    id = id.from(_N, "AssociateEntityToThingInput"),
+    type = "structure",
+    members = {
+        thingName = schema.new({
+            id = id.from(_N, "AssociateEntityToThingInput", "thingName"),
+            type = "string",
+            name = "thingName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        entityId = schema.new({
+            id = id.from(_N, "AssociateEntityToThingInput", "entityId"),
+            type = "string",
+            name = "entityId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        namespaceVersion = schema.new({
+            id = id.from(_N, "AssociateEntityToThingInput", "namespaceVersion"),
+            type = "long",
+            name = "namespaceVersion",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.AssociateEntityToThingOutput = schema.new({
+    id = id.from(_N, "AssociateEntityToThingOutput"),
+    type = "structure",
+})
+
+M.InternalFailureException = schema.new({
+    id = id.from(_N, "InternalFailureException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InternalFailureException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidRequestException = schema.new({
+    id = id.from(_N, "InvalidRequestException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidRequestException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ThrottlingException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DefinitionDocument = schema.new({
+    id = id.from(_N, "DefinitionDocument"),
+    type = "structure",
+    members = {
+        language = schema.new({
+            id = id.from(_N, "DefinitionDocument", "language"),
+            type = "string",
+            name = "language",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        text = schema.new({
+            id = id.from(_N, "DefinitionDocument", "text"),
+            type = "string",
+            name = "text",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateFlowTemplateInput = schema.new({
+    id = id.from(_N, "CreateFlowTemplateInput"),
+    type = "structure",
+    members = {
+        definition = schema.new({
+            id = id.from(_N, "CreateFlowTemplateInput", "definition"),
+            type = "structure",
+            name = "definition",
+            target_id = id.from(_N, "DefinitionDocument"),
+            target = M.DefinitionDocument,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        compatibleNamespaceVersion = schema.new({
+            id = id.from(_N, "CreateFlowTemplateInput", "compatibleNamespaceVersion"),
+            type = "long",
+            name = "compatibleNamespaceVersion",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.FlowTemplateSummary = schema.new({
+    id = id.from(_N, "FlowTemplateSummary"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "FlowTemplateSummary", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+        arn = schema.new({
+            id = id.from(_N, "FlowTemplateSummary", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+        }),
+        revisionNumber = schema.new({
+            id = id.from(_N, "FlowTemplateSummary", "revisionNumber"),
+            type = "long",
+            name = "revisionNumber",
+            target_id = prelude.Long.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "FlowTemplateSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.CreateFlowTemplateOutput = schema.new({
+    id = id.from(_N, "CreateFlowTemplateOutput"),
+    type = "structure",
+    members = {
+        summary = schema.new({
+            id = id.from(_N, "CreateFlowTemplateOutput", "summary"),
+            type = "structure",
+            name = "summary",
+            target_id = id.from(_N, "FlowTemplateSummary"),
+            target = M.FlowTemplateSummary,
+        }),
+    },
+})
+
+M.LimitExceededException = schema.new({
+    id = id.from(_N, "LimitExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "LimitExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceAlreadyExistsException = schema.new({
+    id = id.from(_N, "ResourceAlreadyExistsException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceAlreadyExistsException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.MetricsConfiguration = schema.new({
+    id = id.from(_N, "MetricsConfiguration"),
+    type = "structure",
+    members = {
+        cloudMetricEnabled = schema.new({
+            id = id.from(_N, "MetricsConfiguration", "cloudMetricEnabled"),
+            type = "boolean",
+            name = "cloudMetricEnabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        metricRuleRoleArn = schema.new({
+            id = id.from(_N, "MetricsConfiguration", "metricRuleRoleArn"),
+            type = "string",
+            name = "metricRuleRoleArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Tag = schema.new({
+    id = id.from(_N, "Tag"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "Tag", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "Tag", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateSystemInstanceInput = schema.new({
+    id = id.from(_N, "CreateSystemInstanceInput"),
+    type = "structure",
+    members = {
+        tags = schema.new({
+            id = id.from(_N, "CreateSystemInstanceInput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        definition = schema.new({
+            id = id.from(_N, "CreateSystemInstanceInput", "definition"),
+            type = "structure",
+            name = "definition",
+            target_id = id.from(_N, "DefinitionDocument"),
+            target = M.DefinitionDocument,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        target = schema.new({
+            id = id.from(_N, "CreateSystemInstanceInput", "target"),
+            type = "string",
+            name = "target",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        greengrassGroupName = schema.new({
+            id = id.from(_N, "CreateSystemInstanceInput", "greengrassGroupName"),
+            type = "string",
+            name = "greengrassGroupName",
+            target_id = prelude.String.id,
+        }),
+        s3BucketName = schema.new({
+            id = id.from(_N, "CreateSystemInstanceInput", "s3BucketName"),
+            type = "string",
+            name = "s3BucketName",
+            target_id = prelude.String.id,
+        }),
+        metricsConfiguration = schema.new({
+            id = id.from(_N, "CreateSystemInstanceInput", "metricsConfiguration"),
+            type = "structure",
+            name = "metricsConfiguration",
+            target_id = id.from(_N, "MetricsConfiguration"),
+            target = M.MetricsConfiguration,
+        }),
+        flowActionsRoleArn = schema.new({
+            id = id.from(_N, "CreateSystemInstanceInput", "flowActionsRoleArn"),
+            type = "string",
+            name = "flowActionsRoleArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SystemInstanceSummary = schema.new({
+    id = id.from(_N, "SystemInstanceSummary"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "SystemInstanceSummary", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+        arn = schema.new({
+            id = id.from(_N, "SystemInstanceSummary", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "SystemInstanceSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        target = schema.new({
+            id = id.from(_N, "SystemInstanceSummary", "target"),
+            type = "string",
+            name = "target",
+            target_id = prelude.String.id,
+        }),
+        greengrassGroupName = schema.new({
+            id = id.from(_N, "SystemInstanceSummary", "greengrassGroupName"),
+            type = "string",
+            name = "greengrassGroupName",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "SystemInstanceSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "SystemInstanceSummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        greengrassGroupId = schema.new({
+            id = id.from(_N, "SystemInstanceSummary", "greengrassGroupId"),
+            type = "string",
+            name = "greengrassGroupId",
+            target_id = prelude.String.id,
+        }),
+        greengrassGroupVersionId = schema.new({
+            id = id.from(_N, "SystemInstanceSummary", "greengrassGroupVersionId"),
+            type = "string",
+            name = "greengrassGroupVersionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateSystemInstanceOutput = schema.new({
+    id = id.from(_N, "CreateSystemInstanceOutput"),
+    type = "structure",
+    members = {
+        summary = schema.new({
+            id = id.from(_N, "CreateSystemInstanceOutput", "summary"),
+            type = "structure",
+            name = "summary",
+            target_id = id.from(_N, "SystemInstanceSummary"),
+            target = M.SystemInstanceSummary,
+        }),
+    },
+})
+
+M.CreateSystemTemplateInput = schema.new({
+    id = id.from(_N, "CreateSystemTemplateInput"),
+    type = "structure",
+    members = {
+        definition = schema.new({
+            id = id.from(_N, "CreateSystemTemplateInput", "definition"),
+            type = "structure",
+            name = "definition",
+            target_id = id.from(_N, "DefinitionDocument"),
+            target = M.DefinitionDocument,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        compatibleNamespaceVersion = schema.new({
+            id = id.from(_N, "CreateSystemTemplateInput", "compatibleNamespaceVersion"),
+            type = "long",
+            name = "compatibleNamespaceVersion",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.SystemTemplateSummary = schema.new({
+    id = id.from(_N, "SystemTemplateSummary"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "SystemTemplateSummary", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+        arn = schema.new({
+            id = id.from(_N, "SystemTemplateSummary", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+        }),
+        revisionNumber = schema.new({
+            id = id.from(_N, "SystemTemplateSummary", "revisionNumber"),
+            type = "long",
+            name = "revisionNumber",
+            target_id = prelude.Long.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "SystemTemplateSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.CreateSystemTemplateOutput = schema.new({
+    id = id.from(_N, "CreateSystemTemplateOutput"),
+    type = "structure",
+    members = {
+        summary = schema.new({
+            id = id.from(_N, "CreateSystemTemplateOutput", "summary"),
+            type = "structure",
+            name = "summary",
+            target_id = id.from(_N, "SystemTemplateSummary"),
+            target = M.SystemTemplateSummary,
+        }),
+    },
+})
+
+M.DeleteFlowTemplateInput = schema.new({
+    id = id.from(_N, "DeleteFlowTemplateInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DeleteFlowTemplateInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteFlowTemplateOutput = schema.new({
+    id = id.from(_N, "DeleteFlowTemplateOutput"),
+    type = "structure",
+})
+
+M.ResourceInUseException = schema.new({
+    id = id.from(_N, "ResourceInUseException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceInUseException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteNamespaceInput = schema.new({
+    id = id.from(_N, "DeleteNamespaceInput"),
+    type = "structure",
+})
+
+M.DeleteNamespaceOutput = schema.new({
+    id = id.from(_N, "DeleteNamespaceOutput"),
+    type = "structure",
+    members = {
+        namespaceArn = schema.new({
+            id = id.from(_N, "DeleteNamespaceOutput", "namespaceArn"),
+            type = "string",
+            name = "namespaceArn",
+            target_id = prelude.String.id,
+        }),
+        namespaceName = schema.new({
+            id = id.from(_N, "DeleteNamespaceOutput", "namespaceName"),
+            type = "string",
+            name = "namespaceName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteSystemInstanceInput = schema.new({
+    id = id.from(_N, "DeleteSystemInstanceInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DeleteSystemInstanceInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteSystemInstanceOutput = schema.new({
+    id = id.from(_N, "DeleteSystemInstanceOutput"),
+    type = "structure",
+})
+
+M.DeleteSystemTemplateInput = schema.new({
+    id = id.from(_N, "DeleteSystemTemplateInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DeleteSystemTemplateInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteSystemTemplateOutput = schema.new({
+    id = id.from(_N, "DeleteSystemTemplateOutput"),
+    type = "structure",
+})
+
+M.DependencyRevision = schema.new({
+    id = id.from(_N, "DependencyRevision"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DependencyRevision", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+        revisionNumber = schema.new({
+            id = id.from(_N, "DependencyRevision", "revisionNumber"),
+            type = "long",
+            name = "revisionNumber",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.DeploySystemInstanceInput = schema.new({
+    id = id.from(_N, "DeploySystemInstanceInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DeploySystemInstanceInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeploySystemInstanceOutput = schema.new({
+    id = id.from(_N, "DeploySystemInstanceOutput"),
+    type = "structure",
+    members = {
+        summary = schema.new({
+            id = id.from(_N, "DeploySystemInstanceOutput", "summary"),
+            type = "structure",
+            name = "summary",
+            target_id = id.from(_N, "SystemInstanceSummary"),
+            target = M.SystemInstanceSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        greengrassDeploymentId = schema.new({
+            id = id.from(_N, "DeploySystemInstanceOutput", "greengrassDeploymentId"),
+            type = "string",
+            name = "greengrassDeploymentId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeprecateFlowTemplateInput = schema.new({
+    id = id.from(_N, "DeprecateFlowTemplateInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DeprecateFlowTemplateInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeprecateFlowTemplateOutput = schema.new({
+    id = id.from(_N, "DeprecateFlowTemplateOutput"),
+    type = "structure",
+})
+
+M.DeprecateSystemTemplateInput = schema.new({
+    id = id.from(_N, "DeprecateSystemTemplateInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DeprecateSystemTemplateInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeprecateSystemTemplateOutput = schema.new({
+    id = id.from(_N, "DeprecateSystemTemplateOutput"),
+    type = "structure",
+})
+
+M.DescribeNamespaceInput = schema.new({
+    id = id.from(_N, "DescribeNamespaceInput"),
+    type = "structure",
+    members = {
+        namespaceName = schema.new({
+            id = id.from(_N, "DescribeNamespaceInput", "namespaceName"),
+            type = "string",
+            name = "namespaceName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeNamespaceOutput = schema.new({
+    id = id.from(_N, "DescribeNamespaceOutput"),
+    type = "structure",
+    members = {
+        namespaceArn = schema.new({
+            id = id.from(_N, "DescribeNamespaceOutput", "namespaceArn"),
+            type = "string",
+            name = "namespaceArn",
+            target_id = prelude.String.id,
+        }),
+        namespaceName = schema.new({
+            id = id.from(_N, "DescribeNamespaceOutput", "namespaceName"),
+            type = "string",
+            name = "namespaceName",
+            target_id = prelude.String.id,
+        }),
+        trackingNamespaceName = schema.new({
+            id = id.from(_N, "DescribeNamespaceOutput", "trackingNamespaceName"),
+            type = "string",
+            name = "trackingNamespaceName",
+            target_id = prelude.String.id,
+        }),
+        trackingNamespaceVersion = schema.new({
+            id = id.from(_N, "DescribeNamespaceOutput", "trackingNamespaceVersion"),
+            type = "long",
+            name = "trackingNamespaceVersion",
+            target_id = prelude.Long.id,
+        }),
+        namespaceVersion = schema.new({
+            id = id.from(_N, "DescribeNamespaceOutput", "namespaceVersion"),
+            type = "long",
+            name = "namespaceVersion",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.DissociateEntityFromThingInput = schema.new({
+    id = id.from(_N, "DissociateEntityFromThingInput"),
+    type = "structure",
+    members = {
+        thingName = schema.new({
+            id = id.from(_N, "DissociateEntityFromThingInput", "thingName"),
+            type = "string",
+            name = "thingName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        entityType = schema.new({
+            id = id.from(_N, "DissociateEntityFromThingInput", "entityType"),
+            type = "string",
+            name = "entityType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DissociateEntityFromThingOutput = schema.new({
+    id = id.from(_N, "DissociateEntityFromThingOutput"),
+    type = "structure",
+})
+
+M.EntityDescription = schema.new({
+    id = id.from(_N, "EntityDescription"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "EntityDescription", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+        arn = schema.new({
+            id = id.from(_N, "EntityDescription", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+        }),
+        type = schema.new({
+            id = id.from(_N, "EntityDescription", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "EntityDescription", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        definition = schema.new({
+            id = id.from(_N, "EntityDescription", "definition"),
+            type = "structure",
+            name = "definition",
+            target_id = id.from(_N, "DefinitionDocument"),
+            target = M.DefinitionDocument,
+        }),
+    },
+})
+
+M.EntityFilter = schema.new({
+    id = id.from(_N, "EntityFilter"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "EntityFilter", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        value = schema.new({
+            id = id.from(_N, "EntityFilter", "value"),
+            type = "list",
+            name = "value",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.FlowExecutionMessage = schema.new({
+    id = id.from(_N, "FlowExecutionMessage"),
+    type = "structure",
+    members = {
+        messageId = schema.new({
+            id = id.from(_N, "FlowExecutionMessage", "messageId"),
+            type = "string",
+            name = "messageId",
+            target_id = prelude.String.id,
+        }),
+        eventType = schema.new({
+            id = id.from(_N, "FlowExecutionMessage", "eventType"),
+            type = "string",
+            name = "eventType",
+            target_id = prelude.String.id,
+        }),
+        timestamp = schema.new({
+            id = id.from(_N, "FlowExecutionMessage", "timestamp"),
+            type = "timestamp",
+            name = "timestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        payload = schema.new({
+            id = id.from(_N, "FlowExecutionMessage", "payload"),
+            type = "string",
+            name = "payload",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.FlowExecutionSummary = schema.new({
+    id = id.from(_N, "FlowExecutionSummary"),
+    type = "structure",
+    members = {
+        flowExecutionId = schema.new({
+            id = id.from(_N, "FlowExecutionSummary", "flowExecutionId"),
+            type = "string",
+            name = "flowExecutionId",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "FlowExecutionSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        systemInstanceId = schema.new({
+            id = id.from(_N, "FlowExecutionSummary", "systemInstanceId"),
+            type = "string",
+            name = "systemInstanceId",
+            target_id = prelude.String.id,
+        }),
+        flowTemplateId = schema.new({
+            id = id.from(_N, "FlowExecutionSummary", "flowTemplateId"),
+            type = "string",
+            name = "flowTemplateId",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "FlowExecutionSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "FlowExecutionSummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.FlowTemplateDescription = schema.new({
+    id = id.from(_N, "FlowTemplateDescription"),
+    type = "structure",
+    members = {
+        summary = schema.new({
+            id = id.from(_N, "FlowTemplateDescription", "summary"),
+            type = "structure",
+            name = "summary",
+            target_id = id.from(_N, "FlowTemplateSummary"),
+            target = M.FlowTemplateSummary,
+        }),
+        definition = schema.new({
+            id = id.from(_N, "FlowTemplateDescription", "definition"),
+            type = "structure",
+            name = "definition",
+            target_id = id.from(_N, "DefinitionDocument"),
+            target = M.DefinitionDocument,
+        }),
+        validatedNamespaceVersion = schema.new({
+            id = id.from(_N, "FlowTemplateDescription", "validatedNamespaceVersion"),
+            type = "long",
+            name = "validatedNamespaceVersion",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.FlowTemplateFilter = schema.new({
+    id = id.from(_N, "FlowTemplateFilter"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "FlowTemplateFilter", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "FlowTemplateFilter", "value"),
+            type = "list",
+            name = "value",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetEntitiesInput = schema.new({
+    id = id.from(_N, "GetEntitiesInput"),
+    type = "structure",
+    members = {
+        ids = schema.new({
+            id = id.from(_N, "GetEntitiesInput", "ids"),
+            type = "list",
+            name = "ids",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        namespaceVersion = schema.new({
+            id = id.from(_N, "GetEntitiesInput", "namespaceVersion"),
+            type = "long",
+            name = "namespaceVersion",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.GetEntitiesOutput = schema.new({
+    id = id.from(_N, "GetEntitiesOutput"),
+    type = "structure",
+    members = {
+        descriptions = schema.new({
+            id = id.from(_N, "GetEntitiesOutput", "descriptions"),
+            type = "list",
+            name = "descriptions",
+            target_id = prelude.Document.id,
+            list_member = M.EntityDescription,
+        }),
+    },
+})
+
+M.GetFlowTemplateInput = schema.new({
+    id = id.from(_N, "GetFlowTemplateInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "GetFlowTemplateInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        revisionNumber = schema.new({
+            id = id.from(_N, "GetFlowTemplateInput", "revisionNumber"),
+            type = "long",
+            name = "revisionNumber",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.GetFlowTemplateOutput = schema.new({
+    id = id.from(_N, "GetFlowTemplateOutput"),
+    type = "structure",
+    members = {
+        description = schema.new({
+            id = id.from(_N, "GetFlowTemplateOutput", "description"),
+            type = "structure",
+            name = "description",
+            target_id = id.from(_N, "FlowTemplateDescription"),
+            target = M.FlowTemplateDescription,
+        }),
+    },
+})
+
+M.GetFlowTemplateRevisionsInput = schema.new({
+    id = id.from(_N, "GetFlowTemplateRevisionsInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "GetFlowTemplateRevisionsInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "GetFlowTemplateRevisionsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "GetFlowTemplateRevisionsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.GetFlowTemplateRevisionsOutput = schema.new({
+    id = id.from(_N, "GetFlowTemplateRevisionsOutput"),
+    type = "structure",
+    members = {
+        summaries = schema.new({
+            id = id.from(_N, "GetFlowTemplateRevisionsOutput", "summaries"),
+            type = "list",
+            name = "summaries",
+            target_id = prelude.Document.id,
+            list_member = M.FlowTemplateSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "GetFlowTemplateRevisionsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetNamespaceDeletionStatusInput = schema.new({
+    id = id.from(_N, "GetNamespaceDeletionStatusInput"),
+    type = "structure",
+})
+
+M.GetNamespaceDeletionStatusOutput = schema.new({
+    id = id.from(_N, "GetNamespaceDeletionStatusOutput"),
+    type = "structure",
+    members = {
+        namespaceArn = schema.new({
+            id = id.from(_N, "GetNamespaceDeletionStatusOutput", "namespaceArn"),
+            type = "string",
+            name = "namespaceArn",
+            target_id = prelude.String.id,
+        }),
+        namespaceName = schema.new({
+            id = id.from(_N, "GetNamespaceDeletionStatusOutput", "namespaceName"),
+            type = "string",
+            name = "namespaceName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetNamespaceDeletionStatusOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        errorCode = schema.new({
+            id = id.from(_N, "GetNamespaceDeletionStatusOutput", "errorCode"),
+            type = "string",
+            name = "errorCode",
+            target_id = prelude.String.id,
+        }),
+        errorMessage = schema.new({
+            id = id.from(_N, "GetNamespaceDeletionStatusOutput", "errorMessage"),
+            type = "string",
+            name = "errorMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetSystemInstanceInput = schema.new({
+    id = id.from(_N, "GetSystemInstanceInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "GetSystemInstanceInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SystemInstanceDescription = schema.new({
+    id = id.from(_N, "SystemInstanceDescription"),
+    type = "structure",
+    members = {
+        summary = schema.new({
+            id = id.from(_N, "SystemInstanceDescription", "summary"),
+            type = "structure",
+            name = "summary",
+            target_id = id.from(_N, "SystemInstanceSummary"),
+            target = M.SystemInstanceSummary,
+        }),
+        definition = schema.new({
+            id = id.from(_N, "SystemInstanceDescription", "definition"),
+            type = "structure",
+            name = "definition",
+            target_id = id.from(_N, "DefinitionDocument"),
+            target = M.DefinitionDocument,
+        }),
+        s3BucketName = schema.new({
+            id = id.from(_N, "SystemInstanceDescription", "s3BucketName"),
+            type = "string",
+            name = "s3BucketName",
+            target_id = prelude.String.id,
+        }),
+        metricsConfiguration = schema.new({
+            id = id.from(_N, "SystemInstanceDescription", "metricsConfiguration"),
+            type = "structure",
+            name = "metricsConfiguration",
+            target_id = id.from(_N, "MetricsConfiguration"),
+            target = M.MetricsConfiguration,
+        }),
+        validatedNamespaceVersion = schema.new({
+            id = id.from(_N, "SystemInstanceDescription", "validatedNamespaceVersion"),
+            type = "long",
+            name = "validatedNamespaceVersion",
+            target_id = prelude.Long.id,
+        }),
+        validatedDependencyRevisions = schema.new({
+            id = id.from(_N, "SystemInstanceDescription", "validatedDependencyRevisions"),
+            type = "list",
+            name = "validatedDependencyRevisions",
+            target_id = prelude.Document.id,
+            list_member = M.DependencyRevision,
+        }),
+        flowActionsRoleArn = schema.new({
+            id = id.from(_N, "SystemInstanceDescription", "flowActionsRoleArn"),
+            type = "string",
+            name = "flowActionsRoleArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetSystemInstanceOutput = schema.new({
+    id = id.from(_N, "GetSystemInstanceOutput"),
+    type = "structure",
+    members = {
+        description = schema.new({
+            id = id.from(_N, "GetSystemInstanceOutput", "description"),
+            type = "structure",
+            name = "description",
+            target_id = id.from(_N, "SystemInstanceDescription"),
+            target = M.SystemInstanceDescription,
+        }),
+    },
+})
+
+M.GetSystemTemplateInput = schema.new({
+    id = id.from(_N, "GetSystemTemplateInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "GetSystemTemplateInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        revisionNumber = schema.new({
+            id = id.from(_N, "GetSystemTemplateInput", "revisionNumber"),
+            type = "long",
+            name = "revisionNumber",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.SystemTemplateDescription = schema.new({
+    id = id.from(_N, "SystemTemplateDescription"),
+    type = "structure",
+    members = {
+        summary = schema.new({
+            id = id.from(_N, "SystemTemplateDescription", "summary"),
+            type = "structure",
+            name = "summary",
+            target_id = id.from(_N, "SystemTemplateSummary"),
+            target = M.SystemTemplateSummary,
+        }),
+        definition = schema.new({
+            id = id.from(_N, "SystemTemplateDescription", "definition"),
+            type = "structure",
+            name = "definition",
+            target_id = id.from(_N, "DefinitionDocument"),
+            target = M.DefinitionDocument,
+        }),
+        validatedNamespaceVersion = schema.new({
+            id = id.from(_N, "SystemTemplateDescription", "validatedNamespaceVersion"),
+            type = "long",
+            name = "validatedNamespaceVersion",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.GetSystemTemplateOutput = schema.new({
+    id = id.from(_N, "GetSystemTemplateOutput"),
+    type = "structure",
+    members = {
+        description = schema.new({
+            id = id.from(_N, "GetSystemTemplateOutput", "description"),
+            type = "structure",
+            name = "description",
+            target_id = id.from(_N, "SystemTemplateDescription"),
+            target = M.SystemTemplateDescription,
+        }),
+    },
+})
+
+M.GetSystemTemplateRevisionsInput = schema.new({
+    id = id.from(_N, "GetSystemTemplateRevisionsInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "GetSystemTemplateRevisionsInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "GetSystemTemplateRevisionsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "GetSystemTemplateRevisionsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.GetSystemTemplateRevisionsOutput = schema.new({
+    id = id.from(_N, "GetSystemTemplateRevisionsOutput"),
+    type = "structure",
+    members = {
+        summaries = schema.new({
+            id = id.from(_N, "GetSystemTemplateRevisionsOutput", "summaries"),
+            type = "list",
+            name = "summaries",
+            target_id = prelude.Document.id,
+            list_member = M.SystemTemplateSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "GetSystemTemplateRevisionsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetUploadStatusInput = schema.new({
+    id = id.from(_N, "GetUploadStatusInput"),
+    type = "structure",
+    members = {
+        uploadId = schema.new({
+            id = id.from(_N, "GetUploadStatusInput", "uploadId"),
+            type = "string",
+            name = "uploadId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetUploadStatusOutput = schema.new({
+    id = id.from(_N, "GetUploadStatusOutput"),
+    type = "structure",
+    members = {
+        uploadId = schema.new({
+            id = id.from(_N, "GetUploadStatusOutput", "uploadId"),
+            type = "string",
+            name = "uploadId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        uploadStatus = schema.new({
+            id = id.from(_N, "GetUploadStatusOutput", "uploadStatus"),
+            type = "string",
+            name = "uploadStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        namespaceArn = schema.new({
+            id = id.from(_N, "GetUploadStatusOutput", "namespaceArn"),
+            type = "string",
+            name = "namespaceArn",
+            target_id = prelude.String.id,
+        }),
+        namespaceName = schema.new({
+            id = id.from(_N, "GetUploadStatusOutput", "namespaceName"),
+            type = "string",
+            name = "namespaceName",
+            target_id = prelude.String.id,
+        }),
+        namespaceVersion = schema.new({
+            id = id.from(_N, "GetUploadStatusOutput", "namespaceVersion"),
+            type = "long",
+            name = "namespaceVersion",
+            target_id = prelude.Long.id,
+        }),
+        failureReason = schema.new({
+            id = id.from(_N, "GetUploadStatusOutput", "failureReason"),
+            type = "list",
+            name = "failureReason",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        createdDate = schema.new({
+            id = id.from(_N, "GetUploadStatusOutput", "createdDate"),
+            type = "timestamp",
+            name = "createdDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListFlowExecutionMessagesInput = schema.new({
+    id = id.from(_N, "ListFlowExecutionMessagesInput"),
+    type = "structure",
+    members = {
+        flowExecutionId = schema.new({
+            id = id.from(_N, "ListFlowExecutionMessagesInput", "flowExecutionId"),
+            type = "string",
+            name = "flowExecutionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListFlowExecutionMessagesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListFlowExecutionMessagesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ListFlowExecutionMessagesOutput = schema.new({
+    id = id.from(_N, "ListFlowExecutionMessagesOutput"),
+    type = "structure",
+    members = {
+        messages = schema.new({
+            id = id.from(_N, "ListFlowExecutionMessagesOutput", "messages"),
+            type = "list",
+            name = "messages",
+            target_id = prelude.Document.id,
+            list_member = M.FlowExecutionMessage,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListFlowExecutionMessagesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        resourceArn = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceOutput"),
+    type = "structure",
+    members = {
+        tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SearchEntitiesInput = schema.new({
+    id = id.from(_N, "SearchEntitiesInput"),
+    type = "structure",
+    members = {
+        entityTypes = schema.new({
+            id = id.from(_N, "SearchEntitiesInput", "entityTypes"),
+            type = "list",
+            name = "entityTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        filters = schema.new({
+            id = id.from(_N, "SearchEntitiesInput", "filters"),
+            type = "list",
+            name = "filters",
+            target_id = prelude.Document.id,
+            list_member = M.EntityFilter,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "SearchEntitiesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "SearchEntitiesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        namespaceVersion = schema.new({
+            id = id.from(_N, "SearchEntitiesInput", "namespaceVersion"),
+            type = "long",
+            name = "namespaceVersion",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.SearchEntitiesOutput = schema.new({
+    id = id.from(_N, "SearchEntitiesOutput"),
+    type = "structure",
+    members = {
+        descriptions = schema.new({
+            id = id.from(_N, "SearchEntitiesOutput", "descriptions"),
+            type = "list",
+            name = "descriptions",
+            target_id = prelude.Document.id,
+            list_member = M.EntityDescription,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "SearchEntitiesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SearchFlowExecutionsInput = schema.new({
+    id = id.from(_N, "SearchFlowExecutionsInput"),
+    type = "structure",
+    members = {
+        systemInstanceId = schema.new({
+            id = id.from(_N, "SearchFlowExecutionsInput", "systemInstanceId"),
+            type = "string",
+            name = "systemInstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        flowExecutionId = schema.new({
+            id = id.from(_N, "SearchFlowExecutionsInput", "flowExecutionId"),
+            type = "string",
+            name = "flowExecutionId",
+            target_id = prelude.String.id,
+        }),
+        startTime = schema.new({
+            id = id.from(_N, "SearchFlowExecutionsInput", "startTime"),
+            type = "timestamp",
+            name = "startTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        endTime = schema.new({
+            id = id.from(_N, "SearchFlowExecutionsInput", "endTime"),
+            type = "timestamp",
+            name = "endTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "SearchFlowExecutionsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "SearchFlowExecutionsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.SearchFlowExecutionsOutput = schema.new({
+    id = id.from(_N, "SearchFlowExecutionsOutput"),
+    type = "structure",
+    members = {
+        summaries = schema.new({
+            id = id.from(_N, "SearchFlowExecutionsOutput", "summaries"),
+            type = "list",
+            name = "summaries",
+            target_id = prelude.Document.id,
+            list_member = M.FlowExecutionSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "SearchFlowExecutionsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SearchFlowTemplatesInput = schema.new({
+    id = id.from(_N, "SearchFlowTemplatesInput"),
+    type = "structure",
+    members = {
+        filters = schema.new({
+            id = id.from(_N, "SearchFlowTemplatesInput", "filters"),
+            type = "list",
+            name = "filters",
+            target_id = prelude.Document.id,
+            list_member = M.FlowTemplateFilter,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "SearchFlowTemplatesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "SearchFlowTemplatesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.SearchFlowTemplatesOutput = schema.new({
+    id = id.from(_N, "SearchFlowTemplatesOutput"),
+    type = "structure",
+    members = {
+        summaries = schema.new({
+            id = id.from(_N, "SearchFlowTemplatesOutput", "summaries"),
+            type = "list",
+            name = "summaries",
+            target_id = prelude.Document.id,
+            list_member = M.FlowTemplateSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "SearchFlowTemplatesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SystemInstanceFilter = schema.new({
+    id = id.from(_N, "SystemInstanceFilter"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "SystemInstanceFilter", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        value = schema.new({
+            id = id.from(_N, "SystemInstanceFilter", "value"),
+            type = "list",
+            name = "value",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.SearchSystemInstancesInput = schema.new({
+    id = id.from(_N, "SearchSystemInstancesInput"),
+    type = "structure",
+    members = {
+        filters = schema.new({
+            id = id.from(_N, "SearchSystemInstancesInput", "filters"),
+            type = "list",
+            name = "filters",
+            target_id = prelude.Document.id,
+            list_member = M.SystemInstanceFilter,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "SearchSystemInstancesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "SearchSystemInstancesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.SearchSystemInstancesOutput = schema.new({
+    id = id.from(_N, "SearchSystemInstancesOutput"),
+    type = "structure",
+    members = {
+        summaries = schema.new({
+            id = id.from(_N, "SearchSystemInstancesOutput", "summaries"),
+            type = "list",
+            name = "summaries",
+            target_id = prelude.Document.id,
+            list_member = M.SystemInstanceSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "SearchSystemInstancesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SystemTemplateFilter = schema.new({
+    id = id.from(_N, "SystemTemplateFilter"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "SystemTemplateFilter", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "SystemTemplateFilter", "value"),
+            type = "list",
+            name = "value",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SearchSystemTemplatesInput = schema.new({
+    id = id.from(_N, "SearchSystemTemplatesInput"),
+    type = "structure",
+    members = {
+        filters = schema.new({
+            id = id.from(_N, "SearchSystemTemplatesInput", "filters"),
+            type = "list",
+            name = "filters",
+            target_id = prelude.Document.id,
+            list_member = M.SystemTemplateFilter,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "SearchSystemTemplatesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "SearchSystemTemplatesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.SearchSystemTemplatesOutput = schema.new({
+    id = id.from(_N, "SearchSystemTemplatesOutput"),
+    type = "structure",
+    members = {
+        summaries = schema.new({
+            id = id.from(_N, "SearchSystemTemplatesOutput", "summaries"),
+            type = "list",
+            name = "summaries",
+            target_id = prelude.Document.id,
+            list_member = M.SystemTemplateSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "SearchSystemTemplatesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SearchThingsInput = schema.new({
+    id = id.from(_N, "SearchThingsInput"),
+    type = "structure",
+    members = {
+        entityId = schema.new({
+            id = id.from(_N, "SearchThingsInput", "entityId"),
+            type = "string",
+            name = "entityId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "SearchThingsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "SearchThingsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        namespaceVersion = schema.new({
+            id = id.from(_N, "SearchThingsInput", "namespaceVersion"),
+            type = "long",
+            name = "namespaceVersion",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.Thing = schema.new({
+    id = id.from(_N, "Thing"),
+    type = "structure",
+    members = {
+        thingArn = schema.new({
+            id = id.from(_N, "Thing", "thingArn"),
+            type = "string",
+            name = "thingArn",
+            target_id = prelude.String.id,
+        }),
+        thingName = schema.new({
+            id = id.from(_N, "Thing", "thingName"),
+            type = "string",
+            name = "thingName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SearchThingsOutput = schema.new({
+    id = id.from(_N, "SearchThingsOutput"),
+    type = "structure",
+    members = {
+        things = schema.new({
+            id = id.from(_N, "SearchThingsOutput", "things"),
+            type = "list",
+            name = "things",
+            target_id = prelude.Document.id,
+            list_member = M.Thing,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "SearchThingsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "TagResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceOutput"),
+    type = "structure",
+})
+
+M.UndeploySystemInstanceInput = schema.new({
+    id = id.from(_N, "UndeploySystemInstanceInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "UndeploySystemInstanceInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UndeploySystemInstanceOutput = schema.new({
+    id = id.from(_N, "UndeploySystemInstanceOutput"),
+    type = "structure",
+    members = {
+        summary = schema.new({
+            id = id.from(_N, "UndeploySystemInstanceOutput", "summary"),
+            type = "structure",
+            name = "summary",
+            target_id = id.from(_N, "SystemInstanceSummary"),
+            target = M.SystemInstanceSummary,
+        }),
+    },
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "UntagResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "tagKeys"),
+            type = "list",
+            name = "tagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
+M.UpdateFlowTemplateInput = schema.new({
+    id = id.from(_N, "UpdateFlowTemplateInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "UpdateFlowTemplateInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        definition = schema.new({
+            id = id.from(_N, "UpdateFlowTemplateInput", "definition"),
+            type = "structure",
+            name = "definition",
+            target_id = id.from(_N, "DefinitionDocument"),
+            target = M.DefinitionDocument,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        compatibleNamespaceVersion = schema.new({
+            id = id.from(_N, "UpdateFlowTemplateInput", "compatibleNamespaceVersion"),
+            type = "long",
+            name = "compatibleNamespaceVersion",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.UpdateFlowTemplateOutput = schema.new({
+    id = id.from(_N, "UpdateFlowTemplateOutput"),
+    type = "structure",
+    members = {
+        summary = schema.new({
+            id = id.from(_N, "UpdateFlowTemplateOutput", "summary"),
+            type = "structure",
+            name = "summary",
+            target_id = id.from(_N, "FlowTemplateSummary"),
+            target = M.FlowTemplateSummary,
+        }),
+    },
+})
+
+M.UpdateSystemTemplateInput = schema.new({
+    id = id.from(_N, "UpdateSystemTemplateInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "UpdateSystemTemplateInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        definition = schema.new({
+            id = id.from(_N, "UpdateSystemTemplateInput", "definition"),
+            type = "structure",
+            name = "definition",
+            target_id = id.from(_N, "DefinitionDocument"),
+            target = M.DefinitionDocument,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        compatibleNamespaceVersion = schema.new({
+            id = id.from(_N, "UpdateSystemTemplateInput", "compatibleNamespaceVersion"),
+            type = "long",
+            name = "compatibleNamespaceVersion",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.UpdateSystemTemplateOutput = schema.new({
+    id = id.from(_N, "UpdateSystemTemplateOutput"),
+    type = "structure",
+    members = {
+        summary = schema.new({
+            id = id.from(_N, "UpdateSystemTemplateOutput", "summary"),
+            type = "structure",
+            name = "summary",
+            target_id = id.from(_N, "SystemTemplateSummary"),
+            target = M.SystemTemplateSummary,
+        }),
+    },
+})
+
+M.UploadEntityDefinitionsInput = schema.new({
+    id = id.from(_N, "UploadEntityDefinitionsInput"),
+    type = "structure",
+    members = {
+        document = schema.new({
+            id = id.from(_N, "UploadEntityDefinitionsInput", "document"),
+            type = "structure",
+            name = "document",
+            target_id = id.from(_N, "DefinitionDocument"),
+            target = M.DefinitionDocument,
+        }),
+        syncWithPublicNamespace = schema.new({
+            id = id.from(_N, "UploadEntityDefinitionsInput", "syncWithPublicNamespace"),
+            type = "boolean",
+            name = "syncWithPublicNamespace",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        deprecateExistingEntities = schema.new({
+            id = id.from(_N, "UploadEntityDefinitionsInput", "deprecateExistingEntities"),
+            type = "boolean",
+            name = "deprecateExistingEntities",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+    },
+})
+
+M.UploadEntityDefinitionsOutput = schema.new({
+    id = id.from(_N, "UploadEntityDefinitionsOutput"),
+    type = "structure",
+    members = {
+        uploadId = schema.new({
+            id = id.from(_N, "UploadEntityDefinitionsOutput", "uploadId"),
+            type = "string",
+            name = "uploadId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+return M

@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("timestreaminfluxdb.endpoint_rules")
+local schemas = require("timestreaminfluxdb.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("timestreaminfluxdb.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createDbCluster(input, options)
     return self:invokeOperation(input, {
         name = "CreateDbCluster",
-        input_schema = types.CreateDbClusterInput,
-        output_schema = types.CreateDbClusterOutput,
+        input_schema = schemas.CreateDbClusterInput,
+        output_schema = schemas.CreateDbClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createDbInstance(input, options)
     return self:invokeOperation(input, {
         name = "CreateDbInstance",
-        input_schema = types.CreateDbInstanceInput,
-        output_schema = types.CreateDbInstanceOutput,
+        input_schema = schemas.CreateDbInstanceInput,
+        output_schema = schemas.CreateDbInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createDbParameterGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateDbParameterGroup",
-        input_schema = types.CreateDbParameterGroupInput,
-        output_schema = types.CreateDbParameterGroupOutput,
+        input_schema = schemas.CreateDbParameterGroupInput,
+        output_schema = schemas.CreateDbParameterGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteDbCluster(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDbCluster",
-        input_schema = types.DeleteDbClusterInput,
-        output_schema = types.DeleteDbClusterOutput,
+        input_schema = schemas.DeleteDbClusterInput,
+        output_schema = schemas.DeleteDbClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteDbInstance(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDbInstance",
-        input_schema = types.DeleteDbInstanceInput,
-        output_schema = types.DeleteDbInstanceOutput,
+        input_schema = schemas.DeleteDbInstanceInput,
+        output_schema = schemas.DeleteDbInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getDbCluster(input, options)
     return self:invokeOperation(input, {
         name = "GetDbCluster",
-        input_schema = types.GetDbClusterInput,
-        output_schema = types.GetDbClusterOutput,
+        input_schema = schemas.GetDbClusterInput,
+        output_schema = schemas.GetDbClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getDbInstance(input, options)
     return self:invokeOperation(input, {
         name = "GetDbInstance",
-        input_schema = types.GetDbInstanceInput,
-        output_schema = types.GetDbInstanceOutput,
+        input_schema = schemas.GetDbInstanceInput,
+        output_schema = schemas.GetDbInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getDbParameterGroup(input, options)
     return self:invokeOperation(input, {
         name = "GetDbParameterGroup",
-        input_schema = types.GetDbParameterGroupInput,
-        output_schema = types.GetDbParameterGroupOutput,
+        input_schema = schemas.GetDbParameterGroupInput,
+        output_schema = schemas.GetDbParameterGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listDbClusters(input, options)
     return self:invokeOperation(input, {
         name = "ListDbClusters",
-        input_schema = types.ListDbClustersInput,
-        output_schema = types.ListDbClustersOutput,
+        input_schema = schemas.ListDbClustersInput,
+        output_schema = schemas.ListDbClustersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listDbInstances(input, options)
     return self:invokeOperation(input, {
         name = "ListDbInstances",
-        input_schema = types.ListDbInstancesInput,
-        output_schema = types.ListDbInstancesOutput,
+        input_schema = schemas.ListDbInstancesInput,
+        output_schema = schemas.ListDbInstancesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listDbInstancesForCluster(input, options)
     return self:invokeOperation(input, {
         name = "ListDbInstancesForCluster",
-        input_schema = types.ListDbInstancesForClusterInput,
-        output_schema = types.ListDbInstancesForClusterOutput,
+        input_schema = schemas.ListDbInstancesForClusterInput,
+        output_schema = schemas.ListDbInstancesForClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listDbParameterGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListDbParameterGroups",
-        input_schema = types.ListDbParameterGroupsInput,
-        output_schema = types.ListDbParameterGroupsOutput,
+        input_schema = schemas.ListDbParameterGroupsInput,
+        output_schema = schemas.ListDbParameterGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:rebootDbCluster(input, options)
     return self:invokeOperation(input, {
         name = "RebootDbCluster",
-        input_schema = types.RebootDbClusterInput,
-        output_schema = types.RebootDbClusterOutput,
+        input_schema = schemas.RebootDbClusterInput,
+        output_schema = schemas.RebootDbClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:rebootDbInstance(input, options)
     return self:invokeOperation(input, {
         name = "RebootDbInstance",
-        input_schema = types.RebootDbInstanceInput,
-        output_schema = types.RebootDbInstanceOutput,
+        input_schema = schemas.RebootDbInstanceInput,
+        output_schema = schemas.RebootDbInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:updateDbCluster(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDbCluster",
-        input_schema = types.UpdateDbClusterInput,
-        output_schema = types.UpdateDbClusterOutput,
+        input_schema = schemas.UpdateDbClusterInput,
+        output_schema = schemas.UpdateDbClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:updateDbInstance(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDbInstance",
-        input_schema = types.UpdateDbInstanceInput,
-        output_schema = types.UpdateDbInstanceOutput,
+        input_schema = schemas.UpdateDbInstanceInput,
+        output_schema = schemas.UpdateDbInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

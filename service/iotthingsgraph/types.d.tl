@@ -891,9 +891,9 @@ local type EntityType = "DEVICE" | "SERVICE" | "DEVICE_MODEL" | "CAPABILITY" | "
 
 local type NamespaceDeletionStatusErrorCodes = "VALIDATION_FAILED"
 
-local type DeploymentTarget = "GREENGRASS" | "CLOUD"
-
 local type NamespaceDeletionStatus = "IN_PROGRESS" | "SUCCEEDED" | "FAILED"
+
+local type DeploymentTarget = "GREENGRASS" | "CLOUD"
 
 local record M
     AssociateEntityToThingInput: AssociateEntityToThingInput

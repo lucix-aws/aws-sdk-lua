@@ -1,0 +1,4010 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.notifications"
+
+local M = {}
+
+M.AccessDeniedException = schema.new({
+    id = id.from(_N, "AccessDeniedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "AccessDeniedException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SummarizationDimensionDetail = schema.new({
+    id = id.from(_N, "SummarizationDimensionDetail"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "SummarizationDimensionDetail", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "SummarizationDimensionDetail", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AggregationDetail = schema.new({
+    id = id.from(_N, "AggregationDetail"),
+    type = "structure",
+    members = {
+        summarizationDimensions = schema.new({
+            id = id.from(_N, "AggregationDetail", "summarizationDimensions"),
+            type = "list",
+            name = "summarizationDimensions",
+            target_id = prelude.Document.id,
+            list_member = M.SummarizationDimensionDetail,
+        }),
+    },
+})
+
+M.AggregationKey = schema.new({
+    id = id.from(_N, "AggregationKey"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "AggregationKey", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "AggregationKey", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SummarizationDimensionOverview = schema.new({
+    id = id.from(_N, "SummarizationDimensionOverview"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "SummarizationDimensionOverview", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        count = schema.new({
+            id = id.from(_N, "SummarizationDimensionOverview", "count"),
+            type = "integer",
+            name = "count",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sampleValues = schema.new({
+            id = id.from(_N, "SummarizationDimensionOverview", "sampleValues"),
+            type = "list",
+            name = "sampleValues",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.AggregationSummary = schema.new({
+    id = id.from(_N, "AggregationSummary"),
+    type = "structure",
+    members = {
+        eventCount = schema.new({
+            id = id.from(_N, "AggregationSummary", "eventCount"),
+            type = "integer",
+            name = "eventCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        aggregatedBy = schema.new({
+            id = id.from(_N, "AggregationSummary", "aggregatedBy"),
+            type = "list",
+            name = "aggregatedBy",
+            target_id = prelude.Document.id,
+            list_member = M.AggregationKey,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        aggregatedAccounts = schema.new({
+            id = id.from(_N, "AggregationSummary", "aggregatedAccounts"),
+            type = "structure",
+            name = "aggregatedAccounts",
+            target_id = id.from(_N, "SummarizationDimensionOverview"),
+            target = M.SummarizationDimensionOverview,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        aggregatedRegions = schema.new({
+            id = id.from(_N, "AggregationSummary", "aggregatedRegions"),
+            type = "structure",
+            name = "aggregatedRegions",
+            target_id = id.from(_N, "SummarizationDimensionOverview"),
+            target = M.SummarizationDimensionOverview,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        aggregatedOrganizationalUnits = schema.new({
+            id = id.from(_N, "AggregationSummary", "aggregatedOrganizationalUnits"),
+            type = "structure",
+            name = "aggregatedOrganizationalUnits",
+            target_id = id.from(_N, "SummarizationDimensionOverview"),
+            target = M.SummarizationDimensionOverview,
+        }),
+        additionalSummarizationDimensions = schema.new({
+            id = id.from(_N, "AggregationSummary", "additionalSummarizationDimensions"),
+            type = "list",
+            name = "additionalSummarizationDimensions",
+            target_id = prelude.Document.id,
+            list_member = M.SummarizationDimensionOverview,
+        }),
+    },
+})
+
+M.AssociateChannelInput = schema.new({
+    id = id.from(_N, "AssociateChannelInput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "AssociateChannelInput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        notificationConfigurationArn = schema.new({
+            id = id.from(_N, "AssociateChannelInput", "notificationConfigurationArn"),
+            type = "string",
+            name = "notificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssociateChannelOutput = schema.new({
+    id = id.from(_N, "AssociateChannelOutput"),
+    type = "structure",
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ConflictException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "ConflictException", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InternalServerException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+        }),
+        serviceCode = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "serviceCode"),
+            type = "string",
+            name = "serviceCode",
+            target_id = prelude.String.id,
+        }),
+        quotaCode = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "quotaCode"),
+            type = "string",
+            name = "quotaCode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ThrottlingException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        serviceCode = schema.new({
+            id = id.from(_N, "ThrottlingException", "serviceCode"),
+            type = "string",
+            name = "serviceCode",
+            target_id = prelude.String.id,
+        }),
+        quotaCode = schema.new({
+            id = id.from(_N, "ThrottlingException", "quotaCode"),
+            type = "string",
+            name = "quotaCode",
+            target_id = prelude.String.id,
+        }),
+        retryAfterSeconds = schema.new({
+            id = id.from(_N, "ThrottlingException", "retryAfterSeconds"),
+            type = "integer",
+            name = "retryAfterSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Retry-After" },
+            },
+        }),
+    },
+})
+
+M.ValidationExceptionField = schema.new({
+    id = id.from(_N, "ValidationExceptionField"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "ValidationExceptionField", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "ValidationExceptionField", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        reason = schema.new({
+            id = id.from(_N, "ValidationException", "reason"),
+            type = "string",
+            name = "reason",
+            target_id = prelude.String.id,
+        }),
+        fieldList = schema.new({
+            id = id.from(_N, "ValidationException", "fieldList"),
+            type = "list",
+            name = "fieldList",
+            target_id = prelude.Document.id,
+            list_member = M.ValidationExceptionField,
+        }),
+    },
+})
+
+M.AssociateManagedNotificationAccountContactInput = schema.new({
+    id = id.from(_N, "AssociateManagedNotificationAccountContactInput"),
+    type = "structure",
+    members = {
+        contactIdentifier = schema.new({
+            id = id.from(_N, "AssociateManagedNotificationAccountContactInput", "contactIdentifier"),
+            type = "string",
+            name = "contactIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        managedNotificationConfigurationArn = schema.new({
+            id = id.from(_N, "AssociateManagedNotificationAccountContactInput", "managedNotificationConfigurationArn"),
+            type = "string",
+            name = "managedNotificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssociateManagedNotificationAccountContactOutput = schema.new({
+    id = id.from(_N, "AssociateManagedNotificationAccountContactOutput"),
+    type = "structure",
+})
+
+M.AssociateManagedNotificationAdditionalChannelInput = schema.new({
+    id = id.from(_N, "AssociateManagedNotificationAdditionalChannelInput"),
+    type = "structure",
+    members = {
+        channelArn = schema.new({
+            id = id.from(_N, "AssociateManagedNotificationAdditionalChannelInput", "channelArn"),
+            type = "string",
+            name = "channelArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        managedNotificationConfigurationArn = schema.new({
+            id = id.from(_N, "AssociateManagedNotificationAdditionalChannelInput", "managedNotificationConfigurationArn"),
+            type = "string",
+            name = "managedNotificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssociateManagedNotificationAdditionalChannelOutput = schema.new({
+    id = id.from(_N, "AssociateManagedNotificationAdditionalChannelOutput"),
+    type = "structure",
+})
+
+M.AssociateOrganizationalUnitInput = schema.new({
+    id = id.from(_N, "AssociateOrganizationalUnitInput"),
+    type = "structure",
+    members = {
+        organizationalUnitId = schema.new({
+            id = id.from(_N, "AssociateOrganizationalUnitInput", "organizationalUnitId"),
+            type = "string",
+            name = "organizationalUnitId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        notificationConfigurationArn = schema.new({
+            id = id.from(_N, "AssociateOrganizationalUnitInput", "notificationConfigurationArn"),
+            type = "string",
+            name = "notificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssociateOrganizationalUnitOutput = schema.new({
+    id = id.from(_N, "AssociateOrganizationalUnitOutput"),
+    type = "structure",
+})
+
+M.DisassociateChannelInput = schema.new({
+    id = id.from(_N, "DisassociateChannelInput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "DisassociateChannelInput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        notificationConfigurationArn = schema.new({
+            id = id.from(_N, "DisassociateChannelInput", "notificationConfigurationArn"),
+            type = "string",
+            name = "notificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DisassociateChannelOutput = schema.new({
+    id = id.from(_N, "DisassociateChannelOutput"),
+    type = "structure",
+})
+
+M.ListChannelsInput = schema.new({
+    id = id.from(_N, "ListChannelsInput"),
+    type = "structure",
+    members = {
+        notificationConfigurationArn = schema.new({
+            id = id.from(_N, "ListChannelsInput", "notificationConfigurationArn"),
+            type = "string",
+            name = "notificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "notificationConfigurationArn" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListChannelsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListChannelsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListChannelsOutput = schema.new({
+    id = id.from(_N, "ListChannelsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListChannelsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        channels = schema.new({
+            id = id.from(_N, "ListChannelsOutput", "channels"),
+            type = "list",
+            name = "channels",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateEventRuleInput = schema.new({
+    id = id.from(_N, "CreateEventRuleInput"),
+    type = "structure",
+    members = {
+        notificationConfigurationArn = schema.new({
+            id = id.from(_N, "CreateEventRuleInput", "notificationConfigurationArn"),
+            type = "string",
+            name = "notificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        source = schema.new({
+            id = id.from(_N, "CreateEventRuleInput", "source"),
+            type = "string",
+            name = "source",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventType = schema.new({
+            id = id.from(_N, "CreateEventRuleInput", "eventType"),
+            type = "string",
+            name = "eventType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventPattern = schema.new({
+            id = id.from(_N, "CreateEventRuleInput", "eventPattern"),
+            type = "string",
+            name = "eventPattern",
+            target_id = prelude.String.id,
+        }),
+        regions = schema.new({
+            id = id.from(_N, "CreateEventRuleInput", "regions"),
+            type = "list",
+            name = "regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.EventRuleStatusSummary = schema.new({
+    id = id.from(_N, "EventRuleStatusSummary"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "EventRuleStatusSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        reason = schema.new({
+            id = id.from(_N, "EventRuleStatusSummary", "reason"),
+            type = "string",
+            name = "reason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateEventRuleOutput = schema.new({
+    id = id.from(_N, "CreateEventRuleOutput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "CreateEventRuleOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        notificationConfigurationArn = schema.new({
+            id = id.from(_N, "CreateEventRuleOutput", "notificationConfigurationArn"),
+            type = "string",
+            name = "notificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        statusSummaryByRegion = schema.new({
+            id = id.from(_N, "CreateEventRuleOutput", "statusSummaryByRegion"),
+            type = "map",
+            name = "statusSummaryByRegion",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.EventRuleStatusSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateNotificationConfigurationInput = schema.new({
+    id = id.from(_N, "CreateNotificationConfigurationInput"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "CreateNotificationConfigurationInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateNotificationConfigurationInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        aggregationDuration = schema.new({
+            id = id.from(_N, "CreateNotificationConfigurationInput", "aggregationDuration"),
+            type = "string",
+            name = "aggregationDuration",
+            target_id = prelude.String.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateNotificationConfigurationInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateNotificationConfigurationOutput = schema.new({
+    id = id.from(_N, "CreateNotificationConfigurationOutput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "CreateNotificationConfigurationOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "CreateNotificationConfigurationOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteEventRuleInput = schema.new({
+    id = id.from(_N, "DeleteEventRuleInput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "DeleteEventRuleInput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteEventRuleOutput = schema.new({
+    id = id.from(_N, "DeleteEventRuleOutput"),
+    type = "structure",
+})
+
+M.DeleteNotificationConfigurationInput = schema.new({
+    id = id.from(_N, "DeleteNotificationConfigurationInput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "DeleteNotificationConfigurationInput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteNotificationConfigurationOutput = schema.new({
+    id = id.from(_N, "DeleteNotificationConfigurationOutput"),
+    type = "structure",
+})
+
+M.DeregisterNotificationHubInput = schema.new({
+    id = id.from(_N, "DeregisterNotificationHubInput"),
+    type = "structure",
+    members = {
+        notificationHubRegion = schema.new({
+            id = id.from(_N, "DeregisterNotificationHubInput", "notificationHubRegion"),
+            type = "string",
+            name = "notificationHubRegion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.NotificationHubStatusSummary = schema.new({
+    id = id.from(_N, "NotificationHubStatusSummary"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "NotificationHubStatusSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        reason = schema.new({
+            id = id.from(_N, "NotificationHubStatusSummary", "reason"),
+            type = "string",
+            name = "reason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeregisterNotificationHubOutput = schema.new({
+    id = id.from(_N, "DeregisterNotificationHubOutput"),
+    type = "structure",
+    members = {
+        notificationHubRegion = schema.new({
+            id = id.from(_N, "DeregisterNotificationHubOutput", "notificationHubRegion"),
+            type = "string",
+            name = "notificationHubRegion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        statusSummary = schema.new({
+            id = id.from(_N, "DeregisterNotificationHubOutput", "statusSummary"),
+            type = "structure",
+            name = "statusSummary",
+            target_id = id.from(_N, "NotificationHubStatusSummary"),
+            target = M.NotificationHubStatusSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Dimension = schema.new({
+    id = id.from(_N, "Dimension"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "Dimension", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "Dimension", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DisableNotificationsAccessForOrganizationInput = schema.new({
+    id = id.from(_N, "DisableNotificationsAccessForOrganizationInput"),
+    type = "structure",
+})
+
+M.DisableNotificationsAccessForOrganizationOutput = schema.new({
+    id = id.from(_N, "DisableNotificationsAccessForOrganizationOutput"),
+    type = "structure",
+})
+
+M.DisassociateManagedNotificationAccountContactInput = schema.new({
+    id = id.from(_N, "DisassociateManagedNotificationAccountContactInput"),
+    type = "structure",
+    members = {
+        contactIdentifier = schema.new({
+            id = id.from(_N, "DisassociateManagedNotificationAccountContactInput", "contactIdentifier"),
+            type = "string",
+            name = "contactIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        managedNotificationConfigurationArn = schema.new({
+            id = id.from(_N, "DisassociateManagedNotificationAccountContactInput", "managedNotificationConfigurationArn"),
+            type = "string",
+            name = "managedNotificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DisassociateManagedNotificationAccountContactOutput = schema.new({
+    id = id.from(_N, "DisassociateManagedNotificationAccountContactOutput"),
+    type = "structure",
+})
+
+M.DisassociateManagedNotificationAdditionalChannelInput = schema.new({
+    id = id.from(_N, "DisassociateManagedNotificationAdditionalChannelInput"),
+    type = "structure",
+    members = {
+        channelArn = schema.new({
+            id = id.from(_N, "DisassociateManagedNotificationAdditionalChannelInput", "channelArn"),
+            type = "string",
+            name = "channelArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        managedNotificationConfigurationArn = schema.new({
+            id = id.from(_N, "DisassociateManagedNotificationAdditionalChannelInput", "managedNotificationConfigurationArn"),
+            type = "string",
+            name = "managedNotificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DisassociateManagedNotificationAdditionalChannelOutput = schema.new({
+    id = id.from(_N, "DisassociateManagedNotificationAdditionalChannelOutput"),
+    type = "structure",
+})
+
+M.DisassociateOrganizationalUnitInput = schema.new({
+    id = id.from(_N, "DisassociateOrganizationalUnitInput"),
+    type = "structure",
+    members = {
+        organizationalUnitId = schema.new({
+            id = id.from(_N, "DisassociateOrganizationalUnitInput", "organizationalUnitId"),
+            type = "string",
+            name = "organizationalUnitId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        notificationConfigurationArn = schema.new({
+            id = id.from(_N, "DisassociateOrganizationalUnitInput", "notificationConfigurationArn"),
+            type = "string",
+            name = "notificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DisassociateOrganizationalUnitOutput = schema.new({
+    id = id.from(_N, "DisassociateOrganizationalUnitOutput"),
+    type = "structure",
+})
+
+M.EnableNotificationsAccessForOrganizationInput = schema.new({
+    id = id.from(_N, "EnableNotificationsAccessForOrganizationInput"),
+    type = "structure",
+})
+
+M.EnableNotificationsAccessForOrganizationOutput = schema.new({
+    id = id.from(_N, "EnableNotificationsAccessForOrganizationOutput"),
+    type = "structure",
+})
+
+M.GetEventRuleInput = schema.new({
+    id = id.from(_N, "GetEventRuleInput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "GetEventRuleInput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetEventRuleOutput = schema.new({
+    id = id.from(_N, "GetEventRuleOutput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "GetEventRuleOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        notificationConfigurationArn = schema.new({
+            id = id.from(_N, "GetEventRuleOutput", "notificationConfigurationArn"),
+            type = "string",
+            name = "notificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creationTime = schema.new({
+            id = id.from(_N, "GetEventRuleOutput", "creationTime"),
+            type = "timestamp",
+            name = "creationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        source = schema.new({
+            id = id.from(_N, "GetEventRuleOutput", "source"),
+            type = "string",
+            name = "source",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventType = schema.new({
+            id = id.from(_N, "GetEventRuleOutput", "eventType"),
+            type = "string",
+            name = "eventType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventPattern = schema.new({
+            id = id.from(_N, "GetEventRuleOutput", "eventPattern"),
+            type = "string",
+            name = "eventPattern",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        regions = schema.new({
+            id = id.from(_N, "GetEventRuleOutput", "regions"),
+            type = "list",
+            name = "regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        managedRules = schema.new({
+            id = id.from(_N, "GetEventRuleOutput", "managedRules"),
+            type = "list",
+            name = "managedRules",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        statusSummaryByRegion = schema.new({
+            id = id.from(_N, "GetEventRuleOutput", "statusSummaryByRegion"),
+            type = "map",
+            name = "statusSummaryByRegion",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.EventRuleStatusSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListEventRulesInput = schema.new({
+    id = id.from(_N, "ListEventRulesInput"),
+    type = "structure",
+    members = {
+        notificationConfigurationArn = schema.new({
+            id = id.from(_N, "ListEventRulesInput", "notificationConfigurationArn"),
+            type = "string",
+            name = "notificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "notificationConfigurationArn" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListEventRulesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListEventRulesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.EventRuleStructure = schema.new({
+    id = id.from(_N, "EventRuleStructure"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "EventRuleStructure", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        notificationConfigurationArn = schema.new({
+            id = id.from(_N, "EventRuleStructure", "notificationConfigurationArn"),
+            type = "string",
+            name = "notificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creationTime = schema.new({
+            id = id.from(_N, "EventRuleStructure", "creationTime"),
+            type = "timestamp",
+            name = "creationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        source = schema.new({
+            id = id.from(_N, "EventRuleStructure", "source"),
+            type = "string",
+            name = "source",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventType = schema.new({
+            id = id.from(_N, "EventRuleStructure", "eventType"),
+            type = "string",
+            name = "eventType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventPattern = schema.new({
+            id = id.from(_N, "EventRuleStructure", "eventPattern"),
+            type = "string",
+            name = "eventPattern",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        regions = schema.new({
+            id = id.from(_N, "EventRuleStructure", "regions"),
+            type = "list",
+            name = "regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        managedRules = schema.new({
+            id = id.from(_N, "EventRuleStructure", "managedRules"),
+            type = "list",
+            name = "managedRules",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        statusSummaryByRegion = schema.new({
+            id = id.from(_N, "EventRuleStructure", "statusSummaryByRegion"),
+            type = "map",
+            name = "statusSummaryByRegion",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.EventRuleStatusSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListEventRulesOutput = schema.new({
+    id = id.from(_N, "ListEventRulesOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListEventRulesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        eventRules = schema.new({
+            id = id.from(_N, "ListEventRulesOutput", "eventRules"),
+            type = "list",
+            name = "eventRules",
+            target_id = prelude.Document.id,
+            list_member = M.EventRuleStructure,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateEventRuleInput = schema.new({
+    id = id.from(_N, "UpdateEventRuleInput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "UpdateEventRuleInput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        eventPattern = schema.new({
+            id = id.from(_N, "UpdateEventRuleInput", "eventPattern"),
+            type = "string",
+            name = "eventPattern",
+            target_id = prelude.String.id,
+        }),
+        regions = schema.new({
+            id = id.from(_N, "UpdateEventRuleInput", "regions"),
+            type = "list",
+            name = "regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.UpdateEventRuleOutput = schema.new({
+    id = id.from(_N, "UpdateEventRuleOutput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "UpdateEventRuleOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        notificationConfigurationArn = schema.new({
+            id = id.from(_N, "UpdateEventRuleOutput", "notificationConfigurationArn"),
+            type = "string",
+            name = "notificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        statusSummaryByRegion = schema.new({
+            id = id.from(_N, "UpdateEventRuleOutput", "statusSummaryByRegion"),
+            type = "map",
+            name = "statusSummaryByRegion",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.EventRuleStatusSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetManagedNotificationChildEventInput = schema.new({
+    id = id.from(_N, "GetManagedNotificationChildEventInput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "GetManagedNotificationChildEventInput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        locale = schema.new({
+            id = id.from(_N, "GetManagedNotificationChildEventInput", "locale"),
+            type = "string",
+            name = "locale",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "locale" },
+            },
+        }),
+    },
+})
+
+M.MessageComponents = schema.new({
+    id = id.from(_N, "MessageComponents"),
+    type = "structure",
+    members = {
+        headline = schema.new({
+            id = id.from(_N, "MessageComponents", "headline"),
+            type = "string",
+            name = "headline",
+            target_id = prelude.String.id,
+        }),
+        paragraphSummary = schema.new({
+            id = id.from(_N, "MessageComponents", "paragraphSummary"),
+            type = "string",
+            name = "paragraphSummary",
+            target_id = prelude.String.id,
+        }),
+        completeDescription = schema.new({
+            id = id.from(_N, "MessageComponents", "completeDescription"),
+            type = "string",
+            name = "completeDescription",
+            target_id = prelude.String.id,
+        }),
+        dimensions = schema.new({
+            id = id.from(_N, "MessageComponents", "dimensions"),
+            type = "list",
+            name = "dimensions",
+            target_id = prelude.Document.id,
+            list_member = M.Dimension,
+        }),
+    },
+})
+
+M.TextPartValue = schema.new({
+    id = id.from(_N, "TextPartValue"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "TextPartValue", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        displayText = schema.new({
+            id = id.from(_N, "TextPartValue", "displayText"),
+            type = "string",
+            name = "displayText",
+            target_id = prelude.String.id,
+        }),
+        textByLocale = schema.new({
+            id = id.from(_N, "TextPartValue", "textByLocale"),
+            type = "map",
+            name = "textByLocale",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        url = schema.new({
+            id = id.from(_N, "TextPartValue", "url"),
+            type = "string",
+            name = "url",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ManagedNotificationChildEvent = schema.new({
+    id = id.from(_N, "ManagedNotificationChildEvent"),
+    type = "structure",
+    members = {
+        schemaVersion = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEvent", "schemaVersion"),
+            type = "string",
+            name = "schemaVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEvent", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        messageComponents = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEvent", "messageComponents"),
+            type = "structure",
+            name = "messageComponents",
+            target_id = id.from(_N, "MessageComponents"),
+            target = M.MessageComponents,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceEventDetailUrl = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEvent", "sourceEventDetailUrl"),
+            type = "string",
+            name = "sourceEventDetailUrl",
+            target_id = prelude.String.id,
+        }),
+        sourceEventDetailUrlDisplayText = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEvent", "sourceEventDetailUrlDisplayText"),
+            type = "string",
+            name = "sourceEventDetailUrlDisplayText",
+            target_id = prelude.String.id,
+        }),
+        notificationType = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEvent", "notificationType"),
+            type = "string",
+            name = "notificationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventStatus = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEvent", "eventStatus"),
+            type = "string",
+            name = "eventStatus",
+            target_id = prelude.String.id,
+        }),
+        aggregateManagedNotificationEventArn = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEvent", "aggregateManagedNotificationEventArn"),
+            type = "string",
+            name = "aggregateManagedNotificationEventArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        startTime = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEvent", "startTime"),
+            type = "timestamp",
+            name = "startTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        endTime = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEvent", "endTime"),
+            type = "timestamp",
+            name = "endTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        textParts = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEvent", "textParts"),
+            type = "map",
+            name = "textParts",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.TextPartValue,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        organizationalUnitId = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEvent", "organizationalUnitId"),
+            type = "string",
+            name = "organizationalUnitId",
+            target_id = prelude.String.id,
+        }),
+        aggregationDetail = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEvent", "aggregationDetail"),
+            type = "structure",
+            name = "aggregationDetail",
+            target_id = id.from(_N, "AggregationDetail"),
+            target = M.AggregationDetail,
+        }),
+    },
+})
+
+M.GetManagedNotificationChildEventOutput = schema.new({
+    id = id.from(_N, "GetManagedNotificationChildEventOutput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "GetManagedNotificationChildEventOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        managedNotificationConfigurationArn = schema.new({
+            id = id.from(_N, "GetManagedNotificationChildEventOutput", "managedNotificationConfigurationArn"),
+            type = "string",
+            name = "managedNotificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creationTime = schema.new({
+            id = id.from(_N, "GetManagedNotificationChildEventOutput", "creationTime"),
+            type = "timestamp",
+            name = "creationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        content = schema.new({
+            id = id.from(_N, "GetManagedNotificationChildEventOutput", "content"),
+            type = "structure",
+            name = "content",
+            target_id = id.from(_N, "ManagedNotificationChildEvent"),
+            target = M.ManagedNotificationChildEvent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetManagedNotificationConfigurationInput = schema.new({
+    id = id.from(_N, "GetManagedNotificationConfigurationInput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "GetManagedNotificationConfigurationInput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetManagedNotificationConfigurationOutput = schema.new({
+    id = id.from(_N, "GetManagedNotificationConfigurationOutput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "GetManagedNotificationConfigurationOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "GetManagedNotificationConfigurationOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "GetManagedNotificationConfigurationOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        category = schema.new({
+            id = id.from(_N, "GetManagedNotificationConfigurationOutput", "category"),
+            type = "string",
+            name = "category",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        subCategory = schema.new({
+            id = id.from(_N, "GetManagedNotificationConfigurationOutput", "subCategory"),
+            type = "string",
+            name = "subCategory",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetManagedNotificationEventInput = schema.new({
+    id = id.from(_N, "GetManagedNotificationEventInput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "GetManagedNotificationEventInput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        locale = schema.new({
+            id = id.from(_N, "GetManagedNotificationEventInput", "locale"),
+            type = "string",
+            name = "locale",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "locale" },
+            },
+        }),
+    },
+})
+
+M.ManagedNotificationEvent = schema.new({
+    id = id.from(_N, "ManagedNotificationEvent"),
+    type = "structure",
+    members = {
+        schemaVersion = schema.new({
+            id = id.from(_N, "ManagedNotificationEvent", "schemaVersion"),
+            type = "string",
+            name = "schemaVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "ManagedNotificationEvent", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        messageComponents = schema.new({
+            id = id.from(_N, "ManagedNotificationEvent", "messageComponents"),
+            type = "structure",
+            name = "messageComponents",
+            target_id = id.from(_N, "MessageComponents"),
+            target = M.MessageComponents,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceEventDetailUrl = schema.new({
+            id = id.from(_N, "ManagedNotificationEvent", "sourceEventDetailUrl"),
+            type = "string",
+            name = "sourceEventDetailUrl",
+            target_id = prelude.String.id,
+        }),
+        sourceEventDetailUrlDisplayText = schema.new({
+            id = id.from(_N, "ManagedNotificationEvent", "sourceEventDetailUrlDisplayText"),
+            type = "string",
+            name = "sourceEventDetailUrlDisplayText",
+            target_id = prelude.String.id,
+        }),
+        notificationType = schema.new({
+            id = id.from(_N, "ManagedNotificationEvent", "notificationType"),
+            type = "string",
+            name = "notificationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventStatus = schema.new({
+            id = id.from(_N, "ManagedNotificationEvent", "eventStatus"),
+            type = "string",
+            name = "eventStatus",
+            target_id = prelude.String.id,
+        }),
+        aggregationEventType = schema.new({
+            id = id.from(_N, "ManagedNotificationEvent", "aggregationEventType"),
+            type = "string",
+            name = "aggregationEventType",
+            target_id = prelude.String.id,
+        }),
+        aggregationSummary = schema.new({
+            id = id.from(_N, "ManagedNotificationEvent", "aggregationSummary"),
+            type = "structure",
+            name = "aggregationSummary",
+            target_id = id.from(_N, "AggregationSummary"),
+            target = M.AggregationSummary,
+        }),
+        startTime = schema.new({
+            id = id.from(_N, "ManagedNotificationEvent", "startTime"),
+            type = "timestamp",
+            name = "startTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        endTime = schema.new({
+            id = id.from(_N, "ManagedNotificationEvent", "endTime"),
+            type = "timestamp",
+            name = "endTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        textParts = schema.new({
+            id = id.from(_N, "ManagedNotificationEvent", "textParts"),
+            type = "map",
+            name = "textParts",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.TextPartValue,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        organizationalUnitId = schema.new({
+            id = id.from(_N, "ManagedNotificationEvent", "organizationalUnitId"),
+            type = "string",
+            name = "organizationalUnitId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetManagedNotificationEventOutput = schema.new({
+    id = id.from(_N, "GetManagedNotificationEventOutput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "GetManagedNotificationEventOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        managedNotificationConfigurationArn = schema.new({
+            id = id.from(_N, "GetManagedNotificationEventOutput", "managedNotificationConfigurationArn"),
+            type = "string",
+            name = "managedNotificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creationTime = schema.new({
+            id = id.from(_N, "GetManagedNotificationEventOutput", "creationTime"),
+            type = "timestamp",
+            name = "creationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        content = schema.new({
+            id = id.from(_N, "GetManagedNotificationEventOutput", "content"),
+            type = "structure",
+            name = "content",
+            target_id = id.from(_N, "ManagedNotificationEvent"),
+            target = M.ManagedNotificationEvent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetNotificationConfigurationInput = schema.new({
+    id = id.from(_N, "GetNotificationConfigurationInput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "GetNotificationConfigurationInput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetNotificationConfigurationOutput = schema.new({
+    id = id.from(_N, "GetNotificationConfigurationOutput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "GetNotificationConfigurationOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "GetNotificationConfigurationOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "GetNotificationConfigurationOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetNotificationConfigurationOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creationTime = schema.new({
+            id = id.from(_N, "GetNotificationConfigurationOutput", "creationTime"),
+            type = "timestamp",
+            name = "creationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        aggregationDuration = schema.new({
+            id = id.from(_N, "GetNotificationConfigurationOutput", "aggregationDuration"),
+            type = "string",
+            name = "aggregationDuration",
+            target_id = prelude.String.id,
+        }),
+        subtype = schema.new({
+            id = id.from(_N, "GetNotificationConfigurationOutput", "subtype"),
+            type = "string",
+            name = "subtype",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetNotificationEventInput = schema.new({
+    id = id.from(_N, "GetNotificationEventInput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "GetNotificationEventInput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        locale = schema.new({
+            id = id.from(_N, "GetNotificationEventInput", "locale"),
+            type = "string",
+            name = "locale",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "locale" },
+            },
+        }),
+    },
+})
+
+M.MediaElement = schema.new({
+    id = id.from(_N, "MediaElement"),
+    type = "structure",
+    members = {
+        mediaId = schema.new({
+            id = id.from(_N, "MediaElement", "mediaId"),
+            type = "string",
+            name = "mediaId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "MediaElement", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        url = schema.new({
+            id = id.from(_N, "MediaElement", "url"),
+            type = "string",
+            name = "url",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        caption = schema.new({
+            id = id.from(_N, "MediaElement", "caption"),
+            type = "string",
+            name = "caption",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Resource = schema.new({
+    id = id.from(_N, "Resource"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "Resource", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+        arn = schema.new({
+            id = id.from(_N, "Resource", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+        }),
+        detailUrl = schema.new({
+            id = id.from(_N, "Resource", "detailUrl"),
+            type = "string",
+            name = "detailUrl",
+            target_id = prelude.String.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "Resource", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.SourceEventMetadata = schema.new({
+    id = id.from(_N, "SourceEventMetadata"),
+    type = "structure",
+    members = {
+        eventTypeVersion = schema.new({
+            id = id.from(_N, "SourceEventMetadata", "eventTypeVersion"),
+            type = "string",
+            name = "eventTypeVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceEventId = schema.new({
+            id = id.from(_N, "SourceEventMetadata", "sourceEventId"),
+            type = "string",
+            name = "sourceEventId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventOriginRegion = schema.new({
+            id = id.from(_N, "SourceEventMetadata", "eventOriginRegion"),
+            type = "string",
+            name = "eventOriginRegion",
+            target_id = prelude.String.id,
+        }),
+        relatedAccount = schema.new({
+            id = id.from(_N, "SourceEventMetadata", "relatedAccount"),
+            type = "string",
+            name = "relatedAccount",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        source = schema.new({
+            id = id.from(_N, "SourceEventMetadata", "source"),
+            type = "string",
+            name = "source",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventOccurrenceTime = schema.new({
+            id = id.from(_N, "SourceEventMetadata", "eventOccurrenceTime"),
+            type = "timestamp",
+            name = "eventOccurrenceTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        eventType = schema.new({
+            id = id.from(_N, "SourceEventMetadata", "eventType"),
+            type = "string",
+            name = "eventType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        relatedResources = schema.new({
+            id = id.from(_N, "SourceEventMetadata", "relatedResources"),
+            type = "list",
+            name = "relatedResources",
+            target_id = prelude.Document.id,
+            list_member = M.Resource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.NotificationEventSchema = schema.new({
+    id = id.from(_N, "NotificationEventSchema"),
+    type = "structure",
+    members = {
+        schemaVersion = schema.new({
+            id = id.from(_N, "NotificationEventSchema", "schemaVersion"),
+            type = "string",
+            name = "schemaVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "NotificationEventSchema", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceEventMetadata = schema.new({
+            id = id.from(_N, "NotificationEventSchema", "sourceEventMetadata"),
+            type = "structure",
+            name = "sourceEventMetadata",
+            target_id = id.from(_N, "SourceEventMetadata"),
+            target = M.SourceEventMetadata,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        messageComponents = schema.new({
+            id = id.from(_N, "NotificationEventSchema", "messageComponents"),
+            type = "structure",
+            name = "messageComponents",
+            target_id = id.from(_N, "MessageComponents"),
+            target = M.MessageComponents,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceEventDetailUrl = schema.new({
+            id = id.from(_N, "NotificationEventSchema", "sourceEventDetailUrl"),
+            type = "string",
+            name = "sourceEventDetailUrl",
+            target_id = prelude.String.id,
+        }),
+        sourceEventDetailUrlDisplayText = schema.new({
+            id = id.from(_N, "NotificationEventSchema", "sourceEventDetailUrlDisplayText"),
+            type = "string",
+            name = "sourceEventDetailUrlDisplayText",
+            target_id = prelude.String.id,
+        }),
+        notificationType = schema.new({
+            id = id.from(_N, "NotificationEventSchema", "notificationType"),
+            type = "string",
+            name = "notificationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventStatus = schema.new({
+            id = id.from(_N, "NotificationEventSchema", "eventStatus"),
+            type = "string",
+            name = "eventStatus",
+            target_id = prelude.String.id,
+        }),
+        aggregationEventType = schema.new({
+            id = id.from(_N, "NotificationEventSchema", "aggregationEventType"),
+            type = "string",
+            name = "aggregationEventType",
+            target_id = prelude.String.id,
+        }),
+        aggregateNotificationEventArn = schema.new({
+            id = id.from(_N, "NotificationEventSchema", "aggregateNotificationEventArn"),
+            type = "string",
+            name = "aggregateNotificationEventArn",
+            target_id = prelude.String.id,
+        }),
+        aggregationSummary = schema.new({
+            id = id.from(_N, "NotificationEventSchema", "aggregationSummary"),
+            type = "structure",
+            name = "aggregationSummary",
+            target_id = id.from(_N, "AggregationSummary"),
+            target = M.AggregationSummary,
+        }),
+        startTime = schema.new({
+            id = id.from(_N, "NotificationEventSchema", "startTime"),
+            type = "timestamp",
+            name = "startTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        endTime = schema.new({
+            id = id.from(_N, "NotificationEventSchema", "endTime"),
+            type = "timestamp",
+            name = "endTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        textParts = schema.new({
+            id = id.from(_N, "NotificationEventSchema", "textParts"),
+            type = "map",
+            name = "textParts",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.TextPartValue,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        media = schema.new({
+            id = id.from(_N, "NotificationEventSchema", "media"),
+            type = "list",
+            name = "media",
+            target_id = prelude.Document.id,
+            list_member = M.MediaElement,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        organizationalUnitId = schema.new({
+            id = id.from(_N, "NotificationEventSchema", "organizationalUnitId"),
+            type = "string",
+            name = "organizationalUnitId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetNotificationEventOutput = schema.new({
+    id = id.from(_N, "GetNotificationEventOutput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "GetNotificationEventOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        notificationConfigurationArn = schema.new({
+            id = id.from(_N, "GetNotificationEventOutput", "notificationConfigurationArn"),
+            type = "string",
+            name = "notificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creationTime = schema.new({
+            id = id.from(_N, "GetNotificationEventOutput", "creationTime"),
+            type = "timestamp",
+            name = "creationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        content = schema.new({
+            id = id.from(_N, "GetNotificationEventOutput", "content"),
+            type = "structure",
+            name = "content",
+            target_id = id.from(_N, "NotificationEventSchema"),
+            target = M.NotificationEventSchema,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetNotificationsAccessForOrganizationInput = schema.new({
+    id = id.from(_N, "GetNotificationsAccessForOrganizationInput"),
+    type = "structure",
+})
+
+M.NotificationsAccessForOrganization = schema.new({
+    id = id.from(_N, "NotificationsAccessForOrganization"),
+    type = "structure",
+    members = {
+        accessStatus = schema.new({
+            id = id.from(_N, "NotificationsAccessForOrganization", "accessStatus"),
+            type = "string",
+            name = "accessStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetNotificationsAccessForOrganizationOutput = schema.new({
+    id = id.from(_N, "GetNotificationsAccessForOrganizationOutput"),
+    type = "structure",
+    members = {
+        notificationsAccessForOrganization = schema.new({
+            id = id.from(_N, "GetNotificationsAccessForOrganizationOutput", "notificationsAccessForOrganization"),
+            type = "structure",
+            name = "notificationsAccessForOrganization",
+            target_id = id.from(_N, "NotificationsAccessForOrganization"),
+            target = M.NotificationsAccessForOrganization,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListManagedNotificationChannelAssociationsInput = schema.new({
+    id = id.from(_N, "ListManagedNotificationChannelAssociationsInput"),
+    type = "structure",
+    members = {
+        managedNotificationConfigurationArn = schema.new({
+            id = id.from(_N, "ListManagedNotificationChannelAssociationsInput", "managedNotificationConfigurationArn"),
+            type = "string",
+            name = "managedNotificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "managedNotificationConfigurationArn" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListManagedNotificationChannelAssociationsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListManagedNotificationChannelAssociationsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ManagedNotificationChannelAssociationSummary = schema.new({
+    id = id.from(_N, "ManagedNotificationChannelAssociationSummary"),
+    type = "structure",
+    members = {
+        channelIdentifier = schema.new({
+            id = id.from(_N, "ManagedNotificationChannelAssociationSummary", "channelIdentifier"),
+            type = "string",
+            name = "channelIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        channelType = schema.new({
+            id = id.from(_N, "ManagedNotificationChannelAssociationSummary", "channelType"),
+            type = "string",
+            name = "channelType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        overrideOption = schema.new({
+            id = id.from(_N, "ManagedNotificationChannelAssociationSummary", "overrideOption"),
+            type = "string",
+            name = "overrideOption",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListManagedNotificationChannelAssociationsOutput = schema.new({
+    id = id.from(_N, "ListManagedNotificationChannelAssociationsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListManagedNotificationChannelAssociationsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        channelAssociations = schema.new({
+            id = id.from(_N, "ListManagedNotificationChannelAssociationsOutput", "channelAssociations"),
+            type = "list",
+            name = "channelAssociations",
+            target_id = prelude.Document.id,
+            list_member = M.ManagedNotificationChannelAssociationSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListManagedNotificationChildEventsInput = schema.new({
+    id = id.from(_N, "ListManagedNotificationChildEventsInput"),
+    type = "structure",
+    members = {
+        aggregateManagedNotificationEventArn = schema.new({
+            id = id.from(_N, "ListManagedNotificationChildEventsInput", "aggregateManagedNotificationEventArn"),
+            type = "string",
+            name = "aggregateManagedNotificationEventArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        startTime = schema.new({
+            id = id.from(_N, "ListManagedNotificationChildEventsInput", "startTime"),
+            type = "timestamp",
+            name = "startTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "startTime" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        endTime = schema.new({
+            id = id.from(_N, "ListManagedNotificationChildEventsInput", "endTime"),
+            type = "timestamp",
+            name = "endTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "endTime" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        locale = schema.new({
+            id = id.from(_N, "ListManagedNotificationChildEventsInput", "locale"),
+            type = "string",
+            name = "locale",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "locale" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListManagedNotificationChildEventsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        relatedAccount = schema.new({
+            id = id.from(_N, "ListManagedNotificationChildEventsInput", "relatedAccount"),
+            type = "string",
+            name = "relatedAccount",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "relatedAccount" },
+            },
+        }),
+        organizationalUnitId = schema.new({
+            id = id.from(_N, "ListManagedNotificationChildEventsInput", "organizationalUnitId"),
+            type = "string",
+            name = "organizationalUnitId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "organizationalUnitId" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListManagedNotificationChildEventsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.MessageComponentsSummary = schema.new({
+    id = id.from(_N, "MessageComponentsSummary"),
+    type = "structure",
+    members = {
+        headline = schema.new({
+            id = id.from(_N, "MessageComponentsSummary", "headline"),
+            type = "string",
+            name = "headline",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ManagedSourceEventMetadataSummary = schema.new({
+    id = id.from(_N, "ManagedSourceEventMetadataSummary"),
+    type = "structure",
+    members = {
+        eventOriginRegion = schema.new({
+            id = id.from(_N, "ManagedSourceEventMetadataSummary", "eventOriginRegion"),
+            type = "string",
+            name = "eventOriginRegion",
+            target_id = prelude.String.id,
+        }),
+        source = schema.new({
+            id = id.from(_N, "ManagedSourceEventMetadataSummary", "source"),
+            type = "string",
+            name = "source",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventType = schema.new({
+            id = id.from(_N, "ManagedSourceEventMetadataSummary", "eventType"),
+            type = "string",
+            name = "eventType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ManagedNotificationChildEventSummary = schema.new({
+    id = id.from(_N, "ManagedNotificationChildEventSummary"),
+    type = "structure",
+    members = {
+        schemaVersion = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEventSummary", "schemaVersion"),
+            type = "string",
+            name = "schemaVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceEventMetadata = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEventSummary", "sourceEventMetadata"),
+            type = "structure",
+            name = "sourceEventMetadata",
+            target_id = id.from(_N, "ManagedSourceEventMetadataSummary"),
+            target = M.ManagedSourceEventMetadataSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        messageComponents = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEventSummary", "messageComponents"),
+            type = "structure",
+            name = "messageComponents",
+            target_id = id.from(_N, "MessageComponentsSummary"),
+            target = M.MessageComponentsSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        aggregationDetail = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEventSummary", "aggregationDetail"),
+            type = "structure",
+            name = "aggregationDetail",
+            target_id = id.from(_N, "AggregationDetail"),
+            target = M.AggregationDetail,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventStatus = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEventSummary", "eventStatus"),
+            type = "string",
+            name = "eventStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        notificationType = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEventSummary", "notificationType"),
+            type = "string",
+            name = "notificationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ManagedNotificationChildEventOverview = schema.new({
+    id = id.from(_N, "ManagedNotificationChildEventOverview"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEventOverview", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        managedNotificationConfigurationArn = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEventOverview", "managedNotificationConfigurationArn"),
+            type = "string",
+            name = "managedNotificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        relatedAccount = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEventOverview", "relatedAccount"),
+            type = "string",
+            name = "relatedAccount",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creationTime = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEventOverview", "creationTime"),
+            type = "timestamp",
+            name = "creationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        childEvent = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEventOverview", "childEvent"),
+            type = "structure",
+            name = "childEvent",
+            target_id = id.from(_N, "ManagedNotificationChildEventSummary"),
+            target = M.ManagedNotificationChildEventSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        aggregateManagedNotificationEventArn = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEventOverview", "aggregateManagedNotificationEventArn"),
+            type = "string",
+            name = "aggregateManagedNotificationEventArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        organizationalUnitId = schema.new({
+            id = id.from(_N, "ManagedNotificationChildEventOverview", "organizationalUnitId"),
+            type = "string",
+            name = "organizationalUnitId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListManagedNotificationChildEventsOutput = schema.new({
+    id = id.from(_N, "ListManagedNotificationChildEventsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListManagedNotificationChildEventsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        managedNotificationChildEvents = schema.new({
+            id = id.from(_N, "ListManagedNotificationChildEventsOutput", "managedNotificationChildEvents"),
+            type = "list",
+            name = "managedNotificationChildEvents",
+            target_id = prelude.Document.id,
+            list_member = M.ManagedNotificationChildEventOverview,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListManagedNotificationConfigurationsInput = schema.new({
+    id = id.from(_N, "ListManagedNotificationConfigurationsInput"),
+    type = "structure",
+    members = {
+        channelIdentifier = schema.new({
+            id = id.from(_N, "ListManagedNotificationConfigurationsInput", "channelIdentifier"),
+            type = "string",
+            name = "channelIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "channelIdentifier" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListManagedNotificationConfigurationsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListManagedNotificationConfigurationsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ManagedNotificationConfigurationStructure = schema.new({
+    id = id.from(_N, "ManagedNotificationConfigurationStructure"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "ManagedNotificationConfigurationStructure", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "ManagedNotificationConfigurationStructure", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "ManagedNotificationConfigurationStructure", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListManagedNotificationConfigurationsOutput = schema.new({
+    id = id.from(_N, "ListManagedNotificationConfigurationsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListManagedNotificationConfigurationsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        managedNotificationConfigurations = schema.new({
+            id = id.from(_N, "ListManagedNotificationConfigurationsOutput", "managedNotificationConfigurations"),
+            type = "list",
+            name = "managedNotificationConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ManagedNotificationConfigurationStructure,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListManagedNotificationEventsInput = schema.new({
+    id = id.from(_N, "ListManagedNotificationEventsInput"),
+    type = "structure",
+    members = {
+        startTime = schema.new({
+            id = id.from(_N, "ListManagedNotificationEventsInput", "startTime"),
+            type = "timestamp",
+            name = "startTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "startTime" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        endTime = schema.new({
+            id = id.from(_N, "ListManagedNotificationEventsInput", "endTime"),
+            type = "timestamp",
+            name = "endTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "endTime" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        locale = schema.new({
+            id = id.from(_N, "ListManagedNotificationEventsInput", "locale"),
+            type = "string",
+            name = "locale",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "locale" },
+            },
+        }),
+        source = schema.new({
+            id = id.from(_N, "ListManagedNotificationEventsInput", "source"),
+            type = "string",
+            name = "source",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "source" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListManagedNotificationEventsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListManagedNotificationEventsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        organizationalUnitId = schema.new({
+            id = id.from(_N, "ListManagedNotificationEventsInput", "organizationalUnitId"),
+            type = "string",
+            name = "organizationalUnitId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "organizationalUnitId" },
+            },
+        }),
+        relatedAccount = schema.new({
+            id = id.from(_N, "ListManagedNotificationEventsInput", "relatedAccount"),
+            type = "string",
+            name = "relatedAccount",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "relatedAccount" },
+            },
+        }),
+    },
+})
+
+M.ManagedNotificationEventSummary = schema.new({
+    id = id.from(_N, "ManagedNotificationEventSummary"),
+    type = "structure",
+    members = {
+        schemaVersion = schema.new({
+            id = id.from(_N, "ManagedNotificationEventSummary", "schemaVersion"),
+            type = "string",
+            name = "schemaVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceEventMetadata = schema.new({
+            id = id.from(_N, "ManagedNotificationEventSummary", "sourceEventMetadata"),
+            type = "structure",
+            name = "sourceEventMetadata",
+            target_id = id.from(_N, "ManagedSourceEventMetadataSummary"),
+            target = M.ManagedSourceEventMetadataSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        messageComponents = schema.new({
+            id = id.from(_N, "ManagedNotificationEventSummary", "messageComponents"),
+            type = "structure",
+            name = "messageComponents",
+            target_id = id.from(_N, "MessageComponentsSummary"),
+            target = M.MessageComponentsSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventStatus = schema.new({
+            id = id.from(_N, "ManagedNotificationEventSummary", "eventStatus"),
+            type = "string",
+            name = "eventStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        notificationType = schema.new({
+            id = id.from(_N, "ManagedNotificationEventSummary", "notificationType"),
+            type = "string",
+            name = "notificationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ManagedNotificationEventOverview = schema.new({
+    id = id.from(_N, "ManagedNotificationEventOverview"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "ManagedNotificationEventOverview", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        managedNotificationConfigurationArn = schema.new({
+            id = id.from(_N, "ManagedNotificationEventOverview", "managedNotificationConfigurationArn"),
+            type = "string",
+            name = "managedNotificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        relatedAccount = schema.new({
+            id = id.from(_N, "ManagedNotificationEventOverview", "relatedAccount"),
+            type = "string",
+            name = "relatedAccount",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creationTime = schema.new({
+            id = id.from(_N, "ManagedNotificationEventOverview", "creationTime"),
+            type = "timestamp",
+            name = "creationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        notificationEvent = schema.new({
+            id = id.from(_N, "ManagedNotificationEventOverview", "notificationEvent"),
+            type = "structure",
+            name = "notificationEvent",
+            target_id = id.from(_N, "ManagedNotificationEventSummary"),
+            target = M.ManagedNotificationEventSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        aggregationEventType = schema.new({
+            id = id.from(_N, "ManagedNotificationEventOverview", "aggregationEventType"),
+            type = "string",
+            name = "aggregationEventType",
+            target_id = prelude.String.id,
+        }),
+        organizationalUnitId = schema.new({
+            id = id.from(_N, "ManagedNotificationEventOverview", "organizationalUnitId"),
+            type = "string",
+            name = "organizationalUnitId",
+            target_id = prelude.String.id,
+        }),
+        aggregationSummary = schema.new({
+            id = id.from(_N, "ManagedNotificationEventOverview", "aggregationSummary"),
+            type = "structure",
+            name = "aggregationSummary",
+            target_id = id.from(_N, "AggregationSummary"),
+            target = M.AggregationSummary,
+        }),
+        aggregatedNotificationRegions = schema.new({
+            id = id.from(_N, "ManagedNotificationEventOverview", "aggregatedNotificationRegions"),
+            type = "list",
+            name = "aggregatedNotificationRegions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ListManagedNotificationEventsOutput = schema.new({
+    id = id.from(_N, "ListManagedNotificationEventsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListManagedNotificationEventsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        managedNotificationEvents = schema.new({
+            id = id.from(_N, "ListManagedNotificationEventsOutput", "managedNotificationEvents"),
+            type = "list",
+            name = "managedNotificationEvents",
+            target_id = prelude.Document.id,
+            list_member = M.ManagedNotificationEventOverview,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListMemberAccountsInput = schema.new({
+    id = id.from(_N, "ListMemberAccountsInput"),
+    type = "structure",
+    members = {
+        notificationConfigurationArn = schema.new({
+            id = id.from(_N, "ListMemberAccountsInput", "notificationConfigurationArn"),
+            type = "string",
+            name = "notificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "notificationConfigurationArn" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListMemberAccountsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListMemberAccountsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        memberAccount = schema.new({
+            id = id.from(_N, "ListMemberAccountsInput", "memberAccount"),
+            type = "string",
+            name = "memberAccount",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "memberAccount" },
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "ListMemberAccountsInput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "status" },
+            },
+        }),
+        organizationalUnitId = schema.new({
+            id = id.from(_N, "ListMemberAccountsInput", "organizationalUnitId"),
+            type = "string",
+            name = "organizationalUnitId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "organizationalUnitId" },
+            },
+        }),
+    },
+})
+
+M.MemberAccount = schema.new({
+    id = id.from(_N, "MemberAccount"),
+    type = "structure",
+    members = {
+        notificationConfigurationArn = schema.new({
+            id = id.from(_N, "MemberAccount", "notificationConfigurationArn"),
+            type = "string",
+            name = "notificationConfigurationArn",
+            target_id = prelude.String.id,
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "MemberAccount", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "MemberAccount", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "MemberAccount", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        organizationalUnitId = schema.new({
+            id = id.from(_N, "MemberAccount", "organizationalUnitId"),
+            type = "string",
+            name = "organizationalUnitId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListMemberAccountsOutput = schema.new({
+    id = id.from(_N, "ListMemberAccountsOutput"),
+    type = "structure",
+    members = {
+        memberAccounts = schema.new({
+            id = id.from(_N, "ListMemberAccountsOutput", "memberAccounts"),
+            type = "list",
+            name = "memberAccounts",
+            target_id = prelude.Document.id,
+            list_member = M.MemberAccount,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListMemberAccountsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListNotificationConfigurationsInput = schema.new({
+    id = id.from(_N, "ListNotificationConfigurationsInput"),
+    type = "structure",
+    members = {
+        eventRuleSource = schema.new({
+            id = id.from(_N, "ListNotificationConfigurationsInput", "eventRuleSource"),
+            type = "string",
+            name = "eventRuleSource",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "eventRuleSource" },
+            },
+        }),
+        channelArn = schema.new({
+            id = id.from(_N, "ListNotificationConfigurationsInput", "channelArn"),
+            type = "string",
+            name = "channelArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "channelArn" },
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "ListNotificationConfigurationsInput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "status" },
+            },
+        }),
+        subtype = schema.new({
+            id = id.from(_N, "ListNotificationConfigurationsInput", "subtype"),
+            type = "string",
+            name = "subtype",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "subtype" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListNotificationConfigurationsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListNotificationConfigurationsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.NotificationConfigurationStructure = schema.new({
+    id = id.from(_N, "NotificationConfigurationStructure"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "NotificationConfigurationStructure", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "NotificationConfigurationStructure", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "NotificationConfigurationStructure", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "NotificationConfigurationStructure", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creationTime = schema.new({
+            id = id.from(_N, "NotificationConfigurationStructure", "creationTime"),
+            type = "timestamp",
+            name = "creationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        aggregationDuration = schema.new({
+            id = id.from(_N, "NotificationConfigurationStructure", "aggregationDuration"),
+            type = "string",
+            name = "aggregationDuration",
+            target_id = prelude.String.id,
+        }),
+        subtype = schema.new({
+            id = id.from(_N, "NotificationConfigurationStructure", "subtype"),
+            type = "string",
+            name = "subtype",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListNotificationConfigurationsOutput = schema.new({
+    id = id.from(_N, "ListNotificationConfigurationsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListNotificationConfigurationsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        notificationConfigurations = schema.new({
+            id = id.from(_N, "ListNotificationConfigurationsOutput", "notificationConfigurations"),
+            type = "list",
+            name = "notificationConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.NotificationConfigurationStructure,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListNotificationEventsInput = schema.new({
+    id = id.from(_N, "ListNotificationEventsInput"),
+    type = "structure",
+    members = {
+        startTime = schema.new({
+            id = id.from(_N, "ListNotificationEventsInput", "startTime"),
+            type = "timestamp",
+            name = "startTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "startTime" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        endTime = schema.new({
+            id = id.from(_N, "ListNotificationEventsInput", "endTime"),
+            type = "timestamp",
+            name = "endTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "endTime" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        locale = schema.new({
+            id = id.from(_N, "ListNotificationEventsInput", "locale"),
+            type = "string",
+            name = "locale",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "locale" },
+            },
+        }),
+        source = schema.new({
+            id = id.from(_N, "ListNotificationEventsInput", "source"),
+            type = "string",
+            name = "source",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "source" },
+            },
+        }),
+        includeChildEvents = schema.new({
+            id = id.from(_N, "ListNotificationEventsInput", "includeChildEvents"),
+            type = "boolean",
+            name = "includeChildEvents",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "includeChildEvents" },
+            },
+        }),
+        aggregateNotificationEventArn = schema.new({
+            id = id.from(_N, "ListNotificationEventsInput", "aggregateNotificationEventArn"),
+            type = "string",
+            name = "aggregateNotificationEventArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "aggregateNotificationEventArn" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListNotificationEventsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListNotificationEventsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        organizationalUnitId = schema.new({
+            id = id.from(_N, "ListNotificationEventsInput", "organizationalUnitId"),
+            type = "string",
+            name = "organizationalUnitId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "organizationalUnitId" },
+            },
+        }),
+    },
+})
+
+M.SourceEventMetadataSummary = schema.new({
+    id = id.from(_N, "SourceEventMetadataSummary"),
+    type = "structure",
+    members = {
+        eventOriginRegion = schema.new({
+            id = id.from(_N, "SourceEventMetadataSummary", "eventOriginRegion"),
+            type = "string",
+            name = "eventOriginRegion",
+            target_id = prelude.String.id,
+        }),
+        source = schema.new({
+            id = id.from(_N, "SourceEventMetadataSummary", "source"),
+            type = "string",
+            name = "source",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventType = schema.new({
+            id = id.from(_N, "SourceEventMetadataSummary", "eventType"),
+            type = "string",
+            name = "eventType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.NotificationEventSummary = schema.new({
+    id = id.from(_N, "NotificationEventSummary"),
+    type = "structure",
+    members = {
+        schemaVersion = schema.new({
+            id = id.from(_N, "NotificationEventSummary", "schemaVersion"),
+            type = "string",
+            name = "schemaVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceEventMetadata = schema.new({
+            id = id.from(_N, "NotificationEventSummary", "sourceEventMetadata"),
+            type = "structure",
+            name = "sourceEventMetadata",
+            target_id = id.from(_N, "SourceEventMetadataSummary"),
+            target = M.SourceEventMetadataSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        messageComponents = schema.new({
+            id = id.from(_N, "NotificationEventSummary", "messageComponents"),
+            type = "structure",
+            name = "messageComponents",
+            target_id = id.from(_N, "MessageComponentsSummary"),
+            target = M.MessageComponentsSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventStatus = schema.new({
+            id = id.from(_N, "NotificationEventSummary", "eventStatus"),
+            type = "string",
+            name = "eventStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        notificationType = schema.new({
+            id = id.from(_N, "NotificationEventSummary", "notificationType"),
+            type = "string",
+            name = "notificationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.NotificationEventOverview = schema.new({
+    id = id.from(_N, "NotificationEventOverview"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "NotificationEventOverview", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        notificationConfigurationArn = schema.new({
+            id = id.from(_N, "NotificationEventOverview", "notificationConfigurationArn"),
+            type = "string",
+            name = "notificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        relatedAccount = schema.new({
+            id = id.from(_N, "NotificationEventOverview", "relatedAccount"),
+            type = "string",
+            name = "relatedAccount",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creationTime = schema.new({
+            id = id.from(_N, "NotificationEventOverview", "creationTime"),
+            type = "timestamp",
+            name = "creationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        notificationEvent = schema.new({
+            id = id.from(_N, "NotificationEventOverview", "notificationEvent"),
+            type = "structure",
+            name = "notificationEvent",
+            target_id = id.from(_N, "NotificationEventSummary"),
+            target = M.NotificationEventSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        aggregationEventType = schema.new({
+            id = id.from(_N, "NotificationEventOverview", "aggregationEventType"),
+            type = "string",
+            name = "aggregationEventType",
+            target_id = prelude.String.id,
+        }),
+        aggregateNotificationEventArn = schema.new({
+            id = id.from(_N, "NotificationEventOverview", "aggregateNotificationEventArn"),
+            type = "string",
+            name = "aggregateNotificationEventArn",
+            target_id = prelude.String.id,
+        }),
+        aggregationSummary = schema.new({
+            id = id.from(_N, "NotificationEventOverview", "aggregationSummary"),
+            type = "structure",
+            name = "aggregationSummary",
+            target_id = id.from(_N, "AggregationSummary"),
+            target = M.AggregationSummary,
+        }),
+        organizationalUnitId = schema.new({
+            id = id.from(_N, "NotificationEventOverview", "organizationalUnitId"),
+            type = "string",
+            name = "organizationalUnitId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListNotificationEventsOutput = schema.new({
+    id = id.from(_N, "ListNotificationEventsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListNotificationEventsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        notificationEvents = schema.new({
+            id = id.from(_N, "ListNotificationEventsOutput", "notificationEvents"),
+            type = "list",
+            name = "notificationEvents",
+            target_id = prelude.Document.id,
+            list_member = M.NotificationEventOverview,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListNotificationHubsInput = schema.new({
+    id = id.from(_N, "ListNotificationHubsInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListNotificationHubsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListNotificationHubsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.NotificationHubOverview = schema.new({
+    id = id.from(_N, "NotificationHubOverview"),
+    type = "structure",
+    members = {
+        notificationHubRegion = schema.new({
+            id = id.from(_N, "NotificationHubOverview", "notificationHubRegion"),
+            type = "string",
+            name = "notificationHubRegion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        statusSummary = schema.new({
+            id = id.from(_N, "NotificationHubOverview", "statusSummary"),
+            type = "structure",
+            name = "statusSummary",
+            target_id = id.from(_N, "NotificationHubStatusSummary"),
+            target = M.NotificationHubStatusSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creationTime = schema.new({
+            id = id.from(_N, "NotificationHubOverview", "creationTime"),
+            type = "timestamp",
+            name = "creationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lastActivationTime = schema.new({
+            id = id.from(_N, "NotificationHubOverview", "lastActivationTime"),
+            type = "timestamp",
+            name = "lastActivationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.ListNotificationHubsOutput = schema.new({
+    id = id.from(_N, "ListNotificationHubsOutput"),
+    type = "structure",
+    members = {
+        notificationHubs = schema.new({
+            id = id.from(_N, "ListNotificationHubsOutput", "notificationHubs"),
+            type = "list",
+            name = "notificationHubs",
+            target_id = prelude.Document.id,
+            list_member = M.NotificationHubOverview,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListNotificationHubsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListOrganizationalUnitsInput = schema.new({
+    id = id.from(_N, "ListOrganizationalUnitsInput"),
+    type = "structure",
+    members = {
+        notificationConfigurationArn = schema.new({
+            id = id.from(_N, "ListOrganizationalUnitsInput", "notificationConfigurationArn"),
+            type = "string",
+            name = "notificationConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "notificationConfigurationArn" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListOrganizationalUnitsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListOrganizationalUnitsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListOrganizationalUnitsOutput = schema.new({
+    id = id.from(_N, "ListOrganizationalUnitsOutput"),
+    type = "structure",
+    members = {
+        organizationalUnits = schema.new({
+            id = id.from(_N, "ListOrganizationalUnitsOutput", "organizationalUnits"),
+            type = "list",
+            name = "organizationalUnits",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListOrganizationalUnitsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceInput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceOutput"),
+    type = "structure",
+    members = {
+        tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.UpdateNotificationConfigurationInput = schema.new({
+    id = id.from(_N, "UpdateNotificationConfigurationInput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "UpdateNotificationConfigurationInput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "UpdateNotificationConfigurationInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateNotificationConfigurationInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        aggregationDuration = schema.new({
+            id = id.from(_N, "UpdateNotificationConfigurationInput", "aggregationDuration"),
+            type = "string",
+            name = "aggregationDuration",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateNotificationConfigurationOutput = schema.new({
+    id = id.from(_N, "UpdateNotificationConfigurationOutput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "UpdateNotificationConfigurationOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RegisterNotificationHubInput = schema.new({
+    id = id.from(_N, "RegisterNotificationHubInput"),
+    type = "structure",
+    members = {
+        notificationHubRegion = schema.new({
+            id = id.from(_N, "RegisterNotificationHubInput", "notificationHubRegion"),
+            type = "string",
+            name = "notificationHubRegion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RegisterNotificationHubOutput = schema.new({
+    id = id.from(_N, "RegisterNotificationHubOutput"),
+    type = "structure",
+    members = {
+        notificationHubRegion = schema.new({
+            id = id.from(_N, "RegisterNotificationHubOutput", "notificationHubRegion"),
+            type = "string",
+            name = "notificationHubRegion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        statusSummary = schema.new({
+            id = id.from(_N, "RegisterNotificationHubOutput", "statusSummary"),
+            type = "structure",
+            name = "statusSummary",
+            target_id = id.from(_N, "NotificationHubStatusSummary"),
+            target = M.NotificationHubStatusSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creationTime = schema.new({
+            id = id.from(_N, "RegisterNotificationHubOutput", "creationTime"),
+            type = "timestamp",
+            name = "creationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lastActivationTime = schema.new({
+            id = id.from(_N, "RegisterNotificationHubOutput", "lastActivationTime"),
+            type = "timestamp",
+            name = "lastActivationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceInput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "TagResourceInput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceOutput"),
+    type = "structure",
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceInput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "UntagResourceInput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        tagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "tagKeys"),
+            type = "list",
+            name = "tagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "tagKeys" },
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
+return M

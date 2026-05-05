@@ -1245,9 +1245,9 @@ local record ServiceLinkedRoleFailure
     message: string
 end
 
-local type RefreshStrategy = "Rolling" | "ReplaceRootVolume"
-
 local type RetryStrategy = "retry-with-group-configuration" | "none"
+
+local type RefreshStrategy = "Rolling" | "ReplaceRootVolume"
 
 local type WarmPoolState = "Stopped" | "Running" | "Hibernated"
 

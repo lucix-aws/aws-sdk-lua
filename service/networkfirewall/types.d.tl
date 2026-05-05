@@ -2436,13 +2436,13 @@ local record ThrottlingException
     Message: string
 end
 
-local type FirewallStatusValue = "PROVISIONING" | "DELETING" | "READY"
+local type FlowOperationStatus = "COMPLETED" | "IN_PROGRESS" | "FAILED" | "COMPLETED_WITH_ERRORS"
 
-local type ResourceManagedType = "AWS_MANAGED_THREAT_SIGNATURES" | "AWS_MANAGED_DOMAIN_LISTS" | "ACTIVE_THREAT_DEFENSE" | "PARTNER_MANAGED"
+local type EnabledAnalysisType = "TLS_SNI" | "HTTP_HOST"
+
+local type FlowOperationType = "FLOW_FLUSH" | "FLOW_CAPTURE"
 
 local type RuleGroupType = "STATELESS" | "STATEFUL" | "STATEFUL_DOMAIN"
-
-local type FlowOperationStatus = "COMPLETED" | "IN_PROGRESS" | "FAILED" | "COMPLETED_WITH_ERRORS"
 
 local type ResourceManagedStatus = "MANAGED" | "ACCOUNT"
 
@@ -2450,11 +2450,11 @@ local type TransitGatewayAttachmentStatus = "CREATING" | "DELETING" | "DELETED" 
 
 local type SubscriptionStatus = "NOT_SUBSCRIBED" | "SUBSCRIBED"
 
-local type EnabledAnalysisType = "TLS_SNI" | "HTTP_HOST"
+local type ResourceManagedType = "AWS_MANAGED_THREAT_SIGNATURES" | "AWS_MANAGED_DOMAIN_LISTS" | "ACTIVE_THREAT_DEFENSE" | "PARTNER_MANAGED"
 
 local type ProxyRulePhaseAction = "ALLOW" | "DENY" | "ALERT"
 
-local type FlowOperationType = "FLOW_FLUSH" | "FLOW_CAPTURE"
+local type FirewallStatusValue = "PROVISIONING" | "DELETING" | "READY"
 
 local type RuleGroupRequestPhase = "PRE_DNS" | "PRE_REQ" | "POST_RES"
 

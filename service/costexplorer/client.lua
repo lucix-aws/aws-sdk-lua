@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("costexplorer.endpoint_rules")
+local schemas = require("costexplorer.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("costexplorer.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createAnomalyMonitor(input, options)
     return self:invokeOperation(input, {
         name = "CreateAnomalyMonitor",
-        input_schema = types.CreateAnomalyMonitorInput,
-        output_schema = types.CreateAnomalyMonitorOutput,
+        input_schema = schemas.CreateAnomalyMonitorInput,
+        output_schema = schemas.CreateAnomalyMonitorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createAnomalySubscription(input, options)
     return self:invokeOperation(input, {
         name = "CreateAnomalySubscription",
-        input_schema = types.CreateAnomalySubscriptionInput,
-        output_schema = types.CreateAnomalySubscriptionOutput,
+        input_schema = schemas.CreateAnomalySubscriptionInput,
+        output_schema = schemas.CreateAnomalySubscriptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createCostCategoryDefinition(input, options)
     return self:invokeOperation(input, {
         name = "CreateCostCategoryDefinition",
-        input_schema = types.CreateCostCategoryDefinitionInput,
-        output_schema = types.CreateCostCategoryDefinitionOutput,
+        input_schema = schemas.CreateCostCategoryDefinitionInput,
+        output_schema = schemas.CreateCostCategoryDefinitionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteAnomalyMonitor(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAnomalyMonitor",
-        input_schema = types.DeleteAnomalyMonitorInput,
-        output_schema = types.DeleteAnomalyMonitorOutput,
+        input_schema = schemas.DeleteAnomalyMonitorInput,
+        output_schema = schemas.DeleteAnomalyMonitorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteAnomalySubscription(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAnomalySubscription",
-        input_schema = types.DeleteAnomalySubscriptionInput,
-        output_schema = types.DeleteAnomalySubscriptionOutput,
+        input_schema = schemas.DeleteAnomalySubscriptionInput,
+        output_schema = schemas.DeleteAnomalySubscriptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteCostCategoryDefinition(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCostCategoryDefinition",
-        input_schema = types.DeleteCostCategoryDefinitionInput,
-        output_schema = types.DeleteCostCategoryDefinitionOutput,
+        input_schema = schemas.DeleteCostCategoryDefinitionInput,
+        output_schema = schemas.DeleteCostCategoryDefinitionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:describeCostCategoryDefinition(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCostCategoryDefinition",
-        input_schema = types.DescribeCostCategoryDefinitionInput,
-        output_schema = types.DescribeCostCategoryDefinitionOutput,
+        input_schema = schemas.DescribeCostCategoryDefinitionInput,
+        output_schema = schemas.DescribeCostCategoryDefinitionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getAnomalies(input, options)
     return self:invokeOperation(input, {
         name = "GetAnomalies",
-        input_schema = types.GetAnomaliesInput,
-        output_schema = types.GetAnomaliesOutput,
+        input_schema = schemas.GetAnomaliesInput,
+        output_schema = schemas.GetAnomaliesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getAnomalyMonitors(input, options)
     return self:invokeOperation(input, {
         name = "GetAnomalyMonitors",
-        input_schema = types.GetAnomalyMonitorsInput,
-        output_schema = types.GetAnomalyMonitorsOutput,
+        input_schema = schemas.GetAnomalyMonitorsInput,
+        output_schema = schemas.GetAnomalyMonitorsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getAnomalySubscriptions(input, options)
     return self:invokeOperation(input, {
         name = "GetAnomalySubscriptions",
-        input_schema = types.GetAnomalySubscriptionsInput,
-        output_schema = types.GetAnomalySubscriptionsOutput,
+        input_schema = schemas.GetAnomalySubscriptionsInput,
+        output_schema = schemas.GetAnomalySubscriptionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getApproximateUsageRecords(input, options)
     return self:invokeOperation(input, {
         name = "GetApproximateUsageRecords",
-        input_schema = types.GetApproximateUsageRecordsInput,
-        output_schema = types.GetApproximateUsageRecordsOutput,
+        input_schema = schemas.GetApproximateUsageRecordsInput,
+        output_schema = schemas.GetApproximateUsageRecordsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getCommitmentPurchaseAnalysis(input, options)
     return self:invokeOperation(input, {
         name = "GetCommitmentPurchaseAnalysis",
-        input_schema = types.GetCommitmentPurchaseAnalysisInput,
-        output_schema = types.GetCommitmentPurchaseAnalysisOutput,
+        input_schema = schemas.GetCommitmentPurchaseAnalysisInput,
+        output_schema = schemas.GetCommitmentPurchaseAnalysisOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getCostAndUsage(input, options)
     return self:invokeOperation(input, {
         name = "GetCostAndUsage",
-        input_schema = types.GetCostAndUsageInput,
-        output_schema = types.GetCostAndUsageOutput,
+        input_schema = schemas.GetCostAndUsageInput,
+        output_schema = schemas.GetCostAndUsageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getCostAndUsageComparisons(input, options)
     return self:invokeOperation(input, {
         name = "GetCostAndUsageComparisons",
-        input_schema = types.GetCostAndUsageComparisonsInput,
-        output_schema = types.GetCostAndUsageComparisonsOutput,
+        input_schema = schemas.GetCostAndUsageComparisonsInput,
+        output_schema = schemas.GetCostAndUsageComparisonsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getCostAndUsageWithResources(input, options)
     return self:invokeOperation(input, {
         name = "GetCostAndUsageWithResources",
-        input_schema = types.GetCostAndUsageWithResourcesInput,
-        output_schema = types.GetCostAndUsageWithResourcesOutput,
+        input_schema = schemas.GetCostAndUsageWithResourcesInput,
+        output_schema = schemas.GetCostAndUsageWithResourcesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getCostCategories(input, options)
     return self:invokeOperation(input, {
         name = "GetCostCategories",
-        input_schema = types.GetCostCategoriesInput,
-        output_schema = types.GetCostCategoriesOutput,
+        input_schema = schemas.GetCostCategoriesInput,
+        output_schema = schemas.GetCostCategoriesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getCostComparisonDrivers(input, options)
     return self:invokeOperation(input, {
         name = "GetCostComparisonDrivers",
-        input_schema = types.GetCostComparisonDriversInput,
-        output_schema = types.GetCostComparisonDriversOutput,
+        input_schema = schemas.GetCostComparisonDriversInput,
+        output_schema = schemas.GetCostComparisonDriversOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getCostForecast(input, options)
     return self:invokeOperation(input, {
         name = "GetCostForecast",
-        input_schema = types.GetCostForecastInput,
-        output_schema = types.GetCostForecastOutput,
+        input_schema = schemas.GetCostForecastInput,
+        output_schema = schemas.GetCostForecastOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getDimensionValues(input, options)
     return self:invokeOperation(input, {
         name = "GetDimensionValues",
-        input_schema = types.GetDimensionValuesInput,
-        output_schema = types.GetDimensionValuesOutput,
+        input_schema = schemas.GetDimensionValuesInput,
+        output_schema = schemas.GetDimensionValuesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getReservationCoverage(input, options)
     return self:invokeOperation(input, {
         name = "GetReservationCoverage",
-        input_schema = types.GetReservationCoverageInput,
-        output_schema = types.GetReservationCoverageOutput,
+        input_schema = schemas.GetReservationCoverageInput,
+        output_schema = schemas.GetReservationCoverageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:getReservationPurchaseRecommendation(input, options)
     return self:invokeOperation(input, {
         name = "GetReservationPurchaseRecommendation",
-        input_schema = types.GetReservationPurchaseRecommendationInput,
-        output_schema = types.GetReservationPurchaseRecommendationOutput,
+        input_schema = schemas.GetReservationPurchaseRecommendationInput,
+        output_schema = schemas.GetReservationPurchaseRecommendationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:getReservationUtilization(input, options)
     return self:invokeOperation(input, {
         name = "GetReservationUtilization",
-        input_schema = types.GetReservationUtilizationInput,
-        output_schema = types.GetReservationUtilizationOutput,
+        input_schema = schemas.GetReservationUtilizationInput,
+        output_schema = schemas.GetReservationUtilizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:getRightsizingRecommendation(input, options)
     return self:invokeOperation(input, {
         name = "GetRightsizingRecommendation",
-        input_schema = types.GetRightsizingRecommendationInput,
-        output_schema = types.GetRightsizingRecommendationOutput,
+        input_schema = schemas.GetRightsizingRecommendationInput,
+        output_schema = schemas.GetRightsizingRecommendationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:getSavingsPlanPurchaseRecommendationDetails(input, options)
     return self:invokeOperation(input, {
         name = "GetSavingsPlanPurchaseRecommendationDetails",
-        input_schema = types.GetSavingsPlanPurchaseRecommendationDetailsInput,
-        output_schema = types.GetSavingsPlanPurchaseRecommendationDetailsOutput,
+        input_schema = schemas.GetSavingsPlanPurchaseRecommendationDetailsInput,
+        output_schema = schemas.GetSavingsPlanPurchaseRecommendationDetailsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getSavingsPlansCoverage(input, options)
     return self:invokeOperation(input, {
         name = "GetSavingsPlansCoverage",
-        input_schema = types.GetSavingsPlansCoverageInput,
-        output_schema = types.GetSavingsPlansCoverageOutput,
+        input_schema = schemas.GetSavingsPlansCoverageInput,
+        output_schema = schemas.GetSavingsPlansCoverageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:getSavingsPlansPurchaseRecommendation(input, options)
     return self:invokeOperation(input, {
         name = "GetSavingsPlansPurchaseRecommendation",
-        input_schema = types.GetSavingsPlansPurchaseRecommendationInput,
-        output_schema = types.GetSavingsPlansPurchaseRecommendationOutput,
+        input_schema = schemas.GetSavingsPlansPurchaseRecommendationInput,
+        output_schema = schemas.GetSavingsPlansPurchaseRecommendationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:getSavingsPlansUtilization(input, options)
     return self:invokeOperation(input, {
         name = "GetSavingsPlansUtilization",
-        input_schema = types.GetSavingsPlansUtilizationInput,
-        output_schema = types.GetSavingsPlansUtilizationOutput,
+        input_schema = schemas.GetSavingsPlansUtilizationInput,
+        output_schema = schemas.GetSavingsPlansUtilizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:getSavingsPlansUtilizationDetails(input, options)
     return self:invokeOperation(input, {
         name = "GetSavingsPlansUtilizationDetails",
-        input_schema = types.GetSavingsPlansUtilizationDetailsInput,
-        output_schema = types.GetSavingsPlansUtilizationDetailsOutput,
+        input_schema = schemas.GetSavingsPlansUtilizationDetailsInput,
+        output_schema = schemas.GetSavingsPlansUtilizationDetailsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:getTags(input, options)
     return self:invokeOperation(input, {
         name = "GetTags",
-        input_schema = types.GetTagsInput,
-        output_schema = types.GetTagsOutput,
+        input_schema = schemas.GetTagsInput,
+        output_schema = schemas.GetTagsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:getUsageForecast(input, options)
     return self:invokeOperation(input, {
         name = "GetUsageForecast",
-        input_schema = types.GetUsageForecastInput,
-        output_schema = types.GetUsageForecastOutput,
+        input_schema = schemas.GetUsageForecastInput,
+        output_schema = schemas.GetUsageForecastOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:listCommitmentPurchaseAnalyses(input, options)
     return self:invokeOperation(input, {
         name = "ListCommitmentPurchaseAnalyses",
-        input_schema = types.ListCommitmentPurchaseAnalysesInput,
-        output_schema = types.ListCommitmentPurchaseAnalysesOutput,
+        input_schema = schemas.ListCommitmentPurchaseAnalysesInput,
+        output_schema = schemas.ListCommitmentPurchaseAnalysesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:listCostAllocationTagBackfillHistory(input, options)
     return self:invokeOperation(input, {
         name = "ListCostAllocationTagBackfillHistory",
-        input_schema = types.ListCostAllocationTagBackfillHistoryInput,
-        output_schema = types.ListCostAllocationTagBackfillHistoryOutput,
+        input_schema = schemas.ListCostAllocationTagBackfillHistoryInput,
+        output_schema = schemas.ListCostAllocationTagBackfillHistoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:listCostAllocationTags(input, options)
     return self:invokeOperation(input, {
         name = "ListCostAllocationTags",
-        input_schema = types.ListCostAllocationTagsInput,
-        output_schema = types.ListCostAllocationTagsOutput,
+        input_schema = schemas.ListCostAllocationTagsInput,
+        output_schema = schemas.ListCostAllocationTagsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listCostCategoryDefinitions(input, options)
     return self:invokeOperation(input, {
         name = "ListCostCategoryDefinitions",
-        input_schema = types.ListCostCategoryDefinitionsInput,
-        output_schema = types.ListCostCategoryDefinitionsOutput,
+        input_schema = schemas.ListCostCategoryDefinitionsInput,
+        output_schema = schemas.ListCostCategoryDefinitionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:listCostCategoryResourceAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListCostCategoryResourceAssociations",
-        input_schema = types.ListCostCategoryResourceAssociationsInput,
-        output_schema = types.ListCostCategoryResourceAssociationsOutput,
+        input_schema = schemas.ListCostCategoryResourceAssociationsInput,
+        output_schema = schemas.ListCostCategoryResourceAssociationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:listSavingsPlansPurchaseRecommendationGeneration(input, options)
     return self:invokeOperation(input, {
         name = "ListSavingsPlansPurchaseRecommendationGeneration",
-        input_schema = types.ListSavingsPlansPurchaseRecommendationGenerationInput,
-        output_schema = types.ListSavingsPlansPurchaseRecommendationGenerationOutput,
+        input_schema = schemas.ListSavingsPlansPurchaseRecommendationGenerationInput,
+        output_schema = schemas.ListSavingsPlansPurchaseRecommendationGenerationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:provideAnomalyFeedback(input, options)
     return self:invokeOperation(input, {
         name = "ProvideAnomalyFeedback",
-        input_schema = types.ProvideAnomalyFeedbackInput,
-        output_schema = types.ProvideAnomalyFeedbackOutput,
+        input_schema = schemas.ProvideAnomalyFeedbackInput,
+        output_schema = schemas.ProvideAnomalyFeedbackOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:startCommitmentPurchaseAnalysis(input, options)
     return self:invokeOperation(input, {
         name = "StartCommitmentPurchaseAnalysis",
-        input_schema = types.StartCommitmentPurchaseAnalysisInput,
-        output_schema = types.StartCommitmentPurchaseAnalysisOutput,
+        input_schema = schemas.StartCommitmentPurchaseAnalysisInput,
+        output_schema = schemas.StartCommitmentPurchaseAnalysisOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:startCostAllocationTagBackfill(input, options)
     return self:invokeOperation(input, {
         name = "StartCostAllocationTagBackfill",
-        input_schema = types.StartCostAllocationTagBackfillInput,
-        output_schema = types.StartCostAllocationTagBackfillOutput,
+        input_schema = schemas.StartCostAllocationTagBackfillInput,
+        output_schema = schemas.StartCostAllocationTagBackfillOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:startSavingsPlansPurchaseRecommendationGeneration(input, options)
     return self:invokeOperation(input, {
         name = "StartSavingsPlansPurchaseRecommendationGeneration",
-        input_schema = types.StartSavingsPlansPurchaseRecommendationGenerationInput,
-        output_schema = types.StartSavingsPlansPurchaseRecommendationGenerationOutput,
+        input_schema = schemas.StartSavingsPlansPurchaseRecommendationGenerationInput,
+        output_schema = schemas.StartSavingsPlansPurchaseRecommendationGenerationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:updateAnomalyMonitor(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAnomalyMonitor",
-        input_schema = types.UpdateAnomalyMonitorInput,
-        output_schema = types.UpdateAnomalyMonitorOutput,
+        input_schema = schemas.UpdateAnomalyMonitorInput,
+        output_schema = schemas.UpdateAnomalyMonitorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:updateAnomalySubscription(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAnomalySubscription",
-        input_schema = types.UpdateAnomalySubscriptionInput,
-        output_schema = types.UpdateAnomalySubscriptionOutput,
+        input_schema = schemas.UpdateAnomalySubscriptionInput,
+        output_schema = schemas.UpdateAnomalySubscriptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:updateCostAllocationTagsStatus(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCostAllocationTagsStatus",
-        input_schema = types.UpdateCostAllocationTagsStatusInput,
-        output_schema = types.UpdateCostAllocationTagsStatusOutput,
+        input_schema = schemas.UpdateCostAllocationTagsStatusInput,
+        output_schema = schemas.UpdateCostAllocationTagsStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:updateCostCategoryDefinition(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCostCategoryDefinition",
-        input_schema = types.UpdateCostCategoryDefinitionInput,
-        output_schema = types.UpdateCostCategoryDefinitionOutput,
+        input_schema = schemas.UpdateCostCategoryDefinitionInput,
+        output_schema = schemas.UpdateCostCategoryDefinitionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

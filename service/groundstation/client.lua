@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("groundstation.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("groundstation.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("groundstation.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:cancelContact(input, options)
     return self:invokeOperation(input, {
         name = "CancelContact",
-        input_schema = types.CancelContactInput,
-        output_schema = types.CancelContactOutput,
+        input_schema = schemas.CancelContactInput,
+        output_schema = schemas.CancelContactOutput,
         http_method = "DELETE",
         http_path = "/contact/{contactId}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createConfig(input, options)
     return self:invokeOperation(input, {
         name = "CreateConfig",
-        input_schema = types.CreateConfigInput,
-        output_schema = types.CreateConfigOutput,
+        input_schema = schemas.CreateConfigInput,
+        output_schema = schemas.CreateConfigOutput,
         http_method = "POST",
         http_path = "/config",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createDataflowEndpointGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateDataflowEndpointGroup",
-        input_schema = types.CreateDataflowEndpointGroupInput,
-        output_schema = types.CreateDataflowEndpointGroupOutput,
+        input_schema = schemas.CreateDataflowEndpointGroupInput,
+        output_schema = schemas.CreateDataflowEndpointGroupOutput,
         http_method = "POST",
         http_path = "/dataflowEndpointGroup",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createDataflowEndpointGroupV2(input, options)
     return self:invokeOperation(input, {
         name = "CreateDataflowEndpointGroupV2",
-        input_schema = types.CreateDataflowEndpointGroupV2Input,
-        output_schema = types.CreateDataflowEndpointGroupV2Output,
+        input_schema = schemas.CreateDataflowEndpointGroupV2Input,
+        output_schema = schemas.CreateDataflowEndpointGroupV2Output,
         http_method = "POST",
         http_path = "/dataflowEndpointGroupV2",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createEphemeris(input, options)
     return self:invokeOperation(input, {
         name = "CreateEphemeris",
-        input_schema = types.CreateEphemerisInput,
-        output_schema = types.CreateEphemerisOutput,
+        input_schema = schemas.CreateEphemerisInput,
+        output_schema = schemas.CreateEphemerisOutput,
         http_method = "POST",
         http_path = "/ephemeris",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createMissionProfile(input, options)
     return self:invokeOperation(input, {
         name = "CreateMissionProfile",
-        input_schema = types.CreateMissionProfileInput,
-        output_schema = types.CreateMissionProfileOutput,
+        input_schema = schemas.CreateMissionProfileInput,
+        output_schema = schemas.CreateMissionProfileOutput,
         http_method = "POST",
         http_path = "/missionprofile",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteConfig(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfig",
-        input_schema = types.DeleteConfigInput,
-        output_schema = types.DeleteConfigOutput,
+        input_schema = schemas.DeleteConfigInput,
+        output_schema = schemas.DeleteConfigOutput,
         http_method = "DELETE",
         http_path = "/config/{configType}/{configId}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteDataflowEndpointGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDataflowEndpointGroup",
-        input_schema = types.DeleteDataflowEndpointGroupInput,
-        output_schema = types.DeleteDataflowEndpointGroupOutput,
+        input_schema = schemas.DeleteDataflowEndpointGroupInput,
+        output_schema = schemas.DeleteDataflowEndpointGroupOutput,
         http_method = "DELETE",
         http_path = "/dataflowEndpointGroup/{dataflowEndpointGroupId}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteEphemeris(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEphemeris",
-        input_schema = types.DeleteEphemerisInput,
-        output_schema = types.DeleteEphemerisOutput,
+        input_schema = schemas.DeleteEphemerisInput,
+        output_schema = schemas.DeleteEphemerisOutput,
         http_method = "DELETE",
         http_path = "/ephemeris/{ephemerisId}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteMissionProfile(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMissionProfile",
-        input_schema = types.DeleteMissionProfileInput,
-        output_schema = types.DeleteMissionProfileOutput,
+        input_schema = schemas.DeleteMissionProfileInput,
+        output_schema = schemas.DeleteMissionProfileOutput,
         http_method = "DELETE",
         http_path = "/missionprofile/{missionProfileId}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:describeContact(input, options)
     return self:invokeOperation(input, {
         name = "DescribeContact",
-        input_schema = types.DescribeContactInput,
-        output_schema = types.DescribeContactOutput,
+        input_schema = schemas.DescribeContactInput,
+        output_schema = schemas.DescribeContactOutput,
         http_method = "GET",
         http_path = "/contact/{contactId}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:describeContactVersion(input, options)
     return self:invokeOperation(input, {
         name = "DescribeContactVersion",
-        input_schema = types.DescribeContactVersionInput,
-        output_schema = types.DescribeContactVersionOutput,
+        input_schema = schemas.DescribeContactVersionInput,
+        output_schema = schemas.DescribeContactVersionOutput,
         http_method = "GET",
         http_path = "/contact/{contactId}/versions/{versionId}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:describeEphemeris(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEphemeris",
-        input_schema = types.DescribeEphemerisInput,
-        output_schema = types.DescribeEphemerisOutput,
+        input_schema = schemas.DescribeEphemerisInput,
+        output_schema = schemas.DescribeEphemerisOutput,
         http_method = "GET",
         http_path = "/ephemeris/{ephemerisId}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getAgentConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetAgentConfiguration",
-        input_schema = types.GetAgentConfigurationInput,
-        output_schema = types.GetAgentConfigurationOutput,
+        input_schema = schemas.GetAgentConfigurationInput,
+        output_schema = schemas.GetAgentConfigurationOutput,
         http_method = "GET",
         http_path = "/agent/{agentId}/configuration",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getAgentTaskResponseUrl(input, options)
     return self:invokeOperation(input, {
         name = "GetAgentTaskResponseUrl",
-        input_schema = types.GetAgentTaskResponseUrlInput,
-        output_schema = types.GetAgentTaskResponseUrlOutput,
+        input_schema = schemas.GetAgentTaskResponseUrlInput,
+        output_schema = schemas.GetAgentTaskResponseUrlOutput,
         http_method = "GET",
         http_path = "/agentResponseUrl/{agentId}/{taskId}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getConfig(input, options)
     return self:invokeOperation(input, {
         name = "GetConfig",
-        input_schema = types.GetConfigInput,
-        output_schema = types.GetConfigOutput,
+        input_schema = schemas.GetConfigInput,
+        output_schema = schemas.GetConfigOutput,
         http_method = "GET",
         http_path = "/config/{configType}/{configId}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getDataflowEndpointGroup(input, options)
     return self:invokeOperation(input, {
         name = "GetDataflowEndpointGroup",
-        input_schema = types.GetDataflowEndpointGroupInput,
-        output_schema = types.GetDataflowEndpointGroupOutput,
+        input_schema = schemas.GetDataflowEndpointGroupInput,
+        output_schema = schemas.GetDataflowEndpointGroupOutput,
         http_method = "GET",
         http_path = "/dataflowEndpointGroup/{dataflowEndpointGroupId}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getMinuteUsage(input, options)
     return self:invokeOperation(input, {
         name = "GetMinuteUsage",
-        input_schema = types.GetMinuteUsageInput,
-        output_schema = types.GetMinuteUsageOutput,
+        input_schema = schemas.GetMinuteUsageInput,
+        output_schema = schemas.GetMinuteUsageOutput,
         http_method = "POST",
         http_path = "/minute-usage",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getMissionProfile(input, options)
     return self:invokeOperation(input, {
         name = "GetMissionProfile",
-        input_schema = types.GetMissionProfileInput,
-        output_schema = types.GetMissionProfileOutput,
+        input_schema = schemas.GetMissionProfileInput,
+        output_schema = schemas.GetMissionProfileOutput,
         http_method = "GET",
         http_path = "/missionprofile/{missionProfileId}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getSatellite(input, options)
     return self:invokeOperation(input, {
         name = "GetSatellite",
-        input_schema = types.GetSatelliteInput,
-        output_schema = types.GetSatelliteOutput,
+        input_schema = schemas.GetSatelliteInput,
+        output_schema = schemas.GetSatelliteOutput,
         http_method = "GET",
         http_path = "/satellite/{satelliteId}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listAntennas(input, options)
     return self:invokeOperation(input, {
         name = "ListAntennas",
-        input_schema = types.ListAntennasInput,
-        output_schema = types.ListAntennasOutput,
+        input_schema = schemas.ListAntennasInput,
+        output_schema = schemas.ListAntennasOutput,
         http_method = "GET",
         http_path = "/groundstation/{groundStationId}/antenna",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listConfigs(input, options)
     return self:invokeOperation(input, {
         name = "ListConfigs",
-        input_schema = types.ListConfigsInput,
-        output_schema = types.ListConfigsOutput,
+        input_schema = schemas.ListConfigsInput,
+        output_schema = schemas.ListConfigsOutput,
         http_method = "GET",
         http_path = "/config",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listContacts(input, options)
     return self:invokeOperation(input, {
         name = "ListContacts",
-        input_schema = types.ListContactsInput,
-        output_schema = types.ListContactsOutput,
+        input_schema = schemas.ListContactsInput,
+        output_schema = schemas.ListContactsOutput,
         http_method = "POST",
         http_path = "/contacts",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listContactVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListContactVersions",
-        input_schema = types.ListContactVersionsInput,
-        output_schema = types.ListContactVersionsOutput,
+        input_schema = schemas.ListContactVersionsInput,
+        output_schema = schemas.ListContactVersionsOutput,
         http_method = "GET",
         http_path = "/contact/{contactId}/versions",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listDataflowEndpointGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListDataflowEndpointGroups",
-        input_schema = types.ListDataflowEndpointGroupsInput,
-        output_schema = types.ListDataflowEndpointGroupsOutput,
+        input_schema = schemas.ListDataflowEndpointGroupsInput,
+        output_schema = schemas.ListDataflowEndpointGroupsOutput,
         http_method = "GET",
         http_path = "/dataflowEndpointGroup",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listEphemerides(input, options)
     return self:invokeOperation(input, {
         name = "ListEphemerides",
-        input_schema = types.ListEphemeridesInput,
-        output_schema = types.ListEphemeridesOutput,
+        input_schema = schemas.ListEphemeridesInput,
+        output_schema = schemas.ListEphemeridesOutput,
         http_method = "POST",
         http_path = "/ephemerides",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listGroundStationReservations(input, options)
     return self:invokeOperation(input, {
         name = "ListGroundStationReservations",
-        input_schema = types.ListGroundStationReservationsInput,
-        output_schema = types.ListGroundStationReservationsOutput,
+        input_schema = schemas.ListGroundStationReservationsInput,
+        output_schema = schemas.ListGroundStationReservationsOutput,
         http_method = "GET",
         http_path = "/groundstation/{groundStationId}/reservation",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listGroundStations(input, options)
     return self:invokeOperation(input, {
         name = "ListGroundStations",
-        input_schema = types.ListGroundStationsInput,
-        output_schema = types.ListGroundStationsOutput,
+        input_schema = schemas.ListGroundStationsInput,
+        output_schema = schemas.ListGroundStationsOutput,
         http_method = "GET",
         http_path = "/groundstation",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listMissionProfiles(input, options)
     return self:invokeOperation(input, {
         name = "ListMissionProfiles",
-        input_schema = types.ListMissionProfilesInput,
-        output_schema = types.ListMissionProfilesOutput,
+        input_schema = schemas.ListMissionProfilesInput,
+        output_schema = schemas.ListMissionProfilesOutput,
         http_method = "GET",
         http_path = "/missionprofile",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:listSatellites(input, options)
     return self:invokeOperation(input, {
         name = "ListSatellites",
-        input_schema = types.ListSatellitesInput,
-        output_schema = types.ListSatellitesOutput,
+        input_schema = schemas.ListSatellitesInput,
+        output_schema = schemas.ListSatellitesOutput,
         http_method = "GET",
         http_path = "/satellite",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:registerAgent(input, options)
     return self:invokeOperation(input, {
         name = "RegisterAgent",
-        input_schema = types.RegisterAgentInput,
-        output_schema = types.RegisterAgentOutput,
+        input_schema = schemas.RegisterAgentInput,
+        output_schema = schemas.RegisterAgentOutput,
         http_method = "POST",
         http_path = "/agent",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:reserveContact(input, options)
     return self:invokeOperation(input, {
         name = "ReserveContact",
-        input_schema = types.ReserveContactInput,
-        output_schema = types.ReserveContactOutput,
+        input_schema = schemas.ReserveContactInput,
+        output_schema = schemas.ReserveContactOutput,
         http_method = "POST",
         http_path = "/contact",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:updateAgentStatus(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAgentStatus",
-        input_schema = types.UpdateAgentStatusInput,
-        output_schema = types.UpdateAgentStatusOutput,
+        input_schema = schemas.UpdateAgentStatusInput,
+        output_schema = schemas.UpdateAgentStatusOutput,
         http_method = "PUT",
         http_path = "/agent/{agentId}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:updateConfig(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConfig",
-        input_schema = types.UpdateConfigInput,
-        output_schema = types.UpdateConfigOutput,
+        input_schema = schemas.UpdateConfigInput,
+        output_schema = schemas.UpdateConfigOutput,
         http_method = "PUT",
         http_path = "/config/{configType}/{configId}",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:updateContact(input, options)
     return self:invokeOperation(input, {
         name = "UpdateContact",
-        input_schema = types.UpdateContactInput,
-        output_schema = types.UpdateContactOutput,
+        input_schema = schemas.UpdateContactInput,
+        output_schema = schemas.UpdateContactOutput,
         http_method = "POST",
         http_path = "/contact/{contactId}/versions",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:updateEphemeris(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEphemeris",
-        input_schema = types.UpdateEphemerisInput,
-        output_schema = types.UpdateEphemerisOutput,
+        input_schema = schemas.UpdateEphemerisInput,
+        output_schema = schemas.UpdateEphemerisOutput,
         http_method = "PUT",
         http_path = "/ephemeris/{ephemerisId}",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:updateMissionProfile(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMissionProfile",
-        input_schema = types.UpdateMissionProfileInput,
-        output_schema = types.UpdateMissionProfileOutput,
+        input_schema = schemas.UpdateMissionProfileInput,
+        output_schema = schemas.UpdateMissionProfileOutput,
         http_method = "PUT",
         http_path = "/missionprofile/{missionProfileId}",
         effective_auth_schemes = {

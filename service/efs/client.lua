@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("efs.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("efs.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("efs.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createAccessPoint(input, options)
     return self:invokeOperation(input, {
         name = "CreateAccessPoint",
-        input_schema = types.CreateAccessPointInput,
-        output_schema = types.CreateAccessPointOutput,
+        input_schema = schemas.CreateAccessPointInput,
+        output_schema = schemas.CreateAccessPointOutput,
         http_method = "POST",
         http_path = "/2015-02-01/access-points",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createFileSystem(input, options)
     return self:invokeOperation(input, {
         name = "CreateFileSystem",
-        input_schema = types.CreateFileSystemInput,
-        output_schema = types.CreateFileSystemOutput,
+        input_schema = schemas.CreateFileSystemInput,
+        output_schema = schemas.CreateFileSystemOutput,
         http_method = "POST",
         http_path = "/2015-02-01/file-systems",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createMountTarget(input, options)
     return self:invokeOperation(input, {
         name = "CreateMountTarget",
-        input_schema = types.CreateMountTargetInput,
-        output_schema = types.CreateMountTargetOutput,
+        input_schema = schemas.CreateMountTargetInput,
+        output_schema = schemas.CreateMountTargetOutput,
         http_method = "POST",
         http_path = "/2015-02-01/mount-targets",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createReplicationConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateReplicationConfiguration",
-        input_schema = types.CreateReplicationConfigurationInput,
-        output_schema = types.CreateReplicationConfigurationOutput,
+        input_schema = schemas.CreateReplicationConfigurationInput,
+        output_schema = schemas.CreateReplicationConfigurationOutput,
         http_method = "POST",
         http_path = "/2015-02-01/file-systems/{SourceFileSystemId}/replication-configuration",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createTags(input, options)
     return self:invokeOperation(input, {
         name = "CreateTags",
-        input_schema = types.CreateTagsInput,
-        output_schema = types.CreateTagsOutput,
+        input_schema = schemas.CreateTagsInput,
+        output_schema = schemas.CreateTagsOutput,
         http_method = "POST",
         http_path = "/2015-02-01/create-tags/{FileSystemId}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteAccessPoint(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAccessPoint",
-        input_schema = types.DeleteAccessPointInput,
-        output_schema = types.DeleteAccessPointOutput,
+        input_schema = schemas.DeleteAccessPointInput,
+        output_schema = schemas.DeleteAccessPointOutput,
         http_method = "DELETE",
         http_path = "/2015-02-01/access-points/{AccessPointId}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteFileSystem(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFileSystem",
-        input_schema = types.DeleteFileSystemInput,
-        output_schema = types.DeleteFileSystemOutput,
+        input_schema = schemas.DeleteFileSystemInput,
+        output_schema = schemas.DeleteFileSystemOutput,
         http_method = "DELETE",
         http_path = "/2015-02-01/file-systems/{FileSystemId}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteFileSystemPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFileSystemPolicy",
-        input_schema = types.DeleteFileSystemPolicyInput,
-        output_schema = types.DeleteFileSystemPolicyOutput,
+        input_schema = schemas.DeleteFileSystemPolicyInput,
+        output_schema = schemas.DeleteFileSystemPolicyOutput,
         http_method = "DELETE",
         http_path = "/2015-02-01/file-systems/{FileSystemId}/policy",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteMountTarget(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMountTarget",
-        input_schema = types.DeleteMountTargetInput,
-        output_schema = types.DeleteMountTargetOutput,
+        input_schema = schemas.DeleteMountTargetInput,
+        output_schema = schemas.DeleteMountTargetOutput,
         http_method = "DELETE",
         http_path = "/2015-02-01/mount-targets/{MountTargetId}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteReplicationConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteReplicationConfiguration",
-        input_schema = types.DeleteReplicationConfigurationInput,
-        output_schema = types.DeleteReplicationConfigurationOutput,
+        input_schema = schemas.DeleteReplicationConfigurationInput,
+        output_schema = schemas.DeleteReplicationConfigurationOutput,
         http_method = "DELETE",
         http_path = "/2015-02-01/file-systems/{SourceFileSystemId}/replication-configuration",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteTags(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTags",
-        input_schema = types.DeleteTagsInput,
-        output_schema = types.DeleteTagsOutput,
+        input_schema = schemas.DeleteTagsInput,
+        output_schema = schemas.DeleteTagsOutput,
         http_method = "POST",
         http_path = "/2015-02-01/delete-tags/{FileSystemId}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:describeAccessPoints(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAccessPoints",
-        input_schema = types.DescribeAccessPointsInput,
-        output_schema = types.DescribeAccessPointsOutput,
+        input_schema = schemas.DescribeAccessPointsInput,
+        output_schema = schemas.DescribeAccessPointsOutput,
         http_method = "GET",
         http_path = "/2015-02-01/access-points",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:describeAccountPreferences(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAccountPreferences",
-        input_schema = types.DescribeAccountPreferencesInput,
-        output_schema = types.DescribeAccountPreferencesOutput,
+        input_schema = schemas.DescribeAccountPreferencesInput,
+        output_schema = schemas.DescribeAccountPreferencesOutput,
         http_method = "GET",
         http_path = "/2015-02-01/account-preferences",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:describeBackupPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DescribeBackupPolicy",
-        input_schema = types.DescribeBackupPolicyInput,
-        output_schema = types.DescribeBackupPolicyOutput,
+        input_schema = schemas.DescribeBackupPolicyInput,
+        output_schema = schemas.DescribeBackupPolicyOutput,
         http_method = "GET",
         http_path = "/2015-02-01/file-systems/{FileSystemId}/backup-policy",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:describeFileSystemPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFileSystemPolicy",
-        input_schema = types.DescribeFileSystemPolicyInput,
-        output_schema = types.DescribeFileSystemPolicyOutput,
+        input_schema = schemas.DescribeFileSystemPolicyInput,
+        output_schema = schemas.DescribeFileSystemPolicyOutput,
         http_method = "GET",
         http_path = "/2015-02-01/file-systems/{FileSystemId}/policy",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:describeFileSystems(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFileSystems",
-        input_schema = types.DescribeFileSystemsInput,
-        output_schema = types.DescribeFileSystemsOutput,
+        input_schema = schemas.DescribeFileSystemsInput,
+        output_schema = schemas.DescribeFileSystemsOutput,
         http_method = "GET",
         http_path = "/2015-02-01/file-systems",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:describeLifecycleConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLifecycleConfiguration",
-        input_schema = types.DescribeLifecycleConfigurationInput,
-        output_schema = types.DescribeLifecycleConfigurationOutput,
+        input_schema = schemas.DescribeLifecycleConfigurationInput,
+        output_schema = schemas.DescribeLifecycleConfigurationOutput,
         http_method = "GET",
         http_path = "/2015-02-01/file-systems/{FileSystemId}/lifecycle-configuration",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:describeMountTargets(input, options)
     return self:invokeOperation(input, {
         name = "DescribeMountTargets",
-        input_schema = types.DescribeMountTargetsInput,
-        output_schema = types.DescribeMountTargetsOutput,
+        input_schema = schemas.DescribeMountTargetsInput,
+        output_schema = schemas.DescribeMountTargetsOutput,
         http_method = "GET",
         http_path = "/2015-02-01/mount-targets",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:describeMountTargetSecurityGroups(input, options)
     return self:invokeOperation(input, {
         name = "DescribeMountTargetSecurityGroups",
-        input_schema = types.DescribeMountTargetSecurityGroupsInput,
-        output_schema = types.DescribeMountTargetSecurityGroupsOutput,
+        input_schema = schemas.DescribeMountTargetSecurityGroupsInput,
+        output_schema = schemas.DescribeMountTargetSecurityGroupsOutput,
         http_method = "GET",
         http_path = "/2015-02-01/mount-targets/{MountTargetId}/security-groups",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:describeReplicationConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "DescribeReplicationConfigurations",
-        input_schema = types.DescribeReplicationConfigurationsInput,
-        output_schema = types.DescribeReplicationConfigurationsOutput,
+        input_schema = schemas.DescribeReplicationConfigurationsInput,
+        output_schema = schemas.DescribeReplicationConfigurationsOutput,
         http_method = "GET",
         http_path = "/2015-02-01/file-systems/replication-configurations",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:describeTags(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTags",
-        input_schema = types.DescribeTagsInput,
-        output_schema = types.DescribeTagsOutput,
+        input_schema = schemas.DescribeTagsInput,
+        output_schema = schemas.DescribeTagsOutput,
         http_method = "GET",
         http_path = "/2015-02-01/tags/{FileSystemId}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/2015-02-01/resource-tags/{ResourceId}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:modifyMountTargetSecurityGroups(input, options)
     return self:invokeOperation(input, {
         name = "ModifyMountTargetSecurityGroups",
-        input_schema = types.ModifyMountTargetSecurityGroupsInput,
-        output_schema = types.ModifyMountTargetSecurityGroupsOutput,
+        input_schema = schemas.ModifyMountTargetSecurityGroupsInput,
+        output_schema = schemas.ModifyMountTargetSecurityGroupsOutput,
         http_method = "PUT",
         http_path = "/2015-02-01/mount-targets/{MountTargetId}/security-groups",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:putAccountPreferences(input, options)
     return self:invokeOperation(input, {
         name = "PutAccountPreferences",
-        input_schema = types.PutAccountPreferencesInput,
-        output_schema = types.PutAccountPreferencesOutput,
+        input_schema = schemas.PutAccountPreferencesInput,
+        output_schema = schemas.PutAccountPreferencesOutput,
         http_method = "PUT",
         http_path = "/2015-02-01/account-preferences",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:putBackupPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutBackupPolicy",
-        input_schema = types.PutBackupPolicyInput,
-        output_schema = types.PutBackupPolicyOutput,
+        input_schema = schemas.PutBackupPolicyInput,
+        output_schema = schemas.PutBackupPolicyOutput,
         http_method = "PUT",
         http_path = "/2015-02-01/file-systems/{FileSystemId}/backup-policy",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:putFileSystemPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutFileSystemPolicy",
-        input_schema = types.PutFileSystemPolicyInput,
-        output_schema = types.PutFileSystemPolicyOutput,
+        input_schema = schemas.PutFileSystemPolicyInput,
+        output_schema = schemas.PutFileSystemPolicyOutput,
         http_method = "PUT",
         http_path = "/2015-02-01/file-systems/{FileSystemId}/policy",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:putLifecycleConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutLifecycleConfiguration",
-        input_schema = types.PutLifecycleConfigurationInput,
-        output_schema = types.PutLifecycleConfigurationOutput,
+        input_schema = schemas.PutLifecycleConfigurationInput,
+        output_schema = schemas.PutLifecycleConfigurationOutput,
         http_method = "PUT",
         http_path = "/2015-02-01/file-systems/{FileSystemId}/lifecycle-configuration",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/2015-02-01/resource-tags/{ResourceId}",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/2015-02-01/resource-tags/{ResourceId}",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:updateFileSystem(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFileSystem",
-        input_schema = types.UpdateFileSystemInput,
-        output_schema = types.UpdateFileSystemOutput,
+        input_schema = schemas.UpdateFileSystemInput,
+        output_schema = schemas.UpdateFileSystemOutput,
         http_method = "PUT",
         http_path = "/2015-02-01/file-systems/{FileSystemId}",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:updateFileSystemProtection(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFileSystemProtection",
-        input_schema = types.UpdateFileSystemProtectionInput,
-        output_schema = types.UpdateFileSystemProtectionOutput,
+        input_schema = schemas.UpdateFileSystemProtectionInput,
+        output_schema = schemas.UpdateFileSystemProtectionOutput,
         http_method = "PUT",
         http_path = "/2015-02-01/file-systems/{FileSystemId}/protection",
         effective_auth_schemes = {

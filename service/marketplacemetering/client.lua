@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("marketplacemetering.endpoint_rules")
+local schemas = require("marketplacemetering.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("marketplacemetering.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchMeterUsage(input, options)
     return self:invokeOperation(input, {
         name = "BatchMeterUsage",
-        input_schema = types.BatchMeterUsageInput,
-        output_schema = types.BatchMeterUsageOutput,
+        input_schema = schemas.BatchMeterUsageInput,
+        output_schema = schemas.BatchMeterUsageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:meterUsage(input, options)
     return self:invokeOperation(input, {
         name = "MeterUsage",
-        input_schema = types.MeterUsageInput,
-        output_schema = types.MeterUsageOutput,
+        input_schema = schemas.MeterUsageInput,
+        output_schema = schemas.MeterUsageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:registerUsage(input, options)
     return self:invokeOperation(input, {
         name = "RegisterUsage",
-        input_schema = types.RegisterUsageInput,
-        output_schema = types.RegisterUsageOutput,
+        input_schema = schemas.RegisterUsageInput,
+        output_schema = schemas.RegisterUsageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:resolveCustomer(input, options)
     return self:invokeOperation(input, {
         name = "ResolveCustomer",
-        input_schema = types.ResolveCustomerInput,
-        output_schema = types.ResolveCustomerOutput,
+        input_schema = schemas.ResolveCustomerInput,
+        output_schema = schemas.ResolveCustomerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

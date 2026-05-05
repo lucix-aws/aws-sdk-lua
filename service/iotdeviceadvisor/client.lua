@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("iotdeviceadvisor.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("iotdeviceadvisor.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("iotdeviceadvisor.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createSuiteDefinition(input, options)
     return self:invokeOperation(input, {
         name = "CreateSuiteDefinition",
-        input_schema = types.CreateSuiteDefinitionInput,
-        output_schema = types.CreateSuiteDefinitionOutput,
+        input_schema = schemas.CreateSuiteDefinitionInput,
+        output_schema = schemas.CreateSuiteDefinitionOutput,
         http_method = "POST",
         http_path = "/suiteDefinitions",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteSuiteDefinition(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSuiteDefinition",
-        input_schema = types.DeleteSuiteDefinitionInput,
-        output_schema = types.DeleteSuiteDefinitionOutput,
+        input_schema = schemas.DeleteSuiteDefinitionInput,
+        output_schema = schemas.DeleteSuiteDefinitionOutput,
         http_method = "DELETE",
         http_path = "/suiteDefinitions/{suiteDefinitionId}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "GetEndpoint",
-        input_schema = types.GetEndpointInput,
-        output_schema = types.GetEndpointOutput,
+        input_schema = schemas.GetEndpointInput,
+        output_schema = schemas.GetEndpointOutput,
         http_method = "GET",
         http_path = "/endpoint",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getSuiteDefinition(input, options)
     return self:invokeOperation(input, {
         name = "GetSuiteDefinition",
-        input_schema = types.GetSuiteDefinitionInput,
-        output_schema = types.GetSuiteDefinitionOutput,
+        input_schema = schemas.GetSuiteDefinitionInput,
+        output_schema = schemas.GetSuiteDefinitionOutput,
         http_method = "GET",
         http_path = "/suiteDefinitions/{suiteDefinitionId}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getSuiteRun(input, options)
     return self:invokeOperation(input, {
         name = "GetSuiteRun",
-        input_schema = types.GetSuiteRunInput,
-        output_schema = types.GetSuiteRunOutput,
+        input_schema = schemas.GetSuiteRunInput,
+        output_schema = schemas.GetSuiteRunOutput,
         http_method = "GET",
         http_path = "/suiteDefinitions/{suiteDefinitionId}/suiteRuns/{suiteRunId}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getSuiteRunReport(input, options)
     return self:invokeOperation(input, {
         name = "GetSuiteRunReport",
-        input_schema = types.GetSuiteRunReportInput,
-        output_schema = types.GetSuiteRunReportOutput,
+        input_schema = schemas.GetSuiteRunReportInput,
+        output_schema = schemas.GetSuiteRunReportOutput,
         http_method = "GET",
         http_path = "/suiteDefinitions/{suiteDefinitionId}/suiteRuns/{suiteRunId}/report",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listSuiteDefinitions(input, options)
     return self:invokeOperation(input, {
         name = "ListSuiteDefinitions",
-        input_schema = types.ListSuiteDefinitionsInput,
-        output_schema = types.ListSuiteDefinitionsOutput,
+        input_schema = schemas.ListSuiteDefinitionsInput,
+        output_schema = schemas.ListSuiteDefinitionsOutput,
         http_method = "GET",
         http_path = "/suiteDefinitions",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listSuiteRuns(input, options)
     return self:invokeOperation(input, {
         name = "ListSuiteRuns",
-        input_schema = types.ListSuiteRunsInput,
-        output_schema = types.ListSuiteRunsOutput,
+        input_schema = schemas.ListSuiteRunsInput,
+        output_schema = schemas.ListSuiteRunsOutput,
         http_method = "GET",
         http_path = "/suiteRuns",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:startSuiteRun(input, options)
     return self:invokeOperation(input, {
         name = "StartSuiteRun",
-        input_schema = types.StartSuiteRunInput,
-        output_schema = types.StartSuiteRunOutput,
+        input_schema = schemas.StartSuiteRunInput,
+        output_schema = schemas.StartSuiteRunOutput,
         http_method = "POST",
         http_path = "/suiteDefinitions/{suiteDefinitionId}/suiteRuns",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:stopSuiteRun(input, options)
     return self:invokeOperation(input, {
         name = "StopSuiteRun",
-        input_schema = types.StopSuiteRunInput,
-        output_schema = types.StopSuiteRunOutput,
+        input_schema = schemas.StopSuiteRunInput,
+        output_schema = schemas.StopSuiteRunOutput,
         http_method = "POST",
         http_path = "/suiteDefinitions/{suiteDefinitionId}/suiteRuns/{suiteRunId}/stop",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:updateSuiteDefinition(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSuiteDefinition",
-        input_schema = types.UpdateSuiteDefinitionInput,
-        output_schema = types.UpdateSuiteDefinitionOutput,
+        input_schema = schemas.UpdateSuiteDefinitionInput,
+        output_schema = schemas.UpdateSuiteDefinitionOutput,
         http_method = "PATCH",
         http_path = "/suiteDefinitions/{suiteDefinitionId}",
         effective_auth_schemes = {

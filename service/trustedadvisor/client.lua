@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("trustedadvisor.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("trustedadvisor.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("trustedadvisor.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchUpdateRecommendationResourceExclusion(input, options)
     return self:invokeOperation(input, {
         name = "BatchUpdateRecommendationResourceExclusion",
-        input_schema = types.BatchUpdateRecommendationResourceExclusionInput,
-        output_schema = types.BatchUpdateRecommendationResourceExclusionOutput,
+        input_schema = schemas.BatchUpdateRecommendationResourceExclusionInput,
+        output_schema = schemas.BatchUpdateRecommendationResourceExclusionOutput,
         http_method = "PUT",
         http_path = "/v1/batch-update-recommendation-resource-exclusion",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:getOrganizationRecommendation(input, options)
     return self:invokeOperation(input, {
         name = "GetOrganizationRecommendation",
-        input_schema = types.GetOrganizationRecommendationInput,
-        output_schema = types.GetOrganizationRecommendationOutput,
+        input_schema = schemas.GetOrganizationRecommendationInput,
+        output_schema = schemas.GetOrganizationRecommendationOutput,
         http_method = "GET",
         http_path = "/v1/organization-recommendations/{organizationRecommendationIdentifier}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getRecommendation(input, options)
     return self:invokeOperation(input, {
         name = "GetRecommendation",
-        input_schema = types.GetRecommendationInput,
-        output_schema = types.GetRecommendationOutput,
+        input_schema = schemas.GetRecommendationInput,
+        output_schema = schemas.GetRecommendationOutput,
         http_method = "GET",
         http_path = "/v1/recommendations/{recommendationIdentifier}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:listChecks(input, options)
     return self:invokeOperation(input, {
         name = "ListChecks",
-        input_schema = types.ListChecksInput,
-        output_schema = types.ListChecksOutput,
+        input_schema = schemas.ListChecksInput,
+        output_schema = schemas.ListChecksOutput,
         http_method = "GET",
         http_path = "/v1/checks",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:listOrganizationRecommendationAccounts(input, options)
     return self:invokeOperation(input, {
         name = "ListOrganizationRecommendationAccounts",
-        input_schema = types.ListOrganizationRecommendationAccountsInput,
-        output_schema = types.ListOrganizationRecommendationAccountsOutput,
+        input_schema = schemas.ListOrganizationRecommendationAccountsInput,
+        output_schema = schemas.ListOrganizationRecommendationAccountsOutput,
         http_method = "GET",
         http_path = "/v1/organization-recommendations/{organizationRecommendationIdentifier}/accounts",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:listOrganizationRecommendationResources(input, options)
     return self:invokeOperation(input, {
         name = "ListOrganizationRecommendationResources",
-        input_schema = types.ListOrganizationRecommendationResourcesInput,
-        output_schema = types.ListOrganizationRecommendationResourcesOutput,
+        input_schema = schemas.ListOrganizationRecommendationResourcesInput,
+        output_schema = schemas.ListOrganizationRecommendationResourcesOutput,
         http_method = "GET",
         http_path = "/v1/organization-recommendations/{organizationRecommendationIdentifier}/resources",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listOrganizationRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "ListOrganizationRecommendations",
-        input_schema = types.ListOrganizationRecommendationsInput,
-        output_schema = types.ListOrganizationRecommendationsOutput,
+        input_schema = schemas.ListOrganizationRecommendationsInput,
+        output_schema = schemas.ListOrganizationRecommendationsOutput,
         http_method = "GET",
         http_path = "/v1/organization-recommendations",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listRecommendationResources(input, options)
     return self:invokeOperation(input, {
         name = "ListRecommendationResources",
-        input_schema = types.ListRecommendationResourcesInput,
-        output_schema = types.ListRecommendationResourcesOutput,
+        input_schema = schemas.ListRecommendationResourcesInput,
+        output_schema = schemas.ListRecommendationResourcesOutput,
         http_method = "GET",
         http_path = "/v1/recommendations/{recommendationIdentifier}/resources",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "ListRecommendations",
-        input_schema = types.ListRecommendationsInput,
-        output_schema = types.ListRecommendationsOutput,
+        input_schema = schemas.ListRecommendationsInput,
+        output_schema = schemas.ListRecommendationsOutput,
         http_method = "GET",
         http_path = "/v1/recommendations",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:updateOrganizationRecommendationLifecycle(input, options)
     return self:invokeOperation(input, {
         name = "UpdateOrganizationRecommendationLifecycle",
-        input_schema = types.UpdateOrganizationRecommendationLifecycleInput,
-        output_schema = types.UpdateOrganizationRecommendationLifecycleOutput,
+        input_schema = schemas.UpdateOrganizationRecommendationLifecycleInput,
+        output_schema = schemas.UpdateOrganizationRecommendationLifecycleOutput,
         http_method = "PUT",
         http_path = "/v1/organization-recommendations/{organizationRecommendationIdentifier}/lifecycle",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:updateRecommendationLifecycle(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRecommendationLifecycle",
-        input_schema = types.UpdateRecommendationLifecycleInput,
-        output_schema = types.UpdateRecommendationLifecycleOutput,
+        input_schema = schemas.UpdateRecommendationLifecycleInput,
+        output_schema = schemas.UpdateRecommendationLifecycleOutput,
         http_method = "PUT",
         http_path = "/v1/recommendations/{recommendationIdentifier}/lifecycle",
         effective_auth_schemes = {

@@ -1,0 +1,1462 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.cognitosync"
+
+local M = {}
+
+M.AlreadyStreamedException = schema.new({
+    id = id.from(_N, "AlreadyStreamedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "AlreadyStreamedException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BulkPublishInput = schema.new({
+    id = id.from(_N, "BulkPublishInput"),
+    type = "structure",
+    members = {
+        IdentityPoolId = schema.new({
+            id = id.from(_N, "BulkPublishInput", "IdentityPoolId"),
+            type = "string",
+            name = "IdentityPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.BulkPublishOutput = schema.new({
+    id = id.from(_N, "BulkPublishOutput"),
+    type = "structure",
+    members = {
+        IdentityPoolId = schema.new({
+            id = id.from(_N, "BulkPublishOutput", "IdentityPoolId"),
+            type = "string",
+            name = "IdentityPoolId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DuplicateRequestException = schema.new({
+    id = id.from(_N, "DuplicateRequestException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "DuplicateRequestException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InternalErrorException = schema.new({
+    id = id.from(_N, "InternalErrorException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InternalErrorException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InvalidParameterException = schema.new({
+    id = id.from(_N, "InvalidParameterException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidParameterException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.NotAuthorizedException = schema.new({
+    id = id.from(_N, "NotAuthorizedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "NotAuthorizedException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteDatasetInput = schema.new({
+    id = id.from(_N, "DeleteDatasetInput"),
+    type = "structure",
+    members = {
+        IdentityPoolId = schema.new({
+            id = id.from(_N, "DeleteDatasetInput", "IdentityPoolId"),
+            type = "string",
+            name = "IdentityPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        IdentityId = schema.new({
+            id = id.from(_N, "DeleteDatasetInput", "IdentityId"),
+            type = "string",
+            name = "IdentityId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        DatasetName = schema.new({
+            id = id.from(_N, "DeleteDatasetInput", "DatasetName"),
+            type = "string",
+            name = "DatasetName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.Dataset = schema.new({
+    id = id.from(_N, "Dataset"),
+    type = "structure",
+    members = {
+        IdentityId = schema.new({
+            id = id.from(_N, "Dataset", "IdentityId"),
+            type = "string",
+            name = "IdentityId",
+            target_id = prelude.String.id,
+        }),
+        DatasetName = schema.new({
+            id = id.from(_N, "Dataset", "DatasetName"),
+            type = "string",
+            name = "DatasetName",
+            target_id = prelude.String.id,
+        }),
+        CreationDate = schema.new({
+            id = id.from(_N, "Dataset", "CreationDate"),
+            type = "timestamp",
+            name = "CreationDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastModifiedDate = schema.new({
+            id = id.from(_N, "Dataset", "LastModifiedDate"),
+            type = "timestamp",
+            name = "LastModifiedDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastModifiedBy = schema.new({
+            id = id.from(_N, "Dataset", "LastModifiedBy"),
+            type = "string",
+            name = "LastModifiedBy",
+            target_id = prelude.String.id,
+        }),
+        DataStorage = schema.new({
+            id = id.from(_N, "Dataset", "DataStorage"),
+            type = "long",
+            name = "DataStorage",
+            target_id = prelude.Long.id,
+        }),
+        NumRecords = schema.new({
+            id = id.from(_N, "Dataset", "NumRecords"),
+            type = "long",
+            name = "NumRecords",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.DeleteDatasetOutput = schema.new({
+    id = id.from(_N, "DeleteDatasetOutput"),
+    type = "structure",
+    members = {
+        Dataset = schema.new({
+            id = id.from(_N, "DeleteDatasetOutput", "Dataset"),
+            type = "structure",
+            name = "Dataset",
+            target_id = id.from(_N, "Dataset"),
+            target = M.Dataset,
+        }),
+    },
+})
+
+M.ResourceConflictException = schema.new({
+    id = id.from(_N, "ResourceConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceConflictException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TooManyRequestsException = schema.new({
+    id = id.from(_N, "TooManyRequestsException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "TooManyRequestsException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeDatasetInput = schema.new({
+    id = id.from(_N, "DescribeDatasetInput"),
+    type = "structure",
+    members = {
+        IdentityPoolId = schema.new({
+            id = id.from(_N, "DescribeDatasetInput", "IdentityPoolId"),
+            type = "string",
+            name = "IdentityPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        IdentityId = schema.new({
+            id = id.from(_N, "DescribeDatasetInput", "IdentityId"),
+            type = "string",
+            name = "IdentityId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        DatasetName = schema.new({
+            id = id.from(_N, "DescribeDatasetInput", "DatasetName"),
+            type = "string",
+            name = "DatasetName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeDatasetOutput = schema.new({
+    id = id.from(_N, "DescribeDatasetOutput"),
+    type = "structure",
+    members = {
+        Dataset = schema.new({
+            id = id.from(_N, "DescribeDatasetOutput", "Dataset"),
+            type = "structure",
+            name = "Dataset",
+            target_id = id.from(_N, "Dataset"),
+            target = M.Dataset,
+        }),
+    },
+})
+
+M.DescribeIdentityPoolUsageInput = schema.new({
+    id = id.from(_N, "DescribeIdentityPoolUsageInput"),
+    type = "structure",
+    members = {
+        IdentityPoolId = schema.new({
+            id = id.from(_N, "DescribeIdentityPoolUsageInput", "IdentityPoolId"),
+            type = "string",
+            name = "IdentityPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.IdentityPoolUsage = schema.new({
+    id = id.from(_N, "IdentityPoolUsage"),
+    type = "structure",
+    members = {
+        IdentityPoolId = schema.new({
+            id = id.from(_N, "IdentityPoolUsage", "IdentityPoolId"),
+            type = "string",
+            name = "IdentityPoolId",
+            target_id = prelude.String.id,
+        }),
+        SyncSessionsCount = schema.new({
+            id = id.from(_N, "IdentityPoolUsage", "SyncSessionsCount"),
+            type = "long",
+            name = "SyncSessionsCount",
+            target_id = prelude.Long.id,
+        }),
+        DataStorage = schema.new({
+            id = id.from(_N, "IdentityPoolUsage", "DataStorage"),
+            type = "long",
+            name = "DataStorage",
+            target_id = prelude.Long.id,
+        }),
+        LastModifiedDate = schema.new({
+            id = id.from(_N, "IdentityPoolUsage", "LastModifiedDate"),
+            type = "timestamp",
+            name = "LastModifiedDate",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.DescribeIdentityPoolUsageOutput = schema.new({
+    id = id.from(_N, "DescribeIdentityPoolUsageOutput"),
+    type = "structure",
+    members = {
+        IdentityPoolUsage = schema.new({
+            id = id.from(_N, "DescribeIdentityPoolUsageOutput", "IdentityPoolUsage"),
+            type = "structure",
+            name = "IdentityPoolUsage",
+            target_id = id.from(_N, "IdentityPoolUsage"),
+            target = M.IdentityPoolUsage,
+        }),
+    },
+})
+
+M.DescribeIdentityUsageInput = schema.new({
+    id = id.from(_N, "DescribeIdentityUsageInput"),
+    type = "structure",
+    members = {
+        IdentityPoolId = schema.new({
+            id = id.from(_N, "DescribeIdentityUsageInput", "IdentityPoolId"),
+            type = "string",
+            name = "IdentityPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        IdentityId = schema.new({
+            id = id.from(_N, "DescribeIdentityUsageInput", "IdentityId"),
+            type = "string",
+            name = "IdentityId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.IdentityUsage = schema.new({
+    id = id.from(_N, "IdentityUsage"),
+    type = "structure",
+    members = {
+        IdentityId = schema.new({
+            id = id.from(_N, "IdentityUsage", "IdentityId"),
+            type = "string",
+            name = "IdentityId",
+            target_id = prelude.String.id,
+        }),
+        IdentityPoolId = schema.new({
+            id = id.from(_N, "IdentityUsage", "IdentityPoolId"),
+            type = "string",
+            name = "IdentityPoolId",
+            target_id = prelude.String.id,
+        }),
+        LastModifiedDate = schema.new({
+            id = id.from(_N, "IdentityUsage", "LastModifiedDate"),
+            type = "timestamp",
+            name = "LastModifiedDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        DatasetCount = schema.new({
+            id = id.from(_N, "IdentityUsage", "DatasetCount"),
+            type = "integer",
+            name = "DatasetCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        DataStorage = schema.new({
+            id = id.from(_N, "IdentityUsage", "DataStorage"),
+            type = "long",
+            name = "DataStorage",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.DescribeIdentityUsageOutput = schema.new({
+    id = id.from(_N, "DescribeIdentityUsageOutput"),
+    type = "structure",
+    members = {
+        IdentityUsage = schema.new({
+            id = id.from(_N, "DescribeIdentityUsageOutput", "IdentityUsage"),
+            type = "structure",
+            name = "IdentityUsage",
+            target_id = id.from(_N, "IdentityUsage"),
+            target = M.IdentityUsage,
+        }),
+    },
+})
+
+M.GetBulkPublishDetailsInput = schema.new({
+    id = id.from(_N, "GetBulkPublishDetailsInput"),
+    type = "structure",
+    members = {
+        IdentityPoolId = schema.new({
+            id = id.from(_N, "GetBulkPublishDetailsInput", "IdentityPoolId"),
+            type = "string",
+            name = "IdentityPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetBulkPublishDetailsOutput = schema.new({
+    id = id.from(_N, "GetBulkPublishDetailsOutput"),
+    type = "structure",
+    members = {
+        IdentityPoolId = schema.new({
+            id = id.from(_N, "GetBulkPublishDetailsOutput", "IdentityPoolId"),
+            type = "string",
+            name = "IdentityPoolId",
+            target_id = prelude.String.id,
+        }),
+        BulkPublishStartTime = schema.new({
+            id = id.from(_N, "GetBulkPublishDetailsOutput", "BulkPublishStartTime"),
+            type = "timestamp",
+            name = "BulkPublishStartTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        BulkPublishCompleteTime = schema.new({
+            id = id.from(_N, "GetBulkPublishDetailsOutput", "BulkPublishCompleteTime"),
+            type = "timestamp",
+            name = "BulkPublishCompleteTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        BulkPublishStatus = schema.new({
+            id = id.from(_N, "GetBulkPublishDetailsOutput", "BulkPublishStatus"),
+            type = "string",
+            name = "BulkPublishStatus",
+            target_id = prelude.String.id,
+        }),
+        FailureMessage = schema.new({
+            id = id.from(_N, "GetBulkPublishDetailsOutput", "FailureMessage"),
+            type = "string",
+            name = "FailureMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetCognitoEventsInput = schema.new({
+    id = id.from(_N, "GetCognitoEventsInput"),
+    type = "structure",
+    members = {
+        IdentityPoolId = schema.new({
+            id = id.from(_N, "GetCognitoEventsInput", "IdentityPoolId"),
+            type = "string",
+            name = "IdentityPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetCognitoEventsOutput = schema.new({
+    id = id.from(_N, "GetCognitoEventsOutput"),
+    type = "structure",
+    members = {
+        Events = schema.new({
+            id = id.from(_N, "GetCognitoEventsOutput", "Events"),
+            type = "map",
+            name = "Events",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.GetIdentityPoolConfigurationInput = schema.new({
+    id = id.from(_N, "GetIdentityPoolConfigurationInput"),
+    type = "structure",
+    members = {
+        IdentityPoolId = schema.new({
+            id = id.from(_N, "GetIdentityPoolConfigurationInput", "IdentityPoolId"),
+            type = "string",
+            name = "IdentityPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.CognitoStreams = schema.new({
+    id = id.from(_N, "CognitoStreams"),
+    type = "structure",
+    members = {
+        StreamName = schema.new({
+            id = id.from(_N, "CognitoStreams", "StreamName"),
+            type = "string",
+            name = "StreamName",
+            target_id = prelude.String.id,
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "CognitoStreams", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+        }),
+        StreamingStatus = schema.new({
+            id = id.from(_N, "CognitoStreams", "StreamingStatus"),
+            type = "string",
+            name = "StreamingStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PushSync = schema.new({
+    id = id.from(_N, "PushSync"),
+    type = "structure",
+    members = {
+        ApplicationArns = schema.new({
+            id = id.from(_N, "PushSync", "ApplicationArns"),
+            type = "list",
+            name = "ApplicationArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "PushSync", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetIdentityPoolConfigurationOutput = schema.new({
+    id = id.from(_N, "GetIdentityPoolConfigurationOutput"),
+    type = "structure",
+    members = {
+        IdentityPoolId = schema.new({
+            id = id.from(_N, "GetIdentityPoolConfigurationOutput", "IdentityPoolId"),
+            type = "string",
+            name = "IdentityPoolId",
+            target_id = prelude.String.id,
+        }),
+        PushSync = schema.new({
+            id = id.from(_N, "GetIdentityPoolConfigurationOutput", "PushSync"),
+            type = "structure",
+            name = "PushSync",
+            target_id = id.from(_N, "PushSync"),
+            target = M.PushSync,
+        }),
+        CognitoStreams = schema.new({
+            id = id.from(_N, "GetIdentityPoolConfigurationOutput", "CognitoStreams"),
+            type = "structure",
+            name = "CognitoStreams",
+            target_id = id.from(_N, "CognitoStreams"),
+            target = M.CognitoStreams,
+        }),
+    },
+})
+
+M.ListDatasetsInput = schema.new({
+    id = id.from(_N, "ListDatasetsInput"),
+    type = "structure",
+    members = {
+        IdentityPoolId = schema.new({
+            id = id.from(_N, "ListDatasetsInput", "IdentityPoolId"),
+            type = "string",
+            name = "IdentityPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        IdentityId = schema.new({
+            id = id.from(_N, "ListDatasetsInput", "IdentityId"),
+            type = "string",
+            name = "IdentityId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListDatasetsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListDatasetsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.ListDatasetsOutput = schema.new({
+    id = id.from(_N, "ListDatasetsOutput"),
+    type = "structure",
+    members = {
+        Datasets = schema.new({
+            id = id.from(_N, "ListDatasetsOutput", "Datasets"),
+            type = "list",
+            name = "Datasets",
+            target_id = prelude.Document.id,
+            list_member = M.Dataset,
+        }),
+        Count = schema.new({
+            id = id.from(_N, "ListDatasetsOutput", "Count"),
+            type = "integer",
+            name = "Count",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListDatasetsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListIdentityPoolUsageInput = schema.new({
+    id = id.from(_N, "ListIdentityPoolUsageInput"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListIdentityPoolUsageInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListIdentityPoolUsageInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.ListIdentityPoolUsageOutput = schema.new({
+    id = id.from(_N, "ListIdentityPoolUsageOutput"),
+    type = "structure",
+    members = {
+        IdentityPoolUsages = schema.new({
+            id = id.from(_N, "ListIdentityPoolUsageOutput", "IdentityPoolUsages"),
+            type = "list",
+            name = "IdentityPoolUsages",
+            target_id = prelude.Document.id,
+            list_member = M.IdentityPoolUsage,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListIdentityPoolUsageOutput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        Count = schema.new({
+            id = id.from(_N, "ListIdentityPoolUsageOutput", "Count"),
+            type = "integer",
+            name = "Count",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListIdentityPoolUsageOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListRecordsInput = schema.new({
+    id = id.from(_N, "ListRecordsInput"),
+    type = "structure",
+    members = {
+        IdentityPoolId = schema.new({
+            id = id.from(_N, "ListRecordsInput", "IdentityPoolId"),
+            type = "string",
+            name = "IdentityPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        IdentityId = schema.new({
+            id = id.from(_N, "ListRecordsInput", "IdentityId"),
+            type = "string",
+            name = "IdentityId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        DatasetName = schema.new({
+            id = id.from(_N, "ListRecordsInput", "DatasetName"),
+            type = "string",
+            name = "DatasetName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        LastSyncCount = schema.new({
+            id = id.from(_N, "ListRecordsInput", "LastSyncCount"),
+            type = "long",
+            name = "LastSyncCount",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "lastSyncCount" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListRecordsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListRecordsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        SyncSessionToken = schema.new({
+            id = id.from(_N, "ListRecordsInput", "SyncSessionToken"),
+            type = "string",
+            name = "SyncSessionToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "syncSessionToken" },
+            },
+        }),
+    },
+})
+
+M.Record = schema.new({
+    id = id.from(_N, "Record"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "Record", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+        }),
+        Value = schema.new({
+            id = id.from(_N, "Record", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+        }),
+        SyncCount = schema.new({
+            id = id.from(_N, "Record", "SyncCount"),
+            type = "long",
+            name = "SyncCount",
+            target_id = prelude.Long.id,
+        }),
+        LastModifiedDate = schema.new({
+            id = id.from(_N, "Record", "LastModifiedDate"),
+            type = "timestamp",
+            name = "LastModifiedDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastModifiedBy = schema.new({
+            id = id.from(_N, "Record", "LastModifiedBy"),
+            type = "string",
+            name = "LastModifiedBy",
+            target_id = prelude.String.id,
+        }),
+        DeviceLastModifiedDate = schema.new({
+            id = id.from(_N, "Record", "DeviceLastModifiedDate"),
+            type = "timestamp",
+            name = "DeviceLastModifiedDate",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListRecordsOutput = schema.new({
+    id = id.from(_N, "ListRecordsOutput"),
+    type = "structure",
+    members = {
+        Records = schema.new({
+            id = id.from(_N, "ListRecordsOutput", "Records"),
+            type = "list",
+            name = "Records",
+            target_id = prelude.Document.id,
+            list_member = M.Record,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListRecordsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        Count = schema.new({
+            id = id.from(_N, "ListRecordsOutput", "Count"),
+            type = "integer",
+            name = "Count",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        DatasetSyncCount = schema.new({
+            id = id.from(_N, "ListRecordsOutput", "DatasetSyncCount"),
+            type = "long",
+            name = "DatasetSyncCount",
+            target_id = prelude.Long.id,
+        }),
+        LastModifiedBy = schema.new({
+            id = id.from(_N, "ListRecordsOutput", "LastModifiedBy"),
+            type = "string",
+            name = "LastModifiedBy",
+            target_id = prelude.String.id,
+        }),
+        MergedDatasetNames = schema.new({
+            id = id.from(_N, "ListRecordsOutput", "MergedDatasetNames"),
+            type = "list",
+            name = "MergedDatasetNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        DatasetExists = schema.new({
+            id = id.from(_N, "ListRecordsOutput", "DatasetExists"),
+            type = "boolean",
+            name = "DatasetExists",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        DatasetDeletedAfterRequestedSyncCount = schema.new({
+            id = id.from(_N, "ListRecordsOutput", "DatasetDeletedAfterRequestedSyncCount"),
+            type = "boolean",
+            name = "DatasetDeletedAfterRequestedSyncCount",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        SyncSessionToken = schema.new({
+            id = id.from(_N, "ListRecordsOutput", "SyncSessionToken"),
+            type = "string",
+            name = "SyncSessionToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidConfigurationException = schema.new({
+    id = id.from(_N, "InvalidConfigurationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidConfigurationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RegisterDeviceInput = schema.new({
+    id = id.from(_N, "RegisterDeviceInput"),
+    type = "structure",
+    members = {
+        IdentityPoolId = schema.new({
+            id = id.from(_N, "RegisterDeviceInput", "IdentityPoolId"),
+            type = "string",
+            name = "IdentityPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        IdentityId = schema.new({
+            id = id.from(_N, "RegisterDeviceInput", "IdentityId"),
+            type = "string",
+            name = "IdentityId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Platform = schema.new({
+            id = id.from(_N, "RegisterDeviceInput", "Platform"),
+            type = "string",
+            name = "Platform",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Token = schema.new({
+            id = id.from(_N, "RegisterDeviceInput", "Token"),
+            type = "string",
+            name = "Token",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RegisterDeviceOutput = schema.new({
+    id = id.from(_N, "RegisterDeviceOutput"),
+    type = "structure",
+    members = {
+        DeviceId = schema.new({
+            id = id.from(_N, "RegisterDeviceOutput", "DeviceId"),
+            type = "string",
+            name = "DeviceId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SetCognitoEventsInput = schema.new({
+    id = id.from(_N, "SetCognitoEventsInput"),
+    type = "structure",
+    members = {
+        IdentityPoolId = schema.new({
+            id = id.from(_N, "SetCognitoEventsInput", "IdentityPoolId"),
+            type = "string",
+            name = "IdentityPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Events = schema.new({
+            id = id.from(_N, "SetCognitoEventsInput", "Events"),
+            type = "map",
+            name = "Events",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SetCognitoEventsOutput = schema.new({
+    id = id.from(_N, "SetCognitoEventsOutput"),
+    type = "structure",
+})
+
+M.ConcurrentModificationException = schema.new({
+    id = id.from(_N, "ConcurrentModificationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ConcurrentModificationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SetIdentityPoolConfigurationInput = schema.new({
+    id = id.from(_N, "SetIdentityPoolConfigurationInput"),
+    type = "structure",
+    members = {
+        IdentityPoolId = schema.new({
+            id = id.from(_N, "SetIdentityPoolConfigurationInput", "IdentityPoolId"),
+            type = "string",
+            name = "IdentityPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        PushSync = schema.new({
+            id = id.from(_N, "SetIdentityPoolConfigurationInput", "PushSync"),
+            type = "structure",
+            name = "PushSync",
+            target_id = id.from(_N, "PushSync"),
+            target = M.PushSync,
+        }),
+        CognitoStreams = schema.new({
+            id = id.from(_N, "SetIdentityPoolConfigurationInput", "CognitoStreams"),
+            type = "structure",
+            name = "CognitoStreams",
+            target_id = id.from(_N, "CognitoStreams"),
+            target = M.CognitoStreams,
+        }),
+    },
+})
+
+M.SetIdentityPoolConfigurationOutput = schema.new({
+    id = id.from(_N, "SetIdentityPoolConfigurationOutput"),
+    type = "structure",
+    members = {
+        IdentityPoolId = schema.new({
+            id = id.from(_N, "SetIdentityPoolConfigurationOutput", "IdentityPoolId"),
+            type = "string",
+            name = "IdentityPoolId",
+            target_id = prelude.String.id,
+        }),
+        PushSync = schema.new({
+            id = id.from(_N, "SetIdentityPoolConfigurationOutput", "PushSync"),
+            type = "structure",
+            name = "PushSync",
+            target_id = id.from(_N, "PushSync"),
+            target = M.PushSync,
+        }),
+        CognitoStreams = schema.new({
+            id = id.from(_N, "SetIdentityPoolConfigurationOutput", "CognitoStreams"),
+            type = "structure",
+            name = "CognitoStreams",
+            target_id = id.from(_N, "CognitoStreams"),
+            target = M.CognitoStreams,
+        }),
+    },
+})
+
+M.SubscribeToDatasetInput = schema.new({
+    id = id.from(_N, "SubscribeToDatasetInput"),
+    type = "structure",
+    members = {
+        IdentityPoolId = schema.new({
+            id = id.from(_N, "SubscribeToDatasetInput", "IdentityPoolId"),
+            type = "string",
+            name = "IdentityPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        IdentityId = schema.new({
+            id = id.from(_N, "SubscribeToDatasetInput", "IdentityId"),
+            type = "string",
+            name = "IdentityId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        DatasetName = schema.new({
+            id = id.from(_N, "SubscribeToDatasetInput", "DatasetName"),
+            type = "string",
+            name = "DatasetName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        DeviceId = schema.new({
+            id = id.from(_N, "SubscribeToDatasetInput", "DeviceId"),
+            type = "string",
+            name = "DeviceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.SubscribeToDatasetOutput = schema.new({
+    id = id.from(_N, "SubscribeToDatasetOutput"),
+    type = "structure",
+})
+
+M.UnsubscribeFromDatasetInput = schema.new({
+    id = id.from(_N, "UnsubscribeFromDatasetInput"),
+    type = "structure",
+    members = {
+        IdentityPoolId = schema.new({
+            id = id.from(_N, "UnsubscribeFromDatasetInput", "IdentityPoolId"),
+            type = "string",
+            name = "IdentityPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        IdentityId = schema.new({
+            id = id.from(_N, "UnsubscribeFromDatasetInput", "IdentityId"),
+            type = "string",
+            name = "IdentityId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        DatasetName = schema.new({
+            id = id.from(_N, "UnsubscribeFromDatasetInput", "DatasetName"),
+            type = "string",
+            name = "DatasetName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        DeviceId = schema.new({
+            id = id.from(_N, "UnsubscribeFromDatasetInput", "DeviceId"),
+            type = "string",
+            name = "DeviceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.UnsubscribeFromDatasetOutput = schema.new({
+    id = id.from(_N, "UnsubscribeFromDatasetOutput"),
+    type = "structure",
+})
+
+M.InvalidLambdaFunctionOutputException = schema.new({
+    id = id.from(_N, "InvalidLambdaFunctionOutputException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidLambdaFunctionOutputException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LambdaThrottledException = schema.new({
+    id = id.from(_N, "LambdaThrottledException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "LambdaThrottledException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LimitExceededException = schema.new({
+    id = id.from(_N, "LimitExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "LimitExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RecordPatch = schema.new({
+    id = id.from(_N, "RecordPatch"),
+    type = "structure",
+    members = {
+        Op = schema.new({
+            id = id.from(_N, "RecordPatch", "Op"),
+            type = "string",
+            name = "Op",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Key = schema.new({
+            id = id.from(_N, "RecordPatch", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "RecordPatch", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+        }),
+        SyncCount = schema.new({
+            id = id.from(_N, "RecordPatch", "SyncCount"),
+            type = "long",
+            name = "SyncCount",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DeviceLastModifiedDate = schema.new({
+            id = id.from(_N, "RecordPatch", "DeviceLastModifiedDate"),
+            type = "timestamp",
+            name = "DeviceLastModifiedDate",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.UpdateRecordsInput = schema.new({
+    id = id.from(_N, "UpdateRecordsInput"),
+    type = "structure",
+    members = {
+        IdentityPoolId = schema.new({
+            id = id.from(_N, "UpdateRecordsInput", "IdentityPoolId"),
+            type = "string",
+            name = "IdentityPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        IdentityId = schema.new({
+            id = id.from(_N, "UpdateRecordsInput", "IdentityId"),
+            type = "string",
+            name = "IdentityId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        DatasetName = schema.new({
+            id = id.from(_N, "UpdateRecordsInput", "DatasetName"),
+            type = "string",
+            name = "DatasetName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        DeviceId = schema.new({
+            id = id.from(_N, "UpdateRecordsInput", "DeviceId"),
+            type = "string",
+            name = "DeviceId",
+            target_id = prelude.String.id,
+        }),
+        RecordPatches = schema.new({
+            id = id.from(_N, "UpdateRecordsInput", "RecordPatches"),
+            type = "list",
+            name = "RecordPatches",
+            target_id = prelude.Document.id,
+            list_member = M.RecordPatch,
+        }),
+        SyncSessionToken = schema.new({
+            id = id.from(_N, "UpdateRecordsInput", "SyncSessionToken"),
+            type = "string",
+            name = "SyncSessionToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientContext = schema.new({
+            id = id.from(_N, "UpdateRecordsInput", "ClientContext"),
+            type = "string",
+            name = "ClientContext",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-Client-Context" },
+            },
+        }),
+    },
+})
+
+M.UpdateRecordsOutput = schema.new({
+    id = id.from(_N, "UpdateRecordsOutput"),
+    type = "structure",
+    members = {
+        Records = schema.new({
+            id = id.from(_N, "UpdateRecordsOutput", "Records"),
+            type = "list",
+            name = "Records",
+            target_id = prelude.Document.id,
+            list_member = M.Record,
+        }),
+    },
+})
+
+return M

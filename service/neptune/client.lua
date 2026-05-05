@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("neptune.endpoint_rules")
 local query_protocol = require("protocol.query")
+local schemas = require("neptune.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("neptune.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addRoleToDBCluster(input, options)
     return self:invokeOperation(input, {
         name = "AddRoleToDBCluster",
-        input_schema = types.AddRoleToDBClusterInput,
-        output_schema = types.AddRoleToDBClusterOutput,
+        input_schema = schemas.AddRoleToDBClusterInput,
+        output_schema = schemas.AddRoleToDBClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:addSourceIdentifierToSubscription(input, options)
     return self:invokeOperation(input, {
         name = "AddSourceIdentifierToSubscription",
-        input_schema = types.AddSourceIdentifierToSubscriptionInput,
-        output_schema = types.AddSourceIdentifierToSubscriptionOutput,
+        input_schema = schemas.AddSourceIdentifierToSubscriptionInput,
+        output_schema = schemas.AddSourceIdentifierToSubscriptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:addTagsToResource(input, options)
     return self:invokeOperation(input, {
         name = "AddTagsToResource",
-        input_schema = types.AddTagsToResourceInput,
-        output_schema = types.AddTagsToResourceOutput,
+        input_schema = schemas.AddTagsToResourceInput,
+        output_schema = schemas.AddTagsToResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:applyPendingMaintenanceAction(input, options)
     return self:invokeOperation(input, {
         name = "ApplyPendingMaintenanceAction",
-        input_schema = types.ApplyPendingMaintenanceActionInput,
-        output_schema = types.ApplyPendingMaintenanceActionOutput,
+        input_schema = schemas.ApplyPendingMaintenanceActionInput,
+        output_schema = schemas.ApplyPendingMaintenanceActionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:copyDBClusterParameterGroup(input, options)
     return self:invokeOperation(input, {
         name = "CopyDBClusterParameterGroup",
-        input_schema = types.CopyDBClusterParameterGroupInput,
-        output_schema = types.CopyDBClusterParameterGroupOutput,
+        input_schema = schemas.CopyDBClusterParameterGroupInput,
+        output_schema = schemas.CopyDBClusterParameterGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:copyDBClusterSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "CopyDBClusterSnapshot",
-        input_schema = types.CopyDBClusterSnapshotInput,
-        output_schema = types.CopyDBClusterSnapshotOutput,
+        input_schema = schemas.CopyDBClusterSnapshotInput,
+        output_schema = schemas.CopyDBClusterSnapshotOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:copyDBParameterGroup(input, options)
     return self:invokeOperation(input, {
         name = "CopyDBParameterGroup",
-        input_schema = types.CopyDBParameterGroupInput,
-        output_schema = types.CopyDBParameterGroupOutput,
+        input_schema = schemas.CopyDBParameterGroupInput,
+        output_schema = schemas.CopyDBParameterGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createDBCluster(input, options)
     return self:invokeOperation(input, {
         name = "CreateDBCluster",
-        input_schema = types.CreateDBClusterInput,
-        output_schema = types.CreateDBClusterOutput,
+        input_schema = schemas.CreateDBClusterInput,
+        output_schema = schemas.CreateDBClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createDBClusterEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "CreateDBClusterEndpoint",
-        input_schema = types.CreateDBClusterEndpointInput,
-        output_schema = types.CreateDBClusterEndpointOutput,
+        input_schema = schemas.CreateDBClusterEndpointInput,
+        output_schema = schemas.CreateDBClusterEndpointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createDBClusterParameterGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateDBClusterParameterGroup",
-        input_schema = types.CreateDBClusterParameterGroupInput,
-        output_schema = types.CreateDBClusterParameterGroupOutput,
+        input_schema = schemas.CreateDBClusterParameterGroupInput,
+        output_schema = schemas.CreateDBClusterParameterGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createDBClusterSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "CreateDBClusterSnapshot",
-        input_schema = types.CreateDBClusterSnapshotInput,
-        output_schema = types.CreateDBClusterSnapshotOutput,
+        input_schema = schemas.CreateDBClusterSnapshotInput,
+        output_schema = schemas.CreateDBClusterSnapshotOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createDBInstance(input, options)
     return self:invokeOperation(input, {
         name = "CreateDBInstance",
-        input_schema = types.CreateDBInstanceInput,
-        output_schema = types.CreateDBInstanceOutput,
+        input_schema = schemas.CreateDBInstanceInput,
+        output_schema = schemas.CreateDBInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createDBParameterGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateDBParameterGroup",
-        input_schema = types.CreateDBParameterGroupInput,
-        output_schema = types.CreateDBParameterGroupOutput,
+        input_schema = schemas.CreateDBParameterGroupInput,
+        output_schema = schemas.CreateDBParameterGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:createDBSubnetGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateDBSubnetGroup",
-        input_schema = types.CreateDBSubnetGroupInput,
-        output_schema = types.CreateDBSubnetGroupOutput,
+        input_schema = schemas.CreateDBSubnetGroupInput,
+        output_schema = schemas.CreateDBSubnetGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:createEventSubscription(input, options)
     return self:invokeOperation(input, {
         name = "CreateEventSubscription",
-        input_schema = types.CreateEventSubscriptionInput,
-        output_schema = types.CreateEventSubscriptionOutput,
+        input_schema = schemas.CreateEventSubscriptionInput,
+        output_schema = schemas.CreateEventSubscriptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:createGlobalCluster(input, options)
     return self:invokeOperation(input, {
         name = "CreateGlobalCluster",
-        input_schema = types.CreateGlobalClusterInput,
-        output_schema = types.CreateGlobalClusterOutput,
+        input_schema = schemas.CreateGlobalClusterInput,
+        output_schema = schemas.CreateGlobalClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteDBCluster(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDBCluster",
-        input_schema = types.DeleteDBClusterInput,
-        output_schema = types.DeleteDBClusterOutput,
+        input_schema = schemas.DeleteDBClusterInput,
+        output_schema = schemas.DeleteDBClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteDBClusterEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDBClusterEndpoint",
-        input_schema = types.DeleteDBClusterEndpointInput,
-        output_schema = types.DeleteDBClusterEndpointOutput,
+        input_schema = schemas.DeleteDBClusterEndpointInput,
+        output_schema = schemas.DeleteDBClusterEndpointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteDBClusterParameterGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDBClusterParameterGroup",
-        input_schema = types.DeleteDBClusterParameterGroupInput,
-        output_schema = types.DeleteDBClusterParameterGroupOutput,
+        input_schema = schemas.DeleteDBClusterParameterGroupInput,
+        output_schema = schemas.DeleteDBClusterParameterGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deleteDBClusterSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDBClusterSnapshot",
-        input_schema = types.DeleteDBClusterSnapshotInput,
-        output_schema = types.DeleteDBClusterSnapshotOutput,
+        input_schema = schemas.DeleteDBClusterSnapshotInput,
+        output_schema = schemas.DeleteDBClusterSnapshotOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteDBInstance(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDBInstance",
-        input_schema = types.DeleteDBInstanceInput,
-        output_schema = types.DeleteDBInstanceOutput,
+        input_schema = schemas.DeleteDBInstanceInput,
+        output_schema = schemas.DeleteDBInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:deleteDBParameterGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDBParameterGroup",
-        input_schema = types.DeleteDBParameterGroupInput,
-        output_schema = types.DeleteDBParameterGroupOutput,
+        input_schema = schemas.DeleteDBParameterGroupInput,
+        output_schema = schemas.DeleteDBParameterGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:deleteDBSubnetGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDBSubnetGroup",
-        input_schema = types.DeleteDBSubnetGroupInput,
-        output_schema = types.DeleteDBSubnetGroupOutput,
+        input_schema = schemas.DeleteDBSubnetGroupInput,
+        output_schema = schemas.DeleteDBSubnetGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:deleteEventSubscription(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEventSubscription",
-        input_schema = types.DeleteEventSubscriptionInput,
-        output_schema = types.DeleteEventSubscriptionOutput,
+        input_schema = schemas.DeleteEventSubscriptionInput,
+        output_schema = schemas.DeleteEventSubscriptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:deleteGlobalCluster(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGlobalCluster",
-        input_schema = types.DeleteGlobalClusterInput,
-        output_schema = types.DeleteGlobalClusterOutput,
+        input_schema = schemas.DeleteGlobalClusterInput,
+        output_schema = schemas.DeleteGlobalClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:describeDBClusterEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDBClusterEndpoints",
-        input_schema = types.DescribeDBClusterEndpointsInput,
-        output_schema = types.DescribeDBClusterEndpointsOutput,
+        input_schema = schemas.DescribeDBClusterEndpointsInput,
+        output_schema = schemas.DescribeDBClusterEndpointsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:describeDBClusterParameterGroups(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDBClusterParameterGroups",
-        input_schema = types.DescribeDBClusterParameterGroupsInput,
-        output_schema = types.DescribeDBClusterParameterGroupsOutput,
+        input_schema = schemas.DescribeDBClusterParameterGroupsInput,
+        output_schema = schemas.DescribeDBClusterParameterGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:describeDBClusterParameters(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDBClusterParameters",
-        input_schema = types.DescribeDBClusterParametersInput,
-        output_schema = types.DescribeDBClusterParametersOutput,
+        input_schema = schemas.DescribeDBClusterParametersInput,
+        output_schema = schemas.DescribeDBClusterParametersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:describeDBClusters(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDBClusters",
-        input_schema = types.DescribeDBClustersInput,
-        output_schema = types.DescribeDBClustersOutput,
+        input_schema = schemas.DescribeDBClustersInput,
+        output_schema = schemas.DescribeDBClustersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:describeDBClusterSnapshotAttributes(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDBClusterSnapshotAttributes",
-        input_schema = types.DescribeDBClusterSnapshotAttributesInput,
-        output_schema = types.DescribeDBClusterSnapshotAttributesOutput,
+        input_schema = schemas.DescribeDBClusterSnapshotAttributesInput,
+        output_schema = schemas.DescribeDBClusterSnapshotAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:describeDBClusterSnapshots(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDBClusterSnapshots",
-        input_schema = types.DescribeDBClusterSnapshotsInput,
-        output_schema = types.DescribeDBClusterSnapshotsOutput,
+        input_schema = schemas.DescribeDBClusterSnapshotsInput,
+        output_schema = schemas.DescribeDBClusterSnapshotsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:describeDBEngineVersions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDBEngineVersions",
-        input_schema = types.DescribeDBEngineVersionsInput,
-        output_schema = types.DescribeDBEngineVersionsOutput,
+        input_schema = schemas.DescribeDBEngineVersionsInput,
+        output_schema = schemas.DescribeDBEngineVersionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:describeDBInstances(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDBInstances",
-        input_schema = types.DescribeDBInstancesInput,
-        output_schema = types.DescribeDBInstancesOutput,
+        input_schema = schemas.DescribeDBInstancesInput,
+        output_schema = schemas.DescribeDBInstancesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:describeDBParameterGroups(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDBParameterGroups",
-        input_schema = types.DescribeDBParameterGroupsInput,
-        output_schema = types.DescribeDBParameterGroupsOutput,
+        input_schema = schemas.DescribeDBParameterGroupsInput,
+        output_schema = schemas.DescribeDBParameterGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:describeDBParameters(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDBParameters",
-        input_schema = types.DescribeDBParametersInput,
-        output_schema = types.DescribeDBParametersOutput,
+        input_schema = schemas.DescribeDBParametersInput,
+        output_schema = schemas.DescribeDBParametersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:describeDBSubnetGroups(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDBSubnetGroups",
-        input_schema = types.DescribeDBSubnetGroupsInput,
-        output_schema = types.DescribeDBSubnetGroupsOutput,
+        input_schema = schemas.DescribeDBSubnetGroupsInput,
+        output_schema = schemas.DescribeDBSubnetGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:describeEngineDefaultClusterParameters(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEngineDefaultClusterParameters",
-        input_schema = types.DescribeEngineDefaultClusterParametersInput,
-        output_schema = types.DescribeEngineDefaultClusterParametersOutput,
+        input_schema = schemas.DescribeEngineDefaultClusterParametersInput,
+        output_schema = schemas.DescribeEngineDefaultClusterParametersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:describeEngineDefaultParameters(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEngineDefaultParameters",
-        input_schema = types.DescribeEngineDefaultParametersInput,
-        output_schema = types.DescribeEngineDefaultParametersOutput,
+        input_schema = schemas.DescribeEngineDefaultParametersInput,
+        output_schema = schemas.DescribeEngineDefaultParametersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:describeEventCategories(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEventCategories",
-        input_schema = types.DescribeEventCategoriesInput,
-        output_schema = types.DescribeEventCategoriesOutput,
+        input_schema = schemas.DescribeEventCategoriesInput,
+        output_schema = schemas.DescribeEventCategoriesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:describeEvents(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEvents",
-        input_schema = types.DescribeEventsInput,
-        output_schema = types.DescribeEventsOutput,
+        input_schema = schemas.DescribeEventsInput,
+        output_schema = schemas.DescribeEventsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:describeEventSubscriptions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEventSubscriptions",
-        input_schema = types.DescribeEventSubscriptionsInput,
-        output_schema = types.DescribeEventSubscriptionsOutput,
+        input_schema = schemas.DescribeEventSubscriptionsInput,
+        output_schema = schemas.DescribeEventSubscriptionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:describeGlobalClusters(input, options)
     return self:invokeOperation(input, {
         name = "DescribeGlobalClusters",
-        input_schema = types.DescribeGlobalClustersInput,
-        output_schema = types.DescribeGlobalClustersOutput,
+        input_schema = schemas.DescribeGlobalClustersInput,
+        output_schema = schemas.DescribeGlobalClustersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:describeOrderableDBInstanceOptions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeOrderableDBInstanceOptions",
-        input_schema = types.DescribeOrderableDBInstanceOptionsInput,
-        output_schema = types.DescribeOrderableDBInstanceOptionsOutput,
+        input_schema = schemas.DescribeOrderableDBInstanceOptionsInput,
+        output_schema = schemas.DescribeOrderableDBInstanceOptionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:describePendingMaintenanceActions(input, options)
     return self:invokeOperation(input, {
         name = "DescribePendingMaintenanceActions",
-        input_schema = types.DescribePendingMaintenanceActionsInput,
-        output_schema = types.DescribePendingMaintenanceActionsOutput,
+        input_schema = schemas.DescribePendingMaintenanceActionsInput,
+        output_schema = schemas.DescribePendingMaintenanceActionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:describeValidDBInstanceModifications(input, options)
     return self:invokeOperation(input, {
         name = "DescribeValidDBInstanceModifications",
-        input_schema = types.DescribeValidDBInstanceModificationsInput,
-        output_schema = types.DescribeValidDBInstanceModificationsOutput,
+        input_schema = schemas.DescribeValidDBInstanceModificationsInput,
+        output_schema = schemas.DescribeValidDBInstanceModificationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:failoverDBCluster(input, options)
     return self:invokeOperation(input, {
         name = "FailoverDBCluster",
-        input_schema = types.FailoverDBClusterInput,
-        output_schema = types.FailoverDBClusterOutput,
+        input_schema = schemas.FailoverDBClusterInput,
+        output_schema = schemas.FailoverDBClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:failoverGlobalCluster(input, options)
     return self:invokeOperation(input, {
         name = "FailoverGlobalCluster",
-        input_schema = types.FailoverGlobalClusterInput,
-        output_schema = types.FailoverGlobalClusterOutput,
+        input_schema = schemas.FailoverGlobalClusterInput,
+        output_schema = schemas.FailoverGlobalClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:modifyDBCluster(input, options)
     return self:invokeOperation(input, {
         name = "ModifyDBCluster",
-        input_schema = types.ModifyDBClusterInput,
-        output_schema = types.ModifyDBClusterOutput,
+        input_schema = schemas.ModifyDBClusterInput,
+        output_schema = schemas.ModifyDBClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:modifyDBClusterEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "ModifyDBClusterEndpoint",
-        input_schema = types.ModifyDBClusterEndpointInput,
-        output_schema = types.ModifyDBClusterEndpointOutput,
+        input_schema = schemas.ModifyDBClusterEndpointInput,
+        output_schema = schemas.ModifyDBClusterEndpointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:modifyDBClusterParameterGroup(input, options)
     return self:invokeOperation(input, {
         name = "ModifyDBClusterParameterGroup",
-        input_schema = types.ModifyDBClusterParameterGroupInput,
-        output_schema = types.ModifyDBClusterParameterGroupOutput,
+        input_schema = schemas.ModifyDBClusterParameterGroupInput,
+        output_schema = schemas.ModifyDBClusterParameterGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:modifyDBClusterSnapshotAttribute(input, options)
     return self:invokeOperation(input, {
         name = "ModifyDBClusterSnapshotAttribute",
-        input_schema = types.ModifyDBClusterSnapshotAttributeInput,
-        output_schema = types.ModifyDBClusterSnapshotAttributeOutput,
+        input_schema = schemas.ModifyDBClusterSnapshotAttributeInput,
+        output_schema = schemas.ModifyDBClusterSnapshotAttributeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:modifyDBInstance(input, options)
     return self:invokeOperation(input, {
         name = "ModifyDBInstance",
-        input_schema = types.ModifyDBInstanceInput,
-        output_schema = types.ModifyDBInstanceOutput,
+        input_schema = schemas.ModifyDBInstanceInput,
+        output_schema = schemas.ModifyDBInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:modifyDBParameterGroup(input, options)
     return self:invokeOperation(input, {
         name = "ModifyDBParameterGroup",
-        input_schema = types.ModifyDBParameterGroupInput,
-        output_schema = types.ModifyDBParameterGroupOutput,
+        input_schema = schemas.ModifyDBParameterGroupInput,
+        output_schema = schemas.ModifyDBParameterGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:modifyDBSubnetGroup(input, options)
     return self:invokeOperation(input, {
         name = "ModifyDBSubnetGroup",
-        input_schema = types.ModifyDBSubnetGroupInput,
-        output_schema = types.ModifyDBSubnetGroupOutput,
+        input_schema = schemas.ModifyDBSubnetGroupInput,
+        output_schema = schemas.ModifyDBSubnetGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:modifyEventSubscription(input, options)
     return self:invokeOperation(input, {
         name = "ModifyEventSubscription",
-        input_schema = types.ModifyEventSubscriptionInput,
-        output_schema = types.ModifyEventSubscriptionOutput,
+        input_schema = schemas.ModifyEventSubscriptionInput,
+        output_schema = schemas.ModifyEventSubscriptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:modifyGlobalCluster(input, options)
     return self:invokeOperation(input, {
         name = "ModifyGlobalCluster",
-        input_schema = types.ModifyGlobalClusterInput,
-        output_schema = types.ModifyGlobalClusterOutput,
+        input_schema = schemas.ModifyGlobalClusterInput,
+        output_schema = schemas.ModifyGlobalClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:promoteReadReplicaDBCluster(input, options)
     return self:invokeOperation(input, {
         name = "PromoteReadReplicaDBCluster",
-        input_schema = types.PromoteReadReplicaDBClusterInput,
-        output_schema = types.PromoteReadReplicaDBClusterOutput,
+        input_schema = schemas.PromoteReadReplicaDBClusterInput,
+        output_schema = schemas.PromoteReadReplicaDBClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:rebootDBInstance(input, options)
     return self:invokeOperation(input, {
         name = "RebootDBInstance",
-        input_schema = types.RebootDBInstanceInput,
-        output_schema = types.RebootDBInstanceOutput,
+        input_schema = schemas.RebootDBInstanceInput,
+        output_schema = schemas.RebootDBInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:removeFromGlobalCluster(input, options)
     return self:invokeOperation(input, {
         name = "RemoveFromGlobalCluster",
-        input_schema = types.RemoveFromGlobalClusterInput,
-        output_schema = types.RemoveFromGlobalClusterOutput,
+        input_schema = schemas.RemoveFromGlobalClusterInput,
+        output_schema = schemas.RemoveFromGlobalClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:removeRoleFromDBCluster(input, options)
     return self:invokeOperation(input, {
         name = "RemoveRoleFromDBCluster",
-        input_schema = types.RemoveRoleFromDBClusterInput,
-        output_schema = types.RemoveRoleFromDBClusterOutput,
+        input_schema = schemas.RemoveRoleFromDBClusterInput,
+        output_schema = schemas.RemoveRoleFromDBClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:removeSourceIdentifierFromSubscription(input, options)
     return self:invokeOperation(input, {
         name = "RemoveSourceIdentifierFromSubscription",
-        input_schema = types.RemoveSourceIdentifierFromSubscriptionInput,
-        output_schema = types.RemoveSourceIdentifierFromSubscriptionOutput,
+        input_schema = schemas.RemoveSourceIdentifierFromSubscriptionInput,
+        output_schema = schemas.RemoveSourceIdentifierFromSubscriptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:removeTagsFromResource(input, options)
     return self:invokeOperation(input, {
         name = "RemoveTagsFromResource",
-        input_schema = types.RemoveTagsFromResourceInput,
-        output_schema = types.RemoveTagsFromResourceOutput,
+        input_schema = schemas.RemoveTagsFromResourceInput,
+        output_schema = schemas.RemoveTagsFromResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:resetDBClusterParameterGroup(input, options)
     return self:invokeOperation(input, {
         name = "ResetDBClusterParameterGroup",
-        input_schema = types.ResetDBClusterParameterGroupInput,
-        output_schema = types.ResetDBClusterParameterGroupOutput,
+        input_schema = schemas.ResetDBClusterParameterGroupInput,
+        output_schema = schemas.ResetDBClusterParameterGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:resetDBParameterGroup(input, options)
     return self:invokeOperation(input, {
         name = "ResetDBParameterGroup",
-        input_schema = types.ResetDBParameterGroupInput,
-        output_schema = types.ResetDBParameterGroupOutput,
+        input_schema = schemas.ResetDBParameterGroupInput,
+        output_schema = schemas.ResetDBParameterGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:restoreDBClusterFromSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "RestoreDBClusterFromSnapshot",
-        input_schema = types.RestoreDBClusterFromSnapshotInput,
-        output_schema = types.RestoreDBClusterFromSnapshotOutput,
+        input_schema = schemas.RestoreDBClusterFromSnapshotInput,
+        output_schema = schemas.RestoreDBClusterFromSnapshotOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:restoreDBClusterToPointInTime(input, options)
     return self:invokeOperation(input, {
         name = "RestoreDBClusterToPointInTime",
-        input_schema = types.RestoreDBClusterToPointInTimeInput,
-        output_schema = types.RestoreDBClusterToPointInTimeOutput,
+        input_schema = schemas.RestoreDBClusterToPointInTimeInput,
+        output_schema = schemas.RestoreDBClusterToPointInTimeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:startDBCluster(input, options)
     return self:invokeOperation(input, {
         name = "StartDBCluster",
-        input_schema = types.StartDBClusterInput,
-        output_schema = types.StartDBClusterOutput,
+        input_schema = schemas.StartDBClusterInput,
+        output_schema = schemas.StartDBClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:stopDBCluster(input, options)
     return self:invokeOperation(input, {
         name = "StopDBCluster",
-        input_schema = types.StopDBClusterInput,
-        output_schema = types.StopDBClusterOutput,
+        input_schema = schemas.StopDBClusterInput,
+        output_schema = schemas.StopDBClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:switchoverGlobalCluster(input, options)
     return self:invokeOperation(input, {
         name = "SwitchoverGlobalCluster",
-        input_schema = types.SwitchoverGlobalClusterInput,
-        output_schema = types.SwitchoverGlobalClusterOutput,
+        input_schema = schemas.SwitchoverGlobalClusterInput,
+        output_schema = schemas.SwitchoverGlobalClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

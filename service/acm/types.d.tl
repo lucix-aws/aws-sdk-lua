@@ -461,21 +461,21 @@ local record ResourceNotFoundException
     message: string
 end
 
-local type ValidationMethod = "EMAIL" | "DNS" | "HTTP"
-
-local type SortOrder = "ASCENDING" | "DESCENDING"
-
-local type SearchCertificatesSortOrder = "ASCENDING" | "DESCENDING"
-
-local type SearchCertificatesSortBy = "CREATED_AT" | "NOT_AFTER" | "STATUS" | "RENEWAL_STATUS" | "EXPORTED" | "IN_USE" | "NOT_BEFORE" | "KEY_ALGORITHM" | "TYPE" | "CERTIFICATE_ARN" | "COMMON_NAME" | "REVOKED_AT" | "RENEWAL_ELIGIBILITY" | "ISSUED_AT" | "MANAGED_BY" | "EXPORT_OPTION" | "VALIDATION_METHOD" | "IMPORTED_AT"
-
-local type RevocationReason = "UNSPECIFIED" | "KEY_COMPROMISE" | "CA_COMPROMISE" | "AFFILIATION_CHANGED" | "SUPERCEDED" | "SUPERSEDED" | "CESSATION_OF_OPERATION" | "CERTIFICATE_HOLD" | "REMOVE_FROM_CRL" | "PRIVILEGE_WITHDRAWN" | "A_A_COMPROMISE"
-
-local type KeyAlgorithm = "RSA_1024" | "RSA_2048" | "RSA_3072" | "RSA_4096" | "EC_prime256v1" | "EC_secp384r1" | "EC_secp521r1"
-
 local type CertificateManagedBy = "CLOUDFRONT"
 
 local type SortBy = "CREATED_AT"
+
+local type SearchCertificatesSortBy = "CREATED_AT" | "NOT_AFTER" | "STATUS" | "RENEWAL_STATUS" | "EXPORTED" | "IN_USE" | "NOT_BEFORE" | "KEY_ALGORITHM" | "TYPE" | "CERTIFICATE_ARN" | "COMMON_NAME" | "REVOKED_AT" | "RENEWAL_ELIGIBILITY" | "ISSUED_AT" | "MANAGED_BY" | "EXPORT_OPTION" | "VALIDATION_METHOD" | "IMPORTED_AT"
+
+local type KeyAlgorithm = "RSA_1024" | "RSA_2048" | "RSA_3072" | "RSA_4096" | "EC_prime256v1" | "EC_secp384r1" | "EC_secp521r1"
+
+local type ValidationMethod = "EMAIL" | "DNS" | "HTTP"
+
+local type SearchCertificatesSortOrder = "ASCENDING" | "DESCENDING"
+
+local type RevocationReason = "UNSPECIFIED" | "KEY_COMPROMISE" | "CA_COMPROMISE" | "AFFILIATION_CHANGED" | "SUPERCEDED" | "SUPERSEDED" | "CESSATION_OF_OPERATION" | "CERTIFICATE_HOLD" | "REMOVE_FROM_CRL" | "PRIVILEGE_WITHDRAWN" | "A_A_COMPROMISE"
+
+local type SortOrder = "ASCENDING" | "DESCENDING"
 
 local record M
     AddTagsToCertificateInput: AddTagsToCertificateInput

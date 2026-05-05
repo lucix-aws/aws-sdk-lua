@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("servicecatalog.endpoint_rules")
+local schemas = require("servicecatalog.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("servicecatalog.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptPortfolioShare(input, options)
     return self:invokeOperation(input, {
         name = "AcceptPortfolioShare",
-        input_schema = types.AcceptPortfolioShareInput,
-        output_schema = types.AcceptPortfolioShareOutput,
+        input_schema = schemas.AcceptPortfolioShareInput,
+        output_schema = schemas.AcceptPortfolioShareOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:associateBudgetWithResource(input, options)
     return self:invokeOperation(input, {
         name = "AssociateBudgetWithResource",
-        input_schema = types.AssociateBudgetWithResourceInput,
-        output_schema = types.AssociateBudgetWithResourceOutput,
+        input_schema = schemas.AssociateBudgetWithResourceInput,
+        output_schema = schemas.AssociateBudgetWithResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:associatePrincipalWithPortfolio(input, options)
     return self:invokeOperation(input, {
         name = "AssociatePrincipalWithPortfolio",
-        input_schema = types.AssociatePrincipalWithPortfolioInput,
-        output_schema = types.AssociatePrincipalWithPortfolioOutput,
+        input_schema = schemas.AssociatePrincipalWithPortfolioInput,
+        output_schema = schemas.AssociatePrincipalWithPortfolioOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:associateProductWithPortfolio(input, options)
     return self:invokeOperation(input, {
         name = "AssociateProductWithPortfolio",
-        input_schema = types.AssociateProductWithPortfolioInput,
-        output_schema = types.AssociateProductWithPortfolioOutput,
+        input_schema = schemas.AssociateProductWithPortfolioInput,
+        output_schema = schemas.AssociateProductWithPortfolioOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:associateServiceActionWithProvisioningArtifact(input, options)
     return self:invokeOperation(input, {
         name = "AssociateServiceActionWithProvisioningArtifact",
-        input_schema = types.AssociateServiceActionWithProvisioningArtifactInput,
-        output_schema = types.AssociateServiceActionWithProvisioningArtifactOutput,
+        input_schema = schemas.AssociateServiceActionWithProvisioningArtifactInput,
+        output_schema = schemas.AssociateServiceActionWithProvisioningArtifactOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:associateTagOptionWithResource(input, options)
     return self:invokeOperation(input, {
         name = "AssociateTagOptionWithResource",
-        input_schema = types.AssociateTagOptionWithResourceInput,
-        output_schema = types.AssociateTagOptionWithResourceOutput,
+        input_schema = schemas.AssociateTagOptionWithResourceInput,
+        output_schema = schemas.AssociateTagOptionWithResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:batchAssociateServiceActionWithProvisioningArtifact(input, options)
     return self:invokeOperation(input, {
         name = "BatchAssociateServiceActionWithProvisioningArtifact",
-        input_schema = types.BatchAssociateServiceActionWithProvisioningArtifactInput,
-        output_schema = types.BatchAssociateServiceActionWithProvisioningArtifactOutput,
+        input_schema = schemas.BatchAssociateServiceActionWithProvisioningArtifactInput,
+        output_schema = schemas.BatchAssociateServiceActionWithProvisioningArtifactOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:batchDisassociateServiceActionFromProvisioningArtifact(input, options)
     return self:invokeOperation(input, {
         name = "BatchDisassociateServiceActionFromProvisioningArtifact",
-        input_schema = types.BatchDisassociateServiceActionFromProvisioningArtifactInput,
-        output_schema = types.BatchDisassociateServiceActionFromProvisioningArtifactOutput,
+        input_schema = schemas.BatchDisassociateServiceActionFromProvisioningArtifactInput,
+        output_schema = schemas.BatchDisassociateServiceActionFromProvisioningArtifactOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:copyProduct(input, options)
     return self:invokeOperation(input, {
         name = "CopyProduct",
-        input_schema = types.CopyProductInput,
-        output_schema = types.CopyProductOutput,
+        input_schema = schemas.CopyProductInput,
+        output_schema = schemas.CopyProductOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createConstraint(input, options)
     return self:invokeOperation(input, {
         name = "CreateConstraint",
-        input_schema = types.CreateConstraintInput,
-        output_schema = types.CreateConstraintOutput,
+        input_schema = schemas.CreateConstraintInput,
+        output_schema = schemas.CreateConstraintOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createPortfolio(input, options)
     return self:invokeOperation(input, {
         name = "CreatePortfolio",
-        input_schema = types.CreatePortfolioInput,
-        output_schema = types.CreatePortfolioOutput,
+        input_schema = schemas.CreatePortfolioInput,
+        output_schema = schemas.CreatePortfolioOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createPortfolioShare(input, options)
     return self:invokeOperation(input, {
         name = "CreatePortfolioShare",
-        input_schema = types.CreatePortfolioShareInput,
-        output_schema = types.CreatePortfolioShareOutput,
+        input_schema = schemas.CreatePortfolioShareInput,
+        output_schema = schemas.CreatePortfolioShareOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createProduct(input, options)
     return self:invokeOperation(input, {
         name = "CreateProduct",
-        input_schema = types.CreateProductInput,
-        output_schema = types.CreateProductOutput,
+        input_schema = schemas.CreateProductInput,
+        output_schema = schemas.CreateProductOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:createProvisionedProductPlan(input, options)
     return self:invokeOperation(input, {
         name = "CreateProvisionedProductPlan",
-        input_schema = types.CreateProvisionedProductPlanInput,
-        output_schema = types.CreateProvisionedProductPlanOutput,
+        input_schema = schemas.CreateProvisionedProductPlanInput,
+        output_schema = schemas.CreateProvisionedProductPlanOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:createProvisioningArtifact(input, options)
     return self:invokeOperation(input, {
         name = "CreateProvisioningArtifact",
-        input_schema = types.CreateProvisioningArtifactInput,
-        output_schema = types.CreateProvisioningArtifactOutput,
+        input_schema = schemas.CreateProvisioningArtifactInput,
+        output_schema = schemas.CreateProvisioningArtifactOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:createServiceAction(input, options)
     return self:invokeOperation(input, {
         name = "CreateServiceAction",
-        input_schema = types.CreateServiceActionInput,
-        output_schema = types.CreateServiceActionOutput,
+        input_schema = schemas.CreateServiceActionInput,
+        output_schema = schemas.CreateServiceActionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:createTagOption(input, options)
     return self:invokeOperation(input, {
         name = "CreateTagOption",
-        input_schema = types.CreateTagOptionInput,
-        output_schema = types.CreateTagOptionOutput,
+        input_schema = schemas.CreateTagOptionInput,
+        output_schema = schemas.CreateTagOptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteConstraint(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConstraint",
-        input_schema = types.DeleteConstraintInput,
-        output_schema = types.DeleteConstraintOutput,
+        input_schema = schemas.DeleteConstraintInput,
+        output_schema = schemas.DeleteConstraintOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deletePortfolio(input, options)
     return self:invokeOperation(input, {
         name = "DeletePortfolio",
-        input_schema = types.DeletePortfolioInput,
-        output_schema = types.DeletePortfolioOutput,
+        input_schema = schemas.DeletePortfolioInput,
+        output_schema = schemas.DeletePortfolioOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deletePortfolioShare(input, options)
     return self:invokeOperation(input, {
         name = "DeletePortfolioShare",
-        input_schema = types.DeletePortfolioShareInput,
-        output_schema = types.DeletePortfolioShareOutput,
+        input_schema = schemas.DeletePortfolioShareInput,
+        output_schema = schemas.DeletePortfolioShareOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteProduct(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProduct",
-        input_schema = types.DeleteProductInput,
-        output_schema = types.DeleteProductOutput,
+        input_schema = schemas.DeleteProductInput,
+        output_schema = schemas.DeleteProductOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:deleteProvisionedProductPlan(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProvisionedProductPlan",
-        input_schema = types.DeleteProvisionedProductPlanInput,
-        output_schema = types.DeleteProvisionedProductPlanOutput,
+        input_schema = schemas.DeleteProvisionedProductPlanInput,
+        output_schema = schemas.DeleteProvisionedProductPlanOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:deleteProvisioningArtifact(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProvisioningArtifact",
-        input_schema = types.DeleteProvisioningArtifactInput,
-        output_schema = types.DeleteProvisioningArtifactOutput,
+        input_schema = schemas.DeleteProvisioningArtifactInput,
+        output_schema = schemas.DeleteProvisioningArtifactOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:deleteServiceAction(input, options)
     return self:invokeOperation(input, {
         name = "DeleteServiceAction",
-        input_schema = types.DeleteServiceActionInput,
-        output_schema = types.DeleteServiceActionOutput,
+        input_schema = schemas.DeleteServiceActionInput,
+        output_schema = schemas.DeleteServiceActionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:deleteTagOption(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTagOption",
-        input_schema = types.DeleteTagOptionInput,
-        output_schema = types.DeleteTagOptionOutput,
+        input_schema = schemas.DeleteTagOptionInput,
+        output_schema = schemas.DeleteTagOptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:describeConstraint(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConstraint",
-        input_schema = types.DescribeConstraintInput,
-        output_schema = types.DescribeConstraintOutput,
+        input_schema = schemas.DescribeConstraintInput,
+        output_schema = schemas.DescribeConstraintOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:describeCopyProductStatus(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCopyProductStatus",
-        input_schema = types.DescribeCopyProductStatusInput,
-        output_schema = types.DescribeCopyProductStatusOutput,
+        input_schema = schemas.DescribeCopyProductStatusInput,
+        output_schema = schemas.DescribeCopyProductStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:describePortfolio(input, options)
     return self:invokeOperation(input, {
         name = "DescribePortfolio",
-        input_schema = types.DescribePortfolioInput,
-        output_schema = types.DescribePortfolioOutput,
+        input_schema = schemas.DescribePortfolioInput,
+        output_schema = schemas.DescribePortfolioOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:describePortfolioShares(input, options)
     return self:invokeOperation(input, {
         name = "DescribePortfolioShares",
-        input_schema = types.DescribePortfolioSharesInput,
-        output_schema = types.DescribePortfolioSharesOutput,
+        input_schema = schemas.DescribePortfolioSharesInput,
+        output_schema = schemas.DescribePortfolioSharesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:describePortfolioShareStatus(input, options)
     return self:invokeOperation(input, {
         name = "DescribePortfolioShareStatus",
-        input_schema = types.DescribePortfolioShareStatusInput,
-        output_schema = types.DescribePortfolioShareStatusOutput,
+        input_schema = schemas.DescribePortfolioShareStatusInput,
+        output_schema = schemas.DescribePortfolioShareStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:describeProduct(input, options)
     return self:invokeOperation(input, {
         name = "DescribeProduct",
-        input_schema = types.DescribeProductInput,
-        output_schema = types.DescribeProductOutput,
+        input_schema = schemas.DescribeProductInput,
+        output_schema = schemas.DescribeProductOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:describeProductAsAdmin(input, options)
     return self:invokeOperation(input, {
         name = "DescribeProductAsAdmin",
-        input_schema = types.DescribeProductAsAdminInput,
-        output_schema = types.DescribeProductAsAdminOutput,
+        input_schema = schemas.DescribeProductAsAdminInput,
+        output_schema = schemas.DescribeProductAsAdminOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:describeProductView(input, options)
     return self:invokeOperation(input, {
         name = "DescribeProductView",
-        input_schema = types.DescribeProductViewInput,
-        output_schema = types.DescribeProductViewOutput,
+        input_schema = schemas.DescribeProductViewInput,
+        output_schema = schemas.DescribeProductViewOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:describeProvisionedProduct(input, options)
     return self:invokeOperation(input, {
         name = "DescribeProvisionedProduct",
-        input_schema = types.DescribeProvisionedProductInput,
-        output_schema = types.DescribeProvisionedProductOutput,
+        input_schema = schemas.DescribeProvisionedProductInput,
+        output_schema = schemas.DescribeProvisionedProductOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:describeProvisionedProductPlan(input, options)
     return self:invokeOperation(input, {
         name = "DescribeProvisionedProductPlan",
-        input_schema = types.DescribeProvisionedProductPlanInput,
-        output_schema = types.DescribeProvisionedProductPlanOutput,
+        input_schema = schemas.DescribeProvisionedProductPlanInput,
+        output_schema = schemas.DescribeProvisionedProductPlanOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:describeProvisioningArtifact(input, options)
     return self:invokeOperation(input, {
         name = "DescribeProvisioningArtifact",
-        input_schema = types.DescribeProvisioningArtifactInput,
-        output_schema = types.DescribeProvisioningArtifactOutput,
+        input_schema = schemas.DescribeProvisioningArtifactInput,
+        output_schema = schemas.DescribeProvisioningArtifactOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:describeProvisioningParameters(input, options)
     return self:invokeOperation(input, {
         name = "DescribeProvisioningParameters",
-        input_schema = types.DescribeProvisioningParametersInput,
-        output_schema = types.DescribeProvisioningParametersOutput,
+        input_schema = schemas.DescribeProvisioningParametersInput,
+        output_schema = schemas.DescribeProvisioningParametersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:describeRecord(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRecord",
-        input_schema = types.DescribeRecordInput,
-        output_schema = types.DescribeRecordOutput,
+        input_schema = schemas.DescribeRecordInput,
+        output_schema = schemas.DescribeRecordOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:describeServiceAction(input, options)
     return self:invokeOperation(input, {
         name = "DescribeServiceAction",
-        input_schema = types.DescribeServiceActionInput,
-        output_schema = types.DescribeServiceActionOutput,
+        input_schema = schemas.DescribeServiceActionInput,
+        output_schema = schemas.DescribeServiceActionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:describeServiceActionExecutionParameters(input, options)
     return self:invokeOperation(input, {
         name = "DescribeServiceActionExecutionParameters",
-        input_schema = types.DescribeServiceActionExecutionParametersInput,
-        output_schema = types.DescribeServiceActionExecutionParametersOutput,
+        input_schema = schemas.DescribeServiceActionExecutionParametersInput,
+        output_schema = schemas.DescribeServiceActionExecutionParametersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:describeTagOption(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTagOption",
-        input_schema = types.DescribeTagOptionInput,
-        output_schema = types.DescribeTagOptionOutput,
+        input_schema = schemas.DescribeTagOptionInput,
+        output_schema = schemas.DescribeTagOptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:disableAWSOrganizationsAccess(input, options)
     return self:invokeOperation(input, {
         name = "DisableAWSOrganizationsAccess",
-        input_schema = types.DisableAWSOrganizationsAccessInput,
-        output_schema = types.DisableAWSOrganizationsAccessOutput,
+        input_schema = schemas.DisableAWSOrganizationsAccessInput,
+        output_schema = schemas.DisableAWSOrganizationsAccessOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:disassociateBudgetFromResource(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateBudgetFromResource",
-        input_schema = types.DisassociateBudgetFromResourceInput,
-        output_schema = types.DisassociateBudgetFromResourceOutput,
+        input_schema = schemas.DisassociateBudgetFromResourceInput,
+        output_schema = schemas.DisassociateBudgetFromResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:disassociatePrincipalFromPortfolio(input, options)
     return self:invokeOperation(input, {
         name = "DisassociatePrincipalFromPortfolio",
-        input_schema = types.DisassociatePrincipalFromPortfolioInput,
-        output_schema = types.DisassociatePrincipalFromPortfolioOutput,
+        input_schema = schemas.DisassociatePrincipalFromPortfolioInput,
+        output_schema = schemas.DisassociatePrincipalFromPortfolioOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:disassociateProductFromPortfolio(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateProductFromPortfolio",
-        input_schema = types.DisassociateProductFromPortfolioInput,
-        output_schema = types.DisassociateProductFromPortfolioOutput,
+        input_schema = schemas.DisassociateProductFromPortfolioInput,
+        output_schema = schemas.DisassociateProductFromPortfolioOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:disassociateServiceActionFromProvisioningArtifact(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateServiceActionFromProvisioningArtifact",
-        input_schema = types.DisassociateServiceActionFromProvisioningArtifactInput,
-        output_schema = types.DisassociateServiceActionFromProvisioningArtifactOutput,
+        input_schema = schemas.DisassociateServiceActionFromProvisioningArtifactInput,
+        output_schema = schemas.DisassociateServiceActionFromProvisioningArtifactOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:disassociateTagOptionFromResource(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateTagOptionFromResource",
-        input_schema = types.DisassociateTagOptionFromResourceInput,
-        output_schema = types.DisassociateTagOptionFromResourceOutput,
+        input_schema = schemas.DisassociateTagOptionFromResourceInput,
+        output_schema = schemas.DisassociateTagOptionFromResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:enableAWSOrganizationsAccess(input, options)
     return self:invokeOperation(input, {
         name = "EnableAWSOrganizationsAccess",
-        input_schema = types.EnableAWSOrganizationsAccessInput,
-        output_schema = types.EnableAWSOrganizationsAccessOutput,
+        input_schema = schemas.EnableAWSOrganizationsAccessInput,
+        output_schema = schemas.EnableAWSOrganizationsAccessOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:executeProvisionedProductPlan(input, options)
     return self:invokeOperation(input, {
         name = "ExecuteProvisionedProductPlan",
-        input_schema = types.ExecuteProvisionedProductPlanInput,
-        output_schema = types.ExecuteProvisionedProductPlanOutput,
+        input_schema = schemas.ExecuteProvisionedProductPlanInput,
+        output_schema = schemas.ExecuteProvisionedProductPlanOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:executeProvisionedProductServiceAction(input, options)
     return self:invokeOperation(input, {
         name = "ExecuteProvisionedProductServiceAction",
-        input_schema = types.ExecuteProvisionedProductServiceActionInput,
-        output_schema = types.ExecuteProvisionedProductServiceActionOutput,
+        input_schema = schemas.ExecuteProvisionedProductServiceActionInput,
+        output_schema = schemas.ExecuteProvisionedProductServiceActionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:getAWSOrganizationsAccessStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetAWSOrganizationsAccessStatus",
-        input_schema = types.GetAWSOrganizationsAccessStatusInput,
-        output_schema = types.GetAWSOrganizationsAccessStatusOutput,
+        input_schema = schemas.GetAWSOrganizationsAccessStatusInput,
+        output_schema = schemas.GetAWSOrganizationsAccessStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:getProvisionedProductOutputs(input, options)
     return self:invokeOperation(input, {
         name = "GetProvisionedProductOutputs",
-        input_schema = types.GetProvisionedProductOutputsInput,
-        output_schema = types.GetProvisionedProductOutputsOutput,
+        input_schema = schemas.GetProvisionedProductOutputsInput,
+        output_schema = schemas.GetProvisionedProductOutputsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:importAsProvisionedProduct(input, options)
     return self:invokeOperation(input, {
         name = "ImportAsProvisionedProduct",
-        input_schema = types.ImportAsProvisionedProductInput,
-        output_schema = types.ImportAsProvisionedProductOutput,
+        input_schema = schemas.ImportAsProvisionedProductInput,
+        output_schema = schemas.ImportAsProvisionedProductOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:listAcceptedPortfolioShares(input, options)
     return self:invokeOperation(input, {
         name = "ListAcceptedPortfolioShares",
-        input_schema = types.ListAcceptedPortfolioSharesInput,
-        output_schema = types.ListAcceptedPortfolioSharesOutput,
+        input_schema = schemas.ListAcceptedPortfolioSharesInput,
+        output_schema = schemas.ListAcceptedPortfolioSharesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:listBudgetsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListBudgetsForResource",
-        input_schema = types.ListBudgetsForResourceInput,
-        output_schema = types.ListBudgetsForResourceOutput,
+        input_schema = schemas.ListBudgetsForResourceInput,
+        output_schema = schemas.ListBudgetsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:listConstraintsForPortfolio(input, options)
     return self:invokeOperation(input, {
         name = "ListConstraintsForPortfolio",
-        input_schema = types.ListConstraintsForPortfolioInput,
-        output_schema = types.ListConstraintsForPortfolioOutput,
+        input_schema = schemas.ListConstraintsForPortfolioInput,
+        output_schema = schemas.ListConstraintsForPortfolioOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:listLaunchPaths(input, options)
     return self:invokeOperation(input, {
         name = "ListLaunchPaths",
-        input_schema = types.ListLaunchPathsInput,
-        output_schema = types.ListLaunchPathsOutput,
+        input_schema = schemas.ListLaunchPathsInput,
+        output_schema = schemas.ListLaunchPathsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:listOrganizationPortfolioAccess(input, options)
     return self:invokeOperation(input, {
         name = "ListOrganizationPortfolioAccess",
-        input_schema = types.ListOrganizationPortfolioAccessInput,
-        output_schema = types.ListOrganizationPortfolioAccessOutput,
+        input_schema = schemas.ListOrganizationPortfolioAccessInput,
+        output_schema = schemas.ListOrganizationPortfolioAccessOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:listPortfolioAccess(input, options)
     return self:invokeOperation(input, {
         name = "ListPortfolioAccess",
-        input_schema = types.ListPortfolioAccessInput,
-        output_schema = types.ListPortfolioAccessOutput,
+        input_schema = schemas.ListPortfolioAccessInput,
+        output_schema = schemas.ListPortfolioAccessOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:listPortfolios(input, options)
     return self:invokeOperation(input, {
         name = "ListPortfolios",
-        input_schema = types.ListPortfoliosInput,
-        output_schema = types.ListPortfoliosOutput,
+        input_schema = schemas.ListPortfoliosInput,
+        output_schema = schemas.ListPortfoliosOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:listPortfoliosForProduct(input, options)
     return self:invokeOperation(input, {
         name = "ListPortfoliosForProduct",
-        input_schema = types.ListPortfoliosForProductInput,
-        output_schema = types.ListPortfoliosForProductOutput,
+        input_schema = schemas.ListPortfoliosForProductInput,
+        output_schema = schemas.ListPortfoliosForProductOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:listPrincipalsForPortfolio(input, options)
     return self:invokeOperation(input, {
         name = "ListPrincipalsForPortfolio",
-        input_schema = types.ListPrincipalsForPortfolioInput,
-        output_schema = types.ListPrincipalsForPortfolioOutput,
+        input_schema = schemas.ListPrincipalsForPortfolioInput,
+        output_schema = schemas.ListPrincipalsForPortfolioOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:listProvisionedProductPlans(input, options)
     return self:invokeOperation(input, {
         name = "ListProvisionedProductPlans",
-        input_schema = types.ListProvisionedProductPlansInput,
-        output_schema = types.ListProvisionedProductPlansOutput,
+        input_schema = schemas.ListProvisionedProductPlansInput,
+        output_schema = schemas.ListProvisionedProductPlansOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:listProvisioningArtifacts(input, options)
     return self:invokeOperation(input, {
         name = "ListProvisioningArtifacts",
-        input_schema = types.ListProvisioningArtifactsInput,
-        output_schema = types.ListProvisioningArtifactsOutput,
+        input_schema = schemas.ListProvisioningArtifactsInput,
+        output_schema = schemas.ListProvisioningArtifactsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:listProvisioningArtifactsForServiceAction(input, options)
     return self:invokeOperation(input, {
         name = "ListProvisioningArtifactsForServiceAction",
-        input_schema = types.ListProvisioningArtifactsForServiceActionInput,
-        output_schema = types.ListProvisioningArtifactsForServiceActionOutput,
+        input_schema = schemas.ListProvisioningArtifactsForServiceActionInput,
+        output_schema = schemas.ListProvisioningArtifactsForServiceActionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:listRecordHistory(input, options)
     return self:invokeOperation(input, {
         name = "ListRecordHistory",
-        input_schema = types.ListRecordHistoryInput,
-        output_schema = types.ListRecordHistoryOutput,
+        input_schema = schemas.ListRecordHistoryInput,
+        output_schema = schemas.ListRecordHistoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:listResourcesForTagOption(input, options)
     return self:invokeOperation(input, {
         name = "ListResourcesForTagOption",
-        input_schema = types.ListResourcesForTagOptionInput,
-        output_schema = types.ListResourcesForTagOptionOutput,
+        input_schema = schemas.ListResourcesForTagOptionInput,
+        output_schema = schemas.ListResourcesForTagOptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:listServiceActions(input, options)
     return self:invokeOperation(input, {
         name = "ListServiceActions",
-        input_schema = types.ListServiceActionsInput,
-        output_schema = types.ListServiceActionsOutput,
+        input_schema = schemas.ListServiceActionsInput,
+        output_schema = schemas.ListServiceActionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:listServiceActionsForProvisioningArtifact(input, options)
     return self:invokeOperation(input, {
         name = "ListServiceActionsForProvisioningArtifact",
-        input_schema = types.ListServiceActionsForProvisioningArtifactInput,
-        output_schema = types.ListServiceActionsForProvisioningArtifactOutput,
+        input_schema = schemas.ListServiceActionsForProvisioningArtifactInput,
+        output_schema = schemas.ListServiceActionsForProvisioningArtifactOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:listStackInstancesForProvisionedProduct(input, options)
     return self:invokeOperation(input, {
         name = "ListStackInstancesForProvisionedProduct",
-        input_schema = types.ListStackInstancesForProvisionedProductInput,
-        output_schema = types.ListStackInstancesForProvisionedProductOutput,
+        input_schema = schemas.ListStackInstancesForProvisionedProductInput,
+        output_schema = schemas.ListStackInstancesForProvisionedProductOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:listTagOptions(input, options)
     return self:invokeOperation(input, {
         name = "ListTagOptions",
-        input_schema = types.ListTagOptionsInput,
-        output_schema = types.ListTagOptionsOutput,
+        input_schema = schemas.ListTagOptionsInput,
+        output_schema = schemas.ListTagOptionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:notifyProvisionProductEngineWorkflowResult(input, options)
     return self:invokeOperation(input, {
         name = "NotifyProvisionProductEngineWorkflowResult",
-        input_schema = types.NotifyProvisionProductEngineWorkflowResultInput,
-        output_schema = types.NotifyProvisionProductEngineWorkflowResultOutput,
+        input_schema = schemas.NotifyProvisionProductEngineWorkflowResultInput,
+        output_schema = schemas.NotifyProvisionProductEngineWorkflowResultOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:notifyTerminateProvisionedProductEngineWorkflowResult(input, options)
     return self:invokeOperation(input, {
         name = "NotifyTerminateProvisionedProductEngineWorkflowResult",
-        input_schema = types.NotifyTerminateProvisionedProductEngineWorkflowResultInput,
-        output_schema = types.NotifyTerminateProvisionedProductEngineWorkflowResultOutput,
+        input_schema = schemas.NotifyTerminateProvisionedProductEngineWorkflowResultInput,
+        output_schema = schemas.NotifyTerminateProvisionedProductEngineWorkflowResultOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:notifyUpdateProvisionedProductEngineWorkflowResult(input, options)
     return self:invokeOperation(input, {
         name = "NotifyUpdateProvisionedProductEngineWorkflowResult",
-        input_schema = types.NotifyUpdateProvisionedProductEngineWorkflowResultInput,
-        output_schema = types.NotifyUpdateProvisionedProductEngineWorkflowResultOutput,
+        input_schema = schemas.NotifyUpdateProvisionedProductEngineWorkflowResultInput,
+        output_schema = schemas.NotifyUpdateProvisionedProductEngineWorkflowResultOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1011,8 +1011,8 @@ end
 function Client:provisionProduct(input, options)
     return self:invokeOperation(input, {
         name = "ProvisionProduct",
-        input_schema = types.ProvisionProductInput,
-        output_schema = types.ProvisionProductOutput,
+        input_schema = schemas.ProvisionProductInput,
+        output_schema = schemas.ProvisionProductOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1024,8 +1024,8 @@ end
 function Client:rejectPortfolioShare(input, options)
     return self:invokeOperation(input, {
         name = "RejectPortfolioShare",
-        input_schema = types.RejectPortfolioShareInput,
-        output_schema = types.RejectPortfolioShareOutput,
+        input_schema = schemas.RejectPortfolioShareInput,
+        output_schema = schemas.RejectPortfolioShareOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1037,8 +1037,8 @@ end
 function Client:scanProvisionedProducts(input, options)
     return self:invokeOperation(input, {
         name = "ScanProvisionedProducts",
-        input_schema = types.ScanProvisionedProductsInput,
-        output_schema = types.ScanProvisionedProductsOutput,
+        input_schema = schemas.ScanProvisionedProductsInput,
+        output_schema = schemas.ScanProvisionedProductsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1050,8 +1050,8 @@ end
 function Client:searchProducts(input, options)
     return self:invokeOperation(input, {
         name = "SearchProducts",
-        input_schema = types.SearchProductsInput,
-        output_schema = types.SearchProductsOutput,
+        input_schema = schemas.SearchProductsInput,
+        output_schema = schemas.SearchProductsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1063,8 +1063,8 @@ end
 function Client:searchProductsAsAdmin(input, options)
     return self:invokeOperation(input, {
         name = "SearchProductsAsAdmin",
-        input_schema = types.SearchProductsAsAdminInput,
-        output_schema = types.SearchProductsAsAdminOutput,
+        input_schema = schemas.SearchProductsAsAdminInput,
+        output_schema = schemas.SearchProductsAsAdminOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1076,8 +1076,8 @@ end
 function Client:searchProvisionedProducts(input, options)
     return self:invokeOperation(input, {
         name = "SearchProvisionedProducts",
-        input_schema = types.SearchProvisionedProductsInput,
-        output_schema = types.SearchProvisionedProductsOutput,
+        input_schema = schemas.SearchProvisionedProductsInput,
+        output_schema = schemas.SearchProvisionedProductsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1089,8 +1089,8 @@ end
 function Client:terminateProvisionedProduct(input, options)
     return self:invokeOperation(input, {
         name = "TerminateProvisionedProduct",
-        input_schema = types.TerminateProvisionedProductInput,
-        output_schema = types.TerminateProvisionedProductOutput,
+        input_schema = schemas.TerminateProvisionedProductInput,
+        output_schema = schemas.TerminateProvisionedProductOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1102,8 +1102,8 @@ end
 function Client:updateConstraint(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConstraint",
-        input_schema = types.UpdateConstraintInput,
-        output_schema = types.UpdateConstraintOutput,
+        input_schema = schemas.UpdateConstraintInput,
+        output_schema = schemas.UpdateConstraintOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1115,8 +1115,8 @@ end
 function Client:updatePortfolio(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePortfolio",
-        input_schema = types.UpdatePortfolioInput,
-        output_schema = types.UpdatePortfolioOutput,
+        input_schema = schemas.UpdatePortfolioInput,
+        output_schema = schemas.UpdatePortfolioOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1128,8 +1128,8 @@ end
 function Client:updatePortfolioShare(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePortfolioShare",
-        input_schema = types.UpdatePortfolioShareInput,
-        output_schema = types.UpdatePortfolioShareOutput,
+        input_schema = schemas.UpdatePortfolioShareInput,
+        output_schema = schemas.UpdatePortfolioShareOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1141,8 +1141,8 @@ end
 function Client:updateProduct(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProduct",
-        input_schema = types.UpdateProductInput,
-        output_schema = types.UpdateProductOutput,
+        input_schema = schemas.UpdateProductInput,
+        output_schema = schemas.UpdateProductOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1154,8 +1154,8 @@ end
 function Client:updateProvisionedProduct(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProvisionedProduct",
-        input_schema = types.UpdateProvisionedProductInput,
-        output_schema = types.UpdateProvisionedProductOutput,
+        input_schema = schemas.UpdateProvisionedProductInput,
+        output_schema = schemas.UpdateProvisionedProductOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1167,8 +1167,8 @@ end
 function Client:updateProvisionedProductProperties(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProvisionedProductProperties",
-        input_schema = types.UpdateProvisionedProductPropertiesInput,
-        output_schema = types.UpdateProvisionedProductPropertiesOutput,
+        input_schema = schemas.UpdateProvisionedProductPropertiesInput,
+        output_schema = schemas.UpdateProvisionedProductPropertiesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1180,8 +1180,8 @@ end
 function Client:updateProvisioningArtifact(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProvisioningArtifact",
-        input_schema = types.UpdateProvisioningArtifactInput,
-        output_schema = types.UpdateProvisioningArtifactOutput,
+        input_schema = schemas.UpdateProvisioningArtifactInput,
+        output_schema = schemas.UpdateProvisioningArtifactOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1193,8 +1193,8 @@ end
 function Client:updateServiceAction(input, options)
     return self:invokeOperation(input, {
         name = "UpdateServiceAction",
-        input_schema = types.UpdateServiceActionInput,
-        output_schema = types.UpdateServiceActionOutput,
+        input_schema = schemas.UpdateServiceActionInput,
+        output_schema = schemas.UpdateServiceActionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1206,8 +1206,8 @@ end
 function Client:updateTagOption(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTagOption",
-        input_schema = types.UpdateTagOptionInput,
-        output_schema = types.UpdateTagOptionOutput,
+        input_schema = schemas.UpdateTagOptionInput,
+        output_schema = schemas.UpdateTagOptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

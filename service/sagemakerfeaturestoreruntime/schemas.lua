@@ -1,0 +1,494 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.sagemakerfeaturestoreruntime"
+
+local M = {}
+
+M.AccessForbidden = schema.new({
+    id = id.from(_N, "AccessForbidden"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "AccessForbidden", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchGetRecordIdentifier = schema.new({
+    id = id.from(_N, "BatchGetRecordIdentifier"),
+    type = "structure",
+    members = {
+        FeatureGroupName = schema.new({
+            id = id.from(_N, "BatchGetRecordIdentifier", "FeatureGroupName"),
+            type = "string",
+            name = "FeatureGroupName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RecordIdentifiersValueAsString = schema.new({
+            id = id.from(_N, "BatchGetRecordIdentifier", "RecordIdentifiersValueAsString"),
+            type = "list",
+            name = "RecordIdentifiersValueAsString",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FeatureNames = schema.new({
+            id = id.from(_N, "BatchGetRecordIdentifier", "FeatureNames"),
+            type = "list",
+            name = "FeatureNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.BatchGetRecordInput = schema.new({
+    id = id.from(_N, "BatchGetRecordInput"),
+    type = "structure",
+    members = {
+        Identifiers = schema.new({
+            id = id.from(_N, "BatchGetRecordInput", "Identifiers"),
+            type = "list",
+            name = "Identifiers",
+            target_id = prelude.Document.id,
+            list_member = M.BatchGetRecordIdentifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExpirationTimeResponse = schema.new({
+            id = id.from(_N, "BatchGetRecordInput", "ExpirationTimeResponse"),
+            type = "string",
+            name = "ExpirationTimeResponse",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchGetRecordError = schema.new({
+    id = id.from(_N, "BatchGetRecordError"),
+    type = "structure",
+    members = {
+        FeatureGroupName = schema.new({
+            id = id.from(_N, "BatchGetRecordError", "FeatureGroupName"),
+            type = "string",
+            name = "FeatureGroupName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RecordIdentifierValueAsString = schema.new({
+            id = id.from(_N, "BatchGetRecordError", "RecordIdentifierValueAsString"),
+            type = "string",
+            name = "RecordIdentifierValueAsString",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ErrorCode = schema.new({
+            id = id.from(_N, "BatchGetRecordError", "ErrorCode"),
+            type = "string",
+            name = "ErrorCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ErrorMessage = schema.new({
+            id = id.from(_N, "BatchGetRecordError", "ErrorMessage"),
+            type = "string",
+            name = "ErrorMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.FeatureValue = schema.new({
+    id = id.from(_N, "FeatureValue"),
+    type = "structure",
+    members = {
+        FeatureName = schema.new({
+            id = id.from(_N, "FeatureValue", "FeatureName"),
+            type = "string",
+            name = "FeatureName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ValueAsString = schema.new({
+            id = id.from(_N, "FeatureValue", "ValueAsString"),
+            type = "string",
+            name = "ValueAsString",
+            target_id = prelude.String.id,
+        }),
+        ValueAsStringList = schema.new({
+            id = id.from(_N, "FeatureValue", "ValueAsStringList"),
+            type = "list",
+            name = "ValueAsStringList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.BatchGetRecordResultDetail = schema.new({
+    id = id.from(_N, "BatchGetRecordResultDetail"),
+    type = "structure",
+    members = {
+        FeatureGroupName = schema.new({
+            id = id.from(_N, "BatchGetRecordResultDetail", "FeatureGroupName"),
+            type = "string",
+            name = "FeatureGroupName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RecordIdentifierValueAsString = schema.new({
+            id = id.from(_N, "BatchGetRecordResultDetail", "RecordIdentifierValueAsString"),
+            type = "string",
+            name = "RecordIdentifierValueAsString",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Record = schema.new({
+            id = id.from(_N, "BatchGetRecordResultDetail", "Record"),
+            type = "list",
+            name = "Record",
+            target_id = prelude.Document.id,
+            list_member = M.FeatureValue,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExpiresAt = schema.new({
+            id = id.from(_N, "BatchGetRecordResultDetail", "ExpiresAt"),
+            type = "string",
+            name = "ExpiresAt",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchGetRecordOutput = schema.new({
+    id = id.from(_N, "BatchGetRecordOutput"),
+    type = "structure",
+    members = {
+        Records = schema.new({
+            id = id.from(_N, "BatchGetRecordOutput", "Records"),
+            type = "list",
+            name = "Records",
+            target_id = prelude.Document.id,
+            list_member = M.BatchGetRecordResultDetail,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Errors = schema.new({
+            id = id.from(_N, "BatchGetRecordOutput", "Errors"),
+            type = "list",
+            name = "Errors",
+            target_id = prelude.Document.id,
+            list_member = M.BatchGetRecordError,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UnprocessedIdentifiers = schema.new({
+            id = id.from(_N, "BatchGetRecordOutput", "UnprocessedIdentifiers"),
+            type = "list",
+            name = "UnprocessedIdentifiers",
+            target_id = prelude.Document.id,
+            list_member = M.BatchGetRecordIdentifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InternalFailure = schema.new({
+    id = id.from(_N, "InternalFailure"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InternalFailure", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceUnavailable = schema.new({
+    id = id.from(_N, "ServiceUnavailable"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ServiceUnavailable", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ValidationError = schema.new({
+    id = id.from(_N, "ValidationError"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ValidationError", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteRecordInput = schema.new({
+    id = id.from(_N, "DeleteRecordInput"),
+    type = "structure",
+    members = {
+        FeatureGroupName = schema.new({
+            id = id.from(_N, "DeleteRecordInput", "FeatureGroupName"),
+            type = "string",
+            name = "FeatureGroupName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        RecordIdentifierValueAsString = schema.new({
+            id = id.from(_N, "DeleteRecordInput", "RecordIdentifierValueAsString"),
+            type = "string",
+            name = "RecordIdentifierValueAsString",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "RecordIdentifierValueAsString" },
+            },
+        }),
+        EventTime = schema.new({
+            id = id.from(_N, "DeleteRecordInput", "EventTime"),
+            type = "string",
+            name = "EventTime",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "EventTime" },
+            },
+        }),
+        TargetStores = schema.new({
+            id = id.from(_N, "DeleteRecordInput", "TargetStores"),
+            type = "list",
+            name = "TargetStores",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "TargetStores" },
+            },
+        }),
+        DeletionMode = schema.new({
+            id = id.from(_N, "DeleteRecordInput", "DeletionMode"),
+            type = "string",
+            name = "DeletionMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "DeletionMode" },
+            },
+        }),
+    },
+})
+
+M.DeleteRecordOutput = schema.new({
+    id = id.from(_N, "DeleteRecordOutput"),
+    type = "structure",
+})
+
+M.GetRecordInput = schema.new({
+    id = id.from(_N, "GetRecordInput"),
+    type = "structure",
+    members = {
+        FeatureGroupName = schema.new({
+            id = id.from(_N, "GetRecordInput", "FeatureGroupName"),
+            type = "string",
+            name = "FeatureGroupName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        RecordIdentifierValueAsString = schema.new({
+            id = id.from(_N, "GetRecordInput", "RecordIdentifierValueAsString"),
+            type = "string",
+            name = "RecordIdentifierValueAsString",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "RecordIdentifierValueAsString" },
+            },
+        }),
+        FeatureNames = schema.new({
+            id = id.from(_N, "GetRecordInput", "FeatureNames"),
+            type = "list",
+            name = "FeatureNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "FeatureName" },
+            },
+        }),
+        ExpirationTimeResponse = schema.new({
+            id = id.from(_N, "GetRecordInput", "ExpirationTimeResponse"),
+            type = "string",
+            name = "ExpirationTimeResponse",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "ExpirationTimeResponse" },
+            },
+        }),
+    },
+})
+
+M.GetRecordOutput = schema.new({
+    id = id.from(_N, "GetRecordOutput"),
+    type = "structure",
+    members = {
+        Record = schema.new({
+            id = id.from(_N, "GetRecordOutput", "Record"),
+            type = "list",
+            name = "Record",
+            target_id = prelude.Document.id,
+            list_member = M.FeatureValue,
+        }),
+        ExpiresAt = schema.new({
+            id = id.from(_N, "GetRecordOutput", "ExpiresAt"),
+            type = "string",
+            name = "ExpiresAt",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceNotFound = schema.new({
+    id = id.from(_N, "ResourceNotFound"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ResourceNotFound", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TtlDuration = schema.new({
+    id = id.from(_N, "TtlDuration"),
+    type = "structure",
+    members = {
+        Unit = schema.new({
+            id = id.from(_N, "TtlDuration", "Unit"),
+            type = "string",
+            name = "Unit",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "TtlDuration", "Value"),
+            type = "integer",
+            name = "Value",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutRecordInput = schema.new({
+    id = id.from(_N, "PutRecordInput"),
+    type = "structure",
+    members = {
+        FeatureGroupName = schema.new({
+            id = id.from(_N, "PutRecordInput", "FeatureGroupName"),
+            type = "string",
+            name = "FeatureGroupName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Record = schema.new({
+            id = id.from(_N, "PutRecordInput", "Record"),
+            type = "list",
+            name = "Record",
+            target_id = prelude.Document.id,
+            list_member = M.FeatureValue,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetStores = schema.new({
+            id = id.from(_N, "PutRecordInput", "TargetStores"),
+            type = "list",
+            name = "TargetStores",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        TtlDuration = schema.new({
+            id = id.from(_N, "PutRecordInput", "TtlDuration"),
+            type = "structure",
+            name = "TtlDuration",
+            target_id = id.from(_N, "TtlDuration"),
+            target = M.TtlDuration,
+        }),
+    },
+})
+
+M.PutRecordOutput = schema.new({
+    id = id.from(_N, "PutRecordOutput"),
+    type = "structure",
+})
+
+return M

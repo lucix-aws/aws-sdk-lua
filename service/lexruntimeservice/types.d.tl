@@ -261,9 +261,9 @@ local record NotFoundException
     message: string
 end
 
-local type DialogState = "ElicitIntent" | "ConfirmIntent" | "ElicitSlot" | "Fulfilled" | "ReadyForFulfillment" | "Failed"
-
 local type MessageFormatType = "PlainText" | "CustomPayload" | "SSML" | "Composite"
+
+local type DialogState = "ElicitIntent" | "ConfirmIntent" | "ElicitSlot" | "Fulfilled" | "ReadyForFulfillment" | "Failed"
 
 local record M
     DeleteSessionInput: DeleteSessionInput

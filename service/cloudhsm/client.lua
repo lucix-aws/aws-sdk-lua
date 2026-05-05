@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("cloudhsm.endpoint_rules")
+local schemas = require("cloudhsm.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("cloudhsm.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addTagsToResource(input, options)
     return self:invokeOperation(input, {
         name = "AddTagsToResource",
-        input_schema = types.AddTagsToResourceInput,
-        output_schema = types.AddTagsToResourceOutput,
+        input_schema = schemas.AddTagsToResourceInput,
+        output_schema = schemas.AddTagsToResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createHapg(input, options)
     return self:invokeOperation(input, {
         name = "CreateHapg",
-        input_schema = types.CreateHapgInput,
-        output_schema = types.CreateHapgOutput,
+        input_schema = schemas.CreateHapgInput,
+        output_schema = schemas.CreateHapgOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createHsm(input, options)
     return self:invokeOperation(input, {
         name = "CreateHsm",
-        input_schema = types.CreateHsmInput,
-        output_schema = types.CreateHsmOutput,
+        input_schema = schemas.CreateHsmInput,
+        output_schema = schemas.CreateHsmOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createLunaClient(input, options)
     return self:invokeOperation(input, {
         name = "CreateLunaClient",
-        input_schema = types.CreateLunaClientInput,
-        output_schema = types.CreateLunaClientOutput,
+        input_schema = schemas.CreateLunaClientInput,
+        output_schema = schemas.CreateLunaClientOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteHapg(input, options)
     return self:invokeOperation(input, {
         name = "DeleteHapg",
-        input_schema = types.DeleteHapgInput,
-        output_schema = types.DeleteHapgOutput,
+        input_schema = schemas.DeleteHapgInput,
+        output_schema = schemas.DeleteHapgOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteHsm(input, options)
     return self:invokeOperation(input, {
         name = "DeleteHsm",
-        input_schema = types.DeleteHsmInput,
-        output_schema = types.DeleteHsmOutput,
+        input_schema = schemas.DeleteHsmInput,
+        output_schema = schemas.DeleteHsmOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteLunaClient(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLunaClient",
-        input_schema = types.DeleteLunaClientInput,
-        output_schema = types.DeleteLunaClientOutput,
+        input_schema = schemas.DeleteLunaClientInput,
+        output_schema = schemas.DeleteLunaClientOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:describeHapg(input, options)
     return self:invokeOperation(input, {
         name = "DescribeHapg",
-        input_schema = types.DescribeHapgInput,
-        output_schema = types.DescribeHapgOutput,
+        input_schema = schemas.DescribeHapgInput,
+        output_schema = schemas.DescribeHapgOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:describeHsm(input, options)
     return self:invokeOperation(input, {
         name = "DescribeHsm",
-        input_schema = types.DescribeHsmInput,
-        output_schema = types.DescribeHsmOutput,
+        input_schema = schemas.DescribeHsmInput,
+        output_schema = schemas.DescribeHsmOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:describeLunaClient(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLunaClient",
-        input_schema = types.DescribeLunaClientInput,
-        output_schema = types.DescribeLunaClientOutput,
+        input_schema = schemas.DescribeLunaClientInput,
+        output_schema = schemas.DescribeLunaClientOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getConfig(input, options)
     return self:invokeOperation(input, {
         name = "GetConfig",
-        input_schema = types.GetConfigInput,
-        output_schema = types.GetConfigOutput,
+        input_schema = schemas.GetConfigInput,
+        output_schema = schemas.GetConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listAvailableZones(input, options)
     return self:invokeOperation(input, {
         name = "ListAvailableZones",
-        input_schema = types.ListAvailableZonesInput,
-        output_schema = types.ListAvailableZonesOutput,
+        input_schema = schemas.ListAvailableZonesInput,
+        output_schema = schemas.ListAvailableZonesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listHapgs(input, options)
     return self:invokeOperation(input, {
         name = "ListHapgs",
-        input_schema = types.ListHapgsInput,
-        output_schema = types.ListHapgsOutput,
+        input_schema = schemas.ListHapgsInput,
+        output_schema = schemas.ListHapgsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listHsms(input, options)
     return self:invokeOperation(input, {
         name = "ListHsms",
-        input_schema = types.ListHsmsInput,
-        output_schema = types.ListHsmsOutput,
+        input_schema = schemas.ListHsmsInput,
+        output_schema = schemas.ListHsmsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listLunaClients(input, options)
     return self:invokeOperation(input, {
         name = "ListLunaClients",
-        input_schema = types.ListLunaClientsInput,
-        output_schema = types.ListLunaClientsOutput,
+        input_schema = schemas.ListLunaClientsInput,
+        output_schema = schemas.ListLunaClientsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:modifyHapg(input, options)
     return self:invokeOperation(input, {
         name = "ModifyHapg",
-        input_schema = types.ModifyHapgInput,
-        output_schema = types.ModifyHapgOutput,
+        input_schema = schemas.ModifyHapgInput,
+        output_schema = schemas.ModifyHapgOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:modifyHsm(input, options)
     return self:invokeOperation(input, {
         name = "ModifyHsm",
-        input_schema = types.ModifyHsmInput,
-        output_schema = types.ModifyHsmOutput,
+        input_schema = schemas.ModifyHsmInput,
+        output_schema = schemas.ModifyHsmOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:modifyLunaClient(input, options)
     return self:invokeOperation(input, {
         name = "ModifyLunaClient",
-        input_schema = types.ModifyLunaClientInput,
-        output_schema = types.ModifyLunaClientOutput,
+        input_schema = schemas.ModifyLunaClientInput,
+        output_schema = schemas.ModifyLunaClientOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:removeTagsFromResource(input, options)
     return self:invokeOperation(input, {
         name = "RemoveTagsFromResource",
-        input_schema = types.RemoveTagsFromResourceInput,
-        output_schema = types.RemoveTagsFromResourceOutput,
+        input_schema = schemas.RemoveTagsFromResourceInput,
+        output_schema = schemas.RemoveTagsFromResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

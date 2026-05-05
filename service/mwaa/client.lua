@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("mwaa.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("mwaa.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("mwaa.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createCliToken(input, options)
     return self:invokeOperation(input, {
         name = "CreateCliToken",
-        input_schema = types.CreateCliTokenInput,
-        output_schema = types.CreateCliTokenOutput,
+        input_schema = schemas.CreateCliTokenInput,
+        output_schema = schemas.CreateCliTokenOutput,
         http_method = "POST",
         http_path = "/clitoken/{Name}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "CreateEnvironment",
-        input_schema = types.CreateEnvironmentInput,
-        output_schema = types.CreateEnvironmentOutput,
+        input_schema = schemas.CreateEnvironmentInput,
+        output_schema = schemas.CreateEnvironmentOutput,
         http_method = "PUT",
         http_path = "/environments/{Name}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createWebLoginToken(input, options)
     return self:invokeOperation(input, {
         name = "CreateWebLoginToken",
-        input_schema = types.CreateWebLoginTokenInput,
-        output_schema = types.CreateWebLoginTokenOutput,
+        input_schema = schemas.CreateWebLoginTokenInput,
+        output_schema = schemas.CreateWebLoginTokenOutput,
         http_method = "POST",
         http_path = "/webtoken/{Name}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEnvironment",
-        input_schema = types.DeleteEnvironmentInput,
-        output_schema = types.DeleteEnvironmentOutput,
+        input_schema = schemas.DeleteEnvironmentInput,
+        output_schema = schemas.DeleteEnvironmentOutput,
         http_method = "DELETE",
         http_path = "/environments/{Name}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "GetEnvironment",
-        input_schema = types.GetEnvironmentInput,
-        output_schema = types.GetEnvironmentOutput,
+        input_schema = schemas.GetEnvironmentInput,
+        output_schema = schemas.GetEnvironmentOutput,
         http_method = "GET",
         http_path = "/environments/{Name}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:invokeRestApi(input, options)
     return self:invokeOperation(input, {
         name = "InvokeRestApi",
-        input_schema = types.InvokeRestApiInput,
-        output_schema = types.InvokeRestApiOutput,
+        input_schema = schemas.InvokeRestApiInput,
+        output_schema = schemas.InvokeRestApiOutput,
         http_method = "POST",
         http_path = "/restapi/{Name}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listEnvironments(input, options)
     return self:invokeOperation(input, {
         name = "ListEnvironments",
-        input_schema = types.ListEnvironmentsInput,
-        output_schema = types.ListEnvironmentsOutput,
+        input_schema = schemas.ListEnvironmentsInput,
+        output_schema = schemas.ListEnvironmentsOutput,
         http_method = "GET",
         http_path = "/environments",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:publishMetrics(input, options)
     return self:invokeOperation(input, {
         name = "PublishMetrics",
-        input_schema = types.PublishMetricsInput,
-        output_schema = types.PublishMetricsOutput,
+        input_schema = schemas.PublishMetricsInput,
+        output_schema = schemas.PublishMetricsOutput,
         http_method = "POST",
         http_path = "/metrics/environments/{EnvironmentName}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:updateEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEnvironment",
-        input_schema = types.UpdateEnvironmentInput,
-        output_schema = types.UpdateEnvironmentOutput,
+        input_schema = schemas.UpdateEnvironmentInput,
+        output_schema = schemas.UpdateEnvironmentOutput,
         http_method = "PATCH",
         http_path = "/environments/{Name}",
         effective_auth_schemes = {

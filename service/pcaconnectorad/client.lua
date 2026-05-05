@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("pcaconnectorad.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("pcaconnectorad.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("pcaconnectorad.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createConnector(input, options)
     return self:invokeOperation(input, {
         name = "CreateConnector",
-        input_schema = types.CreateConnectorInput,
-        output_schema = types.CreateConnectorOutput,
+        input_schema = schemas.CreateConnectorInput,
+        output_schema = schemas.CreateConnectorOutput,
         http_method = "POST",
         http_path = "/connectors",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createDirectoryRegistration(input, options)
     return self:invokeOperation(input, {
         name = "CreateDirectoryRegistration",
-        input_schema = types.CreateDirectoryRegistrationInput,
-        output_schema = types.CreateDirectoryRegistrationOutput,
+        input_schema = schemas.CreateDirectoryRegistrationInput,
+        output_schema = schemas.CreateDirectoryRegistrationOutput,
         http_method = "POST",
         http_path = "/directoryRegistrations",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createServicePrincipalName(input, options)
     return self:invokeOperation(input, {
         name = "CreateServicePrincipalName",
-        input_schema = types.CreateServicePrincipalNameInput,
-        output_schema = types.CreateServicePrincipalNameOutput,
+        input_schema = schemas.CreateServicePrincipalNameInput,
+        output_schema = schemas.CreateServicePrincipalNameOutput,
         http_method = "POST",
         http_path = "/directoryRegistrations/{DirectoryRegistrationArn}/servicePrincipalNames/{ConnectorArn}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createTemplate(input, options)
     return self:invokeOperation(input, {
         name = "CreateTemplate",
-        input_schema = types.CreateTemplateInput,
-        output_schema = types.CreateTemplateOutput,
+        input_schema = schemas.CreateTemplateInput,
+        output_schema = schemas.CreateTemplateOutput,
         http_method = "POST",
         http_path = "/templates",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createTemplateGroupAccessControlEntry(input, options)
     return self:invokeOperation(input, {
         name = "CreateTemplateGroupAccessControlEntry",
-        input_schema = types.CreateTemplateGroupAccessControlEntryInput,
-        output_schema = types.CreateTemplateGroupAccessControlEntryOutput,
+        input_schema = schemas.CreateTemplateGroupAccessControlEntryInput,
+        output_schema = schemas.CreateTemplateGroupAccessControlEntryOutput,
         http_method = "POST",
         http_path = "/templates/{TemplateArn}/accessControlEntries",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteConnector(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConnector",
-        input_schema = types.DeleteConnectorInput,
-        output_schema = types.DeleteConnectorOutput,
+        input_schema = schemas.DeleteConnectorInput,
+        output_schema = schemas.DeleteConnectorOutput,
         http_method = "DELETE",
         http_path = "/connectors/{ConnectorArn}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteDirectoryRegistration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDirectoryRegistration",
-        input_schema = types.DeleteDirectoryRegistrationInput,
-        output_schema = types.DeleteDirectoryRegistrationOutput,
+        input_schema = schemas.DeleteDirectoryRegistrationInput,
+        output_schema = schemas.DeleteDirectoryRegistrationOutput,
         http_method = "DELETE",
         http_path = "/directoryRegistrations/{DirectoryRegistrationArn}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteServicePrincipalName(input, options)
     return self:invokeOperation(input, {
         name = "DeleteServicePrincipalName",
-        input_schema = types.DeleteServicePrincipalNameInput,
-        output_schema = types.DeleteServicePrincipalNameOutput,
+        input_schema = schemas.DeleteServicePrincipalNameInput,
+        output_schema = schemas.DeleteServicePrincipalNameOutput,
         http_method = "DELETE",
         http_path = "/directoryRegistrations/{DirectoryRegistrationArn}/servicePrincipalNames/{ConnectorArn}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTemplate",
-        input_schema = types.DeleteTemplateInput,
-        output_schema = types.DeleteTemplateOutput,
+        input_schema = schemas.DeleteTemplateInput,
+        output_schema = schemas.DeleteTemplateOutput,
         http_method = "DELETE",
         http_path = "/templates/{TemplateArn}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteTemplateGroupAccessControlEntry(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTemplateGroupAccessControlEntry",
-        input_schema = types.DeleteTemplateGroupAccessControlEntryInput,
-        output_schema = types.DeleteTemplateGroupAccessControlEntryOutput,
+        input_schema = schemas.DeleteTemplateGroupAccessControlEntryInput,
+        output_schema = schemas.DeleteTemplateGroupAccessControlEntryOutput,
         http_method = "DELETE",
         http_path = "/templates/{TemplateArn}/accessControlEntries/{GroupSecurityIdentifier}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getConnector(input, options)
     return self:invokeOperation(input, {
         name = "GetConnector",
-        input_schema = types.GetConnectorInput,
-        output_schema = types.GetConnectorOutput,
+        input_schema = schemas.GetConnectorInput,
+        output_schema = schemas.GetConnectorOutput,
         http_method = "GET",
         http_path = "/connectors/{ConnectorArn}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getDirectoryRegistration(input, options)
     return self:invokeOperation(input, {
         name = "GetDirectoryRegistration",
-        input_schema = types.GetDirectoryRegistrationInput,
-        output_schema = types.GetDirectoryRegistrationOutput,
+        input_schema = schemas.GetDirectoryRegistrationInput,
+        output_schema = schemas.GetDirectoryRegistrationOutput,
         http_method = "GET",
         http_path = "/directoryRegistrations/{DirectoryRegistrationArn}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getServicePrincipalName(input, options)
     return self:invokeOperation(input, {
         name = "GetServicePrincipalName",
-        input_schema = types.GetServicePrincipalNameInput,
-        output_schema = types.GetServicePrincipalNameOutput,
+        input_schema = schemas.GetServicePrincipalNameInput,
+        output_schema = schemas.GetServicePrincipalNameOutput,
         http_method = "GET",
         http_path = "/directoryRegistrations/{DirectoryRegistrationArn}/servicePrincipalNames/{ConnectorArn}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetTemplate",
-        input_schema = types.GetTemplateInput,
-        output_schema = types.GetTemplateOutput,
+        input_schema = schemas.GetTemplateInput,
+        output_schema = schemas.GetTemplateOutput,
         http_method = "GET",
         http_path = "/templates/{TemplateArn}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getTemplateGroupAccessControlEntry(input, options)
     return self:invokeOperation(input, {
         name = "GetTemplateGroupAccessControlEntry",
-        input_schema = types.GetTemplateGroupAccessControlEntryInput,
-        output_schema = types.GetTemplateGroupAccessControlEntryOutput,
+        input_schema = schemas.GetTemplateGroupAccessControlEntryInput,
+        output_schema = schemas.GetTemplateGroupAccessControlEntryOutput,
         http_method = "GET",
         http_path = "/templates/{TemplateArn}/accessControlEntries/{GroupSecurityIdentifier}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listConnectors(input, options)
     return self:invokeOperation(input, {
         name = "ListConnectors",
-        input_schema = types.ListConnectorsInput,
-        output_schema = types.ListConnectorsOutput,
+        input_schema = schemas.ListConnectorsInput,
+        output_schema = schemas.ListConnectorsOutput,
         http_method = "GET",
         http_path = "/connectors",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listDirectoryRegistrations(input, options)
     return self:invokeOperation(input, {
         name = "ListDirectoryRegistrations",
-        input_schema = types.ListDirectoryRegistrationsInput,
-        output_schema = types.ListDirectoryRegistrationsOutput,
+        input_schema = schemas.ListDirectoryRegistrationsInput,
+        output_schema = schemas.ListDirectoryRegistrationsOutput,
         http_method = "GET",
         http_path = "/directoryRegistrations",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listServicePrincipalNames(input, options)
     return self:invokeOperation(input, {
         name = "ListServicePrincipalNames",
-        input_schema = types.ListServicePrincipalNamesInput,
-        output_schema = types.ListServicePrincipalNamesOutput,
+        input_schema = schemas.ListServicePrincipalNamesInput,
+        output_schema = schemas.ListServicePrincipalNamesOutput,
         http_method = "GET",
         http_path = "/directoryRegistrations/{DirectoryRegistrationArn}/servicePrincipalNames",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listTemplateGroupAccessControlEntries(input, options)
     return self:invokeOperation(input, {
         name = "ListTemplateGroupAccessControlEntries",
-        input_schema = types.ListTemplateGroupAccessControlEntriesInput,
-        output_schema = types.ListTemplateGroupAccessControlEntriesOutput,
+        input_schema = schemas.ListTemplateGroupAccessControlEntriesInput,
+        output_schema = schemas.ListTemplateGroupAccessControlEntriesOutput,
         http_method = "GET",
         http_path = "/templates/{TemplateArn}/accessControlEntries",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListTemplates",
-        input_schema = types.ListTemplatesInput,
-        output_schema = types.ListTemplatesOutput,
+        input_schema = schemas.ListTemplatesInput,
+        output_schema = schemas.ListTemplatesOutput,
         http_method = "GET",
         http_path = "/templates",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:updateTemplate(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTemplate",
-        input_schema = types.UpdateTemplateInput,
-        output_schema = types.UpdateTemplateOutput,
+        input_schema = schemas.UpdateTemplateInput,
+        output_schema = schemas.UpdateTemplateOutput,
         http_method = "PATCH",
         http_path = "/templates/{TemplateArn}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:updateTemplateGroupAccessControlEntry(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTemplateGroupAccessControlEntry",
-        input_schema = types.UpdateTemplateGroupAccessControlEntryInput,
-        output_schema = types.UpdateTemplateGroupAccessControlEntryOutput,
+        input_schema = schemas.UpdateTemplateGroupAccessControlEntryInput,
+        output_schema = schemas.UpdateTemplateGroupAccessControlEntryOutput,
         http_method = "PATCH",
         http_path = "/templates/{TemplateArn}/accessControlEntries/{GroupSecurityIdentifier}",
         effective_auth_schemes = {

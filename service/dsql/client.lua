@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("dsql.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("dsql.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("dsql.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createCluster(input, options)
     return self:invokeOperation(input, {
         name = "CreateCluster",
-        input_schema = types.CreateClusterInput,
-        output_schema = types.CreateClusterOutput,
+        input_schema = schemas.CreateClusterInput,
+        output_schema = schemas.CreateClusterOutput,
         http_method = "POST",
         http_path = "/cluster",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteCluster(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCluster",
-        input_schema = types.DeleteClusterInput,
-        output_schema = types.DeleteClusterOutput,
+        input_schema = schemas.DeleteClusterInput,
+        output_schema = schemas.DeleteClusterOutput,
         http_method = "DELETE",
         http_path = "/cluster/{identifier}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteClusterPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteClusterPolicy",
-        input_schema = types.DeleteClusterPolicyInput,
-        output_schema = types.DeleteClusterPolicyOutput,
+        input_schema = schemas.DeleteClusterPolicyInput,
+        output_schema = schemas.DeleteClusterPolicyOutput,
         http_method = "DELETE",
         http_path = "/cluster/{identifier}/policy",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getCluster(input, options)
     return self:invokeOperation(input, {
         name = "GetCluster",
-        input_schema = types.GetClusterInput,
-        output_schema = types.GetClusterOutput,
+        input_schema = schemas.GetClusterInput,
+        output_schema = schemas.GetClusterOutput,
         http_method = "GET",
         http_path = "/cluster/{identifier}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getClusterPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetClusterPolicy",
-        input_schema = types.GetClusterPolicyInput,
-        output_schema = types.GetClusterPolicyOutput,
+        input_schema = schemas.GetClusterPolicyInput,
+        output_schema = schemas.GetClusterPolicyOutput,
         http_method = "GET",
         http_path = "/cluster/{identifier}/policy",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getVpcEndpointServiceName(input, options)
     return self:invokeOperation(input, {
         name = "GetVpcEndpointServiceName",
-        input_schema = types.GetVpcEndpointServiceNameInput,
-        output_schema = types.GetVpcEndpointServiceNameOutput,
+        input_schema = schemas.GetVpcEndpointServiceNameInput,
+        output_schema = schemas.GetVpcEndpointServiceNameOutput,
         http_method = "GET",
         http_path = "/clusters/{identifier}/vpc-endpoint-service-name",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listClusters(input, options)
     return self:invokeOperation(input, {
         name = "ListClusters",
-        input_schema = types.ListClustersInput,
-        output_schema = types.ListClustersOutput,
+        input_schema = schemas.ListClustersInput,
+        output_schema = schemas.ListClustersOutput,
         http_method = "GET",
         http_path = "/cluster",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:putClusterPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutClusterPolicy",
-        input_schema = types.PutClusterPolicyInput,
-        output_schema = types.PutClusterPolicyOutput,
+        input_schema = schemas.PutClusterPolicyInput,
+        output_schema = schemas.PutClusterPolicyOutput,
         http_method = "POST",
         http_path = "/cluster/{identifier}/policy",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:updateCluster(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCluster",
-        input_schema = types.UpdateClusterInput,
-        output_schema = types.UpdateClusterOutput,
+        input_schema = schemas.UpdateClusterInput,
+        output_schema = schemas.UpdateClusterOutput,
         http_method = "POST",
         http_path = "/cluster/{identifier}",
         effective_auth_schemes = {

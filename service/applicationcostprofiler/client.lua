@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("applicationcostprofiler.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("applicationcostprofiler.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("applicationcostprofiler.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:deleteReportDefinition(input, options)
     return self:invokeOperation(input, {
         name = "DeleteReportDefinition",
-        input_schema = types.DeleteReportDefinitionInput,
-        output_schema = types.DeleteReportDefinitionOutput,
+        input_schema = schemas.DeleteReportDefinitionInput,
+        output_schema = schemas.DeleteReportDefinitionOutput,
         http_method = "DELETE",
         http_path = "/reportDefinition/{reportId}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:getReportDefinition(input, options)
     return self:invokeOperation(input, {
         name = "GetReportDefinition",
-        input_schema = types.GetReportDefinitionInput,
-        output_schema = types.GetReportDefinitionOutput,
+        input_schema = schemas.GetReportDefinitionInput,
+        output_schema = schemas.GetReportDefinitionOutput,
         http_method = "GET",
         http_path = "/reportDefinition/{reportId}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:importApplicationUsage(input, options)
     return self:invokeOperation(input, {
         name = "ImportApplicationUsage",
-        input_schema = types.ImportApplicationUsageInput,
-        output_schema = types.ImportApplicationUsageOutput,
+        input_schema = schemas.ImportApplicationUsageInput,
+        output_schema = schemas.ImportApplicationUsageOutput,
         http_method = "POST",
         http_path = "/importApplicationUsage",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:listReportDefinitions(input, options)
     return self:invokeOperation(input, {
         name = "ListReportDefinitions",
-        input_schema = types.ListReportDefinitionsInput,
-        output_schema = types.ListReportDefinitionsOutput,
+        input_schema = schemas.ListReportDefinitionsInput,
+        output_schema = schemas.ListReportDefinitionsOutput,
         http_method = "GET",
         http_path = "/reportDefinition",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:putReportDefinition(input, options)
     return self:invokeOperation(input, {
         name = "PutReportDefinition",
-        input_schema = types.PutReportDefinitionInput,
-        output_schema = types.PutReportDefinitionOutput,
+        input_schema = schemas.PutReportDefinitionInput,
+        output_schema = schemas.PutReportDefinitionOutput,
         http_method = "POST",
         http_path = "/reportDefinition",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:updateReportDefinition(input, options)
     return self:invokeOperation(input, {
         name = "UpdateReportDefinition",
-        input_schema = types.UpdateReportDefinitionInput,
-        output_schema = types.UpdateReportDefinitionOutput,
+        input_schema = schemas.UpdateReportDefinitionInput,
+        output_schema = schemas.UpdateReportDefinitionOutput,
         http_method = "PUT",
         http_path = "/reportDefinition/{reportId}",
         effective_auth_schemes = {

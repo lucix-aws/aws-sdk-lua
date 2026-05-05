@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("rolesanywhere.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("rolesanywhere.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("rolesanywhere.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createProfile(input, options)
     return self:invokeOperation(input, {
         name = "CreateProfile",
-        input_schema = types.CreateProfileInput,
-        output_schema = types.CreateProfileOutput,
+        input_schema = schemas.CreateProfileInput,
+        output_schema = schemas.CreateProfileOutput,
         http_method = "POST",
         http_path = "/profiles",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createTrustAnchor(input, options)
     return self:invokeOperation(input, {
         name = "CreateTrustAnchor",
-        input_schema = types.CreateTrustAnchorInput,
-        output_schema = types.CreateTrustAnchorOutput,
+        input_schema = schemas.CreateTrustAnchorInput,
+        output_schema = schemas.CreateTrustAnchorOutput,
         http_method = "POST",
         http_path = "/trustanchors",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteAttributeMapping(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAttributeMapping",
-        input_schema = types.DeleteAttributeMappingInput,
-        output_schema = types.DeleteAttributeMappingOutput,
+        input_schema = schemas.DeleteAttributeMappingInput,
+        output_schema = schemas.DeleteAttributeMappingOutput,
         http_method = "DELETE",
         http_path = "/profiles/{profileId}/mappings",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteCrl(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCrl",
-        input_schema = types.DeleteCrlInput,
-        output_schema = types.DeleteCrlOutput,
+        input_schema = schemas.DeleteCrlInput,
+        output_schema = schemas.DeleteCrlOutput,
         http_method = "DELETE",
         http_path = "/crl/{crlId}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteProfile(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProfile",
-        input_schema = types.DeleteProfileInput,
-        output_schema = types.DeleteProfileOutput,
+        input_schema = schemas.DeleteProfileInput,
+        output_schema = schemas.DeleteProfileOutput,
         http_method = "DELETE",
         http_path = "/profile/{profileId}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteTrustAnchor(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTrustAnchor",
-        input_schema = types.DeleteTrustAnchorInput,
-        output_schema = types.DeleteTrustAnchorOutput,
+        input_schema = schemas.DeleteTrustAnchorInput,
+        output_schema = schemas.DeleteTrustAnchorOutput,
         http_method = "DELETE",
         http_path = "/trustanchor/{trustAnchorId}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:disableCrl(input, options)
     return self:invokeOperation(input, {
         name = "DisableCrl",
-        input_schema = types.DisableCrlInput,
-        output_schema = types.DisableCrlOutput,
+        input_schema = schemas.DisableCrlInput,
+        output_schema = schemas.DisableCrlOutput,
         http_method = "POST",
         http_path = "/crl/{crlId}/disable",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:disableProfile(input, options)
     return self:invokeOperation(input, {
         name = "DisableProfile",
-        input_schema = types.DisableProfileInput,
-        output_schema = types.DisableProfileOutput,
+        input_schema = schemas.DisableProfileInput,
+        output_schema = schemas.DisableProfileOutput,
         http_method = "POST",
         http_path = "/profile/{profileId}/disable",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:disableTrustAnchor(input, options)
     return self:invokeOperation(input, {
         name = "DisableTrustAnchor",
-        input_schema = types.DisableTrustAnchorInput,
-        output_schema = types.DisableTrustAnchorOutput,
+        input_schema = schemas.DisableTrustAnchorInput,
+        output_schema = schemas.DisableTrustAnchorOutput,
         http_method = "POST",
         http_path = "/trustanchor/{trustAnchorId}/disable",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:enableCrl(input, options)
     return self:invokeOperation(input, {
         name = "EnableCrl",
-        input_schema = types.EnableCrlInput,
-        output_schema = types.EnableCrlOutput,
+        input_schema = schemas.EnableCrlInput,
+        output_schema = schemas.EnableCrlOutput,
         http_method = "POST",
         http_path = "/crl/{crlId}/enable",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:enableProfile(input, options)
     return self:invokeOperation(input, {
         name = "EnableProfile",
-        input_schema = types.EnableProfileInput,
-        output_schema = types.EnableProfileOutput,
+        input_schema = schemas.EnableProfileInput,
+        output_schema = schemas.EnableProfileOutput,
         http_method = "POST",
         http_path = "/profile/{profileId}/enable",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:enableTrustAnchor(input, options)
     return self:invokeOperation(input, {
         name = "EnableTrustAnchor",
-        input_schema = types.EnableTrustAnchorInput,
-        output_schema = types.EnableTrustAnchorOutput,
+        input_schema = schemas.EnableTrustAnchorInput,
+        output_schema = schemas.EnableTrustAnchorOutput,
         http_method = "POST",
         http_path = "/trustanchor/{trustAnchorId}/enable",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getCrl(input, options)
     return self:invokeOperation(input, {
         name = "GetCrl",
-        input_schema = types.GetCrlInput,
-        output_schema = types.GetCrlOutput,
+        input_schema = schemas.GetCrlInput,
+        output_schema = schemas.GetCrlOutput,
         http_method = "GET",
         http_path = "/crl/{crlId}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getProfile(input, options)
     return self:invokeOperation(input, {
         name = "GetProfile",
-        input_schema = types.GetProfileInput,
-        output_schema = types.GetProfileOutput,
+        input_schema = schemas.GetProfileInput,
+        output_schema = schemas.GetProfileOutput,
         http_method = "GET",
         http_path = "/profile/{profileId}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getSubject(input, options)
     return self:invokeOperation(input, {
         name = "GetSubject",
-        input_schema = types.GetSubjectInput,
-        output_schema = types.GetSubjectOutput,
+        input_schema = schemas.GetSubjectInput,
+        output_schema = schemas.GetSubjectOutput,
         http_method = "GET",
         http_path = "/subject/{subjectId}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getTrustAnchor(input, options)
     return self:invokeOperation(input, {
         name = "GetTrustAnchor",
-        input_schema = types.GetTrustAnchorInput,
-        output_schema = types.GetTrustAnchorOutput,
+        input_schema = schemas.GetTrustAnchorInput,
+        output_schema = schemas.GetTrustAnchorOutput,
         http_method = "GET",
         http_path = "/trustanchor/{trustAnchorId}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:importCrl(input, options)
     return self:invokeOperation(input, {
         name = "ImportCrl",
-        input_schema = types.ImportCrlInput,
-        output_schema = types.ImportCrlOutput,
+        input_schema = schemas.ImportCrlInput,
+        output_schema = schemas.ImportCrlOutput,
         http_method = "POST",
         http_path = "/crls",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listCrls(input, options)
     return self:invokeOperation(input, {
         name = "ListCrls",
-        input_schema = types.ListCrlsInput,
-        output_schema = types.ListCrlsOutput,
+        input_schema = schemas.ListCrlsInput,
+        output_schema = schemas.ListCrlsOutput,
         http_method = "GET",
         http_path = "/crls",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listProfiles(input, options)
     return self:invokeOperation(input, {
         name = "ListProfiles",
-        input_schema = types.ListProfilesInput,
-        output_schema = types.ListProfilesOutput,
+        input_schema = schemas.ListProfilesInput,
+        output_schema = schemas.ListProfilesOutput,
         http_method = "GET",
         http_path = "/profiles",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listSubjects(input, options)
     return self:invokeOperation(input, {
         name = "ListSubjects",
-        input_schema = types.ListSubjectsInput,
-        output_schema = types.ListSubjectsOutput,
+        input_schema = schemas.ListSubjectsInput,
+        output_schema = schemas.ListSubjectsOutput,
         http_method = "GET",
         http_path = "/subjects",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/ListTagsForResource",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listTrustAnchors(input, options)
     return self:invokeOperation(input, {
         name = "ListTrustAnchors",
-        input_schema = types.ListTrustAnchorsInput,
-        output_schema = types.ListTrustAnchorsOutput,
+        input_schema = schemas.ListTrustAnchorsInput,
+        output_schema = schemas.ListTrustAnchorsOutput,
         http_method = "GET",
         http_path = "/trustanchors",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:putAttributeMapping(input, options)
     return self:invokeOperation(input, {
         name = "PutAttributeMapping",
-        input_schema = types.PutAttributeMappingInput,
-        output_schema = types.PutAttributeMappingOutput,
+        input_schema = schemas.PutAttributeMappingInput,
+        output_schema = schemas.PutAttributeMappingOutput,
         http_method = "PUT",
         http_path = "/profiles/{profileId}/mappings",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:putNotificationSettings(input, options)
     return self:invokeOperation(input, {
         name = "PutNotificationSettings",
-        input_schema = types.PutNotificationSettingsInput,
-        output_schema = types.PutNotificationSettingsOutput,
+        input_schema = schemas.PutNotificationSettingsInput,
+        output_schema = schemas.PutNotificationSettingsOutput,
         http_method = "PATCH",
         http_path = "/put-notifications-settings",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:resetNotificationSettings(input, options)
     return self:invokeOperation(input, {
         name = "ResetNotificationSettings",
-        input_schema = types.ResetNotificationSettingsInput,
-        output_schema = types.ResetNotificationSettingsOutput,
+        input_schema = schemas.ResetNotificationSettingsInput,
+        output_schema = schemas.ResetNotificationSettingsOutput,
         http_method = "PATCH",
         http_path = "/reset-notifications-settings",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/TagResource",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/UntagResource",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:updateCrl(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCrl",
-        input_schema = types.UpdateCrlInput,
-        output_schema = types.UpdateCrlOutput,
+        input_schema = schemas.UpdateCrlInput,
+        output_schema = schemas.UpdateCrlOutput,
         http_method = "PATCH",
         http_path = "/crl/{crlId}",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:updateProfile(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProfile",
-        input_schema = types.UpdateProfileInput,
-        output_schema = types.UpdateProfileOutput,
+        input_schema = schemas.UpdateProfileInput,
+        output_schema = schemas.UpdateProfileOutput,
         http_method = "PATCH",
         http_path = "/profile/{profileId}",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:updateTrustAnchor(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTrustAnchor",
-        input_schema = types.UpdateTrustAnchorInput,
-        output_schema = types.UpdateTrustAnchorOutput,
+        input_schema = schemas.UpdateTrustAnchorInput,
+        output_schema = schemas.UpdateTrustAnchorOutput,
         http_method = "PATCH",
         http_path = "/trustanchor/{trustAnchorId}",
         effective_auth_schemes = {

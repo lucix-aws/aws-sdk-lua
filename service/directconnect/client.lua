@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("directconnect.endpoint_rules")
+local schemas = require("directconnect.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("directconnect.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptDirectConnectGatewayAssociationProposal(input, options)
     return self:invokeOperation(input, {
         name = "AcceptDirectConnectGatewayAssociationProposal",
-        input_schema = types.AcceptDirectConnectGatewayAssociationProposalInput,
-        output_schema = types.AcceptDirectConnectGatewayAssociationProposalOutput,
+        input_schema = schemas.AcceptDirectConnectGatewayAssociationProposalInput,
+        output_schema = schemas.AcceptDirectConnectGatewayAssociationProposalOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:allocateConnectionOnInterconnect(input, options)
     return self:invokeOperation(input, {
         name = "AllocateConnectionOnInterconnect",
-        input_schema = types.AllocateConnectionOnInterconnectInput,
-        output_schema = types.AllocateConnectionOnInterconnectOutput,
+        input_schema = schemas.AllocateConnectionOnInterconnectInput,
+        output_schema = schemas.AllocateConnectionOnInterconnectOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:allocateHostedConnection(input, options)
     return self:invokeOperation(input, {
         name = "AllocateHostedConnection",
-        input_schema = types.AllocateHostedConnectionInput,
-        output_schema = types.AllocateHostedConnectionOutput,
+        input_schema = schemas.AllocateHostedConnectionInput,
+        output_schema = schemas.AllocateHostedConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:allocatePrivateVirtualInterface(input, options)
     return self:invokeOperation(input, {
         name = "AllocatePrivateVirtualInterface",
-        input_schema = types.AllocatePrivateVirtualInterfaceInput,
-        output_schema = types.AllocatePrivateVirtualInterfaceOutput,
+        input_schema = schemas.AllocatePrivateVirtualInterfaceInput,
+        output_schema = schemas.AllocatePrivateVirtualInterfaceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:allocatePublicVirtualInterface(input, options)
     return self:invokeOperation(input, {
         name = "AllocatePublicVirtualInterface",
-        input_schema = types.AllocatePublicVirtualInterfaceInput,
-        output_schema = types.AllocatePublicVirtualInterfaceOutput,
+        input_schema = schemas.AllocatePublicVirtualInterfaceInput,
+        output_schema = schemas.AllocatePublicVirtualInterfaceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:allocateTransitVirtualInterface(input, options)
     return self:invokeOperation(input, {
         name = "AllocateTransitVirtualInterface",
-        input_schema = types.AllocateTransitVirtualInterfaceInput,
-        output_schema = types.AllocateTransitVirtualInterfaceOutput,
+        input_schema = schemas.AllocateTransitVirtualInterfaceInput,
+        output_schema = schemas.AllocateTransitVirtualInterfaceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:associateConnectionWithLag(input, options)
     return self:invokeOperation(input, {
         name = "AssociateConnectionWithLag",
-        input_schema = types.AssociateConnectionWithLagInput,
-        output_schema = types.AssociateConnectionWithLagOutput,
+        input_schema = schemas.AssociateConnectionWithLagInput,
+        output_schema = schemas.AssociateConnectionWithLagOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:associateHostedConnection(input, options)
     return self:invokeOperation(input, {
         name = "AssociateHostedConnection",
-        input_schema = types.AssociateHostedConnectionInput,
-        output_schema = types.AssociateHostedConnectionOutput,
+        input_schema = schemas.AssociateHostedConnectionInput,
+        output_schema = schemas.AssociateHostedConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:associateMacSecKey(input, options)
     return self:invokeOperation(input, {
         name = "AssociateMacSecKey",
-        input_schema = types.AssociateMacSecKeyInput,
-        output_schema = types.AssociateMacSecKeyOutput,
+        input_schema = schemas.AssociateMacSecKeyInput,
+        output_schema = schemas.AssociateMacSecKeyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:associateVirtualInterface(input, options)
     return self:invokeOperation(input, {
         name = "AssociateVirtualInterface",
-        input_schema = types.AssociateVirtualInterfaceInput,
-        output_schema = types.AssociateVirtualInterfaceOutput,
+        input_schema = schemas.AssociateVirtualInterfaceInput,
+        output_schema = schemas.AssociateVirtualInterfaceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:confirmConnection(input, options)
     return self:invokeOperation(input, {
         name = "ConfirmConnection",
-        input_schema = types.ConfirmConnectionInput,
-        output_schema = types.ConfirmConnectionOutput,
+        input_schema = schemas.ConfirmConnectionInput,
+        output_schema = schemas.ConfirmConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:confirmCustomerAgreement(input, options)
     return self:invokeOperation(input, {
         name = "ConfirmCustomerAgreement",
-        input_schema = types.ConfirmCustomerAgreementInput,
-        output_schema = types.ConfirmCustomerAgreementOutput,
+        input_schema = schemas.ConfirmCustomerAgreementInput,
+        output_schema = schemas.ConfirmCustomerAgreementOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:confirmPrivateVirtualInterface(input, options)
     return self:invokeOperation(input, {
         name = "ConfirmPrivateVirtualInterface",
-        input_schema = types.ConfirmPrivateVirtualInterfaceInput,
-        output_schema = types.ConfirmPrivateVirtualInterfaceOutput,
+        input_schema = schemas.ConfirmPrivateVirtualInterfaceInput,
+        output_schema = schemas.ConfirmPrivateVirtualInterfaceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:confirmPublicVirtualInterface(input, options)
     return self:invokeOperation(input, {
         name = "ConfirmPublicVirtualInterface",
-        input_schema = types.ConfirmPublicVirtualInterfaceInput,
-        output_schema = types.ConfirmPublicVirtualInterfaceOutput,
+        input_schema = schemas.ConfirmPublicVirtualInterfaceInput,
+        output_schema = schemas.ConfirmPublicVirtualInterfaceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:confirmTransitVirtualInterface(input, options)
     return self:invokeOperation(input, {
         name = "ConfirmTransitVirtualInterface",
-        input_schema = types.ConfirmTransitVirtualInterfaceInput,
-        output_schema = types.ConfirmTransitVirtualInterfaceOutput,
+        input_schema = schemas.ConfirmTransitVirtualInterfaceInput,
+        output_schema = schemas.ConfirmTransitVirtualInterfaceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:createBGPPeer(input, options)
     return self:invokeOperation(input, {
         name = "CreateBGPPeer",
-        input_schema = types.CreateBGPPeerInput,
-        output_schema = types.CreateBGPPeerOutput,
+        input_schema = schemas.CreateBGPPeerInput,
+        output_schema = schemas.CreateBGPPeerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:createConnection(input, options)
     return self:invokeOperation(input, {
         name = "CreateConnection",
-        input_schema = types.CreateConnectionInput,
-        output_schema = types.CreateConnectionOutput,
+        input_schema = schemas.CreateConnectionInput,
+        output_schema = schemas.CreateConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:createDirectConnectGateway(input, options)
     return self:invokeOperation(input, {
         name = "CreateDirectConnectGateway",
-        input_schema = types.CreateDirectConnectGatewayInput,
-        output_schema = types.CreateDirectConnectGatewayOutput,
+        input_schema = schemas.CreateDirectConnectGatewayInput,
+        output_schema = schemas.CreateDirectConnectGatewayOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:createDirectConnectGatewayAssociation(input, options)
     return self:invokeOperation(input, {
         name = "CreateDirectConnectGatewayAssociation",
-        input_schema = types.CreateDirectConnectGatewayAssociationInput,
-        output_schema = types.CreateDirectConnectGatewayAssociationOutput,
+        input_schema = schemas.CreateDirectConnectGatewayAssociationInput,
+        output_schema = schemas.CreateDirectConnectGatewayAssociationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:createDirectConnectGatewayAssociationProposal(input, options)
     return self:invokeOperation(input, {
         name = "CreateDirectConnectGatewayAssociationProposal",
-        input_schema = types.CreateDirectConnectGatewayAssociationProposalInput,
-        output_schema = types.CreateDirectConnectGatewayAssociationProposalOutput,
+        input_schema = schemas.CreateDirectConnectGatewayAssociationProposalInput,
+        output_schema = schemas.CreateDirectConnectGatewayAssociationProposalOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:createInterconnect(input, options)
     return self:invokeOperation(input, {
         name = "CreateInterconnect",
-        input_schema = types.CreateInterconnectInput,
-        output_schema = types.CreateInterconnectOutput,
+        input_schema = schemas.CreateInterconnectInput,
+        output_schema = schemas.CreateInterconnectOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:createLag(input, options)
     return self:invokeOperation(input, {
         name = "CreateLag",
-        input_schema = types.CreateLagInput,
-        output_schema = types.CreateLagOutput,
+        input_schema = schemas.CreateLagInput,
+        output_schema = schemas.CreateLagOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:createPrivateVirtualInterface(input, options)
     return self:invokeOperation(input, {
         name = "CreatePrivateVirtualInterface",
-        input_schema = types.CreatePrivateVirtualInterfaceInput,
-        output_schema = types.CreatePrivateVirtualInterfaceOutput,
+        input_schema = schemas.CreatePrivateVirtualInterfaceInput,
+        output_schema = schemas.CreatePrivateVirtualInterfaceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:createPublicVirtualInterface(input, options)
     return self:invokeOperation(input, {
         name = "CreatePublicVirtualInterface",
-        input_schema = types.CreatePublicVirtualInterfaceInput,
-        output_schema = types.CreatePublicVirtualInterfaceOutput,
+        input_schema = schemas.CreatePublicVirtualInterfaceInput,
+        output_schema = schemas.CreatePublicVirtualInterfaceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:createTransitVirtualInterface(input, options)
     return self:invokeOperation(input, {
         name = "CreateTransitVirtualInterface",
-        input_schema = types.CreateTransitVirtualInterfaceInput,
-        output_schema = types.CreateTransitVirtualInterfaceOutput,
+        input_schema = schemas.CreateTransitVirtualInterfaceInput,
+        output_schema = schemas.CreateTransitVirtualInterfaceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:deleteBGPPeer(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBGPPeer",
-        input_schema = types.DeleteBGPPeerInput,
-        output_schema = types.DeleteBGPPeerOutput,
+        input_schema = schemas.DeleteBGPPeerInput,
+        output_schema = schemas.DeleteBGPPeerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:deleteConnection(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConnection",
-        input_schema = types.DeleteConnectionInput,
-        output_schema = types.DeleteConnectionOutput,
+        input_schema = schemas.DeleteConnectionInput,
+        output_schema = schemas.DeleteConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:deleteDirectConnectGateway(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDirectConnectGateway",
-        input_schema = types.DeleteDirectConnectGatewayInput,
-        output_schema = types.DeleteDirectConnectGatewayOutput,
+        input_schema = schemas.DeleteDirectConnectGatewayInput,
+        output_schema = schemas.DeleteDirectConnectGatewayOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:deleteDirectConnectGatewayAssociation(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDirectConnectGatewayAssociation",
-        input_schema = types.DeleteDirectConnectGatewayAssociationInput,
-        output_schema = types.DeleteDirectConnectGatewayAssociationOutput,
+        input_schema = schemas.DeleteDirectConnectGatewayAssociationInput,
+        output_schema = schemas.DeleteDirectConnectGatewayAssociationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:deleteDirectConnectGatewayAssociationProposal(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDirectConnectGatewayAssociationProposal",
-        input_schema = types.DeleteDirectConnectGatewayAssociationProposalInput,
-        output_schema = types.DeleteDirectConnectGatewayAssociationProposalOutput,
+        input_schema = schemas.DeleteDirectConnectGatewayAssociationProposalInput,
+        output_schema = schemas.DeleteDirectConnectGatewayAssociationProposalOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:deleteInterconnect(input, options)
     return self:invokeOperation(input, {
         name = "DeleteInterconnect",
-        input_schema = types.DeleteInterconnectInput,
-        output_schema = types.DeleteInterconnectOutput,
+        input_schema = schemas.DeleteInterconnectInput,
+        output_schema = schemas.DeleteInterconnectOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:deleteLag(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLag",
-        input_schema = types.DeleteLagInput,
-        output_schema = types.DeleteLagOutput,
+        input_schema = schemas.DeleteLagInput,
+        output_schema = schemas.DeleteLagOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:deleteVirtualInterface(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVirtualInterface",
-        input_schema = types.DeleteVirtualInterfaceInput,
-        output_schema = types.DeleteVirtualInterfaceOutput,
+        input_schema = schemas.DeleteVirtualInterfaceInput,
+        output_schema = schemas.DeleteVirtualInterfaceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:describeConnectionLoa(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConnectionLoa",
-        input_schema = types.DescribeConnectionLoaInput,
-        output_schema = types.DescribeConnectionLoaOutput,
+        input_schema = schemas.DescribeConnectionLoaInput,
+        output_schema = schemas.DescribeConnectionLoaOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:describeConnections(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConnections",
-        input_schema = types.DescribeConnectionsInput,
-        output_schema = types.DescribeConnectionsOutput,
+        input_schema = schemas.DescribeConnectionsInput,
+        output_schema = schemas.DescribeConnectionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:describeConnectionsOnInterconnect(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConnectionsOnInterconnect",
-        input_schema = types.DescribeConnectionsOnInterconnectInput,
-        output_schema = types.DescribeConnectionsOnInterconnectOutput,
+        input_schema = schemas.DescribeConnectionsOnInterconnectInput,
+        output_schema = schemas.DescribeConnectionsOnInterconnectOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:describeCustomerMetadata(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCustomerMetadata",
-        input_schema = types.DescribeCustomerMetadataInput,
-        output_schema = types.DescribeCustomerMetadataOutput,
+        input_schema = schemas.DescribeCustomerMetadataInput,
+        output_schema = schemas.DescribeCustomerMetadataOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:describeDirectConnectGatewayAssociationProposals(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDirectConnectGatewayAssociationProposals",
-        input_schema = types.DescribeDirectConnectGatewayAssociationProposalsInput,
-        output_schema = types.DescribeDirectConnectGatewayAssociationProposalsOutput,
+        input_schema = schemas.DescribeDirectConnectGatewayAssociationProposalsInput,
+        output_schema = schemas.DescribeDirectConnectGatewayAssociationProposalsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:describeDirectConnectGatewayAssociations(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDirectConnectGatewayAssociations",
-        input_schema = types.DescribeDirectConnectGatewayAssociationsInput,
-        output_schema = types.DescribeDirectConnectGatewayAssociationsOutput,
+        input_schema = schemas.DescribeDirectConnectGatewayAssociationsInput,
+        output_schema = schemas.DescribeDirectConnectGatewayAssociationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:describeDirectConnectGatewayAttachments(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDirectConnectGatewayAttachments",
-        input_schema = types.DescribeDirectConnectGatewayAttachmentsInput,
-        output_schema = types.DescribeDirectConnectGatewayAttachmentsOutput,
+        input_schema = schemas.DescribeDirectConnectGatewayAttachmentsInput,
+        output_schema = schemas.DescribeDirectConnectGatewayAttachmentsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:describeDirectConnectGateways(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDirectConnectGateways",
-        input_schema = types.DescribeDirectConnectGatewaysInput,
-        output_schema = types.DescribeDirectConnectGatewaysOutput,
+        input_schema = schemas.DescribeDirectConnectGatewaysInput,
+        output_schema = schemas.DescribeDirectConnectGatewaysOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:describeHostedConnections(input, options)
     return self:invokeOperation(input, {
         name = "DescribeHostedConnections",
-        input_schema = types.DescribeHostedConnectionsInput,
-        output_schema = types.DescribeHostedConnectionsOutput,
+        input_schema = schemas.DescribeHostedConnectionsInput,
+        output_schema = schemas.DescribeHostedConnectionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:describeInterconnectLoa(input, options)
     return self:invokeOperation(input, {
         name = "DescribeInterconnectLoa",
-        input_schema = types.DescribeInterconnectLoaInput,
-        output_schema = types.DescribeInterconnectLoaOutput,
+        input_schema = schemas.DescribeInterconnectLoaInput,
+        output_schema = schemas.DescribeInterconnectLoaOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:describeInterconnects(input, options)
     return self:invokeOperation(input, {
         name = "DescribeInterconnects",
-        input_schema = types.DescribeInterconnectsInput,
-        output_schema = types.DescribeInterconnectsOutput,
+        input_schema = schemas.DescribeInterconnectsInput,
+        output_schema = schemas.DescribeInterconnectsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:describeLags(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLags",
-        input_schema = types.DescribeLagsInput,
-        output_schema = types.DescribeLagsOutput,
+        input_schema = schemas.DescribeLagsInput,
+        output_schema = schemas.DescribeLagsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:describeLoa(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLoa",
-        input_schema = types.DescribeLoaInput,
-        output_schema = types.DescribeLoaOutput,
+        input_schema = schemas.DescribeLoaInput,
+        output_schema = schemas.DescribeLoaOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:describeLocations(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLocations",
-        input_schema = types.DescribeLocationsInput,
-        output_schema = types.DescribeLocationsOutput,
+        input_schema = schemas.DescribeLocationsInput,
+        output_schema = schemas.DescribeLocationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:describeRouterConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRouterConfiguration",
-        input_schema = types.DescribeRouterConfigurationInput,
-        output_schema = types.DescribeRouterConfigurationOutput,
+        input_schema = schemas.DescribeRouterConfigurationInput,
+        output_schema = schemas.DescribeRouterConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:describeTags(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTags",
-        input_schema = types.DescribeTagsInput,
-        output_schema = types.DescribeTagsOutput,
+        input_schema = schemas.DescribeTagsInput,
+        output_schema = schemas.DescribeTagsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:describeVirtualGateways(input, options)
     return self:invokeOperation(input, {
         name = "DescribeVirtualGateways",
-        input_schema = types.DescribeVirtualGatewaysInput,
-        output_schema = types.DescribeVirtualGatewaysOutput,
+        input_schema = schemas.DescribeVirtualGatewaysInput,
+        output_schema = schemas.DescribeVirtualGatewaysOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:describeVirtualInterfaces(input, options)
     return self:invokeOperation(input, {
         name = "DescribeVirtualInterfaces",
-        input_schema = types.DescribeVirtualInterfacesInput,
-        output_schema = types.DescribeVirtualInterfacesOutput,
+        input_schema = schemas.DescribeVirtualInterfacesInput,
+        output_schema = schemas.DescribeVirtualInterfacesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:disassociateConnectionFromLag(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateConnectionFromLag",
-        input_schema = types.DisassociateConnectionFromLagInput,
-        output_schema = types.DisassociateConnectionFromLagOutput,
+        input_schema = schemas.DisassociateConnectionFromLagInput,
+        output_schema = schemas.DisassociateConnectionFromLagOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:disassociateMacSecKey(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateMacSecKey",
-        input_schema = types.DisassociateMacSecKeyInput,
-        output_schema = types.DisassociateMacSecKeyOutput,
+        input_schema = schemas.DisassociateMacSecKeyInput,
+        output_schema = schemas.DisassociateMacSecKeyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:listVirtualInterfaceTestHistory(input, options)
     return self:invokeOperation(input, {
         name = "ListVirtualInterfaceTestHistory",
-        input_schema = types.ListVirtualInterfaceTestHistoryInput,
-        output_schema = types.ListVirtualInterfaceTestHistoryOutput,
+        input_schema = schemas.ListVirtualInterfaceTestHistoryInput,
+        output_schema = schemas.ListVirtualInterfaceTestHistoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:startBgpFailoverTest(input, options)
     return self:invokeOperation(input, {
         name = "StartBgpFailoverTest",
-        input_schema = types.StartBgpFailoverTestInput,
-        output_schema = types.StartBgpFailoverTestOutput,
+        input_schema = schemas.StartBgpFailoverTestInput,
+        output_schema = schemas.StartBgpFailoverTestOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:stopBgpFailoverTest(input, options)
     return self:invokeOperation(input, {
         name = "StopBgpFailoverTest",
-        input_schema = types.StopBgpFailoverTestInput,
-        output_schema = types.StopBgpFailoverTestOutput,
+        input_schema = schemas.StopBgpFailoverTestInput,
+        output_schema = schemas.StopBgpFailoverTestOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:updateConnection(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConnection",
-        input_schema = types.UpdateConnectionInput,
-        output_schema = types.UpdateConnectionOutput,
+        input_schema = schemas.UpdateConnectionInput,
+        output_schema = schemas.UpdateConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:updateDirectConnectGateway(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDirectConnectGateway",
-        input_schema = types.UpdateDirectConnectGatewayInput,
-        output_schema = types.UpdateDirectConnectGatewayOutput,
+        input_schema = schemas.UpdateDirectConnectGatewayInput,
+        output_schema = schemas.UpdateDirectConnectGatewayOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:updateDirectConnectGatewayAssociation(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDirectConnectGatewayAssociation",
-        input_schema = types.UpdateDirectConnectGatewayAssociationInput,
-        output_schema = types.UpdateDirectConnectGatewayAssociationOutput,
+        input_schema = schemas.UpdateDirectConnectGatewayAssociationInput,
+        output_schema = schemas.UpdateDirectConnectGatewayAssociationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:updateLag(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLag",
-        input_schema = types.UpdateLagInput,
-        output_schema = types.UpdateLagOutput,
+        input_schema = schemas.UpdateLagInput,
+        output_schema = schemas.UpdateLagOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:updateVirtualInterfaceAttributes(input, options)
     return self:invokeOperation(input, {
         name = "UpdateVirtualInterfaceAttributes",
-        input_schema = types.UpdateVirtualInterfaceAttributesInput,
-        output_schema = types.UpdateVirtualInterfaceAttributesOutput,
+        input_schema = schemas.UpdateVirtualInterfaceAttributesInput,
+        output_schema = schemas.UpdateVirtualInterfaceAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

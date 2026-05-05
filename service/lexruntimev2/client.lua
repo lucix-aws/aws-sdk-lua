@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("lexruntimev2.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("lexruntimev2.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("lexruntimev2.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:deleteSession(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSession",
-        input_schema = types.DeleteSessionInput,
-        output_schema = types.DeleteSessionOutput,
+        input_schema = schemas.DeleteSessionInput,
+        output_schema = schemas.DeleteSessionOutput,
         http_method = "DELETE",
         http_path = "/bots/{botId}/botAliases/{botAliasId}/botLocales/{localeId}/sessions/{sessionId}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:getSession(input, options)
     return self:invokeOperation(input, {
         name = "GetSession",
-        input_schema = types.GetSessionInput,
-        output_schema = types.GetSessionOutput,
+        input_schema = schemas.GetSessionInput,
+        output_schema = schemas.GetSessionOutput,
         http_method = "GET",
         http_path = "/bots/{botId}/botAliases/{botAliasId}/botLocales/{localeId}/sessions/{sessionId}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:putSession(input, options)
     return self:invokeOperation(input, {
         name = "PutSession",
-        input_schema = types.PutSessionInput,
-        output_schema = types.PutSessionOutput,
+        input_schema = schemas.PutSessionInput,
+        output_schema = schemas.PutSessionOutput,
         http_method = "POST",
         http_path = "/bots/{botId}/botAliases/{botAliasId}/botLocales/{localeId}/sessions/{sessionId}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:recognizeText(input, options)
     return self:invokeOperation(input, {
         name = "RecognizeText",
-        input_schema = types.RecognizeTextInput,
-        output_schema = types.RecognizeTextOutput,
+        input_schema = schemas.RecognizeTextInput,
+        output_schema = schemas.RecognizeTextOutput,
         http_method = "POST",
         http_path = "/bots/{botId}/botAliases/{botAliasId}/botLocales/{localeId}/sessions/{sessionId}/text",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:recognizeUtterance(input, options)
     return self:invokeOperation(input, {
         name = "RecognizeUtterance",
-        input_schema = types.RecognizeUtteranceInput,
-        output_schema = types.RecognizeUtteranceOutput,
+        input_schema = schemas.RecognizeUtteranceInput,
+        output_schema = schemas.RecognizeUtteranceOutput,
         http_method = "POST",
         http_path = "/bots/{botId}/botAliases/{botAliasId}/botLocales/{localeId}/sessions/{sessionId}/utterance",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("chatbot.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("chatbot.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("chatbot.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateToConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "AssociateToConfiguration",
-        input_schema = types.AssociateToConfigurationInput,
-        output_schema = types.AssociateToConfigurationOutput,
+        input_schema = schemas.AssociateToConfigurationInput,
+        output_schema = schemas.AssociateToConfigurationOutput,
         http_method = "POST",
         http_path = "/associate-to-configuration",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createChimeWebhookConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateChimeWebhookConfiguration",
-        input_schema = types.CreateChimeWebhookConfigurationInput,
-        output_schema = types.CreateChimeWebhookConfigurationOutput,
+        input_schema = schemas.CreateChimeWebhookConfigurationInput,
+        output_schema = schemas.CreateChimeWebhookConfigurationOutput,
         http_method = "POST",
         http_path = "/create-chime-webhook-configuration",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createCustomAction(input, options)
     return self:invokeOperation(input, {
         name = "CreateCustomAction",
-        input_schema = types.CreateCustomActionInput,
-        output_schema = types.CreateCustomActionOutput,
+        input_schema = schemas.CreateCustomActionInput,
+        output_schema = schemas.CreateCustomActionOutput,
         http_method = "POST",
         http_path = "/create-custom-action",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createMicrosoftTeamsChannelConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateMicrosoftTeamsChannelConfiguration",
-        input_schema = types.CreateMicrosoftTeamsChannelConfigurationInput,
-        output_schema = types.CreateMicrosoftTeamsChannelConfigurationOutput,
+        input_schema = schemas.CreateMicrosoftTeamsChannelConfigurationInput,
+        output_schema = schemas.CreateMicrosoftTeamsChannelConfigurationOutput,
         http_method = "POST",
         http_path = "/create-ms-teams-channel-configuration",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createSlackChannelConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateSlackChannelConfiguration",
-        input_schema = types.CreateSlackChannelConfigurationInput,
-        output_schema = types.CreateSlackChannelConfigurationOutput,
+        input_schema = schemas.CreateSlackChannelConfigurationInput,
+        output_schema = schemas.CreateSlackChannelConfigurationOutput,
         http_method = "POST",
         http_path = "/create-slack-channel-configuration",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteChimeWebhookConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteChimeWebhookConfiguration",
-        input_schema = types.DeleteChimeWebhookConfigurationInput,
-        output_schema = types.DeleteChimeWebhookConfigurationOutput,
+        input_schema = schemas.DeleteChimeWebhookConfigurationInput,
+        output_schema = schemas.DeleteChimeWebhookConfigurationOutput,
         http_method = "POST",
         http_path = "/delete-chime-webhook-configuration",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteCustomAction(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCustomAction",
-        input_schema = types.DeleteCustomActionInput,
-        output_schema = types.DeleteCustomActionOutput,
+        input_schema = schemas.DeleteCustomActionInput,
+        output_schema = schemas.DeleteCustomActionOutput,
         http_method = "POST",
         http_path = "/delete-custom-action",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteMicrosoftTeamsChannelConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMicrosoftTeamsChannelConfiguration",
-        input_schema = types.DeleteMicrosoftTeamsChannelConfigurationInput,
-        output_schema = types.DeleteMicrosoftTeamsChannelConfigurationOutput,
+        input_schema = schemas.DeleteMicrosoftTeamsChannelConfigurationInput,
+        output_schema = schemas.DeleteMicrosoftTeamsChannelConfigurationOutput,
         http_method = "POST",
         http_path = "/delete-ms-teams-channel-configuration",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteMicrosoftTeamsConfiguredTeam(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMicrosoftTeamsConfiguredTeam",
-        input_schema = types.DeleteMicrosoftTeamsConfiguredTeamInput,
-        output_schema = types.DeleteMicrosoftTeamsConfiguredTeamOutput,
+        input_schema = schemas.DeleteMicrosoftTeamsConfiguredTeamInput,
+        output_schema = schemas.DeleteMicrosoftTeamsConfiguredTeamOutput,
         http_method = "POST",
         http_path = "/delete-ms-teams-configured-teams",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteMicrosoftTeamsUserIdentity(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMicrosoftTeamsUserIdentity",
-        input_schema = types.DeleteMicrosoftTeamsUserIdentityInput,
-        output_schema = types.DeleteMicrosoftTeamsUserIdentityOutput,
+        input_schema = schemas.DeleteMicrosoftTeamsUserIdentityInput,
+        output_schema = schemas.DeleteMicrosoftTeamsUserIdentityOutput,
         http_method = "POST",
         http_path = "/delete-ms-teams-user-identity",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteSlackChannelConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSlackChannelConfiguration",
-        input_schema = types.DeleteSlackChannelConfigurationInput,
-        output_schema = types.DeleteSlackChannelConfigurationOutput,
+        input_schema = schemas.DeleteSlackChannelConfigurationInput,
+        output_schema = schemas.DeleteSlackChannelConfigurationOutput,
         http_method = "POST",
         http_path = "/delete-slack-channel-configuration",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteSlackUserIdentity(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSlackUserIdentity",
-        input_schema = types.DeleteSlackUserIdentityInput,
-        output_schema = types.DeleteSlackUserIdentityOutput,
+        input_schema = schemas.DeleteSlackUserIdentityInput,
+        output_schema = schemas.DeleteSlackUserIdentityOutput,
         http_method = "POST",
         http_path = "/delete-slack-user-identity",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteSlackWorkspaceAuthorization(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSlackWorkspaceAuthorization",
-        input_schema = types.DeleteSlackWorkspaceAuthorizationInput,
-        output_schema = types.DeleteSlackWorkspaceAuthorizationOutput,
+        input_schema = schemas.DeleteSlackWorkspaceAuthorizationInput,
+        output_schema = schemas.DeleteSlackWorkspaceAuthorizationOutput,
         http_method = "POST",
         http_path = "/delete-slack-workspace-authorization",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:describeChimeWebhookConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "DescribeChimeWebhookConfigurations",
-        input_schema = types.DescribeChimeWebhookConfigurationsInput,
-        output_schema = types.DescribeChimeWebhookConfigurationsOutput,
+        input_schema = schemas.DescribeChimeWebhookConfigurationsInput,
+        output_schema = schemas.DescribeChimeWebhookConfigurationsOutput,
         http_method = "POST",
         http_path = "/describe-chime-webhook-configurations",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:describeSlackChannelConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSlackChannelConfigurations",
-        input_schema = types.DescribeSlackChannelConfigurationsInput,
-        output_schema = types.DescribeSlackChannelConfigurationsOutput,
+        input_schema = schemas.DescribeSlackChannelConfigurationsInput,
+        output_schema = schemas.DescribeSlackChannelConfigurationsOutput,
         http_method = "POST",
         http_path = "/describe-slack-channel-configurations",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:describeSlackUserIdentities(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSlackUserIdentities",
-        input_schema = types.DescribeSlackUserIdentitiesInput,
-        output_schema = types.DescribeSlackUserIdentitiesOutput,
+        input_schema = schemas.DescribeSlackUserIdentitiesInput,
+        output_schema = schemas.DescribeSlackUserIdentitiesOutput,
         http_method = "POST",
         http_path = "/describe-slack-user-identities",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:describeSlackWorkspaces(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSlackWorkspaces",
-        input_schema = types.DescribeSlackWorkspacesInput,
-        output_schema = types.DescribeSlackWorkspacesOutput,
+        input_schema = schemas.DescribeSlackWorkspacesInput,
+        output_schema = schemas.DescribeSlackWorkspacesOutput,
         http_method = "POST",
         http_path = "/describe-slack-workspaces",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:disassociateFromConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateFromConfiguration",
-        input_schema = types.DisassociateFromConfigurationInput,
-        output_schema = types.DisassociateFromConfigurationOutput,
+        input_schema = schemas.DisassociateFromConfigurationInput,
+        output_schema = schemas.DisassociateFromConfigurationOutput,
         http_method = "POST",
         http_path = "/disassociate-from-configuration",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getAccountPreferences(input, options)
     return self:invokeOperation(input, {
         name = "GetAccountPreferences",
-        input_schema = types.GetAccountPreferencesInput,
-        output_schema = types.GetAccountPreferencesOutput,
+        input_schema = schemas.GetAccountPreferencesInput,
+        output_schema = schemas.GetAccountPreferencesOutput,
         http_method = "POST",
         http_path = "/get-account-preferences",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getCustomAction(input, options)
     return self:invokeOperation(input, {
         name = "GetCustomAction",
-        input_schema = types.GetCustomActionInput,
-        output_schema = types.GetCustomActionOutput,
+        input_schema = schemas.GetCustomActionInput,
+        output_schema = schemas.GetCustomActionOutput,
         http_method = "POST",
         http_path = "/get-custom-action",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:getMicrosoftTeamsChannelConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetMicrosoftTeamsChannelConfiguration",
-        input_schema = types.GetMicrosoftTeamsChannelConfigurationInput,
-        output_schema = types.GetMicrosoftTeamsChannelConfigurationOutput,
+        input_schema = schemas.GetMicrosoftTeamsChannelConfigurationInput,
+        output_schema = schemas.GetMicrosoftTeamsChannelConfigurationOutput,
         http_method = "POST",
         http_path = "/get-ms-teams-channel-configuration",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListAssociations",
-        input_schema = types.ListAssociationsInput,
-        output_schema = types.ListAssociationsOutput,
+        input_schema = schemas.ListAssociationsInput,
+        output_schema = schemas.ListAssociationsOutput,
         http_method = "POST",
         http_path = "/list-associations",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listCustomActions(input, options)
     return self:invokeOperation(input, {
         name = "ListCustomActions",
-        input_schema = types.ListCustomActionsInput,
-        output_schema = types.ListCustomActionsOutput,
+        input_schema = schemas.ListCustomActionsInput,
+        output_schema = schemas.ListCustomActionsOutput,
         http_method = "POST",
         http_path = "/list-custom-actions",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listMicrosoftTeamsChannelConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListMicrosoftTeamsChannelConfigurations",
-        input_schema = types.ListMicrosoftTeamsChannelConfigurationsInput,
-        output_schema = types.ListMicrosoftTeamsChannelConfigurationsOutput,
+        input_schema = schemas.ListMicrosoftTeamsChannelConfigurationsInput,
+        output_schema = schemas.ListMicrosoftTeamsChannelConfigurationsOutput,
         http_method = "POST",
         http_path = "/list-ms-teams-channel-configurations",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listMicrosoftTeamsConfiguredTeams(input, options)
     return self:invokeOperation(input, {
         name = "ListMicrosoftTeamsConfiguredTeams",
-        input_schema = types.ListMicrosoftTeamsConfiguredTeamsInput,
-        output_schema = types.ListMicrosoftTeamsConfiguredTeamsOutput,
+        input_schema = schemas.ListMicrosoftTeamsConfiguredTeamsInput,
+        output_schema = schemas.ListMicrosoftTeamsConfiguredTeamsOutput,
         http_method = "POST",
         http_path = "/list-ms-teams-configured-teams",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listMicrosoftTeamsUserIdentities(input, options)
     return self:invokeOperation(input, {
         name = "ListMicrosoftTeamsUserIdentities",
-        input_schema = types.ListMicrosoftTeamsUserIdentitiesInput,
-        output_schema = types.ListMicrosoftTeamsUserIdentitiesOutput,
+        input_schema = schemas.ListMicrosoftTeamsUserIdentitiesInput,
+        output_schema = schemas.ListMicrosoftTeamsUserIdentitiesOutput,
         http_method = "POST",
         http_path = "/list-ms-teams-user-identities",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/list-tags-for-resource",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tag-resource",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/untag-resource",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:updateAccountPreferences(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAccountPreferences",
-        input_schema = types.UpdateAccountPreferencesInput,
-        output_schema = types.UpdateAccountPreferencesOutput,
+        input_schema = schemas.UpdateAccountPreferencesInput,
+        output_schema = schemas.UpdateAccountPreferencesOutput,
         http_method = "POST",
         http_path = "/update-account-preferences",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:updateChimeWebhookConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateChimeWebhookConfiguration",
-        input_schema = types.UpdateChimeWebhookConfigurationInput,
-        output_schema = types.UpdateChimeWebhookConfigurationOutput,
+        input_schema = schemas.UpdateChimeWebhookConfigurationInput,
+        output_schema = schemas.UpdateChimeWebhookConfigurationOutput,
         http_method = "POST",
         http_path = "/update-chime-webhook-configuration",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:updateCustomAction(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCustomAction",
-        input_schema = types.UpdateCustomActionInput,
-        output_schema = types.UpdateCustomActionOutput,
+        input_schema = schemas.UpdateCustomActionInput,
+        output_schema = schemas.UpdateCustomActionOutput,
         http_method = "POST",
         http_path = "/update-custom-action",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:updateMicrosoftTeamsChannelConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMicrosoftTeamsChannelConfiguration",
-        input_schema = types.UpdateMicrosoftTeamsChannelConfigurationInput,
-        output_schema = types.UpdateMicrosoftTeamsChannelConfigurationOutput,
+        input_schema = schemas.UpdateMicrosoftTeamsChannelConfigurationInput,
+        output_schema = schemas.UpdateMicrosoftTeamsChannelConfigurationOutput,
         http_method = "POST",
         http_path = "/update-ms-teams-channel-configuration",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:updateSlackChannelConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSlackChannelConfiguration",
-        input_schema = types.UpdateSlackChannelConfigurationInput,
-        output_schema = types.UpdateSlackChannelConfigurationOutput,
+        input_schema = schemas.UpdateSlackChannelConfigurationInput,
+        output_schema = schemas.UpdateSlackChannelConfigurationOutput,
         http_method = "POST",
         http_path = "/update-slack-channel-configuration",
         effective_auth_schemes = {

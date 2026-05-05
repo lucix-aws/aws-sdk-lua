@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("customerprofiles.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("customerprofiles.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("customerprofiles.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addProfileKey(input, options)
     return self:invokeOperation(input, {
         name = "AddProfileKey",
-        input_schema = types.AddProfileKeyInput,
-        output_schema = types.AddProfileKeyOutput,
+        input_schema = schemas.AddProfileKeyInput,
+        output_schema = schemas.AddProfileKeyOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/profiles/keys",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchGetCalculatedAttributeForProfile(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetCalculatedAttributeForProfile",
-        input_schema = types.BatchGetCalculatedAttributeForProfileInput,
-        output_schema = types.BatchGetCalculatedAttributeForProfileOutput,
+        input_schema = schemas.BatchGetCalculatedAttributeForProfileInput,
+        output_schema = schemas.BatchGetCalculatedAttributeForProfileOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}/batch-get-for-profiles",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchGetProfile(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetProfile",
-        input_schema = types.BatchGetProfileInput,
-        output_schema = types.BatchGetProfileOutput,
+        input_schema = schemas.BatchGetProfileInput,
+        output_schema = schemas.BatchGetProfileOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/batch-get-profiles",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createCalculatedAttributeDefinition(input, options)
     return self:invokeOperation(input, {
         name = "CreateCalculatedAttributeDefinition",
-        input_schema = types.CreateCalculatedAttributeDefinitionInput,
-        output_schema = types.CreateCalculatedAttributeDefinitionOutput,
+        input_schema = schemas.CreateCalculatedAttributeDefinitionInput,
+        output_schema = schemas.CreateCalculatedAttributeDefinitionOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createDomain(input, options)
     return self:invokeOperation(input, {
         name = "CreateDomain",
-        input_schema = types.CreateDomainInput,
-        output_schema = types.CreateDomainOutput,
+        input_schema = schemas.CreateDomainInput,
+        output_schema = schemas.CreateDomainOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createDomainLayout(input, options)
     return self:invokeOperation(input, {
         name = "CreateDomainLayout",
-        input_schema = types.CreateDomainLayoutInput,
-        output_schema = types.CreateDomainLayoutOutput,
+        input_schema = schemas.CreateDomainLayoutInput,
+        output_schema = schemas.CreateDomainLayoutOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/layouts/{LayoutDefinitionName}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createEventStream(input, options)
     return self:invokeOperation(input, {
         name = "CreateEventStream",
-        input_schema = types.CreateEventStreamInput,
-        output_schema = types.CreateEventStreamOutput,
+        input_schema = schemas.CreateEventStreamInput,
+        output_schema = schemas.CreateEventStreamOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/event-streams/{EventStreamName}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createEventTrigger(input, options)
     return self:invokeOperation(input, {
         name = "CreateEventTrigger",
-        input_schema = types.CreateEventTriggerInput,
-        output_schema = types.CreateEventTriggerOutput,
+        input_schema = schemas.CreateEventTriggerInput,
+        output_schema = schemas.CreateEventTriggerOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/event-triggers/{EventTriggerName}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createIntegrationWorkflow(input, options)
     return self:invokeOperation(input, {
         name = "CreateIntegrationWorkflow",
-        input_schema = types.CreateIntegrationWorkflowInput,
-        output_schema = types.CreateIntegrationWorkflowOutput,
+        input_schema = schemas.CreateIntegrationWorkflowInput,
+        output_schema = schemas.CreateIntegrationWorkflowOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/workflows/integrations",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createProfile(input, options)
     return self:invokeOperation(input, {
         name = "CreateProfile",
-        input_schema = types.CreateProfileInput,
-        output_schema = types.CreateProfileOutput,
+        input_schema = schemas.CreateProfileInput,
+        output_schema = schemas.CreateProfileOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/profiles",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createRecommender(input, options)
     return self:invokeOperation(input, {
         name = "CreateRecommender",
-        input_schema = types.CreateRecommenderInput,
-        output_schema = types.CreateRecommenderOutput,
+        input_schema = schemas.CreateRecommenderInput,
+        output_schema = schemas.CreateRecommenderOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/recommenders/{RecommenderName}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createRecommenderFilter(input, options)
     return self:invokeOperation(input, {
         name = "CreateRecommenderFilter",
-        input_schema = types.CreateRecommenderFilterInput,
-        output_schema = types.CreateRecommenderFilterOutput,
+        input_schema = schemas.CreateRecommenderFilterInput,
+        output_schema = schemas.CreateRecommenderFilterOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/recommender-filters/{RecommenderFilterName}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createRecommenderSchema(input, options)
     return self:invokeOperation(input, {
         name = "CreateRecommenderSchema",
-        input_schema = types.CreateRecommenderSchemaInput,
-        output_schema = types.CreateRecommenderSchemaOutput,
+        input_schema = schemas.CreateRecommenderSchemaInput,
+        output_schema = schemas.CreateRecommenderSchemaOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/recommender-schemas/{RecommenderSchemaName}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:createSegmentDefinition(input, options)
     return self:invokeOperation(input, {
         name = "CreateSegmentDefinition",
-        input_schema = types.CreateSegmentDefinitionInput,
-        output_schema = types.CreateSegmentDefinitionOutput,
+        input_schema = schemas.CreateSegmentDefinitionInput,
+        output_schema = schemas.CreateSegmentDefinitionOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/segment-definitions/{SegmentDefinitionName}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:createSegmentEstimate(input, options)
     return self:invokeOperation(input, {
         name = "CreateSegmentEstimate",
-        input_schema = types.CreateSegmentEstimateInput,
-        output_schema = types.CreateSegmentEstimateOutput,
+        input_schema = schemas.CreateSegmentEstimateInput,
+        output_schema = schemas.CreateSegmentEstimateOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/segment-estimates",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:createSegmentSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "CreateSegmentSnapshot",
-        input_schema = types.CreateSegmentSnapshotInput,
-        output_schema = types.CreateSegmentSnapshotOutput,
+        input_schema = schemas.CreateSegmentSnapshotInput,
+        output_schema = schemas.CreateSegmentSnapshotOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/segments/{SegmentDefinitionName}/snapshots",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:createUploadJob(input, options)
     return self:invokeOperation(input, {
         name = "CreateUploadJob",
-        input_schema = types.CreateUploadJobInput,
-        output_schema = types.CreateUploadJobOutput,
+        input_schema = schemas.CreateUploadJobInput,
+        output_schema = schemas.CreateUploadJobOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/upload-jobs",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteCalculatedAttributeDefinition(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCalculatedAttributeDefinition",
-        input_schema = types.DeleteCalculatedAttributeDefinitionInput,
-        output_schema = types.DeleteCalculatedAttributeDefinitionOutput,
+        input_schema = schemas.DeleteCalculatedAttributeDefinitionInput,
+        output_schema = schemas.DeleteCalculatedAttributeDefinitionOutput,
         http_method = "DELETE",
         http_path = "/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteDomain(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDomain",
-        input_schema = types.DeleteDomainInput,
-        output_schema = types.DeleteDomainOutput,
+        input_schema = schemas.DeleteDomainInput,
+        output_schema = schemas.DeleteDomainOutput,
         http_method = "DELETE",
         http_path = "/domains/{DomainName}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deleteDomainLayout(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDomainLayout",
-        input_schema = types.DeleteDomainLayoutInput,
-        output_schema = types.DeleteDomainLayoutOutput,
+        input_schema = schemas.DeleteDomainLayoutInput,
+        output_schema = schemas.DeleteDomainLayoutOutput,
         http_method = "DELETE",
         http_path = "/domains/{DomainName}/layouts/{LayoutDefinitionName}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteDomainObjectType(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDomainObjectType",
-        input_schema = types.DeleteDomainObjectTypeInput,
-        output_schema = types.DeleteDomainObjectTypeOutput,
+        input_schema = schemas.DeleteDomainObjectTypeInput,
+        output_schema = schemas.DeleteDomainObjectTypeOutput,
         http_method = "DELETE",
         http_path = "/domains/{DomainName}/domain-object-types/{ObjectTypeName}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:deleteEventStream(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEventStream",
-        input_schema = types.DeleteEventStreamInput,
-        output_schema = types.DeleteEventStreamOutput,
+        input_schema = schemas.DeleteEventStreamInput,
+        output_schema = schemas.DeleteEventStreamOutput,
         http_method = "DELETE",
         http_path = "/domains/{DomainName}/event-streams/{EventStreamName}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:deleteEventTrigger(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEventTrigger",
-        input_schema = types.DeleteEventTriggerInput,
-        output_schema = types.DeleteEventTriggerOutput,
+        input_schema = schemas.DeleteEventTriggerInput,
+        output_schema = schemas.DeleteEventTriggerOutput,
         http_method = "DELETE",
         http_path = "/domains/{DomainName}/event-triggers/{EventTriggerName}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:deleteIntegration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIntegration",
-        input_schema = types.DeleteIntegrationInput,
-        output_schema = types.DeleteIntegrationOutput,
+        input_schema = schemas.DeleteIntegrationInput,
+        output_schema = schemas.DeleteIntegrationOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/integrations/delete",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:deleteProfile(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProfile",
-        input_schema = types.DeleteProfileInput,
-        output_schema = types.DeleteProfileOutput,
+        input_schema = schemas.DeleteProfileInput,
+        output_schema = schemas.DeleteProfileOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/profiles/delete",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:deleteProfileKey(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProfileKey",
-        input_schema = types.DeleteProfileKeyInput,
-        output_schema = types.DeleteProfileKeyOutput,
+        input_schema = schemas.DeleteProfileKeyInput,
+        output_schema = schemas.DeleteProfileKeyOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/profiles/keys/delete",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:deleteProfileObject(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProfileObject",
-        input_schema = types.DeleteProfileObjectInput,
-        output_schema = types.DeleteProfileObjectOutput,
+        input_schema = schemas.DeleteProfileObjectInput,
+        output_schema = schemas.DeleteProfileObjectOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/profiles/objects/delete",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:deleteProfileObjectType(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProfileObjectType",
-        input_schema = types.DeleteProfileObjectTypeInput,
-        output_schema = types.DeleteProfileObjectTypeOutput,
+        input_schema = schemas.DeleteProfileObjectTypeInput,
+        output_schema = schemas.DeleteProfileObjectTypeOutput,
         http_method = "DELETE",
         http_path = "/domains/{DomainName}/object-types/{ObjectTypeName}",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:deleteRecommender(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRecommender",
-        input_schema = types.DeleteRecommenderInput,
-        output_schema = types.DeleteRecommenderOutput,
+        input_schema = schemas.DeleteRecommenderInput,
+        output_schema = schemas.DeleteRecommenderOutput,
         http_method = "DELETE",
         http_path = "/domains/{DomainName}/recommenders/{RecommenderName}",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:deleteRecommenderFilter(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRecommenderFilter",
-        input_schema = types.DeleteRecommenderFilterInput,
-        output_schema = types.DeleteRecommenderFilterOutput,
+        input_schema = schemas.DeleteRecommenderFilterInput,
+        output_schema = schemas.DeleteRecommenderFilterOutput,
         http_method = "DELETE",
         http_path = "/domains/{DomainName}/recommender-filters/{RecommenderFilterName}",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:deleteRecommenderSchema(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRecommenderSchema",
-        input_schema = types.DeleteRecommenderSchemaInput,
-        output_schema = types.DeleteRecommenderSchemaOutput,
+        input_schema = schemas.DeleteRecommenderSchemaInput,
+        output_schema = schemas.DeleteRecommenderSchemaOutput,
         http_method = "DELETE",
         http_path = "/domains/{DomainName}/recommender-schemas/{RecommenderSchemaName}",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:deleteSegmentDefinition(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSegmentDefinition",
-        input_schema = types.DeleteSegmentDefinitionInput,
-        output_schema = types.DeleteSegmentDefinitionOutput,
+        input_schema = schemas.DeleteSegmentDefinitionInput,
+        output_schema = schemas.DeleteSegmentDefinitionOutput,
         http_method = "DELETE",
         http_path = "/domains/{DomainName}/segment-definitions/{SegmentDefinitionName}",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:deleteWorkflow(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWorkflow",
-        input_schema = types.DeleteWorkflowInput,
-        output_schema = types.DeleteWorkflowOutput,
+        input_schema = schemas.DeleteWorkflowInput,
+        output_schema = schemas.DeleteWorkflowOutput,
         http_method = "DELETE",
         http_path = "/domains/{DomainName}/workflows/{WorkflowId}",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:detectProfileObjectType(input, options)
     return self:invokeOperation(input, {
         name = "DetectProfileObjectType",
-        input_schema = types.DetectProfileObjectTypeInput,
-        output_schema = types.DetectProfileObjectTypeOutput,
+        input_schema = schemas.DetectProfileObjectTypeInput,
+        output_schema = schemas.DetectProfileObjectTypeOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/detect/object-types",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:getAutoMergingPreview(input, options)
     return self:invokeOperation(input, {
         name = "GetAutoMergingPreview",
-        input_schema = types.GetAutoMergingPreviewInput,
-        output_schema = types.GetAutoMergingPreviewOutput,
+        input_schema = schemas.GetAutoMergingPreviewInput,
+        output_schema = schemas.GetAutoMergingPreviewOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/identity-resolution-jobs/auto-merging-preview",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:getCalculatedAttributeDefinition(input, options)
     return self:invokeOperation(input, {
         name = "GetCalculatedAttributeDefinition",
-        input_schema = types.GetCalculatedAttributeDefinitionInput,
-        output_schema = types.GetCalculatedAttributeDefinitionOutput,
+        input_schema = schemas.GetCalculatedAttributeDefinitionInput,
+        output_schema = schemas.GetCalculatedAttributeDefinitionOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:getCalculatedAttributeForProfile(input, options)
     return self:invokeOperation(input, {
         name = "GetCalculatedAttributeForProfile",
-        input_schema = types.GetCalculatedAttributeForProfileInput,
-        output_schema = types.GetCalculatedAttributeForProfileOutput,
+        input_schema = schemas.GetCalculatedAttributeForProfileInput,
+        output_schema = schemas.GetCalculatedAttributeForProfileOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/profile/{ProfileId}/calculated-attributes/{CalculatedAttributeName}",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:getDomain(input, options)
     return self:invokeOperation(input, {
         name = "GetDomain",
-        input_schema = types.GetDomainInput,
-        output_schema = types.GetDomainOutput,
+        input_schema = schemas.GetDomainInput,
+        output_schema = schemas.GetDomainOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:getDomainLayout(input, options)
     return self:invokeOperation(input, {
         name = "GetDomainLayout",
-        input_schema = types.GetDomainLayoutInput,
-        output_schema = types.GetDomainLayoutOutput,
+        input_schema = schemas.GetDomainLayoutInput,
+        output_schema = schemas.GetDomainLayoutOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/layouts/{LayoutDefinitionName}",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:getDomainObjectType(input, options)
     return self:invokeOperation(input, {
         name = "GetDomainObjectType",
-        input_schema = types.GetDomainObjectTypeInput,
-        output_schema = types.GetDomainObjectTypeOutput,
+        input_schema = schemas.GetDomainObjectTypeInput,
+        output_schema = schemas.GetDomainObjectTypeOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/domain-object-types/{ObjectTypeName}",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:getEventStream(input, options)
     return self:invokeOperation(input, {
         name = "GetEventStream",
-        input_schema = types.GetEventStreamInput,
-        output_schema = types.GetEventStreamOutput,
+        input_schema = schemas.GetEventStreamInput,
+        output_schema = schemas.GetEventStreamOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/event-streams/{EventStreamName}",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:getEventTrigger(input, options)
     return self:invokeOperation(input, {
         name = "GetEventTrigger",
-        input_schema = types.GetEventTriggerInput,
-        output_schema = types.GetEventTriggerOutput,
+        input_schema = schemas.GetEventTriggerInput,
+        output_schema = schemas.GetEventTriggerOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/event-triggers/{EventTriggerName}",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:getIdentityResolutionJob(input, options)
     return self:invokeOperation(input, {
         name = "GetIdentityResolutionJob",
-        input_schema = types.GetIdentityResolutionJobInput,
-        output_schema = types.GetIdentityResolutionJobOutput,
+        input_schema = schemas.GetIdentityResolutionJobInput,
+        output_schema = schemas.GetIdentityResolutionJobOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/identity-resolution-jobs/{JobId}",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:getIntegration(input, options)
     return self:invokeOperation(input, {
         name = "GetIntegration",
-        input_schema = types.GetIntegrationInput,
-        output_schema = types.GetIntegrationOutput,
+        input_schema = schemas.GetIntegrationInput,
+        output_schema = schemas.GetIntegrationOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/integrations",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:getMatches(input, options)
     return self:invokeOperation(input, {
         name = "GetMatches",
-        input_schema = types.GetMatchesInput,
-        output_schema = types.GetMatchesOutput,
+        input_schema = schemas.GetMatchesInput,
+        output_schema = schemas.GetMatchesOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/matches",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:getObjectTypeAttributeStatistics(input, options)
     return self:invokeOperation(input, {
         name = "GetObjectTypeAttributeStatistics",
-        input_schema = types.GetObjectTypeAttributeStatisticsInput,
-        output_schema = types.GetObjectTypeAttributeStatisticsOutput,
+        input_schema = schemas.GetObjectTypeAttributeStatisticsInput,
+        output_schema = schemas.GetObjectTypeAttributeStatisticsOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/object-types/{ObjectTypeName}/attributes/{AttributeName}/statistics",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:getProfileHistoryRecord(input, options)
     return self:invokeOperation(input, {
         name = "GetProfileHistoryRecord",
-        input_schema = types.GetProfileHistoryRecordInput,
-        output_schema = types.GetProfileHistoryRecordOutput,
+        input_schema = schemas.GetProfileHistoryRecordInput,
+        output_schema = schemas.GetProfileHistoryRecordOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/profiles/{ProfileId}/history-records/{Id}",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:getProfileObjectType(input, options)
     return self:invokeOperation(input, {
         name = "GetProfileObjectType",
-        input_schema = types.GetProfileObjectTypeInput,
-        output_schema = types.GetProfileObjectTypeOutput,
+        input_schema = schemas.GetProfileObjectTypeInput,
+        output_schema = schemas.GetProfileObjectTypeOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/object-types/{ObjectTypeName}",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:getProfileObjectTypeTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetProfileObjectTypeTemplate",
-        input_schema = types.GetProfileObjectTypeTemplateInput,
-        output_schema = types.GetProfileObjectTypeTemplateOutput,
+        input_schema = schemas.GetProfileObjectTypeTemplateInput,
+        output_schema = schemas.GetProfileObjectTypeTemplateOutput,
         http_method = "GET",
         http_path = "/templates/{TemplateId}",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:getProfileRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "GetProfileRecommendations",
-        input_schema = types.GetProfileRecommendationsInput,
-        output_schema = types.GetProfileRecommendationsOutput,
+        input_schema = schemas.GetProfileRecommendationsInput,
+        output_schema = schemas.GetProfileRecommendationsOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/profiles/{ProfileId}/recommendations",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:getRecommender(input, options)
     return self:invokeOperation(input, {
         name = "GetRecommender",
-        input_schema = types.GetRecommenderInput,
-        output_schema = types.GetRecommenderOutput,
+        input_schema = schemas.GetRecommenderInput,
+        output_schema = schemas.GetRecommenderOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/recommenders/{RecommenderName}",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:getRecommenderFilter(input, options)
     return self:invokeOperation(input, {
         name = "GetRecommenderFilter",
-        input_schema = types.GetRecommenderFilterInput,
-        output_schema = types.GetRecommenderFilterOutput,
+        input_schema = schemas.GetRecommenderFilterInput,
+        output_schema = schemas.GetRecommenderFilterOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/recommender-filters/{RecommenderFilterName}",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:getRecommenderSchema(input, options)
     return self:invokeOperation(input, {
         name = "GetRecommenderSchema",
-        input_schema = types.GetRecommenderSchemaInput,
-        output_schema = types.GetRecommenderSchemaOutput,
+        input_schema = schemas.GetRecommenderSchemaInput,
+        output_schema = schemas.GetRecommenderSchemaOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/recommender-schemas/{RecommenderSchemaName}",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:getSegmentDefinition(input, options)
     return self:invokeOperation(input, {
         name = "GetSegmentDefinition",
-        input_schema = types.GetSegmentDefinitionInput,
-        output_schema = types.GetSegmentDefinitionOutput,
+        input_schema = schemas.GetSegmentDefinitionInput,
+        output_schema = schemas.GetSegmentDefinitionOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/segment-definitions/{SegmentDefinitionName}",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:getSegmentEstimate(input, options)
     return self:invokeOperation(input, {
         name = "GetSegmentEstimate",
-        input_schema = types.GetSegmentEstimateInput,
-        output_schema = types.GetSegmentEstimateOutput,
+        input_schema = schemas.GetSegmentEstimateInput,
+        output_schema = schemas.GetSegmentEstimateOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/segment-estimates/{EstimateId}",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:getSegmentMembership(input, options)
     return self:invokeOperation(input, {
         name = "GetSegmentMembership",
-        input_schema = types.GetSegmentMembershipInput,
-        output_schema = types.GetSegmentMembershipOutput,
+        input_schema = schemas.GetSegmentMembershipInput,
+        output_schema = schemas.GetSegmentMembershipOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/segments/{SegmentDefinitionName}/membership",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:getSegmentSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "GetSegmentSnapshot",
-        input_schema = types.GetSegmentSnapshotInput,
-        output_schema = types.GetSegmentSnapshotOutput,
+        input_schema = schemas.GetSegmentSnapshotInput,
+        output_schema = schemas.GetSegmentSnapshotOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/segments/{SegmentDefinitionName}/snapshots/{SnapshotId}",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:getSimilarProfiles(input, options)
     return self:invokeOperation(input, {
         name = "GetSimilarProfiles",
-        input_schema = types.GetSimilarProfilesInput,
-        output_schema = types.GetSimilarProfilesOutput,
+        input_schema = schemas.GetSimilarProfilesInput,
+        output_schema = schemas.GetSimilarProfilesOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/matches",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:getUploadJob(input, options)
     return self:invokeOperation(input, {
         name = "GetUploadJob",
-        input_schema = types.GetUploadJobInput,
-        output_schema = types.GetUploadJobOutput,
+        input_schema = schemas.GetUploadJobInput,
+        output_schema = schemas.GetUploadJobOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/upload-jobs/{JobId}",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:getUploadJobPath(input, options)
     return self:invokeOperation(input, {
         name = "GetUploadJobPath",
-        input_schema = types.GetUploadJobPathInput,
-        output_schema = types.GetUploadJobPathOutput,
+        input_schema = schemas.GetUploadJobPathInput,
+        output_schema = schemas.GetUploadJobPathOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/upload-jobs/{JobId}/path",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:getWorkflow(input, options)
     return self:invokeOperation(input, {
         name = "GetWorkflow",
-        input_schema = types.GetWorkflowInput,
-        output_schema = types.GetWorkflowOutput,
+        input_schema = schemas.GetWorkflowInput,
+        output_schema = schemas.GetWorkflowOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/workflows/{WorkflowId}",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:getWorkflowSteps(input, options)
     return self:invokeOperation(input, {
         name = "GetWorkflowSteps",
-        input_schema = types.GetWorkflowStepsInput,
-        output_schema = types.GetWorkflowStepsOutput,
+        input_schema = schemas.GetWorkflowStepsInput,
+        output_schema = schemas.GetWorkflowStepsOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/workflows/{WorkflowId}/steps",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:listAccountIntegrations(input, options)
     return self:invokeOperation(input, {
         name = "ListAccountIntegrations",
-        input_schema = types.ListAccountIntegrationsInput,
-        output_schema = types.ListAccountIntegrationsOutput,
+        input_schema = schemas.ListAccountIntegrationsInput,
+        output_schema = schemas.ListAccountIntegrationsOutput,
         http_method = "POST",
         http_path = "/integrations",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:listCalculatedAttributeDefinitions(input, options)
     return self:invokeOperation(input, {
         name = "ListCalculatedAttributeDefinitions",
-        input_schema = types.ListCalculatedAttributeDefinitionsInput,
-        output_schema = types.ListCalculatedAttributeDefinitionsOutput,
+        input_schema = schemas.ListCalculatedAttributeDefinitionsInput,
+        output_schema = schemas.ListCalculatedAttributeDefinitionsOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/calculated-attributes",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:listCalculatedAttributesForProfile(input, options)
     return self:invokeOperation(input, {
         name = "ListCalculatedAttributesForProfile",
-        input_schema = types.ListCalculatedAttributesForProfileInput,
-        output_schema = types.ListCalculatedAttributesForProfileOutput,
+        input_schema = schemas.ListCalculatedAttributesForProfileInput,
+        output_schema = schemas.ListCalculatedAttributesForProfileOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/profile/{ProfileId}/calculated-attributes",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:listDomainLayouts(input, options)
     return self:invokeOperation(input, {
         name = "ListDomainLayouts",
-        input_schema = types.ListDomainLayoutsInput,
-        output_schema = types.ListDomainLayoutsOutput,
+        input_schema = schemas.ListDomainLayoutsInput,
+        output_schema = schemas.ListDomainLayoutsOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/layouts",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:listDomainObjectTypes(input, options)
     return self:invokeOperation(input, {
         name = "ListDomainObjectTypes",
-        input_schema = types.ListDomainObjectTypesInput,
-        output_schema = types.ListDomainObjectTypesOutput,
+        input_schema = schemas.ListDomainObjectTypesInput,
+        output_schema = schemas.ListDomainObjectTypesOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/domain-object-types",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:listDomains(input, options)
     return self:invokeOperation(input, {
         name = "ListDomains",
-        input_schema = types.ListDomainsInput,
-        output_schema = types.ListDomainsOutput,
+        input_schema = schemas.ListDomainsInput,
+        output_schema = schemas.ListDomainsOutput,
         http_method = "GET",
         http_path = "/domains",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:listEventStreams(input, options)
     return self:invokeOperation(input, {
         name = "ListEventStreams",
-        input_schema = types.ListEventStreamsInput,
-        output_schema = types.ListEventStreamsOutput,
+        input_schema = schemas.ListEventStreamsInput,
+        output_schema = schemas.ListEventStreamsOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/event-streams",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:listEventTriggers(input, options)
     return self:invokeOperation(input, {
         name = "ListEventTriggers",
-        input_schema = types.ListEventTriggersInput,
-        output_schema = types.ListEventTriggersOutput,
+        input_schema = schemas.ListEventTriggersInput,
+        output_schema = schemas.ListEventTriggersOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/event-triggers",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:listIdentityResolutionJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListIdentityResolutionJobs",
-        input_schema = types.ListIdentityResolutionJobsInput,
-        output_schema = types.ListIdentityResolutionJobsOutput,
+        input_schema = schemas.ListIdentityResolutionJobsInput,
+        output_schema = schemas.ListIdentityResolutionJobsOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/identity-resolution-jobs",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:listIntegrations(input, options)
     return self:invokeOperation(input, {
         name = "ListIntegrations",
-        input_schema = types.ListIntegrationsInput,
-        output_schema = types.ListIntegrationsOutput,
+        input_schema = schemas.ListIntegrationsInput,
+        output_schema = schemas.ListIntegrationsOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/integrations",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:listObjectTypeAttributes(input, options)
     return self:invokeOperation(input, {
         name = "ListObjectTypeAttributes",
-        input_schema = types.ListObjectTypeAttributesInput,
-        output_schema = types.ListObjectTypeAttributesOutput,
+        input_schema = schemas.ListObjectTypeAttributesInput,
+        output_schema = schemas.ListObjectTypeAttributesOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/object-types/{ObjectTypeName}/attributes",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:listObjectTypeAttributeValues(input, options)
     return self:invokeOperation(input, {
         name = "ListObjectTypeAttributeValues",
-        input_schema = types.ListObjectTypeAttributeValuesInput,
-        output_schema = types.ListObjectTypeAttributeValuesOutput,
+        input_schema = schemas.ListObjectTypeAttributeValuesInput,
+        output_schema = schemas.ListObjectTypeAttributeValuesOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/object-types/{ObjectTypeName}/attributes/{AttributeName}/values",
         effective_auth_schemes = {
@@ -1011,8 +1011,8 @@ end
 function Client:listProfileAttributeValues(input, options)
     return self:invokeOperation(input, {
         name = "ListProfileAttributeValues",
-        input_schema = types.ListProfileAttributeValuesInput,
-        output_schema = types.ListProfileAttributeValuesOutput,
+        input_schema = schemas.ListProfileAttributeValuesInput,
+        output_schema = schemas.ListProfileAttributeValuesOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/profile-attributes/{AttributeName}/values",
         effective_auth_schemes = {
@@ -1024,8 +1024,8 @@ end
 function Client:listProfileHistoryRecords(input, options)
     return self:invokeOperation(input, {
         name = "ListProfileHistoryRecords",
-        input_schema = types.ListProfileHistoryRecordsInput,
-        output_schema = types.ListProfileHistoryRecordsOutput,
+        input_schema = schemas.ListProfileHistoryRecordsInput,
+        output_schema = schemas.ListProfileHistoryRecordsOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/profiles/history-records",
         effective_auth_schemes = {
@@ -1037,8 +1037,8 @@ end
 function Client:listProfileObjects(input, options)
     return self:invokeOperation(input, {
         name = "ListProfileObjects",
-        input_schema = types.ListProfileObjectsInput,
-        output_schema = types.ListProfileObjectsOutput,
+        input_schema = schemas.ListProfileObjectsInput,
+        output_schema = schemas.ListProfileObjectsOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/profiles/objects",
         effective_auth_schemes = {
@@ -1050,8 +1050,8 @@ end
 function Client:listProfileObjectTypes(input, options)
     return self:invokeOperation(input, {
         name = "ListProfileObjectTypes",
-        input_schema = types.ListProfileObjectTypesInput,
-        output_schema = types.ListProfileObjectTypesOutput,
+        input_schema = schemas.ListProfileObjectTypesInput,
+        output_schema = schemas.ListProfileObjectTypesOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/object-types",
         effective_auth_schemes = {
@@ -1063,8 +1063,8 @@ end
 function Client:listProfileObjectTypeTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListProfileObjectTypeTemplates",
-        input_schema = types.ListProfileObjectTypeTemplatesInput,
-        output_schema = types.ListProfileObjectTypeTemplatesOutput,
+        input_schema = schemas.ListProfileObjectTypeTemplatesInput,
+        output_schema = schemas.ListProfileObjectTypeTemplatesOutput,
         http_method = "GET",
         http_path = "/templates",
         effective_auth_schemes = {
@@ -1076,8 +1076,8 @@ end
 function Client:listRecommenderFilters(input, options)
     return self:invokeOperation(input, {
         name = "ListRecommenderFilters",
-        input_schema = types.ListRecommenderFiltersInput,
-        output_schema = types.ListRecommenderFiltersOutput,
+        input_schema = schemas.ListRecommenderFiltersInput,
+        output_schema = schemas.ListRecommenderFiltersOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/recommender-filters",
         effective_auth_schemes = {
@@ -1089,8 +1089,8 @@ end
 function Client:listRecommenderRecipes(input, options)
     return self:invokeOperation(input, {
         name = "ListRecommenderRecipes",
-        input_schema = types.ListRecommenderRecipesInput,
-        output_schema = types.ListRecommenderRecipesOutput,
+        input_schema = schemas.ListRecommenderRecipesInput,
+        output_schema = schemas.ListRecommenderRecipesOutput,
         http_method = "GET",
         http_path = "/recommender-recipes",
         effective_auth_schemes = {
@@ -1102,8 +1102,8 @@ end
 function Client:listRecommenders(input, options)
     return self:invokeOperation(input, {
         name = "ListRecommenders",
-        input_schema = types.ListRecommendersInput,
-        output_schema = types.ListRecommendersOutput,
+        input_schema = schemas.ListRecommendersInput,
+        output_schema = schemas.ListRecommendersOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/recommenders",
         effective_auth_schemes = {
@@ -1115,8 +1115,8 @@ end
 function Client:listRecommenderSchemas(input, options)
     return self:invokeOperation(input, {
         name = "ListRecommenderSchemas",
-        input_schema = types.ListRecommenderSchemasInput,
-        output_schema = types.ListRecommenderSchemasOutput,
+        input_schema = schemas.ListRecommenderSchemasInput,
+        output_schema = schemas.ListRecommenderSchemasOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/recommender-schemas",
         effective_auth_schemes = {
@@ -1128,8 +1128,8 @@ end
 function Client:listRuleBasedMatches(input, options)
     return self:invokeOperation(input, {
         name = "ListRuleBasedMatches",
-        input_schema = types.ListRuleBasedMatchesInput,
-        output_schema = types.ListRuleBasedMatchesOutput,
+        input_schema = schemas.ListRuleBasedMatchesInput,
+        output_schema = schemas.ListRuleBasedMatchesOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/profiles/ruleBasedMatches",
         effective_auth_schemes = {
@@ -1141,8 +1141,8 @@ end
 function Client:listSegmentDefinitions(input, options)
     return self:invokeOperation(input, {
         name = "ListSegmentDefinitions",
-        input_schema = types.ListSegmentDefinitionsInput,
-        output_schema = types.ListSegmentDefinitionsOutput,
+        input_schema = schemas.ListSegmentDefinitionsInput,
+        output_schema = schemas.ListSegmentDefinitionsOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/segment-definitions",
         effective_auth_schemes = {
@@ -1154,8 +1154,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -1167,8 +1167,8 @@ end
 function Client:listUploadJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListUploadJobs",
-        input_schema = types.ListUploadJobsInput,
-        output_schema = types.ListUploadJobsOutput,
+        input_schema = schemas.ListUploadJobsInput,
+        output_schema = schemas.ListUploadJobsOutput,
         http_method = "GET",
         http_path = "/domains/{DomainName}/upload-jobs",
         effective_auth_schemes = {
@@ -1180,8 +1180,8 @@ end
 function Client:listWorkflows(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkflows",
-        input_schema = types.ListWorkflowsInput,
-        output_schema = types.ListWorkflowsOutput,
+        input_schema = schemas.ListWorkflowsInput,
+        output_schema = schemas.ListWorkflowsOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/workflows",
         effective_auth_schemes = {
@@ -1193,8 +1193,8 @@ end
 function Client:mergeProfiles(input, options)
     return self:invokeOperation(input, {
         name = "MergeProfiles",
-        input_schema = types.MergeProfilesInput,
-        output_schema = types.MergeProfilesOutput,
+        input_schema = schemas.MergeProfilesInput,
+        output_schema = schemas.MergeProfilesOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/profiles/objects/merge",
         effective_auth_schemes = {
@@ -1206,8 +1206,8 @@ end
 function Client:putDomainObjectType(input, options)
     return self:invokeOperation(input, {
         name = "PutDomainObjectType",
-        input_schema = types.PutDomainObjectTypeInput,
-        output_schema = types.PutDomainObjectTypeOutput,
+        input_schema = schemas.PutDomainObjectTypeInput,
+        output_schema = schemas.PutDomainObjectTypeOutput,
         http_method = "PUT",
         http_path = "/domains/{DomainName}/domain-object-types/{ObjectTypeName}",
         effective_auth_schemes = {
@@ -1219,8 +1219,8 @@ end
 function Client:putIntegration(input, options)
     return self:invokeOperation(input, {
         name = "PutIntegration",
-        input_schema = types.PutIntegrationInput,
-        output_schema = types.PutIntegrationOutput,
+        input_schema = schemas.PutIntegrationInput,
+        output_schema = schemas.PutIntegrationOutput,
         http_method = "PUT",
         http_path = "/domains/{DomainName}/integrations",
         effective_auth_schemes = {
@@ -1232,8 +1232,8 @@ end
 function Client:putProfileObject(input, options)
     return self:invokeOperation(input, {
         name = "PutProfileObject",
-        input_schema = types.PutProfileObjectInput,
-        output_schema = types.PutProfileObjectOutput,
+        input_schema = schemas.PutProfileObjectInput,
+        output_schema = schemas.PutProfileObjectOutput,
         http_method = "PUT",
         http_path = "/domains/{DomainName}/profiles/objects",
         effective_auth_schemes = {
@@ -1245,8 +1245,8 @@ end
 function Client:putProfileObjectType(input, options)
     return self:invokeOperation(input, {
         name = "PutProfileObjectType",
-        input_schema = types.PutProfileObjectTypeInput,
-        output_schema = types.PutProfileObjectTypeOutput,
+        input_schema = schemas.PutProfileObjectTypeInput,
+        output_schema = schemas.PutProfileObjectTypeOutput,
         http_method = "PUT",
         http_path = "/domains/{DomainName}/object-types/{ObjectTypeName}",
         effective_auth_schemes = {
@@ -1258,8 +1258,8 @@ end
 function Client:searchProfiles(input, options)
     return self:invokeOperation(input, {
         name = "SearchProfiles",
-        input_schema = types.SearchProfilesInput,
-        output_schema = types.SearchProfilesOutput,
+        input_schema = schemas.SearchProfilesInput,
+        output_schema = schemas.SearchProfilesOutput,
         http_method = "POST",
         http_path = "/domains/{DomainName}/profiles/search",
         effective_auth_schemes = {
@@ -1271,8 +1271,8 @@ end
 function Client:startRecommender(input, options)
     return self:invokeOperation(input, {
         name = "StartRecommender",
-        input_schema = types.StartRecommenderInput,
-        output_schema = types.StartRecommenderOutput,
+        input_schema = schemas.StartRecommenderInput,
+        output_schema = schemas.StartRecommenderOutput,
         http_method = "PUT",
         http_path = "/domains/{DomainName}/recommenders/{RecommenderName}/start",
         effective_auth_schemes = {
@@ -1284,8 +1284,8 @@ end
 function Client:startUploadJob(input, options)
     return self:invokeOperation(input, {
         name = "StartUploadJob",
-        input_schema = types.StartUploadJobInput,
-        output_schema = types.StartUploadJobOutput,
+        input_schema = schemas.StartUploadJobInput,
+        output_schema = schemas.StartUploadJobOutput,
         http_method = "PUT",
         http_path = "/domains/{DomainName}/upload-jobs/{JobId}",
         effective_auth_schemes = {
@@ -1297,8 +1297,8 @@ end
 function Client:stopRecommender(input, options)
     return self:invokeOperation(input, {
         name = "StopRecommender",
-        input_schema = types.StopRecommenderInput,
-        output_schema = types.StopRecommenderOutput,
+        input_schema = schemas.StopRecommenderInput,
+        output_schema = schemas.StopRecommenderOutput,
         http_method = "PUT",
         http_path = "/domains/{DomainName}/recommenders/{RecommenderName}/stop",
         effective_auth_schemes = {
@@ -1310,8 +1310,8 @@ end
 function Client:stopUploadJob(input, options)
     return self:invokeOperation(input, {
         name = "StopUploadJob",
-        input_schema = types.StopUploadJobInput,
-        output_schema = types.StopUploadJobOutput,
+        input_schema = schemas.StopUploadJobInput,
+        output_schema = schemas.StopUploadJobOutput,
         http_method = "PUT",
         http_path = "/domains/{DomainName}/upload-jobs/{JobId}/stop",
         effective_auth_schemes = {
@@ -1323,8 +1323,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -1336,8 +1336,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -1349,8 +1349,8 @@ end
 function Client:updateCalculatedAttributeDefinition(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCalculatedAttributeDefinition",
-        input_schema = types.UpdateCalculatedAttributeDefinitionInput,
-        output_schema = types.UpdateCalculatedAttributeDefinitionOutput,
+        input_schema = schemas.UpdateCalculatedAttributeDefinitionInput,
+        output_schema = schemas.UpdateCalculatedAttributeDefinitionOutput,
         http_method = "PUT",
         http_path = "/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}",
         effective_auth_schemes = {
@@ -1362,8 +1362,8 @@ end
 function Client:updateDomain(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDomain",
-        input_schema = types.UpdateDomainInput,
-        output_schema = types.UpdateDomainOutput,
+        input_schema = schemas.UpdateDomainInput,
+        output_schema = schemas.UpdateDomainOutput,
         http_method = "PUT",
         http_path = "/domains/{DomainName}",
         effective_auth_schemes = {
@@ -1375,8 +1375,8 @@ end
 function Client:updateDomainLayout(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDomainLayout",
-        input_schema = types.UpdateDomainLayoutInput,
-        output_schema = types.UpdateDomainLayoutOutput,
+        input_schema = schemas.UpdateDomainLayoutInput,
+        output_schema = schemas.UpdateDomainLayoutOutput,
         http_method = "PUT",
         http_path = "/domains/{DomainName}/layouts/{LayoutDefinitionName}",
         effective_auth_schemes = {
@@ -1388,8 +1388,8 @@ end
 function Client:updateEventTrigger(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEventTrigger",
-        input_schema = types.UpdateEventTriggerInput,
-        output_schema = types.UpdateEventTriggerOutput,
+        input_schema = schemas.UpdateEventTriggerInput,
+        output_schema = schemas.UpdateEventTriggerOutput,
         http_method = "PUT",
         http_path = "/domains/{DomainName}/event-triggers/{EventTriggerName}",
         effective_auth_schemes = {
@@ -1401,8 +1401,8 @@ end
 function Client:updateProfile(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProfile",
-        input_schema = types.UpdateProfileInput,
-        output_schema = types.UpdateProfileOutput,
+        input_schema = schemas.UpdateProfileInput,
+        output_schema = schemas.UpdateProfileOutput,
         http_method = "PUT",
         http_path = "/domains/{DomainName}/profiles",
         effective_auth_schemes = {
@@ -1414,8 +1414,8 @@ end
 function Client:updateRecommender(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRecommender",
-        input_schema = types.UpdateRecommenderInput,
-        output_schema = types.UpdateRecommenderOutput,
+        input_schema = schemas.UpdateRecommenderInput,
+        output_schema = schemas.UpdateRecommenderOutput,
         http_method = "PATCH",
         http_path = "/domains/{DomainName}/recommenders/{RecommenderName}",
         effective_auth_schemes = {

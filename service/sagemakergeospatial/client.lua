@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("sagemakergeospatial.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("sagemakergeospatial.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("sagemakergeospatial.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:deleteEarthObservationJob(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEarthObservationJob",
-        input_schema = types.DeleteEarthObservationJobInput,
-        output_schema = types.DeleteEarthObservationJobOutput,
+        input_schema = schemas.DeleteEarthObservationJobInput,
+        output_schema = schemas.DeleteEarthObservationJobOutput,
         http_method = "DELETE",
         http_path = "/earth-observation-jobs/{Arn}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteVectorEnrichmentJob(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVectorEnrichmentJob",
-        input_schema = types.DeleteVectorEnrichmentJobInput,
-        output_schema = types.DeleteVectorEnrichmentJobOutput,
+        input_schema = schemas.DeleteVectorEnrichmentJobInput,
+        output_schema = schemas.DeleteVectorEnrichmentJobOutput,
         http_method = "DELETE",
         http_path = "/vector-enrichment-jobs/{Arn}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:exportEarthObservationJob(input, options)
     return self:invokeOperation(input, {
         name = "ExportEarthObservationJob",
-        input_schema = types.ExportEarthObservationJobInput,
-        output_schema = types.ExportEarthObservationJobOutput,
+        input_schema = schemas.ExportEarthObservationJobInput,
+        output_schema = schemas.ExportEarthObservationJobOutput,
         http_method = "POST",
         http_path = "/export-earth-observation-job",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:exportVectorEnrichmentJob(input, options)
     return self:invokeOperation(input, {
         name = "ExportVectorEnrichmentJob",
-        input_schema = types.ExportVectorEnrichmentJobInput,
-        output_schema = types.ExportVectorEnrichmentJobOutput,
+        input_schema = schemas.ExportVectorEnrichmentJobInput,
+        output_schema = schemas.ExportVectorEnrichmentJobOutput,
         http_method = "POST",
         http_path = "/export-vector-enrichment-jobs",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getEarthObservationJob(input, options)
     return self:invokeOperation(input, {
         name = "GetEarthObservationJob",
-        input_schema = types.GetEarthObservationJobInput,
-        output_schema = types.GetEarthObservationJobOutput,
+        input_schema = schemas.GetEarthObservationJobInput,
+        output_schema = schemas.GetEarthObservationJobOutput,
         http_method = "GET",
         http_path = "/earth-observation-jobs/{Arn}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getRasterDataCollection(input, options)
     return self:invokeOperation(input, {
         name = "GetRasterDataCollection",
-        input_schema = types.GetRasterDataCollectionInput,
-        output_schema = types.GetRasterDataCollectionOutput,
+        input_schema = schemas.GetRasterDataCollectionInput,
+        output_schema = schemas.GetRasterDataCollectionOutput,
         http_method = "GET",
         http_path = "/raster-data-collection/{Arn}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getTile(input, options)
     return self:invokeOperation(input, {
         name = "GetTile",
-        input_schema = types.GetTileInput,
-        output_schema = types.GetTileOutput,
+        input_schema = schemas.GetTileInput,
+        output_schema = schemas.GetTileOutput,
         http_method = "GET",
         http_path = "/tile/{z}/{x}/{y}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getVectorEnrichmentJob(input, options)
     return self:invokeOperation(input, {
         name = "GetVectorEnrichmentJob",
-        input_schema = types.GetVectorEnrichmentJobInput,
-        output_schema = types.GetVectorEnrichmentJobOutput,
+        input_schema = schemas.GetVectorEnrichmentJobInput,
+        output_schema = schemas.GetVectorEnrichmentJobOutput,
         http_method = "GET",
         http_path = "/vector-enrichment-jobs/{Arn}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listEarthObservationJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListEarthObservationJobs",
-        input_schema = types.ListEarthObservationJobsInput,
-        output_schema = types.ListEarthObservationJobsOutput,
+        input_schema = schemas.ListEarthObservationJobsInput,
+        output_schema = schemas.ListEarthObservationJobsOutput,
         http_method = "POST",
         http_path = "/list-earth-observation-jobs",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listRasterDataCollections(input, options)
     return self:invokeOperation(input, {
         name = "ListRasterDataCollections",
-        input_schema = types.ListRasterDataCollectionsInput,
-        output_schema = types.ListRasterDataCollectionsOutput,
+        input_schema = schemas.ListRasterDataCollectionsInput,
+        output_schema = schemas.ListRasterDataCollectionsOutput,
         http_method = "GET",
         http_path = "/raster-data-collections",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listVectorEnrichmentJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListVectorEnrichmentJobs",
-        input_schema = types.ListVectorEnrichmentJobsInput,
-        output_schema = types.ListVectorEnrichmentJobsOutput,
+        input_schema = schemas.ListVectorEnrichmentJobsInput,
+        output_schema = schemas.ListVectorEnrichmentJobsOutput,
         http_method = "POST",
         http_path = "/list-vector-enrichment-jobs",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:searchRasterDataCollection(input, options)
     return self:invokeOperation(input, {
         name = "SearchRasterDataCollection",
-        input_schema = types.SearchRasterDataCollectionInput,
-        output_schema = types.SearchRasterDataCollectionOutput,
+        input_schema = schemas.SearchRasterDataCollectionInput,
+        output_schema = schemas.SearchRasterDataCollectionOutput,
         http_method = "POST",
         http_path = "/search-raster-data-collection",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:startEarthObservationJob(input, options)
     return self:invokeOperation(input, {
         name = "StartEarthObservationJob",
-        input_schema = types.StartEarthObservationJobInput,
-        output_schema = types.StartEarthObservationJobOutput,
+        input_schema = schemas.StartEarthObservationJobInput,
+        output_schema = schemas.StartEarthObservationJobOutput,
         http_method = "POST",
         http_path = "/earth-observation-jobs",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:startVectorEnrichmentJob(input, options)
     return self:invokeOperation(input, {
         name = "StartVectorEnrichmentJob",
-        input_schema = types.StartVectorEnrichmentJobInput,
-        output_schema = types.StartVectorEnrichmentJobOutput,
+        input_schema = schemas.StartVectorEnrichmentJobInput,
+        output_schema = schemas.StartVectorEnrichmentJobOutput,
         http_method = "POST",
         http_path = "/vector-enrichment-jobs",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:stopEarthObservationJob(input, options)
     return self:invokeOperation(input, {
         name = "StopEarthObservationJob",
-        input_schema = types.StopEarthObservationJobInput,
-        output_schema = types.StopEarthObservationJobOutput,
+        input_schema = schemas.StopEarthObservationJobInput,
+        output_schema = schemas.StopEarthObservationJobOutput,
         http_method = "POST",
         http_path = "/earth-observation-jobs/stop",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:stopVectorEnrichmentJob(input, options)
     return self:invokeOperation(input, {
         name = "StopVectorEnrichmentJob",
-        input_schema = types.StopVectorEnrichmentJobInput,
-        output_schema = types.StopVectorEnrichmentJobOutput,
+        input_schema = schemas.StopVectorEnrichmentJobInput,
+        output_schema = schemas.StopVectorEnrichmentJobOutput,
         http_method = "POST",
         http_path = "/vector-enrichment-jobs/stop",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "PUT",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {

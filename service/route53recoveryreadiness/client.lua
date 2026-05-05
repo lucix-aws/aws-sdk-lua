@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("route53recoveryreadiness.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("route53recoveryreadiness.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("route53recoveryreadiness.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createCell(input, options)
     return self:invokeOperation(input, {
         name = "CreateCell",
-        input_schema = types.CreateCellInput,
-        output_schema = types.CreateCellOutput,
+        input_schema = schemas.CreateCellInput,
+        output_schema = schemas.CreateCellOutput,
         http_method = "POST",
         http_path = "/cells",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createCrossAccountAuthorization(input, options)
     return self:invokeOperation(input, {
         name = "CreateCrossAccountAuthorization",
-        input_schema = types.CreateCrossAccountAuthorizationInput,
-        output_schema = types.CreateCrossAccountAuthorizationOutput,
+        input_schema = schemas.CreateCrossAccountAuthorizationInput,
+        output_schema = schemas.CreateCrossAccountAuthorizationOutput,
         http_method = "POST",
         http_path = "/crossaccountauthorizations",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createReadinessCheck(input, options)
     return self:invokeOperation(input, {
         name = "CreateReadinessCheck",
-        input_schema = types.CreateReadinessCheckInput,
-        output_schema = types.CreateReadinessCheckOutput,
+        input_schema = schemas.CreateReadinessCheckInput,
+        output_schema = schemas.CreateReadinessCheckOutput,
         http_method = "POST",
         http_path = "/readinesschecks",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createRecoveryGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateRecoveryGroup",
-        input_schema = types.CreateRecoveryGroupInput,
-        output_schema = types.CreateRecoveryGroupOutput,
+        input_schema = schemas.CreateRecoveryGroupInput,
+        output_schema = schemas.CreateRecoveryGroupOutput,
         http_method = "POST",
         http_path = "/recoverygroups",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createResourceSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateResourceSet",
-        input_schema = types.CreateResourceSetInput,
-        output_schema = types.CreateResourceSetOutput,
+        input_schema = schemas.CreateResourceSetInput,
+        output_schema = schemas.CreateResourceSetOutput,
         http_method = "POST",
         http_path = "/resourcesets",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteCell(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCell",
-        input_schema = types.DeleteCellInput,
-        output_schema = types.DeleteCellOutput,
+        input_schema = schemas.DeleteCellInput,
+        output_schema = schemas.DeleteCellOutput,
         http_method = "DELETE",
         http_path = "/cells/{CellName}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteCrossAccountAuthorization(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCrossAccountAuthorization",
-        input_schema = types.DeleteCrossAccountAuthorizationInput,
-        output_schema = types.DeleteCrossAccountAuthorizationOutput,
+        input_schema = schemas.DeleteCrossAccountAuthorizationInput,
+        output_schema = schemas.DeleteCrossAccountAuthorizationOutput,
         http_method = "DELETE",
         http_path = "/crossaccountauthorizations/{CrossAccountAuthorization}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteReadinessCheck(input, options)
     return self:invokeOperation(input, {
         name = "DeleteReadinessCheck",
-        input_schema = types.DeleteReadinessCheckInput,
-        output_schema = types.DeleteReadinessCheckOutput,
+        input_schema = schemas.DeleteReadinessCheckInput,
+        output_schema = schemas.DeleteReadinessCheckOutput,
         http_method = "DELETE",
         http_path = "/readinesschecks/{ReadinessCheckName}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteRecoveryGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRecoveryGroup",
-        input_schema = types.DeleteRecoveryGroupInput,
-        output_schema = types.DeleteRecoveryGroupOutput,
+        input_schema = schemas.DeleteRecoveryGroupInput,
+        output_schema = schemas.DeleteRecoveryGroupOutput,
         http_method = "DELETE",
         http_path = "/recoverygroups/{RecoveryGroupName}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteResourceSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourceSet",
-        input_schema = types.DeleteResourceSetInput,
-        output_schema = types.DeleteResourceSetOutput,
+        input_schema = schemas.DeleteResourceSetInput,
+        output_schema = schemas.DeleteResourceSetOutput,
         http_method = "DELETE",
         http_path = "/resourcesets/{ResourceSetName}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getArchitectureRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "GetArchitectureRecommendations",
-        input_schema = types.GetArchitectureRecommendationsInput,
-        output_schema = types.GetArchitectureRecommendationsOutput,
+        input_schema = schemas.GetArchitectureRecommendationsInput,
+        output_schema = schemas.GetArchitectureRecommendationsOutput,
         http_method = "GET",
         http_path = "/recoverygroups/{RecoveryGroupName}/architectureRecommendations",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getCell(input, options)
     return self:invokeOperation(input, {
         name = "GetCell",
-        input_schema = types.GetCellInput,
-        output_schema = types.GetCellOutput,
+        input_schema = schemas.GetCellInput,
+        output_schema = schemas.GetCellOutput,
         http_method = "GET",
         http_path = "/cells/{CellName}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getCellReadinessSummary(input, options)
     return self:invokeOperation(input, {
         name = "GetCellReadinessSummary",
-        input_schema = types.GetCellReadinessSummaryInput,
-        output_schema = types.GetCellReadinessSummaryOutput,
+        input_schema = schemas.GetCellReadinessSummaryInput,
+        output_schema = schemas.GetCellReadinessSummaryOutput,
         http_method = "GET",
         http_path = "/cellreadiness/{CellName}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getReadinessCheck(input, options)
     return self:invokeOperation(input, {
         name = "GetReadinessCheck",
-        input_schema = types.GetReadinessCheckInput,
-        output_schema = types.GetReadinessCheckOutput,
+        input_schema = schemas.GetReadinessCheckInput,
+        output_schema = schemas.GetReadinessCheckOutput,
         http_method = "GET",
         http_path = "/readinesschecks/{ReadinessCheckName}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getReadinessCheckResourceStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetReadinessCheckResourceStatus",
-        input_schema = types.GetReadinessCheckResourceStatusInput,
-        output_schema = types.GetReadinessCheckResourceStatusOutput,
+        input_schema = schemas.GetReadinessCheckResourceStatusInput,
+        output_schema = schemas.GetReadinessCheckResourceStatusOutput,
         http_method = "GET",
         http_path = "/readinesschecks/{ReadinessCheckName}/resource/{ResourceIdentifier}/status",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getReadinessCheckStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetReadinessCheckStatus",
-        input_schema = types.GetReadinessCheckStatusInput,
-        output_schema = types.GetReadinessCheckStatusOutput,
+        input_schema = schemas.GetReadinessCheckStatusInput,
+        output_schema = schemas.GetReadinessCheckStatusOutput,
         http_method = "GET",
         http_path = "/readinesschecks/{ReadinessCheckName}/status",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getRecoveryGroup(input, options)
     return self:invokeOperation(input, {
         name = "GetRecoveryGroup",
-        input_schema = types.GetRecoveryGroupInput,
-        output_schema = types.GetRecoveryGroupOutput,
+        input_schema = schemas.GetRecoveryGroupInput,
+        output_schema = schemas.GetRecoveryGroupOutput,
         http_method = "GET",
         http_path = "/recoverygroups/{RecoveryGroupName}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getRecoveryGroupReadinessSummary(input, options)
     return self:invokeOperation(input, {
         name = "GetRecoveryGroupReadinessSummary",
-        input_schema = types.GetRecoveryGroupReadinessSummaryInput,
-        output_schema = types.GetRecoveryGroupReadinessSummaryOutput,
+        input_schema = schemas.GetRecoveryGroupReadinessSummaryInput,
+        output_schema = schemas.GetRecoveryGroupReadinessSummaryOutput,
         http_method = "GET",
         http_path = "/recoverygroupreadiness/{RecoveryGroupName}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getResourceSet(input, options)
     return self:invokeOperation(input, {
         name = "GetResourceSet",
-        input_schema = types.GetResourceSetInput,
-        output_schema = types.GetResourceSetOutput,
+        input_schema = schemas.GetResourceSetInput,
+        output_schema = schemas.GetResourceSetOutput,
         http_method = "GET",
         http_path = "/resourcesets/{ResourceSetName}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listCells(input, options)
     return self:invokeOperation(input, {
         name = "ListCells",
-        input_schema = types.ListCellsInput,
-        output_schema = types.ListCellsOutput,
+        input_schema = schemas.ListCellsInput,
+        output_schema = schemas.ListCellsOutput,
         http_method = "GET",
         http_path = "/cells",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listCrossAccountAuthorizations(input, options)
     return self:invokeOperation(input, {
         name = "ListCrossAccountAuthorizations",
-        input_schema = types.ListCrossAccountAuthorizationsInput,
-        output_schema = types.ListCrossAccountAuthorizationsOutput,
+        input_schema = schemas.ListCrossAccountAuthorizationsInput,
+        output_schema = schemas.ListCrossAccountAuthorizationsOutput,
         http_method = "GET",
         http_path = "/crossaccountauthorizations",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listReadinessChecks(input, options)
     return self:invokeOperation(input, {
         name = "ListReadinessChecks",
-        input_schema = types.ListReadinessChecksInput,
-        output_schema = types.ListReadinessChecksOutput,
+        input_schema = schemas.ListReadinessChecksInput,
+        output_schema = schemas.ListReadinessChecksOutput,
         http_method = "GET",
         http_path = "/readinesschecks",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listRecoveryGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListRecoveryGroups",
-        input_schema = types.ListRecoveryGroupsInput,
-        output_schema = types.ListRecoveryGroupsOutput,
+        input_schema = schemas.ListRecoveryGroupsInput,
+        output_schema = schemas.ListRecoveryGroupsOutput,
         http_method = "GET",
         http_path = "/recoverygroups",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listResourceSets(input, options)
     return self:invokeOperation(input, {
         name = "ListResourceSets",
-        input_schema = types.ListResourceSetsInput,
-        output_schema = types.ListResourceSetsOutput,
+        input_schema = schemas.ListResourceSetsInput,
+        output_schema = schemas.ListResourceSetsOutput,
         http_method = "GET",
         http_path = "/resourcesets",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listRules(input, options)
     return self:invokeOperation(input, {
         name = "ListRules",
-        input_schema = types.ListRulesInput,
-        output_schema = types.ListRulesOperationOutput,
+        input_schema = schemas.ListRulesInput,
+        output_schema = schemas.ListRulesOperationOutput,
         http_method = "GET",
         http_path = "/rules",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listTagsForResources(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResources",
-        input_schema = types.ListTagsForResourcesInput,
-        output_schema = types.ListTagsForResourcesOutput,
+        input_schema = schemas.ListTagsForResourcesInput,
+        output_schema = schemas.ListTagsForResourcesOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:updateCell(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCell",
-        input_schema = types.UpdateCellInput,
-        output_schema = types.UpdateCellOutput,
+        input_schema = schemas.UpdateCellInput,
+        output_schema = schemas.UpdateCellOutput,
         http_method = "PUT",
         http_path = "/cells/{CellName}",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:updateReadinessCheck(input, options)
     return self:invokeOperation(input, {
         name = "UpdateReadinessCheck",
-        input_schema = types.UpdateReadinessCheckInput,
-        output_schema = types.UpdateReadinessCheckOutput,
+        input_schema = schemas.UpdateReadinessCheckInput,
+        output_schema = schemas.UpdateReadinessCheckOutput,
         http_method = "PUT",
         http_path = "/readinesschecks/{ReadinessCheckName}",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:updateRecoveryGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRecoveryGroup",
-        input_schema = types.UpdateRecoveryGroupInput,
-        output_schema = types.UpdateRecoveryGroupOutput,
+        input_schema = schemas.UpdateRecoveryGroupInput,
+        output_schema = schemas.UpdateRecoveryGroupOutput,
         http_method = "PUT",
         http_path = "/recoverygroups/{RecoveryGroupName}",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:updateResourceSet(input, options)
     return self:invokeOperation(input, {
         name = "UpdateResourceSet",
-        input_schema = types.UpdateResourceSetInput,
-        output_schema = types.UpdateResourceSetOutput,
+        input_schema = schemas.UpdateResourceSetInput,
+        output_schema = schemas.UpdateResourceSetOutput,
         http_method = "PUT",
         http_path = "/resourcesets/{ResourceSetName}",
         effective_auth_schemes = {

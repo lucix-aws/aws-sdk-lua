@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("vpclattice.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("vpclattice.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("vpclattice.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchUpdateRule(input, options)
     return self:invokeOperation(input, {
         name = "BatchUpdateRule",
-        input_schema = types.BatchUpdateRuleInput,
-        output_schema = types.BatchUpdateRuleOutput,
+        input_schema = schemas.BatchUpdateRuleInput,
+        output_schema = schemas.BatchUpdateRuleOutput,
         http_method = "PATCH",
         http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createAccessLogSubscription(input, options)
     return self:invokeOperation(input, {
         name = "CreateAccessLogSubscription",
-        input_schema = types.CreateAccessLogSubscriptionInput,
-        output_schema = types.CreateAccessLogSubscriptionOutput,
+        input_schema = schemas.CreateAccessLogSubscriptionInput,
+        output_schema = schemas.CreateAccessLogSubscriptionOutput,
         http_method = "POST",
         http_path = "/accesslogsubscriptions",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createListener(input, options)
     return self:invokeOperation(input, {
         name = "CreateListener",
-        input_schema = types.CreateListenerInput,
-        output_schema = types.CreateListenerOutput,
+        input_schema = schemas.CreateListenerInput,
+        output_schema = schemas.CreateListenerOutput,
         http_method = "POST",
         http_path = "/services/{serviceIdentifier}/listeners",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createResourceConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateResourceConfiguration",
-        input_schema = types.CreateResourceConfigurationInput,
-        output_schema = types.CreateResourceConfigurationOutput,
+        input_schema = schemas.CreateResourceConfigurationInput,
+        output_schema = schemas.CreateResourceConfigurationOutput,
         http_method = "POST",
         http_path = "/resourceconfigurations",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createResourceGateway(input, options)
     return self:invokeOperation(input, {
         name = "CreateResourceGateway",
-        input_schema = types.CreateResourceGatewayInput,
-        output_schema = types.CreateResourceGatewayOutput,
+        input_schema = schemas.CreateResourceGatewayInput,
+        output_schema = schemas.CreateResourceGatewayOutput,
         http_method = "POST",
         http_path = "/resourcegateways",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createRule(input, options)
     return self:invokeOperation(input, {
         name = "CreateRule",
-        input_schema = types.CreateRuleInput,
-        output_schema = types.CreateRuleOutput,
+        input_schema = schemas.CreateRuleInput,
+        output_schema = schemas.CreateRuleOutput,
         http_method = "POST",
         http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createService(input, options)
     return self:invokeOperation(input, {
         name = "CreateService",
-        input_schema = types.CreateServiceInput,
-        output_schema = types.CreateServiceOutput,
+        input_schema = schemas.CreateServiceInput,
+        output_schema = schemas.CreateServiceOutput,
         http_method = "POST",
         http_path = "/services",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createServiceNetwork(input, options)
     return self:invokeOperation(input, {
         name = "CreateServiceNetwork",
-        input_schema = types.CreateServiceNetworkInput,
-        output_schema = types.CreateServiceNetworkOutput,
+        input_schema = schemas.CreateServiceNetworkInput,
+        output_schema = schemas.CreateServiceNetworkOutput,
         http_method = "POST",
         http_path = "/servicenetworks",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createServiceNetworkResourceAssociation(input, options)
     return self:invokeOperation(input, {
         name = "CreateServiceNetworkResourceAssociation",
-        input_schema = types.CreateServiceNetworkResourceAssociationInput,
-        output_schema = types.CreateServiceNetworkResourceAssociationOutput,
+        input_schema = schemas.CreateServiceNetworkResourceAssociationInput,
+        output_schema = schemas.CreateServiceNetworkResourceAssociationOutput,
         http_method = "POST",
         http_path = "/servicenetworkresourceassociations",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createServiceNetworkServiceAssociation(input, options)
     return self:invokeOperation(input, {
         name = "CreateServiceNetworkServiceAssociation",
-        input_schema = types.CreateServiceNetworkServiceAssociationInput,
-        output_schema = types.CreateServiceNetworkServiceAssociationOutput,
+        input_schema = schemas.CreateServiceNetworkServiceAssociationInput,
+        output_schema = schemas.CreateServiceNetworkServiceAssociationOutput,
         http_method = "POST",
         http_path = "/servicenetworkserviceassociations",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createServiceNetworkVpcAssociation(input, options)
     return self:invokeOperation(input, {
         name = "CreateServiceNetworkVpcAssociation",
-        input_schema = types.CreateServiceNetworkVpcAssociationInput,
-        output_schema = types.CreateServiceNetworkVpcAssociationOutput,
+        input_schema = schemas.CreateServiceNetworkVpcAssociationInput,
+        output_schema = schemas.CreateServiceNetworkVpcAssociationOutput,
         http_method = "POST",
         http_path = "/servicenetworkvpcassociations",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createTargetGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateTargetGroup",
-        input_schema = types.CreateTargetGroupInput,
-        output_schema = types.CreateTargetGroupOutput,
+        input_schema = schemas.CreateTargetGroupInput,
+        output_schema = schemas.CreateTargetGroupOutput,
         http_method = "POST",
         http_path = "/targetgroups",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteAccessLogSubscription(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAccessLogSubscription",
-        input_schema = types.DeleteAccessLogSubscriptionInput,
-        output_schema = types.DeleteAccessLogSubscriptionOutput,
+        input_schema = schemas.DeleteAccessLogSubscriptionInput,
+        output_schema = schemas.DeleteAccessLogSubscriptionOutput,
         http_method = "DELETE",
         http_path = "/accesslogsubscriptions/{accessLogSubscriptionIdentifier}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteAuthPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAuthPolicy",
-        input_schema = types.DeleteAuthPolicyInput,
-        output_schema = types.DeleteAuthPolicyOutput,
+        input_schema = schemas.DeleteAuthPolicyInput,
+        output_schema = schemas.DeleteAuthPolicyOutput,
         http_method = "DELETE",
         http_path = "/authpolicy/{resourceIdentifier}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteDomainVerification(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDomainVerification",
-        input_schema = types.DeleteDomainVerificationInput,
-        output_schema = types.DeleteDomainVerificationOutput,
+        input_schema = schemas.DeleteDomainVerificationInput,
+        output_schema = schemas.DeleteDomainVerificationOutput,
         http_method = "DELETE",
         http_path = "/domainverifications/{domainVerificationIdentifier}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteListener(input, options)
     return self:invokeOperation(input, {
         name = "DeleteListener",
-        input_schema = types.DeleteListenerInput,
-        output_schema = types.DeleteListenerOutput,
+        input_schema = schemas.DeleteListenerInput,
+        output_schema = schemas.DeleteListenerOutput,
         http_method = "DELETE",
         http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteResourceConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourceConfiguration",
-        input_schema = types.DeleteResourceConfigurationInput,
-        output_schema = types.DeleteResourceConfigurationOutput,
+        input_schema = schemas.DeleteResourceConfigurationInput,
+        output_schema = schemas.DeleteResourceConfigurationOutput,
         http_method = "DELETE",
         http_path = "/resourceconfigurations/{resourceConfigurationIdentifier}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteResourceEndpointAssociation(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourceEndpointAssociation",
-        input_schema = types.DeleteResourceEndpointAssociationInput,
-        output_schema = types.DeleteResourceEndpointAssociationOutput,
+        input_schema = schemas.DeleteResourceEndpointAssociationInput,
+        output_schema = schemas.DeleteResourceEndpointAssociationOutput,
         http_method = "DELETE",
         http_path = "/resourceendpointassociations/{resourceEndpointAssociationIdentifier}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteResourceGateway(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourceGateway",
-        input_schema = types.DeleteResourceGatewayInput,
-        output_schema = types.DeleteResourceGatewayOutput,
+        input_schema = schemas.DeleteResourceGatewayInput,
+        output_schema = schemas.DeleteResourceGatewayOutput,
         http_method = "DELETE",
         http_path = "/resourcegateways/{resourceGatewayIdentifier}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deleteResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourcePolicy",
-        input_schema = types.DeleteResourcePolicyInput,
-        output_schema = types.DeleteResourcePolicyOutput,
+        input_schema = schemas.DeleteResourcePolicyInput,
+        output_schema = schemas.DeleteResourcePolicyOutput,
         http_method = "DELETE",
         http_path = "/resourcepolicy/{resourceArn}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteRule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRule",
-        input_schema = types.DeleteRuleInput,
-        output_schema = types.DeleteRuleOutput,
+        input_schema = schemas.DeleteRuleInput,
+        output_schema = schemas.DeleteRuleOutput,
         http_method = "DELETE",
         http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules/{ruleIdentifier}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:deleteService(input, options)
     return self:invokeOperation(input, {
         name = "DeleteService",
-        input_schema = types.DeleteServiceInput,
-        output_schema = types.DeleteServiceOutput,
+        input_schema = schemas.DeleteServiceInput,
+        output_schema = schemas.DeleteServiceOutput,
         http_method = "DELETE",
         http_path = "/services/{serviceIdentifier}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:deleteServiceNetwork(input, options)
     return self:invokeOperation(input, {
         name = "DeleteServiceNetwork",
-        input_schema = types.DeleteServiceNetworkInput,
-        output_schema = types.DeleteServiceNetworkOutput,
+        input_schema = schemas.DeleteServiceNetworkInput,
+        output_schema = schemas.DeleteServiceNetworkOutput,
         http_method = "DELETE",
         http_path = "/servicenetworks/{serviceNetworkIdentifier}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:deleteServiceNetworkResourceAssociation(input, options)
     return self:invokeOperation(input, {
         name = "DeleteServiceNetworkResourceAssociation",
-        input_schema = types.DeleteServiceNetworkResourceAssociationInput,
-        output_schema = types.DeleteServiceNetworkResourceAssociationOutput,
+        input_schema = schemas.DeleteServiceNetworkResourceAssociationInput,
+        output_schema = schemas.DeleteServiceNetworkResourceAssociationOutput,
         http_method = "DELETE",
         http_path = "/servicenetworkresourceassociations/{serviceNetworkResourceAssociationIdentifier}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:deleteServiceNetworkServiceAssociation(input, options)
     return self:invokeOperation(input, {
         name = "DeleteServiceNetworkServiceAssociation",
-        input_schema = types.DeleteServiceNetworkServiceAssociationInput,
-        output_schema = types.DeleteServiceNetworkServiceAssociationOutput,
+        input_schema = schemas.DeleteServiceNetworkServiceAssociationInput,
+        output_schema = schemas.DeleteServiceNetworkServiceAssociationOutput,
         http_method = "DELETE",
         http_path = "/servicenetworkserviceassociations/{serviceNetworkServiceAssociationIdentifier}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:deleteServiceNetworkVpcAssociation(input, options)
     return self:invokeOperation(input, {
         name = "DeleteServiceNetworkVpcAssociation",
-        input_schema = types.DeleteServiceNetworkVpcAssociationInput,
-        output_schema = types.DeleteServiceNetworkVpcAssociationOutput,
+        input_schema = schemas.DeleteServiceNetworkVpcAssociationInput,
+        output_schema = schemas.DeleteServiceNetworkVpcAssociationOutput,
         http_method = "DELETE",
         http_path = "/servicenetworkvpcassociations/{serviceNetworkVpcAssociationIdentifier}",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:deleteTargetGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTargetGroup",
-        input_schema = types.DeleteTargetGroupInput,
-        output_schema = types.DeleteTargetGroupOutput,
+        input_schema = schemas.DeleteTargetGroupInput,
+        output_schema = schemas.DeleteTargetGroupOutput,
         http_method = "DELETE",
         http_path = "/targetgroups/{targetGroupIdentifier}",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:deregisterTargets(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterTargets",
-        input_schema = types.DeregisterTargetsInput,
-        output_schema = types.DeregisterTargetsOutput,
+        input_schema = schemas.DeregisterTargetsInput,
+        output_schema = schemas.DeregisterTargetsOutput,
         http_method = "POST",
         http_path = "/targetgroups/{targetGroupIdentifier}/deregistertargets",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:getAccessLogSubscription(input, options)
     return self:invokeOperation(input, {
         name = "GetAccessLogSubscription",
-        input_schema = types.GetAccessLogSubscriptionInput,
-        output_schema = types.GetAccessLogSubscriptionOutput,
+        input_schema = schemas.GetAccessLogSubscriptionInput,
+        output_schema = schemas.GetAccessLogSubscriptionOutput,
         http_method = "GET",
         http_path = "/accesslogsubscriptions/{accessLogSubscriptionIdentifier}",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:getAuthPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetAuthPolicy",
-        input_schema = types.GetAuthPolicyInput,
-        output_schema = types.GetAuthPolicyOutput,
+        input_schema = schemas.GetAuthPolicyInput,
+        output_schema = schemas.GetAuthPolicyOutput,
         http_method = "GET",
         http_path = "/authpolicy/{resourceIdentifier}",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:getDomainVerification(input, options)
     return self:invokeOperation(input, {
         name = "GetDomainVerification",
-        input_schema = types.GetDomainVerificationInput,
-        output_schema = types.GetDomainVerificationOutput,
+        input_schema = schemas.GetDomainVerificationInput,
+        output_schema = schemas.GetDomainVerificationOutput,
         http_method = "GET",
         http_path = "/domainverifications/{domainVerificationIdentifier}",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:getListener(input, options)
     return self:invokeOperation(input, {
         name = "GetListener",
-        input_schema = types.GetListenerInput,
-        output_schema = types.GetListenerOutput,
+        input_schema = schemas.GetListenerInput,
+        output_schema = schemas.GetListenerOutput,
         http_method = "GET",
         http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:getResourceConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetResourceConfiguration",
-        input_schema = types.GetResourceConfigurationInput,
-        output_schema = types.GetResourceConfigurationOutput,
+        input_schema = schemas.GetResourceConfigurationInput,
+        output_schema = schemas.GetResourceConfigurationOutput,
         http_method = "GET",
         http_path = "/resourceconfigurations/{resourceConfigurationIdentifier}",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:getResourceGateway(input, options)
     return self:invokeOperation(input, {
         name = "GetResourceGateway",
-        input_schema = types.GetResourceGatewayInput,
-        output_schema = types.GetResourceGatewayOutput,
+        input_schema = schemas.GetResourceGatewayInput,
+        output_schema = schemas.GetResourceGatewayOutput,
         http_method = "GET",
         http_path = "/resourcegateways/{resourceGatewayIdentifier}",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:getResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcePolicy",
-        input_schema = types.GetResourcePolicyInput,
-        output_schema = types.GetResourcePolicyOutput,
+        input_schema = schemas.GetResourcePolicyInput,
+        output_schema = schemas.GetResourcePolicyOutput,
         http_method = "GET",
         http_path = "/resourcepolicy/{resourceArn}",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:getRule(input, options)
     return self:invokeOperation(input, {
         name = "GetRule",
-        input_schema = types.GetRuleInput,
-        output_schema = types.GetRuleOutput,
+        input_schema = schemas.GetRuleInput,
+        output_schema = schemas.GetRuleOutput,
         http_method = "GET",
         http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules/{ruleIdentifier}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:getService(input, options)
     return self:invokeOperation(input, {
         name = "GetService",
-        input_schema = types.GetServiceInput,
-        output_schema = types.GetServiceOutput,
+        input_schema = schemas.GetServiceInput,
+        output_schema = schemas.GetServiceOutput,
         http_method = "GET",
         http_path = "/services/{serviceIdentifier}",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:getServiceNetwork(input, options)
     return self:invokeOperation(input, {
         name = "GetServiceNetwork",
-        input_schema = types.GetServiceNetworkInput,
-        output_schema = types.GetServiceNetworkOutput,
+        input_schema = schemas.GetServiceNetworkInput,
+        output_schema = schemas.GetServiceNetworkOutput,
         http_method = "GET",
         http_path = "/servicenetworks/{serviceNetworkIdentifier}",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:getServiceNetworkResourceAssociation(input, options)
     return self:invokeOperation(input, {
         name = "GetServiceNetworkResourceAssociation",
-        input_schema = types.GetServiceNetworkResourceAssociationInput,
-        output_schema = types.GetServiceNetworkResourceAssociationOutput,
+        input_schema = schemas.GetServiceNetworkResourceAssociationInput,
+        output_schema = schemas.GetServiceNetworkResourceAssociationOutput,
         http_method = "GET",
         http_path = "/servicenetworkresourceassociations/{serviceNetworkResourceAssociationIdentifier}",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:getServiceNetworkServiceAssociation(input, options)
     return self:invokeOperation(input, {
         name = "GetServiceNetworkServiceAssociation",
-        input_schema = types.GetServiceNetworkServiceAssociationInput,
-        output_schema = types.GetServiceNetworkServiceAssociationOutput,
+        input_schema = schemas.GetServiceNetworkServiceAssociationInput,
+        output_schema = schemas.GetServiceNetworkServiceAssociationOutput,
         http_method = "GET",
         http_path = "/servicenetworkserviceassociations/{serviceNetworkServiceAssociationIdentifier}",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:getServiceNetworkVpcAssociation(input, options)
     return self:invokeOperation(input, {
         name = "GetServiceNetworkVpcAssociation",
-        input_schema = types.GetServiceNetworkVpcAssociationInput,
-        output_schema = types.GetServiceNetworkVpcAssociationOutput,
+        input_schema = schemas.GetServiceNetworkVpcAssociationInput,
+        output_schema = schemas.GetServiceNetworkVpcAssociationOutput,
         http_method = "GET",
         http_path = "/servicenetworkvpcassociations/{serviceNetworkVpcAssociationIdentifier}",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:getTargetGroup(input, options)
     return self:invokeOperation(input, {
         name = "GetTargetGroup",
-        input_schema = types.GetTargetGroupInput,
-        output_schema = types.GetTargetGroupOutput,
+        input_schema = schemas.GetTargetGroupInput,
+        output_schema = schemas.GetTargetGroupOutput,
         http_method = "GET",
         http_path = "/targetgroups/{targetGroupIdentifier}",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:listAccessLogSubscriptions(input, options)
     return self:invokeOperation(input, {
         name = "ListAccessLogSubscriptions",
-        input_schema = types.ListAccessLogSubscriptionsInput,
-        output_schema = types.ListAccessLogSubscriptionsOutput,
+        input_schema = schemas.ListAccessLogSubscriptionsInput,
+        output_schema = schemas.ListAccessLogSubscriptionsOutput,
         http_method = "GET",
         http_path = "/accesslogsubscriptions",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:listDomainVerifications(input, options)
     return self:invokeOperation(input, {
         name = "ListDomainVerifications",
-        input_schema = types.ListDomainVerificationsInput,
-        output_schema = types.ListDomainVerificationsOutput,
+        input_schema = schemas.ListDomainVerificationsInput,
+        output_schema = schemas.ListDomainVerificationsOutput,
         http_method = "GET",
         http_path = "/domainverifications",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:listListeners(input, options)
     return self:invokeOperation(input, {
         name = "ListListeners",
-        input_schema = types.ListListenersInput,
-        output_schema = types.ListListenersOutput,
+        input_schema = schemas.ListListenersInput,
+        output_schema = schemas.ListListenersOutput,
         http_method = "GET",
         http_path = "/services/{serviceIdentifier}/listeners",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:listResourceConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListResourceConfigurations",
-        input_schema = types.ListResourceConfigurationsInput,
-        output_schema = types.ListResourceConfigurationsOutput,
+        input_schema = schemas.ListResourceConfigurationsInput,
+        output_schema = schemas.ListResourceConfigurationsOutput,
         http_method = "GET",
         http_path = "/resourceconfigurations",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:listResourceEndpointAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListResourceEndpointAssociations",
-        input_schema = types.ListResourceEndpointAssociationsInput,
-        output_schema = types.ListResourceEndpointAssociationsOutput,
+        input_schema = schemas.ListResourceEndpointAssociationsInput,
+        output_schema = schemas.ListResourceEndpointAssociationsOutput,
         http_method = "GET",
         http_path = "/resourceendpointassociations",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:listResourceGateways(input, options)
     return self:invokeOperation(input, {
         name = "ListResourceGateways",
-        input_schema = types.ListResourceGatewaysInput,
-        output_schema = types.ListResourceGatewaysOutput,
+        input_schema = schemas.ListResourceGatewaysInput,
+        output_schema = schemas.ListResourceGatewaysOutput,
         http_method = "GET",
         http_path = "/resourcegateways",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:listRules(input, options)
     return self:invokeOperation(input, {
         name = "ListRules",
-        input_schema = types.ListRulesInput,
-        output_schema = types.ListRulesOutput,
+        input_schema = schemas.ListRulesInput,
+        output_schema = schemas.ListRulesOutput,
         http_method = "GET",
         http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:listServiceNetworkResourceAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListServiceNetworkResourceAssociations",
-        input_schema = types.ListServiceNetworkResourceAssociationsInput,
-        output_schema = types.ListServiceNetworkResourceAssociationsOutput,
+        input_schema = schemas.ListServiceNetworkResourceAssociationsInput,
+        output_schema = schemas.ListServiceNetworkResourceAssociationsOutput,
         http_method = "GET",
         http_path = "/servicenetworkresourceassociations",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:listServiceNetworks(input, options)
     return self:invokeOperation(input, {
         name = "ListServiceNetworks",
-        input_schema = types.ListServiceNetworksInput,
-        output_schema = types.ListServiceNetworksOutput,
+        input_schema = schemas.ListServiceNetworksInput,
+        output_schema = schemas.ListServiceNetworksOutput,
         http_method = "GET",
         http_path = "/servicenetworks",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:listServiceNetworkServiceAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListServiceNetworkServiceAssociations",
-        input_schema = types.ListServiceNetworkServiceAssociationsInput,
-        output_schema = types.ListServiceNetworkServiceAssociationsOutput,
+        input_schema = schemas.ListServiceNetworkServiceAssociationsInput,
+        output_schema = schemas.ListServiceNetworkServiceAssociationsOutput,
         http_method = "GET",
         http_path = "/servicenetworkserviceassociations",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:listServiceNetworkVpcAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListServiceNetworkVpcAssociations",
-        input_schema = types.ListServiceNetworkVpcAssociationsInput,
-        output_schema = types.ListServiceNetworkVpcAssociationsOutput,
+        input_schema = schemas.ListServiceNetworkVpcAssociationsInput,
+        output_schema = schemas.ListServiceNetworkVpcAssociationsOutput,
         http_method = "GET",
         http_path = "/servicenetworkvpcassociations",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:listServiceNetworkVpcEndpointAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListServiceNetworkVpcEndpointAssociations",
-        input_schema = types.ListServiceNetworkVpcEndpointAssociationsInput,
-        output_schema = types.ListServiceNetworkVpcEndpointAssociationsOutput,
+        input_schema = schemas.ListServiceNetworkVpcEndpointAssociationsInput,
+        output_schema = schemas.ListServiceNetworkVpcEndpointAssociationsOutput,
         http_method = "GET",
         http_path = "/servicenetworkvpcendpointassociations",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:listServices(input, options)
     return self:invokeOperation(input, {
         name = "ListServices",
-        input_schema = types.ListServicesInput,
-        output_schema = types.ListServicesOutput,
+        input_schema = schemas.ListServicesInput,
+        output_schema = schemas.ListServicesOutput,
         http_method = "GET",
         http_path = "/services",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:listTargetGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListTargetGroups",
-        input_schema = types.ListTargetGroupsInput,
-        output_schema = types.ListTargetGroupsOutput,
+        input_schema = schemas.ListTargetGroupsInput,
+        output_schema = schemas.ListTargetGroupsOutput,
         http_method = "GET",
         http_path = "/targetgroups",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:listTargets(input, options)
     return self:invokeOperation(input, {
         name = "ListTargets",
-        input_schema = types.ListTargetsInput,
-        output_schema = types.ListTargetsOutput,
+        input_schema = schemas.ListTargetsInput,
+        output_schema = schemas.ListTargetsOutput,
         http_method = "POST",
         http_path = "/targetgroups/{targetGroupIdentifier}/listtargets",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:putAuthPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutAuthPolicy",
-        input_schema = types.PutAuthPolicyInput,
-        output_schema = types.PutAuthPolicyOutput,
+        input_schema = schemas.PutAuthPolicyInput,
+        output_schema = schemas.PutAuthPolicyOutput,
         http_method = "PUT",
         http_path = "/authpolicy/{resourceIdentifier}",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:putResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutResourcePolicy",
-        input_schema = types.PutResourcePolicyInput,
-        output_schema = types.PutResourcePolicyOutput,
+        input_schema = schemas.PutResourcePolicyInput,
+        output_schema = schemas.PutResourcePolicyOutput,
         http_method = "PUT",
         http_path = "/resourcepolicy/{resourceArn}",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:registerTargets(input, options)
     return self:invokeOperation(input, {
         name = "RegisterTargets",
-        input_schema = types.RegisterTargetsInput,
-        output_schema = types.RegisterTargetsOutput,
+        input_schema = schemas.RegisterTargetsInput,
+        output_schema = schemas.RegisterTargetsOutput,
         http_method = "POST",
         http_path = "/targetgroups/{targetGroupIdentifier}/registertargets",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:startDomainVerification(input, options)
     return self:invokeOperation(input, {
         name = "StartDomainVerification",
-        input_schema = types.StartDomainVerificationInput,
-        output_schema = types.StartDomainVerificationOutput,
+        input_schema = schemas.StartDomainVerificationInput,
+        output_schema = schemas.StartDomainVerificationOutput,
         http_method = "POST",
         http_path = "/domainverifications",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:updateAccessLogSubscription(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAccessLogSubscription",
-        input_schema = types.UpdateAccessLogSubscriptionInput,
-        output_schema = types.UpdateAccessLogSubscriptionOutput,
+        input_schema = schemas.UpdateAccessLogSubscriptionInput,
+        output_schema = schemas.UpdateAccessLogSubscriptionOutput,
         http_method = "PATCH",
         http_path = "/accesslogsubscriptions/{accessLogSubscriptionIdentifier}",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:updateListener(input, options)
     return self:invokeOperation(input, {
         name = "UpdateListener",
-        input_schema = types.UpdateListenerInput,
-        output_schema = types.UpdateListenerOutput,
+        input_schema = schemas.UpdateListenerInput,
+        output_schema = schemas.UpdateListenerOutput,
         http_method = "PATCH",
         http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:updateResourceConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateResourceConfiguration",
-        input_schema = types.UpdateResourceConfigurationInput,
-        output_schema = types.UpdateResourceConfigurationOutput,
+        input_schema = schemas.UpdateResourceConfigurationInput,
+        output_schema = schemas.UpdateResourceConfigurationOutput,
         http_method = "PATCH",
         http_path = "/resourceconfigurations/{resourceConfigurationIdentifier}",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:updateResourceGateway(input, options)
     return self:invokeOperation(input, {
         name = "UpdateResourceGateway",
-        input_schema = types.UpdateResourceGatewayInput,
-        output_schema = types.UpdateResourceGatewayOutput,
+        input_schema = schemas.UpdateResourceGatewayInput,
+        output_schema = schemas.UpdateResourceGatewayOutput,
         http_method = "PATCH",
         http_path = "/resourcegateways/{resourceGatewayIdentifier}",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:updateRule(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRule",
-        input_schema = types.UpdateRuleInput,
-        output_schema = types.UpdateRuleOutput,
+        input_schema = schemas.UpdateRuleInput,
+        output_schema = schemas.UpdateRuleOutput,
         http_method = "PATCH",
         http_path = "/services/{serviceIdentifier}/listeners/{listenerIdentifier}/rules/{ruleIdentifier}",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:updateService(input, options)
     return self:invokeOperation(input, {
         name = "UpdateService",
-        input_schema = types.UpdateServiceInput,
-        output_schema = types.UpdateServiceOutput,
+        input_schema = schemas.UpdateServiceInput,
+        output_schema = schemas.UpdateServiceOutput,
         http_method = "PATCH",
         http_path = "/services/{serviceIdentifier}",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:updateServiceNetwork(input, options)
     return self:invokeOperation(input, {
         name = "UpdateServiceNetwork",
-        input_schema = types.UpdateServiceNetworkInput,
-        output_schema = types.UpdateServiceNetworkOutput,
+        input_schema = schemas.UpdateServiceNetworkInput,
+        output_schema = schemas.UpdateServiceNetworkOutput,
         http_method = "PATCH",
         http_path = "/servicenetworks/{serviceNetworkIdentifier}",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:updateServiceNetworkVpcAssociation(input, options)
     return self:invokeOperation(input, {
         name = "UpdateServiceNetworkVpcAssociation",
-        input_schema = types.UpdateServiceNetworkVpcAssociationInput,
-        output_schema = types.UpdateServiceNetworkVpcAssociationOutput,
+        input_schema = schemas.UpdateServiceNetworkVpcAssociationInput,
+        output_schema = schemas.UpdateServiceNetworkVpcAssociationOutput,
         http_method = "PATCH",
         http_path = "/servicenetworkvpcassociations/{serviceNetworkVpcAssociationIdentifier}",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:updateTargetGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTargetGroup",
-        input_schema = types.UpdateTargetGroupInput,
-        output_schema = types.UpdateTargetGroupOutput,
+        input_schema = schemas.UpdateTargetGroupInput,
+        output_schema = schemas.UpdateTargetGroupOutput,
         http_method = "PATCH",
         http_path = "/targetgroups/{targetGroupIdentifier}",
         effective_auth_schemes = {

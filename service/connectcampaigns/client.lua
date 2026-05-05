@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("connectcampaigns.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("connectcampaigns.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("connectcampaigns.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createCampaign(input, options)
     return self:invokeOperation(input, {
         name = "CreateCampaign",
-        input_schema = types.CreateCampaignInput,
-        output_schema = types.CreateCampaignOutput,
+        input_schema = schemas.CreateCampaignInput,
+        output_schema = schemas.CreateCampaignOutput,
         http_method = "PUT",
         http_path = "/campaigns",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteCampaign(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCampaign",
-        input_schema = types.DeleteCampaignInput,
-        output_schema = types.DeleteCampaignOutput,
+        input_schema = schemas.DeleteCampaignInput,
+        output_schema = schemas.DeleteCampaignOutput,
         http_method = "DELETE",
         http_path = "/campaigns/{id}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteConnectInstanceConfig(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConnectInstanceConfig",
-        input_schema = types.DeleteConnectInstanceConfigInput,
-        output_schema = types.DeleteConnectInstanceConfigOutput,
+        input_schema = schemas.DeleteConnectInstanceConfigInput,
+        output_schema = schemas.DeleteConnectInstanceConfigOutput,
         http_method = "DELETE",
         http_path = "/connect-instance/{connectInstanceId}/config",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteInstanceOnboardingJob(input, options)
     return self:invokeOperation(input, {
         name = "DeleteInstanceOnboardingJob",
-        input_schema = types.DeleteInstanceOnboardingJobInput,
-        output_schema = types.DeleteInstanceOnboardingJobOutput,
+        input_schema = schemas.DeleteInstanceOnboardingJobInput,
+        output_schema = schemas.DeleteInstanceOnboardingJobOutput,
         http_method = "DELETE",
         http_path = "/connect-instance/{connectInstanceId}/onboarding",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:describeCampaign(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCampaign",
-        input_schema = types.DescribeCampaignInput,
-        output_schema = types.DescribeCampaignOutput,
+        input_schema = schemas.DescribeCampaignInput,
+        output_schema = schemas.DescribeCampaignOutput,
         http_method = "GET",
         http_path = "/campaigns/{id}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getCampaignState(input, options)
     return self:invokeOperation(input, {
         name = "GetCampaignState",
-        input_schema = types.GetCampaignStateInput,
-        output_schema = types.GetCampaignStateOutput,
+        input_schema = schemas.GetCampaignStateInput,
+        output_schema = schemas.GetCampaignStateOutput,
         http_method = "GET",
         http_path = "/campaigns/{id}/state",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getCampaignStateBatch(input, options)
     return self:invokeOperation(input, {
         name = "GetCampaignStateBatch",
-        input_schema = types.GetCampaignStateBatchInput,
-        output_schema = types.GetCampaignStateBatchOutput,
+        input_schema = schemas.GetCampaignStateBatchInput,
+        output_schema = schemas.GetCampaignStateBatchOutput,
         http_method = "POST",
         http_path = "/campaigns-state",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getConnectInstanceConfig(input, options)
     return self:invokeOperation(input, {
         name = "GetConnectInstanceConfig",
-        input_schema = types.GetConnectInstanceConfigInput,
-        output_schema = types.GetConnectInstanceConfigOutput,
+        input_schema = schemas.GetConnectInstanceConfigInput,
+        output_schema = schemas.GetConnectInstanceConfigOutput,
         http_method = "GET",
         http_path = "/connect-instance/{connectInstanceId}/config",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getInstanceOnboardingJobStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetInstanceOnboardingJobStatus",
-        input_schema = types.GetInstanceOnboardingJobStatusInput,
-        output_schema = types.GetInstanceOnboardingJobStatusOutput,
+        input_schema = schemas.GetInstanceOnboardingJobStatusInput,
+        output_schema = schemas.GetInstanceOnboardingJobStatusOutput,
         http_method = "GET",
         http_path = "/connect-instance/{connectInstanceId}/onboarding",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listCampaigns(input, options)
     return self:invokeOperation(input, {
         name = "ListCampaigns",
-        input_schema = types.ListCampaignsInput,
-        output_schema = types.ListCampaignsOutput,
+        input_schema = schemas.ListCampaignsInput,
+        output_schema = schemas.ListCampaignsOutput,
         http_method = "POST",
         http_path = "/campaigns-summary",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{arn}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:pauseCampaign(input, options)
     return self:invokeOperation(input, {
         name = "PauseCampaign",
-        input_schema = types.PauseCampaignInput,
-        output_schema = types.PauseCampaignOutput,
+        input_schema = schemas.PauseCampaignInput,
+        output_schema = schemas.PauseCampaignOutput,
         http_method = "POST",
         http_path = "/campaigns/{id}/pause",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:putDialRequestBatch(input, options)
     return self:invokeOperation(input, {
         name = "PutDialRequestBatch",
-        input_schema = types.PutDialRequestBatchInput,
-        output_schema = types.PutDialRequestBatchOutput,
+        input_schema = schemas.PutDialRequestBatchInput,
+        output_schema = schemas.PutDialRequestBatchOutput,
         http_method = "PUT",
         http_path = "/campaigns/{id}/dial-requests",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:resumeCampaign(input, options)
     return self:invokeOperation(input, {
         name = "ResumeCampaign",
-        input_schema = types.ResumeCampaignInput,
-        output_schema = types.ResumeCampaignOutput,
+        input_schema = schemas.ResumeCampaignInput,
+        output_schema = schemas.ResumeCampaignOutput,
         http_method = "POST",
         http_path = "/campaigns/{id}/resume",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:startCampaign(input, options)
     return self:invokeOperation(input, {
         name = "StartCampaign",
-        input_schema = types.StartCampaignInput,
-        output_schema = types.StartCampaignOutput,
+        input_schema = schemas.StartCampaignInput,
+        output_schema = schemas.StartCampaignOutput,
         http_method = "POST",
         http_path = "/campaigns/{id}/start",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:startInstanceOnboardingJob(input, options)
     return self:invokeOperation(input, {
         name = "StartInstanceOnboardingJob",
-        input_schema = types.StartInstanceOnboardingJobInput,
-        output_schema = types.StartInstanceOnboardingJobOutput,
+        input_schema = schemas.StartInstanceOnboardingJobInput,
+        output_schema = schemas.StartInstanceOnboardingJobOutput,
         http_method = "PUT",
         http_path = "/connect-instance/{connectInstanceId}/onboarding",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:stopCampaign(input, options)
     return self:invokeOperation(input, {
         name = "StopCampaign",
-        input_schema = types.StopCampaignInput,
-        output_schema = types.StopCampaignOutput,
+        input_schema = schemas.StopCampaignInput,
+        output_schema = schemas.StopCampaignOutput,
         http_method = "POST",
         http_path = "/campaigns/{id}/stop",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{arn}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{arn}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:updateCampaignDialerConfig(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCampaignDialerConfig",
-        input_schema = types.UpdateCampaignDialerConfigInput,
-        output_schema = types.UpdateCampaignDialerConfigOutput,
+        input_schema = schemas.UpdateCampaignDialerConfigInput,
+        output_schema = schemas.UpdateCampaignDialerConfigOutput,
         http_method = "POST",
         http_path = "/campaigns/{id}/dialer-config",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:updateCampaignName(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCampaignName",
-        input_schema = types.UpdateCampaignNameInput,
-        output_schema = types.UpdateCampaignNameOutput,
+        input_schema = schemas.UpdateCampaignNameInput,
+        output_schema = schemas.UpdateCampaignNameOutput,
         http_method = "POST",
         http_path = "/campaigns/{id}/name",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:updateCampaignOutboundCallConfig(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCampaignOutboundCallConfig",
-        input_schema = types.UpdateCampaignOutboundCallConfigInput,
-        output_schema = types.UpdateCampaignOutboundCallConfigOutput,
+        input_schema = schemas.UpdateCampaignOutboundCallConfigInput,
+        output_schema = schemas.UpdateCampaignOutboundCallConfigOutput,
         http_method = "POST",
         http_path = "/campaigns/{id}/outbound-call-config",
         effective_auth_schemes = {

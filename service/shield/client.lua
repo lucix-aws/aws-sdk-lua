@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("shield.endpoint_rules")
+local schemas = require("shield.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("shield.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateDRTLogBucket(input, options)
     return self:invokeOperation(input, {
         name = "AssociateDRTLogBucket",
-        input_schema = types.AssociateDRTLogBucketInput,
-        output_schema = types.AssociateDRTLogBucketOutput,
+        input_schema = schemas.AssociateDRTLogBucketInput,
+        output_schema = schemas.AssociateDRTLogBucketOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:associateDRTRole(input, options)
     return self:invokeOperation(input, {
         name = "AssociateDRTRole",
-        input_schema = types.AssociateDRTRoleInput,
-        output_schema = types.AssociateDRTRoleOutput,
+        input_schema = schemas.AssociateDRTRoleInput,
+        output_schema = schemas.AssociateDRTRoleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:associateHealthCheck(input, options)
     return self:invokeOperation(input, {
         name = "AssociateHealthCheck",
-        input_schema = types.AssociateHealthCheckInput,
-        output_schema = types.AssociateHealthCheckOutput,
+        input_schema = schemas.AssociateHealthCheckInput,
+        output_schema = schemas.AssociateHealthCheckOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:associateProactiveEngagementDetails(input, options)
     return self:invokeOperation(input, {
         name = "AssociateProactiveEngagementDetails",
-        input_schema = types.AssociateProactiveEngagementDetailsInput,
-        output_schema = types.AssociateProactiveEngagementDetailsOutput,
+        input_schema = schemas.AssociateProactiveEngagementDetailsInput,
+        output_schema = schemas.AssociateProactiveEngagementDetailsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createProtection(input, options)
     return self:invokeOperation(input, {
         name = "CreateProtection",
-        input_schema = types.CreateProtectionInput,
-        output_schema = types.CreateProtectionOutput,
+        input_schema = schemas.CreateProtectionInput,
+        output_schema = schemas.CreateProtectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createProtectionGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateProtectionGroup",
-        input_schema = types.CreateProtectionGroupInput,
-        output_schema = types.CreateProtectionGroupOutput,
+        input_schema = schemas.CreateProtectionGroupInput,
+        output_schema = schemas.CreateProtectionGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createSubscription(input, options)
     return self:invokeOperation(input, {
         name = "CreateSubscription",
-        input_schema = types.CreateSubscriptionInput,
-        output_schema = types.CreateSubscriptionOutput,
+        input_schema = schemas.CreateSubscriptionInput,
+        output_schema = schemas.CreateSubscriptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteProtection(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProtection",
-        input_schema = types.DeleteProtectionInput,
-        output_schema = types.DeleteProtectionOutput,
+        input_schema = schemas.DeleteProtectionInput,
+        output_schema = schemas.DeleteProtectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteProtectionGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProtectionGroup",
-        input_schema = types.DeleteProtectionGroupInput,
-        output_schema = types.DeleteProtectionGroupOutput,
+        input_schema = schemas.DeleteProtectionGroupInput,
+        output_schema = schemas.DeleteProtectionGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteSubscription(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSubscription",
-        input_schema = types.DeleteSubscriptionInput,
-        output_schema = types.DeleteSubscriptionOutput,
+        input_schema = schemas.DeleteSubscriptionInput,
+        output_schema = schemas.DeleteSubscriptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:describeAttack(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAttack",
-        input_schema = types.DescribeAttackInput,
-        output_schema = types.DescribeAttackOutput,
+        input_schema = schemas.DescribeAttackInput,
+        output_schema = schemas.DescribeAttackOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:describeAttackStatistics(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAttackStatistics",
-        input_schema = types.DescribeAttackStatisticsInput,
-        output_schema = types.DescribeAttackStatisticsOutput,
+        input_schema = schemas.DescribeAttackStatisticsInput,
+        output_schema = schemas.DescribeAttackStatisticsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:describeDRTAccess(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDRTAccess",
-        input_schema = types.DescribeDRTAccessInput,
-        output_schema = types.DescribeDRTAccessOutput,
+        input_schema = schemas.DescribeDRTAccessInput,
+        output_schema = schemas.DescribeDRTAccessOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:describeEmergencyContactSettings(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEmergencyContactSettings",
-        input_schema = types.DescribeEmergencyContactSettingsInput,
-        output_schema = types.DescribeEmergencyContactSettingsOutput,
+        input_schema = schemas.DescribeEmergencyContactSettingsInput,
+        output_schema = schemas.DescribeEmergencyContactSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:describeProtection(input, options)
     return self:invokeOperation(input, {
         name = "DescribeProtection",
-        input_schema = types.DescribeProtectionInput,
-        output_schema = types.DescribeProtectionOutput,
+        input_schema = schemas.DescribeProtectionInput,
+        output_schema = schemas.DescribeProtectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:describeProtectionGroup(input, options)
     return self:invokeOperation(input, {
         name = "DescribeProtectionGroup",
-        input_schema = types.DescribeProtectionGroupInput,
-        output_schema = types.DescribeProtectionGroupOutput,
+        input_schema = schemas.DescribeProtectionGroupInput,
+        output_schema = schemas.DescribeProtectionGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:describeSubscription(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSubscription",
-        input_schema = types.DescribeSubscriptionInput,
-        output_schema = types.DescribeSubscriptionOutput,
+        input_schema = schemas.DescribeSubscriptionInput,
+        output_schema = schemas.DescribeSubscriptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:disableApplicationLayerAutomaticResponse(input, options)
     return self:invokeOperation(input, {
         name = "DisableApplicationLayerAutomaticResponse",
-        input_schema = types.DisableApplicationLayerAutomaticResponseInput,
-        output_schema = types.DisableApplicationLayerAutomaticResponseOutput,
+        input_schema = schemas.DisableApplicationLayerAutomaticResponseInput,
+        output_schema = schemas.DisableApplicationLayerAutomaticResponseOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:disableProactiveEngagement(input, options)
     return self:invokeOperation(input, {
         name = "DisableProactiveEngagement",
-        input_schema = types.DisableProactiveEngagementInput,
-        output_schema = types.DisableProactiveEngagementOutput,
+        input_schema = schemas.DisableProactiveEngagementInput,
+        output_schema = schemas.DisableProactiveEngagementOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:disassociateDRTLogBucket(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateDRTLogBucket",
-        input_schema = types.DisassociateDRTLogBucketInput,
-        output_schema = types.DisassociateDRTLogBucketOutput,
+        input_schema = schemas.DisassociateDRTLogBucketInput,
+        output_schema = schemas.DisassociateDRTLogBucketOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:disassociateDRTRole(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateDRTRole",
-        input_schema = types.DisassociateDRTRoleInput,
-        output_schema = types.DisassociateDRTRoleOutput,
+        input_schema = schemas.DisassociateDRTRoleInput,
+        output_schema = schemas.DisassociateDRTRoleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:disassociateHealthCheck(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateHealthCheck",
-        input_schema = types.DisassociateHealthCheckInput,
-        output_schema = types.DisassociateHealthCheckOutput,
+        input_schema = schemas.DisassociateHealthCheckInput,
+        output_schema = schemas.DisassociateHealthCheckOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:enableApplicationLayerAutomaticResponse(input, options)
     return self:invokeOperation(input, {
         name = "EnableApplicationLayerAutomaticResponse",
-        input_schema = types.EnableApplicationLayerAutomaticResponseInput,
-        output_schema = types.EnableApplicationLayerAutomaticResponseOutput,
+        input_schema = schemas.EnableApplicationLayerAutomaticResponseInput,
+        output_schema = schemas.EnableApplicationLayerAutomaticResponseOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:enableProactiveEngagement(input, options)
     return self:invokeOperation(input, {
         name = "EnableProactiveEngagement",
-        input_schema = types.EnableProactiveEngagementInput,
-        output_schema = types.EnableProactiveEngagementOutput,
+        input_schema = schemas.EnableProactiveEngagementInput,
+        output_schema = schemas.EnableProactiveEngagementOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getSubscriptionState(input, options)
     return self:invokeOperation(input, {
         name = "GetSubscriptionState",
-        input_schema = types.GetSubscriptionStateInput,
-        output_schema = types.GetSubscriptionStateOutput,
+        input_schema = schemas.GetSubscriptionStateInput,
+        output_schema = schemas.GetSubscriptionStateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listAttacks(input, options)
     return self:invokeOperation(input, {
         name = "ListAttacks",
-        input_schema = types.ListAttacksInput,
-        output_schema = types.ListAttacksOutput,
+        input_schema = schemas.ListAttacksInput,
+        output_schema = schemas.ListAttacksOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listProtectionGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListProtectionGroups",
-        input_schema = types.ListProtectionGroupsInput,
-        output_schema = types.ListProtectionGroupsOutput,
+        input_schema = schemas.ListProtectionGroupsInput,
+        output_schema = schemas.ListProtectionGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listProtections(input, options)
     return self:invokeOperation(input, {
         name = "ListProtections",
-        input_schema = types.ListProtectionsInput,
-        output_schema = types.ListProtectionsOutput,
+        input_schema = schemas.ListProtectionsInput,
+        output_schema = schemas.ListProtectionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listResourcesInProtectionGroup(input, options)
     return self:invokeOperation(input, {
         name = "ListResourcesInProtectionGroup",
-        input_schema = types.ListResourcesInProtectionGroupInput,
-        output_schema = types.ListResourcesInProtectionGroupOutput,
+        input_schema = schemas.ListResourcesInProtectionGroupInput,
+        output_schema = schemas.ListResourcesInProtectionGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:updateApplicationLayerAutomaticResponse(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApplicationLayerAutomaticResponse",
-        input_schema = types.UpdateApplicationLayerAutomaticResponseInput,
-        output_schema = types.UpdateApplicationLayerAutomaticResponseOutput,
+        input_schema = schemas.UpdateApplicationLayerAutomaticResponseInput,
+        output_schema = schemas.UpdateApplicationLayerAutomaticResponseOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:updateEmergencyContactSettings(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEmergencyContactSettings",
-        input_schema = types.UpdateEmergencyContactSettingsInput,
-        output_schema = types.UpdateEmergencyContactSettingsOutput,
+        input_schema = schemas.UpdateEmergencyContactSettingsInput,
+        output_schema = schemas.UpdateEmergencyContactSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:updateProtectionGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProtectionGroup",
-        input_schema = types.UpdateProtectionGroupInput,
-        output_schema = types.UpdateProtectionGroupOutput,
+        input_schema = schemas.UpdateProtectionGroupInput,
+        output_schema = schemas.UpdateProtectionGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:updateSubscription(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSubscription",
-        input_schema = types.UpdateSubscriptionInput,
-        output_schema = types.UpdateSubscriptionOutput,
+        input_schema = schemas.UpdateSubscriptionInput,
+        output_schema = schemas.UpdateSubscriptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

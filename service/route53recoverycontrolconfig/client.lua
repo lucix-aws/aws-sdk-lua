@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("route53recoverycontrolconfig.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("route53recoverycontrolconfig.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("route53recoverycontrolconfig.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createCluster(input, options)
     return self:invokeOperation(input, {
         name = "CreateCluster",
-        input_schema = types.CreateClusterInput,
-        output_schema = types.CreateClusterOutput,
+        input_schema = schemas.CreateClusterInput,
+        output_schema = schemas.CreateClusterOutput,
         http_method = "POST",
         http_path = "/cluster",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createControlPanel(input, options)
     return self:invokeOperation(input, {
         name = "CreateControlPanel",
-        input_schema = types.CreateControlPanelInput,
-        output_schema = types.CreateControlPanelOutput,
+        input_schema = schemas.CreateControlPanelInput,
+        output_schema = schemas.CreateControlPanelOutput,
         http_method = "POST",
         http_path = "/controlpanel",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createRoutingControl(input, options)
     return self:invokeOperation(input, {
         name = "CreateRoutingControl",
-        input_schema = types.CreateRoutingControlInput,
-        output_schema = types.CreateRoutingControlOutput,
+        input_schema = schemas.CreateRoutingControlInput,
+        output_schema = schemas.CreateRoutingControlOutput,
         http_method = "POST",
         http_path = "/routingcontrol",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createSafetyRule(input, options)
     return self:invokeOperation(input, {
         name = "CreateSafetyRule",
-        input_schema = types.CreateSafetyRuleInput,
-        output_schema = types.CreateSafetyRuleOutput,
+        input_schema = schemas.CreateSafetyRuleInput,
+        output_schema = schemas.CreateSafetyRuleOutput,
         http_method = "POST",
         http_path = "/safetyrule",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteCluster(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCluster",
-        input_schema = types.DeleteClusterInput,
-        output_schema = types.DeleteClusterOutput,
+        input_schema = schemas.DeleteClusterInput,
+        output_schema = schemas.DeleteClusterOutput,
         http_method = "DELETE",
         http_path = "/cluster/{ClusterArn}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteControlPanel(input, options)
     return self:invokeOperation(input, {
         name = "DeleteControlPanel",
-        input_schema = types.DeleteControlPanelInput,
-        output_schema = types.DeleteControlPanelOutput,
+        input_schema = schemas.DeleteControlPanelInput,
+        output_schema = schemas.DeleteControlPanelOutput,
         http_method = "DELETE",
         http_path = "/controlpanel/{ControlPanelArn}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteRoutingControl(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRoutingControl",
-        input_schema = types.DeleteRoutingControlInput,
-        output_schema = types.DeleteRoutingControlOutput,
+        input_schema = schemas.DeleteRoutingControlInput,
+        output_schema = schemas.DeleteRoutingControlOutput,
         http_method = "DELETE",
         http_path = "/routingcontrol/{RoutingControlArn}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteSafetyRule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSafetyRule",
-        input_schema = types.DeleteSafetyRuleInput,
-        output_schema = types.DeleteSafetyRuleOutput,
+        input_schema = schemas.DeleteSafetyRuleInput,
+        output_schema = schemas.DeleteSafetyRuleOutput,
         http_method = "DELETE",
         http_path = "/safetyrule/{SafetyRuleArn}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:describeCluster(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCluster",
-        input_schema = types.DescribeClusterInput,
-        output_schema = types.DescribeClusterOutput,
+        input_schema = schemas.DescribeClusterInput,
+        output_schema = schemas.DescribeClusterOutput,
         http_method = "GET",
         http_path = "/cluster/{ClusterArn}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:describeControlPanel(input, options)
     return self:invokeOperation(input, {
         name = "DescribeControlPanel",
-        input_schema = types.DescribeControlPanelInput,
-        output_schema = types.DescribeControlPanelOutput,
+        input_schema = schemas.DescribeControlPanelInput,
+        output_schema = schemas.DescribeControlPanelOutput,
         http_method = "GET",
         http_path = "/controlpanel/{ControlPanelArn}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:describeRoutingControl(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRoutingControl",
-        input_schema = types.DescribeRoutingControlInput,
-        output_schema = types.DescribeRoutingControlOutput,
+        input_schema = schemas.DescribeRoutingControlInput,
+        output_schema = schemas.DescribeRoutingControlOutput,
         http_method = "GET",
         http_path = "/routingcontrol/{RoutingControlArn}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:describeSafetyRule(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSafetyRule",
-        input_schema = types.DescribeSafetyRuleInput,
-        output_schema = types.DescribeSafetyRuleOutput,
+        input_schema = schemas.DescribeSafetyRuleInput,
+        output_schema = schemas.DescribeSafetyRuleOutput,
         http_method = "GET",
         http_path = "/safetyrule/{SafetyRuleArn}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcePolicy",
-        input_schema = types.GetResourcePolicyInput,
-        output_schema = types.GetResourcePolicyOutput,
+        input_schema = schemas.GetResourcePolicyInput,
+        output_schema = schemas.GetResourcePolicyOutput,
         http_method = "GET",
         http_path = "/resourcePolicy/{ResourceArn}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listAssociatedRoute53HealthChecks(input, options)
     return self:invokeOperation(input, {
         name = "ListAssociatedRoute53HealthChecks",
-        input_schema = types.ListAssociatedRoute53HealthChecksInput,
-        output_schema = types.ListAssociatedRoute53HealthChecksOutput,
+        input_schema = schemas.ListAssociatedRoute53HealthChecksInput,
+        output_schema = schemas.ListAssociatedRoute53HealthChecksOutput,
         http_method = "GET",
         http_path = "/routingcontrol/{RoutingControlArn}/associatedRoute53HealthChecks",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listClusters(input, options)
     return self:invokeOperation(input, {
         name = "ListClusters",
-        input_schema = types.ListClustersInput,
-        output_schema = types.ListClustersOutput,
+        input_schema = schemas.ListClustersInput,
+        output_schema = schemas.ListClustersOutput,
         http_method = "GET",
         http_path = "/cluster",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listControlPanels(input, options)
     return self:invokeOperation(input, {
         name = "ListControlPanels",
-        input_schema = types.ListControlPanelsInput,
-        output_schema = types.ListControlPanelsOutput,
+        input_schema = schemas.ListControlPanelsInput,
+        output_schema = schemas.ListControlPanelsOutput,
         http_method = "GET",
         http_path = "/controlpanels",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listRoutingControls(input, options)
     return self:invokeOperation(input, {
         name = "ListRoutingControls",
-        input_schema = types.ListRoutingControlsInput,
-        output_schema = types.ListRoutingControlsOutput,
+        input_schema = schemas.ListRoutingControlsInput,
+        output_schema = schemas.ListRoutingControlsOutput,
         http_method = "GET",
         http_path = "/controlpanel/{ControlPanelArn}/routingcontrols",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listSafetyRules(input, options)
     return self:invokeOperation(input, {
         name = "ListSafetyRules",
-        input_schema = types.ListSafetyRulesInput,
-        output_schema = types.ListSafetyRulesOutput,
+        input_schema = schemas.ListSafetyRulesInput,
+        output_schema = schemas.ListSafetyRulesOutput,
         http_method = "GET",
         http_path = "/controlpanel/{ControlPanelArn}/safetyrules",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:updateCluster(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCluster",
-        input_schema = types.UpdateClusterInput,
-        output_schema = types.UpdateClusterOutput,
+        input_schema = schemas.UpdateClusterInput,
+        output_schema = schemas.UpdateClusterOutput,
         http_method = "PUT",
         http_path = "/cluster",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:updateControlPanel(input, options)
     return self:invokeOperation(input, {
         name = "UpdateControlPanel",
-        input_schema = types.UpdateControlPanelInput,
-        output_schema = types.UpdateControlPanelOutput,
+        input_schema = schemas.UpdateControlPanelInput,
+        output_schema = schemas.UpdateControlPanelOutput,
         http_method = "PUT",
         http_path = "/controlpanel",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:updateRoutingControl(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRoutingControl",
-        input_schema = types.UpdateRoutingControlInput,
-        output_schema = types.UpdateRoutingControlOutput,
+        input_schema = schemas.UpdateRoutingControlInput,
+        output_schema = schemas.UpdateRoutingControlOutput,
         http_method = "PUT",
         http_path = "/routingcontrol",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:updateSafetyRule(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSafetyRule",
-        input_schema = types.UpdateSafetyRuleInput,
-        output_schema = types.UpdateSafetyRuleOutput,
+        input_schema = schemas.UpdateSafetyRuleInput,
+        output_schema = schemas.UpdateSafetyRuleOutput,
         http_method = "PUT",
         http_path = "/safetyrule",
         effective_auth_schemes = {

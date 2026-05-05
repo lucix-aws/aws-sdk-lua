@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("sts.endpoint_rules")
 local query_protocol = require("protocol.query")
+local schemas = require("sts.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("sts.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:assumeRole(input, options)
     return self:invokeOperation(input, {
         name = "AssumeRole",
-        input_schema = types.AssumeRoleInput,
-        output_schema = types.AssumeRoleOutput,
+        input_schema = schemas.AssumeRoleInput,
+        output_schema = schemas.AssumeRoleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -63,8 +63,8 @@ end
 function Client:assumeRoleWithSAML(input, options)
     return self:invokeOperation(input, {
         name = "AssumeRoleWithSAML",
-        input_schema = types.AssumeRoleWithSAMLInput,
-        output_schema = types.AssumeRoleWithSAMLOutput,
+        input_schema = schemas.AssumeRoleWithSAMLInput,
+        output_schema = schemas.AssumeRoleWithSAMLOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:assumeRoleWithWebIdentity(input, options)
     return self:invokeOperation(input, {
         name = "AssumeRoleWithWebIdentity",
-        input_schema = types.AssumeRoleWithWebIdentityInput,
-        output_schema = types.AssumeRoleWithWebIdentityOutput,
+        input_schema = schemas.AssumeRoleWithWebIdentityInput,
+        output_schema = schemas.AssumeRoleWithWebIdentityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -87,8 +87,8 @@ end
 function Client:assumeRoot(input, options)
     return self:invokeOperation(input, {
         name = "AssumeRoot",
-        input_schema = types.AssumeRootInput,
-        output_schema = types.AssumeRootOutput,
+        input_schema = schemas.AssumeRootInput,
+        output_schema = schemas.AssumeRootOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:decodeAuthorizationMessage(input, options)
     return self:invokeOperation(input, {
         name = "DecodeAuthorizationMessage",
-        input_schema = types.DecodeAuthorizationMessageInput,
-        output_schema = types.DecodeAuthorizationMessageOutput,
+        input_schema = schemas.DecodeAuthorizationMessageInput,
+        output_schema = schemas.DecodeAuthorizationMessageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -115,8 +115,8 @@ end
 function Client:getAccessKeyInfo(input, options)
     return self:invokeOperation(input, {
         name = "GetAccessKeyInfo",
-        input_schema = types.GetAccessKeyInfoInput,
-        output_schema = types.GetAccessKeyInfoOutput,
+        input_schema = schemas.GetAccessKeyInfoInput,
+        output_schema = schemas.GetAccessKeyInfoOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -129,8 +129,8 @@ end
 function Client:getCallerIdentity(input, options)
     return self:invokeOperation(input, {
         name = "GetCallerIdentity",
-        input_schema = types.GetCallerIdentityInput,
-        output_schema = types.GetCallerIdentityOutput,
+        input_schema = schemas.GetCallerIdentityInput,
+        output_schema = schemas.GetCallerIdentityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -143,8 +143,8 @@ end
 function Client:getDelegatedAccessToken(input, options)
     return self:invokeOperation(input, {
         name = "GetDelegatedAccessToken",
-        input_schema = types.GetDelegatedAccessTokenInput,
-        output_schema = types.GetDelegatedAccessTokenOutput,
+        input_schema = schemas.GetDelegatedAccessTokenInput,
+        output_schema = schemas.GetDelegatedAccessTokenOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -157,8 +157,8 @@ end
 function Client:getFederationToken(input, options)
     return self:invokeOperation(input, {
         name = "GetFederationToken",
-        input_schema = types.GetFederationTokenInput,
-        output_schema = types.GetFederationTokenOutput,
+        input_schema = schemas.GetFederationTokenInput,
+        output_schema = schemas.GetFederationTokenOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -171,8 +171,8 @@ end
 function Client:getSessionToken(input, options)
     return self:invokeOperation(input, {
         name = "GetSessionToken",
-        input_schema = types.GetSessionTokenInput,
-        output_schema = types.GetSessionTokenOutput,
+        input_schema = schemas.GetSessionTokenInput,
+        output_schema = schemas.GetSessionTokenOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -185,8 +185,8 @@ end
 function Client:getWebIdentityToken(input, options)
     return self:invokeOperation(input, {
         name = "GetWebIdentityToken",
-        input_schema = types.GetWebIdentityTokenInput,
-        output_schema = types.GetWebIdentityTokenOutput,
+        input_schema = schemas.GetWebIdentityTokenInput,
+        output_schema = schemas.GetWebIdentityTokenOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

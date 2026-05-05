@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("cloudtraildata.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("cloudtraildata.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("cloudtraildata.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:putAuditEvents(input, options)
     return self:invokeOperation(input, {
         name = "PutAuditEvents",
-        input_schema = types.PutAuditEventsInput,
-        output_schema = types.PutAuditEventsOutput,
+        input_schema = schemas.PutAuditEventsInput,
+        output_schema = schemas.PutAuditEventsOutput,
         http_method = "POST",
         http_path = "/PutAuditEvents",
         effective_auth_schemes = {

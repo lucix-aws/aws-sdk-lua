@@ -1,0 +1,710 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.iotjobsdataplane"
+
+local M = {}
+
+M.CertificateValidationException = schema.new({
+    id = id.from(_N, "CertificateValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "CertificateValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CommandParameterValue = schema.new({
+    id = id.from(_N, "CommandParameterValue"),
+    type = "structure",
+    members = {
+        S = schema.new({
+            id = id.from(_N, "CommandParameterValue", "S"),
+            type = "string",
+            name = "S",
+            target_id = prelude.String.id,
+        }),
+        B = schema.new({
+            id = id.from(_N, "CommandParameterValue", "B"),
+            type = "boolean",
+            name = "B",
+            target_id = prelude.Boolean.id,
+        }),
+        I = schema.new({
+            id = id.from(_N, "CommandParameterValue", "I"),
+            type = "integer",
+            name = "I",
+            target_id = prelude.Integer.id,
+        }),
+        L = schema.new({
+            id = id.from(_N, "CommandParameterValue", "L"),
+            type = "long",
+            name = "L",
+            target_id = prelude.Long.id,
+        }),
+        D = schema.new({
+            id = id.from(_N, "CommandParameterValue", "D"),
+            type = "double",
+            name = "D",
+            target_id = prelude.Double.id,
+        }),
+        BIN = schema.new({
+            id = id.from(_N, "CommandParameterValue", "BIN"),
+            type = "blob",
+            name = "BIN",
+            target_id = prelude.Blob.id,
+        }),
+        UL = schema.new({
+            id = id.from(_N, "CommandParameterValue", "UL"),
+            type = "string",
+            name = "UL",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ConflictException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "ConflictException", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeJobExecutionInput = schema.new({
+    id = id.from(_N, "DescribeJobExecutionInput"),
+    type = "structure",
+    members = {
+        jobId = schema.new({
+            id = id.from(_N, "DescribeJobExecutionInput", "jobId"),
+            type = "string",
+            name = "jobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        thingName = schema.new({
+            id = id.from(_N, "DescribeJobExecutionInput", "thingName"),
+            type = "string",
+            name = "thingName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        includeJobDocument = schema.new({
+            id = id.from(_N, "DescribeJobExecutionInput", "includeJobDocument"),
+            type = "boolean",
+            name = "includeJobDocument",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "includeJobDocument" },
+            },
+        }),
+        executionNumber = schema.new({
+            id = id.from(_N, "DescribeJobExecutionInput", "executionNumber"),
+            type = "long",
+            name = "executionNumber",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "executionNumber" },
+            },
+        }),
+    },
+})
+
+M.JobExecution = schema.new({
+    id = id.from(_N, "JobExecution"),
+    type = "structure",
+    members = {
+        jobId = schema.new({
+            id = id.from(_N, "JobExecution", "jobId"),
+            type = "string",
+            name = "jobId",
+            target_id = prelude.String.id,
+        }),
+        thingName = schema.new({
+            id = id.from(_N, "JobExecution", "thingName"),
+            type = "string",
+            name = "thingName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "JobExecution", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusDetails = schema.new({
+            id = id.from(_N, "JobExecution", "statusDetails"),
+            type = "map",
+            name = "statusDetails",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        queuedAt = schema.new({
+            id = id.from(_N, "JobExecution", "queuedAt"),
+            type = "long",
+            name = "queuedAt",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        startedAt = schema.new({
+            id = id.from(_N, "JobExecution", "startedAt"),
+            type = "long",
+            name = "startedAt",
+            target_id = prelude.Long.id,
+        }),
+        lastUpdatedAt = schema.new({
+            id = id.from(_N, "JobExecution", "lastUpdatedAt"),
+            type = "long",
+            name = "lastUpdatedAt",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        approximateSecondsBeforeTimedOut = schema.new({
+            id = id.from(_N, "JobExecution", "approximateSecondsBeforeTimedOut"),
+            type = "long",
+            name = "approximateSecondsBeforeTimedOut",
+            target_id = prelude.Long.id,
+        }),
+        versionNumber = schema.new({
+            id = id.from(_N, "JobExecution", "versionNumber"),
+            type = "long",
+            name = "versionNumber",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        executionNumber = schema.new({
+            id = id.from(_N, "JobExecution", "executionNumber"),
+            type = "long",
+            name = "executionNumber",
+            target_id = prelude.Long.id,
+        }),
+        jobDocument = schema.new({
+            id = id.from(_N, "JobExecution", "jobDocument"),
+            type = "string",
+            name = "jobDocument",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeJobExecutionOutput = schema.new({
+    id = id.from(_N, "DescribeJobExecutionOutput"),
+    type = "structure",
+    members = {
+        execution = schema.new({
+            id = id.from(_N, "DescribeJobExecutionOutput", "execution"),
+            type = "structure",
+            name = "execution",
+            target_id = id.from(_N, "JobExecution"),
+            target = M.JobExecution,
+        }),
+    },
+})
+
+M.InvalidRequestException = schema.new({
+    id = id.from(_N, "InvalidRequestException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidRequestException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceUnavailableException = schema.new({
+    id = id.from(_N, "ServiceUnavailableException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceUnavailableException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TerminalStateException = schema.new({
+    id = id.from(_N, "TerminalStateException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "TerminalStateException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ThrottlingException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+        payload = schema.new({
+            id = id.from(_N, "ThrottlingException", "payload"),
+            type = "blob",
+            name = "payload",
+            target_id = prelude.Blob.id,
+        }),
+    },
+})
+
+M.GetPendingJobExecutionsInput = schema.new({
+    id = id.from(_N, "GetPendingJobExecutionsInput"),
+    type = "structure",
+    members = {
+        thingName = schema.new({
+            id = id.from(_N, "GetPendingJobExecutionsInput", "thingName"),
+            type = "string",
+            name = "thingName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.JobExecutionSummary = schema.new({
+    id = id.from(_N, "JobExecutionSummary"),
+    type = "structure",
+    members = {
+        jobId = schema.new({
+            id = id.from(_N, "JobExecutionSummary", "jobId"),
+            type = "string",
+            name = "jobId",
+            target_id = prelude.String.id,
+        }),
+        queuedAt = schema.new({
+            id = id.from(_N, "JobExecutionSummary", "queuedAt"),
+            type = "long",
+            name = "queuedAt",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        startedAt = schema.new({
+            id = id.from(_N, "JobExecutionSummary", "startedAt"),
+            type = "long",
+            name = "startedAt",
+            target_id = prelude.Long.id,
+        }),
+        lastUpdatedAt = schema.new({
+            id = id.from(_N, "JobExecutionSummary", "lastUpdatedAt"),
+            type = "long",
+            name = "lastUpdatedAt",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        versionNumber = schema.new({
+            id = id.from(_N, "JobExecutionSummary", "versionNumber"),
+            type = "long",
+            name = "versionNumber",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        executionNumber = schema.new({
+            id = id.from(_N, "JobExecutionSummary", "executionNumber"),
+            type = "long",
+            name = "executionNumber",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.GetPendingJobExecutionsOutput = schema.new({
+    id = id.from(_N, "GetPendingJobExecutionsOutput"),
+    type = "structure",
+    members = {
+        inProgressJobs = schema.new({
+            id = id.from(_N, "GetPendingJobExecutionsOutput", "inProgressJobs"),
+            type = "list",
+            name = "inProgressJobs",
+            target_id = prelude.Document.id,
+            list_member = M.JobExecutionSummary,
+        }),
+        queuedJobs = schema.new({
+            id = id.from(_N, "GetPendingJobExecutionsOutput", "queuedJobs"),
+            type = "list",
+            name = "queuedJobs",
+            target_id = prelude.Document.id,
+            list_member = M.JobExecutionSummary,
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InternalServerException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidStateTransitionException = schema.new({
+    id = id.from(_N, "InvalidStateTransitionException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidStateTransitionException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StartCommandExecutionInput = schema.new({
+    id = id.from(_N, "StartCommandExecutionInput"),
+    type = "structure",
+    members = {
+        targetArn = schema.new({
+            id = id.from(_N, "StartCommandExecutionInput", "targetArn"),
+            type = "string",
+            name = "targetArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        commandArn = schema.new({
+            id = id.from(_N, "StartCommandExecutionInput", "commandArn"),
+            type = "string",
+            name = "commandArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        parameters = schema.new({
+            id = id.from(_N, "StartCommandExecutionInput", "parameters"),
+            type = "map",
+            name = "parameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.CommandParameterValue,
+        }),
+        executionTimeoutSeconds = schema.new({
+            id = id.from(_N, "StartCommandExecutionInput", "executionTimeoutSeconds"),
+            type = "long",
+            name = "executionTimeoutSeconds",
+            target_id = prelude.Long.id,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "StartCommandExecutionInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.StartCommandExecutionOutput = schema.new({
+    id = id.from(_N, "StartCommandExecutionOutput"),
+    type = "structure",
+    members = {
+        executionId = schema.new({
+            id = id.from(_N, "StartCommandExecutionOutput", "executionId"),
+            type = "string",
+            name = "executionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StartNextPendingJobExecutionInput = schema.new({
+    id = id.from(_N, "StartNextPendingJobExecutionInput"),
+    type = "structure",
+    members = {
+        thingName = schema.new({
+            id = id.from(_N, "StartNextPendingJobExecutionInput", "thingName"),
+            type = "string",
+            name = "thingName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        statusDetails = schema.new({
+            id = id.from(_N, "StartNextPendingJobExecutionInput", "statusDetails"),
+            type = "map",
+            name = "statusDetails",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        stepTimeoutInMinutes = schema.new({
+            id = id.from(_N, "StartNextPendingJobExecutionInput", "stepTimeoutInMinutes"),
+            type = "long",
+            name = "stepTimeoutInMinutes",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.StartNextPendingJobExecutionOutput = schema.new({
+    id = id.from(_N, "StartNextPendingJobExecutionOutput"),
+    type = "structure",
+    members = {
+        execution = schema.new({
+            id = id.from(_N, "StartNextPendingJobExecutionOutput", "execution"),
+            type = "structure",
+            name = "execution",
+            target_id = id.from(_N, "JobExecution"),
+            target = M.JobExecution,
+        }),
+    },
+})
+
+M.UpdateJobExecutionInput = schema.new({
+    id = id.from(_N, "UpdateJobExecutionInput"),
+    type = "structure",
+    members = {
+        jobId = schema.new({
+            id = id.from(_N, "UpdateJobExecutionInput", "jobId"),
+            type = "string",
+            name = "jobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        thingName = schema.new({
+            id = id.from(_N, "UpdateJobExecutionInput", "thingName"),
+            type = "string",
+            name = "thingName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdateJobExecutionInput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        statusDetails = schema.new({
+            id = id.from(_N, "UpdateJobExecutionInput", "statusDetails"),
+            type = "map",
+            name = "statusDetails",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        stepTimeoutInMinutes = schema.new({
+            id = id.from(_N, "UpdateJobExecutionInput", "stepTimeoutInMinutes"),
+            type = "long",
+            name = "stepTimeoutInMinutes",
+            target_id = prelude.Long.id,
+        }),
+        expectedVersion = schema.new({
+            id = id.from(_N, "UpdateJobExecutionInput", "expectedVersion"),
+            type = "long",
+            name = "expectedVersion",
+            target_id = prelude.Long.id,
+        }),
+        includeJobExecutionState = schema.new({
+            id = id.from(_N, "UpdateJobExecutionInput", "includeJobExecutionState"),
+            type = "boolean",
+            name = "includeJobExecutionState",
+            target_id = prelude.Boolean.id,
+        }),
+        includeJobDocument = schema.new({
+            id = id.from(_N, "UpdateJobExecutionInput", "includeJobDocument"),
+            type = "boolean",
+            name = "includeJobDocument",
+            target_id = prelude.Boolean.id,
+        }),
+        executionNumber = schema.new({
+            id = id.from(_N, "UpdateJobExecutionInput", "executionNumber"),
+            type = "long",
+            name = "executionNumber",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.JobExecutionState = schema.new({
+    id = id.from(_N, "JobExecutionState"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "JobExecutionState", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusDetails = schema.new({
+            id = id.from(_N, "JobExecutionState", "statusDetails"),
+            type = "map",
+            name = "statusDetails",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        versionNumber = schema.new({
+            id = id.from(_N, "JobExecutionState", "versionNumber"),
+            type = "long",
+            name = "versionNumber",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
+M.UpdateJobExecutionOutput = schema.new({
+    id = id.from(_N, "UpdateJobExecutionOutput"),
+    type = "structure",
+    members = {
+        executionState = schema.new({
+            id = id.from(_N, "UpdateJobExecutionOutput", "executionState"),
+            type = "structure",
+            name = "executionState",
+            target_id = id.from(_N, "JobExecutionState"),
+            target = M.JobExecutionState,
+        }),
+        jobDocument = schema.new({
+            id = id.from(_N, "UpdateJobExecutionOutput", "jobDocument"),
+            type = "string",
+            name = "jobDocument",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+return M

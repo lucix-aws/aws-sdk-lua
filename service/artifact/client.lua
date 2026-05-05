@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("artifact.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("artifact.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("artifact.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getAccountSettings(input, options)
     return self:invokeOperation(input, {
         name = "GetAccountSettings",
-        input_schema = types.GetAccountSettingsInput,
-        output_schema = types.GetAccountSettingsOutput,
+        input_schema = schemas.GetAccountSettingsInput,
+        output_schema = schemas.GetAccountSettingsOutput,
         http_method = "GET",
         http_path = "/v1/account-settings/get",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:getReport(input, options)
     return self:invokeOperation(input, {
         name = "GetReport",
-        input_schema = types.GetReportInput,
-        output_schema = types.GetReportOutput,
+        input_schema = schemas.GetReportInput,
+        output_schema = schemas.GetReportOutput,
         http_method = "GET",
         http_path = "/v1/report/get",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getReportMetadata(input, options)
     return self:invokeOperation(input, {
         name = "GetReportMetadata",
-        input_schema = types.GetReportMetadataInput,
-        output_schema = types.GetReportMetadataOutput,
+        input_schema = schemas.GetReportMetadataInput,
+        output_schema = schemas.GetReportMetadataOutput,
         http_method = "GET",
         http_path = "/v1/report/getMetadata",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getTermForReport(input, options)
     return self:invokeOperation(input, {
         name = "GetTermForReport",
-        input_schema = types.GetTermForReportInput,
-        output_schema = types.GetTermForReportOutput,
+        input_schema = schemas.GetTermForReportInput,
+        output_schema = schemas.GetTermForReportOutput,
         http_method = "GET",
         http_path = "/v1/report/getTermForReport",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:listCustomerAgreements(input, options)
     return self:invokeOperation(input, {
         name = "ListCustomerAgreements",
-        input_schema = types.ListCustomerAgreementsInput,
-        output_schema = types.ListCustomerAgreementsOutput,
+        input_schema = schemas.ListCustomerAgreementsInput,
+        output_schema = schemas.ListCustomerAgreementsOutput,
         http_method = "GET",
         http_path = "/v1/customer-agreement/list",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:listReports(input, options)
     return self:invokeOperation(input, {
         name = "ListReports",
-        input_schema = types.ListReportsInput,
-        output_schema = types.ListReportsOutput,
+        input_schema = schemas.ListReportsInput,
+        output_schema = schemas.ListReportsOutput,
         http_method = "GET",
         http_path = "/v1/report/list",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listReportVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListReportVersions",
-        input_schema = types.ListReportVersionsInput,
-        output_schema = types.ListReportVersionsOutput,
+        input_schema = schemas.ListReportVersionsInput,
+        output_schema = schemas.ListReportVersionsOutput,
         http_method = "GET",
         http_path = "/v1/report/listVersions",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:putAccountSettings(input, options)
     return self:invokeOperation(input, {
         name = "PutAccountSettings",
-        input_schema = types.PutAccountSettingsInput,
-        output_schema = types.PutAccountSettingsOutput,
+        input_schema = schemas.PutAccountSettingsInput,
+        output_schema = schemas.PutAccountSettingsOutput,
         http_method = "PUT",
         http_path = "/v1/account-settings/put",
         effective_auth_schemes = {

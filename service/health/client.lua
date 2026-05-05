@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("health.endpoint_rules")
+local schemas = require("health.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("health.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:describeAffectedAccountsForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAffectedAccountsForOrganization",
-        input_schema = types.DescribeAffectedAccountsForOrganizationInput,
-        output_schema = types.DescribeAffectedAccountsForOrganizationOutput,
+        input_schema = schemas.DescribeAffectedAccountsForOrganizationInput,
+        output_schema = schemas.DescribeAffectedAccountsForOrganizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:describeAffectedEntities(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAffectedEntities",
-        input_schema = types.DescribeAffectedEntitiesInput,
-        output_schema = types.DescribeAffectedEntitiesOutput,
+        input_schema = schemas.DescribeAffectedEntitiesInput,
+        output_schema = schemas.DescribeAffectedEntitiesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:describeAffectedEntitiesForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAffectedEntitiesForOrganization",
-        input_schema = types.DescribeAffectedEntitiesForOrganizationInput,
-        output_schema = types.DescribeAffectedEntitiesForOrganizationOutput,
+        input_schema = schemas.DescribeAffectedEntitiesForOrganizationInput,
+        output_schema = schemas.DescribeAffectedEntitiesForOrganizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:describeEntityAggregates(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEntityAggregates",
-        input_schema = types.DescribeEntityAggregatesInput,
-        output_schema = types.DescribeEntityAggregatesOutput,
+        input_schema = schemas.DescribeEntityAggregatesInput,
+        output_schema = schemas.DescribeEntityAggregatesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:describeEntityAggregatesForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEntityAggregatesForOrganization",
-        input_schema = types.DescribeEntityAggregatesForOrganizationInput,
-        output_schema = types.DescribeEntityAggregatesForOrganizationOutput,
+        input_schema = schemas.DescribeEntityAggregatesForOrganizationInput,
+        output_schema = schemas.DescribeEntityAggregatesForOrganizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:describeEventAggregates(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEventAggregates",
-        input_schema = types.DescribeEventAggregatesInput,
-        output_schema = types.DescribeEventAggregatesOutput,
+        input_schema = schemas.DescribeEventAggregatesInput,
+        output_schema = schemas.DescribeEventAggregatesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:describeEventDetails(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEventDetails",
-        input_schema = types.DescribeEventDetailsInput,
-        output_schema = types.DescribeEventDetailsOutput,
+        input_schema = schemas.DescribeEventDetailsInput,
+        output_schema = schemas.DescribeEventDetailsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:describeEventDetailsForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEventDetailsForOrganization",
-        input_schema = types.DescribeEventDetailsForOrganizationInput,
-        output_schema = types.DescribeEventDetailsForOrganizationOutput,
+        input_schema = schemas.DescribeEventDetailsForOrganizationInput,
+        output_schema = schemas.DescribeEventDetailsForOrganizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:describeEvents(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEvents",
-        input_schema = types.DescribeEventsInput,
-        output_schema = types.DescribeEventsOutput,
+        input_schema = schemas.DescribeEventsInput,
+        output_schema = schemas.DescribeEventsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:describeEventsForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEventsForOrganization",
-        input_schema = types.DescribeEventsForOrganizationInput,
-        output_schema = types.DescribeEventsForOrganizationOutput,
+        input_schema = schemas.DescribeEventsForOrganizationInput,
+        output_schema = schemas.DescribeEventsForOrganizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:describeEventTypes(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEventTypes",
-        input_schema = types.DescribeEventTypesInput,
-        output_schema = types.DescribeEventTypesOutput,
+        input_schema = schemas.DescribeEventTypesInput,
+        output_schema = schemas.DescribeEventTypesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:describeHealthServiceStatusForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "DescribeHealthServiceStatusForOrganization",
-        input_schema = types.DescribeHealthServiceStatusForOrganizationInput,
-        output_schema = types.DescribeHealthServiceStatusForOrganizationOutput,
+        input_schema = schemas.DescribeHealthServiceStatusForOrganizationInput,
+        output_schema = schemas.DescribeHealthServiceStatusForOrganizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:disableHealthServiceAccessForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "DisableHealthServiceAccessForOrganization",
-        input_schema = types.DisableHealthServiceAccessForOrganizationInput,
-        output_schema = types.DisableHealthServiceAccessForOrganizationOutput,
+        input_schema = schemas.DisableHealthServiceAccessForOrganizationInput,
+        output_schema = schemas.DisableHealthServiceAccessForOrganizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:enableHealthServiceAccessForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "EnableHealthServiceAccessForOrganization",
-        input_schema = types.EnableHealthServiceAccessForOrganizationInput,
-        output_schema = types.EnableHealthServiceAccessForOrganizationOutput,
+        input_schema = schemas.EnableHealthServiceAccessForOrganizationInput,
+        output_schema = schemas.EnableHealthServiceAccessForOrganizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

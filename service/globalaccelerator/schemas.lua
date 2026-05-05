@@ -1,0 +1,3581 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.globalaccelerator"
+
+local M = {}
+
+M.AcceleratorEvent = schema.new({
+    id = id.from(_N, "AcceleratorEvent"),
+    type = "structure",
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "AcceleratorEvent", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        Timestamp = schema.new({
+            id = id.from(_N, "AcceleratorEvent", "Timestamp"),
+            type = "timestamp",
+            name = "Timestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.IpSet = schema.new({
+    id = id.from(_N, "IpSet"),
+    type = "structure",
+    members = {
+        IpFamily = schema.new({
+            id = id.from(_N, "IpSet", "IpFamily"),
+            type = "string",
+            name = "IpFamily",
+            target_id = prelude.String.id,
+        }),
+        IpAddresses = schema.new({
+            id = id.from(_N, "IpSet", "IpAddresses"),
+            type = "list",
+            name = "IpAddresses",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        IpAddressFamily = schema.new({
+            id = id.from(_N, "IpSet", "IpAddressFamily"),
+            type = "string",
+            name = "IpAddressFamily",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Accelerator = schema.new({
+    id = id.from(_N, "Accelerator"),
+    type = "structure",
+    members = {
+        AcceleratorArn = schema.new({
+            id = id.from(_N, "Accelerator", "AcceleratorArn"),
+            type = "string",
+            name = "AcceleratorArn",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "Accelerator", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        IpAddressType = schema.new({
+            id = id.from(_N, "Accelerator", "IpAddressType"),
+            type = "string",
+            name = "IpAddressType",
+            target_id = prelude.String.id,
+        }),
+        Enabled = schema.new({
+            id = id.from(_N, "Accelerator", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+        }),
+        IpSets = schema.new({
+            id = id.from(_N, "Accelerator", "IpSets"),
+            type = "list",
+            name = "IpSets",
+            target_id = prelude.Document.id,
+            list_member = M.IpSet,
+        }),
+        DnsName = schema.new({
+            id = id.from(_N, "Accelerator", "DnsName"),
+            type = "string",
+            name = "DnsName",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "Accelerator", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        CreatedTime = schema.new({
+            id = id.from(_N, "Accelerator", "CreatedTime"),
+            type = "timestamp",
+            name = "CreatedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastModifiedTime = schema.new({
+            id = id.from(_N, "Accelerator", "LastModifiedTime"),
+            type = "timestamp",
+            name = "LastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        DualStackDnsName = schema.new({
+            id = id.from(_N, "Accelerator", "DualStackDnsName"),
+            type = "string",
+            name = "DualStackDnsName",
+            target_id = prelude.String.id,
+        }),
+        Events = schema.new({
+            id = id.from(_N, "Accelerator", "Events"),
+            type = "list",
+            name = "Events",
+            target_id = prelude.Document.id,
+            list_member = M.AcceleratorEvent,
+        }),
+    },
+})
+
+M.AcceleratorAttributes = schema.new({
+    id = id.from(_N, "AcceleratorAttributes"),
+    type = "structure",
+    members = {
+        FlowLogsEnabled = schema.new({
+            id = id.from(_N, "AcceleratorAttributes", "FlowLogsEnabled"),
+            type = "boolean",
+            name = "FlowLogsEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        FlowLogsS3Bucket = schema.new({
+            id = id.from(_N, "AcceleratorAttributes", "FlowLogsS3Bucket"),
+            type = "string",
+            name = "FlowLogsS3Bucket",
+            target_id = prelude.String.id,
+        }),
+        FlowLogsS3Prefix = schema.new({
+            id = id.from(_N, "AcceleratorAttributes", "FlowLogsS3Prefix"),
+            type = "string",
+            name = "FlowLogsS3Prefix",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AcceleratorNotDisabledException = schema.new({
+    id = id.from(_N, "AcceleratorNotDisabledException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "AcceleratorNotDisabledException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AcceleratorNotFoundException = schema.new({
+    id = id.from(_N, "AcceleratorNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "AcceleratorNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AccessDeniedException = schema.new({
+    id = id.from(_N, "AccessDeniedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "AccessDeniedException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CustomRoutingEndpointConfiguration = schema.new({
+    id = id.from(_N, "CustomRoutingEndpointConfiguration"),
+    type = "structure",
+    members = {
+        EndpointId = schema.new({
+            id = id.from(_N, "CustomRoutingEndpointConfiguration", "EndpointId"),
+            type = "string",
+            name = "EndpointId",
+            target_id = prelude.String.id,
+        }),
+        AttachmentArn = schema.new({
+            id = id.from(_N, "CustomRoutingEndpointConfiguration", "AttachmentArn"),
+            type = "string",
+            name = "AttachmentArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AddCustomRoutingEndpointsInput = schema.new({
+    id = id.from(_N, "AddCustomRoutingEndpointsInput"),
+    type = "structure",
+    members = {
+        EndpointConfigurations = schema.new({
+            id = id.from(_N, "AddCustomRoutingEndpointsInput", "EndpointConfigurations"),
+            type = "list",
+            name = "EndpointConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.CustomRoutingEndpointConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndpointGroupArn = schema.new({
+            id = id.from(_N, "AddCustomRoutingEndpointsInput", "EndpointGroupArn"),
+            type = "string",
+            name = "EndpointGroupArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CustomRoutingEndpointDescription = schema.new({
+    id = id.from(_N, "CustomRoutingEndpointDescription"),
+    type = "structure",
+    members = {
+        EndpointId = schema.new({
+            id = id.from(_N, "CustomRoutingEndpointDescription", "EndpointId"),
+            type = "string",
+            name = "EndpointId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AddCustomRoutingEndpointsOutput = schema.new({
+    id = id.from(_N, "AddCustomRoutingEndpointsOutput"),
+    type = "structure",
+    members = {
+        EndpointDescriptions = schema.new({
+            id = id.from(_N, "AddCustomRoutingEndpointsOutput", "EndpointDescriptions"),
+            type = "list",
+            name = "EndpointDescriptions",
+            target_id = prelude.Document.id,
+            list_member = M.CustomRoutingEndpointDescription,
+        }),
+        EndpointGroupArn = schema.new({
+            id = id.from(_N, "AddCustomRoutingEndpointsOutput", "EndpointGroupArn"),
+            type = "string",
+            name = "EndpointGroupArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ConflictException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EndpointAlreadyExistsException = schema.new({
+    id = id.from(_N, "EndpointAlreadyExistsException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "EndpointAlreadyExistsException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EndpointGroupNotFoundException = schema.new({
+    id = id.from(_N, "EndpointGroupNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "EndpointGroupNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InternalServiceErrorException = schema.new({
+    id = id.from(_N, "InternalServiceErrorException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InternalServiceErrorException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidArgumentException = schema.new({
+    id = id.from(_N, "InvalidArgumentException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InvalidArgumentException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.LimitExceededException = schema.new({
+    id = id.from(_N, "LimitExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "LimitExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EndpointConfiguration = schema.new({
+    id = id.from(_N, "EndpointConfiguration"),
+    type = "structure",
+    members = {
+        EndpointId = schema.new({
+            id = id.from(_N, "EndpointConfiguration", "EndpointId"),
+            type = "string",
+            name = "EndpointId",
+            target_id = prelude.String.id,
+        }),
+        Weight = schema.new({
+            id = id.from(_N, "EndpointConfiguration", "Weight"),
+            type = "integer",
+            name = "Weight",
+            target_id = prelude.Integer.id,
+        }),
+        ClientIPPreservationEnabled = schema.new({
+            id = id.from(_N, "EndpointConfiguration", "ClientIPPreservationEnabled"),
+            type = "boolean",
+            name = "ClientIPPreservationEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        AttachmentArn = schema.new({
+            id = id.from(_N, "EndpointConfiguration", "AttachmentArn"),
+            type = "string",
+            name = "AttachmentArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AddEndpointsInput = schema.new({
+    id = id.from(_N, "AddEndpointsInput"),
+    type = "structure",
+    members = {
+        EndpointConfigurations = schema.new({
+            id = id.from(_N, "AddEndpointsInput", "EndpointConfigurations"),
+            type = "list",
+            name = "EndpointConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.EndpointConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndpointGroupArn = schema.new({
+            id = id.from(_N, "AddEndpointsInput", "EndpointGroupArn"),
+            type = "string",
+            name = "EndpointGroupArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.EndpointDescription = schema.new({
+    id = id.from(_N, "EndpointDescription"),
+    type = "structure",
+    members = {
+        EndpointId = schema.new({
+            id = id.from(_N, "EndpointDescription", "EndpointId"),
+            type = "string",
+            name = "EndpointId",
+            target_id = prelude.String.id,
+        }),
+        Weight = schema.new({
+            id = id.from(_N, "EndpointDescription", "Weight"),
+            type = "integer",
+            name = "Weight",
+            target_id = prelude.Integer.id,
+        }),
+        HealthState = schema.new({
+            id = id.from(_N, "EndpointDescription", "HealthState"),
+            type = "string",
+            name = "HealthState",
+            target_id = prelude.String.id,
+        }),
+        HealthReason = schema.new({
+            id = id.from(_N, "EndpointDescription", "HealthReason"),
+            type = "string",
+            name = "HealthReason",
+            target_id = prelude.String.id,
+        }),
+        ClientIPPreservationEnabled = schema.new({
+            id = id.from(_N, "EndpointDescription", "ClientIPPreservationEnabled"),
+            type = "boolean",
+            name = "ClientIPPreservationEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.AddEndpointsOutput = schema.new({
+    id = id.from(_N, "AddEndpointsOutput"),
+    type = "structure",
+    members = {
+        EndpointDescriptions = schema.new({
+            id = id.from(_N, "AddEndpointsOutput", "EndpointDescriptions"),
+            type = "list",
+            name = "EndpointDescriptions",
+            target_id = prelude.Document.id,
+            list_member = M.EndpointDescription,
+        }),
+        EndpointGroupArn = schema.new({
+            id = id.from(_N, "AddEndpointsOutput", "EndpointGroupArn"),
+            type = "string",
+            name = "EndpointGroupArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TransactionInProgressException = schema.new({
+    id = id.from(_N, "TransactionInProgressException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "TransactionInProgressException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AdvertiseByoipCidrInput = schema.new({
+    id = id.from(_N, "AdvertiseByoipCidrInput"),
+    type = "structure",
+    members = {
+        Cidr = schema.new({
+            id = id.from(_N, "AdvertiseByoipCidrInput", "Cidr"),
+            type = "string",
+            name = "Cidr",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ByoipCidrEvent = schema.new({
+    id = id.from(_N, "ByoipCidrEvent"),
+    type = "structure",
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ByoipCidrEvent", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        Timestamp = schema.new({
+            id = id.from(_N, "ByoipCidrEvent", "Timestamp"),
+            type = "timestamp",
+            name = "Timestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ByoipCidr = schema.new({
+    id = id.from(_N, "ByoipCidr"),
+    type = "structure",
+    members = {
+        Cidr = schema.new({
+            id = id.from(_N, "ByoipCidr", "Cidr"),
+            type = "string",
+            name = "Cidr",
+            target_id = prelude.String.id,
+        }),
+        State = schema.new({
+            id = id.from(_N, "ByoipCidr", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+        }),
+        Events = schema.new({
+            id = id.from(_N, "ByoipCidr", "Events"),
+            type = "list",
+            name = "Events",
+            target_id = prelude.Document.id,
+            list_member = M.ByoipCidrEvent,
+        }),
+    },
+})
+
+M.AdvertiseByoipCidrOutput = schema.new({
+    id = id.from(_N, "AdvertiseByoipCidrOutput"),
+    type = "structure",
+    members = {
+        ByoipCidr = schema.new({
+            id = id.from(_N, "AdvertiseByoipCidrOutput", "ByoipCidr"),
+            type = "structure",
+            name = "ByoipCidr",
+            target_id = id.from(_N, "ByoipCidr"),
+            target = M.ByoipCidr,
+        }),
+    },
+})
+
+M.ByoipCidrNotFoundException = schema.new({
+    id = id.from(_N, "ByoipCidrNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ByoipCidrNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.IncorrectCidrStateException = schema.new({
+    id = id.from(_N, "IncorrectCidrStateException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "IncorrectCidrStateException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AllowCustomRoutingTrafficInput = schema.new({
+    id = id.from(_N, "AllowCustomRoutingTrafficInput"),
+    type = "structure",
+    members = {
+        EndpointGroupArn = schema.new({
+            id = id.from(_N, "AllowCustomRoutingTrafficInput", "EndpointGroupArn"),
+            type = "string",
+            name = "EndpointGroupArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndpointId = schema.new({
+            id = id.from(_N, "AllowCustomRoutingTrafficInput", "EndpointId"),
+            type = "string",
+            name = "EndpointId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DestinationAddresses = schema.new({
+            id = id.from(_N, "AllowCustomRoutingTrafficInput", "DestinationAddresses"),
+            type = "list",
+            name = "DestinationAddresses",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        DestinationPorts = schema.new({
+            id = id.from(_N, "AllowCustomRoutingTrafficInput", "DestinationPorts"),
+            type = "list",
+            name = "DestinationPorts",
+            target_id = prelude.Document.id,
+            list_member = prelude.Integer,
+        }),
+        AllowAllTrafficToEndpoint = schema.new({
+            id = id.from(_N, "AllowCustomRoutingTrafficInput", "AllowAllTrafficToEndpoint"),
+            type = "boolean",
+            name = "AllowAllTrafficToEndpoint",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.AllowCustomRoutingTrafficOutput = schema.new({
+    id = id.from(_N, "AllowCustomRoutingTrafficOutput"),
+    type = "structure",
+})
+
+M.AssociatedEndpointGroupFoundException = schema.new({
+    id = id.from(_N, "AssociatedEndpointGroupFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "AssociatedEndpointGroupFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AssociatedListenerFoundException = schema.new({
+    id = id.from(_N, "AssociatedListenerFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "AssociatedListenerFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Resource = schema.new({
+    id = id.from(_N, "Resource"),
+    type = "structure",
+    members = {
+        EndpointId = schema.new({
+            id = id.from(_N, "Resource", "EndpointId"),
+            type = "string",
+            name = "EndpointId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "" },
+            },
+        }),
+        Cidr = schema.new({
+            id = id.from(_N, "Resource", "Cidr"),
+            type = "string",
+            name = "Cidr",
+            target_id = prelude.String.id,
+        }),
+        Region = schema.new({
+            id = id.from(_N, "Resource", "Region"),
+            type = "string",
+            name = "Region",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Attachment = schema.new({
+    id = id.from(_N, "Attachment"),
+    type = "structure",
+    members = {
+        AttachmentArn = schema.new({
+            id = id.from(_N, "Attachment", "AttachmentArn"),
+            type = "string",
+            name = "AttachmentArn",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "Attachment", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Principals = schema.new({
+            id = id.from(_N, "Attachment", "Principals"),
+            type = "list",
+            name = "Principals",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Resources = schema.new({
+            id = id.from(_N, "Attachment", "Resources"),
+            type = "list",
+            name = "Resources",
+            target_id = prelude.Document.id,
+            list_member = M.Resource,
+        }),
+        LastModifiedTime = schema.new({
+            id = id.from(_N, "Attachment", "LastModifiedTime"),
+            type = "timestamp",
+            name = "LastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        CreatedTime = schema.new({
+            id = id.from(_N, "Attachment", "CreatedTime"),
+            type = "timestamp",
+            name = "CreatedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.AttachmentNotFoundException = schema.new({
+    id = id.from(_N, "AttachmentNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "AttachmentNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CidrAuthorizationContext = schema.new({
+    id = id.from(_N, "CidrAuthorizationContext"),
+    type = "structure",
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "CidrAuthorizationContext", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Signature = schema.new({
+            id = id.from(_N, "CidrAuthorizationContext", "Signature"),
+            type = "string",
+            name = "Signature",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Tag = schema.new({
+    id = id.from(_N, "Tag"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "Tag", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "Tag", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateAcceleratorInput = schema.new({
+    id = id.from(_N, "CreateAcceleratorInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateAcceleratorInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IpAddressType = schema.new({
+            id = id.from(_N, "CreateAcceleratorInput", "IpAddressType"),
+            type = "string",
+            name = "IpAddressType",
+            target_id = prelude.String.id,
+        }),
+        IpAddresses = schema.new({
+            id = id.from(_N, "CreateAcceleratorInput", "IpAddresses"),
+            type = "list",
+            name = "IpAddresses",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Enabled = schema.new({
+            id = id.from(_N, "CreateAcceleratorInput", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+        }),
+        IdempotencyToken = schema.new({
+            id = id.from(_N, "CreateAcceleratorInput", "IdempotencyToken"),
+            type = "string",
+            name = "IdempotencyToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateAcceleratorInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CreateAcceleratorOutput = schema.new({
+    id = id.from(_N, "CreateAcceleratorOutput"),
+    type = "structure",
+    members = {
+        Accelerator = schema.new({
+            id = id.from(_N, "CreateAcceleratorOutput", "Accelerator"),
+            type = "structure",
+            name = "Accelerator",
+            target_id = id.from(_N, "Accelerator"),
+            target = M.Accelerator,
+        }),
+    },
+})
+
+M.CreateCrossAccountAttachmentInput = schema.new({
+    id = id.from(_N, "CreateCrossAccountAttachmentInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateCrossAccountAttachmentInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Principals = schema.new({
+            id = id.from(_N, "CreateCrossAccountAttachmentInput", "Principals"),
+            type = "list",
+            name = "Principals",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Resources = schema.new({
+            id = id.from(_N, "CreateCrossAccountAttachmentInput", "Resources"),
+            type = "list",
+            name = "Resources",
+            target_id = prelude.Document.id,
+            list_member = M.Resource,
+        }),
+        IdempotencyToken = schema.new({
+            id = id.from(_N, "CreateCrossAccountAttachmentInput", "IdempotencyToken"),
+            type = "string",
+            name = "IdempotencyToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateCrossAccountAttachmentInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CreateCrossAccountAttachmentOutput = schema.new({
+    id = id.from(_N, "CreateCrossAccountAttachmentOutput"),
+    type = "structure",
+    members = {
+        CrossAccountAttachment = schema.new({
+            id = id.from(_N, "CreateCrossAccountAttachmentOutput", "CrossAccountAttachment"),
+            type = "structure",
+            name = "CrossAccountAttachment",
+            target_id = id.from(_N, "Attachment"),
+            target = M.Attachment,
+        }),
+    },
+})
+
+M.CreateCustomRoutingAcceleratorInput = schema.new({
+    id = id.from(_N, "CreateCustomRoutingAcceleratorInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateCustomRoutingAcceleratorInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IpAddressType = schema.new({
+            id = id.from(_N, "CreateCustomRoutingAcceleratorInput", "IpAddressType"),
+            type = "string",
+            name = "IpAddressType",
+            target_id = prelude.String.id,
+        }),
+        IpAddresses = schema.new({
+            id = id.from(_N, "CreateCustomRoutingAcceleratorInput", "IpAddresses"),
+            type = "list",
+            name = "IpAddresses",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Enabled = schema.new({
+            id = id.from(_N, "CreateCustomRoutingAcceleratorInput", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+        }),
+        IdempotencyToken = schema.new({
+            id = id.from(_N, "CreateCustomRoutingAcceleratorInput", "IdempotencyToken"),
+            type = "string",
+            name = "IdempotencyToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateCustomRoutingAcceleratorInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CustomRoutingAccelerator = schema.new({
+    id = id.from(_N, "CustomRoutingAccelerator"),
+    type = "structure",
+    members = {
+        AcceleratorArn = schema.new({
+            id = id.from(_N, "CustomRoutingAccelerator", "AcceleratorArn"),
+            type = "string",
+            name = "AcceleratorArn",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CustomRoutingAccelerator", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        IpAddressType = schema.new({
+            id = id.from(_N, "CustomRoutingAccelerator", "IpAddressType"),
+            type = "string",
+            name = "IpAddressType",
+            target_id = prelude.String.id,
+        }),
+        Enabled = schema.new({
+            id = id.from(_N, "CustomRoutingAccelerator", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+        }),
+        IpSets = schema.new({
+            id = id.from(_N, "CustomRoutingAccelerator", "IpSets"),
+            type = "list",
+            name = "IpSets",
+            target_id = prelude.Document.id,
+            list_member = M.IpSet,
+        }),
+        DnsName = schema.new({
+            id = id.from(_N, "CustomRoutingAccelerator", "DnsName"),
+            type = "string",
+            name = "DnsName",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "CustomRoutingAccelerator", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        CreatedTime = schema.new({
+            id = id.from(_N, "CustomRoutingAccelerator", "CreatedTime"),
+            type = "timestamp",
+            name = "CreatedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastModifiedTime = schema.new({
+            id = id.from(_N, "CustomRoutingAccelerator", "LastModifiedTime"),
+            type = "timestamp",
+            name = "LastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.CreateCustomRoutingAcceleratorOutput = schema.new({
+    id = id.from(_N, "CreateCustomRoutingAcceleratorOutput"),
+    type = "structure",
+    members = {
+        Accelerator = schema.new({
+            id = id.from(_N, "CreateCustomRoutingAcceleratorOutput", "Accelerator"),
+            type = "structure",
+            name = "Accelerator",
+            target_id = id.from(_N, "CustomRoutingAccelerator"),
+            target = M.CustomRoutingAccelerator,
+        }),
+    },
+})
+
+M.CustomRoutingDestinationConfiguration = schema.new({
+    id = id.from(_N, "CustomRoutingDestinationConfiguration"),
+    type = "structure",
+    members = {
+        FromPort = schema.new({
+            id = id.from(_N, "CustomRoutingDestinationConfiguration", "FromPort"),
+            type = "integer",
+            name = "FromPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ToPort = schema.new({
+            id = id.from(_N, "CustomRoutingDestinationConfiguration", "ToPort"),
+            type = "integer",
+            name = "ToPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Protocols = schema.new({
+            id = id.from(_N, "CustomRoutingDestinationConfiguration", "Protocols"),
+            type = "list",
+            name = "Protocols",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateCustomRoutingEndpointGroupInput = schema.new({
+    id = id.from(_N, "CreateCustomRoutingEndpointGroupInput"),
+    type = "structure",
+    members = {
+        ListenerArn = schema.new({
+            id = id.from(_N, "CreateCustomRoutingEndpointGroupInput", "ListenerArn"),
+            type = "string",
+            name = "ListenerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndpointGroupRegion = schema.new({
+            id = id.from(_N, "CreateCustomRoutingEndpointGroupInput", "EndpointGroupRegion"),
+            type = "string",
+            name = "EndpointGroupRegion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DestinationConfigurations = schema.new({
+            id = id.from(_N, "CreateCustomRoutingEndpointGroupInput", "DestinationConfigurations"),
+            type = "list",
+            name = "DestinationConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.CustomRoutingDestinationConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IdempotencyToken = schema.new({
+            id = id.from(_N, "CreateCustomRoutingEndpointGroupInput", "IdempotencyToken"),
+            type = "string",
+            name = "IdempotencyToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CustomRoutingDestinationDescription = schema.new({
+    id = id.from(_N, "CustomRoutingDestinationDescription"),
+    type = "structure",
+    members = {
+        FromPort = schema.new({
+            id = id.from(_N, "CustomRoutingDestinationDescription", "FromPort"),
+            type = "integer",
+            name = "FromPort",
+            target_id = prelude.Integer.id,
+        }),
+        ToPort = schema.new({
+            id = id.from(_N, "CustomRoutingDestinationDescription", "ToPort"),
+            type = "integer",
+            name = "ToPort",
+            target_id = prelude.Integer.id,
+        }),
+        Protocols = schema.new({
+            id = id.from(_N, "CustomRoutingDestinationDescription", "Protocols"),
+            type = "list",
+            name = "Protocols",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.CustomRoutingEndpointGroup = schema.new({
+    id = id.from(_N, "CustomRoutingEndpointGroup"),
+    type = "structure",
+    members = {
+        EndpointGroupArn = schema.new({
+            id = id.from(_N, "CustomRoutingEndpointGroup", "EndpointGroupArn"),
+            type = "string",
+            name = "EndpointGroupArn",
+            target_id = prelude.String.id,
+        }),
+        EndpointGroupRegion = schema.new({
+            id = id.from(_N, "CustomRoutingEndpointGroup", "EndpointGroupRegion"),
+            type = "string",
+            name = "EndpointGroupRegion",
+            target_id = prelude.String.id,
+        }),
+        DestinationDescriptions = schema.new({
+            id = id.from(_N, "CustomRoutingEndpointGroup", "DestinationDescriptions"),
+            type = "list",
+            name = "DestinationDescriptions",
+            target_id = prelude.Document.id,
+            list_member = M.CustomRoutingDestinationDescription,
+        }),
+        EndpointDescriptions = schema.new({
+            id = id.from(_N, "CustomRoutingEndpointGroup", "EndpointDescriptions"),
+            type = "list",
+            name = "EndpointDescriptions",
+            target_id = prelude.Document.id,
+            list_member = M.CustomRoutingEndpointDescription,
+        }),
+    },
+})
+
+M.CreateCustomRoutingEndpointGroupOutput = schema.new({
+    id = id.from(_N, "CreateCustomRoutingEndpointGroupOutput"),
+    type = "structure",
+    members = {
+        EndpointGroup = schema.new({
+            id = id.from(_N, "CreateCustomRoutingEndpointGroupOutput", "EndpointGroup"),
+            type = "structure",
+            name = "EndpointGroup",
+            target_id = id.from(_N, "CustomRoutingEndpointGroup"),
+            target = M.CustomRoutingEndpointGroup,
+        }),
+    },
+})
+
+M.EndpointGroupAlreadyExistsException = schema.new({
+    id = id.from(_N, "EndpointGroupAlreadyExistsException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "EndpointGroupAlreadyExistsException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidPortRangeException = schema.new({
+    id = id.from(_N, "InvalidPortRangeException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InvalidPortRangeException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListenerNotFoundException = schema.new({
+    id = id.from(_N, "ListenerNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ListenerNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PortRange = schema.new({
+    id = id.from(_N, "PortRange"),
+    type = "structure",
+    members = {
+        FromPort = schema.new({
+            id = id.from(_N, "PortRange", "FromPort"),
+            type = "integer",
+            name = "FromPort",
+            target_id = prelude.Integer.id,
+        }),
+        ToPort = schema.new({
+            id = id.from(_N, "PortRange", "ToPort"),
+            type = "integer",
+            name = "ToPort",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.CreateCustomRoutingListenerInput = schema.new({
+    id = id.from(_N, "CreateCustomRoutingListenerInput"),
+    type = "structure",
+    members = {
+        AcceleratorArn = schema.new({
+            id = id.from(_N, "CreateCustomRoutingListenerInput", "AcceleratorArn"),
+            type = "string",
+            name = "AcceleratorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PortRanges = schema.new({
+            id = id.from(_N, "CreateCustomRoutingListenerInput", "PortRanges"),
+            type = "list",
+            name = "PortRanges",
+            target_id = prelude.Document.id,
+            list_member = M.PortRange,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IdempotencyToken = schema.new({
+            id = id.from(_N, "CreateCustomRoutingListenerInput", "IdempotencyToken"),
+            type = "string",
+            name = "IdempotencyToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CustomRoutingListener = schema.new({
+    id = id.from(_N, "CustomRoutingListener"),
+    type = "structure",
+    members = {
+        ListenerArn = schema.new({
+            id = id.from(_N, "CustomRoutingListener", "ListenerArn"),
+            type = "string",
+            name = "ListenerArn",
+            target_id = prelude.String.id,
+        }),
+        PortRanges = schema.new({
+            id = id.from(_N, "CustomRoutingListener", "PortRanges"),
+            type = "list",
+            name = "PortRanges",
+            target_id = prelude.Document.id,
+            list_member = M.PortRange,
+        }),
+    },
+})
+
+M.CreateCustomRoutingListenerOutput = schema.new({
+    id = id.from(_N, "CreateCustomRoutingListenerOutput"),
+    type = "structure",
+    members = {
+        Listener = schema.new({
+            id = id.from(_N, "CreateCustomRoutingListenerOutput", "Listener"),
+            type = "structure",
+            name = "Listener",
+            target_id = id.from(_N, "CustomRoutingListener"),
+            target = M.CustomRoutingListener,
+        }),
+    },
+})
+
+M.PortOverride = schema.new({
+    id = id.from(_N, "PortOverride"),
+    type = "structure",
+    members = {
+        ListenerPort = schema.new({
+            id = id.from(_N, "PortOverride", "ListenerPort"),
+            type = "integer",
+            name = "ListenerPort",
+            target_id = prelude.Integer.id,
+        }),
+        EndpointPort = schema.new({
+            id = id.from(_N, "PortOverride", "EndpointPort"),
+            type = "integer",
+            name = "EndpointPort",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.CreateEndpointGroupInput = schema.new({
+    id = id.from(_N, "CreateEndpointGroupInput"),
+    type = "structure",
+    members = {
+        ListenerArn = schema.new({
+            id = id.from(_N, "CreateEndpointGroupInput", "ListenerArn"),
+            type = "string",
+            name = "ListenerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndpointGroupRegion = schema.new({
+            id = id.from(_N, "CreateEndpointGroupInput", "EndpointGroupRegion"),
+            type = "string",
+            name = "EndpointGroupRegion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndpointConfigurations = schema.new({
+            id = id.from(_N, "CreateEndpointGroupInput", "EndpointConfigurations"),
+            type = "list",
+            name = "EndpointConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.EndpointConfiguration,
+        }),
+        TrafficDialPercentage = schema.new({
+            id = id.from(_N, "CreateEndpointGroupInput", "TrafficDialPercentage"),
+            type = "float",
+            name = "TrafficDialPercentage",
+            target_id = prelude.Float.id,
+        }),
+        HealthCheckPort = schema.new({
+            id = id.from(_N, "CreateEndpointGroupInput", "HealthCheckPort"),
+            type = "integer",
+            name = "HealthCheckPort",
+            target_id = prelude.Integer.id,
+        }),
+        HealthCheckProtocol = schema.new({
+            id = id.from(_N, "CreateEndpointGroupInput", "HealthCheckProtocol"),
+            type = "string",
+            name = "HealthCheckProtocol",
+            target_id = prelude.String.id,
+        }),
+        HealthCheckPath = schema.new({
+            id = id.from(_N, "CreateEndpointGroupInput", "HealthCheckPath"),
+            type = "string",
+            name = "HealthCheckPath",
+            target_id = prelude.String.id,
+        }),
+        HealthCheckIntervalSeconds = schema.new({
+            id = id.from(_N, "CreateEndpointGroupInput", "HealthCheckIntervalSeconds"),
+            type = "integer",
+            name = "HealthCheckIntervalSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        ThresholdCount = schema.new({
+            id = id.from(_N, "CreateEndpointGroupInput", "ThresholdCount"),
+            type = "integer",
+            name = "ThresholdCount",
+            target_id = prelude.Integer.id,
+        }),
+        IdempotencyToken = schema.new({
+            id = id.from(_N, "CreateEndpointGroupInput", "IdempotencyToken"),
+            type = "string",
+            name = "IdempotencyToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        PortOverrides = schema.new({
+            id = id.from(_N, "CreateEndpointGroupInput", "PortOverrides"),
+            type = "list",
+            name = "PortOverrides",
+            target_id = prelude.Document.id,
+            list_member = M.PortOverride,
+        }),
+    },
+})
+
+M.EndpointGroup = schema.new({
+    id = id.from(_N, "EndpointGroup"),
+    type = "structure",
+    members = {
+        EndpointGroupArn = schema.new({
+            id = id.from(_N, "EndpointGroup", "EndpointGroupArn"),
+            type = "string",
+            name = "EndpointGroupArn",
+            target_id = prelude.String.id,
+        }),
+        EndpointGroupRegion = schema.new({
+            id = id.from(_N, "EndpointGroup", "EndpointGroupRegion"),
+            type = "string",
+            name = "EndpointGroupRegion",
+            target_id = prelude.String.id,
+        }),
+        EndpointDescriptions = schema.new({
+            id = id.from(_N, "EndpointGroup", "EndpointDescriptions"),
+            type = "list",
+            name = "EndpointDescriptions",
+            target_id = prelude.Document.id,
+            list_member = M.EndpointDescription,
+        }),
+        TrafficDialPercentage = schema.new({
+            id = id.from(_N, "EndpointGroup", "TrafficDialPercentage"),
+            type = "float",
+            name = "TrafficDialPercentage",
+            target_id = prelude.Float.id,
+        }),
+        HealthCheckPort = schema.new({
+            id = id.from(_N, "EndpointGroup", "HealthCheckPort"),
+            type = "integer",
+            name = "HealthCheckPort",
+            target_id = prelude.Integer.id,
+        }),
+        HealthCheckProtocol = schema.new({
+            id = id.from(_N, "EndpointGroup", "HealthCheckProtocol"),
+            type = "string",
+            name = "HealthCheckProtocol",
+            target_id = prelude.String.id,
+        }),
+        HealthCheckPath = schema.new({
+            id = id.from(_N, "EndpointGroup", "HealthCheckPath"),
+            type = "string",
+            name = "HealthCheckPath",
+            target_id = prelude.String.id,
+        }),
+        HealthCheckIntervalSeconds = schema.new({
+            id = id.from(_N, "EndpointGroup", "HealthCheckIntervalSeconds"),
+            type = "integer",
+            name = "HealthCheckIntervalSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        ThresholdCount = schema.new({
+            id = id.from(_N, "EndpointGroup", "ThresholdCount"),
+            type = "integer",
+            name = "ThresholdCount",
+            target_id = prelude.Integer.id,
+        }),
+        PortOverrides = schema.new({
+            id = id.from(_N, "EndpointGroup", "PortOverrides"),
+            type = "list",
+            name = "PortOverrides",
+            target_id = prelude.Document.id,
+            list_member = M.PortOverride,
+        }),
+    },
+})
+
+M.CreateEndpointGroupOutput = schema.new({
+    id = id.from(_N, "CreateEndpointGroupOutput"),
+    type = "structure",
+    members = {
+        EndpointGroup = schema.new({
+            id = id.from(_N, "CreateEndpointGroupOutput", "EndpointGroup"),
+            type = "structure",
+            name = "EndpointGroup",
+            target_id = id.from(_N, "EndpointGroup"),
+            target = M.EndpointGroup,
+        }),
+    },
+})
+
+M.CreateListenerInput = schema.new({
+    id = id.from(_N, "CreateListenerInput"),
+    type = "structure",
+    members = {
+        AcceleratorArn = schema.new({
+            id = id.from(_N, "CreateListenerInput", "AcceleratorArn"),
+            type = "string",
+            name = "AcceleratorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PortRanges = schema.new({
+            id = id.from(_N, "CreateListenerInput", "PortRanges"),
+            type = "list",
+            name = "PortRanges",
+            target_id = prelude.Document.id,
+            list_member = M.PortRange,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Protocol = schema.new({
+            id = id.from(_N, "CreateListenerInput", "Protocol"),
+            type = "string",
+            name = "Protocol",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientAffinity = schema.new({
+            id = id.from(_N, "CreateListenerInput", "ClientAffinity"),
+            type = "string",
+            name = "ClientAffinity",
+            target_id = prelude.String.id,
+        }),
+        IdempotencyToken = schema.new({
+            id = id.from(_N, "CreateListenerInput", "IdempotencyToken"),
+            type = "string",
+            name = "IdempotencyToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.Listener = schema.new({
+    id = id.from(_N, "Listener"),
+    type = "structure",
+    members = {
+        ListenerArn = schema.new({
+            id = id.from(_N, "Listener", "ListenerArn"),
+            type = "string",
+            name = "ListenerArn",
+            target_id = prelude.String.id,
+        }),
+        PortRanges = schema.new({
+            id = id.from(_N, "Listener", "PortRanges"),
+            type = "list",
+            name = "PortRanges",
+            target_id = prelude.Document.id,
+            list_member = M.PortRange,
+        }),
+        Protocol = schema.new({
+            id = id.from(_N, "Listener", "Protocol"),
+            type = "string",
+            name = "Protocol",
+            target_id = prelude.String.id,
+        }),
+        ClientAffinity = schema.new({
+            id = id.from(_N, "Listener", "ClientAffinity"),
+            type = "string",
+            name = "ClientAffinity",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateListenerOutput = schema.new({
+    id = id.from(_N, "CreateListenerOutput"),
+    type = "structure",
+    members = {
+        Listener = schema.new({
+            id = id.from(_N, "CreateListenerOutput", "Listener"),
+            type = "structure",
+            name = "Listener",
+            target_id = id.from(_N, "Listener"),
+            target = M.Listener,
+        }),
+    },
+})
+
+M.CrossAccountResource = schema.new({
+    id = id.from(_N, "CrossAccountResource"),
+    type = "structure",
+    members = {
+        EndpointId = schema.new({
+            id = id.from(_N, "CrossAccountResource", "EndpointId"),
+            type = "string",
+            name = "EndpointId",
+            target_id = prelude.String.id,
+        }),
+        Cidr = schema.new({
+            id = id.from(_N, "CrossAccountResource", "Cidr"),
+            type = "string",
+            name = "Cidr",
+            target_id = prelude.String.id,
+        }),
+        AttachmentArn = schema.new({
+            id = id.from(_N, "CrossAccountResource", "AttachmentArn"),
+            type = "string",
+            name = "AttachmentArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CustomRoutingAcceleratorAttributes = schema.new({
+    id = id.from(_N, "CustomRoutingAcceleratorAttributes"),
+    type = "structure",
+    members = {
+        FlowLogsEnabled = schema.new({
+            id = id.from(_N, "CustomRoutingAcceleratorAttributes", "FlowLogsEnabled"),
+            type = "boolean",
+            name = "FlowLogsEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        FlowLogsS3Bucket = schema.new({
+            id = id.from(_N, "CustomRoutingAcceleratorAttributes", "FlowLogsS3Bucket"),
+            type = "string",
+            name = "FlowLogsS3Bucket",
+            target_id = prelude.String.id,
+        }),
+        FlowLogsS3Prefix = schema.new({
+            id = id.from(_N, "CustomRoutingAcceleratorAttributes", "FlowLogsS3Prefix"),
+            type = "string",
+            name = "FlowLogsS3Prefix",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteAcceleratorInput = schema.new({
+    id = id.from(_N, "DeleteAcceleratorInput"),
+    type = "structure",
+    members = {
+        AcceleratorArn = schema.new({
+            id = id.from(_N, "DeleteAcceleratorInput", "AcceleratorArn"),
+            type = "string",
+            name = "AcceleratorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAcceleratorOutput = schema.new({
+    id = id.from(_N, "DeleteAcceleratorOutput"),
+    type = "structure",
+})
+
+M.DeleteCrossAccountAttachmentInput = schema.new({
+    id = id.from(_N, "DeleteCrossAccountAttachmentInput"),
+    type = "structure",
+    members = {
+        AttachmentArn = schema.new({
+            id = id.from(_N, "DeleteCrossAccountAttachmentInput", "AttachmentArn"),
+            type = "string",
+            name = "AttachmentArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteCrossAccountAttachmentOutput = schema.new({
+    id = id.from(_N, "DeleteCrossAccountAttachmentOutput"),
+    type = "structure",
+})
+
+M.DeleteCustomRoutingAcceleratorInput = schema.new({
+    id = id.from(_N, "DeleteCustomRoutingAcceleratorInput"),
+    type = "structure",
+    members = {
+        AcceleratorArn = schema.new({
+            id = id.from(_N, "DeleteCustomRoutingAcceleratorInput", "AcceleratorArn"),
+            type = "string",
+            name = "AcceleratorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteCustomRoutingAcceleratorOutput = schema.new({
+    id = id.from(_N, "DeleteCustomRoutingAcceleratorOutput"),
+    type = "structure",
+})
+
+M.DeleteCustomRoutingEndpointGroupInput = schema.new({
+    id = id.from(_N, "DeleteCustomRoutingEndpointGroupInput"),
+    type = "structure",
+    members = {
+        EndpointGroupArn = schema.new({
+            id = id.from(_N, "DeleteCustomRoutingEndpointGroupInput", "EndpointGroupArn"),
+            type = "string",
+            name = "EndpointGroupArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteCustomRoutingEndpointGroupOutput = schema.new({
+    id = id.from(_N, "DeleteCustomRoutingEndpointGroupOutput"),
+    type = "structure",
+})
+
+M.DeleteCustomRoutingListenerInput = schema.new({
+    id = id.from(_N, "DeleteCustomRoutingListenerInput"),
+    type = "structure",
+    members = {
+        ListenerArn = schema.new({
+            id = id.from(_N, "DeleteCustomRoutingListenerInput", "ListenerArn"),
+            type = "string",
+            name = "ListenerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteCustomRoutingListenerOutput = schema.new({
+    id = id.from(_N, "DeleteCustomRoutingListenerOutput"),
+    type = "structure",
+})
+
+M.DeleteEndpointGroupInput = schema.new({
+    id = id.from(_N, "DeleteEndpointGroupInput"),
+    type = "structure",
+    members = {
+        EndpointGroupArn = schema.new({
+            id = id.from(_N, "DeleteEndpointGroupInput", "EndpointGroupArn"),
+            type = "string",
+            name = "EndpointGroupArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteEndpointGroupOutput = schema.new({
+    id = id.from(_N, "DeleteEndpointGroupOutput"),
+    type = "structure",
+})
+
+M.DeleteListenerInput = schema.new({
+    id = id.from(_N, "DeleteListenerInput"),
+    type = "structure",
+    members = {
+        ListenerArn = schema.new({
+            id = id.from(_N, "DeleteListenerInput", "ListenerArn"),
+            type = "string",
+            name = "ListenerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteListenerOutput = schema.new({
+    id = id.from(_N, "DeleteListenerOutput"),
+    type = "structure",
+})
+
+M.DenyCustomRoutingTrafficInput = schema.new({
+    id = id.from(_N, "DenyCustomRoutingTrafficInput"),
+    type = "structure",
+    members = {
+        EndpointGroupArn = schema.new({
+            id = id.from(_N, "DenyCustomRoutingTrafficInput", "EndpointGroupArn"),
+            type = "string",
+            name = "EndpointGroupArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndpointId = schema.new({
+            id = id.from(_N, "DenyCustomRoutingTrafficInput", "EndpointId"),
+            type = "string",
+            name = "EndpointId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DestinationAddresses = schema.new({
+            id = id.from(_N, "DenyCustomRoutingTrafficInput", "DestinationAddresses"),
+            type = "list",
+            name = "DestinationAddresses",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        DestinationPorts = schema.new({
+            id = id.from(_N, "DenyCustomRoutingTrafficInput", "DestinationPorts"),
+            type = "list",
+            name = "DestinationPorts",
+            target_id = prelude.Document.id,
+            list_member = prelude.Integer,
+        }),
+        DenyAllTrafficToEndpoint = schema.new({
+            id = id.from(_N, "DenyCustomRoutingTrafficInput", "DenyAllTrafficToEndpoint"),
+            type = "boolean",
+            name = "DenyAllTrafficToEndpoint",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.DenyCustomRoutingTrafficOutput = schema.new({
+    id = id.from(_N, "DenyCustomRoutingTrafficOutput"),
+    type = "structure",
+})
+
+M.DeprovisionByoipCidrInput = schema.new({
+    id = id.from(_N, "DeprovisionByoipCidrInput"),
+    type = "structure",
+    members = {
+        Cidr = schema.new({
+            id = id.from(_N, "DeprovisionByoipCidrInput", "Cidr"),
+            type = "string",
+            name = "Cidr",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeprovisionByoipCidrOutput = schema.new({
+    id = id.from(_N, "DeprovisionByoipCidrOutput"),
+    type = "structure",
+    members = {
+        ByoipCidr = schema.new({
+            id = id.from(_N, "DeprovisionByoipCidrOutput", "ByoipCidr"),
+            type = "structure",
+            name = "ByoipCidr",
+            target_id = id.from(_N, "ByoipCidr"),
+            target = M.ByoipCidr,
+        }),
+    },
+})
+
+M.DescribeAcceleratorInput = schema.new({
+    id = id.from(_N, "DescribeAcceleratorInput"),
+    type = "structure",
+    members = {
+        AcceleratorArn = schema.new({
+            id = id.from(_N, "DescribeAcceleratorInput", "AcceleratorArn"),
+            type = "string",
+            name = "AcceleratorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeAcceleratorOutput = schema.new({
+    id = id.from(_N, "DescribeAcceleratorOutput"),
+    type = "structure",
+    members = {
+        Accelerator = schema.new({
+            id = id.from(_N, "DescribeAcceleratorOutput", "Accelerator"),
+            type = "structure",
+            name = "Accelerator",
+            target_id = id.from(_N, "Accelerator"),
+            target = M.Accelerator,
+        }),
+    },
+})
+
+M.DescribeAcceleratorAttributesInput = schema.new({
+    id = id.from(_N, "DescribeAcceleratorAttributesInput"),
+    type = "structure",
+    members = {
+        AcceleratorArn = schema.new({
+            id = id.from(_N, "DescribeAcceleratorAttributesInput", "AcceleratorArn"),
+            type = "string",
+            name = "AcceleratorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeAcceleratorAttributesOutput = schema.new({
+    id = id.from(_N, "DescribeAcceleratorAttributesOutput"),
+    type = "structure",
+    members = {
+        AcceleratorAttributes = schema.new({
+            id = id.from(_N, "DescribeAcceleratorAttributesOutput", "AcceleratorAttributes"),
+            type = "structure",
+            name = "AcceleratorAttributes",
+            target_id = id.from(_N, "AcceleratorAttributes"),
+            target = M.AcceleratorAttributes,
+        }),
+    },
+})
+
+M.DescribeCrossAccountAttachmentInput = schema.new({
+    id = id.from(_N, "DescribeCrossAccountAttachmentInput"),
+    type = "structure",
+    members = {
+        AttachmentArn = schema.new({
+            id = id.from(_N, "DescribeCrossAccountAttachmentInput", "AttachmentArn"),
+            type = "string",
+            name = "AttachmentArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeCrossAccountAttachmentOutput = schema.new({
+    id = id.from(_N, "DescribeCrossAccountAttachmentOutput"),
+    type = "structure",
+    members = {
+        CrossAccountAttachment = schema.new({
+            id = id.from(_N, "DescribeCrossAccountAttachmentOutput", "CrossAccountAttachment"),
+            type = "structure",
+            name = "CrossAccountAttachment",
+            target_id = id.from(_N, "Attachment"),
+            target = M.Attachment,
+        }),
+    },
+})
+
+M.DescribeCustomRoutingAcceleratorInput = schema.new({
+    id = id.from(_N, "DescribeCustomRoutingAcceleratorInput"),
+    type = "structure",
+    members = {
+        AcceleratorArn = schema.new({
+            id = id.from(_N, "DescribeCustomRoutingAcceleratorInput", "AcceleratorArn"),
+            type = "string",
+            name = "AcceleratorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeCustomRoutingAcceleratorOutput = schema.new({
+    id = id.from(_N, "DescribeCustomRoutingAcceleratorOutput"),
+    type = "structure",
+    members = {
+        Accelerator = schema.new({
+            id = id.from(_N, "DescribeCustomRoutingAcceleratorOutput", "Accelerator"),
+            type = "structure",
+            name = "Accelerator",
+            target_id = id.from(_N, "CustomRoutingAccelerator"),
+            target = M.CustomRoutingAccelerator,
+        }),
+    },
+})
+
+M.DescribeCustomRoutingAcceleratorAttributesInput = schema.new({
+    id = id.from(_N, "DescribeCustomRoutingAcceleratorAttributesInput"),
+    type = "structure",
+    members = {
+        AcceleratorArn = schema.new({
+            id = id.from(_N, "DescribeCustomRoutingAcceleratorAttributesInput", "AcceleratorArn"),
+            type = "string",
+            name = "AcceleratorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeCustomRoutingAcceleratorAttributesOutput = schema.new({
+    id = id.from(_N, "DescribeCustomRoutingAcceleratorAttributesOutput"),
+    type = "structure",
+    members = {
+        AcceleratorAttributes = schema.new({
+            id = id.from(_N, "DescribeCustomRoutingAcceleratorAttributesOutput", "AcceleratorAttributes"),
+            type = "structure",
+            name = "AcceleratorAttributes",
+            target_id = id.from(_N, "CustomRoutingAcceleratorAttributes"),
+            target = M.CustomRoutingAcceleratorAttributes,
+        }),
+    },
+})
+
+M.DescribeCustomRoutingEndpointGroupInput = schema.new({
+    id = id.from(_N, "DescribeCustomRoutingEndpointGroupInput"),
+    type = "structure",
+    members = {
+        EndpointGroupArn = schema.new({
+            id = id.from(_N, "DescribeCustomRoutingEndpointGroupInput", "EndpointGroupArn"),
+            type = "string",
+            name = "EndpointGroupArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeCustomRoutingEndpointGroupOutput = schema.new({
+    id = id.from(_N, "DescribeCustomRoutingEndpointGroupOutput"),
+    type = "structure",
+    members = {
+        EndpointGroup = schema.new({
+            id = id.from(_N, "DescribeCustomRoutingEndpointGroupOutput", "EndpointGroup"),
+            type = "structure",
+            name = "EndpointGroup",
+            target_id = id.from(_N, "CustomRoutingEndpointGroup"),
+            target = M.CustomRoutingEndpointGroup,
+        }),
+    },
+})
+
+M.DescribeCustomRoutingListenerInput = schema.new({
+    id = id.from(_N, "DescribeCustomRoutingListenerInput"),
+    type = "structure",
+    members = {
+        ListenerArn = schema.new({
+            id = id.from(_N, "DescribeCustomRoutingListenerInput", "ListenerArn"),
+            type = "string",
+            name = "ListenerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeCustomRoutingListenerOutput = schema.new({
+    id = id.from(_N, "DescribeCustomRoutingListenerOutput"),
+    type = "structure",
+    members = {
+        Listener = schema.new({
+            id = id.from(_N, "DescribeCustomRoutingListenerOutput", "Listener"),
+            type = "structure",
+            name = "Listener",
+            target_id = id.from(_N, "CustomRoutingListener"),
+            target = M.CustomRoutingListener,
+        }),
+    },
+})
+
+M.DescribeEndpointGroupInput = schema.new({
+    id = id.from(_N, "DescribeEndpointGroupInput"),
+    type = "structure",
+    members = {
+        EndpointGroupArn = schema.new({
+            id = id.from(_N, "DescribeEndpointGroupInput", "EndpointGroupArn"),
+            type = "string",
+            name = "EndpointGroupArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeEndpointGroupOutput = schema.new({
+    id = id.from(_N, "DescribeEndpointGroupOutput"),
+    type = "structure",
+    members = {
+        EndpointGroup = schema.new({
+            id = id.from(_N, "DescribeEndpointGroupOutput", "EndpointGroup"),
+            type = "structure",
+            name = "EndpointGroup",
+            target_id = id.from(_N, "EndpointGroup"),
+            target = M.EndpointGroup,
+        }),
+    },
+})
+
+M.DescribeListenerInput = schema.new({
+    id = id.from(_N, "DescribeListenerInput"),
+    type = "structure",
+    members = {
+        ListenerArn = schema.new({
+            id = id.from(_N, "DescribeListenerInput", "ListenerArn"),
+            type = "string",
+            name = "ListenerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeListenerOutput = schema.new({
+    id = id.from(_N, "DescribeListenerOutput"),
+    type = "structure",
+    members = {
+        Listener = schema.new({
+            id = id.from(_N, "DescribeListenerOutput", "Listener"),
+            type = "structure",
+            name = "Listener",
+            target_id = id.from(_N, "Listener"),
+            target = M.Listener,
+        }),
+    },
+})
+
+M.SocketAddress = schema.new({
+    id = id.from(_N, "SocketAddress"),
+    type = "structure",
+    members = {
+        IpAddress = schema.new({
+            id = id.from(_N, "SocketAddress", "IpAddress"),
+            type = "string",
+            name = "IpAddress",
+            target_id = prelude.String.id,
+        }),
+        Port = schema.new({
+            id = id.from(_N, "SocketAddress", "Port"),
+            type = "integer",
+            name = "Port",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.DestinationPortMapping = schema.new({
+    id = id.from(_N, "DestinationPortMapping"),
+    type = "structure",
+    members = {
+        AcceleratorArn = schema.new({
+            id = id.from(_N, "DestinationPortMapping", "AcceleratorArn"),
+            type = "string",
+            name = "AcceleratorArn",
+            target_id = prelude.String.id,
+        }),
+        AcceleratorSocketAddresses = schema.new({
+            id = id.from(_N, "DestinationPortMapping", "AcceleratorSocketAddresses"),
+            type = "list",
+            name = "AcceleratorSocketAddresses",
+            target_id = prelude.Document.id,
+            list_member = M.SocketAddress,
+        }),
+        EndpointGroupArn = schema.new({
+            id = id.from(_N, "DestinationPortMapping", "EndpointGroupArn"),
+            type = "string",
+            name = "EndpointGroupArn",
+            target_id = prelude.String.id,
+        }),
+        EndpointId = schema.new({
+            id = id.from(_N, "DestinationPortMapping", "EndpointId"),
+            type = "string",
+            name = "EndpointId",
+            target_id = prelude.String.id,
+        }),
+        EndpointGroupRegion = schema.new({
+            id = id.from(_N, "DestinationPortMapping", "EndpointGroupRegion"),
+            type = "string",
+            name = "EndpointGroupRegion",
+            target_id = prelude.String.id,
+        }),
+        DestinationSocketAddress = schema.new({
+            id = id.from(_N, "DestinationPortMapping", "DestinationSocketAddress"),
+            type = "structure",
+            name = "DestinationSocketAddress",
+            target_id = id.from(_N, "SocketAddress"),
+            target = M.SocketAddress,
+        }),
+        IpAddressType = schema.new({
+            id = id.from(_N, "DestinationPortMapping", "IpAddressType"),
+            type = "string",
+            name = "IpAddressType",
+            target_id = prelude.String.id,
+        }),
+        DestinationTrafficState = schema.new({
+            id = id.from(_N, "DestinationPortMapping", "DestinationTrafficState"),
+            type = "string",
+            name = "DestinationTrafficState",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EndpointIdentifier = schema.new({
+    id = id.from(_N, "EndpointIdentifier"),
+    type = "structure",
+    members = {
+        EndpointId = schema.new({
+            id = id.from(_N, "EndpointIdentifier", "EndpointId"),
+            type = "string",
+            name = "EndpointId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientIPPreservationEnabled = schema.new({
+            id = id.from(_N, "EndpointIdentifier", "ClientIPPreservationEnabled"),
+            type = "boolean",
+            name = "ClientIPPreservationEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.EndpointNotFoundException = schema.new({
+    id = id.from(_N, "EndpointNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "EndpointNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidNextTokenException = schema.new({
+    id = id.from(_N, "InvalidNextTokenException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InvalidNextTokenException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAcceleratorsInput = schema.new({
+    id = id.from(_N, "ListAcceleratorsInput"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListAcceleratorsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAcceleratorsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAcceleratorsOutput = schema.new({
+    id = id.from(_N, "ListAcceleratorsOutput"),
+    type = "structure",
+    members = {
+        Accelerators = schema.new({
+            id = id.from(_N, "ListAcceleratorsOutput", "Accelerators"),
+            type = "list",
+            name = "Accelerators",
+            target_id = prelude.Document.id,
+            list_member = M.Accelerator,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAcceleratorsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListByoipCidrsInput = schema.new({
+    id = id.from(_N, "ListByoipCidrsInput"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListByoipCidrsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListByoipCidrsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListByoipCidrsOutput = schema.new({
+    id = id.from(_N, "ListByoipCidrsOutput"),
+    type = "structure",
+    members = {
+        ByoipCidrs = schema.new({
+            id = id.from(_N, "ListByoipCidrsOutput", "ByoipCidrs"),
+            type = "list",
+            name = "ByoipCidrs",
+            target_id = prelude.Document.id,
+            list_member = M.ByoipCidr,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListByoipCidrsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListCrossAccountAttachmentsInput = schema.new({
+    id = id.from(_N, "ListCrossAccountAttachmentsInput"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListCrossAccountAttachmentsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCrossAccountAttachmentsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListCrossAccountAttachmentsOutput = schema.new({
+    id = id.from(_N, "ListCrossAccountAttachmentsOutput"),
+    type = "structure",
+    members = {
+        CrossAccountAttachments = schema.new({
+            id = id.from(_N, "ListCrossAccountAttachmentsOutput", "CrossAccountAttachments"),
+            type = "list",
+            name = "CrossAccountAttachments",
+            target_id = prelude.Document.id,
+            list_member = M.Attachment,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCrossAccountAttachmentsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListCrossAccountResourceAccountsInput = schema.new({
+    id = id.from(_N, "ListCrossAccountResourceAccountsInput"),
+    type = "structure",
+})
+
+M.ListCrossAccountResourceAccountsOutput = schema.new({
+    id = id.from(_N, "ListCrossAccountResourceAccountsOutput"),
+    type = "structure",
+    members = {
+        ResourceOwnerAwsAccountIds = schema.new({
+            id = id.from(_N, "ListCrossAccountResourceAccountsOutput", "ResourceOwnerAwsAccountIds"),
+            type = "list",
+            name = "ResourceOwnerAwsAccountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ListCrossAccountResourcesInput = schema.new({
+    id = id.from(_N, "ListCrossAccountResourcesInput"),
+    type = "structure",
+    members = {
+        AcceleratorArn = schema.new({
+            id = id.from(_N, "ListCrossAccountResourcesInput", "AcceleratorArn"),
+            type = "string",
+            name = "AcceleratorArn",
+            target_id = prelude.String.id,
+        }),
+        ResourceOwnerAwsAccountId = schema.new({
+            id = id.from(_N, "ListCrossAccountResourcesInput", "ResourceOwnerAwsAccountId"),
+            type = "string",
+            name = "ResourceOwnerAwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListCrossAccountResourcesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCrossAccountResourcesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListCrossAccountResourcesOutput = schema.new({
+    id = id.from(_N, "ListCrossAccountResourcesOutput"),
+    type = "structure",
+    members = {
+        CrossAccountResources = schema.new({
+            id = id.from(_N, "ListCrossAccountResourcesOutput", "CrossAccountResources"),
+            type = "list",
+            name = "CrossAccountResources",
+            target_id = prelude.Document.id,
+            list_member = M.CrossAccountResource,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCrossAccountResourcesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListCustomRoutingAcceleratorsInput = schema.new({
+    id = id.from(_N, "ListCustomRoutingAcceleratorsInput"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListCustomRoutingAcceleratorsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCustomRoutingAcceleratorsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListCustomRoutingAcceleratorsOutput = schema.new({
+    id = id.from(_N, "ListCustomRoutingAcceleratorsOutput"),
+    type = "structure",
+    members = {
+        Accelerators = schema.new({
+            id = id.from(_N, "ListCustomRoutingAcceleratorsOutput", "Accelerators"),
+            type = "list",
+            name = "Accelerators",
+            target_id = prelude.Document.id,
+            list_member = M.CustomRoutingAccelerator,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCustomRoutingAcceleratorsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListCustomRoutingEndpointGroupsInput = schema.new({
+    id = id.from(_N, "ListCustomRoutingEndpointGroupsInput"),
+    type = "structure",
+    members = {
+        ListenerArn = schema.new({
+            id = id.from(_N, "ListCustomRoutingEndpointGroupsInput", "ListenerArn"),
+            type = "string",
+            name = "ListenerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListCustomRoutingEndpointGroupsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCustomRoutingEndpointGroupsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListCustomRoutingEndpointGroupsOutput = schema.new({
+    id = id.from(_N, "ListCustomRoutingEndpointGroupsOutput"),
+    type = "structure",
+    members = {
+        EndpointGroups = schema.new({
+            id = id.from(_N, "ListCustomRoutingEndpointGroupsOutput", "EndpointGroups"),
+            type = "list",
+            name = "EndpointGroups",
+            target_id = prelude.Document.id,
+            list_member = M.CustomRoutingEndpointGroup,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCustomRoutingEndpointGroupsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListCustomRoutingListenersInput = schema.new({
+    id = id.from(_N, "ListCustomRoutingListenersInput"),
+    type = "structure",
+    members = {
+        AcceleratorArn = schema.new({
+            id = id.from(_N, "ListCustomRoutingListenersInput", "AcceleratorArn"),
+            type = "string",
+            name = "AcceleratorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListCustomRoutingListenersInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCustomRoutingListenersInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListCustomRoutingListenersOutput = schema.new({
+    id = id.from(_N, "ListCustomRoutingListenersOutput"),
+    type = "structure",
+    members = {
+        Listeners = schema.new({
+            id = id.from(_N, "ListCustomRoutingListenersOutput", "Listeners"),
+            type = "list",
+            name = "Listeners",
+            target_id = prelude.Document.id,
+            list_member = M.CustomRoutingListener,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCustomRoutingListenersOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListCustomRoutingPortMappingsInput = schema.new({
+    id = id.from(_N, "ListCustomRoutingPortMappingsInput"),
+    type = "structure",
+    members = {
+        AcceleratorArn = schema.new({
+            id = id.from(_N, "ListCustomRoutingPortMappingsInput", "AcceleratorArn"),
+            type = "string",
+            name = "AcceleratorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndpointGroupArn = schema.new({
+            id = id.from(_N, "ListCustomRoutingPortMappingsInput", "EndpointGroupArn"),
+            type = "string",
+            name = "EndpointGroupArn",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListCustomRoutingPortMappingsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCustomRoutingPortMappingsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PortMapping = schema.new({
+    id = id.from(_N, "PortMapping"),
+    type = "structure",
+    members = {
+        AcceleratorPort = schema.new({
+            id = id.from(_N, "PortMapping", "AcceleratorPort"),
+            type = "integer",
+            name = "AcceleratorPort",
+            target_id = prelude.Integer.id,
+        }),
+        EndpointGroupArn = schema.new({
+            id = id.from(_N, "PortMapping", "EndpointGroupArn"),
+            type = "string",
+            name = "EndpointGroupArn",
+            target_id = prelude.String.id,
+        }),
+        EndpointId = schema.new({
+            id = id.from(_N, "PortMapping", "EndpointId"),
+            type = "string",
+            name = "EndpointId",
+            target_id = prelude.String.id,
+        }),
+        DestinationSocketAddress = schema.new({
+            id = id.from(_N, "PortMapping", "DestinationSocketAddress"),
+            type = "structure",
+            name = "DestinationSocketAddress",
+            target_id = id.from(_N, "SocketAddress"),
+            target = M.SocketAddress,
+        }),
+        Protocols = schema.new({
+            id = id.from(_N, "PortMapping", "Protocols"),
+            type = "list",
+            name = "Protocols",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        DestinationTrafficState = schema.new({
+            id = id.from(_N, "PortMapping", "DestinationTrafficState"),
+            type = "string",
+            name = "DestinationTrafficState",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListCustomRoutingPortMappingsOutput = schema.new({
+    id = id.from(_N, "ListCustomRoutingPortMappingsOutput"),
+    type = "structure",
+    members = {
+        PortMappings = schema.new({
+            id = id.from(_N, "ListCustomRoutingPortMappingsOutput", "PortMappings"),
+            type = "list",
+            name = "PortMappings",
+            target_id = prelude.Document.id,
+            list_member = M.PortMapping,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCustomRoutingPortMappingsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListCustomRoutingPortMappingsByDestinationInput = schema.new({
+    id = id.from(_N, "ListCustomRoutingPortMappingsByDestinationInput"),
+    type = "structure",
+    members = {
+        EndpointId = schema.new({
+            id = id.from(_N, "ListCustomRoutingPortMappingsByDestinationInput", "EndpointId"),
+            type = "string",
+            name = "EndpointId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DestinationAddress = schema.new({
+            id = id.from(_N, "ListCustomRoutingPortMappingsByDestinationInput", "DestinationAddress"),
+            type = "string",
+            name = "DestinationAddress",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListCustomRoutingPortMappingsByDestinationInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCustomRoutingPortMappingsByDestinationInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListCustomRoutingPortMappingsByDestinationOutput = schema.new({
+    id = id.from(_N, "ListCustomRoutingPortMappingsByDestinationOutput"),
+    type = "structure",
+    members = {
+        DestinationPortMappings = schema.new({
+            id = id.from(_N, "ListCustomRoutingPortMappingsByDestinationOutput", "DestinationPortMappings"),
+            type = "list",
+            name = "DestinationPortMappings",
+            target_id = prelude.Document.id,
+            list_member = M.DestinationPortMapping,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCustomRoutingPortMappingsByDestinationOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListEndpointGroupsInput = schema.new({
+    id = id.from(_N, "ListEndpointGroupsInput"),
+    type = "structure",
+    members = {
+        ListenerArn = schema.new({
+            id = id.from(_N, "ListEndpointGroupsInput", "ListenerArn"),
+            type = "string",
+            name = "ListenerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListEndpointGroupsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListEndpointGroupsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListEndpointGroupsOutput = schema.new({
+    id = id.from(_N, "ListEndpointGroupsOutput"),
+    type = "structure",
+    members = {
+        EndpointGroups = schema.new({
+            id = id.from(_N, "ListEndpointGroupsOutput", "EndpointGroups"),
+            type = "list",
+            name = "EndpointGroups",
+            target_id = prelude.Document.id,
+            list_member = M.EndpointGroup,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListEndpointGroupsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListListenersInput = schema.new({
+    id = id.from(_N, "ListListenersInput"),
+    type = "structure",
+    members = {
+        AcceleratorArn = schema.new({
+            id = id.from(_N, "ListListenersInput", "AcceleratorArn"),
+            type = "string",
+            name = "AcceleratorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListListenersInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListListenersInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListListenersOutput = schema.new({
+    id = id.from(_N, "ListListenersOutput"),
+    type = "structure",
+    members = {
+        Listeners = schema.new({
+            id = id.from(_N, "ListListenersOutput", "Listeners"),
+            type = "list",
+            name = "Listeners",
+            target_id = prelude.Document.id,
+            list_member = M.Listener,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListListenersOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceOutput"),
+    type = "structure",
+    members = {
+        Tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.ProvisionByoipCidrInput = schema.new({
+    id = id.from(_N, "ProvisionByoipCidrInput"),
+    type = "structure",
+    members = {
+        Cidr = schema.new({
+            id = id.from(_N, "ProvisionByoipCidrInput", "Cidr"),
+            type = "string",
+            name = "Cidr",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CidrAuthorizationContext = schema.new({
+            id = id.from(_N, "ProvisionByoipCidrInput", "CidrAuthorizationContext"),
+            type = "structure",
+            name = "CidrAuthorizationContext",
+            target_id = id.from(_N, "CidrAuthorizationContext"),
+            target = M.CidrAuthorizationContext,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ProvisionByoipCidrOutput = schema.new({
+    id = id.from(_N, "ProvisionByoipCidrOutput"),
+    type = "structure",
+    members = {
+        ByoipCidr = schema.new({
+            id = id.from(_N, "ProvisionByoipCidrOutput", "ByoipCidr"),
+            type = "structure",
+            name = "ByoipCidr",
+            target_id = id.from(_N, "ByoipCidr"),
+            target = M.ByoipCidr,
+        }),
+    },
+})
+
+M.RemoveCustomRoutingEndpointsInput = schema.new({
+    id = id.from(_N, "RemoveCustomRoutingEndpointsInput"),
+    type = "structure",
+    members = {
+        EndpointIds = schema.new({
+            id = id.from(_N, "RemoveCustomRoutingEndpointsInput", "EndpointIds"),
+            type = "list",
+            name = "EndpointIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndpointGroupArn = schema.new({
+            id = id.from(_N, "RemoveCustomRoutingEndpointsInput", "EndpointGroupArn"),
+            type = "string",
+            name = "EndpointGroupArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RemoveCustomRoutingEndpointsOutput = schema.new({
+    id = id.from(_N, "RemoveCustomRoutingEndpointsOutput"),
+    type = "structure",
+})
+
+M.RemoveEndpointsInput = schema.new({
+    id = id.from(_N, "RemoveEndpointsInput"),
+    type = "structure",
+    members = {
+        EndpointIdentifiers = schema.new({
+            id = id.from(_N, "RemoveEndpointsInput", "EndpointIdentifiers"),
+            type = "list",
+            name = "EndpointIdentifiers",
+            target_id = prelude.Document.id,
+            list_member = M.EndpointIdentifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndpointGroupArn = schema.new({
+            id = id.from(_N, "RemoveEndpointsInput", "EndpointGroupArn"),
+            type = "string",
+            name = "EndpointGroupArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RemoveEndpointsOutput = schema.new({
+    id = id.from(_N, "RemoveEndpointsOutput"),
+    type = "structure",
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "TagResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceOutput"),
+    type = "structure",
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "UntagResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "TagKeys"),
+            type = "list",
+            name = "TagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
+M.UpdateAcceleratorInput = schema.new({
+    id = id.from(_N, "UpdateAcceleratorInput"),
+    type = "structure",
+    members = {
+        AcceleratorArn = schema.new({
+            id = id.from(_N, "UpdateAcceleratorInput", "AcceleratorArn"),
+            type = "string",
+            name = "AcceleratorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateAcceleratorInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        IpAddressType = schema.new({
+            id = id.from(_N, "UpdateAcceleratorInput", "IpAddressType"),
+            type = "string",
+            name = "IpAddressType",
+            target_id = prelude.String.id,
+        }),
+        IpAddresses = schema.new({
+            id = id.from(_N, "UpdateAcceleratorInput", "IpAddresses"),
+            type = "list",
+            name = "IpAddresses",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Enabled = schema.new({
+            id = id.from(_N, "UpdateAcceleratorInput", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.UpdateAcceleratorOutput = schema.new({
+    id = id.from(_N, "UpdateAcceleratorOutput"),
+    type = "structure",
+    members = {
+        Accelerator = schema.new({
+            id = id.from(_N, "UpdateAcceleratorOutput", "Accelerator"),
+            type = "structure",
+            name = "Accelerator",
+            target_id = id.from(_N, "Accelerator"),
+            target = M.Accelerator,
+        }),
+    },
+})
+
+M.UpdateAcceleratorAttributesInput = schema.new({
+    id = id.from(_N, "UpdateAcceleratorAttributesInput"),
+    type = "structure",
+    members = {
+        AcceleratorArn = schema.new({
+            id = id.from(_N, "UpdateAcceleratorAttributesInput", "AcceleratorArn"),
+            type = "string",
+            name = "AcceleratorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FlowLogsEnabled = schema.new({
+            id = id.from(_N, "UpdateAcceleratorAttributesInput", "FlowLogsEnabled"),
+            type = "boolean",
+            name = "FlowLogsEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        FlowLogsS3Bucket = schema.new({
+            id = id.from(_N, "UpdateAcceleratorAttributesInput", "FlowLogsS3Bucket"),
+            type = "string",
+            name = "FlowLogsS3Bucket",
+            target_id = prelude.String.id,
+        }),
+        FlowLogsS3Prefix = schema.new({
+            id = id.from(_N, "UpdateAcceleratorAttributesInput", "FlowLogsS3Prefix"),
+            type = "string",
+            name = "FlowLogsS3Prefix",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateAcceleratorAttributesOutput = schema.new({
+    id = id.from(_N, "UpdateAcceleratorAttributesOutput"),
+    type = "structure",
+    members = {
+        AcceleratorAttributes = schema.new({
+            id = id.from(_N, "UpdateAcceleratorAttributesOutput", "AcceleratorAttributes"),
+            type = "structure",
+            name = "AcceleratorAttributes",
+            target_id = id.from(_N, "AcceleratorAttributes"),
+            target = M.AcceleratorAttributes,
+        }),
+    },
+})
+
+M.UpdateCrossAccountAttachmentInput = schema.new({
+    id = id.from(_N, "UpdateCrossAccountAttachmentInput"),
+    type = "structure",
+    members = {
+        AttachmentArn = schema.new({
+            id = id.from(_N, "UpdateCrossAccountAttachmentInput", "AttachmentArn"),
+            type = "string",
+            name = "AttachmentArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateCrossAccountAttachmentInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        AddPrincipals = schema.new({
+            id = id.from(_N, "UpdateCrossAccountAttachmentInput", "AddPrincipals"),
+            type = "list",
+            name = "AddPrincipals",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        RemovePrincipals = schema.new({
+            id = id.from(_N, "UpdateCrossAccountAttachmentInput", "RemovePrincipals"),
+            type = "list",
+            name = "RemovePrincipals",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        AddResources = schema.new({
+            id = id.from(_N, "UpdateCrossAccountAttachmentInput", "AddResources"),
+            type = "list",
+            name = "AddResources",
+            target_id = prelude.Document.id,
+            list_member = M.Resource,
+        }),
+        RemoveResources = schema.new({
+            id = id.from(_N, "UpdateCrossAccountAttachmentInput", "RemoveResources"),
+            type = "list",
+            name = "RemoveResources",
+            target_id = prelude.Document.id,
+            list_member = M.Resource,
+        }),
+    },
+})
+
+M.UpdateCrossAccountAttachmentOutput = schema.new({
+    id = id.from(_N, "UpdateCrossAccountAttachmentOutput"),
+    type = "structure",
+    members = {
+        CrossAccountAttachment = schema.new({
+            id = id.from(_N, "UpdateCrossAccountAttachmentOutput", "CrossAccountAttachment"),
+            type = "structure",
+            name = "CrossAccountAttachment",
+            target_id = id.from(_N, "Attachment"),
+            target = M.Attachment,
+        }),
+    },
+})
+
+M.UpdateCustomRoutingAcceleratorInput = schema.new({
+    id = id.from(_N, "UpdateCustomRoutingAcceleratorInput"),
+    type = "structure",
+    members = {
+        AcceleratorArn = schema.new({
+            id = id.from(_N, "UpdateCustomRoutingAcceleratorInput", "AcceleratorArn"),
+            type = "string",
+            name = "AcceleratorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateCustomRoutingAcceleratorInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        IpAddressType = schema.new({
+            id = id.from(_N, "UpdateCustomRoutingAcceleratorInput", "IpAddressType"),
+            type = "string",
+            name = "IpAddressType",
+            target_id = prelude.String.id,
+        }),
+        IpAddresses = schema.new({
+            id = id.from(_N, "UpdateCustomRoutingAcceleratorInput", "IpAddresses"),
+            type = "list",
+            name = "IpAddresses",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Enabled = schema.new({
+            id = id.from(_N, "UpdateCustomRoutingAcceleratorInput", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.UpdateCustomRoutingAcceleratorOutput = schema.new({
+    id = id.from(_N, "UpdateCustomRoutingAcceleratorOutput"),
+    type = "structure",
+    members = {
+        Accelerator = schema.new({
+            id = id.from(_N, "UpdateCustomRoutingAcceleratorOutput", "Accelerator"),
+            type = "structure",
+            name = "Accelerator",
+            target_id = id.from(_N, "CustomRoutingAccelerator"),
+            target = M.CustomRoutingAccelerator,
+        }),
+    },
+})
+
+M.UpdateCustomRoutingAcceleratorAttributesInput = schema.new({
+    id = id.from(_N, "UpdateCustomRoutingAcceleratorAttributesInput"),
+    type = "structure",
+    members = {
+        AcceleratorArn = schema.new({
+            id = id.from(_N, "UpdateCustomRoutingAcceleratorAttributesInput", "AcceleratorArn"),
+            type = "string",
+            name = "AcceleratorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FlowLogsEnabled = schema.new({
+            id = id.from(_N, "UpdateCustomRoutingAcceleratorAttributesInput", "FlowLogsEnabled"),
+            type = "boolean",
+            name = "FlowLogsEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        FlowLogsS3Bucket = schema.new({
+            id = id.from(_N, "UpdateCustomRoutingAcceleratorAttributesInput", "FlowLogsS3Bucket"),
+            type = "string",
+            name = "FlowLogsS3Bucket",
+            target_id = prelude.String.id,
+        }),
+        FlowLogsS3Prefix = schema.new({
+            id = id.from(_N, "UpdateCustomRoutingAcceleratorAttributesInput", "FlowLogsS3Prefix"),
+            type = "string",
+            name = "FlowLogsS3Prefix",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateCustomRoutingAcceleratorAttributesOutput = schema.new({
+    id = id.from(_N, "UpdateCustomRoutingAcceleratorAttributesOutput"),
+    type = "structure",
+    members = {
+        AcceleratorAttributes = schema.new({
+            id = id.from(_N, "UpdateCustomRoutingAcceleratorAttributesOutput", "AcceleratorAttributes"),
+            type = "structure",
+            name = "AcceleratorAttributes",
+            target_id = id.from(_N, "CustomRoutingAcceleratorAttributes"),
+            target = M.CustomRoutingAcceleratorAttributes,
+        }),
+    },
+})
+
+M.UpdateCustomRoutingListenerInput = schema.new({
+    id = id.from(_N, "UpdateCustomRoutingListenerInput"),
+    type = "structure",
+    members = {
+        ListenerArn = schema.new({
+            id = id.from(_N, "UpdateCustomRoutingListenerInput", "ListenerArn"),
+            type = "string",
+            name = "ListenerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PortRanges = schema.new({
+            id = id.from(_N, "UpdateCustomRoutingListenerInput", "PortRanges"),
+            type = "list",
+            name = "PortRanges",
+            target_id = prelude.Document.id,
+            list_member = M.PortRange,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateCustomRoutingListenerOutput = schema.new({
+    id = id.from(_N, "UpdateCustomRoutingListenerOutput"),
+    type = "structure",
+    members = {
+        Listener = schema.new({
+            id = id.from(_N, "UpdateCustomRoutingListenerOutput", "Listener"),
+            type = "structure",
+            name = "Listener",
+            target_id = id.from(_N, "CustomRoutingListener"),
+            target = M.CustomRoutingListener,
+        }),
+    },
+})
+
+M.UpdateEndpointGroupInput = schema.new({
+    id = id.from(_N, "UpdateEndpointGroupInput"),
+    type = "structure",
+    members = {
+        EndpointGroupArn = schema.new({
+            id = id.from(_N, "UpdateEndpointGroupInput", "EndpointGroupArn"),
+            type = "string",
+            name = "EndpointGroupArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndpointConfigurations = schema.new({
+            id = id.from(_N, "UpdateEndpointGroupInput", "EndpointConfigurations"),
+            type = "list",
+            name = "EndpointConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.EndpointConfiguration,
+        }),
+        TrafficDialPercentage = schema.new({
+            id = id.from(_N, "UpdateEndpointGroupInput", "TrafficDialPercentage"),
+            type = "float",
+            name = "TrafficDialPercentage",
+            target_id = prelude.Float.id,
+        }),
+        HealthCheckPort = schema.new({
+            id = id.from(_N, "UpdateEndpointGroupInput", "HealthCheckPort"),
+            type = "integer",
+            name = "HealthCheckPort",
+            target_id = prelude.Integer.id,
+        }),
+        HealthCheckProtocol = schema.new({
+            id = id.from(_N, "UpdateEndpointGroupInput", "HealthCheckProtocol"),
+            type = "string",
+            name = "HealthCheckProtocol",
+            target_id = prelude.String.id,
+        }),
+        HealthCheckPath = schema.new({
+            id = id.from(_N, "UpdateEndpointGroupInput", "HealthCheckPath"),
+            type = "string",
+            name = "HealthCheckPath",
+            target_id = prelude.String.id,
+        }),
+        HealthCheckIntervalSeconds = schema.new({
+            id = id.from(_N, "UpdateEndpointGroupInput", "HealthCheckIntervalSeconds"),
+            type = "integer",
+            name = "HealthCheckIntervalSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        ThresholdCount = schema.new({
+            id = id.from(_N, "UpdateEndpointGroupInput", "ThresholdCount"),
+            type = "integer",
+            name = "ThresholdCount",
+            target_id = prelude.Integer.id,
+        }),
+        PortOverrides = schema.new({
+            id = id.from(_N, "UpdateEndpointGroupInput", "PortOverrides"),
+            type = "list",
+            name = "PortOverrides",
+            target_id = prelude.Document.id,
+            list_member = M.PortOverride,
+        }),
+    },
+})
+
+M.UpdateEndpointGroupOutput = schema.new({
+    id = id.from(_N, "UpdateEndpointGroupOutput"),
+    type = "structure",
+    members = {
+        EndpointGroup = schema.new({
+            id = id.from(_N, "UpdateEndpointGroupOutput", "EndpointGroup"),
+            type = "structure",
+            name = "EndpointGroup",
+            target_id = id.from(_N, "EndpointGroup"),
+            target = M.EndpointGroup,
+        }),
+    },
+})
+
+M.UpdateListenerInput = schema.new({
+    id = id.from(_N, "UpdateListenerInput"),
+    type = "structure",
+    members = {
+        ListenerArn = schema.new({
+            id = id.from(_N, "UpdateListenerInput", "ListenerArn"),
+            type = "string",
+            name = "ListenerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PortRanges = schema.new({
+            id = id.from(_N, "UpdateListenerInput", "PortRanges"),
+            type = "list",
+            name = "PortRanges",
+            target_id = prelude.Document.id,
+            list_member = M.PortRange,
+        }),
+        Protocol = schema.new({
+            id = id.from(_N, "UpdateListenerInput", "Protocol"),
+            type = "string",
+            name = "Protocol",
+            target_id = prelude.String.id,
+        }),
+        ClientAffinity = schema.new({
+            id = id.from(_N, "UpdateListenerInput", "ClientAffinity"),
+            type = "string",
+            name = "ClientAffinity",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateListenerOutput = schema.new({
+    id = id.from(_N, "UpdateListenerOutput"),
+    type = "structure",
+    members = {
+        Listener = schema.new({
+            id = id.from(_N, "UpdateListenerOutput", "Listener"),
+            type = "structure",
+            name = "Listener",
+            target_id = id.from(_N, "Listener"),
+            target = M.Listener,
+        }),
+    },
+})
+
+M.WithdrawByoipCidrInput = schema.new({
+    id = id.from(_N, "WithdrawByoipCidrInput"),
+    type = "structure",
+    members = {
+        Cidr = schema.new({
+            id = id.from(_N, "WithdrawByoipCidrInput", "Cidr"),
+            type = "string",
+            name = "Cidr",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.WithdrawByoipCidrOutput = schema.new({
+    id = id.from(_N, "WithdrawByoipCidrOutput"),
+    type = "structure",
+    members = {
+        ByoipCidr = schema.new({
+            id = id.from(_N, "WithdrawByoipCidrOutput", "ByoipCidr"),
+            type = "structure",
+            name = "ByoipCidr",
+            target_id = id.from(_N, "ByoipCidr"),
+            target = M.ByoipCidr,
+        }),
+    },
+})
+
+return M

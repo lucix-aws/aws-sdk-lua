@@ -1,0 +1,1048 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.sts"
+
+local M = {}
+
+M.AssumedRoleUser = schema.new({
+    id = id.from(_N, "AssumedRoleUser"),
+    type = "structure",
+    members = {
+        AssumedRoleId = schema.new({
+            id = id.from(_N, "AssumedRoleUser", "AssumedRoleId"),
+            type = "string",
+            name = "AssumedRoleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "AssumedRoleUser", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PolicyDescriptorType = schema.new({
+    id = id.from(_N, "PolicyDescriptorType"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "PolicyDescriptorType", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ProvidedContext = schema.new({
+    id = id.from(_N, "ProvidedContext"),
+    type = "structure",
+    members = {
+        ProviderArn = schema.new({
+            id = id.from(_N, "ProvidedContext", "ProviderArn"),
+            type = "string",
+            name = "ProviderArn",
+            target_id = prelude.String.id,
+        }),
+        ContextAssertion = schema.new({
+            id = id.from(_N, "ProvidedContext", "ContextAssertion"),
+            type = "string",
+            name = "ContextAssertion",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Tag = schema.new({
+    id = id.from(_N, "Tag"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "Tag", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "Tag", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssumeRoleInput = schema.new({
+    id = id.from(_N, "AssumeRoleInput"),
+    type = "structure",
+    members = {
+        RoleArn = schema.new({
+            id = id.from(_N, "AssumeRoleInput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoleSessionName = schema.new({
+            id = id.from(_N, "AssumeRoleInput", "RoleSessionName"),
+            type = "string",
+            name = "RoleSessionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PolicyArns = schema.new({
+            id = id.from(_N, "AssumeRoleInput", "PolicyArns"),
+            type = "list",
+            name = "PolicyArns",
+            target_id = prelude.Document.id,
+            list_member = M.PolicyDescriptorType,
+        }),
+        Policy = schema.new({
+            id = id.from(_N, "AssumeRoleInput", "Policy"),
+            type = "string",
+            name = "Policy",
+            target_id = prelude.String.id,
+        }),
+        DurationSeconds = schema.new({
+            id = id.from(_N, "AssumeRoleInput", "DurationSeconds"),
+            type = "integer",
+            name = "DurationSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "AssumeRoleInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        TransitiveTagKeys = schema.new({
+            id = id.from(_N, "AssumeRoleInput", "TransitiveTagKeys"),
+            type = "list",
+            name = "TransitiveTagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ExternalId = schema.new({
+            id = id.from(_N, "AssumeRoleInput", "ExternalId"),
+            type = "string",
+            name = "ExternalId",
+            target_id = prelude.String.id,
+        }),
+        SerialNumber = schema.new({
+            id = id.from(_N, "AssumeRoleInput", "SerialNumber"),
+            type = "string",
+            name = "SerialNumber",
+            target_id = prelude.String.id,
+        }),
+        TokenCode = schema.new({
+            id = id.from(_N, "AssumeRoleInput", "TokenCode"),
+            type = "string",
+            name = "TokenCode",
+            target_id = prelude.String.id,
+        }),
+        SourceIdentity = schema.new({
+            id = id.from(_N, "AssumeRoleInput", "SourceIdentity"),
+            type = "string",
+            name = "SourceIdentity",
+            target_id = prelude.String.id,
+        }),
+        ProvidedContexts = schema.new({
+            id = id.from(_N, "AssumeRoleInput", "ProvidedContexts"),
+            type = "list",
+            name = "ProvidedContexts",
+            target_id = prelude.Document.id,
+            list_member = M.ProvidedContext,
+        }),
+    },
+})
+
+M.Credentials = schema.new({
+    id = id.from(_N, "Credentials"),
+    type = "structure",
+    members = {
+        AccessKeyId = schema.new({
+            id = id.from(_N, "Credentials", "AccessKeyId"),
+            type = "string",
+            name = "AccessKeyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SecretAccessKey = schema.new({
+            id = id.from(_N, "Credentials", "SecretAccessKey"),
+            type = "string",
+            name = "SecretAccessKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SessionToken = schema.new({
+            id = id.from(_N, "Credentials", "SessionToken"),
+            type = "string",
+            name = "SessionToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Expiration = schema.new({
+            id = id.from(_N, "Credentials", "Expiration"),
+            type = "timestamp",
+            name = "Expiration",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssumeRoleOutput = schema.new({
+    id = id.from(_N, "AssumeRoleOutput"),
+    type = "structure",
+    members = {
+        Credentials = schema.new({
+            id = id.from(_N, "AssumeRoleOutput", "Credentials"),
+            type = "structure",
+            name = "Credentials",
+            target_id = id.from(_N, "Credentials"),
+            target = M.Credentials,
+        }),
+        AssumedRoleUser = schema.new({
+            id = id.from(_N, "AssumeRoleOutput", "AssumedRoleUser"),
+            type = "structure",
+            name = "AssumedRoleUser",
+            target_id = id.from(_N, "AssumedRoleUser"),
+            target = M.AssumedRoleUser,
+        }),
+        PackedPolicySize = schema.new({
+            id = id.from(_N, "AssumeRoleOutput", "PackedPolicySize"),
+            type = "integer",
+            name = "PackedPolicySize",
+            target_id = prelude.Integer.id,
+        }),
+        SourceIdentity = schema.new({
+            id = id.from(_N, "AssumeRoleOutput", "SourceIdentity"),
+            type = "string",
+            name = "SourceIdentity",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ExpiredTokenException = schema.new({
+    id = id.from(_N, "ExpiredTokenException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ExpiredTokenException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.MalformedPolicyDocumentException = schema.new({
+    id = id.from(_N, "MalformedPolicyDocumentException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "MalformedPolicyDocumentException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PackedPolicyTooLargeException = schema.new({
+    id = id.from(_N, "PackedPolicyTooLargeException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "PackedPolicyTooLargeException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RegionDisabledException = schema.new({
+    id = id.from(_N, "RegionDisabledException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "RegionDisabledException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AssumeRoleWithSAMLInput = schema.new({
+    id = id.from(_N, "AssumeRoleWithSAMLInput"),
+    type = "structure",
+    members = {
+        RoleArn = schema.new({
+            id = id.from(_N, "AssumeRoleWithSAMLInput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PrincipalArn = schema.new({
+            id = id.from(_N, "AssumeRoleWithSAMLInput", "PrincipalArn"),
+            type = "string",
+            name = "PrincipalArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SAMLAssertion = schema.new({
+            id = id.from(_N, "AssumeRoleWithSAMLInput", "SAMLAssertion"),
+            type = "string",
+            name = "SAMLAssertion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PolicyArns = schema.new({
+            id = id.from(_N, "AssumeRoleWithSAMLInput", "PolicyArns"),
+            type = "list",
+            name = "PolicyArns",
+            target_id = prelude.Document.id,
+            list_member = M.PolicyDescriptorType,
+        }),
+        Policy = schema.new({
+            id = id.from(_N, "AssumeRoleWithSAMLInput", "Policy"),
+            type = "string",
+            name = "Policy",
+            target_id = prelude.String.id,
+        }),
+        DurationSeconds = schema.new({
+            id = id.from(_N, "AssumeRoleWithSAMLInput", "DurationSeconds"),
+            type = "integer",
+            name = "DurationSeconds",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.AssumeRoleWithSAMLOutput = schema.new({
+    id = id.from(_N, "AssumeRoleWithSAMLOutput"),
+    type = "structure",
+    members = {
+        Credentials = schema.new({
+            id = id.from(_N, "AssumeRoleWithSAMLOutput", "Credentials"),
+            type = "structure",
+            name = "Credentials",
+            target_id = id.from(_N, "Credentials"),
+            target = M.Credentials,
+        }),
+        AssumedRoleUser = schema.new({
+            id = id.from(_N, "AssumeRoleWithSAMLOutput", "AssumedRoleUser"),
+            type = "structure",
+            name = "AssumedRoleUser",
+            target_id = id.from(_N, "AssumedRoleUser"),
+            target = M.AssumedRoleUser,
+        }),
+        PackedPolicySize = schema.new({
+            id = id.from(_N, "AssumeRoleWithSAMLOutput", "PackedPolicySize"),
+            type = "integer",
+            name = "PackedPolicySize",
+            target_id = prelude.Integer.id,
+        }),
+        Subject = schema.new({
+            id = id.from(_N, "AssumeRoleWithSAMLOutput", "Subject"),
+            type = "string",
+            name = "Subject",
+            target_id = prelude.String.id,
+        }),
+        SubjectType = schema.new({
+            id = id.from(_N, "AssumeRoleWithSAMLOutput", "SubjectType"),
+            type = "string",
+            name = "SubjectType",
+            target_id = prelude.String.id,
+        }),
+        Issuer = schema.new({
+            id = id.from(_N, "AssumeRoleWithSAMLOutput", "Issuer"),
+            type = "string",
+            name = "Issuer",
+            target_id = prelude.String.id,
+        }),
+        Audience = schema.new({
+            id = id.from(_N, "AssumeRoleWithSAMLOutput", "Audience"),
+            type = "string",
+            name = "Audience",
+            target_id = prelude.String.id,
+        }),
+        NameQualifier = schema.new({
+            id = id.from(_N, "AssumeRoleWithSAMLOutput", "NameQualifier"),
+            type = "string",
+            name = "NameQualifier",
+            target_id = prelude.String.id,
+        }),
+        SourceIdentity = schema.new({
+            id = id.from(_N, "AssumeRoleWithSAMLOutput", "SourceIdentity"),
+            type = "string",
+            name = "SourceIdentity",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.IDPRejectedClaimException = schema.new({
+    id = id.from(_N, "IDPRejectedClaimException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "IDPRejectedClaimException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidIdentityTokenException = schema.new({
+    id = id.from(_N, "InvalidIdentityTokenException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidIdentityTokenException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AssumeRoleWithWebIdentityInput = schema.new({
+    id = id.from(_N, "AssumeRoleWithWebIdentityInput"),
+    type = "structure",
+    members = {
+        RoleArn = schema.new({
+            id = id.from(_N, "AssumeRoleWithWebIdentityInput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoleSessionName = schema.new({
+            id = id.from(_N, "AssumeRoleWithWebIdentityInput", "RoleSessionName"),
+            type = "string",
+            name = "RoleSessionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        WebIdentityToken = schema.new({
+            id = id.from(_N, "AssumeRoleWithWebIdentityInput", "WebIdentityToken"),
+            type = "string",
+            name = "WebIdentityToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProviderId = schema.new({
+            id = id.from(_N, "AssumeRoleWithWebIdentityInput", "ProviderId"),
+            type = "string",
+            name = "ProviderId",
+            target_id = prelude.String.id,
+        }),
+        PolicyArns = schema.new({
+            id = id.from(_N, "AssumeRoleWithWebIdentityInput", "PolicyArns"),
+            type = "list",
+            name = "PolicyArns",
+            target_id = prelude.Document.id,
+            list_member = M.PolicyDescriptorType,
+        }),
+        Policy = schema.new({
+            id = id.from(_N, "AssumeRoleWithWebIdentityInput", "Policy"),
+            type = "string",
+            name = "Policy",
+            target_id = prelude.String.id,
+        }),
+        DurationSeconds = schema.new({
+            id = id.from(_N, "AssumeRoleWithWebIdentityInput", "DurationSeconds"),
+            type = "integer",
+            name = "DurationSeconds",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.AssumeRoleWithWebIdentityOutput = schema.new({
+    id = id.from(_N, "AssumeRoleWithWebIdentityOutput"),
+    type = "structure",
+    members = {
+        Credentials = schema.new({
+            id = id.from(_N, "AssumeRoleWithWebIdentityOutput", "Credentials"),
+            type = "structure",
+            name = "Credentials",
+            target_id = id.from(_N, "Credentials"),
+            target = M.Credentials,
+        }),
+        SubjectFromWebIdentityToken = schema.new({
+            id = id.from(_N, "AssumeRoleWithWebIdentityOutput", "SubjectFromWebIdentityToken"),
+            type = "string",
+            name = "SubjectFromWebIdentityToken",
+            target_id = prelude.String.id,
+        }),
+        AssumedRoleUser = schema.new({
+            id = id.from(_N, "AssumeRoleWithWebIdentityOutput", "AssumedRoleUser"),
+            type = "structure",
+            name = "AssumedRoleUser",
+            target_id = id.from(_N, "AssumedRoleUser"),
+            target = M.AssumedRoleUser,
+        }),
+        PackedPolicySize = schema.new({
+            id = id.from(_N, "AssumeRoleWithWebIdentityOutput", "PackedPolicySize"),
+            type = "integer",
+            name = "PackedPolicySize",
+            target_id = prelude.Integer.id,
+        }),
+        Provider = schema.new({
+            id = id.from(_N, "AssumeRoleWithWebIdentityOutput", "Provider"),
+            type = "string",
+            name = "Provider",
+            target_id = prelude.String.id,
+        }),
+        Audience = schema.new({
+            id = id.from(_N, "AssumeRoleWithWebIdentityOutput", "Audience"),
+            type = "string",
+            name = "Audience",
+            target_id = prelude.String.id,
+        }),
+        SourceIdentity = schema.new({
+            id = id.from(_N, "AssumeRoleWithWebIdentityOutput", "SourceIdentity"),
+            type = "string",
+            name = "SourceIdentity",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.IDPCommunicationErrorException = schema.new({
+    id = id.from(_N, "IDPCommunicationErrorException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "IDPCommunicationErrorException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AssumeRootInput = schema.new({
+    id = id.from(_N, "AssumeRootInput"),
+    type = "structure",
+    members = {
+        TargetPrincipal = schema.new({
+            id = id.from(_N, "AssumeRootInput", "TargetPrincipal"),
+            type = "string",
+            name = "TargetPrincipal",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TaskPolicyArn = schema.new({
+            id = id.from(_N, "AssumeRootInput", "TaskPolicyArn"),
+            type = "structure",
+            name = "TaskPolicyArn",
+            target_id = id.from(_N, "PolicyDescriptorType"),
+            target = M.PolicyDescriptorType,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DurationSeconds = schema.new({
+            id = id.from(_N, "AssumeRootInput", "DurationSeconds"),
+            type = "integer",
+            name = "DurationSeconds",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.AssumeRootOutput = schema.new({
+    id = id.from(_N, "AssumeRootOutput"),
+    type = "structure",
+    members = {
+        Credentials = schema.new({
+            id = id.from(_N, "AssumeRootOutput", "Credentials"),
+            type = "structure",
+            name = "Credentials",
+            target_id = id.from(_N, "Credentials"),
+            target = M.Credentials,
+        }),
+        SourceIdentity = schema.new({
+            id = id.from(_N, "AssumeRootOutput", "SourceIdentity"),
+            type = "string",
+            name = "SourceIdentity",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DecodeAuthorizationMessageInput = schema.new({
+    id = id.from(_N, "DecodeAuthorizationMessageInput"),
+    type = "structure",
+    members = {
+        EncodedMessage = schema.new({
+            id = id.from(_N, "DecodeAuthorizationMessageInput", "EncodedMessage"),
+            type = "string",
+            name = "EncodedMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DecodeAuthorizationMessageOutput = schema.new({
+    id = id.from(_N, "DecodeAuthorizationMessageOutput"),
+    type = "structure",
+    members = {
+        DecodedMessage = schema.new({
+            id = id.from(_N, "DecodeAuthorizationMessageOutput", "DecodedMessage"),
+            type = "string",
+            name = "DecodedMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidAuthorizationMessageException = schema.new({
+    id = id.from(_N, "InvalidAuthorizationMessageException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidAuthorizationMessageException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetAccessKeyInfoInput = schema.new({
+    id = id.from(_N, "GetAccessKeyInfoInput"),
+    type = "structure",
+    members = {
+        AccessKeyId = schema.new({
+            id = id.from(_N, "GetAccessKeyInfoInput", "AccessKeyId"),
+            type = "string",
+            name = "AccessKeyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetAccessKeyInfoOutput = schema.new({
+    id = id.from(_N, "GetAccessKeyInfoOutput"),
+    type = "structure",
+    members = {
+        Account = schema.new({
+            id = id.from(_N, "GetAccessKeyInfoOutput", "Account"),
+            type = "string",
+            name = "Account",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetCallerIdentityInput = schema.new({
+    id = id.from(_N, "GetCallerIdentityInput"),
+    type = "structure",
+})
+
+M.GetCallerIdentityOutput = schema.new({
+    id = id.from(_N, "GetCallerIdentityOutput"),
+    type = "structure",
+    members = {
+        UserId = schema.new({
+            id = id.from(_N, "GetCallerIdentityOutput", "UserId"),
+            type = "string",
+            name = "UserId",
+            target_id = prelude.String.id,
+        }),
+        Account = schema.new({
+            id = id.from(_N, "GetCallerIdentityOutput", "Account"),
+            type = "string",
+            name = "Account",
+            target_id = prelude.String.id,
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "GetCallerIdentityOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ExpiredTradeInTokenException = schema.new({
+    id = id.from(_N, "ExpiredTradeInTokenException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ExpiredTradeInTokenException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetDelegatedAccessTokenInput = schema.new({
+    id = id.from(_N, "GetDelegatedAccessTokenInput"),
+    type = "structure",
+    members = {
+        TradeInToken = schema.new({
+            id = id.from(_N, "GetDelegatedAccessTokenInput", "TradeInToken"),
+            type = "string",
+            name = "TradeInToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetDelegatedAccessTokenOutput = schema.new({
+    id = id.from(_N, "GetDelegatedAccessTokenOutput"),
+    type = "structure",
+    members = {
+        Credentials = schema.new({
+            id = id.from(_N, "GetDelegatedAccessTokenOutput", "Credentials"),
+            type = "structure",
+            name = "Credentials",
+            target_id = id.from(_N, "Credentials"),
+            target = M.Credentials,
+        }),
+        PackedPolicySize = schema.new({
+            id = id.from(_N, "GetDelegatedAccessTokenOutput", "PackedPolicySize"),
+            type = "integer",
+            name = "PackedPolicySize",
+            target_id = prelude.Integer.id,
+        }),
+        AssumedPrincipal = schema.new({
+            id = id.from(_N, "GetDelegatedAccessTokenOutput", "AssumedPrincipal"),
+            type = "string",
+            name = "AssumedPrincipal",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetFederationTokenInput = schema.new({
+    id = id.from(_N, "GetFederationTokenInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "GetFederationTokenInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Policy = schema.new({
+            id = id.from(_N, "GetFederationTokenInput", "Policy"),
+            type = "string",
+            name = "Policy",
+            target_id = prelude.String.id,
+        }),
+        PolicyArns = schema.new({
+            id = id.from(_N, "GetFederationTokenInput", "PolicyArns"),
+            type = "list",
+            name = "PolicyArns",
+            target_id = prelude.Document.id,
+            list_member = M.PolicyDescriptorType,
+        }),
+        DurationSeconds = schema.new({
+            id = id.from(_N, "GetFederationTokenInput", "DurationSeconds"),
+            type = "integer",
+            name = "DurationSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "GetFederationTokenInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.FederatedUser = schema.new({
+    id = id.from(_N, "FederatedUser"),
+    type = "structure",
+    members = {
+        FederatedUserId = schema.new({
+            id = id.from(_N, "FederatedUser", "FederatedUserId"),
+            type = "string",
+            name = "FederatedUserId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "FederatedUser", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetFederationTokenOutput = schema.new({
+    id = id.from(_N, "GetFederationTokenOutput"),
+    type = "structure",
+    members = {
+        Credentials = schema.new({
+            id = id.from(_N, "GetFederationTokenOutput", "Credentials"),
+            type = "structure",
+            name = "Credentials",
+            target_id = id.from(_N, "Credentials"),
+            target = M.Credentials,
+        }),
+        FederatedUser = schema.new({
+            id = id.from(_N, "GetFederationTokenOutput", "FederatedUser"),
+            type = "structure",
+            name = "FederatedUser",
+            target_id = id.from(_N, "FederatedUser"),
+            target = M.FederatedUser,
+        }),
+        PackedPolicySize = schema.new({
+            id = id.from(_N, "GetFederationTokenOutput", "PackedPolicySize"),
+            type = "integer",
+            name = "PackedPolicySize",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.GetSessionTokenInput = schema.new({
+    id = id.from(_N, "GetSessionTokenInput"),
+    type = "structure",
+    members = {
+        DurationSeconds = schema.new({
+            id = id.from(_N, "GetSessionTokenInput", "DurationSeconds"),
+            type = "integer",
+            name = "DurationSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        SerialNumber = schema.new({
+            id = id.from(_N, "GetSessionTokenInput", "SerialNumber"),
+            type = "string",
+            name = "SerialNumber",
+            target_id = prelude.String.id,
+        }),
+        TokenCode = schema.new({
+            id = id.from(_N, "GetSessionTokenInput", "TokenCode"),
+            type = "string",
+            name = "TokenCode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetSessionTokenOutput = schema.new({
+    id = id.from(_N, "GetSessionTokenOutput"),
+    type = "structure",
+    members = {
+        Credentials = schema.new({
+            id = id.from(_N, "GetSessionTokenOutput", "Credentials"),
+            type = "structure",
+            name = "Credentials",
+            target_id = id.from(_N, "Credentials"),
+            target = M.Credentials,
+        }),
+    },
+})
+
+M.GetWebIdentityTokenInput = schema.new({
+    id = id.from(_N, "GetWebIdentityTokenInput"),
+    type = "structure",
+    members = {
+        Audience = schema.new({
+            id = id.from(_N, "GetWebIdentityTokenInput", "Audience"),
+            type = "list",
+            name = "Audience",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DurationSeconds = schema.new({
+            id = id.from(_N, "GetWebIdentityTokenInput", "DurationSeconds"),
+            type = "integer",
+            name = "DurationSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        SigningAlgorithm = schema.new({
+            id = id.from(_N, "GetWebIdentityTokenInput", "SigningAlgorithm"),
+            type = "string",
+            name = "SigningAlgorithm",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "GetWebIdentityTokenInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.GetWebIdentityTokenOutput = schema.new({
+    id = id.from(_N, "GetWebIdentityTokenOutput"),
+    type = "structure",
+    members = {
+        WebIdentityToken = schema.new({
+            id = id.from(_N, "GetWebIdentityTokenOutput", "WebIdentityToken"),
+            type = "string",
+            name = "WebIdentityToken",
+            target_id = prelude.String.id,
+        }),
+        Expiration = schema.new({
+            id = id.from(_N, "GetWebIdentityTokenOutput", "Expiration"),
+            type = "timestamp",
+            name = "Expiration",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.JWTPayloadSizeExceededException = schema.new({
+    id = id.from(_N, "JWTPayloadSizeExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "JWTPayloadSizeExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.OutboundWebIdentityFederationDisabledException = schema.new({
+    id = id.from(_N, "OutboundWebIdentityFederationDisabledException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "OutboundWebIdentityFederationDisabledException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SessionDurationEscalationException = schema.new({
+    id = id.from(_N, "SessionDurationEscalationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "SessionDurationEscalationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+return M

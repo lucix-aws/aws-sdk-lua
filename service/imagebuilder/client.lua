@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("imagebuilder.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("imagebuilder.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("imagebuilder.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:cancelImageCreation(input, options)
     return self:invokeOperation(input, {
         name = "CancelImageCreation",
-        input_schema = types.CancelImageCreationInput,
-        output_schema = types.CancelImageCreationOutput,
+        input_schema = schemas.CancelImageCreationInput,
+        output_schema = schemas.CancelImageCreationOutput,
         http_method = "PUT",
         http_path = "/CancelImageCreation",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:cancelLifecycleExecution(input, options)
     return self:invokeOperation(input, {
         name = "CancelLifecycleExecution",
-        input_schema = types.CancelLifecycleExecutionInput,
-        output_schema = types.CancelLifecycleExecutionOutput,
+        input_schema = schemas.CancelLifecycleExecutionInput,
+        output_schema = schemas.CancelLifecycleExecutionOutput,
         http_method = "PUT",
         http_path = "/CancelLifecycleExecution",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createComponent(input, options)
     return self:invokeOperation(input, {
         name = "CreateComponent",
-        input_schema = types.CreateComponentInput,
-        output_schema = types.CreateComponentOutput,
+        input_schema = schemas.CreateComponentInput,
+        output_schema = schemas.CreateComponentOutput,
         http_method = "PUT",
         http_path = "/CreateComponent",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createContainerRecipe(input, options)
     return self:invokeOperation(input, {
         name = "CreateContainerRecipe",
-        input_schema = types.CreateContainerRecipeInput,
-        output_schema = types.CreateContainerRecipeOutput,
+        input_schema = schemas.CreateContainerRecipeInput,
+        output_schema = schemas.CreateContainerRecipeOutput,
         http_method = "PUT",
         http_path = "/CreateContainerRecipe",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createDistributionConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateDistributionConfiguration",
-        input_schema = types.CreateDistributionConfigurationInput,
-        output_schema = types.CreateDistributionConfigurationOutput,
+        input_schema = schemas.CreateDistributionConfigurationInput,
+        output_schema = schemas.CreateDistributionConfigurationOutput,
         http_method = "PUT",
         http_path = "/CreateDistributionConfiguration",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createImage(input, options)
     return self:invokeOperation(input, {
         name = "CreateImage",
-        input_schema = types.CreateImageInput,
-        output_schema = types.CreateImageOutput,
+        input_schema = schemas.CreateImageInput,
+        output_schema = schemas.CreateImageOutput,
         http_method = "PUT",
         http_path = "/CreateImage",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createImagePipeline(input, options)
     return self:invokeOperation(input, {
         name = "CreateImagePipeline",
-        input_schema = types.CreateImagePipelineInput,
-        output_schema = types.CreateImagePipelineOutput,
+        input_schema = schemas.CreateImagePipelineInput,
+        output_schema = schemas.CreateImagePipelineOutput,
         http_method = "PUT",
         http_path = "/CreateImagePipeline",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createImageRecipe(input, options)
     return self:invokeOperation(input, {
         name = "CreateImageRecipe",
-        input_schema = types.CreateImageRecipeInput,
-        output_schema = types.CreateImageRecipeOutput,
+        input_schema = schemas.CreateImageRecipeInput,
+        output_schema = schemas.CreateImageRecipeOutput,
         http_method = "PUT",
         http_path = "/CreateImageRecipe",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createInfrastructureConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateInfrastructureConfiguration",
-        input_schema = types.CreateInfrastructureConfigurationInput,
-        output_schema = types.CreateInfrastructureConfigurationOutput,
+        input_schema = schemas.CreateInfrastructureConfigurationInput,
+        output_schema = schemas.CreateInfrastructureConfigurationOutput,
         http_method = "PUT",
         http_path = "/CreateInfrastructureConfiguration",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createLifecyclePolicy(input, options)
     return self:invokeOperation(input, {
         name = "CreateLifecyclePolicy",
-        input_schema = types.CreateLifecyclePolicyInput,
-        output_schema = types.CreateLifecyclePolicyOutput,
+        input_schema = schemas.CreateLifecyclePolicyInput,
+        output_schema = schemas.CreateLifecyclePolicyOutput,
         http_method = "PUT",
         http_path = "/CreateLifecyclePolicy",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createWorkflow(input, options)
     return self:invokeOperation(input, {
         name = "CreateWorkflow",
-        input_schema = types.CreateWorkflowInput,
-        output_schema = types.CreateWorkflowOutput,
+        input_schema = schemas.CreateWorkflowInput,
+        output_schema = schemas.CreateWorkflowOutput,
         http_method = "PUT",
         http_path = "/CreateWorkflow",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteComponent(input, options)
     return self:invokeOperation(input, {
         name = "DeleteComponent",
-        input_schema = types.DeleteComponentInput,
-        output_schema = types.DeleteComponentOutput,
+        input_schema = schemas.DeleteComponentInput,
+        output_schema = schemas.DeleteComponentOutput,
         http_method = "DELETE",
         http_path = "/DeleteComponent",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteContainerRecipe(input, options)
     return self:invokeOperation(input, {
         name = "DeleteContainerRecipe",
-        input_schema = types.DeleteContainerRecipeInput,
-        output_schema = types.DeleteContainerRecipeOutput,
+        input_schema = schemas.DeleteContainerRecipeInput,
+        output_schema = schemas.DeleteContainerRecipeOutput,
         http_method = "DELETE",
         http_path = "/DeleteContainerRecipe",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteDistributionConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDistributionConfiguration",
-        input_schema = types.DeleteDistributionConfigurationInput,
-        output_schema = types.DeleteDistributionConfigurationOutput,
+        input_schema = schemas.DeleteDistributionConfigurationInput,
+        output_schema = schemas.DeleteDistributionConfigurationOutput,
         http_method = "DELETE",
         http_path = "/DeleteDistributionConfiguration",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteImage(input, options)
     return self:invokeOperation(input, {
         name = "DeleteImage",
-        input_schema = types.DeleteImageInput,
-        output_schema = types.DeleteImageOutput,
+        input_schema = schemas.DeleteImageInput,
+        output_schema = schemas.DeleteImageOutput,
         http_method = "DELETE",
         http_path = "/DeleteImage",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteImagePipeline(input, options)
     return self:invokeOperation(input, {
         name = "DeleteImagePipeline",
-        input_schema = types.DeleteImagePipelineInput,
-        output_schema = types.DeleteImagePipelineOutput,
+        input_schema = schemas.DeleteImagePipelineInput,
+        output_schema = schemas.DeleteImagePipelineOutput,
         http_method = "DELETE",
         http_path = "/DeleteImagePipeline",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteImageRecipe(input, options)
     return self:invokeOperation(input, {
         name = "DeleteImageRecipe",
-        input_schema = types.DeleteImageRecipeInput,
-        output_schema = types.DeleteImageRecipeOutput,
+        input_schema = schemas.DeleteImageRecipeInput,
+        output_schema = schemas.DeleteImageRecipeOutput,
         http_method = "DELETE",
         http_path = "/DeleteImageRecipe",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteInfrastructureConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteInfrastructureConfiguration",
-        input_schema = types.DeleteInfrastructureConfigurationInput,
-        output_schema = types.DeleteInfrastructureConfigurationOutput,
+        input_schema = schemas.DeleteInfrastructureConfigurationInput,
+        output_schema = schemas.DeleteInfrastructureConfigurationOutput,
         http_method = "DELETE",
         http_path = "/DeleteInfrastructureConfiguration",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteLifecyclePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLifecyclePolicy",
-        input_schema = types.DeleteLifecyclePolicyInput,
-        output_schema = types.DeleteLifecyclePolicyOutput,
+        input_schema = schemas.DeleteLifecyclePolicyInput,
+        output_schema = schemas.DeleteLifecyclePolicyOutput,
         http_method = "DELETE",
         http_path = "/DeleteLifecyclePolicy",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deleteWorkflow(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWorkflow",
-        input_schema = types.DeleteWorkflowInput,
-        output_schema = types.DeleteWorkflowOutput,
+        input_schema = schemas.DeleteWorkflowInput,
+        output_schema = schemas.DeleteWorkflowOutput,
         http_method = "DELETE",
         http_path = "/DeleteWorkflow",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:distributeImage(input, options)
     return self:invokeOperation(input, {
         name = "DistributeImage",
-        input_schema = types.DistributeImageInput,
-        output_schema = types.DistributeImageOutput,
+        input_schema = schemas.DistributeImageInput,
+        output_schema = schemas.DistributeImageOutput,
         http_method = "PUT",
         http_path = "/DistributeImage",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:getComponent(input, options)
     return self:invokeOperation(input, {
         name = "GetComponent",
-        input_schema = types.GetComponentInput,
-        output_schema = types.GetComponentOutput,
+        input_schema = schemas.GetComponentInput,
+        output_schema = schemas.GetComponentOutput,
         http_method = "GET",
         http_path = "/GetComponent",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:getComponentPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetComponentPolicy",
-        input_schema = types.GetComponentPolicyInput,
-        output_schema = types.GetComponentPolicyOutput,
+        input_schema = schemas.GetComponentPolicyInput,
+        output_schema = schemas.GetComponentPolicyOutput,
         http_method = "GET",
         http_path = "/GetComponentPolicy",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:getContainerRecipe(input, options)
     return self:invokeOperation(input, {
         name = "GetContainerRecipe",
-        input_schema = types.GetContainerRecipeInput,
-        output_schema = types.GetContainerRecipeOutput,
+        input_schema = schemas.GetContainerRecipeInput,
+        output_schema = schemas.GetContainerRecipeOutput,
         http_method = "GET",
         http_path = "/GetContainerRecipe",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getContainerRecipePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetContainerRecipePolicy",
-        input_schema = types.GetContainerRecipePolicyInput,
-        output_schema = types.GetContainerRecipePolicyOutput,
+        input_schema = schemas.GetContainerRecipePolicyInput,
+        output_schema = schemas.GetContainerRecipePolicyOutput,
         http_method = "GET",
         http_path = "/GetContainerRecipePolicy",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:getDistributionConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetDistributionConfiguration",
-        input_schema = types.GetDistributionConfigurationInput,
-        output_schema = types.GetDistributionConfigurationOutput,
+        input_schema = schemas.GetDistributionConfigurationInput,
+        output_schema = schemas.GetDistributionConfigurationOutput,
         http_method = "GET",
         http_path = "/GetDistributionConfiguration",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:getImage(input, options)
     return self:invokeOperation(input, {
         name = "GetImage",
-        input_schema = types.GetImageInput,
-        output_schema = types.GetImageOutput,
+        input_schema = schemas.GetImageInput,
+        output_schema = schemas.GetImageOutput,
         http_method = "GET",
         http_path = "/GetImage",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:getImagePipeline(input, options)
     return self:invokeOperation(input, {
         name = "GetImagePipeline",
-        input_schema = types.GetImagePipelineInput,
-        output_schema = types.GetImagePipelineOutput,
+        input_schema = schemas.GetImagePipelineInput,
+        output_schema = schemas.GetImagePipelineOutput,
         http_method = "GET",
         http_path = "/GetImagePipeline",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:getImagePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetImagePolicy",
-        input_schema = types.GetImagePolicyInput,
-        output_schema = types.GetImagePolicyOutput,
+        input_schema = schemas.GetImagePolicyInput,
+        output_schema = schemas.GetImagePolicyOutput,
         http_method = "GET",
         http_path = "/GetImagePolicy",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:getImageRecipe(input, options)
     return self:invokeOperation(input, {
         name = "GetImageRecipe",
-        input_schema = types.GetImageRecipeInput,
-        output_schema = types.GetImageRecipeOutput,
+        input_schema = schemas.GetImageRecipeInput,
+        output_schema = schemas.GetImageRecipeOutput,
         http_method = "GET",
         http_path = "/GetImageRecipe",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:getImageRecipePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetImageRecipePolicy",
-        input_schema = types.GetImageRecipePolicyInput,
-        output_schema = types.GetImageRecipePolicyOutput,
+        input_schema = schemas.GetImageRecipePolicyInput,
+        output_schema = schemas.GetImageRecipePolicyOutput,
         http_method = "GET",
         http_path = "/GetImageRecipePolicy",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:getInfrastructureConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetInfrastructureConfiguration",
-        input_schema = types.GetInfrastructureConfigurationInput,
-        output_schema = types.GetInfrastructureConfigurationOutput,
+        input_schema = schemas.GetInfrastructureConfigurationInput,
+        output_schema = schemas.GetInfrastructureConfigurationOutput,
         http_method = "GET",
         http_path = "/GetInfrastructureConfiguration",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:getLifecycleExecution(input, options)
     return self:invokeOperation(input, {
         name = "GetLifecycleExecution",
-        input_schema = types.GetLifecycleExecutionInput,
-        output_schema = types.GetLifecycleExecutionOutput,
+        input_schema = schemas.GetLifecycleExecutionInput,
+        output_schema = schemas.GetLifecycleExecutionOutput,
         http_method = "GET",
         http_path = "/GetLifecycleExecution",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:getLifecyclePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetLifecyclePolicy",
-        input_schema = types.GetLifecyclePolicyInput,
-        output_schema = types.GetLifecyclePolicyOutput,
+        input_schema = schemas.GetLifecyclePolicyInput,
+        output_schema = schemas.GetLifecyclePolicyOutput,
         http_method = "GET",
         http_path = "/GetLifecyclePolicy",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:getMarketplaceResource(input, options)
     return self:invokeOperation(input, {
         name = "GetMarketplaceResource",
-        input_schema = types.GetMarketplaceResourceInput,
-        output_schema = types.GetMarketplaceResourceOutput,
+        input_schema = schemas.GetMarketplaceResourceInput,
+        output_schema = schemas.GetMarketplaceResourceOutput,
         http_method = "POST",
         http_path = "/GetMarketplaceResource",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:getWorkflow(input, options)
     return self:invokeOperation(input, {
         name = "GetWorkflow",
-        input_schema = types.GetWorkflowInput,
-        output_schema = types.GetWorkflowOutput,
+        input_schema = schemas.GetWorkflowInput,
+        output_schema = schemas.GetWorkflowOutput,
         http_method = "GET",
         http_path = "/GetWorkflow",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:getWorkflowExecution(input, options)
     return self:invokeOperation(input, {
         name = "GetWorkflowExecution",
-        input_schema = types.GetWorkflowExecutionInput,
-        output_schema = types.GetWorkflowExecutionOutput,
+        input_schema = schemas.GetWorkflowExecutionInput,
+        output_schema = schemas.GetWorkflowExecutionOutput,
         http_method = "GET",
         http_path = "/GetWorkflowExecution",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:getWorkflowStepExecution(input, options)
     return self:invokeOperation(input, {
         name = "GetWorkflowStepExecution",
-        input_schema = types.GetWorkflowStepExecutionInput,
-        output_schema = types.GetWorkflowStepExecutionOutput,
+        input_schema = schemas.GetWorkflowStepExecutionInput,
+        output_schema = schemas.GetWorkflowStepExecutionOutput,
         http_method = "GET",
         http_path = "/GetWorkflowStepExecution",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:importComponent(input, options)
     return self:invokeOperation(input, {
         name = "ImportComponent",
-        input_schema = types.ImportComponentInput,
-        output_schema = types.ImportComponentOutput,
+        input_schema = schemas.ImportComponentInput,
+        output_schema = schemas.ImportComponentOutput,
         http_method = "PUT",
         http_path = "/ImportComponent",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:importDiskImage(input, options)
     return self:invokeOperation(input, {
         name = "ImportDiskImage",
-        input_schema = types.ImportDiskImageInput,
-        output_schema = types.ImportDiskImageOutput,
+        input_schema = schemas.ImportDiskImageInput,
+        output_schema = schemas.ImportDiskImageOutput,
         http_method = "PUT",
         http_path = "/ImportDiskImage",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:importVmImage(input, options)
     return self:invokeOperation(input, {
         name = "ImportVmImage",
-        input_schema = types.ImportVmImageInput,
-        output_schema = types.ImportVmImageOutput,
+        input_schema = schemas.ImportVmImageInput,
+        output_schema = schemas.ImportVmImageOutput,
         http_method = "PUT",
         http_path = "/ImportVmImage",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:listComponentBuildVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListComponentBuildVersions",
-        input_schema = types.ListComponentBuildVersionsInput,
-        output_schema = types.ListComponentBuildVersionsOutput,
+        input_schema = schemas.ListComponentBuildVersionsInput,
+        output_schema = schemas.ListComponentBuildVersionsOutput,
         http_method = "POST",
         http_path = "/ListComponentBuildVersions",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:listComponents(input, options)
     return self:invokeOperation(input, {
         name = "ListComponents",
-        input_schema = types.ListComponentsInput,
-        output_schema = types.ListComponentsOutput,
+        input_schema = schemas.ListComponentsInput,
+        output_schema = schemas.ListComponentsOutput,
         http_method = "POST",
         http_path = "/ListComponents",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:listContainerRecipes(input, options)
     return self:invokeOperation(input, {
         name = "ListContainerRecipes",
-        input_schema = types.ListContainerRecipesInput,
-        output_schema = types.ListContainerRecipesOutput,
+        input_schema = schemas.ListContainerRecipesInput,
+        output_schema = schemas.ListContainerRecipesOutput,
         http_method = "POST",
         http_path = "/ListContainerRecipes",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:listDistributionConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListDistributionConfigurations",
-        input_schema = types.ListDistributionConfigurationsInput,
-        output_schema = types.ListDistributionConfigurationsOutput,
+        input_schema = schemas.ListDistributionConfigurationsInput,
+        output_schema = schemas.ListDistributionConfigurationsOutput,
         http_method = "POST",
         http_path = "/ListDistributionConfigurations",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:listImageBuildVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListImageBuildVersions",
-        input_schema = types.ListImageBuildVersionsInput,
-        output_schema = types.ListImageBuildVersionsOutput,
+        input_schema = schemas.ListImageBuildVersionsInput,
+        output_schema = schemas.ListImageBuildVersionsOutput,
         http_method = "POST",
         http_path = "/ListImageBuildVersions",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:listImagePackages(input, options)
     return self:invokeOperation(input, {
         name = "ListImagePackages",
-        input_schema = types.ListImagePackagesInput,
-        output_schema = types.ListImagePackagesOutput,
+        input_schema = schemas.ListImagePackagesInput,
+        output_schema = schemas.ListImagePackagesOutput,
         http_method = "POST",
         http_path = "/ListImagePackages",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:listImagePipelineImages(input, options)
     return self:invokeOperation(input, {
         name = "ListImagePipelineImages",
-        input_schema = types.ListImagePipelineImagesInput,
-        output_schema = types.ListImagePipelineImagesOutput,
+        input_schema = schemas.ListImagePipelineImagesInput,
+        output_schema = schemas.ListImagePipelineImagesOutput,
         http_method = "POST",
         http_path = "/ListImagePipelineImages",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:listImagePipelines(input, options)
     return self:invokeOperation(input, {
         name = "ListImagePipelines",
-        input_schema = types.ListImagePipelinesInput,
-        output_schema = types.ListImagePipelinesOutput,
+        input_schema = schemas.ListImagePipelinesInput,
+        output_schema = schemas.ListImagePipelinesOutput,
         http_method = "POST",
         http_path = "/ListImagePipelines",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:listImageRecipes(input, options)
     return self:invokeOperation(input, {
         name = "ListImageRecipes",
-        input_schema = types.ListImageRecipesInput,
-        output_schema = types.ListImageRecipesOutput,
+        input_schema = schemas.ListImageRecipesInput,
+        output_schema = schemas.ListImageRecipesOutput,
         http_method = "POST",
         http_path = "/ListImageRecipes",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:listImages(input, options)
     return self:invokeOperation(input, {
         name = "ListImages",
-        input_schema = types.ListImagesInput,
-        output_schema = types.ListImagesOutput,
+        input_schema = schemas.ListImagesInput,
+        output_schema = schemas.ListImagesOutput,
         http_method = "POST",
         http_path = "/ListImages",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:listImageScanFindingAggregations(input, options)
     return self:invokeOperation(input, {
         name = "ListImageScanFindingAggregations",
-        input_schema = types.ListImageScanFindingAggregationsInput,
-        output_schema = types.ListImageScanFindingAggregationsOutput,
+        input_schema = schemas.ListImageScanFindingAggregationsInput,
+        output_schema = schemas.ListImageScanFindingAggregationsOutput,
         http_method = "POST",
         http_path = "/ListImageScanFindingAggregations",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:listImageScanFindings(input, options)
     return self:invokeOperation(input, {
         name = "ListImageScanFindings",
-        input_schema = types.ListImageScanFindingsInput,
-        output_schema = types.ListImageScanFindingsOutput,
+        input_schema = schemas.ListImageScanFindingsInput,
+        output_schema = schemas.ListImageScanFindingsOutput,
         http_method = "POST",
         http_path = "/ListImageScanFindings",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:listInfrastructureConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListInfrastructureConfigurations",
-        input_schema = types.ListInfrastructureConfigurationsInput,
-        output_schema = types.ListInfrastructureConfigurationsOutput,
+        input_schema = schemas.ListInfrastructureConfigurationsInput,
+        output_schema = schemas.ListInfrastructureConfigurationsOutput,
         http_method = "POST",
         http_path = "/ListInfrastructureConfigurations",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:listLifecycleExecutionResources(input, options)
     return self:invokeOperation(input, {
         name = "ListLifecycleExecutionResources",
-        input_schema = types.ListLifecycleExecutionResourcesInput,
-        output_schema = types.ListLifecycleExecutionResourcesOutput,
+        input_schema = schemas.ListLifecycleExecutionResourcesInput,
+        output_schema = schemas.ListLifecycleExecutionResourcesOutput,
         http_method = "POST",
         http_path = "/ListLifecycleExecutionResources",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:listLifecycleExecutions(input, options)
     return self:invokeOperation(input, {
         name = "ListLifecycleExecutions",
-        input_schema = types.ListLifecycleExecutionsInput,
-        output_schema = types.ListLifecycleExecutionsOutput,
+        input_schema = schemas.ListLifecycleExecutionsInput,
+        output_schema = schemas.ListLifecycleExecutionsOutput,
         http_method = "POST",
         http_path = "/ListLifecycleExecutions",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:listLifecyclePolicies(input, options)
     return self:invokeOperation(input, {
         name = "ListLifecyclePolicies",
-        input_schema = types.ListLifecyclePoliciesInput,
-        output_schema = types.ListLifecyclePoliciesOutput,
+        input_schema = schemas.ListLifecyclePoliciesInput,
+        output_schema = schemas.ListLifecyclePoliciesOutput,
         http_method = "POST",
         http_path = "/ListLifecyclePolicies",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:listWaitingWorkflowSteps(input, options)
     return self:invokeOperation(input, {
         name = "ListWaitingWorkflowSteps",
-        input_schema = types.ListWaitingWorkflowStepsInput,
-        output_schema = types.ListWaitingWorkflowStepsOutput,
+        input_schema = schemas.ListWaitingWorkflowStepsInput,
+        output_schema = schemas.ListWaitingWorkflowStepsOutput,
         http_method = "POST",
         http_path = "/ListWaitingWorkflowSteps",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:listWorkflowBuildVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkflowBuildVersions",
-        input_schema = types.ListWorkflowBuildVersionsInput,
-        output_schema = types.ListWorkflowBuildVersionsOutput,
+        input_schema = schemas.ListWorkflowBuildVersionsInput,
+        output_schema = schemas.ListWorkflowBuildVersionsOutput,
         http_method = "POST",
         http_path = "/ListWorkflowBuildVersions",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:listWorkflowExecutions(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkflowExecutions",
-        input_schema = types.ListWorkflowExecutionsInput,
-        output_schema = types.ListWorkflowExecutionsOutput,
+        input_schema = schemas.ListWorkflowExecutionsInput,
+        output_schema = schemas.ListWorkflowExecutionsOutput,
         http_method = "POST",
         http_path = "/ListWorkflowExecutions",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:listWorkflows(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkflows",
-        input_schema = types.ListWorkflowsInput,
-        output_schema = types.ListWorkflowsOutput,
+        input_schema = schemas.ListWorkflowsInput,
+        output_schema = schemas.ListWorkflowsOutput,
         http_method = "POST",
         http_path = "/ListWorkflows",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:listWorkflowStepExecutions(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkflowStepExecutions",
-        input_schema = types.ListWorkflowStepExecutionsInput,
-        output_schema = types.ListWorkflowStepExecutionsOutput,
+        input_schema = schemas.ListWorkflowStepExecutionsInput,
+        output_schema = schemas.ListWorkflowStepExecutionsOutput,
         http_method = "POST",
         http_path = "/ListWorkflowStepExecutions",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:putComponentPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutComponentPolicy",
-        input_schema = types.PutComponentPolicyInput,
-        output_schema = types.PutComponentPolicyOutput,
+        input_schema = schemas.PutComponentPolicyInput,
+        output_schema = schemas.PutComponentPolicyOutput,
         http_method = "PUT",
         http_path = "/PutComponentPolicy",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:putContainerRecipePolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutContainerRecipePolicy",
-        input_schema = types.PutContainerRecipePolicyInput,
-        output_schema = types.PutContainerRecipePolicyOutput,
+        input_schema = schemas.PutContainerRecipePolicyInput,
+        output_schema = schemas.PutContainerRecipePolicyOutput,
         http_method = "PUT",
         http_path = "/PutContainerRecipePolicy",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:putImagePolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutImagePolicy",
-        input_schema = types.PutImagePolicyInput,
-        output_schema = types.PutImagePolicyOutput,
+        input_schema = schemas.PutImagePolicyInput,
+        output_schema = schemas.PutImagePolicyOutput,
         http_method = "PUT",
         http_path = "/PutImagePolicy",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:putImageRecipePolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutImageRecipePolicy",
-        input_schema = types.PutImageRecipePolicyInput,
-        output_schema = types.PutImageRecipePolicyOutput,
+        input_schema = schemas.PutImageRecipePolicyInput,
+        output_schema = schemas.PutImageRecipePolicyOutput,
         http_method = "PUT",
         http_path = "/PutImageRecipePolicy",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:retryImage(input, options)
     return self:invokeOperation(input, {
         name = "RetryImage",
-        input_schema = types.RetryImageInput,
-        output_schema = types.RetryImageOutput,
+        input_schema = schemas.RetryImageInput,
+        output_schema = schemas.RetryImageOutput,
         http_method = "PUT",
         http_path = "/RetryImage",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:sendWorkflowStepAction(input, options)
     return self:invokeOperation(input, {
         name = "SendWorkflowStepAction",
-        input_schema = types.SendWorkflowStepActionInput,
-        output_schema = types.SendWorkflowStepActionOutput,
+        input_schema = schemas.SendWorkflowStepActionInput,
+        output_schema = schemas.SendWorkflowStepActionOutput,
         http_method = "PUT",
         http_path = "/SendWorkflowStepAction",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:startImagePipelineExecution(input, options)
     return self:invokeOperation(input, {
         name = "StartImagePipelineExecution",
-        input_schema = types.StartImagePipelineExecutionInput,
-        output_schema = types.StartImagePipelineExecutionOutput,
+        input_schema = schemas.StartImagePipelineExecutionInput,
+        output_schema = schemas.StartImagePipelineExecutionOutput,
         http_method = "PUT",
         http_path = "/StartImagePipelineExecution",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:startResourceStateUpdate(input, options)
     return self:invokeOperation(input, {
         name = "StartResourceStateUpdate",
-        input_schema = types.StartResourceStateUpdateInput,
-        output_schema = types.StartResourceStateUpdateOutput,
+        input_schema = schemas.StartResourceStateUpdateInput,
+        output_schema = schemas.StartResourceStateUpdateOutput,
         http_method = "PUT",
         http_path = "/StartResourceStateUpdate",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:updateDistributionConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDistributionConfiguration",
-        input_schema = types.UpdateDistributionConfigurationInput,
-        output_schema = types.UpdateDistributionConfigurationOutput,
+        input_schema = schemas.UpdateDistributionConfigurationInput,
+        output_schema = schemas.UpdateDistributionConfigurationOutput,
         http_method = "PUT",
         http_path = "/UpdateDistributionConfiguration",
         effective_auth_schemes = {
@@ -1011,8 +1011,8 @@ end
 function Client:updateImagePipeline(input, options)
     return self:invokeOperation(input, {
         name = "UpdateImagePipeline",
-        input_schema = types.UpdateImagePipelineInput,
-        output_schema = types.UpdateImagePipelineOutput,
+        input_schema = schemas.UpdateImagePipelineInput,
+        output_schema = schemas.UpdateImagePipelineOutput,
         http_method = "PUT",
         http_path = "/UpdateImagePipeline",
         effective_auth_schemes = {
@@ -1024,8 +1024,8 @@ end
 function Client:updateInfrastructureConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateInfrastructureConfiguration",
-        input_schema = types.UpdateInfrastructureConfigurationInput,
-        output_schema = types.UpdateInfrastructureConfigurationOutput,
+        input_schema = schemas.UpdateInfrastructureConfigurationInput,
+        output_schema = schemas.UpdateInfrastructureConfigurationOutput,
         http_method = "PUT",
         http_path = "/UpdateInfrastructureConfiguration",
         effective_auth_schemes = {
@@ -1037,8 +1037,8 @@ end
 function Client:updateLifecyclePolicy(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLifecyclePolicy",
-        input_schema = types.UpdateLifecyclePolicyInput,
-        output_schema = types.UpdateLifecyclePolicyOutput,
+        input_schema = schemas.UpdateLifecyclePolicyInput,
+        output_schema = schemas.UpdateLifecyclePolicyOutput,
         http_method = "PUT",
         http_path = "/UpdateLifecyclePolicy",
         effective_auth_schemes = {

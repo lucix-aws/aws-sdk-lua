@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("appconfigdata.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("appconfigdata.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("appconfigdata.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getLatestConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetLatestConfiguration",
-        input_schema = types.GetLatestConfigurationInput,
-        output_schema = types.GetLatestConfigurationOutput,
+        input_schema = schemas.GetLatestConfigurationInput,
+        output_schema = schemas.GetLatestConfigurationOutput,
         http_method = "GET",
         http_path = "/configuration",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:startConfigurationSession(input, options)
     return self:invokeOperation(input, {
         name = "StartConfigurationSession",
-        input_schema = types.StartConfigurationSessionInput,
-        output_schema = types.StartConfigurationSessionOutput,
+        input_schema = schemas.StartConfigurationSessionInput,
+        output_schema = schemas.StartConfigurationSessionOutput,
         http_method = "POST",
         http_path = "/configurationsessions",
         effective_auth_schemes = {

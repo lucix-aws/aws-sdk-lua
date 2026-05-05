@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("globalaccelerator.endpoint_rules")
+local schemas = require("globalaccelerator.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("globalaccelerator.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addCustomRoutingEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "AddCustomRoutingEndpoints",
-        input_schema = types.AddCustomRoutingEndpointsInput,
-        output_schema = types.AddCustomRoutingEndpointsOutput,
+        input_schema = schemas.AddCustomRoutingEndpointsInput,
+        output_schema = schemas.AddCustomRoutingEndpointsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:addEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "AddEndpoints",
-        input_schema = types.AddEndpointsInput,
-        output_schema = types.AddEndpointsOutput,
+        input_schema = schemas.AddEndpointsInput,
+        output_schema = schemas.AddEndpointsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:advertiseByoipCidr(input, options)
     return self:invokeOperation(input, {
         name = "AdvertiseByoipCidr",
-        input_schema = types.AdvertiseByoipCidrInput,
-        output_schema = types.AdvertiseByoipCidrOutput,
+        input_schema = schemas.AdvertiseByoipCidrInput,
+        output_schema = schemas.AdvertiseByoipCidrOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:allowCustomRoutingTraffic(input, options)
     return self:invokeOperation(input, {
         name = "AllowCustomRoutingTraffic",
-        input_schema = types.AllowCustomRoutingTrafficInput,
-        output_schema = types.AllowCustomRoutingTrafficOutput,
+        input_schema = schemas.AllowCustomRoutingTrafficInput,
+        output_schema = schemas.AllowCustomRoutingTrafficOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createAccelerator(input, options)
     return self:invokeOperation(input, {
         name = "CreateAccelerator",
-        input_schema = types.CreateAcceleratorInput,
-        output_schema = types.CreateAcceleratorOutput,
+        input_schema = schemas.CreateAcceleratorInput,
+        output_schema = schemas.CreateAcceleratorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createCrossAccountAttachment(input, options)
     return self:invokeOperation(input, {
         name = "CreateCrossAccountAttachment",
-        input_schema = types.CreateCrossAccountAttachmentInput,
-        output_schema = types.CreateCrossAccountAttachmentOutput,
+        input_schema = schemas.CreateCrossAccountAttachmentInput,
+        output_schema = schemas.CreateCrossAccountAttachmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createCustomRoutingAccelerator(input, options)
     return self:invokeOperation(input, {
         name = "CreateCustomRoutingAccelerator",
-        input_schema = types.CreateCustomRoutingAcceleratorInput,
-        output_schema = types.CreateCustomRoutingAcceleratorOutput,
+        input_schema = schemas.CreateCustomRoutingAcceleratorInput,
+        output_schema = schemas.CreateCustomRoutingAcceleratorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createCustomRoutingEndpointGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateCustomRoutingEndpointGroup",
-        input_schema = types.CreateCustomRoutingEndpointGroupInput,
-        output_schema = types.CreateCustomRoutingEndpointGroupOutput,
+        input_schema = schemas.CreateCustomRoutingEndpointGroupInput,
+        output_schema = schemas.CreateCustomRoutingEndpointGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createCustomRoutingListener(input, options)
     return self:invokeOperation(input, {
         name = "CreateCustomRoutingListener",
-        input_schema = types.CreateCustomRoutingListenerInput,
-        output_schema = types.CreateCustomRoutingListenerOutput,
+        input_schema = schemas.CreateCustomRoutingListenerInput,
+        output_schema = schemas.CreateCustomRoutingListenerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createEndpointGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateEndpointGroup",
-        input_schema = types.CreateEndpointGroupInput,
-        output_schema = types.CreateEndpointGroupOutput,
+        input_schema = schemas.CreateEndpointGroupInput,
+        output_schema = schemas.CreateEndpointGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createListener(input, options)
     return self:invokeOperation(input, {
         name = "CreateListener",
-        input_schema = types.CreateListenerInput,
-        output_schema = types.CreateListenerOutput,
+        input_schema = schemas.CreateListenerInput,
+        output_schema = schemas.CreateListenerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteAccelerator(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAccelerator",
-        input_schema = types.DeleteAcceleratorInput,
-        output_schema = types.DeleteAcceleratorOutput,
+        input_schema = schemas.DeleteAcceleratorInput,
+        output_schema = schemas.DeleteAcceleratorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteCrossAccountAttachment(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCrossAccountAttachment",
-        input_schema = types.DeleteCrossAccountAttachmentInput,
-        output_schema = types.DeleteCrossAccountAttachmentOutput,
+        input_schema = schemas.DeleteCrossAccountAttachmentInput,
+        output_schema = schemas.DeleteCrossAccountAttachmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteCustomRoutingAccelerator(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCustomRoutingAccelerator",
-        input_schema = types.DeleteCustomRoutingAcceleratorInput,
-        output_schema = types.DeleteCustomRoutingAcceleratorOutput,
+        input_schema = schemas.DeleteCustomRoutingAcceleratorInput,
+        output_schema = schemas.DeleteCustomRoutingAcceleratorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteCustomRoutingEndpointGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCustomRoutingEndpointGroup",
-        input_schema = types.DeleteCustomRoutingEndpointGroupInput,
-        output_schema = types.DeleteCustomRoutingEndpointGroupOutput,
+        input_schema = schemas.DeleteCustomRoutingEndpointGroupInput,
+        output_schema = schemas.DeleteCustomRoutingEndpointGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteCustomRoutingListener(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCustomRoutingListener",
-        input_schema = types.DeleteCustomRoutingListenerInput,
-        output_schema = types.DeleteCustomRoutingListenerOutput,
+        input_schema = schemas.DeleteCustomRoutingListenerInput,
+        output_schema = schemas.DeleteCustomRoutingListenerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteEndpointGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEndpointGroup",
-        input_schema = types.DeleteEndpointGroupInput,
-        output_schema = types.DeleteEndpointGroupOutput,
+        input_schema = schemas.DeleteEndpointGroupInput,
+        output_schema = schemas.DeleteEndpointGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteListener(input, options)
     return self:invokeOperation(input, {
         name = "DeleteListener",
-        input_schema = types.DeleteListenerInput,
-        output_schema = types.DeleteListenerOutput,
+        input_schema = schemas.DeleteListenerInput,
+        output_schema = schemas.DeleteListenerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:denyCustomRoutingTraffic(input, options)
     return self:invokeOperation(input, {
         name = "DenyCustomRoutingTraffic",
-        input_schema = types.DenyCustomRoutingTrafficInput,
-        output_schema = types.DenyCustomRoutingTrafficOutput,
+        input_schema = schemas.DenyCustomRoutingTrafficInput,
+        output_schema = schemas.DenyCustomRoutingTrafficOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deprovisionByoipCidr(input, options)
     return self:invokeOperation(input, {
         name = "DeprovisionByoipCidr",
-        input_schema = types.DeprovisionByoipCidrInput,
-        output_schema = types.DeprovisionByoipCidrOutput,
+        input_schema = schemas.DeprovisionByoipCidrInput,
+        output_schema = schemas.DeprovisionByoipCidrOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:describeAccelerator(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAccelerator",
-        input_schema = types.DescribeAcceleratorInput,
-        output_schema = types.DescribeAcceleratorOutput,
+        input_schema = schemas.DescribeAcceleratorInput,
+        output_schema = schemas.DescribeAcceleratorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:describeAcceleratorAttributes(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAcceleratorAttributes",
-        input_schema = types.DescribeAcceleratorAttributesInput,
-        output_schema = types.DescribeAcceleratorAttributesOutput,
+        input_schema = schemas.DescribeAcceleratorAttributesInput,
+        output_schema = schemas.DescribeAcceleratorAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:describeCrossAccountAttachment(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCrossAccountAttachment",
-        input_schema = types.DescribeCrossAccountAttachmentInput,
-        output_schema = types.DescribeCrossAccountAttachmentOutput,
+        input_schema = schemas.DescribeCrossAccountAttachmentInput,
+        output_schema = schemas.DescribeCrossAccountAttachmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:describeCustomRoutingAccelerator(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCustomRoutingAccelerator",
-        input_schema = types.DescribeCustomRoutingAcceleratorInput,
-        output_schema = types.DescribeCustomRoutingAcceleratorOutput,
+        input_schema = schemas.DescribeCustomRoutingAcceleratorInput,
+        output_schema = schemas.DescribeCustomRoutingAcceleratorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:describeCustomRoutingAcceleratorAttributes(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCustomRoutingAcceleratorAttributes",
-        input_schema = types.DescribeCustomRoutingAcceleratorAttributesInput,
-        output_schema = types.DescribeCustomRoutingAcceleratorAttributesOutput,
+        input_schema = schemas.DescribeCustomRoutingAcceleratorAttributesInput,
+        output_schema = schemas.DescribeCustomRoutingAcceleratorAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:describeCustomRoutingEndpointGroup(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCustomRoutingEndpointGroup",
-        input_schema = types.DescribeCustomRoutingEndpointGroupInput,
-        output_schema = types.DescribeCustomRoutingEndpointGroupOutput,
+        input_schema = schemas.DescribeCustomRoutingEndpointGroupInput,
+        output_schema = schemas.DescribeCustomRoutingEndpointGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:describeCustomRoutingListener(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCustomRoutingListener",
-        input_schema = types.DescribeCustomRoutingListenerInput,
-        output_schema = types.DescribeCustomRoutingListenerOutput,
+        input_schema = schemas.DescribeCustomRoutingListenerInput,
+        output_schema = schemas.DescribeCustomRoutingListenerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:describeEndpointGroup(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEndpointGroup",
-        input_schema = types.DescribeEndpointGroupInput,
-        output_schema = types.DescribeEndpointGroupOutput,
+        input_schema = schemas.DescribeEndpointGroupInput,
+        output_schema = schemas.DescribeEndpointGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:describeListener(input, options)
     return self:invokeOperation(input, {
         name = "DescribeListener",
-        input_schema = types.DescribeListenerInput,
-        output_schema = types.DescribeListenerOutput,
+        input_schema = schemas.DescribeListenerInput,
+        output_schema = schemas.DescribeListenerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:listAccelerators(input, options)
     return self:invokeOperation(input, {
         name = "ListAccelerators",
-        input_schema = types.ListAcceleratorsInput,
-        output_schema = types.ListAcceleratorsOutput,
+        input_schema = schemas.ListAcceleratorsInput,
+        output_schema = schemas.ListAcceleratorsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:listByoipCidrs(input, options)
     return self:invokeOperation(input, {
         name = "ListByoipCidrs",
-        input_schema = types.ListByoipCidrsInput,
-        output_schema = types.ListByoipCidrsOutput,
+        input_schema = schemas.ListByoipCidrsInput,
+        output_schema = schemas.ListByoipCidrsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:listCrossAccountAttachments(input, options)
     return self:invokeOperation(input, {
         name = "ListCrossAccountAttachments",
-        input_schema = types.ListCrossAccountAttachmentsInput,
-        output_schema = types.ListCrossAccountAttachmentsOutput,
+        input_schema = schemas.ListCrossAccountAttachmentsInput,
+        output_schema = schemas.ListCrossAccountAttachmentsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:listCrossAccountResourceAccounts(input, options)
     return self:invokeOperation(input, {
         name = "ListCrossAccountResourceAccounts",
-        input_schema = types.ListCrossAccountResourceAccountsInput,
-        output_schema = types.ListCrossAccountResourceAccountsOutput,
+        input_schema = schemas.ListCrossAccountResourceAccountsInput,
+        output_schema = schemas.ListCrossAccountResourceAccountsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listCrossAccountResources(input, options)
     return self:invokeOperation(input, {
         name = "ListCrossAccountResources",
-        input_schema = types.ListCrossAccountResourcesInput,
-        output_schema = types.ListCrossAccountResourcesOutput,
+        input_schema = schemas.ListCrossAccountResourcesInput,
+        output_schema = schemas.ListCrossAccountResourcesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:listCustomRoutingAccelerators(input, options)
     return self:invokeOperation(input, {
         name = "ListCustomRoutingAccelerators",
-        input_schema = types.ListCustomRoutingAcceleratorsInput,
-        output_schema = types.ListCustomRoutingAcceleratorsOutput,
+        input_schema = schemas.ListCustomRoutingAcceleratorsInput,
+        output_schema = schemas.ListCustomRoutingAcceleratorsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:listCustomRoutingEndpointGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListCustomRoutingEndpointGroups",
-        input_schema = types.ListCustomRoutingEndpointGroupsInput,
-        output_schema = types.ListCustomRoutingEndpointGroupsOutput,
+        input_schema = schemas.ListCustomRoutingEndpointGroupsInput,
+        output_schema = schemas.ListCustomRoutingEndpointGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:listCustomRoutingListeners(input, options)
     return self:invokeOperation(input, {
         name = "ListCustomRoutingListeners",
-        input_schema = types.ListCustomRoutingListenersInput,
-        output_schema = types.ListCustomRoutingListenersOutput,
+        input_schema = schemas.ListCustomRoutingListenersInput,
+        output_schema = schemas.ListCustomRoutingListenersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:listCustomRoutingPortMappings(input, options)
     return self:invokeOperation(input, {
         name = "ListCustomRoutingPortMappings",
-        input_schema = types.ListCustomRoutingPortMappingsInput,
-        output_schema = types.ListCustomRoutingPortMappingsOutput,
+        input_schema = schemas.ListCustomRoutingPortMappingsInput,
+        output_schema = schemas.ListCustomRoutingPortMappingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:listCustomRoutingPortMappingsByDestination(input, options)
     return self:invokeOperation(input, {
         name = "ListCustomRoutingPortMappingsByDestination",
-        input_schema = types.ListCustomRoutingPortMappingsByDestinationInput,
-        output_schema = types.ListCustomRoutingPortMappingsByDestinationOutput,
+        input_schema = schemas.ListCustomRoutingPortMappingsByDestinationInput,
+        output_schema = schemas.ListCustomRoutingPortMappingsByDestinationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:listEndpointGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListEndpointGroups",
-        input_schema = types.ListEndpointGroupsInput,
-        output_schema = types.ListEndpointGroupsOutput,
+        input_schema = schemas.ListEndpointGroupsInput,
+        output_schema = schemas.ListEndpointGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:listListeners(input, options)
     return self:invokeOperation(input, {
         name = "ListListeners",
-        input_schema = types.ListListenersInput,
-        output_schema = types.ListListenersOutput,
+        input_schema = schemas.ListListenersInput,
+        output_schema = schemas.ListListenersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:provisionByoipCidr(input, options)
     return self:invokeOperation(input, {
         name = "ProvisionByoipCidr",
-        input_schema = types.ProvisionByoipCidrInput,
-        output_schema = types.ProvisionByoipCidrOutput,
+        input_schema = schemas.ProvisionByoipCidrInput,
+        output_schema = schemas.ProvisionByoipCidrOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:removeCustomRoutingEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "RemoveCustomRoutingEndpoints",
-        input_schema = types.RemoveCustomRoutingEndpointsInput,
-        output_schema = types.RemoveCustomRoutingEndpointsOutput,
+        input_schema = schemas.RemoveCustomRoutingEndpointsInput,
+        output_schema = schemas.RemoveCustomRoutingEndpointsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:removeEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "RemoveEndpoints",
-        input_schema = types.RemoveEndpointsInput,
-        output_schema = types.RemoveEndpointsOutput,
+        input_schema = schemas.RemoveEndpointsInput,
+        output_schema = schemas.RemoveEndpointsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:updateAccelerator(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAccelerator",
-        input_schema = types.UpdateAcceleratorInput,
-        output_schema = types.UpdateAcceleratorOutput,
+        input_schema = schemas.UpdateAcceleratorInput,
+        output_schema = schemas.UpdateAcceleratorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:updateAcceleratorAttributes(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAcceleratorAttributes",
-        input_schema = types.UpdateAcceleratorAttributesInput,
-        output_schema = types.UpdateAcceleratorAttributesOutput,
+        input_schema = schemas.UpdateAcceleratorAttributesInput,
+        output_schema = schemas.UpdateAcceleratorAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:updateCrossAccountAttachment(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCrossAccountAttachment",
-        input_schema = types.UpdateCrossAccountAttachmentInput,
-        output_schema = types.UpdateCrossAccountAttachmentOutput,
+        input_schema = schemas.UpdateCrossAccountAttachmentInput,
+        output_schema = schemas.UpdateCrossAccountAttachmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:updateCustomRoutingAccelerator(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCustomRoutingAccelerator",
-        input_schema = types.UpdateCustomRoutingAcceleratorInput,
-        output_schema = types.UpdateCustomRoutingAcceleratorOutput,
+        input_schema = schemas.UpdateCustomRoutingAcceleratorInput,
+        output_schema = schemas.UpdateCustomRoutingAcceleratorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:updateCustomRoutingAcceleratorAttributes(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCustomRoutingAcceleratorAttributes",
-        input_schema = types.UpdateCustomRoutingAcceleratorAttributesInput,
-        output_schema = types.UpdateCustomRoutingAcceleratorAttributesOutput,
+        input_schema = schemas.UpdateCustomRoutingAcceleratorAttributesInput,
+        output_schema = schemas.UpdateCustomRoutingAcceleratorAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:updateCustomRoutingListener(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCustomRoutingListener",
-        input_schema = types.UpdateCustomRoutingListenerInput,
-        output_schema = types.UpdateCustomRoutingListenerOutput,
+        input_schema = schemas.UpdateCustomRoutingListenerInput,
+        output_schema = schemas.UpdateCustomRoutingListenerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:updateEndpointGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEndpointGroup",
-        input_schema = types.UpdateEndpointGroupInput,
-        output_schema = types.UpdateEndpointGroupOutput,
+        input_schema = schemas.UpdateEndpointGroupInput,
+        output_schema = schemas.UpdateEndpointGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:updateListener(input, options)
     return self:invokeOperation(input, {
         name = "UpdateListener",
-        input_schema = types.UpdateListenerInput,
-        output_schema = types.UpdateListenerOutput,
+        input_schema = schemas.UpdateListenerInput,
+        output_schema = schemas.UpdateListenerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:withdrawByoipCidr(input, options)
     return self:invokeOperation(input, {
         name = "WithdrawByoipCidr",
-        input_schema = types.WithdrawByoipCidrInput,
-        output_schema = types.WithdrawByoipCidrOutput,
+        input_schema = schemas.WithdrawByoipCidrInput,
+        output_schema = schemas.WithdrawByoipCidrOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

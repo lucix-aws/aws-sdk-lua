@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("sagemakerruntime.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("sagemakerruntime.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("sagemakerruntime.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:invokeEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "InvokeEndpoint",
-        input_schema = types.InvokeEndpointInput,
-        output_schema = types.InvokeEndpointOutput,
+        input_schema = schemas.InvokeEndpointInput,
+        output_schema = schemas.InvokeEndpointOutput,
         http_method = "POST",
         http_path = "/endpoints/{EndpointName}/invocations",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:invokeEndpointAsync(input, options)
     return self:invokeOperation(input, {
         name = "InvokeEndpointAsync",
-        input_schema = types.InvokeEndpointAsyncInput,
-        output_schema = types.InvokeEndpointAsyncOutput,
+        input_schema = schemas.InvokeEndpointAsyncInput,
+        output_schema = schemas.InvokeEndpointAsyncOutput,
         http_method = "POST",
         http_path = "/endpoints/{EndpointName}/async-invocations",
         effective_auth_schemes = {
@@ -75,11 +75,11 @@ end
 function Client:invokeEndpointWithResponseStream(input, options)
     return self:invokeOperation(input, {
         name = "InvokeEndpointWithResponseStream",
-        input_schema = types.InvokeEndpointWithResponseStreamInput,
-        output_schema = types.InvokeEndpointWithResponseStreamOutput,
+        input_schema = schemas.InvokeEndpointWithResponseStreamInput,
+        output_schema = schemas.InvokeEndpointWithResponseStreamOutput,
         http_method = "POST",
         http_path = "/endpoints/{EndpointName}/invocations-response-stream",
-        event_stream = types.ResponseStream,
+        event_stream = schemas.ResponseStream,
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },

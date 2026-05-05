@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("sqs.endpoint_rules")
+local schemas = require("sqs.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("sqs.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addPermission(input, options)
     return self:invokeOperation(input, {
         name = "AddPermission",
-        input_schema = types.AddPermissionInput,
-        output_schema = types.AddPermissionOutput,
+        input_schema = schemas.AddPermissionInput,
+        output_schema = schemas.AddPermissionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:cancelMessageMoveTask(input, options)
     return self:invokeOperation(input, {
         name = "CancelMessageMoveTask",
-        input_schema = types.CancelMessageMoveTaskInput,
-        output_schema = types.CancelMessageMoveTaskOutput,
+        input_schema = schemas.CancelMessageMoveTaskInput,
+        output_schema = schemas.CancelMessageMoveTaskOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:changeMessageVisibility(input, options)
     return self:invokeOperation(input, {
         name = "ChangeMessageVisibility",
-        input_schema = types.ChangeMessageVisibilityInput,
-        output_schema = types.ChangeMessageVisibilityOutput,
+        input_schema = schemas.ChangeMessageVisibilityInput,
+        output_schema = schemas.ChangeMessageVisibilityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:changeMessageVisibilityBatch(input, options)
     return self:invokeOperation(input, {
         name = "ChangeMessageVisibilityBatch",
-        input_schema = types.ChangeMessageVisibilityBatchInput,
-        output_schema = types.ChangeMessageVisibilityBatchOutput,
+        input_schema = schemas.ChangeMessageVisibilityBatchInput,
+        output_schema = schemas.ChangeMessageVisibilityBatchOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createQueue(input, options)
     return self:invokeOperation(input, {
         name = "CreateQueue",
-        input_schema = types.CreateQueueInput,
-        output_schema = types.CreateQueueOutput,
+        input_schema = schemas.CreateQueueInput,
+        output_schema = schemas.CreateQueueOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteMessage(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMessage",
-        input_schema = types.DeleteMessageInput,
-        output_schema = types.DeleteMessageOutput,
+        input_schema = schemas.DeleteMessageInput,
+        output_schema = schemas.DeleteMessageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteMessageBatch(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMessageBatch",
-        input_schema = types.DeleteMessageBatchInput,
-        output_schema = types.DeleteMessageBatchOutput,
+        input_schema = schemas.DeleteMessageBatchInput,
+        output_schema = schemas.DeleteMessageBatchOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteQueue(input, options)
     return self:invokeOperation(input, {
         name = "DeleteQueue",
-        input_schema = types.DeleteQueueInput,
-        output_schema = types.DeleteQueueOutput,
+        input_schema = schemas.DeleteQueueInput,
+        output_schema = schemas.DeleteQueueOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getQueueAttributes(input, options)
     return self:invokeOperation(input, {
         name = "GetQueueAttributes",
-        input_schema = types.GetQueueAttributesInput,
-        output_schema = types.GetQueueAttributesOutput,
+        input_schema = schemas.GetQueueAttributesInput,
+        output_schema = schemas.GetQueueAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getQueueUrl(input, options)
     return self:invokeOperation(input, {
         name = "GetQueueUrl",
-        input_schema = types.GetQueueUrlInput,
-        output_schema = types.GetQueueUrlOutput,
+        input_schema = schemas.GetQueueUrlInput,
+        output_schema = schemas.GetQueueUrlOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listDeadLetterSourceQueues(input, options)
     return self:invokeOperation(input, {
         name = "ListDeadLetterSourceQueues",
-        input_schema = types.ListDeadLetterSourceQueuesInput,
-        output_schema = types.ListDeadLetterSourceQueuesOutput,
+        input_schema = schemas.ListDeadLetterSourceQueuesInput,
+        output_schema = schemas.ListDeadLetterSourceQueuesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listMessageMoveTasks(input, options)
     return self:invokeOperation(input, {
         name = "ListMessageMoveTasks",
-        input_schema = types.ListMessageMoveTasksInput,
-        output_schema = types.ListMessageMoveTasksOutput,
+        input_schema = schemas.ListMessageMoveTasksInput,
+        output_schema = schemas.ListMessageMoveTasksOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listQueues(input, options)
     return self:invokeOperation(input, {
         name = "ListQueues",
-        input_schema = types.ListQueuesInput,
-        output_schema = types.ListQueuesOutput,
+        input_schema = schemas.ListQueuesInput,
+        output_schema = schemas.ListQueuesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listQueueTags(input, options)
     return self:invokeOperation(input, {
         name = "ListQueueTags",
-        input_schema = types.ListQueueTagsInput,
-        output_schema = types.ListQueueTagsOutput,
+        input_schema = schemas.ListQueueTagsInput,
+        output_schema = schemas.ListQueueTagsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:purgeQueue(input, options)
     return self:invokeOperation(input, {
         name = "PurgeQueue",
-        input_schema = types.PurgeQueueInput,
-        output_schema = types.PurgeQueueOutput,
+        input_schema = schemas.PurgeQueueInput,
+        output_schema = schemas.PurgeQueueOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:receiveMessage(input, options)
     return self:invokeOperation(input, {
         name = "ReceiveMessage",
-        input_schema = types.ReceiveMessageInput,
-        output_schema = types.ReceiveMessageOutput,
+        input_schema = schemas.ReceiveMessageInput,
+        output_schema = schemas.ReceiveMessageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:removePermission(input, options)
     return self:invokeOperation(input, {
         name = "RemovePermission",
-        input_schema = types.RemovePermissionInput,
-        output_schema = types.RemovePermissionOutput,
+        input_schema = schemas.RemovePermissionInput,
+        output_schema = schemas.RemovePermissionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:sendMessage(input, options)
     return self:invokeOperation(input, {
         name = "SendMessage",
-        input_schema = types.SendMessageInput,
-        output_schema = types.SendMessageOutput,
+        input_schema = schemas.SendMessageInput,
+        output_schema = schemas.SendMessageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:sendMessageBatch(input, options)
     return self:invokeOperation(input, {
         name = "SendMessageBatch",
-        input_schema = types.SendMessageBatchInput,
-        output_schema = types.SendMessageBatchOutput,
+        input_schema = schemas.SendMessageBatchInput,
+        output_schema = schemas.SendMessageBatchOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:setQueueAttributes(input, options)
     return self:invokeOperation(input, {
         name = "SetQueueAttributes",
-        input_schema = types.SetQueueAttributesInput,
-        output_schema = types.SetQueueAttributesOutput,
+        input_schema = schemas.SetQueueAttributesInput,
+        output_schema = schemas.SetQueueAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:startMessageMoveTask(input, options)
     return self:invokeOperation(input, {
         name = "StartMessageMoveTask",
-        input_schema = types.StartMessageMoveTaskInput,
-        output_schema = types.StartMessageMoveTaskOutput,
+        input_schema = schemas.StartMessageMoveTaskInput,
+        output_schema = schemas.StartMessageMoveTaskOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:tagQueue(input, options)
     return self:invokeOperation(input, {
         name = "TagQueue",
-        input_schema = types.TagQueueInput,
-        output_schema = types.TagQueueOutput,
+        input_schema = schemas.TagQueueInput,
+        output_schema = schemas.TagQueueOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:untagQueue(input, options)
     return self:invokeOperation(input, {
         name = "UntagQueue",
-        input_schema = types.UntagQueueInput,
-        output_schema = types.UntagQueueOutput,
+        input_schema = schemas.UntagQueueInput,
+        output_schema = schemas.UntagQueueOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

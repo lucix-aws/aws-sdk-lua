@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("codeartifact.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("codeartifact.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("codeartifact.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateExternalConnection(input, options)
     return self:invokeOperation(input, {
         name = "AssociateExternalConnection",
-        input_schema = types.AssociateExternalConnectionInput,
-        output_schema = types.AssociateExternalConnectionOutput,
+        input_schema = schemas.AssociateExternalConnectionInput,
+        output_schema = schemas.AssociateExternalConnectionOutput,
         http_method = "POST",
         http_path = "/v1/repository/external-connection",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:copyPackageVersions(input, options)
     return self:invokeOperation(input, {
         name = "CopyPackageVersions",
-        input_schema = types.CopyPackageVersionsInput,
-        output_schema = types.CopyPackageVersionsOutput,
+        input_schema = schemas.CopyPackageVersionsInput,
+        output_schema = schemas.CopyPackageVersionsOutput,
         http_method = "POST",
         http_path = "/v1/package/versions/copy",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createDomain(input, options)
     return self:invokeOperation(input, {
         name = "CreateDomain",
-        input_schema = types.CreateDomainInput,
-        output_schema = types.CreateDomainOutput,
+        input_schema = schemas.CreateDomainInput,
+        output_schema = schemas.CreateDomainOutput,
         http_method = "POST",
         http_path = "/v1/domain",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createPackageGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreatePackageGroup",
-        input_schema = types.CreatePackageGroupInput,
-        output_schema = types.CreatePackageGroupOutput,
+        input_schema = schemas.CreatePackageGroupInput,
+        output_schema = schemas.CreatePackageGroupOutput,
         http_method = "POST",
         http_path = "/v1/package-group",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createRepository(input, options)
     return self:invokeOperation(input, {
         name = "CreateRepository",
-        input_schema = types.CreateRepositoryInput,
-        output_schema = types.CreateRepositoryOutput,
+        input_schema = schemas.CreateRepositoryInput,
+        output_schema = schemas.CreateRepositoryOutput,
         http_method = "POST",
         http_path = "/v1/repository",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteDomain(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDomain",
-        input_schema = types.DeleteDomainInput,
-        output_schema = types.DeleteDomainOutput,
+        input_schema = schemas.DeleteDomainInput,
+        output_schema = schemas.DeleteDomainOutput,
         http_method = "DELETE",
         http_path = "/v1/domain",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteDomainPermissionsPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDomainPermissionsPolicy",
-        input_schema = types.DeleteDomainPermissionsPolicyInput,
-        output_schema = types.DeleteDomainPermissionsPolicyOutput,
+        input_schema = schemas.DeleteDomainPermissionsPolicyInput,
+        output_schema = schemas.DeleteDomainPermissionsPolicyOutput,
         http_method = "DELETE",
         http_path = "/v1/domain/permissions/policy",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deletePackage(input, options)
     return self:invokeOperation(input, {
         name = "DeletePackage",
-        input_schema = types.DeletePackageInput,
-        output_schema = types.DeletePackageOutput,
+        input_schema = schemas.DeletePackageInput,
+        output_schema = schemas.DeletePackageOutput,
         http_method = "DELETE",
         http_path = "/v1/package",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deletePackageGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeletePackageGroup",
-        input_schema = types.DeletePackageGroupInput,
-        output_schema = types.DeletePackageGroupOutput,
+        input_schema = schemas.DeletePackageGroupInput,
+        output_schema = schemas.DeletePackageGroupOutput,
         http_method = "DELETE",
         http_path = "/v1/package-group",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deletePackageVersions(input, options)
     return self:invokeOperation(input, {
         name = "DeletePackageVersions",
-        input_schema = types.DeletePackageVersionsInput,
-        output_schema = types.DeletePackageVersionsOutput,
+        input_schema = schemas.DeletePackageVersionsInput,
+        output_schema = schemas.DeletePackageVersionsOutput,
         http_method = "POST",
         http_path = "/v1/package/versions/delete",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteRepository(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRepository",
-        input_schema = types.DeleteRepositoryInput,
-        output_schema = types.DeleteRepositoryOutput,
+        input_schema = schemas.DeleteRepositoryInput,
+        output_schema = schemas.DeleteRepositoryOutput,
         http_method = "DELETE",
         http_path = "/v1/repository",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteRepositoryPermissionsPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRepositoryPermissionsPolicy",
-        input_schema = types.DeleteRepositoryPermissionsPolicyInput,
-        output_schema = types.DeleteRepositoryPermissionsPolicyOutput,
+        input_schema = schemas.DeleteRepositoryPermissionsPolicyInput,
+        output_schema = schemas.DeleteRepositoryPermissionsPolicyOutput,
         http_method = "DELETE",
         http_path = "/v1/repository/permissions/policies",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:describeDomain(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDomain",
-        input_schema = types.DescribeDomainInput,
-        output_schema = types.DescribeDomainOutput,
+        input_schema = schemas.DescribeDomainInput,
+        output_schema = schemas.DescribeDomainOutput,
         http_method = "GET",
         http_path = "/v1/domain",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:describePackage(input, options)
     return self:invokeOperation(input, {
         name = "DescribePackage",
-        input_schema = types.DescribePackageInput,
-        output_schema = types.DescribePackageOutput,
+        input_schema = schemas.DescribePackageInput,
+        output_schema = schemas.DescribePackageOutput,
         http_method = "GET",
         http_path = "/v1/package",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:describePackageGroup(input, options)
     return self:invokeOperation(input, {
         name = "DescribePackageGroup",
-        input_schema = types.DescribePackageGroupInput,
-        output_schema = types.DescribePackageGroupOutput,
+        input_schema = schemas.DescribePackageGroupInput,
+        output_schema = schemas.DescribePackageGroupOutput,
         http_method = "GET",
         http_path = "/v1/package-group",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:describePackageVersion(input, options)
     return self:invokeOperation(input, {
         name = "DescribePackageVersion",
-        input_schema = types.DescribePackageVersionInput,
-        output_schema = types.DescribePackageVersionOutput,
+        input_schema = schemas.DescribePackageVersionInput,
+        output_schema = schemas.DescribePackageVersionOutput,
         http_method = "GET",
         http_path = "/v1/package/version",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:describeRepository(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRepository",
-        input_schema = types.DescribeRepositoryInput,
-        output_schema = types.DescribeRepositoryOutput,
+        input_schema = schemas.DescribeRepositoryInput,
+        output_schema = schemas.DescribeRepositoryOutput,
         http_method = "GET",
         http_path = "/v1/repository",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:disassociateExternalConnection(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateExternalConnection",
-        input_schema = types.DisassociateExternalConnectionInput,
-        output_schema = types.DisassociateExternalConnectionOutput,
+        input_schema = schemas.DisassociateExternalConnectionInput,
+        output_schema = schemas.DisassociateExternalConnectionOutput,
         http_method = "DELETE",
         http_path = "/v1/repository/external-connection",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:disposePackageVersions(input, options)
     return self:invokeOperation(input, {
         name = "DisposePackageVersions",
-        input_schema = types.DisposePackageVersionsInput,
-        output_schema = types.DisposePackageVersionsOutput,
+        input_schema = schemas.DisposePackageVersionsInput,
+        output_schema = schemas.DisposePackageVersionsOutput,
         http_method = "POST",
         http_path = "/v1/package/versions/dispose",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getAssociatedPackageGroup(input, options)
     return self:invokeOperation(input, {
         name = "GetAssociatedPackageGroup",
-        input_schema = types.GetAssociatedPackageGroupInput,
-        output_schema = types.GetAssociatedPackageGroupOutput,
+        input_schema = schemas.GetAssociatedPackageGroupInput,
+        output_schema = schemas.GetAssociatedPackageGroupOutput,
         http_method = "GET",
         http_path = "/v1/get-associated-package-group",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:getAuthorizationToken(input, options)
     return self:invokeOperation(input, {
         name = "GetAuthorizationToken",
-        input_schema = types.GetAuthorizationTokenInput,
-        output_schema = types.GetAuthorizationTokenOutput,
+        input_schema = schemas.GetAuthorizationTokenInput,
+        output_schema = schemas.GetAuthorizationTokenOutput,
         http_method = "POST",
         http_path = "/v1/authorization-token",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:getDomainPermissionsPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetDomainPermissionsPolicy",
-        input_schema = types.GetDomainPermissionsPolicyInput,
-        output_schema = types.GetDomainPermissionsPolicyOutput,
+        input_schema = schemas.GetDomainPermissionsPolicyInput,
+        output_schema = schemas.GetDomainPermissionsPolicyOutput,
         http_method = "GET",
         http_path = "/v1/domain/permissions/policy",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:getPackageVersionAsset(input, options)
     return self:invokeOperation(input, {
         name = "GetPackageVersionAsset",
-        input_schema = types.GetPackageVersionAssetInput,
-        output_schema = types.GetPackageVersionAssetOutput,
+        input_schema = schemas.GetPackageVersionAssetInput,
+        output_schema = schemas.GetPackageVersionAssetOutput,
         http_method = "GET",
         http_path = "/v1/package/version/asset",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:getPackageVersionReadme(input, options)
     return self:invokeOperation(input, {
         name = "GetPackageVersionReadme",
-        input_schema = types.GetPackageVersionReadmeInput,
-        output_schema = types.GetPackageVersionReadmeOutput,
+        input_schema = schemas.GetPackageVersionReadmeInput,
+        output_schema = schemas.GetPackageVersionReadmeOutput,
         http_method = "GET",
         http_path = "/v1/package/version/readme",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getRepositoryEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "GetRepositoryEndpoint",
-        input_schema = types.GetRepositoryEndpointInput,
-        output_schema = types.GetRepositoryEndpointOutput,
+        input_schema = schemas.GetRepositoryEndpointInput,
+        output_schema = schemas.GetRepositoryEndpointOutput,
         http_method = "GET",
         http_path = "/v1/repository/endpoint",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:getRepositoryPermissionsPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetRepositoryPermissionsPolicy",
-        input_schema = types.GetRepositoryPermissionsPolicyInput,
-        output_schema = types.GetRepositoryPermissionsPolicyOutput,
+        input_schema = schemas.GetRepositoryPermissionsPolicyInput,
+        output_schema = schemas.GetRepositoryPermissionsPolicyOutput,
         http_method = "GET",
         http_path = "/v1/repository/permissions/policy",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listAllowedRepositoriesForGroup(input, options)
     return self:invokeOperation(input, {
         name = "ListAllowedRepositoriesForGroup",
-        input_schema = types.ListAllowedRepositoriesForGroupInput,
-        output_schema = types.ListAllowedRepositoriesForGroupOutput,
+        input_schema = schemas.ListAllowedRepositoriesForGroupInput,
+        output_schema = schemas.ListAllowedRepositoriesForGroupOutput,
         http_method = "GET",
         http_path = "/v1/package-group-allowed-repositories",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listAssociatedPackages(input, options)
     return self:invokeOperation(input, {
         name = "ListAssociatedPackages",
-        input_schema = types.ListAssociatedPackagesInput,
-        output_schema = types.ListAssociatedPackagesOutput,
+        input_schema = schemas.ListAssociatedPackagesInput,
+        output_schema = schemas.ListAssociatedPackagesOutput,
         http_method = "GET",
         http_path = "/v1/list-associated-packages",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listDomains(input, options)
     return self:invokeOperation(input, {
         name = "ListDomains",
-        input_schema = types.ListDomainsInput,
-        output_schema = types.ListDomainsOutput,
+        input_schema = schemas.ListDomainsInput,
+        output_schema = schemas.ListDomainsOutput,
         http_method = "POST",
         http_path = "/v1/domains",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:listPackageGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListPackageGroups",
-        input_schema = types.ListPackageGroupsInput,
-        output_schema = types.ListPackageGroupsOutput,
+        input_schema = schemas.ListPackageGroupsInput,
+        output_schema = schemas.ListPackageGroupsOutput,
         http_method = "POST",
         http_path = "/v1/package-groups",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:listPackages(input, options)
     return self:invokeOperation(input, {
         name = "ListPackages",
-        input_schema = types.ListPackagesInput,
-        output_schema = types.ListPackagesOutput,
+        input_schema = schemas.ListPackagesInput,
+        output_schema = schemas.ListPackagesOutput,
         http_method = "POST",
         http_path = "/v1/packages",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:listPackageVersionAssets(input, options)
     return self:invokeOperation(input, {
         name = "ListPackageVersionAssets",
-        input_schema = types.ListPackageVersionAssetsInput,
-        output_schema = types.ListPackageVersionAssetsOutput,
+        input_schema = schemas.ListPackageVersionAssetsInput,
+        output_schema = schemas.ListPackageVersionAssetsOutput,
         http_method = "POST",
         http_path = "/v1/package/version/assets",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:listPackageVersionDependencies(input, options)
     return self:invokeOperation(input, {
         name = "ListPackageVersionDependencies",
-        input_schema = types.ListPackageVersionDependenciesInput,
-        output_schema = types.ListPackageVersionDependenciesOutput,
+        input_schema = schemas.ListPackageVersionDependenciesInput,
+        output_schema = schemas.ListPackageVersionDependenciesOutput,
         http_method = "POST",
         http_path = "/v1/package/version/dependencies",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listPackageVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListPackageVersions",
-        input_schema = types.ListPackageVersionsInput,
-        output_schema = types.ListPackageVersionsOutput,
+        input_schema = schemas.ListPackageVersionsInput,
+        output_schema = schemas.ListPackageVersionsOutput,
         http_method = "POST",
         http_path = "/v1/package/versions",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:listRepositories(input, options)
     return self:invokeOperation(input, {
         name = "ListRepositories",
-        input_schema = types.ListRepositoriesInput,
-        output_schema = types.ListRepositoriesOutput,
+        input_schema = schemas.ListRepositoriesInput,
+        output_schema = schemas.ListRepositoriesOutput,
         http_method = "POST",
         http_path = "/v1/repositories",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:listRepositoriesInDomain(input, options)
     return self:invokeOperation(input, {
         name = "ListRepositoriesInDomain",
-        input_schema = types.ListRepositoriesInDomainInput,
-        output_schema = types.ListRepositoriesInDomainOutput,
+        input_schema = schemas.ListRepositoriesInDomainInput,
+        output_schema = schemas.ListRepositoriesInDomainOutput,
         http_method = "POST",
         http_path = "/v1/domain/repositories",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:listSubPackageGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListSubPackageGroups",
-        input_schema = types.ListSubPackageGroupsInput,
-        output_schema = types.ListSubPackageGroupsOutput,
+        input_schema = schemas.ListSubPackageGroupsInput,
+        output_schema = schemas.ListSubPackageGroupsOutput,
         http_method = "POST",
         http_path = "/v1/package-groups/sub-groups",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/v1/tags",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:publishPackageVersion(input, options)
     return self:invokeOperation(input, {
         name = "PublishPackageVersion",
-        input_schema = types.PublishPackageVersionInput,
-        output_schema = types.PublishPackageVersionOutput,
+        input_schema = schemas.PublishPackageVersionInput,
+        output_schema = schemas.PublishPackageVersionOutput,
         http_method = "POST",
         http_path = "/v1/package/version/publish",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:putDomainPermissionsPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutDomainPermissionsPolicy",
-        input_schema = types.PutDomainPermissionsPolicyInput,
-        output_schema = types.PutDomainPermissionsPolicyOutput,
+        input_schema = schemas.PutDomainPermissionsPolicyInput,
+        output_schema = schemas.PutDomainPermissionsPolicyOutput,
         http_method = "PUT",
         http_path = "/v1/domain/permissions/policy",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:putPackageOriginConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutPackageOriginConfiguration",
-        input_schema = types.PutPackageOriginConfigurationInput,
-        output_schema = types.PutPackageOriginConfigurationOutput,
+        input_schema = schemas.PutPackageOriginConfigurationInput,
+        output_schema = schemas.PutPackageOriginConfigurationOutput,
         http_method = "POST",
         http_path = "/v1/package",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:putRepositoryPermissionsPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutRepositoryPermissionsPolicy",
-        input_schema = types.PutRepositoryPermissionsPolicyInput,
-        output_schema = types.PutRepositoryPermissionsPolicyOutput,
+        input_schema = schemas.PutRepositoryPermissionsPolicyInput,
+        output_schema = schemas.PutRepositoryPermissionsPolicyOutput,
         http_method = "PUT",
         http_path = "/v1/repository/permissions/policy",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/v1/tag",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/v1/untag",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:updatePackageGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePackageGroup",
-        input_schema = types.UpdatePackageGroupInput,
-        output_schema = types.UpdatePackageGroupOutput,
+        input_schema = schemas.UpdatePackageGroupInput,
+        output_schema = schemas.UpdatePackageGroupOutput,
         http_method = "PUT",
         http_path = "/v1/package-group",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:updatePackageGroupOriginConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePackageGroupOriginConfiguration",
-        input_schema = types.UpdatePackageGroupOriginConfigurationInput,
-        output_schema = types.UpdatePackageGroupOriginConfigurationOutput,
+        input_schema = schemas.UpdatePackageGroupOriginConfigurationInput,
+        output_schema = schemas.UpdatePackageGroupOriginConfigurationOutput,
         http_method = "PUT",
         http_path = "/v1/package-group-origin-configuration",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:updatePackageVersionsStatus(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePackageVersionsStatus",
-        input_schema = types.UpdatePackageVersionsStatusInput,
-        output_schema = types.UpdatePackageVersionsStatusOutput,
+        input_schema = schemas.UpdatePackageVersionsStatusInput,
+        output_schema = schemas.UpdatePackageVersionsStatusOutput,
         http_method = "POST",
         http_path = "/v1/package/versions/update_status",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:updateRepository(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRepository",
-        input_schema = types.UpdateRepositoryInput,
-        output_schema = types.UpdateRepositoryOutput,
+        input_schema = schemas.UpdateRepositoryInput,
+        output_schema = schemas.UpdateRepositoryOutput,
         http_method = "PUT",
         http_path = "/v1/repository",
         effective_auth_schemes = {

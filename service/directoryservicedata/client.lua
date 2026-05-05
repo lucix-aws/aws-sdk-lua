@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("directoryservicedata.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("directoryservicedata.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("directoryservicedata.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addGroupMember(input, options)
     return self:invokeOperation(input, {
         name = "AddGroupMember",
-        input_schema = types.AddGroupMemberInput,
-        output_schema = types.AddGroupMemberOutput,
+        input_schema = schemas.AddGroupMemberInput,
+        output_schema = schemas.AddGroupMemberOutput,
         http_method = "POST",
         http_path = "/GroupMemberships/AddGroupMember",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateGroup",
-        input_schema = types.CreateGroupInput,
-        output_schema = types.CreateGroupOutput,
+        input_schema = schemas.CreateGroupInput,
+        output_schema = schemas.CreateGroupOutput,
         http_method = "POST",
         http_path = "/Groups/CreateGroup",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createUser(input, options)
     return self:invokeOperation(input, {
         name = "CreateUser",
-        input_schema = types.CreateUserInput,
-        output_schema = types.CreateUserOutput,
+        input_schema = schemas.CreateUserInput,
+        output_schema = schemas.CreateUserOutput,
         http_method = "POST",
         http_path = "/Users/CreateUser",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGroup",
-        input_schema = types.DeleteGroupInput,
-        output_schema = types.DeleteGroupOutput,
+        input_schema = schemas.DeleteGroupInput,
+        output_schema = schemas.DeleteGroupOutput,
         http_method = "POST",
         http_path = "/Groups/DeleteGroup",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteUser(input, options)
     return self:invokeOperation(input, {
         name = "DeleteUser",
-        input_schema = types.DeleteUserInput,
-        output_schema = types.DeleteUserOutput,
+        input_schema = schemas.DeleteUserInput,
+        output_schema = schemas.DeleteUserOutput,
         http_method = "POST",
         http_path = "/Users/DeleteUser",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:describeGroup(input, options)
     return self:invokeOperation(input, {
         name = "DescribeGroup",
-        input_schema = types.DescribeGroupInput,
-        output_schema = types.DescribeGroupOutput,
+        input_schema = schemas.DescribeGroupInput,
+        output_schema = schemas.DescribeGroupOutput,
         http_method = "POST",
         http_path = "/Groups/DescribeGroup",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:describeUser(input, options)
     return self:invokeOperation(input, {
         name = "DescribeUser",
-        input_schema = types.DescribeUserInput,
-        output_schema = types.DescribeUserOutput,
+        input_schema = schemas.DescribeUserInput,
+        output_schema = schemas.DescribeUserOutput,
         http_method = "POST",
         http_path = "/Users/DescribeUser",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:disableUser(input, options)
     return self:invokeOperation(input, {
         name = "DisableUser",
-        input_schema = types.DisableUserInput,
-        output_schema = types.DisableUserOutput,
+        input_schema = schemas.DisableUserInput,
+        output_schema = schemas.DisableUserOutput,
         http_method = "POST",
         http_path = "/Users/DisableUser",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listGroupMembers(input, options)
     return self:invokeOperation(input, {
         name = "ListGroupMembers",
-        input_schema = types.ListGroupMembersInput,
-        output_schema = types.ListGroupMembersOutput,
+        input_schema = schemas.ListGroupMembersInput,
+        output_schema = schemas.ListGroupMembersOutput,
         http_method = "POST",
         http_path = "/GroupMemberships/ListGroupMembers",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListGroups",
-        input_schema = types.ListGroupsInput,
-        output_schema = types.ListGroupsOutput,
+        input_schema = schemas.ListGroupsInput,
+        output_schema = schemas.ListGroupsOutput,
         http_method = "POST",
         http_path = "/Groups/ListGroups",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listGroupsForMember(input, options)
     return self:invokeOperation(input, {
         name = "ListGroupsForMember",
-        input_schema = types.ListGroupsForMemberInput,
-        output_schema = types.ListGroupsForMemberOutput,
+        input_schema = schemas.ListGroupsForMemberInput,
+        output_schema = schemas.ListGroupsForMemberOutput,
         http_method = "POST",
         http_path = "/GroupMemberships/ListGroupsForMember",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listUsers(input, options)
     return self:invokeOperation(input, {
         name = "ListUsers",
-        input_schema = types.ListUsersInput,
-        output_schema = types.ListUsersOutput,
+        input_schema = schemas.ListUsersInput,
+        output_schema = schemas.ListUsersOutput,
         http_method = "POST",
         http_path = "/Users/ListUsers",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:removeGroupMember(input, options)
     return self:invokeOperation(input, {
         name = "RemoveGroupMember",
-        input_schema = types.RemoveGroupMemberInput,
-        output_schema = types.RemoveGroupMemberOutput,
+        input_schema = schemas.RemoveGroupMemberInput,
+        output_schema = schemas.RemoveGroupMemberOutput,
         http_method = "POST",
         http_path = "/GroupMemberships/RemoveGroupMember",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:searchGroups(input, options)
     return self:invokeOperation(input, {
         name = "SearchGroups",
-        input_schema = types.SearchGroupsInput,
-        output_schema = types.SearchGroupsOutput,
+        input_schema = schemas.SearchGroupsInput,
+        output_schema = schemas.SearchGroupsOutput,
         http_method = "POST",
         http_path = "/Groups/SearchGroups",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:searchUsers(input, options)
     return self:invokeOperation(input, {
         name = "SearchUsers",
-        input_schema = types.SearchUsersInput,
-        output_schema = types.SearchUsersOutput,
+        input_schema = schemas.SearchUsersInput,
+        output_schema = schemas.SearchUsersOutput,
         http_method = "POST",
         http_path = "/Users/SearchUsers",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:updateGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGroup",
-        input_schema = types.UpdateGroupInput,
-        output_schema = types.UpdateGroupOutput,
+        input_schema = schemas.UpdateGroupInput,
+        output_schema = schemas.UpdateGroupOutput,
         http_method = "POST",
         http_path = "/Groups/UpdateGroup",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:updateUser(input, options)
     return self:invokeOperation(input, {
         name = "UpdateUser",
-        input_schema = types.UpdateUserInput,
-        output_schema = types.UpdateUserOutput,
+        input_schema = schemas.UpdateUserInput,
+        output_schema = schemas.UpdateUserOutput,
         http_method = "POST",
         http_path = "/Users/UpdateUser",
         effective_auth_schemes = {

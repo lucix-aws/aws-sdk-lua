@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("opensearch.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("opensearch.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("opensearch.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptInboundConnection(input, options)
     return self:invokeOperation(input, {
         name = "AcceptInboundConnection",
-        input_schema = types.AcceptInboundConnectionInput,
-        output_schema = types.AcceptInboundConnectionOutput,
+        input_schema = schemas.AcceptInboundConnectionInput,
+        output_schema = schemas.AcceptInboundConnectionOutput,
         http_method = "PUT",
         http_path = "/2021-01-01/opensearch/cc/inboundConnection/{ConnectionId}/accept",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:addDataSource(input, options)
     return self:invokeOperation(input, {
         name = "AddDataSource",
-        input_schema = types.AddDataSourceInput,
-        output_schema = types.AddDataSourceOutput,
+        input_schema = schemas.AddDataSourceInput,
+        output_schema = schemas.AddDataSourceOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/dataSource",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:addDirectQueryDataSource(input, options)
     return self:invokeOperation(input, {
         name = "AddDirectQueryDataSource",
-        input_schema = types.AddDirectQueryDataSourceInput,
-        output_schema = types.AddDirectQueryDataSourceOutput,
+        input_schema = schemas.AddDirectQueryDataSourceInput,
+        output_schema = schemas.AddDirectQueryDataSourceOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/directQueryDataSource",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:addTags(input, options)
     return self:invokeOperation(input, {
         name = "AddTags",
-        input_schema = types.AddTagsInput,
-        output_schema = types.AddTagsOutput,
+        input_schema = schemas.AddTagsInput,
+        output_schema = schemas.AddTagsOutput,
         http_method = "POST",
         http_path = "/2021-01-01/tags",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:associatePackage(input, options)
     return self:invokeOperation(input, {
         name = "AssociatePackage",
-        input_schema = types.AssociatePackageInput,
-        output_schema = types.AssociatePackageOutput,
+        input_schema = schemas.AssociatePackageInput,
+        output_schema = schemas.AssociatePackageOutput,
         http_method = "POST",
         http_path = "/2021-01-01/packages/associate/{PackageID}/{DomainName}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:associatePackages(input, options)
     return self:invokeOperation(input, {
         name = "AssociatePackages",
-        input_schema = types.AssociatePackagesInput,
-        output_schema = types.AssociatePackagesOutput,
+        input_schema = schemas.AssociatePackagesInput,
+        output_schema = schemas.AssociatePackagesOutput,
         http_method = "POST",
         http_path = "/2021-01-01/packages/associateMultiple",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:authorizeVpcEndpointAccess(input, options)
     return self:invokeOperation(input, {
         name = "AuthorizeVpcEndpointAccess",
-        input_schema = types.AuthorizeVpcEndpointAccessInput,
-        output_schema = types.AuthorizeVpcEndpointAccessOutput,
+        input_schema = schemas.AuthorizeVpcEndpointAccessInput,
+        output_schema = schemas.AuthorizeVpcEndpointAccessOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/authorizeVpcEndpointAccess",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:cancelDomainConfigChange(input, options)
     return self:invokeOperation(input, {
         name = "CancelDomainConfigChange",
-        input_schema = types.CancelDomainConfigChangeInput,
-        output_schema = types.CancelDomainConfigChangeOutput,
+        input_schema = schemas.CancelDomainConfigChangeInput,
+        output_schema = schemas.CancelDomainConfigChangeOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/config/cancel",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:cancelServiceSoftwareUpdate(input, options)
     return self:invokeOperation(input, {
         name = "CancelServiceSoftwareUpdate",
-        input_schema = types.CancelServiceSoftwareUpdateInput,
-        output_schema = types.CancelServiceSoftwareUpdateOutput,
+        input_schema = schemas.CancelServiceSoftwareUpdateInput,
+        output_schema = schemas.CancelServiceSoftwareUpdateOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/serviceSoftwareUpdate/cancel",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createApplication(input, options)
     return self:invokeOperation(input, {
         name = "CreateApplication",
-        input_schema = types.CreateApplicationInput,
-        output_schema = types.CreateApplicationOutput,
+        input_schema = schemas.CreateApplicationInput,
+        output_schema = schemas.CreateApplicationOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/application",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createDomain(input, options)
     return self:invokeOperation(input, {
         name = "CreateDomain",
-        input_schema = types.CreateDomainInput,
-        output_schema = types.CreateDomainOutput,
+        input_schema = schemas.CreateDomainInput,
+        output_schema = schemas.CreateDomainOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/domain",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createIndex(input, options)
     return self:invokeOperation(input, {
         name = "CreateIndex",
-        input_schema = types.CreateIndexInput,
-        output_schema = types.CreateIndexOutput,
+        input_schema = schemas.CreateIndexInput,
+        output_schema = schemas.CreateIndexOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/index",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createOutboundConnection(input, options)
     return self:invokeOperation(input, {
         name = "CreateOutboundConnection",
-        input_schema = types.CreateOutboundConnectionInput,
-        output_schema = types.CreateOutboundConnectionOutput,
+        input_schema = schemas.CreateOutboundConnectionInput,
+        output_schema = schemas.CreateOutboundConnectionOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/cc/outboundConnection",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:createPackage(input, options)
     return self:invokeOperation(input, {
         name = "CreatePackage",
-        input_schema = types.CreatePackageInput,
-        output_schema = types.CreatePackageOutput,
+        input_schema = schemas.CreatePackageInput,
+        output_schema = schemas.CreatePackageOutput,
         http_method = "POST",
         http_path = "/2021-01-01/packages",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:createVpcEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "CreateVpcEndpoint",
-        input_schema = types.CreateVpcEndpointInput,
-        output_schema = types.CreateVpcEndpointOutput,
+        input_schema = schemas.CreateVpcEndpointInput,
+        output_schema = schemas.CreateVpcEndpointOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/vpcEndpoints",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteApplication(input, options)
     return self:invokeOperation(input, {
         name = "DeleteApplication",
-        input_schema = types.DeleteApplicationInput,
-        output_schema = types.DeleteApplicationOutput,
+        input_schema = schemas.DeleteApplicationInput,
+        output_schema = schemas.DeleteApplicationOutput,
         http_method = "DELETE",
         http_path = "/2021-01-01/opensearch/application/{id}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteDataSource(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDataSource",
-        input_schema = types.DeleteDataSourceInput,
-        output_schema = types.DeleteDataSourceOutput,
+        input_schema = schemas.DeleteDataSourceInput,
+        output_schema = schemas.DeleteDataSourceOutput,
         http_method = "DELETE",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/dataSource/{Name}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteDirectQueryDataSource(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDirectQueryDataSource",
-        input_schema = types.DeleteDirectQueryDataSourceInput,
-        output_schema = types.DeleteDirectQueryDataSourceOutput,
+        input_schema = schemas.DeleteDirectQueryDataSourceInput,
+        output_schema = schemas.DeleteDirectQueryDataSourceOutput,
         http_method = "DELETE",
         http_path = "/2021-01-01/opensearch/directQueryDataSource/{DataSourceName}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteDomain(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDomain",
-        input_schema = types.DeleteDomainInput,
-        output_schema = types.DeleteDomainOutput,
+        input_schema = schemas.DeleteDomainInput,
+        output_schema = schemas.DeleteDomainOutput,
         http_method = "DELETE",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deleteInboundConnection(input, options)
     return self:invokeOperation(input, {
         name = "DeleteInboundConnection",
-        input_schema = types.DeleteInboundConnectionInput,
-        output_schema = types.DeleteInboundConnectionOutput,
+        input_schema = schemas.DeleteInboundConnectionInput,
+        output_schema = schemas.DeleteInboundConnectionOutput,
         http_method = "DELETE",
         http_path = "/2021-01-01/opensearch/cc/inboundConnection/{ConnectionId}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteIndex(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIndex",
-        input_schema = types.DeleteIndexInput,
-        output_schema = types.DeleteIndexOutput,
+        input_schema = schemas.DeleteIndexInput,
+        output_schema = schemas.DeleteIndexOutput,
         http_method = "DELETE",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/index/{IndexName}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:deleteOutboundConnection(input, options)
     return self:invokeOperation(input, {
         name = "DeleteOutboundConnection",
-        input_schema = types.DeleteOutboundConnectionInput,
-        output_schema = types.DeleteOutboundConnectionOutput,
+        input_schema = schemas.DeleteOutboundConnectionInput,
+        output_schema = schemas.DeleteOutboundConnectionOutput,
         http_method = "DELETE",
         http_path = "/2021-01-01/opensearch/cc/outboundConnection/{ConnectionId}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:deletePackage(input, options)
     return self:invokeOperation(input, {
         name = "DeletePackage",
-        input_schema = types.DeletePackageInput,
-        output_schema = types.DeletePackageOutput,
+        input_schema = schemas.DeletePackageInput,
+        output_schema = schemas.DeletePackageOutput,
         http_method = "DELETE",
         http_path = "/2021-01-01/packages/{PackageID}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:deleteVpcEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVpcEndpoint",
-        input_schema = types.DeleteVpcEndpointInput,
-        output_schema = types.DeleteVpcEndpointOutput,
+        input_schema = schemas.DeleteVpcEndpointInput,
+        output_schema = schemas.DeleteVpcEndpointOutput,
         http_method = "DELETE",
         http_path = "/2021-01-01/opensearch/vpcEndpoints/{VpcEndpointId}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:deregisterCapability(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterCapability",
-        input_schema = types.DeregisterCapabilityInput,
-        output_schema = types.DeregisterCapabilityOutput,
+        input_schema = schemas.DeregisterCapabilityInput,
+        output_schema = schemas.DeregisterCapabilityOutput,
         http_method = "DELETE",
         http_path = "/2021-01-01/opensearch/application/{applicationId}/capability/deregister/{capabilityName}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:describeDomain(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDomain",
-        input_schema = types.DescribeDomainInput,
-        output_schema = types.DescribeDomainOutput,
+        input_schema = schemas.DescribeDomainInput,
+        output_schema = schemas.DescribeDomainOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:describeDomainAutoTunes(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDomainAutoTunes",
-        input_schema = types.DescribeDomainAutoTunesInput,
-        output_schema = types.DescribeDomainAutoTunesOutput,
+        input_schema = schemas.DescribeDomainAutoTunesInput,
+        output_schema = schemas.DescribeDomainAutoTunesOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/autoTunes",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:describeDomainChangeProgress(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDomainChangeProgress",
-        input_schema = types.DescribeDomainChangeProgressInput,
-        output_schema = types.DescribeDomainChangeProgressOutput,
+        input_schema = schemas.DescribeDomainChangeProgressInput,
+        output_schema = schemas.DescribeDomainChangeProgressOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/progress",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:describeDomainConfig(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDomainConfig",
-        input_schema = types.DescribeDomainConfigInput,
-        output_schema = types.DescribeDomainConfigOutput,
+        input_schema = schemas.DescribeDomainConfigInput,
+        output_schema = schemas.DescribeDomainConfigOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/config",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:describeDomainHealth(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDomainHealth",
-        input_schema = types.DescribeDomainHealthInput,
-        output_schema = types.DescribeDomainHealthOutput,
+        input_schema = schemas.DescribeDomainHealthInput,
+        output_schema = schemas.DescribeDomainHealthOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/health",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:describeDomainNodes(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDomainNodes",
-        input_schema = types.DescribeDomainNodesInput,
-        output_schema = types.DescribeDomainNodesOutput,
+        input_schema = schemas.DescribeDomainNodesInput,
+        output_schema = schemas.DescribeDomainNodesOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/nodes",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:describeDomains(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDomains",
-        input_schema = types.DescribeDomainsInput,
-        output_schema = types.DescribeDomainsOutput,
+        input_schema = schemas.DescribeDomainsInput,
+        output_schema = schemas.DescribeDomainsOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/domain-info",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:describeDryRunProgress(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDryRunProgress",
-        input_schema = types.DescribeDryRunProgressInput,
-        output_schema = types.DescribeDryRunProgressOutput,
+        input_schema = schemas.DescribeDryRunProgressInput,
+        output_schema = schemas.DescribeDryRunProgressOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/dryRun",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:describeInboundConnections(input, options)
     return self:invokeOperation(input, {
         name = "DescribeInboundConnections",
-        input_schema = types.DescribeInboundConnectionsInput,
-        output_schema = types.DescribeInboundConnectionsOutput,
+        input_schema = schemas.DescribeInboundConnectionsInput,
+        output_schema = schemas.DescribeInboundConnectionsOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/cc/inboundConnection/search",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:describeInsightDetails(input, options)
     return self:invokeOperation(input, {
         name = "DescribeInsightDetails",
-        input_schema = types.DescribeInsightDetailsInput,
-        output_schema = types.DescribeInsightDetailsOutput,
+        input_schema = schemas.DescribeInsightDetailsInput,
+        output_schema = schemas.DescribeInsightDetailsOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/insight-details",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:describeInstanceTypeLimits(input, options)
     return self:invokeOperation(input, {
         name = "DescribeInstanceTypeLimits",
-        input_schema = types.DescribeInstanceTypeLimitsInput,
-        output_schema = types.DescribeInstanceTypeLimitsOutput,
+        input_schema = schemas.DescribeInstanceTypeLimitsInput,
+        output_schema = schemas.DescribeInstanceTypeLimitsOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/instanceTypeLimits/{EngineVersion}/{InstanceType}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:describeOutboundConnections(input, options)
     return self:invokeOperation(input, {
         name = "DescribeOutboundConnections",
-        input_schema = types.DescribeOutboundConnectionsInput,
-        output_schema = types.DescribeOutboundConnectionsOutput,
+        input_schema = schemas.DescribeOutboundConnectionsInput,
+        output_schema = schemas.DescribeOutboundConnectionsOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/cc/outboundConnection/search",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:describePackages(input, options)
     return self:invokeOperation(input, {
         name = "DescribePackages",
-        input_schema = types.DescribePackagesInput,
-        output_schema = types.DescribePackagesOutput,
+        input_schema = schemas.DescribePackagesInput,
+        output_schema = schemas.DescribePackagesOutput,
         http_method = "POST",
         http_path = "/2021-01-01/packages/describe",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:describeReservedInstanceOfferings(input, options)
     return self:invokeOperation(input, {
         name = "DescribeReservedInstanceOfferings",
-        input_schema = types.DescribeReservedInstanceOfferingsInput,
-        output_schema = types.DescribeReservedInstanceOfferingsOutput,
+        input_schema = schemas.DescribeReservedInstanceOfferingsInput,
+        output_schema = schemas.DescribeReservedInstanceOfferingsOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/reservedInstanceOfferings",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:describeReservedInstances(input, options)
     return self:invokeOperation(input, {
         name = "DescribeReservedInstances",
-        input_schema = types.DescribeReservedInstancesInput,
-        output_schema = types.DescribeReservedInstancesOutput,
+        input_schema = schemas.DescribeReservedInstancesInput,
+        output_schema = schemas.DescribeReservedInstancesOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/reservedInstances",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:describeVpcEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "DescribeVpcEndpoints",
-        input_schema = types.DescribeVpcEndpointsInput,
-        output_schema = types.DescribeVpcEndpointsOutput,
+        input_schema = schemas.DescribeVpcEndpointsInput,
+        output_schema = schemas.DescribeVpcEndpointsOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/vpcEndpoints/describe",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:dissociatePackage(input, options)
     return self:invokeOperation(input, {
         name = "DissociatePackage",
-        input_schema = types.DissociatePackageInput,
-        output_schema = types.DissociatePackageOutput,
+        input_schema = schemas.DissociatePackageInput,
+        output_schema = schemas.DissociatePackageOutput,
         http_method = "POST",
         http_path = "/2021-01-01/packages/dissociate/{PackageID}/{DomainName}",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:dissociatePackages(input, options)
     return self:invokeOperation(input, {
         name = "DissociatePackages",
-        input_schema = types.DissociatePackagesInput,
-        output_schema = types.DissociatePackagesOutput,
+        input_schema = schemas.DissociatePackagesInput,
+        output_schema = schemas.DissociatePackagesOutput,
         http_method = "POST",
         http_path = "/2021-01-01/packages/dissociateMultiple",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:getApplication(input, options)
     return self:invokeOperation(input, {
         name = "GetApplication",
-        input_schema = types.GetApplicationInput,
-        output_schema = types.GetApplicationOutput,
+        input_schema = schemas.GetApplicationInput,
+        output_schema = schemas.GetApplicationOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/application/{id}",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:getCapability(input, options)
     return self:invokeOperation(input, {
         name = "GetCapability",
-        input_schema = types.GetCapabilityInput,
-        output_schema = types.GetCapabilityOutput,
+        input_schema = schemas.GetCapabilityInput,
+        output_schema = schemas.GetCapabilityOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/application/{applicationId}/capability/{capabilityName}",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:getCompatibleVersions(input, options)
     return self:invokeOperation(input, {
         name = "GetCompatibleVersions",
-        input_schema = types.GetCompatibleVersionsInput,
-        output_schema = types.GetCompatibleVersionsOutput,
+        input_schema = schemas.GetCompatibleVersionsInput,
+        output_schema = schemas.GetCompatibleVersionsOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/compatibleVersions",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:getDataSource(input, options)
     return self:invokeOperation(input, {
         name = "GetDataSource",
-        input_schema = types.GetDataSourceInput,
-        output_schema = types.GetDataSourceOutput,
+        input_schema = schemas.GetDataSourceInput,
+        output_schema = schemas.GetDataSourceOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/dataSource/{Name}",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:getDefaultApplicationSetting(input, options)
     return self:invokeOperation(input, {
         name = "GetDefaultApplicationSetting",
-        input_schema = types.GetDefaultApplicationSettingInput,
-        output_schema = types.GetDefaultApplicationSettingOutput,
+        input_schema = schemas.GetDefaultApplicationSettingInput,
+        output_schema = schemas.GetDefaultApplicationSettingOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/defaultApplicationSetting",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:getDirectQueryDataSource(input, options)
     return self:invokeOperation(input, {
         name = "GetDirectQueryDataSource",
-        input_schema = types.GetDirectQueryDataSourceInput,
-        output_schema = types.GetDirectQueryDataSourceOutput,
+        input_schema = schemas.GetDirectQueryDataSourceInput,
+        output_schema = schemas.GetDirectQueryDataSourceOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/directQueryDataSource/{DataSourceName}",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:getDomainMaintenanceStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetDomainMaintenanceStatus",
-        input_schema = types.GetDomainMaintenanceStatusInput,
-        output_schema = types.GetDomainMaintenanceStatusOutput,
+        input_schema = schemas.GetDomainMaintenanceStatusInput,
+        output_schema = schemas.GetDomainMaintenanceStatusOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/domainMaintenance",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:getIndex(input, options)
     return self:invokeOperation(input, {
         name = "GetIndex",
-        input_schema = types.GetIndexInput,
-        output_schema = types.GetIndexOutput,
+        input_schema = schemas.GetIndexInput,
+        output_schema = schemas.GetIndexOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/index/{IndexName}",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:getPackageVersionHistory(input, options)
     return self:invokeOperation(input, {
         name = "GetPackageVersionHistory",
-        input_schema = types.GetPackageVersionHistoryInput,
-        output_schema = types.GetPackageVersionHistoryOutput,
+        input_schema = schemas.GetPackageVersionHistoryInput,
+        output_schema = schemas.GetPackageVersionHistoryOutput,
         http_method = "GET",
         http_path = "/2021-01-01/packages/{PackageID}/history",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:getUpgradeHistory(input, options)
     return self:invokeOperation(input, {
         name = "GetUpgradeHistory",
-        input_schema = types.GetUpgradeHistoryInput,
-        output_schema = types.GetUpgradeHistoryOutput,
+        input_schema = schemas.GetUpgradeHistoryInput,
+        output_schema = schemas.GetUpgradeHistoryOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/upgradeDomain/{DomainName}/history",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:getUpgradeStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetUpgradeStatus",
-        input_schema = types.GetUpgradeStatusInput,
-        output_schema = types.GetUpgradeStatusOutput,
+        input_schema = schemas.GetUpgradeStatusInput,
+        output_schema = schemas.GetUpgradeStatusOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/upgradeDomain/{DomainName}/status",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:listApplications(input, options)
     return self:invokeOperation(input, {
         name = "ListApplications",
-        input_schema = types.ListApplicationsInput,
-        output_schema = types.ListApplicationsOutput,
+        input_schema = schemas.ListApplicationsInput,
+        output_schema = schemas.ListApplicationsOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/list-applications",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:listDataSources(input, options)
     return self:invokeOperation(input, {
         name = "ListDataSources",
-        input_schema = types.ListDataSourcesInput,
-        output_schema = types.ListDataSourcesOutput,
+        input_schema = schemas.ListDataSourcesInput,
+        output_schema = schemas.ListDataSourcesOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/dataSource",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:listDirectQueryDataSources(input, options)
     return self:invokeOperation(input, {
         name = "ListDirectQueryDataSources",
-        input_schema = types.ListDirectQueryDataSourcesInput,
-        output_schema = types.ListDirectQueryDataSourcesOutput,
+        input_schema = schemas.ListDirectQueryDataSourcesInput,
+        output_schema = schemas.ListDirectQueryDataSourcesOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/directQueryDataSource",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:listDomainMaintenances(input, options)
     return self:invokeOperation(input, {
         name = "ListDomainMaintenances",
-        input_schema = types.ListDomainMaintenancesInput,
-        output_schema = types.ListDomainMaintenancesOutput,
+        input_schema = schemas.ListDomainMaintenancesInput,
+        output_schema = schemas.ListDomainMaintenancesOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/domainMaintenances",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:listDomainNames(input, options)
     return self:invokeOperation(input, {
         name = "ListDomainNames",
-        input_schema = types.ListDomainNamesInput,
-        output_schema = types.ListDomainNamesOutput,
+        input_schema = schemas.ListDomainNamesInput,
+        output_schema = schemas.ListDomainNamesOutput,
         http_method = "GET",
         http_path = "/2021-01-01/domain",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:listDomainsForPackage(input, options)
     return self:invokeOperation(input, {
         name = "ListDomainsForPackage",
-        input_schema = types.ListDomainsForPackageInput,
-        output_schema = types.ListDomainsForPackageOutput,
+        input_schema = schemas.ListDomainsForPackageInput,
+        output_schema = schemas.ListDomainsForPackageOutput,
         http_method = "GET",
         http_path = "/2021-01-01/packages/{PackageID}/domains",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:listInsights(input, options)
     return self:invokeOperation(input, {
         name = "ListInsights",
-        input_schema = types.ListInsightsInput,
-        output_schema = types.ListInsightsOutput,
+        input_schema = schemas.ListInsightsInput,
+        output_schema = schemas.ListInsightsOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/insights",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:listInstanceTypeDetails(input, options)
     return self:invokeOperation(input, {
         name = "ListInstanceTypeDetails",
-        input_schema = types.ListInstanceTypeDetailsInput,
-        output_schema = types.ListInstanceTypeDetailsOutput,
+        input_schema = schemas.ListInstanceTypeDetailsInput,
+        output_schema = schemas.ListInstanceTypeDetailsOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/instanceTypeDetails/{EngineVersion}",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:listPackagesForDomain(input, options)
     return self:invokeOperation(input, {
         name = "ListPackagesForDomain",
-        input_schema = types.ListPackagesForDomainInput,
-        output_schema = types.ListPackagesForDomainOutput,
+        input_schema = schemas.ListPackagesForDomainInput,
+        output_schema = schemas.ListPackagesForDomainOutput,
         http_method = "GET",
         http_path = "/2021-01-01/domain/{DomainName}/packages",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:listScheduledActions(input, options)
     return self:invokeOperation(input, {
         name = "ListScheduledActions",
-        input_schema = types.ListScheduledActionsInput,
-        output_schema = types.ListScheduledActionsOutput,
+        input_schema = schemas.ListScheduledActionsInput,
+        output_schema = schemas.ListScheduledActionsOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/scheduledActions",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:listTags(input, options)
     return self:invokeOperation(input, {
         name = "ListTags",
-        input_schema = types.ListTagsInput,
-        output_schema = types.ListTagsOutput,
+        input_schema = schemas.ListTagsInput,
+        output_schema = schemas.ListTagsOutput,
         http_method = "GET",
         http_path = "/2021-01-01/tags",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:listVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListVersions",
-        input_schema = types.ListVersionsInput,
-        output_schema = types.ListVersionsOutput,
+        input_schema = schemas.ListVersionsInput,
+        output_schema = schemas.ListVersionsOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/versions",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:listVpcEndpointAccess(input, options)
     return self:invokeOperation(input, {
         name = "ListVpcEndpointAccess",
-        input_schema = types.ListVpcEndpointAccessInput,
-        output_schema = types.ListVpcEndpointAccessOutput,
+        input_schema = schemas.ListVpcEndpointAccessInput,
+        output_schema = schemas.ListVpcEndpointAccessOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/listVpcEndpointAccess",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:listVpcEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "ListVpcEndpoints",
-        input_schema = types.ListVpcEndpointsInput,
-        output_schema = types.ListVpcEndpointsOutput,
+        input_schema = schemas.ListVpcEndpointsInput,
+        output_schema = schemas.ListVpcEndpointsOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/vpcEndpoints",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:listVpcEndpointsForDomain(input, options)
     return self:invokeOperation(input, {
         name = "ListVpcEndpointsForDomain",
-        input_schema = types.ListVpcEndpointsForDomainInput,
-        output_schema = types.ListVpcEndpointsForDomainOutput,
+        input_schema = schemas.ListVpcEndpointsForDomainInput,
+        output_schema = schemas.ListVpcEndpointsForDomainOutput,
         http_method = "GET",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/vpcEndpoints",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:purchaseReservedInstanceOffering(input, options)
     return self:invokeOperation(input, {
         name = "PurchaseReservedInstanceOffering",
-        input_schema = types.PurchaseReservedInstanceOfferingInput,
-        output_schema = types.PurchaseReservedInstanceOfferingOutput,
+        input_schema = schemas.PurchaseReservedInstanceOfferingInput,
+        output_schema = schemas.PurchaseReservedInstanceOfferingOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/purchaseReservedInstanceOffering",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:putDefaultApplicationSetting(input, options)
     return self:invokeOperation(input, {
         name = "PutDefaultApplicationSetting",
-        input_schema = types.PutDefaultApplicationSettingInput,
-        output_schema = types.PutDefaultApplicationSettingOutput,
+        input_schema = schemas.PutDefaultApplicationSettingInput,
+        output_schema = schemas.PutDefaultApplicationSettingOutput,
         http_method = "PUT",
         http_path = "/2021-01-01/opensearch/defaultApplicationSetting",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:registerCapability(input, options)
     return self:invokeOperation(input, {
         name = "RegisterCapability",
-        input_schema = types.RegisterCapabilityInput,
-        output_schema = types.RegisterCapabilityOutput,
+        input_schema = schemas.RegisterCapabilityInput,
+        output_schema = schemas.RegisterCapabilityOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/application/{applicationId}/capability/register",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:rejectInboundConnection(input, options)
     return self:invokeOperation(input, {
         name = "RejectInboundConnection",
-        input_schema = types.RejectInboundConnectionInput,
-        output_schema = types.RejectInboundConnectionOutput,
+        input_schema = schemas.RejectInboundConnectionInput,
+        output_schema = schemas.RejectInboundConnectionOutput,
         http_method = "PUT",
         http_path = "/2021-01-01/opensearch/cc/inboundConnection/{ConnectionId}/reject",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:removeTags(input, options)
     return self:invokeOperation(input, {
         name = "RemoveTags",
-        input_schema = types.RemoveTagsInput,
-        output_schema = types.RemoveTagsOutput,
+        input_schema = schemas.RemoveTagsInput,
+        output_schema = schemas.RemoveTagsOutput,
         http_method = "POST",
         http_path = "/2021-01-01/tags-removal",
         effective_auth_schemes = {
@@ -1011,8 +1011,8 @@ end
 function Client:revokeVpcEndpointAccess(input, options)
     return self:invokeOperation(input, {
         name = "RevokeVpcEndpointAccess",
-        input_schema = types.RevokeVpcEndpointAccessInput,
-        output_schema = types.RevokeVpcEndpointAccessOutput,
+        input_schema = schemas.RevokeVpcEndpointAccessInput,
+        output_schema = schemas.RevokeVpcEndpointAccessOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/revokeVpcEndpointAccess",
         effective_auth_schemes = {
@@ -1024,8 +1024,8 @@ end
 function Client:rollbackServiceSoftwareUpdate(input, options)
     return self:invokeOperation(input, {
         name = "RollbackServiceSoftwareUpdate",
-        input_schema = types.RollbackServiceSoftwareUpdateInput,
-        output_schema = types.RollbackServiceSoftwareUpdateOutput,
+        input_schema = schemas.RollbackServiceSoftwareUpdateInput,
+        output_schema = schemas.RollbackServiceSoftwareUpdateOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/serviceSoftwareUpdate/rollback",
         effective_auth_schemes = {
@@ -1037,8 +1037,8 @@ end
 function Client:startDomainMaintenance(input, options)
     return self:invokeOperation(input, {
         name = "StartDomainMaintenance",
-        input_schema = types.StartDomainMaintenanceInput,
-        output_schema = types.StartDomainMaintenanceOutput,
+        input_schema = schemas.StartDomainMaintenanceInput,
+        output_schema = schemas.StartDomainMaintenanceOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/domainMaintenance",
         effective_auth_schemes = {
@@ -1050,8 +1050,8 @@ end
 function Client:startServiceSoftwareUpdate(input, options)
     return self:invokeOperation(input, {
         name = "StartServiceSoftwareUpdate",
-        input_schema = types.StartServiceSoftwareUpdateInput,
-        output_schema = types.StartServiceSoftwareUpdateOutput,
+        input_schema = schemas.StartServiceSoftwareUpdateInput,
+        output_schema = schemas.StartServiceSoftwareUpdateOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/serviceSoftwareUpdate/start",
         effective_auth_schemes = {
@@ -1063,8 +1063,8 @@ end
 function Client:updateApplication(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApplication",
-        input_schema = types.UpdateApplicationInput,
-        output_schema = types.UpdateApplicationOutput,
+        input_schema = schemas.UpdateApplicationInput,
+        output_schema = schemas.UpdateApplicationOutput,
         http_method = "PUT",
         http_path = "/2021-01-01/opensearch/application/{id}",
         effective_auth_schemes = {
@@ -1076,8 +1076,8 @@ end
 function Client:updateDataSource(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDataSource",
-        input_schema = types.UpdateDataSourceInput,
-        output_schema = types.UpdateDataSourceOutput,
+        input_schema = schemas.UpdateDataSourceInput,
+        output_schema = schemas.UpdateDataSourceOutput,
         http_method = "PUT",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/dataSource/{Name}",
         effective_auth_schemes = {
@@ -1089,8 +1089,8 @@ end
 function Client:updateDirectQueryDataSource(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDirectQueryDataSource",
-        input_schema = types.UpdateDirectQueryDataSourceInput,
-        output_schema = types.UpdateDirectQueryDataSourceOutput,
+        input_schema = schemas.UpdateDirectQueryDataSourceInput,
+        output_schema = schemas.UpdateDirectQueryDataSourceOutput,
         http_method = "PUT",
         http_path = "/2021-01-01/opensearch/directQueryDataSource/{DataSourceName}",
         effective_auth_schemes = {
@@ -1102,8 +1102,8 @@ end
 function Client:updateDomainConfig(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDomainConfig",
-        input_schema = types.UpdateDomainConfigInput,
-        output_schema = types.UpdateDomainConfigOutput,
+        input_schema = schemas.UpdateDomainConfigInput,
+        output_schema = schemas.UpdateDomainConfigOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/config",
         effective_auth_schemes = {
@@ -1115,8 +1115,8 @@ end
 function Client:updateIndex(input, options)
     return self:invokeOperation(input, {
         name = "UpdateIndex",
-        input_schema = types.UpdateIndexInput,
-        output_schema = types.UpdateIndexOutput,
+        input_schema = schemas.UpdateIndexInput,
+        output_schema = schemas.UpdateIndexOutput,
         http_method = "PUT",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/index/{IndexName}",
         effective_auth_schemes = {
@@ -1128,8 +1128,8 @@ end
 function Client:updatePackage(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePackage",
-        input_schema = types.UpdatePackageInput,
-        output_schema = types.UpdatePackageOutput,
+        input_schema = schemas.UpdatePackageInput,
+        output_schema = schemas.UpdatePackageOutput,
         http_method = "POST",
         http_path = "/2021-01-01/packages/update",
         effective_auth_schemes = {
@@ -1141,8 +1141,8 @@ end
 function Client:updatePackageScope(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePackageScope",
-        input_schema = types.UpdatePackageScopeInput,
-        output_schema = types.UpdatePackageScopeOutput,
+        input_schema = schemas.UpdatePackageScopeInput,
+        output_schema = schemas.UpdatePackageScopeOutput,
         http_method = "POST",
         http_path = "/2021-01-01/packages/updateScope",
         effective_auth_schemes = {
@@ -1154,8 +1154,8 @@ end
 function Client:updateScheduledAction(input, options)
     return self:invokeOperation(input, {
         name = "UpdateScheduledAction",
-        input_schema = types.UpdateScheduledActionInput,
-        output_schema = types.UpdateScheduledActionOutput,
+        input_schema = schemas.UpdateScheduledActionInput,
+        output_schema = schemas.UpdateScheduledActionOutput,
         http_method = "PUT",
         http_path = "/2021-01-01/opensearch/domain/{DomainName}/scheduledAction/update",
         effective_auth_schemes = {
@@ -1167,8 +1167,8 @@ end
 function Client:updateVpcEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "UpdateVpcEndpoint",
-        input_schema = types.UpdateVpcEndpointInput,
-        output_schema = types.UpdateVpcEndpointOutput,
+        input_schema = schemas.UpdateVpcEndpointInput,
+        output_schema = schemas.UpdateVpcEndpointOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/vpcEndpoints/update",
         effective_auth_schemes = {
@@ -1180,8 +1180,8 @@ end
 function Client:upgradeDomain(input, options)
     return self:invokeOperation(input, {
         name = "UpgradeDomain",
-        input_schema = types.UpgradeDomainInput,
-        output_schema = types.UpgradeDomainOutput,
+        input_schema = schemas.UpgradeDomainInput,
+        output_schema = schemas.UpgradeDomainOutput,
         http_method = "POST",
         http_path = "/2021-01-01/opensearch/upgradeDomain",
         effective_auth_schemes = {

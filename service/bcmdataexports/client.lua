@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("bcmdataexports.endpoint_rules")
+local schemas = require("bcmdataexports.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("bcmdataexports.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createExport(input, options)
     return self:invokeOperation(input, {
         name = "CreateExport",
-        input_schema = types.CreateExportInput,
-        output_schema = types.CreateExportOutput,
+        input_schema = schemas.CreateExportInput,
+        output_schema = schemas.CreateExportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteExport(input, options)
     return self:invokeOperation(input, {
         name = "DeleteExport",
-        input_schema = types.DeleteExportInput,
-        output_schema = types.DeleteExportOutput,
+        input_schema = schemas.DeleteExportInput,
+        output_schema = schemas.DeleteExportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getExecution(input, options)
     return self:invokeOperation(input, {
         name = "GetExecution",
-        input_schema = types.GetExecutionInput,
-        output_schema = types.GetExecutionOutput,
+        input_schema = schemas.GetExecutionInput,
+        output_schema = schemas.GetExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getExport(input, options)
     return self:invokeOperation(input, {
         name = "GetExport",
-        input_schema = types.GetExportInput,
-        output_schema = types.GetExportOutput,
+        input_schema = schemas.GetExportInput,
+        output_schema = schemas.GetExportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getTable(input, options)
     return self:invokeOperation(input, {
         name = "GetTable",
-        input_schema = types.GetTableInput,
-        output_schema = types.GetTableOutput,
+        input_schema = schemas.GetTableInput,
+        output_schema = schemas.GetTableOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:listExecutions(input, options)
     return self:invokeOperation(input, {
         name = "ListExecutions",
-        input_schema = types.ListExecutionsInput,
-        output_schema = types.ListExecutionsOutput,
+        input_schema = schemas.ListExecutionsInput,
+        output_schema = schemas.ListExecutionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listExports(input, options)
     return self:invokeOperation(input, {
         name = "ListExports",
-        input_schema = types.ListExportsInput,
-        output_schema = types.ListExportsOutput,
+        input_schema = schemas.ListExportsInput,
+        output_schema = schemas.ListExportsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listTables(input, options)
     return self:invokeOperation(input, {
         name = "ListTables",
-        input_schema = types.ListTablesInput,
-        output_schema = types.ListTablesOutput,
+        input_schema = schemas.ListTablesInput,
+        output_schema = schemas.ListTablesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:updateExport(input, options)
     return self:invokeOperation(input, {
         name = "UpdateExport",
-        input_schema = types.UpdateExportInput,
-        output_schema = types.UpdateExportOutput,
+        input_schema = schemas.UpdateExportInput,
+        output_schema = schemas.UpdateExportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

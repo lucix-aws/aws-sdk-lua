@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("kinesisvideoarchivedmedia.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("kinesisvideoarchivedmedia.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("kinesisvideoarchivedmedia.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getClip(input, options)
     return self:invokeOperation(input, {
         name = "GetClip",
-        input_schema = types.GetClipInput,
-        output_schema = types.GetClipOutput,
+        input_schema = schemas.GetClipInput,
+        output_schema = schemas.GetClipOutput,
         http_method = "POST",
         http_path = "/getClip",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:getDASHStreamingSessionURL(input, options)
     return self:invokeOperation(input, {
         name = "GetDASHStreamingSessionURL",
-        input_schema = types.GetDASHStreamingSessionURLInput,
-        output_schema = types.GetDASHStreamingSessionURLOutput,
+        input_schema = schemas.GetDASHStreamingSessionURLInput,
+        output_schema = schemas.GetDASHStreamingSessionURLOutput,
         http_method = "POST",
         http_path = "/getDASHStreamingSessionURL",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getHLSStreamingSessionURL(input, options)
     return self:invokeOperation(input, {
         name = "GetHLSStreamingSessionURL",
-        input_schema = types.GetHLSStreamingSessionURLInput,
-        output_schema = types.GetHLSStreamingSessionURLOutput,
+        input_schema = schemas.GetHLSStreamingSessionURLInput,
+        output_schema = schemas.GetHLSStreamingSessionURLOutput,
         http_method = "POST",
         http_path = "/getHLSStreamingSessionURL",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getImages(input, options)
     return self:invokeOperation(input, {
         name = "GetImages",
-        input_schema = types.GetImagesInput,
-        output_schema = types.GetImagesOutput,
+        input_schema = schemas.GetImagesInput,
+        output_schema = schemas.GetImagesOutput,
         http_method = "POST",
         http_path = "/getImages",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getMediaForFragmentList(input, options)
     return self:invokeOperation(input, {
         name = "GetMediaForFragmentList",
-        input_schema = types.GetMediaForFragmentListInput,
-        output_schema = types.GetMediaForFragmentListOutput,
+        input_schema = schemas.GetMediaForFragmentListInput,
+        output_schema = schemas.GetMediaForFragmentListOutput,
         http_method = "POST",
         http_path = "/getMediaForFragmentList",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:listFragments(input, options)
     return self:invokeOperation(input, {
         name = "ListFragments",
-        input_schema = types.ListFragmentsInput,
-        output_schema = types.ListFragmentsOutput,
+        input_schema = schemas.ListFragmentsInput,
+        output_schema = schemas.ListFragmentsOutput,
         http_method = "POST",
         http_path = "/listFragments",
         effective_auth_schemes = {

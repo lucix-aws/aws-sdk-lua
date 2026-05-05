@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("marketplacediscovery.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("marketplacediscovery.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("marketplacediscovery.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getListing(input, options)
     return self:invokeOperation(input, {
         name = "GetListing",
-        input_schema = types.GetListingInput,
-        output_schema = types.GetListingOutput,
+        input_schema = schemas.GetListingInput,
+        output_schema = schemas.GetListingOutput,
         http_method = "POST",
         http_path = "/2026-02-05/getListing",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:getOffer(input, options)
     return self:invokeOperation(input, {
         name = "GetOffer",
-        input_schema = types.GetOfferInput,
-        output_schema = types.GetOfferOutput,
+        input_schema = schemas.GetOfferInput,
+        output_schema = schemas.GetOfferOutput,
         http_method = "POST",
         http_path = "/2026-02-05/getOffer",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getOfferSet(input, options)
     return self:invokeOperation(input, {
         name = "GetOfferSet",
-        input_schema = types.GetOfferSetInput,
-        output_schema = types.GetOfferSetOutput,
+        input_schema = schemas.GetOfferSetInput,
+        output_schema = schemas.GetOfferSetOutput,
         http_method = "POST",
         http_path = "/2026-02-05/getOfferSet",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getOfferTerms(input, options)
     return self:invokeOperation(input, {
         name = "GetOfferTerms",
-        input_schema = types.GetOfferTermsInput,
-        output_schema = types.GetOfferTermsOutput,
+        input_schema = schemas.GetOfferTermsInput,
+        output_schema = schemas.GetOfferTermsOutput,
         http_method = "POST",
         http_path = "/2026-02-05/getOfferTerms",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getProduct(input, options)
     return self:invokeOperation(input, {
         name = "GetProduct",
-        input_schema = types.GetProductInput,
-        output_schema = types.GetProductOutput,
+        input_schema = schemas.GetProductInput,
+        output_schema = schemas.GetProductOutput,
         http_method = "POST",
         http_path = "/2026-02-05/getProduct",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:listFulfillmentOptions(input, options)
     return self:invokeOperation(input, {
         name = "ListFulfillmentOptions",
-        input_schema = types.ListFulfillmentOptionsInput,
-        output_schema = types.ListFulfillmentOptionsOutput,
+        input_schema = schemas.ListFulfillmentOptionsInput,
+        output_schema = schemas.ListFulfillmentOptionsOutput,
         http_method = "POST",
         http_path = "/2026-02-05/listFulfillmentOptions",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listPurchaseOptions(input, options)
     return self:invokeOperation(input, {
         name = "ListPurchaseOptions",
-        input_schema = types.ListPurchaseOptionsInput,
-        output_schema = types.ListPurchaseOptionsOutput,
+        input_schema = schemas.ListPurchaseOptionsInput,
+        output_schema = schemas.ListPurchaseOptionsOutput,
         http_method = "POST",
         http_path = "/2026-02-05/listPurchaseOptions",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:searchFacets(input, options)
     return self:invokeOperation(input, {
         name = "SearchFacets",
-        input_schema = types.SearchFacetsInput,
-        output_schema = types.SearchFacetsOutput,
+        input_schema = schemas.SearchFacetsInput,
+        output_schema = schemas.SearchFacetsOutput,
         http_method = "POST",
         http_path = "/2026-02-05/searchFacets",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:searchListings(input, options)
     return self:invokeOperation(input, {
         name = "SearchListings",
-        input_schema = types.SearchListingsInput,
-        output_schema = types.SearchListingsOutput,
+        input_schema = schemas.SearchListingsInput,
+        output_schema = schemas.SearchListingsOutput,
         http_method = "POST",
         http_path = "/2026-02-05/searchListings",
         effective_auth_schemes = {

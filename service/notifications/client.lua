@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("notifications.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("notifications.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("notifications.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateChannel(input, options)
     return self:invokeOperation(input, {
         name = "AssociateChannel",
-        input_schema = types.AssociateChannelInput,
-        output_schema = types.AssociateChannelOutput,
+        input_schema = schemas.AssociateChannelInput,
+        output_schema = schemas.AssociateChannelOutput,
         http_method = "POST",
         http_path = "/channels/associate/{arn}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:associateManagedNotificationAccountContact(input, options)
     return self:invokeOperation(input, {
         name = "AssociateManagedNotificationAccountContact",
-        input_schema = types.AssociateManagedNotificationAccountContactInput,
-        output_schema = types.AssociateManagedNotificationAccountContactOutput,
+        input_schema = schemas.AssociateManagedNotificationAccountContactInput,
+        output_schema = schemas.AssociateManagedNotificationAccountContactOutput,
         http_method = "PUT",
         http_path = "/contacts/associate-managed-notification/{contactIdentifier}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:associateManagedNotificationAdditionalChannel(input, options)
     return self:invokeOperation(input, {
         name = "AssociateManagedNotificationAdditionalChannel",
-        input_schema = types.AssociateManagedNotificationAdditionalChannelInput,
-        output_schema = types.AssociateManagedNotificationAdditionalChannelOutput,
+        input_schema = schemas.AssociateManagedNotificationAdditionalChannelInput,
+        output_schema = schemas.AssociateManagedNotificationAdditionalChannelOutput,
         http_method = "PUT",
         http_path = "/channels/associate-managed-notification/{channelArn}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:associateOrganizationalUnit(input, options)
     return self:invokeOperation(input, {
         name = "AssociateOrganizationalUnit",
-        input_schema = types.AssociateOrganizationalUnitInput,
-        output_schema = types.AssociateOrganizationalUnitOutput,
+        input_schema = schemas.AssociateOrganizationalUnitInput,
+        output_schema = schemas.AssociateOrganizationalUnitOutput,
         http_method = "POST",
         http_path = "/organizational-units/associate/{organizationalUnitId}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createEventRule(input, options)
     return self:invokeOperation(input, {
         name = "CreateEventRule",
-        input_schema = types.CreateEventRuleInput,
-        output_schema = types.CreateEventRuleOutput,
+        input_schema = schemas.CreateEventRuleInput,
+        output_schema = schemas.CreateEventRuleOutput,
         http_method = "POST",
         http_path = "/event-rules",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createNotificationConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateNotificationConfiguration",
-        input_schema = types.CreateNotificationConfigurationInput,
-        output_schema = types.CreateNotificationConfigurationOutput,
+        input_schema = schemas.CreateNotificationConfigurationInput,
+        output_schema = schemas.CreateNotificationConfigurationOutput,
         http_method = "POST",
         http_path = "/notification-configurations",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteEventRule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEventRule",
-        input_schema = types.DeleteEventRuleInput,
-        output_schema = types.DeleteEventRuleOutput,
+        input_schema = schemas.DeleteEventRuleInput,
+        output_schema = schemas.DeleteEventRuleOutput,
         http_method = "DELETE",
         http_path = "/event-rules/{arn}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteNotificationConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteNotificationConfiguration",
-        input_schema = types.DeleteNotificationConfigurationInput,
-        output_schema = types.DeleteNotificationConfigurationOutput,
+        input_schema = schemas.DeleteNotificationConfigurationInput,
+        output_schema = schemas.DeleteNotificationConfigurationOutput,
         http_method = "DELETE",
         http_path = "/notification-configurations/{arn}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deregisterNotificationHub(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterNotificationHub",
-        input_schema = types.DeregisterNotificationHubInput,
-        output_schema = types.DeregisterNotificationHubOutput,
+        input_schema = schemas.DeregisterNotificationHubInput,
+        output_schema = schemas.DeregisterNotificationHubOutput,
         http_method = "DELETE",
         http_path = "/notification-hubs/{notificationHubRegion}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:disableNotificationsAccessForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "DisableNotificationsAccessForOrganization",
-        input_schema = types.DisableNotificationsAccessForOrganizationInput,
-        output_schema = types.DisableNotificationsAccessForOrganizationOutput,
+        input_schema = schemas.DisableNotificationsAccessForOrganizationInput,
+        output_schema = schemas.DisableNotificationsAccessForOrganizationOutput,
         http_method = "DELETE",
         http_path = "/organization/access",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:disassociateChannel(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateChannel",
-        input_schema = types.DisassociateChannelInput,
-        output_schema = types.DisassociateChannelOutput,
+        input_schema = schemas.DisassociateChannelInput,
+        output_schema = schemas.DisassociateChannelOutput,
         http_method = "POST",
         http_path = "/channels/disassociate/{arn}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:disassociateManagedNotificationAccountContact(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateManagedNotificationAccountContact",
-        input_schema = types.DisassociateManagedNotificationAccountContactInput,
-        output_schema = types.DisassociateManagedNotificationAccountContactOutput,
+        input_schema = schemas.DisassociateManagedNotificationAccountContactInput,
+        output_schema = schemas.DisassociateManagedNotificationAccountContactOutput,
         http_method = "PUT",
         http_path = "/contacts/disassociate-managed-notification/{contactIdentifier}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:disassociateManagedNotificationAdditionalChannel(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateManagedNotificationAdditionalChannel",
-        input_schema = types.DisassociateManagedNotificationAdditionalChannelInput,
-        output_schema = types.DisassociateManagedNotificationAdditionalChannelOutput,
+        input_schema = schemas.DisassociateManagedNotificationAdditionalChannelInput,
+        output_schema = schemas.DisassociateManagedNotificationAdditionalChannelOutput,
         http_method = "PUT",
         http_path = "/channels/disassociate-managed-notification/{channelArn}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:disassociateOrganizationalUnit(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateOrganizationalUnit",
-        input_schema = types.DisassociateOrganizationalUnitInput,
-        output_schema = types.DisassociateOrganizationalUnitOutput,
+        input_schema = schemas.DisassociateOrganizationalUnitInput,
+        output_schema = schemas.DisassociateOrganizationalUnitOutput,
         http_method = "POST",
         http_path = "/organizational-units/disassociate/{organizationalUnitId}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:enableNotificationsAccessForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "EnableNotificationsAccessForOrganization",
-        input_schema = types.EnableNotificationsAccessForOrganizationInput,
-        output_schema = types.EnableNotificationsAccessForOrganizationOutput,
+        input_schema = schemas.EnableNotificationsAccessForOrganizationInput,
+        output_schema = schemas.EnableNotificationsAccessForOrganizationOutput,
         http_method = "POST",
         http_path = "/organization/access",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getEventRule(input, options)
     return self:invokeOperation(input, {
         name = "GetEventRule",
-        input_schema = types.GetEventRuleInput,
-        output_schema = types.GetEventRuleOutput,
+        input_schema = schemas.GetEventRuleInput,
+        output_schema = schemas.GetEventRuleOutput,
         http_method = "GET",
         http_path = "/event-rules/{arn}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getManagedNotificationChildEvent(input, options)
     return self:invokeOperation(input, {
         name = "GetManagedNotificationChildEvent",
-        input_schema = types.GetManagedNotificationChildEventInput,
-        output_schema = types.GetManagedNotificationChildEventOutput,
+        input_schema = schemas.GetManagedNotificationChildEventInput,
+        output_schema = schemas.GetManagedNotificationChildEventOutput,
         http_method = "GET",
         http_path = "/managed-notification-child-events/{arn}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getManagedNotificationConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetManagedNotificationConfiguration",
-        input_schema = types.GetManagedNotificationConfigurationInput,
-        output_schema = types.GetManagedNotificationConfigurationOutput,
+        input_schema = schemas.GetManagedNotificationConfigurationInput,
+        output_schema = schemas.GetManagedNotificationConfigurationOutput,
         http_method = "GET",
         http_path = "/managed-notification-configurations/{arn}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getManagedNotificationEvent(input, options)
     return self:invokeOperation(input, {
         name = "GetManagedNotificationEvent",
-        input_schema = types.GetManagedNotificationEventInput,
-        output_schema = types.GetManagedNotificationEventOutput,
+        input_schema = schemas.GetManagedNotificationEventInput,
+        output_schema = schemas.GetManagedNotificationEventOutput,
         http_method = "GET",
         http_path = "/managed-notification-events/{arn}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getNotificationConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetNotificationConfiguration",
-        input_schema = types.GetNotificationConfigurationInput,
-        output_schema = types.GetNotificationConfigurationOutput,
+        input_schema = schemas.GetNotificationConfigurationInput,
+        output_schema = schemas.GetNotificationConfigurationOutput,
         http_method = "GET",
         http_path = "/notification-configurations/{arn}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:getNotificationEvent(input, options)
     return self:invokeOperation(input, {
         name = "GetNotificationEvent",
-        input_schema = types.GetNotificationEventInput,
-        output_schema = types.GetNotificationEventOutput,
+        input_schema = schemas.GetNotificationEventInput,
+        output_schema = schemas.GetNotificationEventOutput,
         http_method = "GET",
         http_path = "/notification-events/{arn}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:getNotificationsAccessForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "GetNotificationsAccessForOrganization",
-        input_schema = types.GetNotificationsAccessForOrganizationInput,
-        output_schema = types.GetNotificationsAccessForOrganizationOutput,
+        input_schema = schemas.GetNotificationsAccessForOrganizationInput,
+        output_schema = schemas.GetNotificationsAccessForOrganizationOutput,
         http_method = "GET",
         http_path = "/organization/access",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listChannels(input, options)
     return self:invokeOperation(input, {
         name = "ListChannels",
-        input_schema = types.ListChannelsInput,
-        output_schema = types.ListChannelsOutput,
+        input_schema = schemas.ListChannelsInput,
+        output_schema = schemas.ListChannelsOutput,
         http_method = "GET",
         http_path = "/channels",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listEventRules(input, options)
     return self:invokeOperation(input, {
         name = "ListEventRules",
-        input_schema = types.ListEventRulesInput,
-        output_schema = types.ListEventRulesOutput,
+        input_schema = schemas.ListEventRulesInput,
+        output_schema = schemas.ListEventRulesOutput,
         http_method = "GET",
         http_path = "/event-rules",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listManagedNotificationChannelAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListManagedNotificationChannelAssociations",
-        input_schema = types.ListManagedNotificationChannelAssociationsInput,
-        output_schema = types.ListManagedNotificationChannelAssociationsOutput,
+        input_schema = schemas.ListManagedNotificationChannelAssociationsInput,
+        output_schema = schemas.ListManagedNotificationChannelAssociationsOutput,
         http_method = "GET",
         http_path = "/channels/list-managed-notification-channel-associations",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listManagedNotificationChildEvents(input, options)
     return self:invokeOperation(input, {
         name = "ListManagedNotificationChildEvents",
-        input_schema = types.ListManagedNotificationChildEventsInput,
-        output_schema = types.ListManagedNotificationChildEventsOutput,
+        input_schema = schemas.ListManagedNotificationChildEventsInput,
+        output_schema = schemas.ListManagedNotificationChildEventsOutput,
         http_method = "GET",
         http_path = "/list-managed-notification-child-events/{aggregateManagedNotificationEventArn}",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listManagedNotificationConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListManagedNotificationConfigurations",
-        input_schema = types.ListManagedNotificationConfigurationsInput,
-        output_schema = types.ListManagedNotificationConfigurationsOutput,
+        input_schema = schemas.ListManagedNotificationConfigurationsInput,
+        output_schema = schemas.ListManagedNotificationConfigurationsOutput,
         http_method = "GET",
         http_path = "/managed-notification-configurations",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listManagedNotificationEvents(input, options)
     return self:invokeOperation(input, {
         name = "ListManagedNotificationEvents",
-        input_schema = types.ListManagedNotificationEventsInput,
-        output_schema = types.ListManagedNotificationEventsOutput,
+        input_schema = schemas.ListManagedNotificationEventsInput,
+        output_schema = schemas.ListManagedNotificationEventsOutput,
         http_method = "GET",
         http_path = "/managed-notification-events",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listMemberAccounts(input, options)
     return self:invokeOperation(input, {
         name = "ListMemberAccounts",
-        input_schema = types.ListMemberAccountsInput,
-        output_schema = types.ListMemberAccountsOutput,
+        input_schema = schemas.ListMemberAccountsInput,
+        output_schema = schemas.ListMemberAccountsOutput,
         http_method = "GET",
         http_path = "/list-member-accounts",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:listNotificationConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListNotificationConfigurations",
-        input_schema = types.ListNotificationConfigurationsInput,
-        output_schema = types.ListNotificationConfigurationsOutput,
+        input_schema = schemas.ListNotificationConfigurationsInput,
+        output_schema = schemas.ListNotificationConfigurationsOutput,
         http_method = "GET",
         http_path = "/notification-configurations",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:listNotificationEvents(input, options)
     return self:invokeOperation(input, {
         name = "ListNotificationEvents",
-        input_schema = types.ListNotificationEventsInput,
-        output_schema = types.ListNotificationEventsOutput,
+        input_schema = schemas.ListNotificationEventsInput,
+        output_schema = schemas.ListNotificationEventsOutput,
         http_method = "GET",
         http_path = "/notification-events",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:listNotificationHubs(input, options)
     return self:invokeOperation(input, {
         name = "ListNotificationHubs",
-        input_schema = types.ListNotificationHubsInput,
-        output_schema = types.ListNotificationHubsOutput,
+        input_schema = schemas.ListNotificationHubsInput,
+        output_schema = schemas.ListNotificationHubsOutput,
         http_method = "GET",
         http_path = "/notification-hubs",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:listOrganizationalUnits(input, options)
     return self:invokeOperation(input, {
         name = "ListOrganizationalUnits",
-        input_schema = types.ListOrganizationalUnitsInput,
-        output_schema = types.ListOrganizationalUnitsOutput,
+        input_schema = schemas.ListOrganizationalUnitsInput,
+        output_schema = schemas.ListOrganizationalUnitsOutput,
         http_method = "GET",
         http_path = "/organizational-units",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{arn}",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:registerNotificationHub(input, options)
     return self:invokeOperation(input, {
         name = "RegisterNotificationHub",
-        input_schema = types.RegisterNotificationHubInput,
-        output_schema = types.RegisterNotificationHubOutput,
+        input_schema = schemas.RegisterNotificationHubInput,
+        output_schema = schemas.RegisterNotificationHubOutput,
         http_method = "POST",
         http_path = "/notification-hubs",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{arn}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{arn}",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:updateEventRule(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEventRule",
-        input_schema = types.UpdateEventRuleInput,
-        output_schema = types.UpdateEventRuleOutput,
+        input_schema = schemas.UpdateEventRuleInput,
+        output_schema = schemas.UpdateEventRuleOutput,
         http_method = "PUT",
         http_path = "/event-rules/{arn}",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:updateNotificationConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateNotificationConfiguration",
-        input_schema = types.UpdateNotificationConfigurationInput,
-        output_schema = types.UpdateNotificationConfigurationOutput,
+        input_schema = schemas.UpdateNotificationConfigurationInput,
+        output_schema = schemas.UpdateNotificationConfigurationOutput,
         http_method = "PUT",
         http_path = "/notification-configurations/{arn}",
         effective_auth_schemes = {

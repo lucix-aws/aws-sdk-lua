@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("licensemanagerlinuxsubscriptions.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("licensemanagerlinuxsubscriptions.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("licensemanagerlinuxsubscriptions.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:deregisterSubscriptionProvider(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterSubscriptionProvider",
-        input_schema = types.DeregisterSubscriptionProviderInput,
-        output_schema = types.DeregisterSubscriptionProviderOutput,
+        input_schema = schemas.DeregisterSubscriptionProviderInput,
+        output_schema = schemas.DeregisterSubscriptionProviderOutput,
         http_method = "POST",
         http_path = "/subscription/DeregisterSubscriptionProvider",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:getRegisteredSubscriptionProvider(input, options)
     return self:invokeOperation(input, {
         name = "GetRegisteredSubscriptionProvider",
-        input_schema = types.GetRegisteredSubscriptionProviderInput,
-        output_schema = types.GetRegisteredSubscriptionProviderOutput,
+        input_schema = schemas.GetRegisteredSubscriptionProviderInput,
+        output_schema = schemas.GetRegisteredSubscriptionProviderOutput,
         http_method = "POST",
         http_path = "/subscription/GetRegisteredSubscriptionProvider",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getServiceSettings(input, options)
     return self:invokeOperation(input, {
         name = "GetServiceSettings",
-        input_schema = types.GetServiceSettingsInput,
-        output_schema = types.GetServiceSettingsOutput,
+        input_schema = schemas.GetServiceSettingsInput,
+        output_schema = schemas.GetServiceSettingsOutput,
         http_method = "POST",
         http_path = "/subscription/GetServiceSettings",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:listLinuxSubscriptionInstances(input, options)
     return self:invokeOperation(input, {
         name = "ListLinuxSubscriptionInstances",
-        input_schema = types.ListLinuxSubscriptionInstancesInput,
-        output_schema = types.ListLinuxSubscriptionInstancesOutput,
+        input_schema = schemas.ListLinuxSubscriptionInstancesInput,
+        output_schema = schemas.ListLinuxSubscriptionInstancesOutput,
         http_method = "POST",
         http_path = "/subscription/ListLinuxSubscriptionInstances",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:listLinuxSubscriptions(input, options)
     return self:invokeOperation(input, {
         name = "ListLinuxSubscriptions",
-        input_schema = types.ListLinuxSubscriptionsInput,
-        output_schema = types.ListLinuxSubscriptionsOutput,
+        input_schema = schemas.ListLinuxSubscriptionsInput,
+        output_schema = schemas.ListLinuxSubscriptionsOutput,
         http_method = "POST",
         http_path = "/subscription/ListLinuxSubscriptions",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:listRegisteredSubscriptionProviders(input, options)
     return self:invokeOperation(input, {
         name = "ListRegisteredSubscriptionProviders",
-        input_schema = types.ListRegisteredSubscriptionProvidersInput,
-        output_schema = types.ListRegisteredSubscriptionProvidersOutput,
+        input_schema = schemas.ListRegisteredSubscriptionProvidersInput,
+        output_schema = schemas.ListRegisteredSubscriptionProvidersOutput,
         http_method = "POST",
         http_path = "/subscription/ListRegisteredSubscriptionProviders",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:registerSubscriptionProvider(input, options)
     return self:invokeOperation(input, {
         name = "RegisterSubscriptionProvider",
-        input_schema = types.RegisterSubscriptionProviderInput,
-        output_schema = types.RegisterSubscriptionProviderOutput,
+        input_schema = schemas.RegisterSubscriptionProviderInput,
+        output_schema = schemas.RegisterSubscriptionProviderOutput,
         http_method = "POST",
         http_path = "/subscription/RegisterSubscriptionProvider",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "PUT",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:updateServiceSettings(input, options)
     return self:invokeOperation(input, {
         name = "UpdateServiceSettings",
-        input_schema = types.UpdateServiceSettingsInput,
-        output_schema = types.UpdateServiceSettingsOutput,
+        input_schema = schemas.UpdateServiceSettingsInput,
+        output_schema = schemas.UpdateServiceSettingsOutput,
         http_method = "POST",
         http_path = "/subscription/UpdateServiceSettings",
         effective_auth_schemes = {

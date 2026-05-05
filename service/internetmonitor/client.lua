@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("internetmonitor.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("internetmonitor.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("internetmonitor.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createMonitor(input, options)
     return self:invokeOperation(input, {
         name = "CreateMonitor",
-        input_schema = types.CreateMonitorInput,
-        output_schema = types.CreateMonitorOutput,
+        input_schema = schemas.CreateMonitorInput,
+        output_schema = schemas.CreateMonitorOutput,
         http_method = "POST",
         http_path = "/v20210603/Monitors",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteMonitor(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMonitor",
-        input_schema = types.DeleteMonitorInput,
-        output_schema = types.DeleteMonitorOutput,
+        input_schema = schemas.DeleteMonitorInput,
+        output_schema = schemas.DeleteMonitorOutput,
         http_method = "DELETE",
         http_path = "/v20210603/Monitors/{MonitorName}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getHealthEvent(input, options)
     return self:invokeOperation(input, {
         name = "GetHealthEvent",
-        input_schema = types.GetHealthEventInput,
-        output_schema = types.GetHealthEventOutput,
+        input_schema = schemas.GetHealthEventInput,
+        output_schema = schemas.GetHealthEventOutput,
         http_method = "GET",
         http_path = "/v20210603/Monitors/{MonitorName}/HealthEvents/{EventId}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getInternetEvent(input, options)
     return self:invokeOperation(input, {
         name = "GetInternetEvent",
-        input_schema = types.GetInternetEventInput,
-        output_schema = types.GetInternetEventOutput,
+        input_schema = schemas.GetInternetEventInput,
+        output_schema = schemas.GetInternetEventOutput,
         http_method = "GET",
         http_path = "/v20210603/InternetEvents/{EventId}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getMonitor(input, options)
     return self:invokeOperation(input, {
         name = "GetMonitor",
-        input_schema = types.GetMonitorInput,
-        output_schema = types.GetMonitorOutput,
+        input_schema = schemas.GetMonitorInput,
+        output_schema = schemas.GetMonitorOutput,
         http_method = "GET",
         http_path = "/v20210603/Monitors/{MonitorName}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getQueryResults(input, options)
     return self:invokeOperation(input, {
         name = "GetQueryResults",
-        input_schema = types.GetQueryResultsInput,
-        output_schema = types.GetQueryResultsOutput,
+        input_schema = schemas.GetQueryResultsInput,
+        output_schema = schemas.GetQueryResultsOutput,
         http_method = "GET",
         http_path = "/v20210603/Monitors/{MonitorName}/Queries/{QueryId}/Results",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getQueryStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetQueryStatus",
-        input_schema = types.GetQueryStatusInput,
-        output_schema = types.GetQueryStatusOutput,
+        input_schema = schemas.GetQueryStatusInput,
+        output_schema = schemas.GetQueryStatusOutput,
         http_method = "GET",
         http_path = "/v20210603/Monitors/{MonitorName}/Queries/{QueryId}/Status",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listHealthEvents(input, options)
     return self:invokeOperation(input, {
         name = "ListHealthEvents",
-        input_schema = types.ListHealthEventsInput,
-        output_schema = types.ListHealthEventsOutput,
+        input_schema = schemas.ListHealthEventsInput,
+        output_schema = schemas.ListHealthEventsOutput,
         http_method = "GET",
         http_path = "/v20210603/Monitors/{MonitorName}/HealthEvents",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listInternetEvents(input, options)
     return self:invokeOperation(input, {
         name = "ListInternetEvents",
-        input_schema = types.ListInternetEventsInput,
-        output_schema = types.ListInternetEventsOutput,
+        input_schema = schemas.ListInternetEventsInput,
+        output_schema = schemas.ListInternetEventsOutput,
         http_method = "GET",
         http_path = "/v20210603/InternetEvents",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listMonitors(input, options)
     return self:invokeOperation(input, {
         name = "ListMonitors",
-        input_schema = types.ListMonitorsInput,
-        output_schema = types.ListMonitorsOutput,
+        input_schema = schemas.ListMonitorsInput,
+        output_schema = schemas.ListMonitorsOutput,
         http_method = "GET",
         http_path = "/v20210603/Monitors",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:startQuery(input, options)
     return self:invokeOperation(input, {
         name = "StartQuery",
-        input_schema = types.StartQueryInput,
-        output_schema = types.StartQueryOutput,
+        input_schema = schemas.StartQueryInput,
+        output_schema = schemas.StartQueryOutput,
         http_method = "POST",
         http_path = "/v20210603/Monitors/{MonitorName}/Queries",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:stopQuery(input, options)
     return self:invokeOperation(input, {
         name = "StopQuery",
-        input_schema = types.StopQueryInput,
-        output_schema = types.StopQueryOutput,
+        input_schema = schemas.StopQueryInput,
+        output_schema = schemas.StopQueryOutput,
         http_method = "DELETE",
         http_path = "/v20210603/Monitors/{MonitorName}/Queries/{QueryId}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:updateMonitor(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMonitor",
-        input_schema = types.UpdateMonitorInput,
-        output_schema = types.UpdateMonitorOutput,
+        input_schema = schemas.UpdateMonitorInput,
+        output_schema = schemas.UpdateMonitorOutput,
         http_method = "PATCH",
         http_path = "/v20210603/Monitors/{MonitorName}",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("fis.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("fis.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("fis.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createExperimentTemplate(input, options)
     return self:invokeOperation(input, {
         name = "CreateExperimentTemplate",
-        input_schema = types.CreateExperimentTemplateInput,
-        output_schema = types.CreateExperimentTemplateOutput,
+        input_schema = schemas.CreateExperimentTemplateInput,
+        output_schema = schemas.CreateExperimentTemplateOutput,
         http_method = "POST",
         http_path = "/experimentTemplates",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createTargetAccountConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateTargetAccountConfiguration",
-        input_schema = types.CreateTargetAccountConfigurationInput,
-        output_schema = types.CreateTargetAccountConfigurationOutput,
+        input_schema = schemas.CreateTargetAccountConfigurationInput,
+        output_schema = schemas.CreateTargetAccountConfigurationOutput,
         http_method = "POST",
         http_path = "/experimentTemplates/{experimentTemplateId}/targetAccountConfigurations/{accountId}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteExperimentTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DeleteExperimentTemplate",
-        input_schema = types.DeleteExperimentTemplateInput,
-        output_schema = types.DeleteExperimentTemplateOutput,
+        input_schema = schemas.DeleteExperimentTemplateInput,
+        output_schema = schemas.DeleteExperimentTemplateOutput,
         http_method = "DELETE",
         http_path = "/experimentTemplates/{id}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteTargetAccountConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTargetAccountConfiguration",
-        input_schema = types.DeleteTargetAccountConfigurationInput,
-        output_schema = types.DeleteTargetAccountConfigurationOutput,
+        input_schema = schemas.DeleteTargetAccountConfigurationInput,
+        output_schema = schemas.DeleteTargetAccountConfigurationOutput,
         http_method = "DELETE",
         http_path = "/experimentTemplates/{experimentTemplateId}/targetAccountConfigurations/{accountId}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getAction(input, options)
     return self:invokeOperation(input, {
         name = "GetAction",
-        input_schema = types.GetActionInput,
-        output_schema = types.GetActionOutput,
+        input_schema = schemas.GetActionInput,
+        output_schema = schemas.GetActionOutput,
         http_method = "GET",
         http_path = "/actions/{id}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getExperiment(input, options)
     return self:invokeOperation(input, {
         name = "GetExperiment",
-        input_schema = types.GetExperimentInput,
-        output_schema = types.GetExperimentOutput,
+        input_schema = schemas.GetExperimentInput,
+        output_schema = schemas.GetExperimentOutput,
         http_method = "GET",
         http_path = "/experiments/{id}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getExperimentTargetAccountConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetExperimentTargetAccountConfiguration",
-        input_schema = types.GetExperimentTargetAccountConfigurationInput,
-        output_schema = types.GetExperimentTargetAccountConfigurationOutput,
+        input_schema = schemas.GetExperimentTargetAccountConfigurationInput,
+        output_schema = schemas.GetExperimentTargetAccountConfigurationOutput,
         http_method = "GET",
         http_path = "/experiments/{experimentId}/targetAccountConfigurations/{accountId}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getExperimentTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetExperimentTemplate",
-        input_schema = types.GetExperimentTemplateInput,
-        output_schema = types.GetExperimentTemplateOutput,
+        input_schema = schemas.GetExperimentTemplateInput,
+        output_schema = schemas.GetExperimentTemplateOutput,
         http_method = "GET",
         http_path = "/experimentTemplates/{id}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getSafetyLever(input, options)
     return self:invokeOperation(input, {
         name = "GetSafetyLever",
-        input_schema = types.GetSafetyLeverInput,
-        output_schema = types.GetSafetyLeverOutput,
+        input_schema = schemas.GetSafetyLeverInput,
+        output_schema = schemas.GetSafetyLeverOutput,
         http_method = "GET",
         http_path = "/safetyLevers/{id}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getTargetAccountConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetTargetAccountConfiguration",
-        input_schema = types.GetTargetAccountConfigurationInput,
-        output_schema = types.GetTargetAccountConfigurationOutput,
+        input_schema = schemas.GetTargetAccountConfigurationInput,
+        output_schema = schemas.GetTargetAccountConfigurationOutput,
         http_method = "GET",
         http_path = "/experimentTemplates/{experimentTemplateId}/targetAccountConfigurations/{accountId}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getTargetResourceType(input, options)
     return self:invokeOperation(input, {
         name = "GetTargetResourceType",
-        input_schema = types.GetTargetResourceTypeInput,
-        output_schema = types.GetTargetResourceTypeOutput,
+        input_schema = schemas.GetTargetResourceTypeInput,
+        output_schema = schemas.GetTargetResourceTypeOutput,
         http_method = "GET",
         http_path = "/targetResourceTypes/{resourceType}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listActions(input, options)
     return self:invokeOperation(input, {
         name = "ListActions",
-        input_schema = types.ListActionsInput,
-        output_schema = types.ListActionsOutput,
+        input_schema = schemas.ListActionsInput,
+        output_schema = schemas.ListActionsOutput,
         http_method = "GET",
         http_path = "/actions",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listExperimentResolvedTargets(input, options)
     return self:invokeOperation(input, {
         name = "ListExperimentResolvedTargets",
-        input_schema = types.ListExperimentResolvedTargetsInput,
-        output_schema = types.ListExperimentResolvedTargetsOutput,
+        input_schema = schemas.ListExperimentResolvedTargetsInput,
+        output_schema = schemas.ListExperimentResolvedTargetsOutput,
         http_method = "GET",
         http_path = "/experiments/{experimentId}/resolvedTargets",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listExperiments(input, options)
     return self:invokeOperation(input, {
         name = "ListExperiments",
-        input_schema = types.ListExperimentsInput,
-        output_schema = types.ListExperimentsOutput,
+        input_schema = schemas.ListExperimentsInput,
+        output_schema = schemas.ListExperimentsOutput,
         http_method = "GET",
         http_path = "/experiments",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listExperimentTargetAccountConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListExperimentTargetAccountConfigurations",
-        input_schema = types.ListExperimentTargetAccountConfigurationsInput,
-        output_schema = types.ListExperimentTargetAccountConfigurationsOutput,
+        input_schema = schemas.ListExperimentTargetAccountConfigurationsInput,
+        output_schema = schemas.ListExperimentTargetAccountConfigurationsOutput,
         http_method = "GET",
         http_path = "/experiments/{experimentId}/targetAccountConfigurations",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listExperimentTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListExperimentTemplates",
-        input_schema = types.ListExperimentTemplatesInput,
-        output_schema = types.ListExperimentTemplatesOutput,
+        input_schema = schemas.ListExperimentTemplatesInput,
+        output_schema = schemas.ListExperimentTemplatesOutput,
         http_method = "GET",
         http_path = "/experimentTemplates",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listTargetAccountConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListTargetAccountConfigurations",
-        input_schema = types.ListTargetAccountConfigurationsInput,
-        output_schema = types.ListTargetAccountConfigurationsOutput,
+        input_schema = schemas.ListTargetAccountConfigurationsInput,
+        output_schema = schemas.ListTargetAccountConfigurationsOutput,
         http_method = "GET",
         http_path = "/experimentTemplates/{experimentTemplateId}/targetAccountConfigurations",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listTargetResourceTypes(input, options)
     return self:invokeOperation(input, {
         name = "ListTargetResourceTypes",
-        input_schema = types.ListTargetResourceTypesInput,
-        output_schema = types.ListTargetResourceTypesOutput,
+        input_schema = schemas.ListTargetResourceTypesInput,
+        output_schema = schemas.ListTargetResourceTypesOutput,
         http_method = "GET",
         http_path = "/targetResourceTypes",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:startExperiment(input, options)
     return self:invokeOperation(input, {
         name = "StartExperiment",
-        input_schema = types.StartExperimentInput,
-        output_schema = types.StartExperimentOutput,
+        input_schema = schemas.StartExperimentInput,
+        output_schema = schemas.StartExperimentOutput,
         http_method = "POST",
         http_path = "/experiments",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:stopExperiment(input, options)
     return self:invokeOperation(input, {
         name = "StopExperiment",
-        input_schema = types.StopExperimentInput,
-        output_schema = types.StopExperimentOutput,
+        input_schema = schemas.StopExperimentInput,
+        output_schema = schemas.StopExperimentOutput,
         http_method = "DELETE",
         http_path = "/experiments/{id}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:updateExperimentTemplate(input, options)
     return self:invokeOperation(input, {
         name = "UpdateExperimentTemplate",
-        input_schema = types.UpdateExperimentTemplateInput,
-        output_schema = types.UpdateExperimentTemplateOutput,
+        input_schema = schemas.UpdateExperimentTemplateInput,
+        output_schema = schemas.UpdateExperimentTemplateOutput,
         http_method = "PATCH",
         http_path = "/experimentTemplates/{id}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:updateSafetyLeverState(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSafetyLeverState",
-        input_schema = types.UpdateSafetyLeverStateOperationInput,
-        output_schema = types.UpdateSafetyLeverStateOutput,
+        input_schema = schemas.UpdateSafetyLeverStateOperationInput,
+        output_schema = schemas.UpdateSafetyLeverStateOutput,
         http_method = "PATCH",
         http_path = "/safetyLevers/{id}/state",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:updateTargetAccountConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTargetAccountConfiguration",
-        input_schema = types.UpdateTargetAccountConfigurationInput,
-        output_schema = types.UpdateTargetAccountConfigurationOutput,
+        input_schema = schemas.UpdateTargetAccountConfigurationInput,
+        output_schema = schemas.UpdateTargetAccountConfigurationOutput,
         http_method = "PATCH",
         http_path = "/experimentTemplates/{experimentTemplateId}/targetAccountConfigurations/{accountId}",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("ram.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("ram.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("ram.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptResourceShareInvitation(input, options)
     return self:invokeOperation(input, {
         name = "AcceptResourceShareInvitation",
-        input_schema = types.AcceptResourceShareInvitationInput,
-        output_schema = types.AcceptResourceShareInvitationOutput,
+        input_schema = schemas.AcceptResourceShareInvitationInput,
+        output_schema = schemas.AcceptResourceShareInvitationOutput,
         http_method = "POST",
         http_path = "/acceptresourceshareinvitation",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:associateResourceShare(input, options)
     return self:invokeOperation(input, {
         name = "AssociateResourceShare",
-        input_schema = types.AssociateResourceShareInput,
-        output_schema = types.AssociateResourceShareOutput,
+        input_schema = schemas.AssociateResourceShareInput,
+        output_schema = schemas.AssociateResourceShareOutput,
         http_method = "POST",
         http_path = "/associateresourceshare",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:associateResourceSharePermission(input, options)
     return self:invokeOperation(input, {
         name = "AssociateResourceSharePermission",
-        input_schema = types.AssociateResourceSharePermissionInput,
-        output_schema = types.AssociateResourceSharePermissionOutput,
+        input_schema = schemas.AssociateResourceSharePermissionInput,
+        output_schema = schemas.AssociateResourceSharePermissionOutput,
         http_method = "POST",
         http_path = "/associateresourcesharepermission",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createPermission(input, options)
     return self:invokeOperation(input, {
         name = "CreatePermission",
-        input_schema = types.CreatePermissionInput,
-        output_schema = types.CreatePermissionOutput,
+        input_schema = schemas.CreatePermissionInput,
+        output_schema = schemas.CreatePermissionOutput,
         http_method = "POST",
         http_path = "/createpermission",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createPermissionVersion(input, options)
     return self:invokeOperation(input, {
         name = "CreatePermissionVersion",
-        input_schema = types.CreatePermissionVersionInput,
-        output_schema = types.CreatePermissionVersionOutput,
+        input_schema = schemas.CreatePermissionVersionInput,
+        output_schema = schemas.CreatePermissionVersionOutput,
         http_method = "POST",
         http_path = "/createpermissionversion",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createResourceShare(input, options)
     return self:invokeOperation(input, {
         name = "CreateResourceShare",
-        input_schema = types.CreateResourceShareInput,
-        output_schema = types.CreateResourceShareOutput,
+        input_schema = schemas.CreateResourceShareInput,
+        output_schema = schemas.CreateResourceShareOutput,
         http_method = "POST",
         http_path = "/createresourceshare",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deletePermission(input, options)
     return self:invokeOperation(input, {
         name = "DeletePermission",
-        input_schema = types.DeletePermissionInput,
-        output_schema = types.DeletePermissionOutput,
+        input_schema = schemas.DeletePermissionInput,
+        output_schema = schemas.DeletePermissionOutput,
         http_method = "DELETE",
         http_path = "/deletepermission",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deletePermissionVersion(input, options)
     return self:invokeOperation(input, {
         name = "DeletePermissionVersion",
-        input_schema = types.DeletePermissionVersionInput,
-        output_schema = types.DeletePermissionVersionOutput,
+        input_schema = schemas.DeletePermissionVersionInput,
+        output_schema = schemas.DeletePermissionVersionOutput,
         http_method = "DELETE",
         http_path = "/deletepermissionversion",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteResourceShare(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourceShare",
-        input_schema = types.DeleteResourceShareInput,
-        output_schema = types.DeleteResourceShareOutput,
+        input_schema = schemas.DeleteResourceShareInput,
+        output_schema = schemas.DeleteResourceShareOutput,
         http_method = "DELETE",
         http_path = "/deleteresourceshare",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:disassociateResourceShare(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateResourceShare",
-        input_schema = types.DisassociateResourceShareInput,
-        output_schema = types.DisassociateResourceShareOutput,
+        input_schema = schemas.DisassociateResourceShareInput,
+        output_schema = schemas.DisassociateResourceShareOutput,
         http_method = "POST",
         http_path = "/disassociateresourceshare",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:disassociateResourceSharePermission(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateResourceSharePermission",
-        input_schema = types.DisassociateResourceSharePermissionInput,
-        output_schema = types.DisassociateResourceSharePermissionOutput,
+        input_schema = schemas.DisassociateResourceSharePermissionInput,
+        output_schema = schemas.DisassociateResourceSharePermissionOutput,
         http_method = "POST",
         http_path = "/disassociateresourcesharepermission",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:enableSharingWithAwsOrganization(input, options)
     return self:invokeOperation(input, {
         name = "EnableSharingWithAwsOrganization",
-        input_schema = types.EnableSharingWithAwsOrganizationInput,
-        output_schema = types.EnableSharingWithAwsOrganizationOutput,
+        input_schema = schemas.EnableSharingWithAwsOrganizationInput,
+        output_schema = schemas.EnableSharingWithAwsOrganizationOutput,
         http_method = "POST",
         http_path = "/enablesharingwithawsorganization",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getPermission(input, options)
     return self:invokeOperation(input, {
         name = "GetPermission",
-        input_schema = types.GetPermissionInput,
-        output_schema = types.GetPermissionOutput,
+        input_schema = schemas.GetPermissionInput,
+        output_schema = schemas.GetPermissionOutput,
         http_method = "POST",
         http_path = "/getpermission",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getResourcePolicies(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcePolicies",
-        input_schema = types.GetResourcePoliciesInput,
-        output_schema = types.GetResourcePoliciesOutput,
+        input_schema = schemas.GetResourcePoliciesInput,
+        output_schema = schemas.GetResourcePoliciesOutput,
         http_method = "POST",
         http_path = "/getresourcepolicies",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getResourceShareAssociations(input, options)
     return self:invokeOperation(input, {
         name = "GetResourceShareAssociations",
-        input_schema = types.GetResourceShareAssociationsInput,
-        output_schema = types.GetResourceShareAssociationsOutput,
+        input_schema = schemas.GetResourceShareAssociationsInput,
+        output_schema = schemas.GetResourceShareAssociationsOutput,
         http_method = "POST",
         http_path = "/getresourceshareassociations",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getResourceShareInvitations(input, options)
     return self:invokeOperation(input, {
         name = "GetResourceShareInvitations",
-        input_schema = types.GetResourceShareInvitationsInput,
-        output_schema = types.GetResourceShareInvitationsOutput,
+        input_schema = schemas.GetResourceShareInvitationsInput,
+        output_schema = schemas.GetResourceShareInvitationsOutput,
         http_method = "POST",
         http_path = "/getresourceshareinvitations",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getResourceShares(input, options)
     return self:invokeOperation(input, {
         name = "GetResourceShares",
-        input_schema = types.GetResourceSharesInput,
-        output_schema = types.GetResourceSharesOutput,
+        input_schema = schemas.GetResourceSharesInput,
+        output_schema = schemas.GetResourceSharesOutput,
         http_method = "POST",
         http_path = "/getresourceshares",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listPendingInvitationResources(input, options)
     return self:invokeOperation(input, {
         name = "ListPendingInvitationResources",
-        input_schema = types.ListPendingInvitationResourcesInput,
-        output_schema = types.ListPendingInvitationResourcesOutput,
+        input_schema = schemas.ListPendingInvitationResourcesInput,
+        output_schema = schemas.ListPendingInvitationResourcesOutput,
         http_method = "POST",
         http_path = "/listpendinginvitationresources",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listPermissionAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListPermissionAssociations",
-        input_schema = types.ListPermissionAssociationsInput,
-        output_schema = types.ListPermissionAssociationsOutput,
+        input_schema = schemas.ListPermissionAssociationsInput,
+        output_schema = schemas.ListPermissionAssociationsOutput,
         http_method = "POST",
         http_path = "/listpermissionassociations",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listPermissions(input, options)
     return self:invokeOperation(input, {
         name = "ListPermissions",
-        input_schema = types.ListPermissionsInput,
-        output_schema = types.ListPermissionsOutput,
+        input_schema = schemas.ListPermissionsInput,
+        output_schema = schemas.ListPermissionsOutput,
         http_method = "POST",
         http_path = "/listpermissions",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listPermissionVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListPermissionVersions",
-        input_schema = types.ListPermissionVersionsInput,
-        output_schema = types.ListPermissionVersionsOutput,
+        input_schema = schemas.ListPermissionVersionsInput,
+        output_schema = schemas.ListPermissionVersionsOutput,
         http_method = "POST",
         http_path = "/listpermissionversions",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listPrincipals(input, options)
     return self:invokeOperation(input, {
         name = "ListPrincipals",
-        input_schema = types.ListPrincipalsInput,
-        output_schema = types.ListPrincipalsOutput,
+        input_schema = schemas.ListPrincipalsInput,
+        output_schema = schemas.ListPrincipalsOutput,
         http_method = "POST",
         http_path = "/listprincipals",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listReplacePermissionAssociationsWork(input, options)
     return self:invokeOperation(input, {
         name = "ListReplacePermissionAssociationsWork",
-        input_schema = types.ListReplacePermissionAssociationsWorkInput,
-        output_schema = types.ListReplacePermissionAssociationsWorkOutput,
+        input_schema = schemas.ListReplacePermissionAssociationsWorkInput,
+        output_schema = schemas.ListReplacePermissionAssociationsWorkOutput,
         http_method = "POST",
         http_path = "/listreplacepermissionassociationswork",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listResources(input, options)
     return self:invokeOperation(input, {
         name = "ListResources",
-        input_schema = types.ListResourcesInput,
-        output_schema = types.ListResourcesOutput,
+        input_schema = schemas.ListResourcesInput,
+        output_schema = schemas.ListResourcesOutput,
         http_method = "POST",
         http_path = "/listresources",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listResourceSharePermissions(input, options)
     return self:invokeOperation(input, {
         name = "ListResourceSharePermissions",
-        input_schema = types.ListResourceSharePermissionsInput,
-        output_schema = types.ListResourceSharePermissionsOutput,
+        input_schema = schemas.ListResourceSharePermissionsInput,
+        output_schema = schemas.ListResourceSharePermissionsOutput,
         http_method = "POST",
         http_path = "/listresourcesharepermissions",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listResourceTypes(input, options)
     return self:invokeOperation(input, {
         name = "ListResourceTypes",
-        input_schema = types.ListResourceTypesInput,
-        output_schema = types.ListResourceTypesOutput,
+        input_schema = schemas.ListResourceTypesInput,
+        output_schema = schemas.ListResourceTypesOutput,
         http_method = "POST",
         http_path = "/listresourcetypes",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listSourceAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListSourceAssociations",
-        input_schema = types.ListSourceAssociationsInput,
-        output_schema = types.ListSourceAssociationsOutput,
+        input_schema = schemas.ListSourceAssociationsInput,
+        output_schema = schemas.ListSourceAssociationsOutput,
         http_method = "POST",
         http_path = "/listsourceassociations",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:promotePermissionCreatedFromPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PromotePermissionCreatedFromPolicy",
-        input_schema = types.PromotePermissionCreatedFromPolicyInput,
-        output_schema = types.PromotePermissionCreatedFromPolicyOutput,
+        input_schema = schemas.PromotePermissionCreatedFromPolicyInput,
+        output_schema = schemas.PromotePermissionCreatedFromPolicyOutput,
         http_method = "POST",
         http_path = "/promotepermissioncreatedfrompolicy",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:promoteResourceShareCreatedFromPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PromoteResourceShareCreatedFromPolicy",
-        input_schema = types.PromoteResourceShareCreatedFromPolicyInput,
-        output_schema = types.PromoteResourceShareCreatedFromPolicyOutput,
+        input_schema = schemas.PromoteResourceShareCreatedFromPolicyInput,
+        output_schema = schemas.PromoteResourceShareCreatedFromPolicyOutput,
         http_method = "POST",
         http_path = "/promoteresourcesharecreatedfrompolicy",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:rejectResourceShareInvitation(input, options)
     return self:invokeOperation(input, {
         name = "RejectResourceShareInvitation",
-        input_schema = types.RejectResourceShareInvitationInput,
-        output_schema = types.RejectResourceShareInvitationOutput,
+        input_schema = schemas.RejectResourceShareInvitationInput,
+        output_schema = schemas.RejectResourceShareInvitationOutput,
         http_method = "POST",
         http_path = "/rejectresourceshareinvitation",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:replacePermissionAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ReplacePermissionAssociations",
-        input_schema = types.ReplacePermissionAssociationsInput,
-        output_schema = types.ReplacePermissionAssociationsOutput,
+        input_schema = schemas.ReplacePermissionAssociationsInput,
+        output_schema = schemas.ReplacePermissionAssociationsOutput,
         http_method = "POST",
         http_path = "/replacepermissionassociations",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:setDefaultPermissionVersion(input, options)
     return self:invokeOperation(input, {
         name = "SetDefaultPermissionVersion",
-        input_schema = types.SetDefaultPermissionVersionInput,
-        output_schema = types.SetDefaultPermissionVersionOutput,
+        input_schema = schemas.SetDefaultPermissionVersionInput,
+        output_schema = schemas.SetDefaultPermissionVersionOutput,
         http_method = "POST",
         http_path = "/setdefaultpermissionversion",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tagresource",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/untagresource",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:updateResourceShare(input, options)
     return self:invokeOperation(input, {
         name = "UpdateResourceShare",
-        input_schema = types.UpdateResourceShareInput,
-        output_schema = types.UpdateResourceShareOutput,
+        input_schema = schemas.UpdateResourceShareInput,
+        output_schema = schemas.UpdateResourceShareOutput,
         http_method = "POST",
         http_path = "/updateresourceshare",
         effective_auth_schemes = {

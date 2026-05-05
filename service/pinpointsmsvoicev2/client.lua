@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("pinpointsmsvoicev2.endpoint_rules")
+local schemas = require("pinpointsmsvoicev2.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("pinpointsmsvoicev2.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateOriginationIdentity(input, options)
     return self:invokeOperation(input, {
         name = "AssociateOriginationIdentity",
-        input_schema = types.AssociateOriginationIdentityInput,
-        output_schema = types.AssociateOriginationIdentityOutput,
+        input_schema = schemas.AssociateOriginationIdentityInput,
+        output_schema = schemas.AssociateOriginationIdentityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:associateProtectConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "AssociateProtectConfiguration",
-        input_schema = types.AssociateProtectConfigurationInput,
-        output_schema = types.AssociateProtectConfigurationOutput,
+        input_schema = schemas.AssociateProtectConfigurationInput,
+        output_schema = schemas.AssociateProtectConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:carrierLookup(input, options)
     return self:invokeOperation(input, {
         name = "CarrierLookup",
-        input_schema = types.CarrierLookupInput,
-        output_schema = types.CarrierLookupOutput,
+        input_schema = schemas.CarrierLookupInput,
+        output_schema = schemas.CarrierLookupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createConfigurationSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateConfigurationSet",
-        input_schema = types.CreateConfigurationSetInput,
-        output_schema = types.CreateConfigurationSetOutput,
+        input_schema = schemas.CreateConfigurationSetInput,
+        output_schema = schemas.CreateConfigurationSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createEventDestination(input, options)
     return self:invokeOperation(input, {
         name = "CreateEventDestination",
-        input_schema = types.CreateEventDestinationInput,
-        output_schema = types.CreateEventDestinationOutput,
+        input_schema = schemas.CreateEventDestinationInput,
+        output_schema = schemas.CreateEventDestinationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createNotifyConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateNotifyConfiguration",
-        input_schema = types.CreateNotifyConfigurationInput,
-        output_schema = types.CreateNotifyConfigurationOutput,
+        input_schema = schemas.CreateNotifyConfigurationInput,
+        output_schema = schemas.CreateNotifyConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createOptOutList(input, options)
     return self:invokeOperation(input, {
         name = "CreateOptOutList",
-        input_schema = types.CreateOptOutListInput,
-        output_schema = types.CreateOptOutListOutput,
+        input_schema = schemas.CreateOptOutListInput,
+        output_schema = schemas.CreateOptOutListOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createPool(input, options)
     return self:invokeOperation(input, {
         name = "CreatePool",
-        input_schema = types.CreatePoolInput,
-        output_schema = types.CreatePoolOutput,
+        input_schema = schemas.CreatePoolInput,
+        output_schema = schemas.CreatePoolOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createProtectConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateProtectConfiguration",
-        input_schema = types.CreateProtectConfigurationInput,
-        output_schema = types.CreateProtectConfigurationOutput,
+        input_schema = schemas.CreateProtectConfigurationInput,
+        output_schema = schemas.CreateProtectConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createRcsAgent(input, options)
     return self:invokeOperation(input, {
         name = "CreateRcsAgent",
-        input_schema = types.CreateRcsAgentInput,
-        output_schema = types.CreateRcsAgentOutput,
+        input_schema = schemas.CreateRcsAgentInput,
+        output_schema = schemas.CreateRcsAgentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createRegistration(input, options)
     return self:invokeOperation(input, {
         name = "CreateRegistration",
-        input_schema = types.CreateRegistrationInput,
-        output_schema = types.CreateRegistrationOutput,
+        input_schema = schemas.CreateRegistrationInput,
+        output_schema = schemas.CreateRegistrationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createRegistrationAssociation(input, options)
     return self:invokeOperation(input, {
         name = "CreateRegistrationAssociation",
-        input_schema = types.CreateRegistrationAssociationInput,
-        output_schema = types.CreateRegistrationAssociationOutput,
+        input_schema = schemas.CreateRegistrationAssociationInput,
+        output_schema = schemas.CreateRegistrationAssociationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createRegistrationAttachment(input, options)
     return self:invokeOperation(input, {
         name = "CreateRegistrationAttachment",
-        input_schema = types.CreateRegistrationAttachmentInput,
-        output_schema = types.CreateRegistrationAttachmentOutput,
+        input_schema = schemas.CreateRegistrationAttachmentInput,
+        output_schema = schemas.CreateRegistrationAttachmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:createRegistrationVersion(input, options)
     return self:invokeOperation(input, {
         name = "CreateRegistrationVersion",
-        input_schema = types.CreateRegistrationVersionInput,
-        output_schema = types.CreateRegistrationVersionOutput,
+        input_schema = schemas.CreateRegistrationVersionInput,
+        output_schema = schemas.CreateRegistrationVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:createVerifiedDestinationNumber(input, options)
     return self:invokeOperation(input, {
         name = "CreateVerifiedDestinationNumber",
-        input_schema = types.CreateVerifiedDestinationNumberInput,
-        output_schema = types.CreateVerifiedDestinationNumberOutput,
+        input_schema = schemas.CreateVerifiedDestinationNumberInput,
+        output_schema = schemas.CreateVerifiedDestinationNumberOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteAccountDefaultProtectConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAccountDefaultProtectConfiguration",
-        input_schema = types.DeleteAccountDefaultProtectConfigurationInput,
-        output_schema = types.DeleteAccountDefaultProtectConfigurationOutput,
+        input_schema = schemas.DeleteAccountDefaultProtectConfigurationInput,
+        output_schema = schemas.DeleteAccountDefaultProtectConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteConfigurationSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfigurationSet",
-        input_schema = types.DeleteConfigurationSetInput,
-        output_schema = types.DeleteConfigurationSetOutput,
+        input_schema = schemas.DeleteConfigurationSetInput,
+        output_schema = schemas.DeleteConfigurationSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteDefaultMessageType(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDefaultMessageType",
-        input_schema = types.DeleteDefaultMessageTypeInput,
-        output_schema = types.DeleteDefaultMessageTypeOutput,
+        input_schema = schemas.DeleteDefaultMessageTypeInput,
+        output_schema = schemas.DeleteDefaultMessageTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteDefaultSenderId(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDefaultSenderId",
-        input_schema = types.DeleteDefaultSenderIdInput,
-        output_schema = types.DeleteDefaultSenderIdOutput,
+        input_schema = schemas.DeleteDefaultSenderIdInput,
+        output_schema = schemas.DeleteDefaultSenderIdOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deleteEventDestination(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEventDestination",
-        input_schema = types.DeleteEventDestinationInput,
-        output_schema = types.DeleteEventDestinationOutput,
+        input_schema = schemas.DeleteEventDestinationInput,
+        output_schema = schemas.DeleteEventDestinationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteKeyword(input, options)
     return self:invokeOperation(input, {
         name = "DeleteKeyword",
-        input_schema = types.DeleteKeywordInput,
-        output_schema = types.DeleteKeywordOutput,
+        input_schema = schemas.DeleteKeywordInput,
+        output_schema = schemas.DeleteKeywordOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:deleteMediaMessageSpendLimitOverride(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMediaMessageSpendLimitOverride",
-        input_schema = types.DeleteMediaMessageSpendLimitOverrideInput,
-        output_schema = types.DeleteMediaMessageSpendLimitOverrideOutput,
+        input_schema = schemas.DeleteMediaMessageSpendLimitOverrideInput,
+        output_schema = schemas.DeleteMediaMessageSpendLimitOverrideOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:deleteNotifyConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteNotifyConfiguration",
-        input_schema = types.DeleteNotifyConfigurationInput,
-        output_schema = types.DeleteNotifyConfigurationOutput,
+        input_schema = schemas.DeleteNotifyConfigurationInput,
+        output_schema = schemas.DeleteNotifyConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:deleteNotifyMessageSpendLimitOverride(input, options)
     return self:invokeOperation(input, {
         name = "DeleteNotifyMessageSpendLimitOverride",
-        input_schema = types.DeleteNotifyMessageSpendLimitOverrideInput,
-        output_schema = types.DeleteNotifyMessageSpendLimitOverrideOutput,
+        input_schema = schemas.DeleteNotifyMessageSpendLimitOverrideInput,
+        output_schema = schemas.DeleteNotifyMessageSpendLimitOverrideOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:deleteOptedOutNumber(input, options)
     return self:invokeOperation(input, {
         name = "DeleteOptedOutNumber",
-        input_schema = types.DeleteOptedOutNumberInput,
-        output_schema = types.DeleteOptedOutNumberOutput,
+        input_schema = schemas.DeleteOptedOutNumberInput,
+        output_schema = schemas.DeleteOptedOutNumberOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:deleteOptOutList(input, options)
     return self:invokeOperation(input, {
         name = "DeleteOptOutList",
-        input_schema = types.DeleteOptOutListInput,
-        output_schema = types.DeleteOptOutListOutput,
+        input_schema = schemas.DeleteOptOutListInput,
+        output_schema = schemas.DeleteOptOutListOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:deletePool(input, options)
     return self:invokeOperation(input, {
         name = "DeletePool",
-        input_schema = types.DeletePoolInput,
-        output_schema = types.DeletePoolOutput,
+        input_schema = schemas.DeletePoolInput,
+        output_schema = schemas.DeletePoolOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:deleteProtectConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProtectConfiguration",
-        input_schema = types.DeleteProtectConfigurationInput,
-        output_schema = types.DeleteProtectConfigurationOutput,
+        input_schema = schemas.DeleteProtectConfigurationInput,
+        output_schema = schemas.DeleteProtectConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:deleteProtectConfigurationRuleSetNumberOverride(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProtectConfigurationRuleSetNumberOverride",
-        input_schema = types.DeleteProtectConfigurationRuleSetNumberOverrideInput,
-        output_schema = types.DeleteProtectConfigurationRuleSetNumberOverrideOutput,
+        input_schema = schemas.DeleteProtectConfigurationRuleSetNumberOverrideInput,
+        output_schema = schemas.DeleteProtectConfigurationRuleSetNumberOverrideOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:deleteRcsAgent(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRcsAgent",
-        input_schema = types.DeleteRcsAgentInput,
-        output_schema = types.DeleteRcsAgentOutput,
+        input_schema = schemas.DeleteRcsAgentInput,
+        output_schema = schemas.DeleteRcsAgentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:deleteRegistration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRegistration",
-        input_schema = types.DeleteRegistrationInput,
-        output_schema = types.DeleteRegistrationOutput,
+        input_schema = schemas.DeleteRegistrationInput,
+        output_schema = schemas.DeleteRegistrationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:deleteRegistrationAttachment(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRegistrationAttachment",
-        input_schema = types.DeleteRegistrationAttachmentInput,
-        output_schema = types.DeleteRegistrationAttachmentOutput,
+        input_schema = schemas.DeleteRegistrationAttachmentInput,
+        output_schema = schemas.DeleteRegistrationAttachmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:deleteRegistrationFieldValue(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRegistrationFieldValue",
-        input_schema = types.DeleteRegistrationFieldValueInput,
-        output_schema = types.DeleteRegistrationFieldValueOutput,
+        input_schema = schemas.DeleteRegistrationFieldValueInput,
+        output_schema = schemas.DeleteRegistrationFieldValueOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:deleteResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourcePolicy",
-        input_schema = types.DeleteResourcePolicyInput,
-        output_schema = types.DeleteResourcePolicyOutput,
+        input_schema = schemas.DeleteResourcePolicyInput,
+        output_schema = schemas.DeleteResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:deleteTextMessageSpendLimitOverride(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTextMessageSpendLimitOverride",
-        input_schema = types.DeleteTextMessageSpendLimitOverrideInput,
-        output_schema = types.DeleteTextMessageSpendLimitOverrideOutput,
+        input_schema = schemas.DeleteTextMessageSpendLimitOverrideInput,
+        output_schema = schemas.DeleteTextMessageSpendLimitOverrideOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:deleteVerifiedDestinationNumber(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVerifiedDestinationNumber",
-        input_schema = types.DeleteVerifiedDestinationNumberInput,
-        output_schema = types.DeleteVerifiedDestinationNumberOutput,
+        input_schema = schemas.DeleteVerifiedDestinationNumberInput,
+        output_schema = schemas.DeleteVerifiedDestinationNumberOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:deleteVoiceMessageSpendLimitOverride(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVoiceMessageSpendLimitOverride",
-        input_schema = types.DeleteVoiceMessageSpendLimitOverrideInput,
-        output_schema = types.DeleteVoiceMessageSpendLimitOverrideOutput,
+        input_schema = schemas.DeleteVoiceMessageSpendLimitOverrideInput,
+        output_schema = schemas.DeleteVoiceMessageSpendLimitOverrideOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:describeAccountAttributes(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAccountAttributes",
-        input_schema = types.DescribeAccountAttributesInput,
-        output_schema = types.DescribeAccountAttributesOutput,
+        input_schema = schemas.DescribeAccountAttributesInput,
+        output_schema = schemas.DescribeAccountAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:describeAccountLimits(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAccountLimits",
-        input_schema = types.DescribeAccountLimitsInput,
-        output_schema = types.DescribeAccountLimitsOutput,
+        input_schema = schemas.DescribeAccountLimitsInput,
+        output_schema = schemas.DescribeAccountLimitsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:describeConfigurationSets(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConfigurationSets",
-        input_schema = types.DescribeConfigurationSetsInput,
-        output_schema = types.DescribeConfigurationSetsOutput,
+        input_schema = schemas.DescribeConfigurationSetsInput,
+        output_schema = schemas.DescribeConfigurationSetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:describeKeywords(input, options)
     return self:invokeOperation(input, {
         name = "DescribeKeywords",
-        input_schema = types.DescribeKeywordsInput,
-        output_schema = types.DescribeKeywordsOutput,
+        input_schema = schemas.DescribeKeywordsInput,
+        output_schema = schemas.DescribeKeywordsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:describeNotifyConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "DescribeNotifyConfigurations",
-        input_schema = types.DescribeNotifyConfigurationsInput,
-        output_schema = types.DescribeNotifyConfigurationsOutput,
+        input_schema = schemas.DescribeNotifyConfigurationsInput,
+        output_schema = schemas.DescribeNotifyConfigurationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:describeNotifyTemplates(input, options)
     return self:invokeOperation(input, {
         name = "DescribeNotifyTemplates",
-        input_schema = types.DescribeNotifyTemplatesInput,
-        output_schema = types.DescribeNotifyTemplatesOutput,
+        input_schema = schemas.DescribeNotifyTemplatesInput,
+        output_schema = schemas.DescribeNotifyTemplatesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:describeOptedOutNumbers(input, options)
     return self:invokeOperation(input, {
         name = "DescribeOptedOutNumbers",
-        input_schema = types.DescribeOptedOutNumbersInput,
-        output_schema = types.DescribeOptedOutNumbersOutput,
+        input_schema = schemas.DescribeOptedOutNumbersInput,
+        output_schema = schemas.DescribeOptedOutNumbersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:describeOptOutLists(input, options)
     return self:invokeOperation(input, {
         name = "DescribeOptOutLists",
-        input_schema = types.DescribeOptOutListsInput,
-        output_schema = types.DescribeOptOutListsOutput,
+        input_schema = schemas.DescribeOptOutListsInput,
+        output_schema = schemas.DescribeOptOutListsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:describePhoneNumbers(input, options)
     return self:invokeOperation(input, {
         name = "DescribePhoneNumbers",
-        input_schema = types.DescribePhoneNumbersInput,
-        output_schema = types.DescribePhoneNumbersOutput,
+        input_schema = schemas.DescribePhoneNumbersInput,
+        output_schema = schemas.DescribePhoneNumbersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:describePools(input, options)
     return self:invokeOperation(input, {
         name = "DescribePools",
-        input_schema = types.DescribePoolsInput,
-        output_schema = types.DescribePoolsOutput,
+        input_schema = schemas.DescribePoolsInput,
+        output_schema = schemas.DescribePoolsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:describeProtectConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "DescribeProtectConfigurations",
-        input_schema = types.DescribeProtectConfigurationsInput,
-        output_schema = types.DescribeProtectConfigurationsOutput,
+        input_schema = schemas.DescribeProtectConfigurationsInput,
+        output_schema = schemas.DescribeProtectConfigurationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:describeRcsAgentCountryLaunchStatus(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRcsAgentCountryLaunchStatus",
-        input_schema = types.DescribeRcsAgentCountryLaunchStatusInput,
-        output_schema = types.DescribeRcsAgentCountryLaunchStatusOutput,
+        input_schema = schemas.DescribeRcsAgentCountryLaunchStatusInput,
+        output_schema = schemas.DescribeRcsAgentCountryLaunchStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:describeRcsAgents(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRcsAgents",
-        input_schema = types.DescribeRcsAgentsInput,
-        output_schema = types.DescribeRcsAgentsOutput,
+        input_schema = schemas.DescribeRcsAgentsInput,
+        output_schema = schemas.DescribeRcsAgentsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:describeRegistrationAttachments(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRegistrationAttachments",
-        input_schema = types.DescribeRegistrationAttachmentsInput,
-        output_schema = types.DescribeRegistrationAttachmentsOutput,
+        input_schema = schemas.DescribeRegistrationAttachmentsInput,
+        output_schema = schemas.DescribeRegistrationAttachmentsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:describeRegistrationFieldDefinitions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRegistrationFieldDefinitions",
-        input_schema = types.DescribeRegistrationFieldDefinitionsInput,
-        output_schema = types.DescribeRegistrationFieldDefinitionsOutput,
+        input_schema = schemas.DescribeRegistrationFieldDefinitionsInput,
+        output_schema = schemas.DescribeRegistrationFieldDefinitionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:describeRegistrationFieldValues(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRegistrationFieldValues",
-        input_schema = types.DescribeRegistrationFieldValuesInput,
-        output_schema = types.DescribeRegistrationFieldValuesOutput,
+        input_schema = schemas.DescribeRegistrationFieldValuesInput,
+        output_schema = schemas.DescribeRegistrationFieldValuesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:describeRegistrations(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRegistrations",
-        input_schema = types.DescribeRegistrationsInput,
-        output_schema = types.DescribeRegistrationsOutput,
+        input_schema = schemas.DescribeRegistrationsInput,
+        output_schema = schemas.DescribeRegistrationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:describeRegistrationSectionDefinitions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRegistrationSectionDefinitions",
-        input_schema = types.DescribeRegistrationSectionDefinitionsInput,
-        output_schema = types.DescribeRegistrationSectionDefinitionsOutput,
+        input_schema = schemas.DescribeRegistrationSectionDefinitionsInput,
+        output_schema = schemas.DescribeRegistrationSectionDefinitionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:describeRegistrationTypeDefinitions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRegistrationTypeDefinitions",
-        input_schema = types.DescribeRegistrationTypeDefinitionsInput,
-        output_schema = types.DescribeRegistrationTypeDefinitionsOutput,
+        input_schema = schemas.DescribeRegistrationTypeDefinitionsInput,
+        output_schema = schemas.DescribeRegistrationTypeDefinitionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:describeRegistrationVersions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRegistrationVersions",
-        input_schema = types.DescribeRegistrationVersionsInput,
-        output_schema = types.DescribeRegistrationVersionsOutput,
+        input_schema = schemas.DescribeRegistrationVersionsInput,
+        output_schema = schemas.DescribeRegistrationVersionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:describeSenderIds(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSenderIds",
-        input_schema = types.DescribeSenderIdsInput,
-        output_schema = types.DescribeSenderIdsOutput,
+        input_schema = schemas.DescribeSenderIdsInput,
+        output_schema = schemas.DescribeSenderIdsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:describeSpendLimits(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSpendLimits",
-        input_schema = types.DescribeSpendLimitsInput,
-        output_schema = types.DescribeSpendLimitsOutput,
+        input_schema = schemas.DescribeSpendLimitsInput,
+        output_schema = schemas.DescribeSpendLimitsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:describeVerifiedDestinationNumbers(input, options)
     return self:invokeOperation(input, {
         name = "DescribeVerifiedDestinationNumbers",
-        input_schema = types.DescribeVerifiedDestinationNumbersInput,
-        output_schema = types.DescribeVerifiedDestinationNumbersOutput,
+        input_schema = schemas.DescribeVerifiedDestinationNumbersInput,
+        output_schema = schemas.DescribeVerifiedDestinationNumbersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:disassociateOriginationIdentity(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateOriginationIdentity",
-        input_schema = types.DisassociateOriginationIdentityInput,
-        output_schema = types.DisassociateOriginationIdentityOutput,
+        input_schema = schemas.DisassociateOriginationIdentityInput,
+        output_schema = schemas.DisassociateOriginationIdentityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:disassociateProtectConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateProtectConfiguration",
-        input_schema = types.DisassociateProtectConfigurationInput,
-        output_schema = types.DisassociateProtectConfigurationOutput,
+        input_schema = schemas.DisassociateProtectConfigurationInput,
+        output_schema = schemas.DisassociateProtectConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:discardRegistrationVersion(input, options)
     return self:invokeOperation(input, {
         name = "DiscardRegistrationVersion",
-        input_schema = types.DiscardRegistrationVersionInput,
-        output_schema = types.DiscardRegistrationVersionOutput,
+        input_schema = schemas.DiscardRegistrationVersionInput,
+        output_schema = schemas.DiscardRegistrationVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:getProtectConfigurationCountryRuleSet(input, options)
     return self:invokeOperation(input, {
         name = "GetProtectConfigurationCountryRuleSet",
-        input_schema = types.GetProtectConfigurationCountryRuleSetInput,
-        output_schema = types.GetProtectConfigurationCountryRuleSetOutput,
+        input_schema = schemas.GetProtectConfigurationCountryRuleSetInput,
+        output_schema = schemas.GetProtectConfigurationCountryRuleSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:getResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcePolicy",
-        input_schema = types.GetResourcePolicyInput,
-        output_schema = types.GetResourcePolicyOutput,
+        input_schema = schemas.GetResourcePolicyInput,
+        output_schema = schemas.GetResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:listNotifyCountries(input, options)
     return self:invokeOperation(input, {
         name = "ListNotifyCountries",
-        input_schema = types.ListNotifyCountriesInput,
-        output_schema = types.ListNotifyCountriesOutput,
+        input_schema = schemas.ListNotifyCountriesInput,
+        output_schema = schemas.ListNotifyCountriesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:listPoolOriginationIdentities(input, options)
     return self:invokeOperation(input, {
         name = "ListPoolOriginationIdentities",
-        input_schema = types.ListPoolOriginationIdentitiesInput,
-        output_schema = types.ListPoolOriginationIdentitiesOutput,
+        input_schema = schemas.ListPoolOriginationIdentitiesInput,
+        output_schema = schemas.ListPoolOriginationIdentitiesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:listProtectConfigurationRuleSetNumberOverrides(input, options)
     return self:invokeOperation(input, {
         name = "ListProtectConfigurationRuleSetNumberOverrides",
-        input_schema = types.ListProtectConfigurationRuleSetNumberOverridesInput,
-        output_schema = types.ListProtectConfigurationRuleSetNumberOverridesOutput,
+        input_schema = schemas.ListProtectConfigurationRuleSetNumberOverridesInput,
+        output_schema = schemas.ListProtectConfigurationRuleSetNumberOverridesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:listRegistrationAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListRegistrationAssociations",
-        input_schema = types.ListRegistrationAssociationsInput,
-        output_schema = types.ListRegistrationAssociationsOutput,
+        input_schema = schemas.ListRegistrationAssociationsInput,
+        output_schema = schemas.ListRegistrationAssociationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:putKeyword(input, options)
     return self:invokeOperation(input, {
         name = "PutKeyword",
-        input_schema = types.PutKeywordInput,
-        output_schema = types.PutKeywordOutput,
+        input_schema = schemas.PutKeywordInput,
+        output_schema = schemas.PutKeywordOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:putMessageFeedback(input, options)
     return self:invokeOperation(input, {
         name = "PutMessageFeedback",
-        input_schema = types.PutMessageFeedbackInput,
-        output_schema = types.PutMessageFeedbackOutput,
+        input_schema = schemas.PutMessageFeedbackInput,
+        output_schema = schemas.PutMessageFeedbackOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:putOptedOutNumber(input, options)
     return self:invokeOperation(input, {
         name = "PutOptedOutNumber",
-        input_schema = types.PutOptedOutNumberInput,
-        output_schema = types.PutOptedOutNumberOutput,
+        input_schema = schemas.PutOptedOutNumberInput,
+        output_schema = schemas.PutOptedOutNumberOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:putProtectConfigurationRuleSetNumberOverride(input, options)
     return self:invokeOperation(input, {
         name = "PutProtectConfigurationRuleSetNumberOverride",
-        input_schema = types.PutProtectConfigurationRuleSetNumberOverrideInput,
-        output_schema = types.PutProtectConfigurationRuleSetNumberOverrideOutput,
+        input_schema = schemas.PutProtectConfigurationRuleSetNumberOverrideInput,
+        output_schema = schemas.PutProtectConfigurationRuleSetNumberOverrideOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1011,8 +1011,8 @@ end
 function Client:putRegistrationFieldValue(input, options)
     return self:invokeOperation(input, {
         name = "PutRegistrationFieldValue",
-        input_schema = types.PutRegistrationFieldValueInput,
-        output_schema = types.PutRegistrationFieldValueOutput,
+        input_schema = schemas.PutRegistrationFieldValueInput,
+        output_schema = schemas.PutRegistrationFieldValueOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1024,8 +1024,8 @@ end
 function Client:putResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutResourcePolicy",
-        input_schema = types.PutResourcePolicyInput,
-        output_schema = types.PutResourcePolicyOutput,
+        input_schema = schemas.PutResourcePolicyInput,
+        output_schema = schemas.PutResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1037,8 +1037,8 @@ end
 function Client:releasePhoneNumber(input, options)
     return self:invokeOperation(input, {
         name = "ReleasePhoneNumber",
-        input_schema = types.ReleasePhoneNumberInput,
-        output_schema = types.ReleasePhoneNumberOutput,
+        input_schema = schemas.ReleasePhoneNumberInput,
+        output_schema = schemas.ReleasePhoneNumberOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1050,8 +1050,8 @@ end
 function Client:releaseSenderId(input, options)
     return self:invokeOperation(input, {
         name = "ReleaseSenderId",
-        input_schema = types.ReleaseSenderIdInput,
-        output_schema = types.ReleaseSenderIdOutput,
+        input_schema = schemas.ReleaseSenderIdInput,
+        output_schema = schemas.ReleaseSenderIdOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1063,8 +1063,8 @@ end
 function Client:requestPhoneNumber(input, options)
     return self:invokeOperation(input, {
         name = "RequestPhoneNumber",
-        input_schema = types.RequestPhoneNumberInput,
-        output_schema = types.RequestPhoneNumberOutput,
+        input_schema = schemas.RequestPhoneNumberInput,
+        output_schema = schemas.RequestPhoneNumberOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1076,8 +1076,8 @@ end
 function Client:requestSenderId(input, options)
     return self:invokeOperation(input, {
         name = "RequestSenderId",
-        input_schema = types.RequestSenderIdInput,
-        output_schema = types.RequestSenderIdOutput,
+        input_schema = schemas.RequestSenderIdInput,
+        output_schema = schemas.RequestSenderIdOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1089,8 +1089,8 @@ end
 function Client:sendDestinationNumberVerificationCode(input, options)
     return self:invokeOperation(input, {
         name = "SendDestinationNumberVerificationCode",
-        input_schema = types.SendDestinationNumberVerificationCodeInput,
-        output_schema = types.SendDestinationNumberVerificationCodeOutput,
+        input_schema = schemas.SendDestinationNumberVerificationCodeInput,
+        output_schema = schemas.SendDestinationNumberVerificationCodeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1102,8 +1102,8 @@ end
 function Client:sendMediaMessage(input, options)
     return self:invokeOperation(input, {
         name = "SendMediaMessage",
-        input_schema = types.SendMediaMessageInput,
-        output_schema = types.SendMediaMessageOutput,
+        input_schema = schemas.SendMediaMessageInput,
+        output_schema = schemas.SendMediaMessageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1115,8 +1115,8 @@ end
 function Client:sendNotifyTextMessage(input, options)
     return self:invokeOperation(input, {
         name = "SendNotifyTextMessage",
-        input_schema = types.SendNotifyTextMessageInput,
-        output_schema = types.SendNotifyTextMessageOutput,
+        input_schema = schemas.SendNotifyTextMessageInput,
+        output_schema = schemas.SendNotifyTextMessageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1128,8 +1128,8 @@ end
 function Client:sendNotifyVoiceMessage(input, options)
     return self:invokeOperation(input, {
         name = "SendNotifyVoiceMessage",
-        input_schema = types.SendNotifyVoiceMessageInput,
-        output_schema = types.SendNotifyVoiceMessageOutput,
+        input_schema = schemas.SendNotifyVoiceMessageInput,
+        output_schema = schemas.SendNotifyVoiceMessageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1141,8 +1141,8 @@ end
 function Client:sendTextMessage(input, options)
     return self:invokeOperation(input, {
         name = "SendTextMessage",
-        input_schema = types.SendTextMessageInput,
-        output_schema = types.SendTextMessageOutput,
+        input_schema = schemas.SendTextMessageInput,
+        output_schema = schemas.SendTextMessageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1154,8 +1154,8 @@ end
 function Client:sendVoiceMessage(input, options)
     return self:invokeOperation(input, {
         name = "SendVoiceMessage",
-        input_schema = types.SendVoiceMessageInput,
-        output_schema = types.SendVoiceMessageOutput,
+        input_schema = schemas.SendVoiceMessageInput,
+        output_schema = schemas.SendVoiceMessageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1167,8 +1167,8 @@ end
 function Client:setAccountDefaultProtectConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "SetAccountDefaultProtectConfiguration",
-        input_schema = types.SetAccountDefaultProtectConfigurationInput,
-        output_schema = types.SetAccountDefaultProtectConfigurationOutput,
+        input_schema = schemas.SetAccountDefaultProtectConfigurationInput,
+        output_schema = schemas.SetAccountDefaultProtectConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1180,8 +1180,8 @@ end
 function Client:setDefaultMessageFeedbackEnabled(input, options)
     return self:invokeOperation(input, {
         name = "SetDefaultMessageFeedbackEnabled",
-        input_schema = types.SetDefaultMessageFeedbackEnabledInput,
-        output_schema = types.SetDefaultMessageFeedbackEnabledOutput,
+        input_schema = schemas.SetDefaultMessageFeedbackEnabledInput,
+        output_schema = schemas.SetDefaultMessageFeedbackEnabledOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1193,8 +1193,8 @@ end
 function Client:setDefaultMessageType(input, options)
     return self:invokeOperation(input, {
         name = "SetDefaultMessageType",
-        input_schema = types.SetDefaultMessageTypeInput,
-        output_schema = types.SetDefaultMessageTypeOutput,
+        input_schema = schemas.SetDefaultMessageTypeInput,
+        output_schema = schemas.SetDefaultMessageTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1206,8 +1206,8 @@ end
 function Client:setDefaultSenderId(input, options)
     return self:invokeOperation(input, {
         name = "SetDefaultSenderId",
-        input_schema = types.SetDefaultSenderIdInput,
-        output_schema = types.SetDefaultSenderIdOutput,
+        input_schema = schemas.SetDefaultSenderIdInput,
+        output_schema = schemas.SetDefaultSenderIdOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1219,8 +1219,8 @@ end
 function Client:setMediaMessageSpendLimitOverride(input, options)
     return self:invokeOperation(input, {
         name = "SetMediaMessageSpendLimitOverride",
-        input_schema = types.SetMediaMessageSpendLimitOverrideInput,
-        output_schema = types.SetMediaMessageSpendLimitOverrideOutput,
+        input_schema = schemas.SetMediaMessageSpendLimitOverrideInput,
+        output_schema = schemas.SetMediaMessageSpendLimitOverrideOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1232,8 +1232,8 @@ end
 function Client:setNotifyMessageSpendLimitOverride(input, options)
     return self:invokeOperation(input, {
         name = "SetNotifyMessageSpendLimitOverride",
-        input_schema = types.SetNotifyMessageSpendLimitOverrideInput,
-        output_schema = types.SetNotifyMessageSpendLimitOverrideOutput,
+        input_schema = schemas.SetNotifyMessageSpendLimitOverrideInput,
+        output_schema = schemas.SetNotifyMessageSpendLimitOverrideOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1245,8 +1245,8 @@ end
 function Client:setTextMessageSpendLimitOverride(input, options)
     return self:invokeOperation(input, {
         name = "SetTextMessageSpendLimitOverride",
-        input_schema = types.SetTextMessageSpendLimitOverrideInput,
-        output_schema = types.SetTextMessageSpendLimitOverrideOutput,
+        input_schema = schemas.SetTextMessageSpendLimitOverrideInput,
+        output_schema = schemas.SetTextMessageSpendLimitOverrideOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1258,8 +1258,8 @@ end
 function Client:setVoiceMessageSpendLimitOverride(input, options)
     return self:invokeOperation(input, {
         name = "SetVoiceMessageSpendLimitOverride",
-        input_schema = types.SetVoiceMessageSpendLimitOverrideInput,
-        output_schema = types.SetVoiceMessageSpendLimitOverrideOutput,
+        input_schema = schemas.SetVoiceMessageSpendLimitOverrideInput,
+        output_schema = schemas.SetVoiceMessageSpendLimitOverrideOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1271,8 +1271,8 @@ end
 function Client:submitRegistrationVersion(input, options)
     return self:invokeOperation(input, {
         name = "SubmitRegistrationVersion",
-        input_schema = types.SubmitRegistrationVersionInput,
-        output_schema = types.SubmitRegistrationVersionOutput,
+        input_schema = schemas.SubmitRegistrationVersionInput,
+        output_schema = schemas.SubmitRegistrationVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1284,8 +1284,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1297,8 +1297,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1310,8 +1310,8 @@ end
 function Client:updateEventDestination(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEventDestination",
-        input_schema = types.UpdateEventDestinationInput,
-        output_schema = types.UpdateEventDestinationOutput,
+        input_schema = schemas.UpdateEventDestinationInput,
+        output_schema = schemas.UpdateEventDestinationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1323,8 +1323,8 @@ end
 function Client:updateNotifyConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateNotifyConfiguration",
-        input_schema = types.UpdateNotifyConfigurationInput,
-        output_schema = types.UpdateNotifyConfigurationOutput,
+        input_schema = schemas.UpdateNotifyConfigurationInput,
+        output_schema = schemas.UpdateNotifyConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1336,8 +1336,8 @@ end
 function Client:updatePhoneNumber(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePhoneNumber",
-        input_schema = types.UpdatePhoneNumberInput,
-        output_schema = types.UpdatePhoneNumberOutput,
+        input_schema = schemas.UpdatePhoneNumberInput,
+        output_schema = schemas.UpdatePhoneNumberOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1349,8 +1349,8 @@ end
 function Client:updatePool(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePool",
-        input_schema = types.UpdatePoolInput,
-        output_schema = types.UpdatePoolOutput,
+        input_schema = schemas.UpdatePoolInput,
+        output_schema = schemas.UpdatePoolOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1362,8 +1362,8 @@ end
 function Client:updateProtectConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProtectConfiguration",
-        input_schema = types.UpdateProtectConfigurationInput,
-        output_schema = types.UpdateProtectConfigurationOutput,
+        input_schema = schemas.UpdateProtectConfigurationInput,
+        output_schema = schemas.UpdateProtectConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1375,8 +1375,8 @@ end
 function Client:updateProtectConfigurationCountryRuleSet(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProtectConfigurationCountryRuleSet",
-        input_schema = types.UpdateProtectConfigurationCountryRuleSetInput,
-        output_schema = types.UpdateProtectConfigurationCountryRuleSetOutput,
+        input_schema = schemas.UpdateProtectConfigurationCountryRuleSetInput,
+        output_schema = schemas.UpdateProtectConfigurationCountryRuleSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1388,8 +1388,8 @@ end
 function Client:updateRcsAgent(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRcsAgent",
-        input_schema = types.UpdateRcsAgentInput,
-        output_schema = types.UpdateRcsAgentOutput,
+        input_schema = schemas.UpdateRcsAgentInput,
+        output_schema = schemas.UpdateRcsAgentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1401,8 +1401,8 @@ end
 function Client:updateSenderId(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSenderId",
-        input_schema = types.UpdateSenderIdInput,
-        output_schema = types.UpdateSenderIdOutput,
+        input_schema = schemas.UpdateSenderIdInput,
+        output_schema = schemas.UpdateSenderIdOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1414,8 +1414,8 @@ end
 function Client:verifyDestinationNumber(input, options)
     return self:invokeOperation(input, {
         name = "VerifyDestinationNumber",
-        input_schema = types.VerifyDestinationNumberInput,
-        output_schema = types.VerifyDestinationNumberOutput,
+        input_schema = schemas.VerifyDestinationNumberInput,
+        output_schema = schemas.VerifyDestinationNumberOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

@@ -1,0 +1,525 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.applicationcostprofiler"
+
+local M = {}
+
+M.AccessDeniedException = schema.new({
+    id = id.from(_N, "AccessDeniedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "AccessDeniedException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteReportDefinitionInput = schema.new({
+    id = id.from(_N, "DeleteReportDefinitionInput"),
+    type = "structure",
+    members = {
+        reportId = schema.new({
+            id = id.from(_N, "DeleteReportDefinitionInput", "reportId"),
+            type = "string",
+            name = "reportId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteReportDefinitionOutput = schema.new({
+    id = id.from(_N, "DeleteReportDefinitionOutput"),
+    type = "structure",
+    members = {
+        reportId = schema.new({
+            id = id.from(_N, "DeleteReportDefinitionOutput", "reportId"),
+            type = "string",
+            name = "reportId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InternalServerException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ThrottlingException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetReportDefinitionInput = schema.new({
+    id = id.from(_N, "GetReportDefinitionInput"),
+    type = "structure",
+    members = {
+        reportId = schema.new({
+            id = id.from(_N, "GetReportDefinitionInput", "reportId"),
+            type = "string",
+            name = "reportId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.S3Location = schema.new({
+    id = id.from(_N, "S3Location"),
+    type = "structure",
+    members = {
+        bucket = schema.new({
+            id = id.from(_N, "S3Location", "bucket"),
+            type = "string",
+            name = "bucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        prefix = schema.new({
+            id = id.from(_N, "S3Location", "prefix"),
+            type = "string",
+            name = "prefix",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetReportDefinitionOutput = schema.new({
+    id = id.from(_N, "GetReportDefinitionOutput"),
+    type = "structure",
+    members = {
+        reportId = schema.new({
+            id = id.from(_N, "GetReportDefinitionOutput", "reportId"),
+            type = "string",
+            name = "reportId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        reportDescription = schema.new({
+            id = id.from(_N, "GetReportDefinitionOutput", "reportDescription"),
+            type = "string",
+            name = "reportDescription",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        reportFrequency = schema.new({
+            id = id.from(_N, "GetReportDefinitionOutput", "reportFrequency"),
+            type = "string",
+            name = "reportFrequency",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        format = schema.new({
+            id = id.from(_N, "GetReportDefinitionOutput", "format"),
+            type = "string",
+            name = "format",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        destinationS3Location = schema.new({
+            id = id.from(_N, "GetReportDefinitionOutput", "destinationS3Location"),
+            type = "structure",
+            name = "destinationS3Location",
+            target_id = id.from(_N, "S3Location"),
+            target = M.S3Location,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetReportDefinitionOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lastUpdated = schema.new({
+            id = id.from(_N, "GetReportDefinitionOutput", "lastUpdated"),
+            type = "timestamp",
+            name = "lastUpdated",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SourceS3Location = schema.new({
+    id = id.from(_N, "SourceS3Location"),
+    type = "structure",
+    members = {
+        bucket = schema.new({
+            id = id.from(_N, "SourceS3Location", "bucket"),
+            type = "string",
+            name = "bucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        key = schema.new({
+            id = id.from(_N, "SourceS3Location", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        region = schema.new({
+            id = id.from(_N, "SourceS3Location", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ImportApplicationUsageInput = schema.new({
+    id = id.from(_N, "ImportApplicationUsageInput"),
+    type = "structure",
+    members = {
+        sourceS3Location = schema.new({
+            id = id.from(_N, "ImportApplicationUsageInput", "sourceS3Location"),
+            type = "structure",
+            name = "sourceS3Location",
+            target_id = id.from(_N, "SourceS3Location"),
+            target = M.SourceS3Location,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ImportApplicationUsageOutput = schema.new({
+    id = id.from(_N, "ImportApplicationUsageOutput"),
+    type = "structure",
+    members = {
+        importId = schema.new({
+            id = id.from(_N, "ImportApplicationUsageOutput", "importId"),
+            type = "string",
+            name = "importId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListReportDefinitionsInput = schema.new({
+    id = id.from(_N, "ListReportDefinitionsInput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListReportDefinitionsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListReportDefinitionsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.ReportDefinition = schema.new({
+    id = id.from(_N, "ReportDefinition"),
+    type = "structure",
+    members = {
+        reportId = schema.new({
+            id = id.from(_N, "ReportDefinition", "reportId"),
+            type = "string",
+            name = "reportId",
+            target_id = prelude.String.id,
+        }),
+        reportDescription = schema.new({
+            id = id.from(_N, "ReportDefinition", "reportDescription"),
+            type = "string",
+            name = "reportDescription",
+            target_id = prelude.String.id,
+        }),
+        reportFrequency = schema.new({
+            id = id.from(_N, "ReportDefinition", "reportFrequency"),
+            type = "string",
+            name = "reportFrequency",
+            target_id = prelude.String.id,
+        }),
+        format = schema.new({
+            id = id.from(_N, "ReportDefinition", "format"),
+            type = "string",
+            name = "format",
+            target_id = prelude.String.id,
+        }),
+        destinationS3Location = schema.new({
+            id = id.from(_N, "ReportDefinition", "destinationS3Location"),
+            type = "structure",
+            name = "destinationS3Location",
+            target_id = id.from(_N, "S3Location"),
+            target = M.S3Location,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "ReportDefinition", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        lastUpdatedAt = schema.new({
+            id = id.from(_N, "ReportDefinition", "lastUpdatedAt"),
+            type = "timestamp",
+            name = "lastUpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListReportDefinitionsOutput = schema.new({
+    id = id.from(_N, "ListReportDefinitionsOutput"),
+    type = "structure",
+    members = {
+        reportDefinitions = schema.new({
+            id = id.from(_N, "ListReportDefinitionsOutput", "reportDefinitions"),
+            type = "list",
+            name = "reportDefinitions",
+            target_id = prelude.Document.id,
+            list_member = M.ReportDefinition,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListReportDefinitionsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PutReportDefinitionInput = schema.new({
+    id = id.from(_N, "PutReportDefinitionInput"),
+    type = "structure",
+    members = {
+        reportId = schema.new({
+            id = id.from(_N, "PutReportDefinitionInput", "reportId"),
+            type = "string",
+            name = "reportId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        reportDescription = schema.new({
+            id = id.from(_N, "PutReportDefinitionInput", "reportDescription"),
+            type = "string",
+            name = "reportDescription",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        reportFrequency = schema.new({
+            id = id.from(_N, "PutReportDefinitionInput", "reportFrequency"),
+            type = "string",
+            name = "reportFrequency",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        format = schema.new({
+            id = id.from(_N, "PutReportDefinitionInput", "format"),
+            type = "string",
+            name = "format",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        destinationS3Location = schema.new({
+            id = id.from(_N, "PutReportDefinitionInput", "destinationS3Location"),
+            type = "structure",
+            name = "destinationS3Location",
+            target_id = id.from(_N, "S3Location"),
+            target = M.S3Location,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutReportDefinitionOutput = schema.new({
+    id = id.from(_N, "PutReportDefinitionOutput"),
+    type = "structure",
+    members = {
+        reportId = schema.new({
+            id = id.from(_N, "PutReportDefinitionOutput", "reportId"),
+            type = "string",
+            name = "reportId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateReportDefinitionInput = schema.new({
+    id = id.from(_N, "UpdateReportDefinitionInput"),
+    type = "structure",
+    members = {
+        reportId = schema.new({
+            id = id.from(_N, "UpdateReportDefinitionInput", "reportId"),
+            type = "string",
+            name = "reportId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        reportDescription = schema.new({
+            id = id.from(_N, "UpdateReportDefinitionInput", "reportDescription"),
+            type = "string",
+            name = "reportDescription",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        reportFrequency = schema.new({
+            id = id.from(_N, "UpdateReportDefinitionInput", "reportFrequency"),
+            type = "string",
+            name = "reportFrequency",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        format = schema.new({
+            id = id.from(_N, "UpdateReportDefinitionInput", "format"),
+            type = "string",
+            name = "format",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        destinationS3Location = schema.new({
+            id = id.from(_N, "UpdateReportDefinitionInput", "destinationS3Location"),
+            type = "structure",
+            name = "destinationS3Location",
+            target_id = id.from(_N, "S3Location"),
+            target = M.S3Location,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateReportDefinitionOutput = schema.new({
+    id = id.from(_N, "UpdateReportDefinitionOutput"),
+    type = "structure",
+    members = {
+        reportId = schema.new({
+            id = id.from(_N, "UpdateReportDefinitionOutput", "reportId"),
+            type = "string",
+            name = "reportId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+return M

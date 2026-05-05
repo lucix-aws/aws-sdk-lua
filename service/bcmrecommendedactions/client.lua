@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("bcmrecommendedactions.endpoint_rules")
+local schemas = require("bcmrecommendedactions.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("bcmrecommendedactions.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:listRecommendedActions(input, options)
     return self:invokeOperation(input, {
         name = "ListRecommendedActions",
-        input_schema = types.ListRecommendedActionsInput,
-        output_schema = types.ListRecommendedActionsOutput,
+        input_schema = schemas.ListRecommendedActionsInput,
+        output_schema = schemas.ListRecommendedActionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

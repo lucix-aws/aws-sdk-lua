@@ -1,48 +1,8 @@
 local M = {}
 
-M.AccessDeniedException = {
-    type = "structure",
-    id = "AccessDeniedException",
-    error = "client",
-    members = {
-        message = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-    },
-}
-
 M.InternalServerExceptionReason = {
     FAILED_TO_GENERATE_SBOM = "FAILED_TO_GENERATE_SBOM",
     OTHER = "OTHER",
-}
-
-M.InternalServerException = {
-    type = "structure",
-    id = "InternalServerException",
-    error = "server",
-    members = {
-        message = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-        reason = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-        retryAfterSeconds = {
-            type = "integer",
-            traits = {
-                http_header = "Retry-After",
-            },
-        },
-    },
 }
 
 M.OutputFormat = {
@@ -51,101 +11,12 @@ M.OutputFormat = {
     INSPECTOR_ALT = "INSPECTOR_ALT",
 }
 
-M.ScanSbomInput = {
-    type = "structure",
-    id = "ScanSbomInput",
-    members = {
-        sbom = {
-            type = "document",
-            traits = {
-                required = true,
-            },
-        },
-        outputFormat = {
-            type = "string",
-        },
-    },
-}
-
-M.ScanSbomOutput = {
-    type = "structure",
-    id = "ScanSbomOutput",
-    members = {
-        sbom = {
-            type = "document",
-        },
-    },
-}
-
-M.ThrottlingException = {
-    type = "structure",
-    id = "ThrottlingException",
-    error = "client",
-    members = {
-        message = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-        retryAfterSeconds = {
-            type = "integer",
-            traits = {
-                http_header = "Retry-After",
-            },
-        },
-    },
-}
-
-M.ValidationExceptionField = {
-    type = "structure",
-    id = "ValidationExceptionField",
-    members = {
-        name = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-        message = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-    },
-}
-
 M.ValidationExceptionReason = {
     UNKNOWN_OPERATION = "UNKNOWN_OPERATION",
     CANNOT_PARSE = "CANNOT_PARSE",
     FIELD_VALIDATION_FAILED = "FIELD_VALIDATION_FAILED",
     UNSUPPORTED_SBOM_TYPE = "UNSUPPORTED_SBOM_TYPE",
     OTHER = "OTHER",
-}
-
-M.ValidationException = {
-    type = "structure",
-    id = "ValidationException",
-    error = "client",
-    members = {
-        message = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-        reason = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-        fields = {
-            type = "list",
-            member = M.ValidationExceptionField,
-        },
-    },
 }
 
 return M

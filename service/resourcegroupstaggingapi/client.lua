@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("resourcegroupstaggingapi.endpoint_rules")
+local schemas = require("resourcegroupstaggingapi.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("resourcegroupstaggingapi.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:describeReportCreation(input, options)
     return self:invokeOperation(input, {
         name = "DescribeReportCreation",
-        input_schema = types.DescribeReportCreationInput,
-        output_schema = types.DescribeReportCreationOutput,
+        input_schema = schemas.DescribeReportCreationInput,
+        output_schema = schemas.DescribeReportCreationOutput,
         http_method = "POST",
         http_path = "/DescribeReportCreation",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:getComplianceSummary(input, options)
     return self:invokeOperation(input, {
         name = "GetComplianceSummary",
-        input_schema = types.GetComplianceSummaryInput,
-        output_schema = types.GetComplianceSummaryOutput,
+        input_schema = schemas.GetComplianceSummaryInput,
+        output_schema = schemas.GetComplianceSummaryOutput,
         http_method = "POST",
         http_path = "/GetComplianceSummary",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getResources(input, options)
     return self:invokeOperation(input, {
         name = "GetResources",
-        input_schema = types.GetResourcesInput,
-        output_schema = types.GetResourcesOutput,
+        input_schema = schemas.GetResourcesInput,
+        output_schema = schemas.GetResourcesOutput,
         http_method = "POST",
         http_path = "/GetResources",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getTagKeys(input, options)
     return self:invokeOperation(input, {
         name = "GetTagKeys",
-        input_schema = types.GetTagKeysInput,
-        output_schema = types.GetTagKeysOutput,
+        input_schema = schemas.GetTagKeysInput,
+        output_schema = schemas.GetTagKeysOutput,
         http_method = "POST",
         http_path = "/GetTagKeys",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getTagValues(input, options)
     return self:invokeOperation(input, {
         name = "GetTagValues",
-        input_schema = types.GetTagValuesInput,
-        output_schema = types.GetTagValuesOutput,
+        input_schema = schemas.GetTagValuesInput,
+        output_schema = schemas.GetTagValuesOutput,
         http_method = "POST",
         http_path = "/GetTagValues",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:listRequiredTags(input, options)
     return self:invokeOperation(input, {
         name = "ListRequiredTags",
-        input_schema = types.ListRequiredTagsInput,
-        output_schema = types.ListRequiredTagsOutput,
+        input_schema = schemas.ListRequiredTagsInput,
+        output_schema = schemas.ListRequiredTagsOutput,
         http_method = "POST",
         http_path = "/ListRequiredTags",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:startReportCreation(input, options)
     return self:invokeOperation(input, {
         name = "StartReportCreation",
-        input_schema = types.StartReportCreationInput,
-        output_schema = types.StartReportCreationOutput,
+        input_schema = schemas.StartReportCreationInput,
+        output_schema = schemas.StartReportCreationOutput,
         http_method = "POST",
         http_path = "/StartReportCreation",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:tagResources(input, options)
     return self:invokeOperation(input, {
         name = "TagResources",
-        input_schema = types.TagResourcesInput,
-        output_schema = types.TagResourcesOutput,
+        input_schema = schemas.TagResourcesInput,
+        output_schema = schemas.TagResourcesOutput,
         http_method = "POST",
         http_path = "/TagResources",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:untagResources(input, options)
     return self:invokeOperation(input, {
         name = "UntagResources",
-        input_schema = types.UntagResourcesInput,
-        output_schema = types.UntagResourcesOutput,
+        input_schema = schemas.UntagResourcesInput,
+        output_schema = schemas.UntagResourcesOutput,
         http_method = "POST",
         http_path = "/UntagResources",
         effective_auth_schemes = {

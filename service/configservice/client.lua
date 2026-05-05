@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("configservice.endpoint_rules")
+local schemas = require("configservice.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("configservice.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateResourceTypes(input, options)
     return self:invokeOperation(input, {
         name = "AssociateResourceTypes",
-        input_schema = types.AssociateResourceTypesInput,
-        output_schema = types.AssociateResourceTypesOutput,
+        input_schema = schemas.AssociateResourceTypesInput,
+        output_schema = schemas.AssociateResourceTypesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchGetAggregateResourceConfig(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetAggregateResourceConfig",
-        input_schema = types.BatchGetAggregateResourceConfigInput,
-        output_schema = types.BatchGetAggregateResourceConfigOutput,
+        input_schema = schemas.BatchGetAggregateResourceConfigInput,
+        output_schema = schemas.BatchGetAggregateResourceConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchGetResourceConfig(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetResourceConfig",
-        input_schema = types.BatchGetResourceConfigInput,
-        output_schema = types.BatchGetResourceConfigOutput,
+        input_schema = schemas.BatchGetResourceConfigInput,
+        output_schema = schemas.BatchGetResourceConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteAggregationAuthorization(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAggregationAuthorization",
-        input_schema = types.DeleteAggregationAuthorizationInput,
-        output_schema = types.DeleteAggregationAuthorizationOutput,
+        input_schema = schemas.DeleteAggregationAuthorizationInput,
+        output_schema = schemas.DeleteAggregationAuthorizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteConfigRule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfigRule",
-        input_schema = types.DeleteConfigRuleInput,
-        output_schema = types.DeleteConfigRuleOutput,
+        input_schema = schemas.DeleteConfigRuleInput,
+        output_schema = schemas.DeleteConfigRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteConfigurationAggregator(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfigurationAggregator",
-        input_schema = types.DeleteConfigurationAggregatorInput,
-        output_schema = types.DeleteConfigurationAggregatorOutput,
+        input_schema = schemas.DeleteConfigurationAggregatorInput,
+        output_schema = schemas.DeleteConfigurationAggregatorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteConfigurationRecorder(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfigurationRecorder",
-        input_schema = types.DeleteConfigurationRecorderInput,
-        output_schema = types.DeleteConfigurationRecorderOutput,
+        input_schema = schemas.DeleteConfigurationRecorderInput,
+        output_schema = schemas.DeleteConfigurationRecorderOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteConformancePack(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConformancePack",
-        input_schema = types.DeleteConformancePackInput,
-        output_schema = types.DeleteConformancePackOutput,
+        input_schema = schemas.DeleteConformancePackInput,
+        output_schema = schemas.DeleteConformancePackOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteDeliveryChannel(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDeliveryChannel",
-        input_schema = types.DeleteDeliveryChannelInput,
-        output_schema = types.DeleteDeliveryChannelOutput,
+        input_schema = schemas.DeleteDeliveryChannelInput,
+        output_schema = schemas.DeleteDeliveryChannelOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteEvaluationResults(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEvaluationResults",
-        input_schema = types.DeleteEvaluationResultsInput,
-        output_schema = types.DeleteEvaluationResultsOutput,
+        input_schema = schemas.DeleteEvaluationResultsInput,
+        output_schema = schemas.DeleteEvaluationResultsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteOrganizationConfigRule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteOrganizationConfigRule",
-        input_schema = types.DeleteOrganizationConfigRuleInput,
-        output_schema = types.DeleteOrganizationConfigRuleOutput,
+        input_schema = schemas.DeleteOrganizationConfigRuleInput,
+        output_schema = schemas.DeleteOrganizationConfigRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteOrganizationConformancePack(input, options)
     return self:invokeOperation(input, {
         name = "DeleteOrganizationConformancePack",
-        input_schema = types.DeleteOrganizationConformancePackInput,
-        output_schema = types.DeleteOrganizationConformancePackOutput,
+        input_schema = schemas.DeleteOrganizationConformancePackInput,
+        output_schema = schemas.DeleteOrganizationConformancePackOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deletePendingAggregationRequest(input, options)
     return self:invokeOperation(input, {
         name = "DeletePendingAggregationRequest",
-        input_schema = types.DeletePendingAggregationRequestInput,
-        output_schema = types.DeletePendingAggregationRequestOutput,
+        input_schema = schemas.DeletePendingAggregationRequestInput,
+        output_schema = schemas.DeletePendingAggregationRequestOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteRemediationConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRemediationConfiguration",
-        input_schema = types.DeleteRemediationConfigurationInput,
-        output_schema = types.DeleteRemediationConfigurationOutput,
+        input_schema = schemas.DeleteRemediationConfigurationInput,
+        output_schema = schemas.DeleteRemediationConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteRemediationExceptions(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRemediationExceptions",
-        input_schema = types.DeleteRemediationExceptionsInput,
-        output_schema = types.DeleteRemediationExceptionsOutput,
+        input_schema = schemas.DeleteRemediationExceptionsInput,
+        output_schema = schemas.DeleteRemediationExceptionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteResourceConfig(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourceConfig",
-        input_schema = types.DeleteResourceConfigInput,
-        output_schema = types.DeleteResourceConfigOutput,
+        input_schema = schemas.DeleteResourceConfigInput,
+        output_schema = schemas.DeleteResourceConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteRetentionConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRetentionConfiguration",
-        input_schema = types.DeleteRetentionConfigurationInput,
-        output_schema = types.DeleteRetentionConfigurationOutput,
+        input_schema = schemas.DeleteRetentionConfigurationInput,
+        output_schema = schemas.DeleteRetentionConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteServiceLinkedConfigurationRecorder(input, options)
     return self:invokeOperation(input, {
         name = "DeleteServiceLinkedConfigurationRecorder",
-        input_schema = types.DeleteServiceLinkedConfigurationRecorderInput,
-        output_schema = types.DeleteServiceLinkedConfigurationRecorderOutput,
+        input_schema = schemas.DeleteServiceLinkedConfigurationRecorderInput,
+        output_schema = schemas.DeleteServiceLinkedConfigurationRecorderOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteStoredQuery(input, options)
     return self:invokeOperation(input, {
         name = "DeleteStoredQuery",
-        input_schema = types.DeleteStoredQueryInput,
-        output_schema = types.DeleteStoredQueryOutput,
+        input_schema = schemas.DeleteStoredQueryInput,
+        output_schema = schemas.DeleteStoredQueryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deliverConfigSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "DeliverConfigSnapshot",
-        input_schema = types.DeliverConfigSnapshotInput,
-        output_schema = types.DeliverConfigSnapshotOutput,
+        input_schema = schemas.DeliverConfigSnapshotInput,
+        output_schema = schemas.DeliverConfigSnapshotOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:describeAggregateComplianceByConfigRules(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAggregateComplianceByConfigRules",
-        input_schema = types.DescribeAggregateComplianceByConfigRulesInput,
-        output_schema = types.DescribeAggregateComplianceByConfigRulesOutput,
+        input_schema = schemas.DescribeAggregateComplianceByConfigRulesInput,
+        output_schema = schemas.DescribeAggregateComplianceByConfigRulesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:describeAggregateComplianceByConformancePacks(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAggregateComplianceByConformancePacks",
-        input_schema = types.DescribeAggregateComplianceByConformancePacksInput,
-        output_schema = types.DescribeAggregateComplianceByConformancePacksOutput,
+        input_schema = schemas.DescribeAggregateComplianceByConformancePacksInput,
+        output_schema = schemas.DescribeAggregateComplianceByConformancePacksOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:describeAggregationAuthorizations(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAggregationAuthorizations",
-        input_schema = types.DescribeAggregationAuthorizationsInput,
-        output_schema = types.DescribeAggregationAuthorizationsOutput,
+        input_schema = schemas.DescribeAggregationAuthorizationsInput,
+        output_schema = schemas.DescribeAggregationAuthorizationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:describeComplianceByConfigRule(input, options)
     return self:invokeOperation(input, {
         name = "DescribeComplianceByConfigRule",
-        input_schema = types.DescribeComplianceByConfigRuleInput,
-        output_schema = types.DescribeComplianceByConfigRuleOutput,
+        input_schema = schemas.DescribeComplianceByConfigRuleInput,
+        output_schema = schemas.DescribeComplianceByConfigRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:describeComplianceByResource(input, options)
     return self:invokeOperation(input, {
         name = "DescribeComplianceByResource",
-        input_schema = types.DescribeComplianceByResourceInput,
-        output_schema = types.DescribeComplianceByResourceOutput,
+        input_schema = schemas.DescribeComplianceByResourceInput,
+        output_schema = schemas.DescribeComplianceByResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:describeConfigRuleEvaluationStatus(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConfigRuleEvaluationStatus",
-        input_schema = types.DescribeConfigRuleEvaluationStatusInput,
-        output_schema = types.DescribeConfigRuleEvaluationStatusOutput,
+        input_schema = schemas.DescribeConfigRuleEvaluationStatusInput,
+        output_schema = schemas.DescribeConfigRuleEvaluationStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:describeConfigRules(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConfigRules",
-        input_schema = types.DescribeConfigRulesInput,
-        output_schema = types.DescribeConfigRulesOutput,
+        input_schema = schemas.DescribeConfigRulesInput,
+        output_schema = schemas.DescribeConfigRulesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:describeConfigurationAggregators(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConfigurationAggregators",
-        input_schema = types.DescribeConfigurationAggregatorsInput,
-        output_schema = types.DescribeConfigurationAggregatorsOutput,
+        input_schema = schemas.DescribeConfigurationAggregatorsInput,
+        output_schema = schemas.DescribeConfigurationAggregatorsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:describeConfigurationAggregatorSourcesStatus(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConfigurationAggregatorSourcesStatus",
-        input_schema = types.DescribeConfigurationAggregatorSourcesStatusInput,
-        output_schema = types.DescribeConfigurationAggregatorSourcesStatusOutput,
+        input_schema = schemas.DescribeConfigurationAggregatorSourcesStatusInput,
+        output_schema = schemas.DescribeConfigurationAggregatorSourcesStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:describeConfigurationRecorders(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConfigurationRecorders",
-        input_schema = types.DescribeConfigurationRecordersInput,
-        output_schema = types.DescribeConfigurationRecordersOutput,
+        input_schema = schemas.DescribeConfigurationRecordersInput,
+        output_schema = schemas.DescribeConfigurationRecordersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:describeConfigurationRecorderStatus(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConfigurationRecorderStatus",
-        input_schema = types.DescribeConfigurationRecorderStatusInput,
-        output_schema = types.DescribeConfigurationRecorderStatusOutput,
+        input_schema = schemas.DescribeConfigurationRecorderStatusInput,
+        output_schema = schemas.DescribeConfigurationRecorderStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:describeConformancePackCompliance(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConformancePackCompliance",
-        input_schema = types.DescribeConformancePackComplianceInput,
-        output_schema = types.DescribeConformancePackComplianceOutput,
+        input_schema = schemas.DescribeConformancePackComplianceInput,
+        output_schema = schemas.DescribeConformancePackComplianceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:describeConformancePacks(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConformancePacks",
-        input_schema = types.DescribeConformancePacksInput,
-        output_schema = types.DescribeConformancePacksOutput,
+        input_schema = schemas.DescribeConformancePacksInput,
+        output_schema = schemas.DescribeConformancePacksOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:describeConformancePackStatus(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConformancePackStatus",
-        input_schema = types.DescribeConformancePackStatusInput,
-        output_schema = types.DescribeConformancePackStatusOutput,
+        input_schema = schemas.DescribeConformancePackStatusInput,
+        output_schema = schemas.DescribeConformancePackStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:describeDeliveryChannels(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDeliveryChannels",
-        input_schema = types.DescribeDeliveryChannelsInput,
-        output_schema = types.DescribeDeliveryChannelsOutput,
+        input_schema = schemas.DescribeDeliveryChannelsInput,
+        output_schema = schemas.DescribeDeliveryChannelsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:describeDeliveryChannelStatus(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDeliveryChannelStatus",
-        input_schema = types.DescribeDeliveryChannelStatusInput,
-        output_schema = types.DescribeDeliveryChannelStatusOutput,
+        input_schema = schemas.DescribeDeliveryChannelStatusInput,
+        output_schema = schemas.DescribeDeliveryChannelStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:describeOrganizationConfigRules(input, options)
     return self:invokeOperation(input, {
         name = "DescribeOrganizationConfigRules",
-        input_schema = types.DescribeOrganizationConfigRulesInput,
-        output_schema = types.DescribeOrganizationConfigRulesOutput,
+        input_schema = schemas.DescribeOrganizationConfigRulesInput,
+        output_schema = schemas.DescribeOrganizationConfigRulesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:describeOrganizationConfigRuleStatuses(input, options)
     return self:invokeOperation(input, {
         name = "DescribeOrganizationConfigRuleStatuses",
-        input_schema = types.DescribeOrganizationConfigRuleStatusesInput,
-        output_schema = types.DescribeOrganizationConfigRuleStatusesOutput,
+        input_schema = schemas.DescribeOrganizationConfigRuleStatusesInput,
+        output_schema = schemas.DescribeOrganizationConfigRuleStatusesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:describeOrganizationConformancePacks(input, options)
     return self:invokeOperation(input, {
         name = "DescribeOrganizationConformancePacks",
-        input_schema = types.DescribeOrganizationConformancePacksInput,
-        output_schema = types.DescribeOrganizationConformancePacksOutput,
+        input_schema = schemas.DescribeOrganizationConformancePacksInput,
+        output_schema = schemas.DescribeOrganizationConformancePacksOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:describeOrganizationConformancePackStatuses(input, options)
     return self:invokeOperation(input, {
         name = "DescribeOrganizationConformancePackStatuses",
-        input_schema = types.DescribeOrganizationConformancePackStatusesInput,
-        output_schema = types.DescribeOrganizationConformancePackStatusesOutput,
+        input_schema = schemas.DescribeOrganizationConformancePackStatusesInput,
+        output_schema = schemas.DescribeOrganizationConformancePackStatusesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:describePendingAggregationRequests(input, options)
     return self:invokeOperation(input, {
         name = "DescribePendingAggregationRequests",
-        input_schema = types.DescribePendingAggregationRequestsInput,
-        output_schema = types.DescribePendingAggregationRequestsOutput,
+        input_schema = schemas.DescribePendingAggregationRequestsInput,
+        output_schema = schemas.DescribePendingAggregationRequestsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:describeRemediationConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRemediationConfigurations",
-        input_schema = types.DescribeRemediationConfigurationsInput,
-        output_schema = types.DescribeRemediationConfigurationsOutput,
+        input_schema = schemas.DescribeRemediationConfigurationsInput,
+        output_schema = schemas.DescribeRemediationConfigurationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:describeRemediationExceptions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRemediationExceptions",
-        input_schema = types.DescribeRemediationExceptionsInput,
-        output_schema = types.DescribeRemediationExceptionsOutput,
+        input_schema = schemas.DescribeRemediationExceptionsInput,
+        output_schema = schemas.DescribeRemediationExceptionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:describeRemediationExecutionStatus(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRemediationExecutionStatus",
-        input_schema = types.DescribeRemediationExecutionStatusInput,
-        output_schema = types.DescribeRemediationExecutionStatusOutput,
+        input_schema = schemas.DescribeRemediationExecutionStatusInput,
+        output_schema = schemas.DescribeRemediationExecutionStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:describeRetentionConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRetentionConfigurations",
-        input_schema = types.DescribeRetentionConfigurationsInput,
-        output_schema = types.DescribeRetentionConfigurationsOutput,
+        input_schema = schemas.DescribeRetentionConfigurationsInput,
+        output_schema = schemas.DescribeRetentionConfigurationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:disassociateResourceTypes(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateResourceTypes",
-        input_schema = types.DisassociateResourceTypesInput,
-        output_schema = types.DisassociateResourceTypesOutput,
+        input_schema = schemas.DisassociateResourceTypesInput,
+        output_schema = schemas.DisassociateResourceTypesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:getAggregateComplianceDetailsByConfigRule(input, options)
     return self:invokeOperation(input, {
         name = "GetAggregateComplianceDetailsByConfigRule",
-        input_schema = types.GetAggregateComplianceDetailsByConfigRuleInput,
-        output_schema = types.GetAggregateComplianceDetailsByConfigRuleOutput,
+        input_schema = schemas.GetAggregateComplianceDetailsByConfigRuleInput,
+        output_schema = schemas.GetAggregateComplianceDetailsByConfigRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:getAggregateConfigRuleComplianceSummary(input, options)
     return self:invokeOperation(input, {
         name = "GetAggregateConfigRuleComplianceSummary",
-        input_schema = types.GetAggregateConfigRuleComplianceSummaryInput,
-        output_schema = types.GetAggregateConfigRuleComplianceSummaryOutput,
+        input_schema = schemas.GetAggregateConfigRuleComplianceSummaryInput,
+        output_schema = schemas.GetAggregateConfigRuleComplianceSummaryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:getAggregateConformancePackComplianceSummary(input, options)
     return self:invokeOperation(input, {
         name = "GetAggregateConformancePackComplianceSummary",
-        input_schema = types.GetAggregateConformancePackComplianceSummaryInput,
-        output_schema = types.GetAggregateConformancePackComplianceSummaryOutput,
+        input_schema = schemas.GetAggregateConformancePackComplianceSummaryInput,
+        output_schema = schemas.GetAggregateConformancePackComplianceSummaryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:getAggregateDiscoveredResourceCounts(input, options)
     return self:invokeOperation(input, {
         name = "GetAggregateDiscoveredResourceCounts",
-        input_schema = types.GetAggregateDiscoveredResourceCountsInput,
-        output_schema = types.GetAggregateDiscoveredResourceCountsOutput,
+        input_schema = schemas.GetAggregateDiscoveredResourceCountsInput,
+        output_schema = schemas.GetAggregateDiscoveredResourceCountsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:getAggregateResourceConfig(input, options)
     return self:invokeOperation(input, {
         name = "GetAggregateResourceConfig",
-        input_schema = types.GetAggregateResourceConfigInput,
-        output_schema = types.GetAggregateResourceConfigOutput,
+        input_schema = schemas.GetAggregateResourceConfigInput,
+        output_schema = schemas.GetAggregateResourceConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:getComplianceDetailsByConfigRule(input, options)
     return self:invokeOperation(input, {
         name = "GetComplianceDetailsByConfigRule",
-        input_schema = types.GetComplianceDetailsByConfigRuleInput,
-        output_schema = types.GetComplianceDetailsByConfigRuleOutput,
+        input_schema = schemas.GetComplianceDetailsByConfigRuleInput,
+        output_schema = schemas.GetComplianceDetailsByConfigRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:getComplianceDetailsByResource(input, options)
     return self:invokeOperation(input, {
         name = "GetComplianceDetailsByResource",
-        input_schema = types.GetComplianceDetailsByResourceInput,
-        output_schema = types.GetComplianceDetailsByResourceOutput,
+        input_schema = schemas.GetComplianceDetailsByResourceInput,
+        output_schema = schemas.GetComplianceDetailsByResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:getComplianceSummaryByConfigRule(input, options)
     return self:invokeOperation(input, {
         name = "GetComplianceSummaryByConfigRule",
-        input_schema = types.GetComplianceSummaryByConfigRuleInput,
-        output_schema = types.GetComplianceSummaryByConfigRuleOutput,
+        input_schema = schemas.GetComplianceSummaryByConfigRuleInput,
+        output_schema = schemas.GetComplianceSummaryByConfigRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:getComplianceSummaryByResourceType(input, options)
     return self:invokeOperation(input, {
         name = "GetComplianceSummaryByResourceType",
-        input_schema = types.GetComplianceSummaryByResourceTypeInput,
-        output_schema = types.GetComplianceSummaryByResourceTypeOutput,
+        input_schema = schemas.GetComplianceSummaryByResourceTypeInput,
+        output_schema = schemas.GetComplianceSummaryByResourceTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:getConformancePackComplianceDetails(input, options)
     return self:invokeOperation(input, {
         name = "GetConformancePackComplianceDetails",
-        input_schema = types.GetConformancePackComplianceDetailsInput,
-        output_schema = types.GetConformancePackComplianceDetailsOutput,
+        input_schema = schemas.GetConformancePackComplianceDetailsInput,
+        output_schema = schemas.GetConformancePackComplianceDetailsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:getConformancePackComplianceSummary(input, options)
     return self:invokeOperation(input, {
         name = "GetConformancePackComplianceSummary",
-        input_schema = types.GetConformancePackComplianceSummaryInput,
-        output_schema = types.GetConformancePackComplianceSummaryOutput,
+        input_schema = schemas.GetConformancePackComplianceSummaryInput,
+        output_schema = schemas.GetConformancePackComplianceSummaryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:getCustomRulePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetCustomRulePolicy",
-        input_schema = types.GetCustomRulePolicyInput,
-        output_schema = types.GetCustomRulePolicyOutput,
+        input_schema = schemas.GetCustomRulePolicyInput,
+        output_schema = schemas.GetCustomRulePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:getDiscoveredResourceCounts(input, options)
     return self:invokeOperation(input, {
         name = "GetDiscoveredResourceCounts",
-        input_schema = types.GetDiscoveredResourceCountsInput,
-        output_schema = types.GetDiscoveredResourceCountsOutput,
+        input_schema = schemas.GetDiscoveredResourceCountsInput,
+        output_schema = schemas.GetDiscoveredResourceCountsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:getOrganizationConfigRuleDetailedStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetOrganizationConfigRuleDetailedStatus",
-        input_schema = types.GetOrganizationConfigRuleDetailedStatusInput,
-        output_schema = types.GetOrganizationConfigRuleDetailedStatusOutput,
+        input_schema = schemas.GetOrganizationConfigRuleDetailedStatusInput,
+        output_schema = schemas.GetOrganizationConfigRuleDetailedStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:getOrganizationConformancePackDetailedStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetOrganizationConformancePackDetailedStatus",
-        input_schema = types.GetOrganizationConformancePackDetailedStatusInput,
-        output_schema = types.GetOrganizationConformancePackDetailedStatusOutput,
+        input_schema = schemas.GetOrganizationConformancePackDetailedStatusInput,
+        output_schema = schemas.GetOrganizationConformancePackDetailedStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:getOrganizationCustomRulePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetOrganizationCustomRulePolicy",
-        input_schema = types.GetOrganizationCustomRulePolicyInput,
-        output_schema = types.GetOrganizationCustomRulePolicyOutput,
+        input_schema = schemas.GetOrganizationCustomRulePolicyInput,
+        output_schema = schemas.GetOrganizationCustomRulePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:getResourceConfigHistory(input, options)
     return self:invokeOperation(input, {
         name = "GetResourceConfigHistory",
-        input_schema = types.GetResourceConfigHistoryInput,
-        output_schema = types.GetResourceConfigHistoryOutput,
+        input_schema = schemas.GetResourceConfigHistoryInput,
+        output_schema = schemas.GetResourceConfigHistoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:getResourceEvaluationSummary(input, options)
     return self:invokeOperation(input, {
         name = "GetResourceEvaluationSummary",
-        input_schema = types.GetResourceEvaluationSummaryInput,
-        output_schema = types.GetResourceEvaluationSummaryOutput,
+        input_schema = schemas.GetResourceEvaluationSummaryInput,
+        output_schema = schemas.GetResourceEvaluationSummaryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:getStoredQuery(input, options)
     return self:invokeOperation(input, {
         name = "GetStoredQuery",
-        input_schema = types.GetStoredQueryInput,
-        output_schema = types.GetStoredQueryOutput,
+        input_schema = schemas.GetStoredQueryInput,
+        output_schema = schemas.GetStoredQueryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:listAggregateDiscoveredResources(input, options)
     return self:invokeOperation(input, {
         name = "ListAggregateDiscoveredResources",
-        input_schema = types.ListAggregateDiscoveredResourcesInput,
-        output_schema = types.ListAggregateDiscoveredResourcesOutput,
+        input_schema = schemas.ListAggregateDiscoveredResourcesInput,
+        output_schema = schemas.ListAggregateDiscoveredResourcesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:listConfigurationRecorders(input, options)
     return self:invokeOperation(input, {
         name = "ListConfigurationRecorders",
-        input_schema = types.ListConfigurationRecordersInput,
-        output_schema = types.ListConfigurationRecordersOutput,
+        input_schema = schemas.ListConfigurationRecordersInput,
+        output_schema = schemas.ListConfigurationRecordersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:listConformancePackComplianceScores(input, options)
     return self:invokeOperation(input, {
         name = "ListConformancePackComplianceScores",
-        input_schema = types.ListConformancePackComplianceScoresInput,
-        output_schema = types.ListConformancePackComplianceScoresOutput,
+        input_schema = schemas.ListConformancePackComplianceScoresInput,
+        output_schema = schemas.ListConformancePackComplianceScoresOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:listDiscoveredResources(input, options)
     return self:invokeOperation(input, {
         name = "ListDiscoveredResources",
-        input_schema = types.ListDiscoveredResourcesInput,
-        output_schema = types.ListDiscoveredResourcesOutput,
+        input_schema = schemas.ListDiscoveredResourcesInput,
+        output_schema = schemas.ListDiscoveredResourcesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:listResourceEvaluations(input, options)
     return self:invokeOperation(input, {
         name = "ListResourceEvaluations",
-        input_schema = types.ListResourceEvaluationsInput,
-        output_schema = types.ListResourceEvaluationsOutput,
+        input_schema = schemas.ListResourceEvaluationsInput,
+        output_schema = schemas.ListResourceEvaluationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:listStoredQueries(input, options)
     return self:invokeOperation(input, {
         name = "ListStoredQueries",
-        input_schema = types.ListStoredQueriesInput,
-        output_schema = types.ListStoredQueriesOutput,
+        input_schema = schemas.ListStoredQueriesInput,
+        output_schema = schemas.ListStoredQueriesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:putAggregationAuthorization(input, options)
     return self:invokeOperation(input, {
         name = "PutAggregationAuthorization",
-        input_schema = types.PutAggregationAuthorizationInput,
-        output_schema = types.PutAggregationAuthorizationOutput,
+        input_schema = schemas.PutAggregationAuthorizationInput,
+        output_schema = schemas.PutAggregationAuthorizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:putConfigRule(input, options)
     return self:invokeOperation(input, {
         name = "PutConfigRule",
-        input_schema = types.PutConfigRuleInput,
-        output_schema = types.PutConfigRuleOutput,
+        input_schema = schemas.PutConfigRuleInput,
+        output_schema = schemas.PutConfigRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1011,8 +1011,8 @@ end
 function Client:putConfigurationAggregator(input, options)
     return self:invokeOperation(input, {
         name = "PutConfigurationAggregator",
-        input_schema = types.PutConfigurationAggregatorInput,
-        output_schema = types.PutConfigurationAggregatorOutput,
+        input_schema = schemas.PutConfigurationAggregatorInput,
+        output_schema = schemas.PutConfigurationAggregatorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1024,8 +1024,8 @@ end
 function Client:putConfigurationRecorder(input, options)
     return self:invokeOperation(input, {
         name = "PutConfigurationRecorder",
-        input_schema = types.PutConfigurationRecorderInput,
-        output_schema = types.PutConfigurationRecorderOutput,
+        input_schema = schemas.PutConfigurationRecorderInput,
+        output_schema = schemas.PutConfigurationRecorderOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1037,8 +1037,8 @@ end
 function Client:putConformancePack(input, options)
     return self:invokeOperation(input, {
         name = "PutConformancePack",
-        input_schema = types.PutConformancePackInput,
-        output_schema = types.PutConformancePackOutput,
+        input_schema = schemas.PutConformancePackInput,
+        output_schema = schemas.PutConformancePackOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1050,8 +1050,8 @@ end
 function Client:putDeliveryChannel(input, options)
     return self:invokeOperation(input, {
         name = "PutDeliveryChannel",
-        input_schema = types.PutDeliveryChannelInput,
-        output_schema = types.PutDeliveryChannelOutput,
+        input_schema = schemas.PutDeliveryChannelInput,
+        output_schema = schemas.PutDeliveryChannelOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1063,8 +1063,8 @@ end
 function Client:putEvaluations(input, options)
     return self:invokeOperation(input, {
         name = "PutEvaluations",
-        input_schema = types.PutEvaluationsInput,
-        output_schema = types.PutEvaluationsOutput,
+        input_schema = schemas.PutEvaluationsInput,
+        output_schema = schemas.PutEvaluationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1076,8 +1076,8 @@ end
 function Client:putExternalEvaluation(input, options)
     return self:invokeOperation(input, {
         name = "PutExternalEvaluation",
-        input_schema = types.PutExternalEvaluationInput,
-        output_schema = types.PutExternalEvaluationOutput,
+        input_schema = schemas.PutExternalEvaluationInput,
+        output_schema = schemas.PutExternalEvaluationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1089,8 +1089,8 @@ end
 function Client:putOrganizationConfigRule(input, options)
     return self:invokeOperation(input, {
         name = "PutOrganizationConfigRule",
-        input_schema = types.PutOrganizationConfigRuleInput,
-        output_schema = types.PutOrganizationConfigRuleOutput,
+        input_schema = schemas.PutOrganizationConfigRuleInput,
+        output_schema = schemas.PutOrganizationConfigRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1102,8 +1102,8 @@ end
 function Client:putOrganizationConformancePack(input, options)
     return self:invokeOperation(input, {
         name = "PutOrganizationConformancePack",
-        input_schema = types.PutOrganizationConformancePackInput,
-        output_schema = types.PutOrganizationConformancePackOutput,
+        input_schema = schemas.PutOrganizationConformancePackInput,
+        output_schema = schemas.PutOrganizationConformancePackOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1115,8 +1115,8 @@ end
 function Client:putRemediationConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "PutRemediationConfigurations",
-        input_schema = types.PutRemediationConfigurationsInput,
-        output_schema = types.PutRemediationConfigurationsOutput,
+        input_schema = schemas.PutRemediationConfigurationsInput,
+        output_schema = schemas.PutRemediationConfigurationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1128,8 +1128,8 @@ end
 function Client:putRemediationExceptions(input, options)
     return self:invokeOperation(input, {
         name = "PutRemediationExceptions",
-        input_schema = types.PutRemediationExceptionsInput,
-        output_schema = types.PutRemediationExceptionsOutput,
+        input_schema = schemas.PutRemediationExceptionsInput,
+        output_schema = schemas.PutRemediationExceptionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1141,8 +1141,8 @@ end
 function Client:putResourceConfig(input, options)
     return self:invokeOperation(input, {
         name = "PutResourceConfig",
-        input_schema = types.PutResourceConfigInput,
-        output_schema = types.PutResourceConfigOutput,
+        input_schema = schemas.PutResourceConfigInput,
+        output_schema = schemas.PutResourceConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1154,8 +1154,8 @@ end
 function Client:putRetentionConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutRetentionConfiguration",
-        input_schema = types.PutRetentionConfigurationInput,
-        output_schema = types.PutRetentionConfigurationOutput,
+        input_schema = schemas.PutRetentionConfigurationInput,
+        output_schema = schemas.PutRetentionConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1167,8 +1167,8 @@ end
 function Client:putServiceLinkedConfigurationRecorder(input, options)
     return self:invokeOperation(input, {
         name = "PutServiceLinkedConfigurationRecorder",
-        input_schema = types.PutServiceLinkedConfigurationRecorderInput,
-        output_schema = types.PutServiceLinkedConfigurationRecorderOutput,
+        input_schema = schemas.PutServiceLinkedConfigurationRecorderInput,
+        output_schema = schemas.PutServiceLinkedConfigurationRecorderOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1180,8 +1180,8 @@ end
 function Client:putStoredQuery(input, options)
     return self:invokeOperation(input, {
         name = "PutStoredQuery",
-        input_schema = types.PutStoredQueryInput,
-        output_schema = types.PutStoredQueryOutput,
+        input_schema = schemas.PutStoredQueryInput,
+        output_schema = schemas.PutStoredQueryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1193,8 +1193,8 @@ end
 function Client:selectAggregateResourceConfig(input, options)
     return self:invokeOperation(input, {
         name = "SelectAggregateResourceConfig",
-        input_schema = types.SelectAggregateResourceConfigInput,
-        output_schema = types.SelectAggregateResourceConfigOutput,
+        input_schema = schemas.SelectAggregateResourceConfigInput,
+        output_schema = schemas.SelectAggregateResourceConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1206,8 +1206,8 @@ end
 function Client:selectResourceConfig(input, options)
     return self:invokeOperation(input, {
         name = "SelectResourceConfig",
-        input_schema = types.SelectResourceConfigInput,
-        output_schema = types.SelectResourceConfigOutput,
+        input_schema = schemas.SelectResourceConfigInput,
+        output_schema = schemas.SelectResourceConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1219,8 +1219,8 @@ end
 function Client:startConfigRulesEvaluation(input, options)
     return self:invokeOperation(input, {
         name = "StartConfigRulesEvaluation",
-        input_schema = types.StartConfigRulesEvaluationInput,
-        output_schema = types.StartConfigRulesEvaluationOutput,
+        input_schema = schemas.StartConfigRulesEvaluationInput,
+        output_schema = schemas.StartConfigRulesEvaluationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1232,8 +1232,8 @@ end
 function Client:startConfigurationRecorder(input, options)
     return self:invokeOperation(input, {
         name = "StartConfigurationRecorder",
-        input_schema = types.StartConfigurationRecorderInput,
-        output_schema = types.StartConfigurationRecorderOutput,
+        input_schema = schemas.StartConfigurationRecorderInput,
+        output_schema = schemas.StartConfigurationRecorderOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1245,8 +1245,8 @@ end
 function Client:startRemediationExecution(input, options)
     return self:invokeOperation(input, {
         name = "StartRemediationExecution",
-        input_schema = types.StartRemediationExecutionInput,
-        output_schema = types.StartRemediationExecutionOutput,
+        input_schema = schemas.StartRemediationExecutionInput,
+        output_schema = schemas.StartRemediationExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1258,8 +1258,8 @@ end
 function Client:startResourceEvaluation(input, options)
     return self:invokeOperation(input, {
         name = "StartResourceEvaluation",
-        input_schema = types.StartResourceEvaluationInput,
-        output_schema = types.StartResourceEvaluationOutput,
+        input_schema = schemas.StartResourceEvaluationInput,
+        output_schema = schemas.StartResourceEvaluationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1271,8 +1271,8 @@ end
 function Client:stopConfigurationRecorder(input, options)
     return self:invokeOperation(input, {
         name = "StopConfigurationRecorder",
-        input_schema = types.StopConfigurationRecorderInput,
-        output_schema = types.StopConfigurationRecorderOutput,
+        input_schema = schemas.StopConfigurationRecorderInput,
+        output_schema = schemas.StopConfigurationRecorderOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1284,8 +1284,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1297,8 +1297,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

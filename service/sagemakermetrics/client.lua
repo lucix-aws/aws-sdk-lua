@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("sagemakermetrics.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("sagemakermetrics.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("sagemakermetrics.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchGetMetrics(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetMetrics",
-        input_schema = types.BatchGetMetricsInput,
-        output_schema = types.BatchGetMetricsOutput,
+        input_schema = schemas.BatchGetMetricsInput,
+        output_schema = schemas.BatchGetMetricsOutput,
         http_method = "POST",
         http_path = "/BatchGetMetrics",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchPutMetrics(input, options)
     return self:invokeOperation(input, {
         name = "BatchPutMetrics",
-        input_schema = types.BatchPutMetricsInput,
-        output_schema = types.BatchPutMetricsOutput,
+        input_schema = schemas.BatchPutMetricsInput,
+        output_schema = schemas.BatchPutMetricsOutput,
         http_method = "PUT",
         http_path = "/BatchPutMetrics",
         effective_auth_schemes = {

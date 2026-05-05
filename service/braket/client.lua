@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("braket.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("braket.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("braket.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:cancelJob(input, options)
     return self:invokeOperation(input, {
         name = "CancelJob",
-        input_schema = types.CancelJobInput,
-        output_schema = types.CancelJobOutput,
+        input_schema = schemas.CancelJobInput,
+        output_schema = schemas.CancelJobOutput,
         http_method = "PUT",
         http_path = "/job/{jobArn}/cancel",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:cancelQuantumTask(input, options)
     return self:invokeOperation(input, {
         name = "CancelQuantumTask",
-        input_schema = types.CancelQuantumTaskInput,
-        output_schema = types.CancelQuantumTaskOutput,
+        input_schema = schemas.CancelQuantumTaskInput,
+        output_schema = schemas.CancelQuantumTaskOutput,
         http_method = "PUT",
         http_path = "/quantum-task/{quantumTaskArn}/cancel",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createJob(input, options)
     return self:invokeOperation(input, {
         name = "CreateJob",
-        input_schema = types.CreateJobInput,
-        output_schema = types.CreateJobOutput,
+        input_schema = schemas.CreateJobInput,
+        output_schema = schemas.CreateJobOutput,
         http_method = "POST",
         http_path = "/job",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createQuantumTask(input, options)
     return self:invokeOperation(input, {
         name = "CreateQuantumTask",
-        input_schema = types.CreateQuantumTaskInput,
-        output_schema = types.CreateQuantumTaskOutput,
+        input_schema = schemas.CreateQuantumTaskInput,
+        output_schema = schemas.CreateQuantumTaskOutput,
         http_method = "POST",
         http_path = "/quantum-task",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createSpendingLimit(input, options)
     return self:invokeOperation(input, {
         name = "CreateSpendingLimit",
-        input_schema = types.CreateSpendingLimitInput,
-        output_schema = types.CreateSpendingLimitOutput,
+        input_schema = schemas.CreateSpendingLimitInput,
+        output_schema = schemas.CreateSpendingLimitOutput,
         http_method = "POST",
         http_path = "/spending-limit",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteSpendingLimit(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSpendingLimit",
-        input_schema = types.DeleteSpendingLimitInput,
-        output_schema = types.DeleteSpendingLimitOutput,
+        input_schema = schemas.DeleteSpendingLimitInput,
+        output_schema = schemas.DeleteSpendingLimitOutput,
         http_method = "DELETE",
         http_path = "/spending-limit/{spendingLimitArn}/delete",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getDevice(input, options)
     return self:invokeOperation(input, {
         name = "GetDevice",
-        input_schema = types.GetDeviceInput,
-        output_schema = types.GetDeviceOutput,
+        input_schema = schemas.GetDeviceInput,
+        output_schema = schemas.GetDeviceOutput,
         http_method = "GET",
         http_path = "/device/{deviceArn}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getJob(input, options)
     return self:invokeOperation(input, {
         name = "GetJob",
-        input_schema = types.GetJobInput,
-        output_schema = types.GetJobOutput,
+        input_schema = schemas.GetJobInput,
+        output_schema = schemas.GetJobOutput,
         http_method = "GET",
         http_path = "/job/{jobArn}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getQuantumTask(input, options)
     return self:invokeOperation(input, {
         name = "GetQuantumTask",
-        input_schema = types.GetQuantumTaskInput,
-        output_schema = types.GetQuantumTaskOutput,
+        input_schema = schemas.GetQuantumTaskInput,
+        output_schema = schemas.GetQuantumTaskOutput,
         http_method = "GET",
         http_path = "/quantum-task/{quantumTaskArn}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:searchDevices(input, options)
     return self:invokeOperation(input, {
         name = "SearchDevices",
-        input_schema = types.SearchDevicesInput,
-        output_schema = types.SearchDevicesOutput,
+        input_schema = schemas.SearchDevicesInput,
+        output_schema = schemas.SearchDevicesOutput,
         http_method = "POST",
         http_path = "/devices",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:searchJobs(input, options)
     return self:invokeOperation(input, {
         name = "SearchJobs",
-        input_schema = types.SearchJobsInput,
-        output_schema = types.SearchJobsOutput,
+        input_schema = schemas.SearchJobsInput,
+        output_schema = schemas.SearchJobsOutput,
         http_method = "POST",
         http_path = "/jobs",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:searchQuantumTasks(input, options)
     return self:invokeOperation(input, {
         name = "SearchQuantumTasks",
-        input_schema = types.SearchQuantumTasksInput,
-        output_schema = types.SearchQuantumTasksOutput,
+        input_schema = schemas.SearchQuantumTasksInput,
+        output_schema = schemas.SearchQuantumTasksOutput,
         http_method = "POST",
         http_path = "/quantum-tasks",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:searchSpendingLimits(input, options)
     return self:invokeOperation(input, {
         name = "SearchSpendingLimits",
-        input_schema = types.SearchSpendingLimitsInput,
-        output_schema = types.SearchSpendingLimitsOutput,
+        input_schema = schemas.SearchSpendingLimitsInput,
+        output_schema = schemas.SearchSpendingLimitsOutput,
         http_method = "POST",
         http_path = "/spending-limits",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:updateSpendingLimit(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSpendingLimit",
-        input_schema = types.UpdateSpendingLimitInput,
-        output_schema = types.UpdateSpendingLimitOutput,
+        input_schema = schemas.UpdateSpendingLimitInput,
+        output_schema = schemas.UpdateSpendingLimitOutput,
         http_method = "PATCH",
         http_path = "/spending-limit/{spendingLimitArn}/update",
         effective_auth_schemes = {

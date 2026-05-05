@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("signerdata.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("signerdata.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("signerdata.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getRevocationStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetRevocationStatus",
-        input_schema = types.GetRevocationStatusInput,
-        output_schema = types.GetRevocationStatusOutput,
+        input_schema = schemas.GetRevocationStatusInput,
+        output_schema = schemas.GetRevocationStatusOutput,
         http_method = "GET",
         http_path = "/revocations",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("inspector.endpoint_rules")
+local schemas = require("inspector.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("inspector.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addAttributesToFindings(input, options)
     return self:invokeOperation(input, {
         name = "AddAttributesToFindings",
-        input_schema = types.AddAttributesToFindingsInput,
-        output_schema = types.AddAttributesToFindingsOutput,
+        input_schema = schemas.AddAttributesToFindingsInput,
+        output_schema = schemas.AddAttributesToFindingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createAssessmentTarget(input, options)
     return self:invokeOperation(input, {
         name = "CreateAssessmentTarget",
-        input_schema = types.CreateAssessmentTargetInput,
-        output_schema = types.CreateAssessmentTargetOutput,
+        input_schema = schemas.CreateAssessmentTargetInput,
+        output_schema = schemas.CreateAssessmentTargetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createAssessmentTemplate(input, options)
     return self:invokeOperation(input, {
         name = "CreateAssessmentTemplate",
-        input_schema = types.CreateAssessmentTemplateInput,
-        output_schema = types.CreateAssessmentTemplateOutput,
+        input_schema = schemas.CreateAssessmentTemplateInput,
+        output_schema = schemas.CreateAssessmentTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createExclusionsPreview(input, options)
     return self:invokeOperation(input, {
         name = "CreateExclusionsPreview",
-        input_schema = types.CreateExclusionsPreviewInput,
-        output_schema = types.CreateExclusionsPreviewOutput,
+        input_schema = schemas.CreateExclusionsPreviewInput,
+        output_schema = schemas.CreateExclusionsPreviewOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createResourceGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateResourceGroup",
-        input_schema = types.CreateResourceGroupInput,
-        output_schema = types.CreateResourceGroupOutput,
+        input_schema = schemas.CreateResourceGroupInput,
+        output_schema = schemas.CreateResourceGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteAssessmentRun(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAssessmentRun",
-        input_schema = types.DeleteAssessmentRunInput,
-        output_schema = types.DeleteAssessmentRunOutput,
+        input_schema = schemas.DeleteAssessmentRunInput,
+        output_schema = schemas.DeleteAssessmentRunOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteAssessmentTarget(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAssessmentTarget",
-        input_schema = types.DeleteAssessmentTargetInput,
-        output_schema = types.DeleteAssessmentTargetOutput,
+        input_schema = schemas.DeleteAssessmentTargetInput,
+        output_schema = schemas.DeleteAssessmentTargetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteAssessmentTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAssessmentTemplate",
-        input_schema = types.DeleteAssessmentTemplateInput,
-        output_schema = types.DeleteAssessmentTemplateOutput,
+        input_schema = schemas.DeleteAssessmentTemplateInput,
+        output_schema = schemas.DeleteAssessmentTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:describeAssessmentRuns(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAssessmentRuns",
-        input_schema = types.DescribeAssessmentRunsInput,
-        output_schema = types.DescribeAssessmentRunsOutput,
+        input_schema = schemas.DescribeAssessmentRunsInput,
+        output_schema = schemas.DescribeAssessmentRunsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:describeAssessmentTargets(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAssessmentTargets",
-        input_schema = types.DescribeAssessmentTargetsInput,
-        output_schema = types.DescribeAssessmentTargetsOutput,
+        input_schema = schemas.DescribeAssessmentTargetsInput,
+        output_schema = schemas.DescribeAssessmentTargetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:describeAssessmentTemplates(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAssessmentTemplates",
-        input_schema = types.DescribeAssessmentTemplatesInput,
-        output_schema = types.DescribeAssessmentTemplatesOutput,
+        input_schema = schemas.DescribeAssessmentTemplatesInput,
+        output_schema = schemas.DescribeAssessmentTemplatesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:describeCrossAccountAccessRole(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCrossAccountAccessRole",
-        input_schema = types.DescribeCrossAccountAccessRoleInput,
-        output_schema = types.DescribeCrossAccountAccessRoleOutput,
+        input_schema = schemas.DescribeCrossAccountAccessRoleInput,
+        output_schema = schemas.DescribeCrossAccountAccessRoleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:describeExclusions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeExclusions",
-        input_schema = types.DescribeExclusionsInput,
-        output_schema = types.DescribeExclusionsOutput,
+        input_schema = schemas.DescribeExclusionsInput,
+        output_schema = schemas.DescribeExclusionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:describeFindings(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFindings",
-        input_schema = types.DescribeFindingsInput,
-        output_schema = types.DescribeFindingsOutput,
+        input_schema = schemas.DescribeFindingsInput,
+        output_schema = schemas.DescribeFindingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:describeResourceGroups(input, options)
     return self:invokeOperation(input, {
         name = "DescribeResourceGroups",
-        input_schema = types.DescribeResourceGroupsInput,
-        output_schema = types.DescribeResourceGroupsOutput,
+        input_schema = schemas.DescribeResourceGroupsInput,
+        output_schema = schemas.DescribeResourceGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:describeRulesPackages(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRulesPackages",
-        input_schema = types.DescribeRulesPackagesInput,
-        output_schema = types.DescribeRulesPackagesOutput,
+        input_schema = schemas.DescribeRulesPackagesInput,
+        output_schema = schemas.DescribeRulesPackagesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getAssessmentReport(input, options)
     return self:invokeOperation(input, {
         name = "GetAssessmentReport",
-        input_schema = types.GetAssessmentReportInput,
-        output_schema = types.GetAssessmentReportOutput,
+        input_schema = schemas.GetAssessmentReportInput,
+        output_schema = schemas.GetAssessmentReportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getExclusionsPreview(input, options)
     return self:invokeOperation(input, {
         name = "GetExclusionsPreview",
-        input_schema = types.GetExclusionsPreviewInput,
-        output_schema = types.GetExclusionsPreviewOutput,
+        input_schema = schemas.GetExclusionsPreviewInput,
+        output_schema = schemas.GetExclusionsPreviewOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getTelemetryMetadata(input, options)
     return self:invokeOperation(input, {
         name = "GetTelemetryMetadata",
-        input_schema = types.GetTelemetryMetadataInput,
-        output_schema = types.GetTelemetryMetadataOutput,
+        input_schema = schemas.GetTelemetryMetadataInput,
+        output_schema = schemas.GetTelemetryMetadataOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listAssessmentRunAgents(input, options)
     return self:invokeOperation(input, {
         name = "ListAssessmentRunAgents",
-        input_schema = types.ListAssessmentRunAgentsInput,
-        output_schema = types.ListAssessmentRunAgentsOutput,
+        input_schema = schemas.ListAssessmentRunAgentsInput,
+        output_schema = schemas.ListAssessmentRunAgentsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listAssessmentRuns(input, options)
     return self:invokeOperation(input, {
         name = "ListAssessmentRuns",
-        input_schema = types.ListAssessmentRunsInput,
-        output_schema = types.ListAssessmentRunsOutput,
+        input_schema = schemas.ListAssessmentRunsInput,
+        output_schema = schemas.ListAssessmentRunsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listAssessmentTargets(input, options)
     return self:invokeOperation(input, {
         name = "ListAssessmentTargets",
-        input_schema = types.ListAssessmentTargetsInput,
-        output_schema = types.ListAssessmentTargetsOutput,
+        input_schema = schemas.ListAssessmentTargetsInput,
+        output_schema = schemas.ListAssessmentTargetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listAssessmentTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListAssessmentTemplates",
-        input_schema = types.ListAssessmentTemplatesInput,
-        output_schema = types.ListAssessmentTemplatesOutput,
+        input_schema = schemas.ListAssessmentTemplatesInput,
+        output_schema = schemas.ListAssessmentTemplatesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listEventSubscriptions(input, options)
     return self:invokeOperation(input, {
         name = "ListEventSubscriptions",
-        input_schema = types.ListEventSubscriptionsInput,
-        output_schema = types.ListEventSubscriptionsOutput,
+        input_schema = schemas.ListEventSubscriptionsInput,
+        output_schema = schemas.ListEventSubscriptionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listExclusions(input, options)
     return self:invokeOperation(input, {
         name = "ListExclusions",
-        input_schema = types.ListExclusionsInput,
-        output_schema = types.ListExclusionsOutput,
+        input_schema = schemas.ListExclusionsInput,
+        output_schema = schemas.ListExclusionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listFindings(input, options)
     return self:invokeOperation(input, {
         name = "ListFindings",
-        input_schema = types.ListFindingsInput,
-        output_schema = types.ListFindingsOutput,
+        input_schema = schemas.ListFindingsInput,
+        output_schema = schemas.ListFindingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listRulesPackages(input, options)
     return self:invokeOperation(input, {
         name = "ListRulesPackages",
-        input_schema = types.ListRulesPackagesInput,
-        output_schema = types.ListRulesPackagesOutput,
+        input_schema = schemas.ListRulesPackagesInput,
+        output_schema = schemas.ListRulesPackagesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:previewAgents(input, options)
     return self:invokeOperation(input, {
         name = "PreviewAgents",
-        input_schema = types.PreviewAgentsInput,
-        output_schema = types.PreviewAgentsOutput,
+        input_schema = schemas.PreviewAgentsInput,
+        output_schema = schemas.PreviewAgentsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:registerCrossAccountAccessRole(input, options)
     return self:invokeOperation(input, {
         name = "RegisterCrossAccountAccessRole",
-        input_schema = types.RegisterCrossAccountAccessRoleInput,
-        output_schema = types.RegisterCrossAccountAccessRoleOutput,
+        input_schema = schemas.RegisterCrossAccountAccessRoleInput,
+        output_schema = schemas.RegisterCrossAccountAccessRoleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:removeAttributesFromFindings(input, options)
     return self:invokeOperation(input, {
         name = "RemoveAttributesFromFindings",
-        input_schema = types.RemoveAttributesFromFindingsInput,
-        output_schema = types.RemoveAttributesFromFindingsOutput,
+        input_schema = schemas.RemoveAttributesFromFindingsInput,
+        output_schema = schemas.RemoveAttributesFromFindingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:setTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "SetTagsForResource",
-        input_schema = types.SetTagsForResourceInput,
-        output_schema = types.SetTagsForResourceOutput,
+        input_schema = schemas.SetTagsForResourceInput,
+        output_schema = schemas.SetTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:startAssessmentRun(input, options)
     return self:invokeOperation(input, {
         name = "StartAssessmentRun",
-        input_schema = types.StartAssessmentRunInput,
-        output_schema = types.StartAssessmentRunOutput,
+        input_schema = schemas.StartAssessmentRunInput,
+        output_schema = schemas.StartAssessmentRunOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:stopAssessmentRun(input, options)
     return self:invokeOperation(input, {
         name = "StopAssessmentRun",
-        input_schema = types.StopAssessmentRunInput,
-        output_schema = types.StopAssessmentRunOutput,
+        input_schema = schemas.StopAssessmentRunInput,
+        output_schema = schemas.StopAssessmentRunOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:subscribeToEvent(input, options)
     return self:invokeOperation(input, {
         name = "SubscribeToEvent",
-        input_schema = types.SubscribeToEventInput,
-        output_schema = types.SubscribeToEventOutput,
+        input_schema = schemas.SubscribeToEventInput,
+        output_schema = schemas.SubscribeToEventOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:unsubscribeFromEvent(input, options)
     return self:invokeOperation(input, {
         name = "UnsubscribeFromEvent",
-        input_schema = types.UnsubscribeFromEventInput,
-        output_schema = types.UnsubscribeFromEventOutput,
+        input_schema = schemas.UnsubscribeFromEventInput,
+        output_schema = schemas.UnsubscribeFromEventOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:updateAssessmentTarget(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAssessmentTarget",
-        input_schema = types.UpdateAssessmentTargetInput,
-        output_schema = types.UpdateAssessmentTargetOutput,
+        input_schema = schemas.UpdateAssessmentTargetInput,
+        output_schema = schemas.UpdateAssessmentTargetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

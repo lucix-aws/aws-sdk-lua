@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("codecommit.endpoint_rules")
+local schemas = require("codecommit.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("codecommit.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateApprovalRuleTemplateWithRepository(input, options)
     return self:invokeOperation(input, {
         name = "AssociateApprovalRuleTemplateWithRepository",
-        input_schema = types.AssociateApprovalRuleTemplateWithRepositoryInput,
-        output_schema = types.AssociateApprovalRuleTemplateWithRepositoryOutput,
+        input_schema = schemas.AssociateApprovalRuleTemplateWithRepositoryInput,
+        output_schema = schemas.AssociateApprovalRuleTemplateWithRepositoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchAssociateApprovalRuleTemplateWithRepositories(input, options)
     return self:invokeOperation(input, {
         name = "BatchAssociateApprovalRuleTemplateWithRepositories",
-        input_schema = types.BatchAssociateApprovalRuleTemplateWithRepositoriesInput,
-        output_schema = types.BatchAssociateApprovalRuleTemplateWithRepositoriesOutput,
+        input_schema = schemas.BatchAssociateApprovalRuleTemplateWithRepositoriesInput,
+        output_schema = schemas.BatchAssociateApprovalRuleTemplateWithRepositoriesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchDescribeMergeConflicts(input, options)
     return self:invokeOperation(input, {
         name = "BatchDescribeMergeConflicts",
-        input_schema = types.BatchDescribeMergeConflictsInput,
-        output_schema = types.BatchDescribeMergeConflictsOutput,
+        input_schema = schemas.BatchDescribeMergeConflictsInput,
+        output_schema = schemas.BatchDescribeMergeConflictsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:batchDisassociateApprovalRuleTemplateFromRepositories(input, options)
     return self:invokeOperation(input, {
         name = "BatchDisassociateApprovalRuleTemplateFromRepositories",
-        input_schema = types.BatchDisassociateApprovalRuleTemplateFromRepositoriesInput,
-        output_schema = types.BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput,
+        input_schema = schemas.BatchDisassociateApprovalRuleTemplateFromRepositoriesInput,
+        output_schema = schemas.BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:batchGetCommits(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetCommits",
-        input_schema = types.BatchGetCommitsInput,
-        output_schema = types.BatchGetCommitsOutput,
+        input_schema = schemas.BatchGetCommitsInput,
+        output_schema = schemas.BatchGetCommitsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:batchGetRepositories(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetRepositories",
-        input_schema = types.BatchGetRepositoriesInput,
-        output_schema = types.BatchGetRepositoriesOutput,
+        input_schema = schemas.BatchGetRepositoriesInput,
+        output_schema = schemas.BatchGetRepositoriesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createApprovalRuleTemplate(input, options)
     return self:invokeOperation(input, {
         name = "CreateApprovalRuleTemplate",
-        input_schema = types.CreateApprovalRuleTemplateInput,
-        output_schema = types.CreateApprovalRuleTemplateOutput,
+        input_schema = schemas.CreateApprovalRuleTemplateInput,
+        output_schema = schemas.CreateApprovalRuleTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createBranch(input, options)
     return self:invokeOperation(input, {
         name = "CreateBranch",
-        input_schema = types.CreateBranchInput,
-        output_schema = types.CreateBranchOutput,
+        input_schema = schemas.CreateBranchInput,
+        output_schema = schemas.CreateBranchOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createCommit(input, options)
     return self:invokeOperation(input, {
         name = "CreateCommit",
-        input_schema = types.CreateCommitInput,
-        output_schema = types.CreateCommitOutput,
+        input_schema = schemas.CreateCommitInput,
+        output_schema = schemas.CreateCommitOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createPullRequest(input, options)
     return self:invokeOperation(input, {
         name = "CreatePullRequest",
-        input_schema = types.CreatePullRequestInput,
-        output_schema = types.CreatePullRequestOutput,
+        input_schema = schemas.CreatePullRequestInput,
+        output_schema = schemas.CreatePullRequestOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createPullRequestApprovalRule(input, options)
     return self:invokeOperation(input, {
         name = "CreatePullRequestApprovalRule",
-        input_schema = types.CreatePullRequestApprovalRuleInput,
-        output_schema = types.CreatePullRequestApprovalRuleOutput,
+        input_schema = schemas.CreatePullRequestApprovalRuleInput,
+        output_schema = schemas.CreatePullRequestApprovalRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createRepository(input, options)
     return self:invokeOperation(input, {
         name = "CreateRepository",
-        input_schema = types.CreateRepositoryInput,
-        output_schema = types.CreateRepositoryOutput,
+        input_schema = schemas.CreateRepositoryInput,
+        output_schema = schemas.CreateRepositoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createUnreferencedMergeCommit(input, options)
     return self:invokeOperation(input, {
         name = "CreateUnreferencedMergeCommit",
-        input_schema = types.CreateUnreferencedMergeCommitInput,
-        output_schema = types.CreateUnreferencedMergeCommitOutput,
+        input_schema = schemas.CreateUnreferencedMergeCommitInput,
+        output_schema = schemas.CreateUnreferencedMergeCommitOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteApprovalRuleTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DeleteApprovalRuleTemplate",
-        input_schema = types.DeleteApprovalRuleTemplateInput,
-        output_schema = types.DeleteApprovalRuleTemplateOutput,
+        input_schema = schemas.DeleteApprovalRuleTemplateInput,
+        output_schema = schemas.DeleteApprovalRuleTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteBranch(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBranch",
-        input_schema = types.DeleteBranchInput,
-        output_schema = types.DeleteBranchOutput,
+        input_schema = schemas.DeleteBranchInput,
+        output_schema = schemas.DeleteBranchOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteCommentContent(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCommentContent",
-        input_schema = types.DeleteCommentContentInput,
-        output_schema = types.DeleteCommentContentOutput,
+        input_schema = schemas.DeleteCommentContentInput,
+        output_schema = schemas.DeleteCommentContentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteFile(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFile",
-        input_schema = types.DeleteFileInput,
-        output_schema = types.DeleteFileOutput,
+        input_schema = schemas.DeleteFileInput,
+        output_schema = schemas.DeleteFileOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deletePullRequestApprovalRule(input, options)
     return self:invokeOperation(input, {
         name = "DeletePullRequestApprovalRule",
-        input_schema = types.DeletePullRequestApprovalRuleInput,
-        output_schema = types.DeletePullRequestApprovalRuleOutput,
+        input_schema = schemas.DeletePullRequestApprovalRuleInput,
+        output_schema = schemas.DeletePullRequestApprovalRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteRepository(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRepository",
-        input_schema = types.DeleteRepositoryInput,
-        output_schema = types.DeleteRepositoryOutput,
+        input_schema = schemas.DeleteRepositoryInput,
+        output_schema = schemas.DeleteRepositoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:describeMergeConflicts(input, options)
     return self:invokeOperation(input, {
         name = "DescribeMergeConflicts",
-        input_schema = types.DescribeMergeConflictsInput,
-        output_schema = types.DescribeMergeConflictsOutput,
+        input_schema = schemas.DescribeMergeConflictsInput,
+        output_schema = schemas.DescribeMergeConflictsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:describePullRequestEvents(input, options)
     return self:invokeOperation(input, {
         name = "DescribePullRequestEvents",
-        input_schema = types.DescribePullRequestEventsInput,
-        output_schema = types.DescribePullRequestEventsOutput,
+        input_schema = schemas.DescribePullRequestEventsInput,
+        output_schema = schemas.DescribePullRequestEventsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:disassociateApprovalRuleTemplateFromRepository(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateApprovalRuleTemplateFromRepository",
-        input_schema = types.DisassociateApprovalRuleTemplateFromRepositoryInput,
-        output_schema = types.DisassociateApprovalRuleTemplateFromRepositoryOutput,
+        input_schema = schemas.DisassociateApprovalRuleTemplateFromRepositoryInput,
+        output_schema = schemas.DisassociateApprovalRuleTemplateFromRepositoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:evaluatePullRequestApprovalRules(input, options)
     return self:invokeOperation(input, {
         name = "EvaluatePullRequestApprovalRules",
-        input_schema = types.EvaluatePullRequestApprovalRulesInput,
-        output_schema = types.EvaluatePullRequestApprovalRulesOutput,
+        input_schema = schemas.EvaluatePullRequestApprovalRulesInput,
+        output_schema = schemas.EvaluatePullRequestApprovalRulesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:getApprovalRuleTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetApprovalRuleTemplate",
-        input_schema = types.GetApprovalRuleTemplateInput,
-        output_schema = types.GetApprovalRuleTemplateOutput,
+        input_schema = schemas.GetApprovalRuleTemplateInput,
+        output_schema = schemas.GetApprovalRuleTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getBlob(input, options)
     return self:invokeOperation(input, {
         name = "GetBlob",
-        input_schema = types.GetBlobInput,
-        output_schema = types.GetBlobOutput,
+        input_schema = schemas.GetBlobInput,
+        output_schema = schemas.GetBlobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:getBranch(input, options)
     return self:invokeOperation(input, {
         name = "GetBranch",
-        input_schema = types.GetBranchInput,
-        output_schema = types.GetBranchOutput,
+        input_schema = schemas.GetBranchInput,
+        output_schema = schemas.GetBranchOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:getComment(input, options)
     return self:invokeOperation(input, {
         name = "GetComment",
-        input_schema = types.GetCommentInput,
-        output_schema = types.GetCommentOutput,
+        input_schema = schemas.GetCommentInput,
+        output_schema = schemas.GetCommentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:getCommentReactions(input, options)
     return self:invokeOperation(input, {
         name = "GetCommentReactions",
-        input_schema = types.GetCommentReactionsInput,
-        output_schema = types.GetCommentReactionsOutput,
+        input_schema = schemas.GetCommentReactionsInput,
+        output_schema = schemas.GetCommentReactionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:getCommentsForComparedCommit(input, options)
     return self:invokeOperation(input, {
         name = "GetCommentsForComparedCommit",
-        input_schema = types.GetCommentsForComparedCommitInput,
-        output_schema = types.GetCommentsForComparedCommitOutput,
+        input_schema = schemas.GetCommentsForComparedCommitInput,
+        output_schema = schemas.GetCommentsForComparedCommitOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:getCommentsForPullRequest(input, options)
     return self:invokeOperation(input, {
         name = "GetCommentsForPullRequest",
-        input_schema = types.GetCommentsForPullRequestInput,
-        output_schema = types.GetCommentsForPullRequestOutput,
+        input_schema = schemas.GetCommentsForPullRequestInput,
+        output_schema = schemas.GetCommentsForPullRequestOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:getCommit(input, options)
     return self:invokeOperation(input, {
         name = "GetCommit",
-        input_schema = types.GetCommitInput,
-        output_schema = types.GetCommitOutput,
+        input_schema = schemas.GetCommitInput,
+        output_schema = schemas.GetCommitOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:getDifferences(input, options)
     return self:invokeOperation(input, {
         name = "GetDifferences",
-        input_schema = types.GetDifferencesInput,
-        output_schema = types.GetDifferencesOutput,
+        input_schema = schemas.GetDifferencesInput,
+        output_schema = schemas.GetDifferencesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:getFile(input, options)
     return self:invokeOperation(input, {
         name = "GetFile",
-        input_schema = types.GetFileInput,
-        output_schema = types.GetFileOutput,
+        input_schema = schemas.GetFileInput,
+        output_schema = schemas.GetFileOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:getFolder(input, options)
     return self:invokeOperation(input, {
         name = "GetFolder",
-        input_schema = types.GetFolderInput,
-        output_schema = types.GetFolderOutput,
+        input_schema = schemas.GetFolderInput,
+        output_schema = schemas.GetFolderOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:getMergeCommit(input, options)
     return self:invokeOperation(input, {
         name = "GetMergeCommit",
-        input_schema = types.GetMergeCommitInput,
-        output_schema = types.GetMergeCommitOutput,
+        input_schema = schemas.GetMergeCommitInput,
+        output_schema = schemas.GetMergeCommitOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:getMergeConflicts(input, options)
     return self:invokeOperation(input, {
         name = "GetMergeConflicts",
-        input_schema = types.GetMergeConflictsInput,
-        output_schema = types.GetMergeConflictsOutput,
+        input_schema = schemas.GetMergeConflictsInput,
+        output_schema = schemas.GetMergeConflictsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:getMergeOptions(input, options)
     return self:invokeOperation(input, {
         name = "GetMergeOptions",
-        input_schema = types.GetMergeOptionsInput,
-        output_schema = types.GetMergeOptionsOutput,
+        input_schema = schemas.GetMergeOptionsInput,
+        output_schema = schemas.GetMergeOptionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:getPullRequest(input, options)
     return self:invokeOperation(input, {
         name = "GetPullRequest",
-        input_schema = types.GetPullRequestInput,
-        output_schema = types.GetPullRequestOutput,
+        input_schema = schemas.GetPullRequestInput,
+        output_schema = schemas.GetPullRequestOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:getPullRequestApprovalStates(input, options)
     return self:invokeOperation(input, {
         name = "GetPullRequestApprovalStates",
-        input_schema = types.GetPullRequestApprovalStatesInput,
-        output_schema = types.GetPullRequestApprovalStatesOutput,
+        input_schema = schemas.GetPullRequestApprovalStatesInput,
+        output_schema = schemas.GetPullRequestApprovalStatesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:getPullRequestOverrideState(input, options)
     return self:invokeOperation(input, {
         name = "GetPullRequestOverrideState",
-        input_schema = types.GetPullRequestOverrideStateInput,
-        output_schema = types.GetPullRequestOverrideStateOutput,
+        input_schema = schemas.GetPullRequestOverrideStateInput,
+        output_schema = schemas.GetPullRequestOverrideStateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:getRepository(input, options)
     return self:invokeOperation(input, {
         name = "GetRepository",
-        input_schema = types.GetRepositoryInput,
-        output_schema = types.GetRepositoryOutput,
+        input_schema = schemas.GetRepositoryInput,
+        output_schema = schemas.GetRepositoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:getRepositoryTriggers(input, options)
     return self:invokeOperation(input, {
         name = "GetRepositoryTriggers",
-        input_schema = types.GetRepositoryTriggersInput,
-        output_schema = types.GetRepositoryTriggersOutput,
+        input_schema = schemas.GetRepositoryTriggersInput,
+        output_schema = schemas.GetRepositoryTriggersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:listApprovalRuleTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListApprovalRuleTemplates",
-        input_schema = types.ListApprovalRuleTemplatesInput,
-        output_schema = types.ListApprovalRuleTemplatesOutput,
+        input_schema = schemas.ListApprovalRuleTemplatesInput,
+        output_schema = schemas.ListApprovalRuleTemplatesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:listAssociatedApprovalRuleTemplatesForRepository(input, options)
     return self:invokeOperation(input, {
         name = "ListAssociatedApprovalRuleTemplatesForRepository",
-        input_schema = types.ListAssociatedApprovalRuleTemplatesForRepositoryInput,
-        output_schema = types.ListAssociatedApprovalRuleTemplatesForRepositoryOutput,
+        input_schema = schemas.ListAssociatedApprovalRuleTemplatesForRepositoryInput,
+        output_schema = schemas.ListAssociatedApprovalRuleTemplatesForRepositoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:listBranches(input, options)
     return self:invokeOperation(input, {
         name = "ListBranches",
-        input_schema = types.ListBranchesInput,
-        output_schema = types.ListBranchesOutput,
+        input_schema = schemas.ListBranchesInput,
+        output_schema = schemas.ListBranchesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:listFileCommitHistory(input, options)
     return self:invokeOperation(input, {
         name = "ListFileCommitHistory",
-        input_schema = types.ListFileCommitHistoryInput,
-        output_schema = types.ListFileCommitHistoryOutput,
+        input_schema = schemas.ListFileCommitHistoryInput,
+        output_schema = schemas.ListFileCommitHistoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:listPullRequests(input, options)
     return self:invokeOperation(input, {
         name = "ListPullRequests",
-        input_schema = types.ListPullRequestsInput,
-        output_schema = types.ListPullRequestsOutput,
+        input_schema = schemas.ListPullRequestsInput,
+        output_schema = schemas.ListPullRequestsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:listRepositories(input, options)
     return self:invokeOperation(input, {
         name = "ListRepositories",
-        input_schema = types.ListRepositoriesInput,
-        output_schema = types.ListRepositoriesOutput,
+        input_schema = schemas.ListRepositoriesInput,
+        output_schema = schemas.ListRepositoriesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:listRepositoriesForApprovalRuleTemplate(input, options)
     return self:invokeOperation(input, {
         name = "ListRepositoriesForApprovalRuleTemplate",
-        input_schema = types.ListRepositoriesForApprovalRuleTemplateInput,
-        output_schema = types.ListRepositoriesForApprovalRuleTemplateOutput,
+        input_schema = schemas.ListRepositoriesForApprovalRuleTemplateInput,
+        output_schema = schemas.ListRepositoriesForApprovalRuleTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:mergeBranchesByFastForward(input, options)
     return self:invokeOperation(input, {
         name = "MergeBranchesByFastForward",
-        input_schema = types.MergeBranchesByFastForwardInput,
-        output_schema = types.MergeBranchesByFastForwardOutput,
+        input_schema = schemas.MergeBranchesByFastForwardInput,
+        output_schema = schemas.MergeBranchesByFastForwardOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:mergeBranchesBySquash(input, options)
     return self:invokeOperation(input, {
         name = "MergeBranchesBySquash",
-        input_schema = types.MergeBranchesBySquashInput,
-        output_schema = types.MergeBranchesBySquashOutput,
+        input_schema = schemas.MergeBranchesBySquashInput,
+        output_schema = schemas.MergeBranchesBySquashOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:mergeBranchesByThreeWay(input, options)
     return self:invokeOperation(input, {
         name = "MergeBranchesByThreeWay",
-        input_schema = types.MergeBranchesByThreeWayInput,
-        output_schema = types.MergeBranchesByThreeWayOutput,
+        input_schema = schemas.MergeBranchesByThreeWayInput,
+        output_schema = schemas.MergeBranchesByThreeWayOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:mergePullRequestByFastForward(input, options)
     return self:invokeOperation(input, {
         name = "MergePullRequestByFastForward",
-        input_schema = types.MergePullRequestByFastForwardInput,
-        output_schema = types.MergePullRequestByFastForwardOutput,
+        input_schema = schemas.MergePullRequestByFastForwardInput,
+        output_schema = schemas.MergePullRequestByFastForwardOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:mergePullRequestBySquash(input, options)
     return self:invokeOperation(input, {
         name = "MergePullRequestBySquash",
-        input_schema = types.MergePullRequestBySquashInput,
-        output_schema = types.MergePullRequestBySquashOutput,
+        input_schema = schemas.MergePullRequestBySquashInput,
+        output_schema = schemas.MergePullRequestBySquashOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:mergePullRequestByThreeWay(input, options)
     return self:invokeOperation(input, {
         name = "MergePullRequestByThreeWay",
-        input_schema = types.MergePullRequestByThreeWayInput,
-        output_schema = types.MergePullRequestByThreeWayOutput,
+        input_schema = schemas.MergePullRequestByThreeWayInput,
+        output_schema = schemas.MergePullRequestByThreeWayOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:overridePullRequestApprovalRules(input, options)
     return self:invokeOperation(input, {
         name = "OverridePullRequestApprovalRules",
-        input_schema = types.OverridePullRequestApprovalRulesInput,
-        output_schema = types.OverridePullRequestApprovalRulesOutput,
+        input_schema = schemas.OverridePullRequestApprovalRulesInput,
+        output_schema = schemas.OverridePullRequestApprovalRulesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:postCommentForComparedCommit(input, options)
     return self:invokeOperation(input, {
         name = "PostCommentForComparedCommit",
-        input_schema = types.PostCommentForComparedCommitInput,
-        output_schema = types.PostCommentForComparedCommitOutput,
+        input_schema = schemas.PostCommentForComparedCommitInput,
+        output_schema = schemas.PostCommentForComparedCommitOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:postCommentForPullRequest(input, options)
     return self:invokeOperation(input, {
         name = "PostCommentForPullRequest",
-        input_schema = types.PostCommentForPullRequestInput,
-        output_schema = types.PostCommentForPullRequestOutput,
+        input_schema = schemas.PostCommentForPullRequestInput,
+        output_schema = schemas.PostCommentForPullRequestOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:postCommentReply(input, options)
     return self:invokeOperation(input, {
         name = "PostCommentReply",
-        input_schema = types.PostCommentReplyInput,
-        output_schema = types.PostCommentReplyOutput,
+        input_schema = schemas.PostCommentReplyInput,
+        output_schema = schemas.PostCommentReplyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:putCommentReaction(input, options)
     return self:invokeOperation(input, {
         name = "PutCommentReaction",
-        input_schema = types.PutCommentReactionInput,
-        output_schema = types.PutCommentReactionOutput,
+        input_schema = schemas.PutCommentReactionInput,
+        output_schema = schemas.PutCommentReactionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:putFile(input, options)
     return self:invokeOperation(input, {
         name = "PutFile",
-        input_schema = types.PutFileInput,
-        output_schema = types.PutFileOutput,
+        input_schema = schemas.PutFileInput,
+        output_schema = schemas.PutFileOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:putRepositoryTriggers(input, options)
     return self:invokeOperation(input, {
         name = "PutRepositoryTriggers",
-        input_schema = types.PutRepositoryTriggersInput,
-        output_schema = types.PutRepositoryTriggersOutput,
+        input_schema = schemas.PutRepositoryTriggersInput,
+        output_schema = schemas.PutRepositoryTriggersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:testRepositoryTriggers(input, options)
     return self:invokeOperation(input, {
         name = "TestRepositoryTriggers",
-        input_schema = types.TestRepositoryTriggersInput,
-        output_schema = types.TestRepositoryTriggersOutput,
+        input_schema = schemas.TestRepositoryTriggersInput,
+        output_schema = schemas.TestRepositoryTriggersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:updateApprovalRuleTemplateContent(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApprovalRuleTemplateContent",
-        input_schema = types.UpdateApprovalRuleTemplateContentInput,
-        output_schema = types.UpdateApprovalRuleTemplateContentOutput,
+        input_schema = schemas.UpdateApprovalRuleTemplateContentInput,
+        output_schema = schemas.UpdateApprovalRuleTemplateContentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:updateApprovalRuleTemplateDescription(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApprovalRuleTemplateDescription",
-        input_schema = types.UpdateApprovalRuleTemplateDescriptionInput,
-        output_schema = types.UpdateApprovalRuleTemplateDescriptionOutput,
+        input_schema = schemas.UpdateApprovalRuleTemplateDescriptionInput,
+        output_schema = schemas.UpdateApprovalRuleTemplateDescriptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:updateApprovalRuleTemplateName(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApprovalRuleTemplateName",
-        input_schema = types.UpdateApprovalRuleTemplateNameInput,
-        output_schema = types.UpdateApprovalRuleTemplateNameOutput,
+        input_schema = schemas.UpdateApprovalRuleTemplateNameInput,
+        output_schema = schemas.UpdateApprovalRuleTemplateNameOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:updateComment(input, options)
     return self:invokeOperation(input, {
         name = "UpdateComment",
-        input_schema = types.UpdateCommentInput,
-        output_schema = types.UpdateCommentOutput,
+        input_schema = schemas.UpdateCommentInput,
+        output_schema = schemas.UpdateCommentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:updateDefaultBranch(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDefaultBranch",
-        input_schema = types.UpdateDefaultBranchInput,
-        output_schema = types.UpdateDefaultBranchOutput,
+        input_schema = schemas.UpdateDefaultBranchInput,
+        output_schema = schemas.UpdateDefaultBranchOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:updatePullRequestApprovalRuleContent(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePullRequestApprovalRuleContent",
-        input_schema = types.UpdatePullRequestApprovalRuleContentInput,
-        output_schema = types.UpdatePullRequestApprovalRuleContentOutput,
+        input_schema = schemas.UpdatePullRequestApprovalRuleContentInput,
+        output_schema = schemas.UpdatePullRequestApprovalRuleContentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:updatePullRequestApprovalState(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePullRequestApprovalState",
-        input_schema = types.UpdatePullRequestApprovalStateInput,
-        output_schema = types.UpdatePullRequestApprovalStateOutput,
+        input_schema = schemas.UpdatePullRequestApprovalStateInput,
+        output_schema = schemas.UpdatePullRequestApprovalStateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:updatePullRequestDescription(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePullRequestDescription",
-        input_schema = types.UpdatePullRequestDescriptionInput,
-        output_schema = types.UpdatePullRequestDescriptionOutput,
+        input_schema = schemas.UpdatePullRequestDescriptionInput,
+        output_schema = schemas.UpdatePullRequestDescriptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1011,8 +1011,8 @@ end
 function Client:updatePullRequestStatus(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePullRequestStatus",
-        input_schema = types.UpdatePullRequestStatusInput,
-        output_schema = types.UpdatePullRequestStatusOutput,
+        input_schema = schemas.UpdatePullRequestStatusInput,
+        output_schema = schemas.UpdatePullRequestStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1024,8 +1024,8 @@ end
 function Client:updatePullRequestTitle(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePullRequestTitle",
-        input_schema = types.UpdatePullRequestTitleInput,
-        output_schema = types.UpdatePullRequestTitleOutput,
+        input_schema = schemas.UpdatePullRequestTitleInput,
+        output_schema = schemas.UpdatePullRequestTitleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1037,8 +1037,8 @@ end
 function Client:updateRepositoryDescription(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRepositoryDescription",
-        input_schema = types.UpdateRepositoryDescriptionInput,
-        output_schema = types.UpdateRepositoryDescriptionOutput,
+        input_schema = schemas.UpdateRepositoryDescriptionInput,
+        output_schema = schemas.UpdateRepositoryDescriptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1050,8 +1050,8 @@ end
 function Client:updateRepositoryEncryptionKey(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRepositoryEncryptionKey",
-        input_schema = types.UpdateRepositoryEncryptionKeyInput,
-        output_schema = types.UpdateRepositoryEncryptionKeyOutput,
+        input_schema = schemas.UpdateRepositoryEncryptionKeyInput,
+        output_schema = schemas.UpdateRepositoryEncryptionKeyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1063,8 +1063,8 @@ end
 function Client:updateRepositoryName(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRepositoryName",
-        input_schema = types.UpdateRepositoryNameInput,
-        output_schema = types.UpdateRepositoryNameOutput,
+        input_schema = schemas.UpdateRepositoryNameInput,
+        output_schema = schemas.UpdateRepositoryNameOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

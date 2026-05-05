@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("securityhub.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("securityhub.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("securityhub.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptAdministratorInvitation(input, options)
     return self:invokeOperation(input, {
         name = "AcceptAdministratorInvitation",
-        input_schema = types.AcceptAdministratorInvitationInput,
-        output_schema = types.AcceptAdministratorInvitationOutput,
+        input_schema = schemas.AcceptAdministratorInvitationInput,
+        output_schema = schemas.AcceptAdministratorInvitationOutput,
         http_method = "POST",
         http_path = "/administrator",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:acceptInvitation(input, options)
     return self:invokeOperation(input, {
         name = "AcceptInvitation",
-        input_schema = types.AcceptInvitationInput,
-        output_schema = types.AcceptInvitationOutput,
+        input_schema = schemas.AcceptInvitationInput,
+        output_schema = schemas.AcceptInvitationOutput,
         http_method = "POST",
         http_path = "/master",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchDeleteAutomationRules(input, options)
     return self:invokeOperation(input, {
         name = "BatchDeleteAutomationRules",
-        input_schema = types.BatchDeleteAutomationRulesInput,
-        output_schema = types.BatchDeleteAutomationRulesOutput,
+        input_schema = schemas.BatchDeleteAutomationRulesInput,
+        output_schema = schemas.BatchDeleteAutomationRulesOutput,
         http_method = "POST",
         http_path = "/automationrules/delete",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:batchDisableStandards(input, options)
     return self:invokeOperation(input, {
         name = "BatchDisableStandards",
-        input_schema = types.BatchDisableStandardsInput,
-        output_schema = types.BatchDisableStandardsOutput,
+        input_schema = schemas.BatchDisableStandardsInput,
+        output_schema = schemas.BatchDisableStandardsOutput,
         http_method = "POST",
         http_path = "/standards/deregister",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:batchEnableStandards(input, options)
     return self:invokeOperation(input, {
         name = "BatchEnableStandards",
-        input_schema = types.BatchEnableStandardsInput,
-        output_schema = types.BatchEnableStandardsOutput,
+        input_schema = schemas.BatchEnableStandardsInput,
+        output_schema = schemas.BatchEnableStandardsOutput,
         http_method = "POST",
         http_path = "/standards/register",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:batchGetAutomationRules(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetAutomationRules",
-        input_schema = types.BatchGetAutomationRulesInput,
-        output_schema = types.BatchGetAutomationRulesOutput,
+        input_schema = schemas.BatchGetAutomationRulesInput,
+        output_schema = schemas.BatchGetAutomationRulesOutput,
         http_method = "POST",
         http_path = "/automationrules/get",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:batchGetConfigurationPolicyAssociations(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetConfigurationPolicyAssociations",
-        input_schema = types.BatchGetConfigurationPolicyAssociationsInput,
-        output_schema = types.BatchGetConfigurationPolicyAssociationsOutput,
+        input_schema = schemas.BatchGetConfigurationPolicyAssociationsInput,
+        output_schema = schemas.BatchGetConfigurationPolicyAssociationsOutput,
         http_method = "POST",
         http_path = "/configurationPolicyAssociation/batchget",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:batchGetSecurityControls(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetSecurityControls",
-        input_schema = types.BatchGetSecurityControlsInput,
-        output_schema = types.BatchGetSecurityControlsOutput,
+        input_schema = schemas.BatchGetSecurityControlsInput,
+        output_schema = schemas.BatchGetSecurityControlsOutput,
         http_method = "POST",
         http_path = "/securityControls/batchGet",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:batchGetStandardsControlAssociations(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetStandardsControlAssociations",
-        input_schema = types.BatchGetStandardsControlAssociationsInput,
-        output_schema = types.BatchGetStandardsControlAssociationsOutput,
+        input_schema = schemas.BatchGetStandardsControlAssociationsInput,
+        output_schema = schemas.BatchGetStandardsControlAssociationsOutput,
         http_method = "POST",
         http_path = "/associations/batchGet",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:batchImportFindings(input, options)
     return self:invokeOperation(input, {
         name = "BatchImportFindings",
-        input_schema = types.BatchImportFindingsInput,
-        output_schema = types.BatchImportFindingsOutput,
+        input_schema = schemas.BatchImportFindingsInput,
+        output_schema = schemas.BatchImportFindingsOutput,
         http_method = "POST",
         http_path = "/findings/import",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:batchUpdateAutomationRules(input, options)
     return self:invokeOperation(input, {
         name = "BatchUpdateAutomationRules",
-        input_schema = types.BatchUpdateAutomationRulesInput,
-        output_schema = types.BatchUpdateAutomationRulesOutput,
+        input_schema = schemas.BatchUpdateAutomationRulesInput,
+        output_schema = schemas.BatchUpdateAutomationRulesOutput,
         http_method = "PATCH",
         http_path = "/automationrules/update",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:batchUpdateFindings(input, options)
     return self:invokeOperation(input, {
         name = "BatchUpdateFindings",
-        input_schema = types.BatchUpdateFindingsInput,
-        output_schema = types.BatchUpdateFindingsOutput,
+        input_schema = schemas.BatchUpdateFindingsInput,
+        output_schema = schemas.BatchUpdateFindingsOutput,
         http_method = "PATCH",
         http_path = "/findings/batchupdate",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:batchUpdateFindingsV2(input, options)
     return self:invokeOperation(input, {
         name = "BatchUpdateFindingsV2",
-        input_schema = types.BatchUpdateFindingsV2Input,
-        output_schema = types.BatchUpdateFindingsV2Output,
+        input_schema = schemas.BatchUpdateFindingsV2Input,
+        output_schema = schemas.BatchUpdateFindingsV2Output,
         http_method = "PATCH",
         http_path = "/findingsv2/batchupdatev2",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:batchUpdateStandardsControlAssociations(input, options)
     return self:invokeOperation(input, {
         name = "BatchUpdateStandardsControlAssociations",
-        input_schema = types.BatchUpdateStandardsControlAssociationsInput,
-        output_schema = types.BatchUpdateStandardsControlAssociationsOutput,
+        input_schema = schemas.BatchUpdateStandardsControlAssociationsInput,
+        output_schema = schemas.BatchUpdateStandardsControlAssociationsOutput,
         http_method = "PATCH",
         http_path = "/associations",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:createActionTarget(input, options)
     return self:invokeOperation(input, {
         name = "CreateActionTarget",
-        input_schema = types.CreateActionTargetInput,
-        output_schema = types.CreateActionTargetOutput,
+        input_schema = schemas.CreateActionTargetInput,
+        output_schema = schemas.CreateActionTargetOutput,
         http_method = "POST",
         http_path = "/actionTargets",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:createAggregatorV2(input, options)
     return self:invokeOperation(input, {
         name = "CreateAggregatorV2",
-        input_schema = types.CreateAggregatorV2Input,
-        output_schema = types.CreateAggregatorV2Output,
+        input_schema = schemas.CreateAggregatorV2Input,
+        output_schema = schemas.CreateAggregatorV2Output,
         http_method = "POST",
         http_path = "/aggregatorv2/create",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:createAutomationRule(input, options)
     return self:invokeOperation(input, {
         name = "CreateAutomationRule",
-        input_schema = types.CreateAutomationRuleInput,
-        output_schema = types.CreateAutomationRuleOutput,
+        input_schema = schemas.CreateAutomationRuleInput,
+        output_schema = schemas.CreateAutomationRuleOutput,
         http_method = "POST",
         http_path = "/automationrules/create",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:createAutomationRuleV2(input, options)
     return self:invokeOperation(input, {
         name = "CreateAutomationRuleV2",
-        input_schema = types.CreateAutomationRuleV2Input,
-        output_schema = types.CreateAutomationRuleV2Output,
+        input_schema = schemas.CreateAutomationRuleV2Input,
+        output_schema = schemas.CreateAutomationRuleV2Output,
         http_method = "POST",
         http_path = "/automationrulesv2/create",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:createConfigurationPolicy(input, options)
     return self:invokeOperation(input, {
         name = "CreateConfigurationPolicy",
-        input_schema = types.CreateConfigurationPolicyInput,
-        output_schema = types.CreateConfigurationPolicyOutput,
+        input_schema = schemas.CreateConfigurationPolicyInput,
+        output_schema = schemas.CreateConfigurationPolicyOutput,
         http_method = "POST",
         http_path = "/configurationPolicy/create",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:createConnectorV2(input, options)
     return self:invokeOperation(input, {
         name = "CreateConnectorV2",
-        input_schema = types.CreateConnectorV2Input,
-        output_schema = types.CreateConnectorV2Output,
+        input_schema = schemas.CreateConnectorV2Input,
+        output_schema = schemas.CreateConnectorV2Output,
         http_method = "POST",
         http_path = "/connectorsv2",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:createFindingAggregator(input, options)
     return self:invokeOperation(input, {
         name = "CreateFindingAggregator",
-        input_schema = types.CreateFindingAggregatorInput,
-        output_schema = types.CreateFindingAggregatorOutput,
+        input_schema = schemas.CreateFindingAggregatorInput,
+        output_schema = schemas.CreateFindingAggregatorOutput,
         http_method = "POST",
         http_path = "/findingAggregator/create",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:createInsight(input, options)
     return self:invokeOperation(input, {
         name = "CreateInsight",
-        input_schema = types.CreateInsightInput,
-        output_schema = types.CreateInsightOutput,
+        input_schema = schemas.CreateInsightInput,
+        output_schema = schemas.CreateInsightOutput,
         http_method = "POST",
         http_path = "/insights",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:createMembers(input, options)
     return self:invokeOperation(input, {
         name = "CreateMembers",
-        input_schema = types.CreateMembersInput,
-        output_schema = types.CreateMembersOutput,
+        input_schema = schemas.CreateMembersInput,
+        output_schema = schemas.CreateMembersOutput,
         http_method = "POST",
         http_path = "/members",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:createTicketV2(input, options)
     return self:invokeOperation(input, {
         name = "CreateTicketV2",
-        input_schema = types.CreateTicketV2Input,
-        output_schema = types.CreateTicketV2Output,
+        input_schema = schemas.CreateTicketV2Input,
+        output_schema = schemas.CreateTicketV2Output,
         http_method = "POST",
         http_path = "/ticketsv2",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:declineInvitations(input, options)
     return self:invokeOperation(input, {
         name = "DeclineInvitations",
-        input_schema = types.DeclineInvitationsInput,
-        output_schema = types.DeclineInvitationsOutput,
+        input_schema = schemas.DeclineInvitationsInput,
+        output_schema = schemas.DeclineInvitationsOutput,
         http_method = "POST",
         http_path = "/invitations/decline",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:deleteActionTarget(input, options)
     return self:invokeOperation(input, {
         name = "DeleteActionTarget",
-        input_schema = types.DeleteActionTargetInput,
-        output_schema = types.DeleteActionTargetOutput,
+        input_schema = schemas.DeleteActionTargetInput,
+        output_schema = schemas.DeleteActionTargetOutput,
         http_method = "DELETE",
         http_path = "/actionTargets/{ActionTargetArn+}",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:deleteAggregatorV2(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAggregatorV2",
-        input_schema = types.DeleteAggregatorV2Input,
-        output_schema = types.DeleteAggregatorV2Output,
+        input_schema = schemas.DeleteAggregatorV2Input,
+        output_schema = schemas.DeleteAggregatorV2Output,
         http_method = "DELETE",
         http_path = "/aggregatorv2/delete/{AggregatorV2Arn+}",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:deleteAutomationRuleV2(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAutomationRuleV2",
-        input_schema = types.DeleteAutomationRuleV2Input,
-        output_schema = types.DeleteAutomationRuleV2Output,
+        input_schema = schemas.DeleteAutomationRuleV2Input,
+        output_schema = schemas.DeleteAutomationRuleV2Output,
         http_method = "DELETE",
         http_path = "/automationrulesv2/{Identifier}",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:deleteConfigurationPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfigurationPolicy",
-        input_schema = types.DeleteConfigurationPolicyInput,
-        output_schema = types.DeleteConfigurationPolicyOutput,
+        input_schema = schemas.DeleteConfigurationPolicyInput,
+        output_schema = schemas.DeleteConfigurationPolicyOutput,
         http_method = "DELETE",
         http_path = "/configurationPolicy/{Identifier}",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:deleteConnectorV2(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConnectorV2",
-        input_schema = types.DeleteConnectorV2Input,
-        output_schema = types.DeleteConnectorV2Output,
+        input_schema = schemas.DeleteConnectorV2Input,
+        output_schema = schemas.DeleteConnectorV2Output,
         http_method = "DELETE",
         http_path = "/connectorsv2/{ConnectorId+}",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:deleteFindingAggregator(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFindingAggregator",
-        input_schema = types.DeleteFindingAggregatorInput,
-        output_schema = types.DeleteFindingAggregatorOutput,
+        input_schema = schemas.DeleteFindingAggregatorInput,
+        output_schema = schemas.DeleteFindingAggregatorOutput,
         http_method = "DELETE",
         http_path = "/findingAggregator/delete/{FindingAggregatorArn+}",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:deleteInsight(input, options)
     return self:invokeOperation(input, {
         name = "DeleteInsight",
-        input_schema = types.DeleteInsightInput,
-        output_schema = types.DeleteInsightOutput,
+        input_schema = schemas.DeleteInsightInput,
+        output_schema = schemas.DeleteInsightOutput,
         http_method = "DELETE",
         http_path = "/insights/{InsightArn+}",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:deleteInvitations(input, options)
     return self:invokeOperation(input, {
         name = "DeleteInvitations",
-        input_schema = types.DeleteInvitationsInput,
-        output_schema = types.DeleteInvitationsOutput,
+        input_schema = schemas.DeleteInvitationsInput,
+        output_schema = schemas.DeleteInvitationsOutput,
         http_method = "POST",
         http_path = "/invitations/delete",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:deleteMembers(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMembers",
-        input_schema = types.DeleteMembersInput,
-        output_schema = types.DeleteMembersOutput,
+        input_schema = schemas.DeleteMembersInput,
+        output_schema = schemas.DeleteMembersOutput,
         http_method = "POST",
         http_path = "/members/delete",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:describeActionTargets(input, options)
     return self:invokeOperation(input, {
         name = "DescribeActionTargets",
-        input_schema = types.DescribeActionTargetsInput,
-        output_schema = types.DescribeActionTargetsOutput,
+        input_schema = schemas.DescribeActionTargetsInput,
+        output_schema = schemas.DescribeActionTargetsOutput,
         http_method = "POST",
         http_path = "/actionTargets/get",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:describeHub(input, options)
     return self:invokeOperation(input, {
         name = "DescribeHub",
-        input_schema = types.DescribeHubInput,
-        output_schema = types.DescribeHubOutput,
+        input_schema = schemas.DescribeHubInput,
+        output_schema = schemas.DescribeHubOutput,
         http_method = "GET",
         http_path = "/accounts",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:describeOrganizationConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DescribeOrganizationConfiguration",
-        input_schema = types.DescribeOrganizationConfigurationInput,
-        output_schema = types.DescribeOrganizationConfigurationOutput,
+        input_schema = schemas.DescribeOrganizationConfigurationInput,
+        output_schema = schemas.DescribeOrganizationConfigurationOutput,
         http_method = "GET",
         http_path = "/organization/configuration",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:describeProducts(input, options)
     return self:invokeOperation(input, {
         name = "DescribeProducts",
-        input_schema = types.DescribeProductsInput,
-        output_schema = types.DescribeProductsOutput,
+        input_schema = schemas.DescribeProductsInput,
+        output_schema = schemas.DescribeProductsOutput,
         http_method = "GET",
         http_path = "/products",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:describeProductsV2(input, options)
     return self:invokeOperation(input, {
         name = "DescribeProductsV2",
-        input_schema = types.DescribeProductsV2Input,
-        output_schema = types.DescribeProductsV2Output,
+        input_schema = schemas.DescribeProductsV2Input,
+        output_schema = schemas.DescribeProductsV2Output,
         http_method = "GET",
         http_path = "/productsV2",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:describeSecurityHubV2(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSecurityHubV2",
-        input_schema = types.DescribeSecurityHubV2Input,
-        output_schema = types.DescribeSecurityHubV2Output,
+        input_schema = schemas.DescribeSecurityHubV2Input,
+        output_schema = schemas.DescribeSecurityHubV2Output,
         http_method = "GET",
         http_path = "/hubv2",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:describeStandards(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStandards",
-        input_schema = types.DescribeStandardsInput,
-        output_schema = types.DescribeStandardsOutput,
+        input_schema = schemas.DescribeStandardsInput,
+        output_schema = schemas.DescribeStandardsOutput,
         http_method = "GET",
         http_path = "/standards",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:describeStandardsControls(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStandardsControls",
-        input_schema = types.DescribeStandardsControlsInput,
-        output_schema = types.DescribeStandardsControlsOutput,
+        input_schema = schemas.DescribeStandardsControlsInput,
+        output_schema = schemas.DescribeStandardsControlsOutput,
         http_method = "GET",
         http_path = "/standards/controls/{StandardsSubscriptionArn+}",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:disableImportFindingsForProduct(input, options)
     return self:invokeOperation(input, {
         name = "DisableImportFindingsForProduct",
-        input_schema = types.DisableImportFindingsForProductInput,
-        output_schema = types.DisableImportFindingsForProductOutput,
+        input_schema = schemas.DisableImportFindingsForProductInput,
+        output_schema = schemas.DisableImportFindingsForProductOutput,
         http_method = "DELETE",
         http_path = "/productSubscriptions/{ProductSubscriptionArn+}",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:disableOrganizationAdminAccount(input, options)
     return self:invokeOperation(input, {
         name = "DisableOrganizationAdminAccount",
-        input_schema = types.DisableOrganizationAdminAccountInput,
-        output_schema = types.DisableOrganizationAdminAccountOutput,
+        input_schema = schemas.DisableOrganizationAdminAccountInput,
+        output_schema = schemas.DisableOrganizationAdminAccountOutput,
         http_method = "POST",
         http_path = "/organization/admin/disable",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:disableSecurityHub(input, options)
     return self:invokeOperation(input, {
         name = "DisableSecurityHub",
-        input_schema = types.DisableSecurityHubInput,
-        output_schema = types.DisableSecurityHubOutput,
+        input_schema = schemas.DisableSecurityHubInput,
+        output_schema = schemas.DisableSecurityHubOutput,
         http_method = "DELETE",
         http_path = "/accounts",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:disableSecurityHubV2(input, options)
     return self:invokeOperation(input, {
         name = "DisableSecurityHubV2",
-        input_schema = types.DisableSecurityHubV2Input,
-        output_schema = types.DisableSecurityHubV2Output,
+        input_schema = schemas.DisableSecurityHubV2Input,
+        output_schema = schemas.DisableSecurityHubV2Output,
         http_method = "DELETE",
         http_path = "/hubv2",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:disassociateFromAdministratorAccount(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateFromAdministratorAccount",
-        input_schema = types.DisassociateFromAdministratorAccountInput,
-        output_schema = types.DisassociateFromAdministratorAccountOutput,
+        input_schema = schemas.DisassociateFromAdministratorAccountInput,
+        output_schema = schemas.DisassociateFromAdministratorAccountOutput,
         http_method = "POST",
         http_path = "/administrator/disassociate",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:disassociateFromMasterAccount(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateFromMasterAccount",
-        input_schema = types.DisassociateFromMasterAccountInput,
-        output_schema = types.DisassociateFromMasterAccountOutput,
+        input_schema = schemas.DisassociateFromMasterAccountInput,
+        output_schema = schemas.DisassociateFromMasterAccountOutput,
         http_method = "POST",
         http_path = "/master/disassociate",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:disassociateMembers(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateMembers",
-        input_schema = types.DisassociateMembersInput,
-        output_schema = types.DisassociateMembersOutput,
+        input_schema = schemas.DisassociateMembersInput,
+        output_schema = schemas.DisassociateMembersOutput,
         http_method = "POST",
         http_path = "/members/disassociate",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:enableImportFindingsForProduct(input, options)
     return self:invokeOperation(input, {
         name = "EnableImportFindingsForProduct",
-        input_schema = types.EnableImportFindingsForProductInput,
-        output_schema = types.EnableImportFindingsForProductOutput,
+        input_schema = schemas.EnableImportFindingsForProductInput,
+        output_schema = schemas.EnableImportFindingsForProductOutput,
         http_method = "POST",
         http_path = "/productSubscriptions",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:enableOrganizationAdminAccount(input, options)
     return self:invokeOperation(input, {
         name = "EnableOrganizationAdminAccount",
-        input_schema = types.EnableOrganizationAdminAccountInput,
-        output_schema = types.EnableOrganizationAdminAccountOutput,
+        input_schema = schemas.EnableOrganizationAdminAccountInput,
+        output_schema = schemas.EnableOrganizationAdminAccountOutput,
         http_method = "POST",
         http_path = "/organization/admin/enable",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:enableSecurityHub(input, options)
     return self:invokeOperation(input, {
         name = "EnableSecurityHub",
-        input_schema = types.EnableSecurityHubInput,
-        output_schema = types.EnableSecurityHubOutput,
+        input_schema = schemas.EnableSecurityHubInput,
+        output_schema = schemas.EnableSecurityHubOutput,
         http_method = "POST",
         http_path = "/accounts",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:enableSecurityHubV2(input, options)
     return self:invokeOperation(input, {
         name = "EnableSecurityHubV2",
-        input_schema = types.EnableSecurityHubV2Input,
-        output_schema = types.EnableSecurityHubV2Output,
+        input_schema = schemas.EnableSecurityHubV2Input,
+        output_schema = schemas.EnableSecurityHubV2Output,
         http_method = "POST",
         http_path = "/hubv2",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:getAdministratorAccount(input, options)
     return self:invokeOperation(input, {
         name = "GetAdministratorAccount",
-        input_schema = types.GetAdministratorAccountInput,
-        output_schema = types.GetAdministratorAccountOutput,
+        input_schema = schemas.GetAdministratorAccountInput,
+        output_schema = schemas.GetAdministratorAccountOutput,
         http_method = "GET",
         http_path = "/administrator",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:getAggregatorV2(input, options)
     return self:invokeOperation(input, {
         name = "GetAggregatorV2",
-        input_schema = types.GetAggregatorV2Input,
-        output_schema = types.GetAggregatorV2Output,
+        input_schema = schemas.GetAggregatorV2Input,
+        output_schema = schemas.GetAggregatorV2Output,
         http_method = "GET",
         http_path = "/aggregatorv2/get/{AggregatorV2Arn+}",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:getAutomationRuleV2(input, options)
     return self:invokeOperation(input, {
         name = "GetAutomationRuleV2",
-        input_schema = types.GetAutomationRuleV2Input,
-        output_schema = types.GetAutomationRuleV2Output,
+        input_schema = schemas.GetAutomationRuleV2Input,
+        output_schema = schemas.GetAutomationRuleV2Output,
         http_method = "GET",
         http_path = "/automationrulesv2/{Identifier}",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:getConfigurationPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetConfigurationPolicy",
-        input_schema = types.GetConfigurationPolicyInput,
-        output_schema = types.GetConfigurationPolicyOutput,
+        input_schema = schemas.GetConfigurationPolicyInput,
+        output_schema = schemas.GetConfigurationPolicyOutput,
         http_method = "GET",
         http_path = "/configurationPolicy/get/{Identifier}",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:getConfigurationPolicyAssociation(input, options)
     return self:invokeOperation(input, {
         name = "GetConfigurationPolicyAssociation",
-        input_schema = types.GetConfigurationPolicyAssociationInput,
-        output_schema = types.GetConfigurationPolicyAssociationOutput,
+        input_schema = schemas.GetConfigurationPolicyAssociationInput,
+        output_schema = schemas.GetConfigurationPolicyAssociationOutput,
         http_method = "POST",
         http_path = "/configurationPolicyAssociation/get",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:getConnectorV2(input, options)
     return self:invokeOperation(input, {
         name = "GetConnectorV2",
-        input_schema = types.GetConnectorV2Input,
-        output_schema = types.GetConnectorV2Output,
+        input_schema = schemas.GetConnectorV2Input,
+        output_schema = schemas.GetConnectorV2Output,
         http_method = "GET",
         http_path = "/connectorsv2/{ConnectorId+}",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:getEnabledStandards(input, options)
     return self:invokeOperation(input, {
         name = "GetEnabledStandards",
-        input_schema = types.GetEnabledStandardsInput,
-        output_schema = types.GetEnabledStandardsOutput,
+        input_schema = schemas.GetEnabledStandardsInput,
+        output_schema = schemas.GetEnabledStandardsOutput,
         http_method = "POST",
         http_path = "/standards/get",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:getFindingAggregator(input, options)
     return self:invokeOperation(input, {
         name = "GetFindingAggregator",
-        input_schema = types.GetFindingAggregatorInput,
-        output_schema = types.GetFindingAggregatorOutput,
+        input_schema = schemas.GetFindingAggregatorInput,
+        output_schema = schemas.GetFindingAggregatorOutput,
         http_method = "GET",
         http_path = "/findingAggregator/get/{FindingAggregatorArn+}",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:getFindingHistory(input, options)
     return self:invokeOperation(input, {
         name = "GetFindingHistory",
-        input_schema = types.GetFindingHistoryInput,
-        output_schema = types.GetFindingHistoryOutput,
+        input_schema = schemas.GetFindingHistoryInput,
+        output_schema = schemas.GetFindingHistoryOutput,
         http_method = "POST",
         http_path = "/findingHistory/get",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:getFindings(input, options)
     return self:invokeOperation(input, {
         name = "GetFindings",
-        input_schema = types.GetFindingsInput,
-        output_schema = types.GetFindingsOutput,
+        input_schema = schemas.GetFindingsInput,
+        output_schema = schemas.GetFindingsOutput,
         http_method = "POST",
         http_path = "/findings",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:getFindingStatisticsV2(input, options)
     return self:invokeOperation(input, {
         name = "GetFindingStatisticsV2",
-        input_schema = types.GetFindingStatisticsV2Input,
-        output_schema = types.GetFindingStatisticsV2Output,
+        input_schema = schemas.GetFindingStatisticsV2Input,
+        output_schema = schemas.GetFindingStatisticsV2Output,
         http_method = "POST",
         http_path = "/findingsv2/statistics",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:getFindingsTrendsV2(input, options)
     return self:invokeOperation(input, {
         name = "GetFindingsTrendsV2",
-        input_schema = types.GetFindingsTrendsV2Input,
-        output_schema = types.GetFindingsTrendsV2Output,
+        input_schema = schemas.GetFindingsTrendsV2Input,
+        output_schema = schemas.GetFindingsTrendsV2Output,
         http_method = "POST",
         http_path = "/findingsTrendsv2",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:getFindingsV2(input, options)
     return self:invokeOperation(input, {
         name = "GetFindingsV2",
-        input_schema = types.GetFindingsV2Input,
-        output_schema = types.GetFindingsV2Output,
+        input_schema = schemas.GetFindingsV2Input,
+        output_schema = schemas.GetFindingsV2Output,
         http_method = "POST",
         http_path = "/findingsv2",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:getInsightResults(input, options)
     return self:invokeOperation(input, {
         name = "GetInsightResults",
-        input_schema = types.GetInsightResultsInput,
-        output_schema = types.GetInsightResultsOutput,
+        input_schema = schemas.GetInsightResultsInput,
+        output_schema = schemas.GetInsightResultsOutput,
         http_method = "GET",
         http_path = "/insights/results/{InsightArn+}",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:getInsights(input, options)
     return self:invokeOperation(input, {
         name = "GetInsights",
-        input_schema = types.GetInsightsInput,
-        output_schema = types.GetInsightsOutput,
+        input_schema = schemas.GetInsightsInput,
+        output_schema = schemas.GetInsightsOutput,
         http_method = "POST",
         http_path = "/insights/get",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:getInvitationsCount(input, options)
     return self:invokeOperation(input, {
         name = "GetInvitationsCount",
-        input_schema = types.GetInvitationsCountInput,
-        output_schema = types.GetInvitationsCountOutput,
+        input_schema = schemas.GetInvitationsCountInput,
+        output_schema = schemas.GetInvitationsCountOutput,
         http_method = "GET",
         http_path = "/invitations/count",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:getMasterAccount(input, options)
     return self:invokeOperation(input, {
         name = "GetMasterAccount",
-        input_schema = types.GetMasterAccountInput,
-        output_schema = types.GetMasterAccountOutput,
+        input_schema = schemas.GetMasterAccountInput,
+        output_schema = schemas.GetMasterAccountOutput,
         http_method = "GET",
         http_path = "/master",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:getMembers(input, options)
     return self:invokeOperation(input, {
         name = "GetMembers",
-        input_schema = types.GetMembersInput,
-        output_schema = types.GetMembersOutput,
+        input_schema = schemas.GetMembersInput,
+        output_schema = schemas.GetMembersOutput,
         http_method = "POST",
         http_path = "/members/get",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:getResourcesStatisticsV2(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcesStatisticsV2",
-        input_schema = types.GetResourcesStatisticsV2Input,
-        output_schema = types.GetResourcesStatisticsV2Output,
+        input_schema = schemas.GetResourcesStatisticsV2Input,
+        output_schema = schemas.GetResourcesStatisticsV2Output,
         http_method = "POST",
         http_path = "/resourcesv2/statistics",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:getResourcesTrendsV2(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcesTrendsV2",
-        input_schema = types.GetResourcesTrendsV2Input,
-        output_schema = types.GetResourcesTrendsV2Output,
+        input_schema = schemas.GetResourcesTrendsV2Input,
+        output_schema = schemas.GetResourcesTrendsV2Output,
         http_method = "POST",
         http_path = "/resourcesTrendsv2",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:getResourcesV2(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcesV2",
-        input_schema = types.GetResourcesV2Input,
-        output_schema = types.GetResourcesV2Output,
+        input_schema = schemas.GetResourcesV2Input,
+        output_schema = schemas.GetResourcesV2Output,
         http_method = "POST",
         http_path = "/resourcesv2",
         effective_auth_schemes = {
@@ -1011,8 +1011,8 @@ end
 function Client:getSecurityControlDefinition(input, options)
     return self:invokeOperation(input, {
         name = "GetSecurityControlDefinition",
-        input_schema = types.GetSecurityControlDefinitionInput,
-        output_schema = types.GetSecurityControlDefinitionOutput,
+        input_schema = schemas.GetSecurityControlDefinitionInput,
+        output_schema = schemas.GetSecurityControlDefinitionOutput,
         http_method = "GET",
         http_path = "/securityControl/definition",
         effective_auth_schemes = {
@@ -1024,8 +1024,8 @@ end
 function Client:inviteMembers(input, options)
     return self:invokeOperation(input, {
         name = "InviteMembers",
-        input_schema = types.InviteMembersInput,
-        output_schema = types.InviteMembersOutput,
+        input_schema = schemas.InviteMembersInput,
+        output_schema = schemas.InviteMembersOutput,
         http_method = "POST",
         http_path = "/members/invite",
         effective_auth_schemes = {
@@ -1037,8 +1037,8 @@ end
 function Client:listAggregatorsV2(input, options)
     return self:invokeOperation(input, {
         name = "ListAggregatorsV2",
-        input_schema = types.ListAggregatorsV2Input,
-        output_schema = types.ListAggregatorsV2Output,
+        input_schema = schemas.ListAggregatorsV2Input,
+        output_schema = schemas.ListAggregatorsV2Output,
         http_method = "GET",
         http_path = "/aggregatorv2/list",
         effective_auth_schemes = {
@@ -1050,8 +1050,8 @@ end
 function Client:listAutomationRules(input, options)
     return self:invokeOperation(input, {
         name = "ListAutomationRules",
-        input_schema = types.ListAutomationRulesInput,
-        output_schema = types.ListAutomationRulesOutput,
+        input_schema = schemas.ListAutomationRulesInput,
+        output_schema = schemas.ListAutomationRulesOutput,
         http_method = "GET",
         http_path = "/automationrules/list",
         effective_auth_schemes = {
@@ -1063,8 +1063,8 @@ end
 function Client:listAutomationRulesV2(input, options)
     return self:invokeOperation(input, {
         name = "ListAutomationRulesV2",
-        input_schema = types.ListAutomationRulesV2Input,
-        output_schema = types.ListAutomationRulesV2Output,
+        input_schema = schemas.ListAutomationRulesV2Input,
+        output_schema = schemas.ListAutomationRulesV2Output,
         http_method = "GET",
         http_path = "/automationrulesv2/list",
         effective_auth_schemes = {
@@ -1076,8 +1076,8 @@ end
 function Client:listConfigurationPolicies(input, options)
     return self:invokeOperation(input, {
         name = "ListConfigurationPolicies",
-        input_schema = types.ListConfigurationPoliciesInput,
-        output_schema = types.ListConfigurationPoliciesOutput,
+        input_schema = schemas.ListConfigurationPoliciesInput,
+        output_schema = schemas.ListConfigurationPoliciesOutput,
         http_method = "GET",
         http_path = "/configurationPolicy/list",
         effective_auth_schemes = {
@@ -1089,8 +1089,8 @@ end
 function Client:listConfigurationPolicyAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListConfigurationPolicyAssociations",
-        input_schema = types.ListConfigurationPolicyAssociationsInput,
-        output_schema = types.ListConfigurationPolicyAssociationsOutput,
+        input_schema = schemas.ListConfigurationPolicyAssociationsInput,
+        output_schema = schemas.ListConfigurationPolicyAssociationsOutput,
         http_method = "POST",
         http_path = "/configurationPolicyAssociation/list",
         effective_auth_schemes = {
@@ -1102,8 +1102,8 @@ end
 function Client:listConnectorsV2(input, options)
     return self:invokeOperation(input, {
         name = "ListConnectorsV2",
-        input_schema = types.ListConnectorsV2Input,
-        output_schema = types.ListConnectorsV2Output,
+        input_schema = schemas.ListConnectorsV2Input,
+        output_schema = schemas.ListConnectorsV2Output,
         http_method = "GET",
         http_path = "/connectorsv2",
         effective_auth_schemes = {
@@ -1115,8 +1115,8 @@ end
 function Client:listEnabledProductsForImport(input, options)
     return self:invokeOperation(input, {
         name = "ListEnabledProductsForImport",
-        input_schema = types.ListEnabledProductsForImportInput,
-        output_schema = types.ListEnabledProductsForImportOutput,
+        input_schema = schemas.ListEnabledProductsForImportInput,
+        output_schema = schemas.ListEnabledProductsForImportOutput,
         http_method = "GET",
         http_path = "/productSubscriptions",
         effective_auth_schemes = {
@@ -1128,8 +1128,8 @@ end
 function Client:listFindingAggregators(input, options)
     return self:invokeOperation(input, {
         name = "ListFindingAggregators",
-        input_schema = types.ListFindingAggregatorsInput,
-        output_schema = types.ListFindingAggregatorsOutput,
+        input_schema = schemas.ListFindingAggregatorsInput,
+        output_schema = schemas.ListFindingAggregatorsOutput,
         http_method = "GET",
         http_path = "/findingAggregator/list",
         effective_auth_schemes = {
@@ -1141,8 +1141,8 @@ end
 function Client:listInvitations(input, options)
     return self:invokeOperation(input, {
         name = "ListInvitations",
-        input_schema = types.ListInvitationsInput,
-        output_schema = types.ListInvitationsOutput,
+        input_schema = schemas.ListInvitationsInput,
+        output_schema = schemas.ListInvitationsOutput,
         http_method = "GET",
         http_path = "/invitations",
         effective_auth_schemes = {
@@ -1154,8 +1154,8 @@ end
 function Client:listMembers(input, options)
     return self:invokeOperation(input, {
         name = "ListMembers",
-        input_schema = types.ListMembersInput,
-        output_schema = types.ListMembersOutput,
+        input_schema = schemas.ListMembersInput,
+        output_schema = schemas.ListMembersOutput,
         http_method = "GET",
         http_path = "/members",
         effective_auth_schemes = {
@@ -1167,8 +1167,8 @@ end
 function Client:listOrganizationAdminAccounts(input, options)
     return self:invokeOperation(input, {
         name = "ListOrganizationAdminAccounts",
-        input_schema = types.ListOrganizationAdminAccountsInput,
-        output_schema = types.ListOrganizationAdminAccountsOutput,
+        input_schema = schemas.ListOrganizationAdminAccountsInput,
+        output_schema = schemas.ListOrganizationAdminAccountsOutput,
         http_method = "GET",
         http_path = "/organization/admin",
         effective_auth_schemes = {
@@ -1180,8 +1180,8 @@ end
 function Client:listSecurityControlDefinitions(input, options)
     return self:invokeOperation(input, {
         name = "ListSecurityControlDefinitions",
-        input_schema = types.ListSecurityControlDefinitionsInput,
-        output_schema = types.ListSecurityControlDefinitionsOutput,
+        input_schema = schemas.ListSecurityControlDefinitionsInput,
+        output_schema = schemas.ListSecurityControlDefinitionsOutput,
         http_method = "GET",
         http_path = "/securityControls/definitions",
         effective_auth_schemes = {
@@ -1193,8 +1193,8 @@ end
 function Client:listStandardsControlAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListStandardsControlAssociations",
-        input_schema = types.ListStandardsControlAssociationsInput,
-        output_schema = types.ListStandardsControlAssociationsOutput,
+        input_schema = schemas.ListStandardsControlAssociationsInput,
+        output_schema = schemas.ListStandardsControlAssociationsOutput,
         http_method = "GET",
         http_path = "/associations",
         effective_auth_schemes = {
@@ -1206,8 +1206,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -1219,8 +1219,8 @@ end
 function Client:registerConnectorV2(input, options)
     return self:invokeOperation(input, {
         name = "RegisterConnectorV2",
-        input_schema = types.RegisterConnectorV2Input,
-        output_schema = types.RegisterConnectorV2Output,
+        input_schema = schemas.RegisterConnectorV2Input,
+        output_schema = schemas.RegisterConnectorV2Output,
         http_method = "POST",
         http_path = "/connectorsv2/register",
         effective_auth_schemes = {
@@ -1232,8 +1232,8 @@ end
 function Client:startConfigurationPolicyAssociation(input, options)
     return self:invokeOperation(input, {
         name = "StartConfigurationPolicyAssociation",
-        input_schema = types.StartConfigurationPolicyAssociationInput,
-        output_schema = types.StartConfigurationPolicyAssociationOutput,
+        input_schema = schemas.StartConfigurationPolicyAssociationInput,
+        output_schema = schemas.StartConfigurationPolicyAssociationOutput,
         http_method = "POST",
         http_path = "/configurationPolicyAssociation/associate",
         effective_auth_schemes = {
@@ -1245,8 +1245,8 @@ end
 function Client:startConfigurationPolicyDisassociation(input, options)
     return self:invokeOperation(input, {
         name = "StartConfigurationPolicyDisassociation",
-        input_schema = types.StartConfigurationPolicyDisassociationInput,
-        output_schema = types.StartConfigurationPolicyDisassociationOutput,
+        input_schema = schemas.StartConfigurationPolicyDisassociationInput,
+        output_schema = schemas.StartConfigurationPolicyDisassociationOutput,
         http_method = "POST",
         http_path = "/configurationPolicyAssociation/disassociate",
         effective_auth_schemes = {
@@ -1258,8 +1258,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -1271,8 +1271,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -1284,8 +1284,8 @@ end
 function Client:updateActionTarget(input, options)
     return self:invokeOperation(input, {
         name = "UpdateActionTarget",
-        input_schema = types.UpdateActionTargetInput,
-        output_schema = types.UpdateActionTargetOutput,
+        input_schema = schemas.UpdateActionTargetInput,
+        output_schema = schemas.UpdateActionTargetOutput,
         http_method = "PATCH",
         http_path = "/actionTargets/{ActionTargetArn+}",
         effective_auth_schemes = {
@@ -1297,8 +1297,8 @@ end
 function Client:updateAggregatorV2(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAggregatorV2",
-        input_schema = types.UpdateAggregatorV2Input,
-        output_schema = types.UpdateAggregatorV2Output,
+        input_schema = schemas.UpdateAggregatorV2Input,
+        output_schema = schemas.UpdateAggregatorV2Output,
         http_method = "PATCH",
         http_path = "/aggregatorv2/update/{AggregatorV2Arn+}",
         effective_auth_schemes = {
@@ -1310,8 +1310,8 @@ end
 function Client:updateAutomationRuleV2(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAutomationRuleV2",
-        input_schema = types.UpdateAutomationRuleV2Input,
-        output_schema = types.UpdateAutomationRuleV2Output,
+        input_schema = schemas.UpdateAutomationRuleV2Input,
+        output_schema = schemas.UpdateAutomationRuleV2Output,
         http_method = "PATCH",
         http_path = "/automationrulesv2/{Identifier}",
         effective_auth_schemes = {
@@ -1323,8 +1323,8 @@ end
 function Client:updateConfigurationPolicy(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConfigurationPolicy",
-        input_schema = types.UpdateConfigurationPolicyInput,
-        output_schema = types.UpdateConfigurationPolicyOutput,
+        input_schema = schemas.UpdateConfigurationPolicyInput,
+        output_schema = schemas.UpdateConfigurationPolicyOutput,
         http_method = "PATCH",
         http_path = "/configurationPolicy/{Identifier}",
         effective_auth_schemes = {
@@ -1336,8 +1336,8 @@ end
 function Client:updateConnectorV2(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConnectorV2",
-        input_schema = types.UpdateConnectorV2Input,
-        output_schema = types.UpdateConnectorV2Output,
+        input_schema = schemas.UpdateConnectorV2Input,
+        output_schema = schemas.UpdateConnectorV2Output,
         http_method = "PATCH",
         http_path = "/connectorsv2/{ConnectorId+}",
         effective_auth_schemes = {
@@ -1349,8 +1349,8 @@ end
 function Client:updateFindingAggregator(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFindingAggregator",
-        input_schema = types.UpdateFindingAggregatorInput,
-        output_schema = types.UpdateFindingAggregatorOutput,
+        input_schema = schemas.UpdateFindingAggregatorInput,
+        output_schema = schemas.UpdateFindingAggregatorOutput,
         http_method = "PATCH",
         http_path = "/findingAggregator/update",
         effective_auth_schemes = {
@@ -1362,8 +1362,8 @@ end
 function Client:updateFindings(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFindings",
-        input_schema = types.UpdateFindingsInput,
-        output_schema = types.UpdateFindingsOutput,
+        input_schema = schemas.UpdateFindingsInput,
+        output_schema = schemas.UpdateFindingsOutput,
         http_method = "PATCH",
         http_path = "/findings",
         effective_auth_schemes = {
@@ -1375,8 +1375,8 @@ end
 function Client:updateInsight(input, options)
     return self:invokeOperation(input, {
         name = "UpdateInsight",
-        input_schema = types.UpdateInsightInput,
-        output_schema = types.UpdateInsightOutput,
+        input_schema = schemas.UpdateInsightInput,
+        output_schema = schemas.UpdateInsightOutput,
         http_method = "PATCH",
         http_path = "/insights/{InsightArn+}",
         effective_auth_schemes = {
@@ -1388,8 +1388,8 @@ end
 function Client:updateOrganizationConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateOrganizationConfiguration",
-        input_schema = types.UpdateOrganizationConfigurationInput,
-        output_schema = types.UpdateOrganizationConfigurationOutput,
+        input_schema = schemas.UpdateOrganizationConfigurationInput,
+        output_schema = schemas.UpdateOrganizationConfigurationOutput,
         http_method = "POST",
         http_path = "/organization/configuration",
         effective_auth_schemes = {
@@ -1401,8 +1401,8 @@ end
 function Client:updateSecurityControl(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSecurityControl",
-        input_schema = types.UpdateSecurityControlInput,
-        output_schema = types.UpdateSecurityControlOutput,
+        input_schema = schemas.UpdateSecurityControlInput,
+        output_schema = schemas.UpdateSecurityControlOutput,
         http_method = "PATCH",
         http_path = "/securityControl/update",
         effective_auth_schemes = {
@@ -1414,8 +1414,8 @@ end
 function Client:updateSecurityHubConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSecurityHubConfiguration",
-        input_schema = types.UpdateSecurityHubConfigurationInput,
-        output_schema = types.UpdateSecurityHubConfigurationOutput,
+        input_schema = schemas.UpdateSecurityHubConfigurationInput,
+        output_schema = schemas.UpdateSecurityHubConfigurationOutput,
         http_method = "PATCH",
         http_path = "/accounts",
         effective_auth_schemes = {
@@ -1427,8 +1427,8 @@ end
 function Client:updateStandardsControl(input, options)
     return self:invokeOperation(input, {
         name = "UpdateStandardsControl",
-        input_schema = types.UpdateStandardsControlInput,
-        output_schema = types.UpdateStandardsControlOutput,
+        input_schema = schemas.UpdateStandardsControlInput,
+        output_schema = schemas.UpdateStandardsControlOutput,
         http_method = "PATCH",
         http_path = "/standards/control/{StandardsControlArn+}",
         effective_auth_schemes = {

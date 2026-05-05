@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("codepipeline.endpoint_rules")
+local schemas = require("codepipeline.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("codepipeline.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acknowledgeJob(input, options)
     return self:invokeOperation(input, {
         name = "AcknowledgeJob",
-        input_schema = types.AcknowledgeJobInput,
-        output_schema = types.AcknowledgeJobOutput,
+        input_schema = schemas.AcknowledgeJobInput,
+        output_schema = schemas.AcknowledgeJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:acknowledgeThirdPartyJob(input, options)
     return self:invokeOperation(input, {
         name = "AcknowledgeThirdPartyJob",
-        input_schema = types.AcknowledgeThirdPartyJobInput,
-        output_schema = types.AcknowledgeThirdPartyJobOutput,
+        input_schema = schemas.AcknowledgeThirdPartyJobInput,
+        output_schema = schemas.AcknowledgeThirdPartyJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createCustomActionType(input, options)
     return self:invokeOperation(input, {
         name = "CreateCustomActionType",
-        input_schema = types.CreateCustomActionTypeInput,
-        output_schema = types.CreateCustomActionTypeOutput,
+        input_schema = schemas.CreateCustomActionTypeInput,
+        output_schema = schemas.CreateCustomActionTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createPipeline(input, options)
     return self:invokeOperation(input, {
         name = "CreatePipeline",
-        input_schema = types.CreatePipelineInput,
-        output_schema = types.CreatePipelineOutput,
+        input_schema = schemas.CreatePipelineInput,
+        output_schema = schemas.CreatePipelineOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteCustomActionType(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCustomActionType",
-        input_schema = types.DeleteCustomActionTypeInput,
-        output_schema = types.DeleteCustomActionTypeOutput,
+        input_schema = schemas.DeleteCustomActionTypeInput,
+        output_schema = schemas.DeleteCustomActionTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deletePipeline(input, options)
     return self:invokeOperation(input, {
         name = "DeletePipeline",
-        input_schema = types.DeletePipelineInput,
-        output_schema = types.DeletePipelineOutput,
+        input_schema = schemas.DeletePipelineInput,
+        output_schema = schemas.DeletePipelineOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteWebhook(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWebhook",
-        input_schema = types.DeleteWebhookInput,
-        output_schema = types.DeleteWebhookOutput,
+        input_schema = schemas.DeleteWebhookInput,
+        output_schema = schemas.DeleteWebhookOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deregisterWebhookWithThirdParty(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterWebhookWithThirdParty",
-        input_schema = types.DeregisterWebhookWithThirdPartyInput,
-        output_schema = types.DeregisterWebhookWithThirdPartyOutput,
+        input_schema = schemas.DeregisterWebhookWithThirdPartyInput,
+        output_schema = schemas.DeregisterWebhookWithThirdPartyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:disableStageTransition(input, options)
     return self:invokeOperation(input, {
         name = "DisableStageTransition",
-        input_schema = types.DisableStageTransitionInput,
-        output_schema = types.DisableStageTransitionOutput,
+        input_schema = schemas.DisableStageTransitionInput,
+        output_schema = schemas.DisableStageTransitionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:enableStageTransition(input, options)
     return self:invokeOperation(input, {
         name = "EnableStageTransition",
-        input_schema = types.EnableStageTransitionInput,
-        output_schema = types.EnableStageTransitionOutput,
+        input_schema = schemas.EnableStageTransitionInput,
+        output_schema = schemas.EnableStageTransitionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getActionType(input, options)
     return self:invokeOperation(input, {
         name = "GetActionType",
-        input_schema = types.GetActionTypeInput,
-        output_schema = types.GetActionTypeOutput,
+        input_schema = schemas.GetActionTypeInput,
+        output_schema = schemas.GetActionTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getJobDetails(input, options)
     return self:invokeOperation(input, {
         name = "GetJobDetails",
-        input_schema = types.GetJobDetailsInput,
-        output_schema = types.GetJobDetailsOutput,
+        input_schema = schemas.GetJobDetailsInput,
+        output_schema = schemas.GetJobDetailsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getPipeline(input, options)
     return self:invokeOperation(input, {
         name = "GetPipeline",
-        input_schema = types.GetPipelineInput,
-        output_schema = types.GetPipelineOutput,
+        input_schema = schemas.GetPipelineInput,
+        output_schema = schemas.GetPipelineOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getPipelineExecution(input, options)
     return self:invokeOperation(input, {
         name = "GetPipelineExecution",
-        input_schema = types.GetPipelineExecutionInput,
-        output_schema = types.GetPipelineExecutionOutput,
+        input_schema = schemas.GetPipelineExecutionInput,
+        output_schema = schemas.GetPipelineExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getPipelineState(input, options)
     return self:invokeOperation(input, {
         name = "GetPipelineState",
-        input_schema = types.GetPipelineStateInput,
-        output_schema = types.GetPipelineStateOutput,
+        input_schema = schemas.GetPipelineStateInput,
+        output_schema = schemas.GetPipelineStateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getThirdPartyJobDetails(input, options)
     return self:invokeOperation(input, {
         name = "GetThirdPartyJobDetails",
-        input_schema = types.GetThirdPartyJobDetailsInput,
-        output_schema = types.GetThirdPartyJobDetailsOutput,
+        input_schema = schemas.GetThirdPartyJobDetailsInput,
+        output_schema = schemas.GetThirdPartyJobDetailsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listActionExecutions(input, options)
     return self:invokeOperation(input, {
         name = "ListActionExecutions",
-        input_schema = types.ListActionExecutionsInput,
-        output_schema = types.ListActionExecutionsOutput,
+        input_schema = schemas.ListActionExecutionsInput,
+        output_schema = schemas.ListActionExecutionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listActionTypes(input, options)
     return self:invokeOperation(input, {
         name = "ListActionTypes",
-        input_schema = types.ListActionTypesInput,
-        output_schema = types.ListActionTypesOutput,
+        input_schema = schemas.ListActionTypesInput,
+        output_schema = schemas.ListActionTypesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listDeployActionExecutionTargets(input, options)
     return self:invokeOperation(input, {
         name = "ListDeployActionExecutionTargets",
-        input_schema = types.ListDeployActionExecutionTargetsInput,
-        output_schema = types.ListDeployActionExecutionTargetsOutput,
+        input_schema = schemas.ListDeployActionExecutionTargetsInput,
+        output_schema = schemas.ListDeployActionExecutionTargetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listPipelineExecutions(input, options)
     return self:invokeOperation(input, {
         name = "ListPipelineExecutions",
-        input_schema = types.ListPipelineExecutionsInput,
-        output_schema = types.ListPipelineExecutionsOutput,
+        input_schema = schemas.ListPipelineExecutionsInput,
+        output_schema = schemas.ListPipelineExecutionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listPipelines(input, options)
     return self:invokeOperation(input, {
         name = "ListPipelines",
-        input_schema = types.ListPipelinesInput,
-        output_schema = types.ListPipelinesOutput,
+        input_schema = schemas.ListPipelinesInput,
+        output_schema = schemas.ListPipelinesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listRuleExecutions(input, options)
     return self:invokeOperation(input, {
         name = "ListRuleExecutions",
-        input_schema = types.ListRuleExecutionsInput,
-        output_schema = types.ListRuleExecutionsOutput,
+        input_schema = schemas.ListRuleExecutionsInput,
+        output_schema = schemas.ListRuleExecutionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listRuleTypes(input, options)
     return self:invokeOperation(input, {
         name = "ListRuleTypes",
-        input_schema = types.ListRuleTypesInput,
-        output_schema = types.ListRuleTypesOutput,
+        input_schema = schemas.ListRuleTypesInput,
+        output_schema = schemas.ListRuleTypesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listWebhooks(input, options)
     return self:invokeOperation(input, {
         name = "ListWebhooks",
-        input_schema = types.ListWebhooksInput,
-        output_schema = types.ListWebhooksOutput,
+        input_schema = schemas.ListWebhooksInput,
+        output_schema = schemas.ListWebhooksOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:overrideStageCondition(input, options)
     return self:invokeOperation(input, {
         name = "OverrideStageCondition",
-        input_schema = types.OverrideStageConditionInput,
-        output_schema = types.OverrideStageConditionOutput,
+        input_schema = schemas.OverrideStageConditionInput,
+        output_schema = schemas.OverrideStageConditionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:pollForJobs(input, options)
     return self:invokeOperation(input, {
         name = "PollForJobs",
-        input_schema = types.PollForJobsInput,
-        output_schema = types.PollForJobsOutput,
+        input_schema = schemas.PollForJobsInput,
+        output_schema = schemas.PollForJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:pollForThirdPartyJobs(input, options)
     return self:invokeOperation(input, {
         name = "PollForThirdPartyJobs",
-        input_schema = types.PollForThirdPartyJobsInput,
-        output_schema = types.PollForThirdPartyJobsOutput,
+        input_schema = schemas.PollForThirdPartyJobsInput,
+        output_schema = schemas.PollForThirdPartyJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:putActionRevision(input, options)
     return self:invokeOperation(input, {
         name = "PutActionRevision",
-        input_schema = types.PutActionRevisionInput,
-        output_schema = types.PutActionRevisionOutput,
+        input_schema = schemas.PutActionRevisionInput,
+        output_schema = schemas.PutActionRevisionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:putApprovalResult(input, options)
     return self:invokeOperation(input, {
         name = "PutApprovalResult",
-        input_schema = types.PutApprovalResultInput,
-        output_schema = types.PutApprovalResultOutput,
+        input_schema = schemas.PutApprovalResultInput,
+        output_schema = schemas.PutApprovalResultOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:putJobFailureResult(input, options)
     return self:invokeOperation(input, {
         name = "PutJobFailureResult",
-        input_schema = types.PutJobFailureResultInput,
-        output_schema = types.PutJobFailureResultOutput,
+        input_schema = schemas.PutJobFailureResultInput,
+        output_schema = schemas.PutJobFailureResultOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:putJobSuccessResult(input, options)
     return self:invokeOperation(input, {
         name = "PutJobSuccessResult",
-        input_schema = types.PutJobSuccessResultInput,
-        output_schema = types.PutJobSuccessResultOutput,
+        input_schema = schemas.PutJobSuccessResultInput,
+        output_schema = schemas.PutJobSuccessResultOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:putThirdPartyJobFailureResult(input, options)
     return self:invokeOperation(input, {
         name = "PutThirdPartyJobFailureResult",
-        input_schema = types.PutThirdPartyJobFailureResultInput,
-        output_schema = types.PutThirdPartyJobFailureResultOutput,
+        input_schema = schemas.PutThirdPartyJobFailureResultInput,
+        output_schema = schemas.PutThirdPartyJobFailureResultOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:putThirdPartyJobSuccessResult(input, options)
     return self:invokeOperation(input, {
         name = "PutThirdPartyJobSuccessResult",
-        input_schema = types.PutThirdPartyJobSuccessResultInput,
-        output_schema = types.PutThirdPartyJobSuccessResultOutput,
+        input_schema = schemas.PutThirdPartyJobSuccessResultInput,
+        output_schema = schemas.PutThirdPartyJobSuccessResultOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:putWebhook(input, options)
     return self:invokeOperation(input, {
         name = "PutWebhook",
-        input_schema = types.PutWebhookInput,
-        output_schema = types.PutWebhookOutput,
+        input_schema = schemas.PutWebhookInput,
+        output_schema = schemas.PutWebhookOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:registerWebhookWithThirdParty(input, options)
     return self:invokeOperation(input, {
         name = "RegisterWebhookWithThirdParty",
-        input_schema = types.RegisterWebhookWithThirdPartyInput,
-        output_schema = types.RegisterWebhookWithThirdPartyOutput,
+        input_schema = schemas.RegisterWebhookWithThirdPartyInput,
+        output_schema = schemas.RegisterWebhookWithThirdPartyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:retryStageExecution(input, options)
     return self:invokeOperation(input, {
         name = "RetryStageExecution",
-        input_schema = types.RetryStageExecutionInput,
-        output_schema = types.RetryStageExecutionOutput,
+        input_schema = schemas.RetryStageExecutionInput,
+        output_schema = schemas.RetryStageExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:rollbackStage(input, options)
     return self:invokeOperation(input, {
         name = "RollbackStage",
-        input_schema = types.RollbackStageInput,
-        output_schema = types.RollbackStageOutput,
+        input_schema = schemas.RollbackStageInput,
+        output_schema = schemas.RollbackStageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:startPipelineExecution(input, options)
     return self:invokeOperation(input, {
         name = "StartPipelineExecution",
-        input_schema = types.StartPipelineExecutionInput,
-        output_schema = types.StartPipelineExecutionOutput,
+        input_schema = schemas.StartPipelineExecutionInput,
+        output_schema = schemas.StartPipelineExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:stopPipelineExecution(input, options)
     return self:invokeOperation(input, {
         name = "StopPipelineExecution",
-        input_schema = types.StopPipelineExecutionInput,
-        output_schema = types.StopPipelineExecutionOutput,
+        input_schema = schemas.StopPipelineExecutionInput,
+        output_schema = schemas.StopPipelineExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:updateActionType(input, options)
     return self:invokeOperation(input, {
         name = "UpdateActionType",
-        input_schema = types.UpdateActionTypeInput,
-        output_schema = types.UpdateActionTypeOutput,
+        input_schema = schemas.UpdateActionTypeInput,
+        output_schema = schemas.UpdateActionTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:updatePipeline(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePipeline",
-        input_schema = types.UpdatePipelineInput,
-        output_schema = types.UpdatePipelineOutput,
+        input_schema = schemas.UpdatePipelineInput,
+        output_schema = schemas.UpdatePipelineOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

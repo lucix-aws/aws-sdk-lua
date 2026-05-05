@@ -1,0 +1,1109 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.oam"
+
+local M = {}
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ConflictException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        amznErrorType = schema.new({
+            id = id.from(_N, "ConflictException", "amznErrorType"),
+            type = "string",
+            name = "amznErrorType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-ErrorType" },
+            },
+        }),
+    },
+})
+
+M.LogGroupConfiguration = schema.new({
+    id = id.from(_N, "LogGroupConfiguration"),
+    type = "structure",
+    members = {
+        Filter = schema.new({
+            id = id.from(_N, "LogGroupConfiguration", "Filter"),
+            type = "string",
+            name = "Filter",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.MetricConfiguration = schema.new({
+    id = id.from(_N, "MetricConfiguration"),
+    type = "structure",
+    members = {
+        Filter = schema.new({
+            id = id.from(_N, "MetricConfiguration", "Filter"),
+            type = "string",
+            name = "Filter",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LinkConfiguration = schema.new({
+    id = id.from(_N, "LinkConfiguration"),
+    type = "structure",
+    members = {
+        LogGroupConfiguration = schema.new({
+            id = id.from(_N, "LinkConfiguration", "LogGroupConfiguration"),
+            type = "structure",
+            name = "LogGroupConfiguration",
+            target_id = id.from(_N, "LogGroupConfiguration"),
+            target = M.LogGroupConfiguration,
+        }),
+        MetricConfiguration = schema.new({
+            id = id.from(_N, "LinkConfiguration", "MetricConfiguration"),
+            type = "structure",
+            name = "MetricConfiguration",
+            target_id = id.from(_N, "MetricConfiguration"),
+            target = M.MetricConfiguration,
+        }),
+    },
+})
+
+M.CreateLinkInput = schema.new({
+    id = id.from(_N, "CreateLinkInput"),
+    type = "structure",
+    members = {
+        LabelTemplate = schema.new({
+            id = id.from(_N, "CreateLinkInput", "LabelTemplate"),
+            type = "string",
+            name = "LabelTemplate",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceTypes = schema.new({
+            id = id.from(_N, "CreateLinkInput", "ResourceTypes"),
+            type = "list",
+            name = "ResourceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SinkIdentifier = schema.new({
+            id = id.from(_N, "CreateLinkInput", "SinkIdentifier"),
+            type = "string",
+            name = "SinkIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateLinkInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        LinkConfiguration = schema.new({
+            id = id.from(_N, "CreateLinkInput", "LinkConfiguration"),
+            type = "structure",
+            name = "LinkConfiguration",
+            target_id = id.from(_N, "LinkConfiguration"),
+            target = M.LinkConfiguration,
+        }),
+    },
+})
+
+M.CreateLinkOutput = schema.new({
+    id = id.from(_N, "CreateLinkOutput"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "CreateLinkOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        Id = schema.new({
+            id = id.from(_N, "CreateLinkOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        Label = schema.new({
+            id = id.from(_N, "CreateLinkOutput", "Label"),
+            type = "string",
+            name = "Label",
+            target_id = prelude.String.id,
+        }),
+        LabelTemplate = schema.new({
+            id = id.from(_N, "CreateLinkOutput", "LabelTemplate"),
+            type = "string",
+            name = "LabelTemplate",
+            target_id = prelude.String.id,
+        }),
+        ResourceTypes = schema.new({
+            id = id.from(_N, "CreateLinkOutput", "ResourceTypes"),
+            type = "list",
+            name = "ResourceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        SinkArn = schema.new({
+            id = id.from(_N, "CreateLinkOutput", "SinkArn"),
+            type = "string",
+            name = "SinkArn",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateLinkOutput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        LinkConfiguration = schema.new({
+            id = id.from(_N, "CreateLinkOutput", "LinkConfiguration"),
+            type = "structure",
+            name = "LinkConfiguration",
+            target_id = id.from(_N, "LinkConfiguration"),
+            target = M.LinkConfiguration,
+        }),
+    },
+})
+
+M.InternalServiceFault = schema.new({
+    id = id.from(_N, "InternalServiceFault"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InternalServiceFault", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        amznErrorType = schema.new({
+            id = id.from(_N, "InternalServiceFault", "amznErrorType"),
+            type = "string",
+            name = "amznErrorType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-ErrorType" },
+            },
+        }),
+    },
+})
+
+M.InvalidParameterException = schema.new({
+    id = id.from(_N, "InvalidParameterException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidParameterException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+        amznErrorType = schema.new({
+            id = id.from(_N, "InvalidParameterException", "amznErrorType"),
+            type = "string",
+            name = "amznErrorType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-ErrorType" },
+            },
+        }),
+    },
+})
+
+M.MissingRequiredParameterException = schema.new({
+    id = id.from(_N, "MissingRequiredParameterException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "MissingRequiredParameterException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+        amznErrorType = schema.new({
+            id = id.from(_N, "MissingRequiredParameterException", "amznErrorType"),
+            type = "string",
+            name = "amznErrorType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-ErrorType" },
+            },
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        amznErrorType = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "amznErrorType"),
+            type = "string",
+            name = "amznErrorType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-ErrorType" },
+            },
+        }),
+    },
+})
+
+M.CreateSinkInput = schema.new({
+    id = id.from(_N, "CreateSinkInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateSinkInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateSinkInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateSinkOutput = schema.new({
+    id = id.from(_N, "CreateSinkOutput"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "CreateSinkOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        Id = schema.new({
+            id = id.from(_N, "CreateSinkOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateSinkOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateSinkOutput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.DeleteLinkInput = schema.new({
+    id = id.from(_N, "DeleteLinkInput"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "DeleteLinkInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteLinkOutput = schema.new({
+    id = id.from(_N, "DeleteLinkOutput"),
+    type = "structure",
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        amznErrorType = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "amznErrorType"),
+            type = "string",
+            name = "amznErrorType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-ErrorType" },
+            },
+        }),
+    },
+})
+
+M.DeleteSinkInput = schema.new({
+    id = id.from(_N, "DeleteSinkInput"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "DeleteSinkInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteSinkOutput = schema.new({
+    id = id.from(_N, "DeleteSinkOutput"),
+    type = "structure",
+})
+
+M.GetLinkInput = schema.new({
+    id = id.from(_N, "GetLinkInput"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "GetLinkInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IncludeTags = schema.new({
+            id = id.from(_N, "GetLinkInput", "IncludeTags"),
+            type = "boolean",
+            name = "IncludeTags",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.GetLinkOutput = schema.new({
+    id = id.from(_N, "GetLinkOutput"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "GetLinkOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        Id = schema.new({
+            id = id.from(_N, "GetLinkOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        Label = schema.new({
+            id = id.from(_N, "GetLinkOutput", "Label"),
+            type = "string",
+            name = "Label",
+            target_id = prelude.String.id,
+        }),
+        LabelTemplate = schema.new({
+            id = id.from(_N, "GetLinkOutput", "LabelTemplate"),
+            type = "string",
+            name = "LabelTemplate",
+            target_id = prelude.String.id,
+        }),
+        ResourceTypes = schema.new({
+            id = id.from(_N, "GetLinkOutput", "ResourceTypes"),
+            type = "list",
+            name = "ResourceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        SinkArn = schema.new({
+            id = id.from(_N, "GetLinkOutput", "SinkArn"),
+            type = "string",
+            name = "SinkArn",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "GetLinkOutput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        LinkConfiguration = schema.new({
+            id = id.from(_N, "GetLinkOutput", "LinkConfiguration"),
+            type = "structure",
+            name = "LinkConfiguration",
+            target_id = id.from(_N, "LinkConfiguration"),
+            target = M.LinkConfiguration,
+        }),
+    },
+})
+
+M.GetSinkInput = schema.new({
+    id = id.from(_N, "GetSinkInput"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "GetSinkInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IncludeTags = schema.new({
+            id = id.from(_N, "GetSinkInput", "IncludeTags"),
+            type = "boolean",
+            name = "IncludeTags",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.GetSinkOutput = schema.new({
+    id = id.from(_N, "GetSinkOutput"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "GetSinkOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        Id = schema.new({
+            id = id.from(_N, "GetSinkOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "GetSinkOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "GetSinkOutput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.GetSinkPolicyInput = schema.new({
+    id = id.from(_N, "GetSinkPolicyInput"),
+    type = "structure",
+    members = {
+        SinkIdentifier = schema.new({
+            id = id.from(_N, "GetSinkPolicyInput", "SinkIdentifier"),
+            type = "string",
+            name = "SinkIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetSinkPolicyOutput = schema.new({
+    id = id.from(_N, "GetSinkPolicyOutput"),
+    type = "structure",
+    members = {
+        SinkArn = schema.new({
+            id = id.from(_N, "GetSinkPolicyOutput", "SinkArn"),
+            type = "string",
+            name = "SinkArn",
+            target_id = prelude.String.id,
+        }),
+        SinkId = schema.new({
+            id = id.from(_N, "GetSinkPolicyOutput", "SinkId"),
+            type = "string",
+            name = "SinkId",
+            target_id = prelude.String.id,
+        }),
+        Policy = schema.new({
+            id = id.from(_N, "GetSinkPolicyOutput", "Policy"),
+            type = "string",
+            name = "Policy",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAttachedLinksInput = schema.new({
+    id = id.from(_N, "ListAttachedLinksInput"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListAttachedLinksInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAttachedLinksInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        SinkIdentifier = schema.new({
+            id = id.from(_N, "ListAttachedLinksInput", "SinkIdentifier"),
+            type = "string",
+            name = "SinkIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListAttachedLinksItem = schema.new({
+    id = id.from(_N, "ListAttachedLinksItem"),
+    type = "structure",
+    members = {
+        Label = schema.new({
+            id = id.from(_N, "ListAttachedLinksItem", "Label"),
+            type = "string",
+            name = "Label",
+            target_id = prelude.String.id,
+        }),
+        LinkArn = schema.new({
+            id = id.from(_N, "ListAttachedLinksItem", "LinkArn"),
+            type = "string",
+            name = "LinkArn",
+            target_id = prelude.String.id,
+        }),
+        ResourceTypes = schema.new({
+            id = id.from(_N, "ListAttachedLinksItem", "ResourceTypes"),
+            type = "list",
+            name = "ResourceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ListAttachedLinksOutput = schema.new({
+    id = id.from(_N, "ListAttachedLinksOutput"),
+    type = "structure",
+    members = {
+        Items = schema.new({
+            id = id.from(_N, "ListAttachedLinksOutput", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.ListAttachedLinksItem,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAttachedLinksOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListLinksInput = schema.new({
+    id = id.from(_N, "ListLinksInput"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListLinksInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListLinksInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListLinksItem = schema.new({
+    id = id.from(_N, "ListLinksItem"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "ListLinksItem", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        Id = schema.new({
+            id = id.from(_N, "ListLinksItem", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        Label = schema.new({
+            id = id.from(_N, "ListLinksItem", "Label"),
+            type = "string",
+            name = "Label",
+            target_id = prelude.String.id,
+        }),
+        ResourceTypes = schema.new({
+            id = id.from(_N, "ListLinksItem", "ResourceTypes"),
+            type = "list",
+            name = "ResourceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        SinkArn = schema.new({
+            id = id.from(_N, "ListLinksItem", "SinkArn"),
+            type = "string",
+            name = "SinkArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListLinksOutput = schema.new({
+    id = id.from(_N, "ListLinksOutput"),
+    type = "structure",
+    members = {
+        Items = schema.new({
+            id = id.from(_N, "ListLinksOutput", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.ListLinksItem,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListLinksOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListSinksInput = schema.new({
+    id = id.from(_N, "ListSinksInput"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListSinksInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListSinksInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListSinksItem = schema.new({
+    id = id.from(_N, "ListSinksItem"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "ListSinksItem", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        Id = schema.new({
+            id = id.from(_N, "ListSinksItem", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "ListSinksItem", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListSinksOutput = schema.new({
+    id = id.from(_N, "ListSinksOutput"),
+    type = "structure",
+    members = {
+        Items = schema.new({
+            id = id.from(_N, "ListSinksOutput", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.ListSinksItem,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListSinksOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceOutput"),
+    type = "structure",
+    members = {
+        Tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ValidationException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PutSinkPolicyInput = schema.new({
+    id = id.from(_N, "PutSinkPolicyInput"),
+    type = "structure",
+    members = {
+        SinkIdentifier = schema.new({
+            id = id.from(_N, "PutSinkPolicyInput", "SinkIdentifier"),
+            type = "string",
+            name = "SinkIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Policy = schema.new({
+            id = id.from(_N, "PutSinkPolicyInput", "Policy"),
+            type = "string",
+            name = "Policy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutSinkPolicyOutput = schema.new({
+    id = id.from(_N, "PutSinkPolicyOutput"),
+    type = "structure",
+    members = {
+        SinkArn = schema.new({
+            id = id.from(_N, "PutSinkPolicyOutput", "SinkArn"),
+            type = "string",
+            name = "SinkArn",
+            target_id = prelude.String.id,
+        }),
+        SinkId = schema.new({
+            id = id.from(_N, "PutSinkPolicyOutput", "SinkId"),
+            type = "string",
+            name = "SinkId",
+            target_id = prelude.String.id,
+        }),
+        Policy = schema.new({
+            id = id.from(_N, "PutSinkPolicyOutput", "Policy"),
+            type = "string",
+            name = "Policy",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "TagResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceOutput"),
+    type = "structure",
+})
+
+M.TooManyTagsException = schema.new({
+    id = id.from(_N, "TooManyTagsException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "TooManyTagsException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "UntagResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        TagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "TagKeys"),
+            type = "list",
+            name = "TagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "tagKeys" },
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
+M.UpdateLinkInput = schema.new({
+    id = id.from(_N, "UpdateLinkInput"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "UpdateLinkInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceTypes = schema.new({
+            id = id.from(_N, "UpdateLinkInput", "ResourceTypes"),
+            type = "list",
+            name = "ResourceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LinkConfiguration = schema.new({
+            id = id.from(_N, "UpdateLinkInput", "LinkConfiguration"),
+            type = "structure",
+            name = "LinkConfiguration",
+            target_id = id.from(_N, "LinkConfiguration"),
+            target = M.LinkConfiguration,
+        }),
+        IncludeTags = schema.new({
+            id = id.from(_N, "UpdateLinkInput", "IncludeTags"),
+            type = "boolean",
+            name = "IncludeTags",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.UpdateLinkOutput = schema.new({
+    id = id.from(_N, "UpdateLinkOutput"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "UpdateLinkOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        Id = schema.new({
+            id = id.from(_N, "UpdateLinkOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        Label = schema.new({
+            id = id.from(_N, "UpdateLinkOutput", "Label"),
+            type = "string",
+            name = "Label",
+            target_id = prelude.String.id,
+        }),
+        LabelTemplate = schema.new({
+            id = id.from(_N, "UpdateLinkOutput", "LabelTemplate"),
+            type = "string",
+            name = "LabelTemplate",
+            target_id = prelude.String.id,
+        }),
+        ResourceTypes = schema.new({
+            id = id.from(_N, "UpdateLinkOutput", "ResourceTypes"),
+            type = "list",
+            name = "ResourceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        SinkArn = schema.new({
+            id = id.from(_N, "UpdateLinkOutput", "SinkArn"),
+            type = "string",
+            name = "SinkArn",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "UpdateLinkOutput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        LinkConfiguration = schema.new({
+            id = id.from(_N, "UpdateLinkOutput", "LinkConfiguration"),
+            type = "structure",
+            name = "LinkConfiguration",
+            target_id = id.from(_N, "LinkConfiguration"),
+            target = M.LinkConfiguration,
+        }),
+    },
+})
+
+return M

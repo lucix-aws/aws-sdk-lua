@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("signin.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("signin.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("signin.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createOAuth2Token(input, options)
     return self:invokeOperation(input, {
         name = "CreateOAuth2Token",
-        input_schema = types.CreateOAuth2TokenInput,
-        output_schema = types.CreateOAuth2TokenOutput,
+        input_schema = schemas.CreateOAuth2TokenInput,
+        output_schema = schemas.CreateOAuth2TokenOutput,
         http_method = "POST",
         http_path = "/v1/token",
         effective_auth_schemes = {

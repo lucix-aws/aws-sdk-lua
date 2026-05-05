@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("ssmcontacts.endpoint_rules")
+local schemas = require("ssmcontacts.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("ssmcontacts.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptPage(input, options)
     return self:invokeOperation(input, {
         name = "AcceptPage",
-        input_schema = types.AcceptPageInput,
-        output_schema = types.AcceptPageOutput,
+        input_schema = schemas.AcceptPageInput,
+        output_schema = schemas.AcceptPageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:activateContactChannel(input, options)
     return self:invokeOperation(input, {
         name = "ActivateContactChannel",
-        input_schema = types.ActivateContactChannelInput,
-        output_schema = types.ActivateContactChannelOutput,
+        input_schema = schemas.ActivateContactChannelInput,
+        output_schema = schemas.ActivateContactChannelOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createContact(input, options)
     return self:invokeOperation(input, {
         name = "CreateContact",
-        input_schema = types.CreateContactInput,
-        output_schema = types.CreateContactOutput,
+        input_schema = schemas.CreateContactInput,
+        output_schema = schemas.CreateContactOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createContactChannel(input, options)
     return self:invokeOperation(input, {
         name = "CreateContactChannel",
-        input_schema = types.CreateContactChannelInput,
-        output_schema = types.CreateContactChannelOutput,
+        input_schema = schemas.CreateContactChannelInput,
+        output_schema = schemas.CreateContactChannelOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createRotation(input, options)
     return self:invokeOperation(input, {
         name = "CreateRotation",
-        input_schema = types.CreateRotationInput,
-        output_schema = types.CreateRotationOutput,
+        input_schema = schemas.CreateRotationInput,
+        output_schema = schemas.CreateRotationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createRotationOverride(input, options)
     return self:invokeOperation(input, {
         name = "CreateRotationOverride",
-        input_schema = types.CreateRotationOverrideInput,
-        output_schema = types.CreateRotationOverrideOutput,
+        input_schema = schemas.CreateRotationOverrideInput,
+        output_schema = schemas.CreateRotationOverrideOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deactivateContactChannel(input, options)
     return self:invokeOperation(input, {
         name = "DeactivateContactChannel",
-        input_schema = types.DeactivateContactChannelInput,
-        output_schema = types.DeactivateContactChannelOutput,
+        input_schema = schemas.DeactivateContactChannelInput,
+        output_schema = schemas.DeactivateContactChannelOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteContact(input, options)
     return self:invokeOperation(input, {
         name = "DeleteContact",
-        input_schema = types.DeleteContactInput,
-        output_schema = types.DeleteContactOutput,
+        input_schema = schemas.DeleteContactInput,
+        output_schema = schemas.DeleteContactOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteContactChannel(input, options)
     return self:invokeOperation(input, {
         name = "DeleteContactChannel",
-        input_schema = types.DeleteContactChannelInput,
-        output_schema = types.DeleteContactChannelOutput,
+        input_schema = schemas.DeleteContactChannelInput,
+        output_schema = schemas.DeleteContactChannelOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteRotation(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRotation",
-        input_schema = types.DeleteRotationInput,
-        output_schema = types.DeleteRotationOutput,
+        input_schema = schemas.DeleteRotationInput,
+        output_schema = schemas.DeleteRotationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteRotationOverride(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRotationOverride",
-        input_schema = types.DeleteRotationOverrideInput,
-        output_schema = types.DeleteRotationOverrideOutput,
+        input_schema = schemas.DeleteRotationOverrideInput,
+        output_schema = schemas.DeleteRotationOverrideOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:describeEngagement(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEngagement",
-        input_schema = types.DescribeEngagementInput,
-        output_schema = types.DescribeEngagementOutput,
+        input_schema = schemas.DescribeEngagementInput,
+        output_schema = schemas.DescribeEngagementOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:describePage(input, options)
     return self:invokeOperation(input, {
         name = "DescribePage",
-        input_schema = types.DescribePageInput,
-        output_schema = types.DescribePageOutput,
+        input_schema = schemas.DescribePageInput,
+        output_schema = schemas.DescribePageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getContact(input, options)
     return self:invokeOperation(input, {
         name = "GetContact",
-        input_schema = types.GetContactInput,
-        output_schema = types.GetContactOutput,
+        input_schema = schemas.GetContactInput,
+        output_schema = schemas.GetContactOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getContactChannel(input, options)
     return self:invokeOperation(input, {
         name = "GetContactChannel",
-        input_schema = types.GetContactChannelInput,
-        output_schema = types.GetContactChannelOutput,
+        input_schema = schemas.GetContactChannelInput,
+        output_schema = schemas.GetContactChannelOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getContactPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetContactPolicy",
-        input_schema = types.GetContactPolicyInput,
-        output_schema = types.GetContactPolicyOutput,
+        input_schema = schemas.GetContactPolicyInput,
+        output_schema = schemas.GetContactPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getRotation(input, options)
     return self:invokeOperation(input, {
         name = "GetRotation",
-        input_schema = types.GetRotationInput,
-        output_schema = types.GetRotationOutput,
+        input_schema = schemas.GetRotationInput,
+        output_schema = schemas.GetRotationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getRotationOverride(input, options)
     return self:invokeOperation(input, {
         name = "GetRotationOverride",
-        input_schema = types.GetRotationOverrideInput,
-        output_schema = types.GetRotationOverrideOutput,
+        input_schema = schemas.GetRotationOverrideInput,
+        output_schema = schemas.GetRotationOverrideOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listContactChannels(input, options)
     return self:invokeOperation(input, {
         name = "ListContactChannels",
-        input_schema = types.ListContactChannelsInput,
-        output_schema = types.ListContactChannelsOutput,
+        input_schema = schemas.ListContactChannelsInput,
+        output_schema = schemas.ListContactChannelsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listContacts(input, options)
     return self:invokeOperation(input, {
         name = "ListContacts",
-        input_schema = types.ListContactsInput,
-        output_schema = types.ListContactsOutput,
+        input_schema = schemas.ListContactsInput,
+        output_schema = schemas.ListContactsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listEngagements(input, options)
     return self:invokeOperation(input, {
         name = "ListEngagements",
-        input_schema = types.ListEngagementsInput,
-        output_schema = types.ListEngagementsOutput,
+        input_schema = schemas.ListEngagementsInput,
+        output_schema = schemas.ListEngagementsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listPageReceipts(input, options)
     return self:invokeOperation(input, {
         name = "ListPageReceipts",
-        input_schema = types.ListPageReceiptsInput,
-        output_schema = types.ListPageReceiptsOutput,
+        input_schema = schemas.ListPageReceiptsInput,
+        output_schema = schemas.ListPageReceiptsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listPageResolutions(input, options)
     return self:invokeOperation(input, {
         name = "ListPageResolutions",
-        input_schema = types.ListPageResolutionsInput,
-        output_schema = types.ListPageResolutionsOutput,
+        input_schema = schemas.ListPageResolutionsInput,
+        output_schema = schemas.ListPageResolutionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listPagesByContact(input, options)
     return self:invokeOperation(input, {
         name = "ListPagesByContact",
-        input_schema = types.ListPagesByContactInput,
-        output_schema = types.ListPagesByContactOutput,
+        input_schema = schemas.ListPagesByContactInput,
+        output_schema = schemas.ListPagesByContactOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listPagesByEngagement(input, options)
     return self:invokeOperation(input, {
         name = "ListPagesByEngagement",
-        input_schema = types.ListPagesByEngagementInput,
-        output_schema = types.ListPagesByEngagementOutput,
+        input_schema = schemas.ListPagesByEngagementInput,
+        output_schema = schemas.ListPagesByEngagementOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listPreviewRotationShifts(input, options)
     return self:invokeOperation(input, {
         name = "ListPreviewRotationShifts",
-        input_schema = types.ListPreviewRotationShiftsInput,
-        output_schema = types.ListPreviewRotationShiftsOutput,
+        input_schema = schemas.ListPreviewRotationShiftsInput,
+        output_schema = schemas.ListPreviewRotationShiftsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listRotationOverrides(input, options)
     return self:invokeOperation(input, {
         name = "ListRotationOverrides",
-        input_schema = types.ListRotationOverridesInput,
-        output_schema = types.ListRotationOverridesOutput,
+        input_schema = schemas.ListRotationOverridesInput,
+        output_schema = schemas.ListRotationOverridesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listRotations(input, options)
     return self:invokeOperation(input, {
         name = "ListRotations",
-        input_schema = types.ListRotationsInput,
-        output_schema = types.ListRotationsOutput,
+        input_schema = schemas.ListRotationsInput,
+        output_schema = schemas.ListRotationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listRotationShifts(input, options)
     return self:invokeOperation(input, {
         name = "ListRotationShifts",
-        input_schema = types.ListRotationShiftsInput,
-        output_schema = types.ListRotationShiftsOutput,
+        input_schema = schemas.ListRotationShiftsInput,
+        output_schema = schemas.ListRotationShiftsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:putContactPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutContactPolicy",
-        input_schema = types.PutContactPolicyInput,
-        output_schema = types.PutContactPolicyOutput,
+        input_schema = schemas.PutContactPolicyInput,
+        output_schema = schemas.PutContactPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:sendActivationCode(input, options)
     return self:invokeOperation(input, {
         name = "SendActivationCode",
-        input_schema = types.SendActivationCodeInput,
-        output_schema = types.SendActivationCodeOutput,
+        input_schema = schemas.SendActivationCodeInput,
+        output_schema = schemas.SendActivationCodeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:startEngagement(input, options)
     return self:invokeOperation(input, {
         name = "StartEngagement",
-        input_schema = types.StartEngagementInput,
-        output_schema = types.StartEngagementOutput,
+        input_schema = schemas.StartEngagementInput,
+        output_schema = schemas.StartEngagementOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:stopEngagement(input, options)
     return self:invokeOperation(input, {
         name = "StopEngagement",
-        input_schema = types.StopEngagementInput,
-        output_schema = types.StopEngagementOutput,
+        input_schema = schemas.StopEngagementInput,
+        output_schema = schemas.StopEngagementOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:updateContact(input, options)
     return self:invokeOperation(input, {
         name = "UpdateContact",
-        input_schema = types.UpdateContactInput,
-        output_schema = types.UpdateContactOutput,
+        input_schema = schemas.UpdateContactInput,
+        output_schema = schemas.UpdateContactOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:updateContactChannel(input, options)
     return self:invokeOperation(input, {
         name = "UpdateContactChannel",
-        input_schema = types.UpdateContactChannelInput,
-        output_schema = types.UpdateContactChannelOutput,
+        input_schema = schemas.UpdateContactChannelInput,
+        output_schema = schemas.UpdateContactChannelOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:updateRotation(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRotation",
-        input_schema = types.UpdateRotationInput,
-        output_schema = types.UpdateRotationOutput,
+        input_schema = schemas.UpdateRotationInput,
+        output_schema = schemas.UpdateRotationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

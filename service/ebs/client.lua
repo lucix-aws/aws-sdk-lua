@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("ebs.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("ebs.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("ebs.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:completeSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "CompleteSnapshot",
-        input_schema = types.CompleteSnapshotInput,
-        output_schema = types.CompleteSnapshotOutput,
+        input_schema = schemas.CompleteSnapshotInput,
+        output_schema = schemas.CompleteSnapshotOutput,
         http_method = "POST",
         http_path = "/snapshots/completion/{SnapshotId}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:getSnapshotBlock(input, options)
     return self:invokeOperation(input, {
         name = "GetSnapshotBlock",
-        input_schema = types.GetSnapshotBlockInput,
-        output_schema = types.GetSnapshotBlockOutput,
+        input_schema = schemas.GetSnapshotBlockInput,
+        output_schema = schemas.GetSnapshotBlockOutput,
         http_method = "GET",
         http_path = "/snapshots/{SnapshotId}/blocks/{BlockIndex}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:listChangedBlocks(input, options)
     return self:invokeOperation(input, {
         name = "ListChangedBlocks",
-        input_schema = types.ListChangedBlocksInput,
-        output_schema = types.ListChangedBlocksOutput,
+        input_schema = schemas.ListChangedBlocksInput,
+        output_schema = schemas.ListChangedBlocksOutput,
         http_method = "GET",
         http_path = "/snapshots/{SecondSnapshotId}/changedblocks",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:listSnapshotBlocks(input, options)
     return self:invokeOperation(input, {
         name = "ListSnapshotBlocks",
-        input_schema = types.ListSnapshotBlocksInput,
-        output_schema = types.ListSnapshotBlocksOutput,
+        input_schema = schemas.ListSnapshotBlocksInput,
+        output_schema = schemas.ListSnapshotBlocksOutput,
         http_method = "GET",
         http_path = "/snapshots/{SnapshotId}/blocks",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:putSnapshotBlock(input, options)
     return self:invokeOperation(input, {
         name = "PutSnapshotBlock",
-        input_schema = types.PutSnapshotBlockInput,
-        output_schema = types.PutSnapshotBlockOutput,
+        input_schema = schemas.PutSnapshotBlockInput,
+        output_schema = schemas.PutSnapshotBlockOutput,
         http_method = "PUT",
         http_path = "/snapshots/{SnapshotId}/blocks/{BlockIndex}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:startSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "StartSnapshot",
-        input_schema = types.StartSnapshotInput,
-        output_schema = types.StartSnapshotOutput,
+        input_schema = schemas.StartSnapshotInput,
+        output_schema = schemas.StartSnapshotOutput,
         http_method = "POST",
         http_path = "/snapshots",
         effective_auth_schemes = {

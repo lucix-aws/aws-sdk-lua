@@ -1,0 +1,6485 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.clouddirectory"
+
+local M = {}
+
+M.AccessDeniedException = schema.new({
+    id = id.from(_N, "AccessDeniedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "AccessDeniedException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AttributeKey = schema.new({
+    id = id.from(_N, "AttributeKey"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "AttributeKey", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FacetName = schema.new({
+            id = id.from(_N, "AttributeKey", "FacetName"),
+            type = "string",
+            name = "FacetName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "AttributeKey", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TypedAttributeValue = schema.new({
+    id = id.from(_N, "TypedAttributeValue"),
+    type = "union",
+    members = {
+        StringValue = schema.new({
+            id = id.from(_N, "TypedAttributeValue", "StringValue"),
+            type = "string",
+            name = "StringValue",
+            target_id = prelude.String.id,
+        }),
+        BinaryValue = schema.new({
+            id = id.from(_N, "TypedAttributeValue", "BinaryValue"),
+            type = "blob",
+            name = "BinaryValue",
+            target_id = prelude.Blob.id,
+        }),
+        BooleanValue = schema.new({
+            id = id.from(_N, "TypedAttributeValue", "BooleanValue"),
+            type = "boolean",
+            name = "BooleanValue",
+            target_id = prelude.Boolean.id,
+        }),
+        NumberValue = schema.new({
+            id = id.from(_N, "TypedAttributeValue", "NumberValue"),
+            type = "string",
+            name = "NumberValue",
+            target_id = prelude.String.id,
+        }),
+        DatetimeValue = schema.new({
+            id = id.from(_N, "TypedAttributeValue", "DatetimeValue"),
+            type = "timestamp",
+            name = "DatetimeValue",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.AttributeKeyAndValue = schema.new({
+    id = id.from(_N, "AttributeKeyAndValue"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "AttributeKeyAndValue", "Key"),
+            type = "structure",
+            name = "Key",
+            target_id = id.from(_N, "AttributeKey"),
+            target = M.AttributeKey,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "AttributeKeyAndValue", "Value"),
+            type = "union",
+            name = "Value",
+            target_id = id.from(_N, "TypedAttributeValue"),
+            target = M.TypedAttributeValue,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ObjectReference = schema.new({
+    id = id.from(_N, "ObjectReference"),
+    type = "structure",
+    members = {
+        Selector = schema.new({
+            id = id.from(_N, "ObjectReference", "Selector"),
+            type = "string",
+            name = "Selector",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SchemaFacet = schema.new({
+    id = id.from(_N, "SchemaFacet"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "SchemaFacet", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+        }),
+        FacetName = schema.new({
+            id = id.from(_N, "SchemaFacet", "FacetName"),
+            type = "string",
+            name = "FacetName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AddFacetToObjectInput = schema.new({
+    id = id.from(_N, "AddFacetToObjectInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "AddFacetToObjectInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        SchemaFacet = schema.new({
+            id = id.from(_N, "AddFacetToObjectInput", "SchemaFacet"),
+            type = "structure",
+            name = "SchemaFacet",
+            target_id = id.from(_N, "SchemaFacet"),
+            target = M.SchemaFacet,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ObjectAttributeList = schema.new({
+            id = id.from(_N, "AddFacetToObjectInput", "ObjectAttributeList"),
+            type = "list",
+            name = "ObjectAttributeList",
+            target_id = prelude.Document.id,
+            list_member = M.AttributeKeyAndValue,
+        }),
+        ObjectReference = schema.new({
+            id = id.from(_N, "AddFacetToObjectInput", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AddFacetToObjectOutput = schema.new({
+    id = id.from(_N, "AddFacetToObjectOutput"),
+    type = "structure",
+})
+
+M.DirectoryNotEnabledException = schema.new({
+    id = id.from(_N, "DirectoryNotEnabledException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "DirectoryNotEnabledException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.FacetValidationException = schema.new({
+    id = id.from(_N, "FacetValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "FacetValidationException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InternalServiceException = schema.new({
+    id = id.from(_N, "InternalServiceException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InternalServiceException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidArnException = schema.new({
+    id = id.from(_N, "InvalidArnException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InvalidArnException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.LimitExceededException = schema.new({
+    id = id.from(_N, "LimitExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "LimitExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RetryableConflictException = schema.new({
+    id = id.from(_N, "RetryableConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "RetryableConflictException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ValidationException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ApplySchemaInput = schema.new({
+    id = id.from(_N, "ApplySchemaInput"),
+    type = "structure",
+    members = {
+        PublishedSchemaArn = schema.new({
+            id = id.from(_N, "ApplySchemaInput", "PublishedSchemaArn"),
+            type = "string",
+            name = "PublishedSchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DirectoryArn = schema.new({
+            id = id.from(_N, "ApplySchemaInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+    },
+})
+
+M.ApplySchemaOutput = schema.new({
+    id = id.from(_N, "ApplySchemaOutput"),
+    type = "structure",
+    members = {
+        AppliedSchemaArn = schema.new({
+            id = id.from(_N, "ApplySchemaOutput", "AppliedSchemaArn"),
+            type = "string",
+            name = "AppliedSchemaArn",
+            target_id = prelude.String.id,
+        }),
+        DirectoryArn = schema.new({
+            id = id.from(_N, "ApplySchemaOutput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidAttachmentException = schema.new({
+    id = id.from(_N, "InvalidAttachmentException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InvalidAttachmentException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SchemaAlreadyExistsException = schema.new({
+    id = id.from(_N, "SchemaAlreadyExistsException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "SchemaAlreadyExistsException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AttachObjectInput = schema.new({
+    id = id.from(_N, "AttachObjectInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "AttachObjectInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        ParentReference = schema.new({
+            id = id.from(_N, "AttachObjectInput", "ParentReference"),
+            type = "structure",
+            name = "ParentReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ChildReference = schema.new({
+            id = id.from(_N, "AttachObjectInput", "ChildReference"),
+            type = "structure",
+            name = "ChildReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LinkName = schema.new({
+            id = id.from(_N, "AttachObjectInput", "LinkName"),
+            type = "string",
+            name = "LinkName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AttachObjectOutput = schema.new({
+    id = id.from(_N, "AttachObjectOutput"),
+    type = "structure",
+    members = {
+        AttachedObjectIdentifier = schema.new({
+            id = id.from(_N, "AttachObjectOutput", "AttachedObjectIdentifier"),
+            type = "string",
+            name = "AttachedObjectIdentifier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.LinkNameAlreadyInUseException = schema.new({
+    id = id.from(_N, "LinkNameAlreadyInUseException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "LinkNameAlreadyInUseException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AttachPolicyInput = schema.new({
+    id = id.from(_N, "AttachPolicyInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "AttachPolicyInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        PolicyReference = schema.new({
+            id = id.from(_N, "AttachPolicyInput", "PolicyReference"),
+            type = "structure",
+            name = "PolicyReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ObjectReference = schema.new({
+            id = id.from(_N, "AttachPolicyInput", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AttachPolicyOutput = schema.new({
+    id = id.from(_N, "AttachPolicyOutput"),
+    type = "structure",
+})
+
+M.NotPolicyException = schema.new({
+    id = id.from(_N, "NotPolicyException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "NotPolicyException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AttachToIndexInput = schema.new({
+    id = id.from(_N, "AttachToIndexInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "AttachToIndexInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        IndexReference = schema.new({
+            id = id.from(_N, "AttachToIndexInput", "IndexReference"),
+            type = "structure",
+            name = "IndexReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetReference = schema.new({
+            id = id.from(_N, "AttachToIndexInput", "TargetReference"),
+            type = "structure",
+            name = "TargetReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AttachToIndexOutput = schema.new({
+    id = id.from(_N, "AttachToIndexOutput"),
+    type = "structure",
+    members = {
+        AttachedObjectIdentifier = schema.new({
+            id = id.from(_N, "AttachToIndexOutput", "AttachedObjectIdentifier"),
+            type = "string",
+            name = "AttachedObjectIdentifier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.IndexedAttributeMissingException = schema.new({
+    id = id.from(_N, "IndexedAttributeMissingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "IndexedAttributeMissingException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.NotIndexException = schema.new({
+    id = id.from(_N, "NotIndexException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "NotIndexException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AttributeNameAndValue = schema.new({
+    id = id.from(_N, "AttributeNameAndValue"),
+    type = "structure",
+    members = {
+        AttributeName = schema.new({
+            id = id.from(_N, "AttributeNameAndValue", "AttributeName"),
+            type = "string",
+            name = "AttributeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "AttributeNameAndValue", "Value"),
+            type = "union",
+            name = "Value",
+            target_id = id.from(_N, "TypedAttributeValue"),
+            target = M.TypedAttributeValue,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TypedLinkSchemaAndFacetName = schema.new({
+    id = id.from(_N, "TypedLinkSchemaAndFacetName"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "TypedLinkSchemaAndFacetName", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TypedLinkName = schema.new({
+            id = id.from(_N, "TypedLinkSchemaAndFacetName", "TypedLinkName"),
+            type = "string",
+            name = "TypedLinkName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AttachTypedLinkInput = schema.new({
+    id = id.from(_N, "AttachTypedLinkInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "AttachTypedLinkInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        SourceObjectReference = schema.new({
+            id = id.from(_N, "AttachTypedLinkInput", "SourceObjectReference"),
+            type = "structure",
+            name = "SourceObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetObjectReference = schema.new({
+            id = id.from(_N, "AttachTypedLinkInput", "TargetObjectReference"),
+            type = "structure",
+            name = "TargetObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TypedLinkFacet = schema.new({
+            id = id.from(_N, "AttachTypedLinkInput", "TypedLinkFacet"),
+            type = "structure",
+            name = "TypedLinkFacet",
+            target_id = id.from(_N, "TypedLinkSchemaAndFacetName"),
+            target = M.TypedLinkSchemaAndFacetName,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Attributes = schema.new({
+            id = id.from(_N, "AttachTypedLinkInput", "Attributes"),
+            type = "list",
+            name = "Attributes",
+            target_id = prelude.Document.id,
+            list_member = M.AttributeNameAndValue,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TypedLinkSpecifier = schema.new({
+    id = id.from(_N, "TypedLinkSpecifier"),
+    type = "structure",
+    members = {
+        TypedLinkFacet = schema.new({
+            id = id.from(_N, "TypedLinkSpecifier", "TypedLinkFacet"),
+            type = "structure",
+            name = "TypedLinkFacet",
+            target_id = id.from(_N, "TypedLinkSchemaAndFacetName"),
+            target = M.TypedLinkSchemaAndFacetName,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SourceObjectReference = schema.new({
+            id = id.from(_N, "TypedLinkSpecifier", "SourceObjectReference"),
+            type = "structure",
+            name = "SourceObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetObjectReference = schema.new({
+            id = id.from(_N, "TypedLinkSpecifier", "TargetObjectReference"),
+            type = "structure",
+            name = "TargetObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IdentityAttributeValues = schema.new({
+            id = id.from(_N, "TypedLinkSpecifier", "IdentityAttributeValues"),
+            type = "list",
+            name = "IdentityAttributeValues",
+            target_id = prelude.Document.id,
+            list_member = M.AttributeNameAndValue,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AttachTypedLinkOutput = schema.new({
+    id = id.from(_N, "AttachTypedLinkOutput"),
+    type = "structure",
+    members = {
+        TypedLinkSpecifier = schema.new({
+            id = id.from(_N, "AttachTypedLinkOutput", "TypedLinkSpecifier"),
+            type = "structure",
+            name = "TypedLinkSpecifier",
+            target_id = id.from(_N, "TypedLinkSpecifier"),
+            target = M.TypedLinkSpecifier,
+        }),
+    },
+})
+
+M.BatchGetLinkAttributes = schema.new({
+    id = id.from(_N, "BatchGetLinkAttributes"),
+    type = "structure",
+    members = {
+        TypedLinkSpecifier = schema.new({
+            id = id.from(_N, "BatchGetLinkAttributes", "TypedLinkSpecifier"),
+            type = "structure",
+            name = "TypedLinkSpecifier",
+            target_id = id.from(_N, "TypedLinkSpecifier"),
+            target = M.TypedLinkSpecifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AttributeNames = schema.new({
+            id = id.from(_N, "BatchGetLinkAttributes", "AttributeNames"),
+            type = "list",
+            name = "AttributeNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchGetObjectAttributes = schema.new({
+    id = id.from(_N, "BatchGetObjectAttributes"),
+    type = "structure",
+    members = {
+        ObjectReference = schema.new({
+            id = id.from(_N, "BatchGetObjectAttributes", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SchemaFacet = schema.new({
+            id = id.from(_N, "BatchGetObjectAttributes", "SchemaFacet"),
+            type = "structure",
+            name = "SchemaFacet",
+            target_id = id.from(_N, "SchemaFacet"),
+            target = M.SchemaFacet,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AttributeNames = schema.new({
+            id = id.from(_N, "BatchGetObjectAttributes", "AttributeNames"),
+            type = "list",
+            name = "AttributeNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchGetObjectInformation = schema.new({
+    id = id.from(_N, "BatchGetObjectInformation"),
+    type = "structure",
+    members = {
+        ObjectReference = schema.new({
+            id = id.from(_N, "BatchGetObjectInformation", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchListAttachedIndices = schema.new({
+    id = id.from(_N, "BatchListAttachedIndices"),
+    type = "structure",
+    members = {
+        TargetReference = schema.new({
+            id = id.from(_N, "BatchListAttachedIndices", "TargetReference"),
+            type = "structure",
+            name = "TargetReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "BatchListAttachedIndices", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "BatchListAttachedIndices", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.TypedAttributeValueRange = schema.new({
+    id = id.from(_N, "TypedAttributeValueRange"),
+    type = "structure",
+    members = {
+        StartMode = schema.new({
+            id = id.from(_N, "TypedAttributeValueRange", "StartMode"),
+            type = "string",
+            name = "StartMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StartValue = schema.new({
+            id = id.from(_N, "TypedAttributeValueRange", "StartValue"),
+            type = "union",
+            name = "StartValue",
+            target_id = id.from(_N, "TypedAttributeValue"),
+            target = M.TypedAttributeValue,
+        }),
+        EndMode = schema.new({
+            id = id.from(_N, "TypedAttributeValueRange", "EndMode"),
+            type = "string",
+            name = "EndMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndValue = schema.new({
+            id = id.from(_N, "TypedAttributeValueRange", "EndValue"),
+            type = "union",
+            name = "EndValue",
+            target_id = id.from(_N, "TypedAttributeValue"),
+            target = M.TypedAttributeValue,
+        }),
+    },
+})
+
+M.TypedLinkAttributeRange = schema.new({
+    id = id.from(_N, "TypedLinkAttributeRange"),
+    type = "structure",
+    members = {
+        AttributeName = schema.new({
+            id = id.from(_N, "TypedLinkAttributeRange", "AttributeName"),
+            type = "string",
+            name = "AttributeName",
+            target_id = prelude.String.id,
+        }),
+        Range = schema.new({
+            id = id.from(_N, "TypedLinkAttributeRange", "Range"),
+            type = "structure",
+            name = "Range",
+            target_id = id.from(_N, "TypedAttributeValueRange"),
+            target = M.TypedAttributeValueRange,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchListIncomingTypedLinks = schema.new({
+    id = id.from(_N, "BatchListIncomingTypedLinks"),
+    type = "structure",
+    members = {
+        ObjectReference = schema.new({
+            id = id.from(_N, "BatchListIncomingTypedLinks", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FilterAttributeRanges = schema.new({
+            id = id.from(_N, "BatchListIncomingTypedLinks", "FilterAttributeRanges"),
+            type = "list",
+            name = "FilterAttributeRanges",
+            target_id = prelude.Document.id,
+            list_member = M.TypedLinkAttributeRange,
+        }),
+        FilterTypedLink = schema.new({
+            id = id.from(_N, "BatchListIncomingTypedLinks", "FilterTypedLink"),
+            type = "structure",
+            name = "FilterTypedLink",
+            target_id = id.from(_N, "TypedLinkSchemaAndFacetName"),
+            target = M.TypedLinkSchemaAndFacetName,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "BatchListIncomingTypedLinks", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "BatchListIncomingTypedLinks", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ObjectAttributeRange = schema.new({
+    id = id.from(_N, "ObjectAttributeRange"),
+    type = "structure",
+    members = {
+        AttributeKey = schema.new({
+            id = id.from(_N, "ObjectAttributeRange", "AttributeKey"),
+            type = "structure",
+            name = "AttributeKey",
+            target_id = id.from(_N, "AttributeKey"),
+            target = M.AttributeKey,
+        }),
+        Range = schema.new({
+            id = id.from(_N, "ObjectAttributeRange", "Range"),
+            type = "structure",
+            name = "Range",
+            target_id = id.from(_N, "TypedAttributeValueRange"),
+            target = M.TypedAttributeValueRange,
+        }),
+    },
+})
+
+M.BatchListIndex = schema.new({
+    id = id.from(_N, "BatchListIndex"),
+    type = "structure",
+    members = {
+        RangesOnIndexedValues = schema.new({
+            id = id.from(_N, "BatchListIndex", "RangesOnIndexedValues"),
+            type = "list",
+            name = "RangesOnIndexedValues",
+            target_id = prelude.Document.id,
+            list_member = M.ObjectAttributeRange,
+        }),
+        IndexReference = schema.new({
+            id = id.from(_N, "BatchListIndex", "IndexReference"),
+            type = "structure",
+            name = "IndexReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "BatchListIndex", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "BatchListIndex", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchListObjectAttributes = schema.new({
+    id = id.from(_N, "BatchListObjectAttributes"),
+    type = "structure",
+    members = {
+        ObjectReference = schema.new({
+            id = id.from(_N, "BatchListObjectAttributes", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "BatchListObjectAttributes", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "BatchListObjectAttributes", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        FacetFilter = schema.new({
+            id = id.from(_N, "BatchListObjectAttributes", "FacetFilter"),
+            type = "structure",
+            name = "FacetFilter",
+            target_id = id.from(_N, "SchemaFacet"),
+            target = M.SchemaFacet,
+        }),
+    },
+})
+
+M.BatchListObjectChildren = schema.new({
+    id = id.from(_N, "BatchListObjectChildren"),
+    type = "structure",
+    members = {
+        ObjectReference = schema.new({
+            id = id.from(_N, "BatchListObjectChildren", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "BatchListObjectChildren", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "BatchListObjectChildren", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.BatchListObjectParentPaths = schema.new({
+    id = id.from(_N, "BatchListObjectParentPaths"),
+    type = "structure",
+    members = {
+        ObjectReference = schema.new({
+            id = id.from(_N, "BatchListObjectParentPaths", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "BatchListObjectParentPaths", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "BatchListObjectParentPaths", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.BatchListObjectParents = schema.new({
+    id = id.from(_N, "BatchListObjectParents"),
+    type = "structure",
+    members = {
+        ObjectReference = schema.new({
+            id = id.from(_N, "BatchListObjectParents", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "BatchListObjectParents", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "BatchListObjectParents", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.BatchListObjectPolicies = schema.new({
+    id = id.from(_N, "BatchListObjectPolicies"),
+    type = "structure",
+    members = {
+        ObjectReference = schema.new({
+            id = id.from(_N, "BatchListObjectPolicies", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "BatchListObjectPolicies", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "BatchListObjectPolicies", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.BatchListOutgoingTypedLinks = schema.new({
+    id = id.from(_N, "BatchListOutgoingTypedLinks"),
+    type = "structure",
+    members = {
+        ObjectReference = schema.new({
+            id = id.from(_N, "BatchListOutgoingTypedLinks", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FilterAttributeRanges = schema.new({
+            id = id.from(_N, "BatchListOutgoingTypedLinks", "FilterAttributeRanges"),
+            type = "list",
+            name = "FilterAttributeRanges",
+            target_id = prelude.Document.id,
+            list_member = M.TypedLinkAttributeRange,
+        }),
+        FilterTypedLink = schema.new({
+            id = id.from(_N, "BatchListOutgoingTypedLinks", "FilterTypedLink"),
+            type = "structure",
+            name = "FilterTypedLink",
+            target_id = id.from(_N, "TypedLinkSchemaAndFacetName"),
+            target = M.TypedLinkSchemaAndFacetName,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "BatchListOutgoingTypedLinks", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "BatchListOutgoingTypedLinks", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.BatchListPolicyAttachments = schema.new({
+    id = id.from(_N, "BatchListPolicyAttachments"),
+    type = "structure",
+    members = {
+        PolicyReference = schema.new({
+            id = id.from(_N, "BatchListPolicyAttachments", "PolicyReference"),
+            type = "structure",
+            name = "PolicyReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "BatchListPolicyAttachments", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "BatchListPolicyAttachments", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.BatchLookupPolicy = schema.new({
+    id = id.from(_N, "BatchLookupPolicy"),
+    type = "structure",
+    members = {
+        ObjectReference = schema.new({
+            id = id.from(_N, "BatchLookupPolicy", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "BatchLookupPolicy", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "BatchLookupPolicy", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.BatchReadOperation = schema.new({
+    id = id.from(_N, "BatchReadOperation"),
+    type = "structure",
+    members = {
+        ListObjectAttributes = schema.new({
+            id = id.from(_N, "BatchReadOperation", "ListObjectAttributes"),
+            type = "structure",
+            name = "ListObjectAttributes",
+            target_id = id.from(_N, "BatchListObjectAttributes"),
+            target = M.BatchListObjectAttributes,
+        }),
+        ListObjectChildren = schema.new({
+            id = id.from(_N, "BatchReadOperation", "ListObjectChildren"),
+            type = "structure",
+            name = "ListObjectChildren",
+            target_id = id.from(_N, "BatchListObjectChildren"),
+            target = M.BatchListObjectChildren,
+        }),
+        ListAttachedIndices = schema.new({
+            id = id.from(_N, "BatchReadOperation", "ListAttachedIndices"),
+            type = "structure",
+            name = "ListAttachedIndices",
+            target_id = id.from(_N, "BatchListAttachedIndices"),
+            target = M.BatchListAttachedIndices,
+        }),
+        ListObjectParentPaths = schema.new({
+            id = id.from(_N, "BatchReadOperation", "ListObjectParentPaths"),
+            type = "structure",
+            name = "ListObjectParentPaths",
+            target_id = id.from(_N, "BatchListObjectParentPaths"),
+            target = M.BatchListObjectParentPaths,
+        }),
+        GetObjectInformation = schema.new({
+            id = id.from(_N, "BatchReadOperation", "GetObjectInformation"),
+            type = "structure",
+            name = "GetObjectInformation",
+            target_id = id.from(_N, "BatchGetObjectInformation"),
+            target = M.BatchGetObjectInformation,
+        }),
+        GetObjectAttributes = schema.new({
+            id = id.from(_N, "BatchReadOperation", "GetObjectAttributes"),
+            type = "structure",
+            name = "GetObjectAttributes",
+            target_id = id.from(_N, "BatchGetObjectAttributes"),
+            target = M.BatchGetObjectAttributes,
+        }),
+        ListObjectParents = schema.new({
+            id = id.from(_N, "BatchReadOperation", "ListObjectParents"),
+            type = "structure",
+            name = "ListObjectParents",
+            target_id = id.from(_N, "BatchListObjectParents"),
+            target = M.BatchListObjectParents,
+        }),
+        ListObjectPolicies = schema.new({
+            id = id.from(_N, "BatchReadOperation", "ListObjectPolicies"),
+            type = "structure",
+            name = "ListObjectPolicies",
+            target_id = id.from(_N, "BatchListObjectPolicies"),
+            target = M.BatchListObjectPolicies,
+        }),
+        ListPolicyAttachments = schema.new({
+            id = id.from(_N, "BatchReadOperation", "ListPolicyAttachments"),
+            type = "structure",
+            name = "ListPolicyAttachments",
+            target_id = id.from(_N, "BatchListPolicyAttachments"),
+            target = M.BatchListPolicyAttachments,
+        }),
+        LookupPolicy = schema.new({
+            id = id.from(_N, "BatchReadOperation", "LookupPolicy"),
+            type = "structure",
+            name = "LookupPolicy",
+            target_id = id.from(_N, "BatchLookupPolicy"),
+            target = M.BatchLookupPolicy,
+        }),
+        ListIndex = schema.new({
+            id = id.from(_N, "BatchReadOperation", "ListIndex"),
+            type = "structure",
+            name = "ListIndex",
+            target_id = id.from(_N, "BatchListIndex"),
+            target = M.BatchListIndex,
+        }),
+        ListOutgoingTypedLinks = schema.new({
+            id = id.from(_N, "BatchReadOperation", "ListOutgoingTypedLinks"),
+            type = "structure",
+            name = "ListOutgoingTypedLinks",
+            target_id = id.from(_N, "BatchListOutgoingTypedLinks"),
+            target = M.BatchListOutgoingTypedLinks,
+        }),
+        ListIncomingTypedLinks = schema.new({
+            id = id.from(_N, "BatchReadOperation", "ListIncomingTypedLinks"),
+            type = "structure",
+            name = "ListIncomingTypedLinks",
+            target_id = id.from(_N, "BatchListIncomingTypedLinks"),
+            target = M.BatchListIncomingTypedLinks,
+        }),
+        GetLinkAttributes = schema.new({
+            id = id.from(_N, "BatchReadOperation", "GetLinkAttributes"),
+            type = "structure",
+            name = "GetLinkAttributes",
+            target_id = id.from(_N, "BatchGetLinkAttributes"),
+            target = M.BatchGetLinkAttributes,
+        }),
+    },
+})
+
+M.BatchReadInput = schema.new({
+    id = id.from(_N, "BatchReadInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "BatchReadInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        Operations = schema.new({
+            id = id.from(_N, "BatchReadInput", "Operations"),
+            type = "list",
+            name = "Operations",
+            target_id = prelude.Document.id,
+            list_member = M.BatchReadOperation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ConsistencyLevel = schema.new({
+            id = id.from(_N, "BatchReadInput", "ConsistencyLevel"),
+            type = "string",
+            name = "ConsistencyLevel",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-consistency-level" },
+            },
+        }),
+    },
+})
+
+M.BatchReadException = schema.new({
+    id = id.from(_N, "BatchReadException"),
+    type = "structure",
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "BatchReadException", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "BatchReadException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchGetLinkAttributesResponse = schema.new({
+    id = id.from(_N, "BatchGetLinkAttributesResponse"),
+    type = "structure",
+    members = {
+        Attributes = schema.new({
+            id = id.from(_N, "BatchGetLinkAttributesResponse", "Attributes"),
+            type = "list",
+            name = "Attributes",
+            target_id = prelude.Document.id,
+            list_member = M.AttributeKeyAndValue,
+        }),
+    },
+})
+
+M.BatchGetObjectAttributesResponse = schema.new({
+    id = id.from(_N, "BatchGetObjectAttributesResponse"),
+    type = "structure",
+    members = {
+        Attributes = schema.new({
+            id = id.from(_N, "BatchGetObjectAttributesResponse", "Attributes"),
+            type = "list",
+            name = "Attributes",
+            target_id = prelude.Document.id,
+            list_member = M.AttributeKeyAndValue,
+        }),
+    },
+})
+
+M.BatchGetObjectInformationResponse = schema.new({
+    id = id.from(_N, "BatchGetObjectInformationResponse"),
+    type = "structure",
+    members = {
+        SchemaFacets = schema.new({
+            id = id.from(_N, "BatchGetObjectInformationResponse", "SchemaFacets"),
+            type = "list",
+            name = "SchemaFacets",
+            target_id = prelude.Document.id,
+            list_member = M.SchemaFacet,
+        }),
+        ObjectIdentifier = schema.new({
+            id = id.from(_N, "BatchGetObjectInformationResponse", "ObjectIdentifier"),
+            type = "string",
+            name = "ObjectIdentifier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.IndexAttachment = schema.new({
+    id = id.from(_N, "IndexAttachment"),
+    type = "structure",
+    members = {
+        IndexedAttributes = schema.new({
+            id = id.from(_N, "IndexAttachment", "IndexedAttributes"),
+            type = "list",
+            name = "IndexedAttributes",
+            target_id = prelude.Document.id,
+            list_member = M.AttributeKeyAndValue,
+        }),
+        ObjectIdentifier = schema.new({
+            id = id.from(_N, "IndexAttachment", "ObjectIdentifier"),
+            type = "string",
+            name = "ObjectIdentifier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchListAttachedIndicesResponse = schema.new({
+    id = id.from(_N, "BatchListAttachedIndicesResponse"),
+    type = "structure",
+    members = {
+        IndexAttachments = schema.new({
+            id = id.from(_N, "BatchListAttachedIndicesResponse", "IndexAttachments"),
+            type = "list",
+            name = "IndexAttachments",
+            target_id = prelude.Document.id,
+            list_member = M.IndexAttachment,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "BatchListAttachedIndicesResponse", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchListIncomingTypedLinksResponse = schema.new({
+    id = id.from(_N, "BatchListIncomingTypedLinksResponse"),
+    type = "structure",
+    members = {
+        LinkSpecifiers = schema.new({
+            id = id.from(_N, "BatchListIncomingTypedLinksResponse", "LinkSpecifiers"),
+            type = "list",
+            name = "LinkSpecifiers",
+            target_id = prelude.Document.id,
+            list_member = M.TypedLinkSpecifier,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "BatchListIncomingTypedLinksResponse", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchListIndexResponse = schema.new({
+    id = id.from(_N, "BatchListIndexResponse"),
+    type = "structure",
+    members = {
+        IndexAttachments = schema.new({
+            id = id.from(_N, "BatchListIndexResponse", "IndexAttachments"),
+            type = "list",
+            name = "IndexAttachments",
+            target_id = prelude.Document.id,
+            list_member = M.IndexAttachment,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "BatchListIndexResponse", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchListObjectAttributesResponse = schema.new({
+    id = id.from(_N, "BatchListObjectAttributesResponse"),
+    type = "structure",
+    members = {
+        Attributes = schema.new({
+            id = id.from(_N, "BatchListObjectAttributesResponse", "Attributes"),
+            type = "list",
+            name = "Attributes",
+            target_id = prelude.Document.id,
+            list_member = M.AttributeKeyAndValue,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "BatchListObjectAttributesResponse", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchListObjectChildrenResponse = schema.new({
+    id = id.from(_N, "BatchListObjectChildrenResponse"),
+    type = "structure",
+    members = {
+        Children = schema.new({
+            id = id.from(_N, "BatchListObjectChildrenResponse", "Children"),
+            type = "map",
+            name = "Children",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "BatchListObjectChildrenResponse", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PathToObjectIdentifiers = schema.new({
+    id = id.from(_N, "PathToObjectIdentifiers"),
+    type = "structure",
+    members = {
+        Path = schema.new({
+            id = id.from(_N, "PathToObjectIdentifiers", "Path"),
+            type = "string",
+            name = "Path",
+            target_id = prelude.String.id,
+        }),
+        ObjectIdentifiers = schema.new({
+            id = id.from(_N, "PathToObjectIdentifiers", "ObjectIdentifiers"),
+            type = "list",
+            name = "ObjectIdentifiers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.BatchListObjectParentPathsResponse = schema.new({
+    id = id.from(_N, "BatchListObjectParentPathsResponse"),
+    type = "structure",
+    members = {
+        PathToObjectIdentifiersList = schema.new({
+            id = id.from(_N, "BatchListObjectParentPathsResponse", "PathToObjectIdentifiersList"),
+            type = "list",
+            name = "PathToObjectIdentifiersList",
+            target_id = prelude.Document.id,
+            list_member = M.PathToObjectIdentifiers,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "BatchListObjectParentPathsResponse", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ObjectIdentifierAndLinkNameTuple = schema.new({
+    id = id.from(_N, "ObjectIdentifierAndLinkNameTuple"),
+    type = "structure",
+    members = {
+        ObjectIdentifier = schema.new({
+            id = id.from(_N, "ObjectIdentifierAndLinkNameTuple", "ObjectIdentifier"),
+            type = "string",
+            name = "ObjectIdentifier",
+            target_id = prelude.String.id,
+        }),
+        LinkName = schema.new({
+            id = id.from(_N, "ObjectIdentifierAndLinkNameTuple", "LinkName"),
+            type = "string",
+            name = "LinkName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchListObjectParentsResponse = schema.new({
+    id = id.from(_N, "BatchListObjectParentsResponse"),
+    type = "structure",
+    members = {
+        ParentLinks = schema.new({
+            id = id.from(_N, "BatchListObjectParentsResponse", "ParentLinks"),
+            type = "list",
+            name = "ParentLinks",
+            target_id = prelude.Document.id,
+            list_member = M.ObjectIdentifierAndLinkNameTuple,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "BatchListObjectParentsResponse", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchListObjectPoliciesResponse = schema.new({
+    id = id.from(_N, "BatchListObjectPoliciesResponse"),
+    type = "structure",
+    members = {
+        AttachedPolicyIds = schema.new({
+            id = id.from(_N, "BatchListObjectPoliciesResponse", "AttachedPolicyIds"),
+            type = "list",
+            name = "AttachedPolicyIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "BatchListObjectPoliciesResponse", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchListOutgoingTypedLinksResponse = schema.new({
+    id = id.from(_N, "BatchListOutgoingTypedLinksResponse"),
+    type = "structure",
+    members = {
+        TypedLinkSpecifiers = schema.new({
+            id = id.from(_N, "BatchListOutgoingTypedLinksResponse", "TypedLinkSpecifiers"),
+            type = "list",
+            name = "TypedLinkSpecifiers",
+            target_id = prelude.Document.id,
+            list_member = M.TypedLinkSpecifier,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "BatchListOutgoingTypedLinksResponse", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchListPolicyAttachmentsResponse = schema.new({
+    id = id.from(_N, "BatchListPolicyAttachmentsResponse"),
+    type = "structure",
+    members = {
+        ObjectIdentifiers = schema.new({
+            id = id.from(_N, "BatchListPolicyAttachmentsResponse", "ObjectIdentifiers"),
+            type = "list",
+            name = "ObjectIdentifiers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "BatchListPolicyAttachmentsResponse", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PolicyAttachment = schema.new({
+    id = id.from(_N, "PolicyAttachment"),
+    type = "structure",
+    members = {
+        PolicyId = schema.new({
+            id = id.from(_N, "PolicyAttachment", "PolicyId"),
+            type = "string",
+            name = "PolicyId",
+            target_id = prelude.String.id,
+        }),
+        ObjectIdentifier = schema.new({
+            id = id.from(_N, "PolicyAttachment", "ObjectIdentifier"),
+            type = "string",
+            name = "ObjectIdentifier",
+            target_id = prelude.String.id,
+        }),
+        PolicyType = schema.new({
+            id = id.from(_N, "PolicyAttachment", "PolicyType"),
+            type = "string",
+            name = "PolicyType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PolicyToPath = schema.new({
+    id = id.from(_N, "PolicyToPath"),
+    type = "structure",
+    members = {
+        Path = schema.new({
+            id = id.from(_N, "PolicyToPath", "Path"),
+            type = "string",
+            name = "Path",
+            target_id = prelude.String.id,
+        }),
+        Policies = schema.new({
+            id = id.from(_N, "PolicyToPath", "Policies"),
+            type = "list",
+            name = "Policies",
+            target_id = prelude.Document.id,
+            list_member = M.PolicyAttachment,
+        }),
+    },
+})
+
+M.BatchLookupPolicyResponse = schema.new({
+    id = id.from(_N, "BatchLookupPolicyResponse"),
+    type = "structure",
+    members = {
+        PolicyToPathList = schema.new({
+            id = id.from(_N, "BatchLookupPolicyResponse", "PolicyToPathList"),
+            type = "list",
+            name = "PolicyToPathList",
+            target_id = prelude.Document.id,
+            list_member = M.PolicyToPath,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "BatchLookupPolicyResponse", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchReadSuccessfulResponse = schema.new({
+    id = id.from(_N, "BatchReadSuccessfulResponse"),
+    type = "structure",
+    members = {
+        ListObjectAttributes = schema.new({
+            id = id.from(_N, "BatchReadSuccessfulResponse", "ListObjectAttributes"),
+            type = "structure",
+            name = "ListObjectAttributes",
+            target_id = id.from(_N, "BatchListObjectAttributesResponse"),
+            target = M.BatchListObjectAttributesResponse,
+        }),
+        ListObjectChildren = schema.new({
+            id = id.from(_N, "BatchReadSuccessfulResponse", "ListObjectChildren"),
+            type = "structure",
+            name = "ListObjectChildren",
+            target_id = id.from(_N, "BatchListObjectChildrenResponse"),
+            target = M.BatchListObjectChildrenResponse,
+        }),
+        GetObjectInformation = schema.new({
+            id = id.from(_N, "BatchReadSuccessfulResponse", "GetObjectInformation"),
+            type = "structure",
+            name = "GetObjectInformation",
+            target_id = id.from(_N, "BatchGetObjectInformationResponse"),
+            target = M.BatchGetObjectInformationResponse,
+        }),
+        GetObjectAttributes = schema.new({
+            id = id.from(_N, "BatchReadSuccessfulResponse", "GetObjectAttributes"),
+            type = "structure",
+            name = "GetObjectAttributes",
+            target_id = id.from(_N, "BatchGetObjectAttributesResponse"),
+            target = M.BatchGetObjectAttributesResponse,
+        }),
+        ListAttachedIndices = schema.new({
+            id = id.from(_N, "BatchReadSuccessfulResponse", "ListAttachedIndices"),
+            type = "structure",
+            name = "ListAttachedIndices",
+            target_id = id.from(_N, "BatchListAttachedIndicesResponse"),
+            target = M.BatchListAttachedIndicesResponse,
+        }),
+        ListObjectParentPaths = schema.new({
+            id = id.from(_N, "BatchReadSuccessfulResponse", "ListObjectParentPaths"),
+            type = "structure",
+            name = "ListObjectParentPaths",
+            target_id = id.from(_N, "BatchListObjectParentPathsResponse"),
+            target = M.BatchListObjectParentPathsResponse,
+        }),
+        ListObjectPolicies = schema.new({
+            id = id.from(_N, "BatchReadSuccessfulResponse", "ListObjectPolicies"),
+            type = "structure",
+            name = "ListObjectPolicies",
+            target_id = id.from(_N, "BatchListObjectPoliciesResponse"),
+            target = M.BatchListObjectPoliciesResponse,
+        }),
+        ListPolicyAttachments = schema.new({
+            id = id.from(_N, "BatchReadSuccessfulResponse", "ListPolicyAttachments"),
+            type = "structure",
+            name = "ListPolicyAttachments",
+            target_id = id.from(_N, "BatchListPolicyAttachmentsResponse"),
+            target = M.BatchListPolicyAttachmentsResponse,
+        }),
+        LookupPolicy = schema.new({
+            id = id.from(_N, "BatchReadSuccessfulResponse", "LookupPolicy"),
+            type = "structure",
+            name = "LookupPolicy",
+            target_id = id.from(_N, "BatchLookupPolicyResponse"),
+            target = M.BatchLookupPolicyResponse,
+        }),
+        ListIndex = schema.new({
+            id = id.from(_N, "BatchReadSuccessfulResponse", "ListIndex"),
+            type = "structure",
+            name = "ListIndex",
+            target_id = id.from(_N, "BatchListIndexResponse"),
+            target = M.BatchListIndexResponse,
+        }),
+        ListOutgoingTypedLinks = schema.new({
+            id = id.from(_N, "BatchReadSuccessfulResponse", "ListOutgoingTypedLinks"),
+            type = "structure",
+            name = "ListOutgoingTypedLinks",
+            target_id = id.from(_N, "BatchListOutgoingTypedLinksResponse"),
+            target = M.BatchListOutgoingTypedLinksResponse,
+        }),
+        ListIncomingTypedLinks = schema.new({
+            id = id.from(_N, "BatchReadSuccessfulResponse", "ListIncomingTypedLinks"),
+            type = "structure",
+            name = "ListIncomingTypedLinks",
+            target_id = id.from(_N, "BatchListIncomingTypedLinksResponse"),
+            target = M.BatchListIncomingTypedLinksResponse,
+        }),
+        GetLinkAttributes = schema.new({
+            id = id.from(_N, "BatchReadSuccessfulResponse", "GetLinkAttributes"),
+            type = "structure",
+            name = "GetLinkAttributes",
+            target_id = id.from(_N, "BatchGetLinkAttributesResponse"),
+            target = M.BatchGetLinkAttributesResponse,
+        }),
+        ListObjectParents = schema.new({
+            id = id.from(_N, "BatchReadSuccessfulResponse", "ListObjectParents"),
+            type = "structure",
+            name = "ListObjectParents",
+            target_id = id.from(_N, "BatchListObjectParentsResponse"),
+            target = M.BatchListObjectParentsResponse,
+        }),
+    },
+})
+
+M.BatchReadOperationResponse = schema.new({
+    id = id.from(_N, "BatchReadOperationResponse"),
+    type = "structure",
+    members = {
+        SuccessfulResponse = schema.new({
+            id = id.from(_N, "BatchReadOperationResponse", "SuccessfulResponse"),
+            type = "structure",
+            name = "SuccessfulResponse",
+            target_id = id.from(_N, "BatchReadSuccessfulResponse"),
+            target = M.BatchReadSuccessfulResponse,
+        }),
+        ExceptionResponse = schema.new({
+            id = id.from(_N, "BatchReadOperationResponse", "ExceptionResponse"),
+            type = "structure",
+            name = "ExceptionResponse",
+            target_id = id.from(_N, "BatchReadException"),
+            target = M.BatchReadException,
+        }),
+    },
+})
+
+M.BatchReadOutput = schema.new({
+    id = id.from(_N, "BatchReadOutput"),
+    type = "structure",
+    members = {
+        Responses = schema.new({
+            id = id.from(_N, "BatchReadOutput", "Responses"),
+            type = "list",
+            name = "Responses",
+            target_id = prelude.Document.id,
+            list_member = M.BatchReadOperationResponse,
+        }),
+    },
+})
+
+M.BatchWriteException = schema.new({
+    id = id.from(_N, "BatchWriteException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Index = schema.new({
+            id = id.from(_N, "BatchWriteException", "Index"),
+            type = "integer",
+            name = "Index",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        Type = schema.new({
+            id = id.from(_N, "BatchWriteException", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "BatchWriteException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchAddFacetToObject = schema.new({
+    id = id.from(_N, "BatchAddFacetToObject"),
+    type = "structure",
+    members = {
+        SchemaFacet = schema.new({
+            id = id.from(_N, "BatchAddFacetToObject", "SchemaFacet"),
+            type = "structure",
+            name = "SchemaFacet",
+            target_id = id.from(_N, "SchemaFacet"),
+            target = M.SchemaFacet,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ObjectAttributeList = schema.new({
+            id = id.from(_N, "BatchAddFacetToObject", "ObjectAttributeList"),
+            type = "list",
+            name = "ObjectAttributeList",
+            target_id = prelude.Document.id,
+            list_member = M.AttributeKeyAndValue,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ObjectReference = schema.new({
+            id = id.from(_N, "BatchAddFacetToObject", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchAttachObject = schema.new({
+    id = id.from(_N, "BatchAttachObject"),
+    type = "structure",
+    members = {
+        ParentReference = schema.new({
+            id = id.from(_N, "BatchAttachObject", "ParentReference"),
+            type = "structure",
+            name = "ParentReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ChildReference = schema.new({
+            id = id.from(_N, "BatchAttachObject", "ChildReference"),
+            type = "structure",
+            name = "ChildReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LinkName = schema.new({
+            id = id.from(_N, "BatchAttachObject", "LinkName"),
+            type = "string",
+            name = "LinkName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchAttachPolicy = schema.new({
+    id = id.from(_N, "BatchAttachPolicy"),
+    type = "structure",
+    members = {
+        PolicyReference = schema.new({
+            id = id.from(_N, "BatchAttachPolicy", "PolicyReference"),
+            type = "structure",
+            name = "PolicyReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ObjectReference = schema.new({
+            id = id.from(_N, "BatchAttachPolicy", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchAttachToIndex = schema.new({
+    id = id.from(_N, "BatchAttachToIndex"),
+    type = "structure",
+    members = {
+        IndexReference = schema.new({
+            id = id.from(_N, "BatchAttachToIndex", "IndexReference"),
+            type = "structure",
+            name = "IndexReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetReference = schema.new({
+            id = id.from(_N, "BatchAttachToIndex", "TargetReference"),
+            type = "structure",
+            name = "TargetReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchAttachTypedLink = schema.new({
+    id = id.from(_N, "BatchAttachTypedLink"),
+    type = "structure",
+    members = {
+        SourceObjectReference = schema.new({
+            id = id.from(_N, "BatchAttachTypedLink", "SourceObjectReference"),
+            type = "structure",
+            name = "SourceObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetObjectReference = schema.new({
+            id = id.from(_N, "BatchAttachTypedLink", "TargetObjectReference"),
+            type = "structure",
+            name = "TargetObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TypedLinkFacet = schema.new({
+            id = id.from(_N, "BatchAttachTypedLink", "TypedLinkFacet"),
+            type = "structure",
+            name = "TypedLinkFacet",
+            target_id = id.from(_N, "TypedLinkSchemaAndFacetName"),
+            target = M.TypedLinkSchemaAndFacetName,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Attributes = schema.new({
+            id = id.from(_N, "BatchAttachTypedLink", "Attributes"),
+            type = "list",
+            name = "Attributes",
+            target_id = prelude.Document.id,
+            list_member = M.AttributeNameAndValue,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchCreateIndex = schema.new({
+    id = id.from(_N, "BatchCreateIndex"),
+    type = "structure",
+    members = {
+        OrderedIndexedAttributeList = schema.new({
+            id = id.from(_N, "BatchCreateIndex", "OrderedIndexedAttributeList"),
+            type = "list",
+            name = "OrderedIndexedAttributeList",
+            target_id = prelude.Document.id,
+            list_member = M.AttributeKey,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IsUnique = schema.new({
+            id = id.from(_N, "BatchCreateIndex", "IsUnique"),
+            type = "boolean",
+            name = "IsUnique",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        ParentReference = schema.new({
+            id = id.from(_N, "BatchCreateIndex", "ParentReference"),
+            type = "structure",
+            name = "ParentReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+        }),
+        LinkName = schema.new({
+            id = id.from(_N, "BatchCreateIndex", "LinkName"),
+            type = "string",
+            name = "LinkName",
+            target_id = prelude.String.id,
+        }),
+        BatchReferenceName = schema.new({
+            id = id.from(_N, "BatchCreateIndex", "BatchReferenceName"),
+            type = "string",
+            name = "BatchReferenceName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchCreateObject = schema.new({
+    id = id.from(_N, "BatchCreateObject"),
+    type = "structure",
+    members = {
+        SchemaFacet = schema.new({
+            id = id.from(_N, "BatchCreateObject", "SchemaFacet"),
+            type = "list",
+            name = "SchemaFacet",
+            target_id = prelude.Document.id,
+            list_member = M.SchemaFacet,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ObjectAttributeList = schema.new({
+            id = id.from(_N, "BatchCreateObject", "ObjectAttributeList"),
+            type = "list",
+            name = "ObjectAttributeList",
+            target_id = prelude.Document.id,
+            list_member = M.AttributeKeyAndValue,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ParentReference = schema.new({
+            id = id.from(_N, "BatchCreateObject", "ParentReference"),
+            type = "structure",
+            name = "ParentReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+        }),
+        LinkName = schema.new({
+            id = id.from(_N, "BatchCreateObject", "LinkName"),
+            type = "string",
+            name = "LinkName",
+            target_id = prelude.String.id,
+        }),
+        BatchReferenceName = schema.new({
+            id = id.from(_N, "BatchCreateObject", "BatchReferenceName"),
+            type = "string",
+            name = "BatchReferenceName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchDeleteObject = schema.new({
+    id = id.from(_N, "BatchDeleteObject"),
+    type = "structure",
+    members = {
+        ObjectReference = schema.new({
+            id = id.from(_N, "BatchDeleteObject", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchDetachFromIndex = schema.new({
+    id = id.from(_N, "BatchDetachFromIndex"),
+    type = "structure",
+    members = {
+        IndexReference = schema.new({
+            id = id.from(_N, "BatchDetachFromIndex", "IndexReference"),
+            type = "structure",
+            name = "IndexReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetReference = schema.new({
+            id = id.from(_N, "BatchDetachFromIndex", "TargetReference"),
+            type = "structure",
+            name = "TargetReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchDetachObject = schema.new({
+    id = id.from(_N, "BatchDetachObject"),
+    type = "structure",
+    members = {
+        ParentReference = schema.new({
+            id = id.from(_N, "BatchDetachObject", "ParentReference"),
+            type = "structure",
+            name = "ParentReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LinkName = schema.new({
+            id = id.from(_N, "BatchDetachObject", "LinkName"),
+            type = "string",
+            name = "LinkName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        BatchReferenceName = schema.new({
+            id = id.from(_N, "BatchDetachObject", "BatchReferenceName"),
+            type = "string",
+            name = "BatchReferenceName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchDetachPolicy = schema.new({
+    id = id.from(_N, "BatchDetachPolicy"),
+    type = "structure",
+    members = {
+        PolicyReference = schema.new({
+            id = id.from(_N, "BatchDetachPolicy", "PolicyReference"),
+            type = "structure",
+            name = "PolicyReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ObjectReference = schema.new({
+            id = id.from(_N, "BatchDetachPolicy", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchDetachTypedLink = schema.new({
+    id = id.from(_N, "BatchDetachTypedLink"),
+    type = "structure",
+    members = {
+        TypedLinkSpecifier = schema.new({
+            id = id.from(_N, "BatchDetachTypedLink", "TypedLinkSpecifier"),
+            type = "structure",
+            name = "TypedLinkSpecifier",
+            target_id = id.from(_N, "TypedLinkSpecifier"),
+            target = M.TypedLinkSpecifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchRemoveFacetFromObject = schema.new({
+    id = id.from(_N, "BatchRemoveFacetFromObject"),
+    type = "structure",
+    members = {
+        SchemaFacet = schema.new({
+            id = id.from(_N, "BatchRemoveFacetFromObject", "SchemaFacet"),
+            type = "structure",
+            name = "SchemaFacet",
+            target_id = id.from(_N, "SchemaFacet"),
+            target = M.SchemaFacet,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ObjectReference = schema.new({
+            id = id.from(_N, "BatchRemoveFacetFromObject", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LinkAttributeAction = schema.new({
+    id = id.from(_N, "LinkAttributeAction"),
+    type = "structure",
+    members = {
+        AttributeActionType = schema.new({
+            id = id.from(_N, "LinkAttributeAction", "AttributeActionType"),
+            type = "string",
+            name = "AttributeActionType",
+            target_id = prelude.String.id,
+        }),
+        AttributeUpdateValue = schema.new({
+            id = id.from(_N, "LinkAttributeAction", "AttributeUpdateValue"),
+            type = "union",
+            name = "AttributeUpdateValue",
+            target_id = id.from(_N, "TypedAttributeValue"),
+            target = M.TypedAttributeValue,
+        }),
+    },
+})
+
+M.LinkAttributeUpdate = schema.new({
+    id = id.from(_N, "LinkAttributeUpdate"),
+    type = "structure",
+    members = {
+        AttributeKey = schema.new({
+            id = id.from(_N, "LinkAttributeUpdate", "AttributeKey"),
+            type = "structure",
+            name = "AttributeKey",
+            target_id = id.from(_N, "AttributeKey"),
+            target = M.AttributeKey,
+        }),
+        AttributeAction = schema.new({
+            id = id.from(_N, "LinkAttributeUpdate", "AttributeAction"),
+            type = "structure",
+            name = "AttributeAction",
+            target_id = id.from(_N, "LinkAttributeAction"),
+            target = M.LinkAttributeAction,
+        }),
+    },
+})
+
+M.BatchUpdateLinkAttributes = schema.new({
+    id = id.from(_N, "BatchUpdateLinkAttributes"),
+    type = "structure",
+    members = {
+        TypedLinkSpecifier = schema.new({
+            id = id.from(_N, "BatchUpdateLinkAttributes", "TypedLinkSpecifier"),
+            type = "structure",
+            name = "TypedLinkSpecifier",
+            target_id = id.from(_N, "TypedLinkSpecifier"),
+            target = M.TypedLinkSpecifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AttributeUpdates = schema.new({
+            id = id.from(_N, "BatchUpdateLinkAttributes", "AttributeUpdates"),
+            type = "list",
+            name = "AttributeUpdates",
+            target_id = prelude.Document.id,
+            list_member = M.LinkAttributeUpdate,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ObjectAttributeAction = schema.new({
+    id = id.from(_N, "ObjectAttributeAction"),
+    type = "structure",
+    members = {
+        ObjectAttributeActionType = schema.new({
+            id = id.from(_N, "ObjectAttributeAction", "ObjectAttributeActionType"),
+            type = "string",
+            name = "ObjectAttributeActionType",
+            target_id = prelude.String.id,
+        }),
+        ObjectAttributeUpdateValue = schema.new({
+            id = id.from(_N, "ObjectAttributeAction", "ObjectAttributeUpdateValue"),
+            type = "union",
+            name = "ObjectAttributeUpdateValue",
+            target_id = id.from(_N, "TypedAttributeValue"),
+            target = M.TypedAttributeValue,
+        }),
+    },
+})
+
+M.ObjectAttributeUpdate = schema.new({
+    id = id.from(_N, "ObjectAttributeUpdate"),
+    type = "structure",
+    members = {
+        ObjectAttributeKey = schema.new({
+            id = id.from(_N, "ObjectAttributeUpdate", "ObjectAttributeKey"),
+            type = "structure",
+            name = "ObjectAttributeKey",
+            target_id = id.from(_N, "AttributeKey"),
+            target = M.AttributeKey,
+        }),
+        ObjectAttributeAction = schema.new({
+            id = id.from(_N, "ObjectAttributeUpdate", "ObjectAttributeAction"),
+            type = "structure",
+            name = "ObjectAttributeAction",
+            target_id = id.from(_N, "ObjectAttributeAction"),
+            target = M.ObjectAttributeAction,
+        }),
+    },
+})
+
+M.BatchUpdateObjectAttributes = schema.new({
+    id = id.from(_N, "BatchUpdateObjectAttributes"),
+    type = "structure",
+    members = {
+        ObjectReference = schema.new({
+            id = id.from(_N, "BatchUpdateObjectAttributes", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AttributeUpdates = schema.new({
+            id = id.from(_N, "BatchUpdateObjectAttributes", "AttributeUpdates"),
+            type = "list",
+            name = "AttributeUpdates",
+            target_id = prelude.Document.id,
+            list_member = M.ObjectAttributeUpdate,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchWriteOperation = schema.new({
+    id = id.from(_N, "BatchWriteOperation"),
+    type = "structure",
+    members = {
+        CreateObject = schema.new({
+            id = id.from(_N, "BatchWriteOperation", "CreateObject"),
+            type = "structure",
+            name = "CreateObject",
+            target_id = id.from(_N, "BatchCreateObject"),
+            target = M.BatchCreateObject,
+        }),
+        AttachObject = schema.new({
+            id = id.from(_N, "BatchWriteOperation", "AttachObject"),
+            type = "structure",
+            name = "AttachObject",
+            target_id = id.from(_N, "BatchAttachObject"),
+            target = M.BatchAttachObject,
+        }),
+        DetachObject = schema.new({
+            id = id.from(_N, "BatchWriteOperation", "DetachObject"),
+            type = "structure",
+            name = "DetachObject",
+            target_id = id.from(_N, "BatchDetachObject"),
+            target = M.BatchDetachObject,
+        }),
+        UpdateObjectAttributes = schema.new({
+            id = id.from(_N, "BatchWriteOperation", "UpdateObjectAttributes"),
+            type = "structure",
+            name = "UpdateObjectAttributes",
+            target_id = id.from(_N, "BatchUpdateObjectAttributes"),
+            target = M.BatchUpdateObjectAttributes,
+        }),
+        DeleteObject = schema.new({
+            id = id.from(_N, "BatchWriteOperation", "DeleteObject"),
+            type = "structure",
+            name = "DeleteObject",
+            target_id = id.from(_N, "BatchDeleteObject"),
+            target = M.BatchDeleteObject,
+        }),
+        AddFacetToObject = schema.new({
+            id = id.from(_N, "BatchWriteOperation", "AddFacetToObject"),
+            type = "structure",
+            name = "AddFacetToObject",
+            target_id = id.from(_N, "BatchAddFacetToObject"),
+            target = M.BatchAddFacetToObject,
+        }),
+        RemoveFacetFromObject = schema.new({
+            id = id.from(_N, "BatchWriteOperation", "RemoveFacetFromObject"),
+            type = "structure",
+            name = "RemoveFacetFromObject",
+            target_id = id.from(_N, "BatchRemoveFacetFromObject"),
+            target = M.BatchRemoveFacetFromObject,
+        }),
+        AttachPolicy = schema.new({
+            id = id.from(_N, "BatchWriteOperation", "AttachPolicy"),
+            type = "structure",
+            name = "AttachPolicy",
+            target_id = id.from(_N, "BatchAttachPolicy"),
+            target = M.BatchAttachPolicy,
+        }),
+        DetachPolicy = schema.new({
+            id = id.from(_N, "BatchWriteOperation", "DetachPolicy"),
+            type = "structure",
+            name = "DetachPolicy",
+            target_id = id.from(_N, "BatchDetachPolicy"),
+            target = M.BatchDetachPolicy,
+        }),
+        CreateIndex = schema.new({
+            id = id.from(_N, "BatchWriteOperation", "CreateIndex"),
+            type = "structure",
+            name = "CreateIndex",
+            target_id = id.from(_N, "BatchCreateIndex"),
+            target = M.BatchCreateIndex,
+        }),
+        AttachToIndex = schema.new({
+            id = id.from(_N, "BatchWriteOperation", "AttachToIndex"),
+            type = "structure",
+            name = "AttachToIndex",
+            target_id = id.from(_N, "BatchAttachToIndex"),
+            target = M.BatchAttachToIndex,
+        }),
+        DetachFromIndex = schema.new({
+            id = id.from(_N, "BatchWriteOperation", "DetachFromIndex"),
+            type = "structure",
+            name = "DetachFromIndex",
+            target_id = id.from(_N, "BatchDetachFromIndex"),
+            target = M.BatchDetachFromIndex,
+        }),
+        AttachTypedLink = schema.new({
+            id = id.from(_N, "BatchWriteOperation", "AttachTypedLink"),
+            type = "structure",
+            name = "AttachTypedLink",
+            target_id = id.from(_N, "BatchAttachTypedLink"),
+            target = M.BatchAttachTypedLink,
+        }),
+        DetachTypedLink = schema.new({
+            id = id.from(_N, "BatchWriteOperation", "DetachTypedLink"),
+            type = "structure",
+            name = "DetachTypedLink",
+            target_id = id.from(_N, "BatchDetachTypedLink"),
+            target = M.BatchDetachTypedLink,
+        }),
+        UpdateLinkAttributes = schema.new({
+            id = id.from(_N, "BatchWriteOperation", "UpdateLinkAttributes"),
+            type = "structure",
+            name = "UpdateLinkAttributes",
+            target_id = id.from(_N, "BatchUpdateLinkAttributes"),
+            target = M.BatchUpdateLinkAttributes,
+        }),
+    },
+})
+
+M.BatchWriteInput = schema.new({
+    id = id.from(_N, "BatchWriteInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "BatchWriteInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        Operations = schema.new({
+            id = id.from(_N, "BatchWriteInput", "Operations"),
+            type = "list",
+            name = "Operations",
+            target_id = prelude.Document.id,
+            list_member = M.BatchWriteOperation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchAddFacetToObjectResponse = schema.new({
+    id = id.from(_N, "BatchAddFacetToObjectResponse"),
+    type = "structure",
+})
+
+M.BatchAttachObjectResponse = schema.new({
+    id = id.from(_N, "BatchAttachObjectResponse"),
+    type = "structure",
+    members = {
+        attachedObjectIdentifier = schema.new({
+            id = id.from(_N, "BatchAttachObjectResponse", "attachedObjectIdentifier"),
+            type = "string",
+            name = "attachedObjectIdentifier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchAttachPolicyResponse = schema.new({
+    id = id.from(_N, "BatchAttachPolicyResponse"),
+    type = "structure",
+})
+
+M.BatchAttachToIndexResponse = schema.new({
+    id = id.from(_N, "BatchAttachToIndexResponse"),
+    type = "structure",
+    members = {
+        AttachedObjectIdentifier = schema.new({
+            id = id.from(_N, "BatchAttachToIndexResponse", "AttachedObjectIdentifier"),
+            type = "string",
+            name = "AttachedObjectIdentifier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchAttachTypedLinkResponse = schema.new({
+    id = id.from(_N, "BatchAttachTypedLinkResponse"),
+    type = "structure",
+    members = {
+        TypedLinkSpecifier = schema.new({
+            id = id.from(_N, "BatchAttachTypedLinkResponse", "TypedLinkSpecifier"),
+            type = "structure",
+            name = "TypedLinkSpecifier",
+            target_id = id.from(_N, "TypedLinkSpecifier"),
+            target = M.TypedLinkSpecifier,
+        }),
+    },
+})
+
+M.BatchCreateIndexResponse = schema.new({
+    id = id.from(_N, "BatchCreateIndexResponse"),
+    type = "structure",
+    members = {
+        ObjectIdentifier = schema.new({
+            id = id.from(_N, "BatchCreateIndexResponse", "ObjectIdentifier"),
+            type = "string",
+            name = "ObjectIdentifier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchCreateObjectResponse = schema.new({
+    id = id.from(_N, "BatchCreateObjectResponse"),
+    type = "structure",
+    members = {
+        ObjectIdentifier = schema.new({
+            id = id.from(_N, "BatchCreateObjectResponse", "ObjectIdentifier"),
+            type = "string",
+            name = "ObjectIdentifier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchDeleteObjectResponse = schema.new({
+    id = id.from(_N, "BatchDeleteObjectResponse"),
+    type = "structure",
+})
+
+M.BatchDetachFromIndexResponse = schema.new({
+    id = id.from(_N, "BatchDetachFromIndexResponse"),
+    type = "structure",
+    members = {
+        DetachedObjectIdentifier = schema.new({
+            id = id.from(_N, "BatchDetachFromIndexResponse", "DetachedObjectIdentifier"),
+            type = "string",
+            name = "DetachedObjectIdentifier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchDetachObjectResponse = schema.new({
+    id = id.from(_N, "BatchDetachObjectResponse"),
+    type = "structure",
+    members = {
+        detachedObjectIdentifier = schema.new({
+            id = id.from(_N, "BatchDetachObjectResponse", "detachedObjectIdentifier"),
+            type = "string",
+            name = "detachedObjectIdentifier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchDetachPolicyResponse = schema.new({
+    id = id.from(_N, "BatchDetachPolicyResponse"),
+    type = "structure",
+})
+
+M.BatchDetachTypedLinkResponse = schema.new({
+    id = id.from(_N, "BatchDetachTypedLinkResponse"),
+    type = "structure",
+})
+
+M.BatchRemoveFacetFromObjectResponse = schema.new({
+    id = id.from(_N, "BatchRemoveFacetFromObjectResponse"),
+    type = "structure",
+})
+
+M.BatchUpdateLinkAttributesResponse = schema.new({
+    id = id.from(_N, "BatchUpdateLinkAttributesResponse"),
+    type = "structure",
+})
+
+M.BatchUpdateObjectAttributesResponse = schema.new({
+    id = id.from(_N, "BatchUpdateObjectAttributesResponse"),
+    type = "structure",
+    members = {
+        ObjectIdentifier = schema.new({
+            id = id.from(_N, "BatchUpdateObjectAttributesResponse", "ObjectIdentifier"),
+            type = "string",
+            name = "ObjectIdentifier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchWriteOperationResponse = schema.new({
+    id = id.from(_N, "BatchWriteOperationResponse"),
+    type = "structure",
+    members = {
+        CreateObject = schema.new({
+            id = id.from(_N, "BatchWriteOperationResponse", "CreateObject"),
+            type = "structure",
+            name = "CreateObject",
+            target_id = id.from(_N, "BatchCreateObjectResponse"),
+            target = M.BatchCreateObjectResponse,
+        }),
+        AttachObject = schema.new({
+            id = id.from(_N, "BatchWriteOperationResponse", "AttachObject"),
+            type = "structure",
+            name = "AttachObject",
+            target_id = id.from(_N, "BatchAttachObjectResponse"),
+            target = M.BatchAttachObjectResponse,
+        }),
+        DetachObject = schema.new({
+            id = id.from(_N, "BatchWriteOperationResponse", "DetachObject"),
+            type = "structure",
+            name = "DetachObject",
+            target_id = id.from(_N, "BatchDetachObjectResponse"),
+            target = M.BatchDetachObjectResponse,
+        }),
+        UpdateObjectAttributes = schema.new({
+            id = id.from(_N, "BatchWriteOperationResponse", "UpdateObjectAttributes"),
+            type = "structure",
+            name = "UpdateObjectAttributes",
+            target_id = id.from(_N, "BatchUpdateObjectAttributesResponse"),
+            target = M.BatchUpdateObjectAttributesResponse,
+        }),
+        DeleteObject = schema.new({
+            id = id.from(_N, "BatchWriteOperationResponse", "DeleteObject"),
+            type = "structure",
+            name = "DeleteObject",
+            target_id = id.from(_N, "BatchDeleteObjectResponse"),
+            target = M.BatchDeleteObjectResponse,
+        }),
+        AddFacetToObject = schema.new({
+            id = id.from(_N, "BatchWriteOperationResponse", "AddFacetToObject"),
+            type = "structure",
+            name = "AddFacetToObject",
+            target_id = id.from(_N, "BatchAddFacetToObjectResponse"),
+            target = M.BatchAddFacetToObjectResponse,
+        }),
+        RemoveFacetFromObject = schema.new({
+            id = id.from(_N, "BatchWriteOperationResponse", "RemoveFacetFromObject"),
+            type = "structure",
+            name = "RemoveFacetFromObject",
+            target_id = id.from(_N, "BatchRemoveFacetFromObjectResponse"),
+            target = M.BatchRemoveFacetFromObjectResponse,
+        }),
+        AttachPolicy = schema.new({
+            id = id.from(_N, "BatchWriteOperationResponse", "AttachPolicy"),
+            type = "structure",
+            name = "AttachPolicy",
+            target_id = id.from(_N, "BatchAttachPolicyResponse"),
+            target = M.BatchAttachPolicyResponse,
+        }),
+        DetachPolicy = schema.new({
+            id = id.from(_N, "BatchWriteOperationResponse", "DetachPolicy"),
+            type = "structure",
+            name = "DetachPolicy",
+            target_id = id.from(_N, "BatchDetachPolicyResponse"),
+            target = M.BatchDetachPolicyResponse,
+        }),
+        CreateIndex = schema.new({
+            id = id.from(_N, "BatchWriteOperationResponse", "CreateIndex"),
+            type = "structure",
+            name = "CreateIndex",
+            target_id = id.from(_N, "BatchCreateIndexResponse"),
+            target = M.BatchCreateIndexResponse,
+        }),
+        AttachToIndex = schema.new({
+            id = id.from(_N, "BatchWriteOperationResponse", "AttachToIndex"),
+            type = "structure",
+            name = "AttachToIndex",
+            target_id = id.from(_N, "BatchAttachToIndexResponse"),
+            target = M.BatchAttachToIndexResponse,
+        }),
+        DetachFromIndex = schema.new({
+            id = id.from(_N, "BatchWriteOperationResponse", "DetachFromIndex"),
+            type = "structure",
+            name = "DetachFromIndex",
+            target_id = id.from(_N, "BatchDetachFromIndexResponse"),
+            target = M.BatchDetachFromIndexResponse,
+        }),
+        AttachTypedLink = schema.new({
+            id = id.from(_N, "BatchWriteOperationResponse", "AttachTypedLink"),
+            type = "structure",
+            name = "AttachTypedLink",
+            target_id = id.from(_N, "BatchAttachTypedLinkResponse"),
+            target = M.BatchAttachTypedLinkResponse,
+        }),
+        DetachTypedLink = schema.new({
+            id = id.from(_N, "BatchWriteOperationResponse", "DetachTypedLink"),
+            type = "structure",
+            name = "DetachTypedLink",
+            target_id = id.from(_N, "BatchDetachTypedLinkResponse"),
+            target = M.BatchDetachTypedLinkResponse,
+        }),
+        UpdateLinkAttributes = schema.new({
+            id = id.from(_N, "BatchWriteOperationResponse", "UpdateLinkAttributes"),
+            type = "structure",
+            name = "UpdateLinkAttributes",
+            target_id = id.from(_N, "BatchUpdateLinkAttributesResponse"),
+            target = M.BatchUpdateLinkAttributesResponse,
+        }),
+    },
+})
+
+M.BatchWriteOutput = schema.new({
+    id = id.from(_N, "BatchWriteOutput"),
+    type = "structure",
+    members = {
+        Responses = schema.new({
+            id = id.from(_N, "BatchWriteOutput", "Responses"),
+            type = "list",
+            name = "Responses",
+            target_id = prelude.Document.id,
+            list_member = M.BatchWriteOperationResponse,
+        }),
+    },
+})
+
+M.CreateDirectoryInput = schema.new({
+    id = id.from(_N, "CreateDirectoryInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateDirectoryInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SchemaArn = schema.new({
+            id = id.from(_N, "CreateDirectoryInput", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+    },
+})
+
+M.CreateDirectoryOutput = schema.new({
+    id = id.from(_N, "CreateDirectoryOutput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "CreateDirectoryOutput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateDirectoryOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ObjectIdentifier = schema.new({
+            id = id.from(_N, "CreateDirectoryOutput", "ObjectIdentifier"),
+            type = "string",
+            name = "ObjectIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AppliedSchemaArn = schema.new({
+            id = id.from(_N, "CreateDirectoryOutput", "AppliedSchemaArn"),
+            type = "string",
+            name = "AppliedSchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DirectoryAlreadyExistsException = schema.new({
+    id = id.from(_N, "DirectoryAlreadyExistsException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "DirectoryAlreadyExistsException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Rule = schema.new({
+    id = id.from(_N, "Rule"),
+    type = "structure",
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "Rule", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        Parameters = schema.new({
+            id = id.from(_N, "Rule", "Parameters"),
+            type = "map",
+            name = "Parameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.FacetAttributeDefinition = schema.new({
+    id = id.from(_N, "FacetAttributeDefinition"),
+    type = "structure",
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "FacetAttributeDefinition", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DefaultValue = schema.new({
+            id = id.from(_N, "FacetAttributeDefinition", "DefaultValue"),
+            type = "union",
+            name = "DefaultValue",
+            target_id = id.from(_N, "TypedAttributeValue"),
+            target = M.TypedAttributeValue,
+        }),
+        IsImmutable = schema.new({
+            id = id.from(_N, "FacetAttributeDefinition", "IsImmutable"),
+            type = "boolean",
+            name = "IsImmutable",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        Rules = schema.new({
+            id = id.from(_N, "FacetAttributeDefinition", "Rules"),
+            type = "map",
+            name = "Rules",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.Rule,
+        }),
+    },
+})
+
+M.FacetAttributeReference = schema.new({
+    id = id.from(_N, "FacetAttributeReference"),
+    type = "structure",
+    members = {
+        TargetFacetName = schema.new({
+            id = id.from(_N, "FacetAttributeReference", "TargetFacetName"),
+            type = "string",
+            name = "TargetFacetName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetAttributeName = schema.new({
+            id = id.from(_N, "FacetAttributeReference", "TargetAttributeName"),
+            type = "string",
+            name = "TargetAttributeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.FacetAttribute = schema.new({
+    id = id.from(_N, "FacetAttribute"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "FacetAttribute", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AttributeDefinition = schema.new({
+            id = id.from(_N, "FacetAttribute", "AttributeDefinition"),
+            type = "structure",
+            name = "AttributeDefinition",
+            target_id = id.from(_N, "FacetAttributeDefinition"),
+            target = M.FacetAttributeDefinition,
+        }),
+        AttributeReference = schema.new({
+            id = id.from(_N, "FacetAttribute", "AttributeReference"),
+            type = "structure",
+            name = "AttributeReference",
+            target_id = id.from(_N, "FacetAttributeReference"),
+            target = M.FacetAttributeReference,
+        }),
+        RequiredBehavior = schema.new({
+            id = id.from(_N, "FacetAttribute", "RequiredBehavior"),
+            type = "string",
+            name = "RequiredBehavior",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateFacetInput = schema.new({
+    id = id.from(_N, "CreateFacetInput"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "CreateFacetInput", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateFacetInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Attributes = schema.new({
+            id = id.from(_N, "CreateFacetInput", "Attributes"),
+            type = "list",
+            name = "Attributes",
+            target_id = prelude.Document.id,
+            list_member = M.FacetAttribute,
+        }),
+        ObjectType = schema.new({
+            id = id.from(_N, "CreateFacetInput", "ObjectType"),
+            type = "string",
+            name = "ObjectType",
+            target_id = prelude.String.id,
+        }),
+        FacetStyle = schema.new({
+            id = id.from(_N, "CreateFacetInput", "FacetStyle"),
+            type = "string",
+            name = "FacetStyle",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateFacetOutput = schema.new({
+    id = id.from(_N, "CreateFacetOutput"),
+    type = "structure",
+})
+
+M.FacetAlreadyExistsException = schema.new({
+    id = id.from(_N, "FacetAlreadyExistsException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "FacetAlreadyExistsException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidRuleException = schema.new({
+    id = id.from(_N, "InvalidRuleException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InvalidRuleException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateIndexInput = schema.new({
+    id = id.from(_N, "CreateIndexInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "CreateIndexInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        OrderedIndexedAttributeList = schema.new({
+            id = id.from(_N, "CreateIndexInput", "OrderedIndexedAttributeList"),
+            type = "list",
+            name = "OrderedIndexedAttributeList",
+            target_id = prelude.Document.id,
+            list_member = M.AttributeKey,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IsUnique = schema.new({
+            id = id.from(_N, "CreateIndexInput", "IsUnique"),
+            type = "boolean",
+            name = "IsUnique",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        ParentReference = schema.new({
+            id = id.from(_N, "CreateIndexInput", "ParentReference"),
+            type = "structure",
+            name = "ParentReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+        }),
+        LinkName = schema.new({
+            id = id.from(_N, "CreateIndexInput", "LinkName"),
+            type = "string",
+            name = "LinkName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateIndexOutput = schema.new({
+    id = id.from(_N, "CreateIndexOutput"),
+    type = "structure",
+    members = {
+        ObjectIdentifier = schema.new({
+            id = id.from(_N, "CreateIndexOutput", "ObjectIdentifier"),
+            type = "string",
+            name = "ObjectIdentifier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UnsupportedIndexTypeException = schema.new({
+    id = id.from(_N, "UnsupportedIndexTypeException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "UnsupportedIndexTypeException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateObjectInput = schema.new({
+    id = id.from(_N, "CreateObjectInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "CreateObjectInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        SchemaFacets = schema.new({
+            id = id.from(_N, "CreateObjectInput", "SchemaFacets"),
+            type = "list",
+            name = "SchemaFacets",
+            target_id = prelude.Document.id,
+            list_member = M.SchemaFacet,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ObjectAttributeList = schema.new({
+            id = id.from(_N, "CreateObjectInput", "ObjectAttributeList"),
+            type = "list",
+            name = "ObjectAttributeList",
+            target_id = prelude.Document.id,
+            list_member = M.AttributeKeyAndValue,
+        }),
+        ParentReference = schema.new({
+            id = id.from(_N, "CreateObjectInput", "ParentReference"),
+            type = "structure",
+            name = "ParentReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+        }),
+        LinkName = schema.new({
+            id = id.from(_N, "CreateObjectInput", "LinkName"),
+            type = "string",
+            name = "LinkName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateObjectOutput = schema.new({
+    id = id.from(_N, "CreateObjectOutput"),
+    type = "structure",
+    members = {
+        ObjectIdentifier = schema.new({
+            id = id.from(_N, "CreateObjectOutput", "ObjectIdentifier"),
+            type = "string",
+            name = "ObjectIdentifier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateSchemaInput = schema.new({
+    id = id.from(_N, "CreateSchemaInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateSchemaInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateSchemaOutput = schema.new({
+    id = id.from(_N, "CreateSchemaOutput"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "CreateSchemaOutput", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TypedLinkAttributeDefinition = schema.new({
+    id = id.from(_N, "TypedLinkAttributeDefinition"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "TypedLinkAttributeDefinition", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Type = schema.new({
+            id = id.from(_N, "TypedLinkAttributeDefinition", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DefaultValue = schema.new({
+            id = id.from(_N, "TypedLinkAttributeDefinition", "DefaultValue"),
+            type = "union",
+            name = "DefaultValue",
+            target_id = id.from(_N, "TypedAttributeValue"),
+            target = M.TypedAttributeValue,
+        }),
+        IsImmutable = schema.new({
+            id = id.from(_N, "TypedLinkAttributeDefinition", "IsImmutable"),
+            type = "boolean",
+            name = "IsImmutable",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        Rules = schema.new({
+            id = id.from(_N, "TypedLinkAttributeDefinition", "Rules"),
+            type = "map",
+            name = "Rules",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.Rule,
+        }),
+        RequiredBehavior = schema.new({
+            id = id.from(_N, "TypedLinkAttributeDefinition", "RequiredBehavior"),
+            type = "string",
+            name = "RequiredBehavior",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TypedLinkFacet = schema.new({
+    id = id.from(_N, "TypedLinkFacet"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "TypedLinkFacet", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Attributes = schema.new({
+            id = id.from(_N, "TypedLinkFacet", "Attributes"),
+            type = "list",
+            name = "Attributes",
+            target_id = prelude.Document.id,
+            list_member = M.TypedLinkAttributeDefinition,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IdentityAttributeOrder = schema.new({
+            id = id.from(_N, "TypedLinkFacet", "IdentityAttributeOrder"),
+            type = "list",
+            name = "IdentityAttributeOrder",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateTypedLinkFacetInput = schema.new({
+    id = id.from(_N, "CreateTypedLinkFacetInput"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "CreateTypedLinkFacetInput", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        Facet = schema.new({
+            id = id.from(_N, "CreateTypedLinkFacetInput", "Facet"),
+            type = "structure",
+            name = "Facet",
+            target_id = id.from(_N, "TypedLinkFacet"),
+            target = M.TypedLinkFacet,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateTypedLinkFacetOutput = schema.new({
+    id = id.from(_N, "CreateTypedLinkFacetOutput"),
+    type = "structure",
+})
+
+M.DeleteDirectoryInput = schema.new({
+    id = id.from(_N, "DeleteDirectoryInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "DeleteDirectoryInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+    },
+})
+
+M.DeleteDirectoryOutput = schema.new({
+    id = id.from(_N, "DeleteDirectoryOutput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "DeleteDirectoryOutput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DirectoryDeletedException = schema.new({
+    id = id.from(_N, "DirectoryDeletedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "DirectoryDeletedException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DirectoryNotDisabledException = schema.new({
+    id = id.from(_N, "DirectoryNotDisabledException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "DirectoryNotDisabledException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteFacetInput = schema.new({
+    id = id.from(_N, "DeleteFacetInput"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "DeleteFacetInput", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "DeleteFacetInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteFacetOutput = schema.new({
+    id = id.from(_N, "DeleteFacetOutput"),
+    type = "structure",
+})
+
+M.FacetInUseException = schema.new({
+    id = id.from(_N, "FacetInUseException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "FacetInUseException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.FacetNotFoundException = schema.new({
+    id = id.from(_N, "FacetNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "FacetNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteObjectInput = schema.new({
+    id = id.from(_N, "DeleteObjectInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "DeleteObjectInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        ObjectReference = schema.new({
+            id = id.from(_N, "DeleteObjectInput", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteObjectOutput = schema.new({
+    id = id.from(_N, "DeleteObjectOutput"),
+    type = "structure",
+})
+
+M.ObjectNotDetachedException = schema.new({
+    id = id.from(_N, "ObjectNotDetachedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ObjectNotDetachedException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteSchemaInput = schema.new({
+    id = id.from(_N, "DeleteSchemaInput"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "DeleteSchemaInput", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+    },
+})
+
+M.DeleteSchemaOutput = schema.new({
+    id = id.from(_N, "DeleteSchemaOutput"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "DeleteSchemaOutput", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StillContainsLinksException = schema.new({
+    id = id.from(_N, "StillContainsLinksException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "StillContainsLinksException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteTypedLinkFacetInput = schema.new({
+    id = id.from(_N, "DeleteTypedLinkFacetInput"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "DeleteTypedLinkFacetInput", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "DeleteTypedLinkFacetInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteTypedLinkFacetOutput = schema.new({
+    id = id.from(_N, "DeleteTypedLinkFacetOutput"),
+    type = "structure",
+})
+
+M.DetachFromIndexInput = schema.new({
+    id = id.from(_N, "DetachFromIndexInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "DetachFromIndexInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        IndexReference = schema.new({
+            id = id.from(_N, "DetachFromIndexInput", "IndexReference"),
+            type = "structure",
+            name = "IndexReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetReference = schema.new({
+            id = id.from(_N, "DetachFromIndexInput", "TargetReference"),
+            type = "structure",
+            name = "TargetReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DetachFromIndexOutput = schema.new({
+    id = id.from(_N, "DetachFromIndexOutput"),
+    type = "structure",
+    members = {
+        DetachedObjectIdentifier = schema.new({
+            id = id.from(_N, "DetachFromIndexOutput", "DetachedObjectIdentifier"),
+            type = "string",
+            name = "DetachedObjectIdentifier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ObjectAlreadyDetachedException = schema.new({
+    id = id.from(_N, "ObjectAlreadyDetachedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ObjectAlreadyDetachedException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DetachObjectInput = schema.new({
+    id = id.from(_N, "DetachObjectInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "DetachObjectInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        ParentReference = schema.new({
+            id = id.from(_N, "DetachObjectInput", "ParentReference"),
+            type = "structure",
+            name = "ParentReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LinkName = schema.new({
+            id = id.from(_N, "DetachObjectInput", "LinkName"),
+            type = "string",
+            name = "LinkName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DetachObjectOutput = schema.new({
+    id = id.from(_N, "DetachObjectOutput"),
+    type = "structure",
+    members = {
+        DetachedObjectIdentifier = schema.new({
+            id = id.from(_N, "DetachObjectOutput", "DetachedObjectIdentifier"),
+            type = "string",
+            name = "DetachedObjectIdentifier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.NotNodeException = schema.new({
+    id = id.from(_N, "NotNodeException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "NotNodeException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DetachPolicyInput = schema.new({
+    id = id.from(_N, "DetachPolicyInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "DetachPolicyInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        PolicyReference = schema.new({
+            id = id.from(_N, "DetachPolicyInput", "PolicyReference"),
+            type = "structure",
+            name = "PolicyReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ObjectReference = schema.new({
+            id = id.from(_N, "DetachPolicyInput", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DetachPolicyOutput = schema.new({
+    id = id.from(_N, "DetachPolicyOutput"),
+    type = "structure",
+})
+
+M.DetachTypedLinkInput = schema.new({
+    id = id.from(_N, "DetachTypedLinkInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "DetachTypedLinkInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        TypedLinkSpecifier = schema.new({
+            id = id.from(_N, "DetachTypedLinkInput", "TypedLinkSpecifier"),
+            type = "structure",
+            name = "TypedLinkSpecifier",
+            target_id = id.from(_N, "TypedLinkSpecifier"),
+            target = M.TypedLinkSpecifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DetachTypedLinkOutput = schema.new({
+    id = id.from(_N, "DetachTypedLinkOutput"),
+    type = "structure",
+})
+
+M.DisableDirectoryInput = schema.new({
+    id = id.from(_N, "DisableDirectoryInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "DisableDirectoryInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+    },
+})
+
+M.DisableDirectoryOutput = schema.new({
+    id = id.from(_N, "DisableDirectoryOutput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "DisableDirectoryOutput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.EnableDirectoryInput = schema.new({
+    id = id.from(_N, "EnableDirectoryInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "EnableDirectoryInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+    },
+})
+
+M.EnableDirectoryOutput = schema.new({
+    id = id.from(_N, "EnableDirectoryOutput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "EnableDirectoryOutput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetAppliedSchemaVersionInput = schema.new({
+    id = id.from(_N, "GetAppliedSchemaVersionInput"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "GetAppliedSchemaVersionInput", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetAppliedSchemaVersionOutput = schema.new({
+    id = id.from(_N, "GetAppliedSchemaVersionOutput"),
+    type = "structure",
+    members = {
+        AppliedSchemaArn = schema.new({
+            id = id.from(_N, "GetAppliedSchemaVersionOutput", "AppliedSchemaArn"),
+            type = "string",
+            name = "AppliedSchemaArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetDirectoryInput = schema.new({
+    id = id.from(_N, "GetDirectoryInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "GetDirectoryInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+    },
+})
+
+M.Directory = schema.new({
+    id = id.from(_N, "Directory"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "Directory", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        DirectoryArn = schema.new({
+            id = id.from(_N, "Directory", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+        }),
+        State = schema.new({
+            id = id.from(_N, "Directory", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+        }),
+        CreationDateTime = schema.new({
+            id = id.from(_N, "Directory", "CreationDateTime"),
+            type = "timestamp",
+            name = "CreationDateTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.GetDirectoryOutput = schema.new({
+    id = id.from(_N, "GetDirectoryOutput"),
+    type = "structure",
+    members = {
+        Directory = schema.new({
+            id = id.from(_N, "GetDirectoryOutput", "Directory"),
+            type = "structure",
+            name = "Directory",
+            target_id = id.from(_N, "Directory"),
+            target = M.Directory,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetFacetInput = schema.new({
+    id = id.from(_N, "GetFacetInput"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "GetFacetInput", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "GetFacetInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Facet = schema.new({
+    id = id.from(_N, "Facet"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "Facet", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        ObjectType = schema.new({
+            id = id.from(_N, "Facet", "ObjectType"),
+            type = "string",
+            name = "ObjectType",
+            target_id = prelude.String.id,
+        }),
+        FacetStyle = schema.new({
+            id = id.from(_N, "Facet", "FacetStyle"),
+            type = "string",
+            name = "FacetStyle",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetFacetOutput = schema.new({
+    id = id.from(_N, "GetFacetOutput"),
+    type = "structure",
+    members = {
+        Facet = schema.new({
+            id = id.from(_N, "GetFacetOutput", "Facet"),
+            type = "structure",
+            name = "Facet",
+            target_id = id.from(_N, "Facet"),
+            target = M.Facet,
+        }),
+    },
+})
+
+M.GetLinkAttributesInput = schema.new({
+    id = id.from(_N, "GetLinkAttributesInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "GetLinkAttributesInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        TypedLinkSpecifier = schema.new({
+            id = id.from(_N, "GetLinkAttributesInput", "TypedLinkSpecifier"),
+            type = "structure",
+            name = "TypedLinkSpecifier",
+            target_id = id.from(_N, "TypedLinkSpecifier"),
+            target = M.TypedLinkSpecifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AttributeNames = schema.new({
+            id = id.from(_N, "GetLinkAttributesInput", "AttributeNames"),
+            type = "list",
+            name = "AttributeNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ConsistencyLevel = schema.new({
+            id = id.from(_N, "GetLinkAttributesInput", "ConsistencyLevel"),
+            type = "string",
+            name = "ConsistencyLevel",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetLinkAttributesOutput = schema.new({
+    id = id.from(_N, "GetLinkAttributesOutput"),
+    type = "structure",
+    members = {
+        Attributes = schema.new({
+            id = id.from(_N, "GetLinkAttributesOutput", "Attributes"),
+            type = "list",
+            name = "Attributes",
+            target_id = prelude.Document.id,
+            list_member = M.AttributeKeyAndValue,
+        }),
+    },
+})
+
+M.GetObjectAttributesInput = schema.new({
+    id = id.from(_N, "GetObjectAttributesInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "GetObjectAttributesInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        ObjectReference = schema.new({
+            id = id.from(_N, "GetObjectAttributesInput", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ConsistencyLevel = schema.new({
+            id = id.from(_N, "GetObjectAttributesInput", "ConsistencyLevel"),
+            type = "string",
+            name = "ConsistencyLevel",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-consistency-level" },
+            },
+        }),
+        SchemaFacet = schema.new({
+            id = id.from(_N, "GetObjectAttributesInput", "SchemaFacet"),
+            type = "structure",
+            name = "SchemaFacet",
+            target_id = id.from(_N, "SchemaFacet"),
+            target = M.SchemaFacet,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AttributeNames = schema.new({
+            id = id.from(_N, "GetObjectAttributesInput", "AttributeNames"),
+            type = "list",
+            name = "AttributeNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetObjectAttributesOutput = schema.new({
+    id = id.from(_N, "GetObjectAttributesOutput"),
+    type = "structure",
+    members = {
+        Attributes = schema.new({
+            id = id.from(_N, "GetObjectAttributesOutput", "Attributes"),
+            type = "list",
+            name = "Attributes",
+            target_id = prelude.Document.id,
+            list_member = M.AttributeKeyAndValue,
+        }),
+    },
+})
+
+M.GetObjectInformationInput = schema.new({
+    id = id.from(_N, "GetObjectInformationInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "GetObjectInformationInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        ObjectReference = schema.new({
+            id = id.from(_N, "GetObjectInformationInput", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ConsistencyLevel = schema.new({
+            id = id.from(_N, "GetObjectInformationInput", "ConsistencyLevel"),
+            type = "string",
+            name = "ConsistencyLevel",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-consistency-level" },
+            },
+        }),
+    },
+})
+
+M.GetObjectInformationOutput = schema.new({
+    id = id.from(_N, "GetObjectInformationOutput"),
+    type = "structure",
+    members = {
+        SchemaFacets = schema.new({
+            id = id.from(_N, "GetObjectInformationOutput", "SchemaFacets"),
+            type = "list",
+            name = "SchemaFacets",
+            target_id = prelude.Document.id,
+            list_member = M.SchemaFacet,
+        }),
+        ObjectIdentifier = schema.new({
+            id = id.from(_N, "GetObjectInformationOutput", "ObjectIdentifier"),
+            type = "string",
+            name = "ObjectIdentifier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetSchemaAsJsonInput = schema.new({
+    id = id.from(_N, "GetSchemaAsJsonInput"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "GetSchemaAsJsonInput", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+    },
+})
+
+M.GetSchemaAsJsonOutput = schema.new({
+    id = id.from(_N, "GetSchemaAsJsonOutput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "GetSchemaAsJsonOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Document = schema.new({
+            id = id.from(_N, "GetSchemaAsJsonOutput", "Document"),
+            type = "string",
+            name = "Document",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetTypedLinkFacetInformationInput = schema.new({
+    id = id.from(_N, "GetTypedLinkFacetInformationInput"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "GetTypedLinkFacetInformationInput", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "GetTypedLinkFacetInformationInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetTypedLinkFacetInformationOutput = schema.new({
+    id = id.from(_N, "GetTypedLinkFacetInformationOutput"),
+    type = "structure",
+    members = {
+        IdentityAttributeOrder = schema.new({
+            id = id.from(_N, "GetTypedLinkFacetInformationOutput", "IdentityAttributeOrder"),
+            type = "list",
+            name = "IdentityAttributeOrder",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.InvalidNextTokenException = schema.new({
+    id = id.from(_N, "InvalidNextTokenException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InvalidNextTokenException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAppliedSchemaArnsInput = schema.new({
+    id = id.from(_N, "ListAppliedSchemaArnsInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "ListAppliedSchemaArnsInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SchemaArn = schema.new({
+            id = id.from(_N, "ListAppliedSchemaArnsInput", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAppliedSchemaArnsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListAppliedSchemaArnsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ListAppliedSchemaArnsOutput = schema.new({
+    id = id.from(_N, "ListAppliedSchemaArnsOutput"),
+    type = "structure",
+    members = {
+        SchemaArns = schema.new({
+            id = id.from(_N, "ListAppliedSchemaArnsOutput", "SchemaArns"),
+            type = "list",
+            name = "SchemaArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAppliedSchemaArnsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAttachedIndicesInput = schema.new({
+    id = id.from(_N, "ListAttachedIndicesInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "ListAttachedIndicesInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        TargetReference = schema.new({
+            id = id.from(_N, "ListAttachedIndicesInput", "TargetReference"),
+            type = "structure",
+            name = "TargetReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAttachedIndicesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListAttachedIndicesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        ConsistencyLevel = schema.new({
+            id = id.from(_N, "ListAttachedIndicesInput", "ConsistencyLevel"),
+            type = "string",
+            name = "ConsistencyLevel",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-consistency-level" },
+            },
+        }),
+    },
+})
+
+M.ListAttachedIndicesOutput = schema.new({
+    id = id.from(_N, "ListAttachedIndicesOutput"),
+    type = "structure",
+    members = {
+        IndexAttachments = schema.new({
+            id = id.from(_N, "ListAttachedIndicesOutput", "IndexAttachments"),
+            type = "list",
+            name = "IndexAttachments",
+            target_id = prelude.Document.id,
+            list_member = M.IndexAttachment,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAttachedIndicesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListDevelopmentSchemaArnsInput = schema.new({
+    id = id.from(_N, "ListDevelopmentSchemaArnsInput"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListDevelopmentSchemaArnsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListDevelopmentSchemaArnsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ListDevelopmentSchemaArnsOutput = schema.new({
+    id = id.from(_N, "ListDevelopmentSchemaArnsOutput"),
+    type = "structure",
+    members = {
+        SchemaArns = schema.new({
+            id = id.from(_N, "ListDevelopmentSchemaArnsOutput", "SchemaArns"),
+            type = "list",
+            name = "SchemaArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListDevelopmentSchemaArnsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListDirectoriesInput = schema.new({
+    id = id.from(_N, "ListDirectoriesInput"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListDirectoriesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListDirectoriesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        state = schema.new({
+            id = id.from(_N, "ListDirectoriesInput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListDirectoriesOutput = schema.new({
+    id = id.from(_N, "ListDirectoriesOutput"),
+    type = "structure",
+    members = {
+        Directories = schema.new({
+            id = id.from(_N, "ListDirectoriesOutput", "Directories"),
+            type = "list",
+            name = "Directories",
+            target_id = prelude.Document.id,
+            list_member = M.Directory,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListDirectoriesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListFacetAttributesInput = schema.new({
+    id = id.from(_N, "ListFacetAttributesInput"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "ListFacetAttributesInput", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "ListFacetAttributesInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListFacetAttributesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListFacetAttributesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ListFacetAttributesOutput = schema.new({
+    id = id.from(_N, "ListFacetAttributesOutput"),
+    type = "structure",
+    members = {
+        Attributes = schema.new({
+            id = id.from(_N, "ListFacetAttributesOutput", "Attributes"),
+            type = "list",
+            name = "Attributes",
+            target_id = prelude.Document.id,
+            list_member = M.FacetAttribute,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListFacetAttributesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListFacetNamesInput = schema.new({
+    id = id.from(_N, "ListFacetNamesInput"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "ListFacetNamesInput", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListFacetNamesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListFacetNamesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ListFacetNamesOutput = schema.new({
+    id = id.from(_N, "ListFacetNamesOutput"),
+    type = "structure",
+    members = {
+        FacetNames = schema.new({
+            id = id.from(_N, "ListFacetNamesOutput", "FacetNames"),
+            type = "list",
+            name = "FacetNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListFacetNamesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListIncomingTypedLinksInput = schema.new({
+    id = id.from(_N, "ListIncomingTypedLinksInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "ListIncomingTypedLinksInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        ObjectReference = schema.new({
+            id = id.from(_N, "ListIncomingTypedLinksInput", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FilterAttributeRanges = schema.new({
+            id = id.from(_N, "ListIncomingTypedLinksInput", "FilterAttributeRanges"),
+            type = "list",
+            name = "FilterAttributeRanges",
+            target_id = prelude.Document.id,
+            list_member = M.TypedLinkAttributeRange,
+        }),
+        FilterTypedLink = schema.new({
+            id = id.from(_N, "ListIncomingTypedLinksInput", "FilterTypedLink"),
+            type = "structure",
+            name = "FilterTypedLink",
+            target_id = id.from(_N, "TypedLinkSchemaAndFacetName"),
+            target = M.TypedLinkSchemaAndFacetName,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListIncomingTypedLinksInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListIncomingTypedLinksInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        ConsistencyLevel = schema.new({
+            id = id.from(_N, "ListIncomingTypedLinksInput", "ConsistencyLevel"),
+            type = "string",
+            name = "ConsistencyLevel",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListIncomingTypedLinksOutput = schema.new({
+    id = id.from(_N, "ListIncomingTypedLinksOutput"),
+    type = "structure",
+    members = {
+        LinkSpecifiers = schema.new({
+            id = id.from(_N, "ListIncomingTypedLinksOutput", "LinkSpecifiers"),
+            type = "list",
+            name = "LinkSpecifiers",
+            target_id = prelude.Document.id,
+            list_member = M.TypedLinkSpecifier,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListIncomingTypedLinksOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListIndexInput = schema.new({
+    id = id.from(_N, "ListIndexInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "ListIndexInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        RangesOnIndexedValues = schema.new({
+            id = id.from(_N, "ListIndexInput", "RangesOnIndexedValues"),
+            type = "list",
+            name = "RangesOnIndexedValues",
+            target_id = prelude.Document.id,
+            list_member = M.ObjectAttributeRange,
+        }),
+        IndexReference = schema.new({
+            id = id.from(_N, "ListIndexInput", "IndexReference"),
+            type = "structure",
+            name = "IndexReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListIndexInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListIndexInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        ConsistencyLevel = schema.new({
+            id = id.from(_N, "ListIndexInput", "ConsistencyLevel"),
+            type = "string",
+            name = "ConsistencyLevel",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-consistency-level" },
+            },
+        }),
+    },
+})
+
+M.ListIndexOutput = schema.new({
+    id = id.from(_N, "ListIndexOutput"),
+    type = "structure",
+    members = {
+        IndexAttachments = schema.new({
+            id = id.from(_N, "ListIndexOutput", "IndexAttachments"),
+            type = "list",
+            name = "IndexAttachments",
+            target_id = prelude.Document.id,
+            list_member = M.IndexAttachment,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListIndexOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListManagedSchemaArnsInput = schema.new({
+    id = id.from(_N, "ListManagedSchemaArnsInput"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "ListManagedSchemaArnsInput", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListManagedSchemaArnsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListManagedSchemaArnsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ListManagedSchemaArnsOutput = schema.new({
+    id = id.from(_N, "ListManagedSchemaArnsOutput"),
+    type = "structure",
+    members = {
+        SchemaArns = schema.new({
+            id = id.from(_N, "ListManagedSchemaArnsOutput", "SchemaArns"),
+            type = "list",
+            name = "SchemaArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListManagedSchemaArnsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListObjectAttributesInput = schema.new({
+    id = id.from(_N, "ListObjectAttributesInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "ListObjectAttributesInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        ObjectReference = schema.new({
+            id = id.from(_N, "ListObjectAttributesInput", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListObjectAttributesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListObjectAttributesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        ConsistencyLevel = schema.new({
+            id = id.from(_N, "ListObjectAttributesInput", "ConsistencyLevel"),
+            type = "string",
+            name = "ConsistencyLevel",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-consistency-level" },
+            },
+        }),
+        FacetFilter = schema.new({
+            id = id.from(_N, "ListObjectAttributesInput", "FacetFilter"),
+            type = "structure",
+            name = "FacetFilter",
+            target_id = id.from(_N, "SchemaFacet"),
+            target = M.SchemaFacet,
+        }),
+    },
+})
+
+M.ListObjectAttributesOutput = schema.new({
+    id = id.from(_N, "ListObjectAttributesOutput"),
+    type = "structure",
+    members = {
+        Attributes = schema.new({
+            id = id.from(_N, "ListObjectAttributesOutput", "Attributes"),
+            type = "list",
+            name = "Attributes",
+            target_id = prelude.Document.id,
+            list_member = M.AttributeKeyAndValue,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListObjectAttributesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListObjectChildrenInput = schema.new({
+    id = id.from(_N, "ListObjectChildrenInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "ListObjectChildrenInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        ObjectReference = schema.new({
+            id = id.from(_N, "ListObjectChildrenInput", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListObjectChildrenInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListObjectChildrenInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        ConsistencyLevel = schema.new({
+            id = id.from(_N, "ListObjectChildrenInput", "ConsistencyLevel"),
+            type = "string",
+            name = "ConsistencyLevel",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-consistency-level" },
+            },
+        }),
+    },
+})
+
+M.ListObjectChildrenOutput = schema.new({
+    id = id.from(_N, "ListObjectChildrenOutput"),
+    type = "structure",
+    members = {
+        Children = schema.new({
+            id = id.from(_N, "ListObjectChildrenOutput", "Children"),
+            type = "map",
+            name = "Children",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListObjectChildrenOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListObjectParentPathsInput = schema.new({
+    id = id.from(_N, "ListObjectParentPathsInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "ListObjectParentPathsInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        ObjectReference = schema.new({
+            id = id.from(_N, "ListObjectParentPathsInput", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListObjectParentPathsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListObjectParentPathsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ListObjectParentPathsOutput = schema.new({
+    id = id.from(_N, "ListObjectParentPathsOutput"),
+    type = "structure",
+    members = {
+        PathToObjectIdentifiersList = schema.new({
+            id = id.from(_N, "ListObjectParentPathsOutput", "PathToObjectIdentifiersList"),
+            type = "list",
+            name = "PathToObjectIdentifiersList",
+            target_id = prelude.Document.id,
+            list_member = M.PathToObjectIdentifiers,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListObjectParentPathsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CannotListParentOfRootException = schema.new({
+    id = id.from(_N, "CannotListParentOfRootException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "CannotListParentOfRootException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListObjectParentsInput = schema.new({
+    id = id.from(_N, "ListObjectParentsInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "ListObjectParentsInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        ObjectReference = schema.new({
+            id = id.from(_N, "ListObjectParentsInput", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListObjectParentsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListObjectParentsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        ConsistencyLevel = schema.new({
+            id = id.from(_N, "ListObjectParentsInput", "ConsistencyLevel"),
+            type = "string",
+            name = "ConsistencyLevel",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-consistency-level" },
+            },
+        }),
+        IncludeAllLinksToEachParent = schema.new({
+            id = id.from(_N, "ListObjectParentsInput", "IncludeAllLinksToEachParent"),
+            type = "boolean",
+            name = "IncludeAllLinksToEachParent",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+    },
+})
+
+M.ListObjectParentsOutput = schema.new({
+    id = id.from(_N, "ListObjectParentsOutput"),
+    type = "structure",
+    members = {
+        Parents = schema.new({
+            id = id.from(_N, "ListObjectParentsOutput", "Parents"),
+            type = "map",
+            name = "Parents",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListObjectParentsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        ParentLinks = schema.new({
+            id = id.from(_N, "ListObjectParentsOutput", "ParentLinks"),
+            type = "list",
+            name = "ParentLinks",
+            target_id = prelude.Document.id,
+            list_member = M.ObjectIdentifierAndLinkNameTuple,
+        }),
+    },
+})
+
+M.ListObjectPoliciesInput = schema.new({
+    id = id.from(_N, "ListObjectPoliciesInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "ListObjectPoliciesInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        ObjectReference = schema.new({
+            id = id.from(_N, "ListObjectPoliciesInput", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListObjectPoliciesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListObjectPoliciesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        ConsistencyLevel = schema.new({
+            id = id.from(_N, "ListObjectPoliciesInput", "ConsistencyLevel"),
+            type = "string",
+            name = "ConsistencyLevel",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-consistency-level" },
+            },
+        }),
+    },
+})
+
+M.ListObjectPoliciesOutput = schema.new({
+    id = id.from(_N, "ListObjectPoliciesOutput"),
+    type = "structure",
+    members = {
+        AttachedPolicyIds = schema.new({
+            id = id.from(_N, "ListObjectPoliciesOutput", "AttachedPolicyIds"),
+            type = "list",
+            name = "AttachedPolicyIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListObjectPoliciesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListOutgoingTypedLinksInput = schema.new({
+    id = id.from(_N, "ListOutgoingTypedLinksInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "ListOutgoingTypedLinksInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        ObjectReference = schema.new({
+            id = id.from(_N, "ListOutgoingTypedLinksInput", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FilterAttributeRanges = schema.new({
+            id = id.from(_N, "ListOutgoingTypedLinksInput", "FilterAttributeRanges"),
+            type = "list",
+            name = "FilterAttributeRanges",
+            target_id = prelude.Document.id,
+            list_member = M.TypedLinkAttributeRange,
+        }),
+        FilterTypedLink = schema.new({
+            id = id.from(_N, "ListOutgoingTypedLinksInput", "FilterTypedLink"),
+            type = "structure",
+            name = "FilterTypedLink",
+            target_id = id.from(_N, "TypedLinkSchemaAndFacetName"),
+            target = M.TypedLinkSchemaAndFacetName,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListOutgoingTypedLinksInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListOutgoingTypedLinksInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        ConsistencyLevel = schema.new({
+            id = id.from(_N, "ListOutgoingTypedLinksInput", "ConsistencyLevel"),
+            type = "string",
+            name = "ConsistencyLevel",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListOutgoingTypedLinksOutput = schema.new({
+    id = id.from(_N, "ListOutgoingTypedLinksOutput"),
+    type = "structure",
+    members = {
+        TypedLinkSpecifiers = schema.new({
+            id = id.from(_N, "ListOutgoingTypedLinksOutput", "TypedLinkSpecifiers"),
+            type = "list",
+            name = "TypedLinkSpecifiers",
+            target_id = prelude.Document.id,
+            list_member = M.TypedLinkSpecifier,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListOutgoingTypedLinksOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListPolicyAttachmentsInput = schema.new({
+    id = id.from(_N, "ListPolicyAttachmentsInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "ListPolicyAttachmentsInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        PolicyReference = schema.new({
+            id = id.from(_N, "ListPolicyAttachmentsInput", "PolicyReference"),
+            type = "structure",
+            name = "PolicyReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListPolicyAttachmentsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListPolicyAttachmentsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        ConsistencyLevel = schema.new({
+            id = id.from(_N, "ListPolicyAttachmentsInput", "ConsistencyLevel"),
+            type = "string",
+            name = "ConsistencyLevel",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-consistency-level" },
+            },
+        }),
+    },
+})
+
+M.ListPolicyAttachmentsOutput = schema.new({
+    id = id.from(_N, "ListPolicyAttachmentsOutput"),
+    type = "structure",
+    members = {
+        ObjectIdentifiers = schema.new({
+            id = id.from(_N, "ListPolicyAttachmentsOutput", "ObjectIdentifiers"),
+            type = "list",
+            name = "ObjectIdentifiers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListPolicyAttachmentsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListPublishedSchemaArnsInput = schema.new({
+    id = id.from(_N, "ListPublishedSchemaArnsInput"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "ListPublishedSchemaArnsInput", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListPublishedSchemaArnsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListPublishedSchemaArnsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ListPublishedSchemaArnsOutput = schema.new({
+    id = id.from(_N, "ListPublishedSchemaArnsOutput"),
+    type = "structure",
+    members = {
+        SchemaArns = schema.new({
+            id = id.from(_N, "ListPublishedSchemaArnsOutput", "SchemaArns"),
+            type = "list",
+            name = "SchemaArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListPublishedSchemaArnsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidTaggingRequestException = schema.new({
+    id = id.from(_N, "InvalidTaggingRequestException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InvalidTaggingRequestException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.Tag = schema.new({
+    id = id.from(_N, "Tag"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "Tag", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+        }),
+        Value = schema.new({
+            id = id.from(_N, "Tag", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceOutput"),
+    type = "structure",
+    members = {
+        Tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTypedLinkFacetAttributesInput = schema.new({
+    id = id.from(_N, "ListTypedLinkFacetAttributesInput"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "ListTypedLinkFacetAttributesInput", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "ListTypedLinkFacetAttributesInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListTypedLinkFacetAttributesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListTypedLinkFacetAttributesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ListTypedLinkFacetAttributesOutput = schema.new({
+    id = id.from(_N, "ListTypedLinkFacetAttributesOutput"),
+    type = "structure",
+    members = {
+        Attributes = schema.new({
+            id = id.from(_N, "ListTypedLinkFacetAttributesOutput", "Attributes"),
+            type = "list",
+            name = "Attributes",
+            target_id = prelude.Document.id,
+            list_member = M.TypedLinkAttributeDefinition,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListTypedLinkFacetAttributesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTypedLinkFacetNamesInput = schema.new({
+    id = id.from(_N, "ListTypedLinkFacetNamesInput"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "ListTypedLinkFacetNamesInput", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListTypedLinkFacetNamesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListTypedLinkFacetNamesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ListTypedLinkFacetNamesOutput = schema.new({
+    id = id.from(_N, "ListTypedLinkFacetNamesOutput"),
+    type = "structure",
+    members = {
+        FacetNames = schema.new({
+            id = id.from(_N, "ListTypedLinkFacetNamesOutput", "FacetNames"),
+            type = "list",
+            name = "FacetNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListTypedLinkFacetNamesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.LookupPolicyInput = schema.new({
+    id = id.from(_N, "LookupPolicyInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "LookupPolicyInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        ObjectReference = schema.new({
+            id = id.from(_N, "LookupPolicyInput", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "LookupPolicyInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "LookupPolicyInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.LookupPolicyOutput = schema.new({
+    id = id.from(_N, "LookupPolicyOutput"),
+    type = "structure",
+    members = {
+        PolicyToPathList = schema.new({
+            id = id.from(_N, "LookupPolicyOutput", "PolicyToPathList"),
+            type = "list",
+            name = "PolicyToPathList",
+            target_id = prelude.Document.id,
+            list_member = M.PolicyToPath,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "LookupPolicyOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PublishSchemaInput = schema.new({
+    id = id.from(_N, "PublishSchemaInput"),
+    type = "structure",
+    members = {
+        DevelopmentSchemaArn = schema.new({
+            id = id.from(_N, "PublishSchemaInput", "DevelopmentSchemaArn"),
+            type = "string",
+            name = "DevelopmentSchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        Version = schema.new({
+            id = id.from(_N, "PublishSchemaInput", "Version"),
+            type = "string",
+            name = "Version",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MinorVersion = schema.new({
+            id = id.from(_N, "PublishSchemaInput", "MinorVersion"),
+            type = "string",
+            name = "MinorVersion",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "PublishSchemaInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PublishSchemaOutput = schema.new({
+    id = id.from(_N, "PublishSchemaOutput"),
+    type = "structure",
+    members = {
+        PublishedSchemaArn = schema.new({
+            id = id.from(_N, "PublishSchemaOutput", "PublishedSchemaArn"),
+            type = "string",
+            name = "PublishedSchemaArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SchemaAlreadyPublishedException = schema.new({
+    id = id.from(_N, "SchemaAlreadyPublishedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "SchemaAlreadyPublishedException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidSchemaDocException = schema.new({
+    id = id.from(_N, "InvalidSchemaDocException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InvalidSchemaDocException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PutSchemaFromJsonInput = schema.new({
+    id = id.from(_N, "PutSchemaFromJsonInput"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "PutSchemaFromJsonInput", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        Document = schema.new({
+            id = id.from(_N, "PutSchemaFromJsonInput", "Document"),
+            type = "string",
+            name = "Document",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutSchemaFromJsonOutput = schema.new({
+    id = id.from(_N, "PutSchemaFromJsonOutput"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "PutSchemaFromJsonOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RemoveFacetFromObjectInput = schema.new({
+    id = id.from(_N, "RemoveFacetFromObjectInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "RemoveFacetFromObjectInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        SchemaFacet = schema.new({
+            id = id.from(_N, "RemoveFacetFromObjectInput", "SchemaFacet"),
+            type = "structure",
+            name = "SchemaFacet",
+            target_id = id.from(_N, "SchemaFacet"),
+            target = M.SchemaFacet,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ObjectReference = schema.new({
+            id = id.from(_N, "RemoveFacetFromObjectInput", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RemoveFacetFromObjectOutput = schema.new({
+    id = id.from(_N, "RemoveFacetFromObjectOutput"),
+    type = "structure",
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "TagResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceOutput"),
+    type = "structure",
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "UntagResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "TagKeys"),
+            type = "list",
+            name = "TagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
+M.InvalidFacetUpdateException = schema.new({
+    id = id.from(_N, "InvalidFacetUpdateException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InvalidFacetUpdateException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.FacetAttributeUpdate = schema.new({
+    id = id.from(_N, "FacetAttributeUpdate"),
+    type = "structure",
+    members = {
+        Attribute = schema.new({
+            id = id.from(_N, "FacetAttributeUpdate", "Attribute"),
+            type = "structure",
+            name = "Attribute",
+            target_id = id.from(_N, "FacetAttribute"),
+            target = M.FacetAttribute,
+        }),
+        Action = schema.new({
+            id = id.from(_N, "FacetAttributeUpdate", "Action"),
+            type = "string",
+            name = "Action",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateFacetInput = schema.new({
+    id = id.from(_N, "UpdateFacetInput"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "UpdateFacetInput", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateFacetInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AttributeUpdates = schema.new({
+            id = id.from(_N, "UpdateFacetInput", "AttributeUpdates"),
+            type = "list",
+            name = "AttributeUpdates",
+            target_id = prelude.Document.id,
+            list_member = M.FacetAttributeUpdate,
+        }),
+        ObjectType = schema.new({
+            id = id.from(_N, "UpdateFacetInput", "ObjectType"),
+            type = "string",
+            name = "ObjectType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateFacetOutput = schema.new({
+    id = id.from(_N, "UpdateFacetOutput"),
+    type = "structure",
+})
+
+M.UpdateLinkAttributesInput = schema.new({
+    id = id.from(_N, "UpdateLinkAttributesInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "UpdateLinkAttributesInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        TypedLinkSpecifier = schema.new({
+            id = id.from(_N, "UpdateLinkAttributesInput", "TypedLinkSpecifier"),
+            type = "structure",
+            name = "TypedLinkSpecifier",
+            target_id = id.from(_N, "TypedLinkSpecifier"),
+            target = M.TypedLinkSpecifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AttributeUpdates = schema.new({
+            id = id.from(_N, "UpdateLinkAttributesInput", "AttributeUpdates"),
+            type = "list",
+            name = "AttributeUpdates",
+            target_id = prelude.Document.id,
+            list_member = M.LinkAttributeUpdate,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateLinkAttributesOutput = schema.new({
+    id = id.from(_N, "UpdateLinkAttributesOutput"),
+    type = "structure",
+})
+
+M.UpdateObjectAttributesInput = schema.new({
+    id = id.from(_N, "UpdateObjectAttributesInput"),
+    type = "structure",
+    members = {
+        DirectoryArn = schema.new({
+            id = id.from(_N, "UpdateObjectAttributesInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        ObjectReference = schema.new({
+            id = id.from(_N, "UpdateObjectAttributesInput", "ObjectReference"),
+            type = "structure",
+            name = "ObjectReference",
+            target_id = id.from(_N, "ObjectReference"),
+            target = M.ObjectReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AttributeUpdates = schema.new({
+            id = id.from(_N, "UpdateObjectAttributesInput", "AttributeUpdates"),
+            type = "list",
+            name = "AttributeUpdates",
+            target_id = prelude.Document.id,
+            list_member = M.ObjectAttributeUpdate,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateObjectAttributesOutput = schema.new({
+    id = id.from(_N, "UpdateObjectAttributesOutput"),
+    type = "structure",
+    members = {
+        ObjectIdentifier = schema.new({
+            id = id.from(_N, "UpdateObjectAttributesOutput", "ObjectIdentifier"),
+            type = "string",
+            name = "ObjectIdentifier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateSchemaInput = schema.new({
+    id = id.from(_N, "UpdateSchemaInput"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "UpdateSchemaInput", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateSchemaInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateSchemaOutput = schema.new({
+    id = id.from(_N, "UpdateSchemaOutput"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "UpdateSchemaOutput", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TypedLinkFacetAttributeUpdate = schema.new({
+    id = id.from(_N, "TypedLinkFacetAttributeUpdate"),
+    type = "structure",
+    members = {
+        Attribute = schema.new({
+            id = id.from(_N, "TypedLinkFacetAttributeUpdate", "Attribute"),
+            type = "structure",
+            name = "Attribute",
+            target_id = id.from(_N, "TypedLinkAttributeDefinition"),
+            target = M.TypedLinkAttributeDefinition,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Action = schema.new({
+            id = id.from(_N, "TypedLinkFacetAttributeUpdate", "Action"),
+            type = "string",
+            name = "Action",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateTypedLinkFacetInput = schema.new({
+    id = id.from(_N, "UpdateTypedLinkFacetInput"),
+    type = "structure",
+    members = {
+        SchemaArn = schema.new({
+            id = id.from(_N, "UpdateTypedLinkFacetInput", "SchemaArn"),
+            type = "string",
+            name = "SchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-data-partition" },
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateTypedLinkFacetInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AttributeUpdates = schema.new({
+            id = id.from(_N, "UpdateTypedLinkFacetInput", "AttributeUpdates"),
+            type = "list",
+            name = "AttributeUpdates",
+            target_id = prelude.Document.id,
+            list_member = M.TypedLinkFacetAttributeUpdate,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IdentityAttributeOrder = schema.new({
+            id = id.from(_N, "UpdateTypedLinkFacetInput", "IdentityAttributeOrder"),
+            type = "list",
+            name = "IdentityAttributeOrder",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateTypedLinkFacetOutput = schema.new({
+    id = id.from(_N, "UpdateTypedLinkFacetOutput"),
+    type = "structure",
+})
+
+M.IncompatibleSchemaException = schema.new({
+    id = id.from(_N, "IncompatibleSchemaException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "IncompatibleSchemaException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpgradeAppliedSchemaInput = schema.new({
+    id = id.from(_N, "UpgradeAppliedSchemaInput"),
+    type = "structure",
+    members = {
+        PublishedSchemaArn = schema.new({
+            id = id.from(_N, "UpgradeAppliedSchemaInput", "PublishedSchemaArn"),
+            type = "string",
+            name = "PublishedSchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DirectoryArn = schema.new({
+            id = id.from(_N, "UpgradeAppliedSchemaInput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "UpgradeAppliedSchemaInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+    },
+})
+
+M.UpgradeAppliedSchemaOutput = schema.new({
+    id = id.from(_N, "UpgradeAppliedSchemaOutput"),
+    type = "structure",
+    members = {
+        UpgradedSchemaArn = schema.new({
+            id = id.from(_N, "UpgradeAppliedSchemaOutput", "UpgradedSchemaArn"),
+            type = "string",
+            name = "UpgradedSchemaArn",
+            target_id = prelude.String.id,
+        }),
+        DirectoryArn = schema.new({
+            id = id.from(_N, "UpgradeAppliedSchemaOutput", "DirectoryArn"),
+            type = "string",
+            name = "DirectoryArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpgradePublishedSchemaInput = schema.new({
+    id = id.from(_N, "UpgradePublishedSchemaInput"),
+    type = "structure",
+    members = {
+        DevelopmentSchemaArn = schema.new({
+            id = id.from(_N, "UpgradePublishedSchemaInput", "DevelopmentSchemaArn"),
+            type = "string",
+            name = "DevelopmentSchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PublishedSchemaArn = schema.new({
+            id = id.from(_N, "UpgradePublishedSchemaInput", "PublishedSchemaArn"),
+            type = "string",
+            name = "PublishedSchemaArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MinorVersion = schema.new({
+            id = id.from(_N, "UpgradePublishedSchemaInput", "MinorVersion"),
+            type = "string",
+            name = "MinorVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "UpgradePublishedSchemaInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+    },
+})
+
+M.UpgradePublishedSchemaOutput = schema.new({
+    id = id.from(_N, "UpgradePublishedSchemaOutput"),
+    type = "structure",
+    members = {
+        UpgradedSchemaArn = schema.new({
+            id = id.from(_N, "UpgradePublishedSchemaOutput", "UpgradedSchemaArn"),
+            type = "string",
+            name = "UpgradedSchemaArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+return M

@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("neptunegraph.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("neptunegraph.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("neptunegraph.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:cancelExportTask(input, options)
     return self:invokeOperation(input, {
         name = "CancelExportTask",
-        input_schema = types.CancelExportTaskInput,
-        output_schema = types.CancelExportTaskOutput,
+        input_schema = schemas.CancelExportTaskInput,
+        output_schema = schemas.CancelExportTaskOutput,
         http_method = "DELETE",
         http_path = "/exporttasks/{taskIdentifier}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:cancelImportTask(input, options)
     return self:invokeOperation(input, {
         name = "CancelImportTask",
-        input_schema = types.CancelImportTaskInput,
-        output_schema = types.CancelImportTaskOutput,
+        input_schema = schemas.CancelImportTaskInput,
+        output_schema = schemas.CancelImportTaskOutput,
         http_method = "DELETE",
         http_path = "/importtasks/{taskIdentifier}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:cancelQuery(input, options)
     return self:invokeOperation(input, {
         name = "CancelQuery",
-        input_schema = types.CancelQueryInput,
-        output_schema = types.CancelQueryOutput,
+        input_schema = schemas.CancelQueryInput,
+        output_schema = schemas.CancelQueryOutput,
         http_method = "DELETE",
         http_path = "/queries/{queryId}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createGraph(input, options)
     return self:invokeOperation(input, {
         name = "CreateGraph",
-        input_schema = types.CreateGraphInput,
-        output_schema = types.CreateGraphOutput,
+        input_schema = schemas.CreateGraphInput,
+        output_schema = schemas.CreateGraphOutput,
         http_method = "POST",
         http_path = "/graphs",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createGraphSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "CreateGraphSnapshot",
-        input_schema = types.CreateGraphSnapshotInput,
-        output_schema = types.CreateGraphSnapshotOutput,
+        input_schema = schemas.CreateGraphSnapshotInput,
+        output_schema = schemas.CreateGraphSnapshotOutput,
         http_method = "POST",
         http_path = "/snapshots",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createGraphUsingImportTask(input, options)
     return self:invokeOperation(input, {
         name = "CreateGraphUsingImportTask",
-        input_schema = types.CreateGraphUsingImportTaskInput,
-        output_schema = types.CreateGraphUsingImportTaskOutput,
+        input_schema = schemas.CreateGraphUsingImportTaskInput,
+        output_schema = schemas.CreateGraphUsingImportTaskOutput,
         http_method = "POST",
         http_path = "/importtasks",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createPrivateGraphEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "CreatePrivateGraphEndpoint",
-        input_schema = types.CreatePrivateGraphEndpointInput,
-        output_schema = types.CreatePrivateGraphEndpointOutput,
+        input_schema = schemas.CreatePrivateGraphEndpointInput,
+        output_schema = schemas.CreatePrivateGraphEndpointOutput,
         http_method = "POST",
         http_path = "/graphs/{graphIdentifier}/endpoints/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteGraph(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGraph",
-        input_schema = types.DeleteGraphInput,
-        output_schema = types.DeleteGraphOutput,
+        input_schema = schemas.DeleteGraphInput,
+        output_schema = schemas.DeleteGraphOutput,
         http_method = "DELETE",
         http_path = "/graphs/{graphIdentifier}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteGraphSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGraphSnapshot",
-        input_schema = types.DeleteGraphSnapshotInput,
-        output_schema = types.DeleteGraphSnapshotOutput,
+        input_schema = schemas.DeleteGraphSnapshotInput,
+        output_schema = schemas.DeleteGraphSnapshotOutput,
         http_method = "DELETE",
         http_path = "/snapshots/{snapshotIdentifier}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deletePrivateGraphEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "DeletePrivateGraphEndpoint",
-        input_schema = types.DeletePrivateGraphEndpointInput,
-        output_schema = types.DeletePrivateGraphEndpointOutput,
+        input_schema = schemas.DeletePrivateGraphEndpointInput,
+        output_schema = schemas.DeletePrivateGraphEndpointOutput,
         http_method = "DELETE",
         http_path = "/graphs/{graphIdentifier}/endpoints/{vpcId}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:executeQuery(input, options)
     return self:invokeOperation(input, {
         name = "ExecuteQuery",
-        input_schema = types.ExecuteQueryInput,
-        output_schema = types.ExecuteQueryOutput,
+        input_schema = schemas.ExecuteQueryInput,
+        output_schema = schemas.ExecuteQueryOutput,
         http_method = "POST",
         http_path = "/queries",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getExportTask(input, options)
     return self:invokeOperation(input, {
         name = "GetExportTask",
-        input_schema = types.GetExportTaskInput,
-        output_schema = types.GetExportTaskOutput,
+        input_schema = schemas.GetExportTaskInput,
+        output_schema = schemas.GetExportTaskOutput,
         http_method = "GET",
         http_path = "/exporttasks/{taskIdentifier}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getGraph(input, options)
     return self:invokeOperation(input, {
         name = "GetGraph",
-        input_schema = types.GetGraphInput,
-        output_schema = types.GetGraphOutput,
+        input_schema = schemas.GetGraphInput,
+        output_schema = schemas.GetGraphOutput,
         http_method = "GET",
         http_path = "/graphs/{graphIdentifier}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getGraphSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "GetGraphSnapshot",
-        input_schema = types.GetGraphSnapshotInput,
-        output_schema = types.GetGraphSnapshotOutput,
+        input_schema = schemas.GetGraphSnapshotInput,
+        output_schema = schemas.GetGraphSnapshotOutput,
         http_method = "GET",
         http_path = "/snapshots/{snapshotIdentifier}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getGraphSummary(input, options)
     return self:invokeOperation(input, {
         name = "GetGraphSummary",
-        input_schema = types.GetGraphSummaryInput,
-        output_schema = types.GetGraphSummaryOutput,
+        input_schema = schemas.GetGraphSummaryInput,
+        output_schema = schemas.GetGraphSummaryOutput,
         http_method = "GET",
         http_path = "/summary",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getImportTask(input, options)
     return self:invokeOperation(input, {
         name = "GetImportTask",
-        input_schema = types.GetImportTaskInput,
-        output_schema = types.GetImportTaskOutput,
+        input_schema = schemas.GetImportTaskInput,
+        output_schema = schemas.GetImportTaskOutput,
         http_method = "GET",
         http_path = "/importtasks/{taskIdentifier}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getPrivateGraphEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "GetPrivateGraphEndpoint",
-        input_schema = types.GetPrivateGraphEndpointInput,
-        output_schema = types.GetPrivateGraphEndpointOutput,
+        input_schema = schemas.GetPrivateGraphEndpointInput,
+        output_schema = schemas.GetPrivateGraphEndpointOutput,
         http_method = "GET",
         http_path = "/graphs/{graphIdentifier}/endpoints/{vpcId}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getQuery(input, options)
     return self:invokeOperation(input, {
         name = "GetQuery",
-        input_schema = types.GetQueryInput,
-        output_schema = types.GetQueryOutput,
+        input_schema = schemas.GetQueryInput,
+        output_schema = schemas.GetQueryOutput,
         http_method = "GET",
         http_path = "/queries/{queryId}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listExportTasks(input, options)
     return self:invokeOperation(input, {
         name = "ListExportTasks",
-        input_schema = types.ListExportTasksInput,
-        output_schema = types.ListExportTasksOutput,
+        input_schema = schemas.ListExportTasksInput,
+        output_schema = schemas.ListExportTasksOutput,
         http_method = "GET",
         http_path = "/exporttasks",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listGraphs(input, options)
     return self:invokeOperation(input, {
         name = "ListGraphs",
-        input_schema = types.ListGraphsInput,
-        output_schema = types.ListGraphsOutput,
+        input_schema = schemas.ListGraphsInput,
+        output_schema = schemas.ListGraphsOutput,
         http_method = "GET",
         http_path = "/graphs",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listGraphSnapshots(input, options)
     return self:invokeOperation(input, {
         name = "ListGraphSnapshots",
-        input_schema = types.ListGraphSnapshotsInput,
-        output_schema = types.ListGraphSnapshotsOutput,
+        input_schema = schemas.ListGraphSnapshotsInput,
+        output_schema = schemas.ListGraphSnapshotsOutput,
         http_method = "GET",
         http_path = "/snapshots",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listImportTasks(input, options)
     return self:invokeOperation(input, {
         name = "ListImportTasks",
-        input_schema = types.ListImportTasksInput,
-        output_schema = types.ListImportTasksOutput,
+        input_schema = schemas.ListImportTasksInput,
+        output_schema = schemas.ListImportTasksOutput,
         http_method = "GET",
         http_path = "/importtasks",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listPrivateGraphEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "ListPrivateGraphEndpoints",
-        input_schema = types.ListPrivateGraphEndpointsInput,
-        output_schema = types.ListPrivateGraphEndpointsOutput,
+        input_schema = schemas.ListPrivateGraphEndpointsInput,
+        output_schema = schemas.ListPrivateGraphEndpointsOutput,
         http_method = "GET",
         http_path = "/graphs/{graphIdentifier}/endpoints/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listQueries(input, options)
     return self:invokeOperation(input, {
         name = "ListQueries",
-        input_schema = types.ListQueriesInput,
-        output_schema = types.ListQueriesOutput,
+        input_schema = schemas.ListQueriesInput,
+        output_schema = schemas.ListQueriesOutput,
         http_method = "GET",
         http_path = "/queries",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:resetGraph(input, options)
     return self:invokeOperation(input, {
         name = "ResetGraph",
-        input_schema = types.ResetGraphInput,
-        output_schema = types.ResetGraphOutput,
+        input_schema = schemas.ResetGraphInput,
+        output_schema = schemas.ResetGraphOutput,
         http_method = "PUT",
         http_path = "/graphs/{graphIdentifier}",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:restoreGraphFromSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "RestoreGraphFromSnapshot",
-        input_schema = types.RestoreGraphFromSnapshotInput,
-        output_schema = types.RestoreGraphFromSnapshotOutput,
+        input_schema = schemas.RestoreGraphFromSnapshotInput,
+        output_schema = schemas.RestoreGraphFromSnapshotOutput,
         http_method = "POST",
         http_path = "/snapshots/{snapshotIdentifier}/restore",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:startExportTask(input, options)
     return self:invokeOperation(input, {
         name = "StartExportTask",
-        input_schema = types.StartExportTaskInput,
-        output_schema = types.StartExportTaskOutput,
+        input_schema = schemas.StartExportTaskInput,
+        output_schema = schemas.StartExportTaskOutput,
         http_method = "POST",
         http_path = "/exporttasks",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:startGraph(input, options)
     return self:invokeOperation(input, {
         name = "StartGraph",
-        input_schema = types.StartGraphInput,
-        output_schema = types.StartGraphOutput,
+        input_schema = schemas.StartGraphInput,
+        output_schema = schemas.StartGraphOutput,
         http_method = "POST",
         http_path = "/graphs/{graphIdentifier}/start",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:startImportTask(input, options)
     return self:invokeOperation(input, {
         name = "StartImportTask",
-        input_schema = types.StartImportTaskInput,
-        output_schema = types.StartImportTaskOutput,
+        input_schema = schemas.StartImportTaskInput,
+        output_schema = schemas.StartImportTaskOutput,
         http_method = "POST",
         http_path = "/graphs/{graphIdentifier}/importtasks",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:stopGraph(input, options)
     return self:invokeOperation(input, {
         name = "StopGraph",
-        input_schema = types.StopGraphInput,
-        output_schema = types.StopGraphOutput,
+        input_schema = schemas.StopGraphInput,
+        output_schema = schemas.StopGraphOutput,
         http_method = "POST",
         http_path = "/graphs/{graphIdentifier}/stop",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:updateGraph(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGraph",
-        input_schema = types.UpdateGraphInput,
-        output_schema = types.UpdateGraphOutput,
+        input_schema = schemas.UpdateGraphInput,
+        output_schema = schemas.UpdateGraphOutput,
         http_method = "PATCH",
         http_path = "/graphs/{graphIdentifier}",
         effective_auth_schemes = {

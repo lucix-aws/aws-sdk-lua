@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("account.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("account.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("account.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptPrimaryEmailUpdate(input, options)
     return self:invokeOperation(input, {
         name = "AcceptPrimaryEmailUpdate",
-        input_schema = types.AcceptPrimaryEmailUpdateInput,
-        output_schema = types.AcceptPrimaryEmailUpdateOutput,
+        input_schema = schemas.AcceptPrimaryEmailUpdateInput,
+        output_schema = schemas.AcceptPrimaryEmailUpdateOutput,
         http_method = "POST",
         http_path = "/acceptPrimaryEmailUpdate",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteAlternateContact(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAlternateContact",
-        input_schema = types.DeleteAlternateContactInput,
-        output_schema = types.DeleteAlternateContactOutput,
+        input_schema = schemas.DeleteAlternateContactInput,
+        output_schema = schemas.DeleteAlternateContactOutput,
         http_method = "POST",
         http_path = "/deleteAlternateContact",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:disableRegion(input, options)
     return self:invokeOperation(input, {
         name = "DisableRegion",
-        input_schema = types.DisableRegionInput,
-        output_schema = types.DisableRegionOutput,
+        input_schema = schemas.DisableRegionInput,
+        output_schema = schemas.DisableRegionOutput,
         http_method = "POST",
         http_path = "/disableRegion",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:enableRegion(input, options)
     return self:invokeOperation(input, {
         name = "EnableRegion",
-        input_schema = types.EnableRegionInput,
-        output_schema = types.EnableRegionOutput,
+        input_schema = schemas.EnableRegionInput,
+        output_schema = schemas.EnableRegionOutput,
         http_method = "POST",
         http_path = "/enableRegion",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getAccountInformation(input, options)
     return self:invokeOperation(input, {
         name = "GetAccountInformation",
-        input_schema = types.GetAccountInformationInput,
-        output_schema = types.GetAccountInformationOutput,
+        input_schema = schemas.GetAccountInformationInput,
+        output_schema = schemas.GetAccountInformationOutput,
         http_method = "POST",
         http_path = "/getAccountInformation",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getAlternateContact(input, options)
     return self:invokeOperation(input, {
         name = "GetAlternateContact",
-        input_schema = types.GetAlternateContactInput,
-        output_schema = types.GetAlternateContactOutput,
+        input_schema = schemas.GetAlternateContactInput,
+        output_schema = schemas.GetAlternateContactOutput,
         http_method = "POST",
         http_path = "/getAlternateContact",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getContactInformation(input, options)
     return self:invokeOperation(input, {
         name = "GetContactInformation",
-        input_schema = types.GetContactInformationInput,
-        output_schema = types.GetContactInformationOutput,
+        input_schema = schemas.GetContactInformationInput,
+        output_schema = schemas.GetContactInformationOutput,
         http_method = "POST",
         http_path = "/getContactInformation",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getGovCloudAccountInformation(input, options)
     return self:invokeOperation(input, {
         name = "GetGovCloudAccountInformation",
-        input_schema = types.GetGovCloudAccountInformationInput,
-        output_schema = types.GetGovCloudAccountInformationOutput,
+        input_schema = schemas.GetGovCloudAccountInformationInput,
+        output_schema = schemas.GetGovCloudAccountInformationOutput,
         http_method = "POST",
         http_path = "/getGovCloudAccountInformation",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getPrimaryEmail(input, options)
     return self:invokeOperation(input, {
         name = "GetPrimaryEmail",
-        input_schema = types.GetPrimaryEmailInput,
-        output_schema = types.GetPrimaryEmailOutput,
+        input_schema = schemas.GetPrimaryEmailInput,
+        output_schema = schemas.GetPrimaryEmailOutput,
         http_method = "POST",
         http_path = "/getPrimaryEmail",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getRegionOptStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetRegionOptStatus",
-        input_schema = types.GetRegionOptStatusInput,
-        output_schema = types.GetRegionOptStatusOutput,
+        input_schema = schemas.GetRegionOptStatusInput,
+        output_schema = schemas.GetRegionOptStatusOutput,
         http_method = "POST",
         http_path = "/getRegionOptStatus",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listRegions(input, options)
     return self:invokeOperation(input, {
         name = "ListRegions",
-        input_schema = types.ListRegionsInput,
-        output_schema = types.ListRegionsOutput,
+        input_schema = schemas.ListRegionsInput,
+        output_schema = schemas.ListRegionsOutput,
         http_method = "POST",
         http_path = "/listRegions",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:putAccountName(input, options)
     return self:invokeOperation(input, {
         name = "PutAccountName",
-        input_schema = types.PutAccountNameInput,
-        output_schema = types.PutAccountNameOutput,
+        input_schema = schemas.PutAccountNameInput,
+        output_schema = schemas.PutAccountNameOutput,
         http_method = "POST",
         http_path = "/putAccountName",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:putAlternateContact(input, options)
     return self:invokeOperation(input, {
         name = "PutAlternateContact",
-        input_schema = types.PutAlternateContactInput,
-        output_schema = types.PutAlternateContactOutput,
+        input_schema = schemas.PutAlternateContactInput,
+        output_schema = schemas.PutAlternateContactOutput,
         http_method = "POST",
         http_path = "/putAlternateContact",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:putContactInformation(input, options)
     return self:invokeOperation(input, {
         name = "PutContactInformation",
-        input_schema = types.PutContactInformationInput,
-        output_schema = types.PutContactInformationOutput,
+        input_schema = schemas.PutContactInformationInput,
+        output_schema = schemas.PutContactInformationOutput,
         http_method = "POST",
         http_path = "/putContactInformation",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:startPrimaryEmailUpdate(input, options)
     return self:invokeOperation(input, {
         name = "StartPrimaryEmailUpdate",
-        input_schema = types.StartPrimaryEmailUpdateInput,
-        output_schema = types.StartPrimaryEmailUpdateOutput,
+        input_schema = schemas.StartPrimaryEmailUpdateInput,
+        output_schema = schemas.StartPrimaryEmailUpdateOutput,
         http_method = "POST",
         http_path = "/startPrimaryEmailUpdate",
         effective_auth_schemes = {

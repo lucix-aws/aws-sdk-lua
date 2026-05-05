@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("codegurureviewer.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("codegurureviewer.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("codegurureviewer.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateRepository(input, options)
     return self:invokeOperation(input, {
         name = "AssociateRepository",
-        input_schema = types.AssociateRepositoryInput,
-        output_schema = types.AssociateRepositoryOutput,
+        input_schema = schemas.AssociateRepositoryInput,
+        output_schema = schemas.AssociateRepositoryOutput,
         http_method = "POST",
         http_path = "/associations",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createCodeReview(input, options)
     return self:invokeOperation(input, {
         name = "CreateCodeReview",
-        input_schema = types.CreateCodeReviewInput,
-        output_schema = types.CreateCodeReviewOutput,
+        input_schema = schemas.CreateCodeReviewInput,
+        output_schema = schemas.CreateCodeReviewOutput,
         http_method = "POST",
         http_path = "/codereviews",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:describeCodeReview(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCodeReview",
-        input_schema = types.DescribeCodeReviewInput,
-        output_schema = types.DescribeCodeReviewOutput,
+        input_schema = schemas.DescribeCodeReviewInput,
+        output_schema = schemas.DescribeCodeReviewOutput,
         http_method = "GET",
         http_path = "/codereviews/{CodeReviewArn}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:describeRecommendationFeedback(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRecommendationFeedback",
-        input_schema = types.DescribeRecommendationFeedbackInput,
-        output_schema = types.DescribeRecommendationFeedbackOutput,
+        input_schema = schemas.DescribeRecommendationFeedbackInput,
+        output_schema = schemas.DescribeRecommendationFeedbackOutput,
         http_method = "GET",
         http_path = "/feedback/{CodeReviewArn}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:describeRepositoryAssociation(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRepositoryAssociation",
-        input_schema = types.DescribeRepositoryAssociationInput,
-        output_schema = types.DescribeRepositoryAssociationOutput,
+        input_schema = schemas.DescribeRepositoryAssociationInput,
+        output_schema = schemas.DescribeRepositoryAssociationOutput,
         http_method = "GET",
         http_path = "/associations/{AssociationArn}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:disassociateRepository(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateRepository",
-        input_schema = types.DisassociateRepositoryInput,
-        output_schema = types.DisassociateRepositoryOutput,
+        input_schema = schemas.DisassociateRepositoryInput,
+        output_schema = schemas.DisassociateRepositoryOutput,
         http_method = "DELETE",
         http_path = "/associations/{AssociationArn}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listCodeReviews(input, options)
     return self:invokeOperation(input, {
         name = "ListCodeReviews",
-        input_schema = types.ListCodeReviewsInput,
-        output_schema = types.ListCodeReviewsOutput,
+        input_schema = schemas.ListCodeReviewsInput,
+        output_schema = schemas.ListCodeReviewsOutput,
         http_method = "GET",
         http_path = "/codereviews",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listRecommendationFeedback(input, options)
     return self:invokeOperation(input, {
         name = "ListRecommendationFeedback",
-        input_schema = types.ListRecommendationFeedbackInput,
-        output_schema = types.ListRecommendationFeedbackOutput,
+        input_schema = schemas.ListRecommendationFeedbackInput,
+        output_schema = schemas.ListRecommendationFeedbackOutput,
         http_method = "GET",
         http_path = "/feedback/{CodeReviewArn}/RecommendationFeedback",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "ListRecommendations",
-        input_schema = types.ListRecommendationsInput,
-        output_schema = types.ListRecommendationsOutput,
+        input_schema = schemas.ListRecommendationsInput,
+        output_schema = schemas.ListRecommendationsOutput,
         http_method = "GET",
         http_path = "/codereviews/{CodeReviewArn}/Recommendations",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listRepositoryAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListRepositoryAssociations",
-        input_schema = types.ListRepositoryAssociationsInput,
-        output_schema = types.ListRepositoryAssociationsOutput,
+        input_schema = schemas.ListRepositoryAssociationsInput,
+        output_schema = schemas.ListRepositoryAssociationsOutput,
         http_method = "GET",
         http_path = "/associations",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:putRecommendationFeedback(input, options)
     return self:invokeOperation(input, {
         name = "PutRecommendationFeedback",
-        input_schema = types.PutRecommendationFeedbackInput,
-        output_schema = types.PutRecommendationFeedbackOutput,
+        input_schema = schemas.PutRecommendationFeedbackInput,
+        output_schema = schemas.PutRecommendationFeedbackOutput,
         http_method = "PUT",
         http_path = "/feedback",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {

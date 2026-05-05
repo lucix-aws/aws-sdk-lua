@@ -1,0 +1,1464 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.dlm"
+
+local M = {}
+
+M.EncryptionConfiguration = schema.new({
+    id = id.from(_N, "EncryptionConfiguration"),
+    type = "structure",
+    members = {
+        Encrypted = schema.new({
+            id = id.from(_N, "EncryptionConfiguration", "Encrypted"),
+            type = "boolean",
+            name = "Encrypted",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CmkArn = schema.new({
+            id = id.from(_N, "EncryptionConfiguration", "CmkArn"),
+            type = "string",
+            name = "CmkArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CrossRegionCopyRetainRule = schema.new({
+    id = id.from(_N, "CrossRegionCopyRetainRule"),
+    type = "structure",
+    members = {
+        Interval = schema.new({
+            id = id.from(_N, "CrossRegionCopyRetainRule", "Interval"),
+            type = "integer",
+            name = "Interval",
+            target_id = prelude.Integer.id,
+        }),
+        IntervalUnit = schema.new({
+            id = id.from(_N, "CrossRegionCopyRetainRule", "IntervalUnit"),
+            type = "string",
+            name = "IntervalUnit",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CrossRegionCopyAction = schema.new({
+    id = id.from(_N, "CrossRegionCopyAction"),
+    type = "structure",
+    members = {
+        Target = schema.new({
+            id = id.from(_N, "CrossRegionCopyAction", "Target"),
+            type = "string",
+            name = "Target",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "CrossRegionCopyAction", "EncryptionConfiguration"),
+            type = "structure",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "EncryptionConfiguration"),
+            target = M.EncryptionConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RetainRule = schema.new({
+            id = id.from(_N, "CrossRegionCopyAction", "RetainRule"),
+            type = "structure",
+            name = "RetainRule",
+            target_id = id.from(_N, "CrossRegionCopyRetainRule"),
+            target = M.CrossRegionCopyRetainRule,
+        }),
+    },
+})
+
+M.Action = schema.new({
+    id = id.from(_N, "Action"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "Action", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CrossRegionCopy = schema.new({
+            id = id.from(_N, "Action", "CrossRegionCopy"),
+            type = "list",
+            name = "CrossRegionCopy",
+            target_id = prelude.Document.id,
+            list_member = M.CrossRegionCopyAction,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RetentionArchiveTier = schema.new({
+    id = id.from(_N, "RetentionArchiveTier"),
+    type = "structure",
+    members = {
+        Count = schema.new({
+            id = id.from(_N, "RetentionArchiveTier", "Count"),
+            type = "integer",
+            name = "Count",
+            target_id = prelude.Integer.id,
+        }),
+        Interval = schema.new({
+            id = id.from(_N, "RetentionArchiveTier", "Interval"),
+            type = "integer",
+            name = "Interval",
+            target_id = prelude.Integer.id,
+        }),
+        IntervalUnit = schema.new({
+            id = id.from(_N, "RetentionArchiveTier", "IntervalUnit"),
+            type = "string",
+            name = "IntervalUnit",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ArchiveRetainRule = schema.new({
+    id = id.from(_N, "ArchiveRetainRule"),
+    type = "structure",
+    members = {
+        RetentionArchiveTier = schema.new({
+            id = id.from(_N, "ArchiveRetainRule", "RetentionArchiveTier"),
+            type = "structure",
+            name = "RetentionArchiveTier",
+            target_id = id.from(_N, "RetentionArchiveTier"),
+            target = M.RetentionArchiveTier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ArchiveRule = schema.new({
+    id = id.from(_N, "ArchiveRule"),
+    type = "structure",
+    members = {
+        RetainRule = schema.new({
+            id = id.from(_N, "ArchiveRule", "RetainRule"),
+            type = "structure",
+            name = "RetainRule",
+            target_id = id.from(_N, "ArchiveRetainRule"),
+            target = M.ArchiveRetainRule,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CrossRegionCopyTarget = schema.new({
+    id = id.from(_N, "CrossRegionCopyTarget"),
+    type = "structure",
+    members = {
+        TargetRegion = schema.new({
+            id = id.from(_N, "CrossRegionCopyTarget", "TargetRegion"),
+            type = "string",
+            name = "TargetRegion",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Tag = schema.new({
+    id = id.from(_N, "Tag"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "Tag", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "Tag", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Exclusions = schema.new({
+    id = id.from(_N, "Exclusions"),
+    type = "structure",
+    members = {
+        ExcludeBootVolumes = schema.new({
+            id = id.from(_N, "Exclusions", "ExcludeBootVolumes"),
+            type = "boolean",
+            name = "ExcludeBootVolumes",
+            target_id = prelude.Boolean.id,
+        }),
+        ExcludeVolumeTypes = schema.new({
+            id = id.from(_N, "Exclusions", "ExcludeVolumeTypes"),
+            type = "list",
+            name = "ExcludeVolumeTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ExcludeTags = schema.new({
+            id = id.from(_N, "Exclusions", "ExcludeTags"),
+            type = "list",
+            name = "ExcludeTags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.EventParameters = schema.new({
+    id = id.from(_N, "EventParameters"),
+    type = "structure",
+    members = {
+        EventType = schema.new({
+            id = id.from(_N, "EventParameters", "EventType"),
+            type = "string",
+            name = "EventType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SnapshotOwner = schema.new({
+            id = id.from(_N, "EventParameters", "SnapshotOwner"),
+            type = "list",
+            name = "SnapshotOwner",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DescriptionRegex = schema.new({
+            id = id.from(_N, "EventParameters", "DescriptionRegex"),
+            type = "string",
+            name = "DescriptionRegex",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.EventSource = schema.new({
+    id = id.from(_N, "EventSource"),
+    type = "structure",
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "EventSource", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Parameters = schema.new({
+            id = id.from(_N, "EventSource", "Parameters"),
+            type = "structure",
+            name = "Parameters",
+            target_id = id.from(_N, "EventParameters"),
+            target = M.EventParameters,
+        }),
+    },
+})
+
+M.Parameters = schema.new({
+    id = id.from(_N, "Parameters"),
+    type = "structure",
+    members = {
+        ExcludeBootVolume = schema.new({
+            id = id.from(_N, "Parameters", "ExcludeBootVolume"),
+            type = "boolean",
+            name = "ExcludeBootVolume",
+            target_id = prelude.Boolean.id,
+        }),
+        NoReboot = schema.new({
+            id = id.from(_N, "Parameters", "NoReboot"),
+            type = "boolean",
+            name = "NoReboot",
+            target_id = prelude.Boolean.id,
+        }),
+        ExcludeDataVolumeTags = schema.new({
+            id = id.from(_N, "Parameters", "ExcludeDataVolumeTags"),
+            type = "list",
+            name = "ExcludeDataVolumeTags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.Script = schema.new({
+    id = id.from(_N, "Script"),
+    type = "structure",
+    members = {
+        Stages = schema.new({
+            id = id.from(_N, "Script", "Stages"),
+            type = "list",
+            name = "Stages",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ExecutionHandlerService = schema.new({
+            id = id.from(_N, "Script", "ExecutionHandlerService"),
+            type = "string",
+            name = "ExecutionHandlerService",
+            target_id = prelude.String.id,
+        }),
+        ExecutionHandler = schema.new({
+            id = id.from(_N, "Script", "ExecutionHandler"),
+            type = "string",
+            name = "ExecutionHandler",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExecuteOperationOnScriptFailure = schema.new({
+            id = id.from(_N, "Script", "ExecuteOperationOnScriptFailure"),
+            type = "boolean",
+            name = "ExecuteOperationOnScriptFailure",
+            target_id = prelude.Boolean.id,
+        }),
+        ExecutionTimeout = schema.new({
+            id = id.from(_N, "Script", "ExecutionTimeout"),
+            type = "integer",
+            name = "ExecutionTimeout",
+            target_id = prelude.Integer.id,
+        }),
+        MaximumRetryCount = schema.new({
+            id = id.from(_N, "Script", "MaximumRetryCount"),
+            type = "integer",
+            name = "MaximumRetryCount",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.CreateRule = schema.new({
+    id = id.from(_N, "CreateRule"),
+    type = "structure",
+    members = {
+        Location = schema.new({
+            id = id.from(_N, "CreateRule", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+        Interval = schema.new({
+            id = id.from(_N, "CreateRule", "Interval"),
+            type = "integer",
+            name = "Interval",
+            target_id = prelude.Integer.id,
+        }),
+        IntervalUnit = schema.new({
+            id = id.from(_N, "CreateRule", "IntervalUnit"),
+            type = "string",
+            name = "IntervalUnit",
+            target_id = prelude.String.id,
+        }),
+        Times = schema.new({
+            id = id.from(_N, "CreateRule", "Times"),
+            type = "list",
+            name = "Times",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        CronExpression = schema.new({
+            id = id.from(_N, "CreateRule", "CronExpression"),
+            type = "string",
+            name = "CronExpression",
+            target_id = prelude.String.id,
+        }),
+        Scripts = schema.new({
+            id = id.from(_N, "CreateRule", "Scripts"),
+            type = "list",
+            name = "Scripts",
+            target_id = prelude.Document.id,
+            list_member = M.Script,
+        }),
+    },
+})
+
+M.CrossRegionCopyDeprecateRule = schema.new({
+    id = id.from(_N, "CrossRegionCopyDeprecateRule"),
+    type = "structure",
+    members = {
+        Interval = schema.new({
+            id = id.from(_N, "CrossRegionCopyDeprecateRule", "Interval"),
+            type = "integer",
+            name = "Interval",
+            target_id = prelude.Integer.id,
+        }),
+        IntervalUnit = schema.new({
+            id = id.from(_N, "CrossRegionCopyDeprecateRule", "IntervalUnit"),
+            type = "string",
+            name = "IntervalUnit",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CrossRegionCopyRule = schema.new({
+    id = id.from(_N, "CrossRegionCopyRule"),
+    type = "structure",
+    members = {
+        TargetRegion = schema.new({
+            id = id.from(_N, "CrossRegionCopyRule", "TargetRegion"),
+            type = "string",
+            name = "TargetRegion",
+            target_id = prelude.String.id,
+        }),
+        Target = schema.new({
+            id = id.from(_N, "CrossRegionCopyRule", "Target"),
+            type = "string",
+            name = "Target",
+            target_id = prelude.String.id,
+        }),
+        Encrypted = schema.new({
+            id = id.from(_N, "CrossRegionCopyRule", "Encrypted"),
+            type = "boolean",
+            name = "Encrypted",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CmkArn = schema.new({
+            id = id.from(_N, "CrossRegionCopyRule", "CmkArn"),
+            type = "string",
+            name = "CmkArn",
+            target_id = prelude.String.id,
+        }),
+        CopyTags = schema.new({
+            id = id.from(_N, "CrossRegionCopyRule", "CopyTags"),
+            type = "boolean",
+            name = "CopyTags",
+            target_id = prelude.Boolean.id,
+        }),
+        RetainRule = schema.new({
+            id = id.from(_N, "CrossRegionCopyRule", "RetainRule"),
+            type = "structure",
+            name = "RetainRule",
+            target_id = id.from(_N, "CrossRegionCopyRetainRule"),
+            target = M.CrossRegionCopyRetainRule,
+        }),
+        DeprecateRule = schema.new({
+            id = id.from(_N, "CrossRegionCopyRule", "DeprecateRule"),
+            type = "structure",
+            name = "DeprecateRule",
+            target_id = id.from(_N, "CrossRegionCopyDeprecateRule"),
+            target = M.CrossRegionCopyDeprecateRule,
+        }),
+    },
+})
+
+M.DeprecateRule = schema.new({
+    id = id.from(_N, "DeprecateRule"),
+    type = "structure",
+    members = {
+        Count = schema.new({
+            id = id.from(_N, "DeprecateRule", "Count"),
+            type = "integer",
+            name = "Count",
+            target_id = prelude.Integer.id,
+        }),
+        Interval = schema.new({
+            id = id.from(_N, "DeprecateRule", "Interval"),
+            type = "integer",
+            name = "Interval",
+            target_id = prelude.Integer.id,
+        }),
+        IntervalUnit = schema.new({
+            id = id.from(_N, "DeprecateRule", "IntervalUnit"),
+            type = "string",
+            name = "IntervalUnit",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.FastRestoreRule = schema.new({
+    id = id.from(_N, "FastRestoreRule"),
+    type = "structure",
+    members = {
+        Count = schema.new({
+            id = id.from(_N, "FastRestoreRule", "Count"),
+            type = "integer",
+            name = "Count",
+            target_id = prelude.Integer.id,
+        }),
+        Interval = schema.new({
+            id = id.from(_N, "FastRestoreRule", "Interval"),
+            type = "integer",
+            name = "Interval",
+            target_id = prelude.Integer.id,
+        }),
+        IntervalUnit = schema.new({
+            id = id.from(_N, "FastRestoreRule", "IntervalUnit"),
+            type = "string",
+            name = "IntervalUnit",
+            target_id = prelude.String.id,
+        }),
+        AvailabilityZones = schema.new({
+            id = id.from(_N, "FastRestoreRule", "AvailabilityZones"),
+            type = "list",
+            name = "AvailabilityZones",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        AvailabilityZoneIds = schema.new({
+            id = id.from(_N, "FastRestoreRule", "AvailabilityZoneIds"),
+            type = "list",
+            name = "AvailabilityZoneIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.RetainRule = schema.new({
+    id = id.from(_N, "RetainRule"),
+    type = "structure",
+    members = {
+        Count = schema.new({
+            id = id.from(_N, "RetainRule", "Count"),
+            type = "integer",
+            name = "Count",
+            target_id = prelude.Integer.id,
+        }),
+        Interval = schema.new({
+            id = id.from(_N, "RetainRule", "Interval"),
+            type = "integer",
+            name = "Interval",
+            target_id = prelude.Integer.id,
+        }),
+        IntervalUnit = schema.new({
+            id = id.from(_N, "RetainRule", "IntervalUnit"),
+            type = "string",
+            name = "IntervalUnit",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ShareRule = schema.new({
+    id = id.from(_N, "ShareRule"),
+    type = "structure",
+    members = {
+        TargetAccounts = schema.new({
+            id = id.from(_N, "ShareRule", "TargetAccounts"),
+            type = "list",
+            name = "TargetAccounts",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UnshareInterval = schema.new({
+            id = id.from(_N, "ShareRule", "UnshareInterval"),
+            type = "integer",
+            name = "UnshareInterval",
+            target_id = prelude.Integer.id,
+        }),
+        UnshareIntervalUnit = schema.new({
+            id = id.from(_N, "ShareRule", "UnshareIntervalUnit"),
+            type = "string",
+            name = "UnshareIntervalUnit",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Schedule = schema.new({
+    id = id.from(_N, "Schedule"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "Schedule", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        CopyTags = schema.new({
+            id = id.from(_N, "Schedule", "CopyTags"),
+            type = "boolean",
+            name = "CopyTags",
+            target_id = prelude.Boolean.id,
+        }),
+        TagsToAdd = schema.new({
+            id = id.from(_N, "Schedule", "TagsToAdd"),
+            type = "list",
+            name = "TagsToAdd",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        VariableTags = schema.new({
+            id = id.from(_N, "Schedule", "VariableTags"),
+            type = "list",
+            name = "VariableTags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        CreateRule = schema.new({
+            id = id.from(_N, "Schedule", "CreateRule"),
+            type = "structure",
+            name = "CreateRule",
+            target_id = id.from(_N, "CreateRule"),
+            target = M.CreateRule,
+        }),
+        RetainRule = schema.new({
+            id = id.from(_N, "Schedule", "RetainRule"),
+            type = "structure",
+            name = "RetainRule",
+            target_id = id.from(_N, "RetainRule"),
+            target = M.RetainRule,
+        }),
+        FastRestoreRule = schema.new({
+            id = id.from(_N, "Schedule", "FastRestoreRule"),
+            type = "structure",
+            name = "FastRestoreRule",
+            target_id = id.from(_N, "FastRestoreRule"),
+            target = M.FastRestoreRule,
+        }),
+        CrossRegionCopyRules = schema.new({
+            id = id.from(_N, "Schedule", "CrossRegionCopyRules"),
+            type = "list",
+            name = "CrossRegionCopyRules",
+            target_id = prelude.Document.id,
+            list_member = M.CrossRegionCopyRule,
+        }),
+        ShareRules = schema.new({
+            id = id.from(_N, "Schedule", "ShareRules"),
+            type = "list",
+            name = "ShareRules",
+            target_id = prelude.Document.id,
+            list_member = M.ShareRule,
+        }),
+        DeprecateRule = schema.new({
+            id = id.from(_N, "Schedule", "DeprecateRule"),
+            type = "structure",
+            name = "DeprecateRule",
+            target_id = id.from(_N, "DeprecateRule"),
+            target = M.DeprecateRule,
+        }),
+        ArchiveRule = schema.new({
+            id = id.from(_N, "Schedule", "ArchiveRule"),
+            type = "structure",
+            name = "ArchiveRule",
+            target_id = id.from(_N, "ArchiveRule"),
+            target = M.ArchiveRule,
+        }),
+    },
+})
+
+M.PolicyDetails = schema.new({
+    id = id.from(_N, "PolicyDetails"),
+    type = "structure",
+    members = {
+        PolicyType = schema.new({
+            id = id.from(_N, "PolicyDetails", "PolicyType"),
+            type = "string",
+            name = "PolicyType",
+            target_id = prelude.String.id,
+        }),
+        ResourceTypes = schema.new({
+            id = id.from(_N, "PolicyDetails", "ResourceTypes"),
+            type = "list",
+            name = "ResourceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ResourceLocations = schema.new({
+            id = id.from(_N, "PolicyDetails", "ResourceLocations"),
+            type = "list",
+            name = "ResourceLocations",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        TargetTags = schema.new({
+            id = id.from(_N, "PolicyDetails", "TargetTags"),
+            type = "list",
+            name = "TargetTags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        Schedules = schema.new({
+            id = id.from(_N, "PolicyDetails", "Schedules"),
+            type = "list",
+            name = "Schedules",
+            target_id = prelude.Document.id,
+            list_member = M.Schedule,
+        }),
+        Parameters = schema.new({
+            id = id.from(_N, "PolicyDetails", "Parameters"),
+            type = "structure",
+            name = "Parameters",
+            target_id = id.from(_N, "Parameters"),
+            target = M.Parameters,
+        }),
+        EventSource = schema.new({
+            id = id.from(_N, "PolicyDetails", "EventSource"),
+            type = "structure",
+            name = "EventSource",
+            target_id = id.from(_N, "EventSource"),
+            target = M.EventSource,
+        }),
+        Actions = schema.new({
+            id = id.from(_N, "PolicyDetails", "Actions"),
+            type = "list",
+            name = "Actions",
+            target_id = prelude.Document.id,
+            list_member = M.Action,
+        }),
+        PolicyLanguage = schema.new({
+            id = id.from(_N, "PolicyDetails", "PolicyLanguage"),
+            type = "string",
+            name = "PolicyLanguage",
+            target_id = prelude.String.id,
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "PolicyDetails", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+        CreateInterval = schema.new({
+            id = id.from(_N, "PolicyDetails", "CreateInterval"),
+            type = "integer",
+            name = "CreateInterval",
+            target_id = prelude.Integer.id,
+        }),
+        RetainInterval = schema.new({
+            id = id.from(_N, "PolicyDetails", "RetainInterval"),
+            type = "integer",
+            name = "RetainInterval",
+            target_id = prelude.Integer.id,
+        }),
+        CopyTags = schema.new({
+            id = id.from(_N, "PolicyDetails", "CopyTags"),
+            type = "boolean",
+            name = "CopyTags",
+            target_id = prelude.Boolean.id,
+        }),
+        CrossRegionCopyTargets = schema.new({
+            id = id.from(_N, "PolicyDetails", "CrossRegionCopyTargets"),
+            type = "list",
+            name = "CrossRegionCopyTargets",
+            target_id = prelude.Document.id,
+            list_member = M.CrossRegionCopyTarget,
+        }),
+        ExtendDeletion = schema.new({
+            id = id.from(_N, "PolicyDetails", "ExtendDeletion"),
+            type = "boolean",
+            name = "ExtendDeletion",
+            target_id = prelude.Boolean.id,
+        }),
+        Exclusions = schema.new({
+            id = id.from(_N, "PolicyDetails", "Exclusions"),
+            type = "structure",
+            name = "Exclusions",
+            target_id = id.from(_N, "Exclusions"),
+            target = M.Exclusions,
+        }),
+    },
+})
+
+M.CreateLifecyclePolicyInput = schema.new({
+    id = id.from(_N, "CreateLifecyclePolicyInput"),
+    type = "structure",
+    members = {
+        ExecutionRoleArn = schema.new({
+            id = id.from(_N, "CreateLifecyclePolicyInput", "ExecutionRoleArn"),
+            type = "string",
+            name = "ExecutionRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateLifecyclePolicyInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "CreateLifecyclePolicyInput", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PolicyDetails = schema.new({
+            id = id.from(_N, "CreateLifecyclePolicyInput", "PolicyDetails"),
+            type = "structure",
+            name = "PolicyDetails",
+            target_id = id.from(_N, "PolicyDetails"),
+            target = M.PolicyDetails,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateLifecyclePolicyInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        DefaultPolicy = schema.new({
+            id = id.from(_N, "CreateLifecyclePolicyInput", "DefaultPolicy"),
+            type = "string",
+            name = "DefaultPolicy",
+            target_id = prelude.String.id,
+        }),
+        CreateInterval = schema.new({
+            id = id.from(_N, "CreateLifecyclePolicyInput", "CreateInterval"),
+            type = "integer",
+            name = "CreateInterval",
+            target_id = prelude.Integer.id,
+        }),
+        RetainInterval = schema.new({
+            id = id.from(_N, "CreateLifecyclePolicyInput", "RetainInterval"),
+            type = "integer",
+            name = "RetainInterval",
+            target_id = prelude.Integer.id,
+        }),
+        CopyTags = schema.new({
+            id = id.from(_N, "CreateLifecyclePolicyInput", "CopyTags"),
+            type = "boolean",
+            name = "CopyTags",
+            target_id = prelude.Boolean.id,
+        }),
+        ExtendDeletion = schema.new({
+            id = id.from(_N, "CreateLifecyclePolicyInput", "ExtendDeletion"),
+            type = "boolean",
+            name = "ExtendDeletion",
+            target_id = prelude.Boolean.id,
+        }),
+        CrossRegionCopyTargets = schema.new({
+            id = id.from(_N, "CreateLifecyclePolicyInput", "CrossRegionCopyTargets"),
+            type = "list",
+            name = "CrossRegionCopyTargets",
+            target_id = prelude.Document.id,
+            list_member = M.CrossRegionCopyTarget,
+        }),
+        Exclusions = schema.new({
+            id = id.from(_N, "CreateLifecyclePolicyInput", "Exclusions"),
+            type = "structure",
+            name = "Exclusions",
+            target_id = id.from(_N, "Exclusions"),
+            target = M.Exclusions,
+        }),
+    },
+})
+
+M.CreateLifecyclePolicyOutput = schema.new({
+    id = id.from(_N, "CreateLifecyclePolicyOutput"),
+    type = "structure",
+    members = {
+        PolicyId = schema.new({
+            id = id.from(_N, "CreateLifecyclePolicyOutput", "PolicyId"),
+            type = "string",
+            name = "PolicyId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InternalServerException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        Code = schema.new({
+            id = id.from(_N, "InternalServerException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidRequestException = schema.new({
+    id = id.from(_N, "InvalidRequestException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InvalidRequestException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        Code = schema.new({
+            id = id.from(_N, "InvalidRequestException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        RequiredParameters = schema.new({
+            id = id.from(_N, "InvalidRequestException", "RequiredParameters"),
+            type = "list",
+            name = "RequiredParameters",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        MutuallyExclusiveParameters = schema.new({
+            id = id.from(_N, "InvalidRequestException", "MutuallyExclusiveParameters"),
+            type = "list",
+            name = "MutuallyExclusiveParameters",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.LimitExceededException = schema.new({
+    id = id.from(_N, "LimitExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "LimitExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        Code = schema.new({
+            id = id.from(_N, "LimitExceededException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "LimitExceededException", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteLifecyclePolicyInput = schema.new({
+    id = id.from(_N, "DeleteLifecyclePolicyInput"),
+    type = "structure",
+    members = {
+        PolicyId = schema.new({
+            id = id.from(_N, "DeleteLifecyclePolicyInput", "PolicyId"),
+            type = "string",
+            name = "PolicyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteLifecyclePolicyOutput = schema.new({
+    id = id.from(_N, "DeleteLifecyclePolicyOutput"),
+    type = "structure",
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        Code = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+        ResourceIds = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "ResourceIds"),
+            type = "list",
+            name = "ResourceIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.GetLifecyclePoliciesInput = schema.new({
+    id = id.from(_N, "GetLifecyclePoliciesInput"),
+    type = "structure",
+    members = {
+        PolicyIds = schema.new({
+            id = id.from(_N, "GetLifecyclePoliciesInput", "PolicyIds"),
+            type = "list",
+            name = "PolicyIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "policyIds" },
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "GetLifecyclePoliciesInput", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "state" },
+            },
+        }),
+        ResourceTypes = schema.new({
+            id = id.from(_N, "GetLifecyclePoliciesInput", "ResourceTypes"),
+            type = "list",
+            name = "ResourceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "resourceTypes" },
+            },
+        }),
+        TargetTags = schema.new({
+            id = id.from(_N, "GetLifecyclePoliciesInput", "TargetTags"),
+            type = "list",
+            name = "TargetTags",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "targetTags" },
+            },
+        }),
+        TagsToAdd = schema.new({
+            id = id.from(_N, "GetLifecyclePoliciesInput", "TagsToAdd"),
+            type = "list",
+            name = "TagsToAdd",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "tagsToAdd" },
+            },
+        }),
+        DefaultPolicyType = schema.new({
+            id = id.from(_N, "GetLifecyclePoliciesInput", "DefaultPolicyType"),
+            type = "string",
+            name = "DefaultPolicyType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "defaultPolicyType" },
+            },
+        }),
+    },
+})
+
+M.LifecyclePolicySummary = schema.new({
+    id = id.from(_N, "LifecyclePolicySummary"),
+    type = "structure",
+    members = {
+        PolicyId = schema.new({
+            id = id.from(_N, "LifecyclePolicySummary", "PolicyId"),
+            type = "string",
+            name = "PolicyId",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "LifecyclePolicySummary", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        State = schema.new({
+            id = id.from(_N, "LifecyclePolicySummary", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "LifecyclePolicySummary", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        PolicyType = schema.new({
+            id = id.from(_N, "LifecyclePolicySummary", "PolicyType"),
+            type = "string",
+            name = "PolicyType",
+            target_id = prelude.String.id,
+        }),
+        DefaultPolicy = schema.new({
+            id = id.from(_N, "LifecyclePolicySummary", "DefaultPolicy"),
+            type = "boolean",
+            name = "DefaultPolicy",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.GetLifecyclePoliciesOutput = schema.new({
+    id = id.from(_N, "GetLifecyclePoliciesOutput"),
+    type = "structure",
+    members = {
+        Policies = schema.new({
+            id = id.from(_N, "GetLifecyclePoliciesOutput", "Policies"),
+            type = "list",
+            name = "Policies",
+            target_id = prelude.Document.id,
+            list_member = M.LifecyclePolicySummary,
+        }),
+    },
+})
+
+M.GetLifecyclePolicyInput = schema.new({
+    id = id.from(_N, "GetLifecyclePolicyInput"),
+    type = "structure",
+    members = {
+        PolicyId = schema.new({
+            id = id.from(_N, "GetLifecyclePolicyInput", "PolicyId"),
+            type = "string",
+            name = "PolicyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.LifecyclePolicy = schema.new({
+    id = id.from(_N, "LifecyclePolicy"),
+    type = "structure",
+    members = {
+        PolicyId = schema.new({
+            id = id.from(_N, "LifecyclePolicy", "PolicyId"),
+            type = "string",
+            name = "PolicyId",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "LifecyclePolicy", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        State = schema.new({
+            id = id.from(_N, "LifecyclePolicy", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+        }),
+        StatusMessage = schema.new({
+            id = id.from(_N, "LifecyclePolicy", "StatusMessage"),
+            type = "string",
+            name = "StatusMessage",
+            target_id = prelude.String.id,
+        }),
+        ExecutionRoleArn = schema.new({
+            id = id.from(_N, "LifecyclePolicy", "ExecutionRoleArn"),
+            type = "string",
+            name = "ExecutionRoleArn",
+            target_id = prelude.String.id,
+        }),
+        DateCreated = schema.new({
+            id = id.from(_N, "LifecyclePolicy", "DateCreated"),
+            type = "timestamp",
+            name = "DateCreated",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        DateModified = schema.new({
+            id = id.from(_N, "LifecyclePolicy", "DateModified"),
+            type = "timestamp",
+            name = "DateModified",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        PolicyDetails = schema.new({
+            id = id.from(_N, "LifecyclePolicy", "PolicyDetails"),
+            type = "structure",
+            name = "PolicyDetails",
+            target_id = id.from(_N, "PolicyDetails"),
+            target = M.PolicyDetails,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "LifecyclePolicy", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        PolicyArn = schema.new({
+            id = id.from(_N, "LifecyclePolicy", "PolicyArn"),
+            type = "string",
+            name = "PolicyArn",
+            target_id = prelude.String.id,
+        }),
+        DefaultPolicy = schema.new({
+            id = id.from(_N, "LifecyclePolicy", "DefaultPolicy"),
+            type = "boolean",
+            name = "DefaultPolicy",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.GetLifecyclePolicyOutput = schema.new({
+    id = id.from(_N, "GetLifecyclePolicyOutput"),
+    type = "structure",
+    members = {
+        Policy = schema.new({
+            id = id.from(_N, "GetLifecyclePolicyOutput", "Policy"),
+            type = "structure",
+            name = "Policy",
+            target_id = id.from(_N, "LifecyclePolicy"),
+            target = M.LifecyclePolicy,
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceOutput"),
+    type = "structure",
+    members = {
+        Tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "TagResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceOutput"),
+    type = "structure",
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "UntagResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        TagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "TagKeys"),
+            type = "list",
+            name = "TagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "tagKeys" },
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
+M.UpdateLifecyclePolicyInput = schema.new({
+    id = id.from(_N, "UpdateLifecyclePolicyInput"),
+    type = "structure",
+    members = {
+        PolicyId = schema.new({
+            id = id.from(_N, "UpdateLifecyclePolicyInput", "PolicyId"),
+            type = "string",
+            name = "PolicyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ExecutionRoleArn = schema.new({
+            id = id.from(_N, "UpdateLifecyclePolicyInput", "ExecutionRoleArn"),
+            type = "string",
+            name = "ExecutionRoleArn",
+            target_id = prelude.String.id,
+        }),
+        State = schema.new({
+            id = id.from(_N, "UpdateLifecyclePolicyInput", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateLifecyclePolicyInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        PolicyDetails = schema.new({
+            id = id.from(_N, "UpdateLifecyclePolicyInput", "PolicyDetails"),
+            type = "structure",
+            name = "PolicyDetails",
+            target_id = id.from(_N, "PolicyDetails"),
+            target = M.PolicyDetails,
+        }),
+        CreateInterval = schema.new({
+            id = id.from(_N, "UpdateLifecyclePolicyInput", "CreateInterval"),
+            type = "integer",
+            name = "CreateInterval",
+            target_id = prelude.Integer.id,
+        }),
+        RetainInterval = schema.new({
+            id = id.from(_N, "UpdateLifecyclePolicyInput", "RetainInterval"),
+            type = "integer",
+            name = "RetainInterval",
+            target_id = prelude.Integer.id,
+        }),
+        CopyTags = schema.new({
+            id = id.from(_N, "UpdateLifecyclePolicyInput", "CopyTags"),
+            type = "boolean",
+            name = "CopyTags",
+            target_id = prelude.Boolean.id,
+        }),
+        ExtendDeletion = schema.new({
+            id = id.from(_N, "UpdateLifecyclePolicyInput", "ExtendDeletion"),
+            type = "boolean",
+            name = "ExtendDeletion",
+            target_id = prelude.Boolean.id,
+        }),
+        CrossRegionCopyTargets = schema.new({
+            id = id.from(_N, "UpdateLifecyclePolicyInput", "CrossRegionCopyTargets"),
+            type = "list",
+            name = "CrossRegionCopyTargets",
+            target_id = prelude.Document.id,
+            list_member = M.CrossRegionCopyTarget,
+        }),
+        Exclusions = schema.new({
+            id = id.from(_N, "UpdateLifecyclePolicyInput", "Exclusions"),
+            type = "structure",
+            name = "Exclusions",
+            target_id = id.from(_N, "Exclusions"),
+            target = M.Exclusions,
+        }),
+    },
+})
+
+M.UpdateLifecyclePolicyOutput = schema.new({
+    id = id.from(_N, "UpdateLifecyclePolicyOutput"),
+    type = "structure",
+})
+
+return M

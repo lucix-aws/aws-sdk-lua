@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("sagemakeredge.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("sagemakeredge.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("sagemakeredge.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getDeployments(input, options)
     return self:invokeOperation(input, {
         name = "GetDeployments",
-        input_schema = types.GetDeploymentsInput,
-        output_schema = types.GetDeploymentsOutput,
+        input_schema = schemas.GetDeploymentsInput,
+        output_schema = schemas.GetDeploymentsOutput,
         http_method = "POST",
         http_path = "/GetDeployments",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:getDeviceRegistration(input, options)
     return self:invokeOperation(input, {
         name = "GetDeviceRegistration",
-        input_schema = types.GetDeviceRegistrationInput,
-        output_schema = types.GetDeviceRegistrationOutput,
+        input_schema = schemas.GetDeviceRegistrationInput,
+        output_schema = schemas.GetDeviceRegistrationOutput,
         http_method = "POST",
         http_path = "/GetDeviceRegistration",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:sendHeartbeat(input, options)
     return self:invokeOperation(input, {
         name = "SendHeartbeat",
-        input_schema = types.SendHeartbeatInput,
-        output_schema = types.SendHeartbeatOutput,
+        input_schema = schemas.SendHeartbeatInput,
+        output_schema = schemas.SendHeartbeatOutput,
         http_method = "POST",
         http_path = "/SendHeartbeat",
         effective_auth_schemes = {

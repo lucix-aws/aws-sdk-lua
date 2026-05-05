@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("glacier.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("glacier.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("glacier.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:abortMultipartUpload(input, options)
     return self:invokeOperation(input, {
         name = "AbortMultipartUpload",
-        input_schema = types.AbortMultipartUploadInput,
-        output_schema = types.AbortMultipartUploadOutput,
+        input_schema = schemas.AbortMultipartUploadInput,
+        output_schema = schemas.AbortMultipartUploadOutput,
         http_method = "DELETE",
         http_path = "/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:abortVaultLock(input, options)
     return self:invokeOperation(input, {
         name = "AbortVaultLock",
-        input_schema = types.AbortVaultLockInput,
-        output_schema = types.AbortVaultLockOutput,
+        input_schema = schemas.AbortVaultLockInput,
+        output_schema = schemas.AbortVaultLockOutput,
         http_method = "DELETE",
         http_path = "/{accountId}/vaults/{vaultName}/lock-policy",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:addTagsToVault(input, options)
     return self:invokeOperation(input, {
         name = "AddTagsToVault",
-        input_schema = types.AddTagsToVaultInput,
-        output_schema = types.AddTagsToVaultOutput,
+        input_schema = schemas.AddTagsToVaultInput,
+        output_schema = schemas.AddTagsToVaultOutput,
         http_method = "POST",
         http_path = "/{accountId}/vaults/{vaultName}/tags?operation=add",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:completeMultipartUpload(input, options)
     return self:invokeOperation(input, {
         name = "CompleteMultipartUpload",
-        input_schema = types.CompleteMultipartUploadInput,
-        output_schema = types.CompleteMultipartUploadOutput,
+        input_schema = schemas.CompleteMultipartUploadInput,
+        output_schema = schemas.CompleteMultipartUploadOutput,
         http_method = "POST",
         http_path = "/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:completeVaultLock(input, options)
     return self:invokeOperation(input, {
         name = "CompleteVaultLock",
-        input_schema = types.CompleteVaultLockInput,
-        output_schema = types.CompleteVaultLockOutput,
+        input_schema = schemas.CompleteVaultLockInput,
+        output_schema = schemas.CompleteVaultLockOutput,
         http_method = "POST",
         http_path = "/{accountId}/vaults/{vaultName}/lock-policy/{lockId}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createVault(input, options)
     return self:invokeOperation(input, {
         name = "CreateVault",
-        input_schema = types.CreateVaultInput,
-        output_schema = types.CreateVaultOutput,
+        input_schema = schemas.CreateVaultInput,
+        output_schema = schemas.CreateVaultOutput,
         http_method = "PUT",
         http_path = "/{accountId}/vaults/{vaultName}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteArchive(input, options)
     return self:invokeOperation(input, {
         name = "DeleteArchive",
-        input_schema = types.DeleteArchiveInput,
-        output_schema = types.DeleteArchiveOutput,
+        input_schema = schemas.DeleteArchiveInput,
+        output_schema = schemas.DeleteArchiveOutput,
         http_method = "DELETE",
         http_path = "/{accountId}/vaults/{vaultName}/archives/{archiveId}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteVault(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVault",
-        input_schema = types.DeleteVaultInput,
-        output_schema = types.DeleteVaultOutput,
+        input_schema = schemas.DeleteVaultInput,
+        output_schema = schemas.DeleteVaultOutput,
         http_method = "DELETE",
         http_path = "/{accountId}/vaults/{vaultName}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteVaultAccessPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVaultAccessPolicy",
-        input_schema = types.DeleteVaultAccessPolicyInput,
-        output_schema = types.DeleteVaultAccessPolicyOutput,
+        input_schema = schemas.DeleteVaultAccessPolicyInput,
+        output_schema = schemas.DeleteVaultAccessPolicyOutput,
         http_method = "DELETE",
         http_path = "/{accountId}/vaults/{vaultName}/access-policy",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteVaultNotifications(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVaultNotifications",
-        input_schema = types.DeleteVaultNotificationsInput,
-        output_schema = types.DeleteVaultNotificationsOutput,
+        input_schema = schemas.DeleteVaultNotificationsInput,
+        output_schema = schemas.DeleteVaultNotificationsOutput,
         http_method = "DELETE",
         http_path = "/{accountId}/vaults/{vaultName}/notification-configuration",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:describeJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribeJob",
-        input_schema = types.DescribeJobInput,
-        output_schema = types.DescribeJobOutput,
+        input_schema = schemas.DescribeJobInput,
+        output_schema = schemas.DescribeJobOutput,
         http_method = "GET",
         http_path = "/{accountId}/vaults/{vaultName}/jobs/{jobId}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:describeVault(input, options)
     return self:invokeOperation(input, {
         name = "DescribeVault",
-        input_schema = types.DescribeVaultInput,
-        output_schema = types.DescribeVaultOperationOutput,
+        input_schema = schemas.DescribeVaultInput,
+        output_schema = schemas.DescribeVaultOperationOutput,
         http_method = "GET",
         http_path = "/{accountId}/vaults/{vaultName}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getDataRetrievalPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetDataRetrievalPolicy",
-        input_schema = types.GetDataRetrievalPolicyInput,
-        output_schema = types.GetDataRetrievalPolicyOutput,
+        input_schema = schemas.GetDataRetrievalPolicyInput,
+        output_schema = schemas.GetDataRetrievalPolicyOutput,
         http_method = "GET",
         http_path = "/{accountId}/policies/data-retrieval",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getJobOutput(input, options)
     return self:invokeOperation(input, {
         name = "GetJobOutput",
-        input_schema = types.GetJobOutputInput,
-        output_schema = types.GetJobOutputOutput,
+        input_schema = schemas.GetJobOutputInput,
+        output_schema = schemas.GetJobOutputOutput,
         http_method = "GET",
         http_path = "/{accountId}/vaults/{vaultName}/jobs/{jobId}/output",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getVaultAccessPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetVaultAccessPolicy",
-        input_schema = types.GetVaultAccessPolicyInput,
-        output_schema = types.GetVaultAccessPolicyOutput,
+        input_schema = schemas.GetVaultAccessPolicyInput,
+        output_schema = schemas.GetVaultAccessPolicyOutput,
         http_method = "GET",
         http_path = "/{accountId}/vaults/{vaultName}/access-policy",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getVaultLock(input, options)
     return self:invokeOperation(input, {
         name = "GetVaultLock",
-        input_schema = types.GetVaultLockInput,
-        output_schema = types.GetVaultLockOutput,
+        input_schema = schemas.GetVaultLockInput,
+        output_schema = schemas.GetVaultLockOutput,
         http_method = "GET",
         http_path = "/{accountId}/vaults/{vaultName}/lock-policy",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getVaultNotifications(input, options)
     return self:invokeOperation(input, {
         name = "GetVaultNotifications",
-        input_schema = types.GetVaultNotificationsInput,
-        output_schema = types.GetVaultNotificationsOutput,
+        input_schema = schemas.GetVaultNotificationsInput,
+        output_schema = schemas.GetVaultNotificationsOutput,
         http_method = "GET",
         http_path = "/{accountId}/vaults/{vaultName}/notification-configuration",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:initiateJob(input, options)
     return self:invokeOperation(input, {
         name = "InitiateJob",
-        input_schema = types.InitiateJobInput,
-        output_schema = types.InitiateJobOutput,
+        input_schema = schemas.InitiateJobInput,
+        output_schema = schemas.InitiateJobOutput,
         http_method = "POST",
         http_path = "/{accountId}/vaults/{vaultName}/jobs",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:initiateMultipartUpload(input, options)
     return self:invokeOperation(input, {
         name = "InitiateMultipartUpload",
-        input_schema = types.InitiateMultipartUploadInput,
-        output_schema = types.InitiateMultipartUploadOutput,
+        input_schema = schemas.InitiateMultipartUploadInput,
+        output_schema = schemas.InitiateMultipartUploadOutput,
         http_method = "POST",
         http_path = "/{accountId}/vaults/{vaultName}/multipart-uploads",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:initiateVaultLock(input, options)
     return self:invokeOperation(input, {
         name = "InitiateVaultLock",
-        input_schema = types.InitiateVaultLockInput,
-        output_schema = types.InitiateVaultLockOutput,
+        input_schema = schemas.InitiateVaultLockInput,
+        output_schema = schemas.InitiateVaultLockOutput,
         http_method = "POST",
         http_path = "/{accountId}/vaults/{vaultName}/lock-policy",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListJobs",
-        input_schema = types.ListJobsInput,
-        output_schema = types.ListJobsOutput,
+        input_schema = schemas.ListJobsInput,
+        output_schema = schemas.ListJobsOutput,
         http_method = "GET",
         http_path = "/{accountId}/vaults/{vaultName}/jobs",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listMultipartUploads(input, options)
     return self:invokeOperation(input, {
         name = "ListMultipartUploads",
-        input_schema = types.ListMultipartUploadsInput,
-        output_schema = types.ListMultipartUploadsOutput,
+        input_schema = schemas.ListMultipartUploadsInput,
+        output_schema = schemas.ListMultipartUploadsOutput,
         http_method = "GET",
         http_path = "/{accountId}/vaults/{vaultName}/multipart-uploads",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listParts(input, options)
     return self:invokeOperation(input, {
         name = "ListParts",
-        input_schema = types.ListPartsInput,
-        output_schema = types.ListPartsOutput,
+        input_schema = schemas.ListPartsInput,
+        output_schema = schemas.ListPartsOutput,
         http_method = "GET",
         http_path = "/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listProvisionedCapacity(input, options)
     return self:invokeOperation(input, {
         name = "ListProvisionedCapacity",
-        input_schema = types.ListProvisionedCapacityInput,
-        output_schema = types.ListProvisionedCapacityOutput,
+        input_schema = schemas.ListProvisionedCapacityInput,
+        output_schema = schemas.ListProvisionedCapacityOutput,
         http_method = "GET",
         http_path = "/{accountId}/provisioned-capacity",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listTagsForVault(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForVault",
-        input_schema = types.ListTagsForVaultInput,
-        output_schema = types.ListTagsForVaultOutput,
+        input_schema = schemas.ListTagsForVaultInput,
+        output_schema = schemas.ListTagsForVaultOutput,
         http_method = "GET",
         http_path = "/{accountId}/vaults/{vaultName}/tags",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listVaults(input, options)
     return self:invokeOperation(input, {
         name = "ListVaults",
-        input_schema = types.ListVaultsInput,
-        output_schema = types.ListVaultsOutput,
+        input_schema = schemas.ListVaultsInput,
+        output_schema = schemas.ListVaultsOutput,
         http_method = "GET",
         http_path = "/{accountId}/vaults",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:purchaseProvisionedCapacity(input, options)
     return self:invokeOperation(input, {
         name = "PurchaseProvisionedCapacity",
-        input_schema = types.PurchaseProvisionedCapacityInput,
-        output_schema = types.PurchaseProvisionedCapacityOutput,
+        input_schema = schemas.PurchaseProvisionedCapacityInput,
+        output_schema = schemas.PurchaseProvisionedCapacityOutput,
         http_method = "POST",
         http_path = "/{accountId}/provisioned-capacity",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:removeTagsFromVault(input, options)
     return self:invokeOperation(input, {
         name = "RemoveTagsFromVault",
-        input_schema = types.RemoveTagsFromVaultInput,
-        output_schema = types.RemoveTagsFromVaultOutput,
+        input_schema = schemas.RemoveTagsFromVaultInput,
+        output_schema = schemas.RemoveTagsFromVaultOutput,
         http_method = "POST",
         http_path = "/{accountId}/vaults/{vaultName}/tags?operation=remove",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:setDataRetrievalPolicy(input, options)
     return self:invokeOperation(input, {
         name = "SetDataRetrievalPolicy",
-        input_schema = types.SetDataRetrievalPolicyInput,
-        output_schema = types.SetDataRetrievalPolicyOutput,
+        input_schema = schemas.SetDataRetrievalPolicyInput,
+        output_schema = schemas.SetDataRetrievalPolicyOutput,
         http_method = "PUT",
         http_path = "/{accountId}/policies/data-retrieval",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:setVaultAccessPolicy(input, options)
     return self:invokeOperation(input, {
         name = "SetVaultAccessPolicy",
-        input_schema = types.SetVaultAccessPolicyInput,
-        output_schema = types.SetVaultAccessPolicyOutput,
+        input_schema = schemas.SetVaultAccessPolicyInput,
+        output_schema = schemas.SetVaultAccessPolicyOutput,
         http_method = "PUT",
         http_path = "/{accountId}/vaults/{vaultName}/access-policy",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:setVaultNotifications(input, options)
     return self:invokeOperation(input, {
         name = "SetVaultNotifications",
-        input_schema = types.SetVaultNotificationsInput,
-        output_schema = types.SetVaultNotificationsOutput,
+        input_schema = schemas.SetVaultNotificationsInput,
+        output_schema = schemas.SetVaultNotificationsOutput,
         http_method = "PUT",
         http_path = "/{accountId}/vaults/{vaultName}/notification-configuration",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:uploadArchive(input, options)
     return self:invokeOperation(input, {
         name = "UploadArchive",
-        input_schema = types.UploadArchiveInput,
-        output_schema = types.UploadArchiveOutput,
+        input_schema = schemas.UploadArchiveInput,
+        output_schema = schemas.UploadArchiveOutput,
         http_method = "POST",
         http_path = "/{accountId}/vaults/{vaultName}/archives",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:uploadMultipartPart(input, options)
     return self:invokeOperation(input, {
         name = "UploadMultipartPart",
-        input_schema = types.UploadMultipartPartInput,
-        output_schema = types.UploadMultipartPartOutput,
+        input_schema = schemas.UploadMultipartPartInput,
+        output_schema = schemas.UploadMultipartPartOutput,
         http_method = "PUT",
         http_path = "/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}",
         effective_auth_schemes = {

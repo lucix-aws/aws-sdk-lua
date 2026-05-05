@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("identitystore.endpoint_rules")
+local schemas = require("identitystore.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("identitystore.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateGroup",
-        input_schema = types.CreateGroupInput,
-        output_schema = types.CreateGroupOutput,
+        input_schema = schemas.CreateGroupInput,
+        output_schema = schemas.CreateGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createGroupMembership(input, options)
     return self:invokeOperation(input, {
         name = "CreateGroupMembership",
-        input_schema = types.CreateGroupMembershipInput,
-        output_schema = types.CreateGroupMembershipOutput,
+        input_schema = schemas.CreateGroupMembershipInput,
+        output_schema = schemas.CreateGroupMembershipOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createUser(input, options)
     return self:invokeOperation(input, {
         name = "CreateUser",
-        input_schema = types.CreateUserInput,
-        output_schema = types.CreateUserOutput,
+        input_schema = schemas.CreateUserInput,
+        output_schema = schemas.CreateUserOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGroup",
-        input_schema = types.DeleteGroupInput,
-        output_schema = types.DeleteGroupOutput,
+        input_schema = schemas.DeleteGroupInput,
+        output_schema = schemas.DeleteGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteGroupMembership(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGroupMembership",
-        input_schema = types.DeleteGroupMembershipInput,
-        output_schema = types.DeleteGroupMembershipOutput,
+        input_schema = schemas.DeleteGroupMembershipInput,
+        output_schema = schemas.DeleteGroupMembershipOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteUser(input, options)
     return self:invokeOperation(input, {
         name = "DeleteUser",
-        input_schema = types.DeleteUserInput,
-        output_schema = types.DeleteUserOutput,
+        input_schema = schemas.DeleteUserInput,
+        output_schema = schemas.DeleteUserOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:describeGroup(input, options)
     return self:invokeOperation(input, {
         name = "DescribeGroup",
-        input_schema = types.DescribeGroupInput,
-        output_schema = types.DescribeGroupOutput,
+        input_schema = schemas.DescribeGroupInput,
+        output_schema = schemas.DescribeGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:describeGroupMembership(input, options)
     return self:invokeOperation(input, {
         name = "DescribeGroupMembership",
-        input_schema = types.DescribeGroupMembershipInput,
-        output_schema = types.DescribeGroupMembershipOutput,
+        input_schema = schemas.DescribeGroupMembershipInput,
+        output_schema = schemas.DescribeGroupMembershipOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:describeUser(input, options)
     return self:invokeOperation(input, {
         name = "DescribeUser",
-        input_schema = types.DescribeUserInput,
-        output_schema = types.DescribeUserOutput,
+        input_schema = schemas.DescribeUserInput,
+        output_schema = schemas.DescribeUserOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getGroupId(input, options)
     return self:invokeOperation(input, {
         name = "GetGroupId",
-        input_schema = types.GetGroupIdInput,
-        output_schema = types.GetGroupIdOutput,
+        input_schema = schemas.GetGroupIdInput,
+        output_schema = schemas.GetGroupIdOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getGroupMembershipId(input, options)
     return self:invokeOperation(input, {
         name = "GetGroupMembershipId",
-        input_schema = types.GetGroupMembershipIdInput,
-        output_schema = types.GetGroupMembershipIdOutput,
+        input_schema = schemas.GetGroupMembershipIdInput,
+        output_schema = schemas.GetGroupMembershipIdOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getUserId(input, options)
     return self:invokeOperation(input, {
         name = "GetUserId",
-        input_schema = types.GetUserIdInput,
-        output_schema = types.GetUserIdOutput,
+        input_schema = schemas.GetUserIdInput,
+        output_schema = schemas.GetUserIdOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:isMemberInGroups(input, options)
     return self:invokeOperation(input, {
         name = "IsMemberInGroups",
-        input_schema = types.IsMemberInGroupsInput,
-        output_schema = types.IsMemberInGroupsOutput,
+        input_schema = schemas.IsMemberInGroupsInput,
+        output_schema = schemas.IsMemberInGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listGroupMemberships(input, options)
     return self:invokeOperation(input, {
         name = "ListGroupMemberships",
-        input_schema = types.ListGroupMembershipsInput,
-        output_schema = types.ListGroupMembershipsOutput,
+        input_schema = schemas.ListGroupMembershipsInput,
+        output_schema = schemas.ListGroupMembershipsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listGroupMembershipsForMember(input, options)
     return self:invokeOperation(input, {
         name = "ListGroupMembershipsForMember",
-        input_schema = types.ListGroupMembershipsForMemberInput,
-        output_schema = types.ListGroupMembershipsForMemberOutput,
+        input_schema = schemas.ListGroupMembershipsForMemberInput,
+        output_schema = schemas.ListGroupMembershipsForMemberOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListGroups",
-        input_schema = types.ListGroupsInput,
-        output_schema = types.ListGroupsOutput,
+        input_schema = schemas.ListGroupsInput,
+        output_schema = schemas.ListGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listUsers(input, options)
     return self:invokeOperation(input, {
         name = "ListUsers",
-        input_schema = types.ListUsersInput,
-        output_schema = types.ListUsersOutput,
+        input_schema = schemas.ListUsersInput,
+        output_schema = schemas.ListUsersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:updateGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGroup",
-        input_schema = types.UpdateGroupInput,
-        output_schema = types.UpdateGroupOutput,
+        input_schema = schemas.UpdateGroupInput,
+        output_schema = schemas.UpdateGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:updateUser(input, options)
     return self:invokeOperation(input, {
         name = "UpdateUser",
-        input_schema = types.UpdateUserInput,
-        output_schema = types.UpdateUserOutput,
+        input_schema = schemas.UpdateUserInput,
+        output_schema = schemas.UpdateUserOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

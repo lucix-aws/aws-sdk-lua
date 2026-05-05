@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("mediapackagevod.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("mediapackagevod.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("mediapackagevod.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:configureLogs(input, options)
     return self:invokeOperation(input, {
         name = "ConfigureLogs",
-        input_schema = types.ConfigureLogsInput,
-        output_schema = types.ConfigureLogsOutput,
+        input_schema = schemas.ConfigureLogsInput,
+        output_schema = schemas.ConfigureLogsOutput,
         http_method = "PUT",
         http_path = "/packaging_groups/{Id}/configure_logs",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createAsset(input, options)
     return self:invokeOperation(input, {
         name = "CreateAsset",
-        input_schema = types.CreateAssetInput,
-        output_schema = types.CreateAssetOutput,
+        input_schema = schemas.CreateAssetInput,
+        output_schema = schemas.CreateAssetOutput,
         http_method = "POST",
         http_path = "/assets",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createPackagingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreatePackagingConfiguration",
-        input_schema = types.CreatePackagingConfigurationInput,
-        output_schema = types.CreatePackagingConfigurationOutput,
+        input_schema = schemas.CreatePackagingConfigurationInput,
+        output_schema = schemas.CreatePackagingConfigurationOutput,
         http_method = "POST",
         http_path = "/packaging_configurations",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createPackagingGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreatePackagingGroup",
-        input_schema = types.CreatePackagingGroupInput,
-        output_schema = types.CreatePackagingGroupOutput,
+        input_schema = schemas.CreatePackagingGroupInput,
+        output_schema = schemas.CreatePackagingGroupOutput,
         http_method = "POST",
         http_path = "/packaging_groups",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteAsset(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAsset",
-        input_schema = types.DeleteAssetInput,
-        output_schema = types.DeleteAssetOutput,
+        input_schema = schemas.DeleteAssetInput,
+        output_schema = schemas.DeleteAssetOutput,
         http_method = "DELETE",
         http_path = "/assets/{Id}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deletePackagingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeletePackagingConfiguration",
-        input_schema = types.DeletePackagingConfigurationInput,
-        output_schema = types.DeletePackagingConfigurationOutput,
+        input_schema = schemas.DeletePackagingConfigurationInput,
+        output_schema = schemas.DeletePackagingConfigurationOutput,
         http_method = "DELETE",
         http_path = "/packaging_configurations/{Id}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deletePackagingGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeletePackagingGroup",
-        input_schema = types.DeletePackagingGroupInput,
-        output_schema = types.DeletePackagingGroupOutput,
+        input_schema = schemas.DeletePackagingGroupInput,
+        output_schema = schemas.DeletePackagingGroupOutput,
         http_method = "DELETE",
         http_path = "/packaging_groups/{Id}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:describeAsset(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAsset",
-        input_schema = types.DescribeAssetInput,
-        output_schema = types.DescribeAssetOutput,
+        input_schema = schemas.DescribeAssetInput,
+        output_schema = schemas.DescribeAssetOutput,
         http_method = "GET",
         http_path = "/assets/{Id}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:describePackagingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DescribePackagingConfiguration",
-        input_schema = types.DescribePackagingConfigurationInput,
-        output_schema = types.DescribePackagingConfigurationOutput,
+        input_schema = schemas.DescribePackagingConfigurationInput,
+        output_schema = schemas.DescribePackagingConfigurationOutput,
         http_method = "GET",
         http_path = "/packaging_configurations/{Id}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:describePackagingGroup(input, options)
     return self:invokeOperation(input, {
         name = "DescribePackagingGroup",
-        input_schema = types.DescribePackagingGroupInput,
-        output_schema = types.DescribePackagingGroupOutput,
+        input_schema = schemas.DescribePackagingGroupInput,
+        output_schema = schemas.DescribePackagingGroupOutput,
         http_method = "GET",
         http_path = "/packaging_groups/{Id}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listAssets(input, options)
     return self:invokeOperation(input, {
         name = "ListAssets",
-        input_schema = types.ListAssetsInput,
-        output_schema = types.ListAssetsOutput,
+        input_schema = schemas.ListAssetsInput,
+        output_schema = schemas.ListAssetsOutput,
         http_method = "GET",
         http_path = "/assets",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listPackagingConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListPackagingConfigurations",
-        input_schema = types.ListPackagingConfigurationsInput,
-        output_schema = types.ListPackagingConfigurationsOutput,
+        input_schema = schemas.ListPackagingConfigurationsInput,
+        output_schema = schemas.ListPackagingConfigurationsOutput,
         http_method = "GET",
         http_path = "/packaging_configurations",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listPackagingGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListPackagingGroups",
-        input_schema = types.ListPackagingGroupsInput,
-        output_schema = types.ListPackagingGroupsOutput,
+        input_schema = schemas.ListPackagingGroupsInput,
+        output_schema = schemas.ListPackagingGroupsOutput,
         http_method = "GET",
         http_path = "/packaging_groups",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:updatePackagingGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePackagingGroup",
-        input_schema = types.UpdatePackagingGroupInput,
-        output_schema = types.UpdatePackagingGroupOutput,
+        input_schema = schemas.UpdatePackagingGroupInput,
+        output_schema = schemas.UpdatePackagingGroupOutput,
         http_method = "PUT",
         http_path = "/packaging_groups/{Id}",
         effective_auth_schemes = {

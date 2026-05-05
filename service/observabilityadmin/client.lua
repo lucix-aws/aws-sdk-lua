@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("observabilityadmin.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("observabilityadmin.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("observabilityadmin.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createCentralizationRuleForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "CreateCentralizationRuleForOrganization",
-        input_schema = types.CreateCentralizationRuleForOrganizationInput,
-        output_schema = types.CreateCentralizationRuleForOrganizationOutput,
+        input_schema = schemas.CreateCentralizationRuleForOrganizationInput,
+        output_schema = schemas.CreateCentralizationRuleForOrganizationOutput,
         http_method = "POST",
         http_path = "/CreateCentralizationRuleForOrganization",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createS3TableIntegration(input, options)
     return self:invokeOperation(input, {
         name = "CreateS3TableIntegration",
-        input_schema = types.CreateS3TableIntegrationInput,
-        output_schema = types.CreateS3TableIntegrationOutput,
+        input_schema = schemas.CreateS3TableIntegrationInput,
+        output_schema = schemas.CreateS3TableIntegrationOutput,
         http_method = "POST",
         http_path = "/CreateS3TableIntegration",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createTelemetryPipeline(input, options)
     return self:invokeOperation(input, {
         name = "CreateTelemetryPipeline",
-        input_schema = types.CreateTelemetryPipelineInput,
-        output_schema = types.CreateTelemetryPipelineOutput,
+        input_schema = schemas.CreateTelemetryPipelineInput,
+        output_schema = schemas.CreateTelemetryPipelineOutput,
         http_method = "POST",
         http_path = "/CreateTelemetryPipeline",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createTelemetryRule(input, options)
     return self:invokeOperation(input, {
         name = "CreateTelemetryRule",
-        input_schema = types.CreateTelemetryRuleInput,
-        output_schema = types.CreateTelemetryRuleOutput,
+        input_schema = schemas.CreateTelemetryRuleInput,
+        output_schema = schemas.CreateTelemetryRuleOutput,
         http_method = "POST",
         http_path = "/CreateTelemetryRule",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createTelemetryRuleForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "CreateTelemetryRuleForOrganization",
-        input_schema = types.CreateTelemetryRuleForOrganizationInput,
-        output_schema = types.CreateTelemetryRuleForOrganizationOutput,
+        input_schema = schemas.CreateTelemetryRuleForOrganizationInput,
+        output_schema = schemas.CreateTelemetryRuleForOrganizationOutput,
         http_method = "POST",
         http_path = "/CreateTelemetryRuleForOrganization",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteCentralizationRuleForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCentralizationRuleForOrganization",
-        input_schema = types.DeleteCentralizationRuleForOrganizationInput,
-        output_schema = types.DeleteCentralizationRuleForOrganizationOutput,
+        input_schema = schemas.DeleteCentralizationRuleForOrganizationInput,
+        output_schema = schemas.DeleteCentralizationRuleForOrganizationOutput,
         http_method = "POST",
         http_path = "/DeleteCentralizationRuleForOrganization",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteS3TableIntegration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteS3TableIntegration",
-        input_schema = types.DeleteS3TableIntegrationInput,
-        output_schema = types.DeleteS3TableIntegrationOutput,
+        input_schema = schemas.DeleteS3TableIntegrationInput,
+        output_schema = schemas.DeleteS3TableIntegrationOutput,
         http_method = "POST",
         http_path = "/DeleteS3TableIntegration",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteTelemetryPipeline(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTelemetryPipeline",
-        input_schema = types.DeleteTelemetryPipelineInput,
-        output_schema = types.DeleteTelemetryPipelineOutput,
+        input_schema = schemas.DeleteTelemetryPipelineInput,
+        output_schema = schemas.DeleteTelemetryPipelineOutput,
         http_method = "POST",
         http_path = "/DeleteTelemetryPipeline",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteTelemetryRule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTelemetryRule",
-        input_schema = types.DeleteTelemetryRuleInput,
-        output_schema = types.DeleteTelemetryRuleOutput,
+        input_schema = schemas.DeleteTelemetryRuleInput,
+        output_schema = schemas.DeleteTelemetryRuleOutput,
         http_method = "POST",
         http_path = "/DeleteTelemetryRule",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteTelemetryRuleForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTelemetryRuleForOrganization",
-        input_schema = types.DeleteTelemetryRuleForOrganizationInput,
-        output_schema = types.DeleteTelemetryRuleForOrganizationOutput,
+        input_schema = schemas.DeleteTelemetryRuleForOrganizationInput,
+        output_schema = schemas.DeleteTelemetryRuleForOrganizationOutput,
         http_method = "POST",
         http_path = "/DeleteTelemetryRuleForOrganization",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getCentralizationRuleForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "GetCentralizationRuleForOrganization",
-        input_schema = types.GetCentralizationRuleForOrganizationInput,
-        output_schema = types.GetCentralizationRuleForOrganizationOutput,
+        input_schema = schemas.GetCentralizationRuleForOrganizationInput,
+        output_schema = schemas.GetCentralizationRuleForOrganizationOutput,
         http_method = "POST",
         http_path = "/GetCentralizationRuleForOrganization",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getS3TableIntegration(input, options)
     return self:invokeOperation(input, {
         name = "GetS3TableIntegration",
-        input_schema = types.GetS3TableIntegrationInput,
-        output_schema = types.GetS3TableIntegrationOutput,
+        input_schema = schemas.GetS3TableIntegrationInput,
+        output_schema = schemas.GetS3TableIntegrationOutput,
         http_method = "POST",
         http_path = "/GetS3TableIntegration",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getTelemetryEnrichmentStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetTelemetryEnrichmentStatus",
-        input_schema = types.GetTelemetryEnrichmentStatusInput,
-        output_schema = types.GetTelemetryEnrichmentStatusOutput,
+        input_schema = schemas.GetTelemetryEnrichmentStatusInput,
+        output_schema = schemas.GetTelemetryEnrichmentStatusOutput,
         http_method = "POST",
         http_path = "/GetTelemetryEnrichmentStatus",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getTelemetryEvaluationStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetTelemetryEvaluationStatus",
-        input_schema = types.GetTelemetryEvaluationStatusInput,
-        output_schema = types.GetTelemetryEvaluationStatusOutput,
+        input_schema = schemas.GetTelemetryEvaluationStatusInput,
+        output_schema = schemas.GetTelemetryEvaluationStatusOutput,
         http_method = "POST",
         http_path = "/GetTelemetryEvaluationStatus",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getTelemetryEvaluationStatusForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "GetTelemetryEvaluationStatusForOrganization",
-        input_schema = types.GetTelemetryEvaluationStatusForOrganizationInput,
-        output_schema = types.GetTelemetryEvaluationStatusForOrganizationOutput,
+        input_schema = schemas.GetTelemetryEvaluationStatusForOrganizationInput,
+        output_schema = schemas.GetTelemetryEvaluationStatusForOrganizationOutput,
         http_method = "POST",
         http_path = "/GetTelemetryEvaluationStatusForOrganization",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getTelemetryPipeline(input, options)
     return self:invokeOperation(input, {
         name = "GetTelemetryPipeline",
-        input_schema = types.GetTelemetryPipelineInput,
-        output_schema = types.GetTelemetryPipelineOutput,
+        input_schema = schemas.GetTelemetryPipelineInput,
+        output_schema = schemas.GetTelemetryPipelineOutput,
         http_method = "POST",
         http_path = "/GetTelemetryPipeline",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getTelemetryRule(input, options)
     return self:invokeOperation(input, {
         name = "GetTelemetryRule",
-        input_schema = types.GetTelemetryRuleInput,
-        output_schema = types.GetTelemetryRuleOutput,
+        input_schema = schemas.GetTelemetryRuleInput,
+        output_schema = schemas.GetTelemetryRuleOutput,
         http_method = "POST",
         http_path = "/GetTelemetryRule",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getTelemetryRuleForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "GetTelemetryRuleForOrganization",
-        input_schema = types.GetTelemetryRuleForOrganizationInput,
-        output_schema = types.GetTelemetryRuleForOrganizationOutput,
+        input_schema = schemas.GetTelemetryRuleForOrganizationInput,
+        output_schema = schemas.GetTelemetryRuleForOrganizationOutput,
         http_method = "POST",
         http_path = "/GetTelemetryRuleForOrganization",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listCentralizationRulesForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "ListCentralizationRulesForOrganization",
-        input_schema = types.ListCentralizationRulesForOrganizationInput,
-        output_schema = types.ListCentralizationRulesForOrganizationOutput,
+        input_schema = schemas.ListCentralizationRulesForOrganizationInput,
+        output_schema = schemas.ListCentralizationRulesForOrganizationOutput,
         http_method = "POST",
         http_path = "/ListCentralizationRulesForOrganization",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listResourceTelemetry(input, options)
     return self:invokeOperation(input, {
         name = "ListResourceTelemetry",
-        input_schema = types.ListResourceTelemetryInput,
-        output_schema = types.ListResourceTelemetryOutput,
+        input_schema = schemas.ListResourceTelemetryInput,
+        output_schema = schemas.ListResourceTelemetryOutput,
         http_method = "POST",
         http_path = "/ListResourceTelemetry",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listResourceTelemetryForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "ListResourceTelemetryForOrganization",
-        input_schema = types.ListResourceTelemetryForOrganizationInput,
-        output_schema = types.ListResourceTelemetryForOrganizationOutput,
+        input_schema = schemas.ListResourceTelemetryForOrganizationInput,
+        output_schema = schemas.ListResourceTelemetryForOrganizationOutput,
         http_method = "POST",
         http_path = "/ListResourceTelemetryForOrganization",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listS3TableIntegrations(input, options)
     return self:invokeOperation(input, {
         name = "ListS3TableIntegrations",
-        input_schema = types.ListS3TableIntegrationsInput,
-        output_schema = types.ListS3TableIntegrationsOutput,
+        input_schema = schemas.ListS3TableIntegrationsInput,
+        output_schema = schemas.ListS3TableIntegrationsOutput,
         http_method = "POST",
         http_path = "/ListS3TableIntegrations",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/ListTagsForResource",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listTelemetryPipelines(input, options)
     return self:invokeOperation(input, {
         name = "ListTelemetryPipelines",
-        input_schema = types.ListTelemetryPipelinesInput,
-        output_schema = types.ListTelemetryPipelinesOutput,
+        input_schema = schemas.ListTelemetryPipelinesInput,
+        output_schema = schemas.ListTelemetryPipelinesOutput,
         http_method = "POST",
         http_path = "/ListTelemetryPipelines",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listTelemetryRules(input, options)
     return self:invokeOperation(input, {
         name = "ListTelemetryRules",
-        input_schema = types.ListTelemetryRulesInput,
-        output_schema = types.ListTelemetryRulesOutput,
+        input_schema = schemas.ListTelemetryRulesInput,
+        output_schema = schemas.ListTelemetryRulesOutput,
         http_method = "POST",
         http_path = "/ListTelemetryRules",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listTelemetryRulesForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "ListTelemetryRulesForOrganization",
-        input_schema = types.ListTelemetryRulesForOrganizationInput,
-        output_schema = types.ListTelemetryRulesForOrganizationOutput,
+        input_schema = schemas.ListTelemetryRulesForOrganizationInput,
+        output_schema = schemas.ListTelemetryRulesForOrganizationOutput,
         http_method = "POST",
         http_path = "/ListTelemetryRulesForOrganization",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:startTelemetryEnrichment(input, options)
     return self:invokeOperation(input, {
         name = "StartTelemetryEnrichment",
-        input_schema = types.StartTelemetryEnrichmentInput,
-        output_schema = types.StartTelemetryEnrichmentOutput,
+        input_schema = schemas.StartTelemetryEnrichmentInput,
+        output_schema = schemas.StartTelemetryEnrichmentOutput,
         http_method = "POST",
         http_path = "/StartTelemetryEnrichment",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:startTelemetryEvaluation(input, options)
     return self:invokeOperation(input, {
         name = "StartTelemetryEvaluation",
-        input_schema = types.StartTelemetryEvaluationInput,
-        output_schema = types.StartTelemetryEvaluationOutput,
+        input_schema = schemas.StartTelemetryEvaluationInput,
+        output_schema = schemas.StartTelemetryEvaluationOutput,
         http_method = "POST",
         http_path = "/StartTelemetryEvaluation",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:startTelemetryEvaluationForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "StartTelemetryEvaluationForOrganization",
-        input_schema = types.StartTelemetryEvaluationForOrganizationInput,
-        output_schema = types.StartTelemetryEvaluationForOrganizationOutput,
+        input_schema = schemas.StartTelemetryEvaluationForOrganizationInput,
+        output_schema = schemas.StartTelemetryEvaluationForOrganizationOutput,
         http_method = "POST",
         http_path = "/StartTelemetryEvaluationForOrganization",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:stopTelemetryEnrichment(input, options)
     return self:invokeOperation(input, {
         name = "StopTelemetryEnrichment",
-        input_schema = types.StopTelemetryEnrichmentInput,
-        output_schema = types.StopTelemetryEnrichmentOutput,
+        input_schema = schemas.StopTelemetryEnrichmentInput,
+        output_schema = schemas.StopTelemetryEnrichmentOutput,
         http_method = "POST",
         http_path = "/StopTelemetryEnrichment",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:stopTelemetryEvaluation(input, options)
     return self:invokeOperation(input, {
         name = "StopTelemetryEvaluation",
-        input_schema = types.StopTelemetryEvaluationInput,
-        output_schema = types.StopTelemetryEvaluationOutput,
+        input_schema = schemas.StopTelemetryEvaluationInput,
+        output_schema = schemas.StopTelemetryEvaluationOutput,
         http_method = "POST",
         http_path = "/StopTelemetryEvaluation",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:stopTelemetryEvaluationForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "StopTelemetryEvaluationForOrganization",
-        input_schema = types.StopTelemetryEvaluationForOrganizationInput,
-        output_schema = types.StopTelemetryEvaluationForOrganizationOutput,
+        input_schema = schemas.StopTelemetryEvaluationForOrganizationInput,
+        output_schema = schemas.StopTelemetryEvaluationForOrganizationOutput,
         http_method = "POST",
         http_path = "/StopTelemetryEvaluationForOrganization",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/TagResource",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:testTelemetryPipeline(input, options)
     return self:invokeOperation(input, {
         name = "TestTelemetryPipeline",
-        input_schema = types.TestTelemetryPipelineInput,
-        output_schema = types.TestTelemetryPipelineOutput,
+        input_schema = schemas.TestTelemetryPipelineInput,
+        output_schema = schemas.TestTelemetryPipelineOutput,
         http_method = "POST",
         http_path = "/TestTelemetryPipeline",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/UntagResource",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:updateCentralizationRuleForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCentralizationRuleForOrganization",
-        input_schema = types.UpdateCentralizationRuleForOrganizationInput,
-        output_schema = types.UpdateCentralizationRuleForOrganizationOutput,
+        input_schema = schemas.UpdateCentralizationRuleForOrganizationInput,
+        output_schema = schemas.UpdateCentralizationRuleForOrganizationOutput,
         http_method = "POST",
         http_path = "/UpdateCentralizationRuleForOrganization",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:updateTelemetryPipeline(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTelemetryPipeline",
-        input_schema = types.UpdateTelemetryPipelineInput,
-        output_schema = types.UpdateTelemetryPipelineOutput,
+        input_schema = schemas.UpdateTelemetryPipelineInput,
+        output_schema = schemas.UpdateTelemetryPipelineOutput,
         http_method = "POST",
         http_path = "/UpdateTelemetryPipeline",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:updateTelemetryRule(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTelemetryRule",
-        input_schema = types.UpdateTelemetryRuleInput,
-        output_schema = types.UpdateTelemetryRuleOutput,
+        input_schema = schemas.UpdateTelemetryRuleInput,
+        output_schema = schemas.UpdateTelemetryRuleOutput,
         http_method = "POST",
         http_path = "/UpdateTelemetryRule",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:updateTelemetryRuleForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTelemetryRuleForOrganization",
-        input_schema = types.UpdateTelemetryRuleForOrganizationInput,
-        output_schema = types.UpdateTelemetryRuleForOrganizationOutput,
+        input_schema = schemas.UpdateTelemetryRuleForOrganizationInput,
+        output_schema = schemas.UpdateTelemetryRuleForOrganizationOutput,
         http_method = "POST",
         http_path = "/UpdateTelemetryRuleForOrganization",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:validateTelemetryPipelineConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "ValidateTelemetryPipelineConfiguration",
-        input_schema = types.ValidateTelemetryPipelineConfigurationInput,
-        output_schema = types.ValidateTelemetryPipelineConfigurationOutput,
+        input_schema = schemas.ValidateTelemetryPipelineConfigurationInput,
+        output_schema = schemas.ValidateTelemetryPipelineConfigurationOutput,
         http_method = "POST",
         http_path = "/ValidateTelemetryPipelineConfiguration",
         effective_auth_schemes = {

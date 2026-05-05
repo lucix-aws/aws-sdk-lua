@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("comprehendmedical.endpoint_rules")
+local schemas = require("comprehendmedical.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("comprehendmedical.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:describeEntitiesDetectionV2Job(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEntitiesDetectionV2Job",
-        input_schema = types.DescribeEntitiesDetectionV2JobInput,
-        output_schema = types.DescribeEntitiesDetectionV2JobOutput,
+        input_schema = schemas.DescribeEntitiesDetectionV2JobInput,
+        output_schema = schemas.DescribeEntitiesDetectionV2JobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:describeICD10CMInferenceJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribeICD10CMInferenceJob",
-        input_schema = types.DescribeICD10CMInferenceJobInput,
-        output_schema = types.DescribeICD10CMInferenceJobOutput,
+        input_schema = schemas.DescribeICD10CMInferenceJobInput,
+        output_schema = schemas.DescribeICD10CMInferenceJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:describePHIDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribePHIDetectionJob",
-        input_schema = types.DescribePHIDetectionJobInput,
-        output_schema = types.DescribePHIDetectionJobOutput,
+        input_schema = schemas.DescribePHIDetectionJobInput,
+        output_schema = schemas.DescribePHIDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:describeRxNormInferenceJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRxNormInferenceJob",
-        input_schema = types.DescribeRxNormInferenceJobInput,
-        output_schema = types.DescribeRxNormInferenceJobOutput,
+        input_schema = schemas.DescribeRxNormInferenceJobInput,
+        output_schema = schemas.DescribeRxNormInferenceJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:describeSNOMEDCTInferenceJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSNOMEDCTInferenceJob",
-        input_schema = types.DescribeSNOMEDCTInferenceJobInput,
-        output_schema = types.DescribeSNOMEDCTInferenceJobOutput,
+        input_schema = schemas.DescribeSNOMEDCTInferenceJobInput,
+        output_schema = schemas.DescribeSNOMEDCTInferenceJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:detectEntities(input, options)
     return self:invokeOperation(input, {
         name = "DetectEntities",
-        input_schema = types.DetectEntitiesInput,
-        output_schema = types.DetectEntitiesOutput,
+        input_schema = schemas.DetectEntitiesInput,
+        output_schema = schemas.DetectEntitiesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:detectEntitiesV2(input, options)
     return self:invokeOperation(input, {
         name = "DetectEntitiesV2",
-        input_schema = types.DetectEntitiesV2Input,
-        output_schema = types.DetectEntitiesV2Output,
+        input_schema = schemas.DetectEntitiesV2Input,
+        output_schema = schemas.DetectEntitiesV2Output,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:detectPHI(input, options)
     return self:invokeOperation(input, {
         name = "DetectPHI",
-        input_schema = types.DetectPHIInput,
-        output_schema = types.DetectPHIOutput,
+        input_schema = schemas.DetectPHIInput,
+        output_schema = schemas.DetectPHIOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:inferICD10CM(input, options)
     return self:invokeOperation(input, {
         name = "InferICD10CM",
-        input_schema = types.InferICD10CMInput,
-        output_schema = types.InferICD10CMOutput,
+        input_schema = schemas.InferICD10CMInput,
+        output_schema = schemas.InferICD10CMOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:inferRxNorm(input, options)
     return self:invokeOperation(input, {
         name = "InferRxNorm",
-        input_schema = types.InferRxNormInput,
-        output_schema = types.InferRxNormOutput,
+        input_schema = schemas.InferRxNormInput,
+        output_schema = schemas.InferRxNormOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:inferSNOMEDCT(input, options)
     return self:invokeOperation(input, {
         name = "InferSNOMEDCT",
-        input_schema = types.InferSNOMEDCTInput,
-        output_schema = types.InferSNOMEDCTOutput,
+        input_schema = schemas.InferSNOMEDCTInput,
+        output_schema = schemas.InferSNOMEDCTOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listEntitiesDetectionV2Jobs(input, options)
     return self:invokeOperation(input, {
         name = "ListEntitiesDetectionV2Jobs",
-        input_schema = types.ListEntitiesDetectionV2JobsInput,
-        output_schema = types.ListEntitiesDetectionV2JobsOutput,
+        input_schema = schemas.ListEntitiesDetectionV2JobsInput,
+        output_schema = schemas.ListEntitiesDetectionV2JobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listICD10CMInferenceJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListICD10CMInferenceJobs",
-        input_schema = types.ListICD10CMInferenceJobsInput,
-        output_schema = types.ListICD10CMInferenceJobsOutput,
+        input_schema = schemas.ListICD10CMInferenceJobsInput,
+        output_schema = schemas.ListICD10CMInferenceJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listPHIDetectionJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListPHIDetectionJobs",
-        input_schema = types.ListPHIDetectionJobsInput,
-        output_schema = types.ListPHIDetectionJobsOutput,
+        input_schema = schemas.ListPHIDetectionJobsInput,
+        output_schema = schemas.ListPHIDetectionJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listRxNormInferenceJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListRxNormInferenceJobs",
-        input_schema = types.ListRxNormInferenceJobsInput,
-        output_schema = types.ListRxNormInferenceJobsOutput,
+        input_schema = schemas.ListRxNormInferenceJobsInput,
+        output_schema = schemas.ListRxNormInferenceJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listSNOMEDCTInferenceJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListSNOMEDCTInferenceJobs",
-        input_schema = types.ListSNOMEDCTInferenceJobsInput,
-        output_schema = types.ListSNOMEDCTInferenceJobsOutput,
+        input_schema = schemas.ListSNOMEDCTInferenceJobsInput,
+        output_schema = schemas.ListSNOMEDCTInferenceJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:startEntitiesDetectionV2Job(input, options)
     return self:invokeOperation(input, {
         name = "StartEntitiesDetectionV2Job",
-        input_schema = types.StartEntitiesDetectionV2JobInput,
-        output_schema = types.StartEntitiesDetectionV2JobOutput,
+        input_schema = schemas.StartEntitiesDetectionV2JobInput,
+        output_schema = schemas.StartEntitiesDetectionV2JobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:startICD10CMInferenceJob(input, options)
     return self:invokeOperation(input, {
         name = "StartICD10CMInferenceJob",
-        input_schema = types.StartICD10CMInferenceJobInput,
-        output_schema = types.StartICD10CMInferenceJobOutput,
+        input_schema = schemas.StartICD10CMInferenceJobInput,
+        output_schema = schemas.StartICD10CMInferenceJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:startPHIDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "StartPHIDetectionJob",
-        input_schema = types.StartPHIDetectionJobInput,
-        output_schema = types.StartPHIDetectionJobOutput,
+        input_schema = schemas.StartPHIDetectionJobInput,
+        output_schema = schemas.StartPHIDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:startRxNormInferenceJob(input, options)
     return self:invokeOperation(input, {
         name = "StartRxNormInferenceJob",
-        input_schema = types.StartRxNormInferenceJobInput,
-        output_schema = types.StartRxNormInferenceJobOutput,
+        input_schema = schemas.StartRxNormInferenceJobInput,
+        output_schema = schemas.StartRxNormInferenceJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:startSNOMEDCTInferenceJob(input, options)
     return self:invokeOperation(input, {
         name = "StartSNOMEDCTInferenceJob",
-        input_schema = types.StartSNOMEDCTInferenceJobInput,
-        output_schema = types.StartSNOMEDCTInferenceJobOutput,
+        input_schema = schemas.StartSNOMEDCTInferenceJobInput,
+        output_schema = schemas.StartSNOMEDCTInferenceJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:stopEntitiesDetectionV2Job(input, options)
     return self:invokeOperation(input, {
         name = "StopEntitiesDetectionV2Job",
-        input_schema = types.StopEntitiesDetectionV2JobInput,
-        output_schema = types.StopEntitiesDetectionV2JobOutput,
+        input_schema = schemas.StopEntitiesDetectionV2JobInput,
+        output_schema = schemas.StopEntitiesDetectionV2JobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:stopICD10CMInferenceJob(input, options)
     return self:invokeOperation(input, {
         name = "StopICD10CMInferenceJob",
-        input_schema = types.StopICD10CMInferenceJobInput,
-        output_schema = types.StopICD10CMInferenceJobOutput,
+        input_schema = schemas.StopICD10CMInferenceJobInput,
+        output_schema = schemas.StopICD10CMInferenceJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:stopPHIDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "StopPHIDetectionJob",
-        input_schema = types.StopPHIDetectionJobInput,
-        output_schema = types.StopPHIDetectionJobOutput,
+        input_schema = schemas.StopPHIDetectionJobInput,
+        output_schema = schemas.StopPHIDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:stopRxNormInferenceJob(input, options)
     return self:invokeOperation(input, {
         name = "StopRxNormInferenceJob",
-        input_schema = types.StopRxNormInferenceJobInput,
-        output_schema = types.StopRxNormInferenceJobOutput,
+        input_schema = schemas.StopRxNormInferenceJobInput,
+        output_schema = schemas.StopRxNormInferenceJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:stopSNOMEDCTInferenceJob(input, options)
     return self:invokeOperation(input, {
         name = "StopSNOMEDCTInferenceJob",
-        input_schema = types.StopSNOMEDCTInferenceJobInput,
-        output_schema = types.StopSNOMEDCTInferenceJobOutput,
+        input_schema = schemas.StopSNOMEDCTInferenceJobInput,
+        output_schema = schemas.StopSNOMEDCTInferenceJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

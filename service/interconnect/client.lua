@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("interconnect.endpoint_rules")
+local schemas = require("interconnect.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("interconnect.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptConnectionProposal(input, options)
     return self:invokeOperation(input, {
         name = "AcceptConnectionProposal",
-        input_schema = types.AcceptConnectionProposalInput,
-        output_schema = types.AcceptConnectionProposalOutput,
+        input_schema = schemas.AcceptConnectionProposalInput,
+        output_schema = schemas.AcceptConnectionProposalOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createConnection(input, options)
     return self:invokeOperation(input, {
         name = "CreateConnection",
-        input_schema = types.CreateConnectionInput,
-        output_schema = types.CreateConnectionOutput,
+        input_schema = schemas.CreateConnectionInput,
+        output_schema = schemas.CreateConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteConnection(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConnection",
-        input_schema = types.DeleteConnectionInput,
-        output_schema = types.DeleteConnectionOutput,
+        input_schema = schemas.DeleteConnectionInput,
+        output_schema = schemas.DeleteConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:describeConnectionProposal(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConnectionProposal",
-        input_schema = types.DescribeConnectionProposalInput,
-        output_schema = types.DescribeConnectionProposalOutput,
+        input_schema = schemas.DescribeConnectionProposalInput,
+        output_schema = schemas.DescribeConnectionProposalOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getConnection(input, options)
     return self:invokeOperation(input, {
         name = "GetConnection",
-        input_schema = types.GetConnectionInput,
-        output_schema = types.GetConnectionOutput,
+        input_schema = schemas.GetConnectionInput,
+        output_schema = schemas.GetConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "GetEnvironment",
-        input_schema = types.GetEnvironmentInput,
-        output_schema = types.GetEnvironmentOutput,
+        input_schema = schemas.GetEnvironmentInput,
+        output_schema = schemas.GetEnvironmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listAttachPoints(input, options)
     return self:invokeOperation(input, {
         name = "ListAttachPoints",
-        input_schema = types.ListAttachPointsInput,
-        output_schema = types.ListAttachPointsOutput,
+        input_schema = schemas.ListAttachPointsInput,
+        output_schema = schemas.ListAttachPointsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listConnections(input, options)
     return self:invokeOperation(input, {
         name = "ListConnections",
-        input_schema = types.ListConnectionsInput,
-        output_schema = types.ListConnectionsOutput,
+        input_schema = schemas.ListConnectionsInput,
+        output_schema = schemas.ListConnectionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listEnvironments(input, options)
     return self:invokeOperation(input, {
         name = "ListEnvironments",
-        input_schema = types.ListEnvironmentsInput,
-        output_schema = types.ListEnvironmentsOutput,
+        input_schema = schemas.ListEnvironmentsInput,
+        output_schema = schemas.ListEnvironmentsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:updateConnection(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConnection",
-        input_schema = types.UpdateConnectionInput,
-        output_schema = types.UpdateConnectionOutput,
+        input_schema = schemas.UpdateConnectionInput,
+        output_schema = schemas.UpdateConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

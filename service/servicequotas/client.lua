@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("servicequotas.endpoint_rules")
+local schemas = require("servicequotas.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("servicequotas.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateServiceQuotaTemplate(input, options)
     return self:invokeOperation(input, {
         name = "AssociateServiceQuotaTemplate",
-        input_schema = types.AssociateServiceQuotaTemplateInput,
-        output_schema = types.AssociateServiceQuotaTemplateOutput,
+        input_schema = schemas.AssociateServiceQuotaTemplateInput,
+        output_schema = schemas.AssociateServiceQuotaTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createSupportCase(input, options)
     return self:invokeOperation(input, {
         name = "CreateSupportCase",
-        input_schema = types.CreateSupportCaseInput,
-        output_schema = types.CreateSupportCaseOutput,
+        input_schema = schemas.CreateSupportCaseInput,
+        output_schema = schemas.CreateSupportCaseOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteServiceQuotaIncreaseRequestFromTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DeleteServiceQuotaIncreaseRequestFromTemplate",
-        input_schema = types.DeleteServiceQuotaIncreaseRequestFromTemplateInput,
-        output_schema = types.DeleteServiceQuotaIncreaseRequestFromTemplateOutput,
+        input_schema = schemas.DeleteServiceQuotaIncreaseRequestFromTemplateInput,
+        output_schema = schemas.DeleteServiceQuotaIncreaseRequestFromTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:disassociateServiceQuotaTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateServiceQuotaTemplate",
-        input_schema = types.DisassociateServiceQuotaTemplateInput,
-        output_schema = types.DisassociateServiceQuotaTemplateOutput,
+        input_schema = schemas.DisassociateServiceQuotaTemplateInput,
+        output_schema = schemas.DisassociateServiceQuotaTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getAssociationForServiceQuotaTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetAssociationForServiceQuotaTemplate",
-        input_schema = types.GetAssociationForServiceQuotaTemplateInput,
-        output_schema = types.GetAssociationForServiceQuotaTemplateOutput,
+        input_schema = schemas.GetAssociationForServiceQuotaTemplateInput,
+        output_schema = schemas.GetAssociationForServiceQuotaTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getAutoManagementConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetAutoManagementConfiguration",
-        input_schema = types.GetAutoManagementConfigurationInput,
-        output_schema = types.GetAutoManagementConfigurationOutput,
+        input_schema = schemas.GetAutoManagementConfigurationInput,
+        output_schema = schemas.GetAutoManagementConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getAWSDefaultServiceQuota(input, options)
     return self:invokeOperation(input, {
         name = "GetAWSDefaultServiceQuota",
-        input_schema = types.GetAWSDefaultServiceQuotaInput,
-        output_schema = types.GetAWSDefaultServiceQuotaOutput,
+        input_schema = schemas.GetAWSDefaultServiceQuotaInput,
+        output_schema = schemas.GetAWSDefaultServiceQuotaOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getQuotaUtilizationReport(input, options)
     return self:invokeOperation(input, {
         name = "GetQuotaUtilizationReport",
-        input_schema = types.GetQuotaUtilizationReportInput,
-        output_schema = types.GetQuotaUtilizationReportOutput,
+        input_schema = schemas.GetQuotaUtilizationReportInput,
+        output_schema = schemas.GetQuotaUtilizationReportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getRequestedServiceQuotaChange(input, options)
     return self:invokeOperation(input, {
         name = "GetRequestedServiceQuotaChange",
-        input_schema = types.GetRequestedServiceQuotaChangeInput,
-        output_schema = types.GetRequestedServiceQuotaChangeOutput,
+        input_schema = schemas.GetRequestedServiceQuotaChangeInput,
+        output_schema = schemas.GetRequestedServiceQuotaChangeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getServiceQuota(input, options)
     return self:invokeOperation(input, {
         name = "GetServiceQuota",
-        input_schema = types.GetServiceQuotaInput,
-        output_schema = types.GetServiceQuotaOutput,
+        input_schema = schemas.GetServiceQuotaInput,
+        output_schema = schemas.GetServiceQuotaOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getServiceQuotaIncreaseRequestFromTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetServiceQuotaIncreaseRequestFromTemplate",
-        input_schema = types.GetServiceQuotaIncreaseRequestFromTemplateInput,
-        output_schema = types.GetServiceQuotaIncreaseRequestFromTemplateOutput,
+        input_schema = schemas.GetServiceQuotaIncreaseRequestFromTemplateInput,
+        output_schema = schemas.GetServiceQuotaIncreaseRequestFromTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listAWSDefaultServiceQuotas(input, options)
     return self:invokeOperation(input, {
         name = "ListAWSDefaultServiceQuotas",
-        input_schema = types.ListAWSDefaultServiceQuotasInput,
-        output_schema = types.ListAWSDefaultServiceQuotasOutput,
+        input_schema = schemas.ListAWSDefaultServiceQuotasInput,
+        output_schema = schemas.ListAWSDefaultServiceQuotasOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listRequestedServiceQuotaChangeHistory(input, options)
     return self:invokeOperation(input, {
         name = "ListRequestedServiceQuotaChangeHistory",
-        input_schema = types.ListRequestedServiceQuotaChangeHistoryInput,
-        output_schema = types.ListRequestedServiceQuotaChangeHistoryOutput,
+        input_schema = schemas.ListRequestedServiceQuotaChangeHistoryInput,
+        output_schema = schemas.ListRequestedServiceQuotaChangeHistoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listRequestedServiceQuotaChangeHistoryByQuota(input, options)
     return self:invokeOperation(input, {
         name = "ListRequestedServiceQuotaChangeHistoryByQuota",
-        input_schema = types.ListRequestedServiceQuotaChangeHistoryByQuotaInput,
-        output_schema = types.ListRequestedServiceQuotaChangeHistoryByQuotaOutput,
+        input_schema = schemas.ListRequestedServiceQuotaChangeHistoryByQuotaInput,
+        output_schema = schemas.ListRequestedServiceQuotaChangeHistoryByQuotaOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listServiceQuotaIncreaseRequestsInTemplate(input, options)
     return self:invokeOperation(input, {
         name = "ListServiceQuotaIncreaseRequestsInTemplate",
-        input_schema = types.ListServiceQuotaIncreaseRequestsInTemplateInput,
-        output_schema = types.ListServiceQuotaIncreaseRequestsInTemplateOutput,
+        input_schema = schemas.ListServiceQuotaIncreaseRequestsInTemplateInput,
+        output_schema = schemas.ListServiceQuotaIncreaseRequestsInTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listServiceQuotas(input, options)
     return self:invokeOperation(input, {
         name = "ListServiceQuotas",
-        input_schema = types.ListServiceQuotasInput,
-        output_schema = types.ListServiceQuotasOutput,
+        input_schema = schemas.ListServiceQuotasInput,
+        output_schema = schemas.ListServiceQuotasOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listServices(input, options)
     return self:invokeOperation(input, {
         name = "ListServices",
-        input_schema = types.ListServicesInput,
-        output_schema = types.ListServicesOutput,
+        input_schema = schemas.ListServicesInput,
+        output_schema = schemas.ListServicesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:putServiceQuotaIncreaseRequestIntoTemplate(input, options)
     return self:invokeOperation(input, {
         name = "PutServiceQuotaIncreaseRequestIntoTemplate",
-        input_schema = types.PutServiceQuotaIncreaseRequestIntoTemplateInput,
-        output_schema = types.PutServiceQuotaIncreaseRequestIntoTemplateOutput,
+        input_schema = schemas.PutServiceQuotaIncreaseRequestIntoTemplateInput,
+        output_schema = schemas.PutServiceQuotaIncreaseRequestIntoTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:requestServiceQuotaIncrease(input, options)
     return self:invokeOperation(input, {
         name = "RequestServiceQuotaIncrease",
-        input_schema = types.RequestServiceQuotaIncreaseInput,
-        output_schema = types.RequestServiceQuotaIncreaseOutput,
+        input_schema = schemas.RequestServiceQuotaIncreaseInput,
+        output_schema = schemas.RequestServiceQuotaIncreaseOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:startAutoManagement(input, options)
     return self:invokeOperation(input, {
         name = "StartAutoManagement",
-        input_schema = types.StartAutoManagementInput,
-        output_schema = types.StartAutoManagementOutput,
+        input_schema = schemas.StartAutoManagementInput,
+        output_schema = schemas.StartAutoManagementOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:startQuotaUtilizationReport(input, options)
     return self:invokeOperation(input, {
         name = "StartQuotaUtilizationReport",
-        input_schema = types.StartQuotaUtilizationReportInput,
-        output_schema = types.StartQuotaUtilizationReportOutput,
+        input_schema = schemas.StartQuotaUtilizationReportInput,
+        output_schema = schemas.StartQuotaUtilizationReportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:stopAutoManagement(input, options)
     return self:invokeOperation(input, {
         name = "StopAutoManagement",
-        input_schema = types.StopAutoManagementInput,
-        output_schema = types.StopAutoManagementOutput,
+        input_schema = schemas.StopAutoManagementInput,
+        output_schema = schemas.StopAutoManagementOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:updateAutoManagement(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAutoManagement",
-        input_schema = types.UpdateAutoManagementInput,
-        output_schema = types.UpdateAutoManagementOutput,
+        input_schema = schemas.UpdateAutoManagementInput,
+        output_schema = schemas.UpdateAutoManagementOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

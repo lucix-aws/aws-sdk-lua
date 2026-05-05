@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("kinesisvideomedia.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("kinesisvideomedia.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("kinesisvideomedia.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getMedia(input, options)
     return self:invokeOperation(input, {
         name = "GetMedia",
-        input_schema = types.GetMediaInput,
-        output_schema = types.GetMediaOutput,
+        input_schema = schemas.GetMediaInput,
+        output_schema = schemas.GetMediaOutput,
         http_method = "POST",
         http_path = "/getMedia",
         effective_auth_schemes = {

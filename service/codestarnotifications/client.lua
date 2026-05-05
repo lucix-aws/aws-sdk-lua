@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("codestarnotifications.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("codestarnotifications.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("codestarnotifications.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createNotificationRule(input, options)
     return self:invokeOperation(input, {
         name = "CreateNotificationRule",
-        input_schema = types.CreateNotificationRuleInput,
-        output_schema = types.CreateNotificationRuleOutput,
+        input_schema = schemas.CreateNotificationRuleInput,
+        output_schema = schemas.CreateNotificationRuleOutput,
         http_method = "POST",
         http_path = "/createNotificationRule",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteNotificationRule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteNotificationRule",
-        input_schema = types.DeleteNotificationRuleInput,
-        output_schema = types.DeleteNotificationRuleOutput,
+        input_schema = schemas.DeleteNotificationRuleInput,
+        output_schema = schemas.DeleteNotificationRuleOutput,
         http_method = "POST",
         http_path = "/deleteNotificationRule",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteTarget(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTarget",
-        input_schema = types.DeleteTargetInput,
-        output_schema = types.DeleteTargetOutput,
+        input_schema = schemas.DeleteTargetInput,
+        output_schema = schemas.DeleteTargetOutput,
         http_method = "POST",
         http_path = "/deleteTarget",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:describeNotificationRule(input, options)
     return self:invokeOperation(input, {
         name = "DescribeNotificationRule",
-        input_schema = types.DescribeNotificationRuleInput,
-        output_schema = types.DescribeNotificationRuleOutput,
+        input_schema = schemas.DescribeNotificationRuleInput,
+        output_schema = schemas.DescribeNotificationRuleOutput,
         http_method = "POST",
         http_path = "/describeNotificationRule",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:listEventTypes(input, options)
     return self:invokeOperation(input, {
         name = "ListEventTypes",
-        input_schema = types.ListEventTypesInput,
-        output_schema = types.ListEventTypesOutput,
+        input_schema = schemas.ListEventTypesInput,
+        output_schema = schemas.ListEventTypesOutput,
         http_method = "POST",
         http_path = "/listEventTypes",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:listNotificationRules(input, options)
     return self:invokeOperation(input, {
         name = "ListNotificationRules",
-        input_schema = types.ListNotificationRulesInput,
-        output_schema = types.ListNotificationRulesOutput,
+        input_schema = schemas.ListNotificationRulesInput,
+        output_schema = schemas.ListNotificationRulesOutput,
         http_method = "POST",
         http_path = "/listNotificationRules",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/listTagsForResource",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listTargets(input, options)
     return self:invokeOperation(input, {
         name = "ListTargets",
-        input_schema = types.ListTargetsInput,
-        output_schema = types.ListTargetsOutput,
+        input_schema = schemas.ListTargetsInput,
+        output_schema = schemas.ListTargetsOutput,
         http_method = "POST",
         http_path = "/listTargets",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:subscribe(input, options)
     return self:invokeOperation(input, {
         name = "Subscribe",
-        input_schema = types.SubscribeInput,
-        output_schema = types.SubscribeOutput,
+        input_schema = schemas.SubscribeInput,
+        output_schema = schemas.SubscribeOutput,
         http_method = "POST",
         http_path = "/subscribe",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tagResource",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:unsubscribe(input, options)
     return self:invokeOperation(input, {
         name = "Unsubscribe",
-        input_schema = types.UnsubscribeInput,
-        output_schema = types.UnsubscribeOutput,
+        input_schema = schemas.UnsubscribeInput,
+        output_schema = schemas.UnsubscribeOutput,
         http_method = "POST",
         http_path = "/unsubscribe",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/untagResource/{Arn}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:updateNotificationRule(input, options)
     return self:invokeOperation(input, {
         name = "UpdateNotificationRule",
-        input_schema = types.UpdateNotificationRuleInput,
-        output_schema = types.UpdateNotificationRuleOutput,
+        input_schema = schemas.UpdateNotificationRuleInput,
+        output_schema = schemas.UpdateNotificationRuleOutput,
         http_method = "POST",
         http_path = "/updateNotificationRule",
         effective_auth_schemes = {

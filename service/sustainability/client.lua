@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("sustainability.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("sustainability.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("sustainability.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getEstimatedCarbonEmissions(input, options)
     return self:invokeOperation(input, {
         name = "GetEstimatedCarbonEmissions",
-        input_schema = types.GetEstimatedCarbonEmissionsInput,
-        output_schema = types.GetEstimatedCarbonEmissionsOutput,
+        input_schema = schemas.GetEstimatedCarbonEmissionsInput,
+        output_schema = schemas.GetEstimatedCarbonEmissionsOutput,
         http_method = "POST",
         http_path = "/v1/estimated-carbon-emissions",
         effective_auth_schemes = {
@@ -63,8 +63,8 @@ end
 function Client:getEstimatedCarbonEmissionsDimensionValues(input, options)
     return self:invokeOperation(input, {
         name = "GetEstimatedCarbonEmissionsDimensionValues",
-        input_schema = types.GetEstimatedCarbonEmissionsDimensionValuesInput,
-        output_schema = types.GetEstimatedCarbonEmissionsDimensionValuesOutput,
+        input_schema = schemas.GetEstimatedCarbonEmissionsDimensionValuesInput,
+        output_schema = schemas.GetEstimatedCarbonEmissionsDimensionValuesOutput,
         http_method = "POST",
         http_path = "/v1/estimated-carbon-emissions-dimension-values",
         effective_auth_schemes = {

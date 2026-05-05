@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("partnercentralselling.endpoint_rules")
+local schemas = require("partnercentralselling.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("partnercentralselling.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptEngagementInvitation(input, options)
     return self:invokeOperation(input, {
         name = "AcceptEngagementInvitation",
-        input_schema = types.AcceptEngagementInvitationInput,
-        output_schema = types.AcceptEngagementInvitationOutput,
+        input_schema = schemas.AcceptEngagementInvitationInput,
+        output_schema = schemas.AcceptEngagementInvitationOutput,
         http_method = "POST",
         http_path = "/AcceptEngagementInvitation",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:assignOpportunity(input, options)
     return self:invokeOperation(input, {
         name = "AssignOpportunity",
-        input_schema = types.AssignOpportunityInput,
-        output_schema = types.AssignOpportunityOutput,
+        input_schema = schemas.AssignOpportunityInput,
+        output_schema = schemas.AssignOpportunityOutput,
         http_method = "POST",
         http_path = "/AssignOpportunity",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:associateOpportunity(input, options)
     return self:invokeOperation(input, {
         name = "AssociateOpportunity",
-        input_schema = types.AssociateOpportunityInput,
-        output_schema = types.AssociateOpportunityOutput,
+        input_schema = schemas.AssociateOpportunityInput,
+        output_schema = schemas.AssociateOpportunityOutput,
         http_method = "POST",
         http_path = "/AssociateOpportunity",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createEngagement(input, options)
     return self:invokeOperation(input, {
         name = "CreateEngagement",
-        input_schema = types.CreateEngagementInput,
-        output_schema = types.CreateEngagementOutput,
+        input_schema = schemas.CreateEngagementInput,
+        output_schema = schemas.CreateEngagementOutput,
         http_method = "POST",
         http_path = "/CreateEngagement",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createEngagementContext(input, options)
     return self:invokeOperation(input, {
         name = "CreateEngagementContext",
-        input_schema = types.CreateEngagementContextInput,
-        output_schema = types.CreateEngagementContextOutput,
+        input_schema = schemas.CreateEngagementContextInput,
+        output_schema = schemas.CreateEngagementContextOutput,
         http_method = "POST",
         http_path = "/CreateEngagementContext",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createEngagementInvitation(input, options)
     return self:invokeOperation(input, {
         name = "CreateEngagementInvitation",
-        input_schema = types.CreateEngagementInvitationInput,
-        output_schema = types.CreateEngagementInvitationOutput,
+        input_schema = schemas.CreateEngagementInvitationInput,
+        output_schema = schemas.CreateEngagementInvitationOutput,
         http_method = "POST",
         http_path = "/CreateEngagementInvitation",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createOpportunity(input, options)
     return self:invokeOperation(input, {
         name = "CreateOpportunity",
-        input_schema = types.CreateOpportunityInput,
-        output_schema = types.CreateOpportunityOutput,
+        input_schema = schemas.CreateOpportunityInput,
+        output_schema = schemas.CreateOpportunityOutput,
         http_method = "POST",
         http_path = "/CreateOpportunity",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createResourceSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "CreateResourceSnapshot",
-        input_schema = types.CreateResourceSnapshotInput,
-        output_schema = types.CreateResourceSnapshotOutput,
+        input_schema = schemas.CreateResourceSnapshotInput,
+        output_schema = schemas.CreateResourceSnapshotOutput,
         http_method = "POST",
         http_path = "/CreateResourceSnapshot",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createResourceSnapshotJob(input, options)
     return self:invokeOperation(input, {
         name = "CreateResourceSnapshotJob",
-        input_schema = types.CreateResourceSnapshotJobInput,
-        output_schema = types.CreateResourceSnapshotJobOutput,
+        input_schema = schemas.CreateResourceSnapshotJobInput,
+        output_schema = schemas.CreateResourceSnapshotJobOutput,
         http_method = "POST",
         http_path = "/CreateResourceSnapshotJob",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteResourceSnapshotJob(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourceSnapshotJob",
-        input_schema = types.DeleteResourceSnapshotJobInput,
-        output_schema = types.DeleteResourceSnapshotJobOutput,
+        input_schema = schemas.DeleteResourceSnapshotJobInput,
+        output_schema = schemas.DeleteResourceSnapshotJobOutput,
         http_method = "POST",
         http_path = "/DeleteResourceSnapshotJob",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:disassociateOpportunity(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateOpportunity",
-        input_schema = types.DisassociateOpportunityInput,
-        output_schema = types.DisassociateOpportunityOutput,
+        input_schema = schemas.DisassociateOpportunityInput,
+        output_schema = schemas.DisassociateOpportunityOutput,
         http_method = "POST",
         http_path = "/DisassociateOpportunity",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getAwsOpportunitySummary(input, options)
     return self:invokeOperation(input, {
         name = "GetAwsOpportunitySummary",
-        input_schema = types.GetAwsOpportunitySummaryInput,
-        output_schema = types.GetAwsOpportunitySummaryOutput,
+        input_schema = schemas.GetAwsOpportunitySummaryInput,
+        output_schema = schemas.GetAwsOpportunitySummaryOutput,
         http_method = "POST",
         http_path = "/GetAwsOpportunitySummary",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getEngagement(input, options)
     return self:invokeOperation(input, {
         name = "GetEngagement",
-        input_schema = types.GetEngagementInput,
-        output_schema = types.GetEngagementOutput,
+        input_schema = schemas.GetEngagementInput,
+        output_schema = schemas.GetEngagementOutput,
         http_method = "POST",
         http_path = "/GetEngagement",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getEngagementInvitation(input, options)
     return self:invokeOperation(input, {
         name = "GetEngagementInvitation",
-        input_schema = types.GetEngagementInvitationInput,
-        output_schema = types.GetEngagementInvitationOutput,
+        input_schema = schemas.GetEngagementInvitationInput,
+        output_schema = schemas.GetEngagementInvitationOutput,
         http_method = "POST",
         http_path = "/GetEngagementInvitation",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getOpportunity(input, options)
     return self:invokeOperation(input, {
         name = "GetOpportunity",
-        input_schema = types.GetOpportunityInput,
-        output_schema = types.GetOpportunityOutput,
+        input_schema = schemas.GetOpportunityInput,
+        output_schema = schemas.GetOpportunityOutput,
         http_method = "POST",
         http_path = "/GetOpportunity",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getResourceSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "GetResourceSnapshot",
-        input_schema = types.GetResourceSnapshotInput,
-        output_schema = types.GetResourceSnapshotOutput,
+        input_schema = schemas.GetResourceSnapshotInput,
+        output_schema = schemas.GetResourceSnapshotOutput,
         http_method = "POST",
         http_path = "/GetResourceSnapshot",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getResourceSnapshotJob(input, options)
     return self:invokeOperation(input, {
         name = "GetResourceSnapshotJob",
-        input_schema = types.GetResourceSnapshotJobInput,
-        output_schema = types.GetResourceSnapshotJobOutput,
+        input_schema = schemas.GetResourceSnapshotJobInput,
+        output_schema = schemas.GetResourceSnapshotJobOutput,
         http_method = "POST",
         http_path = "/GetResourceSnapshotJob",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getSellingSystemSettings(input, options)
     return self:invokeOperation(input, {
         name = "GetSellingSystemSettings",
-        input_schema = types.GetSellingSystemSettingsInput,
-        output_schema = types.GetSellingSystemSettingsOutput,
+        input_schema = schemas.GetSellingSystemSettingsInput,
+        output_schema = schemas.GetSellingSystemSettingsOutput,
         http_method = "POST",
         http_path = "/GetSellingSystemSettings",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listEngagementByAcceptingInvitationTasks(input, options)
     return self:invokeOperation(input, {
         name = "ListEngagementByAcceptingInvitationTasks",
-        input_schema = types.ListEngagementByAcceptingInvitationTasksInput,
-        output_schema = types.ListEngagementByAcceptingInvitationTasksOutput,
+        input_schema = schemas.ListEngagementByAcceptingInvitationTasksInput,
+        output_schema = schemas.ListEngagementByAcceptingInvitationTasksOutput,
         http_method = "POST",
         http_path = "/ListEngagementByAcceptingInvitationTasks",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listEngagementFromOpportunityTasks(input, options)
     return self:invokeOperation(input, {
         name = "ListEngagementFromOpportunityTasks",
-        input_schema = types.ListEngagementFromOpportunityTasksInput,
-        output_schema = types.ListEngagementFromOpportunityTasksOutput,
+        input_schema = schemas.ListEngagementFromOpportunityTasksInput,
+        output_schema = schemas.ListEngagementFromOpportunityTasksOutput,
         http_method = "POST",
         http_path = "/ListEngagementFromOpportunityTasks",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listEngagementInvitations(input, options)
     return self:invokeOperation(input, {
         name = "ListEngagementInvitations",
-        input_schema = types.ListEngagementInvitationsInput,
-        output_schema = types.ListEngagementInvitationsOutput,
+        input_schema = schemas.ListEngagementInvitationsInput,
+        output_schema = schemas.ListEngagementInvitationsOutput,
         http_method = "POST",
         http_path = "/ListEngagementInvitations",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listEngagementMembers(input, options)
     return self:invokeOperation(input, {
         name = "ListEngagementMembers",
-        input_schema = types.ListEngagementMembersInput,
-        output_schema = types.ListEngagementMembersOutput,
+        input_schema = schemas.ListEngagementMembersInput,
+        output_schema = schemas.ListEngagementMembersOutput,
         http_method = "POST",
         http_path = "/ListEngagementMembers",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listEngagementResourceAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListEngagementResourceAssociations",
-        input_schema = types.ListEngagementResourceAssociationsInput,
-        output_schema = types.ListEngagementResourceAssociationsOutput,
+        input_schema = schemas.ListEngagementResourceAssociationsInput,
+        output_schema = schemas.ListEngagementResourceAssociationsOutput,
         http_method = "POST",
         http_path = "/ListEngagementResourceAssociations",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listEngagements(input, options)
     return self:invokeOperation(input, {
         name = "ListEngagements",
-        input_schema = types.ListEngagementsInput,
-        output_schema = types.ListEngagementsOutput,
+        input_schema = schemas.ListEngagementsInput,
+        output_schema = schemas.ListEngagementsOutput,
         http_method = "POST",
         http_path = "/ListEngagements",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listOpportunities(input, options)
     return self:invokeOperation(input, {
         name = "ListOpportunities",
-        input_schema = types.ListOpportunitiesInput,
-        output_schema = types.ListOpportunitiesOutput,
+        input_schema = schemas.ListOpportunitiesInput,
+        output_schema = schemas.ListOpportunitiesOutput,
         http_method = "POST",
         http_path = "/ListOpportunities",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listOpportunityFromEngagementTasks(input, options)
     return self:invokeOperation(input, {
         name = "ListOpportunityFromEngagementTasks",
-        input_schema = types.ListOpportunityFromEngagementTasksInput,
-        output_schema = types.ListOpportunityFromEngagementTasksOutput,
+        input_schema = schemas.ListOpportunityFromEngagementTasksInput,
+        output_schema = schemas.ListOpportunityFromEngagementTasksOutput,
         http_method = "POST",
         http_path = "/ListOpportunityFromEngagementTasks",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listResourceSnapshotJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListResourceSnapshotJobs",
-        input_schema = types.ListResourceSnapshotJobsInput,
-        output_schema = types.ListResourceSnapshotJobsOutput,
+        input_schema = schemas.ListResourceSnapshotJobsInput,
+        output_schema = schemas.ListResourceSnapshotJobsOutput,
         http_method = "POST",
         http_path = "/ListResourceSnapshotJobs",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listResourceSnapshots(input, options)
     return self:invokeOperation(input, {
         name = "ListResourceSnapshots",
-        input_schema = types.ListResourceSnapshotsInput,
-        output_schema = types.ListResourceSnapshotsOutput,
+        input_schema = schemas.ListResourceSnapshotsInput,
+        output_schema = schemas.ListResourceSnapshotsOutput,
         http_method = "POST",
         http_path = "/ListResourceSnapshots",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listSolutions(input, options)
     return self:invokeOperation(input, {
         name = "ListSolutions",
-        input_schema = types.ListSolutionsInput,
-        output_schema = types.ListSolutionsOutput,
+        input_schema = schemas.ListSolutionsInput,
+        output_schema = schemas.ListSolutionsOutput,
         http_method = "POST",
         http_path = "/ListSolutions",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/ListTagsForResource",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:putSellingSystemSettings(input, options)
     return self:invokeOperation(input, {
         name = "PutSellingSystemSettings",
-        input_schema = types.PutSellingSystemSettingsInput,
-        output_schema = types.PutSellingSystemSettingsOutput,
+        input_schema = schemas.PutSellingSystemSettingsInput,
+        output_schema = schemas.PutSellingSystemSettingsOutput,
         http_method = "POST",
         http_path = "/PutSellingSystemSettings",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:rejectEngagementInvitation(input, options)
     return self:invokeOperation(input, {
         name = "RejectEngagementInvitation",
-        input_schema = types.RejectEngagementInvitationInput,
-        output_schema = types.RejectEngagementInvitationOutput,
+        input_schema = schemas.RejectEngagementInvitationInput,
+        output_schema = schemas.RejectEngagementInvitationOutput,
         http_method = "POST",
         http_path = "/RejectEngagementInvitation",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:startEngagementByAcceptingInvitationTask(input, options)
     return self:invokeOperation(input, {
         name = "StartEngagementByAcceptingInvitationTask",
-        input_schema = types.StartEngagementByAcceptingInvitationTaskInput,
-        output_schema = types.StartEngagementByAcceptingInvitationTaskOutput,
+        input_schema = schemas.StartEngagementByAcceptingInvitationTaskInput,
+        output_schema = schemas.StartEngagementByAcceptingInvitationTaskOutput,
         http_method = "POST",
         http_path = "/StartEngagementByAcceptingInvitationTask",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:startEngagementFromOpportunityTask(input, options)
     return self:invokeOperation(input, {
         name = "StartEngagementFromOpportunityTask",
-        input_schema = types.StartEngagementFromOpportunityTaskInput,
-        output_schema = types.StartEngagementFromOpportunityTaskOutput,
+        input_schema = schemas.StartEngagementFromOpportunityTaskInput,
+        output_schema = schemas.StartEngagementFromOpportunityTaskOutput,
         http_method = "POST",
         http_path = "/StartEngagementFromOpportunityTask",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:startOpportunityFromEngagementTask(input, options)
     return self:invokeOperation(input, {
         name = "StartOpportunityFromEngagementTask",
-        input_schema = types.StartOpportunityFromEngagementTaskInput,
-        output_schema = types.StartOpportunityFromEngagementTaskOutput,
+        input_schema = schemas.StartOpportunityFromEngagementTaskInput,
+        output_schema = schemas.StartOpportunityFromEngagementTaskOutput,
         http_method = "POST",
         http_path = "/StartOpportunityFromEngagementTask",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:startResourceSnapshotJob(input, options)
     return self:invokeOperation(input, {
         name = "StartResourceSnapshotJob",
-        input_schema = types.StartResourceSnapshotJobInput,
-        output_schema = types.StartResourceSnapshotJobOutput,
+        input_schema = schemas.StartResourceSnapshotJobInput,
+        output_schema = schemas.StartResourceSnapshotJobOutput,
         http_method = "POST",
         http_path = "/StartResourceSnapshotJob",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:stopResourceSnapshotJob(input, options)
     return self:invokeOperation(input, {
         name = "StopResourceSnapshotJob",
-        input_schema = types.StopResourceSnapshotJobInput,
-        output_schema = types.StopResourceSnapshotJobOutput,
+        input_schema = schemas.StopResourceSnapshotJobInput,
+        output_schema = schemas.StopResourceSnapshotJobOutput,
         http_method = "POST",
         http_path = "/StopResourceSnapshotJob",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:submitOpportunity(input, options)
     return self:invokeOperation(input, {
         name = "SubmitOpportunity",
-        input_schema = types.SubmitOpportunityInput,
-        output_schema = types.SubmitOpportunityOutput,
+        input_schema = schemas.SubmitOpportunityInput,
+        output_schema = schemas.SubmitOpportunityOutput,
         http_method = "POST",
         http_path = "/SubmitOpportunity",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/TagResource",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/UntagResource",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:updateEngagementContext(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEngagementContext",
-        input_schema = types.UpdateEngagementContextInput,
-        output_schema = types.UpdateEngagementContextOutput,
+        input_schema = schemas.UpdateEngagementContextInput,
+        output_schema = schemas.UpdateEngagementContextOutput,
         http_method = "POST",
         http_path = "/UpdateEngagementContext",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:updateOpportunity(input, options)
     return self:invokeOperation(input, {
         name = "UpdateOpportunity",
-        input_schema = types.UpdateOpportunityInput,
-        output_schema = types.UpdateOpportunityOutput,
+        input_schema = schemas.UpdateOpportunityInput,
+        output_schema = schemas.UpdateOpportunityOutput,
         http_method = "POST",
         http_path = "/UpdateOpportunity",
         effective_auth_schemes = {

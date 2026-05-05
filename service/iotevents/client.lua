@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("iotevents.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("iotevents.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("iotevents.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createAlarmModel(input, options)
     return self:invokeOperation(input, {
         name = "CreateAlarmModel",
-        input_schema = types.CreateAlarmModelInput,
-        output_schema = types.CreateAlarmModelOutput,
+        input_schema = schemas.CreateAlarmModelInput,
+        output_schema = schemas.CreateAlarmModelOutput,
         http_method = "POST",
         http_path = "/alarm-models",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createDetectorModel(input, options)
     return self:invokeOperation(input, {
         name = "CreateDetectorModel",
-        input_schema = types.CreateDetectorModelInput,
-        output_schema = types.CreateDetectorModelOutput,
+        input_schema = schemas.CreateDetectorModelInput,
+        output_schema = schemas.CreateDetectorModelOutput,
         http_method = "POST",
         http_path = "/detector-models",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createInput(input, options)
     return self:invokeOperation(input, {
         name = "CreateInput",
-        input_schema = types.CreateInputInput,
-        output_schema = types.CreateInputOutput,
+        input_schema = schemas.CreateInputInput,
+        output_schema = schemas.CreateInputOutput,
         http_method = "POST",
         http_path = "/inputs",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteAlarmModel(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAlarmModel",
-        input_schema = types.DeleteAlarmModelInput,
-        output_schema = types.DeleteAlarmModelOutput,
+        input_schema = schemas.DeleteAlarmModelInput,
+        output_schema = schemas.DeleteAlarmModelOutput,
         http_method = "DELETE",
         http_path = "/alarm-models/{alarmModelName}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteDetectorModel(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDetectorModel",
-        input_schema = types.DeleteDetectorModelInput,
-        output_schema = types.DeleteDetectorModelOutput,
+        input_schema = schemas.DeleteDetectorModelInput,
+        output_schema = schemas.DeleteDetectorModelOutput,
         http_method = "DELETE",
         http_path = "/detector-models/{detectorModelName}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteInput(input, options)
     return self:invokeOperation(input, {
         name = "DeleteInput",
-        input_schema = types.DeleteInputInput,
-        output_schema = types.DeleteInputOutput,
+        input_schema = schemas.DeleteInputInput,
+        output_schema = schemas.DeleteInputOutput,
         http_method = "DELETE",
         http_path = "/inputs/{inputName}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:describeAlarmModel(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAlarmModel",
-        input_schema = types.DescribeAlarmModelInput,
-        output_schema = types.DescribeAlarmModelOutput,
+        input_schema = schemas.DescribeAlarmModelInput,
+        output_schema = schemas.DescribeAlarmModelOutput,
         http_method = "GET",
         http_path = "/alarm-models/{alarmModelName}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:describeDetectorModel(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDetectorModel",
-        input_schema = types.DescribeDetectorModelInput,
-        output_schema = types.DescribeDetectorModelOutput,
+        input_schema = schemas.DescribeDetectorModelInput,
+        output_schema = schemas.DescribeDetectorModelOutput,
         http_method = "GET",
         http_path = "/detector-models/{detectorModelName}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:describeDetectorModelAnalysis(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDetectorModelAnalysis",
-        input_schema = types.DescribeDetectorModelAnalysisInput,
-        output_schema = types.DescribeDetectorModelAnalysisOutput,
+        input_schema = schemas.DescribeDetectorModelAnalysisInput,
+        output_schema = schemas.DescribeDetectorModelAnalysisOutput,
         http_method = "GET",
         http_path = "/analysis/detector-models/{analysisId}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:describeInput(input, options)
     return self:invokeOperation(input, {
         name = "DescribeInput",
-        input_schema = types.DescribeInputInput,
-        output_schema = types.DescribeInputOutput,
+        input_schema = schemas.DescribeInputInput,
+        output_schema = schemas.DescribeInputOutput,
         http_method = "GET",
         http_path = "/inputs/{inputName}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:describeLoggingOptions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLoggingOptions",
-        input_schema = types.DescribeLoggingOptionsInput,
-        output_schema = types.DescribeLoggingOptionsOutput,
+        input_schema = schemas.DescribeLoggingOptionsInput,
+        output_schema = schemas.DescribeLoggingOptionsOutput,
         http_method = "GET",
         http_path = "/logging",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getDetectorModelAnalysisResults(input, options)
     return self:invokeOperation(input, {
         name = "GetDetectorModelAnalysisResults",
-        input_schema = types.GetDetectorModelAnalysisResultsInput,
-        output_schema = types.GetDetectorModelAnalysisResultsOutput,
+        input_schema = schemas.GetDetectorModelAnalysisResultsInput,
+        output_schema = schemas.GetDetectorModelAnalysisResultsOutput,
         http_method = "GET",
         http_path = "/analysis/detector-models/{analysisId}/results",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listAlarmModels(input, options)
     return self:invokeOperation(input, {
         name = "ListAlarmModels",
-        input_schema = types.ListAlarmModelsInput,
-        output_schema = types.ListAlarmModelsOutput,
+        input_schema = schemas.ListAlarmModelsInput,
+        output_schema = schemas.ListAlarmModelsOutput,
         http_method = "GET",
         http_path = "/alarm-models",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listAlarmModelVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListAlarmModelVersions",
-        input_schema = types.ListAlarmModelVersionsInput,
-        output_schema = types.ListAlarmModelVersionsOutput,
+        input_schema = schemas.ListAlarmModelVersionsInput,
+        output_schema = schemas.ListAlarmModelVersionsOutput,
         http_method = "GET",
         http_path = "/alarm-models/{alarmModelName}/versions",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listDetectorModels(input, options)
     return self:invokeOperation(input, {
         name = "ListDetectorModels",
-        input_schema = types.ListDetectorModelsInput,
-        output_schema = types.ListDetectorModelsOutput,
+        input_schema = schemas.ListDetectorModelsInput,
+        output_schema = schemas.ListDetectorModelsOutput,
         http_method = "GET",
         http_path = "/detector-models",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listDetectorModelVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListDetectorModelVersions",
-        input_schema = types.ListDetectorModelVersionsInput,
-        output_schema = types.ListDetectorModelVersionsOutput,
+        input_schema = schemas.ListDetectorModelVersionsInput,
+        output_schema = schemas.ListDetectorModelVersionsOutput,
         http_method = "GET",
         http_path = "/detector-models/{detectorModelName}/versions",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listInputRoutings(input, options)
     return self:invokeOperation(input, {
         name = "ListInputRoutings",
-        input_schema = types.ListInputRoutingsInput,
-        output_schema = types.ListInputRoutingsOutput,
+        input_schema = schemas.ListInputRoutingsInput,
+        output_schema = schemas.ListInputRoutingsOutput,
         http_method = "POST",
         http_path = "/input-routings",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listInputs(input, options)
     return self:invokeOperation(input, {
         name = "ListInputs",
-        input_schema = types.ListInputsInput,
-        output_schema = types.ListInputsOutput,
+        input_schema = schemas.ListInputsInput,
+        output_schema = schemas.ListInputsOutput,
         http_method = "GET",
         http_path = "/inputs",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:putLoggingOptions(input, options)
     return self:invokeOperation(input, {
         name = "PutLoggingOptions",
-        input_schema = types.PutLoggingOptionsInput,
-        output_schema = types.PutLoggingOptionsOutput,
+        input_schema = schemas.PutLoggingOptionsInput,
+        output_schema = schemas.PutLoggingOptionsOutput,
         http_method = "PUT",
         http_path = "/logging",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:startDetectorModelAnalysis(input, options)
     return self:invokeOperation(input, {
         name = "StartDetectorModelAnalysis",
-        input_schema = types.StartDetectorModelAnalysisInput,
-        output_schema = types.StartDetectorModelAnalysisOutput,
+        input_schema = schemas.StartDetectorModelAnalysisInput,
+        output_schema = schemas.StartDetectorModelAnalysisOutput,
         http_method = "POST",
         http_path = "/analysis/detector-models",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:updateAlarmModel(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAlarmModel",
-        input_schema = types.UpdateAlarmModelInput,
-        output_schema = types.UpdateAlarmModelOutput,
+        input_schema = schemas.UpdateAlarmModelInput,
+        output_schema = schemas.UpdateAlarmModelOutput,
         http_method = "POST",
         http_path = "/alarm-models/{alarmModelName}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:updateDetectorModel(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDetectorModel",
-        input_schema = types.UpdateDetectorModelInput,
-        output_schema = types.UpdateDetectorModelOutput,
+        input_schema = schemas.UpdateDetectorModelInput,
+        output_schema = schemas.UpdateDetectorModelOutput,
         http_method = "POST",
         http_path = "/detector-models/{detectorModelName}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:updateInput(input, options)
     return self:invokeOperation(input, {
         name = "UpdateInput",
-        input_schema = types.UpdateInputInput,
-        output_schema = types.UpdateInputOutput,
+        input_schema = schemas.UpdateInputInput,
+        output_schema = schemas.UpdateInputOutput,
         http_method = "PUT",
         http_path = "/inputs/{inputName}",
         effective_auth_schemes = {

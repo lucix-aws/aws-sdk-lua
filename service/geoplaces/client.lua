@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("geoplaces.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("geoplaces.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("geoplaces.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:autocomplete(input, options)
     return self:invokeOperation(input, {
         name = "Autocomplete",
-        input_schema = types.AutocompleteInput,
-        output_schema = types.AutocompleteOutput,
+        input_schema = schemas.AutocompleteInput,
+        output_schema = schemas.AutocompleteOutput,
         http_method = "POST",
         http_path = "/v2/autocomplete",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:geocode(input, options)
     return self:invokeOperation(input, {
         name = "Geocode",
-        input_schema = types.GeocodeInput,
-        output_schema = types.GeocodeOutput,
+        input_schema = schemas.GeocodeInput,
+        output_schema = schemas.GeocodeOutput,
         http_method = "POST",
         http_path = "/v2/geocode",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getPlace(input, options)
     return self:invokeOperation(input, {
         name = "GetPlace",
-        input_schema = types.GetPlaceInput,
-        output_schema = types.GetPlaceOutput,
+        input_schema = schemas.GetPlaceInput,
+        output_schema = schemas.GetPlaceOutput,
         http_method = "GET",
         http_path = "/v2/place/{PlaceId}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:reverseGeocode(input, options)
     return self:invokeOperation(input, {
         name = "ReverseGeocode",
-        input_schema = types.ReverseGeocodeInput,
-        output_schema = types.ReverseGeocodeOutput,
+        input_schema = schemas.ReverseGeocodeInput,
+        output_schema = schemas.ReverseGeocodeOutput,
         http_method = "POST",
         http_path = "/v2/reverse-geocode",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:searchNearby(input, options)
     return self:invokeOperation(input, {
         name = "SearchNearby",
-        input_schema = types.SearchNearbyInput,
-        output_schema = types.SearchNearbyOutput,
+        input_schema = schemas.SearchNearbyInput,
+        output_schema = schemas.SearchNearbyOutput,
         http_method = "POST",
         http_path = "/v2/search-nearby",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:searchText(input, options)
     return self:invokeOperation(input, {
         name = "SearchText",
-        input_schema = types.SearchTextInput,
-        output_schema = types.SearchTextOutput,
+        input_schema = schemas.SearchTextInput,
+        output_schema = schemas.SearchTextOutput,
         http_method = "POST",
         http_path = "/v2/search-text",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:suggest(input, options)
     return self:invokeOperation(input, {
         name = "Suggest",
-        input_schema = types.SuggestInput,
-        output_schema = types.SuggestOutput,
+        input_schema = schemas.SuggestInput,
+        output_schema = schemas.SuggestOutput,
         http_method = "POST",
         http_path = "/v2/suggest",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("cleanroomsml.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("cleanroomsml.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("cleanroomsml.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:cancelTrainedModel(input, options)
     return self:invokeOperation(input, {
         name = "CancelTrainedModel",
-        input_schema = types.CancelTrainedModelInput,
-        output_schema = types.CancelTrainedModelOutput,
+        input_schema = schemas.CancelTrainedModelInput,
+        output_schema = schemas.CancelTrainedModelOutput,
         http_method = "PATCH",
         http_path = "/memberships/{membershipIdentifier}/trained-models/{trainedModelArn}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:cancelTrainedModelInferenceJob(input, options)
     return self:invokeOperation(input, {
         name = "CancelTrainedModelInferenceJob",
-        input_schema = types.CancelTrainedModelInferenceJobInput,
-        output_schema = types.CancelTrainedModelInferenceJobOutput,
+        input_schema = schemas.CancelTrainedModelInferenceJobInput,
+        output_schema = schemas.CancelTrainedModelInferenceJobOutput,
         http_method = "PATCH",
         http_path = "/memberships/{membershipIdentifier}/trained-model-inference-jobs/{trainedModelInferenceJobArn}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createAudienceModel(input, options)
     return self:invokeOperation(input, {
         name = "CreateAudienceModel",
-        input_schema = types.CreateAudienceModelInput,
-        output_schema = types.CreateAudienceModelOutput,
+        input_schema = schemas.CreateAudienceModelInput,
+        output_schema = schemas.CreateAudienceModelOutput,
         http_method = "POST",
         http_path = "/audience-model",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createConfiguredAudienceModel(input, options)
     return self:invokeOperation(input, {
         name = "CreateConfiguredAudienceModel",
-        input_schema = types.CreateConfiguredAudienceModelInput,
-        output_schema = types.CreateConfiguredAudienceModelOutput,
+        input_schema = schemas.CreateConfiguredAudienceModelInput,
+        output_schema = schemas.CreateConfiguredAudienceModelOutput,
         http_method = "POST",
         http_path = "/configured-audience-model",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createConfiguredModelAlgorithm(input, options)
     return self:invokeOperation(input, {
         name = "CreateConfiguredModelAlgorithm",
-        input_schema = types.CreateConfiguredModelAlgorithmInput,
-        output_schema = types.CreateConfiguredModelAlgorithmOutput,
+        input_schema = schemas.CreateConfiguredModelAlgorithmInput,
+        output_schema = schemas.CreateConfiguredModelAlgorithmOutput,
         http_method = "POST",
         http_path = "/configured-model-algorithms",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createConfiguredModelAlgorithmAssociation(input, options)
     return self:invokeOperation(input, {
         name = "CreateConfiguredModelAlgorithmAssociation",
-        input_schema = types.CreateConfiguredModelAlgorithmAssociationInput,
-        output_schema = types.CreateConfiguredModelAlgorithmAssociationOutput,
+        input_schema = schemas.CreateConfiguredModelAlgorithmAssociationInput,
+        output_schema = schemas.CreateConfiguredModelAlgorithmAssociationOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/configured-model-algorithm-associations",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createMLInputChannel(input, options)
     return self:invokeOperation(input, {
         name = "CreateMLInputChannel",
-        input_schema = types.CreateMLInputChannelInput,
-        output_schema = types.CreateMLInputChannelOutput,
+        input_schema = schemas.CreateMLInputChannelInput,
+        output_schema = schemas.CreateMLInputChannelOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/ml-input-channels",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createTrainedModel(input, options)
     return self:invokeOperation(input, {
         name = "CreateTrainedModel",
-        input_schema = types.CreateTrainedModelInput,
-        output_schema = types.CreateTrainedModelOutput,
+        input_schema = schemas.CreateTrainedModelInput,
+        output_schema = schemas.CreateTrainedModelOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/trained-models",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createTrainingDataset(input, options)
     return self:invokeOperation(input, {
         name = "CreateTrainingDataset",
-        input_schema = types.CreateTrainingDatasetInput,
-        output_schema = types.CreateTrainingDatasetOutput,
+        input_schema = schemas.CreateTrainingDatasetInput,
+        output_schema = schemas.CreateTrainingDatasetOutput,
         http_method = "POST",
         http_path = "/training-dataset",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteAudienceGenerationJob(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAudienceGenerationJob",
-        input_schema = types.DeleteAudienceGenerationJobInput,
-        output_schema = types.DeleteAudienceGenerationJobOutput,
+        input_schema = schemas.DeleteAudienceGenerationJobInput,
+        output_schema = schemas.DeleteAudienceGenerationJobOutput,
         http_method = "DELETE",
         http_path = "/audience-generation-job/{audienceGenerationJobArn}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteAudienceModel(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAudienceModel",
-        input_schema = types.DeleteAudienceModelInput,
-        output_schema = types.DeleteAudienceModelOutput,
+        input_schema = schemas.DeleteAudienceModelInput,
+        output_schema = schemas.DeleteAudienceModelOutput,
         http_method = "DELETE",
         http_path = "/audience-model/{audienceModelArn}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteConfiguredAudienceModel(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfiguredAudienceModel",
-        input_schema = types.DeleteConfiguredAudienceModelInput,
-        output_schema = types.DeleteConfiguredAudienceModelOutput,
+        input_schema = schemas.DeleteConfiguredAudienceModelInput,
+        output_schema = schemas.DeleteConfiguredAudienceModelOutput,
         http_method = "DELETE",
         http_path = "/configured-audience-model/{configuredAudienceModelArn}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteConfiguredAudienceModelPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfiguredAudienceModelPolicy",
-        input_schema = types.DeleteConfiguredAudienceModelPolicyInput,
-        output_schema = types.DeleteConfiguredAudienceModelPolicyOutput,
+        input_schema = schemas.DeleteConfiguredAudienceModelPolicyInput,
+        output_schema = schemas.DeleteConfiguredAudienceModelPolicyOutput,
         http_method = "DELETE",
         http_path = "/configured-audience-model/{configuredAudienceModelArn}/policy",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteConfiguredModelAlgorithm(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfiguredModelAlgorithm",
-        input_schema = types.DeleteConfiguredModelAlgorithmInput,
-        output_schema = types.DeleteConfiguredModelAlgorithmOutput,
+        input_schema = schemas.DeleteConfiguredModelAlgorithmInput,
+        output_schema = schemas.DeleteConfiguredModelAlgorithmOutput,
         http_method = "DELETE",
         http_path = "/configured-model-algorithms/{configuredModelAlgorithmArn}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteConfiguredModelAlgorithmAssociation(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfiguredModelAlgorithmAssociation",
-        input_schema = types.DeleteConfiguredModelAlgorithmAssociationInput,
-        output_schema = types.DeleteConfiguredModelAlgorithmAssociationOutput,
+        input_schema = schemas.DeleteConfiguredModelAlgorithmAssociationInput,
+        output_schema = schemas.DeleteConfiguredModelAlgorithmAssociationOutput,
         http_method = "DELETE",
         http_path = "/memberships/{membershipIdentifier}/configured-model-algorithm-associations/{configuredModelAlgorithmAssociationArn}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteMLConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMLConfiguration",
-        input_schema = types.DeleteMLConfigurationInput,
-        output_schema = types.DeleteMLConfigurationOutput,
+        input_schema = schemas.DeleteMLConfigurationInput,
+        output_schema = schemas.DeleteMLConfigurationOutput,
         http_method = "DELETE",
         http_path = "/memberships/{membershipIdentifier}/ml-configurations",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteMLInputChannelData(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMLInputChannelData",
-        input_schema = types.DeleteMLInputChannelDataInput,
-        output_schema = types.DeleteMLInputChannelDataOutput,
+        input_schema = schemas.DeleteMLInputChannelDataInput,
+        output_schema = schemas.DeleteMLInputChannelDataOutput,
         http_method = "DELETE",
         http_path = "/memberships/{membershipIdentifier}/ml-input-channels/{mlInputChannelArn}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteTrainedModelOutput(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTrainedModelOutput",
-        input_schema = types.DeleteTrainedModelOutputInput,
-        output_schema = types.DeleteTrainedModelOutputOutput,
+        input_schema = schemas.DeleteTrainedModelOutputInput,
+        output_schema = schemas.DeleteTrainedModelOutputOutput,
         http_method = "DELETE",
         http_path = "/memberships/{membershipIdentifier}/trained-models/{trainedModelArn}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteTrainingDataset(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTrainingDataset",
-        input_schema = types.DeleteTrainingDatasetInput,
-        output_schema = types.DeleteTrainingDatasetOutput,
+        input_schema = schemas.DeleteTrainingDatasetInput,
+        output_schema = schemas.DeleteTrainingDatasetOutput,
         http_method = "DELETE",
         http_path = "/training-dataset/{trainingDatasetArn}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getAudienceGenerationJob(input, options)
     return self:invokeOperation(input, {
         name = "GetAudienceGenerationJob",
-        input_schema = types.GetAudienceGenerationJobInput,
-        output_schema = types.GetAudienceGenerationJobOutput,
+        input_schema = schemas.GetAudienceGenerationJobInput,
+        output_schema = schemas.GetAudienceGenerationJobOutput,
         http_method = "GET",
         http_path = "/audience-generation-job/{audienceGenerationJobArn}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:getAudienceModel(input, options)
     return self:invokeOperation(input, {
         name = "GetAudienceModel",
-        input_schema = types.GetAudienceModelInput,
-        output_schema = types.GetAudienceModelOutput,
+        input_schema = schemas.GetAudienceModelInput,
+        output_schema = schemas.GetAudienceModelOutput,
         http_method = "GET",
         http_path = "/audience-model/{audienceModelArn}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:getCollaborationConfiguredModelAlgorithmAssociation(input, options)
     return self:invokeOperation(input, {
         name = "GetCollaborationConfiguredModelAlgorithmAssociation",
-        input_schema = types.GetCollaborationConfiguredModelAlgorithmAssociationInput,
-        output_schema = types.GetCollaborationConfiguredModelAlgorithmAssociationOutput,
+        input_schema = schemas.GetCollaborationConfiguredModelAlgorithmAssociationInput,
+        output_schema = schemas.GetCollaborationConfiguredModelAlgorithmAssociationOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/configured-model-algorithm-associations/{configuredModelAlgorithmAssociationArn}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:getCollaborationMLInputChannel(input, options)
     return self:invokeOperation(input, {
         name = "GetCollaborationMLInputChannel",
-        input_schema = types.GetCollaborationMLInputChannelInput,
-        output_schema = types.GetCollaborationMLInputChannelOutput,
+        input_schema = schemas.GetCollaborationMLInputChannelInput,
+        output_schema = schemas.GetCollaborationMLInputChannelOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/ml-input-channels/{mlInputChannelArn}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:getCollaborationTrainedModel(input, options)
     return self:invokeOperation(input, {
         name = "GetCollaborationTrainedModel",
-        input_schema = types.GetCollaborationTrainedModelInput,
-        output_schema = types.GetCollaborationTrainedModelOutput,
+        input_schema = schemas.GetCollaborationTrainedModelInput,
+        output_schema = schemas.GetCollaborationTrainedModelOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/trained-models/{trainedModelArn}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getConfiguredAudienceModel(input, options)
     return self:invokeOperation(input, {
         name = "GetConfiguredAudienceModel",
-        input_schema = types.GetConfiguredAudienceModelInput,
-        output_schema = types.GetConfiguredAudienceModelOutput,
+        input_schema = schemas.GetConfiguredAudienceModelInput,
+        output_schema = schemas.GetConfiguredAudienceModelOutput,
         http_method = "GET",
         http_path = "/configured-audience-model/{configuredAudienceModelArn}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:getConfiguredAudienceModelPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetConfiguredAudienceModelPolicy",
-        input_schema = types.GetConfiguredAudienceModelPolicyInput,
-        output_schema = types.GetConfiguredAudienceModelPolicyOutput,
+        input_schema = schemas.GetConfiguredAudienceModelPolicyInput,
+        output_schema = schemas.GetConfiguredAudienceModelPolicyOutput,
         http_method = "GET",
         http_path = "/configured-audience-model/{configuredAudienceModelArn}/policy",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:getConfiguredModelAlgorithm(input, options)
     return self:invokeOperation(input, {
         name = "GetConfiguredModelAlgorithm",
-        input_schema = types.GetConfiguredModelAlgorithmInput,
-        output_schema = types.GetConfiguredModelAlgorithmOutput,
+        input_schema = schemas.GetConfiguredModelAlgorithmInput,
+        output_schema = schemas.GetConfiguredModelAlgorithmOutput,
         http_method = "GET",
         http_path = "/configured-model-algorithms/{configuredModelAlgorithmArn}",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:getConfiguredModelAlgorithmAssociation(input, options)
     return self:invokeOperation(input, {
         name = "GetConfiguredModelAlgorithmAssociation",
-        input_schema = types.GetConfiguredModelAlgorithmAssociationInput,
-        output_schema = types.GetConfiguredModelAlgorithmAssociationOutput,
+        input_schema = schemas.GetConfiguredModelAlgorithmAssociationInput,
+        output_schema = schemas.GetConfiguredModelAlgorithmAssociationOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/configured-model-algorithm-associations/{configuredModelAlgorithmAssociationArn}",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:getMLConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetMLConfiguration",
-        input_schema = types.GetMLConfigurationInput,
-        output_schema = types.GetMLConfigurationOutput,
+        input_schema = schemas.GetMLConfigurationInput,
+        output_schema = schemas.GetMLConfigurationOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/ml-configurations",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:getMLInputChannel(input, options)
     return self:invokeOperation(input, {
         name = "GetMLInputChannel",
-        input_schema = types.GetMLInputChannelInput,
-        output_schema = types.GetMLInputChannelOutput,
+        input_schema = schemas.GetMLInputChannelInput,
+        output_schema = schemas.GetMLInputChannelOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/ml-input-channels/{mlInputChannelArn}",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:getTrainedModel(input, options)
     return self:invokeOperation(input, {
         name = "GetTrainedModel",
-        input_schema = types.GetTrainedModelInput,
-        output_schema = types.GetTrainedModelOutput,
+        input_schema = schemas.GetTrainedModelInput,
+        output_schema = schemas.GetTrainedModelOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/trained-models/{trainedModelArn}",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:getTrainedModelInferenceJob(input, options)
     return self:invokeOperation(input, {
         name = "GetTrainedModelInferenceJob",
-        input_schema = types.GetTrainedModelInferenceJobInput,
-        output_schema = types.GetTrainedModelInferenceJobOutput,
+        input_schema = schemas.GetTrainedModelInferenceJobInput,
+        output_schema = schemas.GetTrainedModelInferenceJobOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/trained-model-inference-jobs/{trainedModelInferenceJobArn}",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:getTrainingDataset(input, options)
     return self:invokeOperation(input, {
         name = "GetTrainingDataset",
-        input_schema = types.GetTrainingDatasetInput,
-        output_schema = types.GetTrainingDatasetOutput,
+        input_schema = schemas.GetTrainingDatasetInput,
+        output_schema = schemas.GetTrainingDatasetOutput,
         http_method = "GET",
         http_path = "/training-dataset/{trainingDatasetArn}",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listAudienceExportJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListAudienceExportJobs",
-        input_schema = types.ListAudienceExportJobsInput,
-        output_schema = types.ListAudienceExportJobsOutput,
+        input_schema = schemas.ListAudienceExportJobsInput,
+        output_schema = schemas.ListAudienceExportJobsOutput,
         http_method = "GET",
         http_path = "/audience-export-job",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:listAudienceGenerationJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListAudienceGenerationJobs",
-        input_schema = types.ListAudienceGenerationJobsInput,
-        output_schema = types.ListAudienceGenerationJobsOutput,
+        input_schema = schemas.ListAudienceGenerationJobsInput,
+        output_schema = schemas.ListAudienceGenerationJobsOutput,
         http_method = "GET",
         http_path = "/audience-generation-job",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:listAudienceModels(input, options)
     return self:invokeOperation(input, {
         name = "ListAudienceModels",
-        input_schema = types.ListAudienceModelsInput,
-        output_schema = types.ListAudienceModelsOutput,
+        input_schema = schemas.ListAudienceModelsInput,
+        output_schema = schemas.ListAudienceModelsOutput,
         http_method = "GET",
         http_path = "/audience-model",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:listCollaborationConfiguredModelAlgorithmAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListCollaborationConfiguredModelAlgorithmAssociations",
-        input_schema = types.ListCollaborationConfiguredModelAlgorithmAssociationsInput,
-        output_schema = types.ListCollaborationConfiguredModelAlgorithmAssociationsOutput,
+        input_schema = schemas.ListCollaborationConfiguredModelAlgorithmAssociationsInput,
+        output_schema = schemas.ListCollaborationConfiguredModelAlgorithmAssociationsOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/configured-model-algorithm-associations",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:listCollaborationMLInputChannels(input, options)
     return self:invokeOperation(input, {
         name = "ListCollaborationMLInputChannels",
-        input_schema = types.ListCollaborationMLInputChannelsInput,
-        output_schema = types.ListCollaborationMLInputChannelsOutput,
+        input_schema = schemas.ListCollaborationMLInputChannelsInput,
+        output_schema = schemas.ListCollaborationMLInputChannelsOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/ml-input-channels",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:listCollaborationTrainedModelExportJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListCollaborationTrainedModelExportJobs",
-        input_schema = types.ListCollaborationTrainedModelExportJobsInput,
-        output_schema = types.ListCollaborationTrainedModelExportJobsOutput,
+        input_schema = schemas.ListCollaborationTrainedModelExportJobsInput,
+        output_schema = schemas.ListCollaborationTrainedModelExportJobsOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/trained-models/{trainedModelArn}/export-jobs",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:listCollaborationTrainedModelInferenceJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListCollaborationTrainedModelInferenceJobs",
-        input_schema = types.ListCollaborationTrainedModelInferenceJobsInput,
-        output_schema = types.ListCollaborationTrainedModelInferenceJobsOutput,
+        input_schema = schemas.ListCollaborationTrainedModelInferenceJobsInput,
+        output_schema = schemas.ListCollaborationTrainedModelInferenceJobsOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/trained-model-inference-jobs",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:listCollaborationTrainedModels(input, options)
     return self:invokeOperation(input, {
         name = "ListCollaborationTrainedModels",
-        input_schema = types.ListCollaborationTrainedModelsInput,
-        output_schema = types.ListCollaborationTrainedModelsOutput,
+        input_schema = schemas.ListCollaborationTrainedModelsInput,
+        output_schema = schemas.ListCollaborationTrainedModelsOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/trained-models",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:listConfiguredAudienceModels(input, options)
     return self:invokeOperation(input, {
         name = "ListConfiguredAudienceModels",
-        input_schema = types.ListConfiguredAudienceModelsInput,
-        output_schema = types.ListConfiguredAudienceModelsOutput,
+        input_schema = schemas.ListConfiguredAudienceModelsInput,
+        output_schema = schemas.ListConfiguredAudienceModelsOutput,
         http_method = "GET",
         http_path = "/configured-audience-model",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:listConfiguredModelAlgorithmAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListConfiguredModelAlgorithmAssociations",
-        input_schema = types.ListConfiguredModelAlgorithmAssociationsInput,
-        output_schema = types.ListConfiguredModelAlgorithmAssociationsOutput,
+        input_schema = schemas.ListConfiguredModelAlgorithmAssociationsInput,
+        output_schema = schemas.ListConfiguredModelAlgorithmAssociationsOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/configured-model-algorithm-associations",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:listConfiguredModelAlgorithms(input, options)
     return self:invokeOperation(input, {
         name = "ListConfiguredModelAlgorithms",
-        input_schema = types.ListConfiguredModelAlgorithmsInput,
-        output_schema = types.ListConfiguredModelAlgorithmsOutput,
+        input_schema = schemas.ListConfiguredModelAlgorithmsInput,
+        output_schema = schemas.ListConfiguredModelAlgorithmsOutput,
         http_method = "GET",
         http_path = "/configured-model-algorithms",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:listMLInputChannels(input, options)
     return self:invokeOperation(input, {
         name = "ListMLInputChannels",
-        input_schema = types.ListMLInputChannelsInput,
-        output_schema = types.ListMLInputChannelsOutput,
+        input_schema = schemas.ListMLInputChannelsInput,
+        output_schema = schemas.ListMLInputChannelsOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/ml-input-channels",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:listTrainedModelInferenceJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListTrainedModelInferenceJobs",
-        input_schema = types.ListTrainedModelInferenceJobsInput,
-        output_schema = types.ListTrainedModelInferenceJobsOutput,
+        input_schema = schemas.ListTrainedModelInferenceJobsInput,
+        output_schema = schemas.ListTrainedModelInferenceJobsOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/trained-model-inference-jobs",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:listTrainedModels(input, options)
     return self:invokeOperation(input, {
         name = "ListTrainedModels",
-        input_schema = types.ListTrainedModelsInput,
-        output_schema = types.ListTrainedModelsOutput,
+        input_schema = schemas.ListTrainedModelsInput,
+        output_schema = schemas.ListTrainedModelsOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/trained-models",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:listTrainedModelVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListTrainedModelVersions",
-        input_schema = types.ListTrainedModelVersionsInput,
-        output_schema = types.ListTrainedModelVersionsOutput,
+        input_schema = schemas.ListTrainedModelVersionsInput,
+        output_schema = schemas.ListTrainedModelVersionsOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/trained-models/{trainedModelArn}/versions",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:listTrainingDatasets(input, options)
     return self:invokeOperation(input, {
         name = "ListTrainingDatasets",
-        input_schema = types.ListTrainingDatasetsInput,
-        output_schema = types.ListTrainingDatasetsOutput,
+        input_schema = schemas.ListTrainingDatasetsInput,
+        output_schema = schemas.ListTrainingDatasetsOutput,
         http_method = "GET",
         http_path = "/training-dataset",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:putConfiguredAudienceModelPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutConfiguredAudienceModelPolicy",
-        input_schema = types.PutConfiguredAudienceModelPolicyInput,
-        output_schema = types.PutConfiguredAudienceModelPolicyOutput,
+        input_schema = schemas.PutConfiguredAudienceModelPolicyInput,
+        output_schema = schemas.PutConfiguredAudienceModelPolicyOutput,
         http_method = "PUT",
         http_path = "/configured-audience-model/{configuredAudienceModelArn}/policy",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:putMLConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutMLConfiguration",
-        input_schema = types.PutMLConfigurationInput,
-        output_schema = types.PutMLConfigurationOutput,
+        input_schema = schemas.PutMLConfigurationInput,
+        output_schema = schemas.PutMLConfigurationOutput,
         http_method = "PUT",
         http_path = "/memberships/{membershipIdentifier}/ml-configurations",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:startAudienceExportJob(input, options)
     return self:invokeOperation(input, {
         name = "StartAudienceExportJob",
-        input_schema = types.StartAudienceExportJobInput,
-        output_schema = types.StartAudienceExportJobOutput,
+        input_schema = schemas.StartAudienceExportJobInput,
+        output_schema = schemas.StartAudienceExportJobOutput,
         http_method = "POST",
         http_path = "/audience-export-job",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:startAudienceGenerationJob(input, options)
     return self:invokeOperation(input, {
         name = "StartAudienceGenerationJob",
-        input_schema = types.StartAudienceGenerationJobInput,
-        output_schema = types.StartAudienceGenerationJobOutput,
+        input_schema = schemas.StartAudienceGenerationJobInput,
+        output_schema = schemas.StartAudienceGenerationJobOutput,
         http_method = "POST",
         http_path = "/audience-generation-job",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:startTrainedModelExportJob(input, options)
     return self:invokeOperation(input, {
         name = "StartTrainedModelExportJob",
-        input_schema = types.StartTrainedModelExportJobInput,
-        output_schema = types.StartTrainedModelExportJobOutput,
+        input_schema = schemas.StartTrainedModelExportJobInput,
+        output_schema = schemas.StartTrainedModelExportJobOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/trained-models/{trainedModelArn}/export-jobs",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:startTrainedModelInferenceJob(input, options)
     return self:invokeOperation(input, {
         name = "StartTrainedModelInferenceJob",
-        input_schema = types.StartTrainedModelInferenceJobInput,
-        output_schema = types.StartTrainedModelInferenceJobOutput,
+        input_schema = schemas.StartTrainedModelInferenceJobInput,
+        output_schema = schemas.StartTrainedModelInferenceJobOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/trained-model-inference-jobs",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:updateConfiguredAudienceModel(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConfiguredAudienceModel",
-        input_schema = types.UpdateConfiguredAudienceModelInput,
-        output_schema = types.UpdateConfiguredAudienceModelOutput,
+        input_schema = schemas.UpdateConfiguredAudienceModelInput,
+        output_schema = schemas.UpdateConfiguredAudienceModelOutput,
         http_method = "PATCH",
         http_path = "/configured-audience-model/{configuredAudienceModelArn}",
         effective_auth_schemes = {

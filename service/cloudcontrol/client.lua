@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("cloudcontrol.endpoint_rules")
+local schemas = require("cloudcontrol.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("cloudcontrol.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:cancelResourceRequest(input, options)
     return self:invokeOperation(input, {
         name = "CancelResourceRequest",
-        input_schema = types.CancelResourceRequestInput,
-        output_schema = types.CancelResourceRequestOutput,
+        input_schema = schemas.CancelResourceRequestInput,
+        output_schema = schemas.CancelResourceRequestOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createResource(input, options)
     return self:invokeOperation(input, {
         name = "CreateResource",
-        input_schema = types.CreateResourceInput,
-        output_schema = types.CreateResourceOutput,
+        input_schema = schemas.CreateResourceInput,
+        output_schema = schemas.CreateResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteResource(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResource",
-        input_schema = types.DeleteResourceInput,
-        output_schema = types.DeleteResourceOutput,
+        input_schema = schemas.DeleteResourceInput,
+        output_schema = schemas.DeleteResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getResource(input, options)
     return self:invokeOperation(input, {
         name = "GetResource",
-        input_schema = types.GetResourceInput,
-        output_schema = types.GetResourceOutput,
+        input_schema = schemas.GetResourceInput,
+        output_schema = schemas.GetResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getResourceRequestStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetResourceRequestStatus",
-        input_schema = types.GetResourceRequestStatusInput,
-        output_schema = types.GetResourceRequestStatusOutput,
+        input_schema = schemas.GetResourceRequestStatusInput,
+        output_schema = schemas.GetResourceRequestStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:listResourceRequests(input, options)
     return self:invokeOperation(input, {
         name = "ListResourceRequests",
-        input_schema = types.ListResourceRequestsInput,
-        output_schema = types.ListResourceRequestsOutput,
+        input_schema = schemas.ListResourceRequestsInput,
+        output_schema = schemas.ListResourceRequestsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listResources(input, options)
     return self:invokeOperation(input, {
         name = "ListResources",
-        input_schema = types.ListResourcesInput,
-        output_schema = types.ListResourcesOutput,
+        input_schema = schemas.ListResourcesInput,
+        output_schema = schemas.ListResourcesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:updateResource(input, options)
     return self:invokeOperation(input, {
         name = "UpdateResource",
-        input_schema = types.UpdateResourceInput,
-        output_schema = types.UpdateResourceOutput,
+        input_schema = schemas.UpdateResourceInput,
+        output_schema = schemas.UpdateResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

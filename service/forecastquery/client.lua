@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("forecastquery.endpoint_rules")
+local schemas = require("forecastquery.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("forecastquery.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:queryForecast(input, options)
     return self:invokeOperation(input, {
         name = "QueryForecast",
-        input_schema = types.QueryForecastInput,
-        output_schema = types.QueryForecastOutput,
+        input_schema = schemas.QueryForecastInput,
+        output_schema = schemas.QueryForecastOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:queryWhatIfForecast(input, options)
     return self:invokeOperation(input, {
         name = "QueryWhatIfForecast",
-        input_schema = types.QueryWhatIfForecastInput,
-        output_schema = types.QueryWhatIfForecastOutput,
+        input_schema = schemas.QueryWhatIfForecastInput,
+        output_schema = schemas.QueryWhatIfForecastOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

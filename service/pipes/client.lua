@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("pipes.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("pipes.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("pipes.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createPipe(input, options)
     return self:invokeOperation(input, {
         name = "CreatePipe",
-        input_schema = types.CreatePipeInput,
-        output_schema = types.CreatePipeOutput,
+        input_schema = schemas.CreatePipeInput,
+        output_schema = schemas.CreatePipeOutput,
         http_method = "POST",
         http_path = "/v1/pipes/{Name}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deletePipe(input, options)
     return self:invokeOperation(input, {
         name = "DeletePipe",
-        input_schema = types.DeletePipeInput,
-        output_schema = types.DeletePipeOutput,
+        input_schema = schemas.DeletePipeInput,
+        output_schema = schemas.DeletePipeOutput,
         http_method = "DELETE",
         http_path = "/v1/pipes/{Name}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:describePipe(input, options)
     return self:invokeOperation(input, {
         name = "DescribePipe",
-        input_schema = types.DescribePipeInput,
-        output_schema = types.DescribePipeOutput,
+        input_schema = schemas.DescribePipeInput,
+        output_schema = schemas.DescribePipeOutput,
         http_method = "GET",
         http_path = "/v1/pipes/{Name}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:listPipes(input, options)
     return self:invokeOperation(input, {
         name = "ListPipes",
-        input_schema = types.ListPipesInput,
-        output_schema = types.ListPipesOutput,
+        input_schema = schemas.ListPipesInput,
+        output_schema = schemas.ListPipesOutput,
         http_method = "GET",
         http_path = "/v1/pipes",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:startPipe(input, options)
     return self:invokeOperation(input, {
         name = "StartPipe",
-        input_schema = types.StartPipeInput,
-        output_schema = types.StartPipeOutput,
+        input_schema = schemas.StartPipeInput,
+        output_schema = schemas.StartPipeOutput,
         http_method = "POST",
         http_path = "/v1/pipes/{Name}/start",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:stopPipe(input, options)
     return self:invokeOperation(input, {
         name = "StopPipe",
-        input_schema = types.StopPipeInput,
-        output_schema = types.StopPipeOutput,
+        input_schema = schemas.StopPipeInput,
+        output_schema = schemas.StopPipeOutput,
         http_method = "POST",
         http_path = "/v1/pipes/{Name}/stop",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:updatePipe(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePipe",
-        input_schema = types.UpdatePipeInput,
-        output_schema = types.UpdatePipeOutput,
+        input_schema = schemas.UpdatePipeInput,
+        output_schema = schemas.UpdatePipeOutput,
         http_method = "PUT",
         http_path = "/v1/pipes/{Name}",
         effective_auth_schemes = {

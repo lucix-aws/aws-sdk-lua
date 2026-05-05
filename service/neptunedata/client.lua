@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("neptunedata.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("neptunedata.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("neptunedata.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:cancelGremlinQuery(input, options)
     return self:invokeOperation(input, {
         name = "CancelGremlinQuery",
-        input_schema = types.CancelGremlinQueryInput,
-        output_schema = types.CancelGremlinQueryOutput,
+        input_schema = schemas.CancelGremlinQueryInput,
+        output_schema = schemas.CancelGremlinQueryOutput,
         http_method = "DELETE",
         http_path = "/gremlin/status/{queryId}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:cancelLoaderJob(input, options)
     return self:invokeOperation(input, {
         name = "CancelLoaderJob",
-        input_schema = types.CancelLoaderJobInput,
-        output_schema = types.CancelLoaderJobOutput,
+        input_schema = schemas.CancelLoaderJobInput,
+        output_schema = schemas.CancelLoaderJobOutput,
         http_method = "DELETE",
         http_path = "/loader/{loadId}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:cancelMLDataProcessingJob(input, options)
     return self:invokeOperation(input, {
         name = "CancelMLDataProcessingJob",
-        input_schema = types.CancelMLDataProcessingJobInput,
-        output_schema = types.CancelMLDataProcessingJobOutput,
+        input_schema = schemas.CancelMLDataProcessingJobInput,
+        output_schema = schemas.CancelMLDataProcessingJobOutput,
         http_method = "DELETE",
         http_path = "/ml/dataprocessing/{id}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:cancelMLModelTrainingJob(input, options)
     return self:invokeOperation(input, {
         name = "CancelMLModelTrainingJob",
-        input_schema = types.CancelMLModelTrainingJobInput,
-        output_schema = types.CancelMLModelTrainingJobOutput,
+        input_schema = schemas.CancelMLModelTrainingJobInput,
+        output_schema = schemas.CancelMLModelTrainingJobOutput,
         http_method = "DELETE",
         http_path = "/ml/modeltraining/{id}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:cancelMLModelTransformJob(input, options)
     return self:invokeOperation(input, {
         name = "CancelMLModelTransformJob",
-        input_schema = types.CancelMLModelTransformJobInput,
-        output_schema = types.CancelMLModelTransformJobOutput,
+        input_schema = schemas.CancelMLModelTransformJobInput,
+        output_schema = schemas.CancelMLModelTransformJobOutput,
         http_method = "DELETE",
         http_path = "/ml/modeltransform/{id}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:cancelOpenCypherQuery(input, options)
     return self:invokeOperation(input, {
         name = "CancelOpenCypherQuery",
-        input_schema = types.CancelOpenCypherQueryInput,
-        output_schema = types.CancelOpenCypherQueryOutput,
+        input_schema = schemas.CancelOpenCypherQueryInput,
+        output_schema = schemas.CancelOpenCypherQueryOutput,
         http_method = "DELETE",
         http_path = "/opencypher/status/{queryId}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createMLEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "CreateMLEndpoint",
-        input_schema = types.CreateMLEndpointInput,
-        output_schema = types.CreateMLEndpointOutput,
+        input_schema = schemas.CreateMLEndpointInput,
+        output_schema = schemas.CreateMLEndpointOutput,
         http_method = "POST",
         http_path = "/ml/endpoints",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteMLEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMLEndpoint",
-        input_schema = types.DeleteMLEndpointInput,
-        output_schema = types.DeleteMLEndpointOutput,
+        input_schema = schemas.DeleteMLEndpointInput,
+        output_schema = schemas.DeleteMLEndpointOutput,
         http_method = "DELETE",
         http_path = "/ml/endpoints/{id}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deletePropertygraphStatistics(input, options)
     return self:invokeOperation(input, {
         name = "DeletePropertygraphStatistics",
-        input_schema = types.DeletePropertygraphStatisticsInput,
-        output_schema = types.DeletePropertygraphStatisticsOutput,
+        input_schema = schemas.DeletePropertygraphStatisticsInput,
+        output_schema = schemas.DeletePropertygraphStatisticsOutput,
         http_method = "DELETE",
         http_path = "/propertygraph/statistics",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteSparqlStatistics(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSparqlStatistics",
-        input_schema = types.DeleteSparqlStatisticsInput,
-        output_schema = types.DeleteSparqlStatisticsOutput,
+        input_schema = schemas.DeleteSparqlStatisticsInput,
+        output_schema = schemas.DeleteSparqlStatisticsOutput,
         http_method = "DELETE",
         http_path = "/sparql/statistics",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:executeFastReset(input, options)
     return self:invokeOperation(input, {
         name = "ExecuteFastReset",
-        input_schema = types.ExecuteFastResetInput,
-        output_schema = types.ExecuteFastResetOutput,
+        input_schema = schemas.ExecuteFastResetInput,
+        output_schema = schemas.ExecuteFastResetOutput,
         http_method = "POST",
         http_path = "/system",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:executeGremlinExplainQuery(input, options)
     return self:invokeOperation(input, {
         name = "ExecuteGremlinExplainQuery",
-        input_schema = types.ExecuteGremlinExplainQueryInput,
-        output_schema = types.ExecuteGremlinExplainQueryOutput,
+        input_schema = schemas.ExecuteGremlinExplainQueryInput,
+        output_schema = schemas.ExecuteGremlinExplainQueryOutput,
         http_method = "POST",
         http_path = "/gremlin/explain",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:executeGremlinProfileQuery(input, options)
     return self:invokeOperation(input, {
         name = "ExecuteGremlinProfileQuery",
-        input_schema = types.ExecuteGremlinProfileQueryInput,
-        output_schema = types.ExecuteGremlinProfileQueryOutput,
+        input_schema = schemas.ExecuteGremlinProfileQueryInput,
+        output_schema = schemas.ExecuteGremlinProfileQueryOutput,
         http_method = "POST",
         http_path = "/gremlin/profile",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:executeGremlinQuery(input, options)
     return self:invokeOperation(input, {
         name = "ExecuteGremlinQuery",
-        input_schema = types.ExecuteGremlinQueryInput,
-        output_schema = types.ExecuteGremlinQueryOutput,
+        input_schema = schemas.ExecuteGremlinQueryInput,
+        output_schema = schemas.ExecuteGremlinQueryOutput,
         http_method = "POST",
         http_path = "/gremlin",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:executeOpenCypherExplainQuery(input, options)
     return self:invokeOperation(input, {
         name = "ExecuteOpenCypherExplainQuery",
-        input_schema = types.ExecuteOpenCypherExplainQueryInput,
-        output_schema = types.ExecuteOpenCypherExplainQueryOutput,
+        input_schema = schemas.ExecuteOpenCypherExplainQueryInput,
+        output_schema = schemas.ExecuteOpenCypherExplainQueryOutput,
         http_method = "POST",
         http_path = "/opencypher/explain",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:executeOpenCypherQuery(input, options)
     return self:invokeOperation(input, {
         name = "ExecuteOpenCypherQuery",
-        input_schema = types.ExecuteOpenCypherQueryInput,
-        output_schema = types.ExecuteOpenCypherQueryOutput,
+        input_schema = schemas.ExecuteOpenCypherQueryInput,
+        output_schema = schemas.ExecuteOpenCypherQueryOutput,
         http_method = "POST",
         http_path = "/opencypher",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getEngineStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetEngineStatus",
-        input_schema = types.GetEngineStatusInput,
-        output_schema = types.GetEngineStatusOutput,
+        input_schema = schemas.GetEngineStatusInput,
+        output_schema = schemas.GetEngineStatusOutput,
         http_method = "GET",
         http_path = "/status",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getGremlinQueryStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetGremlinQueryStatus",
-        input_schema = types.GetGremlinQueryStatusInput,
-        output_schema = types.GetGremlinQueryStatusOutput,
+        input_schema = schemas.GetGremlinQueryStatusInput,
+        output_schema = schemas.GetGremlinQueryStatusOutput,
         http_method = "GET",
         http_path = "/gremlin/status/{queryId}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getLoaderJobStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetLoaderJobStatus",
-        input_schema = types.GetLoaderJobStatusInput,
-        output_schema = types.GetLoaderJobStatusOutput,
+        input_schema = schemas.GetLoaderJobStatusInput,
+        output_schema = schemas.GetLoaderJobStatusOutput,
         http_method = "GET",
         http_path = "/loader/{loadId}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getMLDataProcessingJob(input, options)
     return self:invokeOperation(input, {
         name = "GetMLDataProcessingJob",
-        input_schema = types.GetMLDataProcessingJobInput,
-        output_schema = types.GetMLDataProcessingJobOutput,
+        input_schema = schemas.GetMLDataProcessingJobInput,
+        output_schema = schemas.GetMLDataProcessingJobOutput,
         http_method = "GET",
         http_path = "/ml/dataprocessing/{id}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:getMLEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "GetMLEndpoint",
-        input_schema = types.GetMLEndpointInput,
-        output_schema = types.GetMLEndpointOutput,
+        input_schema = schemas.GetMLEndpointInput,
+        output_schema = schemas.GetMLEndpointOutput,
         http_method = "GET",
         http_path = "/ml/endpoints/{id}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:getMLModelTrainingJob(input, options)
     return self:invokeOperation(input, {
         name = "GetMLModelTrainingJob",
-        input_schema = types.GetMLModelTrainingJobInput,
-        output_schema = types.GetMLModelTrainingJobOutput,
+        input_schema = schemas.GetMLModelTrainingJobInput,
+        output_schema = schemas.GetMLModelTrainingJobOutput,
         http_method = "GET",
         http_path = "/ml/modeltraining/{id}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:getMLModelTransformJob(input, options)
     return self:invokeOperation(input, {
         name = "GetMLModelTransformJob",
-        input_schema = types.GetMLModelTransformJobInput,
-        output_schema = types.GetMLModelTransformJobOutput,
+        input_schema = schemas.GetMLModelTransformJobInput,
+        output_schema = schemas.GetMLModelTransformJobOutput,
         http_method = "GET",
         http_path = "/ml/modeltransform/{id}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:getOpenCypherQueryStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetOpenCypherQueryStatus",
-        input_schema = types.GetOpenCypherQueryStatusInput,
-        output_schema = types.GetOpenCypherQueryStatusOutput,
+        input_schema = schemas.GetOpenCypherQueryStatusInput,
+        output_schema = schemas.GetOpenCypherQueryStatusOutput,
         http_method = "GET",
         http_path = "/opencypher/status/{queryId}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getPropertygraphStatistics(input, options)
     return self:invokeOperation(input, {
         name = "GetPropertygraphStatistics",
-        input_schema = types.GetPropertygraphStatisticsInput,
-        output_schema = types.GetPropertygraphStatisticsOutput,
+        input_schema = schemas.GetPropertygraphStatisticsInput,
+        output_schema = schemas.GetPropertygraphStatisticsOutput,
         http_method = "GET",
         http_path = "/propertygraph/statistics",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:getPropertygraphStream(input, options)
     return self:invokeOperation(input, {
         name = "GetPropertygraphStream",
-        input_schema = types.GetPropertygraphStreamInput,
-        output_schema = types.GetPropertygraphStreamOutput,
+        input_schema = schemas.GetPropertygraphStreamInput,
+        output_schema = schemas.GetPropertygraphStreamOutput,
         http_method = "GET",
         http_path = "/propertygraph/stream",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:getPropertygraphSummary(input, options)
     return self:invokeOperation(input, {
         name = "GetPropertygraphSummary",
-        input_schema = types.GetPropertygraphSummaryInput,
-        output_schema = types.GetPropertygraphSummaryOutput,
+        input_schema = schemas.GetPropertygraphSummaryInput,
+        output_schema = schemas.GetPropertygraphSummaryOutput,
         http_method = "GET",
         http_path = "/propertygraph/statistics/summary",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:getRDFGraphSummary(input, options)
     return self:invokeOperation(input, {
         name = "GetRDFGraphSummary",
-        input_schema = types.GetRDFGraphSummaryInput,
-        output_schema = types.GetRDFGraphSummaryOutput,
+        input_schema = schemas.GetRDFGraphSummaryInput,
+        output_schema = schemas.GetRDFGraphSummaryOutput,
         http_method = "GET",
         http_path = "/rdf/statistics/summary",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:getSparqlStatistics(input, options)
     return self:invokeOperation(input, {
         name = "GetSparqlStatistics",
-        input_schema = types.GetSparqlStatisticsInput,
-        output_schema = types.GetSparqlStatisticsOutput,
+        input_schema = schemas.GetSparqlStatisticsInput,
+        output_schema = schemas.GetSparqlStatisticsOutput,
         http_method = "GET",
         http_path = "/sparql/statistics",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:getSparqlStream(input, options)
     return self:invokeOperation(input, {
         name = "GetSparqlStream",
-        input_schema = types.GetSparqlStreamInput,
-        output_schema = types.GetSparqlStreamOutput,
+        input_schema = schemas.GetSparqlStreamInput,
+        output_schema = schemas.GetSparqlStreamOutput,
         http_method = "GET",
         http_path = "/sparql/stream",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:listGremlinQueries(input, options)
     return self:invokeOperation(input, {
         name = "ListGremlinQueries",
-        input_schema = types.ListGremlinQueriesInput,
-        output_schema = types.ListGremlinQueriesOutput,
+        input_schema = schemas.ListGremlinQueriesInput,
+        output_schema = schemas.ListGremlinQueriesOutput,
         http_method = "GET",
         http_path = "/gremlin/status",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:listLoaderJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListLoaderJobs",
-        input_schema = types.ListLoaderJobsInput,
-        output_schema = types.ListLoaderJobsOutput,
+        input_schema = schemas.ListLoaderJobsInput,
+        output_schema = schemas.ListLoaderJobsOutput,
         http_method = "GET",
         http_path = "/loader",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:listMLDataProcessingJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListMLDataProcessingJobs",
-        input_schema = types.ListMLDataProcessingJobsInput,
-        output_schema = types.ListMLDataProcessingJobsOutput,
+        input_schema = schemas.ListMLDataProcessingJobsInput,
+        output_schema = schemas.ListMLDataProcessingJobsOutput,
         http_method = "GET",
         http_path = "/ml/dataprocessing",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listMLEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "ListMLEndpoints",
-        input_schema = types.ListMLEndpointsInput,
-        output_schema = types.ListMLEndpointsOutput,
+        input_schema = schemas.ListMLEndpointsInput,
+        output_schema = schemas.ListMLEndpointsOutput,
         http_method = "GET",
         http_path = "/ml/endpoints",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:listMLModelTrainingJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListMLModelTrainingJobs",
-        input_schema = types.ListMLModelTrainingJobsInput,
-        output_schema = types.ListMLModelTrainingJobsOutput,
+        input_schema = schemas.ListMLModelTrainingJobsInput,
+        output_schema = schemas.ListMLModelTrainingJobsOutput,
         http_method = "GET",
         http_path = "/ml/modeltraining",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:listMLModelTransformJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListMLModelTransformJobs",
-        input_schema = types.ListMLModelTransformJobsInput,
-        output_schema = types.ListMLModelTransformJobsOutput,
+        input_schema = schemas.ListMLModelTransformJobsInput,
+        output_schema = schemas.ListMLModelTransformJobsOutput,
         http_method = "GET",
         http_path = "/ml/modeltransform",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:listOpenCypherQueries(input, options)
     return self:invokeOperation(input, {
         name = "ListOpenCypherQueries",
-        input_schema = types.ListOpenCypherQueriesInput,
-        output_schema = types.ListOpenCypherQueriesOutput,
+        input_schema = schemas.ListOpenCypherQueriesInput,
+        output_schema = schemas.ListOpenCypherQueriesOutput,
         http_method = "GET",
         http_path = "/opencypher/status",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:managePropertygraphStatistics(input, options)
     return self:invokeOperation(input, {
         name = "ManagePropertygraphStatistics",
-        input_schema = types.ManagePropertygraphStatisticsInput,
-        output_schema = types.ManagePropertygraphStatisticsOutput,
+        input_schema = schemas.ManagePropertygraphStatisticsInput,
+        output_schema = schemas.ManagePropertygraphStatisticsOutput,
         http_method = "POST",
         http_path = "/propertygraph/statistics",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:manageSparqlStatistics(input, options)
     return self:invokeOperation(input, {
         name = "ManageSparqlStatistics",
-        input_schema = types.ManageSparqlStatisticsInput,
-        output_schema = types.ManageSparqlStatisticsOutput,
+        input_schema = schemas.ManageSparqlStatisticsInput,
+        output_schema = schemas.ManageSparqlStatisticsOutput,
         http_method = "POST",
         http_path = "/sparql/statistics",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:startLoaderJob(input, options)
     return self:invokeOperation(input, {
         name = "StartLoaderJob",
-        input_schema = types.StartLoaderJobInput,
-        output_schema = types.StartLoaderJobOutput,
+        input_schema = schemas.StartLoaderJobInput,
+        output_schema = schemas.StartLoaderJobOutput,
         http_method = "POST",
         http_path = "/loader",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:startMLDataProcessingJob(input, options)
     return self:invokeOperation(input, {
         name = "StartMLDataProcessingJob",
-        input_schema = types.StartMLDataProcessingJobInput,
-        output_schema = types.StartMLDataProcessingJobOutput,
+        input_schema = schemas.StartMLDataProcessingJobInput,
+        output_schema = schemas.StartMLDataProcessingJobOutput,
         http_method = "POST",
         http_path = "/ml/dataprocessing",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:startMLModelTrainingJob(input, options)
     return self:invokeOperation(input, {
         name = "StartMLModelTrainingJob",
-        input_schema = types.StartMLModelTrainingJobInput,
-        output_schema = types.StartMLModelTrainingJobOutput,
+        input_schema = schemas.StartMLModelTrainingJobInput,
+        output_schema = schemas.StartMLModelTrainingJobOutput,
         http_method = "POST",
         http_path = "/ml/modeltraining",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:startMLModelTransformJob(input, options)
     return self:invokeOperation(input, {
         name = "StartMLModelTransformJob",
-        input_schema = types.StartMLModelTransformJobInput,
-        output_schema = types.StartMLModelTransformJobOutput,
+        input_schema = schemas.StartMLModelTransformJobInput,
+        output_schema = schemas.StartMLModelTransformJobOutput,
         http_method = "POST",
         http_path = "/ml/modeltransform",
         effective_auth_schemes = {

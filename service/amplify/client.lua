@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("amplify.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("amplify.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("amplify.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createApp(input, options)
     return self:invokeOperation(input, {
         name = "CreateApp",
-        input_schema = types.CreateAppInput,
-        output_schema = types.CreateAppOutput,
+        input_schema = schemas.CreateAppInput,
+        output_schema = schemas.CreateAppOutput,
         http_method = "POST",
         http_path = "/apps",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createBackendEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "CreateBackendEnvironment",
-        input_schema = types.CreateBackendEnvironmentInput,
-        output_schema = types.CreateBackendEnvironmentOutput,
+        input_schema = schemas.CreateBackendEnvironmentInput,
+        output_schema = schemas.CreateBackendEnvironmentOutput,
         http_method = "POST",
         http_path = "/apps/{appId}/backendenvironments",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createBranch(input, options)
     return self:invokeOperation(input, {
         name = "CreateBranch",
-        input_schema = types.CreateBranchInput,
-        output_schema = types.CreateBranchOutput,
+        input_schema = schemas.CreateBranchInput,
+        output_schema = schemas.CreateBranchOutput,
         http_method = "POST",
         http_path = "/apps/{appId}/branches",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createDeployment(input, options)
     return self:invokeOperation(input, {
         name = "CreateDeployment",
-        input_schema = types.CreateDeploymentInput,
-        output_schema = types.CreateDeploymentOutput,
+        input_schema = schemas.CreateDeploymentInput,
+        output_schema = schemas.CreateDeploymentOutput,
         http_method = "POST",
         http_path = "/apps/{appId}/branches/{branchName}/deployments",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createDomainAssociation(input, options)
     return self:invokeOperation(input, {
         name = "CreateDomainAssociation",
-        input_schema = types.CreateDomainAssociationInput,
-        output_schema = types.CreateDomainAssociationOutput,
+        input_schema = schemas.CreateDomainAssociationInput,
+        output_schema = schemas.CreateDomainAssociationOutput,
         http_method = "POST",
         http_path = "/apps/{appId}/domains",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createWebhook(input, options)
     return self:invokeOperation(input, {
         name = "CreateWebhook",
-        input_schema = types.CreateWebhookInput,
-        output_schema = types.CreateWebhookOutput,
+        input_schema = schemas.CreateWebhookInput,
+        output_schema = schemas.CreateWebhookOutput,
         http_method = "POST",
         http_path = "/apps/{appId}/webhooks",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteApp(input, options)
     return self:invokeOperation(input, {
         name = "DeleteApp",
-        input_schema = types.DeleteAppInput,
-        output_schema = types.DeleteAppOutput,
+        input_schema = schemas.DeleteAppInput,
+        output_schema = schemas.DeleteAppOutput,
         http_method = "DELETE",
         http_path = "/apps/{appId}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteBackendEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBackendEnvironment",
-        input_schema = types.DeleteBackendEnvironmentInput,
-        output_schema = types.DeleteBackendEnvironmentOutput,
+        input_schema = schemas.DeleteBackendEnvironmentInput,
+        output_schema = schemas.DeleteBackendEnvironmentOutput,
         http_method = "DELETE",
         http_path = "/apps/{appId}/backendenvironments/{environmentName}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteBranch(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBranch",
-        input_schema = types.DeleteBranchInput,
-        output_schema = types.DeleteBranchOutput,
+        input_schema = schemas.DeleteBranchInput,
+        output_schema = schemas.DeleteBranchOutput,
         http_method = "DELETE",
         http_path = "/apps/{appId}/branches/{branchName}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteDomainAssociation(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDomainAssociation",
-        input_schema = types.DeleteDomainAssociationInput,
-        output_schema = types.DeleteDomainAssociationOutput,
+        input_schema = schemas.DeleteDomainAssociationInput,
+        output_schema = schemas.DeleteDomainAssociationOutput,
         http_method = "DELETE",
         http_path = "/apps/{appId}/domains/{domainName}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteJob(input, options)
     return self:invokeOperation(input, {
         name = "DeleteJob",
-        input_schema = types.DeleteJobInput,
-        output_schema = types.DeleteJobOutput,
+        input_schema = schemas.DeleteJobInput,
+        output_schema = schemas.DeleteJobOutput,
         http_method = "DELETE",
         http_path = "/apps/{appId}/branches/{branchName}/jobs/{jobId}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteWebhook(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWebhook",
-        input_schema = types.DeleteWebhookInput,
-        output_schema = types.DeleteWebhookOutput,
+        input_schema = schemas.DeleteWebhookInput,
+        output_schema = schemas.DeleteWebhookOutput,
         http_method = "DELETE",
         http_path = "/webhooks/{webhookId}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:generateAccessLogs(input, options)
     return self:invokeOperation(input, {
         name = "GenerateAccessLogs",
-        input_schema = types.GenerateAccessLogsInput,
-        output_schema = types.GenerateAccessLogsOutput,
+        input_schema = schemas.GenerateAccessLogsInput,
+        output_schema = schemas.GenerateAccessLogsOutput,
         http_method = "POST",
         http_path = "/apps/{appId}/accesslogs",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getApp(input, options)
     return self:invokeOperation(input, {
         name = "GetApp",
-        input_schema = types.GetAppInput,
-        output_schema = types.GetAppOutput,
+        input_schema = schemas.GetAppInput,
+        output_schema = schemas.GetAppOutput,
         http_method = "GET",
         http_path = "/apps/{appId}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getArtifactUrl(input, options)
     return self:invokeOperation(input, {
         name = "GetArtifactUrl",
-        input_schema = types.GetArtifactUrlInput,
-        output_schema = types.GetArtifactUrlOutput,
+        input_schema = schemas.GetArtifactUrlInput,
+        output_schema = schemas.GetArtifactUrlOutput,
         http_method = "GET",
         http_path = "/artifacts/{artifactId}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getBackendEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "GetBackendEnvironment",
-        input_schema = types.GetBackendEnvironmentInput,
-        output_schema = types.GetBackendEnvironmentOutput,
+        input_schema = schemas.GetBackendEnvironmentInput,
+        output_schema = schemas.GetBackendEnvironmentOutput,
         http_method = "GET",
         http_path = "/apps/{appId}/backendenvironments/{environmentName}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getBranch(input, options)
     return self:invokeOperation(input, {
         name = "GetBranch",
-        input_schema = types.GetBranchInput,
-        output_schema = types.GetBranchOutput,
+        input_schema = schemas.GetBranchInput,
+        output_schema = schemas.GetBranchOutput,
         http_method = "GET",
         http_path = "/apps/{appId}/branches/{branchName}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getDomainAssociation(input, options)
     return self:invokeOperation(input, {
         name = "GetDomainAssociation",
-        input_schema = types.GetDomainAssociationInput,
-        output_schema = types.GetDomainAssociationOutput,
+        input_schema = schemas.GetDomainAssociationInput,
+        output_schema = schemas.GetDomainAssociationOutput,
         http_method = "GET",
         http_path = "/apps/{appId}/domains/{domainName}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getJob(input, options)
     return self:invokeOperation(input, {
         name = "GetJob",
-        input_schema = types.GetJobInput,
-        output_schema = types.GetJobOutput,
+        input_schema = schemas.GetJobInput,
+        output_schema = schemas.GetJobOutput,
         http_method = "GET",
         http_path = "/apps/{appId}/branches/{branchName}/jobs/{jobId}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getWebhook(input, options)
     return self:invokeOperation(input, {
         name = "GetWebhook",
-        input_schema = types.GetWebhookInput,
-        output_schema = types.GetWebhookOutput,
+        input_schema = schemas.GetWebhookInput,
+        output_schema = schemas.GetWebhookOutput,
         http_method = "GET",
         http_path = "/webhooks/{webhookId}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listApps(input, options)
     return self:invokeOperation(input, {
         name = "ListApps",
-        input_schema = types.ListAppsInput,
-        output_schema = types.ListAppsOutput,
+        input_schema = schemas.ListAppsInput,
+        output_schema = schemas.ListAppsOutput,
         http_method = "GET",
         http_path = "/apps",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listArtifacts(input, options)
     return self:invokeOperation(input, {
         name = "ListArtifacts",
-        input_schema = types.ListArtifactsInput,
-        output_schema = types.ListArtifactsOutput,
+        input_schema = schemas.ListArtifactsInput,
+        output_schema = schemas.ListArtifactsOutput,
         http_method = "GET",
         http_path = "/apps/{appId}/branches/{branchName}/jobs/{jobId}/artifacts",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listBackendEnvironments(input, options)
     return self:invokeOperation(input, {
         name = "ListBackendEnvironments",
-        input_schema = types.ListBackendEnvironmentsInput,
-        output_schema = types.ListBackendEnvironmentsOutput,
+        input_schema = schemas.ListBackendEnvironmentsInput,
+        output_schema = schemas.ListBackendEnvironmentsOutput,
         http_method = "GET",
         http_path = "/apps/{appId}/backendenvironments",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listBranches(input, options)
     return self:invokeOperation(input, {
         name = "ListBranches",
-        input_schema = types.ListBranchesInput,
-        output_schema = types.ListBranchesOutput,
+        input_schema = schemas.ListBranchesInput,
+        output_schema = schemas.ListBranchesOutput,
         http_method = "GET",
         http_path = "/apps/{appId}/branches",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listDomainAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListDomainAssociations",
-        input_schema = types.ListDomainAssociationsInput,
-        output_schema = types.ListDomainAssociationsOutput,
+        input_schema = schemas.ListDomainAssociationsInput,
+        output_schema = schemas.ListDomainAssociationsOutput,
         http_method = "GET",
         http_path = "/apps/{appId}/domains",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListJobs",
-        input_schema = types.ListJobsInput,
-        output_schema = types.ListJobsOutput,
+        input_schema = schemas.ListJobsInput,
+        output_schema = schemas.ListJobsOutput,
         http_method = "GET",
         http_path = "/apps/{appId}/branches/{branchName}/jobs",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listWebhooks(input, options)
     return self:invokeOperation(input, {
         name = "ListWebhooks",
-        input_schema = types.ListWebhooksInput,
-        output_schema = types.ListWebhooksOutput,
+        input_schema = schemas.ListWebhooksInput,
+        output_schema = schemas.ListWebhooksOutput,
         http_method = "GET",
         http_path = "/apps/{appId}/webhooks",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:startDeployment(input, options)
     return self:invokeOperation(input, {
         name = "StartDeployment",
-        input_schema = types.StartDeploymentInput,
-        output_schema = types.StartDeploymentOutput,
+        input_schema = schemas.StartDeploymentInput,
+        output_schema = schemas.StartDeploymentOutput,
         http_method = "POST",
         http_path = "/apps/{appId}/branches/{branchName}/deployments/start",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:startJob(input, options)
     return self:invokeOperation(input, {
         name = "StartJob",
-        input_schema = types.StartJobInput,
-        output_schema = types.StartJobOutput,
+        input_schema = schemas.StartJobInput,
+        output_schema = schemas.StartJobOutput,
         http_method = "POST",
         http_path = "/apps/{appId}/branches/{branchName}/jobs",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:stopJob(input, options)
     return self:invokeOperation(input, {
         name = "StopJob",
-        input_schema = types.StopJobInput,
-        output_schema = types.StopJobOutput,
+        input_schema = schemas.StopJobInput,
+        output_schema = schemas.StopJobOutput,
         http_method = "DELETE",
         http_path = "/apps/{appId}/branches/{branchName}/jobs/{jobId}/stop",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:updateApp(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApp",
-        input_schema = types.UpdateAppInput,
-        output_schema = types.UpdateAppOutput,
+        input_schema = schemas.UpdateAppInput,
+        output_schema = schemas.UpdateAppOutput,
         http_method = "POST",
         http_path = "/apps/{appId}",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:updateBranch(input, options)
     return self:invokeOperation(input, {
         name = "UpdateBranch",
-        input_schema = types.UpdateBranchInput,
-        output_schema = types.UpdateBranchOutput,
+        input_schema = schemas.UpdateBranchInput,
+        output_schema = schemas.UpdateBranchOutput,
         http_method = "POST",
         http_path = "/apps/{appId}/branches/{branchName}",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:updateDomainAssociation(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDomainAssociation",
-        input_schema = types.UpdateDomainAssociationInput,
-        output_schema = types.UpdateDomainAssociationOutput,
+        input_schema = schemas.UpdateDomainAssociationInput,
+        output_schema = schemas.UpdateDomainAssociationOutput,
         http_method = "POST",
         http_path = "/apps/{appId}/domains/{domainName}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:updateWebhook(input, options)
     return self:invokeOperation(input, {
         name = "UpdateWebhook",
-        input_schema = types.UpdateWebhookInput,
-        output_schema = types.UpdateWebhookOutput,
+        input_schema = schemas.UpdateWebhookInput,
+        output_schema = schemas.UpdateWebhookOutput,
         http_method = "POST",
         http_path = "/webhooks/{webhookId}",
         effective_auth_schemes = {

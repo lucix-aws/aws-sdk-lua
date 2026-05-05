@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("cloudsearchdomain.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("cloudsearchdomain.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("cloudsearchdomain.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:search(input, options)
     return self:invokeOperation(input, {
         name = "Search",
-        input_schema = types.SearchInput,
-        output_schema = types.SearchOutput,
+        input_schema = schemas.SearchInput,
+        output_schema = schemas.SearchOutput,
         http_method = "GET",
         http_path = "/2013-01-01/search?format=sdk&pretty=true",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:suggest(input, options)
     return self:invokeOperation(input, {
         name = "Suggest",
-        input_schema = types.SuggestInput,
-        output_schema = types.SuggestOutput,
+        input_schema = schemas.SuggestInput,
+        output_schema = schemas.SuggestOutput,
         http_method = "GET",
         http_path = "/2013-01-01/suggest?format=sdk&pretty=true",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:uploadDocuments(input, options)
     return self:invokeOperation(input, {
         name = "UploadDocuments",
-        input_schema = types.UploadDocumentsInput,
-        output_schema = types.UploadDocumentsOutput,
+        input_schema = schemas.UploadDocumentsInput,
+        output_schema = schemas.UploadDocumentsOutput,
         http_method = "POST",
         http_path = "/2013-01-01/documents/batch?format=sdk",
         effective_auth_schemes = {

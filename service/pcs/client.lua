@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("pcs.endpoint_rules")
+local schemas = require("pcs.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("pcs.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createCluster(input, options)
     return self:invokeOperation(input, {
         name = "CreateCluster",
-        input_schema = types.CreateClusterInput,
-        output_schema = types.CreateClusterOutput,
+        input_schema = schemas.CreateClusterInput,
+        output_schema = schemas.CreateClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createComputeNodeGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateComputeNodeGroup",
-        input_schema = types.CreateComputeNodeGroupInput,
-        output_schema = types.CreateComputeNodeGroupOutput,
+        input_schema = schemas.CreateComputeNodeGroupInput,
+        output_schema = schemas.CreateComputeNodeGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createQueue(input, options)
     return self:invokeOperation(input, {
         name = "CreateQueue",
-        input_schema = types.CreateQueueInput,
-        output_schema = types.CreateQueueOutput,
+        input_schema = schemas.CreateQueueInput,
+        output_schema = schemas.CreateQueueOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteCluster(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCluster",
-        input_schema = types.DeleteClusterInput,
-        output_schema = types.DeleteClusterOutput,
+        input_schema = schemas.DeleteClusterInput,
+        output_schema = schemas.DeleteClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteComputeNodeGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteComputeNodeGroup",
-        input_schema = types.DeleteComputeNodeGroupInput,
-        output_schema = types.DeleteComputeNodeGroupOutput,
+        input_schema = schemas.DeleteComputeNodeGroupInput,
+        output_schema = schemas.DeleteComputeNodeGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteQueue(input, options)
     return self:invokeOperation(input, {
         name = "DeleteQueue",
-        input_schema = types.DeleteQueueInput,
-        output_schema = types.DeleteQueueOutput,
+        input_schema = schemas.DeleteQueueInput,
+        output_schema = schemas.DeleteQueueOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getCluster(input, options)
     return self:invokeOperation(input, {
         name = "GetCluster",
-        input_schema = types.GetClusterInput,
-        output_schema = types.GetClusterOutput,
+        input_schema = schemas.GetClusterInput,
+        output_schema = schemas.GetClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getComputeNodeGroup(input, options)
     return self:invokeOperation(input, {
         name = "GetComputeNodeGroup",
-        input_schema = types.GetComputeNodeGroupInput,
-        output_schema = types.GetComputeNodeGroupOutput,
+        input_schema = schemas.GetComputeNodeGroupInput,
+        output_schema = schemas.GetComputeNodeGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getQueue(input, options)
     return self:invokeOperation(input, {
         name = "GetQueue",
-        input_schema = types.GetQueueInput,
-        output_schema = types.GetQueueOutput,
+        input_schema = schemas.GetQueueInput,
+        output_schema = schemas.GetQueueOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listClusters(input, options)
     return self:invokeOperation(input, {
         name = "ListClusters",
-        input_schema = types.ListClustersInput,
-        output_schema = types.ListClustersOutput,
+        input_schema = schemas.ListClustersInput,
+        output_schema = schemas.ListClustersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listComputeNodeGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListComputeNodeGroups",
-        input_schema = types.ListComputeNodeGroupsInput,
-        output_schema = types.ListComputeNodeGroupsOutput,
+        input_schema = schemas.ListComputeNodeGroupsInput,
+        output_schema = schemas.ListComputeNodeGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listQueues(input, options)
     return self:invokeOperation(input, {
         name = "ListQueues",
-        input_schema = types.ListQueuesInput,
-        output_schema = types.ListQueuesOutput,
+        input_schema = schemas.ListQueuesInput,
+        output_schema = schemas.ListQueuesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:registerComputeNodeGroupInstance(input, options)
     return self:invokeOperation(input, {
         name = "RegisterComputeNodeGroupInstance",
-        input_schema = types.RegisterComputeNodeGroupInstanceInput,
-        output_schema = types.RegisterComputeNodeGroupInstanceOutput,
+        input_schema = schemas.RegisterComputeNodeGroupInstanceInput,
+        output_schema = schemas.RegisterComputeNodeGroupInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:updateCluster(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCluster",
-        input_schema = types.UpdateClusterInput,
-        output_schema = types.UpdateClusterOutput,
+        input_schema = schemas.UpdateClusterInput,
+        output_schema = schemas.UpdateClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:updateComputeNodeGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateComputeNodeGroup",
-        input_schema = types.UpdateComputeNodeGroupInput,
-        output_schema = types.UpdateComputeNodeGroupOutput,
+        input_schema = schemas.UpdateComputeNodeGroupInput,
+        output_schema = schemas.UpdateComputeNodeGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:updateQueue(input, options)
     return self:invokeOperation(input, {
         name = "UpdateQueue",
-        input_schema = types.UpdateQueueInput,
-        output_schema = types.UpdateQueueOutput,
+        input_schema = schemas.UpdateQueueInput,
+        output_schema = schemas.UpdateQueueOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

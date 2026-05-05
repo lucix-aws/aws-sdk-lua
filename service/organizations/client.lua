@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("organizations.endpoint_rules")
+local schemas = require("organizations.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("organizations.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptHandshake(input, options)
     return self:invokeOperation(input, {
         name = "AcceptHandshake",
-        input_schema = types.AcceptHandshakeInput,
-        output_schema = types.AcceptHandshakeOutput,
+        input_schema = schemas.AcceptHandshakeInput,
+        output_schema = schemas.AcceptHandshakeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:attachPolicy(input, options)
     return self:invokeOperation(input, {
         name = "AttachPolicy",
-        input_schema = types.AttachPolicyInput,
-        output_schema = types.AttachPolicyOutput,
+        input_schema = schemas.AttachPolicyInput,
+        output_schema = schemas.AttachPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:cancelHandshake(input, options)
     return self:invokeOperation(input, {
         name = "CancelHandshake",
-        input_schema = types.CancelHandshakeInput,
-        output_schema = types.CancelHandshakeOutput,
+        input_schema = schemas.CancelHandshakeInput,
+        output_schema = schemas.CancelHandshakeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:closeAccount(input, options)
     return self:invokeOperation(input, {
         name = "CloseAccount",
-        input_schema = types.CloseAccountInput,
-        output_schema = types.CloseAccountOutput,
+        input_schema = schemas.CloseAccountInput,
+        output_schema = schemas.CloseAccountOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createAccount(input, options)
     return self:invokeOperation(input, {
         name = "CreateAccount",
-        input_schema = types.CreateAccountInput,
-        output_schema = types.CreateAccountOutput,
+        input_schema = schemas.CreateAccountInput,
+        output_schema = schemas.CreateAccountOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createGovCloudAccount(input, options)
     return self:invokeOperation(input, {
         name = "CreateGovCloudAccount",
-        input_schema = types.CreateGovCloudAccountInput,
-        output_schema = types.CreateGovCloudAccountOutput,
+        input_schema = schemas.CreateGovCloudAccountInput,
+        output_schema = schemas.CreateGovCloudAccountOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createOrganization(input, options)
     return self:invokeOperation(input, {
         name = "CreateOrganization",
-        input_schema = types.CreateOrganizationInput,
-        output_schema = types.CreateOrganizationOutput,
+        input_schema = schemas.CreateOrganizationInput,
+        output_schema = schemas.CreateOrganizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createOrganizationalUnit(input, options)
     return self:invokeOperation(input, {
         name = "CreateOrganizationalUnit",
-        input_schema = types.CreateOrganizationalUnitInput,
-        output_schema = types.CreateOrganizationalUnitOutput,
+        input_schema = schemas.CreateOrganizationalUnitInput,
+        output_schema = schemas.CreateOrganizationalUnitOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createPolicy(input, options)
     return self:invokeOperation(input, {
         name = "CreatePolicy",
-        input_schema = types.CreatePolicyInput,
-        output_schema = types.CreatePolicyOutput,
+        input_schema = schemas.CreatePolicyInput,
+        output_schema = schemas.CreatePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:declineHandshake(input, options)
     return self:invokeOperation(input, {
         name = "DeclineHandshake",
-        input_schema = types.DeclineHandshakeInput,
-        output_schema = types.DeclineHandshakeOutput,
+        input_schema = schemas.DeclineHandshakeInput,
+        output_schema = schemas.DeclineHandshakeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteOrganization(input, options)
     return self:invokeOperation(input, {
         name = "DeleteOrganization",
-        input_schema = types.DeleteOrganizationInput,
-        output_schema = types.DeleteOrganizationOutput,
+        input_schema = schemas.DeleteOrganizationInput,
+        output_schema = schemas.DeleteOrganizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteOrganizationalUnit(input, options)
     return self:invokeOperation(input, {
         name = "DeleteOrganizationalUnit",
-        input_schema = types.DeleteOrganizationalUnitInput,
-        output_schema = types.DeleteOrganizationalUnitOutput,
+        input_schema = schemas.DeleteOrganizationalUnitInput,
+        output_schema = schemas.DeleteOrganizationalUnitOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deletePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeletePolicy",
-        input_schema = types.DeletePolicyInput,
-        output_schema = types.DeletePolicyOutput,
+        input_schema = schemas.DeletePolicyInput,
+        output_schema = schemas.DeletePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourcePolicy",
-        input_schema = types.DeleteResourcePolicyInput,
-        output_schema = types.DeleteResourcePolicyOutput,
+        input_schema = schemas.DeleteResourcePolicyInput,
+        output_schema = schemas.DeleteResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deregisterDelegatedAdministrator(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterDelegatedAdministrator",
-        input_schema = types.DeregisterDelegatedAdministratorInput,
-        output_schema = types.DeregisterDelegatedAdministratorOutput,
+        input_schema = schemas.DeregisterDelegatedAdministratorInput,
+        output_schema = schemas.DeregisterDelegatedAdministratorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:describeAccount(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAccount",
-        input_schema = types.DescribeAccountInput,
-        output_schema = types.DescribeAccountOutput,
+        input_schema = schemas.DescribeAccountInput,
+        output_schema = schemas.DescribeAccountOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:describeCreateAccountStatus(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCreateAccountStatus",
-        input_schema = types.DescribeCreateAccountStatusInput,
-        output_schema = types.DescribeCreateAccountStatusOutput,
+        input_schema = schemas.DescribeCreateAccountStatusInput,
+        output_schema = schemas.DescribeCreateAccountStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:describeEffectivePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEffectivePolicy",
-        input_schema = types.DescribeEffectivePolicyInput,
-        output_schema = types.DescribeEffectivePolicyOutput,
+        input_schema = schemas.DescribeEffectivePolicyInput,
+        output_schema = schemas.DescribeEffectivePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:describeHandshake(input, options)
     return self:invokeOperation(input, {
         name = "DescribeHandshake",
-        input_schema = types.DescribeHandshakeInput,
-        output_schema = types.DescribeHandshakeOutput,
+        input_schema = schemas.DescribeHandshakeInput,
+        output_schema = schemas.DescribeHandshakeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:describeOrganization(input, options)
     return self:invokeOperation(input, {
         name = "DescribeOrganization",
-        input_schema = types.DescribeOrganizationInput,
-        output_schema = types.DescribeOrganizationOutput,
+        input_schema = schemas.DescribeOrganizationInput,
+        output_schema = schemas.DescribeOrganizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:describeOrganizationalUnit(input, options)
     return self:invokeOperation(input, {
         name = "DescribeOrganizationalUnit",
-        input_schema = types.DescribeOrganizationalUnitInput,
-        output_schema = types.DescribeOrganizationalUnitOutput,
+        input_schema = schemas.DescribeOrganizationalUnitInput,
+        output_schema = schemas.DescribeOrganizationalUnitOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:describePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DescribePolicy",
-        input_schema = types.DescribePolicyInput,
-        output_schema = types.DescribePolicyOutput,
+        input_schema = schemas.DescribePolicyInput,
+        output_schema = schemas.DescribePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:describeResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DescribeResourcePolicy",
-        input_schema = types.DescribeResourcePolicyInput,
-        output_schema = types.DescribeResourcePolicyOutput,
+        input_schema = schemas.DescribeResourcePolicyInput,
+        output_schema = schemas.DescribeResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:describeResponsibilityTransfer(input, options)
     return self:invokeOperation(input, {
         name = "DescribeResponsibilityTransfer",
-        input_schema = types.DescribeResponsibilityTransferInput,
-        output_schema = types.DescribeResponsibilityTransferOutput,
+        input_schema = schemas.DescribeResponsibilityTransferInput,
+        output_schema = schemas.DescribeResponsibilityTransferOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:detachPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DetachPolicy",
-        input_schema = types.DetachPolicyInput,
-        output_schema = types.DetachPolicyOutput,
+        input_schema = schemas.DetachPolicyInput,
+        output_schema = schemas.DetachPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:disableAWSServiceAccess(input, options)
     return self:invokeOperation(input, {
         name = "DisableAWSServiceAccess",
-        input_schema = types.DisableAWSServiceAccessInput,
-        output_schema = types.DisableAWSServiceAccessOutput,
+        input_schema = schemas.DisableAWSServiceAccessInput,
+        output_schema = schemas.DisableAWSServiceAccessOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:disablePolicyType(input, options)
     return self:invokeOperation(input, {
         name = "DisablePolicyType",
-        input_schema = types.DisablePolicyTypeInput,
-        output_schema = types.DisablePolicyTypeOutput,
+        input_schema = schemas.DisablePolicyTypeInput,
+        output_schema = schemas.DisablePolicyTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:enableAllFeatures(input, options)
     return self:invokeOperation(input, {
         name = "EnableAllFeatures",
-        input_schema = types.EnableAllFeaturesInput,
-        output_schema = types.EnableAllFeaturesOutput,
+        input_schema = schemas.EnableAllFeaturesInput,
+        output_schema = schemas.EnableAllFeaturesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:enableAWSServiceAccess(input, options)
     return self:invokeOperation(input, {
         name = "EnableAWSServiceAccess",
-        input_schema = types.EnableAWSServiceAccessInput,
-        output_schema = types.EnableAWSServiceAccessOutput,
+        input_schema = schemas.EnableAWSServiceAccessInput,
+        output_schema = schemas.EnableAWSServiceAccessOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:enablePolicyType(input, options)
     return self:invokeOperation(input, {
         name = "EnablePolicyType",
-        input_schema = types.EnablePolicyTypeInput,
-        output_schema = types.EnablePolicyTypeOutput,
+        input_schema = schemas.EnablePolicyTypeInput,
+        output_schema = schemas.EnablePolicyTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:inviteAccountToOrganization(input, options)
     return self:invokeOperation(input, {
         name = "InviteAccountToOrganization",
-        input_schema = types.InviteAccountToOrganizationInput,
-        output_schema = types.InviteAccountToOrganizationOutput,
+        input_schema = schemas.InviteAccountToOrganizationInput,
+        output_schema = schemas.InviteAccountToOrganizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:inviteOrganizationToTransferResponsibility(input, options)
     return self:invokeOperation(input, {
         name = "InviteOrganizationToTransferResponsibility",
-        input_schema = types.InviteOrganizationToTransferResponsibilityInput,
-        output_schema = types.InviteOrganizationToTransferResponsibilityOutput,
+        input_schema = schemas.InviteOrganizationToTransferResponsibilityInput,
+        output_schema = schemas.InviteOrganizationToTransferResponsibilityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:leaveOrganization(input, options)
     return self:invokeOperation(input, {
         name = "LeaveOrganization",
-        input_schema = types.LeaveOrganizationInput,
-        output_schema = types.LeaveOrganizationOutput,
+        input_schema = schemas.LeaveOrganizationInput,
+        output_schema = schemas.LeaveOrganizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listAccounts(input, options)
     return self:invokeOperation(input, {
         name = "ListAccounts",
-        input_schema = types.ListAccountsInput,
-        output_schema = types.ListAccountsOutput,
+        input_schema = schemas.ListAccountsInput,
+        output_schema = schemas.ListAccountsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:listAccountsForParent(input, options)
     return self:invokeOperation(input, {
         name = "ListAccountsForParent",
-        input_schema = types.ListAccountsForParentInput,
-        output_schema = types.ListAccountsForParentOutput,
+        input_schema = schemas.ListAccountsForParentInput,
+        output_schema = schemas.ListAccountsForParentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:listAccountsWithInvalidEffectivePolicy(input, options)
     return self:invokeOperation(input, {
         name = "ListAccountsWithInvalidEffectivePolicy",
-        input_schema = types.ListAccountsWithInvalidEffectivePolicyInput,
-        output_schema = types.ListAccountsWithInvalidEffectivePolicyOutput,
+        input_schema = schemas.ListAccountsWithInvalidEffectivePolicyInput,
+        output_schema = schemas.ListAccountsWithInvalidEffectivePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:listAWSServiceAccessForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "ListAWSServiceAccessForOrganization",
-        input_schema = types.ListAWSServiceAccessForOrganizationInput,
-        output_schema = types.ListAWSServiceAccessForOrganizationOutput,
+        input_schema = schemas.ListAWSServiceAccessForOrganizationInput,
+        output_schema = schemas.ListAWSServiceAccessForOrganizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:listChildren(input, options)
     return self:invokeOperation(input, {
         name = "ListChildren",
-        input_schema = types.ListChildrenInput,
-        output_schema = types.ListChildrenOutput,
+        input_schema = schemas.ListChildrenInput,
+        output_schema = schemas.ListChildrenOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:listCreateAccountStatus(input, options)
     return self:invokeOperation(input, {
         name = "ListCreateAccountStatus",
-        input_schema = types.ListCreateAccountStatusInput,
-        output_schema = types.ListCreateAccountStatusOutput,
+        input_schema = schemas.ListCreateAccountStatusInput,
+        output_schema = schemas.ListCreateAccountStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:listDelegatedAdministrators(input, options)
     return self:invokeOperation(input, {
         name = "ListDelegatedAdministrators",
-        input_schema = types.ListDelegatedAdministratorsInput,
-        output_schema = types.ListDelegatedAdministratorsOutput,
+        input_schema = schemas.ListDelegatedAdministratorsInput,
+        output_schema = schemas.ListDelegatedAdministratorsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:listDelegatedServicesForAccount(input, options)
     return self:invokeOperation(input, {
         name = "ListDelegatedServicesForAccount",
-        input_schema = types.ListDelegatedServicesForAccountInput,
-        output_schema = types.ListDelegatedServicesForAccountOutput,
+        input_schema = schemas.ListDelegatedServicesForAccountInput,
+        output_schema = schemas.ListDelegatedServicesForAccountOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:listEffectivePolicyValidationErrors(input, options)
     return self:invokeOperation(input, {
         name = "ListEffectivePolicyValidationErrors",
-        input_schema = types.ListEffectivePolicyValidationErrorsInput,
-        output_schema = types.ListEffectivePolicyValidationErrorsOutput,
+        input_schema = schemas.ListEffectivePolicyValidationErrorsInput,
+        output_schema = schemas.ListEffectivePolicyValidationErrorsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:listHandshakesForAccount(input, options)
     return self:invokeOperation(input, {
         name = "ListHandshakesForAccount",
-        input_schema = types.ListHandshakesForAccountInput,
-        output_schema = types.ListHandshakesForAccountOutput,
+        input_schema = schemas.ListHandshakesForAccountInput,
+        output_schema = schemas.ListHandshakesForAccountOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:listHandshakesForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "ListHandshakesForOrganization",
-        input_schema = types.ListHandshakesForOrganizationInput,
-        output_schema = types.ListHandshakesForOrganizationOutput,
+        input_schema = schemas.ListHandshakesForOrganizationInput,
+        output_schema = schemas.ListHandshakesForOrganizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:listInboundResponsibilityTransfers(input, options)
     return self:invokeOperation(input, {
         name = "ListInboundResponsibilityTransfers",
-        input_schema = types.ListInboundResponsibilityTransfersInput,
-        output_schema = types.ListInboundResponsibilityTransfersOutput,
+        input_schema = schemas.ListInboundResponsibilityTransfersInput,
+        output_schema = schemas.ListInboundResponsibilityTransfersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:listOrganizationalUnitsForParent(input, options)
     return self:invokeOperation(input, {
         name = "ListOrganizationalUnitsForParent",
-        input_schema = types.ListOrganizationalUnitsForParentInput,
-        output_schema = types.ListOrganizationalUnitsForParentOutput,
+        input_schema = schemas.ListOrganizationalUnitsForParentInput,
+        output_schema = schemas.ListOrganizationalUnitsForParentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:listOutboundResponsibilityTransfers(input, options)
     return self:invokeOperation(input, {
         name = "ListOutboundResponsibilityTransfers",
-        input_schema = types.ListOutboundResponsibilityTransfersInput,
-        output_schema = types.ListOutboundResponsibilityTransfersOutput,
+        input_schema = schemas.ListOutboundResponsibilityTransfersInput,
+        output_schema = schemas.ListOutboundResponsibilityTransfersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:listParents(input, options)
     return self:invokeOperation(input, {
         name = "ListParents",
-        input_schema = types.ListParentsInput,
-        output_schema = types.ListParentsOutput,
+        input_schema = schemas.ListParentsInput,
+        output_schema = schemas.ListParentsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:listPolicies(input, options)
     return self:invokeOperation(input, {
         name = "ListPolicies",
-        input_schema = types.ListPoliciesInput,
-        output_schema = types.ListPoliciesOutput,
+        input_schema = schemas.ListPoliciesInput,
+        output_schema = schemas.ListPoliciesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:listPoliciesForTarget(input, options)
     return self:invokeOperation(input, {
         name = "ListPoliciesForTarget",
-        input_schema = types.ListPoliciesForTargetInput,
-        output_schema = types.ListPoliciesForTargetOutput,
+        input_schema = schemas.ListPoliciesForTargetInput,
+        output_schema = schemas.ListPoliciesForTargetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:listRoots(input, options)
     return self:invokeOperation(input, {
         name = "ListRoots",
-        input_schema = types.ListRootsInput,
-        output_schema = types.ListRootsOutput,
+        input_schema = schemas.ListRootsInput,
+        output_schema = schemas.ListRootsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:listTargetsForPolicy(input, options)
     return self:invokeOperation(input, {
         name = "ListTargetsForPolicy",
-        input_schema = types.ListTargetsForPolicyInput,
-        output_schema = types.ListTargetsForPolicyOutput,
+        input_schema = schemas.ListTargetsForPolicyInput,
+        output_schema = schemas.ListTargetsForPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:moveAccount(input, options)
     return self:invokeOperation(input, {
         name = "MoveAccount",
-        input_schema = types.MoveAccountInput,
-        output_schema = types.MoveAccountOutput,
+        input_schema = schemas.MoveAccountInput,
+        output_schema = schemas.MoveAccountOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:putResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutResourcePolicy",
-        input_schema = types.PutResourcePolicyInput,
-        output_schema = types.PutResourcePolicyOutput,
+        input_schema = schemas.PutResourcePolicyInput,
+        output_schema = schemas.PutResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:registerDelegatedAdministrator(input, options)
     return self:invokeOperation(input, {
         name = "RegisterDelegatedAdministrator",
-        input_schema = types.RegisterDelegatedAdministratorInput,
-        output_schema = types.RegisterDelegatedAdministratorOutput,
+        input_schema = schemas.RegisterDelegatedAdministratorInput,
+        output_schema = schemas.RegisterDelegatedAdministratorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:removeAccountFromOrganization(input, options)
     return self:invokeOperation(input, {
         name = "RemoveAccountFromOrganization",
-        input_schema = types.RemoveAccountFromOrganizationInput,
-        output_schema = types.RemoveAccountFromOrganizationOutput,
+        input_schema = schemas.RemoveAccountFromOrganizationInput,
+        output_schema = schemas.RemoveAccountFromOrganizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:terminateResponsibilityTransfer(input, options)
     return self:invokeOperation(input, {
         name = "TerminateResponsibilityTransfer",
-        input_schema = types.TerminateResponsibilityTransferInput,
-        output_schema = types.TerminateResponsibilityTransferOutput,
+        input_schema = schemas.TerminateResponsibilityTransferInput,
+        output_schema = schemas.TerminateResponsibilityTransferOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:updateOrganizationalUnit(input, options)
     return self:invokeOperation(input, {
         name = "UpdateOrganizationalUnit",
-        input_schema = types.UpdateOrganizationalUnitInput,
-        output_schema = types.UpdateOrganizationalUnitOutput,
+        input_schema = schemas.UpdateOrganizationalUnitInput,
+        output_schema = schemas.UpdateOrganizationalUnitOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:updatePolicy(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePolicy",
-        input_schema = types.UpdatePolicyInput,
-        output_schema = types.UpdatePolicyOutput,
+        input_schema = schemas.UpdatePolicyInput,
+        output_schema = schemas.UpdatePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:updateResponsibilityTransfer(input, options)
     return self:invokeOperation(input, {
         name = "UpdateResponsibilityTransfer",
-        input_schema = types.UpdateResponsibilityTransferInput,
-        output_schema = types.UpdateResponsibilityTransferOutput,
+        input_schema = schemas.UpdateResponsibilityTransferInput,
+        output_schema = schemas.UpdateResponsibilityTransferOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

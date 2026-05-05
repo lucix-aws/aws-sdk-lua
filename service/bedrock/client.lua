@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("bedrock.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("bedrock.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("bedrock.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchDeleteEvaluationJob(input, options)
     return self:invokeOperation(input, {
         name = "BatchDeleteEvaluationJob",
-        input_schema = types.BatchDeleteEvaluationJobInput,
-        output_schema = types.BatchDeleteEvaluationJobOutput,
+        input_schema = schemas.BatchDeleteEvaluationJobInput,
+        output_schema = schemas.BatchDeleteEvaluationJobOutput,
         http_method = "POST",
         http_path = "/evaluation-jobs/batch-delete",
         effective_auth_schemes = {
@@ -63,8 +63,8 @@ end
 function Client:cancelAutomatedReasoningPolicyBuildWorkflow(input, options)
     return self:invokeOperation(input, {
         name = "CancelAutomatedReasoningPolicyBuildWorkflow",
-        input_schema = types.CancelAutomatedReasoningPolicyBuildWorkflowInput,
-        output_schema = types.CancelAutomatedReasoningPolicyBuildWorkflowOutput,
+        input_schema = schemas.CancelAutomatedReasoningPolicyBuildWorkflowInput,
+        output_schema = schemas.CancelAutomatedReasoningPolicyBuildWorkflowOutput,
         http_method = "POST",
         http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/cancel",
         effective_auth_schemes = {
@@ -77,8 +77,8 @@ end
 function Client:createAutomatedReasoningPolicy(input, options)
     return self:invokeOperation(input, {
         name = "CreateAutomatedReasoningPolicy",
-        input_schema = types.CreateAutomatedReasoningPolicyInput,
-        output_schema = types.CreateAutomatedReasoningPolicyOutput,
+        input_schema = schemas.CreateAutomatedReasoningPolicyInput,
+        output_schema = schemas.CreateAutomatedReasoningPolicyOutput,
         http_method = "POST",
         http_path = "/automated-reasoning-policies",
         effective_auth_schemes = {
@@ -91,8 +91,8 @@ end
 function Client:createAutomatedReasoningPolicyTestCase(input, options)
     return self:invokeOperation(input, {
         name = "CreateAutomatedReasoningPolicyTestCase",
-        input_schema = types.CreateAutomatedReasoningPolicyTestCaseInput,
-        output_schema = types.CreateAutomatedReasoningPolicyTestCaseOutput,
+        input_schema = schemas.CreateAutomatedReasoningPolicyTestCaseInput,
+        output_schema = schemas.CreateAutomatedReasoningPolicyTestCaseOutput,
         http_method = "POST",
         http_path = "/automated-reasoning-policies/{policyArn}/test-cases",
         effective_auth_schemes = {
@@ -105,8 +105,8 @@ end
 function Client:createAutomatedReasoningPolicyVersion(input, options)
     return self:invokeOperation(input, {
         name = "CreateAutomatedReasoningPolicyVersion",
-        input_schema = types.CreateAutomatedReasoningPolicyVersionInput,
-        output_schema = types.CreateAutomatedReasoningPolicyVersionOutput,
+        input_schema = schemas.CreateAutomatedReasoningPolicyVersionInput,
+        output_schema = schemas.CreateAutomatedReasoningPolicyVersionOutput,
         http_method = "POST",
         http_path = "/automated-reasoning-policies/{policyArn}/versions",
         effective_auth_schemes = {
@@ -119,8 +119,8 @@ end
 function Client:createCustomModel(input, options)
     return self:invokeOperation(input, {
         name = "CreateCustomModel",
-        input_schema = types.CreateCustomModelInput,
-        output_schema = types.CreateCustomModelOutput,
+        input_schema = schemas.CreateCustomModelInput,
+        output_schema = schemas.CreateCustomModelOutput,
         http_method = "POST",
         http_path = "/custom-models/create-custom-model",
         effective_auth_schemes = {
@@ -133,8 +133,8 @@ end
 function Client:createCustomModelDeployment(input, options)
     return self:invokeOperation(input, {
         name = "CreateCustomModelDeployment",
-        input_schema = types.CreateCustomModelDeploymentInput,
-        output_schema = types.CreateCustomModelDeploymentOutput,
+        input_schema = schemas.CreateCustomModelDeploymentInput,
+        output_schema = schemas.CreateCustomModelDeploymentOutput,
         http_method = "POST",
         http_path = "/model-customization/custom-model-deployments",
         effective_auth_schemes = {
@@ -147,8 +147,8 @@ end
 function Client:createEvaluationJob(input, options)
     return self:invokeOperation(input, {
         name = "CreateEvaluationJob",
-        input_schema = types.CreateEvaluationJobInput,
-        output_schema = types.CreateEvaluationJobOutput,
+        input_schema = schemas.CreateEvaluationJobInput,
+        output_schema = schemas.CreateEvaluationJobOutput,
         http_method = "POST",
         http_path = "/evaluation-jobs",
         effective_auth_schemes = {
@@ -161,8 +161,8 @@ end
 function Client:createFoundationModelAgreement(input, options)
     return self:invokeOperation(input, {
         name = "CreateFoundationModelAgreement",
-        input_schema = types.CreateFoundationModelAgreementInput,
-        output_schema = types.CreateFoundationModelAgreementOutput,
+        input_schema = schemas.CreateFoundationModelAgreementInput,
+        output_schema = schemas.CreateFoundationModelAgreementOutput,
         http_method = "POST",
         http_path = "/create-foundation-model-agreement",
         effective_auth_schemes = {
@@ -175,8 +175,8 @@ end
 function Client:createGuardrail(input, options)
     return self:invokeOperation(input, {
         name = "CreateGuardrail",
-        input_schema = types.CreateGuardrailInput,
-        output_schema = types.CreateGuardrailOutput,
+        input_schema = schemas.CreateGuardrailInput,
+        output_schema = schemas.CreateGuardrailOutput,
         http_method = "POST",
         http_path = "/guardrails",
         effective_auth_schemes = {
@@ -189,8 +189,8 @@ end
 function Client:createGuardrailVersion(input, options)
     return self:invokeOperation(input, {
         name = "CreateGuardrailVersion",
-        input_schema = types.CreateGuardrailVersionInput,
-        output_schema = types.CreateGuardrailVersionOutput,
+        input_schema = schemas.CreateGuardrailVersionInput,
+        output_schema = schemas.CreateGuardrailVersionOutput,
         http_method = "POST",
         http_path = "/guardrails/{guardrailIdentifier}",
         effective_auth_schemes = {
@@ -203,8 +203,8 @@ end
 function Client:createInferenceProfile(input, options)
     return self:invokeOperation(input, {
         name = "CreateInferenceProfile",
-        input_schema = types.CreateInferenceProfileInput,
-        output_schema = types.CreateInferenceProfileOutput,
+        input_schema = schemas.CreateInferenceProfileInput,
+        output_schema = schemas.CreateInferenceProfileOutput,
         http_method = "POST",
         http_path = "/inference-profiles",
         effective_auth_schemes = {
@@ -217,8 +217,8 @@ end
 function Client:createMarketplaceModelEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "CreateMarketplaceModelEndpoint",
-        input_schema = types.CreateMarketplaceModelEndpointInput,
-        output_schema = types.CreateMarketplaceModelEndpointOutput,
+        input_schema = schemas.CreateMarketplaceModelEndpointInput,
+        output_schema = schemas.CreateMarketplaceModelEndpointOutput,
         http_method = "POST",
         http_path = "/marketplace-model/endpoints",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:createModelCopyJob(input, options)
     return self:invokeOperation(input, {
         name = "CreateModelCopyJob",
-        input_schema = types.CreateModelCopyJobInput,
-        output_schema = types.CreateModelCopyJobOutput,
+        input_schema = schemas.CreateModelCopyJobInput,
+        output_schema = schemas.CreateModelCopyJobOutput,
         http_method = "POST",
         http_path = "/model-copy-jobs",
         effective_auth_schemes = {
@@ -245,8 +245,8 @@ end
 function Client:createModelCustomizationJob(input, options)
     return self:invokeOperation(input, {
         name = "CreateModelCustomizationJob",
-        input_schema = types.CreateModelCustomizationJobInput,
-        output_schema = types.CreateModelCustomizationJobOutput,
+        input_schema = schemas.CreateModelCustomizationJobInput,
+        output_schema = schemas.CreateModelCustomizationJobOutput,
         http_method = "POST",
         http_path = "/model-customization-jobs",
         effective_auth_schemes = {
@@ -259,8 +259,8 @@ end
 function Client:createModelImportJob(input, options)
     return self:invokeOperation(input, {
         name = "CreateModelImportJob",
-        input_schema = types.CreateModelImportJobInput,
-        output_schema = types.CreateModelImportJobOutput,
+        input_schema = schemas.CreateModelImportJobInput,
+        output_schema = schemas.CreateModelImportJobOutput,
         http_method = "POST",
         http_path = "/model-import-jobs",
         effective_auth_schemes = {
@@ -273,8 +273,8 @@ end
 function Client:createModelInvocationJob(input, options)
     return self:invokeOperation(input, {
         name = "CreateModelInvocationJob",
-        input_schema = types.CreateModelInvocationJobInput,
-        output_schema = types.CreateModelInvocationJobOutput,
+        input_schema = schemas.CreateModelInvocationJobInput,
+        output_schema = schemas.CreateModelInvocationJobOutput,
         http_method = "POST",
         http_path = "/model-invocation-job",
         effective_auth_schemes = {
@@ -287,8 +287,8 @@ end
 function Client:createPromptRouter(input, options)
     return self:invokeOperation(input, {
         name = "CreatePromptRouter",
-        input_schema = types.CreatePromptRouterInput,
-        output_schema = types.CreatePromptRouterOutput,
+        input_schema = schemas.CreatePromptRouterInput,
+        output_schema = schemas.CreatePromptRouterOutput,
         http_method = "POST",
         http_path = "/prompt-routers",
         effective_auth_schemes = {
@@ -301,8 +301,8 @@ end
 function Client:createProvisionedModelThroughput(input, options)
     return self:invokeOperation(input, {
         name = "CreateProvisionedModelThroughput",
-        input_schema = types.CreateProvisionedModelThroughputInput,
-        output_schema = types.CreateProvisionedModelThroughputOutput,
+        input_schema = schemas.CreateProvisionedModelThroughputInput,
+        output_schema = schemas.CreateProvisionedModelThroughputOutput,
         http_method = "POST",
         http_path = "/provisioned-model-throughput",
         effective_auth_schemes = {
@@ -315,8 +315,8 @@ end
 function Client:deleteAutomatedReasoningPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAutomatedReasoningPolicy",
-        input_schema = types.DeleteAutomatedReasoningPolicyInput,
-        output_schema = types.DeleteAutomatedReasoningPolicyOutput,
+        input_schema = schemas.DeleteAutomatedReasoningPolicyInput,
+        output_schema = schemas.DeleteAutomatedReasoningPolicyOutput,
         http_method = "DELETE",
         http_path = "/automated-reasoning-policies/{policyArn}",
         effective_auth_schemes = {
@@ -329,8 +329,8 @@ end
 function Client:deleteAutomatedReasoningPolicyBuildWorkflow(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAutomatedReasoningPolicyBuildWorkflow",
-        input_schema = types.DeleteAutomatedReasoningPolicyBuildWorkflowInput,
-        output_schema = types.DeleteAutomatedReasoningPolicyBuildWorkflowOutput,
+        input_schema = schemas.DeleteAutomatedReasoningPolicyBuildWorkflowInput,
+        output_schema = schemas.DeleteAutomatedReasoningPolicyBuildWorkflowOutput,
         http_method = "DELETE",
         http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}",
         effective_auth_schemes = {
@@ -343,8 +343,8 @@ end
 function Client:deleteAutomatedReasoningPolicyTestCase(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAutomatedReasoningPolicyTestCase",
-        input_schema = types.DeleteAutomatedReasoningPolicyTestCaseInput,
-        output_schema = types.DeleteAutomatedReasoningPolicyTestCaseOutput,
+        input_schema = schemas.DeleteAutomatedReasoningPolicyTestCaseInput,
+        output_schema = schemas.DeleteAutomatedReasoningPolicyTestCaseOutput,
         http_method = "DELETE",
         http_path = "/automated-reasoning-policies/{policyArn}/test-cases/{testCaseId}",
         effective_auth_schemes = {
@@ -357,8 +357,8 @@ end
 function Client:deleteCustomModel(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCustomModel",
-        input_schema = types.DeleteCustomModelInput,
-        output_schema = types.DeleteCustomModelOutput,
+        input_schema = schemas.DeleteCustomModelInput,
+        output_schema = schemas.DeleteCustomModelOutput,
         http_method = "DELETE",
         http_path = "/custom-models/{modelIdentifier}",
         effective_auth_schemes = {
@@ -371,8 +371,8 @@ end
 function Client:deleteCustomModelDeployment(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCustomModelDeployment",
-        input_schema = types.DeleteCustomModelDeploymentInput,
-        output_schema = types.DeleteCustomModelDeploymentOutput,
+        input_schema = schemas.DeleteCustomModelDeploymentInput,
+        output_schema = schemas.DeleteCustomModelDeploymentOutput,
         http_method = "DELETE",
         http_path = "/model-customization/custom-model-deployments/{customModelDeploymentIdentifier}",
         effective_auth_schemes = {
@@ -385,8 +385,8 @@ end
 function Client:deleteEnforcedGuardrailConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEnforcedGuardrailConfiguration",
-        input_schema = types.DeleteEnforcedGuardrailConfigurationInput,
-        output_schema = types.DeleteEnforcedGuardrailConfigurationOutput,
+        input_schema = schemas.DeleteEnforcedGuardrailConfigurationInput,
+        output_schema = schemas.DeleteEnforcedGuardrailConfigurationOutput,
         http_method = "DELETE",
         http_path = "/enforcedGuardrailsConfiguration/{configId}",
         effective_auth_schemes = {
@@ -399,8 +399,8 @@ end
 function Client:deleteFoundationModelAgreement(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFoundationModelAgreement",
-        input_schema = types.DeleteFoundationModelAgreementInput,
-        output_schema = types.DeleteFoundationModelAgreementOutput,
+        input_schema = schemas.DeleteFoundationModelAgreementInput,
+        output_schema = schemas.DeleteFoundationModelAgreementOutput,
         http_method = "POST",
         http_path = "/delete-foundation-model-agreement",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:deleteGuardrail(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGuardrail",
-        input_schema = types.DeleteGuardrailInput,
-        output_schema = types.DeleteGuardrailOutput,
+        input_schema = schemas.DeleteGuardrailInput,
+        output_schema = schemas.DeleteGuardrailOutput,
         http_method = "DELETE",
         http_path = "/guardrails/{guardrailIdentifier}",
         effective_auth_schemes = {
@@ -427,8 +427,8 @@ end
 function Client:deleteImportedModel(input, options)
     return self:invokeOperation(input, {
         name = "DeleteImportedModel",
-        input_schema = types.DeleteImportedModelInput,
-        output_schema = types.DeleteImportedModelOutput,
+        input_schema = schemas.DeleteImportedModelInput,
+        output_schema = schemas.DeleteImportedModelOutput,
         http_method = "DELETE",
         http_path = "/imported-models/{modelIdentifier}",
         effective_auth_schemes = {
@@ -441,8 +441,8 @@ end
 function Client:deleteInferenceProfile(input, options)
     return self:invokeOperation(input, {
         name = "DeleteInferenceProfile",
-        input_schema = types.DeleteInferenceProfileInput,
-        output_schema = types.DeleteInferenceProfileOutput,
+        input_schema = schemas.DeleteInferenceProfileInput,
+        output_schema = schemas.DeleteInferenceProfileOutput,
         http_method = "DELETE",
         http_path = "/inference-profiles/{inferenceProfileIdentifier}",
         effective_auth_schemes = {
@@ -455,8 +455,8 @@ end
 function Client:deleteMarketplaceModelEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMarketplaceModelEndpoint",
-        input_schema = types.DeleteMarketplaceModelEndpointInput,
-        output_schema = types.DeleteMarketplaceModelEndpointOutput,
+        input_schema = schemas.DeleteMarketplaceModelEndpointInput,
+        output_schema = schemas.DeleteMarketplaceModelEndpointOutput,
         http_method = "DELETE",
         http_path = "/marketplace-model/endpoints/{endpointArn}",
         effective_auth_schemes = {
@@ -469,8 +469,8 @@ end
 function Client:deleteModelInvocationLoggingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteModelInvocationLoggingConfiguration",
-        input_schema = types.DeleteModelInvocationLoggingConfigurationInput,
-        output_schema = types.DeleteModelInvocationLoggingConfigurationOutput,
+        input_schema = schemas.DeleteModelInvocationLoggingConfigurationInput,
+        output_schema = schemas.DeleteModelInvocationLoggingConfigurationOutput,
         http_method = "DELETE",
         http_path = "/logging/modelinvocations",
         effective_auth_schemes = {
@@ -483,8 +483,8 @@ end
 function Client:deletePromptRouter(input, options)
     return self:invokeOperation(input, {
         name = "DeletePromptRouter",
-        input_schema = types.DeletePromptRouterInput,
-        output_schema = types.DeletePromptRouterOutput,
+        input_schema = schemas.DeletePromptRouterInput,
+        output_schema = schemas.DeletePromptRouterOutput,
         http_method = "DELETE",
         http_path = "/prompt-routers/{promptRouterArn}",
         effective_auth_schemes = {
@@ -497,8 +497,8 @@ end
 function Client:deleteProvisionedModelThroughput(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProvisionedModelThroughput",
-        input_schema = types.DeleteProvisionedModelThroughputInput,
-        output_schema = types.DeleteProvisionedModelThroughputOutput,
+        input_schema = schemas.DeleteProvisionedModelThroughputInput,
+        output_schema = schemas.DeleteProvisionedModelThroughputOutput,
         http_method = "DELETE",
         http_path = "/provisioned-model-throughput/{provisionedModelId}",
         effective_auth_schemes = {
@@ -511,8 +511,8 @@ end
 function Client:deleteResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourcePolicy",
-        input_schema = types.DeleteResourcePolicyInput,
-        output_schema = types.DeleteResourcePolicyOutput,
+        input_schema = schemas.DeleteResourcePolicyInput,
+        output_schema = schemas.DeleteResourcePolicyOutput,
         http_method = "DELETE",
         http_path = "/resource-policy/{resourceArn}",
         effective_auth_schemes = {
@@ -525,8 +525,8 @@ end
 function Client:deregisterMarketplaceModelEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterMarketplaceModelEndpoint",
-        input_schema = types.DeregisterMarketplaceModelEndpointInput,
-        output_schema = types.DeregisterMarketplaceModelEndpointOutput,
+        input_schema = schemas.DeregisterMarketplaceModelEndpointInput,
+        output_schema = schemas.DeregisterMarketplaceModelEndpointOutput,
         http_method = "DELETE",
         http_path = "/marketplace-model/endpoints/{endpointArn}/registration",
         effective_auth_schemes = {
@@ -539,8 +539,8 @@ end
 function Client:exportAutomatedReasoningPolicyVersion(input, options)
     return self:invokeOperation(input, {
         name = "ExportAutomatedReasoningPolicyVersion",
-        input_schema = types.ExportAutomatedReasoningPolicyVersionInput,
-        output_schema = types.ExportAutomatedReasoningPolicyVersionOutput,
+        input_schema = schemas.ExportAutomatedReasoningPolicyVersionInput,
+        output_schema = schemas.ExportAutomatedReasoningPolicyVersionOutput,
         http_method = "GET",
         http_path = "/automated-reasoning-policies/{policyArn}/export",
         effective_auth_schemes = {
@@ -553,8 +553,8 @@ end
 function Client:getAutomatedReasoningPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetAutomatedReasoningPolicy",
-        input_schema = types.GetAutomatedReasoningPolicyInput,
-        output_schema = types.GetAutomatedReasoningPolicyOutput,
+        input_schema = schemas.GetAutomatedReasoningPolicyInput,
+        output_schema = schemas.GetAutomatedReasoningPolicyOutput,
         http_method = "GET",
         http_path = "/automated-reasoning-policies/{policyArn}",
         effective_auth_schemes = {
@@ -567,8 +567,8 @@ end
 function Client:getAutomatedReasoningPolicyAnnotations(input, options)
     return self:invokeOperation(input, {
         name = "GetAutomatedReasoningPolicyAnnotations",
-        input_schema = types.GetAutomatedReasoningPolicyAnnotationsInput,
-        output_schema = types.GetAutomatedReasoningPolicyAnnotationsOutput,
+        input_schema = schemas.GetAutomatedReasoningPolicyAnnotationsInput,
+        output_schema = schemas.GetAutomatedReasoningPolicyAnnotationsOutput,
         http_method = "GET",
         http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/annotations",
         effective_auth_schemes = {
@@ -581,8 +581,8 @@ end
 function Client:getAutomatedReasoningPolicyBuildWorkflow(input, options)
     return self:invokeOperation(input, {
         name = "GetAutomatedReasoningPolicyBuildWorkflow",
-        input_schema = types.GetAutomatedReasoningPolicyBuildWorkflowInput,
-        output_schema = types.GetAutomatedReasoningPolicyBuildWorkflowOutput,
+        input_schema = schemas.GetAutomatedReasoningPolicyBuildWorkflowInput,
+        output_schema = schemas.GetAutomatedReasoningPolicyBuildWorkflowOutput,
         http_method = "GET",
         http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:getAutomatedReasoningPolicyBuildWorkflowResultAssets(input, options)
     return self:invokeOperation(input, {
         name = "GetAutomatedReasoningPolicyBuildWorkflowResultAssets",
-        input_schema = types.GetAutomatedReasoningPolicyBuildWorkflowResultAssetsInput,
-        output_schema = types.GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput,
+        input_schema = schemas.GetAutomatedReasoningPolicyBuildWorkflowResultAssetsInput,
+        output_schema = schemas.GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput,
         http_method = "GET",
         http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/result-assets",
         effective_auth_schemes = {
@@ -609,8 +609,8 @@ end
 function Client:getAutomatedReasoningPolicyNextScenario(input, options)
     return self:invokeOperation(input, {
         name = "GetAutomatedReasoningPolicyNextScenario",
-        input_schema = types.GetAutomatedReasoningPolicyNextScenarioInput,
-        output_schema = types.GetAutomatedReasoningPolicyNextScenarioOutput,
+        input_schema = schemas.GetAutomatedReasoningPolicyNextScenarioInput,
+        output_schema = schemas.GetAutomatedReasoningPolicyNextScenarioOutput,
         http_method = "GET",
         http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/scenarios",
         effective_auth_schemes = {
@@ -623,8 +623,8 @@ end
 function Client:getAutomatedReasoningPolicyTestCase(input, options)
     return self:invokeOperation(input, {
         name = "GetAutomatedReasoningPolicyTestCase",
-        input_schema = types.GetAutomatedReasoningPolicyTestCaseInput,
-        output_schema = types.GetAutomatedReasoningPolicyTestCaseOutput,
+        input_schema = schemas.GetAutomatedReasoningPolicyTestCaseInput,
+        output_schema = schemas.GetAutomatedReasoningPolicyTestCaseOutput,
         http_method = "GET",
         http_path = "/automated-reasoning-policies/{policyArn}/test-cases/{testCaseId}",
         effective_auth_schemes = {
@@ -637,8 +637,8 @@ end
 function Client:getAutomatedReasoningPolicyTestResult(input, options)
     return self:invokeOperation(input, {
         name = "GetAutomatedReasoningPolicyTestResult",
-        input_schema = types.GetAutomatedReasoningPolicyTestResultInput,
-        output_schema = types.GetAutomatedReasoningPolicyTestResultOutput,
+        input_schema = schemas.GetAutomatedReasoningPolicyTestResultInput,
+        output_schema = schemas.GetAutomatedReasoningPolicyTestResultOutput,
         http_method = "GET",
         http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/test-cases/{testCaseId}/test-results",
         effective_auth_schemes = {
@@ -651,8 +651,8 @@ end
 function Client:getCustomModel(input, options)
     return self:invokeOperation(input, {
         name = "GetCustomModel",
-        input_schema = types.GetCustomModelInput,
-        output_schema = types.GetCustomModelOutput,
+        input_schema = schemas.GetCustomModelInput,
+        output_schema = schemas.GetCustomModelOutput,
         http_method = "GET",
         http_path = "/custom-models/{modelIdentifier}",
         effective_auth_schemes = {
@@ -665,8 +665,8 @@ end
 function Client:getCustomModelDeployment(input, options)
     return self:invokeOperation(input, {
         name = "GetCustomModelDeployment",
-        input_schema = types.GetCustomModelDeploymentInput,
-        output_schema = types.GetCustomModelDeploymentOutput,
+        input_schema = schemas.GetCustomModelDeploymentInput,
+        output_schema = schemas.GetCustomModelDeploymentOutput,
         http_method = "GET",
         http_path = "/model-customization/custom-model-deployments/{customModelDeploymentIdentifier}",
         effective_auth_schemes = {
@@ -679,8 +679,8 @@ end
 function Client:getEvaluationJob(input, options)
     return self:invokeOperation(input, {
         name = "GetEvaluationJob",
-        input_schema = types.GetEvaluationJobInput,
-        output_schema = types.GetEvaluationJobOutput,
+        input_schema = schemas.GetEvaluationJobInput,
+        output_schema = schemas.GetEvaluationJobOutput,
         http_method = "GET",
         http_path = "/evaluation-jobs/{jobIdentifier}",
         effective_auth_schemes = {
@@ -693,8 +693,8 @@ end
 function Client:getFoundationModel(input, options)
     return self:invokeOperation(input, {
         name = "GetFoundationModel",
-        input_schema = types.GetFoundationModelInput,
-        output_schema = types.GetFoundationModelOutput,
+        input_schema = schemas.GetFoundationModelInput,
+        output_schema = schemas.GetFoundationModelOutput,
         http_method = "GET",
         http_path = "/foundation-models/{modelIdentifier}",
         effective_auth_schemes = {
@@ -707,8 +707,8 @@ end
 function Client:getFoundationModelAvailability(input, options)
     return self:invokeOperation(input, {
         name = "GetFoundationModelAvailability",
-        input_schema = types.GetFoundationModelAvailabilityInput,
-        output_schema = types.GetFoundationModelAvailabilityOutput,
+        input_schema = schemas.GetFoundationModelAvailabilityInput,
+        output_schema = schemas.GetFoundationModelAvailabilityOutput,
         http_method = "GET",
         http_path = "/foundation-model-availability/{modelId}",
         effective_auth_schemes = {
@@ -721,8 +721,8 @@ end
 function Client:getGuardrail(input, options)
     return self:invokeOperation(input, {
         name = "GetGuardrail",
-        input_schema = types.GetGuardrailInput,
-        output_schema = types.GetGuardrailOutput,
+        input_schema = schemas.GetGuardrailInput,
+        output_schema = schemas.GetGuardrailOutput,
         http_method = "GET",
         http_path = "/guardrails/{guardrailIdentifier}",
         effective_auth_schemes = {
@@ -735,8 +735,8 @@ end
 function Client:getImportedModel(input, options)
     return self:invokeOperation(input, {
         name = "GetImportedModel",
-        input_schema = types.GetImportedModelInput,
-        output_schema = types.GetImportedModelOutput,
+        input_schema = schemas.GetImportedModelInput,
+        output_schema = schemas.GetImportedModelOutput,
         http_method = "GET",
         http_path = "/imported-models/{modelIdentifier}",
         effective_auth_schemes = {
@@ -749,8 +749,8 @@ end
 function Client:getInferenceProfile(input, options)
     return self:invokeOperation(input, {
         name = "GetInferenceProfile",
-        input_schema = types.GetInferenceProfileInput,
-        output_schema = types.GetInferenceProfileOutput,
+        input_schema = schemas.GetInferenceProfileInput,
+        output_schema = schemas.GetInferenceProfileOutput,
         http_method = "GET",
         http_path = "/inference-profiles/{inferenceProfileIdentifier}",
         effective_auth_schemes = {
@@ -763,8 +763,8 @@ end
 function Client:getMarketplaceModelEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "GetMarketplaceModelEndpoint",
-        input_schema = types.GetMarketplaceModelEndpointInput,
-        output_schema = types.GetMarketplaceModelEndpointOutput,
+        input_schema = schemas.GetMarketplaceModelEndpointInput,
+        output_schema = schemas.GetMarketplaceModelEndpointOutput,
         http_method = "GET",
         http_path = "/marketplace-model/endpoints/{endpointArn}",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:getModelCopyJob(input, options)
     return self:invokeOperation(input, {
         name = "GetModelCopyJob",
-        input_schema = types.GetModelCopyJobInput,
-        output_schema = types.GetModelCopyJobOutput,
+        input_schema = schemas.GetModelCopyJobInput,
+        output_schema = schemas.GetModelCopyJobOutput,
         http_method = "GET",
         http_path = "/model-copy-jobs/{jobArn}",
         effective_auth_schemes = {
@@ -791,8 +791,8 @@ end
 function Client:getModelCustomizationJob(input, options)
     return self:invokeOperation(input, {
         name = "GetModelCustomizationJob",
-        input_schema = types.GetModelCustomizationJobInput,
-        output_schema = types.GetModelCustomizationJobOutput,
+        input_schema = schemas.GetModelCustomizationJobInput,
+        output_schema = schemas.GetModelCustomizationJobOutput,
         http_method = "GET",
         http_path = "/model-customization-jobs/{jobIdentifier}",
         effective_auth_schemes = {
@@ -805,8 +805,8 @@ end
 function Client:getModelImportJob(input, options)
     return self:invokeOperation(input, {
         name = "GetModelImportJob",
-        input_schema = types.GetModelImportJobInput,
-        output_schema = types.GetModelImportJobOutput,
+        input_schema = schemas.GetModelImportJobInput,
+        output_schema = schemas.GetModelImportJobOutput,
         http_method = "GET",
         http_path = "/model-import-jobs/{jobIdentifier}",
         effective_auth_schemes = {
@@ -819,8 +819,8 @@ end
 function Client:getModelInvocationJob(input, options)
     return self:invokeOperation(input, {
         name = "GetModelInvocationJob",
-        input_schema = types.GetModelInvocationJobInput,
-        output_schema = types.GetModelInvocationJobOutput,
+        input_schema = schemas.GetModelInvocationJobInput,
+        output_schema = schemas.GetModelInvocationJobOutput,
         http_method = "GET",
         http_path = "/model-invocation-job/{jobIdentifier}",
         effective_auth_schemes = {
@@ -833,8 +833,8 @@ end
 function Client:getModelInvocationLoggingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetModelInvocationLoggingConfiguration",
-        input_schema = types.GetModelInvocationLoggingConfigurationInput,
-        output_schema = types.GetModelInvocationLoggingConfigurationOutput,
+        input_schema = schemas.GetModelInvocationLoggingConfigurationInput,
+        output_schema = schemas.GetModelInvocationLoggingConfigurationOutput,
         http_method = "GET",
         http_path = "/logging/modelinvocations",
         effective_auth_schemes = {
@@ -847,8 +847,8 @@ end
 function Client:getPromptRouter(input, options)
     return self:invokeOperation(input, {
         name = "GetPromptRouter",
-        input_schema = types.GetPromptRouterInput,
-        output_schema = types.GetPromptRouterOutput,
+        input_schema = schemas.GetPromptRouterInput,
+        output_schema = schemas.GetPromptRouterOutput,
         http_method = "GET",
         http_path = "/prompt-routers/{promptRouterArn}",
         effective_auth_schemes = {
@@ -861,8 +861,8 @@ end
 function Client:getProvisionedModelThroughput(input, options)
     return self:invokeOperation(input, {
         name = "GetProvisionedModelThroughput",
-        input_schema = types.GetProvisionedModelThroughputInput,
-        output_schema = types.GetProvisionedModelThroughputOutput,
+        input_schema = schemas.GetProvisionedModelThroughputInput,
+        output_schema = schemas.GetProvisionedModelThroughputOutput,
         http_method = "GET",
         http_path = "/provisioned-model-throughput/{provisionedModelId}",
         effective_auth_schemes = {
@@ -875,8 +875,8 @@ end
 function Client:getResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcePolicy",
-        input_schema = types.GetResourcePolicyInput,
-        output_schema = types.GetResourcePolicyOutput,
+        input_schema = schemas.GetResourcePolicyInput,
+        output_schema = schemas.GetResourcePolicyOutput,
         http_method = "GET",
         http_path = "/resource-policy/{resourceArn}",
         effective_auth_schemes = {
@@ -889,8 +889,8 @@ end
 function Client:getUseCaseForModelAccess(input, options)
     return self:invokeOperation(input, {
         name = "GetUseCaseForModelAccess",
-        input_schema = types.GetUseCaseForModelAccessInput,
-        output_schema = types.GetUseCaseForModelAccessOutput,
+        input_schema = schemas.GetUseCaseForModelAccessInput,
+        output_schema = schemas.GetUseCaseForModelAccessOutput,
         http_method = "GET",
         http_path = "/use-case-for-model-access",
         effective_auth_schemes = {
@@ -903,8 +903,8 @@ end
 function Client:listAutomatedReasoningPolicies(input, options)
     return self:invokeOperation(input, {
         name = "ListAutomatedReasoningPolicies",
-        input_schema = types.ListAutomatedReasoningPoliciesInput,
-        output_schema = types.ListAutomatedReasoningPoliciesOutput,
+        input_schema = schemas.ListAutomatedReasoningPoliciesInput,
+        output_schema = schemas.ListAutomatedReasoningPoliciesOutput,
         http_method = "GET",
         http_path = "/automated-reasoning-policies",
         effective_auth_schemes = {
@@ -917,8 +917,8 @@ end
 function Client:listAutomatedReasoningPolicyBuildWorkflows(input, options)
     return self:invokeOperation(input, {
         name = "ListAutomatedReasoningPolicyBuildWorkflows",
-        input_schema = types.ListAutomatedReasoningPolicyBuildWorkflowsInput,
-        output_schema = types.ListAutomatedReasoningPolicyBuildWorkflowsOutput,
+        input_schema = schemas.ListAutomatedReasoningPolicyBuildWorkflowsInput,
+        output_schema = schemas.ListAutomatedReasoningPolicyBuildWorkflowsOutput,
         http_method = "GET",
         http_path = "/automated-reasoning-policies/{policyArn}/build-workflows",
         effective_auth_schemes = {
@@ -931,8 +931,8 @@ end
 function Client:listAutomatedReasoningPolicyTestCases(input, options)
     return self:invokeOperation(input, {
         name = "ListAutomatedReasoningPolicyTestCases",
-        input_schema = types.ListAutomatedReasoningPolicyTestCasesInput,
-        output_schema = types.ListAutomatedReasoningPolicyTestCasesOutput,
+        input_schema = schemas.ListAutomatedReasoningPolicyTestCasesInput,
+        output_schema = schemas.ListAutomatedReasoningPolicyTestCasesOutput,
         http_method = "GET",
         http_path = "/automated-reasoning-policies/{policyArn}/test-cases",
         effective_auth_schemes = {
@@ -945,8 +945,8 @@ end
 function Client:listAutomatedReasoningPolicyTestResults(input, options)
     return self:invokeOperation(input, {
         name = "ListAutomatedReasoningPolicyTestResults",
-        input_schema = types.ListAutomatedReasoningPolicyTestResultsInput,
-        output_schema = types.ListAutomatedReasoningPolicyTestResultsOutput,
+        input_schema = schemas.ListAutomatedReasoningPolicyTestResultsInput,
+        output_schema = schemas.ListAutomatedReasoningPolicyTestResultsOutput,
         http_method = "GET",
         http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/test-results",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:listCustomModelDeployments(input, options)
     return self:invokeOperation(input, {
         name = "ListCustomModelDeployments",
-        input_schema = types.ListCustomModelDeploymentsInput,
-        output_schema = types.ListCustomModelDeploymentsOutput,
+        input_schema = schemas.ListCustomModelDeploymentsInput,
+        output_schema = schemas.ListCustomModelDeploymentsOutput,
         http_method = "GET",
         http_path = "/model-customization/custom-model-deployments",
         effective_auth_schemes = {
@@ -973,8 +973,8 @@ end
 function Client:listCustomModels(input, options)
     return self:invokeOperation(input, {
         name = "ListCustomModels",
-        input_schema = types.ListCustomModelsInput,
-        output_schema = types.ListCustomModelsOutput,
+        input_schema = schemas.ListCustomModelsInput,
+        output_schema = schemas.ListCustomModelsOutput,
         http_method = "GET",
         http_path = "/custom-models",
         effective_auth_schemes = {
@@ -987,8 +987,8 @@ end
 function Client:listEnforcedGuardrailsConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "ListEnforcedGuardrailsConfiguration",
-        input_schema = types.ListEnforcedGuardrailsConfigurationInput,
-        output_schema = types.ListEnforcedGuardrailsConfigurationOutput,
+        input_schema = schemas.ListEnforcedGuardrailsConfigurationInput,
+        output_schema = schemas.ListEnforcedGuardrailsConfigurationOutput,
         http_method = "GET",
         http_path = "/enforcedGuardrailsConfiguration",
         effective_auth_schemes = {
@@ -1001,8 +1001,8 @@ end
 function Client:listEvaluationJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListEvaluationJobs",
-        input_schema = types.ListEvaluationJobsInput,
-        output_schema = types.ListEvaluationJobsOutput,
+        input_schema = schemas.ListEvaluationJobsInput,
+        output_schema = schemas.ListEvaluationJobsOutput,
         http_method = "GET",
         http_path = "/evaluation-jobs",
         effective_auth_schemes = {
@@ -1015,8 +1015,8 @@ end
 function Client:listFoundationModelAgreementOffers(input, options)
     return self:invokeOperation(input, {
         name = "ListFoundationModelAgreementOffers",
-        input_schema = types.ListFoundationModelAgreementOffersInput,
-        output_schema = types.ListFoundationModelAgreementOffersOutput,
+        input_schema = schemas.ListFoundationModelAgreementOffersInput,
+        output_schema = schemas.ListFoundationModelAgreementOffersOutput,
         http_method = "GET",
         http_path = "/list-foundation-model-agreement-offers/{modelId}",
         effective_auth_schemes = {
@@ -1029,8 +1029,8 @@ end
 function Client:listFoundationModels(input, options)
     return self:invokeOperation(input, {
         name = "ListFoundationModels",
-        input_schema = types.ListFoundationModelsInput,
-        output_schema = types.ListFoundationModelsOutput,
+        input_schema = schemas.ListFoundationModelsInput,
+        output_schema = schemas.ListFoundationModelsOutput,
         http_method = "GET",
         http_path = "/foundation-models",
         effective_auth_schemes = {
@@ -1043,8 +1043,8 @@ end
 function Client:listGuardrails(input, options)
     return self:invokeOperation(input, {
         name = "ListGuardrails",
-        input_schema = types.ListGuardrailsInput,
-        output_schema = types.ListGuardrailsOutput,
+        input_schema = schemas.ListGuardrailsInput,
+        output_schema = schemas.ListGuardrailsOutput,
         http_method = "GET",
         http_path = "/guardrails",
         effective_auth_schemes = {
@@ -1057,8 +1057,8 @@ end
 function Client:listImportedModels(input, options)
     return self:invokeOperation(input, {
         name = "ListImportedModels",
-        input_schema = types.ListImportedModelsInput,
-        output_schema = types.ListImportedModelsOutput,
+        input_schema = schemas.ListImportedModelsInput,
+        output_schema = schemas.ListImportedModelsOutput,
         http_method = "GET",
         http_path = "/imported-models",
         effective_auth_schemes = {
@@ -1071,8 +1071,8 @@ end
 function Client:listInferenceProfiles(input, options)
     return self:invokeOperation(input, {
         name = "ListInferenceProfiles",
-        input_schema = types.ListInferenceProfilesInput,
-        output_schema = types.ListInferenceProfilesOutput,
+        input_schema = schemas.ListInferenceProfilesInput,
+        output_schema = schemas.ListInferenceProfilesOutput,
         http_method = "GET",
         http_path = "/inference-profiles",
         effective_auth_schemes = {
@@ -1085,8 +1085,8 @@ end
 function Client:listMarketplaceModelEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "ListMarketplaceModelEndpoints",
-        input_schema = types.ListMarketplaceModelEndpointsInput,
-        output_schema = types.ListMarketplaceModelEndpointsOutput,
+        input_schema = schemas.ListMarketplaceModelEndpointsInput,
+        output_schema = schemas.ListMarketplaceModelEndpointsOutput,
         http_method = "GET",
         http_path = "/marketplace-model/endpoints",
         effective_auth_schemes = {
@@ -1099,8 +1099,8 @@ end
 function Client:listModelCopyJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListModelCopyJobs",
-        input_schema = types.ListModelCopyJobsInput,
-        output_schema = types.ListModelCopyJobsOutput,
+        input_schema = schemas.ListModelCopyJobsInput,
+        output_schema = schemas.ListModelCopyJobsOutput,
         http_method = "GET",
         http_path = "/model-copy-jobs",
         effective_auth_schemes = {
@@ -1113,8 +1113,8 @@ end
 function Client:listModelCustomizationJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListModelCustomizationJobs",
-        input_schema = types.ListModelCustomizationJobsInput,
-        output_schema = types.ListModelCustomizationJobsOutput,
+        input_schema = schemas.ListModelCustomizationJobsInput,
+        output_schema = schemas.ListModelCustomizationJobsOutput,
         http_method = "GET",
         http_path = "/model-customization-jobs",
         effective_auth_schemes = {
@@ -1127,8 +1127,8 @@ end
 function Client:listModelImportJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListModelImportJobs",
-        input_schema = types.ListModelImportJobsInput,
-        output_schema = types.ListModelImportJobsOutput,
+        input_schema = schemas.ListModelImportJobsInput,
+        output_schema = schemas.ListModelImportJobsOutput,
         http_method = "GET",
         http_path = "/model-import-jobs",
         effective_auth_schemes = {
@@ -1141,8 +1141,8 @@ end
 function Client:listModelInvocationJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListModelInvocationJobs",
-        input_schema = types.ListModelInvocationJobsInput,
-        output_schema = types.ListModelInvocationJobsOutput,
+        input_schema = schemas.ListModelInvocationJobsInput,
+        output_schema = schemas.ListModelInvocationJobsOutput,
         http_method = "GET",
         http_path = "/model-invocation-jobs",
         effective_auth_schemes = {
@@ -1155,8 +1155,8 @@ end
 function Client:listPromptRouters(input, options)
     return self:invokeOperation(input, {
         name = "ListPromptRouters",
-        input_schema = types.ListPromptRoutersInput,
-        output_schema = types.ListPromptRoutersOutput,
+        input_schema = schemas.ListPromptRoutersInput,
+        output_schema = schemas.ListPromptRoutersOutput,
         http_method = "GET",
         http_path = "/prompt-routers",
         effective_auth_schemes = {
@@ -1169,8 +1169,8 @@ end
 function Client:listProvisionedModelThroughputs(input, options)
     return self:invokeOperation(input, {
         name = "ListProvisionedModelThroughputs",
-        input_schema = types.ListProvisionedModelThroughputsInput,
-        output_schema = types.ListProvisionedModelThroughputsOutput,
+        input_schema = schemas.ListProvisionedModelThroughputsInput,
+        output_schema = schemas.ListProvisionedModelThroughputsOutput,
         http_method = "GET",
         http_path = "/provisioned-model-throughputs",
         effective_auth_schemes = {
@@ -1183,8 +1183,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/listTagsForResource",
         effective_auth_schemes = {
@@ -1197,8 +1197,8 @@ end
 function Client:putEnforcedGuardrailConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutEnforcedGuardrailConfiguration",
-        input_schema = types.PutEnforcedGuardrailConfigurationInput,
-        output_schema = types.PutEnforcedGuardrailConfigurationOutput,
+        input_schema = schemas.PutEnforcedGuardrailConfigurationInput,
+        output_schema = schemas.PutEnforcedGuardrailConfigurationOutput,
         http_method = "PUT",
         http_path = "/enforcedGuardrailsConfiguration",
         effective_auth_schemes = {
@@ -1211,8 +1211,8 @@ end
 function Client:putModelInvocationLoggingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutModelInvocationLoggingConfiguration",
-        input_schema = types.PutModelInvocationLoggingConfigurationInput,
-        output_schema = types.PutModelInvocationLoggingConfigurationOutput,
+        input_schema = schemas.PutModelInvocationLoggingConfigurationInput,
+        output_schema = schemas.PutModelInvocationLoggingConfigurationOutput,
         http_method = "PUT",
         http_path = "/logging/modelinvocations",
         effective_auth_schemes = {
@@ -1225,8 +1225,8 @@ end
 function Client:putResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutResourcePolicy",
-        input_schema = types.PutResourcePolicyInput,
-        output_schema = types.PutResourcePolicyOutput,
+        input_schema = schemas.PutResourcePolicyInput,
+        output_schema = schemas.PutResourcePolicyOutput,
         http_method = "POST",
         http_path = "/resource-policy",
         effective_auth_schemes = {
@@ -1239,8 +1239,8 @@ end
 function Client:putUseCaseForModelAccess(input, options)
     return self:invokeOperation(input, {
         name = "PutUseCaseForModelAccess",
-        input_schema = types.PutUseCaseForModelAccessInput,
-        output_schema = types.PutUseCaseForModelAccessOutput,
+        input_schema = schemas.PutUseCaseForModelAccessInput,
+        output_schema = schemas.PutUseCaseForModelAccessOutput,
         http_method = "POST",
         http_path = "/use-case-for-model-access",
         effective_auth_schemes = {
@@ -1253,8 +1253,8 @@ end
 function Client:registerMarketplaceModelEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "RegisterMarketplaceModelEndpoint",
-        input_schema = types.RegisterMarketplaceModelEndpointInput,
-        output_schema = types.RegisterMarketplaceModelEndpointOutput,
+        input_schema = schemas.RegisterMarketplaceModelEndpointInput,
+        output_schema = schemas.RegisterMarketplaceModelEndpointOutput,
         http_method = "POST",
         http_path = "/marketplace-model/endpoints/{endpointIdentifier}/registration",
         effective_auth_schemes = {
@@ -1267,8 +1267,8 @@ end
 function Client:startAutomatedReasoningPolicyBuildWorkflow(input, options)
     return self:invokeOperation(input, {
         name = "StartAutomatedReasoningPolicyBuildWorkflow",
-        input_schema = types.StartAutomatedReasoningPolicyBuildWorkflowInput,
-        output_schema = types.StartAutomatedReasoningPolicyBuildWorkflowOutput,
+        input_schema = schemas.StartAutomatedReasoningPolicyBuildWorkflowInput,
+        output_schema = schemas.StartAutomatedReasoningPolicyBuildWorkflowOutput,
         http_method = "POST",
         http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowType}/start",
         effective_auth_schemes = {
@@ -1281,8 +1281,8 @@ end
 function Client:startAutomatedReasoningPolicyTestWorkflow(input, options)
     return self:invokeOperation(input, {
         name = "StartAutomatedReasoningPolicyTestWorkflow",
-        input_schema = types.StartAutomatedReasoningPolicyTestWorkflowInput,
-        output_schema = types.StartAutomatedReasoningPolicyTestWorkflowOutput,
+        input_schema = schemas.StartAutomatedReasoningPolicyTestWorkflowInput,
+        output_schema = schemas.StartAutomatedReasoningPolicyTestWorkflowOutput,
         http_method = "POST",
         http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/test-workflows",
         effective_auth_schemes = {
@@ -1295,8 +1295,8 @@ end
 function Client:stopEvaluationJob(input, options)
     return self:invokeOperation(input, {
         name = "StopEvaluationJob",
-        input_schema = types.StopEvaluationJobInput,
-        output_schema = types.StopEvaluationJobOutput,
+        input_schema = schemas.StopEvaluationJobInput,
+        output_schema = schemas.StopEvaluationJobOutput,
         http_method = "POST",
         http_path = "/evaluation-job/{jobIdentifier}/stop",
         effective_auth_schemes = {
@@ -1309,8 +1309,8 @@ end
 function Client:stopModelCustomizationJob(input, options)
     return self:invokeOperation(input, {
         name = "StopModelCustomizationJob",
-        input_schema = types.StopModelCustomizationJobInput,
-        output_schema = types.StopModelCustomizationJobOutput,
+        input_schema = schemas.StopModelCustomizationJobInput,
+        output_schema = schemas.StopModelCustomizationJobOutput,
         http_method = "POST",
         http_path = "/model-customization-jobs/{jobIdentifier}/stop",
         effective_auth_schemes = {
@@ -1323,8 +1323,8 @@ end
 function Client:stopModelInvocationJob(input, options)
     return self:invokeOperation(input, {
         name = "StopModelInvocationJob",
-        input_schema = types.StopModelInvocationJobInput,
-        output_schema = types.StopModelInvocationJobOutput,
+        input_schema = schemas.StopModelInvocationJobInput,
+        output_schema = schemas.StopModelInvocationJobOutput,
         http_method = "POST",
         http_path = "/model-invocation-job/{jobIdentifier}/stop",
         effective_auth_schemes = {
@@ -1337,8 +1337,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tagResource",
         effective_auth_schemes = {
@@ -1351,8 +1351,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/untagResource",
         effective_auth_schemes = {
@@ -1365,8 +1365,8 @@ end
 function Client:updateAutomatedReasoningPolicy(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAutomatedReasoningPolicy",
-        input_schema = types.UpdateAutomatedReasoningPolicyInput,
-        output_schema = types.UpdateAutomatedReasoningPolicyOutput,
+        input_schema = schemas.UpdateAutomatedReasoningPolicyInput,
+        output_schema = schemas.UpdateAutomatedReasoningPolicyOutput,
         http_method = "PATCH",
         http_path = "/automated-reasoning-policies/{policyArn}",
         effective_auth_schemes = {
@@ -1379,8 +1379,8 @@ end
 function Client:updateAutomatedReasoningPolicyAnnotations(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAutomatedReasoningPolicyAnnotations",
-        input_schema = types.UpdateAutomatedReasoningPolicyAnnotationsInput,
-        output_schema = types.UpdateAutomatedReasoningPolicyAnnotationsOutput,
+        input_schema = schemas.UpdateAutomatedReasoningPolicyAnnotationsInput,
+        output_schema = schemas.UpdateAutomatedReasoningPolicyAnnotationsOutput,
         http_method = "PATCH",
         http_path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/annotations",
         effective_auth_schemes = {
@@ -1393,8 +1393,8 @@ end
 function Client:updateAutomatedReasoningPolicyTestCase(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAutomatedReasoningPolicyTestCase",
-        input_schema = types.UpdateAutomatedReasoningPolicyTestCaseInput,
-        output_schema = types.UpdateAutomatedReasoningPolicyTestCaseOutput,
+        input_schema = schemas.UpdateAutomatedReasoningPolicyTestCaseInput,
+        output_schema = schemas.UpdateAutomatedReasoningPolicyTestCaseOutput,
         http_method = "PATCH",
         http_path = "/automated-reasoning-policies/{policyArn}/test-cases/{testCaseId}",
         effective_auth_schemes = {
@@ -1407,8 +1407,8 @@ end
 function Client:updateCustomModelDeployment(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCustomModelDeployment",
-        input_schema = types.UpdateCustomModelDeploymentInput,
-        output_schema = types.UpdateCustomModelDeploymentOutput,
+        input_schema = schemas.UpdateCustomModelDeploymentInput,
+        output_schema = schemas.UpdateCustomModelDeploymentOutput,
         http_method = "PATCH",
         http_path = "/model-customization/custom-model-deployments/{customModelDeploymentIdentifier}",
         effective_auth_schemes = {
@@ -1421,8 +1421,8 @@ end
 function Client:updateGuardrail(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGuardrail",
-        input_schema = types.UpdateGuardrailInput,
-        output_schema = types.UpdateGuardrailOutput,
+        input_schema = schemas.UpdateGuardrailInput,
+        output_schema = schemas.UpdateGuardrailOutput,
         http_method = "PUT",
         http_path = "/guardrails/{guardrailIdentifier}",
         effective_auth_schemes = {
@@ -1435,8 +1435,8 @@ end
 function Client:updateMarketplaceModelEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMarketplaceModelEndpoint",
-        input_schema = types.UpdateMarketplaceModelEndpointInput,
-        output_schema = types.UpdateMarketplaceModelEndpointOutput,
+        input_schema = schemas.UpdateMarketplaceModelEndpointInput,
+        output_schema = schemas.UpdateMarketplaceModelEndpointOutput,
         http_method = "PATCH",
         http_path = "/marketplace-model/endpoints/{endpointArn}",
         effective_auth_schemes = {
@@ -1449,8 +1449,8 @@ end
 function Client:updateProvisionedModelThroughput(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProvisionedModelThroughput",
-        input_schema = types.UpdateProvisionedModelThroughputInput,
-        output_schema = types.UpdateProvisionedModelThroughputOutput,
+        input_schema = schemas.UpdateProvisionedModelThroughputInput,
+        output_schema = schemas.UpdateProvisionedModelThroughputOutput,
         http_method = "PATCH",
         http_path = "/provisioned-model-throughput/{provisionedModelId}",
         effective_auth_schemes = {

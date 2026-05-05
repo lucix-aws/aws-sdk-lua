@@ -1210,29 +1210,29 @@ local record ValidationException
     reason: string
 end
 
+local type SyncExecutionStatus = "SUCCEEDED" | "FAILED" | "TIMED_OUT"
+
+local type StateMachineStatus = "ACTIVE" | "DELETING"
+
+local type ValidateStateMachineDefinitionSeverity = "ERROR" | "WARNING"
+
+local type MapRunStatus = "RUNNING" | "SUCCEEDED" | "FAILED" | "ABORTED"
+
+local type ExecutionStatus = "RUNNING" | "SUCCEEDED" | "FAILED" | "TIMED_OUT" | "ABORTED" | "PENDING_REDRIVE"
+
+local type ExecutionRedriveFilter = "REDRIVEN" | "NOT_REDRIVEN"
+
 local type StateMachineType = "STANDARD" | "EXPRESS"
 
 local type ValidateStateMachineDefinitionResultCode = "OK" | "FAIL"
 
 local type TestExecutionStatus = "SUCCEEDED" | "FAILED" | "RETRIABLE" | "CAUGHT_ERROR"
 
-local type ExecutionRedriveStatus = "REDRIVABLE" | "NOT_REDRIVABLE" | "REDRIVABLE_BY_MAP_RUN"
+local type IncludedData = "ALL_DATA" | "METADATA_ONLY"
 
 local type InspectionLevel = "INFO" | "DEBUG" | "TRACE"
 
-local type IncludedData = "ALL_DATA" | "METADATA_ONLY"
-
-local type ExecutionRedriveFilter = "REDRIVEN" | "NOT_REDRIVEN"
-
-local type ValidateStateMachineDefinitionSeverity = "ERROR" | "WARNING"
-
-local type ExecutionStatus = "RUNNING" | "SUCCEEDED" | "FAILED" | "TIMED_OUT" | "ABORTED" | "PENDING_REDRIVE"
-
-local type SyncExecutionStatus = "SUCCEEDED" | "FAILED" | "TIMED_OUT"
-
-local type MapRunStatus = "RUNNING" | "SUCCEEDED" | "FAILED" | "ABORTED"
-
-local type StateMachineStatus = "ACTIVE" | "DELETING"
+local type ExecutionRedriveStatus = "REDRIVABLE" | "NOT_REDRIVABLE" | "REDRIVABLE_BY_MAP_RUN"
 
 local record M
     CreateActivityInput: CreateActivityInput

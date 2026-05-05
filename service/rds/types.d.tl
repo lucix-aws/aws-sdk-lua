@@ -5455,23 +5455,13 @@ local record InvalidDBInstanceStateFault
     message: string
 end
 
-local type CustomEngineVersionStatus = "available" | "inactive" | "inactive-except-restore"
-
-local type ExportSourceType = "SNAPSHOT" | "CLUSTER"
-
-local type EndpointNetworkType = "IPV4" | "IPV6" | "DUAL"
-
-local type ClusterScalabilityType = "standard" | "limitless"
-
-local type ActivityStreamPolicyStatus = "locked" | "unlocked" | "locking-policy" | "unlocking-policy"
-
-local type MasterUserAuthenticationType = "password" | "iam-db-auth"
-
-local type DefaultAuthScheme = "IAM_AUTH" | "NONE"
+local type ActivityStreamStatus = "stopped" | "starting" | "started" | "stopping"
 
 local type AutomationMode = "full" | "all-paused"
 
-local type AuditPolicyState = "locked" | "unlocked"
+local type EngineFamily = "MYSQL" | "POSTGRESQL" | "SQLSERVER"
+
+local type ActivityStreamMode = "sync" | "async"
 
 local type DatabaseInsightsMode = "standard" | "advanced"
 
@@ -5479,17 +5469,27 @@ local type IntegrationStatus = "creating" | "active" | "modifying" | "failed" | 
 
 local type ReplicaMode = "open-read-only" | "mounted"
 
-local type TargetConnectionNetworkType = "IPV4" | "IPV6"
+local type CustomEngineVersionStatus = "available" | "inactive" | "inactive-except-restore"
 
-local type EngineFamily = "MYSQL" | "POSTGRESQL" | "SQLSERVER"
+local type ActivityStreamPolicyStatus = "locked" | "unlocked" | "locking-policy" | "unlocking-policy"
+
+local type ClusterScalabilityType = "standard" | "limitless"
+
+local type MasterUserAuthenticationType = "password" | "iam-db-auth"
+
+local type DefaultAuthScheme = "IAM_AUTH" | "NONE"
+
+local type EndpointNetworkType = "IPV4" | "IPV6" | "DUAL"
 
 local type SourceType = "db-instance" | "db-parameter-group" | "db-security-group" | "db-snapshot" | "db-cluster" | "db-cluster-snapshot" | "custom-engine-version" | "db-proxy" | "blue-green-deployment" | "db-shard-group" | "zero-etl"
 
+local type AuditPolicyState = "locked" | "unlocked"
+
+local type ExportSourceType = "SNAPSHOT" | "CLUSTER"
+
 local type DBProxyEndpointTargetRole = "READ_WRITE" | "READ_ONLY"
 
-local type ActivityStreamStatus = "stopped" | "starting" | "started" | "stopping"
-
-local type ActivityStreamMode = "sync" | "async"
+local type TargetConnectionNetworkType = "IPV4" | "IPV6"
 
 local record M
     AddRoleToDBClusterInput: AddRoleToDBClusterInput

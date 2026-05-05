@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("greengrassv2.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("greengrassv2.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("greengrassv2.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateServiceRoleToAccount(input, options)
     return self:invokeOperation(input, {
         name = "AssociateServiceRoleToAccount",
-        input_schema = types.AssociateServiceRoleToAccountInput,
-        output_schema = types.AssociateServiceRoleToAccountOutput,
+        input_schema = schemas.AssociateServiceRoleToAccountInput,
+        output_schema = schemas.AssociateServiceRoleToAccountOutput,
         http_method = "PUT",
         http_path = "/greengrass/servicerole",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchAssociateClientDeviceWithCoreDevice(input, options)
     return self:invokeOperation(input, {
         name = "BatchAssociateClientDeviceWithCoreDevice",
-        input_schema = types.BatchAssociateClientDeviceWithCoreDeviceInput,
-        output_schema = types.BatchAssociateClientDeviceWithCoreDeviceOutput,
+        input_schema = schemas.BatchAssociateClientDeviceWithCoreDeviceInput,
+        output_schema = schemas.BatchAssociateClientDeviceWithCoreDeviceOutput,
         http_method = "POST",
         http_path = "/greengrass/v2/coreDevices/{coreDeviceThingName}/associateClientDevices",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchDisassociateClientDeviceFromCoreDevice(input, options)
     return self:invokeOperation(input, {
         name = "BatchDisassociateClientDeviceFromCoreDevice",
-        input_schema = types.BatchDisassociateClientDeviceFromCoreDeviceInput,
-        output_schema = types.BatchDisassociateClientDeviceFromCoreDeviceOutput,
+        input_schema = schemas.BatchDisassociateClientDeviceFromCoreDeviceInput,
+        output_schema = schemas.BatchDisassociateClientDeviceFromCoreDeviceOutput,
         http_method = "POST",
         http_path = "/greengrass/v2/coreDevices/{coreDeviceThingName}/disassociateClientDevices",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:cancelDeployment(input, options)
     return self:invokeOperation(input, {
         name = "CancelDeployment",
-        input_schema = types.CancelDeploymentInput,
-        output_schema = types.CancelDeploymentOutput,
+        input_schema = schemas.CancelDeploymentInput,
+        output_schema = schemas.CancelDeploymentOutput,
         http_method = "POST",
         http_path = "/greengrass/v2/deployments/{deploymentId}/cancel",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createComponentVersion(input, options)
     return self:invokeOperation(input, {
         name = "CreateComponentVersion",
-        input_schema = types.CreateComponentVersionInput,
-        output_schema = types.CreateComponentVersionOutput,
+        input_schema = schemas.CreateComponentVersionInput,
+        output_schema = schemas.CreateComponentVersionOutput,
         http_method = "POST",
         http_path = "/greengrass/v2/createComponentVersion",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createDeployment(input, options)
     return self:invokeOperation(input, {
         name = "CreateDeployment",
-        input_schema = types.CreateDeploymentInput,
-        output_schema = types.CreateDeploymentOutput,
+        input_schema = schemas.CreateDeploymentInput,
+        output_schema = schemas.CreateDeploymentOutput,
         http_method = "POST",
         http_path = "/greengrass/v2/deployments",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteComponent(input, options)
     return self:invokeOperation(input, {
         name = "DeleteComponent",
-        input_schema = types.DeleteComponentInput,
-        output_schema = types.DeleteComponentOutput,
+        input_schema = schemas.DeleteComponentInput,
+        output_schema = schemas.DeleteComponentOutput,
         http_method = "DELETE",
         http_path = "/greengrass/v2/components/{arn}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteCoreDevice(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCoreDevice",
-        input_schema = types.DeleteCoreDeviceInput,
-        output_schema = types.DeleteCoreDeviceOutput,
+        input_schema = schemas.DeleteCoreDeviceInput,
+        output_schema = schemas.DeleteCoreDeviceOutput,
         http_method = "DELETE",
         http_path = "/greengrass/v2/coreDevices/{coreDeviceThingName}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteDeployment(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDeployment",
-        input_schema = types.DeleteDeploymentInput,
-        output_schema = types.DeleteDeploymentOutput,
+        input_schema = schemas.DeleteDeploymentInput,
+        output_schema = schemas.DeleteDeploymentOutput,
         http_method = "DELETE",
         http_path = "/greengrass/v2/deployments/{deploymentId}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:describeComponent(input, options)
     return self:invokeOperation(input, {
         name = "DescribeComponent",
-        input_schema = types.DescribeComponentInput,
-        output_schema = types.DescribeComponentOutput,
+        input_schema = schemas.DescribeComponentInput,
+        output_schema = schemas.DescribeComponentOutput,
         http_method = "GET",
         http_path = "/greengrass/v2/components/{arn}/metadata",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:disassociateServiceRoleFromAccount(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateServiceRoleFromAccount",
-        input_schema = types.DisassociateServiceRoleFromAccountInput,
-        output_schema = types.DisassociateServiceRoleFromAccountOutput,
+        input_schema = schemas.DisassociateServiceRoleFromAccountInput,
+        output_schema = schemas.DisassociateServiceRoleFromAccountOutput,
         http_method = "DELETE",
         http_path = "/greengrass/servicerole",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getComponent(input, options)
     return self:invokeOperation(input, {
         name = "GetComponent",
-        input_schema = types.GetComponentInput,
-        output_schema = types.GetComponentOutput,
+        input_schema = schemas.GetComponentInput,
+        output_schema = schemas.GetComponentOutput,
         http_method = "GET",
         http_path = "/greengrass/v2/components/{arn}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getComponentVersionArtifact(input, options)
     return self:invokeOperation(input, {
         name = "GetComponentVersionArtifact",
-        input_schema = types.GetComponentVersionArtifactInput,
-        output_schema = types.GetComponentVersionArtifactOutput,
+        input_schema = schemas.GetComponentVersionArtifactInput,
+        output_schema = schemas.GetComponentVersionArtifactOutput,
         http_method = "GET",
         http_path = "/greengrass/v2/components/{arn}/artifacts/{artifactName+}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getConnectivityInfo(input, options)
     return self:invokeOperation(input, {
         name = "GetConnectivityInfo",
-        input_schema = types.GetConnectivityInfoInput,
-        output_schema = types.GetConnectivityInfoOutput,
+        input_schema = schemas.GetConnectivityInfoInput,
+        output_schema = schemas.GetConnectivityInfoOutput,
         http_method = "GET",
         http_path = "/greengrass/things/{thingName}/connectivityInfo",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getCoreDevice(input, options)
     return self:invokeOperation(input, {
         name = "GetCoreDevice",
-        input_schema = types.GetCoreDeviceInput,
-        output_schema = types.GetCoreDeviceOutput,
+        input_schema = schemas.GetCoreDeviceInput,
+        output_schema = schemas.GetCoreDeviceOutput,
         http_method = "GET",
         http_path = "/greengrass/v2/coreDevices/{coreDeviceThingName}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getDeployment(input, options)
     return self:invokeOperation(input, {
         name = "GetDeployment",
-        input_schema = types.GetDeploymentInput,
-        output_schema = types.GetDeploymentOutput,
+        input_schema = schemas.GetDeploymentInput,
+        output_schema = schemas.GetDeploymentOutput,
         http_method = "GET",
         http_path = "/greengrass/v2/deployments/{deploymentId}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getServiceRoleForAccount(input, options)
     return self:invokeOperation(input, {
         name = "GetServiceRoleForAccount",
-        input_schema = types.GetServiceRoleForAccountInput,
-        output_schema = types.GetServiceRoleForAccountOutput,
+        input_schema = schemas.GetServiceRoleForAccountInput,
+        output_schema = schemas.GetServiceRoleForAccountOutput,
         http_method = "GET",
         http_path = "/greengrass/servicerole",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listClientDevicesAssociatedWithCoreDevice(input, options)
     return self:invokeOperation(input, {
         name = "ListClientDevicesAssociatedWithCoreDevice",
-        input_schema = types.ListClientDevicesAssociatedWithCoreDeviceInput,
-        output_schema = types.ListClientDevicesAssociatedWithCoreDeviceOutput,
+        input_schema = schemas.ListClientDevicesAssociatedWithCoreDeviceInput,
+        output_schema = schemas.ListClientDevicesAssociatedWithCoreDeviceOutput,
         http_method = "GET",
         http_path = "/greengrass/v2/coreDevices/{coreDeviceThingName}/associatedClientDevices",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listComponents(input, options)
     return self:invokeOperation(input, {
         name = "ListComponents",
-        input_schema = types.ListComponentsInput,
-        output_schema = types.ListComponentsOutput,
+        input_schema = schemas.ListComponentsInput,
+        output_schema = schemas.ListComponentsOutput,
         http_method = "GET",
         http_path = "/greengrass/v2/components",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listComponentVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListComponentVersions",
-        input_schema = types.ListComponentVersionsInput,
-        output_schema = types.ListComponentVersionsOutput,
+        input_schema = schemas.ListComponentVersionsInput,
+        output_schema = schemas.ListComponentVersionsOutput,
         http_method = "GET",
         http_path = "/greengrass/v2/components/{arn}/versions",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listCoreDevices(input, options)
     return self:invokeOperation(input, {
         name = "ListCoreDevices",
-        input_schema = types.ListCoreDevicesInput,
-        output_schema = types.ListCoreDevicesOutput,
+        input_schema = schemas.ListCoreDevicesInput,
+        output_schema = schemas.ListCoreDevicesOutput,
         http_method = "GET",
         http_path = "/greengrass/v2/coreDevices",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listDeployments(input, options)
     return self:invokeOperation(input, {
         name = "ListDeployments",
-        input_schema = types.ListDeploymentsInput,
-        output_schema = types.ListDeploymentsOutput,
+        input_schema = schemas.ListDeploymentsInput,
+        output_schema = schemas.ListDeploymentsOutput,
         http_method = "GET",
         http_path = "/greengrass/v2/deployments",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listEffectiveDeployments(input, options)
     return self:invokeOperation(input, {
         name = "ListEffectiveDeployments",
-        input_schema = types.ListEffectiveDeploymentsInput,
-        output_schema = types.ListEffectiveDeploymentsOutput,
+        input_schema = schemas.ListEffectiveDeploymentsInput,
+        output_schema = schemas.ListEffectiveDeploymentsOutput,
         http_method = "GET",
         http_path = "/greengrass/v2/coreDevices/{coreDeviceThingName}/effectiveDeployments",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listInstalledComponents(input, options)
     return self:invokeOperation(input, {
         name = "ListInstalledComponents",
-        input_schema = types.ListInstalledComponentsInput,
-        output_schema = types.ListInstalledComponentsOutput,
+        input_schema = schemas.ListInstalledComponentsInput,
+        output_schema = schemas.ListInstalledComponentsOutput,
         http_method = "GET",
         http_path = "/greengrass/v2/coreDevices/{coreDeviceThingName}/installedComponents",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:resolveComponentCandidates(input, options)
     return self:invokeOperation(input, {
         name = "ResolveComponentCandidates",
-        input_schema = types.ResolveComponentCandidatesInput,
-        output_schema = types.ResolveComponentCandidatesOutput,
+        input_schema = schemas.ResolveComponentCandidatesInput,
+        output_schema = schemas.ResolveComponentCandidatesOutput,
         http_method = "POST",
         http_path = "/greengrass/v2/resolveComponentCandidates",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:updateConnectivityInfo(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConnectivityInfo",
-        input_schema = types.UpdateConnectivityInfoInput,
-        output_schema = types.UpdateConnectivityInfoOutput,
+        input_schema = schemas.UpdateConnectivityInfoInput,
+        output_schema = schemas.UpdateConnectivityInfoOutput,
         http_method = "PUT",
         http_path = "/greengrass/things/{thingName}/connectivityInfo",
         effective_auth_schemes = {

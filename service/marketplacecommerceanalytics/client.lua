@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("marketplacecommerceanalytics.endpoint_rules")
+local schemas = require("marketplacecommerceanalytics.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("marketplacecommerceanalytics.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:generateDataSet(input, options)
     return self:invokeOperation(input, {
         name = "GenerateDataSet",
-        input_schema = types.GenerateDataSetInput,
-        output_schema = types.GenerateDataSetOutput,
+        input_schema = schemas.GenerateDataSetInput,
+        output_schema = schemas.GenerateDataSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:startSupportDataExport(input, options)
     return self:invokeOperation(input, {
         name = "StartSupportDataExport",
-        input_schema = types.StartSupportDataExportInput,
-        output_schema = types.StartSupportDataExportOutput,
+        input_schema = schemas.StartSupportDataExportInput,
+        output_schema = schemas.StartSupportDataExportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("paymentcryptographydata.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("paymentcryptographydata.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("paymentcryptographydata.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:decryptData(input, options)
     return self:invokeOperation(input, {
         name = "DecryptData",
-        input_schema = types.DecryptDataInput,
-        output_schema = types.DecryptDataOutput,
+        input_schema = schemas.DecryptDataInput,
+        output_schema = schemas.DecryptDataOutput,
         http_method = "POST",
         http_path = "/keys/{KeyIdentifier}/decrypt",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:encryptData(input, options)
     return self:invokeOperation(input, {
         name = "EncryptData",
-        input_schema = types.EncryptDataInput,
-        output_schema = types.EncryptDataOutput,
+        input_schema = schemas.EncryptDataInput,
+        output_schema = schemas.EncryptDataOutput,
         http_method = "POST",
         http_path = "/keys/{KeyIdentifier}/encrypt",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:generateAs2805KekValidation(input, options)
     return self:invokeOperation(input, {
         name = "GenerateAs2805KekValidation",
-        input_schema = types.GenerateAs2805KekValidationInput,
-        output_schema = types.GenerateAs2805KekValidationOutput,
+        input_schema = schemas.GenerateAs2805KekValidationInput,
+        output_schema = schemas.GenerateAs2805KekValidationOutput,
         http_method = "POST",
         http_path = "/as2805kekvalidation/generate",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:generateCardValidationData(input, options)
     return self:invokeOperation(input, {
         name = "GenerateCardValidationData",
-        input_schema = types.GenerateCardValidationDataInput,
-        output_schema = types.GenerateCardValidationDataOutput,
+        input_schema = schemas.GenerateCardValidationDataInput,
+        output_schema = schemas.GenerateCardValidationDataOutput,
         http_method = "POST",
         http_path = "/cardvalidationdata/generate",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:generateMac(input, options)
     return self:invokeOperation(input, {
         name = "GenerateMac",
-        input_schema = types.GenerateMacInput,
-        output_schema = types.GenerateMacOutput,
+        input_schema = schemas.GenerateMacInput,
+        output_schema = schemas.GenerateMacOutput,
         http_method = "POST",
         http_path = "/mac/generate",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:generateMacEmvPinChange(input, options)
     return self:invokeOperation(input, {
         name = "GenerateMacEmvPinChange",
-        input_schema = types.GenerateMacEmvPinChangeInput,
-        output_schema = types.GenerateMacEmvPinChangeOutput,
+        input_schema = schemas.GenerateMacEmvPinChangeInput,
+        output_schema = schemas.GenerateMacEmvPinChangeOutput,
         http_method = "POST",
         http_path = "/macemvpinchange/generate",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:generatePinData(input, options)
     return self:invokeOperation(input, {
         name = "GeneratePinData",
-        input_schema = types.GeneratePinDataInput,
-        output_schema = types.GeneratePinDataOutput,
+        input_schema = schemas.GeneratePinDataInput,
+        output_schema = schemas.GeneratePinDataOutput,
         http_method = "POST",
         http_path = "/pindata/generate",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:reEncryptData(input, options)
     return self:invokeOperation(input, {
         name = "ReEncryptData",
-        input_schema = types.ReEncryptDataInput,
-        output_schema = types.ReEncryptDataOutput,
+        input_schema = schemas.ReEncryptDataInput,
+        output_schema = schemas.ReEncryptDataOutput,
         http_method = "POST",
         http_path = "/keys/{IncomingKeyIdentifier}/reencrypt",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:translateKeyMaterial(input, options)
     return self:invokeOperation(input, {
         name = "TranslateKeyMaterial",
-        input_schema = types.TranslateKeyMaterialInput,
-        output_schema = types.TranslateKeyMaterialOutput,
+        input_schema = schemas.TranslateKeyMaterialInput,
+        output_schema = schemas.TranslateKeyMaterialOutput,
         http_method = "POST",
         http_path = "/keymaterial/translate",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:translatePinData(input, options)
     return self:invokeOperation(input, {
         name = "TranslatePinData",
-        input_schema = types.TranslatePinDataInput,
-        output_schema = types.TranslatePinDataOutput,
+        input_schema = schemas.TranslatePinDataInput,
+        output_schema = schemas.TranslatePinDataOutput,
         http_method = "POST",
         http_path = "/pindata/translate",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:verifyAuthRequestCryptogram(input, options)
     return self:invokeOperation(input, {
         name = "VerifyAuthRequestCryptogram",
-        input_schema = types.VerifyAuthRequestCryptogramInput,
-        output_schema = types.VerifyAuthRequestCryptogramOutput,
+        input_schema = schemas.VerifyAuthRequestCryptogramInput,
+        output_schema = schemas.VerifyAuthRequestCryptogramOutput,
         http_method = "POST",
         http_path = "/cryptogram/verify",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:verifyCardValidationData(input, options)
     return self:invokeOperation(input, {
         name = "VerifyCardValidationData",
-        input_schema = types.VerifyCardValidationDataInput,
-        output_schema = types.VerifyCardValidationDataOutput,
+        input_schema = schemas.VerifyCardValidationDataInput,
+        output_schema = schemas.VerifyCardValidationDataOutput,
         http_method = "POST",
         http_path = "/cardvalidationdata/verify",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:verifyMac(input, options)
     return self:invokeOperation(input, {
         name = "VerifyMac",
-        input_schema = types.VerifyMacInput,
-        output_schema = types.VerifyMacOutput,
+        input_schema = schemas.VerifyMacInput,
+        output_schema = schemas.VerifyMacOutput,
         http_method = "POST",
         http_path = "/mac/verify",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:verifyPinData(input, options)
     return self:invokeOperation(input, {
         name = "VerifyPinData",
-        input_schema = types.VerifyPinDataInput,
-        output_schema = types.VerifyPinDataOutput,
+        input_schema = schemas.VerifyPinDataInput,
+        output_schema = schemas.VerifyPinDataOutput,
         http_method = "POST",
         http_path = "/pindata/verify",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("oam.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("oam.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("oam.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createLink(input, options)
     return self:invokeOperation(input, {
         name = "CreateLink",
-        input_schema = types.CreateLinkInput,
-        output_schema = types.CreateLinkOutput,
+        input_schema = schemas.CreateLinkInput,
+        output_schema = schemas.CreateLinkOutput,
         http_method = "POST",
         http_path = "/CreateLink",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createSink(input, options)
     return self:invokeOperation(input, {
         name = "CreateSink",
-        input_schema = types.CreateSinkInput,
-        output_schema = types.CreateSinkOutput,
+        input_schema = schemas.CreateSinkInput,
+        output_schema = schemas.CreateSinkOutput,
         http_method = "POST",
         http_path = "/CreateSink",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteLink(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLink",
-        input_schema = types.DeleteLinkInput,
-        output_schema = types.DeleteLinkOutput,
+        input_schema = schemas.DeleteLinkInput,
+        output_schema = schemas.DeleteLinkOutput,
         http_method = "POST",
         http_path = "/DeleteLink",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteSink(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSink",
-        input_schema = types.DeleteSinkInput,
-        output_schema = types.DeleteSinkOutput,
+        input_schema = schemas.DeleteSinkInput,
+        output_schema = schemas.DeleteSinkOutput,
         http_method = "POST",
         http_path = "/DeleteSink",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getLink(input, options)
     return self:invokeOperation(input, {
         name = "GetLink",
-        input_schema = types.GetLinkInput,
-        output_schema = types.GetLinkOutput,
+        input_schema = schemas.GetLinkInput,
+        output_schema = schemas.GetLinkOutput,
         http_method = "POST",
         http_path = "/GetLink",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getSink(input, options)
     return self:invokeOperation(input, {
         name = "GetSink",
-        input_schema = types.GetSinkInput,
-        output_schema = types.GetSinkOutput,
+        input_schema = schemas.GetSinkInput,
+        output_schema = schemas.GetSinkOutput,
         http_method = "POST",
         http_path = "/GetSink",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getSinkPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetSinkPolicy",
-        input_schema = types.GetSinkPolicyInput,
-        output_schema = types.GetSinkPolicyOutput,
+        input_schema = schemas.GetSinkPolicyInput,
+        output_schema = schemas.GetSinkPolicyOutput,
         http_method = "POST",
         http_path = "/GetSinkPolicy",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listAttachedLinks(input, options)
     return self:invokeOperation(input, {
         name = "ListAttachedLinks",
-        input_schema = types.ListAttachedLinksInput,
-        output_schema = types.ListAttachedLinksOutput,
+        input_schema = schemas.ListAttachedLinksInput,
+        output_schema = schemas.ListAttachedLinksOutput,
         http_method = "POST",
         http_path = "/ListAttachedLinks",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listLinks(input, options)
     return self:invokeOperation(input, {
         name = "ListLinks",
-        input_schema = types.ListLinksInput,
-        output_schema = types.ListLinksOutput,
+        input_schema = schemas.ListLinksInput,
+        output_schema = schemas.ListLinksOutput,
         http_method = "POST",
         http_path = "/ListLinks",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listSinks(input, options)
     return self:invokeOperation(input, {
         name = "ListSinks",
-        input_schema = types.ListSinksInput,
-        output_schema = types.ListSinksOutput,
+        input_schema = schemas.ListSinksInput,
+        output_schema = schemas.ListSinksOutput,
         http_method = "POST",
         http_path = "/ListSinks",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:putSinkPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutSinkPolicy",
-        input_schema = types.PutSinkPolicyInput,
-        output_schema = types.PutSinkPolicyOutput,
+        input_schema = schemas.PutSinkPolicyInput,
+        output_schema = schemas.PutSinkPolicyOutput,
         http_method = "POST",
         http_path = "/PutSinkPolicy",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "PUT",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:updateLink(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLink",
-        input_schema = types.UpdateLinkInput,
-        output_schema = types.UpdateLinkOutput,
+        input_schema = schemas.UpdateLinkInput,
+        output_schema = schemas.UpdateLinkOutput,
         http_method = "POST",
         http_path = "/UpdateLink",
         effective_auth_schemes = {

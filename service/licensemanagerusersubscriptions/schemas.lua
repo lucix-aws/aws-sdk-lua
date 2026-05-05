@@ -1,0 +1,1626 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.licensemanagerusersubscriptions"
+
+local M = {}
+
+M.AccessDeniedException = schema.new({
+    id = id.from(_N, "AccessDeniedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "AccessDeniedException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SecretsManagerCredentialsProvider = schema.new({
+    id = id.from(_N, "SecretsManagerCredentialsProvider"),
+    type = "structure",
+    members = {
+        SecretId = schema.new({
+            id = id.from(_N, "SecretsManagerCredentialsProvider", "SecretId"),
+            type = "string",
+            name = "SecretId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CredentialsProvider = schema.new({
+    id = id.from(_N, "CredentialsProvider"),
+    type = "union",
+    members = {
+        SecretsManagerCredentialsProvider = schema.new({
+            id = id.from(_N, "CredentialsProvider", "SecretsManagerCredentialsProvider"),
+            type = "structure",
+            name = "SecretsManagerCredentialsProvider",
+            target_id = id.from(_N, "SecretsManagerCredentialsProvider"),
+            target = M.SecretsManagerCredentialsProvider,
+        }),
+    },
+})
+
+M.DomainNetworkSettings = schema.new({
+    id = id.from(_N, "DomainNetworkSettings"),
+    type = "structure",
+    members = {
+        Subnets = schema.new({
+            id = id.from(_N, "DomainNetworkSettings", "Subnets"),
+            type = "list",
+            name = "Subnets",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ActiveDirectorySettings = schema.new({
+    id = id.from(_N, "ActiveDirectorySettings"),
+    type = "structure",
+    members = {
+        DomainName = schema.new({
+            id = id.from(_N, "ActiveDirectorySettings", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+        }),
+        DomainIpv4List = schema.new({
+            id = id.from(_N, "ActiveDirectorySettings", "DomainIpv4List"),
+            type = "list",
+            name = "DomainIpv4List",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        DomainIpv6List = schema.new({
+            id = id.from(_N, "ActiveDirectorySettings", "DomainIpv6List"),
+            type = "list",
+            name = "DomainIpv6List",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        DomainCredentialsProvider = schema.new({
+            id = id.from(_N, "ActiveDirectorySettings", "DomainCredentialsProvider"),
+            type = "union",
+            name = "DomainCredentialsProvider",
+            target_id = id.from(_N, "CredentialsProvider"),
+            target = M.CredentialsProvider,
+        }),
+        DomainNetworkSettings = schema.new({
+            id = id.from(_N, "ActiveDirectorySettings", "DomainNetworkSettings"),
+            type = "structure",
+            name = "DomainNetworkSettings",
+            target_id = id.from(_N, "DomainNetworkSettings"),
+            target = M.DomainNetworkSettings,
+        }),
+    },
+})
+
+M.ActiveDirectoryIdentityProvider = schema.new({
+    id = id.from(_N, "ActiveDirectoryIdentityProvider"),
+    type = "structure",
+    members = {
+        DirectoryId = schema.new({
+            id = id.from(_N, "ActiveDirectoryIdentityProvider", "DirectoryId"),
+            type = "string",
+            name = "DirectoryId",
+            target_id = prelude.String.id,
+        }),
+        ActiveDirectorySettings = schema.new({
+            id = id.from(_N, "ActiveDirectoryIdentityProvider", "ActiveDirectorySettings"),
+            type = "structure",
+            name = "ActiveDirectorySettings",
+            target_id = id.from(_N, "ActiveDirectorySettings"),
+            target = M.ActiveDirectorySettings,
+        }),
+        ActiveDirectoryType = schema.new({
+            id = id.from(_N, "ActiveDirectoryIdentityProvider", "ActiveDirectoryType"),
+            type = "string",
+            name = "ActiveDirectoryType",
+            target_id = prelude.String.id,
+        }),
+        IsSharedActiveDirectory = schema.new({
+            id = id.from(_N, "ActiveDirectoryIdentityProvider", "IsSharedActiveDirectory"),
+            type = "boolean",
+            name = "IsSharedActiveDirectory",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.IdentityProvider = schema.new({
+    id = id.from(_N, "IdentityProvider"),
+    type = "union",
+    members = {
+        ActiveDirectoryIdentityProvider = schema.new({
+            id = id.from(_N, "IdentityProvider", "ActiveDirectoryIdentityProvider"),
+            type = "structure",
+            name = "ActiveDirectoryIdentityProvider",
+            target_id = id.from(_N, "ActiveDirectoryIdentityProvider"),
+            target = M.ActiveDirectoryIdentityProvider,
+        }),
+    },
+})
+
+M.AssociateUserInput = schema.new({
+    id = id.from(_N, "AssociateUserInput"),
+    type = "structure",
+    members = {
+        Username = schema.new({
+            id = id.from(_N, "AssociateUserInput", "Username"),
+            type = "string",
+            name = "Username",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InstanceId = schema.new({
+            id = id.from(_N, "AssociateUserInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IdentityProvider = schema.new({
+            id = id.from(_N, "AssociateUserInput", "IdentityProvider"),
+            type = "union",
+            name = "IdentityProvider",
+            target_id = id.from(_N, "IdentityProvider"),
+            target = M.IdentityProvider,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Domain = schema.new({
+            id = id.from(_N, "AssociateUserInput", "Domain"),
+            type = "string",
+            name = "Domain",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "AssociateUserInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.InstanceUserSummary = schema.new({
+    id = id.from(_N, "InstanceUserSummary"),
+    type = "structure",
+    members = {
+        Username = schema.new({
+            id = id.from(_N, "InstanceUserSummary", "Username"),
+            type = "string",
+            name = "Username",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InstanceId = schema.new({
+            id = id.from(_N, "InstanceUserSummary", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IdentityProvider = schema.new({
+            id = id.from(_N, "InstanceUserSummary", "IdentityProvider"),
+            type = "union",
+            name = "IdentityProvider",
+            target_id = id.from(_N, "IdentityProvider"),
+            target = M.IdentityProvider,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "InstanceUserSummary", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InstanceUserArn = schema.new({
+            id = id.from(_N, "InstanceUserSummary", "InstanceUserArn"),
+            type = "string",
+            name = "InstanceUserArn",
+            target_id = prelude.String.id,
+        }),
+        StatusMessage = schema.new({
+            id = id.from(_N, "InstanceUserSummary", "StatusMessage"),
+            type = "string",
+            name = "StatusMessage",
+            target_id = prelude.String.id,
+        }),
+        Domain = schema.new({
+            id = id.from(_N, "InstanceUserSummary", "Domain"),
+            type = "string",
+            name = "Domain",
+            target_id = prelude.String.id,
+        }),
+        AssociationDate = schema.new({
+            id = id.from(_N, "InstanceUserSummary", "AssociationDate"),
+            type = "string",
+            name = "AssociationDate",
+            target_id = prelude.String.id,
+        }),
+        DisassociationDate = schema.new({
+            id = id.from(_N, "InstanceUserSummary", "DisassociationDate"),
+            type = "string",
+            name = "DisassociationDate",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AssociateUserOutput = schema.new({
+    id = id.from(_N, "AssociateUserOutput"),
+    type = "structure",
+    members = {
+        InstanceUserSummary = schema.new({
+            id = id.from(_N, "AssociateUserOutput", "InstanceUserSummary"),
+            type = "structure",
+            name = "InstanceUserSummary",
+            target_id = id.from(_N, "InstanceUserSummary"),
+            target = M.InstanceUserSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ConflictException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InternalServerException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ThrottlingException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RdsSalSettings = schema.new({
+    id = id.from(_N, "RdsSalSettings"),
+    type = "structure",
+    members = {
+        RdsSalCredentialsProvider = schema.new({
+            id = id.from(_N, "RdsSalSettings", "RdsSalCredentialsProvider"),
+            type = "union",
+            name = "RdsSalCredentialsProvider",
+            target_id = id.from(_N, "CredentialsProvider"),
+            target = M.CredentialsProvider,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ServerSettings = schema.new({
+    id = id.from(_N, "ServerSettings"),
+    type = "union",
+    members = {
+        RdsSalSettings = schema.new({
+            id = id.from(_N, "ServerSettings", "RdsSalSettings"),
+            type = "structure",
+            name = "RdsSalSettings",
+            target_id = id.from(_N, "RdsSalSettings"),
+            target = M.RdsSalSettings,
+        }),
+    },
+})
+
+M.LicenseServerSettings = schema.new({
+    id = id.from(_N, "LicenseServerSettings"),
+    type = "structure",
+    members = {
+        ServerType = schema.new({
+            id = id.from(_N, "LicenseServerSettings", "ServerType"),
+            type = "string",
+            name = "ServerType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ServerSettings = schema.new({
+            id = id.from(_N, "LicenseServerSettings", "ServerSettings"),
+            type = "union",
+            name = "ServerSettings",
+            target_id = id.from(_N, "ServerSettings"),
+            target = M.ServerSettings,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateLicenseServerEndpointInput = schema.new({
+    id = id.from(_N, "CreateLicenseServerEndpointInput"),
+    type = "structure",
+    members = {
+        IdentityProviderArn = schema.new({
+            id = id.from(_N, "CreateLicenseServerEndpointInput", "IdentityProviderArn"),
+            type = "string",
+            name = "IdentityProviderArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LicenseServerSettings = schema.new({
+            id = id.from(_N, "CreateLicenseServerEndpointInput", "LicenseServerSettings"),
+            type = "structure",
+            name = "LicenseServerSettings",
+            target_id = id.from(_N, "LicenseServerSettings"),
+            target = M.LicenseServerSettings,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateLicenseServerEndpointInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateLicenseServerEndpointOutput = schema.new({
+    id = id.from(_N, "CreateLicenseServerEndpointOutput"),
+    type = "structure",
+    members = {
+        IdentityProviderArn = schema.new({
+            id = id.from(_N, "CreateLicenseServerEndpointOutput", "IdentityProviderArn"),
+            type = "string",
+            name = "IdentityProviderArn",
+            target_id = prelude.String.id,
+        }),
+        LicenseServerEndpointArn = schema.new({
+            id = id.from(_N, "CreateLicenseServerEndpointOutput", "LicenseServerEndpointArn"),
+            type = "string",
+            name = "LicenseServerEndpointArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteLicenseServerEndpointInput = schema.new({
+    id = id.from(_N, "DeleteLicenseServerEndpointInput"),
+    type = "structure",
+    members = {
+        LicenseServerEndpointArn = schema.new({
+            id = id.from(_N, "DeleteLicenseServerEndpointInput", "LicenseServerEndpointArn"),
+            type = "string",
+            name = "LicenseServerEndpointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ServerType = schema.new({
+            id = id.from(_N, "DeleteLicenseServerEndpointInput", "ServerType"),
+            type = "string",
+            name = "ServerType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LicenseServer = schema.new({
+    id = id.from(_N, "LicenseServer"),
+    type = "structure",
+    members = {
+        ProvisioningStatus = schema.new({
+            id = id.from(_N, "LicenseServer", "ProvisioningStatus"),
+            type = "string",
+            name = "ProvisioningStatus",
+            target_id = prelude.String.id,
+        }),
+        HealthStatus = schema.new({
+            id = id.from(_N, "LicenseServer", "HealthStatus"),
+            type = "string",
+            name = "HealthStatus",
+            target_id = prelude.String.id,
+        }),
+        Ipv4Address = schema.new({
+            id = id.from(_N, "LicenseServer", "Ipv4Address"),
+            type = "string",
+            name = "Ipv4Address",
+            target_id = prelude.String.id,
+        }),
+        Ipv6Address = schema.new({
+            id = id.from(_N, "LicenseServer", "Ipv6Address"),
+            type = "string",
+            name = "Ipv6Address",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServerEndpoint = schema.new({
+    id = id.from(_N, "ServerEndpoint"),
+    type = "structure",
+    members = {
+        Endpoint = schema.new({
+            id = id.from(_N, "ServerEndpoint", "Endpoint"),
+            type = "string",
+            name = "Endpoint",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.LicenseServerEndpoint = schema.new({
+    id = id.from(_N, "LicenseServerEndpoint"),
+    type = "structure",
+    members = {
+        IdentityProviderArn = schema.new({
+            id = id.from(_N, "LicenseServerEndpoint", "IdentityProviderArn"),
+            type = "string",
+            name = "IdentityProviderArn",
+            target_id = prelude.String.id,
+        }),
+        ServerType = schema.new({
+            id = id.from(_N, "LicenseServerEndpoint", "ServerType"),
+            type = "string",
+            name = "ServerType",
+            target_id = prelude.String.id,
+        }),
+        ServerEndpoint = schema.new({
+            id = id.from(_N, "LicenseServerEndpoint", "ServerEndpoint"),
+            type = "structure",
+            name = "ServerEndpoint",
+            target_id = id.from(_N, "ServerEndpoint"),
+            target = M.ServerEndpoint,
+        }),
+        StatusMessage = schema.new({
+            id = id.from(_N, "LicenseServerEndpoint", "StatusMessage"),
+            type = "string",
+            name = "StatusMessage",
+            target_id = prelude.String.id,
+        }),
+        LicenseServerEndpointId = schema.new({
+            id = id.from(_N, "LicenseServerEndpoint", "LicenseServerEndpointId"),
+            type = "string",
+            name = "LicenseServerEndpointId",
+            target_id = prelude.String.id,
+        }),
+        LicenseServerEndpointArn = schema.new({
+            id = id.from(_N, "LicenseServerEndpoint", "LicenseServerEndpointArn"),
+            type = "string",
+            name = "LicenseServerEndpointArn",
+            target_id = prelude.String.id,
+        }),
+        LicenseServerEndpointProvisioningStatus = schema.new({
+            id = id.from(_N, "LicenseServerEndpoint", "LicenseServerEndpointProvisioningStatus"),
+            type = "string",
+            name = "LicenseServerEndpointProvisioningStatus",
+            target_id = prelude.String.id,
+        }),
+        LicenseServers = schema.new({
+            id = id.from(_N, "LicenseServerEndpoint", "LicenseServers"),
+            type = "list",
+            name = "LicenseServers",
+            target_id = prelude.Document.id,
+            list_member = M.LicenseServer,
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "LicenseServerEndpoint", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.DeleteLicenseServerEndpointOutput = schema.new({
+    id = id.from(_N, "DeleteLicenseServerEndpointOutput"),
+    type = "structure",
+    members = {
+        LicenseServerEndpoint = schema.new({
+            id = id.from(_N, "DeleteLicenseServerEndpointOutput", "LicenseServerEndpoint"),
+            type = "structure",
+            name = "LicenseServerEndpoint",
+            target_id = id.from(_N, "LicenseServerEndpoint"),
+            target = M.LicenseServerEndpoint,
+        }),
+    },
+})
+
+M.DeregisterIdentityProviderInput = schema.new({
+    id = id.from(_N, "DeregisterIdentityProviderInput"),
+    type = "structure",
+    members = {
+        IdentityProvider = schema.new({
+            id = id.from(_N, "DeregisterIdentityProviderInput", "IdentityProvider"),
+            type = "union",
+            name = "IdentityProvider",
+            target_id = id.from(_N, "IdentityProvider"),
+            target = M.IdentityProvider,
+        }),
+        Product = schema.new({
+            id = id.from(_N, "DeregisterIdentityProviderInput", "Product"),
+            type = "string",
+            name = "Product",
+            target_id = prelude.String.id,
+        }),
+        IdentityProviderArn = schema.new({
+            id = id.from(_N, "DeregisterIdentityProviderInput", "IdentityProviderArn"),
+            type = "string",
+            name = "IdentityProviderArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Settings = schema.new({
+    id = id.from(_N, "Settings"),
+    type = "structure",
+    members = {
+        Subnets = schema.new({
+            id = id.from(_N, "Settings", "Subnets"),
+            type = "list",
+            name = "Subnets",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SecurityGroupId = schema.new({
+            id = id.from(_N, "Settings", "SecurityGroupId"),
+            type = "string",
+            name = "SecurityGroupId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.IdentityProviderSummary = schema.new({
+    id = id.from(_N, "IdentityProviderSummary"),
+    type = "structure",
+    members = {
+        IdentityProvider = schema.new({
+            id = id.from(_N, "IdentityProviderSummary", "IdentityProvider"),
+            type = "union",
+            name = "IdentityProvider",
+            target_id = id.from(_N, "IdentityProvider"),
+            target = M.IdentityProvider,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Settings = schema.new({
+            id = id.from(_N, "IdentityProviderSummary", "Settings"),
+            type = "structure",
+            name = "Settings",
+            target_id = id.from(_N, "Settings"),
+            target = M.Settings,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Product = schema.new({
+            id = id.from(_N, "IdentityProviderSummary", "Product"),
+            type = "string",
+            name = "Product",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "IdentityProviderSummary", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IdentityProviderArn = schema.new({
+            id = id.from(_N, "IdentityProviderSummary", "IdentityProviderArn"),
+            type = "string",
+            name = "IdentityProviderArn",
+            target_id = prelude.String.id,
+        }),
+        FailureMessage = schema.new({
+            id = id.from(_N, "IdentityProviderSummary", "FailureMessage"),
+            type = "string",
+            name = "FailureMessage",
+            target_id = prelude.String.id,
+        }),
+        OwnerAccountId = schema.new({
+            id = id.from(_N, "IdentityProviderSummary", "OwnerAccountId"),
+            type = "string",
+            name = "OwnerAccountId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeregisterIdentityProviderOutput = schema.new({
+    id = id.from(_N, "DeregisterIdentityProviderOutput"),
+    type = "structure",
+    members = {
+        IdentityProviderSummary = schema.new({
+            id = id.from(_N, "DeregisterIdentityProviderOutput", "IdentityProviderSummary"),
+            type = "structure",
+            name = "IdentityProviderSummary",
+            target_id = id.from(_N, "IdentityProviderSummary"),
+            target = M.IdentityProviderSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DisassociateUserInput = schema.new({
+    id = id.from(_N, "DisassociateUserInput"),
+    type = "structure",
+    members = {
+        Username = schema.new({
+            id = id.from(_N, "DisassociateUserInput", "Username"),
+            type = "string",
+            name = "Username",
+            target_id = prelude.String.id,
+        }),
+        InstanceId = schema.new({
+            id = id.from(_N, "DisassociateUserInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+        }),
+        IdentityProvider = schema.new({
+            id = id.from(_N, "DisassociateUserInput", "IdentityProvider"),
+            type = "union",
+            name = "IdentityProvider",
+            target_id = id.from(_N, "IdentityProvider"),
+            target = M.IdentityProvider,
+        }),
+        InstanceUserArn = schema.new({
+            id = id.from(_N, "DisassociateUserInput", "InstanceUserArn"),
+            type = "string",
+            name = "InstanceUserArn",
+            target_id = prelude.String.id,
+        }),
+        Domain = schema.new({
+            id = id.from(_N, "DisassociateUserInput", "Domain"),
+            type = "string",
+            name = "Domain",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DisassociateUserOutput = schema.new({
+    id = id.from(_N, "DisassociateUserOutput"),
+    type = "structure",
+    members = {
+        InstanceUserSummary = schema.new({
+            id = id.from(_N, "DisassociateUserOutput", "InstanceUserSummary"),
+            type = "structure",
+            name = "InstanceUserSummary",
+            target_id = id.from(_N, "InstanceUserSummary"),
+            target = M.InstanceUserSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Filter = schema.new({
+    id = id.from(_N, "Filter"),
+    type = "structure",
+    members = {
+        Attribute = schema.new({
+            id = id.from(_N, "Filter", "Attribute"),
+            type = "string",
+            name = "Attribute",
+            target_id = prelude.String.id,
+        }),
+        Operation = schema.new({
+            id = id.from(_N, "Filter", "Operation"),
+            type = "string",
+            name = "Operation",
+            target_id = prelude.String.id,
+        }),
+        Value = schema.new({
+            id = id.from(_N, "Filter", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InstanceSummary = schema.new({
+    id = id.from(_N, "InstanceSummary"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "InstanceSummary", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "InstanceSummary", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Products = schema.new({
+            id = id.from(_N, "InstanceSummary", "Products"),
+            type = "list",
+            name = "Products",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastStatusCheckDate = schema.new({
+            id = id.from(_N, "InstanceSummary", "LastStatusCheckDate"),
+            type = "string",
+            name = "LastStatusCheckDate",
+            target_id = prelude.String.id,
+        }),
+        StatusMessage = schema.new({
+            id = id.from(_N, "InstanceSummary", "StatusMessage"),
+            type = "string",
+            name = "StatusMessage",
+            target_id = prelude.String.id,
+        }),
+        OwnerAccountId = schema.new({
+            id = id.from(_N, "InstanceSummary", "OwnerAccountId"),
+            type = "string",
+            name = "OwnerAccountId",
+            target_id = prelude.String.id,
+        }),
+        IdentityProvider = schema.new({
+            id = id.from(_N, "InstanceSummary", "IdentityProvider"),
+            type = "union",
+            name = "IdentityProvider",
+            target_id = id.from(_N, "IdentityProvider"),
+            target = M.IdentityProvider,
+        }),
+    },
+})
+
+M.ListIdentityProvidersInput = schema.new({
+    id = id.from(_N, "ListIdentityProvidersInput"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListIdentityProvidersInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "ListIdentityProvidersInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.Filter,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListIdentityProvidersInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListIdentityProvidersOutput = schema.new({
+    id = id.from(_N, "ListIdentityProvidersOutput"),
+    type = "structure",
+    members = {
+        IdentityProviderSummaries = schema.new({
+            id = id.from(_N, "ListIdentityProvidersOutput", "IdentityProviderSummaries"),
+            type = "list",
+            name = "IdentityProviderSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.IdentityProviderSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListIdentityProvidersOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListInstancesInput = schema.new({
+    id = id.from(_N, "ListInstancesInput"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListInstancesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListInstancesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "ListInstancesInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.Filter,
+        }),
+    },
+})
+
+M.ListInstancesOutput = schema.new({
+    id = id.from(_N, "ListInstancesOutput"),
+    type = "structure",
+    members = {
+        InstanceSummaries = schema.new({
+            id = id.from(_N, "ListInstancesOutput", "InstanceSummaries"),
+            type = "list",
+            name = "InstanceSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.InstanceSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListInstancesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListLicenseServerEndpointsInput = schema.new({
+    id = id.from(_N, "ListLicenseServerEndpointsInput"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListLicenseServerEndpointsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "ListLicenseServerEndpointsInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.Filter,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListLicenseServerEndpointsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListLicenseServerEndpointsOutput = schema.new({
+    id = id.from(_N, "ListLicenseServerEndpointsOutput"),
+    type = "structure",
+    members = {
+        LicenseServerEndpoints = schema.new({
+            id = id.from(_N, "ListLicenseServerEndpointsOutput", "LicenseServerEndpoints"),
+            type = "list",
+            name = "LicenseServerEndpoints",
+            target_id = prelude.Document.id,
+            list_member = M.LicenseServerEndpoint,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListLicenseServerEndpointsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListProductSubscriptionsInput = schema.new({
+    id = id.from(_N, "ListProductSubscriptionsInput"),
+    type = "structure",
+    members = {
+        Product = schema.new({
+            id = id.from(_N, "ListProductSubscriptionsInput", "Product"),
+            type = "string",
+            name = "Product",
+            target_id = prelude.String.id,
+        }),
+        IdentityProvider = schema.new({
+            id = id.from(_N, "ListProductSubscriptionsInput", "IdentityProvider"),
+            type = "union",
+            name = "IdentityProvider",
+            target_id = id.from(_N, "IdentityProvider"),
+            target = M.IdentityProvider,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListProductSubscriptionsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "ListProductSubscriptionsInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.Filter,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListProductSubscriptionsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ProductUserSummary = schema.new({
+    id = id.from(_N, "ProductUserSummary"),
+    type = "structure",
+    members = {
+        Username = schema.new({
+            id = id.from(_N, "ProductUserSummary", "Username"),
+            type = "string",
+            name = "Username",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Product = schema.new({
+            id = id.from(_N, "ProductUserSummary", "Product"),
+            type = "string",
+            name = "Product",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IdentityProvider = schema.new({
+            id = id.from(_N, "ProductUserSummary", "IdentityProvider"),
+            type = "union",
+            name = "IdentityProvider",
+            target_id = id.from(_N, "IdentityProvider"),
+            target = M.IdentityProvider,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ProductUserSummary", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProductUserArn = schema.new({
+            id = id.from(_N, "ProductUserSummary", "ProductUserArn"),
+            type = "string",
+            name = "ProductUserArn",
+            target_id = prelude.String.id,
+        }),
+        StatusMessage = schema.new({
+            id = id.from(_N, "ProductUserSummary", "StatusMessage"),
+            type = "string",
+            name = "StatusMessage",
+            target_id = prelude.String.id,
+        }),
+        Domain = schema.new({
+            id = id.from(_N, "ProductUserSummary", "Domain"),
+            type = "string",
+            name = "Domain",
+            target_id = prelude.String.id,
+        }),
+        SubscriptionStartDate = schema.new({
+            id = id.from(_N, "ProductUserSummary", "SubscriptionStartDate"),
+            type = "string",
+            name = "SubscriptionStartDate",
+            target_id = prelude.String.id,
+        }),
+        SubscriptionEndDate = schema.new({
+            id = id.from(_N, "ProductUserSummary", "SubscriptionEndDate"),
+            type = "string",
+            name = "SubscriptionEndDate",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListProductSubscriptionsOutput = schema.new({
+    id = id.from(_N, "ListProductSubscriptionsOutput"),
+    type = "structure",
+    members = {
+        ProductUserSummaries = schema.new({
+            id = id.from(_N, "ListProductSubscriptionsOutput", "ProductUserSummaries"),
+            type = "list",
+            name = "ProductUserSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.ProductUserSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListProductSubscriptionsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceOutput"),
+    type = "structure",
+    members = {
+        Tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.ListUserAssociationsInput = schema.new({
+    id = id.from(_N, "ListUserAssociationsInput"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "ListUserAssociationsInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IdentityProvider = schema.new({
+            id = id.from(_N, "ListUserAssociationsInput", "IdentityProvider"),
+            type = "union",
+            name = "IdentityProvider",
+            target_id = id.from(_N, "IdentityProvider"),
+            target = M.IdentityProvider,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListUserAssociationsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "ListUserAssociationsInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.Filter,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListUserAssociationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListUserAssociationsOutput = schema.new({
+    id = id.from(_N, "ListUserAssociationsOutput"),
+    type = "structure",
+    members = {
+        InstanceUserSummaries = schema.new({
+            id = id.from(_N, "ListUserAssociationsOutput", "InstanceUserSummaries"),
+            type = "list",
+            name = "InstanceUserSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.InstanceUserSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListUserAssociationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RegisterIdentityProviderInput = schema.new({
+    id = id.from(_N, "RegisterIdentityProviderInput"),
+    type = "structure",
+    members = {
+        IdentityProvider = schema.new({
+            id = id.from(_N, "RegisterIdentityProviderInput", "IdentityProvider"),
+            type = "union",
+            name = "IdentityProvider",
+            target_id = id.from(_N, "IdentityProvider"),
+            target = M.IdentityProvider,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Product = schema.new({
+            id = id.from(_N, "RegisterIdentityProviderInput", "Product"),
+            type = "string",
+            name = "Product",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Settings = schema.new({
+            id = id.from(_N, "RegisterIdentityProviderInput", "Settings"),
+            type = "structure",
+            name = "Settings",
+            target_id = id.from(_N, "Settings"),
+            target = M.Settings,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "RegisterIdentityProviderInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.RegisterIdentityProviderOutput = schema.new({
+    id = id.from(_N, "RegisterIdentityProviderOutput"),
+    type = "structure",
+    members = {
+        IdentityProviderSummary = schema.new({
+            id = id.from(_N, "RegisterIdentityProviderOutput", "IdentityProviderSummary"),
+            type = "structure",
+            name = "IdentityProviderSummary",
+            target_id = id.from(_N, "IdentityProviderSummary"),
+            target = M.IdentityProviderSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StartProductSubscriptionInput = schema.new({
+    id = id.from(_N, "StartProductSubscriptionInput"),
+    type = "structure",
+    members = {
+        Username = schema.new({
+            id = id.from(_N, "StartProductSubscriptionInput", "Username"),
+            type = "string",
+            name = "Username",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IdentityProvider = schema.new({
+            id = id.from(_N, "StartProductSubscriptionInput", "IdentityProvider"),
+            type = "union",
+            name = "IdentityProvider",
+            target_id = id.from(_N, "IdentityProvider"),
+            target = M.IdentityProvider,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Product = schema.new({
+            id = id.from(_N, "StartProductSubscriptionInput", "Product"),
+            type = "string",
+            name = "Product",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Domain = schema.new({
+            id = id.from(_N, "StartProductSubscriptionInput", "Domain"),
+            type = "string",
+            name = "Domain",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "StartProductSubscriptionInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.StartProductSubscriptionOutput = schema.new({
+    id = id.from(_N, "StartProductSubscriptionOutput"),
+    type = "structure",
+    members = {
+        ProductUserSummary = schema.new({
+            id = id.from(_N, "StartProductSubscriptionOutput", "ProductUserSummary"),
+            type = "structure",
+            name = "ProductUserSummary",
+            target_id = id.from(_N, "ProductUserSummary"),
+            target = M.ProductUserSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StopProductSubscriptionInput = schema.new({
+    id = id.from(_N, "StopProductSubscriptionInput"),
+    type = "structure",
+    members = {
+        Username = schema.new({
+            id = id.from(_N, "StopProductSubscriptionInput", "Username"),
+            type = "string",
+            name = "Username",
+            target_id = prelude.String.id,
+        }),
+        IdentityProvider = schema.new({
+            id = id.from(_N, "StopProductSubscriptionInput", "IdentityProvider"),
+            type = "union",
+            name = "IdentityProvider",
+            target_id = id.from(_N, "IdentityProvider"),
+            target = M.IdentityProvider,
+        }),
+        Product = schema.new({
+            id = id.from(_N, "StopProductSubscriptionInput", "Product"),
+            type = "string",
+            name = "Product",
+            target_id = prelude.String.id,
+        }),
+        ProductUserArn = schema.new({
+            id = id.from(_N, "StopProductSubscriptionInput", "ProductUserArn"),
+            type = "string",
+            name = "ProductUserArn",
+            target_id = prelude.String.id,
+        }),
+        Domain = schema.new({
+            id = id.from(_N, "StopProductSubscriptionInput", "Domain"),
+            type = "string",
+            name = "Domain",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StopProductSubscriptionOutput = schema.new({
+    id = id.from(_N, "StopProductSubscriptionOutput"),
+    type = "structure",
+    members = {
+        ProductUserSummary = schema.new({
+            id = id.from(_N, "StopProductSubscriptionOutput", "ProductUserSummary"),
+            type = "structure",
+            name = "ProductUserSummary",
+            target_id = id.from(_N, "ProductUserSummary"),
+            target = M.ProductUserSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "TagResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceOutput"),
+    type = "structure",
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "UntagResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        TagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "TagKeys"),
+            type = "list",
+            name = "TagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "tagKeys" },
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
+M.UpdateSettings = schema.new({
+    id = id.from(_N, "UpdateSettings"),
+    type = "structure",
+    members = {
+        AddSubnets = schema.new({
+            id = id.from(_N, "UpdateSettings", "AddSubnets"),
+            type = "list",
+            name = "AddSubnets",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RemoveSubnets = schema.new({
+            id = id.from(_N, "UpdateSettings", "RemoveSubnets"),
+            type = "list",
+            name = "RemoveSubnets",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SecurityGroupId = schema.new({
+            id = id.from(_N, "UpdateSettings", "SecurityGroupId"),
+            type = "string",
+            name = "SecurityGroupId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateIdentityProviderSettingsInput = schema.new({
+    id = id.from(_N, "UpdateIdentityProviderSettingsInput"),
+    type = "structure",
+    members = {
+        IdentityProvider = schema.new({
+            id = id.from(_N, "UpdateIdentityProviderSettingsInput", "IdentityProvider"),
+            type = "union",
+            name = "IdentityProvider",
+            target_id = id.from(_N, "IdentityProvider"),
+            target = M.IdentityProvider,
+        }),
+        Product = schema.new({
+            id = id.from(_N, "UpdateIdentityProviderSettingsInput", "Product"),
+            type = "string",
+            name = "Product",
+            target_id = prelude.String.id,
+        }),
+        IdentityProviderArn = schema.new({
+            id = id.from(_N, "UpdateIdentityProviderSettingsInput", "IdentityProviderArn"),
+            type = "string",
+            name = "IdentityProviderArn",
+            target_id = prelude.String.id,
+        }),
+        UpdateSettings = schema.new({
+            id = id.from(_N, "UpdateIdentityProviderSettingsInput", "UpdateSettings"),
+            type = "structure",
+            name = "UpdateSettings",
+            target_id = id.from(_N, "UpdateSettings"),
+            target = M.UpdateSettings,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateIdentityProviderSettingsOutput = schema.new({
+    id = id.from(_N, "UpdateIdentityProviderSettingsOutput"),
+    type = "structure",
+    members = {
+        IdentityProviderSummary = schema.new({
+            id = id.from(_N, "UpdateIdentityProviderSettingsOutput", "IdentityProviderSummary"),
+            type = "structure",
+            name = "IdentityProviderSummary",
+            target_id = id.from(_N, "IdentityProviderSummary"),
+            target = M.IdentityProviderSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+return M

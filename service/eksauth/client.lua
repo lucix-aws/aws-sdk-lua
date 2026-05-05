@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("eksauth.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("eksauth.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("eksauth.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:assumeRoleForPodIdentity(input, options)
     return self:invokeOperation(input, {
         name = "AssumeRoleForPodIdentity",
-        input_schema = types.AssumeRoleForPodIdentityInput,
-        output_schema = types.AssumeRoleForPodIdentityOutput,
+        input_schema = schemas.AssumeRoleForPodIdentityInput,
+        output_schema = schemas.AssumeRoleForPodIdentityOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/assume-role-for-pod-identity",
         effective_auth_schemes = {

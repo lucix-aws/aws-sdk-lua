@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("macie2.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("macie2.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("macie2.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptInvitation(input, options)
     return self:invokeOperation(input, {
         name = "AcceptInvitation",
-        input_schema = types.AcceptInvitationInput,
-        output_schema = types.AcceptInvitationOutput,
+        input_schema = schemas.AcceptInvitationInput,
+        output_schema = schemas.AcceptInvitationOutput,
         http_method = "POST",
         http_path = "/invitations/accept",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchGetCustomDataIdentifiers(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetCustomDataIdentifiers",
-        input_schema = types.BatchGetCustomDataIdentifiersInput,
-        output_schema = types.BatchGetCustomDataIdentifiersOutput,
+        input_schema = schemas.BatchGetCustomDataIdentifiersInput,
+        output_schema = schemas.BatchGetCustomDataIdentifiersOutput,
         http_method = "POST",
         http_path = "/custom-data-identifiers/get",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchUpdateAutomatedDiscoveryAccounts(input, options)
     return self:invokeOperation(input, {
         name = "BatchUpdateAutomatedDiscoveryAccounts",
-        input_schema = types.BatchUpdateAutomatedDiscoveryAccountsInput,
-        output_schema = types.BatchUpdateAutomatedDiscoveryAccountsOutput,
+        input_schema = schemas.BatchUpdateAutomatedDiscoveryAccountsInput,
+        output_schema = schemas.BatchUpdateAutomatedDiscoveryAccountsOutput,
         http_method = "PATCH",
         http_path = "/automated-discovery/accounts",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createAllowList(input, options)
     return self:invokeOperation(input, {
         name = "CreateAllowList",
-        input_schema = types.CreateAllowListInput,
-        output_schema = types.CreateAllowListOutput,
+        input_schema = schemas.CreateAllowListInput,
+        output_schema = schemas.CreateAllowListOutput,
         http_method = "POST",
         http_path = "/allow-lists",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createClassificationJob(input, options)
     return self:invokeOperation(input, {
         name = "CreateClassificationJob",
-        input_schema = types.CreateClassificationJobInput,
-        output_schema = types.CreateClassificationJobOutput,
+        input_schema = schemas.CreateClassificationJobInput,
+        output_schema = schemas.CreateClassificationJobOutput,
         http_method = "POST",
         http_path = "/jobs",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createCustomDataIdentifier(input, options)
     return self:invokeOperation(input, {
         name = "CreateCustomDataIdentifier",
-        input_schema = types.CreateCustomDataIdentifierInput,
-        output_schema = types.CreateCustomDataIdentifierOutput,
+        input_schema = schemas.CreateCustomDataIdentifierInput,
+        output_schema = schemas.CreateCustomDataIdentifierOutput,
         http_method = "POST",
         http_path = "/custom-data-identifiers",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createFindingsFilter(input, options)
     return self:invokeOperation(input, {
         name = "CreateFindingsFilter",
-        input_schema = types.CreateFindingsFilterInput,
-        output_schema = types.CreateFindingsFilterOutput,
+        input_schema = schemas.CreateFindingsFilterInput,
+        output_schema = schemas.CreateFindingsFilterOutput,
         http_method = "POST",
         http_path = "/findingsfilters",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createInvitations(input, options)
     return self:invokeOperation(input, {
         name = "CreateInvitations",
-        input_schema = types.CreateInvitationsInput,
-        output_schema = types.CreateInvitationsOutput,
+        input_schema = schemas.CreateInvitationsInput,
+        output_schema = schemas.CreateInvitationsOutput,
         http_method = "POST",
         http_path = "/invitations",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createMember(input, options)
     return self:invokeOperation(input, {
         name = "CreateMember",
-        input_schema = types.CreateMemberInput,
-        output_schema = types.CreateMemberOutput,
+        input_schema = schemas.CreateMemberInput,
+        output_schema = schemas.CreateMemberOutput,
         http_method = "POST",
         http_path = "/members",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createSampleFindings(input, options)
     return self:invokeOperation(input, {
         name = "CreateSampleFindings",
-        input_schema = types.CreateSampleFindingsInput,
-        output_schema = types.CreateSampleFindingsOutput,
+        input_schema = schemas.CreateSampleFindingsInput,
+        output_schema = schemas.CreateSampleFindingsOutput,
         http_method = "POST",
         http_path = "/findings/sample",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:declineInvitations(input, options)
     return self:invokeOperation(input, {
         name = "DeclineInvitations",
-        input_schema = types.DeclineInvitationsInput,
-        output_schema = types.DeclineInvitationsOutput,
+        input_schema = schemas.DeclineInvitationsInput,
+        output_schema = schemas.DeclineInvitationsOutput,
         http_method = "POST",
         http_path = "/invitations/decline",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteAllowList(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAllowList",
-        input_schema = types.DeleteAllowListInput,
-        output_schema = types.DeleteAllowListOutput,
+        input_schema = schemas.DeleteAllowListInput,
+        output_schema = schemas.DeleteAllowListOutput,
         http_method = "DELETE",
         http_path = "/allow-lists/{id}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteCustomDataIdentifier(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCustomDataIdentifier",
-        input_schema = types.DeleteCustomDataIdentifierInput,
-        output_schema = types.DeleteCustomDataIdentifierOutput,
+        input_schema = schemas.DeleteCustomDataIdentifierInput,
+        output_schema = schemas.DeleteCustomDataIdentifierOutput,
         http_method = "DELETE",
         http_path = "/custom-data-identifiers/{id}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteFindingsFilter(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFindingsFilter",
-        input_schema = types.DeleteFindingsFilterInput,
-        output_schema = types.DeleteFindingsFilterOutput,
+        input_schema = schemas.DeleteFindingsFilterInput,
+        output_schema = schemas.DeleteFindingsFilterOutput,
         http_method = "DELETE",
         http_path = "/findingsfilters/{id}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteInvitations(input, options)
     return self:invokeOperation(input, {
         name = "DeleteInvitations",
-        input_schema = types.DeleteInvitationsInput,
-        output_schema = types.DeleteInvitationsOutput,
+        input_schema = schemas.DeleteInvitationsInput,
+        output_schema = schemas.DeleteInvitationsOutput,
         http_method = "POST",
         http_path = "/invitations/delete",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteMember(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMember",
-        input_schema = types.DeleteMemberInput,
-        output_schema = types.DeleteMemberOutput,
+        input_schema = schemas.DeleteMemberInput,
+        output_schema = schemas.DeleteMemberOutput,
         http_method = "DELETE",
         http_path = "/members/{id}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:describeBuckets(input, options)
     return self:invokeOperation(input, {
         name = "DescribeBuckets",
-        input_schema = types.DescribeBucketsInput,
-        output_schema = types.DescribeBucketsOutput,
+        input_schema = schemas.DescribeBucketsInput,
+        output_schema = schemas.DescribeBucketsOutput,
         http_method = "POST",
         http_path = "/datasources/s3",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:describeClassificationJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribeClassificationJob",
-        input_schema = types.DescribeClassificationJobInput,
-        output_schema = types.DescribeClassificationJobOutput,
+        input_schema = schemas.DescribeClassificationJobInput,
+        output_schema = schemas.DescribeClassificationJobOutput,
         http_method = "GET",
         http_path = "/jobs/{jobId}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:describeOrganizationConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DescribeOrganizationConfiguration",
-        input_schema = types.DescribeOrganizationConfigurationInput,
-        output_schema = types.DescribeOrganizationConfigurationOutput,
+        input_schema = schemas.DescribeOrganizationConfigurationInput,
+        output_schema = schemas.DescribeOrganizationConfigurationOutput,
         http_method = "GET",
         http_path = "/admin/configuration",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:disableMacie(input, options)
     return self:invokeOperation(input, {
         name = "DisableMacie",
-        input_schema = types.DisableMacieInput,
-        output_schema = types.DisableMacieOutput,
+        input_schema = schemas.DisableMacieInput,
+        output_schema = schemas.DisableMacieOutput,
         http_method = "DELETE",
         http_path = "/macie",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:disableOrganizationAdminAccount(input, options)
     return self:invokeOperation(input, {
         name = "DisableOrganizationAdminAccount",
-        input_schema = types.DisableOrganizationAdminAccountInput,
-        output_schema = types.DisableOrganizationAdminAccountOutput,
+        input_schema = schemas.DisableOrganizationAdminAccountInput,
+        output_schema = schemas.DisableOrganizationAdminAccountOutput,
         http_method = "DELETE",
         http_path = "/admin",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:disassociateFromAdministratorAccount(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateFromAdministratorAccount",
-        input_schema = types.DisassociateFromAdministratorAccountInput,
-        output_schema = types.DisassociateFromAdministratorAccountOutput,
+        input_schema = schemas.DisassociateFromAdministratorAccountInput,
+        output_schema = schemas.DisassociateFromAdministratorAccountOutput,
         http_method = "POST",
         http_path = "/administrator/disassociate",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:disassociateFromMasterAccount(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateFromMasterAccount",
-        input_schema = types.DisassociateFromMasterAccountInput,
-        output_schema = types.DisassociateFromMasterAccountOutput,
+        input_schema = schemas.DisassociateFromMasterAccountInput,
+        output_schema = schemas.DisassociateFromMasterAccountOutput,
         http_method = "POST",
         http_path = "/master/disassociate",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:disassociateMember(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateMember",
-        input_schema = types.DisassociateMemberInput,
-        output_schema = types.DisassociateMemberOutput,
+        input_schema = schemas.DisassociateMemberInput,
+        output_schema = schemas.DisassociateMemberOutput,
         http_method = "POST",
         http_path = "/members/disassociate/{id}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:enableMacie(input, options)
     return self:invokeOperation(input, {
         name = "EnableMacie",
-        input_schema = types.EnableMacieInput,
-        output_schema = types.EnableMacieOutput,
+        input_schema = schemas.EnableMacieInput,
+        output_schema = schemas.EnableMacieOutput,
         http_method = "POST",
         http_path = "/macie",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:enableOrganizationAdminAccount(input, options)
     return self:invokeOperation(input, {
         name = "EnableOrganizationAdminAccount",
-        input_schema = types.EnableOrganizationAdminAccountInput,
-        output_schema = types.EnableOrganizationAdminAccountOutput,
+        input_schema = schemas.EnableOrganizationAdminAccountInput,
+        output_schema = schemas.EnableOrganizationAdminAccountOutput,
         http_method = "POST",
         http_path = "/admin",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:getAdministratorAccount(input, options)
     return self:invokeOperation(input, {
         name = "GetAdministratorAccount",
-        input_schema = types.GetAdministratorAccountInput,
-        output_schema = types.GetAdministratorAccountOutput,
+        input_schema = schemas.GetAdministratorAccountInput,
+        output_schema = schemas.GetAdministratorAccountOutput,
         http_method = "GET",
         http_path = "/administrator",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:getAllowList(input, options)
     return self:invokeOperation(input, {
         name = "GetAllowList",
-        input_schema = types.GetAllowListInput,
-        output_schema = types.GetAllowListOutput,
+        input_schema = schemas.GetAllowListInput,
+        output_schema = schemas.GetAllowListOutput,
         http_method = "GET",
         http_path = "/allow-lists/{id}",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:getAutomatedDiscoveryConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetAutomatedDiscoveryConfiguration",
-        input_schema = types.GetAutomatedDiscoveryConfigurationInput,
-        output_schema = types.GetAutomatedDiscoveryConfigurationOutput,
+        input_schema = schemas.GetAutomatedDiscoveryConfigurationInput,
+        output_schema = schemas.GetAutomatedDiscoveryConfigurationOutput,
         http_method = "GET",
         http_path = "/automated-discovery/configuration",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:getBucketStatistics(input, options)
     return self:invokeOperation(input, {
         name = "GetBucketStatistics",
-        input_schema = types.GetBucketStatisticsInput,
-        output_schema = types.GetBucketStatisticsOutput,
+        input_schema = schemas.GetBucketStatisticsInput,
+        output_schema = schemas.GetBucketStatisticsOutput,
         http_method = "POST",
         http_path = "/datasources/s3/statistics",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:getClassificationExportConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetClassificationExportConfiguration",
-        input_schema = types.GetClassificationExportConfigurationInput,
-        output_schema = types.GetClassificationExportConfigurationOutput,
+        input_schema = schemas.GetClassificationExportConfigurationInput,
+        output_schema = schemas.GetClassificationExportConfigurationOutput,
         http_method = "GET",
         http_path = "/classification-export-configuration",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:getClassificationScope(input, options)
     return self:invokeOperation(input, {
         name = "GetClassificationScope",
-        input_schema = types.GetClassificationScopeInput,
-        output_schema = types.GetClassificationScopeOutput,
+        input_schema = schemas.GetClassificationScopeInput,
+        output_schema = schemas.GetClassificationScopeOutput,
         http_method = "GET",
         http_path = "/classification-scopes/{id}",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:getCustomDataIdentifier(input, options)
     return self:invokeOperation(input, {
         name = "GetCustomDataIdentifier",
-        input_schema = types.GetCustomDataIdentifierInput,
-        output_schema = types.GetCustomDataIdentifierOutput,
+        input_schema = schemas.GetCustomDataIdentifierInput,
+        output_schema = schemas.GetCustomDataIdentifierOutput,
         http_method = "GET",
         http_path = "/custom-data-identifiers/{id}",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:getFindings(input, options)
     return self:invokeOperation(input, {
         name = "GetFindings",
-        input_schema = types.GetFindingsInput,
-        output_schema = types.GetFindingsOutput,
+        input_schema = schemas.GetFindingsInput,
+        output_schema = schemas.GetFindingsOutput,
         http_method = "POST",
         http_path = "/findings/describe",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:getFindingsFilter(input, options)
     return self:invokeOperation(input, {
         name = "GetFindingsFilter",
-        input_schema = types.GetFindingsFilterInput,
-        output_schema = types.GetFindingsFilterOutput,
+        input_schema = schemas.GetFindingsFilterInput,
+        output_schema = schemas.GetFindingsFilterOutput,
         http_method = "GET",
         http_path = "/findingsfilters/{id}",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:getFindingsPublicationConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetFindingsPublicationConfiguration",
-        input_schema = types.GetFindingsPublicationConfigurationInput,
-        output_schema = types.GetFindingsPublicationConfigurationOutput,
+        input_schema = schemas.GetFindingsPublicationConfigurationInput,
+        output_schema = schemas.GetFindingsPublicationConfigurationOutput,
         http_method = "GET",
         http_path = "/findings-publication-configuration",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:getFindingStatistics(input, options)
     return self:invokeOperation(input, {
         name = "GetFindingStatistics",
-        input_schema = types.GetFindingStatisticsInput,
-        output_schema = types.GetFindingStatisticsOutput,
+        input_schema = schemas.GetFindingStatisticsInput,
+        output_schema = schemas.GetFindingStatisticsOutput,
         http_method = "POST",
         http_path = "/findings/statistics",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:getInvitationsCount(input, options)
     return self:invokeOperation(input, {
         name = "GetInvitationsCount",
-        input_schema = types.GetInvitationsCountInput,
-        output_schema = types.GetInvitationsCountOutput,
+        input_schema = schemas.GetInvitationsCountInput,
+        output_schema = schemas.GetInvitationsCountOutput,
         http_method = "GET",
         http_path = "/invitations/count",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:getMacieSession(input, options)
     return self:invokeOperation(input, {
         name = "GetMacieSession",
-        input_schema = types.GetMacieSessionInput,
-        output_schema = types.GetMacieSessionOutput,
+        input_schema = schemas.GetMacieSessionInput,
+        output_schema = schemas.GetMacieSessionOutput,
         http_method = "GET",
         http_path = "/macie",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:getMasterAccount(input, options)
     return self:invokeOperation(input, {
         name = "GetMasterAccount",
-        input_schema = types.GetMasterAccountInput,
-        output_schema = types.GetMasterAccountOutput,
+        input_schema = schemas.GetMasterAccountInput,
+        output_schema = schemas.GetMasterAccountOutput,
         http_method = "GET",
         http_path = "/master",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:getMember(input, options)
     return self:invokeOperation(input, {
         name = "GetMember",
-        input_schema = types.GetMemberInput,
-        output_schema = types.GetMemberOutput,
+        input_schema = schemas.GetMemberInput,
+        output_schema = schemas.GetMemberOutput,
         http_method = "GET",
         http_path = "/members/{id}",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:getResourceProfile(input, options)
     return self:invokeOperation(input, {
         name = "GetResourceProfile",
-        input_schema = types.GetResourceProfileInput,
-        output_schema = types.GetResourceProfileOutput,
+        input_schema = schemas.GetResourceProfileInput,
+        output_schema = schemas.GetResourceProfileOutput,
         http_method = "GET",
         http_path = "/resource-profiles",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:getRevealConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetRevealConfiguration",
-        input_schema = types.GetRevealConfigurationInput,
-        output_schema = types.GetRevealConfigurationOutput,
+        input_schema = schemas.GetRevealConfigurationInput,
+        output_schema = schemas.GetRevealConfigurationOutput,
         http_method = "GET",
         http_path = "/reveal-configuration",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:getSensitiveDataOccurrences(input, options)
     return self:invokeOperation(input, {
         name = "GetSensitiveDataOccurrences",
-        input_schema = types.GetSensitiveDataOccurrencesInput,
-        output_schema = types.GetSensitiveDataOccurrencesOutput,
+        input_schema = schemas.GetSensitiveDataOccurrencesInput,
+        output_schema = schemas.GetSensitiveDataOccurrencesOutput,
         http_method = "GET",
         http_path = "/findings/{findingId}/reveal",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:getSensitiveDataOccurrencesAvailability(input, options)
     return self:invokeOperation(input, {
         name = "GetSensitiveDataOccurrencesAvailability",
-        input_schema = types.GetSensitiveDataOccurrencesAvailabilityInput,
-        output_schema = types.GetSensitiveDataOccurrencesAvailabilityOutput,
+        input_schema = schemas.GetSensitiveDataOccurrencesAvailabilityInput,
+        output_schema = schemas.GetSensitiveDataOccurrencesAvailabilityOutput,
         http_method = "GET",
         http_path = "/findings/{findingId}/reveal/availability",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:getSensitivityInspectionTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetSensitivityInspectionTemplate",
-        input_schema = types.GetSensitivityInspectionTemplateInput,
-        output_schema = types.GetSensitivityInspectionTemplateOutput,
+        input_schema = schemas.GetSensitivityInspectionTemplateInput,
+        output_schema = schemas.GetSensitivityInspectionTemplateOutput,
         http_method = "GET",
         http_path = "/templates/sensitivity-inspections/{id}",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:getUsageStatistics(input, options)
     return self:invokeOperation(input, {
         name = "GetUsageStatistics",
-        input_schema = types.GetUsageStatisticsInput,
-        output_schema = types.GetUsageStatisticsOutput,
+        input_schema = schemas.GetUsageStatisticsInput,
+        output_schema = schemas.GetUsageStatisticsOutput,
         http_method = "POST",
         http_path = "/usage/statistics",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:getUsageTotals(input, options)
     return self:invokeOperation(input, {
         name = "GetUsageTotals",
-        input_schema = types.GetUsageTotalsInput,
-        output_schema = types.GetUsageTotalsOutput,
+        input_schema = schemas.GetUsageTotalsInput,
+        output_schema = schemas.GetUsageTotalsOutput,
         http_method = "GET",
         http_path = "/usage",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:listAllowLists(input, options)
     return self:invokeOperation(input, {
         name = "ListAllowLists",
-        input_schema = types.ListAllowListsInput,
-        output_schema = types.ListAllowListsOutput,
+        input_schema = schemas.ListAllowListsInput,
+        output_schema = schemas.ListAllowListsOutput,
         http_method = "GET",
         http_path = "/allow-lists",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:listAutomatedDiscoveryAccounts(input, options)
     return self:invokeOperation(input, {
         name = "ListAutomatedDiscoveryAccounts",
-        input_schema = types.ListAutomatedDiscoveryAccountsInput,
-        output_schema = types.ListAutomatedDiscoveryAccountsOutput,
+        input_schema = schemas.ListAutomatedDiscoveryAccountsInput,
+        output_schema = schemas.ListAutomatedDiscoveryAccountsOutput,
         http_method = "GET",
         http_path = "/automated-discovery/accounts",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:listClassificationJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListClassificationJobs",
-        input_schema = types.ListClassificationJobsInput,
-        output_schema = types.ListClassificationJobsOutput,
+        input_schema = schemas.ListClassificationJobsInput,
+        output_schema = schemas.ListClassificationJobsOutput,
         http_method = "POST",
         http_path = "/jobs/list",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:listClassificationScopes(input, options)
     return self:invokeOperation(input, {
         name = "ListClassificationScopes",
-        input_schema = types.ListClassificationScopesInput,
-        output_schema = types.ListClassificationScopesOutput,
+        input_schema = schemas.ListClassificationScopesInput,
+        output_schema = schemas.ListClassificationScopesOutput,
         http_method = "GET",
         http_path = "/classification-scopes",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:listCustomDataIdentifiers(input, options)
     return self:invokeOperation(input, {
         name = "ListCustomDataIdentifiers",
-        input_schema = types.ListCustomDataIdentifiersInput,
-        output_schema = types.ListCustomDataIdentifiersOutput,
+        input_schema = schemas.ListCustomDataIdentifiersInput,
+        output_schema = schemas.ListCustomDataIdentifiersOutput,
         http_method = "POST",
         http_path = "/custom-data-identifiers/list",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:listFindings(input, options)
     return self:invokeOperation(input, {
         name = "ListFindings",
-        input_schema = types.ListFindingsInput,
-        output_schema = types.ListFindingsOutput,
+        input_schema = schemas.ListFindingsInput,
+        output_schema = schemas.ListFindingsOutput,
         http_method = "POST",
         http_path = "/findings",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:listFindingsFilters(input, options)
     return self:invokeOperation(input, {
         name = "ListFindingsFilters",
-        input_schema = types.ListFindingsFiltersInput,
-        output_schema = types.ListFindingsFiltersOutput,
+        input_schema = schemas.ListFindingsFiltersInput,
+        output_schema = schemas.ListFindingsFiltersOutput,
         http_method = "GET",
         http_path = "/findingsfilters",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:listInvitations(input, options)
     return self:invokeOperation(input, {
         name = "ListInvitations",
-        input_schema = types.ListInvitationsInput,
-        output_schema = types.ListInvitationsOutput,
+        input_schema = schemas.ListInvitationsInput,
+        output_schema = schemas.ListInvitationsOutput,
         http_method = "GET",
         http_path = "/invitations",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:listManagedDataIdentifiers(input, options)
     return self:invokeOperation(input, {
         name = "ListManagedDataIdentifiers",
-        input_schema = types.ListManagedDataIdentifiersInput,
-        output_schema = types.ListManagedDataIdentifiersOutput,
+        input_schema = schemas.ListManagedDataIdentifiersInput,
+        output_schema = schemas.ListManagedDataIdentifiersOutput,
         http_method = "POST",
         http_path = "/managed-data-identifiers/list",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:listMembers(input, options)
     return self:invokeOperation(input, {
         name = "ListMembers",
-        input_schema = types.ListMembersInput,
-        output_schema = types.ListMembersOutput,
+        input_schema = schemas.ListMembersInput,
+        output_schema = schemas.ListMembersOutput,
         http_method = "GET",
         http_path = "/members",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:listOrganizationAdminAccounts(input, options)
     return self:invokeOperation(input, {
         name = "ListOrganizationAdminAccounts",
-        input_schema = types.ListOrganizationAdminAccountsInput,
-        output_schema = types.ListOrganizationAdminAccountsOutput,
+        input_schema = schemas.ListOrganizationAdminAccountsInput,
+        output_schema = schemas.ListOrganizationAdminAccountsOutput,
         http_method = "GET",
         http_path = "/admin",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:listResourceProfileArtifacts(input, options)
     return self:invokeOperation(input, {
         name = "ListResourceProfileArtifacts",
-        input_schema = types.ListResourceProfileArtifactsInput,
-        output_schema = types.ListResourceProfileArtifactsOutput,
+        input_schema = schemas.ListResourceProfileArtifactsInput,
+        output_schema = schemas.ListResourceProfileArtifactsOutput,
         http_method = "GET",
         http_path = "/resource-profiles/artifacts",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:listResourceProfileDetections(input, options)
     return self:invokeOperation(input, {
         name = "ListResourceProfileDetections",
-        input_schema = types.ListResourceProfileDetectionsInput,
-        output_schema = types.ListResourceProfileDetectionsOutput,
+        input_schema = schemas.ListResourceProfileDetectionsInput,
+        output_schema = schemas.ListResourceProfileDetectionsOutput,
         http_method = "GET",
         http_path = "/resource-profiles/detections",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:listSensitivityInspectionTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListSensitivityInspectionTemplates",
-        input_schema = types.ListSensitivityInspectionTemplatesInput,
-        output_schema = types.ListSensitivityInspectionTemplatesOutput,
+        input_schema = schemas.ListSensitivityInspectionTemplatesInput,
+        output_schema = schemas.ListSensitivityInspectionTemplatesOutput,
         http_method = "GET",
         http_path = "/templates/sensitivity-inspections",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:putClassificationExportConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutClassificationExportConfiguration",
-        input_schema = types.PutClassificationExportConfigurationInput,
-        output_schema = types.PutClassificationExportConfigurationOutput,
+        input_schema = schemas.PutClassificationExportConfigurationInput,
+        output_schema = schemas.PutClassificationExportConfigurationOutput,
         http_method = "PUT",
         http_path = "/classification-export-configuration",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:putFindingsPublicationConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutFindingsPublicationConfiguration",
-        input_schema = types.PutFindingsPublicationConfigurationInput,
-        output_schema = types.PutFindingsPublicationConfigurationOutput,
+        input_schema = schemas.PutFindingsPublicationConfigurationInput,
+        output_schema = schemas.PutFindingsPublicationConfigurationOutput,
         http_method = "PUT",
         http_path = "/findings-publication-configuration",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:searchResources(input, options)
     return self:invokeOperation(input, {
         name = "SearchResources",
-        input_schema = types.SearchResourcesInput,
-        output_schema = types.SearchResourcesOutput,
+        input_schema = schemas.SearchResourcesInput,
+        output_schema = schemas.SearchResourcesOutput,
         http_method = "POST",
         http_path = "/datasources/search-resources",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:testCustomDataIdentifier(input, options)
     return self:invokeOperation(input, {
         name = "TestCustomDataIdentifier",
-        input_schema = types.TestCustomDataIdentifierInput,
-        output_schema = types.TestCustomDataIdentifierOutput,
+        input_schema = schemas.TestCustomDataIdentifierInput,
+        output_schema = schemas.TestCustomDataIdentifierOutput,
         http_method = "POST",
         http_path = "/custom-data-identifiers/test",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:updateAllowList(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAllowList",
-        input_schema = types.UpdateAllowListInput,
-        output_schema = types.UpdateAllowListOutput,
+        input_schema = schemas.UpdateAllowListInput,
+        output_schema = schemas.UpdateAllowListOutput,
         http_method = "PUT",
         http_path = "/allow-lists/{id}",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:updateAutomatedDiscoveryConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAutomatedDiscoveryConfiguration",
-        input_schema = types.UpdateAutomatedDiscoveryConfigurationInput,
-        output_schema = types.UpdateAutomatedDiscoveryConfigurationOutput,
+        input_schema = schemas.UpdateAutomatedDiscoveryConfigurationInput,
+        output_schema = schemas.UpdateAutomatedDiscoveryConfigurationOutput,
         http_method = "PUT",
         http_path = "/automated-discovery/configuration",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:updateClassificationJob(input, options)
     return self:invokeOperation(input, {
         name = "UpdateClassificationJob",
-        input_schema = types.UpdateClassificationJobInput,
-        output_schema = types.UpdateClassificationJobOutput,
+        input_schema = schemas.UpdateClassificationJobInput,
+        output_schema = schemas.UpdateClassificationJobOutput,
         http_method = "PATCH",
         http_path = "/jobs/{jobId}",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:updateClassificationScope(input, options)
     return self:invokeOperation(input, {
         name = "UpdateClassificationScope",
-        input_schema = types.UpdateClassificationScopeInput,
-        output_schema = types.UpdateClassificationScopeOutput,
+        input_schema = schemas.UpdateClassificationScopeInput,
+        output_schema = schemas.UpdateClassificationScopeOutput,
         http_method = "PATCH",
         http_path = "/classification-scopes/{id}",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:updateFindingsFilter(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFindingsFilter",
-        input_schema = types.UpdateFindingsFilterInput,
-        output_schema = types.UpdateFindingsFilterOutput,
+        input_schema = schemas.UpdateFindingsFilterInput,
+        output_schema = schemas.UpdateFindingsFilterOutput,
         http_method = "PATCH",
         http_path = "/findingsfilters/{id}",
         effective_auth_schemes = {
@@ -1011,8 +1011,8 @@ end
 function Client:updateMacieSession(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMacieSession",
-        input_schema = types.UpdateMacieSessionInput,
-        output_schema = types.UpdateMacieSessionOutput,
+        input_schema = schemas.UpdateMacieSessionInput,
+        output_schema = schemas.UpdateMacieSessionOutput,
         http_method = "PATCH",
         http_path = "/macie",
         effective_auth_schemes = {
@@ -1024,8 +1024,8 @@ end
 function Client:updateMemberSession(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMemberSession",
-        input_schema = types.UpdateMemberSessionInput,
-        output_schema = types.UpdateMemberSessionOutput,
+        input_schema = schemas.UpdateMemberSessionInput,
+        output_schema = schemas.UpdateMemberSessionOutput,
         http_method = "PATCH",
         http_path = "/macie/members/{id}",
         effective_auth_schemes = {
@@ -1037,8 +1037,8 @@ end
 function Client:updateOrganizationConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateOrganizationConfiguration",
-        input_schema = types.UpdateOrganizationConfigurationInput,
-        output_schema = types.UpdateOrganizationConfigurationOutput,
+        input_schema = schemas.UpdateOrganizationConfigurationInput,
+        output_schema = schemas.UpdateOrganizationConfigurationOutput,
         http_method = "PATCH",
         http_path = "/admin/configuration",
         effective_auth_schemes = {
@@ -1050,8 +1050,8 @@ end
 function Client:updateResourceProfile(input, options)
     return self:invokeOperation(input, {
         name = "UpdateResourceProfile",
-        input_schema = types.UpdateResourceProfileInput,
-        output_schema = types.UpdateResourceProfileOutput,
+        input_schema = schemas.UpdateResourceProfileInput,
+        output_schema = schemas.UpdateResourceProfileOutput,
         http_method = "PATCH",
         http_path = "/resource-profiles",
         effective_auth_schemes = {
@@ -1063,8 +1063,8 @@ end
 function Client:updateResourceProfileDetections(input, options)
     return self:invokeOperation(input, {
         name = "UpdateResourceProfileDetections",
-        input_schema = types.UpdateResourceProfileDetectionsInput,
-        output_schema = types.UpdateResourceProfileDetectionsOutput,
+        input_schema = schemas.UpdateResourceProfileDetectionsInput,
+        output_schema = schemas.UpdateResourceProfileDetectionsOutput,
         http_method = "PATCH",
         http_path = "/resource-profiles/detections",
         effective_auth_schemes = {
@@ -1076,8 +1076,8 @@ end
 function Client:updateRevealConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRevealConfiguration",
-        input_schema = types.UpdateRevealConfigurationInput,
-        output_schema = types.UpdateRevealConfigurationOutput,
+        input_schema = schemas.UpdateRevealConfigurationInput,
+        output_schema = schemas.UpdateRevealConfigurationOutput,
         http_method = "PUT",
         http_path = "/reveal-configuration",
         effective_auth_schemes = {
@@ -1089,8 +1089,8 @@ end
 function Client:updateSensitivityInspectionTemplate(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSensitivityInspectionTemplate",
-        input_schema = types.UpdateSensitivityInspectionTemplateInput,
-        output_schema = types.UpdateSensitivityInspectionTemplateOutput,
+        input_schema = schemas.UpdateSensitivityInspectionTemplateInput,
+        output_schema = schemas.UpdateSensitivityInspectionTemplateOutput,
         http_method = "PUT",
         http_path = "/templates/sensitivity-inspections/{id}",
         effective_auth_schemes = {

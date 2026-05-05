@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("entityresolution.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("entityresolution.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("entityresolution.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addPolicyStatement(input, options)
     return self:invokeOperation(input, {
         name = "AddPolicyStatement",
-        input_schema = types.AddPolicyStatementInput,
-        output_schema = types.AddPolicyStatementOutput,
+        input_schema = schemas.AddPolicyStatementInput,
+        output_schema = schemas.AddPolicyStatementOutput,
         http_method = "POST",
         http_path = "/policies/{arn}/{statementId}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchDeleteUniqueId(input, options)
     return self:invokeOperation(input, {
         name = "BatchDeleteUniqueId",
-        input_schema = types.BatchDeleteUniqueIdInput,
-        output_schema = types.BatchDeleteUniqueIdOutput,
+        input_schema = schemas.BatchDeleteUniqueIdInput,
+        output_schema = schemas.BatchDeleteUniqueIdOutput,
         http_method = "DELETE",
         http_path = "/matchingworkflows/{workflowName}/uniqueids",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createIdMappingWorkflow(input, options)
     return self:invokeOperation(input, {
         name = "CreateIdMappingWorkflow",
-        input_schema = types.CreateIdMappingWorkflowInput,
-        output_schema = types.CreateIdMappingWorkflowOutput,
+        input_schema = schemas.CreateIdMappingWorkflowInput,
+        output_schema = schemas.CreateIdMappingWorkflowOutput,
         http_method = "POST",
         http_path = "/idmappingworkflows",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createIdNamespace(input, options)
     return self:invokeOperation(input, {
         name = "CreateIdNamespace",
-        input_schema = types.CreateIdNamespaceInput,
-        output_schema = types.CreateIdNamespaceOutput,
+        input_schema = schemas.CreateIdNamespaceInput,
+        output_schema = schemas.CreateIdNamespaceOutput,
         http_method = "POST",
         http_path = "/idnamespaces",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createMatchingWorkflow(input, options)
     return self:invokeOperation(input, {
         name = "CreateMatchingWorkflow",
-        input_schema = types.CreateMatchingWorkflowInput,
-        output_schema = types.CreateMatchingWorkflowOutput,
+        input_schema = schemas.CreateMatchingWorkflowInput,
+        output_schema = schemas.CreateMatchingWorkflowOutput,
         http_method = "POST",
         http_path = "/matchingworkflows",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createSchemaMapping(input, options)
     return self:invokeOperation(input, {
         name = "CreateSchemaMapping",
-        input_schema = types.CreateSchemaMappingInput,
-        output_schema = types.CreateSchemaMappingOutput,
+        input_schema = schemas.CreateSchemaMappingInput,
+        output_schema = schemas.CreateSchemaMappingOutput,
         http_method = "POST",
         http_path = "/schemas",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteIdMappingWorkflow(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIdMappingWorkflow",
-        input_schema = types.DeleteIdMappingWorkflowInput,
-        output_schema = types.DeleteIdMappingWorkflowOutput,
+        input_schema = schemas.DeleteIdMappingWorkflowInput,
+        output_schema = schemas.DeleteIdMappingWorkflowOutput,
         http_method = "DELETE",
         http_path = "/idmappingworkflows/{workflowName}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteIdNamespace(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIdNamespace",
-        input_schema = types.DeleteIdNamespaceInput,
-        output_schema = types.DeleteIdNamespaceOutput,
+        input_schema = schemas.DeleteIdNamespaceInput,
+        output_schema = schemas.DeleteIdNamespaceOutput,
         http_method = "DELETE",
         http_path = "/idnamespaces/{idNamespaceName}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteMatchingWorkflow(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMatchingWorkflow",
-        input_schema = types.DeleteMatchingWorkflowInput,
-        output_schema = types.DeleteMatchingWorkflowOutput,
+        input_schema = schemas.DeleteMatchingWorkflowInput,
+        output_schema = schemas.DeleteMatchingWorkflowOutput,
         http_method = "DELETE",
         http_path = "/matchingworkflows/{workflowName}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deletePolicyStatement(input, options)
     return self:invokeOperation(input, {
         name = "DeletePolicyStatement",
-        input_schema = types.DeletePolicyStatementInput,
-        output_schema = types.DeletePolicyStatementOutput,
+        input_schema = schemas.DeletePolicyStatementInput,
+        output_schema = schemas.DeletePolicyStatementOutput,
         http_method = "DELETE",
         http_path = "/policies/{arn}/{statementId}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteSchemaMapping(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSchemaMapping",
-        input_schema = types.DeleteSchemaMappingInput,
-        output_schema = types.DeleteSchemaMappingOutput,
+        input_schema = schemas.DeleteSchemaMappingInput,
+        output_schema = schemas.DeleteSchemaMappingOutput,
         http_method = "DELETE",
         http_path = "/schemas/{schemaName}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:generateMatchId(input, options)
     return self:invokeOperation(input, {
         name = "GenerateMatchId",
-        input_schema = types.GenerateMatchIdInput,
-        output_schema = types.GenerateMatchIdOutput,
+        input_schema = schemas.GenerateMatchIdInput,
+        output_schema = schemas.GenerateMatchIdOutput,
         http_method = "POST",
         http_path = "/matchingworkflows/{workflowName}/generateMatches",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getIdMappingJob(input, options)
     return self:invokeOperation(input, {
         name = "GetIdMappingJob",
-        input_schema = types.GetIdMappingJobInput,
-        output_schema = types.GetIdMappingJobOutput,
+        input_schema = schemas.GetIdMappingJobInput,
+        output_schema = schemas.GetIdMappingJobOutput,
         http_method = "GET",
         http_path = "/idmappingworkflows/{workflowName}/jobs/{jobId}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getIdMappingWorkflow(input, options)
     return self:invokeOperation(input, {
         name = "GetIdMappingWorkflow",
-        input_schema = types.GetIdMappingWorkflowInput,
-        output_schema = types.GetIdMappingWorkflowOutput,
+        input_schema = schemas.GetIdMappingWorkflowInput,
+        output_schema = schemas.GetIdMappingWorkflowOutput,
         http_method = "GET",
         http_path = "/idmappingworkflows/{workflowName}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getIdNamespace(input, options)
     return self:invokeOperation(input, {
         name = "GetIdNamespace",
-        input_schema = types.GetIdNamespaceInput,
-        output_schema = types.GetIdNamespaceOutput,
+        input_schema = schemas.GetIdNamespaceInput,
+        output_schema = schemas.GetIdNamespaceOutput,
         http_method = "GET",
         http_path = "/idnamespaces/{idNamespaceName}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getMatchId(input, options)
     return self:invokeOperation(input, {
         name = "GetMatchId",
-        input_schema = types.GetMatchIdInput,
-        output_schema = types.GetMatchIdOutput,
+        input_schema = schemas.GetMatchIdInput,
+        output_schema = schemas.GetMatchIdOutput,
         http_method = "POST",
         http_path = "/matchingworkflows/{workflowName}/matches",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getMatchingJob(input, options)
     return self:invokeOperation(input, {
         name = "GetMatchingJob",
-        input_schema = types.GetMatchingJobInput,
-        output_schema = types.GetMatchingJobOutput,
+        input_schema = schemas.GetMatchingJobInput,
+        output_schema = schemas.GetMatchingJobOutput,
         http_method = "GET",
         http_path = "/matchingworkflows/{workflowName}/jobs/{jobId}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getMatchingWorkflow(input, options)
     return self:invokeOperation(input, {
         name = "GetMatchingWorkflow",
-        input_schema = types.GetMatchingWorkflowInput,
-        output_schema = types.GetMatchingWorkflowOutput,
+        input_schema = schemas.GetMatchingWorkflowInput,
+        output_schema = schemas.GetMatchingWorkflowOutput,
         http_method = "GET",
         http_path = "/matchingworkflows/{workflowName}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetPolicy",
-        input_schema = types.GetPolicyInput,
-        output_schema = types.GetPolicyOutput,
+        input_schema = schemas.GetPolicyInput,
+        output_schema = schemas.GetPolicyOutput,
         http_method = "GET",
         http_path = "/policies/{arn}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getProviderService(input, options)
     return self:invokeOperation(input, {
         name = "GetProviderService",
-        input_schema = types.GetProviderServiceInput,
-        output_schema = types.GetProviderServiceOutput,
+        input_schema = schemas.GetProviderServiceInput,
+        output_schema = schemas.GetProviderServiceOutput,
         http_method = "GET",
         http_path = "/providerservices/{providerName}/{providerServiceName}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:getSchemaMapping(input, options)
     return self:invokeOperation(input, {
         name = "GetSchemaMapping",
-        input_schema = types.GetSchemaMappingInput,
-        output_schema = types.GetSchemaMappingOutput,
+        input_schema = schemas.GetSchemaMappingInput,
+        output_schema = schemas.GetSchemaMappingOutput,
         http_method = "GET",
         http_path = "/schemas/{schemaName}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listIdMappingJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListIdMappingJobs",
-        input_schema = types.ListIdMappingJobsInput,
-        output_schema = types.ListIdMappingJobsOutput,
+        input_schema = schemas.ListIdMappingJobsInput,
+        output_schema = schemas.ListIdMappingJobsOutput,
         http_method = "GET",
         http_path = "/idmappingworkflows/{workflowName}/jobs",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listIdMappingWorkflows(input, options)
     return self:invokeOperation(input, {
         name = "ListIdMappingWorkflows",
-        input_schema = types.ListIdMappingWorkflowsInput,
-        output_schema = types.ListIdMappingWorkflowsOutput,
+        input_schema = schemas.ListIdMappingWorkflowsInput,
+        output_schema = schemas.ListIdMappingWorkflowsOutput,
         http_method = "GET",
         http_path = "/idmappingworkflows",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listIdNamespaces(input, options)
     return self:invokeOperation(input, {
         name = "ListIdNamespaces",
-        input_schema = types.ListIdNamespacesInput,
-        output_schema = types.ListIdNamespacesOutput,
+        input_schema = schemas.ListIdNamespacesInput,
+        output_schema = schemas.ListIdNamespacesOutput,
         http_method = "GET",
         http_path = "/idnamespaces",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listMatchingJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListMatchingJobs",
-        input_schema = types.ListMatchingJobsInput,
-        output_schema = types.ListMatchingJobsOutput,
+        input_schema = schemas.ListMatchingJobsInput,
+        output_schema = schemas.ListMatchingJobsOutput,
         http_method = "GET",
         http_path = "/matchingworkflows/{workflowName}/jobs",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listMatchingWorkflows(input, options)
     return self:invokeOperation(input, {
         name = "ListMatchingWorkflows",
-        input_schema = types.ListMatchingWorkflowsInput,
-        output_schema = types.ListMatchingWorkflowsOutput,
+        input_schema = schemas.ListMatchingWorkflowsInput,
+        output_schema = schemas.ListMatchingWorkflowsOutput,
         http_method = "GET",
         http_path = "/matchingworkflows",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listProviderServices(input, options)
     return self:invokeOperation(input, {
         name = "ListProviderServices",
-        input_schema = types.ListProviderServicesInput,
-        output_schema = types.ListProviderServicesOutput,
+        input_schema = schemas.ListProviderServicesInput,
+        output_schema = schemas.ListProviderServicesOutput,
         http_method = "GET",
         http_path = "/providerservices",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listSchemaMappings(input, options)
     return self:invokeOperation(input, {
         name = "ListSchemaMappings",
-        input_schema = types.ListSchemaMappingsInput,
-        output_schema = types.ListSchemaMappingsOutput,
+        input_schema = schemas.ListSchemaMappingsInput,
+        output_schema = schemas.ListSchemaMappingsOutput,
         http_method = "GET",
         http_path = "/schemas",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:putPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutPolicy",
-        input_schema = types.PutPolicyInput,
-        output_schema = types.PutPolicyOutput,
+        input_schema = schemas.PutPolicyInput,
+        output_schema = schemas.PutPolicyOutput,
         http_method = "PUT",
         http_path = "/policies/{arn}",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:startIdMappingJob(input, options)
     return self:invokeOperation(input, {
         name = "StartIdMappingJob",
-        input_schema = types.StartIdMappingJobInput,
-        output_schema = types.StartIdMappingJobOutput,
+        input_schema = schemas.StartIdMappingJobInput,
+        output_schema = schemas.StartIdMappingJobOutput,
         http_method = "POST",
         http_path = "/idmappingworkflows/{workflowName}/jobs",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:startMatchingJob(input, options)
     return self:invokeOperation(input, {
         name = "StartMatchingJob",
-        input_schema = types.StartMatchingJobInput,
-        output_schema = types.StartMatchingJobOutput,
+        input_schema = schemas.StartMatchingJobInput,
+        output_schema = schemas.StartMatchingJobOutput,
         http_method = "POST",
         http_path = "/matchingworkflows/{workflowName}/jobs",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:updateIdMappingWorkflow(input, options)
     return self:invokeOperation(input, {
         name = "UpdateIdMappingWorkflow",
-        input_schema = types.UpdateIdMappingWorkflowInput,
-        output_schema = types.UpdateIdMappingWorkflowOutput,
+        input_schema = schemas.UpdateIdMappingWorkflowInput,
+        output_schema = schemas.UpdateIdMappingWorkflowOutput,
         http_method = "PUT",
         http_path = "/idmappingworkflows/{workflowName}",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:updateIdNamespace(input, options)
     return self:invokeOperation(input, {
         name = "UpdateIdNamespace",
-        input_schema = types.UpdateIdNamespaceInput,
-        output_schema = types.UpdateIdNamespaceOutput,
+        input_schema = schemas.UpdateIdNamespaceInput,
+        output_schema = schemas.UpdateIdNamespaceOutput,
         http_method = "PUT",
         http_path = "/idnamespaces/{idNamespaceName}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:updateMatchingWorkflow(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMatchingWorkflow",
-        input_schema = types.UpdateMatchingWorkflowInput,
-        output_schema = types.UpdateMatchingWorkflowOutput,
+        input_schema = schemas.UpdateMatchingWorkflowInput,
+        output_schema = schemas.UpdateMatchingWorkflowOutput,
         http_method = "PUT",
         http_path = "/matchingworkflows/{workflowName}",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:updateSchemaMapping(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSchemaMapping",
-        input_schema = types.UpdateSchemaMappingInput,
-        output_schema = types.UpdateSchemaMappingOutput,
+        input_schema = schemas.UpdateSchemaMappingInput,
+        output_schema = schemas.UpdateSchemaMappingOutput,
         http_method = "PUT",
         http_path = "/schemas/{schemaName}",
         effective_auth_schemes = {

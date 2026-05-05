@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("lexmodelbuildingservice.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("lexmodelbuildingservice.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("lexmodelbuildingservice.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createBotVersion(input, options)
     return self:invokeOperation(input, {
         name = "CreateBotVersion",
-        input_schema = types.CreateBotVersionInput,
-        output_schema = types.CreateBotVersionOutput,
+        input_schema = schemas.CreateBotVersionInput,
+        output_schema = schemas.CreateBotVersionOutput,
         http_method = "POST",
         http_path = "/bots/{name}/versions",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createIntentVersion(input, options)
     return self:invokeOperation(input, {
         name = "CreateIntentVersion",
-        input_schema = types.CreateIntentVersionInput,
-        output_schema = types.CreateIntentVersionOutput,
+        input_schema = schemas.CreateIntentVersionInput,
+        output_schema = schemas.CreateIntentVersionOutput,
         http_method = "POST",
         http_path = "/intents/{name}/versions",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createSlotTypeVersion(input, options)
     return self:invokeOperation(input, {
         name = "CreateSlotTypeVersion",
-        input_schema = types.CreateSlotTypeVersionInput,
-        output_schema = types.CreateSlotTypeVersionOutput,
+        input_schema = schemas.CreateSlotTypeVersionInput,
+        output_schema = schemas.CreateSlotTypeVersionOutput,
         http_method = "POST",
         http_path = "/slottypes/{name}/versions",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteBot(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBot",
-        input_schema = types.DeleteBotInput,
-        output_schema = types.DeleteBotOutput,
+        input_schema = schemas.DeleteBotInput,
+        output_schema = schemas.DeleteBotOutput,
         http_method = "DELETE",
         http_path = "/bots/{name}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteBotAlias(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBotAlias",
-        input_schema = types.DeleteBotAliasInput,
-        output_schema = types.DeleteBotAliasOutput,
+        input_schema = schemas.DeleteBotAliasInput,
+        output_schema = schemas.DeleteBotAliasOutput,
         http_method = "DELETE",
         http_path = "/bots/{botName}/aliases/{name}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteBotChannelAssociation(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBotChannelAssociation",
-        input_schema = types.DeleteBotChannelAssociationInput,
-        output_schema = types.DeleteBotChannelAssociationOutput,
+        input_schema = schemas.DeleteBotChannelAssociationInput,
+        output_schema = schemas.DeleteBotChannelAssociationOutput,
         http_method = "DELETE",
         http_path = "/bots/{botName}/aliases/{botAlias}/channels/{name}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteBotVersion(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBotVersion",
-        input_schema = types.DeleteBotVersionInput,
-        output_schema = types.DeleteBotVersionOutput,
+        input_schema = schemas.DeleteBotVersionInput,
+        output_schema = schemas.DeleteBotVersionOutput,
         http_method = "DELETE",
         http_path = "/bots/{name}/versions/{version}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteIntent(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIntent",
-        input_schema = types.DeleteIntentInput,
-        output_schema = types.DeleteIntentOutput,
+        input_schema = schemas.DeleteIntentInput,
+        output_schema = schemas.DeleteIntentOutput,
         http_method = "DELETE",
         http_path = "/intents/{name}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteIntentVersion(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIntentVersion",
-        input_schema = types.DeleteIntentVersionInput,
-        output_schema = types.DeleteIntentVersionOutput,
+        input_schema = schemas.DeleteIntentVersionInput,
+        output_schema = schemas.DeleteIntentVersionOutput,
         http_method = "DELETE",
         http_path = "/intents/{name}/versions/{version}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteSlotType(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSlotType",
-        input_schema = types.DeleteSlotTypeInput,
-        output_schema = types.DeleteSlotTypeOutput,
+        input_schema = schemas.DeleteSlotTypeInput,
+        output_schema = schemas.DeleteSlotTypeOutput,
         http_method = "DELETE",
         http_path = "/slottypes/{name}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteSlotTypeVersion(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSlotTypeVersion",
-        input_schema = types.DeleteSlotTypeVersionInput,
-        output_schema = types.DeleteSlotTypeVersionOutput,
+        input_schema = schemas.DeleteSlotTypeVersionInput,
+        output_schema = schemas.DeleteSlotTypeVersionOutput,
         http_method = "DELETE",
         http_path = "/slottypes/{name}/version/{version}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteUtterances(input, options)
     return self:invokeOperation(input, {
         name = "DeleteUtterances",
-        input_schema = types.DeleteUtterancesInput,
-        output_schema = types.DeleteUtterancesOutput,
+        input_schema = schemas.DeleteUtterancesInput,
+        output_schema = schemas.DeleteUtterancesOutput,
         http_method = "DELETE",
         http_path = "/bots/{botName}/utterances/{userId}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getBot(input, options)
     return self:invokeOperation(input, {
         name = "GetBot",
-        input_schema = types.GetBotInput,
-        output_schema = types.GetBotOutput,
+        input_schema = schemas.GetBotInput,
+        output_schema = schemas.GetBotOutput,
         http_method = "GET",
         http_path = "/bots/{name}/versions/{versionOrAlias}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getBotAlias(input, options)
     return self:invokeOperation(input, {
         name = "GetBotAlias",
-        input_schema = types.GetBotAliasInput,
-        output_schema = types.GetBotAliasOutput,
+        input_schema = schemas.GetBotAliasInput,
+        output_schema = schemas.GetBotAliasOutput,
         http_method = "GET",
         http_path = "/bots/{botName}/aliases/{name}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getBotAliases(input, options)
     return self:invokeOperation(input, {
         name = "GetBotAliases",
-        input_schema = types.GetBotAliasesInput,
-        output_schema = types.GetBotAliasesOutput,
+        input_schema = schemas.GetBotAliasesInput,
+        output_schema = schemas.GetBotAliasesOutput,
         http_method = "GET",
         http_path = "/bots/{botName}/aliases",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getBotChannelAssociation(input, options)
     return self:invokeOperation(input, {
         name = "GetBotChannelAssociation",
-        input_schema = types.GetBotChannelAssociationInput,
-        output_schema = types.GetBotChannelAssociationOutput,
+        input_schema = schemas.GetBotChannelAssociationInput,
+        output_schema = schemas.GetBotChannelAssociationOutput,
         http_method = "GET",
         http_path = "/bots/{botName}/aliases/{botAlias}/channels/{name}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getBotChannelAssociations(input, options)
     return self:invokeOperation(input, {
         name = "GetBotChannelAssociations",
-        input_schema = types.GetBotChannelAssociationsInput,
-        output_schema = types.GetBotChannelAssociationsOutput,
+        input_schema = schemas.GetBotChannelAssociationsInput,
+        output_schema = schemas.GetBotChannelAssociationsOutput,
         http_method = "GET",
         http_path = "/bots/{botName}/aliases/{botAlias}/channels",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getBots(input, options)
     return self:invokeOperation(input, {
         name = "GetBots",
-        input_schema = types.GetBotsInput,
-        output_schema = types.GetBotsOutput,
+        input_schema = schemas.GetBotsInput,
+        output_schema = schemas.GetBotsOutput,
         http_method = "GET",
         http_path = "/bots",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getBotVersions(input, options)
     return self:invokeOperation(input, {
         name = "GetBotVersions",
-        input_schema = types.GetBotVersionsInput,
-        output_schema = types.GetBotVersionsOutput,
+        input_schema = schemas.GetBotVersionsInput,
+        output_schema = schemas.GetBotVersionsOutput,
         http_method = "GET",
         http_path = "/bots/{name}/versions",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getBuiltinIntent(input, options)
     return self:invokeOperation(input, {
         name = "GetBuiltinIntent",
-        input_schema = types.GetBuiltinIntentInput,
-        output_schema = types.GetBuiltinIntentOutput,
+        input_schema = schemas.GetBuiltinIntentInput,
+        output_schema = schemas.GetBuiltinIntentOutput,
         http_method = "GET",
         http_path = "/builtins/intents/{signature}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:getBuiltinIntents(input, options)
     return self:invokeOperation(input, {
         name = "GetBuiltinIntents",
-        input_schema = types.GetBuiltinIntentsInput,
-        output_schema = types.GetBuiltinIntentsOutput,
+        input_schema = schemas.GetBuiltinIntentsInput,
+        output_schema = schemas.GetBuiltinIntentsOutput,
         http_method = "GET",
         http_path = "/builtins/intents",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:getBuiltinSlotTypes(input, options)
     return self:invokeOperation(input, {
         name = "GetBuiltinSlotTypes",
-        input_schema = types.GetBuiltinSlotTypesInput,
-        output_schema = types.GetBuiltinSlotTypesOutput,
+        input_schema = schemas.GetBuiltinSlotTypesInput,
+        output_schema = schemas.GetBuiltinSlotTypesOutput,
         http_method = "GET",
         http_path = "/builtins/slottypes",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:getExport(input, options)
     return self:invokeOperation(input, {
         name = "GetExport",
-        input_schema = types.GetExportInput,
-        output_schema = types.GetExportOutput,
+        input_schema = schemas.GetExportInput,
+        output_schema = schemas.GetExportOutput,
         http_method = "GET",
         http_path = "/exports",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:getImport(input, options)
     return self:invokeOperation(input, {
         name = "GetImport",
-        input_schema = types.GetImportInput,
-        output_schema = types.GetImportOutput,
+        input_schema = schemas.GetImportInput,
+        output_schema = schemas.GetImportOutput,
         http_method = "GET",
         http_path = "/imports/{importId}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getIntent(input, options)
     return self:invokeOperation(input, {
         name = "GetIntent",
-        input_schema = types.GetIntentInput,
-        output_schema = types.GetIntentOutput,
+        input_schema = schemas.GetIntentInput,
+        output_schema = schemas.GetIntentOutput,
         http_method = "GET",
         http_path = "/intents/{name}/versions/{version}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:getIntents(input, options)
     return self:invokeOperation(input, {
         name = "GetIntents",
-        input_schema = types.GetIntentsInput,
-        output_schema = types.GetIntentsOutput,
+        input_schema = schemas.GetIntentsInput,
+        output_schema = schemas.GetIntentsOutput,
         http_method = "GET",
         http_path = "/intents",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:getIntentVersions(input, options)
     return self:invokeOperation(input, {
         name = "GetIntentVersions",
-        input_schema = types.GetIntentVersionsInput,
-        output_schema = types.GetIntentVersionsOutput,
+        input_schema = schemas.GetIntentVersionsInput,
+        output_schema = schemas.GetIntentVersionsOutput,
         http_method = "GET",
         http_path = "/intents/{name}/versions",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:getMigration(input, options)
     return self:invokeOperation(input, {
         name = "GetMigration",
-        input_schema = types.GetMigrationInput,
-        output_schema = types.GetMigrationOutput,
+        input_schema = schemas.GetMigrationInput,
+        output_schema = schemas.GetMigrationOutput,
         http_method = "GET",
         http_path = "/migrations/{migrationId}",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:getMigrations(input, options)
     return self:invokeOperation(input, {
         name = "GetMigrations",
-        input_schema = types.GetMigrationsInput,
-        output_schema = types.GetMigrationsOutput,
+        input_schema = schemas.GetMigrationsInput,
+        output_schema = schemas.GetMigrationsOutput,
         http_method = "GET",
         http_path = "/migrations",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:getSlotType(input, options)
     return self:invokeOperation(input, {
         name = "GetSlotType",
-        input_schema = types.GetSlotTypeInput,
-        output_schema = types.GetSlotTypeOutput,
+        input_schema = schemas.GetSlotTypeInput,
+        output_schema = schemas.GetSlotTypeOutput,
         http_method = "GET",
         http_path = "/slottypes/{name}/versions/{version}",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:getSlotTypes(input, options)
     return self:invokeOperation(input, {
         name = "GetSlotTypes",
-        input_schema = types.GetSlotTypesInput,
-        output_schema = types.GetSlotTypesOutput,
+        input_schema = schemas.GetSlotTypesInput,
+        output_schema = schemas.GetSlotTypesOutput,
         http_method = "GET",
         http_path = "/slottypes",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:getSlotTypeVersions(input, options)
     return self:invokeOperation(input, {
         name = "GetSlotTypeVersions",
-        input_schema = types.GetSlotTypeVersionsInput,
-        output_schema = types.GetSlotTypeVersionsOutput,
+        input_schema = schemas.GetSlotTypeVersionsInput,
+        output_schema = schemas.GetSlotTypeVersionsOutput,
         http_method = "GET",
         http_path = "/slottypes/{name}/versions",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:getUtterancesView(input, options)
     return self:invokeOperation(input, {
         name = "GetUtterancesView",
-        input_schema = types.GetUtterancesViewInput,
-        output_schema = types.GetUtterancesViewOutput,
+        input_schema = schemas.GetUtterancesViewInput,
+        output_schema = schemas.GetUtterancesViewOutput,
         http_method = "GET",
         http_path = "/bots/{botName}/utterances?view=aggregation",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:putBot(input, options)
     return self:invokeOperation(input, {
         name = "PutBot",
-        input_schema = types.PutBotInput,
-        output_schema = types.PutBotOutput,
+        input_schema = schemas.PutBotInput,
+        output_schema = schemas.PutBotOutput,
         http_method = "PUT",
         http_path = "/bots/{name}/versions/$LATEST",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:putBotAlias(input, options)
     return self:invokeOperation(input, {
         name = "PutBotAlias",
-        input_schema = types.PutBotAliasInput,
-        output_schema = types.PutBotAliasOutput,
+        input_schema = schemas.PutBotAliasInput,
+        output_schema = schemas.PutBotAliasOutput,
         http_method = "PUT",
         http_path = "/bots/{botName}/aliases/{name}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:putIntent(input, options)
     return self:invokeOperation(input, {
         name = "PutIntent",
-        input_schema = types.PutIntentInput,
-        output_schema = types.PutIntentOutput,
+        input_schema = schemas.PutIntentInput,
+        output_schema = schemas.PutIntentOutput,
         http_method = "PUT",
         http_path = "/intents/{name}/versions/$LATEST",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:putSlotType(input, options)
     return self:invokeOperation(input, {
         name = "PutSlotType",
-        input_schema = types.PutSlotTypeInput,
-        output_schema = types.PutSlotTypeOutput,
+        input_schema = schemas.PutSlotTypeInput,
+        output_schema = schemas.PutSlotTypeOutput,
         http_method = "PUT",
         http_path = "/slottypes/{name}/versions/$LATEST",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:startImport(input, options)
     return self:invokeOperation(input, {
         name = "StartImport",
-        input_schema = types.StartImportInput,
-        output_schema = types.StartImportOutput,
+        input_schema = schemas.StartImportInput,
+        output_schema = schemas.StartImportOutput,
         http_method = "POST",
         http_path = "/imports",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:startMigration(input, options)
     return self:invokeOperation(input, {
         name = "StartMigration",
-        input_schema = types.StartMigrationInput,
-        output_schema = types.StartMigrationOutput,
+        input_schema = schemas.StartMigrationInput,
+        output_schema = schemas.StartMigrationOutput,
         http_method = "POST",
         http_path = "/migrations",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {

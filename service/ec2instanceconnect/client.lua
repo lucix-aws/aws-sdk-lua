@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("ec2instanceconnect.endpoint_rules")
+local schemas = require("ec2instanceconnect.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("ec2instanceconnect.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:sendSerialConsoleSSHPublicKey(input, options)
     return self:invokeOperation(input, {
         name = "SendSerialConsoleSSHPublicKey",
-        input_schema = types.SendSerialConsoleSSHPublicKeyInput,
-        output_schema = types.SendSerialConsoleSSHPublicKeyOutput,
+        input_schema = schemas.SendSerialConsoleSSHPublicKeyInput,
+        output_schema = schemas.SendSerialConsoleSSHPublicKeyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:sendSSHPublicKey(input, options)
     return self:invokeOperation(input, {
         name = "SendSSHPublicKey",
-        input_schema = types.SendSSHPublicKeyInput,
-        output_schema = types.SendSSHPublicKeyOutput,
+        input_schema = schemas.SendSSHPublicKeyInput,
+        output_schema = schemas.SendSSHPublicKeyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

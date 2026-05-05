@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("migrationhubstrategy.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("migrationhubstrategy.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("migrationhubstrategy.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getApplicationComponentDetails(input, options)
     return self:invokeOperation(input, {
         name = "GetApplicationComponentDetails",
-        input_schema = types.GetApplicationComponentDetailsInput,
-        output_schema = types.GetApplicationComponentDetailsOutput,
+        input_schema = schemas.GetApplicationComponentDetailsInput,
+        output_schema = schemas.GetApplicationComponentDetailsOutput,
         http_method = "GET",
         http_path = "/get-applicationcomponent-details/{applicationComponentId}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:getApplicationComponentStrategies(input, options)
     return self:invokeOperation(input, {
         name = "GetApplicationComponentStrategies",
-        input_schema = types.GetApplicationComponentStrategiesInput,
-        output_schema = types.GetApplicationComponentStrategiesOutput,
+        input_schema = schemas.GetApplicationComponentStrategiesInput,
+        output_schema = schemas.GetApplicationComponentStrategiesOutput,
         http_method = "GET",
         http_path = "/get-applicationcomponent-strategies/{applicationComponentId}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getAssessment(input, options)
     return self:invokeOperation(input, {
         name = "GetAssessment",
-        input_schema = types.GetAssessmentInput,
-        output_schema = types.GetAssessmentOutput,
+        input_schema = schemas.GetAssessmentInput,
+        output_schema = schemas.GetAssessmentOutput,
         http_method = "GET",
         http_path = "/get-assessment/{id}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getImportFileTask(input, options)
     return self:invokeOperation(input, {
         name = "GetImportFileTask",
-        input_schema = types.GetImportFileTaskInput,
-        output_schema = types.GetImportFileTaskOutput,
+        input_schema = schemas.GetImportFileTaskInput,
+        output_schema = schemas.GetImportFileTaskOutput,
         http_method = "GET",
         http_path = "/get-import-file-task/{id}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getLatestAssessmentId(input, options)
     return self:invokeOperation(input, {
         name = "GetLatestAssessmentId",
-        input_schema = types.GetLatestAssessmentIdInput,
-        output_schema = types.GetLatestAssessmentIdOutput,
+        input_schema = schemas.GetLatestAssessmentIdInput,
+        output_schema = schemas.GetLatestAssessmentIdOutput,
         http_method = "GET",
         http_path = "/get-latest-assessment-id",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getPortfolioPreferences(input, options)
     return self:invokeOperation(input, {
         name = "GetPortfolioPreferences",
-        input_schema = types.GetPortfolioPreferencesInput,
-        output_schema = types.GetPortfolioPreferencesOutput,
+        input_schema = schemas.GetPortfolioPreferencesInput,
+        output_schema = schemas.GetPortfolioPreferencesOutput,
         http_method = "GET",
         http_path = "/get-portfolio-preferences",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getPortfolioSummary(input, options)
     return self:invokeOperation(input, {
         name = "GetPortfolioSummary",
-        input_schema = types.GetPortfolioSummaryInput,
-        output_schema = types.GetPortfolioSummaryOutput,
+        input_schema = schemas.GetPortfolioSummaryInput,
+        output_schema = schemas.GetPortfolioSummaryOutput,
         http_method = "GET",
         http_path = "/get-portfolio-summary",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getRecommendationReportDetails(input, options)
     return self:invokeOperation(input, {
         name = "GetRecommendationReportDetails",
-        input_schema = types.GetRecommendationReportDetailsInput,
-        output_schema = types.GetRecommendationReportDetailsOutput,
+        input_schema = schemas.GetRecommendationReportDetailsInput,
+        output_schema = schemas.GetRecommendationReportDetailsOutput,
         http_method = "GET",
         http_path = "/get-recommendation-report-details/{id}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getServerDetails(input, options)
     return self:invokeOperation(input, {
         name = "GetServerDetails",
-        input_schema = types.GetServerDetailsInput,
-        output_schema = types.GetServerDetailsOutput,
+        input_schema = schemas.GetServerDetailsInput,
+        output_schema = schemas.GetServerDetailsOutput,
         http_method = "GET",
         http_path = "/get-server-details/{serverId}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getServerStrategies(input, options)
     return self:invokeOperation(input, {
         name = "GetServerStrategies",
-        input_schema = types.GetServerStrategiesInput,
-        output_schema = types.GetServerStrategiesOutput,
+        input_schema = schemas.GetServerStrategiesInput,
+        output_schema = schemas.GetServerStrategiesOutput,
         http_method = "GET",
         http_path = "/get-server-strategies/{serverId}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listAnalyzableServers(input, options)
     return self:invokeOperation(input, {
         name = "ListAnalyzableServers",
-        input_schema = types.ListAnalyzableServersInput,
-        output_schema = types.ListAnalyzableServersOutput,
+        input_schema = schemas.ListAnalyzableServersInput,
+        output_schema = schemas.ListAnalyzableServersOutput,
         http_method = "POST",
         http_path = "/list-analyzable-servers",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listApplicationComponents(input, options)
     return self:invokeOperation(input, {
         name = "ListApplicationComponents",
-        input_schema = types.ListApplicationComponentsInput,
-        output_schema = types.ListApplicationComponentsOutput,
+        input_schema = schemas.ListApplicationComponentsInput,
+        output_schema = schemas.ListApplicationComponentsOutput,
         http_method = "POST",
         http_path = "/list-applicationcomponents",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listCollectors(input, options)
     return self:invokeOperation(input, {
         name = "ListCollectors",
-        input_schema = types.ListCollectorsInput,
-        output_schema = types.ListCollectorsOutput,
+        input_schema = schemas.ListCollectorsInput,
+        output_schema = schemas.ListCollectorsOutput,
         http_method = "GET",
         http_path = "/list-collectors",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listImportFileTask(input, options)
     return self:invokeOperation(input, {
         name = "ListImportFileTask",
-        input_schema = types.ListImportFileTaskInput,
-        output_schema = types.ListImportFileTaskOutput,
+        input_schema = schemas.ListImportFileTaskInput,
+        output_schema = schemas.ListImportFileTaskOutput,
         http_method = "GET",
         http_path = "/list-import-file-task",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listServers(input, options)
     return self:invokeOperation(input, {
         name = "ListServers",
-        input_schema = types.ListServersInput,
-        output_schema = types.ListServersOutput,
+        input_schema = schemas.ListServersInput,
+        output_schema = schemas.ListServersOutput,
         http_method = "POST",
         http_path = "/list-servers",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:putPortfolioPreferences(input, options)
     return self:invokeOperation(input, {
         name = "PutPortfolioPreferences",
-        input_schema = types.PutPortfolioPreferencesInput,
-        output_schema = types.PutPortfolioPreferencesOutput,
+        input_schema = schemas.PutPortfolioPreferencesInput,
+        output_schema = schemas.PutPortfolioPreferencesOutput,
         http_method = "POST",
         http_path = "/put-portfolio-preferences",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:startAssessment(input, options)
     return self:invokeOperation(input, {
         name = "StartAssessment",
-        input_schema = types.StartAssessmentInput,
-        output_schema = types.StartAssessmentOutput,
+        input_schema = schemas.StartAssessmentInput,
+        output_schema = schemas.StartAssessmentOutput,
         http_method = "POST",
         http_path = "/start-assessment",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:startImportFileTask(input, options)
     return self:invokeOperation(input, {
         name = "StartImportFileTask",
-        input_schema = types.StartImportFileTaskInput,
-        output_schema = types.StartImportFileTaskOutput,
+        input_schema = schemas.StartImportFileTaskInput,
+        output_schema = schemas.StartImportFileTaskOutput,
         http_method = "POST",
         http_path = "/start-import-file-task",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:startRecommendationReportGeneration(input, options)
     return self:invokeOperation(input, {
         name = "StartRecommendationReportGeneration",
-        input_schema = types.StartRecommendationReportGenerationInput,
-        output_schema = types.StartRecommendationReportGenerationOutput,
+        input_schema = schemas.StartRecommendationReportGenerationInput,
+        output_schema = schemas.StartRecommendationReportGenerationOutput,
         http_method = "POST",
         http_path = "/start-recommendation-report-generation",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:stopAssessment(input, options)
     return self:invokeOperation(input, {
         name = "StopAssessment",
-        input_schema = types.StopAssessmentInput,
-        output_schema = types.StopAssessmentOutput,
+        input_schema = schemas.StopAssessmentInput,
+        output_schema = schemas.StopAssessmentOutput,
         http_method = "POST",
         http_path = "/stop-assessment",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:updateApplicationComponentConfig(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApplicationComponentConfig",
-        input_schema = types.UpdateApplicationComponentConfigInput,
-        output_schema = types.UpdateApplicationComponentConfigOutput,
+        input_schema = schemas.UpdateApplicationComponentConfigInput,
+        output_schema = schemas.UpdateApplicationComponentConfigOutput,
         http_method = "POST",
         http_path = "/update-applicationcomponent-config/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:updateServerConfig(input, options)
     return self:invokeOperation(input, {
         name = "UpdateServerConfig",
-        input_schema = types.UpdateServerConfigInput,
-        output_schema = types.UpdateServerConfigOutput,
+        input_schema = schemas.UpdateServerConfigInput,
+        output_schema = schemas.UpdateServerConfigOutput,
         http_method = "POST",
         http_path = "/update-server-config/",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("migrationhub.endpoint_rules")
+local schemas = require("migrationhub.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("migrationhub.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateCreatedArtifact(input, options)
     return self:invokeOperation(input, {
         name = "AssociateCreatedArtifact",
-        input_schema = types.AssociateCreatedArtifactInput,
-        output_schema = types.AssociateCreatedArtifactOutput,
+        input_schema = schemas.AssociateCreatedArtifactInput,
+        output_schema = schemas.AssociateCreatedArtifactOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:associateDiscoveredResource(input, options)
     return self:invokeOperation(input, {
         name = "AssociateDiscoveredResource",
-        input_schema = types.AssociateDiscoveredResourceInput,
-        output_schema = types.AssociateDiscoveredResourceOutput,
+        input_schema = schemas.AssociateDiscoveredResourceInput,
+        output_schema = schemas.AssociateDiscoveredResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:associateSourceResource(input, options)
     return self:invokeOperation(input, {
         name = "AssociateSourceResource",
-        input_schema = types.AssociateSourceResourceInput,
-        output_schema = types.AssociateSourceResourceOutput,
+        input_schema = schemas.AssociateSourceResourceInput,
+        output_schema = schemas.AssociateSourceResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createProgressUpdateStream(input, options)
     return self:invokeOperation(input, {
         name = "CreateProgressUpdateStream",
-        input_schema = types.CreateProgressUpdateStreamInput,
-        output_schema = types.CreateProgressUpdateStreamOutput,
+        input_schema = schemas.CreateProgressUpdateStreamInput,
+        output_schema = schemas.CreateProgressUpdateStreamOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteProgressUpdateStream(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProgressUpdateStream",
-        input_schema = types.DeleteProgressUpdateStreamInput,
-        output_schema = types.DeleteProgressUpdateStreamOutput,
+        input_schema = schemas.DeleteProgressUpdateStreamInput,
+        output_schema = schemas.DeleteProgressUpdateStreamOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:describeApplicationState(input, options)
     return self:invokeOperation(input, {
         name = "DescribeApplicationState",
-        input_schema = types.DescribeApplicationStateInput,
-        output_schema = types.DescribeApplicationStateOutput,
+        input_schema = schemas.DescribeApplicationStateInput,
+        output_schema = schemas.DescribeApplicationStateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:describeMigrationTask(input, options)
     return self:invokeOperation(input, {
         name = "DescribeMigrationTask",
-        input_schema = types.DescribeMigrationTaskInput,
-        output_schema = types.DescribeMigrationTaskOutput,
+        input_schema = schemas.DescribeMigrationTaskInput,
+        output_schema = schemas.DescribeMigrationTaskOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:disassociateCreatedArtifact(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateCreatedArtifact",
-        input_schema = types.DisassociateCreatedArtifactInput,
-        output_schema = types.DisassociateCreatedArtifactOutput,
+        input_schema = schemas.DisassociateCreatedArtifactInput,
+        output_schema = schemas.DisassociateCreatedArtifactOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:disassociateDiscoveredResource(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateDiscoveredResource",
-        input_schema = types.DisassociateDiscoveredResourceInput,
-        output_schema = types.DisassociateDiscoveredResourceOutput,
+        input_schema = schemas.DisassociateDiscoveredResourceInput,
+        output_schema = schemas.DisassociateDiscoveredResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:disassociateSourceResource(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateSourceResource",
-        input_schema = types.DisassociateSourceResourceInput,
-        output_schema = types.DisassociateSourceResourceOutput,
+        input_schema = schemas.DisassociateSourceResourceInput,
+        output_schema = schemas.DisassociateSourceResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:importMigrationTask(input, options)
     return self:invokeOperation(input, {
         name = "ImportMigrationTask",
-        input_schema = types.ImportMigrationTaskInput,
-        output_schema = types.ImportMigrationTaskOutput,
+        input_schema = schemas.ImportMigrationTaskInput,
+        output_schema = schemas.ImportMigrationTaskOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listApplicationStates(input, options)
     return self:invokeOperation(input, {
         name = "ListApplicationStates",
-        input_schema = types.ListApplicationStatesInput,
-        output_schema = types.ListApplicationStatesOutput,
+        input_schema = schemas.ListApplicationStatesInput,
+        output_schema = schemas.ListApplicationStatesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listCreatedArtifacts(input, options)
     return self:invokeOperation(input, {
         name = "ListCreatedArtifacts",
-        input_schema = types.ListCreatedArtifactsInput,
-        output_schema = types.ListCreatedArtifactsOutput,
+        input_schema = schemas.ListCreatedArtifactsInput,
+        output_schema = schemas.ListCreatedArtifactsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listDiscoveredResources(input, options)
     return self:invokeOperation(input, {
         name = "ListDiscoveredResources",
-        input_schema = types.ListDiscoveredResourcesInput,
-        output_schema = types.ListDiscoveredResourcesOutput,
+        input_schema = schemas.ListDiscoveredResourcesInput,
+        output_schema = schemas.ListDiscoveredResourcesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listMigrationTasks(input, options)
     return self:invokeOperation(input, {
         name = "ListMigrationTasks",
-        input_schema = types.ListMigrationTasksInput,
-        output_schema = types.ListMigrationTasksOutput,
+        input_schema = schemas.ListMigrationTasksInput,
+        output_schema = schemas.ListMigrationTasksOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listMigrationTaskUpdates(input, options)
     return self:invokeOperation(input, {
         name = "ListMigrationTaskUpdates",
-        input_schema = types.ListMigrationTaskUpdatesInput,
-        output_schema = types.ListMigrationTaskUpdatesOutput,
+        input_schema = schemas.ListMigrationTaskUpdatesInput,
+        output_schema = schemas.ListMigrationTaskUpdatesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listProgressUpdateStreams(input, options)
     return self:invokeOperation(input, {
         name = "ListProgressUpdateStreams",
-        input_schema = types.ListProgressUpdateStreamsInput,
-        output_schema = types.ListProgressUpdateStreamsOutput,
+        input_schema = schemas.ListProgressUpdateStreamsInput,
+        output_schema = schemas.ListProgressUpdateStreamsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listSourceResources(input, options)
     return self:invokeOperation(input, {
         name = "ListSourceResources",
-        input_schema = types.ListSourceResourcesInput,
-        output_schema = types.ListSourceResourcesOutput,
+        input_schema = schemas.ListSourceResourcesInput,
+        output_schema = schemas.ListSourceResourcesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:notifyApplicationState(input, options)
     return self:invokeOperation(input, {
         name = "NotifyApplicationState",
-        input_schema = types.NotifyApplicationStateInput,
-        output_schema = types.NotifyApplicationStateOutput,
+        input_schema = schemas.NotifyApplicationStateInput,
+        output_schema = schemas.NotifyApplicationStateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:notifyMigrationTaskState(input, options)
     return self:invokeOperation(input, {
         name = "NotifyMigrationTaskState",
-        input_schema = types.NotifyMigrationTaskStateInput,
-        output_schema = types.NotifyMigrationTaskStateOutput,
+        input_schema = schemas.NotifyMigrationTaskStateInput,
+        output_schema = schemas.NotifyMigrationTaskStateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:putResourceAttributes(input, options)
     return self:invokeOperation(input, {
         name = "PutResourceAttributes",
-        input_schema = types.PutResourceAttributesInput,
-        output_schema = types.PutResourceAttributesOutput,
+        input_schema = schemas.PutResourceAttributesInput,
+        output_schema = schemas.PutResourceAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

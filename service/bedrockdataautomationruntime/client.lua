@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("bedrockdataautomationruntime.endpoint_rules")
+local schemas = require("bedrockdataautomationruntime.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("bedrockdataautomationruntime.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getDataAutomationStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetDataAutomationStatus",
-        input_schema = types.GetDataAutomationStatusInput,
-        output_schema = types.GetDataAutomationStatusOutput,
+        input_schema = schemas.GetDataAutomationStatusInput,
+        output_schema = schemas.GetDataAutomationStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:invokeDataAutomation(input, options)
     return self:invokeOperation(input, {
         name = "InvokeDataAutomation",
-        input_schema = types.InvokeDataAutomationInput,
-        output_schema = types.InvokeDataAutomationOutput,
+        input_schema = schemas.InvokeDataAutomationInput,
+        output_schema = schemas.InvokeDataAutomationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:invokeDataAutomationAsync(input, options)
     return self:invokeOperation(input, {
         name = "InvokeDataAutomationAsync",
-        input_schema = types.InvokeDataAutomationAsyncInput,
-        output_schema = types.InvokeDataAutomationAsyncOutput,
+        input_schema = schemas.InvokeDataAutomationAsyncInput,
+        output_schema = schemas.InvokeDataAutomationAsyncOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

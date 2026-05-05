@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("storagegateway.endpoint_rules")
+local schemas = require("storagegateway.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("storagegateway.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:activateGateway(input, options)
     return self:invokeOperation(input, {
         name = "ActivateGateway",
-        input_schema = types.ActivateGatewayInput,
-        output_schema = types.ActivateGatewayOutput,
+        input_schema = schemas.ActivateGatewayInput,
+        output_schema = schemas.ActivateGatewayOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:addCache(input, options)
     return self:invokeOperation(input, {
         name = "AddCache",
-        input_schema = types.AddCacheInput,
-        output_schema = types.AddCacheOutput,
+        input_schema = schemas.AddCacheInput,
+        output_schema = schemas.AddCacheOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:addTagsToResource(input, options)
     return self:invokeOperation(input, {
         name = "AddTagsToResource",
-        input_schema = types.AddTagsToResourceInput,
-        output_schema = types.AddTagsToResourceOutput,
+        input_schema = schemas.AddTagsToResourceInput,
+        output_schema = schemas.AddTagsToResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:addUploadBuffer(input, options)
     return self:invokeOperation(input, {
         name = "AddUploadBuffer",
-        input_schema = types.AddUploadBufferInput,
-        output_schema = types.AddUploadBufferOutput,
+        input_schema = schemas.AddUploadBufferInput,
+        output_schema = schemas.AddUploadBufferOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:addWorkingStorage(input, options)
     return self:invokeOperation(input, {
         name = "AddWorkingStorage",
-        input_schema = types.AddWorkingStorageInput,
-        output_schema = types.AddWorkingStorageOutput,
+        input_schema = schemas.AddWorkingStorageInput,
+        output_schema = schemas.AddWorkingStorageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:assignTapePool(input, options)
     return self:invokeOperation(input, {
         name = "AssignTapePool",
-        input_schema = types.AssignTapePoolInput,
-        output_schema = types.AssignTapePoolOutput,
+        input_schema = schemas.AssignTapePoolInput,
+        output_schema = schemas.AssignTapePoolOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:associateFileSystem(input, options)
     return self:invokeOperation(input, {
         name = "AssociateFileSystem",
-        input_schema = types.AssociateFileSystemInput,
-        output_schema = types.AssociateFileSystemOutput,
+        input_schema = schemas.AssociateFileSystemInput,
+        output_schema = schemas.AssociateFileSystemOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:attachVolume(input, options)
     return self:invokeOperation(input, {
         name = "AttachVolume",
-        input_schema = types.AttachVolumeInput,
-        output_schema = types.AttachVolumeOutput,
+        input_schema = schemas.AttachVolumeInput,
+        output_schema = schemas.AttachVolumeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:cancelArchival(input, options)
     return self:invokeOperation(input, {
         name = "CancelArchival",
-        input_schema = types.CancelArchivalInput,
-        output_schema = types.CancelArchivalOutput,
+        input_schema = schemas.CancelArchivalInput,
+        output_schema = schemas.CancelArchivalOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:cancelCacheReport(input, options)
     return self:invokeOperation(input, {
         name = "CancelCacheReport",
-        input_schema = types.CancelCacheReportInput,
-        output_schema = types.CancelCacheReportOutput,
+        input_schema = schemas.CancelCacheReportInput,
+        output_schema = schemas.CancelCacheReportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:cancelRetrieval(input, options)
     return self:invokeOperation(input, {
         name = "CancelRetrieval",
-        input_schema = types.CancelRetrievalInput,
-        output_schema = types.CancelRetrievalOutput,
+        input_schema = schemas.CancelRetrievalInput,
+        output_schema = schemas.CancelRetrievalOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createCachediSCSIVolume(input, options)
     return self:invokeOperation(input, {
         name = "CreateCachediSCSIVolume",
-        input_schema = types.CreateCachediSCSIVolumeInput,
-        output_schema = types.CreateCachediSCSIVolumeOutput,
+        input_schema = schemas.CreateCachediSCSIVolumeInput,
+        output_schema = schemas.CreateCachediSCSIVolumeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createNFSFileShare(input, options)
     return self:invokeOperation(input, {
         name = "CreateNFSFileShare",
-        input_schema = types.CreateNFSFileShareInput,
-        output_schema = types.CreateNFSFileShareOutput,
+        input_schema = schemas.CreateNFSFileShareInput,
+        output_schema = schemas.CreateNFSFileShareOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:createSMBFileShare(input, options)
     return self:invokeOperation(input, {
         name = "CreateSMBFileShare",
-        input_schema = types.CreateSMBFileShareInput,
-        output_schema = types.CreateSMBFileShareOutput,
+        input_schema = schemas.CreateSMBFileShareInput,
+        output_schema = schemas.CreateSMBFileShareOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:createSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "CreateSnapshot",
-        input_schema = types.CreateSnapshotInput,
-        output_schema = types.CreateSnapshotOutput,
+        input_schema = schemas.CreateSnapshotInput,
+        output_schema = schemas.CreateSnapshotOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:createSnapshotFromVolumeRecoveryPoint(input, options)
     return self:invokeOperation(input, {
         name = "CreateSnapshotFromVolumeRecoveryPoint",
-        input_schema = types.CreateSnapshotFromVolumeRecoveryPointInput,
-        output_schema = types.CreateSnapshotFromVolumeRecoveryPointOutput,
+        input_schema = schemas.CreateSnapshotFromVolumeRecoveryPointInput,
+        output_schema = schemas.CreateSnapshotFromVolumeRecoveryPointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:createStorediSCSIVolume(input, options)
     return self:invokeOperation(input, {
         name = "CreateStorediSCSIVolume",
-        input_schema = types.CreateStorediSCSIVolumeInput,
-        output_schema = types.CreateStorediSCSIVolumeOutput,
+        input_schema = schemas.CreateStorediSCSIVolumeInput,
+        output_schema = schemas.CreateStorediSCSIVolumeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:createTapePool(input, options)
     return self:invokeOperation(input, {
         name = "CreateTapePool",
-        input_schema = types.CreateTapePoolInput,
-        output_schema = types.CreateTapePoolOutput,
+        input_schema = schemas.CreateTapePoolInput,
+        output_schema = schemas.CreateTapePoolOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:createTapes(input, options)
     return self:invokeOperation(input, {
         name = "CreateTapes",
-        input_schema = types.CreateTapesInput,
-        output_schema = types.CreateTapesOutput,
+        input_schema = schemas.CreateTapesInput,
+        output_schema = schemas.CreateTapesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:createTapeWithBarcode(input, options)
     return self:invokeOperation(input, {
         name = "CreateTapeWithBarcode",
-        input_schema = types.CreateTapeWithBarcodeInput,
-        output_schema = types.CreateTapeWithBarcodeOutput,
+        input_schema = schemas.CreateTapeWithBarcodeInput,
+        output_schema = schemas.CreateTapeWithBarcodeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteAutomaticTapeCreationPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAutomaticTapeCreationPolicy",
-        input_schema = types.DeleteAutomaticTapeCreationPolicyInput,
-        output_schema = types.DeleteAutomaticTapeCreationPolicyOutput,
+        input_schema = schemas.DeleteAutomaticTapeCreationPolicyInput,
+        output_schema = schemas.DeleteAutomaticTapeCreationPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:deleteBandwidthRateLimit(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBandwidthRateLimit",
-        input_schema = types.DeleteBandwidthRateLimitInput,
-        output_schema = types.DeleteBandwidthRateLimitOutput,
+        input_schema = schemas.DeleteBandwidthRateLimitInput,
+        output_schema = schemas.DeleteBandwidthRateLimitOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:deleteCacheReport(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCacheReport",
-        input_schema = types.DeleteCacheReportInput,
-        output_schema = types.DeleteCacheReportOutput,
+        input_schema = schemas.DeleteCacheReportInput,
+        output_schema = schemas.DeleteCacheReportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:deleteChapCredentials(input, options)
     return self:invokeOperation(input, {
         name = "DeleteChapCredentials",
-        input_schema = types.DeleteChapCredentialsInput,
-        output_schema = types.DeleteChapCredentialsOutput,
+        input_schema = schemas.DeleteChapCredentialsInput,
+        output_schema = schemas.DeleteChapCredentialsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:deleteFileShare(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFileShare",
-        input_schema = types.DeleteFileShareInput,
-        output_schema = types.DeleteFileShareOutput,
+        input_schema = schemas.DeleteFileShareInput,
+        output_schema = schemas.DeleteFileShareOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:deleteGateway(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGateway",
-        input_schema = types.DeleteGatewayInput,
-        output_schema = types.DeleteGatewayOutput,
+        input_schema = schemas.DeleteGatewayInput,
+        output_schema = schemas.DeleteGatewayOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:deleteSnapshotSchedule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSnapshotSchedule",
-        input_schema = types.DeleteSnapshotScheduleInput,
-        output_schema = types.DeleteSnapshotScheduleOutput,
+        input_schema = schemas.DeleteSnapshotScheduleInput,
+        output_schema = schemas.DeleteSnapshotScheduleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:deleteTape(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTape",
-        input_schema = types.DeleteTapeInput,
-        output_schema = types.DeleteTapeOutput,
+        input_schema = schemas.DeleteTapeInput,
+        output_schema = schemas.DeleteTapeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:deleteTapeArchive(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTapeArchive",
-        input_schema = types.DeleteTapeArchiveInput,
-        output_schema = types.DeleteTapeArchiveOutput,
+        input_schema = schemas.DeleteTapeArchiveInput,
+        output_schema = schemas.DeleteTapeArchiveOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:deleteTapePool(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTapePool",
-        input_schema = types.DeleteTapePoolInput,
-        output_schema = types.DeleteTapePoolOutput,
+        input_schema = schemas.DeleteTapePoolInput,
+        output_schema = schemas.DeleteTapePoolOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:deleteVolume(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVolume",
-        input_schema = types.DeleteVolumeInput,
-        output_schema = types.DeleteVolumeOutput,
+        input_schema = schemas.DeleteVolumeInput,
+        output_schema = schemas.DeleteVolumeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:describeAvailabilityMonitorTest(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAvailabilityMonitorTest",
-        input_schema = types.DescribeAvailabilityMonitorTestInput,
-        output_schema = types.DescribeAvailabilityMonitorTestOutput,
+        input_schema = schemas.DescribeAvailabilityMonitorTestInput,
+        output_schema = schemas.DescribeAvailabilityMonitorTestOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:describeBandwidthRateLimit(input, options)
     return self:invokeOperation(input, {
         name = "DescribeBandwidthRateLimit",
-        input_schema = types.DescribeBandwidthRateLimitInput,
-        output_schema = types.DescribeBandwidthRateLimitOutput,
+        input_schema = schemas.DescribeBandwidthRateLimitInput,
+        output_schema = schemas.DescribeBandwidthRateLimitOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:describeBandwidthRateLimitSchedule(input, options)
     return self:invokeOperation(input, {
         name = "DescribeBandwidthRateLimitSchedule",
-        input_schema = types.DescribeBandwidthRateLimitScheduleInput,
-        output_schema = types.DescribeBandwidthRateLimitScheduleOutput,
+        input_schema = schemas.DescribeBandwidthRateLimitScheduleInput,
+        output_schema = schemas.DescribeBandwidthRateLimitScheduleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:describeCache(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCache",
-        input_schema = types.DescribeCacheInput,
-        output_schema = types.DescribeCacheOutput,
+        input_schema = schemas.DescribeCacheInput,
+        output_schema = schemas.DescribeCacheOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:describeCachediSCSIVolumes(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCachediSCSIVolumes",
-        input_schema = types.DescribeCachediSCSIVolumesInput,
-        output_schema = types.DescribeCachediSCSIVolumesOutput,
+        input_schema = schemas.DescribeCachediSCSIVolumesInput,
+        output_schema = schemas.DescribeCachediSCSIVolumesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:describeCacheReport(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCacheReport",
-        input_schema = types.DescribeCacheReportInput,
-        output_schema = types.DescribeCacheReportOutput,
+        input_schema = schemas.DescribeCacheReportInput,
+        output_schema = schemas.DescribeCacheReportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:describeChapCredentials(input, options)
     return self:invokeOperation(input, {
         name = "DescribeChapCredentials",
-        input_schema = types.DescribeChapCredentialsInput,
-        output_schema = types.DescribeChapCredentialsOutput,
+        input_schema = schemas.DescribeChapCredentialsInput,
+        output_schema = schemas.DescribeChapCredentialsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:describeFileSystemAssociations(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFileSystemAssociations",
-        input_schema = types.DescribeFileSystemAssociationsInput,
-        output_schema = types.DescribeFileSystemAssociationsOutput,
+        input_schema = schemas.DescribeFileSystemAssociationsInput,
+        output_schema = schemas.DescribeFileSystemAssociationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:describeGatewayInformation(input, options)
     return self:invokeOperation(input, {
         name = "DescribeGatewayInformation",
-        input_schema = types.DescribeGatewayInformationInput,
-        output_schema = types.DescribeGatewayInformationOutput,
+        input_schema = schemas.DescribeGatewayInformationInput,
+        output_schema = schemas.DescribeGatewayInformationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:describeMaintenanceStartTime(input, options)
     return self:invokeOperation(input, {
         name = "DescribeMaintenanceStartTime",
-        input_schema = types.DescribeMaintenanceStartTimeInput,
-        output_schema = types.DescribeMaintenanceStartTimeOutput,
+        input_schema = schemas.DescribeMaintenanceStartTimeInput,
+        output_schema = schemas.DescribeMaintenanceStartTimeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:describeNFSFileShares(input, options)
     return self:invokeOperation(input, {
         name = "DescribeNFSFileShares",
-        input_schema = types.DescribeNFSFileSharesInput,
-        output_schema = types.DescribeNFSFileSharesOutput,
+        input_schema = schemas.DescribeNFSFileSharesInput,
+        output_schema = schemas.DescribeNFSFileSharesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:describeSMBFileShares(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSMBFileShares",
-        input_schema = types.DescribeSMBFileSharesInput,
-        output_schema = types.DescribeSMBFileSharesOutput,
+        input_schema = schemas.DescribeSMBFileSharesInput,
+        output_schema = schemas.DescribeSMBFileSharesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:describeSMBSettings(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSMBSettings",
-        input_schema = types.DescribeSMBSettingsInput,
-        output_schema = types.DescribeSMBSettingsOutput,
+        input_schema = schemas.DescribeSMBSettingsInput,
+        output_schema = schemas.DescribeSMBSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:describeSnapshotSchedule(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSnapshotSchedule",
-        input_schema = types.DescribeSnapshotScheduleInput,
-        output_schema = types.DescribeSnapshotScheduleOutput,
+        input_schema = schemas.DescribeSnapshotScheduleInput,
+        output_schema = schemas.DescribeSnapshotScheduleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:describeStorediSCSIVolumes(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStorediSCSIVolumes",
-        input_schema = types.DescribeStorediSCSIVolumesInput,
-        output_schema = types.DescribeStorediSCSIVolumesOutput,
+        input_schema = schemas.DescribeStorediSCSIVolumesInput,
+        output_schema = schemas.DescribeStorediSCSIVolumesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:describeTapeArchives(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTapeArchives",
-        input_schema = types.DescribeTapeArchivesInput,
-        output_schema = types.DescribeTapeArchivesOutput,
+        input_schema = schemas.DescribeTapeArchivesInput,
+        output_schema = schemas.DescribeTapeArchivesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:describeTapeRecoveryPoints(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTapeRecoveryPoints",
-        input_schema = types.DescribeTapeRecoveryPointsInput,
-        output_schema = types.DescribeTapeRecoveryPointsOutput,
+        input_schema = schemas.DescribeTapeRecoveryPointsInput,
+        output_schema = schemas.DescribeTapeRecoveryPointsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:describeTapes(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTapes",
-        input_schema = types.DescribeTapesInput,
-        output_schema = types.DescribeTapesOutput,
+        input_schema = schemas.DescribeTapesInput,
+        output_schema = schemas.DescribeTapesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:describeUploadBuffer(input, options)
     return self:invokeOperation(input, {
         name = "DescribeUploadBuffer",
-        input_schema = types.DescribeUploadBufferInput,
-        output_schema = types.DescribeUploadBufferOutput,
+        input_schema = schemas.DescribeUploadBufferInput,
+        output_schema = schemas.DescribeUploadBufferOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:describeVTLDevices(input, options)
     return self:invokeOperation(input, {
         name = "DescribeVTLDevices",
-        input_schema = types.DescribeVTLDevicesInput,
-        output_schema = types.DescribeVTLDevicesOutput,
+        input_schema = schemas.DescribeVTLDevicesInput,
+        output_schema = schemas.DescribeVTLDevicesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:describeWorkingStorage(input, options)
     return self:invokeOperation(input, {
         name = "DescribeWorkingStorage",
-        input_schema = types.DescribeWorkingStorageInput,
-        output_schema = types.DescribeWorkingStorageOutput,
+        input_schema = schemas.DescribeWorkingStorageInput,
+        output_schema = schemas.DescribeWorkingStorageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:detachVolume(input, options)
     return self:invokeOperation(input, {
         name = "DetachVolume",
-        input_schema = types.DetachVolumeInput,
-        output_schema = types.DetachVolumeOutput,
+        input_schema = schemas.DetachVolumeInput,
+        output_schema = schemas.DetachVolumeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:disableGateway(input, options)
     return self:invokeOperation(input, {
         name = "DisableGateway",
-        input_schema = types.DisableGatewayInput,
-        output_schema = types.DisableGatewayOutput,
+        input_schema = schemas.DisableGatewayInput,
+        output_schema = schemas.DisableGatewayOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:disassociateFileSystem(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateFileSystem",
-        input_schema = types.DisassociateFileSystemInput,
-        output_schema = types.DisassociateFileSystemOutput,
+        input_schema = schemas.DisassociateFileSystemInput,
+        output_schema = schemas.DisassociateFileSystemOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:evictFilesFailingUpload(input, options)
     return self:invokeOperation(input, {
         name = "EvictFilesFailingUpload",
-        input_schema = types.EvictFilesFailingUploadInput,
-        output_schema = types.EvictFilesFailingUploadOutput,
+        input_schema = schemas.EvictFilesFailingUploadInput,
+        output_schema = schemas.EvictFilesFailingUploadOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:joinDomain(input, options)
     return self:invokeOperation(input, {
         name = "JoinDomain",
-        input_schema = types.JoinDomainInput,
-        output_schema = types.JoinDomainOutput,
+        input_schema = schemas.JoinDomainInput,
+        output_schema = schemas.JoinDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:listAutomaticTapeCreationPolicies(input, options)
     return self:invokeOperation(input, {
         name = "ListAutomaticTapeCreationPolicies",
-        input_schema = types.ListAutomaticTapeCreationPoliciesInput,
-        output_schema = types.ListAutomaticTapeCreationPoliciesOutput,
+        input_schema = schemas.ListAutomaticTapeCreationPoliciesInput,
+        output_schema = schemas.ListAutomaticTapeCreationPoliciesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:listCacheReports(input, options)
     return self:invokeOperation(input, {
         name = "ListCacheReports",
-        input_schema = types.ListCacheReportsInput,
-        output_schema = types.ListCacheReportsOutput,
+        input_schema = schemas.ListCacheReportsInput,
+        output_schema = schemas.ListCacheReportsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:listFileShares(input, options)
     return self:invokeOperation(input, {
         name = "ListFileShares",
-        input_schema = types.ListFileSharesInput,
-        output_schema = types.ListFileSharesOutput,
+        input_schema = schemas.ListFileSharesInput,
+        output_schema = schemas.ListFileSharesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:listFileSystemAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListFileSystemAssociations",
-        input_schema = types.ListFileSystemAssociationsInput,
-        output_schema = types.ListFileSystemAssociationsOutput,
+        input_schema = schemas.ListFileSystemAssociationsInput,
+        output_schema = schemas.ListFileSystemAssociationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:listGateways(input, options)
     return self:invokeOperation(input, {
         name = "ListGateways",
-        input_schema = types.ListGatewaysInput,
-        output_schema = types.ListGatewaysOutput,
+        input_schema = schemas.ListGatewaysInput,
+        output_schema = schemas.ListGatewaysOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:listLocalDisks(input, options)
     return self:invokeOperation(input, {
         name = "ListLocalDisks",
-        input_schema = types.ListLocalDisksInput,
-        output_schema = types.ListLocalDisksOutput,
+        input_schema = schemas.ListLocalDisksInput,
+        output_schema = schemas.ListLocalDisksOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:listTapePools(input, options)
     return self:invokeOperation(input, {
         name = "ListTapePools",
-        input_schema = types.ListTapePoolsInput,
-        output_schema = types.ListTapePoolsOutput,
+        input_schema = schemas.ListTapePoolsInput,
+        output_schema = schemas.ListTapePoolsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:listTapes(input, options)
     return self:invokeOperation(input, {
         name = "ListTapes",
-        input_schema = types.ListTapesInput,
-        output_schema = types.ListTapesOutput,
+        input_schema = schemas.ListTapesInput,
+        output_schema = schemas.ListTapesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:listVolumeInitiators(input, options)
     return self:invokeOperation(input, {
         name = "ListVolumeInitiators",
-        input_schema = types.ListVolumeInitiatorsInput,
-        output_schema = types.ListVolumeInitiatorsOutput,
+        input_schema = schemas.ListVolumeInitiatorsInput,
+        output_schema = schemas.ListVolumeInitiatorsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:listVolumeRecoveryPoints(input, options)
     return self:invokeOperation(input, {
         name = "ListVolumeRecoveryPoints",
-        input_schema = types.ListVolumeRecoveryPointsInput,
-        output_schema = types.ListVolumeRecoveryPointsOutput,
+        input_schema = schemas.ListVolumeRecoveryPointsInput,
+        output_schema = schemas.ListVolumeRecoveryPointsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:listVolumes(input, options)
     return self:invokeOperation(input, {
         name = "ListVolumes",
-        input_schema = types.ListVolumesInput,
-        output_schema = types.ListVolumesOutput,
+        input_schema = schemas.ListVolumesInput,
+        output_schema = schemas.ListVolumesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:notifyWhenUploaded(input, options)
     return self:invokeOperation(input, {
         name = "NotifyWhenUploaded",
-        input_schema = types.NotifyWhenUploadedInput,
-        output_schema = types.NotifyWhenUploadedOutput,
+        input_schema = schemas.NotifyWhenUploadedInput,
+        output_schema = schemas.NotifyWhenUploadedOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:refreshCache(input, options)
     return self:invokeOperation(input, {
         name = "RefreshCache",
-        input_schema = types.RefreshCacheInput,
-        output_schema = types.RefreshCacheOutput,
+        input_schema = schemas.RefreshCacheInput,
+        output_schema = schemas.RefreshCacheOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:removeTagsFromResource(input, options)
     return self:invokeOperation(input, {
         name = "RemoveTagsFromResource",
-        input_schema = types.RemoveTagsFromResourceInput,
-        output_schema = types.RemoveTagsFromResourceOutput,
+        input_schema = schemas.RemoveTagsFromResourceInput,
+        output_schema = schemas.RemoveTagsFromResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:resetCache(input, options)
     return self:invokeOperation(input, {
         name = "ResetCache",
-        input_schema = types.ResetCacheInput,
-        output_schema = types.ResetCacheOutput,
+        input_schema = schemas.ResetCacheInput,
+        output_schema = schemas.ResetCacheOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:retrieveTapeArchive(input, options)
     return self:invokeOperation(input, {
         name = "RetrieveTapeArchive",
-        input_schema = types.RetrieveTapeArchiveInput,
-        output_schema = types.RetrieveTapeArchiveOutput,
+        input_schema = schemas.RetrieveTapeArchiveInput,
+        output_schema = schemas.RetrieveTapeArchiveOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1011,8 +1011,8 @@ end
 function Client:retrieveTapeRecoveryPoint(input, options)
     return self:invokeOperation(input, {
         name = "RetrieveTapeRecoveryPoint",
-        input_schema = types.RetrieveTapeRecoveryPointInput,
-        output_schema = types.RetrieveTapeRecoveryPointOutput,
+        input_schema = schemas.RetrieveTapeRecoveryPointInput,
+        output_schema = schemas.RetrieveTapeRecoveryPointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1024,8 +1024,8 @@ end
 function Client:setLocalConsolePassword(input, options)
     return self:invokeOperation(input, {
         name = "SetLocalConsolePassword",
-        input_schema = types.SetLocalConsolePasswordInput,
-        output_schema = types.SetLocalConsolePasswordOutput,
+        input_schema = schemas.SetLocalConsolePasswordInput,
+        output_schema = schemas.SetLocalConsolePasswordOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1037,8 +1037,8 @@ end
 function Client:setSMBGuestPassword(input, options)
     return self:invokeOperation(input, {
         name = "SetSMBGuestPassword",
-        input_schema = types.SetSMBGuestPasswordInput,
-        output_schema = types.SetSMBGuestPasswordOutput,
+        input_schema = schemas.SetSMBGuestPasswordInput,
+        output_schema = schemas.SetSMBGuestPasswordOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1050,8 +1050,8 @@ end
 function Client:shutdownGateway(input, options)
     return self:invokeOperation(input, {
         name = "ShutdownGateway",
-        input_schema = types.ShutdownGatewayInput,
-        output_schema = types.ShutdownGatewayOutput,
+        input_schema = schemas.ShutdownGatewayInput,
+        output_schema = schemas.ShutdownGatewayOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1063,8 +1063,8 @@ end
 function Client:startAvailabilityMonitorTest(input, options)
     return self:invokeOperation(input, {
         name = "StartAvailabilityMonitorTest",
-        input_schema = types.StartAvailabilityMonitorTestInput,
-        output_schema = types.StartAvailabilityMonitorTestOutput,
+        input_schema = schemas.StartAvailabilityMonitorTestInput,
+        output_schema = schemas.StartAvailabilityMonitorTestOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1076,8 +1076,8 @@ end
 function Client:startCacheReport(input, options)
     return self:invokeOperation(input, {
         name = "StartCacheReport",
-        input_schema = types.StartCacheReportInput,
-        output_schema = types.StartCacheReportOutput,
+        input_schema = schemas.StartCacheReportInput,
+        output_schema = schemas.StartCacheReportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1089,8 +1089,8 @@ end
 function Client:startGateway(input, options)
     return self:invokeOperation(input, {
         name = "StartGateway",
-        input_schema = types.StartGatewayInput,
-        output_schema = types.StartGatewayOutput,
+        input_schema = schemas.StartGatewayInput,
+        output_schema = schemas.StartGatewayOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1102,8 +1102,8 @@ end
 function Client:updateAutomaticTapeCreationPolicy(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAutomaticTapeCreationPolicy",
-        input_schema = types.UpdateAutomaticTapeCreationPolicyInput,
-        output_schema = types.UpdateAutomaticTapeCreationPolicyOutput,
+        input_schema = schemas.UpdateAutomaticTapeCreationPolicyInput,
+        output_schema = schemas.UpdateAutomaticTapeCreationPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1115,8 +1115,8 @@ end
 function Client:updateBandwidthRateLimit(input, options)
     return self:invokeOperation(input, {
         name = "UpdateBandwidthRateLimit",
-        input_schema = types.UpdateBandwidthRateLimitInput,
-        output_schema = types.UpdateBandwidthRateLimitOutput,
+        input_schema = schemas.UpdateBandwidthRateLimitInput,
+        output_schema = schemas.UpdateBandwidthRateLimitOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1128,8 +1128,8 @@ end
 function Client:updateBandwidthRateLimitSchedule(input, options)
     return self:invokeOperation(input, {
         name = "UpdateBandwidthRateLimitSchedule",
-        input_schema = types.UpdateBandwidthRateLimitScheduleInput,
-        output_schema = types.UpdateBandwidthRateLimitScheduleOutput,
+        input_schema = schemas.UpdateBandwidthRateLimitScheduleInput,
+        output_schema = schemas.UpdateBandwidthRateLimitScheduleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1141,8 +1141,8 @@ end
 function Client:updateChapCredentials(input, options)
     return self:invokeOperation(input, {
         name = "UpdateChapCredentials",
-        input_schema = types.UpdateChapCredentialsInput,
-        output_schema = types.UpdateChapCredentialsOutput,
+        input_schema = schemas.UpdateChapCredentialsInput,
+        output_schema = schemas.UpdateChapCredentialsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1154,8 +1154,8 @@ end
 function Client:updateFileSystemAssociation(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFileSystemAssociation",
-        input_schema = types.UpdateFileSystemAssociationInput,
-        output_schema = types.UpdateFileSystemAssociationOutput,
+        input_schema = schemas.UpdateFileSystemAssociationInput,
+        output_schema = schemas.UpdateFileSystemAssociationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1167,8 +1167,8 @@ end
 function Client:updateGatewayInformation(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGatewayInformation",
-        input_schema = types.UpdateGatewayInformationInput,
-        output_schema = types.UpdateGatewayInformationOutput,
+        input_schema = schemas.UpdateGatewayInformationInput,
+        output_schema = schemas.UpdateGatewayInformationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1180,8 +1180,8 @@ end
 function Client:updateGatewaySoftwareNow(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGatewaySoftwareNow",
-        input_schema = types.UpdateGatewaySoftwareNowInput,
-        output_schema = types.UpdateGatewaySoftwareNowOutput,
+        input_schema = schemas.UpdateGatewaySoftwareNowInput,
+        output_schema = schemas.UpdateGatewaySoftwareNowOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1193,8 +1193,8 @@ end
 function Client:updateMaintenanceStartTime(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMaintenanceStartTime",
-        input_schema = types.UpdateMaintenanceStartTimeInput,
-        output_schema = types.UpdateMaintenanceStartTimeOutput,
+        input_schema = schemas.UpdateMaintenanceStartTimeInput,
+        output_schema = schemas.UpdateMaintenanceStartTimeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1206,8 +1206,8 @@ end
 function Client:updateNFSFileShare(input, options)
     return self:invokeOperation(input, {
         name = "UpdateNFSFileShare",
-        input_schema = types.UpdateNFSFileShareInput,
-        output_schema = types.UpdateNFSFileShareOutput,
+        input_schema = schemas.UpdateNFSFileShareInput,
+        output_schema = schemas.UpdateNFSFileShareOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1219,8 +1219,8 @@ end
 function Client:updateSMBFileShare(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSMBFileShare",
-        input_schema = types.UpdateSMBFileShareInput,
-        output_schema = types.UpdateSMBFileShareOutput,
+        input_schema = schemas.UpdateSMBFileShareInput,
+        output_schema = schemas.UpdateSMBFileShareOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1232,8 +1232,8 @@ end
 function Client:updateSMBFileShareVisibility(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSMBFileShareVisibility",
-        input_schema = types.UpdateSMBFileShareVisibilityInput,
-        output_schema = types.UpdateSMBFileShareVisibilityOutput,
+        input_schema = schemas.UpdateSMBFileShareVisibilityInput,
+        output_schema = schemas.UpdateSMBFileShareVisibilityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1245,8 +1245,8 @@ end
 function Client:updateSMBLocalGroups(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSMBLocalGroups",
-        input_schema = types.UpdateSMBLocalGroupsInput,
-        output_schema = types.UpdateSMBLocalGroupsOutput,
+        input_schema = schemas.UpdateSMBLocalGroupsInput,
+        output_schema = schemas.UpdateSMBLocalGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1258,8 +1258,8 @@ end
 function Client:updateSMBSecurityStrategy(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSMBSecurityStrategy",
-        input_schema = types.UpdateSMBSecurityStrategyInput,
-        output_schema = types.UpdateSMBSecurityStrategyOutput,
+        input_schema = schemas.UpdateSMBSecurityStrategyInput,
+        output_schema = schemas.UpdateSMBSecurityStrategyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1271,8 +1271,8 @@ end
 function Client:updateSnapshotSchedule(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSnapshotSchedule",
-        input_schema = types.UpdateSnapshotScheduleInput,
-        output_schema = types.UpdateSnapshotScheduleOutput,
+        input_schema = schemas.UpdateSnapshotScheduleInput,
+        output_schema = schemas.UpdateSnapshotScheduleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1284,8 +1284,8 @@ end
 function Client:updateVTLDeviceType(input, options)
     return self:invokeOperation(input, {
         name = "UpdateVTLDeviceType",
-        input_schema = types.UpdateVTLDeviceTypeInput,
-        output_schema = types.UpdateVTLDeviceTypeOutput,
+        input_schema = schemas.UpdateVTLDeviceTypeInput,
+        output_schema = schemas.UpdateVTLDeviceTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

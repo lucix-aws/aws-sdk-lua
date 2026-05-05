@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("repostspace.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("repostspace.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("repostspace.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchAddChannelRoleToAccessors(input, options)
     return self:invokeOperation(input, {
         name = "BatchAddChannelRoleToAccessors",
-        input_schema = types.BatchAddChannelRoleToAccessorsInput,
-        output_schema = types.BatchAddChannelRoleToAccessorsOutput,
+        input_schema = schemas.BatchAddChannelRoleToAccessorsInput,
+        output_schema = schemas.BatchAddChannelRoleToAccessorsOutput,
         http_method = "POST",
         http_path = "/spaces/{spaceId}/channels/{channelId}/roles",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchAddRole(input, options)
     return self:invokeOperation(input, {
         name = "BatchAddRole",
-        input_schema = types.BatchAddRoleInput,
-        output_schema = types.BatchAddRoleOutput,
+        input_schema = schemas.BatchAddRoleInput,
+        output_schema = schemas.BatchAddRoleOutput,
         http_method = "POST",
         http_path = "/spaces/{spaceId}/roles",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchRemoveChannelRoleFromAccessors(input, options)
     return self:invokeOperation(input, {
         name = "BatchRemoveChannelRoleFromAccessors",
-        input_schema = types.BatchRemoveChannelRoleFromAccessorsInput,
-        output_schema = types.BatchRemoveChannelRoleFromAccessorsOutput,
+        input_schema = schemas.BatchRemoveChannelRoleFromAccessorsInput,
+        output_schema = schemas.BatchRemoveChannelRoleFromAccessorsOutput,
         http_method = "PATCH",
         http_path = "/spaces/{spaceId}/channels/{channelId}/roles",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:batchRemoveRole(input, options)
     return self:invokeOperation(input, {
         name = "BatchRemoveRole",
-        input_schema = types.BatchRemoveRoleInput,
-        output_schema = types.BatchRemoveRoleOutput,
+        input_schema = schemas.BatchRemoveRoleInput,
+        output_schema = schemas.BatchRemoveRoleOutput,
         http_method = "PATCH",
         http_path = "/spaces/{spaceId}/roles",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createChannel(input, options)
     return self:invokeOperation(input, {
         name = "CreateChannel",
-        input_schema = types.CreateChannelInput,
-        output_schema = types.CreateChannelOutput,
+        input_schema = schemas.CreateChannelInput,
+        output_schema = schemas.CreateChannelOutput,
         http_method = "POST",
         http_path = "/spaces/{spaceId}/channels",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createSpace(input, options)
     return self:invokeOperation(input, {
         name = "CreateSpace",
-        input_schema = types.CreateSpaceInput,
-        output_schema = types.CreateSpaceOutput,
+        input_schema = schemas.CreateSpaceInput,
+        output_schema = schemas.CreateSpaceOutput,
         http_method = "POST",
         http_path = "/spaces",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteSpace(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSpace",
-        input_schema = types.DeleteSpaceInput,
-        output_schema = types.DeleteSpaceOutput,
+        input_schema = schemas.DeleteSpaceInput,
+        output_schema = schemas.DeleteSpaceOutput,
         http_method = "DELETE",
         http_path = "/spaces/{spaceId}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deregisterAdmin(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterAdmin",
-        input_schema = types.DeregisterAdminInput,
-        output_schema = types.DeregisterAdminOutput,
+        input_schema = schemas.DeregisterAdminInput,
+        output_schema = schemas.DeregisterAdminOutput,
         http_method = "DELETE",
         http_path = "/spaces/{spaceId}/admins/{adminId}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getChannel(input, options)
     return self:invokeOperation(input, {
         name = "GetChannel",
-        input_schema = types.GetChannelInput,
-        output_schema = types.GetChannelOutput,
+        input_schema = schemas.GetChannelInput,
+        output_schema = schemas.GetChannelOutput,
         http_method = "GET",
         http_path = "/spaces/{spaceId}/channels/{channelId}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getSpace(input, options)
     return self:invokeOperation(input, {
         name = "GetSpace",
-        input_schema = types.GetSpaceInput,
-        output_schema = types.GetSpaceOutput,
+        input_schema = schemas.GetSpaceInput,
+        output_schema = schemas.GetSpaceOutput,
         http_method = "GET",
         http_path = "/spaces/{spaceId}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listChannels(input, options)
     return self:invokeOperation(input, {
         name = "ListChannels",
-        input_schema = types.ListChannelsInput,
-        output_schema = types.ListChannelsOutput,
+        input_schema = schemas.ListChannelsInput,
+        output_schema = schemas.ListChannelsOutput,
         http_method = "GET",
         http_path = "/spaces/{spaceId}/channels",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listSpaces(input, options)
     return self:invokeOperation(input, {
         name = "ListSpaces",
-        input_schema = types.ListSpacesInput,
-        output_schema = types.ListSpacesOutput,
+        input_schema = schemas.ListSpacesInput,
+        output_schema = schemas.ListSpacesOutput,
         http_method = "GET",
         http_path = "/spaces",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:registerAdmin(input, options)
     return self:invokeOperation(input, {
         name = "RegisterAdmin",
-        input_schema = types.RegisterAdminInput,
-        output_schema = types.RegisterAdminOutput,
+        input_schema = schemas.RegisterAdminInput,
+        output_schema = schemas.RegisterAdminOutput,
         http_method = "POST",
         http_path = "/spaces/{spaceId}/admins/{adminId}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:sendInvites(input, options)
     return self:invokeOperation(input, {
         name = "SendInvites",
-        input_schema = types.SendInvitesInput,
-        output_schema = types.SendInvitesOutput,
+        input_schema = schemas.SendInvitesInput,
+        output_schema = schemas.SendInvitesOutput,
         http_method = "POST",
         http_path = "/spaces/{spaceId}/invite",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:updateChannel(input, options)
     return self:invokeOperation(input, {
         name = "UpdateChannel",
-        input_schema = types.UpdateChannelInput,
-        output_schema = types.UpdateChannelOutput,
+        input_schema = schemas.UpdateChannelInput,
+        output_schema = schemas.UpdateChannelOutput,
         http_method = "PUT",
         http_path = "/spaces/{spaceId}/channels/{channelId}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:updateSpace(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSpace",
-        input_schema = types.UpdateSpaceInput,
-        output_schema = types.UpdateSpaceOutput,
+        input_schema = schemas.UpdateSpaceInput,
+        output_schema = schemas.UpdateSpaceOutput,
         http_method = "PUT",
         http_path = "/spaces/{spaceId}",
         effective_auth_schemes = {

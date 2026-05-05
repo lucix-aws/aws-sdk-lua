@@ -1157,17 +1157,17 @@ local record ValidationException
     Message: string
 end
 
-local type TransformerJobStatus = "running" | "succeeded" | "failed"
-
-local type Logging = "ENABLED" | "DISABLED"
-
-local type CapabilityType = "edi"
-
-local type TransformerStatus = "active" | "inactive"
-
 local type FileFormat = "XML" | "JSON" | "NOT_USED"
 
 local type MappingType = "JSONATA" | "XSLT"
+
+local type CapabilityType = "edi"
+
+local type TransformerJobStatus = "running" | "succeeded" | "failed"
+
+local type TransformerStatus = "active" | "inactive"
+
+local type Logging = "ENABLED" | "DISABLED"
 
 local record M
     CreateCapabilityInput: CreateCapabilityInput

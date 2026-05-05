@@ -2661,13 +2661,9 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type KnowledgeBaseState = "ENABLED" | "DISABLED"
+local type AgentCollaboration = "SUPERVISOR" | "SUPERVISOR_ROUTER" | "DISABLED"
 
-local type AgentStatus = "CREATING" | "PREPARING" | "PREPARED" | "NOT_PREPARED" | "DELETING" | "FAILED" | "VERSIONING" | "UPDATING"
-
-local type ActionGroupSignature = "AMAZON.UserInput" | "AMAZON.CodeInterpreter" | "ANTHROPIC.Computer" | "ANTHROPIC.Bash" | "ANTHROPIC.TextEditor"
-
-local type AgentAliasStatus = "CREATING" | "PREPARED" | "FAILED" | "UPDATING" | "DELETING" | "DISSOCIATED"
+local type AliasInvocationState = "ACCEPT_INVOCATIONS" | "REJECT_INVOCATIONS"
 
 local type DataSourceStatus = "AVAILABLE" | "DELETING" | "DELETE_UNSUCCESSFUL"
 
@@ -2675,17 +2671,21 @@ local type ActionGroupState = "ENABLED" | "DISABLED"
 
 local type OrchestrationType = "DEFAULT" | "CUSTOM_ORCHESTRATION"
 
-local type KnowledgeBaseStatus = "CREATING" | "ACTIVE" | "DELETING" | "UPDATING" | "FAILED" | "DELETE_UNSUCCESSFUL"
-
 local type FlowStatus = "Failed" | "Prepared" | "Preparing" | "NotPrepared"
 
-local type AliasInvocationState = "ACCEPT_INVOCATIONS" | "REJECT_INVOCATIONS"
+local type RelayConversationHistory = "TO_COLLABORATOR" | "DISABLED"
 
-local type AgentCollaboration = "SUPERVISOR" | "SUPERVISOR_ROUTER" | "DISABLED"
+local type AgentAliasStatus = "CREATING" | "PREPARED" | "FAILED" | "UPDATING" | "DELETING" | "DISSOCIATED"
+
+local type ActionGroupSignature = "AMAZON.UserInput" | "AMAZON.CodeInterpreter" | "ANTHROPIC.Computer" | "ANTHROPIC.Bash" | "ANTHROPIC.TextEditor"
 
 local type DataDeletionPolicy = "RETAIN" | "DELETE"
 
-local type RelayConversationHistory = "TO_COLLABORATOR" | "DISABLED"
+local type KnowledgeBaseState = "ENABLED" | "DISABLED"
+
+local type KnowledgeBaseStatus = "CREATING" | "ACTIVE" | "DELETING" | "UPDATING" | "FAILED" | "DELETE_UNSUCCESSFUL"
+
+local type AgentStatus = "CREATING" | "PREPARING" | "PREPARED" | "NOT_PREPARED" | "DELETING" | "FAILED" | "VERSIONING" | "UPDATING"
 
 local record M
     AssociateAgentCollaboratorInput: AssociateAgentCollaboratorInput

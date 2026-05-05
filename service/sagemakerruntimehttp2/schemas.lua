@@ -1,0 +1,364 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.sagemakerruntimehttp2"
+
+local M = {}
+
+M.InputValidationError = schema.new({
+    id = id.from(_N, "InputValidationError"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InputValidationError", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        ErrorCode = schema.new({
+            id = id.from(_N, "InputValidationError", "ErrorCode"),
+            type = "string",
+            name = "ErrorCode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InternalServerError = schema.new({
+    id = id.from(_N, "InternalServerError"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InternalServerError", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        ErrorCode = schema.new({
+            id = id.from(_N, "InternalServerError", "ErrorCode"),
+            type = "string",
+            name = "ErrorCode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InternalStreamFailure = schema.new({
+    id = id.from(_N, "InternalStreamFailure"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InternalStreamFailure", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RequestPayloadPart = schema.new({
+    id = id.from(_N, "RequestPayloadPart"),
+    type = "structure",
+    members = {
+        Bytes = schema.new({
+            id = id.from(_N, "RequestPayloadPart", "Bytes"),
+            type = "blob",
+            name = "Bytes",
+            target_id = prelude.Blob.id,
+            traits = {
+                [traits.EVENT_PAYLOAD] = {},
+            },
+        }),
+        DataType = schema.new({
+            id = id.from(_N, "RequestPayloadPart", "DataType"),
+            type = "string",
+            name = "DataType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.EVENT_HEADER] = {},
+            },
+        }),
+        CompletionState = schema.new({
+            id = id.from(_N, "RequestPayloadPart", "CompletionState"),
+            type = "string",
+            name = "CompletionState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.EVENT_HEADER] = {},
+            },
+        }),
+        P = schema.new({
+            id = id.from(_N, "RequestPayloadPart", "P"),
+            type = "string",
+            name = "P",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.EVENT_HEADER] = {},
+            },
+        }),
+    },
+})
+
+M.RequestStreamEvent = schema.new({
+    id = id.from(_N, "RequestStreamEvent"),
+    type = "union",
+    members = {
+        PayloadPart = schema.new({
+            id = id.from(_N, "RequestStreamEvent", "PayloadPart"),
+            type = "structure",
+            name = "PayloadPart",
+            target_id = id.from(_N, "RequestPayloadPart"),
+            target = M.RequestPayloadPart,
+        }),
+    },
+})
+
+M.InvokeEndpointWithBidirectionalStreamInput = schema.new({
+    id = id.from(_N, "InvokeEndpointWithBidirectionalStreamInput"),
+    type = "structure",
+    members = {
+        EndpointName = schema.new({
+            id = id.from(_N, "InvokeEndpointWithBidirectionalStreamInput", "EndpointName"),
+            type = "string",
+            name = "EndpointName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Body = schema.new({
+            id = id.from(_N, "InvokeEndpointWithBidirectionalStreamInput", "Body"),
+            type = "union",
+            name = "Body",
+            target_id = id.from(_N, "RequestStreamEvent"),
+            target = M.RequestStreamEvent,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
+            },
+        }),
+        TargetVariant = schema.new({
+            id = id.from(_N, "InvokeEndpointWithBidirectionalStreamInput", "TargetVariant"),
+            type = "string",
+            name = "TargetVariant",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-SageMaker-Target-Variant" },
+            },
+        }),
+        ModelInvocationPath = schema.new({
+            id = id.from(_N, "InvokeEndpointWithBidirectionalStreamInput", "ModelInvocationPath"),
+            type = "string",
+            name = "ModelInvocationPath",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-SageMaker-Model-Invocation-Path" },
+            },
+        }),
+        ModelQueryString = schema.new({
+            id = id.from(_N, "InvokeEndpointWithBidirectionalStreamInput", "ModelQueryString"),
+            type = "string",
+            name = "ModelQueryString",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-SageMaker-Model-Query-String" },
+            },
+        }),
+    },
+})
+
+M.ModelStreamError = schema.new({
+    id = id.from(_N, "ModelStreamError"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ModelStreamError", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        ErrorCode = schema.new({
+            id = id.from(_N, "ModelStreamError", "ErrorCode"),
+            type = "string",
+            name = "ErrorCode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResponsePayloadPart = schema.new({
+    id = id.from(_N, "ResponsePayloadPart"),
+    type = "structure",
+    members = {
+        Bytes = schema.new({
+            id = id.from(_N, "ResponsePayloadPart", "Bytes"),
+            type = "blob",
+            name = "Bytes",
+            target_id = prelude.Blob.id,
+            traits = {
+                [traits.EVENT_PAYLOAD] = {},
+            },
+        }),
+        DataType = schema.new({
+            id = id.from(_N, "ResponsePayloadPart", "DataType"),
+            type = "string",
+            name = "DataType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.EVENT_HEADER] = {},
+            },
+        }),
+        CompletionState = schema.new({
+            id = id.from(_N, "ResponsePayloadPart", "CompletionState"),
+            type = "string",
+            name = "CompletionState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.EVENT_HEADER] = {},
+            },
+        }),
+        P = schema.new({
+            id = id.from(_N, "ResponsePayloadPart", "P"),
+            type = "string",
+            name = "P",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.EVENT_HEADER] = {},
+            },
+        }),
+    },
+})
+
+M.ResponseStreamEvent = schema.new({
+    id = id.from(_N, "ResponseStreamEvent"),
+    type = "union",
+    members = {
+        PayloadPart = schema.new({
+            id = id.from(_N, "ResponseStreamEvent", "PayloadPart"),
+            type = "structure",
+            name = "PayloadPart",
+            target_id = id.from(_N, "ResponsePayloadPart"),
+            target = M.ResponsePayloadPart,
+        }),
+        ModelStreamError = schema.new({
+            id = id.from(_N, "ResponseStreamEvent", "ModelStreamError"),
+            type = "structure",
+            name = "ModelStreamError",
+            target_id = id.from(_N, "ModelStreamError"),
+            target = M.ModelStreamError,
+        }),
+        InternalStreamFailure = schema.new({
+            id = id.from(_N, "ResponseStreamEvent", "InternalStreamFailure"),
+            type = "structure",
+            name = "InternalStreamFailure",
+            target_id = id.from(_N, "InternalStreamFailure"),
+            target = M.InternalStreamFailure,
+        }),
+    },
+})
+
+M.InvokeEndpointWithBidirectionalStreamOutput = schema.new({
+    id = id.from(_N, "InvokeEndpointWithBidirectionalStreamOutput"),
+    type = "structure",
+    members = {
+        Body = schema.new({
+            id = id.from(_N, "InvokeEndpointWithBidirectionalStreamOutput", "Body"),
+            type = "union",
+            name = "Body",
+            target_id = id.from(_N, "ResponseStreamEvent"),
+            target = M.ResponseStreamEvent,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
+            },
+        }),
+        InvokedProductionVariant = schema.new({
+            id = id.from(_N, "InvokeEndpointWithBidirectionalStreamOutput", "InvokedProductionVariant"),
+            type = "string",
+            name = "InvokedProductionVariant",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Invoked-Production-Variant" },
+            },
+        }),
+    },
+})
+
+M.ModelError = schema.new({
+    id = id.from(_N, "ModelError"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ModelError", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        OriginalStatusCode = schema.new({
+            id = id.from(_N, "ModelError", "OriginalStatusCode"),
+            type = "integer",
+            name = "OriginalStatusCode",
+            target_id = prelude.Integer.id,
+        }),
+        OriginalMessage = schema.new({
+            id = id.from(_N, "ModelError", "OriginalMessage"),
+            type = "string",
+            name = "OriginalMessage",
+            target_id = prelude.String.id,
+        }),
+        LogStreamArn = schema.new({
+            id = id.from(_N, "ModelError", "LogStreamArn"),
+            type = "string",
+            name = "LogStreamArn",
+            target_id = prelude.String.id,
+        }),
+        ErrorCode = schema.new({
+            id = id.from(_N, "ModelError", "ErrorCode"),
+            type = "string",
+            name = "ErrorCode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceUnavailableError = schema.new({
+    id = id.from(_N, "ServiceUnavailableError"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ServiceUnavailableError", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        ErrorCode = schema.new({
+            id = id.from(_N, "ServiceUnavailableError", "ErrorCode"),
+            type = "string",
+            name = "ErrorCode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+return M

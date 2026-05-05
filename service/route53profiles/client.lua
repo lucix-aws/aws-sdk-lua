@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("route53profiles.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("route53profiles.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("route53profiles.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateProfile(input, options)
     return self:invokeOperation(input, {
         name = "AssociateProfile",
-        input_schema = types.AssociateProfileInput,
-        output_schema = types.AssociateProfileOutput,
+        input_schema = schemas.AssociateProfileInput,
+        output_schema = schemas.AssociateProfileOutput,
         http_method = "POST",
         http_path = "/profileassociation",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:associateResourceToProfile(input, options)
     return self:invokeOperation(input, {
         name = "AssociateResourceToProfile",
-        input_schema = types.AssociateResourceToProfileInput,
-        output_schema = types.AssociateResourceToProfileOutput,
+        input_schema = schemas.AssociateResourceToProfileInput,
+        output_schema = schemas.AssociateResourceToProfileOutput,
         http_method = "POST",
         http_path = "/profileresourceassociation",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createProfile(input, options)
     return self:invokeOperation(input, {
         name = "CreateProfile",
-        input_schema = types.CreateProfileInput,
-        output_schema = types.CreateProfileOutput,
+        input_schema = schemas.CreateProfileInput,
+        output_schema = schemas.CreateProfileOutput,
         http_method = "POST",
         http_path = "/profile",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteProfile(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProfile",
-        input_schema = types.DeleteProfileInput,
-        output_schema = types.DeleteProfileOutput,
+        input_schema = schemas.DeleteProfileInput,
+        output_schema = schemas.DeleteProfileOutput,
         http_method = "DELETE",
         http_path = "/profile/{ProfileId}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:disassociateProfile(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateProfile",
-        input_schema = types.DisassociateProfileInput,
-        output_schema = types.DisassociateProfileOutput,
+        input_schema = schemas.DisassociateProfileInput,
+        output_schema = schemas.DisassociateProfileOutput,
         http_method = "DELETE",
         http_path = "/profileassociation/Profileid/{ProfileId}/resourceid/{ResourceId}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:disassociateResourceFromProfile(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateResourceFromProfile",
-        input_schema = types.DisassociateResourceFromProfileInput,
-        output_schema = types.DisassociateResourceFromProfileOutput,
+        input_schema = schemas.DisassociateResourceFromProfileInput,
+        output_schema = schemas.DisassociateResourceFromProfileOutput,
         http_method = "DELETE",
         http_path = "/profileresourceassociation/profileid/{ProfileId}/resourcearn/{ResourceArn}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getProfile(input, options)
     return self:invokeOperation(input, {
         name = "GetProfile",
-        input_schema = types.GetProfileInput,
-        output_schema = types.GetProfileOutput,
+        input_schema = schemas.GetProfileInput,
+        output_schema = schemas.GetProfileOutput,
         http_method = "GET",
         http_path = "/profile/{ProfileId}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getProfileAssociation(input, options)
     return self:invokeOperation(input, {
         name = "GetProfileAssociation",
-        input_schema = types.GetProfileAssociationInput,
-        output_schema = types.GetProfileAssociationOutput,
+        input_schema = schemas.GetProfileAssociationInput,
+        output_schema = schemas.GetProfileAssociationOutput,
         http_method = "GET",
         http_path = "/profileassociation/{ProfileAssociationId}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getProfileResourceAssociation(input, options)
     return self:invokeOperation(input, {
         name = "GetProfileResourceAssociation",
-        input_schema = types.GetProfileResourceAssociationInput,
-        output_schema = types.GetProfileResourceAssociationOutput,
+        input_schema = schemas.GetProfileResourceAssociationInput,
+        output_schema = schemas.GetProfileResourceAssociationOutput,
         http_method = "GET",
         http_path = "/profileresourceassociation/{ProfileResourceAssociationId}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listProfileAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListProfileAssociations",
-        input_schema = types.ListProfileAssociationsInput,
-        output_schema = types.ListProfileAssociationsOutput,
+        input_schema = schemas.ListProfileAssociationsInput,
+        output_schema = schemas.ListProfileAssociationsOutput,
         http_method = "GET",
         http_path = "/profileassociations",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listProfileResourceAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListProfileResourceAssociations",
-        input_schema = types.ListProfileResourceAssociationsInput,
-        output_schema = types.ListProfileResourceAssociationsOutput,
+        input_schema = schemas.ListProfileResourceAssociationsInput,
+        output_schema = schemas.ListProfileResourceAssociationsOutput,
         http_method = "GET",
         http_path = "/profileresourceassociations/profileid/{ProfileId}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listProfiles(input, options)
     return self:invokeOperation(input, {
         name = "ListProfiles",
-        input_schema = types.ListProfilesInput,
-        output_schema = types.ListProfilesOutput,
+        input_schema = schemas.ListProfilesInput,
+        output_schema = schemas.ListProfilesOutput,
         http_method = "GET",
         http_path = "/profiles",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:updateProfileResourceAssociation(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProfileResourceAssociation",
-        input_schema = types.UpdateProfileResourceAssociationInput,
-        output_schema = types.UpdateProfileResourceAssociationOutput,
+        input_schema = schemas.UpdateProfileResourceAssociationInput,
+        output_schema = schemas.UpdateProfileResourceAssociationOutput,
         http_method = "PATCH",
         http_path = "/profileresourceassociation/{ProfileResourceAssociationId}",
         effective_auth_schemes = {

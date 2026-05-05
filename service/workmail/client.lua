@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("workmail.endpoint_rules")
+local schemas = require("workmail.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("workmail.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateDelegateToResource(input, options)
     return self:invokeOperation(input, {
         name = "AssociateDelegateToResource",
-        input_schema = types.AssociateDelegateToResourceInput,
-        output_schema = types.AssociateDelegateToResourceOutput,
+        input_schema = schemas.AssociateDelegateToResourceInput,
+        output_schema = schemas.AssociateDelegateToResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:associateMemberToGroup(input, options)
     return self:invokeOperation(input, {
         name = "AssociateMemberToGroup",
-        input_schema = types.AssociateMemberToGroupInput,
-        output_schema = types.AssociateMemberToGroupOutput,
+        input_schema = schemas.AssociateMemberToGroupInput,
+        output_schema = schemas.AssociateMemberToGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:assumeImpersonationRole(input, options)
     return self:invokeOperation(input, {
         name = "AssumeImpersonationRole",
-        input_schema = types.AssumeImpersonationRoleInput,
-        output_schema = types.AssumeImpersonationRoleOutput,
+        input_schema = schemas.AssumeImpersonationRoleInput,
+        output_schema = schemas.AssumeImpersonationRoleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:cancelMailboxExportJob(input, options)
     return self:invokeOperation(input, {
         name = "CancelMailboxExportJob",
-        input_schema = types.CancelMailboxExportJobInput,
-        output_schema = types.CancelMailboxExportJobOutput,
+        input_schema = schemas.CancelMailboxExportJobInput,
+        output_schema = schemas.CancelMailboxExportJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createAlias(input, options)
     return self:invokeOperation(input, {
         name = "CreateAlias",
-        input_schema = types.CreateAliasInput,
-        output_schema = types.CreateAliasOutput,
+        input_schema = schemas.CreateAliasInput,
+        output_schema = schemas.CreateAliasOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createAvailabilityConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateAvailabilityConfiguration",
-        input_schema = types.CreateAvailabilityConfigurationInput,
-        output_schema = types.CreateAvailabilityConfigurationOutput,
+        input_schema = schemas.CreateAvailabilityConfigurationInput,
+        output_schema = schemas.CreateAvailabilityConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateGroup",
-        input_schema = types.CreateGroupInput,
-        output_schema = types.CreateGroupOutput,
+        input_schema = schemas.CreateGroupInput,
+        output_schema = schemas.CreateGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createIdentityCenterApplication(input, options)
     return self:invokeOperation(input, {
         name = "CreateIdentityCenterApplication",
-        input_schema = types.CreateIdentityCenterApplicationInput,
-        output_schema = types.CreateIdentityCenterApplicationOutput,
+        input_schema = schemas.CreateIdentityCenterApplicationInput,
+        output_schema = schemas.CreateIdentityCenterApplicationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createImpersonationRole(input, options)
     return self:invokeOperation(input, {
         name = "CreateImpersonationRole",
-        input_schema = types.CreateImpersonationRoleInput,
-        output_schema = types.CreateImpersonationRoleOutput,
+        input_schema = schemas.CreateImpersonationRoleInput,
+        output_schema = schemas.CreateImpersonationRoleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createMobileDeviceAccessRule(input, options)
     return self:invokeOperation(input, {
         name = "CreateMobileDeviceAccessRule",
-        input_schema = types.CreateMobileDeviceAccessRuleInput,
-        output_schema = types.CreateMobileDeviceAccessRuleOutput,
+        input_schema = schemas.CreateMobileDeviceAccessRuleInput,
+        output_schema = schemas.CreateMobileDeviceAccessRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createOrganization(input, options)
     return self:invokeOperation(input, {
         name = "CreateOrganization",
-        input_schema = types.CreateOrganizationInput,
-        output_schema = types.CreateOrganizationOutput,
+        input_schema = schemas.CreateOrganizationInput,
+        output_schema = schemas.CreateOrganizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createResource(input, options)
     return self:invokeOperation(input, {
         name = "CreateResource",
-        input_schema = types.CreateResourceInput,
-        output_schema = types.CreateResourceOutput,
+        input_schema = schemas.CreateResourceInput,
+        output_schema = schemas.CreateResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createUser(input, options)
     return self:invokeOperation(input, {
         name = "CreateUser",
-        input_schema = types.CreateUserInput,
-        output_schema = types.CreateUserOutput,
+        input_schema = schemas.CreateUserInput,
+        output_schema = schemas.CreateUserOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteAccessControlRule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAccessControlRule",
-        input_schema = types.DeleteAccessControlRuleInput,
-        output_schema = types.DeleteAccessControlRuleOutput,
+        input_schema = schemas.DeleteAccessControlRuleInput,
+        output_schema = schemas.DeleteAccessControlRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteAlias(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAlias",
-        input_schema = types.DeleteAliasInput,
-        output_schema = types.DeleteAliasOutput,
+        input_schema = schemas.DeleteAliasInput,
+        output_schema = schemas.DeleteAliasOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteAvailabilityConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAvailabilityConfiguration",
-        input_schema = types.DeleteAvailabilityConfigurationInput,
-        output_schema = types.DeleteAvailabilityConfigurationOutput,
+        input_schema = schemas.DeleteAvailabilityConfigurationInput,
+        output_schema = schemas.DeleteAvailabilityConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteEmailMonitoringConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEmailMonitoringConfiguration",
-        input_schema = types.DeleteEmailMonitoringConfigurationInput,
-        output_schema = types.DeleteEmailMonitoringConfigurationOutput,
+        input_schema = schemas.DeleteEmailMonitoringConfigurationInput,
+        output_schema = schemas.DeleteEmailMonitoringConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGroup",
-        input_schema = types.DeleteGroupInput,
-        output_schema = types.DeleteGroupOutput,
+        input_schema = schemas.DeleteGroupInput,
+        output_schema = schemas.DeleteGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteIdentityCenterApplication(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIdentityCenterApplication",
-        input_schema = types.DeleteIdentityCenterApplicationInput,
-        output_schema = types.DeleteIdentityCenterApplicationOutput,
+        input_schema = schemas.DeleteIdentityCenterApplicationInput,
+        output_schema = schemas.DeleteIdentityCenterApplicationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deleteIdentityProviderConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIdentityProviderConfiguration",
-        input_schema = types.DeleteIdentityProviderConfigurationInput,
-        output_schema = types.DeleteIdentityProviderConfigurationOutput,
+        input_schema = schemas.DeleteIdentityProviderConfigurationInput,
+        output_schema = schemas.DeleteIdentityProviderConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteImpersonationRole(input, options)
     return self:invokeOperation(input, {
         name = "DeleteImpersonationRole",
-        input_schema = types.DeleteImpersonationRoleInput,
-        output_schema = types.DeleteImpersonationRoleOutput,
+        input_schema = schemas.DeleteImpersonationRoleInput,
+        output_schema = schemas.DeleteImpersonationRoleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:deleteMailboxPermissions(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMailboxPermissions",
-        input_schema = types.DeleteMailboxPermissionsInput,
-        output_schema = types.DeleteMailboxPermissionsOutput,
+        input_schema = schemas.DeleteMailboxPermissionsInput,
+        output_schema = schemas.DeleteMailboxPermissionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:deleteMobileDeviceAccessOverride(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMobileDeviceAccessOverride",
-        input_schema = types.DeleteMobileDeviceAccessOverrideInput,
-        output_schema = types.DeleteMobileDeviceAccessOverrideOutput,
+        input_schema = schemas.DeleteMobileDeviceAccessOverrideInput,
+        output_schema = schemas.DeleteMobileDeviceAccessOverrideOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:deleteMobileDeviceAccessRule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMobileDeviceAccessRule",
-        input_schema = types.DeleteMobileDeviceAccessRuleInput,
-        output_schema = types.DeleteMobileDeviceAccessRuleOutput,
+        input_schema = schemas.DeleteMobileDeviceAccessRuleInput,
+        output_schema = schemas.DeleteMobileDeviceAccessRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:deleteOrganization(input, options)
     return self:invokeOperation(input, {
         name = "DeleteOrganization",
-        input_schema = types.DeleteOrganizationInput,
-        output_schema = types.DeleteOrganizationOutput,
+        input_schema = schemas.DeleteOrganizationInput,
+        output_schema = schemas.DeleteOrganizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:deletePersonalAccessToken(input, options)
     return self:invokeOperation(input, {
         name = "DeletePersonalAccessToken",
-        input_schema = types.DeletePersonalAccessTokenInput,
-        output_schema = types.DeletePersonalAccessTokenOutput,
+        input_schema = schemas.DeletePersonalAccessTokenInput,
+        output_schema = schemas.DeletePersonalAccessTokenOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:deleteResource(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResource",
-        input_schema = types.DeleteResourceInput,
-        output_schema = types.DeleteResourceOutput,
+        input_schema = schemas.DeleteResourceInput,
+        output_schema = schemas.DeleteResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:deleteRetentionPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRetentionPolicy",
-        input_schema = types.DeleteRetentionPolicyInput,
-        output_schema = types.DeleteRetentionPolicyOutput,
+        input_schema = schemas.DeleteRetentionPolicyInput,
+        output_schema = schemas.DeleteRetentionPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:deleteUser(input, options)
     return self:invokeOperation(input, {
         name = "DeleteUser",
-        input_schema = types.DeleteUserInput,
-        output_schema = types.DeleteUserOutput,
+        input_schema = schemas.DeleteUserInput,
+        output_schema = schemas.DeleteUserOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:deregisterFromWorkMail(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterFromWorkMail",
-        input_schema = types.DeregisterFromWorkMailInput,
-        output_schema = types.DeregisterFromWorkMailOutput,
+        input_schema = schemas.DeregisterFromWorkMailInput,
+        output_schema = schemas.DeregisterFromWorkMailOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:deregisterMailDomain(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterMailDomain",
-        input_schema = types.DeregisterMailDomainInput,
-        output_schema = types.DeregisterMailDomainOutput,
+        input_schema = schemas.DeregisterMailDomainInput,
+        output_schema = schemas.DeregisterMailDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:describeEmailMonitoringConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEmailMonitoringConfiguration",
-        input_schema = types.DescribeEmailMonitoringConfigurationInput,
-        output_schema = types.DescribeEmailMonitoringConfigurationOutput,
+        input_schema = schemas.DescribeEmailMonitoringConfigurationInput,
+        output_schema = schemas.DescribeEmailMonitoringConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:describeEntity(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEntity",
-        input_schema = types.DescribeEntityInput,
-        output_schema = types.DescribeEntityOutput,
+        input_schema = schemas.DescribeEntityInput,
+        output_schema = schemas.DescribeEntityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:describeGroup(input, options)
     return self:invokeOperation(input, {
         name = "DescribeGroup",
-        input_schema = types.DescribeGroupInput,
-        output_schema = types.DescribeGroupOutput,
+        input_schema = schemas.DescribeGroupInput,
+        output_schema = schemas.DescribeGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:describeIdentityProviderConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DescribeIdentityProviderConfiguration",
-        input_schema = types.DescribeIdentityProviderConfigurationInput,
-        output_schema = types.DescribeIdentityProviderConfigurationOutput,
+        input_schema = schemas.DescribeIdentityProviderConfigurationInput,
+        output_schema = schemas.DescribeIdentityProviderConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:describeInboundDmarcSettings(input, options)
     return self:invokeOperation(input, {
         name = "DescribeInboundDmarcSettings",
-        input_schema = types.DescribeInboundDmarcSettingsInput,
-        output_schema = types.DescribeInboundDmarcSettingsOutput,
+        input_schema = schemas.DescribeInboundDmarcSettingsInput,
+        output_schema = schemas.DescribeInboundDmarcSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:describeMailboxExportJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribeMailboxExportJob",
-        input_schema = types.DescribeMailboxExportJobInput,
-        output_schema = types.DescribeMailboxExportJobOutput,
+        input_schema = schemas.DescribeMailboxExportJobInput,
+        output_schema = schemas.DescribeMailboxExportJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:describeOrganization(input, options)
     return self:invokeOperation(input, {
         name = "DescribeOrganization",
-        input_schema = types.DescribeOrganizationInput,
-        output_schema = types.DescribeOrganizationOutput,
+        input_schema = schemas.DescribeOrganizationInput,
+        output_schema = schemas.DescribeOrganizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:describeResource(input, options)
     return self:invokeOperation(input, {
         name = "DescribeResource",
-        input_schema = types.DescribeResourceInput,
-        output_schema = types.DescribeResourceOutput,
+        input_schema = schemas.DescribeResourceInput,
+        output_schema = schemas.DescribeResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:describeUser(input, options)
     return self:invokeOperation(input, {
         name = "DescribeUser",
-        input_schema = types.DescribeUserInput,
-        output_schema = types.DescribeUserOutput,
+        input_schema = schemas.DescribeUserInput,
+        output_schema = schemas.DescribeUserOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:disassociateDelegateFromResource(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateDelegateFromResource",
-        input_schema = types.DisassociateDelegateFromResourceInput,
-        output_schema = types.DisassociateDelegateFromResourceOutput,
+        input_schema = schemas.DisassociateDelegateFromResourceInput,
+        output_schema = schemas.DisassociateDelegateFromResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:disassociateMemberFromGroup(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateMemberFromGroup",
-        input_schema = types.DisassociateMemberFromGroupInput,
-        output_schema = types.DisassociateMemberFromGroupOutput,
+        input_schema = schemas.DisassociateMemberFromGroupInput,
+        output_schema = schemas.DisassociateMemberFromGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:getAccessControlEffect(input, options)
     return self:invokeOperation(input, {
         name = "GetAccessControlEffect",
-        input_schema = types.GetAccessControlEffectInput,
-        output_schema = types.GetAccessControlEffectOutput,
+        input_schema = schemas.GetAccessControlEffectInput,
+        output_schema = schemas.GetAccessControlEffectOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:getDefaultRetentionPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetDefaultRetentionPolicy",
-        input_schema = types.GetDefaultRetentionPolicyInput,
-        output_schema = types.GetDefaultRetentionPolicyOutput,
+        input_schema = schemas.GetDefaultRetentionPolicyInput,
+        output_schema = schemas.GetDefaultRetentionPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:getImpersonationRole(input, options)
     return self:invokeOperation(input, {
         name = "GetImpersonationRole",
-        input_schema = types.GetImpersonationRoleInput,
-        output_schema = types.GetImpersonationRoleOutput,
+        input_schema = schemas.GetImpersonationRoleInput,
+        output_schema = schemas.GetImpersonationRoleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:getImpersonationRoleEffect(input, options)
     return self:invokeOperation(input, {
         name = "GetImpersonationRoleEffect",
-        input_schema = types.GetImpersonationRoleEffectInput,
-        output_schema = types.GetImpersonationRoleEffectOutput,
+        input_schema = schemas.GetImpersonationRoleEffectInput,
+        output_schema = schemas.GetImpersonationRoleEffectOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:getMailboxDetails(input, options)
     return self:invokeOperation(input, {
         name = "GetMailboxDetails",
-        input_schema = types.GetMailboxDetailsInput,
-        output_schema = types.GetMailboxDetailsOutput,
+        input_schema = schemas.GetMailboxDetailsInput,
+        output_schema = schemas.GetMailboxDetailsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:getMailDomain(input, options)
     return self:invokeOperation(input, {
         name = "GetMailDomain",
-        input_schema = types.GetMailDomainInput,
-        output_schema = types.GetMailDomainOutput,
+        input_schema = schemas.GetMailDomainInput,
+        output_schema = schemas.GetMailDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:getMobileDeviceAccessEffect(input, options)
     return self:invokeOperation(input, {
         name = "GetMobileDeviceAccessEffect",
-        input_schema = types.GetMobileDeviceAccessEffectInput,
-        output_schema = types.GetMobileDeviceAccessEffectOutput,
+        input_schema = schemas.GetMobileDeviceAccessEffectInput,
+        output_schema = schemas.GetMobileDeviceAccessEffectOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:getMobileDeviceAccessOverride(input, options)
     return self:invokeOperation(input, {
         name = "GetMobileDeviceAccessOverride",
-        input_schema = types.GetMobileDeviceAccessOverrideInput,
-        output_schema = types.GetMobileDeviceAccessOverrideOutput,
+        input_schema = schemas.GetMobileDeviceAccessOverrideInput,
+        output_schema = schemas.GetMobileDeviceAccessOverrideOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:getPersonalAccessTokenMetadata(input, options)
     return self:invokeOperation(input, {
         name = "GetPersonalAccessTokenMetadata",
-        input_schema = types.GetPersonalAccessTokenMetadataInput,
-        output_schema = types.GetPersonalAccessTokenMetadataOutput,
+        input_schema = schemas.GetPersonalAccessTokenMetadataInput,
+        output_schema = schemas.GetPersonalAccessTokenMetadataOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:listAccessControlRules(input, options)
     return self:invokeOperation(input, {
         name = "ListAccessControlRules",
-        input_schema = types.ListAccessControlRulesInput,
-        output_schema = types.ListAccessControlRulesOutput,
+        input_schema = schemas.ListAccessControlRulesInput,
+        output_schema = schemas.ListAccessControlRulesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:listAliases(input, options)
     return self:invokeOperation(input, {
         name = "ListAliases",
-        input_schema = types.ListAliasesInput,
-        output_schema = types.ListAliasesOutput,
+        input_schema = schemas.ListAliasesInput,
+        output_schema = schemas.ListAliasesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:listAvailabilityConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListAvailabilityConfigurations",
-        input_schema = types.ListAvailabilityConfigurationsInput,
-        output_schema = types.ListAvailabilityConfigurationsOutput,
+        input_schema = schemas.ListAvailabilityConfigurationsInput,
+        output_schema = schemas.ListAvailabilityConfigurationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:listGroupMembers(input, options)
     return self:invokeOperation(input, {
         name = "ListGroupMembers",
-        input_schema = types.ListGroupMembersInput,
-        output_schema = types.ListGroupMembersOutput,
+        input_schema = schemas.ListGroupMembersInput,
+        output_schema = schemas.ListGroupMembersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:listGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListGroups",
-        input_schema = types.ListGroupsInput,
-        output_schema = types.ListGroupsOutput,
+        input_schema = schemas.ListGroupsInput,
+        output_schema = schemas.ListGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:listGroupsForEntity(input, options)
     return self:invokeOperation(input, {
         name = "ListGroupsForEntity",
-        input_schema = types.ListGroupsForEntityInput,
-        output_schema = types.ListGroupsForEntityOutput,
+        input_schema = schemas.ListGroupsForEntityInput,
+        output_schema = schemas.ListGroupsForEntityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:listImpersonationRoles(input, options)
     return self:invokeOperation(input, {
         name = "ListImpersonationRoles",
-        input_schema = types.ListImpersonationRolesInput,
-        output_schema = types.ListImpersonationRolesOutput,
+        input_schema = schemas.ListImpersonationRolesInput,
+        output_schema = schemas.ListImpersonationRolesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:listMailboxExportJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListMailboxExportJobs",
-        input_schema = types.ListMailboxExportJobsInput,
-        output_schema = types.ListMailboxExportJobsOutput,
+        input_schema = schemas.ListMailboxExportJobsInput,
+        output_schema = schemas.ListMailboxExportJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:listMailboxPermissions(input, options)
     return self:invokeOperation(input, {
         name = "ListMailboxPermissions",
-        input_schema = types.ListMailboxPermissionsInput,
-        output_schema = types.ListMailboxPermissionsOutput,
+        input_schema = schemas.ListMailboxPermissionsInput,
+        output_schema = schemas.ListMailboxPermissionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:listMailDomains(input, options)
     return self:invokeOperation(input, {
         name = "ListMailDomains",
-        input_schema = types.ListMailDomainsInput,
-        output_schema = types.ListMailDomainsOutput,
+        input_schema = schemas.ListMailDomainsInput,
+        output_schema = schemas.ListMailDomainsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:listMobileDeviceAccessOverrides(input, options)
     return self:invokeOperation(input, {
         name = "ListMobileDeviceAccessOverrides",
-        input_schema = types.ListMobileDeviceAccessOverridesInput,
-        output_schema = types.ListMobileDeviceAccessOverridesOutput,
+        input_schema = schemas.ListMobileDeviceAccessOverridesInput,
+        output_schema = schemas.ListMobileDeviceAccessOverridesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:listMobileDeviceAccessRules(input, options)
     return self:invokeOperation(input, {
         name = "ListMobileDeviceAccessRules",
-        input_schema = types.ListMobileDeviceAccessRulesInput,
-        output_schema = types.ListMobileDeviceAccessRulesOutput,
+        input_schema = schemas.ListMobileDeviceAccessRulesInput,
+        output_schema = schemas.ListMobileDeviceAccessRulesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:listOrganizations(input, options)
     return self:invokeOperation(input, {
         name = "ListOrganizations",
-        input_schema = types.ListOrganizationsInput,
-        output_schema = types.ListOrganizationsOutput,
+        input_schema = schemas.ListOrganizationsInput,
+        output_schema = schemas.ListOrganizationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:listPersonalAccessTokens(input, options)
     return self:invokeOperation(input, {
         name = "ListPersonalAccessTokens",
-        input_schema = types.ListPersonalAccessTokensInput,
-        output_schema = types.ListPersonalAccessTokensOutput,
+        input_schema = schemas.ListPersonalAccessTokensInput,
+        output_schema = schemas.ListPersonalAccessTokensOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:listResourceDelegates(input, options)
     return self:invokeOperation(input, {
         name = "ListResourceDelegates",
-        input_schema = types.ListResourceDelegatesInput,
-        output_schema = types.ListResourceDelegatesOutput,
+        input_schema = schemas.ListResourceDelegatesInput,
+        output_schema = schemas.ListResourceDelegatesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:listResources(input, options)
     return self:invokeOperation(input, {
         name = "ListResources",
-        input_schema = types.ListResourcesInput,
-        output_schema = types.ListResourcesOutput,
+        input_schema = schemas.ListResourcesInput,
+        output_schema = schemas.ListResourcesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:listUsers(input, options)
     return self:invokeOperation(input, {
         name = "ListUsers",
-        input_schema = types.ListUsersInput,
-        output_schema = types.ListUsersOutput,
+        input_schema = schemas.ListUsersInput,
+        output_schema = schemas.ListUsersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:putAccessControlRule(input, options)
     return self:invokeOperation(input, {
         name = "PutAccessControlRule",
-        input_schema = types.PutAccessControlRuleInput,
-        output_schema = types.PutAccessControlRuleOutput,
+        input_schema = schemas.PutAccessControlRuleInput,
+        output_schema = schemas.PutAccessControlRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:putEmailMonitoringConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutEmailMonitoringConfiguration",
-        input_schema = types.PutEmailMonitoringConfigurationInput,
-        output_schema = types.PutEmailMonitoringConfigurationOutput,
+        input_schema = schemas.PutEmailMonitoringConfigurationInput,
+        output_schema = schemas.PutEmailMonitoringConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:putIdentityProviderConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutIdentityProviderConfiguration",
-        input_schema = types.PutIdentityProviderConfigurationInput,
-        output_schema = types.PutIdentityProviderConfigurationOutput,
+        input_schema = schemas.PutIdentityProviderConfigurationInput,
+        output_schema = schemas.PutIdentityProviderConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:putInboundDmarcSettings(input, options)
     return self:invokeOperation(input, {
         name = "PutInboundDmarcSettings",
-        input_schema = types.PutInboundDmarcSettingsInput,
-        output_schema = types.PutInboundDmarcSettingsOutput,
+        input_schema = schemas.PutInboundDmarcSettingsInput,
+        output_schema = schemas.PutInboundDmarcSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:putMailboxPermissions(input, options)
     return self:invokeOperation(input, {
         name = "PutMailboxPermissions",
-        input_schema = types.PutMailboxPermissionsInput,
-        output_schema = types.PutMailboxPermissionsOutput,
+        input_schema = schemas.PutMailboxPermissionsInput,
+        output_schema = schemas.PutMailboxPermissionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1011,8 +1011,8 @@ end
 function Client:putMobileDeviceAccessOverride(input, options)
     return self:invokeOperation(input, {
         name = "PutMobileDeviceAccessOverride",
-        input_schema = types.PutMobileDeviceAccessOverrideInput,
-        output_schema = types.PutMobileDeviceAccessOverrideOutput,
+        input_schema = schemas.PutMobileDeviceAccessOverrideInput,
+        output_schema = schemas.PutMobileDeviceAccessOverrideOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1024,8 +1024,8 @@ end
 function Client:putRetentionPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutRetentionPolicy",
-        input_schema = types.PutRetentionPolicyInput,
-        output_schema = types.PutRetentionPolicyOutput,
+        input_schema = schemas.PutRetentionPolicyInput,
+        output_schema = schemas.PutRetentionPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1037,8 +1037,8 @@ end
 function Client:registerMailDomain(input, options)
     return self:invokeOperation(input, {
         name = "RegisterMailDomain",
-        input_schema = types.RegisterMailDomainInput,
-        output_schema = types.RegisterMailDomainOutput,
+        input_schema = schemas.RegisterMailDomainInput,
+        output_schema = schemas.RegisterMailDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1050,8 +1050,8 @@ end
 function Client:registerToWorkMail(input, options)
     return self:invokeOperation(input, {
         name = "RegisterToWorkMail",
-        input_schema = types.RegisterToWorkMailInput,
-        output_schema = types.RegisterToWorkMailOutput,
+        input_schema = schemas.RegisterToWorkMailInput,
+        output_schema = schemas.RegisterToWorkMailOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1063,8 +1063,8 @@ end
 function Client:resetPassword(input, options)
     return self:invokeOperation(input, {
         name = "ResetPassword",
-        input_schema = types.ResetPasswordInput,
-        output_schema = types.ResetPasswordOutput,
+        input_schema = schemas.ResetPasswordInput,
+        output_schema = schemas.ResetPasswordOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1076,8 +1076,8 @@ end
 function Client:startMailboxExportJob(input, options)
     return self:invokeOperation(input, {
         name = "StartMailboxExportJob",
-        input_schema = types.StartMailboxExportJobInput,
-        output_schema = types.StartMailboxExportJobOutput,
+        input_schema = schemas.StartMailboxExportJobInput,
+        output_schema = schemas.StartMailboxExportJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1089,8 +1089,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1102,8 +1102,8 @@ end
 function Client:testAvailabilityConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "TestAvailabilityConfiguration",
-        input_schema = types.TestAvailabilityConfigurationInput,
-        output_schema = types.TestAvailabilityConfigurationOutput,
+        input_schema = schemas.TestAvailabilityConfigurationInput,
+        output_schema = schemas.TestAvailabilityConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1115,8 +1115,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1128,8 +1128,8 @@ end
 function Client:updateAvailabilityConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAvailabilityConfiguration",
-        input_schema = types.UpdateAvailabilityConfigurationInput,
-        output_schema = types.UpdateAvailabilityConfigurationOutput,
+        input_schema = schemas.UpdateAvailabilityConfigurationInput,
+        output_schema = schemas.UpdateAvailabilityConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1141,8 +1141,8 @@ end
 function Client:updateDefaultMailDomain(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDefaultMailDomain",
-        input_schema = types.UpdateDefaultMailDomainInput,
-        output_schema = types.UpdateDefaultMailDomainOutput,
+        input_schema = schemas.UpdateDefaultMailDomainInput,
+        output_schema = schemas.UpdateDefaultMailDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1154,8 +1154,8 @@ end
 function Client:updateGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGroup",
-        input_schema = types.UpdateGroupInput,
-        output_schema = types.UpdateGroupOutput,
+        input_schema = schemas.UpdateGroupInput,
+        output_schema = schemas.UpdateGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1167,8 +1167,8 @@ end
 function Client:updateImpersonationRole(input, options)
     return self:invokeOperation(input, {
         name = "UpdateImpersonationRole",
-        input_schema = types.UpdateImpersonationRoleInput,
-        output_schema = types.UpdateImpersonationRoleOutput,
+        input_schema = schemas.UpdateImpersonationRoleInput,
+        output_schema = schemas.UpdateImpersonationRoleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1180,8 +1180,8 @@ end
 function Client:updateMailboxQuota(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMailboxQuota",
-        input_schema = types.UpdateMailboxQuotaInput,
-        output_schema = types.UpdateMailboxQuotaOutput,
+        input_schema = schemas.UpdateMailboxQuotaInput,
+        output_schema = schemas.UpdateMailboxQuotaOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1193,8 +1193,8 @@ end
 function Client:updateMobileDeviceAccessRule(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMobileDeviceAccessRule",
-        input_schema = types.UpdateMobileDeviceAccessRuleInput,
-        output_schema = types.UpdateMobileDeviceAccessRuleOutput,
+        input_schema = schemas.UpdateMobileDeviceAccessRuleInput,
+        output_schema = schemas.UpdateMobileDeviceAccessRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1206,8 +1206,8 @@ end
 function Client:updatePrimaryEmailAddress(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePrimaryEmailAddress",
-        input_schema = types.UpdatePrimaryEmailAddressInput,
-        output_schema = types.UpdatePrimaryEmailAddressOutput,
+        input_schema = schemas.UpdatePrimaryEmailAddressInput,
+        output_schema = schemas.UpdatePrimaryEmailAddressOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1219,8 +1219,8 @@ end
 function Client:updateResource(input, options)
     return self:invokeOperation(input, {
         name = "UpdateResource",
-        input_schema = types.UpdateResourceInput,
-        output_schema = types.UpdateResourceOutput,
+        input_schema = schemas.UpdateResourceInput,
+        output_schema = schemas.UpdateResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1232,8 +1232,8 @@ end
 function Client:updateUser(input, options)
     return self:invokeOperation(input, {
         name = "UpdateUser",
-        input_schema = types.UpdateUserInput,
-        output_schema = types.UpdateUserOutput,
+        input_schema = schemas.UpdateUserInput,
+        output_schema = schemas.UpdateUserOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

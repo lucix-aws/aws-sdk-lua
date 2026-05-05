@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("rbin.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("rbin.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("rbin.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createRule(input, options)
     return self:invokeOperation(input, {
         name = "CreateRule",
-        input_schema = types.CreateRuleInput,
-        output_schema = types.CreateRuleOutput,
+        input_schema = schemas.CreateRuleInput,
+        output_schema = schemas.CreateRuleOutput,
         http_method = "POST",
         http_path = "/rules",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteRule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRule",
-        input_schema = types.DeleteRuleInput,
-        output_schema = types.DeleteRuleOutput,
+        input_schema = schemas.DeleteRuleInput,
+        output_schema = schemas.DeleteRuleOutput,
         http_method = "DELETE",
         http_path = "/rules/{Identifier}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getRule(input, options)
     return self:invokeOperation(input, {
         name = "GetRule",
-        input_schema = types.GetRuleInput,
-        output_schema = types.GetRuleOutput,
+        input_schema = schemas.GetRuleInput,
+        output_schema = schemas.GetRuleOutput,
         http_method = "GET",
         http_path = "/rules/{Identifier}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:listRules(input, options)
     return self:invokeOperation(input, {
         name = "ListRules",
-        input_schema = types.ListRulesInput,
-        output_schema = types.ListRulesOutput,
+        input_schema = schemas.ListRulesInput,
+        output_schema = schemas.ListRulesOutput,
         http_method = "POST",
         http_path = "/list-rules",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:lockRule(input, options)
     return self:invokeOperation(input, {
         name = "LockRule",
-        input_schema = types.LockRuleInput,
-        output_schema = types.LockRuleOutput,
+        input_schema = schemas.LockRuleInput,
+        output_schema = schemas.LockRuleOutput,
         http_method = "PATCH",
         http_path = "/rules/{Identifier}/lock",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:unlockRule(input, options)
     return self:invokeOperation(input, {
         name = "UnlockRule",
-        input_schema = types.UnlockRuleInput,
-        output_schema = types.UnlockRuleOutput,
+        input_schema = schemas.UnlockRuleInput,
+        output_schema = schemas.UnlockRuleOutput,
         http_method = "PATCH",
         http_path = "/rules/{Identifier}/unlock",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:updateRule(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRule",
-        input_schema = types.UpdateRuleInput,
-        output_schema = types.UpdateRuleOutput,
+        input_schema = schemas.UpdateRuleInput,
+        output_schema = schemas.UpdateRuleOutput,
         http_method = "PATCH",
         http_path = "/rules/{Identifier}",
         effective_auth_schemes = {

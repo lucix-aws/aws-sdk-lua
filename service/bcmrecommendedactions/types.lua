@@ -1,19 +1,5 @@
 local M = {}
 
-M.AccessDeniedException = {
-    type = "structure",
-    id = "AccessDeniedException",
-    error = "client",
-    members = {
-        message = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-    },
-}
-
 M.FilterName = {
     FEATURE = "FEATURE",
     SEVERITY = "SEVERITY",
@@ -23,32 +9,6 @@ M.FilterName = {
 M.MatchOption = {
     EQUALS = "EQUALS",
     NOT_EQUALS = "NOT_EQUALS",
-}
-
-M.ActionFilter = {
-    type = "structure",
-    id = "ActionFilter",
-    members = {
-        key = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-        matchOption = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-        values = {
-            type = "list",
-            member = { type = "string" },
-            traits = {
-                required = true,
-            },
-        },
-    },
 }
 
 M.ActionType = {
@@ -74,45 +34,6 @@ M.ActionType = {
     UPDATE_TAX_REGISTRATION_NUMBER = "UPDATE_TAX_REGISTRATION_NUMBER",
 }
 
-M.InternalServerException = {
-    type = "structure",
-    id = "InternalServerException",
-    error = "server",
-    members = {
-        message = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-    },
-}
-
-M.RequestFilter = {
-    type = "structure",
-    id = "RequestFilter",
-    members = {
-        actions = {
-            type = "list",
-            member = M.ActionFilter,
-        },
-    },
-}
-
-M.ListRecommendedActionsInput = {
-    type = "structure",
-    id = "ListRecommendedActionsInput",
-    members = {
-        filter = M.RequestFilter,
-        maxResults = {
-            type = "integer",
-        },
-        nextToken = {
-            type = "string",
-        },
-    },
-}
-
 M.Feature = {
     ACCOUNT = "ACCOUNT",
     BUDGETS = "BUDGETS",
@@ -132,119 +53,11 @@ M.Severity = {
     CRITICAL = "CRITICAL",
 }
 
-M.RecommendedAction = {
-    type = "structure",
-    id = "RecommendedAction",
-    members = {
-        id = {
-            type = "string",
-        },
-        type = {
-            type = "string",
-        },
-        accountId = {
-            type = "string",
-        },
-        severity = {
-            type = "string",
-        },
-        feature = {
-            type = "string",
-        },
-        context = {
-            type = "map",
-            key = { type = "string" },
-            value = { type = "string" },
-        },
-        nextSteps = {
-            type = "list",
-            member = { type = "string" },
-        },
-        lastUpdatedTimeStamp = {
-            type = "string",
-        },
-    },
-}
-
-M.ListRecommendedActionsOutput = {
-    type = "structure",
-    id = "ListRecommendedActionsOutput",
-    members = {
-        recommendedActions = {
-            type = "list",
-            member = M.RecommendedAction,
-            traits = {
-                required = true,
-            },
-        },
-        nextToken = {
-            type = "string",
-        },
-    },
-}
-
-M.ThrottlingException = {
-    type = "structure",
-    id = "ThrottlingException",
-    error = "client",
-    members = {
-        message = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-    },
-}
-
-M.ValidationExceptionField = {
-    type = "structure",
-    id = "ValidationExceptionField",
-    members = {
-        name = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-        message = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-    },
-}
-
 M.ValidationExceptionReason = {
     UNKNOWN_OPERATION = "unknownOperation",
     CANNOT_PARSE = "cannotParse",
     FIELD_VALIDATION_FAILED = "fieldValidationFailed",
     OTHER = "other",
-}
-
-M.ValidationException = {
-    type = "structure",
-    id = "ValidationException",
-    error = "client",
-    members = {
-        message = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-        reason = {
-            type = "string",
-            traits = {
-                required = true,
-            },
-        },
-        fieldList = {
-            type = "list",
-            member = M.ValidationExceptionField,
-        },
-    },
 }
 
 return M

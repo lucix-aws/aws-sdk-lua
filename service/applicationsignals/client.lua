@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("applicationsignals.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("applicationsignals.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("applicationsignals.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchGetServiceLevelObjectiveBudgetReport(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetServiceLevelObjectiveBudgetReport",
-        input_schema = types.BatchGetServiceLevelObjectiveBudgetReportInput,
-        output_schema = types.BatchGetServiceLevelObjectiveBudgetReportOutput,
+        input_schema = schemas.BatchGetServiceLevelObjectiveBudgetReportInput,
+        output_schema = schemas.BatchGetServiceLevelObjectiveBudgetReportOutput,
         http_method = "POST",
         http_path = "/budget-report",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchUpdateExclusionWindows(input, options)
     return self:invokeOperation(input, {
         name = "BatchUpdateExclusionWindows",
-        input_schema = types.BatchUpdateExclusionWindowsInput,
-        output_schema = types.BatchUpdateExclusionWindowsOutput,
+        input_schema = schemas.BatchUpdateExclusionWindowsInput,
+        output_schema = schemas.BatchUpdateExclusionWindowsOutput,
         http_method = "PATCH",
         http_path = "/exclusion-windows",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createServiceLevelObjective(input, options)
     return self:invokeOperation(input, {
         name = "CreateServiceLevelObjective",
-        input_schema = types.CreateServiceLevelObjectiveInput,
-        output_schema = types.CreateServiceLevelObjectiveOutput,
+        input_schema = schemas.CreateServiceLevelObjectiveInput,
+        output_schema = schemas.CreateServiceLevelObjectiveOutput,
         http_method = "POST",
         http_path = "/slo",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteGroupingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGroupingConfiguration",
-        input_schema = types.DeleteGroupingConfigurationInput,
-        output_schema = types.DeleteGroupingConfigurationOutput,
+        input_schema = schemas.DeleteGroupingConfigurationInput,
+        output_schema = schemas.DeleteGroupingConfigurationOutput,
         http_method = "DELETE",
         http_path = "/grouping-configuration",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteServiceLevelObjective(input, options)
     return self:invokeOperation(input, {
         name = "DeleteServiceLevelObjective",
-        input_schema = types.DeleteServiceLevelObjectiveInput,
-        output_schema = types.DeleteServiceLevelObjectiveOutput,
+        input_schema = schemas.DeleteServiceLevelObjectiveInput,
+        output_schema = schemas.DeleteServiceLevelObjectiveOutput,
         http_method = "DELETE",
         http_path = "/slo/{Id}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getService(input, options)
     return self:invokeOperation(input, {
         name = "GetService",
-        input_schema = types.GetServiceInput,
-        output_schema = types.GetServiceOutput,
+        input_schema = schemas.GetServiceInput,
+        output_schema = schemas.GetServiceOutput,
         http_method = "POST",
         http_path = "/service",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getServiceLevelObjective(input, options)
     return self:invokeOperation(input, {
         name = "GetServiceLevelObjective",
-        input_schema = types.GetServiceLevelObjectiveInput,
-        output_schema = types.GetServiceLevelObjectiveOutput,
+        input_schema = schemas.GetServiceLevelObjectiveInput,
+        output_schema = schemas.GetServiceLevelObjectiveOutput,
         http_method = "GET",
         http_path = "/slo/{Id}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listAuditFindings(input, options)
     return self:invokeOperation(input, {
         name = "ListAuditFindings",
-        input_schema = types.ListAuditFindingsInput,
-        output_schema = types.ListAuditFindingsOutput,
+        input_schema = schemas.ListAuditFindingsInput,
+        output_schema = schemas.ListAuditFindingsOutput,
         http_method = "POST",
         http_path = "/auditFindings",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listEntityEvents(input, options)
     return self:invokeOperation(input, {
         name = "ListEntityEvents",
-        input_schema = types.ListEntityEventsInput,
-        output_schema = types.ListEntityEventsOutput,
+        input_schema = schemas.ListEntityEventsInput,
+        output_schema = schemas.ListEntityEventsOutput,
         http_method = "POST",
         http_path = "/events",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listGroupingAttributeDefinitions(input, options)
     return self:invokeOperation(input, {
         name = "ListGroupingAttributeDefinitions",
-        input_schema = types.ListGroupingAttributeDefinitionsInput,
-        output_schema = types.ListGroupingAttributeDefinitionsOutput,
+        input_schema = schemas.ListGroupingAttributeDefinitionsInput,
+        output_schema = schemas.ListGroupingAttributeDefinitionsOutput,
         http_method = "POST",
         http_path = "/grouping-attribute-definitions",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listServiceDependencies(input, options)
     return self:invokeOperation(input, {
         name = "ListServiceDependencies",
-        input_schema = types.ListServiceDependenciesInput,
-        output_schema = types.ListServiceDependenciesOutput,
+        input_schema = schemas.ListServiceDependenciesInput,
+        output_schema = schemas.ListServiceDependenciesOutput,
         http_method = "POST",
         http_path = "/service-dependencies",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listServiceDependents(input, options)
     return self:invokeOperation(input, {
         name = "ListServiceDependents",
-        input_schema = types.ListServiceDependentsInput,
-        output_schema = types.ListServiceDependentsOutput,
+        input_schema = schemas.ListServiceDependentsInput,
+        output_schema = schemas.ListServiceDependentsOutput,
         http_method = "POST",
         http_path = "/service-dependents",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listServiceLevelObjectiveExclusionWindows(input, options)
     return self:invokeOperation(input, {
         name = "ListServiceLevelObjectiveExclusionWindows",
-        input_schema = types.ListServiceLevelObjectiveExclusionWindowsInput,
-        output_schema = types.ListServiceLevelObjectiveExclusionWindowsOutput,
+        input_schema = schemas.ListServiceLevelObjectiveExclusionWindowsInput,
+        output_schema = schemas.ListServiceLevelObjectiveExclusionWindowsOutput,
         http_method = "GET",
         http_path = "/slo/{Id}/exclusion-windows",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listServiceLevelObjectives(input, options)
     return self:invokeOperation(input, {
         name = "ListServiceLevelObjectives",
-        input_schema = types.ListServiceLevelObjectivesInput,
-        output_schema = types.ListServiceLevelObjectivesOutput,
+        input_schema = schemas.ListServiceLevelObjectivesInput,
+        output_schema = schemas.ListServiceLevelObjectivesOutput,
         http_method = "POST",
         http_path = "/slos",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listServiceOperations(input, options)
     return self:invokeOperation(input, {
         name = "ListServiceOperations",
-        input_schema = types.ListServiceOperationsInput,
-        output_schema = types.ListServiceOperationsOutput,
+        input_schema = schemas.ListServiceOperationsInput,
+        output_schema = schemas.ListServiceOperationsOutput,
         http_method = "POST",
         http_path = "/service-operations",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listServices(input, options)
     return self:invokeOperation(input, {
         name = "ListServices",
-        input_schema = types.ListServicesInput,
-        output_schema = types.ListServicesOutput,
+        input_schema = schemas.ListServicesInput,
+        output_schema = schemas.ListServicesOutput,
         http_method = "GET",
         http_path = "/services",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listServiceStates(input, options)
     return self:invokeOperation(input, {
         name = "ListServiceStates",
-        input_schema = types.ListServiceStatesInput,
-        output_schema = types.ListServiceStatesOutput,
+        input_schema = schemas.ListServiceStatesInput,
+        output_schema = schemas.ListServiceStatesOutput,
         http_method = "POST",
         http_path = "/service/states",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:putGroupingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutGroupingConfiguration",
-        input_schema = types.PutGroupingConfigurationInput,
-        output_schema = types.PutGroupingConfigurationOutput,
+        input_schema = schemas.PutGroupingConfigurationInput,
+        output_schema = schemas.PutGroupingConfigurationOutput,
         http_method = "PUT",
         http_path = "/grouping-configuration",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:startDiscovery(input, options)
     return self:invokeOperation(input, {
         name = "StartDiscovery",
-        input_schema = types.StartDiscoveryInput,
-        output_schema = types.StartDiscoveryOutput,
+        input_schema = schemas.StartDiscoveryInput,
+        output_schema = schemas.StartDiscoveryOutput,
         http_method = "POST",
         http_path = "/start-discovery",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tag-resource",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/untag-resource",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:updateServiceLevelObjective(input, options)
     return self:invokeOperation(input, {
         name = "UpdateServiceLevelObjective",
-        input_schema = types.UpdateServiceLevelObjectiveInput,
-        output_schema = types.UpdateServiceLevelObjectiveOutput,
+        input_schema = schemas.UpdateServiceLevelObjectiveInput,
+        output_schema = schemas.UpdateServiceLevelObjectiveOutput,
         http_method = "PATCH",
         http_path = "/slo/{Id}",
         effective_auth_schemes = {

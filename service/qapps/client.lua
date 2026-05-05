@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("qapps.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("qapps.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("qapps.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateLibraryItemReview(input, options)
     return self:invokeOperation(input, {
         name = "AssociateLibraryItemReview",
-        input_schema = types.AssociateLibraryItemReviewInput,
-        output_schema = types.AssociateLibraryItemReviewOutput,
+        input_schema = schemas.AssociateLibraryItemReviewInput,
+        output_schema = schemas.AssociateLibraryItemReviewOutput,
         http_method = "POST",
         http_path = "/catalog.associateItemRating",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:associateQAppWithUser(input, options)
     return self:invokeOperation(input, {
         name = "AssociateQAppWithUser",
-        input_schema = types.AssociateQAppWithUserInput,
-        output_schema = types.AssociateQAppWithUserOutput,
+        input_schema = schemas.AssociateQAppWithUserInput,
+        output_schema = schemas.AssociateQAppWithUserOutput,
         http_method = "POST",
         http_path = "/apps.install",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchCreateCategory(input, options)
     return self:invokeOperation(input, {
         name = "BatchCreateCategory",
-        input_schema = types.BatchCreateCategoryInput,
-        output_schema = types.BatchCreateCategoryOutput,
+        input_schema = schemas.BatchCreateCategoryInput,
+        output_schema = schemas.BatchCreateCategoryOutput,
         http_method = "POST",
         http_path = "/catalog.createCategories",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:batchDeleteCategory(input, options)
     return self:invokeOperation(input, {
         name = "BatchDeleteCategory",
-        input_schema = types.BatchDeleteCategoryInput,
-        output_schema = types.BatchDeleteCategoryOutput,
+        input_schema = schemas.BatchDeleteCategoryInput,
+        output_schema = schemas.BatchDeleteCategoryOutput,
         http_method = "POST",
         http_path = "/catalog.deleteCategories",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:batchUpdateCategory(input, options)
     return self:invokeOperation(input, {
         name = "BatchUpdateCategory",
-        input_schema = types.BatchUpdateCategoryInput,
-        output_schema = types.BatchUpdateCategoryOutput,
+        input_schema = schemas.BatchUpdateCategoryInput,
+        output_schema = schemas.BatchUpdateCategoryOutput,
         http_method = "POST",
         http_path = "/catalog.updateCategories",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createLibraryItem(input, options)
     return self:invokeOperation(input, {
         name = "CreateLibraryItem",
-        input_schema = types.CreateLibraryItemInput,
-        output_schema = types.CreateLibraryItemOutput,
+        input_schema = schemas.CreateLibraryItemInput,
+        output_schema = schemas.CreateLibraryItemOutput,
         http_method = "POST",
         http_path = "/catalog.createItem",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createPresignedUrl(input, options)
     return self:invokeOperation(input, {
         name = "CreatePresignedUrl",
-        input_schema = types.CreatePresignedUrlInput,
-        output_schema = types.CreatePresignedUrlOutput,
+        input_schema = schemas.CreatePresignedUrlInput,
+        output_schema = schemas.CreatePresignedUrlOutput,
         http_method = "POST",
         http_path = "/apps.createPresignedUrl",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createQApp(input, options)
     return self:invokeOperation(input, {
         name = "CreateQApp",
-        input_schema = types.CreateQAppInput,
-        output_schema = types.CreateQAppOutput,
+        input_schema = schemas.CreateQAppInput,
+        output_schema = schemas.CreateQAppOutput,
         http_method = "POST",
         http_path = "/apps.create",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteLibraryItem(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLibraryItem",
-        input_schema = types.DeleteLibraryItemInput,
-        output_schema = types.DeleteLibraryItemOutput,
+        input_schema = schemas.DeleteLibraryItemInput,
+        output_schema = schemas.DeleteLibraryItemOutput,
         http_method = "POST",
         http_path = "/catalog.deleteItem",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteQApp(input, options)
     return self:invokeOperation(input, {
         name = "DeleteQApp",
-        input_schema = types.DeleteQAppInput,
-        output_schema = types.DeleteQAppOutput,
+        input_schema = schemas.DeleteQAppInput,
+        output_schema = schemas.DeleteQAppOutput,
         http_method = "POST",
         http_path = "/apps.delete",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:describeQAppPermissions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeQAppPermissions",
-        input_schema = types.DescribeQAppPermissionsInput,
-        output_schema = types.DescribeQAppPermissionsOutput,
+        input_schema = schemas.DescribeQAppPermissionsInput,
+        output_schema = schemas.DescribeQAppPermissionsOutput,
         http_method = "GET",
         http_path = "/apps.describeQAppPermissions",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:disassociateLibraryItemReview(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateLibraryItemReview",
-        input_schema = types.DisassociateLibraryItemReviewInput,
-        output_schema = types.DisassociateLibraryItemReviewOutput,
+        input_schema = schemas.DisassociateLibraryItemReviewInput,
+        output_schema = schemas.DisassociateLibraryItemReviewOutput,
         http_method = "POST",
         http_path = "/catalog.disassociateItemRating",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:disassociateQAppFromUser(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateQAppFromUser",
-        input_schema = types.DisassociateQAppFromUserInput,
-        output_schema = types.DisassociateQAppFromUserOutput,
+        input_schema = schemas.DisassociateQAppFromUserInput,
+        output_schema = schemas.DisassociateQAppFromUserOutput,
         http_method = "POST",
         http_path = "/apps.uninstall",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:exportQAppSessionData(input, options)
     return self:invokeOperation(input, {
         name = "ExportQAppSessionData",
-        input_schema = types.ExportQAppSessionDataInput,
-        output_schema = types.ExportQAppSessionDataOutput,
+        input_schema = schemas.ExportQAppSessionDataInput,
+        output_schema = schemas.ExportQAppSessionDataOutput,
         http_method = "POST",
         http_path = "/runtime.exportQAppSessionData",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getLibraryItem(input, options)
     return self:invokeOperation(input, {
         name = "GetLibraryItem",
-        input_schema = types.GetLibraryItemInput,
-        output_schema = types.GetLibraryItemOutput,
+        input_schema = schemas.GetLibraryItemInput,
+        output_schema = schemas.GetLibraryItemOutput,
         http_method = "GET",
         http_path = "/catalog.getItem",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getQApp(input, options)
     return self:invokeOperation(input, {
         name = "GetQApp",
-        input_schema = types.GetQAppInput,
-        output_schema = types.GetQAppOutput,
+        input_schema = schemas.GetQAppInput,
+        output_schema = schemas.GetQAppOutput,
         http_method = "GET",
         http_path = "/apps.get",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getQAppSession(input, options)
     return self:invokeOperation(input, {
         name = "GetQAppSession",
-        input_schema = types.GetQAppSessionInput,
-        output_schema = types.GetQAppSessionOutput,
+        input_schema = schemas.GetQAppSessionInput,
+        output_schema = schemas.GetQAppSessionOutput,
         http_method = "GET",
         http_path = "/runtime.getQAppSession",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getQAppSessionMetadata(input, options)
     return self:invokeOperation(input, {
         name = "GetQAppSessionMetadata",
-        input_schema = types.GetQAppSessionMetadataInput,
-        output_schema = types.GetQAppSessionMetadataOutput,
+        input_schema = schemas.GetQAppSessionMetadataInput,
+        output_schema = schemas.GetQAppSessionMetadataOutput,
         http_method = "GET",
         http_path = "/runtime.getQAppSessionMetadata",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:importDocument(input, options)
     return self:invokeOperation(input, {
         name = "ImportDocument",
-        input_schema = types.ImportDocumentInput,
-        output_schema = types.ImportDocumentOutput,
+        input_schema = schemas.ImportDocumentInput,
+        output_schema = schemas.ImportDocumentOutput,
         http_method = "POST",
         http_path = "/apps.importDocument",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listCategories(input, options)
     return self:invokeOperation(input, {
         name = "ListCategories",
-        input_schema = types.ListCategoriesInput,
-        output_schema = types.ListCategoriesOutput,
+        input_schema = schemas.ListCategoriesInput,
+        output_schema = schemas.ListCategoriesOutput,
         http_method = "GET",
         http_path = "/catalog.listCategories",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listLibraryItems(input, options)
     return self:invokeOperation(input, {
         name = "ListLibraryItems",
-        input_schema = types.ListLibraryItemsInput,
-        output_schema = types.ListLibraryItemsOutput,
+        input_schema = schemas.ListLibraryItemsInput,
+        output_schema = schemas.ListLibraryItemsOutput,
         http_method = "GET",
         http_path = "/catalog.list",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listQApps(input, options)
     return self:invokeOperation(input, {
         name = "ListQApps",
-        input_schema = types.ListQAppsInput,
-        output_schema = types.ListQAppsOutput,
+        input_schema = schemas.ListQAppsInput,
+        output_schema = schemas.ListQAppsOutput,
         http_method = "GET",
         http_path = "/apps.list",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listQAppSessionData(input, options)
     return self:invokeOperation(input, {
         name = "ListQAppSessionData",
-        input_schema = types.ListQAppSessionDataInput,
-        output_schema = types.ListQAppSessionDataOutput,
+        input_schema = schemas.ListQAppSessionDataInput,
+        output_schema = schemas.ListQAppSessionDataOutput,
         http_method = "GET",
         http_path = "/runtime.listQAppSessionData",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceARN}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:predictQApp(input, options)
     return self:invokeOperation(input, {
         name = "PredictQApp",
-        input_schema = types.PredictQAppInput,
-        output_schema = types.PredictQAppOutput,
+        input_schema = schemas.PredictQAppInput,
+        output_schema = schemas.PredictQAppOutput,
         http_method = "POST",
         http_path = "/apps.predictQApp",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:startQAppSession(input, options)
     return self:invokeOperation(input, {
         name = "StartQAppSession",
-        input_schema = types.StartQAppSessionInput,
-        output_schema = types.StartQAppSessionOutput,
+        input_schema = schemas.StartQAppSessionInput,
+        output_schema = schemas.StartQAppSessionOutput,
         http_method = "POST",
         http_path = "/runtime.startQAppSession",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:stopQAppSession(input, options)
     return self:invokeOperation(input, {
         name = "StopQAppSession",
-        input_schema = types.StopQAppSessionInput,
-        output_schema = types.StopQAppSessionOutput,
+        input_schema = schemas.StopQAppSessionInput,
+        output_schema = schemas.StopQAppSessionOutput,
         http_method = "POST",
         http_path = "/runtime.deleteMiniAppRun",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceARN}",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceARN}",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:updateLibraryItem(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLibraryItem",
-        input_schema = types.UpdateLibraryItemInput,
-        output_schema = types.UpdateLibraryItemOutput,
+        input_schema = schemas.UpdateLibraryItemInput,
+        output_schema = schemas.UpdateLibraryItemOutput,
         http_method = "POST",
         http_path = "/catalog.updateItem",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:updateLibraryItemMetadata(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLibraryItemMetadata",
-        input_schema = types.UpdateLibraryItemMetadataInput,
-        output_schema = types.UpdateLibraryItemMetadataOutput,
+        input_schema = schemas.UpdateLibraryItemMetadataInput,
+        output_schema = schemas.UpdateLibraryItemMetadataOutput,
         http_method = "POST",
         http_path = "/catalog.updateItemMetadata",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:updateQApp(input, options)
     return self:invokeOperation(input, {
         name = "UpdateQApp",
-        input_schema = types.UpdateQAppInput,
-        output_schema = types.UpdateQAppOutput,
+        input_schema = schemas.UpdateQAppInput,
+        output_schema = schemas.UpdateQAppOutput,
         http_method = "POST",
         http_path = "/apps.update",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:updateQAppPermissions(input, options)
     return self:invokeOperation(input, {
         name = "UpdateQAppPermissions",
-        input_schema = types.UpdateQAppPermissionsInput,
-        output_schema = types.UpdateQAppPermissionsOutput,
+        input_schema = schemas.UpdateQAppPermissionsInput,
+        output_schema = schemas.UpdateQAppPermissionsOutput,
         http_method = "POST",
         http_path = "/apps.updateQAppPermissions",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:updateQAppSession(input, options)
     return self:invokeOperation(input, {
         name = "UpdateQAppSession",
-        input_schema = types.UpdateQAppSessionInput,
-        output_schema = types.UpdateQAppSessionOutput,
+        input_schema = schemas.UpdateQAppSessionInput,
+        output_schema = schemas.UpdateQAppSessionOutput,
         http_method = "POST",
         http_path = "/runtime.updateQAppSession",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:updateQAppSessionMetadata(input, options)
     return self:invokeOperation(input, {
         name = "UpdateQAppSessionMetadata",
-        input_schema = types.UpdateQAppSessionMetadataInput,
-        output_schema = types.UpdateQAppSessionMetadataOutput,
+        input_schema = schemas.UpdateQAppSessionMetadataInput,
+        output_schema = schemas.UpdateQAppSessionMetadataOutput,
         http_method = "POST",
         http_path = "/runtime.updateQAppSessionMetadata",
         effective_auth_schemes = {

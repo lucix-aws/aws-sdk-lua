@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("elasticsearchservice.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("elasticsearchservice.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("elasticsearchservice.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptInboundCrossClusterSearchConnection(input, options)
     return self:invokeOperation(input, {
         name = "AcceptInboundCrossClusterSearchConnection",
-        input_schema = types.AcceptInboundCrossClusterSearchConnectionInput,
-        output_schema = types.AcceptInboundCrossClusterSearchConnectionOutput,
+        input_schema = schemas.AcceptInboundCrossClusterSearchConnectionInput,
+        output_schema = schemas.AcceptInboundCrossClusterSearchConnectionOutput,
         http_method = "PUT",
         http_path = "/2015-01-01/es/ccs/inboundConnection/{CrossClusterSearchConnectionId}/accept",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:addTags(input, options)
     return self:invokeOperation(input, {
         name = "AddTags",
-        input_schema = types.AddTagsInput,
-        output_schema = types.AddTagsOutput,
+        input_schema = schemas.AddTagsInput,
+        output_schema = schemas.AddTagsOutput,
         http_method = "POST",
         http_path = "/2015-01-01/tags",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:associatePackage(input, options)
     return self:invokeOperation(input, {
         name = "AssociatePackage",
-        input_schema = types.AssociatePackageInput,
-        output_schema = types.AssociatePackageOutput,
+        input_schema = schemas.AssociatePackageInput,
+        output_schema = schemas.AssociatePackageOutput,
         http_method = "POST",
         http_path = "/2015-01-01/packages/associate/{PackageID}/{DomainName}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:authorizeVpcEndpointAccess(input, options)
     return self:invokeOperation(input, {
         name = "AuthorizeVpcEndpointAccess",
-        input_schema = types.AuthorizeVpcEndpointAccessInput,
-        output_schema = types.AuthorizeVpcEndpointAccessOutput,
+        input_schema = schemas.AuthorizeVpcEndpointAccessInput,
+        output_schema = schemas.AuthorizeVpcEndpointAccessOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/domain/{DomainName}/authorizeVpcEndpointAccess",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:cancelDomainConfigChange(input, options)
     return self:invokeOperation(input, {
         name = "CancelDomainConfigChange",
-        input_schema = types.CancelDomainConfigChangeInput,
-        output_schema = types.CancelDomainConfigChangeOutput,
+        input_schema = schemas.CancelDomainConfigChangeInput,
+        output_schema = schemas.CancelDomainConfigChangeOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/domain/{DomainName}/config/cancel",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:cancelElasticsearchServiceSoftwareUpdate(input, options)
     return self:invokeOperation(input, {
         name = "CancelElasticsearchServiceSoftwareUpdate",
-        input_schema = types.CancelElasticsearchServiceSoftwareUpdateInput,
-        output_schema = types.CancelElasticsearchServiceSoftwareUpdateOutput,
+        input_schema = schemas.CancelElasticsearchServiceSoftwareUpdateInput,
+        output_schema = schemas.CancelElasticsearchServiceSoftwareUpdateOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/serviceSoftwareUpdate/cancel",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createElasticsearchDomain(input, options)
     return self:invokeOperation(input, {
         name = "CreateElasticsearchDomain",
-        input_schema = types.CreateElasticsearchDomainInput,
-        output_schema = types.CreateElasticsearchDomainOutput,
+        input_schema = schemas.CreateElasticsearchDomainInput,
+        output_schema = schemas.CreateElasticsearchDomainOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/domain",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createOutboundCrossClusterSearchConnection(input, options)
     return self:invokeOperation(input, {
         name = "CreateOutboundCrossClusterSearchConnection",
-        input_schema = types.CreateOutboundCrossClusterSearchConnectionInput,
-        output_schema = types.CreateOutboundCrossClusterSearchConnectionOutput,
+        input_schema = schemas.CreateOutboundCrossClusterSearchConnectionInput,
+        output_schema = schemas.CreateOutboundCrossClusterSearchConnectionOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/ccs/outboundConnection",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createPackage(input, options)
     return self:invokeOperation(input, {
         name = "CreatePackage",
-        input_schema = types.CreatePackageInput,
-        output_schema = types.CreatePackageOutput,
+        input_schema = schemas.CreatePackageInput,
+        output_schema = schemas.CreatePackageOutput,
         http_method = "POST",
         http_path = "/2015-01-01/packages",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createVpcEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "CreateVpcEndpoint",
-        input_schema = types.CreateVpcEndpointInput,
-        output_schema = types.CreateVpcEndpointOutput,
+        input_schema = schemas.CreateVpcEndpointInput,
+        output_schema = schemas.CreateVpcEndpointOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/vpcEndpoints",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteElasticsearchDomain(input, options)
     return self:invokeOperation(input, {
         name = "DeleteElasticsearchDomain",
-        input_schema = types.DeleteElasticsearchDomainInput,
-        output_schema = types.DeleteElasticsearchDomainOutput,
+        input_schema = schemas.DeleteElasticsearchDomainInput,
+        output_schema = schemas.DeleteElasticsearchDomainOutput,
         http_method = "DELETE",
         http_path = "/2015-01-01/es/domain/{DomainName}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteElasticsearchServiceRole(input, options)
     return self:invokeOperation(input, {
         name = "DeleteElasticsearchServiceRole",
-        input_schema = types.DeleteElasticsearchServiceRoleInput,
-        output_schema = types.DeleteElasticsearchServiceRoleOutput,
+        input_schema = schemas.DeleteElasticsearchServiceRoleInput,
+        output_schema = schemas.DeleteElasticsearchServiceRoleOutput,
         http_method = "DELETE",
         http_path = "/2015-01-01/es/role",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteInboundCrossClusterSearchConnection(input, options)
     return self:invokeOperation(input, {
         name = "DeleteInboundCrossClusterSearchConnection",
-        input_schema = types.DeleteInboundCrossClusterSearchConnectionInput,
-        output_schema = types.DeleteInboundCrossClusterSearchConnectionOutput,
+        input_schema = schemas.DeleteInboundCrossClusterSearchConnectionInput,
+        output_schema = schemas.DeleteInboundCrossClusterSearchConnectionOutput,
         http_method = "DELETE",
         http_path = "/2015-01-01/es/ccs/inboundConnection/{CrossClusterSearchConnectionId}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteOutboundCrossClusterSearchConnection(input, options)
     return self:invokeOperation(input, {
         name = "DeleteOutboundCrossClusterSearchConnection",
-        input_schema = types.DeleteOutboundCrossClusterSearchConnectionInput,
-        output_schema = types.DeleteOutboundCrossClusterSearchConnectionOutput,
+        input_schema = schemas.DeleteOutboundCrossClusterSearchConnectionInput,
+        output_schema = schemas.DeleteOutboundCrossClusterSearchConnectionOutput,
         http_method = "DELETE",
         http_path = "/2015-01-01/es/ccs/outboundConnection/{CrossClusterSearchConnectionId}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deletePackage(input, options)
     return self:invokeOperation(input, {
         name = "DeletePackage",
-        input_schema = types.DeletePackageInput,
-        output_schema = types.DeletePackageOutput,
+        input_schema = schemas.DeletePackageInput,
+        output_schema = schemas.DeletePackageOutput,
         http_method = "DELETE",
         http_path = "/2015-01-01/packages/{PackageID}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteVpcEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVpcEndpoint",
-        input_schema = types.DeleteVpcEndpointInput,
-        output_schema = types.DeleteVpcEndpointOutput,
+        input_schema = schemas.DeleteVpcEndpointInput,
+        output_schema = schemas.DeleteVpcEndpointOutput,
         http_method = "DELETE",
         http_path = "/2015-01-01/es/vpcEndpoints/{VpcEndpointId}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:describeDomainAutoTunes(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDomainAutoTunes",
-        input_schema = types.DescribeDomainAutoTunesInput,
-        output_schema = types.DescribeDomainAutoTunesOutput,
+        input_schema = schemas.DescribeDomainAutoTunesInput,
+        output_schema = schemas.DescribeDomainAutoTunesOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/domain/{DomainName}/autoTunes",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:describeDomainChangeProgress(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDomainChangeProgress",
-        input_schema = types.DescribeDomainChangeProgressInput,
-        output_schema = types.DescribeDomainChangeProgressOutput,
+        input_schema = schemas.DescribeDomainChangeProgressInput,
+        output_schema = schemas.DescribeDomainChangeProgressOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/domain/{DomainName}/progress",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:describeElasticsearchDomain(input, options)
     return self:invokeOperation(input, {
         name = "DescribeElasticsearchDomain",
-        input_schema = types.DescribeElasticsearchDomainInput,
-        output_schema = types.DescribeElasticsearchDomainOutput,
+        input_schema = schemas.DescribeElasticsearchDomainInput,
+        output_schema = schemas.DescribeElasticsearchDomainOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/domain/{DomainName}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:describeElasticsearchDomainConfig(input, options)
     return self:invokeOperation(input, {
         name = "DescribeElasticsearchDomainConfig",
-        input_schema = types.DescribeElasticsearchDomainConfigInput,
-        output_schema = types.DescribeElasticsearchDomainConfigOutput,
+        input_schema = schemas.DescribeElasticsearchDomainConfigInput,
+        output_schema = schemas.DescribeElasticsearchDomainConfigOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/domain/{DomainName}/config",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:describeElasticsearchDomains(input, options)
     return self:invokeOperation(input, {
         name = "DescribeElasticsearchDomains",
-        input_schema = types.DescribeElasticsearchDomainsInput,
-        output_schema = types.DescribeElasticsearchDomainsOutput,
+        input_schema = schemas.DescribeElasticsearchDomainsInput,
+        output_schema = schemas.DescribeElasticsearchDomainsOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/domain-info",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:describeElasticsearchInstanceTypeLimits(input, options)
     return self:invokeOperation(input, {
         name = "DescribeElasticsearchInstanceTypeLimits",
-        input_schema = types.DescribeElasticsearchInstanceTypeLimitsInput,
-        output_schema = types.DescribeElasticsearchInstanceTypeLimitsOutput,
+        input_schema = schemas.DescribeElasticsearchInstanceTypeLimitsInput,
+        output_schema = schemas.DescribeElasticsearchInstanceTypeLimitsOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/instanceTypeLimits/{ElasticsearchVersion}/{InstanceType}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:describeInboundCrossClusterSearchConnections(input, options)
     return self:invokeOperation(input, {
         name = "DescribeInboundCrossClusterSearchConnections",
-        input_schema = types.DescribeInboundCrossClusterSearchConnectionsInput,
-        output_schema = types.DescribeInboundCrossClusterSearchConnectionsOutput,
+        input_schema = schemas.DescribeInboundCrossClusterSearchConnectionsInput,
+        output_schema = schemas.DescribeInboundCrossClusterSearchConnectionsOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/ccs/inboundConnection/search",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:describeOutboundCrossClusterSearchConnections(input, options)
     return self:invokeOperation(input, {
         name = "DescribeOutboundCrossClusterSearchConnections",
-        input_schema = types.DescribeOutboundCrossClusterSearchConnectionsInput,
-        output_schema = types.DescribeOutboundCrossClusterSearchConnectionsOutput,
+        input_schema = schemas.DescribeOutboundCrossClusterSearchConnectionsInput,
+        output_schema = schemas.DescribeOutboundCrossClusterSearchConnectionsOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/ccs/outboundConnection/search",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:describePackages(input, options)
     return self:invokeOperation(input, {
         name = "DescribePackages",
-        input_schema = types.DescribePackagesInput,
-        output_schema = types.DescribePackagesOutput,
+        input_schema = schemas.DescribePackagesInput,
+        output_schema = schemas.DescribePackagesOutput,
         http_method = "POST",
         http_path = "/2015-01-01/packages/describe",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:describeReservedElasticsearchInstanceOfferings(input, options)
     return self:invokeOperation(input, {
         name = "DescribeReservedElasticsearchInstanceOfferings",
-        input_schema = types.DescribeReservedElasticsearchInstanceOfferingsInput,
-        output_schema = types.DescribeReservedElasticsearchInstanceOfferingsOutput,
+        input_schema = schemas.DescribeReservedElasticsearchInstanceOfferingsInput,
+        output_schema = schemas.DescribeReservedElasticsearchInstanceOfferingsOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/reservedInstanceOfferings",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:describeReservedElasticsearchInstances(input, options)
     return self:invokeOperation(input, {
         name = "DescribeReservedElasticsearchInstances",
-        input_schema = types.DescribeReservedElasticsearchInstancesInput,
-        output_schema = types.DescribeReservedElasticsearchInstancesOutput,
+        input_schema = schemas.DescribeReservedElasticsearchInstancesInput,
+        output_schema = schemas.DescribeReservedElasticsearchInstancesOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/reservedInstances",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:describeVpcEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "DescribeVpcEndpoints",
-        input_schema = types.DescribeVpcEndpointsInput,
-        output_schema = types.DescribeVpcEndpointsOutput,
+        input_schema = schemas.DescribeVpcEndpointsInput,
+        output_schema = schemas.DescribeVpcEndpointsOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/vpcEndpoints/describe",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:dissociatePackage(input, options)
     return self:invokeOperation(input, {
         name = "DissociatePackage",
-        input_schema = types.DissociatePackageInput,
-        output_schema = types.DissociatePackageOutput,
+        input_schema = schemas.DissociatePackageInput,
+        output_schema = schemas.DissociatePackageOutput,
         http_method = "POST",
         http_path = "/2015-01-01/packages/dissociate/{PackageID}/{DomainName}",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:getCompatibleElasticsearchVersions(input, options)
     return self:invokeOperation(input, {
         name = "GetCompatibleElasticsearchVersions",
-        input_schema = types.GetCompatibleElasticsearchVersionsInput,
-        output_schema = types.GetCompatibleElasticsearchVersionsOutput,
+        input_schema = schemas.GetCompatibleElasticsearchVersionsInput,
+        output_schema = schemas.GetCompatibleElasticsearchVersionsOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/compatibleVersions",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:getPackageVersionHistory(input, options)
     return self:invokeOperation(input, {
         name = "GetPackageVersionHistory",
-        input_schema = types.GetPackageVersionHistoryInput,
-        output_schema = types.GetPackageVersionHistoryOutput,
+        input_schema = schemas.GetPackageVersionHistoryInput,
+        output_schema = schemas.GetPackageVersionHistoryOutput,
         http_method = "GET",
         http_path = "/2015-01-01/packages/{PackageID}/history",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:getUpgradeHistory(input, options)
     return self:invokeOperation(input, {
         name = "GetUpgradeHistory",
-        input_schema = types.GetUpgradeHistoryInput,
-        output_schema = types.GetUpgradeHistoryOutput,
+        input_schema = schemas.GetUpgradeHistoryInput,
+        output_schema = schemas.GetUpgradeHistoryOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/upgradeDomain/{DomainName}/history",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:getUpgradeStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetUpgradeStatus",
-        input_schema = types.GetUpgradeStatusInput,
-        output_schema = types.GetUpgradeStatusOutput,
+        input_schema = schemas.GetUpgradeStatusInput,
+        output_schema = schemas.GetUpgradeStatusOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/upgradeDomain/{DomainName}/status",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listDomainNames(input, options)
     return self:invokeOperation(input, {
         name = "ListDomainNames",
-        input_schema = types.ListDomainNamesInput,
-        output_schema = types.ListDomainNamesOutput,
+        input_schema = schemas.ListDomainNamesInput,
+        output_schema = schemas.ListDomainNamesOutput,
         http_method = "GET",
         http_path = "/2015-01-01/domain",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:listDomainsForPackage(input, options)
     return self:invokeOperation(input, {
         name = "ListDomainsForPackage",
-        input_schema = types.ListDomainsForPackageInput,
-        output_schema = types.ListDomainsForPackageOutput,
+        input_schema = schemas.ListDomainsForPackageInput,
+        output_schema = schemas.ListDomainsForPackageOutput,
         http_method = "GET",
         http_path = "/2015-01-01/packages/{PackageID}/domains",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:listElasticsearchInstanceTypes(input, options)
     return self:invokeOperation(input, {
         name = "ListElasticsearchInstanceTypes",
-        input_schema = types.ListElasticsearchInstanceTypesInput,
-        output_schema = types.ListElasticsearchInstanceTypesOutput,
+        input_schema = schemas.ListElasticsearchInstanceTypesInput,
+        output_schema = schemas.ListElasticsearchInstanceTypesOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/instanceTypes/{ElasticsearchVersion}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:listElasticsearchVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListElasticsearchVersions",
-        input_schema = types.ListElasticsearchVersionsInput,
-        output_schema = types.ListElasticsearchVersionsOutput,
+        input_schema = schemas.ListElasticsearchVersionsInput,
+        output_schema = schemas.ListElasticsearchVersionsOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/versions",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:listPackagesForDomain(input, options)
     return self:invokeOperation(input, {
         name = "ListPackagesForDomain",
-        input_schema = types.ListPackagesForDomainInput,
-        output_schema = types.ListPackagesForDomainOutput,
+        input_schema = schemas.ListPackagesForDomainInput,
+        output_schema = schemas.ListPackagesForDomainOutput,
         http_method = "GET",
         http_path = "/2015-01-01/domain/{DomainName}/packages",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:listTags(input, options)
     return self:invokeOperation(input, {
         name = "ListTags",
-        input_schema = types.ListTagsInput,
-        output_schema = types.ListTagsOutput,
+        input_schema = schemas.ListTagsInput,
+        output_schema = schemas.ListTagsOutput,
         http_method = "GET",
         http_path = "/2015-01-01/tags",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:listVpcEndpointAccess(input, options)
     return self:invokeOperation(input, {
         name = "ListVpcEndpointAccess",
-        input_schema = types.ListVpcEndpointAccessInput,
-        output_schema = types.ListVpcEndpointAccessOutput,
+        input_schema = schemas.ListVpcEndpointAccessInput,
+        output_schema = schemas.ListVpcEndpointAccessOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/domain/{DomainName}/listVpcEndpointAccess",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:listVpcEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "ListVpcEndpoints",
-        input_schema = types.ListVpcEndpointsInput,
-        output_schema = types.ListVpcEndpointsOutput,
+        input_schema = schemas.ListVpcEndpointsInput,
+        output_schema = schemas.ListVpcEndpointsOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/vpcEndpoints",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:listVpcEndpointsForDomain(input, options)
     return self:invokeOperation(input, {
         name = "ListVpcEndpointsForDomain",
-        input_schema = types.ListVpcEndpointsForDomainInput,
-        output_schema = types.ListVpcEndpointsForDomainOutput,
+        input_schema = schemas.ListVpcEndpointsForDomainInput,
+        output_schema = schemas.ListVpcEndpointsForDomainOutput,
         http_method = "GET",
         http_path = "/2015-01-01/es/domain/{DomainName}/vpcEndpoints",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:purchaseReservedElasticsearchInstanceOffering(input, options)
     return self:invokeOperation(input, {
         name = "PurchaseReservedElasticsearchInstanceOffering",
-        input_schema = types.PurchaseReservedElasticsearchInstanceOfferingInput,
-        output_schema = types.PurchaseReservedElasticsearchInstanceOfferingOutput,
+        input_schema = schemas.PurchaseReservedElasticsearchInstanceOfferingInput,
+        output_schema = schemas.PurchaseReservedElasticsearchInstanceOfferingOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/purchaseReservedInstanceOffering",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:rejectInboundCrossClusterSearchConnection(input, options)
     return self:invokeOperation(input, {
         name = "RejectInboundCrossClusterSearchConnection",
-        input_schema = types.RejectInboundCrossClusterSearchConnectionInput,
-        output_schema = types.RejectInboundCrossClusterSearchConnectionOutput,
+        input_schema = schemas.RejectInboundCrossClusterSearchConnectionInput,
+        output_schema = schemas.RejectInboundCrossClusterSearchConnectionOutput,
         http_method = "PUT",
         http_path = "/2015-01-01/es/ccs/inboundConnection/{CrossClusterSearchConnectionId}/reject",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:removeTags(input, options)
     return self:invokeOperation(input, {
         name = "RemoveTags",
-        input_schema = types.RemoveTagsInput,
-        output_schema = types.RemoveTagsOutput,
+        input_schema = schemas.RemoveTagsInput,
+        output_schema = schemas.RemoveTagsOutput,
         http_method = "POST",
         http_path = "/2015-01-01/tags-removal",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:revokeVpcEndpointAccess(input, options)
     return self:invokeOperation(input, {
         name = "RevokeVpcEndpointAccess",
-        input_schema = types.RevokeVpcEndpointAccessInput,
-        output_schema = types.RevokeVpcEndpointAccessOutput,
+        input_schema = schemas.RevokeVpcEndpointAccessInput,
+        output_schema = schemas.RevokeVpcEndpointAccessOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/domain/{DomainName}/revokeVpcEndpointAccess",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:startElasticsearchServiceSoftwareUpdate(input, options)
     return self:invokeOperation(input, {
         name = "StartElasticsearchServiceSoftwareUpdate",
-        input_schema = types.StartElasticsearchServiceSoftwareUpdateInput,
-        output_schema = types.StartElasticsearchServiceSoftwareUpdateOutput,
+        input_schema = schemas.StartElasticsearchServiceSoftwareUpdateInput,
+        output_schema = schemas.StartElasticsearchServiceSoftwareUpdateOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/serviceSoftwareUpdate/start",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:updateElasticsearchDomainConfig(input, options)
     return self:invokeOperation(input, {
         name = "UpdateElasticsearchDomainConfig",
-        input_schema = types.UpdateElasticsearchDomainConfigInput,
-        output_schema = types.UpdateElasticsearchDomainConfigOutput,
+        input_schema = schemas.UpdateElasticsearchDomainConfigInput,
+        output_schema = schemas.UpdateElasticsearchDomainConfigOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/domain/{DomainName}/config",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:updatePackage(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePackage",
-        input_schema = types.UpdatePackageInput,
-        output_schema = types.UpdatePackageOutput,
+        input_schema = schemas.UpdatePackageInput,
+        output_schema = schemas.UpdatePackageOutput,
         http_method = "POST",
         http_path = "/2015-01-01/packages/update",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:updateVpcEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "UpdateVpcEndpoint",
-        input_schema = types.UpdateVpcEndpointInput,
-        output_schema = types.UpdateVpcEndpointOutput,
+        input_schema = schemas.UpdateVpcEndpointInput,
+        output_schema = schemas.UpdateVpcEndpointOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/vpcEndpoints/update",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:upgradeElasticsearchDomain(input, options)
     return self:invokeOperation(input, {
         name = "UpgradeElasticsearchDomain",
-        input_schema = types.UpgradeElasticsearchDomainInput,
-        output_schema = types.UpgradeElasticsearchDomainOutput,
+        input_schema = schemas.UpgradeElasticsearchDomainInput,
+        output_schema = schemas.UpgradeElasticsearchDomainOutput,
         http_method = "POST",
         http_path = "/2015-01-01/es/upgradeDomain",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("bedrockruntime.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("bedrockruntime.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("bedrockruntime.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:applyGuardrail(input, options)
     return self:invokeOperation(input, {
         name = "ApplyGuardrail",
-        input_schema = types.ApplyGuardrailInput,
-        output_schema = types.ApplyGuardrailOutput,
+        input_schema = schemas.ApplyGuardrailInput,
+        output_schema = schemas.ApplyGuardrailOutput,
         http_method = "POST",
         http_path = "/guardrail/{guardrailIdentifier}/version/{guardrailVersion}/apply",
         effective_auth_schemes = {
@@ -63,8 +63,8 @@ end
 function Client:converse(input, options)
     return self:invokeOperation(input, {
         name = "Converse",
-        input_schema = types.ConverseInput,
-        output_schema = types.ConverseOperationOutput,
+        input_schema = schemas.ConverseInput,
+        output_schema = schemas.ConverseOperationOutput,
         http_method = "POST",
         http_path = "/model/{modelId}/converse",
         effective_auth_schemes = {
@@ -77,11 +77,11 @@ end
 function Client:converseStream(input, options)
     return self:invokeOperation(input, {
         name = "ConverseStream",
-        input_schema = types.ConverseStreamInput,
-        output_schema = types.ConverseStreamOperationOutput,
+        input_schema = schemas.ConverseStreamInput,
+        output_schema = schemas.ConverseStreamOperationOutput,
         http_method = "POST",
         http_path = "/model/{modelId}/converse-stream",
-        event_stream = types.ConverseStreamOutput,
+        event_stream = schemas.ConverseStreamOutput,
         effective_auth_schemes = {
             "aws.auth#sigv4",
             "smithy.api#httpBearerAuth",
@@ -92,8 +92,8 @@ end
 function Client:countTokens(input, options)
     return self:invokeOperation(input, {
         name = "CountTokens",
-        input_schema = types.CountTokensOperationInput,
-        output_schema = types.CountTokensOutput,
+        input_schema = schemas.CountTokensOperationInput,
+        output_schema = schemas.CountTokensOutput,
         http_method = "POST",
         http_path = "/model/{modelId}/count-tokens",
         effective_auth_schemes = {
@@ -106,8 +106,8 @@ end
 function Client:getAsyncInvoke(input, options)
     return self:invokeOperation(input, {
         name = "GetAsyncInvoke",
-        input_schema = types.GetAsyncInvokeInput,
-        output_schema = types.GetAsyncInvokeOutput,
+        input_schema = schemas.GetAsyncInvokeInput,
+        output_schema = schemas.GetAsyncInvokeOutput,
         http_method = "GET",
         http_path = "/async-invoke/{invocationArn}",
         effective_auth_schemes = {
@@ -120,8 +120,8 @@ end
 function Client:invokeModel(input, options)
     return self:invokeOperation(input, {
         name = "InvokeModel",
-        input_schema = types.InvokeModelInput,
-        output_schema = types.InvokeModelOutput,
+        input_schema = schemas.InvokeModelInput,
+        output_schema = schemas.InvokeModelOutput,
         http_method = "POST",
         http_path = "/model/{modelId}/invoke",
         effective_auth_schemes = {
@@ -134,11 +134,11 @@ end
 function Client:invokeModelWithResponseStream(input, options)
     return self:invokeOperation(input, {
         name = "InvokeModelWithResponseStream",
-        input_schema = types.InvokeModelWithResponseStreamInput,
-        output_schema = types.InvokeModelWithResponseStreamOutput,
+        input_schema = schemas.InvokeModelWithResponseStreamInput,
+        output_schema = schemas.InvokeModelWithResponseStreamOutput,
         http_method = "POST",
         http_path = "/model/{modelId}/invoke-with-response-stream",
-        event_stream = types.ResponseStream,
+        event_stream = schemas.ResponseStream,
         effective_auth_schemes = {
             "aws.auth#sigv4",
             "smithy.api#httpBearerAuth",
@@ -149,8 +149,8 @@ end
 function Client:listAsyncInvokes(input, options)
     return self:invokeOperation(input, {
         name = "ListAsyncInvokes",
-        input_schema = types.ListAsyncInvokesInput,
-        output_schema = types.ListAsyncInvokesOutput,
+        input_schema = schemas.ListAsyncInvokesInput,
+        output_schema = schemas.ListAsyncInvokesOutput,
         http_method = "GET",
         http_path = "/async-invoke",
         effective_auth_schemes = {
@@ -163,8 +163,8 @@ end
 function Client:startAsyncInvoke(input, options)
     return self:invokeOperation(input, {
         name = "StartAsyncInvoke",
-        input_schema = types.StartAsyncInvokeInput,
-        output_schema = types.StartAsyncInvokeOutput,
+        input_schema = schemas.StartAsyncInvokeInput,
+        output_schema = schemas.StartAsyncInvokeOutput,
         http_method = "POST",
         http_path = "/async-invoke",
         effective_auth_schemes = {

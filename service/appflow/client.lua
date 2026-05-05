@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("appflow.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("appflow.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("appflow.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:cancelFlowExecutions(input, options)
     return self:invokeOperation(input, {
         name = "CancelFlowExecutions",
-        input_schema = types.CancelFlowExecutionsInput,
-        output_schema = types.CancelFlowExecutionsOutput,
+        input_schema = schemas.CancelFlowExecutionsInput,
+        output_schema = schemas.CancelFlowExecutionsOutput,
         http_method = "POST",
         http_path = "/cancel-flow-executions",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createConnectorProfile(input, options)
     return self:invokeOperation(input, {
         name = "CreateConnectorProfile",
-        input_schema = types.CreateConnectorProfileInput,
-        output_schema = types.CreateConnectorProfileOutput,
+        input_schema = schemas.CreateConnectorProfileInput,
+        output_schema = schemas.CreateConnectorProfileOutput,
         http_method = "POST",
         http_path = "/create-connector-profile",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createFlow(input, options)
     return self:invokeOperation(input, {
         name = "CreateFlow",
-        input_schema = types.CreateFlowInput,
-        output_schema = types.CreateFlowOutput,
+        input_schema = schemas.CreateFlowInput,
+        output_schema = schemas.CreateFlowOutput,
         http_method = "POST",
         http_path = "/create-flow",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteConnectorProfile(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConnectorProfile",
-        input_schema = types.DeleteConnectorProfileInput,
-        output_schema = types.DeleteConnectorProfileOutput,
+        input_schema = schemas.DeleteConnectorProfileInput,
+        output_schema = schemas.DeleteConnectorProfileOutput,
         http_method = "POST",
         http_path = "/delete-connector-profile",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteFlow(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFlow",
-        input_schema = types.DeleteFlowInput,
-        output_schema = types.DeleteFlowOutput,
+        input_schema = schemas.DeleteFlowInput,
+        output_schema = schemas.DeleteFlowOutput,
         http_method = "POST",
         http_path = "/delete-flow",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:describeConnector(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConnector",
-        input_schema = types.DescribeConnectorInput,
-        output_schema = types.DescribeConnectorOutput,
+        input_schema = schemas.DescribeConnectorInput,
+        output_schema = schemas.DescribeConnectorOutput,
         http_method = "POST",
         http_path = "/describe-connector",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:describeConnectorEntity(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConnectorEntity",
-        input_schema = types.DescribeConnectorEntityInput,
-        output_schema = types.DescribeConnectorEntityOutput,
+        input_schema = schemas.DescribeConnectorEntityInput,
+        output_schema = schemas.DescribeConnectorEntityOutput,
         http_method = "POST",
         http_path = "/describe-connector-entity",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:describeConnectorProfiles(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConnectorProfiles",
-        input_schema = types.DescribeConnectorProfilesInput,
-        output_schema = types.DescribeConnectorProfilesOutput,
+        input_schema = schemas.DescribeConnectorProfilesInput,
+        output_schema = schemas.DescribeConnectorProfilesOutput,
         http_method = "POST",
         http_path = "/describe-connector-profiles",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:describeConnectors(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConnectors",
-        input_schema = types.DescribeConnectorsInput,
-        output_schema = types.DescribeConnectorsOutput,
+        input_schema = schemas.DescribeConnectorsInput,
+        output_schema = schemas.DescribeConnectorsOutput,
         http_method = "POST",
         http_path = "/describe-connectors",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:describeFlow(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFlow",
-        input_schema = types.DescribeFlowInput,
-        output_schema = types.DescribeFlowOutput,
+        input_schema = schemas.DescribeFlowInput,
+        output_schema = schemas.DescribeFlowOutput,
         http_method = "POST",
         http_path = "/describe-flow",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:describeFlowExecutionRecords(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFlowExecutionRecords",
-        input_schema = types.DescribeFlowExecutionRecordsInput,
-        output_schema = types.DescribeFlowExecutionRecordsOutput,
+        input_schema = schemas.DescribeFlowExecutionRecordsInput,
+        output_schema = schemas.DescribeFlowExecutionRecordsOutput,
         http_method = "POST",
         http_path = "/describe-flow-execution-records",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listConnectorEntities(input, options)
     return self:invokeOperation(input, {
         name = "ListConnectorEntities",
-        input_schema = types.ListConnectorEntitiesInput,
-        output_schema = types.ListConnectorEntitiesOutput,
+        input_schema = schemas.ListConnectorEntitiesInput,
+        output_schema = schemas.ListConnectorEntitiesOutput,
         http_method = "POST",
         http_path = "/list-connector-entities",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listConnectors(input, options)
     return self:invokeOperation(input, {
         name = "ListConnectors",
-        input_schema = types.ListConnectorsInput,
-        output_schema = types.ListConnectorsOutput,
+        input_schema = schemas.ListConnectorsInput,
+        output_schema = schemas.ListConnectorsOutput,
         http_method = "POST",
         http_path = "/list-connectors",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listFlows(input, options)
     return self:invokeOperation(input, {
         name = "ListFlows",
-        input_schema = types.ListFlowsInput,
-        output_schema = types.ListFlowsOutput,
+        input_schema = schemas.ListFlowsInput,
+        output_schema = schemas.ListFlowsOutput,
         http_method = "POST",
         http_path = "/list-flows",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:registerConnector(input, options)
     return self:invokeOperation(input, {
         name = "RegisterConnector",
-        input_schema = types.RegisterConnectorInput,
-        output_schema = types.RegisterConnectorOutput,
+        input_schema = schemas.RegisterConnectorInput,
+        output_schema = schemas.RegisterConnectorOutput,
         http_method = "POST",
         http_path = "/register-connector",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:resetConnectorMetadataCache(input, options)
     return self:invokeOperation(input, {
         name = "ResetConnectorMetadataCache",
-        input_schema = types.ResetConnectorMetadataCacheInput,
-        output_schema = types.ResetConnectorMetadataCacheOutput,
+        input_schema = schemas.ResetConnectorMetadataCacheInput,
+        output_schema = schemas.ResetConnectorMetadataCacheOutput,
         http_method = "POST",
         http_path = "/reset-connector-metadata-cache",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:startFlow(input, options)
     return self:invokeOperation(input, {
         name = "StartFlow",
-        input_schema = types.StartFlowInput,
-        output_schema = types.StartFlowOutput,
+        input_schema = schemas.StartFlowInput,
+        output_schema = schemas.StartFlowOutput,
         http_method = "POST",
         http_path = "/start-flow",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:stopFlow(input, options)
     return self:invokeOperation(input, {
         name = "StopFlow",
-        input_schema = types.StopFlowInput,
-        output_schema = types.StopFlowOutput,
+        input_schema = schemas.StopFlowInput,
+        output_schema = schemas.StopFlowOutput,
         http_method = "POST",
         http_path = "/stop-flow",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:unregisterConnector(input, options)
     return self:invokeOperation(input, {
         name = "UnregisterConnector",
-        input_schema = types.UnregisterConnectorInput,
-        output_schema = types.UnregisterConnectorOutput,
+        input_schema = schemas.UnregisterConnectorInput,
+        output_schema = schemas.UnregisterConnectorOutput,
         http_method = "POST",
         http_path = "/unregister-connector",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:updateConnectorProfile(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConnectorProfile",
-        input_schema = types.UpdateConnectorProfileInput,
-        output_schema = types.UpdateConnectorProfileOutput,
+        input_schema = schemas.UpdateConnectorProfileInput,
+        output_schema = schemas.UpdateConnectorProfileOutput,
         http_method = "POST",
         http_path = "/update-connector-profile",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:updateConnectorRegistration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConnectorRegistration",
-        input_schema = types.UpdateConnectorRegistrationInput,
-        output_schema = types.UpdateConnectorRegistrationOutput,
+        input_schema = schemas.UpdateConnectorRegistrationInput,
+        output_schema = schemas.UpdateConnectorRegistrationOutput,
         http_method = "POST",
         http_path = "/update-connector-registration",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:updateFlow(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFlow",
-        input_schema = types.UpdateFlowInput,
-        output_schema = types.UpdateFlowOutput,
+        input_schema = schemas.UpdateFlowInput,
+        output_schema = schemas.UpdateFlowOutput,
         http_method = "POST",
         http_path = "/update-flow",
         effective_auth_schemes = {

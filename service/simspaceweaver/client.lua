@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("simspaceweaver.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("simspaceweaver.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("simspaceweaver.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "CreateSnapshot",
-        input_schema = types.CreateSnapshotInput,
-        output_schema = types.CreateSnapshotOutput,
+        input_schema = schemas.CreateSnapshotInput,
+        output_schema = schemas.CreateSnapshotOutput,
         http_method = "POST",
         http_path = "/createsnapshot",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteApp(input, options)
     return self:invokeOperation(input, {
         name = "DeleteApp",
-        input_schema = types.DeleteAppInput,
-        output_schema = types.DeleteAppOutput,
+        input_schema = schemas.DeleteAppInput,
+        output_schema = schemas.DeleteAppOutput,
         http_method = "DELETE",
         http_path = "/deleteapp",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteSimulation(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSimulation",
-        input_schema = types.DeleteSimulationInput,
-        output_schema = types.DeleteSimulationOutput,
+        input_schema = schemas.DeleteSimulationInput,
+        output_schema = schemas.DeleteSimulationOutput,
         http_method = "DELETE",
         http_path = "/deletesimulation",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:describeApp(input, options)
     return self:invokeOperation(input, {
         name = "DescribeApp",
-        input_schema = types.DescribeAppInput,
-        output_schema = types.DescribeAppOutput,
+        input_schema = schemas.DescribeAppInput,
+        output_schema = schemas.DescribeAppOutput,
         http_method = "GET",
         http_path = "/describeapp",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:describeSimulation(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSimulation",
-        input_schema = types.DescribeSimulationInput,
-        output_schema = types.DescribeSimulationOutput,
+        input_schema = schemas.DescribeSimulationInput,
+        output_schema = schemas.DescribeSimulationOutput,
         http_method = "GET",
         http_path = "/describesimulation",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:listApps(input, options)
     return self:invokeOperation(input, {
         name = "ListApps",
-        input_schema = types.ListAppsInput,
-        output_schema = types.ListAppsOutput,
+        input_schema = schemas.ListAppsInput,
+        output_schema = schemas.ListAppsOutput,
         http_method = "GET",
         http_path = "/listapps",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listSimulations(input, options)
     return self:invokeOperation(input, {
         name = "ListSimulations",
-        input_schema = types.ListSimulationsInput,
-        output_schema = types.ListSimulationsOutput,
+        input_schema = schemas.ListSimulationsInput,
+        output_schema = schemas.ListSimulationsOutput,
         http_method = "GET",
         http_path = "/listsimulations",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:startApp(input, options)
     return self:invokeOperation(input, {
         name = "StartApp",
-        input_schema = types.StartAppInput,
-        output_schema = types.StartAppOutput,
+        input_schema = schemas.StartAppInput,
+        output_schema = schemas.StartAppOutput,
         http_method = "POST",
         http_path = "/startapp",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:startClock(input, options)
     return self:invokeOperation(input, {
         name = "StartClock",
-        input_schema = types.StartClockInput,
-        output_schema = types.StartClockOutput,
+        input_schema = schemas.StartClockInput,
+        output_schema = schemas.StartClockOutput,
         http_method = "POST",
         http_path = "/startclock",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:startSimulation(input, options)
     return self:invokeOperation(input, {
         name = "StartSimulation",
-        input_schema = types.StartSimulationInput,
-        output_schema = types.StartSimulationOutput,
+        input_schema = schemas.StartSimulationInput,
+        output_schema = schemas.StartSimulationOutput,
         http_method = "POST",
         http_path = "/startsimulation",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:stopApp(input, options)
     return self:invokeOperation(input, {
         name = "StopApp",
-        input_schema = types.StopAppInput,
-        output_schema = types.StopAppOutput,
+        input_schema = schemas.StopAppInput,
+        output_schema = schemas.StopAppOutput,
         http_method = "POST",
         http_path = "/stopapp",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:stopClock(input, options)
     return self:invokeOperation(input, {
         name = "StopClock",
-        input_schema = types.StopClockInput,
-        output_schema = types.StopClockOutput,
+        input_schema = schemas.StopClockInput,
+        output_schema = schemas.StopClockOutput,
         http_method = "POST",
         http_path = "/stopclock",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:stopSimulation(input, options)
     return self:invokeOperation(input, {
         name = "StopSimulation",
-        input_schema = types.StopSimulationInput,
-        output_schema = types.StopSimulationOutput,
+        input_schema = schemas.StopSimulationInput,
+        output_schema = schemas.StopSimulationOutput,
         http_method = "POST",
         http_path = "/stopsimulation",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {

@@ -1,0 +1,2134 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.chimesdkidentity"
+
+local M = {}
+
+M.AppInstance = schema.new({
+    id = id.from(_N, "AppInstance"),
+    type = "structure",
+    members = {
+        AppInstanceArn = schema.new({
+            id = id.from(_N, "AppInstance", "AppInstanceArn"),
+            type = "string",
+            name = "AppInstanceArn",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "AppInstance", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        CreatedTimestamp = schema.new({
+            id = id.from(_N, "AppInstance", "CreatedTimestamp"),
+            type = "timestamp",
+            name = "CreatedTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastUpdatedTimestamp = schema.new({
+            id = id.from(_N, "AppInstance", "LastUpdatedTimestamp"),
+            type = "timestamp",
+            name = "LastUpdatedTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        Metadata = schema.new({
+            id = id.from(_N, "AppInstance", "Metadata"),
+            type = "string",
+            name = "Metadata",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Identity = schema.new({
+    id = id.from(_N, "Identity"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "Identity", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "Identity", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AppInstanceAdmin = schema.new({
+    id = id.from(_N, "AppInstanceAdmin"),
+    type = "structure",
+    members = {
+        Admin = schema.new({
+            id = id.from(_N, "AppInstanceAdmin", "Admin"),
+            type = "structure",
+            name = "Admin",
+            target_id = id.from(_N, "Identity"),
+            target = M.Identity,
+        }),
+        AppInstanceArn = schema.new({
+            id = id.from(_N, "AppInstanceAdmin", "AppInstanceArn"),
+            type = "string",
+            name = "AppInstanceArn",
+            target_id = prelude.String.id,
+        }),
+        CreatedTimestamp = schema.new({
+            id = id.from(_N, "AppInstanceAdmin", "CreatedTimestamp"),
+            type = "timestamp",
+            name = "CreatedTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.AppInstanceAdminSummary = schema.new({
+    id = id.from(_N, "AppInstanceAdminSummary"),
+    type = "structure",
+    members = {
+        Admin = schema.new({
+            id = id.from(_N, "AppInstanceAdminSummary", "Admin"),
+            type = "structure",
+            name = "Admin",
+            target_id = id.from(_N, "Identity"),
+            target = M.Identity,
+        }),
+    },
+})
+
+M.InvokedBy = schema.new({
+    id = id.from(_N, "InvokedBy"),
+    type = "structure",
+    members = {
+        StandardMessages = schema.new({
+            id = id.from(_N, "InvokedBy", "StandardMessages"),
+            type = "string",
+            name = "StandardMessages",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetedMessages = schema.new({
+            id = id.from(_N, "InvokedBy", "TargetedMessages"),
+            type = "string",
+            name = "TargetedMessages",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LexConfiguration = schema.new({
+    id = id.from(_N, "LexConfiguration"),
+    type = "structure",
+    members = {
+        RespondsTo = schema.new({
+            id = id.from(_N, "LexConfiguration", "RespondsTo"),
+            type = "string",
+            name = "RespondsTo",
+            target_id = prelude.String.id,
+        }),
+        InvokedBy = schema.new({
+            id = id.from(_N, "LexConfiguration", "InvokedBy"),
+            type = "structure",
+            name = "InvokedBy",
+            target_id = id.from(_N, "InvokedBy"),
+            target = M.InvokedBy,
+        }),
+        LexBotAliasArn = schema.new({
+            id = id.from(_N, "LexConfiguration", "LexBotAliasArn"),
+            type = "string",
+            name = "LexBotAliasArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LocaleId = schema.new({
+            id = id.from(_N, "LexConfiguration", "LocaleId"),
+            type = "string",
+            name = "LocaleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        WelcomeIntent = schema.new({
+            id = id.from(_N, "LexConfiguration", "WelcomeIntent"),
+            type = "string",
+            name = "WelcomeIntent",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Configuration = schema.new({
+    id = id.from(_N, "Configuration"),
+    type = "structure",
+    members = {
+        Lex = schema.new({
+            id = id.from(_N, "Configuration", "Lex"),
+            type = "structure",
+            name = "Lex",
+            target_id = id.from(_N, "LexConfiguration"),
+            target = M.LexConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AppInstanceBot = schema.new({
+    id = id.from(_N, "AppInstanceBot"),
+    type = "structure",
+    members = {
+        AppInstanceBotArn = schema.new({
+            id = id.from(_N, "AppInstanceBot", "AppInstanceBotArn"),
+            type = "string",
+            name = "AppInstanceBotArn",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "AppInstanceBot", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Configuration = schema.new({
+            id = id.from(_N, "AppInstanceBot", "Configuration"),
+            type = "structure",
+            name = "Configuration",
+            target_id = id.from(_N, "Configuration"),
+            target = M.Configuration,
+        }),
+        CreatedTimestamp = schema.new({
+            id = id.from(_N, "AppInstanceBot", "CreatedTimestamp"),
+            type = "timestamp",
+            name = "CreatedTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastUpdatedTimestamp = schema.new({
+            id = id.from(_N, "AppInstanceBot", "LastUpdatedTimestamp"),
+            type = "timestamp",
+            name = "LastUpdatedTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        Metadata = schema.new({
+            id = id.from(_N, "AppInstanceBot", "Metadata"),
+            type = "string",
+            name = "Metadata",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AppInstanceBotSummary = schema.new({
+    id = id.from(_N, "AppInstanceBotSummary"),
+    type = "structure",
+    members = {
+        AppInstanceBotArn = schema.new({
+            id = id.from(_N, "AppInstanceBotSummary", "AppInstanceBotArn"),
+            type = "string",
+            name = "AppInstanceBotArn",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "AppInstanceBotSummary", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Metadata = schema.new({
+            id = id.from(_N, "AppInstanceBotSummary", "Metadata"),
+            type = "string",
+            name = "Metadata",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AppInstanceSummary = schema.new({
+    id = id.from(_N, "AppInstanceSummary"),
+    type = "structure",
+    members = {
+        AppInstanceArn = schema.new({
+            id = id.from(_N, "AppInstanceSummary", "AppInstanceArn"),
+            type = "string",
+            name = "AppInstanceArn",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "AppInstanceSummary", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Metadata = schema.new({
+            id = id.from(_N, "AppInstanceSummary", "Metadata"),
+            type = "string",
+            name = "Metadata",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ChannelRetentionSettings = schema.new({
+    id = id.from(_N, "ChannelRetentionSettings"),
+    type = "structure",
+    members = {
+        RetentionDays = schema.new({
+            id = id.from(_N, "ChannelRetentionSettings", "RetentionDays"),
+            type = "integer",
+            name = "RetentionDays",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.AppInstanceRetentionSettings = schema.new({
+    id = id.from(_N, "AppInstanceRetentionSettings"),
+    type = "structure",
+    members = {
+        ChannelRetentionSettings = schema.new({
+            id = id.from(_N, "AppInstanceRetentionSettings", "ChannelRetentionSettings"),
+            type = "structure",
+            name = "ChannelRetentionSettings",
+            target_id = id.from(_N, "ChannelRetentionSettings"),
+            target = M.ChannelRetentionSettings,
+        }),
+    },
+})
+
+M.ExpirationSettings = schema.new({
+    id = id.from(_N, "ExpirationSettings"),
+    type = "structure",
+    members = {
+        ExpirationDays = schema.new({
+            id = id.from(_N, "ExpirationSettings", "ExpirationDays"),
+            type = "integer",
+            name = "ExpirationDays",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExpirationCriterion = schema.new({
+            id = id.from(_N, "ExpirationSettings", "ExpirationCriterion"),
+            type = "string",
+            name = "ExpirationCriterion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AppInstanceUser = schema.new({
+    id = id.from(_N, "AppInstanceUser"),
+    type = "structure",
+    members = {
+        AppInstanceUserArn = schema.new({
+            id = id.from(_N, "AppInstanceUser", "AppInstanceUserArn"),
+            type = "string",
+            name = "AppInstanceUserArn",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "AppInstanceUser", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Metadata = schema.new({
+            id = id.from(_N, "AppInstanceUser", "Metadata"),
+            type = "string",
+            name = "Metadata",
+            target_id = prelude.String.id,
+        }),
+        CreatedTimestamp = schema.new({
+            id = id.from(_N, "AppInstanceUser", "CreatedTimestamp"),
+            type = "timestamp",
+            name = "CreatedTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastUpdatedTimestamp = schema.new({
+            id = id.from(_N, "AppInstanceUser", "LastUpdatedTimestamp"),
+            type = "timestamp",
+            name = "LastUpdatedTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        ExpirationSettings = schema.new({
+            id = id.from(_N, "AppInstanceUser", "ExpirationSettings"),
+            type = "structure",
+            name = "ExpirationSettings",
+            target_id = id.from(_N, "ExpirationSettings"),
+            target = M.ExpirationSettings,
+        }),
+    },
+})
+
+M.EndpointAttributes = schema.new({
+    id = id.from(_N, "EndpointAttributes"),
+    type = "structure",
+    members = {
+        DeviceToken = schema.new({
+            id = id.from(_N, "EndpointAttributes", "DeviceToken"),
+            type = "string",
+            name = "DeviceToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        VoipDeviceToken = schema.new({
+            id = id.from(_N, "EndpointAttributes", "VoipDeviceToken"),
+            type = "string",
+            name = "VoipDeviceToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EndpointState = schema.new({
+    id = id.from(_N, "EndpointState"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "EndpointState", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StatusReason = schema.new({
+            id = id.from(_N, "EndpointState", "StatusReason"),
+            type = "string",
+            name = "StatusReason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AppInstanceUserEndpoint = schema.new({
+    id = id.from(_N, "AppInstanceUserEndpoint"),
+    type = "structure",
+    members = {
+        AppInstanceUserArn = schema.new({
+            id = id.from(_N, "AppInstanceUserEndpoint", "AppInstanceUserArn"),
+            type = "string",
+            name = "AppInstanceUserArn",
+            target_id = prelude.String.id,
+        }),
+        EndpointId = schema.new({
+            id = id.from(_N, "AppInstanceUserEndpoint", "EndpointId"),
+            type = "string",
+            name = "EndpointId",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "AppInstanceUserEndpoint", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "AppInstanceUserEndpoint", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        ResourceArn = schema.new({
+            id = id.from(_N, "AppInstanceUserEndpoint", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+        }),
+        EndpointAttributes = schema.new({
+            id = id.from(_N, "AppInstanceUserEndpoint", "EndpointAttributes"),
+            type = "structure",
+            name = "EndpointAttributes",
+            target_id = id.from(_N, "EndpointAttributes"),
+            target = M.EndpointAttributes,
+        }),
+        CreatedTimestamp = schema.new({
+            id = id.from(_N, "AppInstanceUserEndpoint", "CreatedTimestamp"),
+            type = "timestamp",
+            name = "CreatedTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastUpdatedTimestamp = schema.new({
+            id = id.from(_N, "AppInstanceUserEndpoint", "LastUpdatedTimestamp"),
+            type = "timestamp",
+            name = "LastUpdatedTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        AllowMessages = schema.new({
+            id = id.from(_N, "AppInstanceUserEndpoint", "AllowMessages"),
+            type = "string",
+            name = "AllowMessages",
+            target_id = prelude.String.id,
+        }),
+        EndpointState = schema.new({
+            id = id.from(_N, "AppInstanceUserEndpoint", "EndpointState"),
+            type = "structure",
+            name = "EndpointState",
+            target_id = id.from(_N, "EndpointState"),
+            target = M.EndpointState,
+        }),
+    },
+})
+
+M.AppInstanceUserEndpointSummary = schema.new({
+    id = id.from(_N, "AppInstanceUserEndpointSummary"),
+    type = "structure",
+    members = {
+        AppInstanceUserArn = schema.new({
+            id = id.from(_N, "AppInstanceUserEndpointSummary", "AppInstanceUserArn"),
+            type = "string",
+            name = "AppInstanceUserArn",
+            target_id = prelude.String.id,
+        }),
+        EndpointId = schema.new({
+            id = id.from(_N, "AppInstanceUserEndpointSummary", "EndpointId"),
+            type = "string",
+            name = "EndpointId",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "AppInstanceUserEndpointSummary", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "AppInstanceUserEndpointSummary", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        AllowMessages = schema.new({
+            id = id.from(_N, "AppInstanceUserEndpointSummary", "AllowMessages"),
+            type = "string",
+            name = "AllowMessages",
+            target_id = prelude.String.id,
+        }),
+        EndpointState = schema.new({
+            id = id.from(_N, "AppInstanceUserEndpointSummary", "EndpointState"),
+            type = "structure",
+            name = "EndpointState",
+            target_id = id.from(_N, "EndpointState"),
+            target = M.EndpointState,
+        }),
+    },
+})
+
+M.AppInstanceUserSummary = schema.new({
+    id = id.from(_N, "AppInstanceUserSummary"),
+    type = "structure",
+    members = {
+        AppInstanceUserArn = schema.new({
+            id = id.from(_N, "AppInstanceUserSummary", "AppInstanceUserArn"),
+            type = "string",
+            name = "AppInstanceUserArn",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "AppInstanceUserSummary", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Metadata = schema.new({
+            id = id.from(_N, "AppInstanceUserSummary", "Metadata"),
+            type = "string",
+            name = "Metadata",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BadRequestException = schema.new({
+    id = id.from(_N, "BadRequestException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "BadRequestException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "BadRequestException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "ConflictException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ConflictException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Tag = schema.new({
+    id = id.from(_N, "Tag"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "Tag", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "Tag", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateAppInstanceInput = schema.new({
+    id = id.from(_N, "CreateAppInstanceInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateAppInstanceInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Metadata = schema.new({
+            id = id.from(_N, "CreateAppInstanceInput", "Metadata"),
+            type = "string",
+            name = "Metadata",
+            target_id = prelude.String.id,
+        }),
+        ClientRequestToken = schema.new({
+            id = id.from(_N, "CreateAppInstanceInput", "ClientRequestToken"),
+            type = "string",
+            name = "ClientRequestToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateAppInstanceInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CreateAppInstanceOutput = schema.new({
+    id = id.from(_N, "CreateAppInstanceOutput"),
+    type = "structure",
+    members = {
+        AppInstanceArn = schema.new({
+            id = id.from(_N, "CreateAppInstanceOutput", "AppInstanceArn"),
+            type = "string",
+            name = "AppInstanceArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ForbiddenException = schema.new({
+    id = id.from(_N, "ForbiddenException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "ForbiddenException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ForbiddenException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceLimitExceededException = schema.new({
+    id = id.from(_N, "ResourceLimitExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "ResourceLimitExceededException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ResourceLimitExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceFailureException = schema.new({
+    id = id.from(_N, "ServiceFailureException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "ServiceFailureException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ServiceFailureException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceUnavailableException = schema.new({
+    id = id.from(_N, "ServiceUnavailableException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "ServiceUnavailableException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ServiceUnavailableException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ThrottledClientException = schema.new({
+    id = id.from(_N, "ThrottledClientException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "ThrottledClientException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ThrottledClientException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UnauthorizedClientException = schema.new({
+    id = id.from(_N, "UnauthorizedClientException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "UnauthorizedClientException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "UnauthorizedClientException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateAppInstanceAdminInput = schema.new({
+    id = id.from(_N, "CreateAppInstanceAdminInput"),
+    type = "structure",
+    members = {
+        AppInstanceAdminArn = schema.new({
+            id = id.from(_N, "CreateAppInstanceAdminInput", "AppInstanceAdminArn"),
+            type = "string",
+            name = "AppInstanceAdminArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AppInstanceArn = schema.new({
+            id = id.from(_N, "CreateAppInstanceAdminInput", "AppInstanceArn"),
+            type = "string",
+            name = "AppInstanceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.CreateAppInstanceAdminOutput = schema.new({
+    id = id.from(_N, "CreateAppInstanceAdminOutput"),
+    type = "structure",
+    members = {
+        AppInstanceAdmin = schema.new({
+            id = id.from(_N, "CreateAppInstanceAdminOutput", "AppInstanceAdmin"),
+            type = "structure",
+            name = "AppInstanceAdmin",
+            target_id = id.from(_N, "Identity"),
+            target = M.Identity,
+        }),
+        AppInstanceArn = schema.new({
+            id = id.from(_N, "CreateAppInstanceAdminOutput", "AppInstanceArn"),
+            type = "string",
+            name = "AppInstanceArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateAppInstanceBotInput = schema.new({
+    id = id.from(_N, "CreateAppInstanceBotInput"),
+    type = "structure",
+    members = {
+        AppInstanceArn = schema.new({
+            id = id.from(_N, "CreateAppInstanceBotInput", "AppInstanceArn"),
+            type = "string",
+            name = "AppInstanceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateAppInstanceBotInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Metadata = schema.new({
+            id = id.from(_N, "CreateAppInstanceBotInput", "Metadata"),
+            type = "string",
+            name = "Metadata",
+            target_id = prelude.String.id,
+        }),
+        ClientRequestToken = schema.new({
+            id = id.from(_N, "CreateAppInstanceBotInput", "ClientRequestToken"),
+            type = "string",
+            name = "ClientRequestToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateAppInstanceBotInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        Configuration = schema.new({
+            id = id.from(_N, "CreateAppInstanceBotInput", "Configuration"),
+            type = "structure",
+            name = "Configuration",
+            target_id = id.from(_N, "Configuration"),
+            target = M.Configuration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateAppInstanceBotOutput = schema.new({
+    id = id.from(_N, "CreateAppInstanceBotOutput"),
+    type = "structure",
+    members = {
+        AppInstanceBotArn = schema.new({
+            id = id.from(_N, "CreateAppInstanceBotOutput", "AppInstanceBotArn"),
+            type = "string",
+            name = "AppInstanceBotArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateAppInstanceUserInput = schema.new({
+    id = id.from(_N, "CreateAppInstanceUserInput"),
+    type = "structure",
+    members = {
+        AppInstanceArn = schema.new({
+            id = id.from(_N, "CreateAppInstanceUserInput", "AppInstanceArn"),
+            type = "string",
+            name = "AppInstanceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AppInstanceUserId = schema.new({
+            id = id.from(_N, "CreateAppInstanceUserInput", "AppInstanceUserId"),
+            type = "string",
+            name = "AppInstanceUserId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateAppInstanceUserInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Metadata = schema.new({
+            id = id.from(_N, "CreateAppInstanceUserInput", "Metadata"),
+            type = "string",
+            name = "Metadata",
+            target_id = prelude.String.id,
+        }),
+        ClientRequestToken = schema.new({
+            id = id.from(_N, "CreateAppInstanceUserInput", "ClientRequestToken"),
+            type = "string",
+            name = "ClientRequestToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateAppInstanceUserInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        ExpirationSettings = schema.new({
+            id = id.from(_N, "CreateAppInstanceUserInput", "ExpirationSettings"),
+            type = "structure",
+            name = "ExpirationSettings",
+            target_id = id.from(_N, "ExpirationSettings"),
+            target = M.ExpirationSettings,
+        }),
+    },
+})
+
+M.CreateAppInstanceUserOutput = schema.new({
+    id = id.from(_N, "CreateAppInstanceUserOutput"),
+    type = "structure",
+    members = {
+        AppInstanceUserArn = schema.new({
+            id = id.from(_N, "CreateAppInstanceUserOutput", "AppInstanceUserArn"),
+            type = "string",
+            name = "AppInstanceUserArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteAppInstanceInput = schema.new({
+    id = id.from(_N, "DeleteAppInstanceInput"),
+    type = "structure",
+    members = {
+        AppInstanceArn = schema.new({
+            id = id.from(_N, "DeleteAppInstanceInput", "AppInstanceArn"),
+            type = "string",
+            name = "AppInstanceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAppInstanceOutput = schema.new({
+    id = id.from(_N, "DeleteAppInstanceOutput"),
+    type = "structure",
+})
+
+M.DeleteAppInstanceAdminInput = schema.new({
+    id = id.from(_N, "DeleteAppInstanceAdminInput"),
+    type = "structure",
+    members = {
+        AppInstanceAdminArn = schema.new({
+            id = id.from(_N, "DeleteAppInstanceAdminInput", "AppInstanceAdminArn"),
+            type = "string",
+            name = "AppInstanceAdminArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AppInstanceArn = schema.new({
+            id = id.from(_N, "DeleteAppInstanceAdminInput", "AppInstanceArn"),
+            type = "string",
+            name = "AppInstanceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAppInstanceAdminOutput = schema.new({
+    id = id.from(_N, "DeleteAppInstanceAdminOutput"),
+    type = "structure",
+})
+
+M.DeleteAppInstanceBotInput = schema.new({
+    id = id.from(_N, "DeleteAppInstanceBotInput"),
+    type = "structure",
+    members = {
+        AppInstanceBotArn = schema.new({
+            id = id.from(_N, "DeleteAppInstanceBotInput", "AppInstanceBotArn"),
+            type = "string",
+            name = "AppInstanceBotArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAppInstanceBotOutput = schema.new({
+    id = id.from(_N, "DeleteAppInstanceBotOutput"),
+    type = "structure",
+})
+
+M.DeleteAppInstanceUserInput = schema.new({
+    id = id.from(_N, "DeleteAppInstanceUserInput"),
+    type = "structure",
+    members = {
+        AppInstanceUserArn = schema.new({
+            id = id.from(_N, "DeleteAppInstanceUserInput", "AppInstanceUserArn"),
+            type = "string",
+            name = "AppInstanceUserArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAppInstanceUserOutput = schema.new({
+    id = id.from(_N, "DeleteAppInstanceUserOutput"),
+    type = "structure",
+})
+
+M.DeregisterAppInstanceUserEndpointInput = schema.new({
+    id = id.from(_N, "DeregisterAppInstanceUserEndpointInput"),
+    type = "structure",
+    members = {
+        AppInstanceUserArn = schema.new({
+            id = id.from(_N, "DeregisterAppInstanceUserEndpointInput", "AppInstanceUserArn"),
+            type = "string",
+            name = "AppInstanceUserArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        EndpointId = schema.new({
+            id = id.from(_N, "DeregisterAppInstanceUserEndpointInput", "EndpointId"),
+            type = "string",
+            name = "EndpointId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeregisterAppInstanceUserEndpointOutput = schema.new({
+    id = id.from(_N, "DeregisterAppInstanceUserEndpointOutput"),
+    type = "structure",
+})
+
+M.DescribeAppInstanceInput = schema.new({
+    id = id.from(_N, "DescribeAppInstanceInput"),
+    type = "structure",
+    members = {
+        AppInstanceArn = schema.new({
+            id = id.from(_N, "DescribeAppInstanceInput", "AppInstanceArn"),
+            type = "string",
+            name = "AppInstanceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeAppInstanceOutput = schema.new({
+    id = id.from(_N, "DescribeAppInstanceOutput"),
+    type = "structure",
+    members = {
+        AppInstance = schema.new({
+            id = id.from(_N, "DescribeAppInstanceOutput", "AppInstance"),
+            type = "structure",
+            name = "AppInstance",
+            target_id = id.from(_N, "AppInstance"),
+            target = M.AppInstance,
+        }),
+    },
+})
+
+M.DescribeAppInstanceAdminInput = schema.new({
+    id = id.from(_N, "DescribeAppInstanceAdminInput"),
+    type = "structure",
+    members = {
+        AppInstanceAdminArn = schema.new({
+            id = id.from(_N, "DescribeAppInstanceAdminInput", "AppInstanceAdminArn"),
+            type = "string",
+            name = "AppInstanceAdminArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AppInstanceArn = schema.new({
+            id = id.from(_N, "DescribeAppInstanceAdminInput", "AppInstanceArn"),
+            type = "string",
+            name = "AppInstanceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeAppInstanceAdminOutput = schema.new({
+    id = id.from(_N, "DescribeAppInstanceAdminOutput"),
+    type = "structure",
+    members = {
+        AppInstanceAdmin = schema.new({
+            id = id.from(_N, "DescribeAppInstanceAdminOutput", "AppInstanceAdmin"),
+            type = "structure",
+            name = "AppInstanceAdmin",
+            target_id = id.from(_N, "AppInstanceAdmin"),
+            target = M.AppInstanceAdmin,
+        }),
+    },
+})
+
+M.DescribeAppInstanceBotInput = schema.new({
+    id = id.from(_N, "DescribeAppInstanceBotInput"),
+    type = "structure",
+    members = {
+        AppInstanceBotArn = schema.new({
+            id = id.from(_N, "DescribeAppInstanceBotInput", "AppInstanceBotArn"),
+            type = "string",
+            name = "AppInstanceBotArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeAppInstanceBotOutput = schema.new({
+    id = id.from(_N, "DescribeAppInstanceBotOutput"),
+    type = "structure",
+    members = {
+        AppInstanceBot = schema.new({
+            id = id.from(_N, "DescribeAppInstanceBotOutput", "AppInstanceBot"),
+            type = "structure",
+            name = "AppInstanceBot",
+            target_id = id.from(_N, "AppInstanceBot"),
+            target = M.AppInstanceBot,
+        }),
+    },
+})
+
+M.NotFoundException = schema.new({
+    id = id.from(_N, "NotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "NotFoundException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "NotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeAppInstanceUserInput = schema.new({
+    id = id.from(_N, "DescribeAppInstanceUserInput"),
+    type = "structure",
+    members = {
+        AppInstanceUserArn = schema.new({
+            id = id.from(_N, "DescribeAppInstanceUserInput", "AppInstanceUserArn"),
+            type = "string",
+            name = "AppInstanceUserArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeAppInstanceUserOutput = schema.new({
+    id = id.from(_N, "DescribeAppInstanceUserOutput"),
+    type = "structure",
+    members = {
+        AppInstanceUser = schema.new({
+            id = id.from(_N, "DescribeAppInstanceUserOutput", "AppInstanceUser"),
+            type = "structure",
+            name = "AppInstanceUser",
+            target_id = id.from(_N, "AppInstanceUser"),
+            target = M.AppInstanceUser,
+        }),
+    },
+})
+
+M.DescribeAppInstanceUserEndpointInput = schema.new({
+    id = id.from(_N, "DescribeAppInstanceUserEndpointInput"),
+    type = "structure",
+    members = {
+        AppInstanceUserArn = schema.new({
+            id = id.from(_N, "DescribeAppInstanceUserEndpointInput", "AppInstanceUserArn"),
+            type = "string",
+            name = "AppInstanceUserArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        EndpointId = schema.new({
+            id = id.from(_N, "DescribeAppInstanceUserEndpointInput", "EndpointId"),
+            type = "string",
+            name = "EndpointId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeAppInstanceUserEndpointOutput = schema.new({
+    id = id.from(_N, "DescribeAppInstanceUserEndpointOutput"),
+    type = "structure",
+    members = {
+        AppInstanceUserEndpoint = schema.new({
+            id = id.from(_N, "DescribeAppInstanceUserEndpointOutput", "AppInstanceUserEndpoint"),
+            type = "structure",
+            name = "AppInstanceUserEndpoint",
+            target_id = id.from(_N, "AppInstanceUserEndpoint"),
+            target = M.AppInstanceUserEndpoint,
+        }),
+    },
+})
+
+M.GetAppInstanceRetentionSettingsInput = schema.new({
+    id = id.from(_N, "GetAppInstanceRetentionSettingsInput"),
+    type = "structure",
+    members = {
+        AppInstanceArn = schema.new({
+            id = id.from(_N, "GetAppInstanceRetentionSettingsInput", "AppInstanceArn"),
+            type = "string",
+            name = "AppInstanceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetAppInstanceRetentionSettingsOutput = schema.new({
+    id = id.from(_N, "GetAppInstanceRetentionSettingsOutput"),
+    type = "structure",
+    members = {
+        AppInstanceRetentionSettings = schema.new({
+            id = id.from(_N, "GetAppInstanceRetentionSettingsOutput", "AppInstanceRetentionSettings"),
+            type = "structure",
+            name = "AppInstanceRetentionSettings",
+            target_id = id.from(_N, "AppInstanceRetentionSettings"),
+            target = M.AppInstanceRetentionSettings,
+        }),
+        InitiateDeletionTimestamp = schema.new({
+            id = id.from(_N, "GetAppInstanceRetentionSettingsOutput", "InitiateDeletionTimestamp"),
+            type = "timestamp",
+            name = "InitiateDeletionTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListAppInstanceAdminsInput = schema.new({
+    id = id.from(_N, "ListAppInstanceAdminsInput"),
+    type = "structure",
+    members = {
+        AppInstanceArn = schema.new({
+            id = id.from(_N, "ListAppInstanceAdminsInput", "AppInstanceArn"),
+            type = "string",
+            name = "AppInstanceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListAppInstanceAdminsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "max-results" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAppInstanceAdminsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "next-token" },
+            },
+        }),
+    },
+})
+
+M.ListAppInstanceAdminsOutput = schema.new({
+    id = id.from(_N, "ListAppInstanceAdminsOutput"),
+    type = "structure",
+    members = {
+        AppInstanceArn = schema.new({
+            id = id.from(_N, "ListAppInstanceAdminsOutput", "AppInstanceArn"),
+            type = "string",
+            name = "AppInstanceArn",
+            target_id = prelude.String.id,
+        }),
+        AppInstanceAdmins = schema.new({
+            id = id.from(_N, "ListAppInstanceAdminsOutput", "AppInstanceAdmins"),
+            type = "list",
+            name = "AppInstanceAdmins",
+            target_id = prelude.Document.id,
+            list_member = M.AppInstanceAdminSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAppInstanceAdminsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAppInstanceBotsInput = schema.new({
+    id = id.from(_N, "ListAppInstanceBotsInput"),
+    type = "structure",
+    members = {
+        AppInstanceArn = schema.new({
+            id = id.from(_N, "ListAppInstanceBotsInput", "AppInstanceArn"),
+            type = "string",
+            name = "AppInstanceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "app-instance-arn" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListAppInstanceBotsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "max-results" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAppInstanceBotsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "next-token" },
+            },
+        }),
+    },
+})
+
+M.ListAppInstanceBotsOutput = schema.new({
+    id = id.from(_N, "ListAppInstanceBotsOutput"),
+    type = "structure",
+    members = {
+        AppInstanceArn = schema.new({
+            id = id.from(_N, "ListAppInstanceBotsOutput", "AppInstanceArn"),
+            type = "string",
+            name = "AppInstanceArn",
+            target_id = prelude.String.id,
+        }),
+        AppInstanceBots = schema.new({
+            id = id.from(_N, "ListAppInstanceBotsOutput", "AppInstanceBots"),
+            type = "list",
+            name = "AppInstanceBots",
+            target_id = prelude.Document.id,
+            list_member = M.AppInstanceBotSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAppInstanceBotsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAppInstancesInput = schema.new({
+    id = id.from(_N, "ListAppInstancesInput"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListAppInstancesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "max-results" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAppInstancesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "next-token" },
+            },
+        }),
+    },
+})
+
+M.ListAppInstancesOutput = schema.new({
+    id = id.from(_N, "ListAppInstancesOutput"),
+    type = "structure",
+    members = {
+        AppInstances = schema.new({
+            id = id.from(_N, "ListAppInstancesOutput", "AppInstances"),
+            type = "list",
+            name = "AppInstances",
+            target_id = prelude.Document.id,
+            list_member = M.AppInstanceSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAppInstancesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAppInstanceUserEndpointsInput = schema.new({
+    id = id.from(_N, "ListAppInstanceUserEndpointsInput"),
+    type = "structure",
+    members = {
+        AppInstanceUserArn = schema.new({
+            id = id.from(_N, "ListAppInstanceUserEndpointsInput", "AppInstanceUserArn"),
+            type = "string",
+            name = "AppInstanceUserArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListAppInstanceUserEndpointsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "max-results" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAppInstanceUserEndpointsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "next-token" },
+            },
+        }),
+    },
+})
+
+M.ListAppInstanceUserEndpointsOutput = schema.new({
+    id = id.from(_N, "ListAppInstanceUserEndpointsOutput"),
+    type = "structure",
+    members = {
+        AppInstanceUserEndpoints = schema.new({
+            id = id.from(_N, "ListAppInstanceUserEndpointsOutput", "AppInstanceUserEndpoints"),
+            type = "list",
+            name = "AppInstanceUserEndpoints",
+            target_id = prelude.Document.id,
+            list_member = M.AppInstanceUserEndpointSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAppInstanceUserEndpointsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAppInstanceUsersInput = schema.new({
+    id = id.from(_N, "ListAppInstanceUsersInput"),
+    type = "structure",
+    members = {
+        AppInstanceArn = schema.new({
+            id = id.from(_N, "ListAppInstanceUsersInput", "AppInstanceArn"),
+            type = "string",
+            name = "AppInstanceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "app-instance-arn" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListAppInstanceUsersInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "max-results" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAppInstanceUsersInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "next-token" },
+            },
+        }),
+    },
+})
+
+M.ListAppInstanceUsersOutput = schema.new({
+    id = id.from(_N, "ListAppInstanceUsersOutput"),
+    type = "structure",
+    members = {
+        AppInstanceArn = schema.new({
+            id = id.from(_N, "ListAppInstanceUsersOutput", "AppInstanceArn"),
+            type = "string",
+            name = "AppInstanceArn",
+            target_id = prelude.String.id,
+        }),
+        AppInstanceUsers = schema.new({
+            id = id.from(_N, "ListAppInstanceUsersOutput", "AppInstanceUsers"),
+            type = "list",
+            name = "AppInstanceUsers",
+            target_id = prelude.Document.id,
+            list_member = M.AppInstanceUserSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAppInstanceUsersOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceInput"),
+    type = "structure",
+    members = {
+        ResourceARN = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "ResourceARN"),
+            type = "string",
+            name = "ResourceARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "arn" },
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceOutput"),
+    type = "structure",
+    members = {
+        Tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.PutAppInstanceRetentionSettingsInput = schema.new({
+    id = id.from(_N, "PutAppInstanceRetentionSettingsInput"),
+    type = "structure",
+    members = {
+        AppInstanceArn = schema.new({
+            id = id.from(_N, "PutAppInstanceRetentionSettingsInput", "AppInstanceArn"),
+            type = "string",
+            name = "AppInstanceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AppInstanceRetentionSettings = schema.new({
+            id = id.from(_N, "PutAppInstanceRetentionSettingsInput", "AppInstanceRetentionSettings"),
+            type = "structure",
+            name = "AppInstanceRetentionSettings",
+            target_id = id.from(_N, "AppInstanceRetentionSettings"),
+            target = M.AppInstanceRetentionSettings,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutAppInstanceRetentionSettingsOutput = schema.new({
+    id = id.from(_N, "PutAppInstanceRetentionSettingsOutput"),
+    type = "structure",
+    members = {
+        AppInstanceRetentionSettings = schema.new({
+            id = id.from(_N, "PutAppInstanceRetentionSettingsOutput", "AppInstanceRetentionSettings"),
+            type = "structure",
+            name = "AppInstanceRetentionSettings",
+            target_id = id.from(_N, "AppInstanceRetentionSettings"),
+            target = M.AppInstanceRetentionSettings,
+        }),
+        InitiateDeletionTimestamp = schema.new({
+            id = id.from(_N, "PutAppInstanceRetentionSettingsOutput", "InitiateDeletionTimestamp"),
+            type = "timestamp",
+            name = "InitiateDeletionTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.PutAppInstanceUserExpirationSettingsInput = schema.new({
+    id = id.from(_N, "PutAppInstanceUserExpirationSettingsInput"),
+    type = "structure",
+    members = {
+        AppInstanceUserArn = schema.new({
+            id = id.from(_N, "PutAppInstanceUserExpirationSettingsInput", "AppInstanceUserArn"),
+            type = "string",
+            name = "AppInstanceUserArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ExpirationSettings = schema.new({
+            id = id.from(_N, "PutAppInstanceUserExpirationSettingsInput", "ExpirationSettings"),
+            type = "structure",
+            name = "ExpirationSettings",
+            target_id = id.from(_N, "ExpirationSettings"),
+            target = M.ExpirationSettings,
+        }),
+    },
+})
+
+M.PutAppInstanceUserExpirationSettingsOutput = schema.new({
+    id = id.from(_N, "PutAppInstanceUserExpirationSettingsOutput"),
+    type = "structure",
+    members = {
+        AppInstanceUserArn = schema.new({
+            id = id.from(_N, "PutAppInstanceUserExpirationSettingsOutput", "AppInstanceUserArn"),
+            type = "string",
+            name = "AppInstanceUserArn",
+            target_id = prelude.String.id,
+        }),
+        ExpirationSettings = schema.new({
+            id = id.from(_N, "PutAppInstanceUserExpirationSettingsOutput", "ExpirationSettings"),
+            type = "structure",
+            name = "ExpirationSettings",
+            target_id = id.from(_N, "ExpirationSettings"),
+            target = M.ExpirationSettings,
+        }),
+    },
+})
+
+M.RegisterAppInstanceUserEndpointInput = schema.new({
+    id = id.from(_N, "RegisterAppInstanceUserEndpointInput"),
+    type = "structure",
+    members = {
+        AppInstanceUserArn = schema.new({
+            id = id.from(_N, "RegisterAppInstanceUserEndpointInput", "AppInstanceUserArn"),
+            type = "string",
+            name = "AppInstanceUserArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "RegisterAppInstanceUserEndpointInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "RegisterAppInstanceUserEndpointInput", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceArn = schema.new({
+            id = id.from(_N, "RegisterAppInstanceUserEndpointInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndpointAttributes = schema.new({
+            id = id.from(_N, "RegisterAppInstanceUserEndpointInput", "EndpointAttributes"),
+            type = "structure",
+            name = "EndpointAttributes",
+            target_id = id.from(_N, "EndpointAttributes"),
+            target = M.EndpointAttributes,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientRequestToken = schema.new({
+            id = id.from(_N, "RegisterAppInstanceUserEndpointInput", "ClientRequestToken"),
+            type = "string",
+            name = "ClientRequestToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        AllowMessages = schema.new({
+            id = id.from(_N, "RegisterAppInstanceUserEndpointInput", "AllowMessages"),
+            type = "string",
+            name = "AllowMessages",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RegisterAppInstanceUserEndpointOutput = schema.new({
+    id = id.from(_N, "RegisterAppInstanceUserEndpointOutput"),
+    type = "structure",
+    members = {
+        AppInstanceUserArn = schema.new({
+            id = id.from(_N, "RegisterAppInstanceUserEndpointOutput", "AppInstanceUserArn"),
+            type = "string",
+            name = "AppInstanceUserArn",
+            target_id = prelude.String.id,
+        }),
+        EndpointId = schema.new({
+            id = id.from(_N, "RegisterAppInstanceUserEndpointOutput", "EndpointId"),
+            type = "string",
+            name = "EndpointId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceARN = schema.new({
+            id = id.from(_N, "TagResourceInput", "ResourceARN"),
+            type = "string",
+            name = "ResourceARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceOutput"),
+    type = "structure",
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceARN = schema.new({
+            id = id.from(_N, "UntagResourceInput", "ResourceARN"),
+            type = "string",
+            name = "ResourceARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "TagKeys"),
+            type = "list",
+            name = "TagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
+M.UpdateAppInstanceInput = schema.new({
+    id = id.from(_N, "UpdateAppInstanceInput"),
+    type = "structure",
+    members = {
+        AppInstanceArn = schema.new({
+            id = id.from(_N, "UpdateAppInstanceInput", "AppInstanceArn"),
+            type = "string",
+            name = "AppInstanceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateAppInstanceInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Metadata = schema.new({
+            id = id.from(_N, "UpdateAppInstanceInput", "Metadata"),
+            type = "string",
+            name = "Metadata",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateAppInstanceOutput = schema.new({
+    id = id.from(_N, "UpdateAppInstanceOutput"),
+    type = "structure",
+    members = {
+        AppInstanceArn = schema.new({
+            id = id.from(_N, "UpdateAppInstanceOutput", "AppInstanceArn"),
+            type = "string",
+            name = "AppInstanceArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateAppInstanceBotInput = schema.new({
+    id = id.from(_N, "UpdateAppInstanceBotInput"),
+    type = "structure",
+    members = {
+        AppInstanceBotArn = schema.new({
+            id = id.from(_N, "UpdateAppInstanceBotInput", "AppInstanceBotArn"),
+            type = "string",
+            name = "AppInstanceBotArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateAppInstanceBotInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Metadata = schema.new({
+            id = id.from(_N, "UpdateAppInstanceBotInput", "Metadata"),
+            type = "string",
+            name = "Metadata",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Configuration = schema.new({
+            id = id.from(_N, "UpdateAppInstanceBotInput", "Configuration"),
+            type = "structure",
+            name = "Configuration",
+            target_id = id.from(_N, "Configuration"),
+            target = M.Configuration,
+        }),
+    },
+})
+
+M.UpdateAppInstanceBotOutput = schema.new({
+    id = id.from(_N, "UpdateAppInstanceBotOutput"),
+    type = "structure",
+    members = {
+        AppInstanceBotArn = schema.new({
+            id = id.from(_N, "UpdateAppInstanceBotOutput", "AppInstanceBotArn"),
+            type = "string",
+            name = "AppInstanceBotArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateAppInstanceUserInput = schema.new({
+    id = id.from(_N, "UpdateAppInstanceUserInput"),
+    type = "structure",
+    members = {
+        AppInstanceUserArn = schema.new({
+            id = id.from(_N, "UpdateAppInstanceUserInput", "AppInstanceUserArn"),
+            type = "string",
+            name = "AppInstanceUserArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateAppInstanceUserInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Metadata = schema.new({
+            id = id.from(_N, "UpdateAppInstanceUserInput", "Metadata"),
+            type = "string",
+            name = "Metadata",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateAppInstanceUserOutput = schema.new({
+    id = id.from(_N, "UpdateAppInstanceUserOutput"),
+    type = "structure",
+    members = {
+        AppInstanceUserArn = schema.new({
+            id = id.from(_N, "UpdateAppInstanceUserOutput", "AppInstanceUserArn"),
+            type = "string",
+            name = "AppInstanceUserArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateAppInstanceUserEndpointInput = schema.new({
+    id = id.from(_N, "UpdateAppInstanceUserEndpointInput"),
+    type = "structure",
+    members = {
+        AppInstanceUserArn = schema.new({
+            id = id.from(_N, "UpdateAppInstanceUserEndpointInput", "AppInstanceUserArn"),
+            type = "string",
+            name = "AppInstanceUserArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        EndpointId = schema.new({
+            id = id.from(_N, "UpdateAppInstanceUserEndpointInput", "EndpointId"),
+            type = "string",
+            name = "EndpointId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateAppInstanceUserEndpointInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        AllowMessages = schema.new({
+            id = id.from(_N, "UpdateAppInstanceUserEndpointInput", "AllowMessages"),
+            type = "string",
+            name = "AllowMessages",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateAppInstanceUserEndpointOutput = schema.new({
+    id = id.from(_N, "UpdateAppInstanceUserEndpointOutput"),
+    type = "structure",
+    members = {
+        AppInstanceUserArn = schema.new({
+            id = id.from(_N, "UpdateAppInstanceUserEndpointOutput", "AppInstanceUserArn"),
+            type = "string",
+            name = "AppInstanceUserArn",
+            target_id = prelude.String.id,
+        }),
+        EndpointId = schema.new({
+            id = id.from(_N, "UpdateAppInstanceUserEndpointOutput", "EndpointId"),
+            type = "string",
+            name = "EndpointId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+return M

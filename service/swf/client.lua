@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("swf.endpoint_rules")
+local schemas = require("swf.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("swf.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:countClosedWorkflowExecutions(input, options)
     return self:invokeOperation(input, {
         name = "CountClosedWorkflowExecutions",
-        input_schema = types.CountClosedWorkflowExecutionsInput,
-        output_schema = types.CountClosedWorkflowExecutionsOutput,
+        input_schema = schemas.CountClosedWorkflowExecutionsInput,
+        output_schema = schemas.CountClosedWorkflowExecutionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:countOpenWorkflowExecutions(input, options)
     return self:invokeOperation(input, {
         name = "CountOpenWorkflowExecutions",
-        input_schema = types.CountOpenWorkflowExecutionsInput,
-        output_schema = types.CountOpenWorkflowExecutionsOutput,
+        input_schema = schemas.CountOpenWorkflowExecutionsInput,
+        output_schema = schemas.CountOpenWorkflowExecutionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:countPendingActivityTasks(input, options)
     return self:invokeOperation(input, {
         name = "CountPendingActivityTasks",
-        input_schema = types.CountPendingActivityTasksInput,
-        output_schema = types.CountPendingActivityTasksOutput,
+        input_schema = schemas.CountPendingActivityTasksInput,
+        output_schema = schemas.CountPendingActivityTasksOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:countPendingDecisionTasks(input, options)
     return self:invokeOperation(input, {
         name = "CountPendingDecisionTasks",
-        input_schema = types.CountPendingDecisionTasksInput,
-        output_schema = types.CountPendingDecisionTasksOutput,
+        input_schema = schemas.CountPendingDecisionTasksInput,
+        output_schema = schemas.CountPendingDecisionTasksOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteActivityType(input, options)
     return self:invokeOperation(input, {
         name = "DeleteActivityType",
-        input_schema = types.DeleteActivityTypeInput,
-        output_schema = types.DeleteActivityTypeOutput,
+        input_schema = schemas.DeleteActivityTypeInput,
+        output_schema = schemas.DeleteActivityTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteWorkflowType(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWorkflowType",
-        input_schema = types.DeleteWorkflowTypeInput,
-        output_schema = types.DeleteWorkflowTypeOutput,
+        input_schema = schemas.DeleteWorkflowTypeInput,
+        output_schema = schemas.DeleteWorkflowTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deprecateActivityType(input, options)
     return self:invokeOperation(input, {
         name = "DeprecateActivityType",
-        input_schema = types.DeprecateActivityTypeInput,
-        output_schema = types.DeprecateActivityTypeOutput,
+        input_schema = schemas.DeprecateActivityTypeInput,
+        output_schema = schemas.DeprecateActivityTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deprecateDomain(input, options)
     return self:invokeOperation(input, {
         name = "DeprecateDomain",
-        input_schema = types.DeprecateDomainInput,
-        output_schema = types.DeprecateDomainOutput,
+        input_schema = schemas.DeprecateDomainInput,
+        output_schema = schemas.DeprecateDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deprecateWorkflowType(input, options)
     return self:invokeOperation(input, {
         name = "DeprecateWorkflowType",
-        input_schema = types.DeprecateWorkflowTypeInput,
-        output_schema = types.DeprecateWorkflowTypeOutput,
+        input_schema = schemas.DeprecateWorkflowTypeInput,
+        output_schema = schemas.DeprecateWorkflowTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:describeActivityType(input, options)
     return self:invokeOperation(input, {
         name = "DescribeActivityType",
-        input_schema = types.DescribeActivityTypeInput,
-        output_schema = types.DescribeActivityTypeOutput,
+        input_schema = schemas.DescribeActivityTypeInput,
+        output_schema = schemas.DescribeActivityTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:describeDomain(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDomain",
-        input_schema = types.DescribeDomainInput,
-        output_schema = types.DescribeDomainOutput,
+        input_schema = schemas.DescribeDomainInput,
+        output_schema = schemas.DescribeDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:describeWorkflowExecution(input, options)
     return self:invokeOperation(input, {
         name = "DescribeWorkflowExecution",
-        input_schema = types.DescribeWorkflowExecutionInput,
-        output_schema = types.DescribeWorkflowExecutionOutput,
+        input_schema = schemas.DescribeWorkflowExecutionInput,
+        output_schema = schemas.DescribeWorkflowExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:describeWorkflowType(input, options)
     return self:invokeOperation(input, {
         name = "DescribeWorkflowType",
-        input_schema = types.DescribeWorkflowTypeInput,
-        output_schema = types.DescribeWorkflowTypeOutput,
+        input_schema = schemas.DescribeWorkflowTypeInput,
+        output_schema = schemas.DescribeWorkflowTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getWorkflowExecutionHistory(input, options)
     return self:invokeOperation(input, {
         name = "GetWorkflowExecutionHistory",
-        input_schema = types.GetWorkflowExecutionHistoryInput,
-        output_schema = types.GetWorkflowExecutionHistoryOutput,
+        input_schema = schemas.GetWorkflowExecutionHistoryInput,
+        output_schema = schemas.GetWorkflowExecutionHistoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listActivityTypes(input, options)
     return self:invokeOperation(input, {
         name = "ListActivityTypes",
-        input_schema = types.ListActivityTypesInput,
-        output_schema = types.ListActivityTypesOutput,
+        input_schema = schemas.ListActivityTypesInput,
+        output_schema = schemas.ListActivityTypesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listClosedWorkflowExecutions(input, options)
     return self:invokeOperation(input, {
         name = "ListClosedWorkflowExecutions",
-        input_schema = types.ListClosedWorkflowExecutionsInput,
-        output_schema = types.ListClosedWorkflowExecutionsOutput,
+        input_schema = schemas.ListClosedWorkflowExecutionsInput,
+        output_schema = schemas.ListClosedWorkflowExecutionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listDomains(input, options)
     return self:invokeOperation(input, {
         name = "ListDomains",
-        input_schema = types.ListDomainsInput,
-        output_schema = types.ListDomainsOutput,
+        input_schema = schemas.ListDomainsInput,
+        output_schema = schemas.ListDomainsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listOpenWorkflowExecutions(input, options)
     return self:invokeOperation(input, {
         name = "ListOpenWorkflowExecutions",
-        input_schema = types.ListOpenWorkflowExecutionsInput,
-        output_schema = types.ListOpenWorkflowExecutionsOutput,
+        input_schema = schemas.ListOpenWorkflowExecutionsInput,
+        output_schema = schemas.ListOpenWorkflowExecutionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listWorkflowTypes(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkflowTypes",
-        input_schema = types.ListWorkflowTypesInput,
-        output_schema = types.ListWorkflowTypesOutput,
+        input_schema = schemas.ListWorkflowTypesInput,
+        output_schema = schemas.ListWorkflowTypesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:pollForActivityTask(input, options)
     return self:invokeOperation(input, {
         name = "PollForActivityTask",
-        input_schema = types.PollForActivityTaskInput,
-        output_schema = types.PollForActivityTaskOutput,
+        input_schema = schemas.PollForActivityTaskInput,
+        output_schema = schemas.PollForActivityTaskOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:pollForDecisionTask(input, options)
     return self:invokeOperation(input, {
         name = "PollForDecisionTask",
-        input_schema = types.PollForDecisionTaskInput,
-        output_schema = types.PollForDecisionTaskOutput,
+        input_schema = schemas.PollForDecisionTaskInput,
+        output_schema = schemas.PollForDecisionTaskOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:recordActivityTaskHeartbeat(input, options)
     return self:invokeOperation(input, {
         name = "RecordActivityTaskHeartbeat",
-        input_schema = types.RecordActivityTaskHeartbeatInput,
-        output_schema = types.RecordActivityTaskHeartbeatOutput,
+        input_schema = schemas.RecordActivityTaskHeartbeatInput,
+        output_schema = schemas.RecordActivityTaskHeartbeatOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:registerActivityType(input, options)
     return self:invokeOperation(input, {
         name = "RegisterActivityType",
-        input_schema = types.RegisterActivityTypeInput,
-        output_schema = types.RegisterActivityTypeOutput,
+        input_schema = schemas.RegisterActivityTypeInput,
+        output_schema = schemas.RegisterActivityTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:registerDomain(input, options)
     return self:invokeOperation(input, {
         name = "RegisterDomain",
-        input_schema = types.RegisterDomainInput,
-        output_schema = types.RegisterDomainOutput,
+        input_schema = schemas.RegisterDomainInput,
+        output_schema = schemas.RegisterDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:registerWorkflowType(input, options)
     return self:invokeOperation(input, {
         name = "RegisterWorkflowType",
-        input_schema = types.RegisterWorkflowTypeInput,
-        output_schema = types.RegisterWorkflowTypeOutput,
+        input_schema = schemas.RegisterWorkflowTypeInput,
+        output_schema = schemas.RegisterWorkflowTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:requestCancelWorkflowExecution(input, options)
     return self:invokeOperation(input, {
         name = "RequestCancelWorkflowExecution",
-        input_schema = types.RequestCancelWorkflowExecutionInput,
-        output_schema = types.RequestCancelWorkflowExecutionOutput,
+        input_schema = schemas.RequestCancelWorkflowExecutionInput,
+        output_schema = schemas.RequestCancelWorkflowExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:respondActivityTaskCanceled(input, options)
     return self:invokeOperation(input, {
         name = "RespondActivityTaskCanceled",
-        input_schema = types.RespondActivityTaskCanceledInput,
-        output_schema = types.RespondActivityTaskCanceledOutput,
+        input_schema = schemas.RespondActivityTaskCanceledInput,
+        output_schema = schemas.RespondActivityTaskCanceledOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:respondActivityTaskCompleted(input, options)
     return self:invokeOperation(input, {
         name = "RespondActivityTaskCompleted",
-        input_schema = types.RespondActivityTaskCompletedInput,
-        output_schema = types.RespondActivityTaskCompletedOutput,
+        input_schema = schemas.RespondActivityTaskCompletedInput,
+        output_schema = schemas.RespondActivityTaskCompletedOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:respondActivityTaskFailed(input, options)
     return self:invokeOperation(input, {
         name = "RespondActivityTaskFailed",
-        input_schema = types.RespondActivityTaskFailedInput,
-        output_schema = types.RespondActivityTaskFailedOutput,
+        input_schema = schemas.RespondActivityTaskFailedInput,
+        output_schema = schemas.RespondActivityTaskFailedOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:respondDecisionTaskCompleted(input, options)
     return self:invokeOperation(input, {
         name = "RespondDecisionTaskCompleted",
-        input_schema = types.RespondDecisionTaskCompletedInput,
-        output_schema = types.RespondDecisionTaskCompletedOutput,
+        input_schema = schemas.RespondDecisionTaskCompletedInput,
+        output_schema = schemas.RespondDecisionTaskCompletedOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:signalWorkflowExecution(input, options)
     return self:invokeOperation(input, {
         name = "SignalWorkflowExecution",
-        input_schema = types.SignalWorkflowExecutionInput,
-        output_schema = types.SignalWorkflowExecutionOutput,
+        input_schema = schemas.SignalWorkflowExecutionInput,
+        output_schema = schemas.SignalWorkflowExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:startWorkflowExecution(input, options)
     return self:invokeOperation(input, {
         name = "StartWorkflowExecution",
-        input_schema = types.StartWorkflowExecutionInput,
-        output_schema = types.StartWorkflowExecutionOutput,
+        input_schema = schemas.StartWorkflowExecutionInput,
+        output_schema = schemas.StartWorkflowExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:terminateWorkflowExecution(input, options)
     return self:invokeOperation(input, {
         name = "TerminateWorkflowExecution",
-        input_schema = types.TerminateWorkflowExecutionInput,
-        output_schema = types.TerminateWorkflowExecutionOutput,
+        input_schema = schemas.TerminateWorkflowExecutionInput,
+        output_schema = schemas.TerminateWorkflowExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:undeprecateActivityType(input, options)
     return self:invokeOperation(input, {
         name = "UndeprecateActivityType",
-        input_schema = types.UndeprecateActivityTypeInput,
-        output_schema = types.UndeprecateActivityTypeOutput,
+        input_schema = schemas.UndeprecateActivityTypeInput,
+        output_schema = schemas.UndeprecateActivityTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:undeprecateDomain(input, options)
     return self:invokeOperation(input, {
         name = "UndeprecateDomain",
-        input_schema = types.UndeprecateDomainInput,
-        output_schema = types.UndeprecateDomainOutput,
+        input_schema = schemas.UndeprecateDomainInput,
+        output_schema = schemas.UndeprecateDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:undeprecateWorkflowType(input, options)
     return self:invokeOperation(input, {
         name = "UndeprecateWorkflowType",
-        input_schema = types.UndeprecateWorkflowTypeInput,
-        output_schema = types.UndeprecateWorkflowTypeOutput,
+        input_schema = schemas.UndeprecateWorkflowTypeInput,
+        output_schema = schemas.UndeprecateWorkflowTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

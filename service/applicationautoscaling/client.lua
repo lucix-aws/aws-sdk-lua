@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("applicationautoscaling.endpoint_rules")
+local schemas = require("applicationautoscaling.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("applicationautoscaling.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:deleteScalingPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteScalingPolicy",
-        input_schema = types.DeleteScalingPolicyInput,
-        output_schema = types.DeleteScalingPolicyOutput,
+        input_schema = schemas.DeleteScalingPolicyInput,
+        output_schema = schemas.DeleteScalingPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteScheduledAction(input, options)
     return self:invokeOperation(input, {
         name = "DeleteScheduledAction",
-        input_schema = types.DeleteScheduledActionInput,
-        output_schema = types.DeleteScheduledActionOutput,
+        input_schema = schemas.DeleteScheduledActionInput,
+        output_schema = schemas.DeleteScheduledActionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deregisterScalableTarget(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterScalableTarget",
-        input_schema = types.DeregisterScalableTargetInput,
-        output_schema = types.DeregisterScalableTargetOutput,
+        input_schema = schemas.DeregisterScalableTargetInput,
+        output_schema = schemas.DeregisterScalableTargetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:describeScalableTargets(input, options)
     return self:invokeOperation(input, {
         name = "DescribeScalableTargets",
-        input_schema = types.DescribeScalableTargetsInput,
-        output_schema = types.DescribeScalableTargetsOutput,
+        input_schema = schemas.DescribeScalableTargetsInput,
+        output_schema = schemas.DescribeScalableTargetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:describeScalingActivities(input, options)
     return self:invokeOperation(input, {
         name = "DescribeScalingActivities",
-        input_schema = types.DescribeScalingActivitiesInput,
-        output_schema = types.DescribeScalingActivitiesOutput,
+        input_schema = schemas.DescribeScalingActivitiesInput,
+        output_schema = schemas.DescribeScalingActivitiesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:describeScalingPolicies(input, options)
     return self:invokeOperation(input, {
         name = "DescribeScalingPolicies",
-        input_schema = types.DescribeScalingPoliciesInput,
-        output_schema = types.DescribeScalingPoliciesOutput,
+        input_schema = schemas.DescribeScalingPoliciesInput,
+        output_schema = schemas.DescribeScalingPoliciesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:describeScheduledActions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeScheduledActions",
-        input_schema = types.DescribeScheduledActionsInput,
-        output_schema = types.DescribeScheduledActionsOutput,
+        input_schema = schemas.DescribeScheduledActionsInput,
+        output_schema = schemas.DescribeScheduledActionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getPredictiveScalingForecast(input, options)
     return self:invokeOperation(input, {
         name = "GetPredictiveScalingForecast",
-        input_schema = types.GetPredictiveScalingForecastInput,
-        output_schema = types.GetPredictiveScalingForecastOutput,
+        input_schema = schemas.GetPredictiveScalingForecastInput,
+        output_schema = schemas.GetPredictiveScalingForecastOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:putScalingPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutScalingPolicy",
-        input_schema = types.PutScalingPolicyInput,
-        output_schema = types.PutScalingPolicyOutput,
+        input_schema = schemas.PutScalingPolicyInput,
+        output_schema = schemas.PutScalingPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:putScheduledAction(input, options)
     return self:invokeOperation(input, {
         name = "PutScheduledAction",
-        input_schema = types.PutScheduledActionInput,
-        output_schema = types.PutScheduledActionOutput,
+        input_schema = schemas.PutScheduledActionInput,
+        output_schema = schemas.PutScheduledActionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:registerScalableTarget(input, options)
     return self:invokeOperation(input, {
         name = "RegisterScalableTarget",
-        input_schema = types.RegisterScalableTargetInput,
-        output_schema = types.RegisterScalableTargetOutput,
+        input_schema = schemas.RegisterScalableTargetInput,
+        output_schema = schemas.RegisterScalableTargetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

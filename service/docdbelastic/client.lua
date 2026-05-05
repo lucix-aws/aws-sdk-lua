@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("docdbelastic.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("docdbelastic.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("docdbelastic.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:applyPendingMaintenanceAction(input, options)
     return self:invokeOperation(input, {
         name = "ApplyPendingMaintenanceAction",
-        input_schema = types.ApplyPendingMaintenanceActionInput,
-        output_schema = types.ApplyPendingMaintenanceActionOutput,
+        input_schema = schemas.ApplyPendingMaintenanceActionInput,
+        output_schema = schemas.ApplyPendingMaintenanceActionOutput,
         http_method = "POST",
         http_path = "/pending-action",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:copyClusterSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "CopyClusterSnapshot",
-        input_schema = types.CopyClusterSnapshotInput,
-        output_schema = types.CopyClusterSnapshotOutput,
+        input_schema = schemas.CopyClusterSnapshotInput,
+        output_schema = schemas.CopyClusterSnapshotOutput,
         http_method = "POST",
         http_path = "/cluster-snapshot/{snapshotArn}/copy",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createCluster(input, options)
     return self:invokeOperation(input, {
         name = "CreateCluster",
-        input_schema = types.CreateClusterInput,
-        output_schema = types.CreateClusterOutput,
+        input_schema = schemas.CreateClusterInput,
+        output_schema = schemas.CreateClusterOutput,
         http_method = "POST",
         http_path = "/cluster",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createClusterSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "CreateClusterSnapshot",
-        input_schema = types.CreateClusterSnapshotInput,
-        output_schema = types.CreateClusterSnapshotOutput,
+        input_schema = schemas.CreateClusterSnapshotInput,
+        output_schema = schemas.CreateClusterSnapshotOutput,
         http_method = "POST",
         http_path = "/cluster-snapshot",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteCluster(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCluster",
-        input_schema = types.DeleteClusterInput,
-        output_schema = types.DeleteClusterOutput,
+        input_schema = schemas.DeleteClusterInput,
+        output_schema = schemas.DeleteClusterOutput,
         http_method = "DELETE",
         http_path = "/cluster/{clusterArn}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteClusterSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "DeleteClusterSnapshot",
-        input_schema = types.DeleteClusterSnapshotInput,
-        output_schema = types.DeleteClusterSnapshotOutput,
+        input_schema = schemas.DeleteClusterSnapshotInput,
+        output_schema = schemas.DeleteClusterSnapshotOutput,
         http_method = "DELETE",
         http_path = "/cluster-snapshot/{snapshotArn}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getCluster(input, options)
     return self:invokeOperation(input, {
         name = "GetCluster",
-        input_schema = types.GetClusterInput,
-        output_schema = types.GetClusterOutput,
+        input_schema = schemas.GetClusterInput,
+        output_schema = schemas.GetClusterOutput,
         http_method = "GET",
         http_path = "/cluster/{clusterArn}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getClusterSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "GetClusterSnapshot",
-        input_schema = types.GetClusterSnapshotInput,
-        output_schema = types.GetClusterSnapshotOutput,
+        input_schema = schemas.GetClusterSnapshotInput,
+        output_schema = schemas.GetClusterSnapshotOutput,
         http_method = "GET",
         http_path = "/cluster-snapshot/{snapshotArn}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getPendingMaintenanceAction(input, options)
     return self:invokeOperation(input, {
         name = "GetPendingMaintenanceAction",
-        input_schema = types.GetPendingMaintenanceActionInput,
-        output_schema = types.GetPendingMaintenanceActionOutput,
+        input_schema = schemas.GetPendingMaintenanceActionInput,
+        output_schema = schemas.GetPendingMaintenanceActionOutput,
         http_method = "GET",
         http_path = "/pending-action/{resourceArn}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listClusters(input, options)
     return self:invokeOperation(input, {
         name = "ListClusters",
-        input_schema = types.ListClustersInput,
-        output_schema = types.ListClustersOutput,
+        input_schema = schemas.ListClustersInput,
+        output_schema = schemas.ListClustersOutput,
         http_method = "GET",
         http_path = "/clusters",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listClusterSnapshots(input, options)
     return self:invokeOperation(input, {
         name = "ListClusterSnapshots",
-        input_schema = types.ListClusterSnapshotsInput,
-        output_schema = types.ListClusterSnapshotsOutput,
+        input_schema = schemas.ListClusterSnapshotsInput,
+        output_schema = schemas.ListClusterSnapshotsOutput,
         http_method = "GET",
         http_path = "/cluster-snapshots",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listPendingMaintenanceActions(input, options)
     return self:invokeOperation(input, {
         name = "ListPendingMaintenanceActions",
-        input_schema = types.ListPendingMaintenanceActionsInput,
-        output_schema = types.ListPendingMaintenanceActionsOutput,
+        input_schema = schemas.ListPendingMaintenanceActionsInput,
+        output_schema = schemas.ListPendingMaintenanceActionsOutput,
         http_method = "GET",
         http_path = "/pending-actions",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:restoreClusterFromSnapshot(input, options)
     return self:invokeOperation(input, {
         name = "RestoreClusterFromSnapshot",
-        input_schema = types.RestoreClusterFromSnapshotInput,
-        output_schema = types.RestoreClusterFromSnapshotOutput,
+        input_schema = schemas.RestoreClusterFromSnapshotInput,
+        output_schema = schemas.RestoreClusterFromSnapshotOutput,
         http_method = "POST",
         http_path = "/cluster-snapshot/{snapshotArn}/restore",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:startCluster(input, options)
     return self:invokeOperation(input, {
         name = "StartCluster",
-        input_schema = types.StartClusterInput,
-        output_schema = types.StartClusterOutput,
+        input_schema = schemas.StartClusterInput,
+        output_schema = schemas.StartClusterOutput,
         http_method = "POST",
         http_path = "/cluster/{clusterArn}/start",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:stopCluster(input, options)
     return self:invokeOperation(input, {
         name = "StopCluster",
-        input_schema = types.StopClusterInput,
-        output_schema = types.StopClusterOutput,
+        input_schema = schemas.StopClusterInput,
+        output_schema = schemas.StopClusterOutput,
         http_method = "POST",
         http_path = "/cluster/{clusterArn}/stop",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:updateCluster(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCluster",
-        input_schema = types.UpdateClusterInput,
-        output_schema = types.UpdateClusterOutput,
+        input_schema = schemas.UpdateClusterInput,
+        output_schema = schemas.UpdateClusterOutput,
         http_method = "PUT",
         http_path = "/cluster/{clusterArn}",
         effective_auth_schemes = {

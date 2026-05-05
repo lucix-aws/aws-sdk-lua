@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("socialmessaging.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("socialmessaging.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("socialmessaging.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateWhatsAppBusinessAccount(input, options)
     return self:invokeOperation(input, {
         name = "AssociateWhatsAppBusinessAccount",
-        input_schema = types.AssociateWhatsAppBusinessAccountInput,
-        output_schema = types.AssociateWhatsAppBusinessAccountOutput,
+        input_schema = schemas.AssociateWhatsAppBusinessAccountInput,
+        output_schema = schemas.AssociateWhatsAppBusinessAccountOutput,
         http_method = "POST",
         http_path = "/v1/whatsapp/signup",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createWhatsAppMessageTemplate(input, options)
     return self:invokeOperation(input, {
         name = "CreateWhatsAppMessageTemplate",
-        input_schema = types.CreateWhatsAppMessageTemplateInput,
-        output_schema = types.CreateWhatsAppMessageTemplateOutput,
+        input_schema = schemas.CreateWhatsAppMessageTemplateInput,
+        output_schema = schemas.CreateWhatsAppMessageTemplateOutput,
         http_method = "POST",
         http_path = "/v1/whatsapp/template/put",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createWhatsAppMessageTemplateFromLibrary(input, options)
     return self:invokeOperation(input, {
         name = "CreateWhatsAppMessageTemplateFromLibrary",
-        input_schema = types.CreateWhatsAppMessageTemplateFromLibraryInput,
-        output_schema = types.CreateWhatsAppMessageTemplateFromLibraryOutput,
+        input_schema = schemas.CreateWhatsAppMessageTemplateFromLibraryInput,
+        output_schema = schemas.CreateWhatsAppMessageTemplateFromLibraryOutput,
         http_method = "POST",
         http_path = "/v1/whatsapp/template/create",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createWhatsAppMessageTemplateMedia(input, options)
     return self:invokeOperation(input, {
         name = "CreateWhatsAppMessageTemplateMedia",
-        input_schema = types.CreateWhatsAppMessageTemplateMediaInput,
-        output_schema = types.CreateWhatsAppMessageTemplateMediaOutput,
+        input_schema = schemas.CreateWhatsAppMessageTemplateMediaInput,
+        output_schema = schemas.CreateWhatsAppMessageTemplateMediaOutput,
         http_method = "POST",
         http_path = "/v1/whatsapp/template/media",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteWhatsAppMessageMedia(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWhatsAppMessageMedia",
-        input_schema = types.DeleteWhatsAppMessageMediaInput,
-        output_schema = types.DeleteWhatsAppMessageMediaOutput,
+        input_schema = schemas.DeleteWhatsAppMessageMediaInput,
+        output_schema = schemas.DeleteWhatsAppMessageMediaOutput,
         http_method = "DELETE",
         http_path = "/v1/whatsapp/media",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteWhatsAppMessageTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWhatsAppMessageTemplate",
-        input_schema = types.DeleteWhatsAppMessageTemplateInput,
-        output_schema = types.DeleteWhatsAppMessageTemplateOutput,
+        input_schema = schemas.DeleteWhatsAppMessageTemplateInput,
+        output_schema = schemas.DeleteWhatsAppMessageTemplateOutput,
         http_method = "DELETE",
         http_path = "/v1/whatsapp/template",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:disassociateWhatsAppBusinessAccount(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateWhatsAppBusinessAccount",
-        input_schema = types.DisassociateWhatsAppBusinessAccountInput,
-        output_schema = types.DisassociateWhatsAppBusinessAccountOutput,
+        input_schema = schemas.DisassociateWhatsAppBusinessAccountInput,
+        output_schema = schemas.DisassociateWhatsAppBusinessAccountOutput,
         http_method = "DELETE",
         http_path = "/v1/whatsapp/waba/disassociate",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getLinkedWhatsAppBusinessAccount(input, options)
     return self:invokeOperation(input, {
         name = "GetLinkedWhatsAppBusinessAccount",
-        input_schema = types.GetLinkedWhatsAppBusinessAccountInput,
-        output_schema = types.GetLinkedWhatsAppBusinessAccountOutput,
+        input_schema = schemas.GetLinkedWhatsAppBusinessAccountInput,
+        output_schema = schemas.GetLinkedWhatsAppBusinessAccountOutput,
         http_method = "GET",
         http_path = "/v1/whatsapp/waba/details",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getLinkedWhatsAppBusinessAccountPhoneNumber(input, options)
     return self:invokeOperation(input, {
         name = "GetLinkedWhatsAppBusinessAccountPhoneNumber",
-        input_schema = types.GetLinkedWhatsAppBusinessAccountPhoneNumberInput,
-        output_schema = types.GetLinkedWhatsAppBusinessAccountPhoneNumberOutput,
+        input_schema = schemas.GetLinkedWhatsAppBusinessAccountPhoneNumberInput,
+        output_schema = schemas.GetLinkedWhatsAppBusinessAccountPhoneNumberOutput,
         http_method = "GET",
         http_path = "/v1/whatsapp/waba/phone/details",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getWhatsAppMessageMedia(input, options)
     return self:invokeOperation(input, {
         name = "GetWhatsAppMessageMedia",
-        input_schema = types.GetWhatsAppMessageMediaInput,
-        output_schema = types.GetWhatsAppMessageMediaOutput,
+        input_schema = schemas.GetWhatsAppMessageMediaInput,
+        output_schema = schemas.GetWhatsAppMessageMediaOutput,
         http_method = "POST",
         http_path = "/v1/whatsapp/media/get",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getWhatsAppMessageTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetWhatsAppMessageTemplate",
-        input_schema = types.GetWhatsAppMessageTemplateInput,
-        output_schema = types.GetWhatsAppMessageTemplateOutput,
+        input_schema = schemas.GetWhatsAppMessageTemplateInput,
+        output_schema = schemas.GetWhatsAppMessageTemplateOutput,
         http_method = "GET",
         http_path = "/v1/whatsapp/template",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listLinkedWhatsAppBusinessAccounts(input, options)
     return self:invokeOperation(input, {
         name = "ListLinkedWhatsAppBusinessAccounts",
-        input_schema = types.ListLinkedWhatsAppBusinessAccountsInput,
-        output_schema = types.ListLinkedWhatsAppBusinessAccountsOutput,
+        input_schema = schemas.ListLinkedWhatsAppBusinessAccountsInput,
+        output_schema = schemas.ListLinkedWhatsAppBusinessAccountsOutput,
         http_method = "GET",
         http_path = "/v1/whatsapp/waba/list",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/v1/tags/list",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listWhatsAppMessageTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListWhatsAppMessageTemplates",
-        input_schema = types.ListWhatsAppMessageTemplatesInput,
-        output_schema = types.ListWhatsAppMessageTemplatesOutput,
+        input_schema = schemas.ListWhatsAppMessageTemplatesInput,
+        output_schema = schemas.ListWhatsAppMessageTemplatesOutput,
         http_method = "GET",
         http_path = "/v1/whatsapp/template/list",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listWhatsAppTemplateLibrary(input, options)
     return self:invokeOperation(input, {
         name = "ListWhatsAppTemplateLibrary",
-        input_schema = types.ListWhatsAppTemplateLibraryInput,
-        output_schema = types.ListWhatsAppTemplateLibraryOutput,
+        input_schema = schemas.ListWhatsAppTemplateLibraryInput,
+        output_schema = schemas.ListWhatsAppTemplateLibraryOutput,
         http_method = "POST",
         http_path = "/v1/whatsapp/template/library",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:postWhatsAppMessageMedia(input, options)
     return self:invokeOperation(input, {
         name = "PostWhatsAppMessageMedia",
-        input_schema = types.PostWhatsAppMessageMediaInput,
-        output_schema = types.PostWhatsAppMessageMediaOutput,
+        input_schema = schemas.PostWhatsAppMessageMediaInput,
+        output_schema = schemas.PostWhatsAppMessageMediaOutput,
         http_method = "POST",
         http_path = "/v1/whatsapp/media",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:putWhatsAppBusinessAccountEventDestinations(input, options)
     return self:invokeOperation(input, {
         name = "PutWhatsAppBusinessAccountEventDestinations",
-        input_schema = types.PutWhatsAppBusinessAccountEventDestinationsInput,
-        output_schema = types.PutWhatsAppBusinessAccountEventDestinationsOutput,
+        input_schema = schemas.PutWhatsAppBusinessAccountEventDestinationsInput,
+        output_schema = schemas.PutWhatsAppBusinessAccountEventDestinationsOutput,
         http_method = "PUT",
         http_path = "/v1/whatsapp/waba/eventdestinations",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:sendWhatsAppMessage(input, options)
     return self:invokeOperation(input, {
         name = "SendWhatsAppMessage",
-        input_schema = types.SendWhatsAppMessageInput,
-        output_schema = types.SendWhatsAppMessageOutput,
+        input_schema = schemas.SendWhatsAppMessageInput,
+        output_schema = schemas.SendWhatsAppMessageOutput,
         http_method = "POST",
         http_path = "/v1/whatsapp/send",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/v1/tags/tag-resource",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/v1/tags/untag-resource",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:updateWhatsAppMessageTemplate(input, options)
     return self:invokeOperation(input, {
         name = "UpdateWhatsAppMessageTemplate",
-        input_schema = types.UpdateWhatsAppMessageTemplateInput,
-        output_schema = types.UpdateWhatsAppMessageTemplateOutput,
+        input_schema = schemas.UpdateWhatsAppMessageTemplateInput,
+        output_schema = schemas.UpdateWhatsAppMessageTemplateOutput,
         http_method = "POST",
         http_path = "/v1/whatsapp/template",
         effective_auth_schemes = {

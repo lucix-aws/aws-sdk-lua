@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("paymentcryptography.endpoint_rules")
+local schemas = require("paymentcryptography.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("paymentcryptography.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addKeyReplicationRegions(input, options)
     return self:invokeOperation(input, {
         name = "AddKeyReplicationRegions",
-        input_schema = types.AddKeyReplicationRegionsInput,
-        output_schema = types.AddKeyReplicationRegionsOutput,
+        input_schema = schemas.AddKeyReplicationRegionsInput,
+        output_schema = schemas.AddKeyReplicationRegionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:associateMpaTeam(input, options)
     return self:invokeOperation(input, {
         name = "AssociateMpaTeam",
-        input_schema = types.AssociateMpaTeamInput,
-        output_schema = types.AssociateMpaTeamOutput,
+        input_schema = schemas.AssociateMpaTeamInput,
+        output_schema = schemas.AssociateMpaTeamOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createAlias(input, options)
     return self:invokeOperation(input, {
         name = "CreateAlias",
-        input_schema = types.CreateAliasInput,
-        output_schema = types.CreateAliasOutput,
+        input_schema = schemas.CreateAliasInput,
+        output_schema = schemas.CreateAliasOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createKey(input, options)
     return self:invokeOperation(input, {
         name = "CreateKey",
-        input_schema = types.CreateKeyInput,
-        output_schema = types.CreateKeyOutput,
+        input_schema = schemas.CreateKeyInput,
+        output_schema = schemas.CreateKeyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteAlias(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAlias",
-        input_schema = types.DeleteAliasInput,
-        output_schema = types.DeleteAliasOutput,
+        input_schema = schemas.DeleteAliasInput,
+        output_schema = schemas.DeleteAliasOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteKey(input, options)
     return self:invokeOperation(input, {
         name = "DeleteKey",
-        input_schema = types.DeleteKeyInput,
-        output_schema = types.DeleteKeyOutput,
+        input_schema = schemas.DeleteKeyInput,
+        output_schema = schemas.DeleteKeyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourcePolicy",
-        input_schema = types.DeleteResourcePolicyInput,
-        output_schema = types.DeleteResourcePolicyOutput,
+        input_schema = schemas.DeleteResourcePolicyInput,
+        output_schema = schemas.DeleteResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:disableDefaultKeyReplicationRegions(input, options)
     return self:invokeOperation(input, {
         name = "DisableDefaultKeyReplicationRegions",
-        input_schema = types.DisableDefaultKeyReplicationRegionsInput,
-        output_schema = types.DisableDefaultKeyReplicationRegionsOutput,
+        input_schema = schemas.DisableDefaultKeyReplicationRegionsInput,
+        output_schema = schemas.DisableDefaultKeyReplicationRegionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:disassociateMpaTeam(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateMpaTeam",
-        input_schema = types.DisassociateMpaTeamInput,
-        output_schema = types.DisassociateMpaTeamOutput,
+        input_schema = schemas.DisassociateMpaTeamInput,
+        output_schema = schemas.DisassociateMpaTeamOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:enableDefaultKeyReplicationRegions(input, options)
     return self:invokeOperation(input, {
         name = "EnableDefaultKeyReplicationRegions",
-        input_schema = types.EnableDefaultKeyReplicationRegionsInput,
-        output_schema = types.EnableDefaultKeyReplicationRegionsOutput,
+        input_schema = schemas.EnableDefaultKeyReplicationRegionsInput,
+        output_schema = schemas.EnableDefaultKeyReplicationRegionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:exportKey(input, options)
     return self:invokeOperation(input, {
         name = "ExportKey",
-        input_schema = types.ExportKeyInput,
-        output_schema = types.ExportKeyOutput,
+        input_schema = schemas.ExportKeyInput,
+        output_schema = schemas.ExportKeyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getAlias(input, options)
     return self:invokeOperation(input, {
         name = "GetAlias",
-        input_schema = types.GetAliasInput,
-        output_schema = types.GetAliasOutput,
+        input_schema = schemas.GetAliasInput,
+        output_schema = schemas.GetAliasOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getCertificateSigningRequest(input, options)
     return self:invokeOperation(input, {
         name = "GetCertificateSigningRequest",
-        input_schema = types.GetCertificateSigningRequestInput,
-        output_schema = types.GetCertificateSigningRequestOutput,
+        input_schema = schemas.GetCertificateSigningRequestInput,
+        output_schema = schemas.GetCertificateSigningRequestOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getDefaultKeyReplicationRegions(input, options)
     return self:invokeOperation(input, {
         name = "GetDefaultKeyReplicationRegions",
-        input_schema = types.GetDefaultKeyReplicationRegionsInput,
-        output_schema = types.GetDefaultKeyReplicationRegionsOutput,
+        input_schema = schemas.GetDefaultKeyReplicationRegionsInput,
+        output_schema = schemas.GetDefaultKeyReplicationRegionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getKey(input, options)
     return self:invokeOperation(input, {
         name = "GetKey",
-        input_schema = types.GetKeyInput,
-        output_schema = types.GetKeyOutput,
+        input_schema = schemas.GetKeyInput,
+        output_schema = schemas.GetKeyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getMpaTeamAssociation(input, options)
     return self:invokeOperation(input, {
         name = "GetMpaTeamAssociation",
-        input_schema = types.GetMpaTeamAssociationInput,
-        output_schema = types.GetMpaTeamAssociationOutput,
+        input_schema = schemas.GetMpaTeamAssociationInput,
+        output_schema = schemas.GetMpaTeamAssociationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getParametersForExport(input, options)
     return self:invokeOperation(input, {
         name = "GetParametersForExport",
-        input_schema = types.GetParametersForExportInput,
-        output_schema = types.GetParametersForExportOutput,
+        input_schema = schemas.GetParametersForExportInput,
+        output_schema = schemas.GetParametersForExportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getParametersForImport(input, options)
     return self:invokeOperation(input, {
         name = "GetParametersForImport",
-        input_schema = types.GetParametersForImportInput,
-        output_schema = types.GetParametersForImportOutput,
+        input_schema = schemas.GetParametersForImportInput,
+        output_schema = schemas.GetParametersForImportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getPublicKeyCertificate(input, options)
     return self:invokeOperation(input, {
         name = "GetPublicKeyCertificate",
-        input_schema = types.GetPublicKeyCertificateInput,
-        output_schema = types.GetPublicKeyCertificateOutput,
+        input_schema = schemas.GetPublicKeyCertificateInput,
+        output_schema = schemas.GetPublicKeyCertificateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcePolicy",
-        input_schema = types.GetResourcePolicyInput,
-        output_schema = types.GetResourcePolicyOutput,
+        input_schema = schemas.GetResourcePolicyInput,
+        output_schema = schemas.GetResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:importKey(input, options)
     return self:invokeOperation(input, {
         name = "ImportKey",
-        input_schema = types.ImportKeyInput,
-        output_schema = types.ImportKeyOutput,
+        input_schema = schemas.ImportKeyInput,
+        output_schema = schemas.ImportKeyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listAliases(input, options)
     return self:invokeOperation(input, {
         name = "ListAliases",
-        input_schema = types.ListAliasesInput,
-        output_schema = types.ListAliasesOutput,
+        input_schema = schemas.ListAliasesInput,
+        output_schema = schemas.ListAliasesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listKeys(input, options)
     return self:invokeOperation(input, {
         name = "ListKeys",
-        input_schema = types.ListKeysInput,
-        output_schema = types.ListKeysOutput,
+        input_schema = schemas.ListKeysInput,
+        output_schema = schemas.ListKeysOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:putResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutResourcePolicy",
-        input_schema = types.PutResourcePolicyInput,
-        output_schema = types.PutResourcePolicyOutput,
+        input_schema = schemas.PutResourcePolicyInput,
+        output_schema = schemas.PutResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:removeKeyReplicationRegions(input, options)
     return self:invokeOperation(input, {
         name = "RemoveKeyReplicationRegions",
-        input_schema = types.RemoveKeyReplicationRegionsInput,
-        output_schema = types.RemoveKeyReplicationRegionsOutput,
+        input_schema = schemas.RemoveKeyReplicationRegionsInput,
+        output_schema = schemas.RemoveKeyReplicationRegionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:restoreKey(input, options)
     return self:invokeOperation(input, {
         name = "RestoreKey",
-        input_schema = types.RestoreKeyInput,
-        output_schema = types.RestoreKeyOutput,
+        input_schema = schemas.RestoreKeyInput,
+        output_schema = schemas.RestoreKeyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:startKeyUsage(input, options)
     return self:invokeOperation(input, {
         name = "StartKeyUsage",
-        input_schema = types.StartKeyUsageInput,
-        output_schema = types.StartKeyUsageOutput,
+        input_schema = schemas.StartKeyUsageInput,
+        output_schema = schemas.StartKeyUsageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:stopKeyUsage(input, options)
     return self:invokeOperation(input, {
         name = "StopKeyUsage",
-        input_schema = types.StopKeyUsageInput,
-        output_schema = types.StopKeyUsageOutput,
+        input_schema = schemas.StopKeyUsageInput,
+        output_schema = schemas.StopKeyUsageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:updateAlias(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAlias",
-        input_schema = types.UpdateAliasInput,
-        output_schema = types.UpdateAliasOutput,
+        input_schema = schemas.UpdateAliasInput,
+        output_schema = schemas.UpdateAliasOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

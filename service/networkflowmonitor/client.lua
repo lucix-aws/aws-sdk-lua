@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("networkflowmonitor.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("networkflowmonitor.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("networkflowmonitor.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createMonitor(input, options)
     return self:invokeOperation(input, {
         name = "CreateMonitor",
-        input_schema = types.CreateMonitorInput,
-        output_schema = types.CreateMonitorOutput,
+        input_schema = schemas.CreateMonitorInput,
+        output_schema = schemas.CreateMonitorOutput,
         http_method = "POST",
         http_path = "/monitors",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createScope(input, options)
     return self:invokeOperation(input, {
         name = "CreateScope",
-        input_schema = types.CreateScopeInput,
-        output_schema = types.CreateScopeOutput,
+        input_schema = schemas.CreateScopeInput,
+        output_schema = schemas.CreateScopeOutput,
         http_method = "POST",
         http_path = "/scopes",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteMonitor(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMonitor",
-        input_schema = types.DeleteMonitorInput,
-        output_schema = types.DeleteMonitorOutput,
+        input_schema = schemas.DeleteMonitorInput,
+        output_schema = schemas.DeleteMonitorOutput,
         http_method = "DELETE",
         http_path = "/monitors/{monitorName}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteScope(input, options)
     return self:invokeOperation(input, {
         name = "DeleteScope",
-        input_schema = types.DeleteScopeInput,
-        output_schema = types.DeleteScopeOutput,
+        input_schema = schemas.DeleteScopeInput,
+        output_schema = schemas.DeleteScopeOutput,
         http_method = "DELETE",
         http_path = "/scopes/{scopeId}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getMonitor(input, options)
     return self:invokeOperation(input, {
         name = "GetMonitor",
-        input_schema = types.GetMonitorInput,
-        output_schema = types.GetMonitorOutput,
+        input_schema = schemas.GetMonitorInput,
+        output_schema = schemas.GetMonitorOutput,
         http_method = "GET",
         http_path = "/monitors/{monitorName}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getQueryResultsMonitorTopContributors(input, options)
     return self:invokeOperation(input, {
         name = "GetQueryResultsMonitorTopContributors",
-        input_schema = types.GetQueryResultsMonitorTopContributorsInput,
-        output_schema = types.GetQueryResultsMonitorTopContributorsOutput,
+        input_schema = schemas.GetQueryResultsMonitorTopContributorsInput,
+        output_schema = schemas.GetQueryResultsMonitorTopContributorsOutput,
         http_method = "GET",
         http_path = "/monitors/{monitorName}/topContributorsQueries/{queryId}/results",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getQueryResultsWorkloadInsightsTopContributors(input, options)
     return self:invokeOperation(input, {
         name = "GetQueryResultsWorkloadInsightsTopContributors",
-        input_schema = types.GetQueryResultsWorkloadInsightsTopContributorsInput,
-        output_schema = types.GetQueryResultsWorkloadInsightsTopContributorsOutput,
+        input_schema = schemas.GetQueryResultsWorkloadInsightsTopContributorsInput,
+        output_schema = schemas.GetQueryResultsWorkloadInsightsTopContributorsOutput,
         http_method = "GET",
         http_path = "/workloadInsights/{scopeId}/topContributorsQueries/{queryId}/results",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getQueryResultsWorkloadInsightsTopContributorsData(input, options)
     return self:invokeOperation(input, {
         name = "GetQueryResultsWorkloadInsightsTopContributorsData",
-        input_schema = types.GetQueryResultsWorkloadInsightsTopContributorsDataInput,
-        output_schema = types.GetQueryResultsWorkloadInsightsTopContributorsDataOutput,
+        input_schema = schemas.GetQueryResultsWorkloadInsightsTopContributorsDataInput,
+        output_schema = schemas.GetQueryResultsWorkloadInsightsTopContributorsDataOutput,
         http_method = "GET",
         http_path = "/workloadInsights/{scopeId}/topContributorsDataQueries/{queryId}/results",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getQueryStatusMonitorTopContributors(input, options)
     return self:invokeOperation(input, {
         name = "GetQueryStatusMonitorTopContributors",
-        input_schema = types.GetQueryStatusMonitorTopContributorsInput,
-        output_schema = types.GetQueryStatusMonitorTopContributorsOutput,
+        input_schema = schemas.GetQueryStatusMonitorTopContributorsInput,
+        output_schema = schemas.GetQueryStatusMonitorTopContributorsOutput,
         http_method = "GET",
         http_path = "/monitors/{monitorName}/topContributorsQueries/{queryId}/status",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getQueryStatusWorkloadInsightsTopContributors(input, options)
     return self:invokeOperation(input, {
         name = "GetQueryStatusWorkloadInsightsTopContributors",
-        input_schema = types.GetQueryStatusWorkloadInsightsTopContributorsInput,
-        output_schema = types.GetQueryStatusWorkloadInsightsTopContributorsOutput,
+        input_schema = schemas.GetQueryStatusWorkloadInsightsTopContributorsInput,
+        output_schema = schemas.GetQueryStatusWorkloadInsightsTopContributorsOutput,
         http_method = "GET",
         http_path = "/workloadInsights/{scopeId}/topContributorsQueries/{queryId}/status",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getQueryStatusWorkloadInsightsTopContributorsData(input, options)
     return self:invokeOperation(input, {
         name = "GetQueryStatusWorkloadInsightsTopContributorsData",
-        input_schema = types.GetQueryStatusWorkloadInsightsTopContributorsDataInput,
-        output_schema = types.GetQueryStatusWorkloadInsightsTopContributorsDataOutput,
+        input_schema = schemas.GetQueryStatusWorkloadInsightsTopContributorsDataInput,
+        output_schema = schemas.GetQueryStatusWorkloadInsightsTopContributorsDataOutput,
         http_method = "GET",
         http_path = "/workloadInsights/{scopeId}/topContributorsDataQueries/{queryId}/status",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getScope(input, options)
     return self:invokeOperation(input, {
         name = "GetScope",
-        input_schema = types.GetScopeInput,
-        output_schema = types.GetScopeOutput,
+        input_schema = schemas.GetScopeInput,
+        output_schema = schemas.GetScopeOutput,
         http_method = "GET",
         http_path = "/scopes/{scopeId}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listMonitors(input, options)
     return self:invokeOperation(input, {
         name = "ListMonitors",
-        input_schema = types.ListMonitorsInput,
-        output_schema = types.ListMonitorsOutput,
+        input_schema = schemas.ListMonitorsInput,
+        output_schema = schemas.ListMonitorsOutput,
         http_method = "GET",
         http_path = "/monitors",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listScopes(input, options)
     return self:invokeOperation(input, {
         name = "ListScopes",
-        input_schema = types.ListScopesInput,
-        output_schema = types.ListScopesOutput,
+        input_schema = schemas.ListScopesInput,
+        output_schema = schemas.ListScopesOutput,
         http_method = "GET",
         http_path = "/scopes",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:startQueryMonitorTopContributors(input, options)
     return self:invokeOperation(input, {
         name = "StartQueryMonitorTopContributors",
-        input_schema = types.StartQueryMonitorTopContributorsInput,
-        output_schema = types.StartQueryMonitorTopContributorsOutput,
+        input_schema = schemas.StartQueryMonitorTopContributorsInput,
+        output_schema = schemas.StartQueryMonitorTopContributorsOutput,
         http_method = "POST",
         http_path = "/monitors/{monitorName}/topContributorsQueries",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:startQueryWorkloadInsightsTopContributors(input, options)
     return self:invokeOperation(input, {
         name = "StartQueryWorkloadInsightsTopContributors",
-        input_schema = types.StartQueryWorkloadInsightsTopContributorsInput,
-        output_schema = types.StartQueryWorkloadInsightsTopContributorsOutput,
+        input_schema = schemas.StartQueryWorkloadInsightsTopContributorsInput,
+        output_schema = schemas.StartQueryWorkloadInsightsTopContributorsOutput,
         http_method = "POST",
         http_path = "/workloadInsights/{scopeId}/topContributorsQueries",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:startQueryWorkloadInsightsTopContributorsData(input, options)
     return self:invokeOperation(input, {
         name = "StartQueryWorkloadInsightsTopContributorsData",
-        input_schema = types.StartQueryWorkloadInsightsTopContributorsDataInput,
-        output_schema = types.StartQueryWorkloadInsightsTopContributorsDataOutput,
+        input_schema = schemas.StartQueryWorkloadInsightsTopContributorsDataInput,
+        output_schema = schemas.StartQueryWorkloadInsightsTopContributorsDataOutput,
         http_method = "POST",
         http_path = "/workloadInsights/{scopeId}/topContributorsDataQueries",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:stopQueryMonitorTopContributors(input, options)
     return self:invokeOperation(input, {
         name = "StopQueryMonitorTopContributors",
-        input_schema = types.StopQueryMonitorTopContributorsInput,
-        output_schema = types.StopQueryMonitorTopContributorsOutput,
+        input_schema = schemas.StopQueryMonitorTopContributorsInput,
+        output_schema = schemas.StopQueryMonitorTopContributorsOutput,
         http_method = "DELETE",
         http_path = "/monitors/{monitorName}/topContributorsQueries/{queryId}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:stopQueryWorkloadInsightsTopContributors(input, options)
     return self:invokeOperation(input, {
         name = "StopQueryWorkloadInsightsTopContributors",
-        input_schema = types.StopQueryWorkloadInsightsTopContributorsInput,
-        output_schema = types.StopQueryWorkloadInsightsTopContributorsOutput,
+        input_schema = schemas.StopQueryWorkloadInsightsTopContributorsInput,
+        output_schema = schemas.StopQueryWorkloadInsightsTopContributorsOutput,
         http_method = "DELETE",
         http_path = "/workloadInsights/{scopeId}/topContributorsQueries/{queryId}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:stopQueryWorkloadInsightsTopContributorsData(input, options)
     return self:invokeOperation(input, {
         name = "StopQueryWorkloadInsightsTopContributorsData",
-        input_schema = types.StopQueryWorkloadInsightsTopContributorsDataInput,
-        output_schema = types.StopQueryWorkloadInsightsTopContributorsDataOutput,
+        input_schema = schemas.StopQueryWorkloadInsightsTopContributorsDataInput,
+        output_schema = schemas.StopQueryWorkloadInsightsTopContributorsDataOutput,
         http_method = "DELETE",
         http_path = "/workloadInsights/{scopeId}/topContributorsDataQueries/{queryId}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:updateMonitor(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMonitor",
-        input_schema = types.UpdateMonitorInput,
-        output_schema = types.UpdateMonitorOutput,
+        input_schema = schemas.UpdateMonitorInput,
+        output_schema = schemas.UpdateMonitorOutput,
         http_method = "PATCH",
         http_path = "/monitors/{monitorName}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:updateScope(input, options)
     return self:invokeOperation(input, {
         name = "UpdateScope",
-        input_schema = types.UpdateScopeInput,
-        output_schema = types.UpdateScopeOutput,
+        input_schema = schemas.UpdateScopeInput,
+        output_schema = schemas.UpdateScopeOutput,
         http_method = "PATCH",
         http_path = "/scopes/{scopeId}",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("mediapackagev2.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("mediapackagev2.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("mediapackagev2.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:cancelHarvestJob(input, options)
     return self:invokeOperation(input, {
         name = "CancelHarvestJob",
-        input_schema = types.CancelHarvestJobInput,
-        output_schema = types.CancelHarvestJobOutput,
+        input_schema = schemas.CancelHarvestJobInput,
+        output_schema = schemas.CancelHarvestJobOutput,
         http_method = "PUT",
         http_path = "/channelGroup/{ChannelGroupName}/channel/{ChannelName}/originEndpoint/{OriginEndpointName}/harvestJob/{HarvestJobName}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createChannel(input, options)
     return self:invokeOperation(input, {
         name = "CreateChannel",
-        input_schema = types.CreateChannelInput,
-        output_schema = types.CreateChannelOutput,
+        input_schema = schemas.CreateChannelInput,
+        output_schema = schemas.CreateChannelOutput,
         http_method = "POST",
         http_path = "/channelGroup/{ChannelGroupName}/channel",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createChannelGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateChannelGroup",
-        input_schema = types.CreateChannelGroupInput,
-        output_schema = types.CreateChannelGroupOutput,
+        input_schema = schemas.CreateChannelGroupInput,
+        output_schema = schemas.CreateChannelGroupOutput,
         http_method = "POST",
         http_path = "/channelGroup",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createHarvestJob(input, options)
     return self:invokeOperation(input, {
         name = "CreateHarvestJob",
-        input_schema = types.CreateHarvestJobInput,
-        output_schema = types.CreateHarvestJobOutput,
+        input_schema = schemas.CreateHarvestJobInput,
+        output_schema = schemas.CreateHarvestJobOutput,
         http_method = "POST",
         http_path = "/channelGroup/{ChannelGroupName}/channel/{ChannelName}/originEndpoint/{OriginEndpointName}/harvestJob",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createOriginEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "CreateOriginEndpoint",
-        input_schema = types.CreateOriginEndpointInput,
-        output_schema = types.CreateOriginEndpointOutput,
+        input_schema = schemas.CreateOriginEndpointInput,
+        output_schema = schemas.CreateOriginEndpointOutput,
         http_method = "POST",
         http_path = "/channelGroup/{ChannelGroupName}/channel/{ChannelName}/originEndpoint",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteChannel(input, options)
     return self:invokeOperation(input, {
         name = "DeleteChannel",
-        input_schema = types.DeleteChannelInput,
-        output_schema = types.DeleteChannelOutput,
+        input_schema = schemas.DeleteChannelInput,
+        output_schema = schemas.DeleteChannelOutput,
         http_method = "DELETE",
         http_path = "/channelGroup/{ChannelGroupName}/channel/{ChannelName}/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteChannelGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteChannelGroup",
-        input_schema = types.DeleteChannelGroupInput,
-        output_schema = types.DeleteChannelGroupOutput,
+        input_schema = schemas.DeleteChannelGroupInput,
+        output_schema = schemas.DeleteChannelGroupOutput,
         http_method = "DELETE",
         http_path = "/channelGroup/{ChannelGroupName}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteChannelPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteChannelPolicy",
-        input_schema = types.DeleteChannelPolicyInput,
-        output_schema = types.DeleteChannelPolicyOutput,
+        input_schema = schemas.DeleteChannelPolicyInput,
+        output_schema = schemas.DeleteChannelPolicyOutput,
         http_method = "DELETE",
         http_path = "/channelGroup/{ChannelGroupName}/channel/{ChannelName}/policy",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteOriginEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "DeleteOriginEndpoint",
-        input_schema = types.DeleteOriginEndpointInput,
-        output_schema = types.DeleteOriginEndpointOutput,
+        input_schema = schemas.DeleteOriginEndpointInput,
+        output_schema = schemas.DeleteOriginEndpointOutput,
         http_method = "DELETE",
         http_path = "/channelGroup/{ChannelGroupName}/channel/{ChannelName}/originEndpoint/{OriginEndpointName}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteOriginEndpointPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteOriginEndpointPolicy",
-        input_schema = types.DeleteOriginEndpointPolicyInput,
-        output_schema = types.DeleteOriginEndpointPolicyOutput,
+        input_schema = schemas.DeleteOriginEndpointPolicyInput,
+        output_schema = schemas.DeleteOriginEndpointPolicyOutput,
         http_method = "DELETE",
         http_path = "/channelGroup/{ChannelGroupName}/channel/{ChannelName}/originEndpoint/{OriginEndpointName}/policy",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getChannel(input, options)
     return self:invokeOperation(input, {
         name = "GetChannel",
-        input_schema = types.GetChannelInput,
-        output_schema = types.GetChannelOutput,
+        input_schema = schemas.GetChannelInput,
+        output_schema = schemas.GetChannelOutput,
         http_method = "GET",
         http_path = "/channelGroup/{ChannelGroupName}/channel/{ChannelName}/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getChannelGroup(input, options)
     return self:invokeOperation(input, {
         name = "GetChannelGroup",
-        input_schema = types.GetChannelGroupInput,
-        output_schema = types.GetChannelGroupOutput,
+        input_schema = schemas.GetChannelGroupInput,
+        output_schema = schemas.GetChannelGroupOutput,
         http_method = "GET",
         http_path = "/channelGroup/{ChannelGroupName}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getChannelPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetChannelPolicy",
-        input_schema = types.GetChannelPolicyInput,
-        output_schema = types.GetChannelPolicyOutput,
+        input_schema = schemas.GetChannelPolicyInput,
+        output_schema = schemas.GetChannelPolicyOutput,
         http_method = "GET",
         http_path = "/channelGroup/{ChannelGroupName}/channel/{ChannelName}/policy",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getHarvestJob(input, options)
     return self:invokeOperation(input, {
         name = "GetHarvestJob",
-        input_schema = types.GetHarvestJobInput,
-        output_schema = types.GetHarvestJobOutput,
+        input_schema = schemas.GetHarvestJobInput,
+        output_schema = schemas.GetHarvestJobOutput,
         http_method = "GET",
         http_path = "/channelGroup/{ChannelGroupName}/channel/{ChannelName}/originEndpoint/{OriginEndpointName}/harvestJob/{HarvestJobName}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getOriginEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "GetOriginEndpoint",
-        input_schema = types.GetOriginEndpointInput,
-        output_schema = types.GetOriginEndpointOutput,
+        input_schema = schemas.GetOriginEndpointInput,
+        output_schema = schemas.GetOriginEndpointOutput,
         http_method = "GET",
         http_path = "/channelGroup/{ChannelGroupName}/channel/{ChannelName}/originEndpoint/{OriginEndpointName}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getOriginEndpointPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetOriginEndpointPolicy",
-        input_schema = types.GetOriginEndpointPolicyInput,
-        output_schema = types.GetOriginEndpointPolicyOutput,
+        input_schema = schemas.GetOriginEndpointPolicyInput,
+        output_schema = schemas.GetOriginEndpointPolicyOutput,
         http_method = "GET",
         http_path = "/channelGroup/{ChannelGroupName}/channel/{ChannelName}/originEndpoint/{OriginEndpointName}/policy",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listChannelGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListChannelGroups",
-        input_schema = types.ListChannelGroupsInput,
-        output_schema = types.ListChannelGroupsOutput,
+        input_schema = schemas.ListChannelGroupsInput,
+        output_schema = schemas.ListChannelGroupsOutput,
         http_method = "GET",
         http_path = "/channelGroup",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listChannels(input, options)
     return self:invokeOperation(input, {
         name = "ListChannels",
-        input_schema = types.ListChannelsInput,
-        output_schema = types.ListChannelsOutput,
+        input_schema = schemas.ListChannelsInput,
+        output_schema = schemas.ListChannelsOutput,
         http_method = "GET",
         http_path = "/channelGroup/{ChannelGroupName}/channel",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listHarvestJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListHarvestJobs",
-        input_schema = types.ListHarvestJobsInput,
-        output_schema = types.ListHarvestJobsOutput,
+        input_schema = schemas.ListHarvestJobsInput,
+        output_schema = schemas.ListHarvestJobsOutput,
         http_method = "GET",
         http_path = "/channelGroup/{ChannelGroupName}/harvestJob",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listOriginEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "ListOriginEndpoints",
-        input_schema = types.ListOriginEndpointsInput,
-        output_schema = types.ListOriginEndpointsOutput,
+        input_schema = schemas.ListOriginEndpointsInput,
+        output_schema = schemas.ListOriginEndpointsOutput,
         http_method = "GET",
         http_path = "/channelGroup/{ChannelGroupName}/channel/{ChannelName}/originEndpoint",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:putChannelPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutChannelPolicy",
-        input_schema = types.PutChannelPolicyInput,
-        output_schema = types.PutChannelPolicyOutput,
+        input_schema = schemas.PutChannelPolicyInput,
+        output_schema = schemas.PutChannelPolicyOutput,
         http_method = "PUT",
         http_path = "/channelGroup/{ChannelGroupName}/channel/{ChannelName}/policy",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:putOriginEndpointPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutOriginEndpointPolicy",
-        input_schema = types.PutOriginEndpointPolicyInput,
-        output_schema = types.PutOriginEndpointPolicyOutput,
+        input_schema = schemas.PutOriginEndpointPolicyInput,
+        output_schema = schemas.PutOriginEndpointPolicyOutput,
         http_method = "POST",
         http_path = "/channelGroup/{ChannelGroupName}/channel/{ChannelName}/originEndpoint/{OriginEndpointName}/policy",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:resetChannelState(input, options)
     return self:invokeOperation(input, {
         name = "ResetChannelState",
-        input_schema = types.ResetChannelStateInput,
-        output_schema = types.ResetChannelStateOutput,
+        input_schema = schemas.ResetChannelStateInput,
+        output_schema = schemas.ResetChannelStateOutput,
         http_method = "POST",
         http_path = "/channelGroup/{ChannelGroupName}/channel/{ChannelName}/reset",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:resetOriginEndpointState(input, options)
     return self:invokeOperation(input, {
         name = "ResetOriginEndpointState",
-        input_schema = types.ResetOriginEndpointStateInput,
-        output_schema = types.ResetOriginEndpointStateOutput,
+        input_schema = schemas.ResetOriginEndpointStateInput,
+        output_schema = schemas.ResetOriginEndpointStateOutput,
         http_method = "POST",
         http_path = "/channelGroup/{ChannelGroupName}/channel/{ChannelName}/originEndpoint/{OriginEndpointName}/reset",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:updateChannel(input, options)
     return self:invokeOperation(input, {
         name = "UpdateChannel",
-        input_schema = types.UpdateChannelInput,
-        output_schema = types.UpdateChannelOutput,
+        input_schema = schemas.UpdateChannelInput,
+        output_schema = schemas.UpdateChannelOutput,
         http_method = "PUT",
         http_path = "/channelGroup/{ChannelGroupName}/channel/{ChannelName}/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:updateChannelGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateChannelGroup",
-        input_schema = types.UpdateChannelGroupInput,
-        output_schema = types.UpdateChannelGroupOutput,
+        input_schema = schemas.UpdateChannelGroupInput,
+        output_schema = schemas.UpdateChannelGroupOutput,
         http_method = "PUT",
         http_path = "/channelGroup/{ChannelGroupName}",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:updateOriginEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "UpdateOriginEndpoint",
-        input_schema = types.UpdateOriginEndpointInput,
-        output_schema = types.UpdateOriginEndpointOutput,
+        input_schema = schemas.UpdateOriginEndpointInput,
+        output_schema = schemas.UpdateOriginEndpointOutput,
         http_method = "PUT",
         http_path = "/channelGroup/{ChannelGroupName}/channel/{ChannelName}/originEndpoint/{OriginEndpointName}",
         effective_auth_schemes = {

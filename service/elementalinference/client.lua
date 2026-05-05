@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("elementalinference.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("elementalinference.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("elementalinference.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateFeed(input, options)
     return self:invokeOperation(input, {
         name = "AssociateFeed",
-        input_schema = types.AssociateFeedInput,
-        output_schema = types.AssociateFeedOutput,
+        input_schema = schemas.AssociateFeedInput,
+        output_schema = schemas.AssociateFeedOutput,
         http_method = "POST",
         http_path = "/v1/feed/{id}/associate",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createFeed(input, options)
     return self:invokeOperation(input, {
         name = "CreateFeed",
-        input_schema = types.CreateFeedInput,
-        output_schema = types.CreateFeedOutput,
+        input_schema = schemas.CreateFeedInput,
+        output_schema = schemas.CreateFeedOutput,
         http_method = "POST",
         http_path = "/v1/feed",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteFeed(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFeed",
-        input_schema = types.DeleteFeedInput,
-        output_schema = types.DeleteFeedOutput,
+        input_schema = schemas.DeleteFeedInput,
+        output_schema = schemas.DeleteFeedOutput,
         http_method = "DELETE",
         http_path = "/v1/feed/{id}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:disassociateFeed(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateFeed",
-        input_schema = types.DisassociateFeedInput,
-        output_schema = types.DisassociateFeedOutput,
+        input_schema = schemas.DisassociateFeedInput,
+        output_schema = schemas.DisassociateFeedOutput,
         http_method = "POST",
         http_path = "/v1/feed/{id}/disassociate",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getFeed(input, options)
     return self:invokeOperation(input, {
         name = "GetFeed",
-        input_schema = types.GetFeedInput,
-        output_schema = types.GetFeedOutput,
+        input_schema = schemas.GetFeedInput,
+        output_schema = schemas.GetFeedOutput,
         http_method = "GET",
         http_path = "/v1/feed/{id}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:listFeeds(input, options)
     return self:invokeOperation(input, {
         name = "ListFeeds",
-        input_schema = types.ListFeedsInput,
-        output_schema = types.ListFeedsOutput,
+        input_schema = schemas.ListFeedsInput,
+        output_schema = schemas.ListFeedsOutput,
         http_method = "GET",
         http_path = "/v1/feeds",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/v1/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/v1/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/v1/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:updateFeed(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFeed",
-        input_schema = types.UpdateFeedInput,
-        output_schema = types.UpdateFeedOutput,
+        input_schema = schemas.UpdateFeedInput,
+        output_schema = schemas.UpdateFeedOutput,
         http_method = "PUT",
         http_path = "/v1/feed/{id}",
         effective_auth_schemes = {

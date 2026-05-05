@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("supportapp.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("supportapp.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("supportapp.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createSlackChannelConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateSlackChannelConfiguration",
-        input_schema = types.CreateSlackChannelConfigurationInput,
-        output_schema = types.CreateSlackChannelConfigurationOutput,
+        input_schema = schemas.CreateSlackChannelConfigurationInput,
+        output_schema = schemas.CreateSlackChannelConfigurationOutput,
         http_method = "POST",
         http_path = "/control/create-slack-channel-configuration",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteAccountAlias(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAccountAlias",
-        input_schema = types.DeleteAccountAliasInput,
-        output_schema = types.DeleteAccountAliasOutput,
+        input_schema = schemas.DeleteAccountAliasInput,
+        output_schema = schemas.DeleteAccountAliasOutput,
         http_method = "POST",
         http_path = "/control/delete-account-alias",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteSlackChannelConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSlackChannelConfiguration",
-        input_schema = types.DeleteSlackChannelConfigurationInput,
-        output_schema = types.DeleteSlackChannelConfigurationOutput,
+        input_schema = schemas.DeleteSlackChannelConfigurationInput,
+        output_schema = schemas.DeleteSlackChannelConfigurationOutput,
         http_method = "POST",
         http_path = "/control/delete-slack-channel-configuration",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteSlackWorkspaceConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSlackWorkspaceConfiguration",
-        input_schema = types.DeleteSlackWorkspaceConfigurationInput,
-        output_schema = types.DeleteSlackWorkspaceConfigurationOutput,
+        input_schema = schemas.DeleteSlackWorkspaceConfigurationInput,
+        output_schema = schemas.DeleteSlackWorkspaceConfigurationOutput,
         http_method = "POST",
         http_path = "/control/delete-slack-workspace-configuration",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getAccountAlias(input, options)
     return self:invokeOperation(input, {
         name = "GetAccountAlias",
-        input_schema = types.GetAccountAliasInput,
-        output_schema = types.GetAccountAliasOutput,
+        input_schema = schemas.GetAccountAliasInput,
+        output_schema = schemas.GetAccountAliasOutput,
         http_method = "POST",
         http_path = "/control/get-account-alias",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:listSlackChannelConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListSlackChannelConfigurations",
-        input_schema = types.ListSlackChannelConfigurationsInput,
-        output_schema = types.ListSlackChannelConfigurationsOutput,
+        input_schema = schemas.ListSlackChannelConfigurationsInput,
+        output_schema = schemas.ListSlackChannelConfigurationsOutput,
         http_method = "POST",
         http_path = "/control/list-slack-channel-configurations",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listSlackWorkspaceConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListSlackWorkspaceConfigurations",
-        input_schema = types.ListSlackWorkspaceConfigurationsInput,
-        output_schema = types.ListSlackWorkspaceConfigurationsOutput,
+        input_schema = schemas.ListSlackWorkspaceConfigurationsInput,
+        output_schema = schemas.ListSlackWorkspaceConfigurationsOutput,
         http_method = "POST",
         http_path = "/control/list-slack-workspace-configurations",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:putAccountAlias(input, options)
     return self:invokeOperation(input, {
         name = "PutAccountAlias",
-        input_schema = types.PutAccountAliasInput,
-        output_schema = types.PutAccountAliasOutput,
+        input_schema = schemas.PutAccountAliasInput,
+        output_schema = schemas.PutAccountAliasOutput,
         http_method = "POST",
         http_path = "/control/put-account-alias",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:registerSlackWorkspaceForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "RegisterSlackWorkspaceForOrganization",
-        input_schema = types.RegisterSlackWorkspaceForOrganizationInput,
-        output_schema = types.RegisterSlackWorkspaceForOrganizationOutput,
+        input_schema = schemas.RegisterSlackWorkspaceForOrganizationInput,
+        output_schema = schemas.RegisterSlackWorkspaceForOrganizationOutput,
         http_method = "POST",
         http_path = "/control/register-slack-workspace-for-organization",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:updateSlackChannelConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSlackChannelConfiguration",
-        input_schema = types.UpdateSlackChannelConfigurationInput,
-        output_schema = types.UpdateSlackChannelConfigurationOutput,
+        input_schema = schemas.UpdateSlackChannelConfigurationInput,
+        output_schema = schemas.UpdateSlackChannelConfigurationOutput,
         http_method = "POST",
         http_path = "/control/update-slack-channel-configuration",
         effective_auth_schemes = {

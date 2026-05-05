@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("savingsplans.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("savingsplans.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("savingsplans.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createSavingsPlan(input, options)
     return self:invokeOperation(input, {
         name = "CreateSavingsPlan",
-        input_schema = types.CreateSavingsPlanInput,
-        output_schema = types.CreateSavingsPlanOutput,
+        input_schema = schemas.CreateSavingsPlanInput,
+        output_schema = schemas.CreateSavingsPlanOutput,
         http_method = "POST",
         http_path = "/CreateSavingsPlan",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteQueuedSavingsPlan(input, options)
     return self:invokeOperation(input, {
         name = "DeleteQueuedSavingsPlan",
-        input_schema = types.DeleteQueuedSavingsPlanInput,
-        output_schema = types.DeleteQueuedSavingsPlanOutput,
+        input_schema = schemas.DeleteQueuedSavingsPlanInput,
+        output_schema = schemas.DeleteQueuedSavingsPlanOutput,
         http_method = "POST",
         http_path = "/DeleteQueuedSavingsPlan",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:describeSavingsPlanRates(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSavingsPlanRates",
-        input_schema = types.DescribeSavingsPlanRatesInput,
-        output_schema = types.DescribeSavingsPlanRatesOutput,
+        input_schema = schemas.DescribeSavingsPlanRatesInput,
+        output_schema = schemas.DescribeSavingsPlanRatesOutput,
         http_method = "POST",
         http_path = "/DescribeSavingsPlanRates",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:describeSavingsPlans(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSavingsPlans",
-        input_schema = types.DescribeSavingsPlansInput,
-        output_schema = types.DescribeSavingsPlansOutput,
+        input_schema = schemas.DescribeSavingsPlansInput,
+        output_schema = schemas.DescribeSavingsPlansOutput,
         http_method = "POST",
         http_path = "/DescribeSavingsPlans",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:describeSavingsPlansOfferingRates(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSavingsPlansOfferingRates",
-        input_schema = types.DescribeSavingsPlansOfferingRatesInput,
-        output_schema = types.DescribeSavingsPlansOfferingRatesOutput,
+        input_schema = schemas.DescribeSavingsPlansOfferingRatesInput,
+        output_schema = schemas.DescribeSavingsPlansOfferingRatesOutput,
         http_method = "POST",
         http_path = "/DescribeSavingsPlansOfferingRates",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:describeSavingsPlansOfferings(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSavingsPlansOfferings",
-        input_schema = types.DescribeSavingsPlansOfferingsInput,
-        output_schema = types.DescribeSavingsPlansOfferingsOutput,
+        input_schema = schemas.DescribeSavingsPlansOfferingsInput,
+        output_schema = schemas.DescribeSavingsPlansOfferingsOutput,
         http_method = "POST",
         http_path = "/DescribeSavingsPlansOfferings",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/ListTagsForResource",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:returnSavingsPlan(input, options)
     return self:invokeOperation(input, {
         name = "ReturnSavingsPlan",
-        input_schema = types.ReturnSavingsPlanInput,
-        output_schema = types.ReturnSavingsPlanOutput,
+        input_schema = schemas.ReturnSavingsPlanInput,
+        output_schema = schemas.ReturnSavingsPlanOutput,
         http_method = "POST",
         http_path = "/ReturnSavingsPlan",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/TagResource",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/UntagResource",
         effective_auth_schemes = {

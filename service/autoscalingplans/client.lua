@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("autoscalingplans.endpoint_rules")
+local schemas = require("autoscalingplans.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("autoscalingplans.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createScalingPlan(input, options)
     return self:invokeOperation(input, {
         name = "CreateScalingPlan",
-        input_schema = types.CreateScalingPlanInput,
-        output_schema = types.CreateScalingPlanOutput,
+        input_schema = schemas.CreateScalingPlanInput,
+        output_schema = schemas.CreateScalingPlanOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteScalingPlan(input, options)
     return self:invokeOperation(input, {
         name = "DeleteScalingPlan",
-        input_schema = types.DeleteScalingPlanInput,
-        output_schema = types.DeleteScalingPlanOutput,
+        input_schema = schemas.DeleteScalingPlanInput,
+        output_schema = schemas.DeleteScalingPlanOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:describeScalingPlanResources(input, options)
     return self:invokeOperation(input, {
         name = "DescribeScalingPlanResources",
-        input_schema = types.DescribeScalingPlanResourcesInput,
-        output_schema = types.DescribeScalingPlanResourcesOutput,
+        input_schema = schemas.DescribeScalingPlanResourcesInput,
+        output_schema = schemas.DescribeScalingPlanResourcesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:describeScalingPlans(input, options)
     return self:invokeOperation(input, {
         name = "DescribeScalingPlans",
-        input_schema = types.DescribeScalingPlansInput,
-        output_schema = types.DescribeScalingPlansOutput,
+        input_schema = schemas.DescribeScalingPlansInput,
+        output_schema = schemas.DescribeScalingPlansOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getScalingPlanResourceForecastData(input, options)
     return self:invokeOperation(input, {
         name = "GetScalingPlanResourceForecastData",
-        input_schema = types.GetScalingPlanResourceForecastDataInput,
-        output_schema = types.GetScalingPlanResourceForecastDataOutput,
+        input_schema = schemas.GetScalingPlanResourceForecastDataInput,
+        output_schema = schemas.GetScalingPlanResourceForecastDataOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:updateScalingPlan(input, options)
     return self:invokeOperation(input, {
         name = "UpdateScalingPlan",
-        input_schema = types.UpdateScalingPlanInput,
-        output_schema = types.UpdateScalingPlanOutput,
+        input_schema = schemas.UpdateScalingPlanInput,
+        output_schema = schemas.UpdateScalingPlanOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

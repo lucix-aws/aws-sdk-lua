@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("pinpointsmsvoice.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("pinpointsmsvoice.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("pinpointsmsvoice.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createConfigurationSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateConfigurationSet",
-        input_schema = types.CreateConfigurationSetInput,
-        output_schema = types.CreateConfigurationSetOutput,
+        input_schema = schemas.CreateConfigurationSetInput,
+        output_schema = schemas.CreateConfigurationSetOutput,
         http_method = "POST",
         http_path = "/v1/sms-voice/configuration-sets",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createConfigurationSetEventDestination(input, options)
     return self:invokeOperation(input, {
         name = "CreateConfigurationSetEventDestination",
-        input_schema = types.CreateConfigurationSetEventDestinationInput,
-        output_schema = types.CreateConfigurationSetEventDestinationOutput,
+        input_schema = schemas.CreateConfigurationSetEventDestinationInput,
+        output_schema = schemas.CreateConfigurationSetEventDestinationOutput,
         http_method = "POST",
         http_path = "/v1/sms-voice/configuration-sets/{ConfigurationSetName}/event-destinations",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteConfigurationSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfigurationSet",
-        input_schema = types.DeleteConfigurationSetInput,
-        output_schema = types.DeleteConfigurationSetOutput,
+        input_schema = schemas.DeleteConfigurationSetInput,
+        output_schema = schemas.DeleteConfigurationSetOutput,
         http_method = "DELETE",
         http_path = "/v1/sms-voice/configuration-sets/{ConfigurationSetName}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteConfigurationSetEventDestination(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfigurationSetEventDestination",
-        input_schema = types.DeleteConfigurationSetEventDestinationInput,
-        output_schema = types.DeleteConfigurationSetEventDestinationOutput,
+        input_schema = schemas.DeleteConfigurationSetEventDestinationInput,
+        output_schema = schemas.DeleteConfigurationSetEventDestinationOutput,
         http_method = "DELETE",
         http_path = "/v1/sms-voice/configuration-sets/{ConfigurationSetName}/event-destinations/{EventDestinationName}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getConfigurationSetEventDestinations(input, options)
     return self:invokeOperation(input, {
         name = "GetConfigurationSetEventDestinations",
-        input_schema = types.GetConfigurationSetEventDestinationsInput,
-        output_schema = types.GetConfigurationSetEventDestinationsOutput,
+        input_schema = schemas.GetConfigurationSetEventDestinationsInput,
+        output_schema = schemas.GetConfigurationSetEventDestinationsOutput,
         http_method = "GET",
         http_path = "/v1/sms-voice/configuration-sets/{ConfigurationSetName}/event-destinations",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:listConfigurationSets(input, options)
     return self:invokeOperation(input, {
         name = "ListConfigurationSets",
-        input_schema = types.ListConfigurationSetsInput,
-        output_schema = types.ListConfigurationSetsOutput,
+        input_schema = schemas.ListConfigurationSetsInput,
+        output_schema = schemas.ListConfigurationSetsOutput,
         http_method = "GET",
         http_path = "/v1/sms-voice/configuration-sets",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:sendVoiceMessage(input, options)
     return self:invokeOperation(input, {
         name = "SendVoiceMessage",
-        input_schema = types.SendVoiceMessageInput,
-        output_schema = types.SendVoiceMessageOutput,
+        input_schema = schemas.SendVoiceMessageInput,
+        output_schema = schemas.SendVoiceMessageOutput,
         http_method = "POST",
         http_path = "/v1/sms-voice/voice/message",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:updateConfigurationSetEventDestination(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConfigurationSetEventDestination",
-        input_schema = types.UpdateConfigurationSetEventDestinationInput,
-        output_schema = types.UpdateConfigurationSetEventDestinationOutput,
+        input_schema = schemas.UpdateConfigurationSetEventDestinationInput,
+        output_schema = schemas.UpdateConfigurationSetEventDestinationOutput,
         http_method = "PUT",
         http_path = "/v1/sms-voice/configuration-sets/{ConfigurationSetName}/event-destinations/{EventDestinationName}",
         effective_auth_schemes = {

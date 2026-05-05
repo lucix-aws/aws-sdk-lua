@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("billingconductor.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("billingconductor.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("billingconductor.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateAccounts(input, options)
     return self:invokeOperation(input, {
         name = "AssociateAccounts",
-        input_schema = types.AssociateAccountsInput,
-        output_schema = types.AssociateAccountsOutput,
+        input_schema = schemas.AssociateAccountsInput,
+        output_schema = schemas.AssociateAccountsOutput,
         http_method = "POST",
         http_path = "/associate-accounts",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:associatePricingRules(input, options)
     return self:invokeOperation(input, {
         name = "AssociatePricingRules",
-        input_schema = types.AssociatePricingRulesInput,
-        output_schema = types.AssociatePricingRulesOutput,
+        input_schema = schemas.AssociatePricingRulesInput,
+        output_schema = schemas.AssociatePricingRulesOutput,
         http_method = "PUT",
         http_path = "/associate-pricing-rules",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchAssociateResourcesToCustomLineItem(input, options)
     return self:invokeOperation(input, {
         name = "BatchAssociateResourcesToCustomLineItem",
-        input_schema = types.BatchAssociateResourcesToCustomLineItemInput,
-        output_schema = types.BatchAssociateResourcesToCustomLineItemOutput,
+        input_schema = schemas.BatchAssociateResourcesToCustomLineItemInput,
+        output_schema = schemas.BatchAssociateResourcesToCustomLineItemOutput,
         http_method = "PUT",
         http_path = "/batch-associate-resources-to-custom-line-item",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:batchDisassociateResourcesFromCustomLineItem(input, options)
     return self:invokeOperation(input, {
         name = "BatchDisassociateResourcesFromCustomLineItem",
-        input_schema = types.BatchDisassociateResourcesFromCustomLineItemInput,
-        output_schema = types.BatchDisassociateResourcesFromCustomLineItemOutput,
+        input_schema = schemas.BatchDisassociateResourcesFromCustomLineItemInput,
+        output_schema = schemas.BatchDisassociateResourcesFromCustomLineItemOutput,
         http_method = "PUT",
         http_path = "/batch-disassociate-resources-from-custom-line-item",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createBillingGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateBillingGroup",
-        input_schema = types.CreateBillingGroupInput,
-        output_schema = types.CreateBillingGroupOutput,
+        input_schema = schemas.CreateBillingGroupInput,
+        output_schema = schemas.CreateBillingGroupOutput,
         http_method = "POST",
         http_path = "/create-billing-group",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createCustomLineItem(input, options)
     return self:invokeOperation(input, {
         name = "CreateCustomLineItem",
-        input_schema = types.CreateCustomLineItemInput,
-        output_schema = types.CreateCustomLineItemOutput,
+        input_schema = schemas.CreateCustomLineItemInput,
+        output_schema = schemas.CreateCustomLineItemOutput,
         http_method = "POST",
         http_path = "/create-custom-line-item",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createPricingPlan(input, options)
     return self:invokeOperation(input, {
         name = "CreatePricingPlan",
-        input_schema = types.CreatePricingPlanInput,
-        output_schema = types.CreatePricingPlanOutput,
+        input_schema = schemas.CreatePricingPlanInput,
+        output_schema = schemas.CreatePricingPlanOutput,
         http_method = "POST",
         http_path = "/create-pricing-plan",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createPricingRule(input, options)
     return self:invokeOperation(input, {
         name = "CreatePricingRule",
-        input_schema = types.CreatePricingRuleInput,
-        output_schema = types.CreatePricingRuleOutput,
+        input_schema = schemas.CreatePricingRuleInput,
+        output_schema = schemas.CreatePricingRuleOutput,
         http_method = "POST",
         http_path = "/create-pricing-rule",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteBillingGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBillingGroup",
-        input_schema = types.DeleteBillingGroupInput,
-        output_schema = types.DeleteBillingGroupOutput,
+        input_schema = schemas.DeleteBillingGroupInput,
+        output_schema = schemas.DeleteBillingGroupOutput,
         http_method = "POST",
         http_path = "/delete-billing-group",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteCustomLineItem(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCustomLineItem",
-        input_schema = types.DeleteCustomLineItemInput,
-        output_schema = types.DeleteCustomLineItemOutput,
+        input_schema = schemas.DeleteCustomLineItemInput,
+        output_schema = schemas.DeleteCustomLineItemOutput,
         http_method = "POST",
         http_path = "/delete-custom-line-item",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deletePricingPlan(input, options)
     return self:invokeOperation(input, {
         name = "DeletePricingPlan",
-        input_schema = types.DeletePricingPlanInput,
-        output_schema = types.DeletePricingPlanOutput,
+        input_schema = schemas.DeletePricingPlanInput,
+        output_schema = schemas.DeletePricingPlanOutput,
         http_method = "POST",
         http_path = "/delete-pricing-plan",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deletePricingRule(input, options)
     return self:invokeOperation(input, {
         name = "DeletePricingRule",
-        input_schema = types.DeletePricingRuleInput,
-        output_schema = types.DeletePricingRuleOutput,
+        input_schema = schemas.DeletePricingRuleInput,
+        output_schema = schemas.DeletePricingRuleOutput,
         http_method = "POST",
         http_path = "/delete-pricing-rule",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:disassociateAccounts(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateAccounts",
-        input_schema = types.DisassociateAccountsInput,
-        output_schema = types.DisassociateAccountsOutput,
+        input_schema = schemas.DisassociateAccountsInput,
+        output_schema = schemas.DisassociateAccountsOutput,
         http_method = "POST",
         http_path = "/disassociate-accounts",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:disassociatePricingRules(input, options)
     return self:invokeOperation(input, {
         name = "DisassociatePricingRules",
-        input_schema = types.DisassociatePricingRulesInput,
-        output_schema = types.DisassociatePricingRulesOutput,
+        input_schema = schemas.DisassociatePricingRulesInput,
+        output_schema = schemas.DisassociatePricingRulesOutput,
         http_method = "PUT",
         http_path = "/disassociate-pricing-rules",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getBillingGroupCostReport(input, options)
     return self:invokeOperation(input, {
         name = "GetBillingGroupCostReport",
-        input_schema = types.GetBillingGroupCostReportInput,
-        output_schema = types.GetBillingGroupCostReportOutput,
+        input_schema = schemas.GetBillingGroupCostReportInput,
+        output_schema = schemas.GetBillingGroupCostReportOutput,
         http_method = "POST",
         http_path = "/get-billing-group-cost-report",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listAccountAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListAccountAssociations",
-        input_schema = types.ListAccountAssociationsInput,
-        output_schema = types.ListAccountAssociationsOutput,
+        input_schema = schemas.ListAccountAssociationsInput,
+        output_schema = schemas.ListAccountAssociationsOutput,
         http_method = "POST",
         http_path = "/list-account-associations",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listBillingGroupCostReports(input, options)
     return self:invokeOperation(input, {
         name = "ListBillingGroupCostReports",
-        input_schema = types.ListBillingGroupCostReportsInput,
-        output_schema = types.ListBillingGroupCostReportsOutput,
+        input_schema = schemas.ListBillingGroupCostReportsInput,
+        output_schema = schemas.ListBillingGroupCostReportsOutput,
         http_method = "POST",
         http_path = "/list-billing-group-cost-reports",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listBillingGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListBillingGroups",
-        input_schema = types.ListBillingGroupsInput,
-        output_schema = types.ListBillingGroupsOutput,
+        input_schema = schemas.ListBillingGroupsInput,
+        output_schema = schemas.ListBillingGroupsOutput,
         http_method = "POST",
         http_path = "/list-billing-groups",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listCustomLineItems(input, options)
     return self:invokeOperation(input, {
         name = "ListCustomLineItems",
-        input_schema = types.ListCustomLineItemsInput,
-        output_schema = types.ListCustomLineItemsOutput,
+        input_schema = schemas.ListCustomLineItemsInput,
+        output_schema = schemas.ListCustomLineItemsOutput,
         http_method = "POST",
         http_path = "/list-custom-line-items",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listCustomLineItemVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListCustomLineItemVersions",
-        input_schema = types.ListCustomLineItemVersionsInput,
-        output_schema = types.ListCustomLineItemVersionsOutput,
+        input_schema = schemas.ListCustomLineItemVersionsInput,
+        output_schema = schemas.ListCustomLineItemVersionsOutput,
         http_method = "POST",
         http_path = "/list-custom-line-item-versions",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listPricingPlans(input, options)
     return self:invokeOperation(input, {
         name = "ListPricingPlans",
-        input_schema = types.ListPricingPlansInput,
-        output_schema = types.ListPricingPlansOutput,
+        input_schema = schemas.ListPricingPlansInput,
+        output_schema = schemas.ListPricingPlansOutput,
         http_method = "POST",
         http_path = "/list-pricing-plans",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listPricingPlansAssociatedWithPricingRule(input, options)
     return self:invokeOperation(input, {
         name = "ListPricingPlansAssociatedWithPricingRule",
-        input_schema = types.ListPricingPlansAssociatedWithPricingRuleInput,
-        output_schema = types.ListPricingPlansAssociatedWithPricingRuleOutput,
+        input_schema = schemas.ListPricingPlansAssociatedWithPricingRuleInput,
+        output_schema = schemas.ListPricingPlansAssociatedWithPricingRuleOutput,
         http_method = "POST",
         http_path = "/list-pricing-plans-associated-with-pricing-rule",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listPricingRules(input, options)
     return self:invokeOperation(input, {
         name = "ListPricingRules",
-        input_schema = types.ListPricingRulesInput,
-        output_schema = types.ListPricingRulesOutput,
+        input_schema = schemas.ListPricingRulesInput,
+        output_schema = schemas.ListPricingRulesOutput,
         http_method = "POST",
         http_path = "/list-pricing-rules",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listPricingRulesAssociatedToPricingPlan(input, options)
     return self:invokeOperation(input, {
         name = "ListPricingRulesAssociatedToPricingPlan",
-        input_schema = types.ListPricingRulesAssociatedToPricingPlanInput,
-        output_schema = types.ListPricingRulesAssociatedToPricingPlanOutput,
+        input_schema = schemas.ListPricingRulesAssociatedToPricingPlanInput,
+        output_schema = schemas.ListPricingRulesAssociatedToPricingPlanOutput,
         http_method = "POST",
         http_path = "/list-pricing-rules-associated-to-pricing-plan",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listResourcesAssociatedToCustomLineItem(input, options)
     return self:invokeOperation(input, {
         name = "ListResourcesAssociatedToCustomLineItem",
-        input_schema = types.ListResourcesAssociatedToCustomLineItemInput,
-        output_schema = types.ListResourcesAssociatedToCustomLineItemOutput,
+        input_schema = schemas.ListResourcesAssociatedToCustomLineItemInput,
+        output_schema = schemas.ListResourcesAssociatedToCustomLineItemOutput,
         http_method = "POST",
         http_path = "/list-resources-associated-to-custom-line-item",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:updateBillingGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateBillingGroup",
-        input_schema = types.UpdateBillingGroupInput,
-        output_schema = types.UpdateBillingGroupOutput,
+        input_schema = schemas.UpdateBillingGroupInput,
+        output_schema = schemas.UpdateBillingGroupOutput,
         http_method = "POST",
         http_path = "/update-billing-group",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:updateCustomLineItem(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCustomLineItem",
-        input_schema = types.UpdateCustomLineItemInput,
-        output_schema = types.UpdateCustomLineItemOutput,
+        input_schema = schemas.UpdateCustomLineItemInput,
+        output_schema = schemas.UpdateCustomLineItemOutput,
         http_method = "POST",
         http_path = "/update-custom-line-item",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:updatePricingPlan(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePricingPlan",
-        input_schema = types.UpdatePricingPlanInput,
-        output_schema = types.UpdatePricingPlanOutput,
+        input_schema = schemas.UpdatePricingPlanInput,
+        output_schema = schemas.UpdatePricingPlanOutput,
         http_method = "PUT",
         http_path = "/update-pricing-plan",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:updatePricingRule(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePricingRule",
-        input_schema = types.UpdatePricingRuleInput,
-        output_schema = types.UpdatePricingRuleOutput,
+        input_schema = schemas.UpdatePricingRuleInput,
+        output_schema = schemas.UpdatePricingRuleOutput,
         http_method = "PUT",
         http_path = "/update-pricing-rule",
         effective_auth_schemes = {

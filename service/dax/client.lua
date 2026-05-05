@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("dax.endpoint_rules")
+local schemas = require("dax.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("dax.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createCluster(input, options)
     return self:invokeOperation(input, {
         name = "CreateCluster",
-        input_schema = types.CreateClusterInput,
-        output_schema = types.CreateClusterOutput,
+        input_schema = schemas.CreateClusterInput,
+        output_schema = schemas.CreateClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createParameterGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateParameterGroup",
-        input_schema = types.CreateParameterGroupInput,
-        output_schema = types.CreateParameterGroupOutput,
+        input_schema = schemas.CreateParameterGroupInput,
+        output_schema = schemas.CreateParameterGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createSubnetGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateSubnetGroup",
-        input_schema = types.CreateSubnetGroupInput,
-        output_schema = types.CreateSubnetGroupOutput,
+        input_schema = schemas.CreateSubnetGroupInput,
+        output_schema = schemas.CreateSubnetGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:decreaseReplicationFactor(input, options)
     return self:invokeOperation(input, {
         name = "DecreaseReplicationFactor",
-        input_schema = types.DecreaseReplicationFactorInput,
-        output_schema = types.DecreaseReplicationFactorOutput,
+        input_schema = schemas.DecreaseReplicationFactorInput,
+        output_schema = schemas.DecreaseReplicationFactorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteCluster(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCluster",
-        input_schema = types.DeleteClusterInput,
-        output_schema = types.DeleteClusterOutput,
+        input_schema = schemas.DeleteClusterInput,
+        output_schema = schemas.DeleteClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteParameterGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteParameterGroup",
-        input_schema = types.DeleteParameterGroupInput,
-        output_schema = types.DeleteParameterGroupOutput,
+        input_schema = schemas.DeleteParameterGroupInput,
+        output_schema = schemas.DeleteParameterGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteSubnetGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSubnetGroup",
-        input_schema = types.DeleteSubnetGroupInput,
-        output_schema = types.DeleteSubnetGroupOutput,
+        input_schema = schemas.DeleteSubnetGroupInput,
+        output_schema = schemas.DeleteSubnetGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:describeClusters(input, options)
     return self:invokeOperation(input, {
         name = "DescribeClusters",
-        input_schema = types.DescribeClustersInput,
-        output_schema = types.DescribeClustersOutput,
+        input_schema = schemas.DescribeClustersInput,
+        output_schema = schemas.DescribeClustersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:describeDefaultParameters(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDefaultParameters",
-        input_schema = types.DescribeDefaultParametersInput,
-        output_schema = types.DescribeDefaultParametersOutput,
+        input_schema = schemas.DescribeDefaultParametersInput,
+        output_schema = schemas.DescribeDefaultParametersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:describeEvents(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEvents",
-        input_schema = types.DescribeEventsInput,
-        output_schema = types.DescribeEventsOutput,
+        input_schema = schemas.DescribeEventsInput,
+        output_schema = schemas.DescribeEventsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:describeParameterGroups(input, options)
     return self:invokeOperation(input, {
         name = "DescribeParameterGroups",
-        input_schema = types.DescribeParameterGroupsInput,
-        output_schema = types.DescribeParameterGroupsOutput,
+        input_schema = schemas.DescribeParameterGroupsInput,
+        output_schema = schemas.DescribeParameterGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:describeParameters(input, options)
     return self:invokeOperation(input, {
         name = "DescribeParameters",
-        input_schema = types.DescribeParametersInput,
-        output_schema = types.DescribeParametersOutput,
+        input_schema = schemas.DescribeParametersInput,
+        output_schema = schemas.DescribeParametersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:describeSubnetGroups(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSubnetGroups",
-        input_schema = types.DescribeSubnetGroupsInput,
-        output_schema = types.DescribeSubnetGroupsOutput,
+        input_schema = schemas.DescribeSubnetGroupsInput,
+        output_schema = schemas.DescribeSubnetGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:increaseReplicationFactor(input, options)
     return self:invokeOperation(input, {
         name = "IncreaseReplicationFactor",
-        input_schema = types.IncreaseReplicationFactorInput,
-        output_schema = types.IncreaseReplicationFactorOutput,
+        input_schema = schemas.IncreaseReplicationFactorInput,
+        output_schema = schemas.IncreaseReplicationFactorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listTags(input, options)
     return self:invokeOperation(input, {
         name = "ListTags",
-        input_schema = types.ListTagsInput,
-        output_schema = types.ListTagsOutput,
+        input_schema = schemas.ListTagsInput,
+        output_schema = schemas.ListTagsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:rebootNode(input, options)
     return self:invokeOperation(input, {
         name = "RebootNode",
-        input_schema = types.RebootNodeInput,
-        output_schema = types.RebootNodeOutput,
+        input_schema = schemas.RebootNodeInput,
+        output_schema = schemas.RebootNodeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:updateCluster(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCluster",
-        input_schema = types.UpdateClusterInput,
-        output_schema = types.UpdateClusterOutput,
+        input_schema = schemas.UpdateClusterInput,
+        output_schema = schemas.UpdateClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:updateParameterGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateParameterGroup",
-        input_schema = types.UpdateParameterGroupInput,
-        output_schema = types.UpdateParameterGroupOutput,
+        input_schema = schemas.UpdateParameterGroupInput,
+        output_schema = schemas.UpdateParameterGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:updateSubnetGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSubnetGroup",
-        input_schema = types.UpdateSubnetGroupInput,
-        output_schema = types.UpdateSubnetGroupOutput,
+        input_schema = schemas.UpdateSubnetGroupInput,
+        output_schema = schemas.UpdateSubnetGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

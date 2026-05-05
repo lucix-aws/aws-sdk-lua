@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("computeoptimizerautomation.endpoint_rules")
+local schemas = require("computeoptimizerautomation.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("computeoptimizerautomation.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateAccounts(input, options)
     return self:invokeOperation(input, {
         name = "AssociateAccounts",
-        input_schema = types.AssociateAccountsInput,
-        output_schema = types.AssociateAccountsOutput,
+        input_schema = schemas.AssociateAccountsInput,
+        output_schema = schemas.AssociateAccountsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createAutomationRule(input, options)
     return self:invokeOperation(input, {
         name = "CreateAutomationRule",
-        input_schema = types.CreateAutomationRuleInput,
-        output_schema = types.CreateAutomationRuleOutput,
+        input_schema = schemas.CreateAutomationRuleInput,
+        output_schema = schemas.CreateAutomationRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteAutomationRule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAutomationRule",
-        input_schema = types.DeleteAutomationRuleInput,
-        output_schema = types.DeleteAutomationRuleOutput,
+        input_schema = schemas.DeleteAutomationRuleInput,
+        output_schema = schemas.DeleteAutomationRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:disassociateAccounts(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateAccounts",
-        input_schema = types.DisassociateAccountsInput,
-        output_schema = types.DisassociateAccountsOutput,
+        input_schema = schemas.DisassociateAccountsInput,
+        output_schema = schemas.DisassociateAccountsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getAutomationEvent(input, options)
     return self:invokeOperation(input, {
         name = "GetAutomationEvent",
-        input_schema = types.GetAutomationEventInput,
-        output_schema = types.GetAutomationEventOutput,
+        input_schema = schemas.GetAutomationEventInput,
+        output_schema = schemas.GetAutomationEventOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getAutomationRule(input, options)
     return self:invokeOperation(input, {
         name = "GetAutomationRule",
-        input_schema = types.GetAutomationRuleInput,
-        output_schema = types.GetAutomationRuleOutput,
+        input_schema = schemas.GetAutomationRuleInput,
+        output_schema = schemas.GetAutomationRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getEnrollmentConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetEnrollmentConfiguration",
-        input_schema = types.GetEnrollmentConfigurationInput,
-        output_schema = types.GetEnrollmentConfigurationOutput,
+        input_schema = schemas.GetEnrollmentConfigurationInput,
+        output_schema = schemas.GetEnrollmentConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listAccounts(input, options)
     return self:invokeOperation(input, {
         name = "ListAccounts",
-        input_schema = types.ListAccountsInput,
-        output_schema = types.ListAccountsOutput,
+        input_schema = schemas.ListAccountsInput,
+        output_schema = schemas.ListAccountsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listAutomationEvents(input, options)
     return self:invokeOperation(input, {
         name = "ListAutomationEvents",
-        input_schema = types.ListAutomationEventsInput,
-        output_schema = types.ListAutomationEventsOutput,
+        input_schema = schemas.ListAutomationEventsInput,
+        output_schema = schemas.ListAutomationEventsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listAutomationEventSteps(input, options)
     return self:invokeOperation(input, {
         name = "ListAutomationEventSteps",
-        input_schema = types.ListAutomationEventStepsInput,
-        output_schema = types.ListAutomationEventStepsOutput,
+        input_schema = schemas.ListAutomationEventStepsInput,
+        output_schema = schemas.ListAutomationEventStepsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listAutomationEventSummaries(input, options)
     return self:invokeOperation(input, {
         name = "ListAutomationEventSummaries",
-        input_schema = types.ListAutomationEventSummariesInput,
-        output_schema = types.ListAutomationEventSummariesOutput,
+        input_schema = schemas.ListAutomationEventSummariesInput,
+        output_schema = schemas.ListAutomationEventSummariesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listAutomationRulePreview(input, options)
     return self:invokeOperation(input, {
         name = "ListAutomationRulePreview",
-        input_schema = types.ListAutomationRulePreviewInput,
-        output_schema = types.ListAutomationRulePreviewOutput,
+        input_schema = schemas.ListAutomationRulePreviewInput,
+        output_schema = schemas.ListAutomationRulePreviewOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listAutomationRulePreviewSummaries(input, options)
     return self:invokeOperation(input, {
         name = "ListAutomationRulePreviewSummaries",
-        input_schema = types.ListAutomationRulePreviewSummariesInput,
-        output_schema = types.ListAutomationRulePreviewSummariesOutput,
+        input_schema = schemas.ListAutomationRulePreviewSummariesInput,
+        output_schema = schemas.ListAutomationRulePreviewSummariesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listAutomationRules(input, options)
     return self:invokeOperation(input, {
         name = "ListAutomationRules",
-        input_schema = types.ListAutomationRulesInput,
-        output_schema = types.ListAutomationRulesOutput,
+        input_schema = schemas.ListAutomationRulesInput,
+        output_schema = schemas.ListAutomationRulesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listRecommendedActions(input, options)
     return self:invokeOperation(input, {
         name = "ListRecommendedActions",
-        input_schema = types.ListRecommendedActionsInput,
-        output_schema = types.ListRecommendedActionsOutput,
+        input_schema = schemas.ListRecommendedActionsInput,
+        output_schema = schemas.ListRecommendedActionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listRecommendedActionSummaries(input, options)
     return self:invokeOperation(input, {
         name = "ListRecommendedActionSummaries",
-        input_schema = types.ListRecommendedActionSummariesInput,
-        output_schema = types.ListRecommendedActionSummariesOutput,
+        input_schema = schemas.ListRecommendedActionSummariesInput,
+        output_schema = schemas.ListRecommendedActionSummariesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:rollbackAutomationEvent(input, options)
     return self:invokeOperation(input, {
         name = "RollbackAutomationEvent",
-        input_schema = types.RollbackAutomationEventInput,
-        output_schema = types.RollbackAutomationEventOutput,
+        input_schema = schemas.RollbackAutomationEventInput,
+        output_schema = schemas.RollbackAutomationEventOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:startAutomationEvent(input, options)
     return self:invokeOperation(input, {
         name = "StartAutomationEvent",
-        input_schema = types.StartAutomationEventInput,
-        output_schema = types.StartAutomationEventOutput,
+        input_schema = schemas.StartAutomationEventInput,
+        output_schema = schemas.StartAutomationEventOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:updateAutomationRule(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAutomationRule",
-        input_schema = types.UpdateAutomationRuleInput,
-        output_schema = types.UpdateAutomationRuleOutput,
+        input_schema = schemas.UpdateAutomationRuleInput,
+        output_schema = schemas.UpdateAutomationRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:updateEnrollmentConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEnrollmentConfiguration",
-        input_schema = types.UpdateEnrollmentConfigurationInput,
-        output_schema = types.UpdateEnrollmentConfigurationOutput,
+        input_schema = schemas.UpdateEnrollmentConfigurationInput,
+        output_schema = schemas.UpdateEnrollmentConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

@@ -751,9 +751,9 @@ local record ThrottlingException
     message: string
 end
 
-local type LifeCycleState = "available" | "creating" | "deleting" | "deleted" | "error" | "updating"
-
 local type IpAddressType = "IPV4_ONLY" | "IPV6_ONLY" | "DUAL_STACK"
+
+local type LifeCycleState = "available" | "creating" | "deleting" | "deleted" | "error" | "updating"
 
 local record M
     CreateAccessPointInput: CreateAccessPointInput

@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("simpledbv2.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("simpledbv2.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("simpledbv2.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getExport(input, options)
     return self:invokeOperation(input, {
         name = "GetExport",
-        input_schema = types.GetExportInput,
-        output_schema = types.GetExportOutput,
+        input_schema = schemas.GetExportInput,
+        output_schema = schemas.GetExportOutput,
         http_method = "POST",
         http_path = "/v2/GetExport",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:listExports(input, options)
     return self:invokeOperation(input, {
         name = "ListExports",
-        input_schema = types.ListExportsInput,
-        output_schema = types.ListExportsOutput,
+        input_schema = schemas.ListExportsInput,
+        output_schema = schemas.ListExportsOutput,
         http_method = "POST",
         http_path = "/v2/ListExports",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:startDomainExport(input, options)
     return self:invokeOperation(input, {
         name = "StartDomainExport",
-        input_schema = types.StartDomainExportInput,
-        output_schema = types.StartDomainExportOutput,
+        input_schema = schemas.StartDomainExportInput,
+        output_schema = schemas.StartDomainExportOutput,
         http_method = "POST",
         http_path = "/v2/StartDomainExport",
         effective_auth_schemes = {

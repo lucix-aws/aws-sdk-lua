@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("translate.endpoint_rules")
+local schemas = require("translate.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("translate.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createParallelData(input, options)
     return self:invokeOperation(input, {
         name = "CreateParallelData",
-        input_schema = types.CreateParallelDataInput,
-        output_schema = types.CreateParallelDataOutput,
+        input_schema = schemas.CreateParallelDataInput,
+        output_schema = schemas.CreateParallelDataOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteParallelData(input, options)
     return self:invokeOperation(input, {
         name = "DeleteParallelData",
-        input_schema = types.DeleteParallelDataInput,
-        output_schema = types.DeleteParallelDataOutput,
+        input_schema = schemas.DeleteParallelDataInput,
+        output_schema = schemas.DeleteParallelDataOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteTerminology(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTerminology",
-        input_schema = types.DeleteTerminologyInput,
-        output_schema = types.DeleteTerminologyOutput,
+        input_schema = schemas.DeleteTerminologyInput,
+        output_schema = schemas.DeleteTerminologyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:describeTextTranslationJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTextTranslationJob",
-        input_schema = types.DescribeTextTranslationJobInput,
-        output_schema = types.DescribeTextTranslationJobOutput,
+        input_schema = schemas.DescribeTextTranslationJobInput,
+        output_schema = schemas.DescribeTextTranslationJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getParallelData(input, options)
     return self:invokeOperation(input, {
         name = "GetParallelData",
-        input_schema = types.GetParallelDataInput,
-        output_schema = types.GetParallelDataOutput,
+        input_schema = schemas.GetParallelDataInput,
+        output_schema = schemas.GetParallelDataOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getTerminology(input, options)
     return self:invokeOperation(input, {
         name = "GetTerminology",
-        input_schema = types.GetTerminologyInput,
-        output_schema = types.GetTerminologyOutput,
+        input_schema = schemas.GetTerminologyInput,
+        output_schema = schemas.GetTerminologyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:importTerminology(input, options)
     return self:invokeOperation(input, {
         name = "ImportTerminology",
-        input_schema = types.ImportTerminologyInput,
-        output_schema = types.ImportTerminologyOutput,
+        input_schema = schemas.ImportTerminologyInput,
+        output_schema = schemas.ImportTerminologyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listLanguages(input, options)
     return self:invokeOperation(input, {
         name = "ListLanguages",
-        input_schema = types.ListLanguagesInput,
-        output_schema = types.ListLanguagesOutput,
+        input_schema = schemas.ListLanguagesInput,
+        output_schema = schemas.ListLanguagesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listParallelData(input, options)
     return self:invokeOperation(input, {
         name = "ListParallelData",
-        input_schema = types.ListParallelDataInput,
-        output_schema = types.ListParallelDataOutput,
+        input_schema = schemas.ListParallelDataInput,
+        output_schema = schemas.ListParallelDataOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listTerminologies(input, options)
     return self:invokeOperation(input, {
         name = "ListTerminologies",
-        input_schema = types.ListTerminologiesInput,
-        output_schema = types.ListTerminologiesOutput,
+        input_schema = schemas.ListTerminologiesInput,
+        output_schema = schemas.ListTerminologiesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listTextTranslationJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListTextTranslationJobs",
-        input_schema = types.ListTextTranslationJobsInput,
-        output_schema = types.ListTextTranslationJobsOutput,
+        input_schema = schemas.ListTextTranslationJobsInput,
+        output_schema = schemas.ListTextTranslationJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:startTextTranslationJob(input, options)
     return self:invokeOperation(input, {
         name = "StartTextTranslationJob",
-        input_schema = types.StartTextTranslationJobInput,
-        output_schema = types.StartTextTranslationJobOutput,
+        input_schema = schemas.StartTextTranslationJobInput,
+        output_schema = schemas.StartTextTranslationJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:stopTextTranslationJob(input, options)
     return self:invokeOperation(input, {
         name = "StopTextTranslationJob",
-        input_schema = types.StopTextTranslationJobInput,
-        output_schema = types.StopTextTranslationJobOutput,
+        input_schema = schemas.StopTextTranslationJobInput,
+        output_schema = schemas.StopTextTranslationJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:translateDocument(input, options)
     return self:invokeOperation(input, {
         name = "TranslateDocument",
-        input_schema = types.TranslateDocumentInput,
-        output_schema = types.TranslateDocumentOutput,
+        input_schema = schemas.TranslateDocumentInput,
+        output_schema = schemas.TranslateDocumentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:translateText(input, options)
     return self:invokeOperation(input, {
         name = "TranslateText",
-        input_schema = types.TranslateTextInput,
-        output_schema = types.TranslateTextOutput,
+        input_schema = schemas.TranslateTextInput,
+        output_schema = schemas.TranslateTextOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:updateParallelData(input, options)
     return self:invokeOperation(input, {
         name = "UpdateParallelData",
-        input_schema = types.UpdateParallelDataInput,
-        output_schema = types.UpdateParallelDataOutput,
+        input_schema = schemas.UpdateParallelDataInput,
+        output_schema = schemas.UpdateParallelDataOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

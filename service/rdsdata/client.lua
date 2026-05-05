@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("rdsdata.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("rdsdata.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("rdsdata.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchExecuteStatement(input, options)
     return self:invokeOperation(input, {
         name = "BatchExecuteStatement",
-        input_schema = types.BatchExecuteStatementInput,
-        output_schema = types.BatchExecuteStatementOutput,
+        input_schema = schemas.BatchExecuteStatementInput,
+        output_schema = schemas.BatchExecuteStatementOutput,
         http_method = "POST",
         http_path = "/BatchExecute",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:beginTransaction(input, options)
     return self:invokeOperation(input, {
         name = "BeginTransaction",
-        input_schema = types.BeginTransactionInput,
-        output_schema = types.BeginTransactionOutput,
+        input_schema = schemas.BeginTransactionInput,
+        output_schema = schemas.BeginTransactionOutput,
         http_method = "POST",
         http_path = "/BeginTransaction",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:commitTransaction(input, options)
     return self:invokeOperation(input, {
         name = "CommitTransaction",
-        input_schema = types.CommitTransactionInput,
-        output_schema = types.CommitTransactionOutput,
+        input_schema = schemas.CommitTransactionInput,
+        output_schema = schemas.CommitTransactionOutput,
         http_method = "POST",
         http_path = "/CommitTransaction",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:executeSql(input, options)
     return self:invokeOperation(input, {
         name = "ExecuteSql",
-        input_schema = types.ExecuteSqlInput,
-        output_schema = types.ExecuteSqlOutput,
+        input_schema = schemas.ExecuteSqlInput,
+        output_schema = schemas.ExecuteSqlOutput,
         http_method = "POST",
         http_path = "/ExecuteSql",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:executeStatement(input, options)
     return self:invokeOperation(input, {
         name = "ExecuteStatement",
-        input_schema = types.ExecuteStatementInput,
-        output_schema = types.ExecuteStatementOutput,
+        input_schema = schemas.ExecuteStatementInput,
+        output_schema = schemas.ExecuteStatementOutput,
         http_method = "POST",
         http_path = "/Execute",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:rollbackTransaction(input, options)
     return self:invokeOperation(input, {
         name = "RollbackTransaction",
-        input_schema = types.RollbackTransactionInput,
-        output_schema = types.RollbackTransactionOutput,
+        input_schema = schemas.RollbackTransactionInput,
+        output_schema = schemas.RollbackTransactionOutput,
         http_method = "POST",
         http_path = "/RollbackTransaction",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("inspectorscan.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("inspectorscan.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("inspectorscan.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:scanSbom(input, options)
     return self:invokeOperation(input, {
         name = "ScanSbom",
-        input_schema = types.ScanSbomInput,
-        output_schema = types.ScanSbomOutput,
+        input_schema = schemas.ScanSbomInput,
+        output_schema = schemas.ScanSbomOutput,
         http_method = "POST",
         http_path = "/scan/sbom",
         effective_auth_schemes = {

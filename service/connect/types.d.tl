@@ -13260,105 +13260,105 @@ local record ThrottlingException
     Message: string
 end
 
-local type AgentAvailabilityTimer = "TIME_SINCE_LAST_ACTIVITY" | "TIME_SINCE_LAST_INBOUND"
-
-local type Channel = "VOICE" | "CHAT" | "TASK" | "EMAIL"
-
-local type ContactFlowType = "CONTACT_FLOW" | "CUSTOMER_QUEUE" | "CUSTOMER_HOLD" | "CUSTOMER_WHISPER" | "AGENT_HOLD" | "AGENT_WHISPER" | "OUTBOUND_WHISPER" | "AGENT_TRANSFER" | "QUEUE_TRANSFER" | "CAMPAIGN"
-
-local type TestCaseExecutionStatus = "INITIATED" | "PASSED" | "FAILED" | "IN_PROGRESS" | "STOPPED"
-
-local type InitiateAs = "CONNECTED_TO_USER" | "COMPLETED"
-
-local type RealTimeContactAnalysisOutputType = "Raw" | "Redacted"
-
-local type ListFlowAssociationResourceType = "WHATSAPP_MESSAGING_PHONE_NUMBER" | "VOICE_PHONE_NUMBER" | "INBOUND_EMAIL" | "OUTBOUND_EMAIL" | "ANALYTICS_CONNECTOR"
-
-local type MediaType = "IMAGE_LOGO_LIGHT_FAVICON" | "IMAGE_LOGO_DARK_FAVICON" | "IMAGE_LOGO_LIGHT_HORIZONTAL" | "IMAGE_LOGO_DARK_HORIZONTAL"
-
-local type RulePublishStatus = "DRAFT" | "PUBLISHED"
-
-local type VocabularyState = "CREATION_IN_PROGRESS" | "ACTIVE" | "CREATION_FAILED" | "DELETE_IN_PROGRESS"
-
-local type EntityType = "USER" | "AI_AGENT"
-
-local type AttachmentScope = "EMAIL" | "CHAT" | "CASE" | "TASK"
-
-local type LexVersion = "V1" | "V2"
-
-local type ContactFlowModuleState = "ACTIVE" | "ARCHIVED"
-
-local type TaskTemplateStatus = "ACTIVE" | "INACTIVE"
-
-local type PhoneNumberType = "TOLL_FREE" | "DID" | "UIFN" | "SHARED" | "THIRD_PARTY_TF" | "THIRD_PARTY_DID" | "SHORT_CODE"
-
-local type IntegrationType = "EVENT" | "VOICE_ID" | "PINPOINT_APP" | "WISDOM_ASSISTANT" | "WISDOM_KNOWLEDGE_BASE" | "WISDOM_QUICK_RESPONSES" | "Q_MESSAGE_TEMPLATES" | "CASES_DOMAIN" | "APPLICATION" | "FILE_SCANNER" | "SES_IDENTITY" | "ANALYTICS_CONNECTOR" | "CALL_TRANSFER_CONNECTOR" | "COGNITO_USER_POOL" | "MESSAGE_PROCESSOR"
-
-local type Visibility = "ALL" | "ASSIGNED" | "NONE"
-
-local type ContactFlowStatus = "PUBLISHED" | "SAVED"
-
-local type FileStatusType = "APPROVED" | "REJECTED" | "PROCESSING" | "FAILED"
-
-local type EventSourceName = "OnPostCallAnalysisAvailable" | "OnRealTimeCallAnalysisAvailable" | "OnRealTimeChatAnalysisAvailable" | "OnPostChatAnalysisAvailable" | "OnEmailAnalysisAvailable" | "OnZendeskTicketCreate" | "OnZendeskTicketStatusUpdate" | "OnSalesforceCaseCreate" | "OnContactEvaluationSubmit" | "OnMetricDataUpdate" | "OnCaseCreate" | "OnCaseUpdate" | "OnSlaBreach"
-
-local type DeviceType = "GCM" | "APNS" | "APNS_SANDBOX"
-
-local type RealTimeContactAnalysisSupportedChannel = "VOICE" | "CHAT"
-
 local type ViewStatus = "PUBLISHED" | "SAVED"
 
-local type PhoneNumberCountryCode = "AF" | "AL" | "DZ" | "AS" | "AD" | "AO" | "AI" | "AQ" | "AG" | "AR" | "AM" | "AW" | "AU" | "AT" | "AZ" | "BS" | "BH" | "BD" | "BB" | "BY" | "BE" | "BZ" | "BJ" | "BM" | "BT" | "BO" | "BA" | "BW" | "BR" | "IO" | "VG" | "BN" | "BG" | "BF" | "BI" | "KH" | "CM" | "CA" | "CV" | "KY" | "CF" | "TD" | "CL" | "CN" | "CX" | "CC" | "CO" | "KM" | "CK" | "CR" | "HR" | "CU" | "CW" | "CY" | "CZ" | "CD" | "DK" | "DJ" | "DM" | "DO" | "TL" | "EC" | "EG" | "SV" | "GQ" | "ER" | "EE" | "ET" | "FK" | "FO" | "FJ" | "FI" | "FR" | "PF" | "GA" | "GM" | "GE" | "DE" | "GH" | "GI" | "GR" | "GL" | "GD" | "GU" | "GT" | "GG" | "GN" | "GW" | "GY" | "HT" | "HN" | "HK" | "HU" | "IS" | "IN" | "ID" | "IR" | "IQ" | "IE" | "IM" | "IL" | "IT" | "CI" | "JM" | "JP" | "JE" | "JO" | "KZ" | "KE" | "KI" | "KW" | "KG" | "LA" | "LV" | "LB" | "LS" | "LR" | "LY" | "LI" | "LT" | "LU" | "MO" | "MK" | "MG" | "MW" | "MY" | "MV" | "ML" | "MT" | "MH" | "MR" | "MU" | "YT" | "MX" | "FM" | "MD" | "MC" | "MN" | "ME" | "MS" | "MA" | "MZ" | "MM" | "NA" | "NR" | "NP" | "NL" | "AN" | "NC" | "NZ" | "NI" | "NE" | "NG" | "NU" | "KP" | "MP" | "NO" | "OM" | "PK" | "PW" | "PA" | "PG" | "PY" | "PE" | "PH" | "PN" | "PL" | "PT" | "PR" | "QA" | "CG" | "RE" | "RO" | "RU" | "RW" | "BL" | "SH" | "KN" | "LC" | "MF" | "PM" | "VC" | "WS" | "SM" | "ST" | "SA" | "SN" | "RS" | "SC" | "SL" | "SG" | "SX" | "SK" | "SI" | "SB" | "SO" | "ZA" | "KR" | "ES" | "LK" | "SD" | "SR" | "SJ" | "SZ" | "SE" | "CH" | "SY" | "TW" | "TJ" | "TZ" | "TH" | "TG" | "TK" | "TO" | "TT" | "TN" | "TR" | "TM" | "TC" | "TV" | "VI" | "UG" | "UA" | "AE" | "GB" | "US" | "UY" | "UZ" | "VU" | "VA" | "VE" | "VN" | "WF" | "EH" | "YE" | "ZM" | "ZW"
-
-local type QueueStatus = "ENABLED" | "DISABLED"
+local type OverrideType = "STANDARD" | "OPEN" | "CLOSED"
 
 local type DirectoryType = "SAML" | "CONNECT_MANAGED" | "EXISTING_DIRECTORY"
 
-local type SourceType = "SALESFORCE" | "ZENDESK" | "CASES"
+local type ContactMediaProcessingFailureMode = "DELIVER_UNPROCESSED_MESSAGE" | "DO_NOT_DELIVER_UNPROCESSED_MESSAGE"
 
-local type DataTableStatus = "PUBLISHED"
+local type FileUseCaseType = "CONTACT_ANALYSIS" | "EMAIL_MESSAGE" | "EMAIL_MESSAGE_PLAIN_TEXT" | "EMAIL_MESSAGE_REDACTED" | "EMAIL_MESSAGE_PLAIN_TEXT_REDACTED" | "ATTACHMENT"
 
 local type FlowAssociationResourceType = "SMS_PHONE_NUMBER" | "INBOUND_EMAIL" | "OUTBOUND_EMAIL" | "ANALYTICS_CONNECTOR" | "WHATSAPP_MESSAGING_PHONE_NUMBER"
 
+local type IntegrationType = "EVENT" | "VOICE_ID" | "PINPOINT_APP" | "WISDOM_ASSISTANT" | "WISDOM_KNOWLEDGE_BASE" | "WISDOM_QUICK_RESPONSES" | "Q_MESSAGE_TEMPLATES" | "CASES_DOMAIN" | "APPLICATION" | "FILE_SCANNER" | "SES_IDENTITY" | "ANALYTICS_CONNECTOR" | "CALL_TRANSFER_CONNECTOR" | "COGNITO_USER_POOL" | "MESSAGE_PROCESSOR"
+
+local type DataTableStatus = "PUBLISHED"
+
 local type RehydrationType = "ENTIRE_PAST_SESSION" | "FROM_SEGMENT"
 
+local type AttachmentScope = "EMAIL" | "CHAT" | "CASE" | "TASK"
+
+local type AgentStatusState = "ENABLED" | "DISABLED"
+
+local type TaskTemplateStatus = "ACTIVE" | "INACTIVE"
+
+local type TestCaseStatus = "PUBLISHED" | "SAVED"
+
 local type ConfigurableNotificationPriority = "HIGH" | "LOW"
+
+local type VocabularyState = "CREATION_IN_PROGRESS" | "ACTIVE" | "CREATION_FAILED" | "DELETE_IN_PROGRESS"
+
+local type FileStatusType = "APPROVED" | "REJECTED" | "PROCESSING" | "FAILED"
+
+local type RealTimeContactAnalysisStatus = "IN_PROGRESS" | "FAILED" | "COMPLETED"
+
+local type PhoneNumberType = "TOLL_FREE" | "DID" | "UIFN" | "SHARED" | "THIRD_PARTY_TF" | "THIRD_PARTY_DID" | "SHORT_CODE"
+
+local type InstanceAttributeType = "INBOUND_CALLS" | "OUTBOUND_CALLS" | "CONTACTFLOW_LOGS" | "CONTACT_LENS" | "AUTO_RESOLVE_BEST_VOICES" | "USE_CUSTOM_TTS_VOICES" | "EARLY_MEDIA" | "MULTI_PARTY_CONFERENCE" | "HIGH_VOLUME_OUTBOUND" | "ENHANCED_CONTACT_MONITORING" | "ENHANCED_CHAT_MONITORING" | "MULTI_PARTY_CHAT_CONFERENCE" | "MESSAGE_STREAMING"
 
 local type ContactInitiationMethod = "INBOUND" | "OUTBOUND" | "TRANSFER" | "QUEUE_TRANSFER" | "CALLBACK" | "API" | "DISCONNECT" | "MONITOR" | "EXTERNAL_OUTBOUND" | "WEBRTC_API" | "AGENT_REPLY" | "FLOW"
 
 local type ContactRecordingType = "AGENT" | "IVR" | "SCREEN"
 
-local type OverrideType = "STANDARD" | "OPEN" | "CLOSED"
-
-local type UseCaseType = "RULES_EVALUATION" | "CONNECT_CAMPAIGNS"
-
-local type AgentStatusState = "ENABLED" | "DISABLED"
-
-local type RealTimeContactAnalysisStatus = "IN_PROGRESS" | "FAILED" | "COMPLETED"
-
-local type DataTableAttributeValueType = "TEXT" | "NUMBER" | "BOOLEAN" | "TEXT_LIST" | "NUMBER_LIST"
-
-local type ViewType = "CUSTOMER_MANAGED" | "AWS_MANAGED"
-
-local type InstanceStorageResourceType = "CHAT_TRANSCRIPTS" | "CALL_RECORDINGS" | "SCHEDULED_REPORTS" | "MEDIA_STREAMS" | "CONTACT_TRACE_RECORDS" | "AGENT_EVENTS" | "REAL_TIME_CONTACT_ANALYSIS_SEGMENTS" | "ATTACHMENTS" | "CONTACT_EVALUATIONS" | "SCREEN_RECORDINGS" | "REAL_TIME_CONTACT_ANALYSIS_CHAT_SEGMENTS" | "REAL_TIME_CONTACT_ANALYSIS_VOICE_SEGMENTS" | "EMAIL_MESSAGES"
-
-local type ContactMediaProcessingFailureMode = "DELIVER_UNPROCESSED_MESSAGE" | "DO_NOT_DELIVER_UNPROCESSED_MESSAGE"
-
-local type InstanceAttributeType = "INBOUND_CALLS" | "OUTBOUND_CALLS" | "CONTACTFLOW_LOGS" | "CONTACT_LENS" | "AUTO_RESOLVE_BEST_VOICES" | "USE_CUSTOM_TTS_VOICES" | "EARLY_MEDIA" | "MULTI_PARTY_CONFERENCE" | "HIGH_VOLUME_OUTBOUND" | "ENHANCED_CONTACT_MONITORING" | "ENHANCED_CHAT_MONITORING" | "MULTI_PARTY_CHAT_CONFERENCE" | "MESSAGE_STREAMING"
-
-local type ContactFlowState = "ACTIVE" | "ARCHIVED"
-
-local type TestCaseStatus = "PUBLISHED" | "SAVED"
-
 local type NotificationStatus = "READ" | "UNREAD" | "HIDDEN"
-
-local type TrafficType = "GENERAL" | "CAMPAIGN"
-
-local type DataTableLockLevel = "NONE" | "DATA_TABLE" | "PRIMARY_VALUE" | "ATTRIBUTE" | "VALUE"
 
 local type VocabularyLanguageCode = "ar-AE" | "de-CH" | "de-DE" | "en-AB" | "en-AU" | "en-GB" | "en-IE" | "en-IN" | "en-US" | "en-WL" | "es-ES" | "es-US" | "fr-CA" | "fr-FR" | "hi-IN" | "it-IT" | "ja-JP" | "ko-KR" | "pt-BR" | "pt-PT" | "zh-CN" | "en-NZ" | "en-ZA" | "ca-ES" | "da-DK" | "fi-FI" | "id-ID" | "ms-MY" | "nl-NL" | "no-NO" | "pl-PL" | "sv-SE" | "tl-PH"
 
-local type FileUseCaseType = "CONTACT_ANALYSIS" | "EMAIL_MESSAGE" | "EMAIL_MESSAGE_PLAIN_TEXT" | "EMAIL_MESSAGE_REDACTED" | "EMAIL_MESSAGE_PLAIN_TEXT_REDACTED" | "ATTACHMENT"
+local type AgentAvailabilityTimer = "TIME_SINCE_LAST_ACTIVITY" | "TIME_SINCE_LAST_INBOUND"
+
+local type DataTableAttributeValueType = "TEXT" | "NUMBER" | "BOOLEAN" | "TEXT_LIST" | "NUMBER_LIST"
+
+local type TrafficType = "GENERAL" | "CAMPAIGN"
+
+local type Channel = "VOICE" | "CHAT" | "TASK" | "EMAIL"
+
+local type DataTableLockLevel = "NONE" | "DATA_TABLE" | "PRIMARY_VALUE" | "ATTRIBUTE" | "VALUE"
+
+local type EntityType = "USER" | "AI_AGENT"
+
+local type RealTimeContactAnalysisOutputType = "Raw" | "Redacted"
+
+local type EventSourceName = "OnPostCallAnalysisAvailable" | "OnRealTimeCallAnalysisAvailable" | "OnRealTimeChatAnalysisAvailable" | "OnPostChatAnalysisAvailable" | "OnEmailAnalysisAvailable" | "OnZendeskTicketCreate" | "OnZendeskTicketStatusUpdate" | "OnSalesforceCaseCreate" | "OnContactEvaluationSubmit" | "OnMetricDataUpdate" | "OnCaseCreate" | "OnCaseUpdate" | "OnSlaBreach"
+
+local type ListFlowAssociationResourceType = "WHATSAPP_MESSAGING_PHONE_NUMBER" | "VOICE_PHONE_NUMBER" | "INBOUND_EMAIL" | "OUTBOUND_EMAIL" | "ANALYTICS_CONNECTOR"
+
+local type RulePublishStatus = "DRAFT" | "PUBLISHED"
+
+local type LexVersion = "V1" | "V2"
+
+local type InstanceStorageResourceType = "CHAT_TRANSCRIPTS" | "CALL_RECORDINGS" | "SCHEDULED_REPORTS" | "MEDIA_STREAMS" | "CONTACT_TRACE_RECORDS" | "AGENT_EVENTS" | "REAL_TIME_CONTACT_ANALYSIS_SEGMENTS" | "ATTACHMENTS" | "CONTACT_EVALUATIONS" | "SCREEN_RECORDINGS" | "REAL_TIME_CONTACT_ANALYSIS_CHAT_SEGMENTS" | "REAL_TIME_CONTACT_ANALYSIS_VOICE_SEGMENTS" | "EMAIL_MESSAGES"
+
+local type MediaType = "IMAGE_LOGO_LIGHT_FAVICON" | "IMAGE_LOGO_DARK_FAVICON" | "IMAGE_LOGO_LIGHT_HORIZONTAL" | "IMAGE_LOGO_DARK_HORIZONTAL"
+
+local type DeviceType = "GCM" | "APNS" | "APNS_SANDBOX"
+
+local type ContactFlowModuleState = "ACTIVE" | "ARCHIVED"
+
+local type ViewType = "CUSTOMER_MANAGED" | "AWS_MANAGED"
+
+local type ContactFlowState = "ACTIVE" | "ARCHIVED"
+
+local type ContactFlowType = "CONTACT_FLOW" | "CUSTOMER_QUEUE" | "CUSTOMER_HOLD" | "CUSTOMER_WHISPER" | "AGENT_HOLD" | "AGENT_WHISPER" | "OUTBOUND_WHISPER" | "AGENT_TRANSFER" | "QUEUE_TRANSFER" | "CAMPAIGN"
+
+local type InitiateAs = "CONNECTED_TO_USER" | "COMPLETED"
+
+local type ContactFlowStatus = "PUBLISHED" | "SAVED"
+
+local type Visibility = "ALL" | "ASSIGNED" | "NONE"
+
+local type SourceType = "SALESFORCE" | "ZENDESK" | "CASES"
+
+local type UseCaseType = "RULES_EVALUATION" | "CONNECT_CAMPAIGNS"
+
+local type QueueStatus = "ENABLED" | "DISABLED"
+
+local type TestCaseExecutionStatus = "INITIATED" | "PASSED" | "FAILED" | "IN_PROGRESS" | "STOPPED"
+
+local type RealTimeContactAnalysisSupportedChannel = "VOICE" | "CHAT"
+
+local type PhoneNumberCountryCode = "AF" | "AL" | "DZ" | "AS" | "AD" | "AO" | "AI" | "AQ" | "AG" | "AR" | "AM" | "AW" | "AU" | "AT" | "AZ" | "BS" | "BH" | "BD" | "BB" | "BY" | "BE" | "BZ" | "BJ" | "BM" | "BT" | "BO" | "BA" | "BW" | "BR" | "IO" | "VG" | "BN" | "BG" | "BF" | "BI" | "KH" | "CM" | "CA" | "CV" | "KY" | "CF" | "TD" | "CL" | "CN" | "CX" | "CC" | "CO" | "KM" | "CK" | "CR" | "HR" | "CU" | "CW" | "CY" | "CZ" | "CD" | "DK" | "DJ" | "DM" | "DO" | "TL" | "EC" | "EG" | "SV" | "GQ" | "ER" | "EE" | "ET" | "FK" | "FO" | "FJ" | "FI" | "FR" | "PF" | "GA" | "GM" | "GE" | "DE" | "GH" | "GI" | "GR" | "GL" | "GD" | "GU" | "GT" | "GG" | "GN" | "GW" | "GY" | "HT" | "HN" | "HK" | "HU" | "IS" | "IN" | "ID" | "IR" | "IQ" | "IE" | "IM" | "IL" | "IT" | "CI" | "JM" | "JP" | "JE" | "JO" | "KZ" | "KE" | "KI" | "KW" | "KG" | "LA" | "LV" | "LB" | "LS" | "LR" | "LY" | "LI" | "LT" | "LU" | "MO" | "MK" | "MG" | "MW" | "MY" | "MV" | "ML" | "MT" | "MH" | "MR" | "MU" | "YT" | "MX" | "FM" | "MD" | "MC" | "MN" | "ME" | "MS" | "MA" | "MZ" | "MM" | "NA" | "NR" | "NP" | "NL" | "AN" | "NC" | "NZ" | "NI" | "NE" | "NG" | "NU" | "KP" | "MP" | "NO" | "OM" | "PK" | "PW" | "PA" | "PG" | "PY" | "PE" | "PH" | "PN" | "PL" | "PT" | "PR" | "QA" | "CG" | "RE" | "RO" | "RU" | "RW" | "BL" | "SH" | "KN" | "LC" | "MF" | "PM" | "VC" | "WS" | "SM" | "ST" | "SA" | "SN" | "RS" | "SC" | "SL" | "SG" | "SX" | "SK" | "SI" | "SB" | "SO" | "ZA" | "KR" | "ES" | "LK" | "SD" | "SR" | "SJ" | "SZ" | "SE" | "CH" | "SY" | "TW" | "TJ" | "TZ" | "TH" | "TG" | "TK" | "TO" | "TT" | "TN" | "TR" | "TM" | "TC" | "TV" | "VI" | "UG" | "UA" | "AE" | "GB" | "US" | "UY" | "UZ" | "VU" | "VA" | "VE" | "VN" | "WF" | "EH" | "YE" | "ZM" | "ZW"
 
 local record M
     ActivateEvaluationFormInput: ActivateEvaluationFormInput

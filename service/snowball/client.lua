@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("snowball.endpoint_rules")
+local schemas = require("snowball.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("snowball.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:cancelCluster(input, options)
     return self:invokeOperation(input, {
         name = "CancelCluster",
-        input_schema = types.CancelClusterInput,
-        output_schema = types.CancelClusterOutput,
+        input_schema = schemas.CancelClusterInput,
+        output_schema = schemas.CancelClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:cancelJob(input, options)
     return self:invokeOperation(input, {
         name = "CancelJob",
-        input_schema = types.CancelJobInput,
-        output_schema = types.CancelJobOutput,
+        input_schema = schemas.CancelJobInput,
+        output_schema = schemas.CancelJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createAddress(input, options)
     return self:invokeOperation(input, {
         name = "CreateAddress",
-        input_schema = types.CreateAddressInput,
-        output_schema = types.CreateAddressOutput,
+        input_schema = schemas.CreateAddressInput,
+        output_schema = schemas.CreateAddressOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createCluster(input, options)
     return self:invokeOperation(input, {
         name = "CreateCluster",
-        input_schema = types.CreateClusterInput,
-        output_schema = types.CreateClusterOutput,
+        input_schema = schemas.CreateClusterInput,
+        output_schema = schemas.CreateClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createJob(input, options)
     return self:invokeOperation(input, {
         name = "CreateJob",
-        input_schema = types.CreateJobInput,
-        output_schema = types.CreateJobOutput,
+        input_schema = schemas.CreateJobInput,
+        output_schema = schemas.CreateJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createLongTermPricing(input, options)
     return self:invokeOperation(input, {
         name = "CreateLongTermPricing",
-        input_schema = types.CreateLongTermPricingInput,
-        output_schema = types.CreateLongTermPricingOutput,
+        input_schema = schemas.CreateLongTermPricingInput,
+        output_schema = schemas.CreateLongTermPricingOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createReturnShippingLabel(input, options)
     return self:invokeOperation(input, {
         name = "CreateReturnShippingLabel",
-        input_schema = types.CreateReturnShippingLabelInput,
-        output_schema = types.CreateReturnShippingLabelOutput,
+        input_schema = schemas.CreateReturnShippingLabelInput,
+        output_schema = schemas.CreateReturnShippingLabelOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:describeAddress(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAddress",
-        input_schema = types.DescribeAddressInput,
-        output_schema = types.DescribeAddressOutput,
+        input_schema = schemas.DescribeAddressInput,
+        output_schema = schemas.DescribeAddressOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:describeAddresses(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAddresses",
-        input_schema = types.DescribeAddressesInput,
-        output_schema = types.DescribeAddressesOutput,
+        input_schema = schemas.DescribeAddressesInput,
+        output_schema = schemas.DescribeAddressesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:describeCluster(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCluster",
-        input_schema = types.DescribeClusterInput,
-        output_schema = types.DescribeClusterOutput,
+        input_schema = schemas.DescribeClusterInput,
+        output_schema = schemas.DescribeClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:describeJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribeJob",
-        input_schema = types.DescribeJobInput,
-        output_schema = types.DescribeJobOutput,
+        input_schema = schemas.DescribeJobInput,
+        output_schema = schemas.DescribeJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:describeReturnShippingLabel(input, options)
     return self:invokeOperation(input, {
         name = "DescribeReturnShippingLabel",
-        input_schema = types.DescribeReturnShippingLabelInput,
-        output_schema = types.DescribeReturnShippingLabelOutput,
+        input_schema = schemas.DescribeReturnShippingLabelInput,
+        output_schema = schemas.DescribeReturnShippingLabelOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getJobManifest(input, options)
     return self:invokeOperation(input, {
         name = "GetJobManifest",
-        input_schema = types.GetJobManifestInput,
-        output_schema = types.GetJobManifestOutput,
+        input_schema = schemas.GetJobManifestInput,
+        output_schema = schemas.GetJobManifestOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getJobUnlockCode(input, options)
     return self:invokeOperation(input, {
         name = "GetJobUnlockCode",
-        input_schema = types.GetJobUnlockCodeInput,
-        output_schema = types.GetJobUnlockCodeOutput,
+        input_schema = schemas.GetJobUnlockCodeInput,
+        output_schema = schemas.GetJobUnlockCodeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getSnowballUsage(input, options)
     return self:invokeOperation(input, {
         name = "GetSnowballUsage",
-        input_schema = types.GetSnowballUsageInput,
-        output_schema = types.GetSnowballUsageOutput,
+        input_schema = schemas.GetSnowballUsageInput,
+        output_schema = schemas.GetSnowballUsageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getSoftwareUpdates(input, options)
     return self:invokeOperation(input, {
         name = "GetSoftwareUpdates",
-        input_schema = types.GetSoftwareUpdatesInput,
-        output_schema = types.GetSoftwareUpdatesOutput,
+        input_schema = schemas.GetSoftwareUpdatesInput,
+        output_schema = schemas.GetSoftwareUpdatesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listClusterJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListClusterJobs",
-        input_schema = types.ListClusterJobsInput,
-        output_schema = types.ListClusterJobsOutput,
+        input_schema = schemas.ListClusterJobsInput,
+        output_schema = schemas.ListClusterJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listClusters(input, options)
     return self:invokeOperation(input, {
         name = "ListClusters",
-        input_schema = types.ListClustersInput,
-        output_schema = types.ListClustersOutput,
+        input_schema = schemas.ListClustersInput,
+        output_schema = schemas.ListClustersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listCompatibleImages(input, options)
     return self:invokeOperation(input, {
         name = "ListCompatibleImages",
-        input_schema = types.ListCompatibleImagesInput,
-        output_schema = types.ListCompatibleImagesOutput,
+        input_schema = schemas.ListCompatibleImagesInput,
+        output_schema = schemas.ListCompatibleImagesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListJobs",
-        input_schema = types.ListJobsInput,
-        output_schema = types.ListJobsOutput,
+        input_schema = schemas.ListJobsInput,
+        output_schema = schemas.ListJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listLongTermPricing(input, options)
     return self:invokeOperation(input, {
         name = "ListLongTermPricing",
-        input_schema = types.ListLongTermPricingInput,
-        output_schema = types.ListLongTermPricingOutput,
+        input_schema = schemas.ListLongTermPricingInput,
+        output_schema = schemas.ListLongTermPricingOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listPickupLocations(input, options)
     return self:invokeOperation(input, {
         name = "ListPickupLocations",
-        input_schema = types.ListPickupLocationsInput,
-        output_schema = types.ListPickupLocationsOutput,
+        input_schema = schemas.ListPickupLocationsInput,
+        output_schema = schemas.ListPickupLocationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listServiceVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListServiceVersions",
-        input_schema = types.ListServiceVersionsInput,
-        output_schema = types.ListServiceVersionsOutput,
+        input_schema = schemas.ListServiceVersionsInput,
+        output_schema = schemas.ListServiceVersionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:updateCluster(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCluster",
-        input_schema = types.UpdateClusterInput,
-        output_schema = types.UpdateClusterOutput,
+        input_schema = schemas.UpdateClusterInput,
+        output_schema = schemas.UpdateClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:updateJob(input, options)
     return self:invokeOperation(input, {
         name = "UpdateJob",
-        input_schema = types.UpdateJobInput,
-        output_schema = types.UpdateJobOutput,
+        input_schema = schemas.UpdateJobInput,
+        output_schema = schemas.UpdateJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:updateJobShipmentState(input, options)
     return self:invokeOperation(input, {
         name = "UpdateJobShipmentState",
-        input_schema = types.UpdateJobShipmentStateInput,
-        output_schema = types.UpdateJobShipmentStateOutput,
+        input_schema = schemas.UpdateJobShipmentStateInput,
+        output_schema = schemas.UpdateJobShipmentStateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:updateLongTermPricing(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLongTermPricing",
-        input_schema = types.UpdateLongTermPricingInput,
-        output_schema = types.UpdateLongTermPricingOutput,
+        input_schema = schemas.UpdateLongTermPricingInput,
+        output_schema = schemas.UpdateLongTermPricingOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

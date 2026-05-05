@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("budgets.endpoint_rules")
+local schemas = require("budgets.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("budgets.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createBudget(input, options)
     return self:invokeOperation(input, {
         name = "CreateBudget",
-        input_schema = types.CreateBudgetInput,
-        output_schema = types.CreateBudgetOutput,
+        input_schema = schemas.CreateBudgetInput,
+        output_schema = schemas.CreateBudgetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createBudgetAction(input, options)
     return self:invokeOperation(input, {
         name = "CreateBudgetAction",
-        input_schema = types.CreateBudgetActionInput,
-        output_schema = types.CreateBudgetActionOutput,
+        input_schema = schemas.CreateBudgetActionInput,
+        output_schema = schemas.CreateBudgetActionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createNotification(input, options)
     return self:invokeOperation(input, {
         name = "CreateNotification",
-        input_schema = types.CreateNotificationInput,
-        output_schema = types.CreateNotificationOutput,
+        input_schema = schemas.CreateNotificationInput,
+        output_schema = schemas.CreateNotificationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createSubscriber(input, options)
     return self:invokeOperation(input, {
         name = "CreateSubscriber",
-        input_schema = types.CreateSubscriberInput,
-        output_schema = types.CreateSubscriberOutput,
+        input_schema = schemas.CreateSubscriberInput,
+        output_schema = schemas.CreateSubscriberOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteBudget(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBudget",
-        input_schema = types.DeleteBudgetInput,
-        output_schema = types.DeleteBudgetOutput,
+        input_schema = schemas.DeleteBudgetInput,
+        output_schema = schemas.DeleteBudgetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteBudgetAction(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBudgetAction",
-        input_schema = types.DeleteBudgetActionInput,
-        output_schema = types.DeleteBudgetActionOutput,
+        input_schema = schemas.DeleteBudgetActionInput,
+        output_schema = schemas.DeleteBudgetActionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteNotification(input, options)
     return self:invokeOperation(input, {
         name = "DeleteNotification",
-        input_schema = types.DeleteNotificationInput,
-        output_schema = types.DeleteNotificationOutput,
+        input_schema = schemas.DeleteNotificationInput,
+        output_schema = schemas.DeleteNotificationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteSubscriber(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSubscriber",
-        input_schema = types.DeleteSubscriberInput,
-        output_schema = types.DeleteSubscriberOutput,
+        input_schema = schemas.DeleteSubscriberInput,
+        output_schema = schemas.DeleteSubscriberOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:describeBudget(input, options)
     return self:invokeOperation(input, {
         name = "DescribeBudget",
-        input_schema = types.DescribeBudgetInput,
-        output_schema = types.DescribeBudgetOutput,
+        input_schema = schemas.DescribeBudgetInput,
+        output_schema = schemas.DescribeBudgetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:describeBudgetAction(input, options)
     return self:invokeOperation(input, {
         name = "DescribeBudgetAction",
-        input_schema = types.DescribeBudgetActionInput,
-        output_schema = types.DescribeBudgetActionOutput,
+        input_schema = schemas.DescribeBudgetActionInput,
+        output_schema = schemas.DescribeBudgetActionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:describeBudgetActionHistories(input, options)
     return self:invokeOperation(input, {
         name = "DescribeBudgetActionHistories",
-        input_schema = types.DescribeBudgetActionHistoriesInput,
-        output_schema = types.DescribeBudgetActionHistoriesOutput,
+        input_schema = schemas.DescribeBudgetActionHistoriesInput,
+        output_schema = schemas.DescribeBudgetActionHistoriesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:describeBudgetActionsForAccount(input, options)
     return self:invokeOperation(input, {
         name = "DescribeBudgetActionsForAccount",
-        input_schema = types.DescribeBudgetActionsForAccountInput,
-        output_schema = types.DescribeBudgetActionsForAccountOutput,
+        input_schema = schemas.DescribeBudgetActionsForAccountInput,
+        output_schema = schemas.DescribeBudgetActionsForAccountOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:describeBudgetActionsForBudget(input, options)
     return self:invokeOperation(input, {
         name = "DescribeBudgetActionsForBudget",
-        input_schema = types.DescribeBudgetActionsForBudgetInput,
-        output_schema = types.DescribeBudgetActionsForBudgetOutput,
+        input_schema = schemas.DescribeBudgetActionsForBudgetInput,
+        output_schema = schemas.DescribeBudgetActionsForBudgetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:describeBudgetNotificationsForAccount(input, options)
     return self:invokeOperation(input, {
         name = "DescribeBudgetNotificationsForAccount",
-        input_schema = types.DescribeBudgetNotificationsForAccountInput,
-        output_schema = types.DescribeBudgetNotificationsForAccountOutput,
+        input_schema = schemas.DescribeBudgetNotificationsForAccountInput,
+        output_schema = schemas.DescribeBudgetNotificationsForAccountOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:describeBudgetPerformanceHistory(input, options)
     return self:invokeOperation(input, {
         name = "DescribeBudgetPerformanceHistory",
-        input_schema = types.DescribeBudgetPerformanceHistoryInput,
-        output_schema = types.DescribeBudgetPerformanceHistoryOutput,
+        input_schema = schemas.DescribeBudgetPerformanceHistoryInput,
+        output_schema = schemas.DescribeBudgetPerformanceHistoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:describeBudgets(input, options)
     return self:invokeOperation(input, {
         name = "DescribeBudgets",
-        input_schema = types.DescribeBudgetsInput,
-        output_schema = types.DescribeBudgetsOutput,
+        input_schema = schemas.DescribeBudgetsInput,
+        output_schema = schemas.DescribeBudgetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:describeNotificationsForBudget(input, options)
     return self:invokeOperation(input, {
         name = "DescribeNotificationsForBudget",
-        input_schema = types.DescribeNotificationsForBudgetInput,
-        output_schema = types.DescribeNotificationsForBudgetOutput,
+        input_schema = schemas.DescribeNotificationsForBudgetInput,
+        output_schema = schemas.DescribeNotificationsForBudgetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:describeSubscribersForNotification(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSubscribersForNotification",
-        input_schema = types.DescribeSubscribersForNotificationInput,
-        output_schema = types.DescribeSubscribersForNotificationOutput,
+        input_schema = schemas.DescribeSubscribersForNotificationInput,
+        output_schema = schemas.DescribeSubscribersForNotificationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:executeBudgetAction(input, options)
     return self:invokeOperation(input, {
         name = "ExecuteBudgetAction",
-        input_schema = types.ExecuteBudgetActionInput,
-        output_schema = types.ExecuteBudgetActionOutput,
+        input_schema = schemas.ExecuteBudgetActionInput,
+        output_schema = schemas.ExecuteBudgetActionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:updateBudget(input, options)
     return self:invokeOperation(input, {
         name = "UpdateBudget",
-        input_schema = types.UpdateBudgetInput,
-        output_schema = types.UpdateBudgetOutput,
+        input_schema = schemas.UpdateBudgetInput,
+        output_schema = schemas.UpdateBudgetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:updateBudgetAction(input, options)
     return self:invokeOperation(input, {
         name = "UpdateBudgetAction",
-        input_schema = types.UpdateBudgetActionInput,
-        output_schema = types.UpdateBudgetActionOutput,
+        input_schema = schemas.UpdateBudgetActionInput,
+        output_schema = schemas.UpdateBudgetActionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:updateNotification(input, options)
     return self:invokeOperation(input, {
         name = "UpdateNotification",
-        input_schema = types.UpdateNotificationInput,
-        output_schema = types.UpdateNotificationOutput,
+        input_schema = schemas.UpdateNotificationInput,
+        output_schema = schemas.UpdateNotificationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:updateSubscriber(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSubscriber",
-        input_schema = types.UpdateSubscriberInput,
-        output_schema = types.UpdateSubscriberOutput,
+        input_schema = schemas.UpdateSubscriberInput,
+        output_schema = schemas.UpdateSubscriberOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

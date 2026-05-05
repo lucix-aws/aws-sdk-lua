@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("networkmonitor.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("networkmonitor.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("networkmonitor.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createMonitor(input, options)
     return self:invokeOperation(input, {
         name = "CreateMonitor",
-        input_schema = types.CreateMonitorInput,
-        output_schema = types.CreateMonitorOutput,
+        input_schema = schemas.CreateMonitorInput,
+        output_schema = schemas.CreateMonitorOutput,
         http_method = "POST",
         http_path = "/monitors",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createProbe(input, options)
     return self:invokeOperation(input, {
         name = "CreateProbe",
-        input_schema = types.CreateProbeInput,
-        output_schema = types.CreateProbeOutput,
+        input_schema = schemas.CreateProbeInput,
+        output_schema = schemas.CreateProbeOutput,
         http_method = "POST",
         http_path = "/monitors/{monitorName}/probes",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteMonitor(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMonitor",
-        input_schema = types.DeleteMonitorInput,
-        output_schema = types.DeleteMonitorOutput,
+        input_schema = schemas.DeleteMonitorInput,
+        output_schema = schemas.DeleteMonitorOutput,
         http_method = "DELETE",
         http_path = "/monitors/{monitorName}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteProbe(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProbe",
-        input_schema = types.DeleteProbeInput,
-        output_schema = types.DeleteProbeOutput,
+        input_schema = schemas.DeleteProbeInput,
+        output_schema = schemas.DeleteProbeOutput,
         http_method = "DELETE",
         http_path = "/monitors/{monitorName}/probes/{probeId}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getMonitor(input, options)
     return self:invokeOperation(input, {
         name = "GetMonitor",
-        input_schema = types.GetMonitorInput,
-        output_schema = types.GetMonitorOutput,
+        input_schema = schemas.GetMonitorInput,
+        output_schema = schemas.GetMonitorOutput,
         http_method = "GET",
         http_path = "/monitors/{monitorName}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getProbe(input, options)
     return self:invokeOperation(input, {
         name = "GetProbe",
-        input_schema = types.GetProbeInput,
-        output_schema = types.GetProbeOutput,
+        input_schema = schemas.GetProbeInput,
+        output_schema = schemas.GetProbeOutput,
         http_method = "GET",
         http_path = "/monitors/{monitorName}/probes/{probeId}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listMonitors(input, options)
     return self:invokeOperation(input, {
         name = "ListMonitors",
-        input_schema = types.ListMonitorsInput,
-        output_schema = types.ListMonitorsOutput,
+        input_schema = schemas.ListMonitorsInput,
+        output_schema = schemas.ListMonitorsOutput,
         http_method = "GET",
         http_path = "/monitors",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:updateMonitor(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMonitor",
-        input_schema = types.UpdateMonitorInput,
-        output_schema = types.UpdateMonitorOutput,
+        input_schema = schemas.UpdateMonitorInput,
+        output_schema = schemas.UpdateMonitorOutput,
         http_method = "PATCH",
         http_path = "/monitors/{monitorName}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:updateProbe(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProbe",
-        input_schema = types.UpdateProbeInput,
-        output_schema = types.UpdateProbeOutput,
+        input_schema = schemas.UpdateProbeInput,
+        output_schema = schemas.UpdateProbeOutput,
         http_method = "PATCH",
         http_path = "/monitors/{monitorName}/probes/{probeId}",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("dlm.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("dlm.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("dlm.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createLifecyclePolicy(input, options)
     return self:invokeOperation(input, {
         name = "CreateLifecyclePolicy",
-        input_schema = types.CreateLifecyclePolicyInput,
-        output_schema = types.CreateLifecyclePolicyOutput,
+        input_schema = schemas.CreateLifecyclePolicyInput,
+        output_schema = schemas.CreateLifecyclePolicyOutput,
         http_method = "POST",
         http_path = "/policies",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteLifecyclePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLifecyclePolicy",
-        input_schema = types.DeleteLifecyclePolicyInput,
-        output_schema = types.DeleteLifecyclePolicyOutput,
+        input_schema = schemas.DeleteLifecyclePolicyInput,
+        output_schema = schemas.DeleteLifecyclePolicyOutput,
         http_method = "DELETE",
         http_path = "/policies/{PolicyId}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getLifecyclePolicies(input, options)
     return self:invokeOperation(input, {
         name = "GetLifecyclePolicies",
-        input_schema = types.GetLifecyclePoliciesInput,
-        output_schema = types.GetLifecyclePoliciesOutput,
+        input_schema = schemas.GetLifecyclePoliciesInput,
+        output_schema = schemas.GetLifecyclePoliciesOutput,
         http_method = "GET",
         http_path = "/policies",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getLifecyclePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetLifecyclePolicy",
-        input_schema = types.GetLifecyclePolicyInput,
-        output_schema = types.GetLifecyclePolicyOutput,
+        input_schema = schemas.GetLifecyclePolicyInput,
+        output_schema = schemas.GetLifecyclePolicyOutput,
         http_method = "GET",
         http_path = "/policies/{PolicyId}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:updateLifecyclePolicy(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLifecyclePolicy",
-        input_schema = types.UpdateLifecyclePolicyInput,
-        output_schema = types.UpdateLifecyclePolicyOutput,
+        input_schema = schemas.UpdateLifecyclePolicyInput,
+        output_schema = schemas.UpdateLifecyclePolicyOutput,
         http_method = "PATCH",
         http_path = "/policies/{PolicyId}",
         effective_auth_schemes = {

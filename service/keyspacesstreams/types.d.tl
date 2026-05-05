@@ -134,11 +134,11 @@ local record ValidationException
     errorCode: string
 end
 
+local type StreamViewType = "NEW_IMAGE" | "OLD_IMAGE" | "NEW_AND_OLD_IMAGES" | "KEYS_ONLY"
+
 local type StreamStatus = "ENABLING" | "ENABLED" | "DISABLING" | "DISABLED"
 
 local type ShardIteratorType = "TRIM_HORIZON" | "LATEST" | "AT_SEQUENCE_NUMBER" | "AFTER_SEQUENCE_NUMBER"
-
-local type StreamViewType = "NEW_IMAGE" | "OLD_IMAGE" | "NEW_AND_OLD_IMAGES" | "KEYS_ONLY"
 
 local record M
     GetRecordsInput: GetRecordsInput

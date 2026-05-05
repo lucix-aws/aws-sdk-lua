@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("resiliencehub.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("resiliencehub.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("resiliencehub.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptResourceGroupingRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "AcceptResourceGroupingRecommendations",
-        input_schema = types.AcceptResourceGroupingRecommendationsInput,
-        output_schema = types.AcceptResourceGroupingRecommendationsOutput,
+        input_schema = schemas.AcceptResourceGroupingRecommendationsInput,
+        output_schema = schemas.AcceptResourceGroupingRecommendationsOutput,
         http_method = "POST",
         http_path = "/accept-resource-grouping-recommendations",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:addDraftAppVersionResourceMappings(input, options)
     return self:invokeOperation(input, {
         name = "AddDraftAppVersionResourceMappings",
-        input_schema = types.AddDraftAppVersionResourceMappingsInput,
-        output_schema = types.AddDraftAppVersionResourceMappingsOutput,
+        input_schema = schemas.AddDraftAppVersionResourceMappingsInput,
+        output_schema = schemas.AddDraftAppVersionResourceMappingsOutput,
         http_method = "POST",
         http_path = "/add-draft-app-version-resource-mappings",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchUpdateRecommendationStatus(input, options)
     return self:invokeOperation(input, {
         name = "BatchUpdateRecommendationStatus",
-        input_schema = types.BatchUpdateRecommendationStatusInput,
-        output_schema = types.BatchUpdateRecommendationStatusOutput,
+        input_schema = schemas.BatchUpdateRecommendationStatusInput,
+        output_schema = schemas.BatchUpdateRecommendationStatusOutput,
         http_method = "POST",
         http_path = "/batch-update-recommendation-status",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createApp(input, options)
     return self:invokeOperation(input, {
         name = "CreateApp",
-        input_schema = types.CreateAppInput,
-        output_schema = types.CreateAppOutput,
+        input_schema = schemas.CreateAppInput,
+        output_schema = schemas.CreateAppOutput,
         http_method = "POST",
         http_path = "/create-app",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createAppVersionAppComponent(input, options)
     return self:invokeOperation(input, {
         name = "CreateAppVersionAppComponent",
-        input_schema = types.CreateAppVersionAppComponentInput,
-        output_schema = types.CreateAppVersionAppComponentOutput,
+        input_schema = schemas.CreateAppVersionAppComponentInput,
+        output_schema = schemas.CreateAppVersionAppComponentOutput,
         http_method = "POST",
         http_path = "/create-app-version-app-component",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createAppVersionResource(input, options)
     return self:invokeOperation(input, {
         name = "CreateAppVersionResource",
-        input_schema = types.CreateAppVersionResourceInput,
-        output_schema = types.CreateAppVersionResourceOutput,
+        input_schema = schemas.CreateAppVersionResourceInput,
+        output_schema = schemas.CreateAppVersionResourceOutput,
         http_method = "POST",
         http_path = "/create-app-version-resource",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createRecommendationTemplate(input, options)
     return self:invokeOperation(input, {
         name = "CreateRecommendationTemplate",
-        input_schema = types.CreateRecommendationTemplateInput,
-        output_schema = types.CreateRecommendationTemplateOutput,
+        input_schema = schemas.CreateRecommendationTemplateInput,
+        output_schema = schemas.CreateRecommendationTemplateOutput,
         http_method = "POST",
         http_path = "/create-recommendation-template",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createResiliencyPolicy(input, options)
     return self:invokeOperation(input, {
         name = "CreateResiliencyPolicy",
-        input_schema = types.CreateResiliencyPolicyInput,
-        output_schema = types.CreateResiliencyPolicyOutput,
+        input_schema = schemas.CreateResiliencyPolicyInput,
+        output_schema = schemas.CreateResiliencyPolicyOutput,
         http_method = "POST",
         http_path = "/create-resiliency-policy",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteApp(input, options)
     return self:invokeOperation(input, {
         name = "DeleteApp",
-        input_schema = types.DeleteAppInput,
-        output_schema = types.DeleteAppOutput,
+        input_schema = schemas.DeleteAppInput,
+        output_schema = schemas.DeleteAppOutput,
         http_method = "POST",
         http_path = "/delete-app",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteAppAssessment(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAppAssessment",
-        input_schema = types.DeleteAppAssessmentInput,
-        output_schema = types.DeleteAppAssessmentOutput,
+        input_schema = schemas.DeleteAppAssessmentInput,
+        output_schema = schemas.DeleteAppAssessmentOutput,
         http_method = "POST",
         http_path = "/delete-app-assessment",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteAppInputSource(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAppInputSource",
-        input_schema = types.DeleteAppInputSourceInput,
-        output_schema = types.DeleteAppInputSourceOutput,
+        input_schema = schemas.DeleteAppInputSourceInput,
+        output_schema = schemas.DeleteAppInputSourceOutput,
         http_method = "POST",
         http_path = "/delete-app-input-source",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteAppVersionAppComponent(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAppVersionAppComponent",
-        input_schema = types.DeleteAppVersionAppComponentInput,
-        output_schema = types.DeleteAppVersionAppComponentOutput,
+        input_schema = schemas.DeleteAppVersionAppComponentInput,
+        output_schema = schemas.DeleteAppVersionAppComponentOutput,
         http_method = "POST",
         http_path = "/delete-app-version-app-component",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteAppVersionResource(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAppVersionResource",
-        input_schema = types.DeleteAppVersionResourceInput,
-        output_schema = types.DeleteAppVersionResourceOutput,
+        input_schema = schemas.DeleteAppVersionResourceInput,
+        output_schema = schemas.DeleteAppVersionResourceOutput,
         http_method = "POST",
         http_path = "/delete-app-version-resource",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteRecommendationTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRecommendationTemplate",
-        input_schema = types.DeleteRecommendationTemplateInput,
-        output_schema = types.DeleteRecommendationTemplateOutput,
+        input_schema = schemas.DeleteRecommendationTemplateInput,
+        output_schema = schemas.DeleteRecommendationTemplateOutput,
         http_method = "POST",
         http_path = "/delete-recommendation-template",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteResiliencyPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResiliencyPolicy",
-        input_schema = types.DeleteResiliencyPolicyInput,
-        output_schema = types.DeleteResiliencyPolicyOutput,
+        input_schema = schemas.DeleteResiliencyPolicyInput,
+        output_schema = schemas.DeleteResiliencyPolicyOutput,
         http_method = "POST",
         http_path = "/delete-resiliency-policy",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:describeApp(input, options)
     return self:invokeOperation(input, {
         name = "DescribeApp",
-        input_schema = types.DescribeAppInput,
-        output_schema = types.DescribeAppOutput,
+        input_schema = schemas.DescribeAppInput,
+        output_schema = schemas.DescribeAppOutput,
         http_method = "POST",
         http_path = "/describe-app",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:describeAppAssessment(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAppAssessment",
-        input_schema = types.DescribeAppAssessmentInput,
-        output_schema = types.DescribeAppAssessmentOutput,
+        input_schema = schemas.DescribeAppAssessmentInput,
+        output_schema = schemas.DescribeAppAssessmentOutput,
         http_method = "POST",
         http_path = "/describe-app-assessment",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:describeAppVersion(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAppVersion",
-        input_schema = types.DescribeAppVersionInput,
-        output_schema = types.DescribeAppVersionOutput,
+        input_schema = schemas.DescribeAppVersionInput,
+        output_schema = schemas.DescribeAppVersionOutput,
         http_method = "POST",
         http_path = "/describe-app-version",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:describeAppVersionAppComponent(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAppVersionAppComponent",
-        input_schema = types.DescribeAppVersionAppComponentInput,
-        output_schema = types.DescribeAppVersionAppComponentOutput,
+        input_schema = schemas.DescribeAppVersionAppComponentInput,
+        output_schema = schemas.DescribeAppVersionAppComponentOutput,
         http_method = "POST",
         http_path = "/describe-app-version-app-component",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:describeAppVersionResource(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAppVersionResource",
-        input_schema = types.DescribeAppVersionResourceInput,
-        output_schema = types.DescribeAppVersionResourceOutput,
+        input_schema = schemas.DescribeAppVersionResourceInput,
+        output_schema = schemas.DescribeAppVersionResourceOutput,
         http_method = "POST",
         http_path = "/describe-app-version-resource",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:describeAppVersionResourcesResolutionStatus(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAppVersionResourcesResolutionStatus",
-        input_schema = types.DescribeAppVersionResourcesResolutionStatusInput,
-        output_schema = types.DescribeAppVersionResourcesResolutionStatusOutput,
+        input_schema = schemas.DescribeAppVersionResourcesResolutionStatusInput,
+        output_schema = schemas.DescribeAppVersionResourcesResolutionStatusOutput,
         http_method = "POST",
         http_path = "/describe-app-version-resources-resolution-status",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:describeAppVersionTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAppVersionTemplate",
-        input_schema = types.DescribeAppVersionTemplateInput,
-        output_schema = types.DescribeAppVersionTemplateOutput,
+        input_schema = schemas.DescribeAppVersionTemplateInput,
+        output_schema = schemas.DescribeAppVersionTemplateOutput,
         http_method = "POST",
         http_path = "/describe-app-version-template",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:describeDraftAppVersionResourcesImportStatus(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDraftAppVersionResourcesImportStatus",
-        input_schema = types.DescribeDraftAppVersionResourcesImportStatusInput,
-        output_schema = types.DescribeDraftAppVersionResourcesImportStatusOutput,
+        input_schema = schemas.DescribeDraftAppVersionResourcesImportStatusInput,
+        output_schema = schemas.DescribeDraftAppVersionResourcesImportStatusOutput,
         http_method = "POST",
         http_path = "/describe-draft-app-version-resources-import-status",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:describeMetricsExport(input, options)
     return self:invokeOperation(input, {
         name = "DescribeMetricsExport",
-        input_schema = types.DescribeMetricsExportInput,
-        output_schema = types.DescribeMetricsExportOutput,
+        input_schema = schemas.DescribeMetricsExportInput,
+        output_schema = schemas.DescribeMetricsExportOutput,
         http_method = "POST",
         http_path = "/describe-metrics-export",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:describeResiliencyPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DescribeResiliencyPolicy",
-        input_schema = types.DescribeResiliencyPolicyInput,
-        output_schema = types.DescribeResiliencyPolicyOutput,
+        input_schema = schemas.DescribeResiliencyPolicyInput,
+        output_schema = schemas.DescribeResiliencyPolicyOutput,
         http_method = "POST",
         http_path = "/describe-resiliency-policy",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:describeResourceGroupingRecommendationTask(input, options)
     return self:invokeOperation(input, {
         name = "DescribeResourceGroupingRecommendationTask",
-        input_schema = types.DescribeResourceGroupingRecommendationTaskInput,
-        output_schema = types.DescribeResourceGroupingRecommendationTaskOutput,
+        input_schema = schemas.DescribeResourceGroupingRecommendationTaskInput,
+        output_schema = schemas.DescribeResourceGroupingRecommendationTaskOutput,
         http_method = "POST",
         http_path = "/describe-resource-grouping-recommendation-task",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:importResourcesToDraftAppVersion(input, options)
     return self:invokeOperation(input, {
         name = "ImportResourcesToDraftAppVersion",
-        input_schema = types.ImportResourcesToDraftAppVersionInput,
-        output_schema = types.ImportResourcesToDraftAppVersionOutput,
+        input_schema = schemas.ImportResourcesToDraftAppVersionInput,
+        output_schema = schemas.ImportResourcesToDraftAppVersionOutput,
         http_method = "POST",
         http_path = "/import-resources-to-draft-app-version",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listAlarmRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "ListAlarmRecommendations",
-        input_schema = types.ListAlarmRecommendationsInput,
-        output_schema = types.ListAlarmRecommendationsOutput,
+        input_schema = schemas.ListAlarmRecommendationsInput,
+        output_schema = schemas.ListAlarmRecommendationsOutput,
         http_method = "POST",
         http_path = "/list-alarm-recommendations",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listAppAssessmentComplianceDrifts(input, options)
     return self:invokeOperation(input, {
         name = "ListAppAssessmentComplianceDrifts",
-        input_schema = types.ListAppAssessmentComplianceDriftsInput,
-        output_schema = types.ListAppAssessmentComplianceDriftsOutput,
+        input_schema = schemas.ListAppAssessmentComplianceDriftsInput,
+        output_schema = schemas.ListAppAssessmentComplianceDriftsOutput,
         http_method = "POST",
         http_path = "/list-app-assessment-compliance-drifts",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:listAppAssessmentResourceDrifts(input, options)
     return self:invokeOperation(input, {
         name = "ListAppAssessmentResourceDrifts",
-        input_schema = types.ListAppAssessmentResourceDriftsInput,
-        output_schema = types.ListAppAssessmentResourceDriftsOutput,
+        input_schema = schemas.ListAppAssessmentResourceDriftsInput,
+        output_schema = schemas.ListAppAssessmentResourceDriftsOutput,
         http_method = "POST",
         http_path = "/list-app-assessment-resource-drifts",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:listAppAssessments(input, options)
     return self:invokeOperation(input, {
         name = "ListAppAssessments",
-        input_schema = types.ListAppAssessmentsInput,
-        output_schema = types.ListAppAssessmentsOutput,
+        input_schema = schemas.ListAppAssessmentsInput,
+        output_schema = schemas.ListAppAssessmentsOutput,
         http_method = "GET",
         http_path = "/list-app-assessments",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:listAppComponentCompliances(input, options)
     return self:invokeOperation(input, {
         name = "ListAppComponentCompliances",
-        input_schema = types.ListAppComponentCompliancesInput,
-        output_schema = types.ListAppComponentCompliancesOutput,
+        input_schema = schemas.ListAppComponentCompliancesInput,
+        output_schema = schemas.ListAppComponentCompliancesOutput,
         http_method = "POST",
         http_path = "/list-app-component-compliances",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:listAppComponentRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "ListAppComponentRecommendations",
-        input_schema = types.ListAppComponentRecommendationsInput,
-        output_schema = types.ListAppComponentRecommendationsOutput,
+        input_schema = schemas.ListAppComponentRecommendationsInput,
+        output_schema = schemas.ListAppComponentRecommendationsOutput,
         http_method = "POST",
         http_path = "/list-app-component-recommendations",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listAppInputSources(input, options)
     return self:invokeOperation(input, {
         name = "ListAppInputSources",
-        input_schema = types.ListAppInputSourcesInput,
-        output_schema = types.ListAppInputSourcesOutput,
+        input_schema = schemas.ListAppInputSourcesInput,
+        output_schema = schemas.ListAppInputSourcesOutput,
         http_method = "POST",
         http_path = "/list-app-input-sources",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:listApps(input, options)
     return self:invokeOperation(input, {
         name = "ListApps",
-        input_schema = types.ListAppsInput,
-        output_schema = types.ListAppsOutput,
+        input_schema = schemas.ListAppsInput,
+        output_schema = schemas.ListAppsOutput,
         http_method = "GET",
         http_path = "/list-apps",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:listAppVersionAppComponents(input, options)
     return self:invokeOperation(input, {
         name = "ListAppVersionAppComponents",
-        input_schema = types.ListAppVersionAppComponentsInput,
-        output_schema = types.ListAppVersionAppComponentsOutput,
+        input_schema = schemas.ListAppVersionAppComponentsInput,
+        output_schema = schemas.ListAppVersionAppComponentsOutput,
         http_method = "POST",
         http_path = "/list-app-version-app-components",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:listAppVersionResourceMappings(input, options)
     return self:invokeOperation(input, {
         name = "ListAppVersionResourceMappings",
-        input_schema = types.ListAppVersionResourceMappingsInput,
-        output_schema = types.ListAppVersionResourceMappingsOutput,
+        input_schema = schemas.ListAppVersionResourceMappingsInput,
+        output_schema = schemas.ListAppVersionResourceMappingsOutput,
         http_method = "POST",
         http_path = "/list-app-version-resource-mappings",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:listAppVersionResources(input, options)
     return self:invokeOperation(input, {
         name = "ListAppVersionResources",
-        input_schema = types.ListAppVersionResourcesInput,
-        output_schema = types.ListAppVersionResourcesOutput,
+        input_schema = schemas.ListAppVersionResourcesInput,
+        output_schema = schemas.ListAppVersionResourcesOutput,
         http_method = "POST",
         http_path = "/list-app-version-resources",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:listAppVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListAppVersions",
-        input_schema = types.ListAppVersionsInput,
-        output_schema = types.ListAppVersionsOutput,
+        input_schema = schemas.ListAppVersionsInput,
+        output_schema = schemas.ListAppVersionsOutput,
         http_method = "POST",
         http_path = "/list-app-versions",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:listMetrics(input, options)
     return self:invokeOperation(input, {
         name = "ListMetrics",
-        input_schema = types.ListMetricsInput,
-        output_schema = types.ListMetricsOutput,
+        input_schema = schemas.ListMetricsInput,
+        output_schema = schemas.ListMetricsOutput,
         http_method = "POST",
         http_path = "/list-metrics",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:listRecommendationTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListRecommendationTemplates",
-        input_schema = types.ListRecommendationTemplatesInput,
-        output_schema = types.ListRecommendationTemplatesOutput,
+        input_schema = schemas.ListRecommendationTemplatesInput,
+        output_schema = schemas.ListRecommendationTemplatesOutput,
         http_method = "GET",
         http_path = "/list-recommendation-templates",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:listResiliencyPolicies(input, options)
     return self:invokeOperation(input, {
         name = "ListResiliencyPolicies",
-        input_schema = types.ListResiliencyPoliciesInput,
-        output_schema = types.ListResiliencyPoliciesOutput,
+        input_schema = schemas.ListResiliencyPoliciesInput,
+        output_schema = schemas.ListResiliencyPoliciesOutput,
         http_method = "GET",
         http_path = "/list-resiliency-policies",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:listResourceGroupingRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "ListResourceGroupingRecommendations",
-        input_schema = types.ListResourceGroupingRecommendationsInput,
-        output_schema = types.ListResourceGroupingRecommendationsOutput,
+        input_schema = schemas.ListResourceGroupingRecommendationsInput,
+        output_schema = schemas.ListResourceGroupingRecommendationsOutput,
         http_method = "GET",
         http_path = "/list-resource-grouping-recommendations",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:listSopRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "ListSopRecommendations",
-        input_schema = types.ListSopRecommendationsInput,
-        output_schema = types.ListSopRecommendationsOutput,
+        input_schema = schemas.ListSopRecommendationsInput,
+        output_schema = schemas.ListSopRecommendationsOutput,
         http_method = "POST",
         http_path = "/list-sop-recommendations",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:listSuggestedResiliencyPolicies(input, options)
     return self:invokeOperation(input, {
         name = "ListSuggestedResiliencyPolicies",
-        input_schema = types.ListSuggestedResiliencyPoliciesInput,
-        output_schema = types.ListSuggestedResiliencyPoliciesOutput,
+        input_schema = schemas.ListSuggestedResiliencyPoliciesInput,
+        output_schema = schemas.ListSuggestedResiliencyPoliciesOutput,
         http_method = "GET",
         http_path = "/list-suggested-resiliency-policies",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:listTestRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "ListTestRecommendations",
-        input_schema = types.ListTestRecommendationsInput,
-        output_schema = types.ListTestRecommendationsOutput,
+        input_schema = schemas.ListTestRecommendationsInput,
+        output_schema = schemas.ListTestRecommendationsOutput,
         http_method = "POST",
         http_path = "/list-test-recommendations",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:listUnsupportedAppVersionResources(input, options)
     return self:invokeOperation(input, {
         name = "ListUnsupportedAppVersionResources",
-        input_schema = types.ListUnsupportedAppVersionResourcesInput,
-        output_schema = types.ListUnsupportedAppVersionResourcesOutput,
+        input_schema = schemas.ListUnsupportedAppVersionResourcesInput,
+        output_schema = schemas.ListUnsupportedAppVersionResourcesOutput,
         http_method = "POST",
         http_path = "/list-unsupported-app-version-resources",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:publishAppVersion(input, options)
     return self:invokeOperation(input, {
         name = "PublishAppVersion",
-        input_schema = types.PublishAppVersionInput,
-        output_schema = types.PublishAppVersionOutput,
+        input_schema = schemas.PublishAppVersionInput,
+        output_schema = schemas.PublishAppVersionOutput,
         http_method = "POST",
         http_path = "/publish-app-version",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:putDraftAppVersionTemplate(input, options)
     return self:invokeOperation(input, {
         name = "PutDraftAppVersionTemplate",
-        input_schema = types.PutDraftAppVersionTemplateInput,
-        output_schema = types.PutDraftAppVersionTemplateOutput,
+        input_schema = schemas.PutDraftAppVersionTemplateInput,
+        output_schema = schemas.PutDraftAppVersionTemplateOutput,
         http_method = "POST",
         http_path = "/put-draft-app-version-template",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:rejectResourceGroupingRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "RejectResourceGroupingRecommendations",
-        input_schema = types.RejectResourceGroupingRecommendationsInput,
-        output_schema = types.RejectResourceGroupingRecommendationsOutput,
+        input_schema = schemas.RejectResourceGroupingRecommendationsInput,
+        output_schema = schemas.RejectResourceGroupingRecommendationsOutput,
         http_method = "POST",
         http_path = "/reject-resource-grouping-recommendations",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:removeDraftAppVersionResourceMappings(input, options)
     return self:invokeOperation(input, {
         name = "RemoveDraftAppVersionResourceMappings",
-        input_schema = types.RemoveDraftAppVersionResourceMappingsInput,
-        output_schema = types.RemoveDraftAppVersionResourceMappingsOutput,
+        input_schema = schemas.RemoveDraftAppVersionResourceMappingsInput,
+        output_schema = schemas.RemoveDraftAppVersionResourceMappingsOutput,
         http_method = "POST",
         http_path = "/remove-draft-app-version-resource-mappings",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:resolveAppVersionResources(input, options)
     return self:invokeOperation(input, {
         name = "ResolveAppVersionResources",
-        input_schema = types.ResolveAppVersionResourcesInput,
-        output_schema = types.ResolveAppVersionResourcesOutput,
+        input_schema = schemas.ResolveAppVersionResourcesInput,
+        output_schema = schemas.ResolveAppVersionResourcesOutput,
         http_method = "POST",
         http_path = "/resolve-app-version-resources",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:startAppAssessment(input, options)
     return self:invokeOperation(input, {
         name = "StartAppAssessment",
-        input_schema = types.StartAppAssessmentInput,
-        output_schema = types.StartAppAssessmentOutput,
+        input_schema = schemas.StartAppAssessmentInput,
+        output_schema = schemas.StartAppAssessmentOutput,
         http_method = "POST",
         http_path = "/start-app-assessment",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:startMetricsExport(input, options)
     return self:invokeOperation(input, {
         name = "StartMetricsExport",
-        input_schema = types.StartMetricsExportInput,
-        output_schema = types.StartMetricsExportOutput,
+        input_schema = schemas.StartMetricsExportInput,
+        output_schema = schemas.StartMetricsExportOutput,
         http_method = "POST",
         http_path = "/start-metrics-export",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:startResourceGroupingRecommendationTask(input, options)
     return self:invokeOperation(input, {
         name = "StartResourceGroupingRecommendationTask",
-        input_schema = types.StartResourceGroupingRecommendationTaskInput,
-        output_schema = types.StartResourceGroupingRecommendationTaskOutput,
+        input_schema = schemas.StartResourceGroupingRecommendationTaskInput,
+        output_schema = schemas.StartResourceGroupingRecommendationTaskOutput,
         http_method = "POST",
         http_path = "/start-resource-grouping-recommendation-task",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:updateApp(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApp",
-        input_schema = types.UpdateAppInput,
-        output_schema = types.UpdateAppOutput,
+        input_schema = schemas.UpdateAppInput,
+        output_schema = schemas.UpdateAppOutput,
         http_method = "POST",
         http_path = "/update-app",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:updateAppVersion(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAppVersion",
-        input_schema = types.UpdateAppVersionInput,
-        output_schema = types.UpdateAppVersionOutput,
+        input_schema = schemas.UpdateAppVersionInput,
+        output_schema = schemas.UpdateAppVersionOutput,
         http_method = "POST",
         http_path = "/update-app-version",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:updateAppVersionAppComponent(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAppVersionAppComponent",
-        input_schema = types.UpdateAppVersionAppComponentInput,
-        output_schema = types.UpdateAppVersionAppComponentOutput,
+        input_schema = schemas.UpdateAppVersionAppComponentInput,
+        output_schema = schemas.UpdateAppVersionAppComponentOutput,
         http_method = "POST",
         http_path = "/update-app-version-app-component",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:updateAppVersionResource(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAppVersionResource",
-        input_schema = types.UpdateAppVersionResourceInput,
-        output_schema = types.UpdateAppVersionResourceOutput,
+        input_schema = schemas.UpdateAppVersionResourceInput,
+        output_schema = schemas.UpdateAppVersionResourceOutput,
         http_method = "POST",
         http_path = "/update-app-version-resource",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:updateResiliencyPolicy(input, options)
     return self:invokeOperation(input, {
         name = "UpdateResiliencyPolicy",
-        input_schema = types.UpdateResiliencyPolicyInput,
-        output_schema = types.UpdateResiliencyPolicyOutput,
+        input_schema = schemas.UpdateResiliencyPolicyInput,
+        output_schema = schemas.UpdateResiliencyPolicyOutput,
         http_method = "POST",
         http_path = "/update-resiliency-policy",
         effective_auth_schemes = {

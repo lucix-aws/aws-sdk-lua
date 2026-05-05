@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("personalizeruntime.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("personalizeruntime.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("personalizeruntime.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getActionRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "GetActionRecommendations",
-        input_schema = types.GetActionRecommendationsInput,
-        output_schema = types.GetActionRecommendationsOutput,
+        input_schema = schemas.GetActionRecommendationsInput,
+        output_schema = schemas.GetActionRecommendationsOutput,
         http_method = "POST",
         http_path = "/action-recommendations",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:getPersonalizedRanking(input, options)
     return self:invokeOperation(input, {
         name = "GetPersonalizedRanking",
-        input_schema = types.GetPersonalizedRankingInput,
-        output_schema = types.GetPersonalizedRankingOutput,
+        input_schema = schemas.GetPersonalizedRankingInput,
+        output_schema = schemas.GetPersonalizedRankingOutput,
         http_method = "POST",
         http_path = "/personalize-ranking",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "GetRecommendations",
-        input_schema = types.GetRecommendationsInput,
-        output_schema = types.GetRecommendationsOutput,
+        input_schema = schemas.GetRecommendationsInput,
+        output_schema = schemas.GetRecommendationsOutput,
         http_method = "POST",
         http_path = "/recommendations",
         effective_auth_schemes = {

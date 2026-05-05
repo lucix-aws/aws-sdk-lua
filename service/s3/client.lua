@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("s3.endpoint_rules")
 local restxml_protocol = require("protocol.restxml")
+local schemas = require("s3.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("s3.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:abortMultipartUpload(input, options)
     return self:invokeOperation(input, {
         name = "AbortMultipartUpload",
-        input_schema = types.AbortMultipartUploadInput,
-        output_schema = types.AbortMultipartUploadOutput,
+        input_schema = schemas.AbortMultipartUploadInput,
+        output_schema = schemas.AbortMultipartUploadOutput,
         http_method = "DELETE",
         http_path = "/{Bucket}/{Key+}?x-id=AbortMultipartUpload",
         effective_auth_schemes = {
@@ -66,8 +66,8 @@ end
 function Client:completeMultipartUpload(input, options)
     return self:invokeOperation(input, {
         name = "CompleteMultipartUpload",
-        input_schema = types.CompleteMultipartUploadInput,
-        output_schema = types.CompleteMultipartUploadOutput,
+        input_schema = schemas.CompleteMultipartUploadInput,
+        output_schema = schemas.CompleteMultipartUploadOutput,
         http_method = "POST",
         http_path = "/{Bucket}/{Key+}",
         effective_auth_schemes = {
@@ -83,8 +83,8 @@ end
 function Client:copyObject(input, options)
     return self:invokeOperation(input, {
         name = "CopyObject",
-        input_schema = types.CopyObjectInput,
-        output_schema = types.CopyObjectOutput,
+        input_schema = schemas.CopyObjectInput,
+        output_schema = schemas.CopyObjectOutput,
         http_method = "PUT",
         http_path = "/{Bucket}/{Key+}?x-id=CopyObject",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createBucket(input, options)
     return self:invokeOperation(input, {
         name = "CreateBucket",
-        input_schema = types.CreateBucketInput,
-        output_schema = types.CreateBucketOutput,
+        input_schema = schemas.CreateBucketInput,
+        output_schema = schemas.CreateBucketOutput,
         http_method = "PUT",
         http_path = "/{Bucket}",
         effective_auth_schemes = {
@@ -117,8 +117,8 @@ end
 function Client:createBucketMetadataConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateBucketMetadataConfiguration",
-        input_schema = types.CreateBucketMetadataConfigurationInput,
-        output_schema = types.CreateBucketMetadataConfigurationOutput,
+        input_schema = schemas.CreateBucketMetadataConfigurationInput,
+        output_schema = schemas.CreateBucketMetadataConfigurationOutput,
         http_method = "POST",
         http_path = "/{Bucket}?metadataConfiguration",
         effective_auth_schemes = {
@@ -133,8 +133,8 @@ end
 function Client:createBucketMetadataTableConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateBucketMetadataTableConfiguration",
-        input_schema = types.CreateBucketMetadataTableConfigurationInput,
-        output_schema = types.CreateBucketMetadataTableConfigurationOutput,
+        input_schema = schemas.CreateBucketMetadataTableConfigurationInput,
+        output_schema = schemas.CreateBucketMetadataTableConfigurationOutput,
         http_method = "POST",
         http_path = "/{Bucket}?metadataTable",
         effective_auth_schemes = {
@@ -149,8 +149,8 @@ end
 function Client:createMultipartUpload(input, options)
     return self:invokeOperation(input, {
         name = "CreateMultipartUpload",
-        input_schema = types.CreateMultipartUploadInput,
-        output_schema = types.CreateMultipartUploadOutput,
+        input_schema = schemas.CreateMultipartUploadInput,
+        output_schema = schemas.CreateMultipartUploadOutput,
         http_method = "POST",
         http_path = "/{Bucket}/{Key+}?uploads",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createSession(input, options)
     return self:invokeOperation(input, {
         name = "CreateSession",
-        input_schema = types.CreateSessionInput,
-        output_schema = types.CreateSessionOutput,
+        input_schema = schemas.CreateSessionInput,
+        output_schema = schemas.CreateSessionOutput,
         http_method = "GET",
         http_path = "/{Bucket}?session",
         effective_auth_schemes = {
@@ -182,8 +182,8 @@ end
 function Client:deleteBucket(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBucket",
-        input_schema = types.DeleteBucketInput,
-        output_schema = types.DeleteBucketOutput,
+        input_schema = schemas.DeleteBucketInput,
+        output_schema = schemas.DeleteBucketOutput,
         http_method = "DELETE",
         http_path = "/{Bucket}",
         effective_auth_schemes = {
@@ -198,8 +198,8 @@ end
 function Client:deleteBucketAnalyticsConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBucketAnalyticsConfiguration",
-        input_schema = types.DeleteBucketAnalyticsConfigurationInput,
-        output_schema = types.DeleteBucketAnalyticsConfigurationOutput,
+        input_schema = schemas.DeleteBucketAnalyticsConfigurationInput,
+        output_schema = schemas.DeleteBucketAnalyticsConfigurationOutput,
         http_method = "DELETE",
         http_path = "/{Bucket}?analytics",
         effective_auth_schemes = {
@@ -214,8 +214,8 @@ end
 function Client:deleteBucketCors(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBucketCors",
-        input_schema = types.DeleteBucketCorsInput,
-        output_schema = types.DeleteBucketCorsOutput,
+        input_schema = schemas.DeleteBucketCorsInput,
+        output_schema = schemas.DeleteBucketCorsOutput,
         http_method = "DELETE",
         http_path = "/{Bucket}?cors",
         effective_auth_schemes = {
@@ -230,8 +230,8 @@ end
 function Client:deleteBucketEncryption(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBucketEncryption",
-        input_schema = types.DeleteBucketEncryptionInput,
-        output_schema = types.DeleteBucketEncryptionOutput,
+        input_schema = schemas.DeleteBucketEncryptionInput,
+        output_schema = schemas.DeleteBucketEncryptionOutput,
         http_method = "DELETE",
         http_path = "/{Bucket}?encryption",
         effective_auth_schemes = {
@@ -246,8 +246,8 @@ end
 function Client:deleteBucketIntelligentTieringConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBucketIntelligentTieringConfiguration",
-        input_schema = types.DeleteBucketIntelligentTieringConfigurationInput,
-        output_schema = types.DeleteBucketIntelligentTieringConfigurationOutput,
+        input_schema = schemas.DeleteBucketIntelligentTieringConfigurationInput,
+        output_schema = schemas.DeleteBucketIntelligentTieringConfigurationOutput,
         http_method = "DELETE",
         http_path = "/{Bucket}?intelligent-tiering",
         effective_auth_schemes = {
@@ -262,8 +262,8 @@ end
 function Client:deleteBucketInventoryConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBucketInventoryConfiguration",
-        input_schema = types.DeleteBucketInventoryConfigurationInput,
-        output_schema = types.DeleteBucketInventoryConfigurationOutput,
+        input_schema = schemas.DeleteBucketInventoryConfigurationInput,
+        output_schema = schemas.DeleteBucketInventoryConfigurationOutput,
         http_method = "DELETE",
         http_path = "/{Bucket}?inventory",
         effective_auth_schemes = {
@@ -278,8 +278,8 @@ end
 function Client:deleteBucketLifecycle(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBucketLifecycle",
-        input_schema = types.DeleteBucketLifecycleInput,
-        output_schema = types.DeleteBucketLifecycleOutput,
+        input_schema = schemas.DeleteBucketLifecycleInput,
+        output_schema = schemas.DeleteBucketLifecycleOutput,
         http_method = "DELETE",
         http_path = "/{Bucket}?lifecycle",
         effective_auth_schemes = {
@@ -294,8 +294,8 @@ end
 function Client:deleteBucketMetadataConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBucketMetadataConfiguration",
-        input_schema = types.DeleteBucketMetadataConfigurationInput,
-        output_schema = types.DeleteBucketMetadataConfigurationOutput,
+        input_schema = schemas.DeleteBucketMetadataConfigurationInput,
+        output_schema = schemas.DeleteBucketMetadataConfigurationOutput,
         http_method = "DELETE",
         http_path = "/{Bucket}?metadataConfiguration",
         effective_auth_schemes = {
@@ -310,8 +310,8 @@ end
 function Client:deleteBucketMetadataTableConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBucketMetadataTableConfiguration",
-        input_schema = types.DeleteBucketMetadataTableConfigurationInput,
-        output_schema = types.DeleteBucketMetadataTableConfigurationOutput,
+        input_schema = schemas.DeleteBucketMetadataTableConfigurationInput,
+        output_schema = schemas.DeleteBucketMetadataTableConfigurationOutput,
         http_method = "DELETE",
         http_path = "/{Bucket}?metadataTable",
         effective_auth_schemes = {
@@ -326,8 +326,8 @@ end
 function Client:deleteBucketMetricsConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBucketMetricsConfiguration",
-        input_schema = types.DeleteBucketMetricsConfigurationInput,
-        output_schema = types.DeleteBucketMetricsConfigurationOutput,
+        input_schema = schemas.DeleteBucketMetricsConfigurationInput,
+        output_schema = schemas.DeleteBucketMetricsConfigurationOutput,
         http_method = "DELETE",
         http_path = "/{Bucket}?metrics",
         effective_auth_schemes = {
@@ -342,8 +342,8 @@ end
 function Client:deleteBucketOwnershipControls(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBucketOwnershipControls",
-        input_schema = types.DeleteBucketOwnershipControlsInput,
-        output_schema = types.DeleteBucketOwnershipControlsOutput,
+        input_schema = schemas.DeleteBucketOwnershipControlsInput,
+        output_schema = schemas.DeleteBucketOwnershipControlsOutput,
         http_method = "DELETE",
         http_path = "/{Bucket}?ownershipControls",
         effective_auth_schemes = {
@@ -358,8 +358,8 @@ end
 function Client:deleteBucketPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBucketPolicy",
-        input_schema = types.DeleteBucketPolicyInput,
-        output_schema = types.DeleteBucketPolicyOutput,
+        input_schema = schemas.DeleteBucketPolicyInput,
+        output_schema = schemas.DeleteBucketPolicyOutput,
         http_method = "DELETE",
         http_path = "/{Bucket}?policy",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:deleteBucketReplication(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBucketReplication",
-        input_schema = types.DeleteBucketReplicationInput,
-        output_schema = types.DeleteBucketReplicationOutput,
+        input_schema = schemas.DeleteBucketReplicationInput,
+        output_schema = schemas.DeleteBucketReplicationOutput,
         http_method = "DELETE",
         http_path = "/{Bucket}?replication",
         effective_auth_schemes = {
@@ -390,8 +390,8 @@ end
 function Client:deleteBucketTagging(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBucketTagging",
-        input_schema = types.DeleteBucketTaggingInput,
-        output_schema = types.DeleteBucketTaggingOutput,
+        input_schema = schemas.DeleteBucketTaggingInput,
+        output_schema = schemas.DeleteBucketTaggingOutput,
         http_method = "DELETE",
         http_path = "/{Bucket}?tagging",
         effective_auth_schemes = {
@@ -406,8 +406,8 @@ end
 function Client:deleteBucketWebsite(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBucketWebsite",
-        input_schema = types.DeleteBucketWebsiteInput,
-        output_schema = types.DeleteBucketWebsiteOutput,
+        input_schema = schemas.DeleteBucketWebsiteInput,
+        output_schema = schemas.DeleteBucketWebsiteOutput,
         http_method = "DELETE",
         http_path = "/{Bucket}?website",
         effective_auth_schemes = {
@@ -422,8 +422,8 @@ end
 function Client:deleteObject(input, options)
     return self:invokeOperation(input, {
         name = "DeleteObject",
-        input_schema = types.DeleteObjectInput,
-        output_schema = types.DeleteObjectOutput,
+        input_schema = schemas.DeleteObjectInput,
+        output_schema = schemas.DeleteObjectOutput,
         http_method = "DELETE",
         http_path = "/{Bucket}/{Key+}?x-id=DeleteObject",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:deleteObjects(input, options)
     return self:invokeOperation(input, {
         name = "DeleteObjects",
-        input_schema = types.DeleteObjectsInput,
-        output_schema = types.DeleteObjectsOutput,
+        input_schema = schemas.DeleteObjectsInput,
+        output_schema = schemas.DeleteObjectsOutput,
         http_method = "POST",
         http_path = "/{Bucket}?delete",
         effective_auth_schemes = {
@@ -455,8 +455,8 @@ end
 function Client:deleteObjectTagging(input, options)
     return self:invokeOperation(input, {
         name = "DeleteObjectTagging",
-        input_schema = types.DeleteObjectTaggingInput,
-        output_schema = types.DeleteObjectTaggingOutput,
+        input_schema = schemas.DeleteObjectTaggingInput,
+        output_schema = schemas.DeleteObjectTaggingOutput,
         http_method = "DELETE",
         http_path = "/{Bucket}/{Key+}?tagging",
         effective_auth_schemes = {
@@ -471,8 +471,8 @@ end
 function Client:deletePublicAccessBlock(input, options)
     return self:invokeOperation(input, {
         name = "DeletePublicAccessBlock",
-        input_schema = types.DeletePublicAccessBlockInput,
-        output_schema = types.DeletePublicAccessBlockOutput,
+        input_schema = schemas.DeletePublicAccessBlockInput,
+        output_schema = schemas.DeletePublicAccessBlockOutput,
         http_method = "DELETE",
         http_path = "/{Bucket}?publicAccessBlock",
         effective_auth_schemes = {
@@ -487,8 +487,8 @@ end
 function Client:getBucketAbac(input, options)
     return self:invokeOperation(input, {
         name = "GetBucketAbac",
-        input_schema = types.GetBucketAbacInput,
-        output_schema = types.GetBucketAbacOutput,
+        input_schema = schemas.GetBucketAbacInput,
+        output_schema = schemas.GetBucketAbacOutput,
         http_method = "GET",
         http_path = "/{Bucket}?abac",
         effective_auth_schemes = {
@@ -503,8 +503,8 @@ end
 function Client:getBucketAccelerateConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetBucketAccelerateConfiguration",
-        input_schema = types.GetBucketAccelerateConfigurationInput,
-        output_schema = types.GetBucketAccelerateConfigurationOutput,
+        input_schema = schemas.GetBucketAccelerateConfigurationInput,
+        output_schema = schemas.GetBucketAccelerateConfigurationOutput,
         http_method = "GET",
         http_path = "/{Bucket}?accelerate",
         effective_auth_schemes = {
@@ -519,8 +519,8 @@ end
 function Client:getBucketAcl(input, options)
     return self:invokeOperation(input, {
         name = "GetBucketAcl",
-        input_schema = types.GetBucketAclInput,
-        output_schema = types.GetBucketAclOutput,
+        input_schema = schemas.GetBucketAclInput,
+        output_schema = schemas.GetBucketAclOutput,
         http_method = "GET",
         http_path = "/{Bucket}?acl",
         effective_auth_schemes = {
@@ -535,8 +535,8 @@ end
 function Client:getBucketAnalyticsConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetBucketAnalyticsConfiguration",
-        input_schema = types.GetBucketAnalyticsConfigurationInput,
-        output_schema = types.GetBucketAnalyticsConfigurationOutput,
+        input_schema = schemas.GetBucketAnalyticsConfigurationInput,
+        output_schema = schemas.GetBucketAnalyticsConfigurationOutput,
         http_method = "GET",
         http_path = "/{Bucket}?analytics&x-id=GetBucketAnalyticsConfiguration",
         effective_auth_schemes = {
@@ -551,8 +551,8 @@ end
 function Client:getBucketCors(input, options)
     return self:invokeOperation(input, {
         name = "GetBucketCors",
-        input_schema = types.GetBucketCorsInput,
-        output_schema = types.GetBucketCorsOutput,
+        input_schema = schemas.GetBucketCorsInput,
+        output_schema = schemas.GetBucketCorsOutput,
         http_method = "GET",
         http_path = "/{Bucket}?cors",
         effective_auth_schemes = {
@@ -567,8 +567,8 @@ end
 function Client:getBucketEncryption(input, options)
     return self:invokeOperation(input, {
         name = "GetBucketEncryption",
-        input_schema = types.GetBucketEncryptionInput,
-        output_schema = types.GetBucketEncryptionOutput,
+        input_schema = schemas.GetBucketEncryptionInput,
+        output_schema = schemas.GetBucketEncryptionOutput,
         http_method = "GET",
         http_path = "/{Bucket}?encryption",
         effective_auth_schemes = {
@@ -583,8 +583,8 @@ end
 function Client:getBucketIntelligentTieringConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetBucketIntelligentTieringConfiguration",
-        input_schema = types.GetBucketIntelligentTieringConfigurationInput,
-        output_schema = types.GetBucketIntelligentTieringConfigurationOutput,
+        input_schema = schemas.GetBucketIntelligentTieringConfigurationInput,
+        output_schema = schemas.GetBucketIntelligentTieringConfigurationOutput,
         http_method = "GET",
         http_path = "/{Bucket}?intelligent-tiering&x-id=GetBucketIntelligentTieringConfiguration",
         effective_auth_schemes = {
@@ -599,8 +599,8 @@ end
 function Client:getBucketInventoryConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetBucketInventoryConfiguration",
-        input_schema = types.GetBucketInventoryConfigurationInput,
-        output_schema = types.GetBucketInventoryConfigurationOutput,
+        input_schema = schemas.GetBucketInventoryConfigurationInput,
+        output_schema = schemas.GetBucketInventoryConfigurationOutput,
         http_method = "GET",
         http_path = "/{Bucket}?inventory&x-id=GetBucketInventoryConfiguration",
         effective_auth_schemes = {
@@ -615,8 +615,8 @@ end
 function Client:getBucketLifecycleConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetBucketLifecycleConfiguration",
-        input_schema = types.GetBucketLifecycleConfigurationInput,
-        output_schema = types.GetBucketLifecycleConfigurationOutput,
+        input_schema = schemas.GetBucketLifecycleConfigurationInput,
+        output_schema = schemas.GetBucketLifecycleConfigurationOutput,
         http_method = "GET",
         http_path = "/{Bucket}?lifecycle",
         effective_auth_schemes = {
@@ -631,8 +631,8 @@ end
 function Client:getBucketLocation(input, options)
     return self:invokeOperation(input, {
         name = "GetBucketLocation",
-        input_schema = types.GetBucketLocationInput,
-        output_schema = types.GetBucketLocationOutput,
+        input_schema = schemas.GetBucketLocationInput,
+        output_schema = schemas.GetBucketLocationOutput,
         http_method = "GET",
         http_path = "/{Bucket}?location",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:getBucketLogging(input, options)
     return self:invokeOperation(input, {
         name = "GetBucketLogging",
-        input_schema = types.GetBucketLoggingInput,
-        output_schema = types.GetBucketLoggingOutput,
+        input_schema = schemas.GetBucketLoggingInput,
+        output_schema = schemas.GetBucketLoggingOutput,
         http_method = "GET",
         http_path = "/{Bucket}?logging",
         effective_auth_schemes = {
@@ -663,8 +663,8 @@ end
 function Client:getBucketMetadataConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetBucketMetadataConfiguration",
-        input_schema = types.GetBucketMetadataConfigurationInput,
-        output_schema = types.GetBucketMetadataConfigurationOutput,
+        input_schema = schemas.GetBucketMetadataConfigurationInput,
+        output_schema = schemas.GetBucketMetadataConfigurationOutput,
         http_method = "GET",
         http_path = "/{Bucket}?metadataConfiguration",
         effective_auth_schemes = {
@@ -679,8 +679,8 @@ end
 function Client:getBucketMetadataTableConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetBucketMetadataTableConfiguration",
-        input_schema = types.GetBucketMetadataTableConfigurationInput,
-        output_schema = types.GetBucketMetadataTableConfigurationOutput,
+        input_schema = schemas.GetBucketMetadataTableConfigurationInput,
+        output_schema = schemas.GetBucketMetadataTableConfigurationOutput,
         http_method = "GET",
         http_path = "/{Bucket}?metadataTable",
         effective_auth_schemes = {
@@ -695,8 +695,8 @@ end
 function Client:getBucketMetricsConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetBucketMetricsConfiguration",
-        input_schema = types.GetBucketMetricsConfigurationInput,
-        output_schema = types.GetBucketMetricsConfigurationOutput,
+        input_schema = schemas.GetBucketMetricsConfigurationInput,
+        output_schema = schemas.GetBucketMetricsConfigurationOutput,
         http_method = "GET",
         http_path = "/{Bucket}?metrics&x-id=GetBucketMetricsConfiguration",
         effective_auth_schemes = {
@@ -711,8 +711,8 @@ end
 function Client:getBucketNotificationConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetBucketNotificationConfiguration",
-        input_schema = types.GetBucketNotificationConfigurationInput,
-        output_schema = types.GetBucketNotificationConfigurationOutput,
+        input_schema = schemas.GetBucketNotificationConfigurationInput,
+        output_schema = schemas.GetBucketNotificationConfigurationOutput,
         http_method = "GET",
         http_path = "/{Bucket}?notification",
         effective_auth_schemes = {
@@ -727,8 +727,8 @@ end
 function Client:getBucketOwnershipControls(input, options)
     return self:invokeOperation(input, {
         name = "GetBucketOwnershipControls",
-        input_schema = types.GetBucketOwnershipControlsInput,
-        output_schema = types.GetBucketOwnershipControlsOutput,
+        input_schema = schemas.GetBucketOwnershipControlsInput,
+        output_schema = schemas.GetBucketOwnershipControlsOutput,
         http_method = "GET",
         http_path = "/{Bucket}?ownershipControls",
         effective_auth_schemes = {
@@ -743,8 +743,8 @@ end
 function Client:getBucketPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetBucketPolicy",
-        input_schema = types.GetBucketPolicyInput,
-        output_schema = types.GetBucketPolicyOutput,
+        input_schema = schemas.GetBucketPolicyInput,
+        output_schema = schemas.GetBucketPolicyOutput,
         http_method = "GET",
         http_path = "/{Bucket}?policy",
         effective_auth_schemes = {
@@ -759,8 +759,8 @@ end
 function Client:getBucketPolicyStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetBucketPolicyStatus",
-        input_schema = types.GetBucketPolicyStatusInput,
-        output_schema = types.GetBucketPolicyStatusOutput,
+        input_schema = schemas.GetBucketPolicyStatusInput,
+        output_schema = schemas.GetBucketPolicyStatusOutput,
         http_method = "GET",
         http_path = "/{Bucket}?policyStatus",
         effective_auth_schemes = {
@@ -775,8 +775,8 @@ end
 function Client:getBucketReplication(input, options)
     return self:invokeOperation(input, {
         name = "GetBucketReplication",
-        input_schema = types.GetBucketReplicationInput,
-        output_schema = types.GetBucketReplicationOutput,
+        input_schema = schemas.GetBucketReplicationInput,
+        output_schema = schemas.GetBucketReplicationOutput,
         http_method = "GET",
         http_path = "/{Bucket}?replication",
         effective_auth_schemes = {
@@ -791,8 +791,8 @@ end
 function Client:getBucketRequestPayment(input, options)
     return self:invokeOperation(input, {
         name = "GetBucketRequestPayment",
-        input_schema = types.GetBucketRequestPaymentInput,
-        output_schema = types.GetBucketRequestPaymentOutput,
+        input_schema = schemas.GetBucketRequestPaymentInput,
+        output_schema = schemas.GetBucketRequestPaymentOutput,
         http_method = "GET",
         http_path = "/{Bucket}?requestPayment",
         effective_auth_schemes = {
@@ -807,8 +807,8 @@ end
 function Client:getBucketTagging(input, options)
     return self:invokeOperation(input, {
         name = "GetBucketTagging",
-        input_schema = types.GetBucketTaggingInput,
-        output_schema = types.GetBucketTaggingOutput,
+        input_schema = schemas.GetBucketTaggingInput,
+        output_schema = schemas.GetBucketTaggingOutput,
         http_method = "GET",
         http_path = "/{Bucket}?tagging",
         effective_auth_schemes = {
@@ -823,8 +823,8 @@ end
 function Client:getBucketVersioning(input, options)
     return self:invokeOperation(input, {
         name = "GetBucketVersioning",
-        input_schema = types.GetBucketVersioningInput,
-        output_schema = types.GetBucketVersioningOutput,
+        input_schema = schemas.GetBucketVersioningInput,
+        output_schema = schemas.GetBucketVersioningOutput,
         http_method = "GET",
         http_path = "/{Bucket}?versioning",
         effective_auth_schemes = {
@@ -839,8 +839,8 @@ end
 function Client:getBucketWebsite(input, options)
     return self:invokeOperation(input, {
         name = "GetBucketWebsite",
-        input_schema = types.GetBucketWebsiteInput,
-        output_schema = types.GetBucketWebsiteOutput,
+        input_schema = schemas.GetBucketWebsiteInput,
+        output_schema = schemas.GetBucketWebsiteOutput,
         http_method = "GET",
         http_path = "/{Bucket}?website",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:getObject(input, options)
     return self:invokeOperation(input, {
         name = "GetObject",
-        input_schema = types.GetObjectInput,
-        output_schema = types.GetObjectOutput,
+        input_schema = schemas.GetObjectInput,
+        output_schema = schemas.GetObjectOutput,
         http_method = "GET",
         http_path = "/{Bucket}/{Key+}?x-id=GetObject",
         effective_auth_schemes = {
@@ -872,8 +872,8 @@ end
 function Client:getObjectAcl(input, options)
     return self:invokeOperation(input, {
         name = "GetObjectAcl",
-        input_schema = types.GetObjectAclInput,
-        output_schema = types.GetObjectAclOutput,
+        input_schema = schemas.GetObjectAclInput,
+        output_schema = schemas.GetObjectAclOutput,
         http_method = "GET",
         http_path = "/{Bucket}/{Key+}?acl",
         effective_auth_schemes = {
@@ -889,8 +889,8 @@ end
 function Client:getObjectAttributes(input, options)
     return self:invokeOperation(input, {
         name = "GetObjectAttributes",
-        input_schema = types.GetObjectAttributesInput,
-        output_schema = types.GetObjectAttributesOutput,
+        input_schema = schemas.GetObjectAttributesInput,
+        output_schema = schemas.GetObjectAttributesOutput,
         http_method = "GET",
         http_path = "/{Bucket}/{Key+}?attributes",
         effective_auth_schemes = {
@@ -905,8 +905,8 @@ end
 function Client:getObjectLegalHold(input, options)
     return self:invokeOperation(input, {
         name = "GetObjectLegalHold",
-        input_schema = types.GetObjectLegalHoldInput,
-        output_schema = types.GetObjectLegalHoldOutput,
+        input_schema = schemas.GetObjectLegalHoldInput,
+        output_schema = schemas.GetObjectLegalHoldOutput,
         http_method = "GET",
         http_path = "/{Bucket}/{Key+}?legal-hold",
         effective_auth_schemes = {
@@ -921,8 +921,8 @@ end
 function Client:getObjectLockConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetObjectLockConfiguration",
-        input_schema = types.GetObjectLockConfigurationInput,
-        output_schema = types.GetObjectLockConfigurationOutput,
+        input_schema = schemas.GetObjectLockConfigurationInput,
+        output_schema = schemas.GetObjectLockConfigurationOutput,
         http_method = "GET",
         http_path = "/{Bucket}?object-lock",
         effective_auth_schemes = {
@@ -937,8 +937,8 @@ end
 function Client:getObjectRetention(input, options)
     return self:invokeOperation(input, {
         name = "GetObjectRetention",
-        input_schema = types.GetObjectRetentionInput,
-        output_schema = types.GetObjectRetentionOutput,
+        input_schema = schemas.GetObjectRetentionInput,
+        output_schema = schemas.GetObjectRetentionOutput,
         http_method = "GET",
         http_path = "/{Bucket}/{Key+}?retention",
         effective_auth_schemes = {
@@ -953,8 +953,8 @@ end
 function Client:getObjectTagging(input, options)
     return self:invokeOperation(input, {
         name = "GetObjectTagging",
-        input_schema = types.GetObjectTaggingInput,
-        output_schema = types.GetObjectTaggingOutput,
+        input_schema = schemas.GetObjectTaggingInput,
+        output_schema = schemas.GetObjectTaggingOutput,
         http_method = "GET",
         http_path = "/{Bucket}/{Key+}?tagging",
         effective_auth_schemes = {
@@ -969,8 +969,8 @@ end
 function Client:getObjectTorrent(input, options)
     return self:invokeOperation(input, {
         name = "GetObjectTorrent",
-        input_schema = types.GetObjectTorrentInput,
-        output_schema = types.GetObjectTorrentOutput,
+        input_schema = schemas.GetObjectTorrentInput,
+        output_schema = schemas.GetObjectTorrentOutput,
         http_method = "GET",
         http_path = "/{Bucket}/{Key+}?torrent",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:getPublicAccessBlock(input, options)
     return self:invokeOperation(input, {
         name = "GetPublicAccessBlock",
-        input_schema = types.GetPublicAccessBlockInput,
-        output_schema = types.GetPublicAccessBlockOutput,
+        input_schema = schemas.GetPublicAccessBlockInput,
+        output_schema = schemas.GetPublicAccessBlockOutput,
         http_method = "GET",
         http_path = "/{Bucket}?publicAccessBlock",
         effective_auth_schemes = {
@@ -1001,8 +1001,8 @@ end
 function Client:headBucket(input, options)
     return self:invokeOperation(input, {
         name = "HeadBucket",
-        input_schema = types.HeadBucketInput,
-        output_schema = types.HeadBucketOutput,
+        input_schema = schemas.HeadBucketInput,
+        output_schema = schemas.HeadBucketOutput,
         http_method = "HEAD",
         http_path = "/{Bucket}",
         effective_auth_schemes = {
@@ -1017,8 +1017,8 @@ end
 function Client:headObject(input, options)
     return self:invokeOperation(input, {
         name = "HeadObject",
-        input_schema = types.HeadObjectInput,
-        output_schema = types.HeadObjectOutput,
+        input_schema = schemas.HeadObjectInput,
+        output_schema = schemas.HeadObjectOutput,
         http_method = "HEAD",
         http_path = "/{Bucket}/{Key+}",
         effective_auth_schemes = {
@@ -1034,8 +1034,8 @@ end
 function Client:listBucketAnalyticsConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListBucketAnalyticsConfigurations",
-        input_schema = types.ListBucketAnalyticsConfigurationsInput,
-        output_schema = types.ListBucketAnalyticsConfigurationsOutput,
+        input_schema = schemas.ListBucketAnalyticsConfigurationsInput,
+        output_schema = schemas.ListBucketAnalyticsConfigurationsOutput,
         http_method = "GET",
         http_path = "/{Bucket}?analytics&x-id=ListBucketAnalyticsConfigurations",
         effective_auth_schemes = {
@@ -1050,8 +1050,8 @@ end
 function Client:listBucketIntelligentTieringConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListBucketIntelligentTieringConfigurations",
-        input_schema = types.ListBucketIntelligentTieringConfigurationsInput,
-        output_schema = types.ListBucketIntelligentTieringConfigurationsOutput,
+        input_schema = schemas.ListBucketIntelligentTieringConfigurationsInput,
+        output_schema = schemas.ListBucketIntelligentTieringConfigurationsOutput,
         http_method = "GET",
         http_path = "/{Bucket}?intelligent-tiering&x-id=ListBucketIntelligentTieringConfigurations",
         effective_auth_schemes = {
@@ -1066,8 +1066,8 @@ end
 function Client:listBucketInventoryConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListBucketInventoryConfigurations",
-        input_schema = types.ListBucketInventoryConfigurationsInput,
-        output_schema = types.ListBucketInventoryConfigurationsOutput,
+        input_schema = schemas.ListBucketInventoryConfigurationsInput,
+        output_schema = schemas.ListBucketInventoryConfigurationsOutput,
         http_method = "GET",
         http_path = "/{Bucket}?inventory&x-id=ListBucketInventoryConfigurations",
         effective_auth_schemes = {
@@ -1082,8 +1082,8 @@ end
 function Client:listBucketMetricsConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListBucketMetricsConfigurations",
-        input_schema = types.ListBucketMetricsConfigurationsInput,
-        output_schema = types.ListBucketMetricsConfigurationsOutput,
+        input_schema = schemas.ListBucketMetricsConfigurationsInput,
+        output_schema = schemas.ListBucketMetricsConfigurationsOutput,
         http_method = "GET",
         http_path = "/{Bucket}?metrics&x-id=ListBucketMetricsConfigurations",
         effective_auth_schemes = {
@@ -1098,8 +1098,8 @@ end
 function Client:listBuckets(input, options)
     return self:invokeOperation(input, {
         name = "ListBuckets",
-        input_schema = types.ListBucketsInput,
-        output_schema = types.ListBucketsOutput,
+        input_schema = schemas.ListBucketsInput,
+        output_schema = schemas.ListBucketsOutput,
         http_method = "GET",
         http_path = "/?x-id=ListBuckets",
         effective_auth_schemes = {
@@ -1111,8 +1111,8 @@ end
 function Client:listDirectoryBuckets(input, options)
     return self:invokeOperation(input, {
         name = "ListDirectoryBuckets",
-        input_schema = types.ListDirectoryBucketsInput,
-        output_schema = types.ListDirectoryBucketsOutput,
+        input_schema = schemas.ListDirectoryBucketsInput,
+        output_schema = schemas.ListDirectoryBucketsOutput,
         http_method = "GET",
         http_path = "/?x-id=ListDirectoryBuckets",
         effective_auth_schemes = {
@@ -1124,8 +1124,8 @@ end
 function Client:listMultipartUploads(input, options)
     return self:invokeOperation(input, {
         name = "ListMultipartUploads",
-        input_schema = types.ListMultipartUploadsInput,
-        output_schema = types.ListMultipartUploadsOutput,
+        input_schema = schemas.ListMultipartUploadsInput,
+        output_schema = schemas.ListMultipartUploadsOutput,
         http_method = "GET",
         http_path = "/{Bucket}?uploads",
         effective_auth_schemes = {
@@ -1141,8 +1141,8 @@ end
 function Client:listObjects(input, options)
     return self:invokeOperation(input, {
         name = "ListObjects",
-        input_schema = types.ListObjectsInput,
-        output_schema = types.ListObjectsOutput,
+        input_schema = schemas.ListObjectsInput,
+        output_schema = schemas.ListObjectsOutput,
         http_method = "GET",
         http_path = "/{Bucket}",
         effective_auth_schemes = {
@@ -1158,8 +1158,8 @@ end
 function Client:listObjectsV2(input, options)
     return self:invokeOperation(input, {
         name = "ListObjectsV2",
-        input_schema = types.ListObjectsV2Input,
-        output_schema = types.ListObjectsV2Output,
+        input_schema = schemas.ListObjectsV2Input,
+        output_schema = schemas.ListObjectsV2Output,
         http_method = "GET",
         http_path = "/{Bucket}?list-type=2",
         effective_auth_schemes = {
@@ -1175,8 +1175,8 @@ end
 function Client:listObjectVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListObjectVersions",
-        input_schema = types.ListObjectVersionsInput,
-        output_schema = types.ListObjectVersionsOutput,
+        input_schema = schemas.ListObjectVersionsInput,
+        output_schema = schemas.ListObjectVersionsOutput,
         http_method = "GET",
         http_path = "/{Bucket}?versions",
         effective_auth_schemes = {
@@ -1192,8 +1192,8 @@ end
 function Client:listParts(input, options)
     return self:invokeOperation(input, {
         name = "ListParts",
-        input_schema = types.ListPartsInput,
-        output_schema = types.ListPartsOutput,
+        input_schema = schemas.ListPartsInput,
+        output_schema = schemas.ListPartsOutput,
         http_method = "GET",
         http_path = "/{Bucket}/{Key+}?x-id=ListParts",
         effective_auth_schemes = {
@@ -1209,8 +1209,8 @@ end
 function Client:putBucketAbac(input, options)
     return self:invokeOperation(input, {
         name = "PutBucketAbac",
-        input_schema = types.PutBucketAbacInput,
-        output_schema = types.PutBucketAbacOutput,
+        input_schema = schemas.PutBucketAbacInput,
+        output_schema = schemas.PutBucketAbacOutput,
         http_method = "PUT",
         http_path = "/{Bucket}?abac",
         effective_auth_schemes = {
@@ -1225,8 +1225,8 @@ end
 function Client:putBucketAccelerateConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutBucketAccelerateConfiguration",
-        input_schema = types.PutBucketAccelerateConfigurationInput,
-        output_schema = types.PutBucketAccelerateConfigurationOutput,
+        input_schema = schemas.PutBucketAccelerateConfigurationInput,
+        output_schema = schemas.PutBucketAccelerateConfigurationOutput,
         http_method = "PUT",
         http_path = "/{Bucket}?accelerate",
         effective_auth_schemes = {
@@ -1241,8 +1241,8 @@ end
 function Client:putBucketAcl(input, options)
     return self:invokeOperation(input, {
         name = "PutBucketAcl",
-        input_schema = types.PutBucketAclInput,
-        output_schema = types.PutBucketAclOutput,
+        input_schema = schemas.PutBucketAclInput,
+        output_schema = schemas.PutBucketAclOutput,
         http_method = "PUT",
         http_path = "/{Bucket}?acl",
         effective_auth_schemes = {
@@ -1257,8 +1257,8 @@ end
 function Client:putBucketAnalyticsConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutBucketAnalyticsConfiguration",
-        input_schema = types.PutBucketAnalyticsConfigurationInput,
-        output_schema = types.PutBucketAnalyticsConfigurationOutput,
+        input_schema = schemas.PutBucketAnalyticsConfigurationInput,
+        output_schema = schemas.PutBucketAnalyticsConfigurationOutput,
         http_method = "PUT",
         http_path = "/{Bucket}?analytics",
         effective_auth_schemes = {
@@ -1273,8 +1273,8 @@ end
 function Client:putBucketCors(input, options)
     return self:invokeOperation(input, {
         name = "PutBucketCors",
-        input_schema = types.PutBucketCorsInput,
-        output_schema = types.PutBucketCorsOutput,
+        input_schema = schemas.PutBucketCorsInput,
+        output_schema = schemas.PutBucketCorsOutput,
         http_method = "PUT",
         http_path = "/{Bucket}?cors",
         effective_auth_schemes = {
@@ -1289,8 +1289,8 @@ end
 function Client:putBucketEncryption(input, options)
     return self:invokeOperation(input, {
         name = "PutBucketEncryption",
-        input_schema = types.PutBucketEncryptionInput,
-        output_schema = types.PutBucketEncryptionOutput,
+        input_schema = schemas.PutBucketEncryptionInput,
+        output_schema = schemas.PutBucketEncryptionOutput,
         http_method = "PUT",
         http_path = "/{Bucket}?encryption",
         effective_auth_schemes = {
@@ -1305,8 +1305,8 @@ end
 function Client:putBucketIntelligentTieringConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutBucketIntelligentTieringConfiguration",
-        input_schema = types.PutBucketIntelligentTieringConfigurationInput,
-        output_schema = types.PutBucketIntelligentTieringConfigurationOutput,
+        input_schema = schemas.PutBucketIntelligentTieringConfigurationInput,
+        output_schema = schemas.PutBucketIntelligentTieringConfigurationOutput,
         http_method = "PUT",
         http_path = "/{Bucket}?intelligent-tiering",
         effective_auth_schemes = {
@@ -1321,8 +1321,8 @@ end
 function Client:putBucketInventoryConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutBucketInventoryConfiguration",
-        input_schema = types.PutBucketInventoryConfigurationInput,
-        output_schema = types.PutBucketInventoryConfigurationOutput,
+        input_schema = schemas.PutBucketInventoryConfigurationInput,
+        output_schema = schemas.PutBucketInventoryConfigurationOutput,
         http_method = "PUT",
         http_path = "/{Bucket}?inventory",
         effective_auth_schemes = {
@@ -1337,8 +1337,8 @@ end
 function Client:putBucketLifecycleConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutBucketLifecycleConfiguration",
-        input_schema = types.PutBucketLifecycleConfigurationInput,
-        output_schema = types.PutBucketLifecycleConfigurationOutput,
+        input_schema = schemas.PutBucketLifecycleConfigurationInput,
+        output_schema = schemas.PutBucketLifecycleConfigurationOutput,
         http_method = "PUT",
         http_path = "/{Bucket}?lifecycle",
         effective_auth_schemes = {
@@ -1353,8 +1353,8 @@ end
 function Client:putBucketLogging(input, options)
     return self:invokeOperation(input, {
         name = "PutBucketLogging",
-        input_schema = types.PutBucketLoggingInput,
-        output_schema = types.PutBucketLoggingOutput,
+        input_schema = schemas.PutBucketLoggingInput,
+        output_schema = schemas.PutBucketLoggingOutput,
         http_method = "PUT",
         http_path = "/{Bucket}?logging",
         effective_auth_schemes = {
@@ -1369,8 +1369,8 @@ end
 function Client:putBucketMetricsConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutBucketMetricsConfiguration",
-        input_schema = types.PutBucketMetricsConfigurationInput,
-        output_schema = types.PutBucketMetricsConfigurationOutput,
+        input_schema = schemas.PutBucketMetricsConfigurationInput,
+        output_schema = schemas.PutBucketMetricsConfigurationOutput,
         http_method = "PUT",
         http_path = "/{Bucket}?metrics",
         effective_auth_schemes = {
@@ -1385,8 +1385,8 @@ end
 function Client:putBucketNotificationConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutBucketNotificationConfiguration",
-        input_schema = types.PutBucketNotificationConfigurationInput,
-        output_schema = types.PutBucketNotificationConfigurationOutput,
+        input_schema = schemas.PutBucketNotificationConfigurationInput,
+        output_schema = schemas.PutBucketNotificationConfigurationOutput,
         http_method = "PUT",
         http_path = "/{Bucket}?notification",
         effective_auth_schemes = {
@@ -1401,8 +1401,8 @@ end
 function Client:putBucketOwnershipControls(input, options)
     return self:invokeOperation(input, {
         name = "PutBucketOwnershipControls",
-        input_schema = types.PutBucketOwnershipControlsInput,
-        output_schema = types.PutBucketOwnershipControlsOutput,
+        input_schema = schemas.PutBucketOwnershipControlsInput,
+        output_schema = schemas.PutBucketOwnershipControlsOutput,
         http_method = "PUT",
         http_path = "/{Bucket}?ownershipControls",
         effective_auth_schemes = {
@@ -1417,8 +1417,8 @@ end
 function Client:putBucketPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutBucketPolicy",
-        input_schema = types.PutBucketPolicyInput,
-        output_schema = types.PutBucketPolicyOutput,
+        input_schema = schemas.PutBucketPolicyInput,
+        output_schema = schemas.PutBucketPolicyOutput,
         http_method = "PUT",
         http_path = "/{Bucket}?policy",
         effective_auth_schemes = {
@@ -1433,8 +1433,8 @@ end
 function Client:putBucketReplication(input, options)
     return self:invokeOperation(input, {
         name = "PutBucketReplication",
-        input_schema = types.PutBucketReplicationInput,
-        output_schema = types.PutBucketReplicationOutput,
+        input_schema = schemas.PutBucketReplicationInput,
+        output_schema = schemas.PutBucketReplicationOutput,
         http_method = "PUT",
         http_path = "/{Bucket}?replication",
         effective_auth_schemes = {
@@ -1449,8 +1449,8 @@ end
 function Client:putBucketRequestPayment(input, options)
     return self:invokeOperation(input, {
         name = "PutBucketRequestPayment",
-        input_schema = types.PutBucketRequestPaymentInput,
-        output_schema = types.PutBucketRequestPaymentOutput,
+        input_schema = schemas.PutBucketRequestPaymentInput,
+        output_schema = schemas.PutBucketRequestPaymentOutput,
         http_method = "PUT",
         http_path = "/{Bucket}?requestPayment",
         effective_auth_schemes = {
@@ -1465,8 +1465,8 @@ end
 function Client:putBucketTagging(input, options)
     return self:invokeOperation(input, {
         name = "PutBucketTagging",
-        input_schema = types.PutBucketTaggingInput,
-        output_schema = types.PutBucketTaggingOutput,
+        input_schema = schemas.PutBucketTaggingInput,
+        output_schema = schemas.PutBucketTaggingOutput,
         http_method = "PUT",
         http_path = "/{Bucket}?tagging",
         effective_auth_schemes = {
@@ -1481,8 +1481,8 @@ end
 function Client:putBucketVersioning(input, options)
     return self:invokeOperation(input, {
         name = "PutBucketVersioning",
-        input_schema = types.PutBucketVersioningInput,
-        output_schema = types.PutBucketVersioningOutput,
+        input_schema = schemas.PutBucketVersioningInput,
+        output_schema = schemas.PutBucketVersioningOutput,
         http_method = "PUT",
         http_path = "/{Bucket}?versioning",
         effective_auth_schemes = {
@@ -1497,8 +1497,8 @@ end
 function Client:putBucketWebsite(input, options)
     return self:invokeOperation(input, {
         name = "PutBucketWebsite",
-        input_schema = types.PutBucketWebsiteInput,
-        output_schema = types.PutBucketWebsiteOutput,
+        input_schema = schemas.PutBucketWebsiteInput,
+        output_schema = schemas.PutBucketWebsiteOutput,
         http_method = "PUT",
         http_path = "/{Bucket}?website",
         effective_auth_schemes = {
@@ -1513,8 +1513,8 @@ end
 function Client:putObject(input, options)
     return self:invokeOperation(input, {
         name = "PutObject",
-        input_schema = types.PutObjectInput,
-        output_schema = types.PutObjectOutput,
+        input_schema = schemas.PutObjectInput,
+        output_schema = schemas.PutObjectOutput,
         http_method = "PUT",
         http_path = "/{Bucket}/{Key+}?x-id=PutObject",
         effective_auth_schemes = {
@@ -1530,8 +1530,8 @@ end
 function Client:putObjectAcl(input, options)
     return self:invokeOperation(input, {
         name = "PutObjectAcl",
-        input_schema = types.PutObjectAclInput,
-        output_schema = types.PutObjectAclOutput,
+        input_schema = schemas.PutObjectAclInput,
+        output_schema = schemas.PutObjectAclOutput,
         http_method = "PUT",
         http_path = "/{Bucket}/{Key+}?acl",
         effective_auth_schemes = {
@@ -1547,8 +1547,8 @@ end
 function Client:putObjectLegalHold(input, options)
     return self:invokeOperation(input, {
         name = "PutObjectLegalHold",
-        input_schema = types.PutObjectLegalHoldInput,
-        output_schema = types.PutObjectLegalHoldOutput,
+        input_schema = schemas.PutObjectLegalHoldInput,
+        output_schema = schemas.PutObjectLegalHoldOutput,
         http_method = "PUT",
         http_path = "/{Bucket}/{Key+}?legal-hold",
         effective_auth_schemes = {
@@ -1563,8 +1563,8 @@ end
 function Client:putObjectLockConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutObjectLockConfiguration",
-        input_schema = types.PutObjectLockConfigurationInput,
-        output_schema = types.PutObjectLockConfigurationOutput,
+        input_schema = schemas.PutObjectLockConfigurationInput,
+        output_schema = schemas.PutObjectLockConfigurationOutput,
         http_method = "PUT",
         http_path = "/{Bucket}?object-lock",
         effective_auth_schemes = {
@@ -1579,8 +1579,8 @@ end
 function Client:putObjectRetention(input, options)
     return self:invokeOperation(input, {
         name = "PutObjectRetention",
-        input_schema = types.PutObjectRetentionInput,
-        output_schema = types.PutObjectRetentionOutput,
+        input_schema = schemas.PutObjectRetentionInput,
+        output_schema = schemas.PutObjectRetentionOutput,
         http_method = "PUT",
         http_path = "/{Bucket}/{Key+}?retention",
         effective_auth_schemes = {
@@ -1595,8 +1595,8 @@ end
 function Client:putObjectTagging(input, options)
     return self:invokeOperation(input, {
         name = "PutObjectTagging",
-        input_schema = types.PutObjectTaggingInput,
-        output_schema = types.PutObjectTaggingOutput,
+        input_schema = schemas.PutObjectTaggingInput,
+        output_schema = schemas.PutObjectTaggingOutput,
         http_method = "PUT",
         http_path = "/{Bucket}/{Key+}?tagging",
         effective_auth_schemes = {
@@ -1611,8 +1611,8 @@ end
 function Client:putPublicAccessBlock(input, options)
     return self:invokeOperation(input, {
         name = "PutPublicAccessBlock",
-        input_schema = types.PutPublicAccessBlockInput,
-        output_schema = types.PutPublicAccessBlockOutput,
+        input_schema = schemas.PutPublicAccessBlockInput,
+        output_schema = schemas.PutPublicAccessBlockOutput,
         http_method = "PUT",
         http_path = "/{Bucket}?publicAccessBlock",
         effective_auth_schemes = {
@@ -1627,8 +1627,8 @@ end
 function Client:renameObject(input, options)
     return self:invokeOperation(input, {
         name = "RenameObject",
-        input_schema = types.RenameObjectInput,
-        output_schema = types.RenameObjectOutput,
+        input_schema = schemas.RenameObjectInput,
+        output_schema = schemas.RenameObjectOutput,
         http_method = "PUT",
         http_path = "/{Bucket}/{Key+}?renameObject",
         effective_auth_schemes = {
@@ -1644,8 +1644,8 @@ end
 function Client:restoreObject(input, options)
     return self:invokeOperation(input, {
         name = "RestoreObject",
-        input_schema = types.RestoreObjectInput,
-        output_schema = types.RestoreObjectOutput,
+        input_schema = schemas.RestoreObjectInput,
+        output_schema = schemas.RestoreObjectOutput,
         http_method = "POST",
         http_path = "/{Bucket}/{Key+}?restore",
         effective_auth_schemes = {
@@ -1660,11 +1660,11 @@ end
 function Client:selectObjectContent(input, options)
     return self:invokeOperation(input, {
         name = "SelectObjectContent",
-        input_schema = types.SelectObjectContentInput,
-        output_schema = types.SelectObjectContentOutput,
+        input_schema = schemas.SelectObjectContentInput,
+        output_schema = schemas.SelectObjectContentOutput,
         http_method = "POST",
         http_path = "/{Bucket}/{Key+}?select&select-type=2",
-        event_stream = types.SelectObjectContentEventStream,
+        event_stream = schemas.SelectObjectContentEventStream,
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1677,8 +1677,8 @@ end
 function Client:updateBucketMetadataInventoryTableConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateBucketMetadataInventoryTableConfiguration",
-        input_schema = types.UpdateBucketMetadataInventoryTableConfigurationInput,
-        output_schema = types.UpdateBucketMetadataInventoryTableConfigurationOutput,
+        input_schema = schemas.UpdateBucketMetadataInventoryTableConfigurationInput,
+        output_schema = schemas.UpdateBucketMetadataInventoryTableConfigurationOutput,
         http_method = "PUT",
         http_path = "/{Bucket}?metadataInventoryTable",
         effective_auth_schemes = {
@@ -1693,8 +1693,8 @@ end
 function Client:updateBucketMetadataJournalTableConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateBucketMetadataJournalTableConfiguration",
-        input_schema = types.UpdateBucketMetadataJournalTableConfigurationInput,
-        output_schema = types.UpdateBucketMetadataJournalTableConfigurationOutput,
+        input_schema = schemas.UpdateBucketMetadataJournalTableConfigurationInput,
+        output_schema = schemas.UpdateBucketMetadataJournalTableConfigurationOutput,
         http_method = "PUT",
         http_path = "/{Bucket}?metadataJournalTable",
         effective_auth_schemes = {
@@ -1709,8 +1709,8 @@ end
 function Client:updateObjectEncryption(input, options)
     return self:invokeOperation(input, {
         name = "UpdateObjectEncryption",
-        input_schema = types.UpdateObjectEncryptionInput,
-        output_schema = types.UpdateObjectEncryptionOutput,
+        input_schema = schemas.UpdateObjectEncryptionInput,
+        output_schema = schemas.UpdateObjectEncryptionOutput,
         http_method = "PUT",
         http_path = "/{Bucket}/{Key+}?encryption",
         effective_auth_schemes = {
@@ -1725,8 +1725,8 @@ end
 function Client:uploadPart(input, options)
     return self:invokeOperation(input, {
         name = "UploadPart",
-        input_schema = types.UploadPartInput,
-        output_schema = types.UploadPartOutput,
+        input_schema = schemas.UploadPartInput,
+        output_schema = schemas.UploadPartOutput,
         http_method = "PUT",
         http_path = "/{Bucket}/{Key+}?x-id=UploadPart",
         effective_auth_schemes = {
@@ -1742,8 +1742,8 @@ end
 function Client:uploadPartCopy(input, options)
     return self:invokeOperation(input, {
         name = "UploadPartCopy",
-        input_schema = types.UploadPartCopyInput,
-        output_schema = types.UploadPartCopyOutput,
+        input_schema = schemas.UploadPartCopyInput,
+        output_schema = schemas.UploadPartCopyOutput,
         http_method = "PUT",
         http_path = "/{Bucket}/{Key+}?x-id=UploadPartCopy",
         effective_auth_schemes = {
@@ -1758,8 +1758,8 @@ end
 function Client:writeGetObjectResponse(input, options)
     return self:invokeOperation(input, {
         name = "WriteGetObjectResponse",
-        input_schema = types.WriteGetObjectResponseInput,
-        output_schema = types.WriteGetObjectResponseOutput,
+        input_schema = schemas.WriteGetObjectResponseInput,
+        output_schema = schemas.WriteGetObjectResponseOutput,
         http_method = "POST",
         http_path = "/WriteGetObjectResponse",
         effective_auth_schemes = {

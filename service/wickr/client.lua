@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("wickr.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("wickr.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("wickr.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchCreateUser(input, options)
     return self:invokeOperation(input, {
         name = "BatchCreateUser",
-        input_schema = types.BatchCreateUserInput,
-        output_schema = types.BatchCreateUserOutput,
+        input_schema = schemas.BatchCreateUserInput,
+        output_schema = schemas.BatchCreateUserOutput,
         http_method = "POST",
         http_path = "/networks/{networkId}/users",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchDeleteUser(input, options)
     return self:invokeOperation(input, {
         name = "BatchDeleteUser",
-        input_schema = types.BatchDeleteUserInput,
-        output_schema = types.BatchDeleteUserOutput,
+        input_schema = schemas.BatchDeleteUserInput,
+        output_schema = schemas.BatchDeleteUserOutput,
         http_method = "POST",
         http_path = "/networks/{networkId}/users/batch-delete",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchLookupUserUname(input, options)
     return self:invokeOperation(input, {
         name = "BatchLookupUserUname",
-        input_schema = types.BatchLookupUserUnameInput,
-        output_schema = types.BatchLookupUserUnameOutput,
+        input_schema = schemas.BatchLookupUserUnameInput,
+        output_schema = schemas.BatchLookupUserUnameOutput,
         http_method = "POST",
         http_path = "/networks/{networkId}/users/uname-lookup",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:batchReinviteUser(input, options)
     return self:invokeOperation(input, {
         name = "BatchReinviteUser",
-        input_schema = types.BatchReinviteUserInput,
-        output_schema = types.BatchReinviteUserOutput,
+        input_schema = schemas.BatchReinviteUserInput,
+        output_schema = schemas.BatchReinviteUserOutput,
         http_method = "PATCH",
         http_path = "/networks/{networkId}/users/re-invite",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:batchResetDevicesForUser(input, options)
     return self:invokeOperation(input, {
         name = "BatchResetDevicesForUser",
-        input_schema = types.BatchResetDevicesForUserInput,
-        output_schema = types.BatchResetDevicesForUserOutput,
+        input_schema = schemas.BatchResetDevicesForUserInput,
+        output_schema = schemas.BatchResetDevicesForUserOutput,
         http_method = "PATCH",
         http_path = "/networks/{networkId}/users/{userId}/devices",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:batchToggleUserSuspendStatus(input, options)
     return self:invokeOperation(input, {
         name = "BatchToggleUserSuspendStatus",
-        input_schema = types.BatchToggleUserSuspendStatusInput,
-        output_schema = types.BatchToggleUserSuspendStatusOutput,
+        input_schema = schemas.BatchToggleUserSuspendStatusInput,
+        output_schema = schemas.BatchToggleUserSuspendStatusOutput,
         http_method = "PATCH",
         http_path = "/networks/{networkId}/users/toggleSuspend",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createBot(input, options)
     return self:invokeOperation(input, {
         name = "CreateBot",
-        input_schema = types.CreateBotInput,
-        output_schema = types.CreateBotOutput,
+        input_schema = schemas.CreateBotInput,
+        output_schema = schemas.CreateBotOutput,
         http_method = "POST",
         http_path = "/networks/{networkId}/bots",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createDataRetentionBot(input, options)
     return self:invokeOperation(input, {
         name = "CreateDataRetentionBot",
-        input_schema = types.CreateDataRetentionBotInput,
-        output_schema = types.CreateDataRetentionBotOutput,
+        input_schema = schemas.CreateDataRetentionBotInput,
+        output_schema = schemas.CreateDataRetentionBotOutput,
         http_method = "POST",
         http_path = "/networks/{networkId}/data-retention-bots",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createDataRetentionBotChallenge(input, options)
     return self:invokeOperation(input, {
         name = "CreateDataRetentionBotChallenge",
-        input_schema = types.CreateDataRetentionBotChallengeInput,
-        output_schema = types.CreateDataRetentionBotChallengeOutput,
+        input_schema = schemas.CreateDataRetentionBotChallengeInput,
+        output_schema = schemas.CreateDataRetentionBotChallengeOutput,
         http_method = "POST",
         http_path = "/networks/{networkId}/data-retention-bots/challenge",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createNetwork(input, options)
     return self:invokeOperation(input, {
         name = "CreateNetwork",
-        input_schema = types.CreateNetworkInput,
-        output_schema = types.CreateNetworkOutput,
+        input_schema = schemas.CreateNetworkInput,
+        output_schema = schemas.CreateNetworkOutput,
         http_method = "POST",
         http_path = "/networks",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createSecurityGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateSecurityGroup",
-        input_schema = types.CreateSecurityGroupInput,
-        output_schema = types.CreateSecurityGroupOutput,
+        input_schema = schemas.CreateSecurityGroupInput,
+        output_schema = schemas.CreateSecurityGroupOutput,
         http_method = "POST",
         http_path = "/networks/{networkId}/security-groups",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteBot(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBot",
-        input_schema = types.DeleteBotInput,
-        output_schema = types.DeleteBotOutput,
+        input_schema = schemas.DeleteBotInput,
+        output_schema = schemas.DeleteBotOutput,
         http_method = "DELETE",
         http_path = "/networks/{networkId}/bots/{botId}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteDataRetentionBot(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDataRetentionBot",
-        input_schema = types.DeleteDataRetentionBotInput,
-        output_schema = types.DeleteDataRetentionBotOutput,
+        input_schema = schemas.DeleteDataRetentionBotInput,
+        output_schema = schemas.DeleteDataRetentionBotOutput,
         http_method = "DELETE",
         http_path = "/networks/{networkId}/data-retention-bots",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteNetwork(input, options)
     return self:invokeOperation(input, {
         name = "DeleteNetwork",
-        input_schema = types.DeleteNetworkInput,
-        output_schema = types.DeleteNetworkOutput,
+        input_schema = schemas.DeleteNetworkInput,
+        output_schema = schemas.DeleteNetworkOutput,
         http_method = "DELETE",
         http_path = "/networks/{networkId}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteSecurityGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSecurityGroup",
-        input_schema = types.DeleteSecurityGroupInput,
-        output_schema = types.DeleteSecurityGroupOutput,
+        input_schema = schemas.DeleteSecurityGroupInput,
+        output_schema = schemas.DeleteSecurityGroupOutput,
         http_method = "DELETE",
         http_path = "/networks/{networkId}/security-groups/{groupId}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getBot(input, options)
     return self:invokeOperation(input, {
         name = "GetBot",
-        input_schema = types.GetBotInput,
-        output_schema = types.GetBotOutput,
+        input_schema = schemas.GetBotInput,
+        output_schema = schemas.GetBotOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/bots/{botId}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getBotsCount(input, options)
     return self:invokeOperation(input, {
         name = "GetBotsCount",
-        input_schema = types.GetBotsCountInput,
-        output_schema = types.GetBotsCountOutput,
+        input_schema = schemas.GetBotsCountInput,
+        output_schema = schemas.GetBotsCountOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/bots/count",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getDataRetentionBot(input, options)
     return self:invokeOperation(input, {
         name = "GetDataRetentionBot",
-        input_schema = types.GetDataRetentionBotInput,
-        output_schema = types.GetDataRetentionBotOutput,
+        input_schema = schemas.GetDataRetentionBotInput,
+        output_schema = schemas.GetDataRetentionBotOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/data-retention-bots",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getGuestUserHistoryCount(input, options)
     return self:invokeOperation(input, {
         name = "GetGuestUserHistoryCount",
-        input_schema = types.GetGuestUserHistoryCountInput,
-        output_schema = types.GetGuestUserHistoryCountOutput,
+        input_schema = schemas.GetGuestUserHistoryCountInput,
+        output_schema = schemas.GetGuestUserHistoryCountOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/guest-users/count",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getNetwork(input, options)
     return self:invokeOperation(input, {
         name = "GetNetwork",
-        input_schema = types.GetNetworkInput,
-        output_schema = types.GetNetworkOutput,
+        input_schema = schemas.GetNetworkInput,
+        output_schema = schemas.GetNetworkOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:getNetworkSettings(input, options)
     return self:invokeOperation(input, {
         name = "GetNetworkSettings",
-        input_schema = types.GetNetworkSettingsInput,
-        output_schema = types.GetNetworkSettingsOutput,
+        input_schema = schemas.GetNetworkSettingsInput,
+        output_schema = schemas.GetNetworkSettingsOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/settings",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:getOidcInfo(input, options)
     return self:invokeOperation(input, {
         name = "GetOidcInfo",
-        input_schema = types.GetOidcInfoInput,
-        output_schema = types.GetOidcInfoOutput,
+        input_schema = schemas.GetOidcInfoInput,
+        output_schema = schemas.GetOidcInfoOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/oidc",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:getOpentdfConfig(input, options)
     return self:invokeOperation(input, {
         name = "GetOpentdfConfig",
-        input_schema = types.GetOpentdfConfigInput,
-        output_schema = types.GetOpentdfConfigOutput,
+        input_schema = schemas.GetOpentdfConfigInput,
+        output_schema = schemas.GetOpentdfConfigOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/tdf",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:getSecurityGroup(input, options)
     return self:invokeOperation(input, {
         name = "GetSecurityGroup",
-        input_schema = types.GetSecurityGroupInput,
-        output_schema = types.GetSecurityGroupOutput,
+        input_schema = schemas.GetSecurityGroupInput,
+        output_schema = schemas.GetSecurityGroupOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/security-groups/{groupId}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getUser(input, options)
     return self:invokeOperation(input, {
         name = "GetUser",
-        input_schema = types.GetUserInput,
-        output_schema = types.GetUserOutput,
+        input_schema = schemas.GetUserInput,
+        output_schema = schemas.GetUserOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/users/{userId}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:getUsersCount(input, options)
     return self:invokeOperation(input, {
         name = "GetUsersCount",
-        input_schema = types.GetUsersCountInput,
-        output_schema = types.GetUsersCountOutput,
+        input_schema = schemas.GetUsersCountInput,
+        output_schema = schemas.GetUsersCountOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/users/count",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listBlockedGuestUsers(input, options)
     return self:invokeOperation(input, {
         name = "ListBlockedGuestUsers",
-        input_schema = types.ListBlockedGuestUsersInput,
-        output_schema = types.ListBlockedGuestUsersOutput,
+        input_schema = schemas.ListBlockedGuestUsersInput,
+        output_schema = schemas.ListBlockedGuestUsersOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/guest-users/blocklist",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listBots(input, options)
     return self:invokeOperation(input, {
         name = "ListBots",
-        input_schema = types.ListBotsInput,
-        output_schema = types.ListBotsOutput,
+        input_schema = schemas.ListBotsInput,
+        output_schema = schemas.ListBotsOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/bots",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listDevicesForUser(input, options)
     return self:invokeOperation(input, {
         name = "ListDevicesForUser",
-        input_schema = types.ListDevicesForUserInput,
-        output_schema = types.ListDevicesForUserOutput,
+        input_schema = schemas.ListDevicesForUserInput,
+        output_schema = schemas.ListDevicesForUserOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/users/{userId}/devices",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:listGuestUsers(input, options)
     return self:invokeOperation(input, {
         name = "ListGuestUsers",
-        input_schema = types.ListGuestUsersInput,
-        output_schema = types.ListGuestUsersOutput,
+        input_schema = schemas.ListGuestUsersInput,
+        output_schema = schemas.ListGuestUsersOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/guest-users",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:listNetworks(input, options)
     return self:invokeOperation(input, {
         name = "ListNetworks",
-        input_schema = types.ListNetworksInput,
-        output_schema = types.ListNetworksOutput,
+        input_schema = schemas.ListNetworksInput,
+        output_schema = schemas.ListNetworksOutput,
         http_method = "GET",
         http_path = "/networks",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:listSecurityGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListSecurityGroups",
-        input_schema = types.ListSecurityGroupsInput,
-        output_schema = types.ListSecurityGroupsOutput,
+        input_schema = schemas.ListSecurityGroupsInput,
+        output_schema = schemas.ListSecurityGroupsOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/security-groups",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:listSecurityGroupUsers(input, options)
     return self:invokeOperation(input, {
         name = "ListSecurityGroupUsers",
-        input_schema = types.ListSecurityGroupUsersInput,
-        output_schema = types.ListSecurityGroupUsersOutput,
+        input_schema = schemas.ListSecurityGroupUsersInput,
+        output_schema = schemas.ListSecurityGroupUsersOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/security-groups/{groupId}/users",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listUsers(input, options)
     return self:invokeOperation(input, {
         name = "ListUsers",
-        input_schema = types.ListUsersInput,
-        output_schema = types.ListUsersOutput,
+        input_schema = schemas.ListUsersInput,
+        output_schema = schemas.ListUsersOutput,
         http_method = "GET",
         http_path = "/networks/{networkId}/users",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:registerOidcConfig(input, options)
     return self:invokeOperation(input, {
         name = "RegisterOidcConfig",
-        input_schema = types.RegisterOidcConfigInput,
-        output_schema = types.RegisterOidcConfigOutput,
+        input_schema = schemas.RegisterOidcConfigInput,
+        output_schema = schemas.RegisterOidcConfigOutput,
         http_method = "POST",
         http_path = "/networks/{networkId}/oidc/save",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:registerOidcConfigTest(input, options)
     return self:invokeOperation(input, {
         name = "RegisterOidcConfigTest",
-        input_schema = types.RegisterOidcConfigTestInput,
-        output_schema = types.RegisterOidcConfigTestOutput,
+        input_schema = schemas.RegisterOidcConfigTestInput,
+        output_schema = schemas.RegisterOidcConfigTestOutput,
         http_method = "POST",
         http_path = "/networks/{networkId}/oidc/test",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:registerOpentdfConfig(input, options)
     return self:invokeOperation(input, {
         name = "RegisterOpentdfConfig",
-        input_schema = types.RegisterOpentdfConfigInput,
-        output_schema = types.RegisterOpentdfConfigOutput,
+        input_schema = schemas.RegisterOpentdfConfigInput,
+        output_schema = schemas.RegisterOpentdfConfigOutput,
         http_method = "POST",
         http_path = "/networks/{networkId}/tdf",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:updateBot(input, options)
     return self:invokeOperation(input, {
         name = "UpdateBot",
-        input_schema = types.UpdateBotInput,
-        output_schema = types.UpdateBotOutput,
+        input_schema = schemas.UpdateBotInput,
+        output_schema = schemas.UpdateBotOutput,
         http_method = "PATCH",
         http_path = "/networks/{networkId}/bots/{botId}",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:updateDataRetention(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDataRetention",
-        input_schema = types.UpdateDataRetentionInput,
-        output_schema = types.UpdateDataRetentionOutput,
+        input_schema = schemas.UpdateDataRetentionInput,
+        output_schema = schemas.UpdateDataRetentionOutput,
         http_method = "PATCH",
         http_path = "/networks/{networkId}/data-retention-bots",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:updateGuestUser(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGuestUser",
-        input_schema = types.UpdateGuestUserInput,
-        output_schema = types.UpdateGuestUserOutput,
+        input_schema = schemas.UpdateGuestUserInput,
+        output_schema = schemas.UpdateGuestUserOutput,
         http_method = "PATCH",
         http_path = "/networks/{networkId}/guest-users/{usernameHash}",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:updateNetwork(input, options)
     return self:invokeOperation(input, {
         name = "UpdateNetwork",
-        input_schema = types.UpdateNetworkInput,
-        output_schema = types.UpdateNetworkOutput,
+        input_schema = schemas.UpdateNetworkInput,
+        output_schema = schemas.UpdateNetworkOutput,
         http_method = "PATCH",
         http_path = "/networks/{networkId}",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:updateNetworkSettings(input, options)
     return self:invokeOperation(input, {
         name = "UpdateNetworkSettings",
-        input_schema = types.UpdateNetworkSettingsInput,
-        output_schema = types.UpdateNetworkSettingsOutput,
+        input_schema = schemas.UpdateNetworkSettingsInput,
+        output_schema = schemas.UpdateNetworkSettingsOutput,
         http_method = "PATCH",
         http_path = "/networks/{networkId}/settings",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:updateSecurityGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSecurityGroup",
-        input_schema = types.UpdateSecurityGroupInput,
-        output_schema = types.UpdateSecurityGroupOutput,
+        input_schema = schemas.UpdateSecurityGroupInput,
+        output_schema = schemas.UpdateSecurityGroupOutput,
         http_method = "PATCH",
         http_path = "/networks/{networkId}/security-groups/{groupId}",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:updateUser(input, options)
     return self:invokeOperation(input, {
         name = "UpdateUser",
-        input_schema = types.UpdateUserInput,
-        output_schema = types.UpdateUserOutput,
+        input_schema = schemas.UpdateUserInput,
+        output_schema = schemas.UpdateUserOutput,
         http_method = "PATCH",
         http_path = "/networks/{networkId}/users",
         effective_auth_schemes = {

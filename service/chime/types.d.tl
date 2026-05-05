@@ -2786,19 +2786,19 @@ local record UnauthorizedClientException
     Message: string
 end
 
-local type PhoneNumberProductType = "BusinessCalling" | "VoiceConnector" | "SipMediaApplicationDialIn"
-
-local type PhoneNumberStatus = "AcquireInProgress" | "AcquireFailed" | "Unassigned" | "Assigned" | "ReleaseInProgress" | "DeleteInProgress" | "ReleaseFailed" | "DeleteFailed"
+local type UserType = "PrivateUser" | "SharedDevice"
 
 local type License = "Basic" | "Plus" | "Pro" | "ProTrial"
 
-local type RoomMembershipRole = "Administrator" | "Member"
+local type PhoneNumberStatus = "AcquireInProgress" | "AcquireFailed" | "Unassigned" | "Assigned" | "ReleaseInProgress" | "DeleteInProgress" | "ReleaseFailed" | "DeleteFailed"
 
 local type PhoneNumberType = "Local" | "TollFree"
 
-local type UserType = "PrivateUser" | "SharedDevice"
+local type PhoneNumberProductType = "BusinessCalling" | "VoiceConnector" | "SipMediaApplicationDialIn"
 
 local type PhoneNumberAssociationName = "AccountId" | "UserId" | "VoiceConnectorId" | "VoiceConnectorGroupId" | "SipRuleId"
+
+local type RoomMembershipRole = "Administrator" | "Member"
 
 local record M
     AssociatePhoneNumberWithUserInput: AssociatePhoneNumberWithUserInput

@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("codebuild.endpoint_rules")
+local schemas = require("codebuild.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("codebuild.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchDeleteBuilds(input, options)
     return self:invokeOperation(input, {
         name = "BatchDeleteBuilds",
-        input_schema = types.BatchDeleteBuildsInput,
-        output_schema = types.BatchDeleteBuildsOutput,
+        input_schema = schemas.BatchDeleteBuildsInput,
+        output_schema = schemas.BatchDeleteBuildsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchGetBuildBatches(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetBuildBatches",
-        input_schema = types.BatchGetBuildBatchesInput,
-        output_schema = types.BatchGetBuildBatchesOutput,
+        input_schema = schemas.BatchGetBuildBatchesInput,
+        output_schema = schemas.BatchGetBuildBatchesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchGetBuilds(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetBuilds",
-        input_schema = types.BatchGetBuildsInput,
-        output_schema = types.BatchGetBuildsOutput,
+        input_schema = schemas.BatchGetBuildsInput,
+        output_schema = schemas.BatchGetBuildsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:batchGetCommandExecutions(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetCommandExecutions",
-        input_schema = types.BatchGetCommandExecutionsInput,
-        output_schema = types.BatchGetCommandExecutionsOutput,
+        input_schema = schemas.BatchGetCommandExecutionsInput,
+        output_schema = schemas.BatchGetCommandExecutionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:batchGetFleets(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetFleets",
-        input_schema = types.BatchGetFleetsInput,
-        output_schema = types.BatchGetFleetsOutput,
+        input_schema = schemas.BatchGetFleetsInput,
+        output_schema = schemas.BatchGetFleetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:batchGetProjects(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetProjects",
-        input_schema = types.BatchGetProjectsInput,
-        output_schema = types.BatchGetProjectsOutput,
+        input_schema = schemas.BatchGetProjectsInput,
+        output_schema = schemas.BatchGetProjectsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:batchGetReportGroups(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetReportGroups",
-        input_schema = types.BatchGetReportGroupsInput,
-        output_schema = types.BatchGetReportGroupsOutput,
+        input_schema = schemas.BatchGetReportGroupsInput,
+        output_schema = schemas.BatchGetReportGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:batchGetReports(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetReports",
-        input_schema = types.BatchGetReportsInput,
-        output_schema = types.BatchGetReportsOutput,
+        input_schema = schemas.BatchGetReportsInput,
+        output_schema = schemas.BatchGetReportsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:batchGetSandboxes(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetSandboxes",
-        input_schema = types.BatchGetSandboxesInput,
-        output_schema = types.BatchGetSandboxesOutput,
+        input_schema = schemas.BatchGetSandboxesInput,
+        output_schema = schemas.BatchGetSandboxesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createFleet(input, options)
     return self:invokeOperation(input, {
         name = "CreateFleet",
-        input_schema = types.CreateFleetInput,
-        output_schema = types.CreateFleetOutput,
+        input_schema = schemas.CreateFleetInput,
+        output_schema = schemas.CreateFleetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createProject(input, options)
     return self:invokeOperation(input, {
         name = "CreateProject",
-        input_schema = types.CreateProjectInput,
-        output_schema = types.CreateProjectOutput,
+        input_schema = schemas.CreateProjectInput,
+        output_schema = schemas.CreateProjectOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createReportGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateReportGroup",
-        input_schema = types.CreateReportGroupInput,
-        output_schema = types.CreateReportGroupOutput,
+        input_schema = schemas.CreateReportGroupInput,
+        output_schema = schemas.CreateReportGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createWebhook(input, options)
     return self:invokeOperation(input, {
         name = "CreateWebhook",
-        input_schema = types.CreateWebhookInput,
-        output_schema = types.CreateWebhookOutput,
+        input_schema = schemas.CreateWebhookInput,
+        output_schema = schemas.CreateWebhookOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteBuildBatch(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBuildBatch",
-        input_schema = types.DeleteBuildBatchInput,
-        output_schema = types.DeleteBuildBatchOutput,
+        input_schema = schemas.DeleteBuildBatchInput,
+        output_schema = schemas.DeleteBuildBatchOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteFleet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFleet",
-        input_schema = types.DeleteFleetInput,
-        output_schema = types.DeleteFleetOutput,
+        input_schema = schemas.DeleteFleetInput,
+        output_schema = schemas.DeleteFleetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteProject(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProject",
-        input_schema = types.DeleteProjectInput,
-        output_schema = types.DeleteProjectOutput,
+        input_schema = schemas.DeleteProjectInput,
+        output_schema = schemas.DeleteProjectOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteReport(input, options)
     return self:invokeOperation(input, {
         name = "DeleteReport",
-        input_schema = types.DeleteReportInput,
-        output_schema = types.DeleteReportOutput,
+        input_schema = schemas.DeleteReportInput,
+        output_schema = schemas.DeleteReportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteReportGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteReportGroup",
-        input_schema = types.DeleteReportGroupInput,
-        output_schema = types.DeleteReportGroupOutput,
+        input_schema = schemas.DeleteReportGroupInput,
+        output_schema = schemas.DeleteReportGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourcePolicy",
-        input_schema = types.DeleteResourcePolicyInput,
-        output_schema = types.DeleteResourcePolicyOutput,
+        input_schema = schemas.DeleteResourcePolicyInput,
+        output_schema = schemas.DeleteResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deleteSourceCredentials(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSourceCredentials",
-        input_schema = types.DeleteSourceCredentialsInput,
-        output_schema = types.DeleteSourceCredentialsOutput,
+        input_schema = schemas.DeleteSourceCredentialsInput,
+        output_schema = schemas.DeleteSourceCredentialsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteWebhook(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWebhook",
-        input_schema = types.DeleteWebhookInput,
-        output_schema = types.DeleteWebhookOutput,
+        input_schema = schemas.DeleteWebhookInput,
+        output_schema = schemas.DeleteWebhookOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:describeCodeCoverages(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCodeCoverages",
-        input_schema = types.DescribeCodeCoveragesInput,
-        output_schema = types.DescribeCodeCoveragesOutput,
+        input_schema = schemas.DescribeCodeCoveragesInput,
+        output_schema = schemas.DescribeCodeCoveragesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:describeTestCases(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTestCases",
-        input_schema = types.DescribeTestCasesInput,
-        output_schema = types.DescribeTestCasesOutput,
+        input_schema = schemas.DescribeTestCasesInput,
+        output_schema = schemas.DescribeTestCasesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:getReportGroupTrend(input, options)
     return self:invokeOperation(input, {
         name = "GetReportGroupTrend",
-        input_schema = types.GetReportGroupTrendInput,
-        output_schema = types.GetReportGroupTrendOutput,
+        input_schema = schemas.GetReportGroupTrendInput,
+        output_schema = schemas.GetReportGroupTrendOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcePolicy",
-        input_schema = types.GetResourcePolicyInput,
-        output_schema = types.GetResourcePolicyOutput,
+        input_schema = schemas.GetResourcePolicyInput,
+        output_schema = schemas.GetResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:importSourceCredentials(input, options)
     return self:invokeOperation(input, {
         name = "ImportSourceCredentials",
-        input_schema = types.ImportSourceCredentialsInput,
-        output_schema = types.ImportSourceCredentialsOutput,
+        input_schema = schemas.ImportSourceCredentialsInput,
+        output_schema = schemas.ImportSourceCredentialsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:invalidateProjectCache(input, options)
     return self:invokeOperation(input, {
         name = "InvalidateProjectCache",
-        input_schema = types.InvalidateProjectCacheInput,
-        output_schema = types.InvalidateProjectCacheOutput,
+        input_schema = schemas.InvalidateProjectCacheInput,
+        output_schema = schemas.InvalidateProjectCacheOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listBuildBatches(input, options)
     return self:invokeOperation(input, {
         name = "ListBuildBatches",
-        input_schema = types.ListBuildBatchesInput,
-        output_schema = types.ListBuildBatchesOutput,
+        input_schema = schemas.ListBuildBatchesInput,
+        output_schema = schemas.ListBuildBatchesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listBuildBatchesForProject(input, options)
     return self:invokeOperation(input, {
         name = "ListBuildBatchesForProject",
-        input_schema = types.ListBuildBatchesForProjectInput,
-        output_schema = types.ListBuildBatchesForProjectOutput,
+        input_schema = schemas.ListBuildBatchesForProjectInput,
+        output_schema = schemas.ListBuildBatchesForProjectOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:listBuilds(input, options)
     return self:invokeOperation(input, {
         name = "ListBuilds",
-        input_schema = types.ListBuildsInput,
-        output_schema = types.ListBuildsOutput,
+        input_schema = schemas.ListBuildsInput,
+        output_schema = schemas.ListBuildsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:listBuildsForProject(input, options)
     return self:invokeOperation(input, {
         name = "ListBuildsForProject",
-        input_schema = types.ListBuildsForProjectInput,
-        output_schema = types.ListBuildsForProjectOutput,
+        input_schema = schemas.ListBuildsForProjectInput,
+        output_schema = schemas.ListBuildsForProjectOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:listCommandExecutionsForSandbox(input, options)
     return self:invokeOperation(input, {
         name = "ListCommandExecutionsForSandbox",
-        input_schema = types.ListCommandExecutionsForSandboxInput,
-        output_schema = types.ListCommandExecutionsForSandboxOutput,
+        input_schema = schemas.ListCommandExecutionsForSandboxInput,
+        output_schema = schemas.ListCommandExecutionsForSandboxOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:listCuratedEnvironmentImages(input, options)
     return self:invokeOperation(input, {
         name = "ListCuratedEnvironmentImages",
-        input_schema = types.ListCuratedEnvironmentImagesInput,
-        output_schema = types.ListCuratedEnvironmentImagesOutput,
+        input_schema = schemas.ListCuratedEnvironmentImagesInput,
+        output_schema = schemas.ListCuratedEnvironmentImagesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listFleets(input, options)
     return self:invokeOperation(input, {
         name = "ListFleets",
-        input_schema = types.ListFleetsInput,
-        output_schema = types.ListFleetsOutput,
+        input_schema = schemas.ListFleetsInput,
+        output_schema = schemas.ListFleetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:listProjects(input, options)
     return self:invokeOperation(input, {
         name = "ListProjects",
-        input_schema = types.ListProjectsInput,
-        output_schema = types.ListProjectsOutput,
+        input_schema = schemas.ListProjectsInput,
+        output_schema = schemas.ListProjectsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:listReportGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListReportGroups",
-        input_schema = types.ListReportGroupsInput,
-        output_schema = types.ListReportGroupsOutput,
+        input_schema = schemas.ListReportGroupsInput,
+        output_schema = schemas.ListReportGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:listReports(input, options)
     return self:invokeOperation(input, {
         name = "ListReports",
-        input_schema = types.ListReportsInput,
-        output_schema = types.ListReportsOutput,
+        input_schema = schemas.ListReportsInput,
+        output_schema = schemas.ListReportsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:listReportsForReportGroup(input, options)
     return self:invokeOperation(input, {
         name = "ListReportsForReportGroup",
-        input_schema = types.ListReportsForReportGroupInput,
-        output_schema = types.ListReportsForReportGroupOutput,
+        input_schema = schemas.ListReportsForReportGroupInput,
+        output_schema = schemas.ListReportsForReportGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:listSandboxes(input, options)
     return self:invokeOperation(input, {
         name = "ListSandboxes",
-        input_schema = types.ListSandboxesInput,
-        output_schema = types.ListSandboxesOutput,
+        input_schema = schemas.ListSandboxesInput,
+        output_schema = schemas.ListSandboxesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:listSandboxesForProject(input, options)
     return self:invokeOperation(input, {
         name = "ListSandboxesForProject",
-        input_schema = types.ListSandboxesForProjectInput,
-        output_schema = types.ListSandboxesForProjectOutput,
+        input_schema = schemas.ListSandboxesForProjectInput,
+        output_schema = schemas.ListSandboxesForProjectOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:listSharedProjects(input, options)
     return self:invokeOperation(input, {
         name = "ListSharedProjects",
-        input_schema = types.ListSharedProjectsInput,
-        output_schema = types.ListSharedProjectsOutput,
+        input_schema = schemas.ListSharedProjectsInput,
+        output_schema = schemas.ListSharedProjectsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:listSharedReportGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListSharedReportGroups",
-        input_schema = types.ListSharedReportGroupsInput,
-        output_schema = types.ListSharedReportGroupsOutput,
+        input_schema = schemas.ListSharedReportGroupsInput,
+        output_schema = schemas.ListSharedReportGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:listSourceCredentials(input, options)
     return self:invokeOperation(input, {
         name = "ListSourceCredentials",
-        input_schema = types.ListSourceCredentialsInput,
-        output_schema = types.ListSourceCredentialsOutput,
+        input_schema = schemas.ListSourceCredentialsInput,
+        output_schema = schemas.ListSourceCredentialsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:putResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutResourcePolicy",
-        input_schema = types.PutResourcePolicyInput,
-        output_schema = types.PutResourcePolicyOutput,
+        input_schema = schemas.PutResourcePolicyInput,
+        output_schema = schemas.PutResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:retryBuild(input, options)
     return self:invokeOperation(input, {
         name = "RetryBuild",
-        input_schema = types.RetryBuildInput,
-        output_schema = types.RetryBuildOutput,
+        input_schema = schemas.RetryBuildInput,
+        output_schema = schemas.RetryBuildOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:retryBuildBatch(input, options)
     return self:invokeOperation(input, {
         name = "RetryBuildBatch",
-        input_schema = types.RetryBuildBatchInput,
-        output_schema = types.RetryBuildBatchOutput,
+        input_schema = schemas.RetryBuildBatchInput,
+        output_schema = schemas.RetryBuildBatchOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:startBuild(input, options)
     return self:invokeOperation(input, {
         name = "StartBuild",
-        input_schema = types.StartBuildInput,
-        output_schema = types.StartBuildOutput,
+        input_schema = schemas.StartBuildInput,
+        output_schema = schemas.StartBuildOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:startBuildBatch(input, options)
     return self:invokeOperation(input, {
         name = "StartBuildBatch",
-        input_schema = types.StartBuildBatchInput,
-        output_schema = types.StartBuildBatchOutput,
+        input_schema = schemas.StartBuildBatchInput,
+        output_schema = schemas.StartBuildBatchOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:startCommandExecution(input, options)
     return self:invokeOperation(input, {
         name = "StartCommandExecution",
-        input_schema = types.StartCommandExecutionInput,
-        output_schema = types.StartCommandExecutionOutput,
+        input_schema = schemas.StartCommandExecutionInput,
+        output_schema = schemas.StartCommandExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:startSandbox(input, options)
     return self:invokeOperation(input, {
         name = "StartSandbox",
-        input_schema = types.StartSandboxInput,
-        output_schema = types.StartSandboxOutput,
+        input_schema = schemas.StartSandboxInput,
+        output_schema = schemas.StartSandboxOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:startSandboxConnection(input, options)
     return self:invokeOperation(input, {
         name = "StartSandboxConnection",
-        input_schema = types.StartSandboxConnectionInput,
-        output_schema = types.StartSandboxConnectionOutput,
+        input_schema = schemas.StartSandboxConnectionInput,
+        output_schema = schemas.StartSandboxConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:stopBuild(input, options)
     return self:invokeOperation(input, {
         name = "StopBuild",
-        input_schema = types.StopBuildInput,
-        output_schema = types.StopBuildOutput,
+        input_schema = schemas.StopBuildInput,
+        output_schema = schemas.StopBuildOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:stopBuildBatch(input, options)
     return self:invokeOperation(input, {
         name = "StopBuildBatch",
-        input_schema = types.StopBuildBatchInput,
-        output_schema = types.StopBuildBatchOutput,
+        input_schema = schemas.StopBuildBatchInput,
+        output_schema = schemas.StopBuildBatchOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:stopSandbox(input, options)
     return self:invokeOperation(input, {
         name = "StopSandbox",
-        input_schema = types.StopSandboxInput,
-        output_schema = types.StopSandboxOutput,
+        input_schema = schemas.StopSandboxInput,
+        output_schema = schemas.StopSandboxOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:updateFleet(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFleet",
-        input_schema = types.UpdateFleetInput,
-        output_schema = types.UpdateFleetOutput,
+        input_schema = schemas.UpdateFleetInput,
+        output_schema = schemas.UpdateFleetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:updateProject(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProject",
-        input_schema = types.UpdateProjectInput,
-        output_schema = types.UpdateProjectOutput,
+        input_schema = schemas.UpdateProjectInput,
+        output_schema = schemas.UpdateProjectOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:updateProjectVisibility(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProjectVisibility",
-        input_schema = types.UpdateProjectVisibilityInput,
-        output_schema = types.UpdateProjectVisibilityOutput,
+        input_schema = schemas.UpdateProjectVisibilityInput,
+        output_schema = schemas.UpdateProjectVisibilityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:updateReportGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateReportGroup",
-        input_schema = types.UpdateReportGroupInput,
-        output_schema = types.UpdateReportGroupOutput,
+        input_schema = schemas.UpdateReportGroupInput,
+        output_schema = schemas.UpdateReportGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:updateWebhook(input, options)
     return self:invokeOperation(input, {
         name = "UpdateWebhook",
-        input_schema = types.UpdateWebhookInput,
-        output_schema = types.UpdateWebhookOutput,
+        input_schema = schemas.UpdateWebhookInput,
+        output_schema = schemas.UpdateWebhookOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

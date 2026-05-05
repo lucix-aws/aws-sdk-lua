@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("outposts.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("outposts.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("outposts.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:cancelCapacityTask(input, options)
     return self:invokeOperation(input, {
         name = "CancelCapacityTask",
-        input_schema = types.CancelCapacityTaskInput,
-        output_schema = types.CancelCapacityTaskOutput,
+        input_schema = schemas.CancelCapacityTaskInput,
+        output_schema = schemas.CancelCapacityTaskOutput,
         http_method = "POST",
         http_path = "/outposts/{OutpostIdentifier}/capacity/{CapacityTaskId}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:cancelOrder(input, options)
     return self:invokeOperation(input, {
         name = "CancelOrder",
-        input_schema = types.CancelOrderInput,
-        output_schema = types.CancelOrderOutput,
+        input_schema = schemas.CancelOrderInput,
+        output_schema = schemas.CancelOrderOutput,
         http_method = "POST",
         http_path = "/orders/{OrderId}/cancel",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createOrder(input, options)
     return self:invokeOperation(input, {
         name = "CreateOrder",
-        input_schema = types.CreateOrderInput,
-        output_schema = types.CreateOrderOutput,
+        input_schema = schemas.CreateOrderInput,
+        output_schema = schemas.CreateOrderOutput,
         http_method = "POST",
         http_path = "/orders",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createOutpost(input, options)
     return self:invokeOperation(input, {
         name = "CreateOutpost",
-        input_schema = types.CreateOutpostInput,
-        output_schema = types.CreateOutpostOutput,
+        input_schema = schemas.CreateOutpostInput,
+        output_schema = schemas.CreateOutpostOutput,
         http_method = "POST",
         http_path = "/outposts",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createRenewal(input, options)
     return self:invokeOperation(input, {
         name = "CreateRenewal",
-        input_schema = types.CreateRenewalInput,
-        output_schema = types.CreateRenewalOutput,
+        input_schema = schemas.CreateRenewalInput,
+        output_schema = schemas.CreateRenewalOutput,
         http_method = "POST",
         http_path = "/renewals",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createSite(input, options)
     return self:invokeOperation(input, {
         name = "CreateSite",
-        input_schema = types.CreateSiteInput,
-        output_schema = types.CreateSiteOutput,
+        input_schema = schemas.CreateSiteInput,
+        output_schema = schemas.CreateSiteOutput,
         http_method = "POST",
         http_path = "/sites",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteOutpost(input, options)
     return self:invokeOperation(input, {
         name = "DeleteOutpost",
-        input_schema = types.DeleteOutpostInput,
-        output_schema = types.DeleteOutpostOutput,
+        input_schema = schemas.DeleteOutpostInput,
+        output_schema = schemas.DeleteOutpostOutput,
         http_method = "DELETE",
         http_path = "/outposts/{OutpostId}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteSite(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSite",
-        input_schema = types.DeleteSiteInput,
-        output_schema = types.DeleteSiteOutput,
+        input_schema = schemas.DeleteSiteInput,
+        output_schema = schemas.DeleteSiteOutput,
         http_method = "DELETE",
         http_path = "/sites/{SiteId}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getCapacityTask(input, options)
     return self:invokeOperation(input, {
         name = "GetCapacityTask",
-        input_schema = types.GetCapacityTaskInput,
-        output_schema = types.GetCapacityTaskOutput,
+        input_schema = schemas.GetCapacityTaskInput,
+        output_schema = schemas.GetCapacityTaskOutput,
         http_method = "GET",
         http_path = "/outposts/{OutpostIdentifier}/capacity/{CapacityTaskId}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getCatalogItem(input, options)
     return self:invokeOperation(input, {
         name = "GetCatalogItem",
-        input_schema = types.GetCatalogItemInput,
-        output_schema = types.GetCatalogItemOutput,
+        input_schema = schemas.GetCatalogItemInput,
+        output_schema = schemas.GetCatalogItemOutput,
         http_method = "GET",
         http_path = "/catalog/item/{CatalogItemId}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getConnection(input, options)
     return self:invokeOperation(input, {
         name = "GetConnection",
-        input_schema = types.GetConnectionInput,
-        output_schema = types.GetConnectionOutput,
+        input_schema = schemas.GetConnectionInput,
+        output_schema = schemas.GetConnectionOutput,
         http_method = "GET",
         http_path = "/connections/{ConnectionId}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getOrder(input, options)
     return self:invokeOperation(input, {
         name = "GetOrder",
-        input_schema = types.GetOrderInput,
-        output_schema = types.GetOrderOutput,
+        input_schema = schemas.GetOrderInput,
+        output_schema = schemas.GetOrderOutput,
         http_method = "GET",
         http_path = "/orders/{OrderId}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getOutpost(input, options)
     return self:invokeOperation(input, {
         name = "GetOutpost",
-        input_schema = types.GetOutpostInput,
-        output_schema = types.GetOutpostOutput,
+        input_schema = schemas.GetOutpostInput,
+        output_schema = schemas.GetOutpostOutput,
         http_method = "GET",
         http_path = "/outposts/{OutpostId}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getOutpostBillingInformation(input, options)
     return self:invokeOperation(input, {
         name = "GetOutpostBillingInformation",
-        input_schema = types.GetOutpostBillingInformationInput,
-        output_schema = types.GetOutpostBillingInformationOutput,
+        input_schema = schemas.GetOutpostBillingInformationInput,
+        output_schema = schemas.GetOutpostBillingInformationOutput,
         http_method = "GET",
         http_path = "/outpost/{OutpostIdentifier}/billing-information",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getOutpostInstanceTypes(input, options)
     return self:invokeOperation(input, {
         name = "GetOutpostInstanceTypes",
-        input_schema = types.GetOutpostInstanceTypesInput,
-        output_schema = types.GetOutpostInstanceTypesOutput,
+        input_schema = schemas.GetOutpostInstanceTypesInput,
+        output_schema = schemas.GetOutpostInstanceTypesOutput,
         http_method = "GET",
         http_path = "/outposts/{OutpostId}/instanceTypes",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getOutpostSupportedInstanceTypes(input, options)
     return self:invokeOperation(input, {
         name = "GetOutpostSupportedInstanceTypes",
-        input_schema = types.GetOutpostSupportedInstanceTypesInput,
-        output_schema = types.GetOutpostSupportedInstanceTypesOutput,
+        input_schema = schemas.GetOutpostSupportedInstanceTypesInput,
+        output_schema = schemas.GetOutpostSupportedInstanceTypesOutput,
         http_method = "GET",
         http_path = "/outposts/{OutpostIdentifier}/supportedInstanceTypes",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getRenewalPricing(input, options)
     return self:invokeOperation(input, {
         name = "GetRenewalPricing",
-        input_schema = types.GetRenewalPricingInput,
-        output_schema = types.GetRenewalPricingOutput,
+        input_schema = schemas.GetRenewalPricingInput,
+        output_schema = schemas.GetRenewalPricingOutput,
         http_method = "GET",
         http_path = "/outpost/{OutpostIdentifier}/renewal-pricing",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getSite(input, options)
     return self:invokeOperation(input, {
         name = "GetSite",
-        input_schema = types.GetSiteInput,
-        output_schema = types.GetSiteOutput,
+        input_schema = schemas.GetSiteInput,
+        output_schema = schemas.GetSiteOutput,
         http_method = "GET",
         http_path = "/sites/{SiteId}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getSiteAddress(input, options)
     return self:invokeOperation(input, {
         name = "GetSiteAddress",
-        input_schema = types.GetSiteAddressInput,
-        output_schema = types.GetSiteAddressOutput,
+        input_schema = schemas.GetSiteAddressInput,
+        output_schema = schemas.GetSiteAddressOutput,
         http_method = "GET",
         http_path = "/sites/{SiteId}/address",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listAssetInstances(input, options)
     return self:invokeOperation(input, {
         name = "ListAssetInstances",
-        input_schema = types.ListAssetInstancesInput,
-        output_schema = types.ListAssetInstancesOutput,
+        input_schema = schemas.ListAssetInstancesInput,
+        output_schema = schemas.ListAssetInstancesOutput,
         http_method = "GET",
         http_path = "/outposts/{OutpostIdentifier}/assetInstances",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listAssets(input, options)
     return self:invokeOperation(input, {
         name = "ListAssets",
-        input_schema = types.ListAssetsInput,
-        output_schema = types.ListAssetsOutput,
+        input_schema = schemas.ListAssetsInput,
+        output_schema = schemas.ListAssetsOutput,
         http_method = "GET",
         http_path = "/outposts/{OutpostIdentifier}/assets",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listBlockingInstancesForCapacityTask(input, options)
     return self:invokeOperation(input, {
         name = "ListBlockingInstancesForCapacityTask",
-        input_schema = types.ListBlockingInstancesForCapacityTaskInput,
-        output_schema = types.ListBlockingInstancesForCapacityTaskOutput,
+        input_schema = schemas.ListBlockingInstancesForCapacityTaskInput,
+        output_schema = schemas.ListBlockingInstancesForCapacityTaskOutput,
         http_method = "GET",
         http_path = "/outposts/{OutpostIdentifier}/capacity/{CapacityTaskId}/blockingInstances",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listCapacityTasks(input, options)
     return self:invokeOperation(input, {
         name = "ListCapacityTasks",
-        input_schema = types.ListCapacityTasksInput,
-        output_schema = types.ListCapacityTasksOutput,
+        input_schema = schemas.ListCapacityTasksInput,
+        output_schema = schemas.ListCapacityTasksOutput,
         http_method = "GET",
         http_path = "/capacity/tasks",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listCatalogItems(input, options)
     return self:invokeOperation(input, {
         name = "ListCatalogItems",
-        input_schema = types.ListCatalogItemsInput,
-        output_schema = types.ListCatalogItemsOutput,
+        input_schema = schemas.ListCatalogItemsInput,
+        output_schema = schemas.ListCatalogItemsOutput,
         http_method = "GET",
         http_path = "/catalog/items",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listOrders(input, options)
     return self:invokeOperation(input, {
         name = "ListOrders",
-        input_schema = types.ListOrdersInput,
-        output_schema = types.ListOrdersOutput,
+        input_schema = schemas.ListOrdersInput,
+        output_schema = schemas.ListOrdersOutput,
         http_method = "GET",
         http_path = "/list-orders",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listOutposts(input, options)
     return self:invokeOperation(input, {
         name = "ListOutposts",
-        input_schema = types.ListOutpostsInput,
-        output_schema = types.ListOutpostsOutput,
+        input_schema = schemas.ListOutpostsInput,
+        output_schema = schemas.ListOutpostsOutput,
         http_method = "GET",
         http_path = "/outposts",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listSites(input, options)
     return self:invokeOperation(input, {
         name = "ListSites",
-        input_schema = types.ListSitesInput,
-        output_schema = types.ListSitesOutput,
+        input_schema = schemas.ListSitesInput,
+        output_schema = schemas.ListSitesOutput,
         http_method = "GET",
         http_path = "/sites",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:startCapacityTask(input, options)
     return self:invokeOperation(input, {
         name = "StartCapacityTask",
-        input_schema = types.StartCapacityTaskInput,
-        output_schema = types.StartCapacityTaskOutput,
+        input_schema = schemas.StartCapacityTaskInput,
+        output_schema = schemas.StartCapacityTaskOutput,
         http_method = "POST",
         http_path = "/outposts/{OutpostIdentifier}/capacity",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:startConnection(input, options)
     return self:invokeOperation(input, {
         name = "StartConnection",
-        input_schema = types.StartConnectionInput,
-        output_schema = types.StartConnectionOutput,
+        input_schema = schemas.StartConnectionInput,
+        output_schema = schemas.StartConnectionOutput,
         http_method = "POST",
         http_path = "/connections",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:startOutpostDecommission(input, options)
     return self:invokeOperation(input, {
         name = "StartOutpostDecommission",
-        input_schema = types.StartOutpostDecommissionInput,
-        output_schema = types.StartOutpostDecommissionOutput,
+        input_schema = schemas.StartOutpostDecommissionInput,
+        output_schema = schemas.StartOutpostDecommissionOutput,
         http_method = "POST",
         http_path = "/outposts/{OutpostIdentifier}/decommission",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:updateOutpost(input, options)
     return self:invokeOperation(input, {
         name = "UpdateOutpost",
-        input_schema = types.UpdateOutpostInput,
-        output_schema = types.UpdateOutpostOutput,
+        input_schema = schemas.UpdateOutpostInput,
+        output_schema = schemas.UpdateOutpostOutput,
         http_method = "PATCH",
         http_path = "/outposts/{OutpostId}",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:updateSite(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSite",
-        input_schema = types.UpdateSiteInput,
-        output_schema = types.UpdateSiteOutput,
+        input_schema = schemas.UpdateSiteInput,
+        output_schema = schemas.UpdateSiteOutput,
         http_method = "PATCH",
         http_path = "/sites/{SiteId}",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:updateSiteAddress(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSiteAddress",
-        input_schema = types.UpdateSiteAddressInput,
-        output_schema = types.UpdateSiteAddressOutput,
+        input_schema = schemas.UpdateSiteAddressInput,
+        output_schema = schemas.UpdateSiteAddressOutput,
         http_method = "PUT",
         http_path = "/sites/{SiteId}/address",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:updateSiteRackPhysicalProperties(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSiteRackPhysicalProperties",
-        input_schema = types.UpdateSiteRackPhysicalPropertiesInput,
-        output_schema = types.UpdateSiteRackPhysicalPropertiesOutput,
+        input_schema = schemas.UpdateSiteRackPhysicalPropertiesInput,
+        output_schema = schemas.UpdateSiteRackPhysicalPropertiesOutput,
         http_method = "PATCH",
         http_path = "/sites/{SiteId}/rackPhysicalProperties",
         effective_auth_schemes = {

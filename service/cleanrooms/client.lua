@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("cleanrooms.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("cleanrooms.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("cleanrooms.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchGetCollaborationAnalysisTemplate(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetCollaborationAnalysisTemplate",
-        input_schema = types.BatchGetCollaborationAnalysisTemplateInput,
-        output_schema = types.BatchGetCollaborationAnalysisTemplateOutput,
+        input_schema = schemas.BatchGetCollaborationAnalysisTemplateInput,
+        output_schema = schemas.BatchGetCollaborationAnalysisTemplateOutput,
         http_method = "POST",
         http_path = "/collaborations/{collaborationIdentifier}/batch-analysistemplates",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchGetSchema(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetSchema",
-        input_schema = types.BatchGetSchemaInput,
-        output_schema = types.BatchGetSchemaOutput,
+        input_schema = schemas.BatchGetSchemaInput,
+        output_schema = schemas.BatchGetSchemaOutput,
         http_method = "POST",
         http_path = "/collaborations/{collaborationIdentifier}/batch-schema",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchGetSchemaAnalysisRule(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetSchemaAnalysisRule",
-        input_schema = types.BatchGetSchemaAnalysisRuleInput,
-        output_schema = types.BatchGetSchemaAnalysisRuleOutput,
+        input_schema = schemas.BatchGetSchemaAnalysisRuleInput,
+        output_schema = schemas.BatchGetSchemaAnalysisRuleOutput,
         http_method = "POST",
         http_path = "/collaborations/{collaborationIdentifier}/batch-schema-analysis-rule",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createAnalysisTemplate(input, options)
     return self:invokeOperation(input, {
         name = "CreateAnalysisTemplate",
-        input_schema = types.CreateAnalysisTemplateInput,
-        output_schema = types.CreateAnalysisTemplateOutput,
+        input_schema = schemas.CreateAnalysisTemplateInput,
+        output_schema = schemas.CreateAnalysisTemplateOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/analysistemplates",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createCollaboration(input, options)
     return self:invokeOperation(input, {
         name = "CreateCollaboration",
-        input_schema = types.CreateCollaborationInput,
-        output_schema = types.CreateCollaborationOutput,
+        input_schema = schemas.CreateCollaborationInput,
+        output_schema = schemas.CreateCollaborationOutput,
         http_method = "POST",
         http_path = "/collaborations",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createCollaborationChangeRequest(input, options)
     return self:invokeOperation(input, {
         name = "CreateCollaborationChangeRequest",
-        input_schema = types.CreateCollaborationChangeRequestInput,
-        output_schema = types.CreateCollaborationChangeRequestOutput,
+        input_schema = schemas.CreateCollaborationChangeRequestInput,
+        output_schema = schemas.CreateCollaborationChangeRequestOutput,
         http_method = "POST",
         http_path = "/collaborations/{collaborationIdentifier}/changeRequests",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createConfiguredAudienceModelAssociation(input, options)
     return self:invokeOperation(input, {
         name = "CreateConfiguredAudienceModelAssociation",
-        input_schema = types.CreateConfiguredAudienceModelAssociationInput,
-        output_schema = types.CreateConfiguredAudienceModelAssociationOutput,
+        input_schema = schemas.CreateConfiguredAudienceModelAssociationInput,
+        output_schema = schemas.CreateConfiguredAudienceModelAssociationOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createConfiguredTable(input, options)
     return self:invokeOperation(input, {
         name = "CreateConfiguredTable",
-        input_schema = types.CreateConfiguredTableInput,
-        output_schema = types.CreateConfiguredTableOutput,
+        input_schema = schemas.CreateConfiguredTableInput,
+        output_schema = schemas.CreateConfiguredTableOutput,
         http_method = "POST",
         http_path = "/configuredTables",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createConfiguredTableAnalysisRule(input, options)
     return self:invokeOperation(input, {
         name = "CreateConfiguredTableAnalysisRule",
-        input_schema = types.CreateConfiguredTableAnalysisRuleInput,
-        output_schema = types.CreateConfiguredTableAnalysisRuleOutput,
+        input_schema = schemas.CreateConfiguredTableAnalysisRuleInput,
+        output_schema = schemas.CreateConfiguredTableAnalysisRuleOutput,
         http_method = "POST",
         http_path = "/configuredTables/{configuredTableIdentifier}/analysisRule",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createConfiguredTableAssociation(input, options)
     return self:invokeOperation(input, {
         name = "CreateConfiguredTableAssociation",
-        input_schema = types.CreateConfiguredTableAssociationInput,
-        output_schema = types.CreateConfiguredTableAssociationOutput,
+        input_schema = schemas.CreateConfiguredTableAssociationInput,
+        output_schema = schemas.CreateConfiguredTableAssociationOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createConfiguredTableAssociationAnalysisRule(input, options)
     return self:invokeOperation(input, {
         name = "CreateConfiguredTableAssociationAnalysisRule",
-        input_schema = types.CreateConfiguredTableAssociationAnalysisRuleInput,
-        output_schema = types.CreateConfiguredTableAssociationAnalysisRuleOutput,
+        input_schema = schemas.CreateConfiguredTableAssociationAnalysisRuleInput,
+        output_schema = schemas.CreateConfiguredTableAssociationAnalysisRuleOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}/analysisRule",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createIdMappingTable(input, options)
     return self:invokeOperation(input, {
         name = "CreateIdMappingTable",
-        input_schema = types.CreateIdMappingTableInput,
-        output_schema = types.CreateIdMappingTableOutput,
+        input_schema = schemas.CreateIdMappingTableInput,
+        output_schema = schemas.CreateIdMappingTableOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/idmappingtables",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createIdNamespaceAssociation(input, options)
     return self:invokeOperation(input, {
         name = "CreateIdNamespaceAssociation",
-        input_schema = types.CreateIdNamespaceAssociationInput,
-        output_schema = types.CreateIdNamespaceAssociationOutput,
+        input_schema = schemas.CreateIdNamespaceAssociationInput,
+        output_schema = schemas.CreateIdNamespaceAssociationOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/idnamespaceassociations",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:createMembership(input, options)
     return self:invokeOperation(input, {
         name = "CreateMembership",
-        input_schema = types.CreateMembershipInput,
-        output_schema = types.CreateMembershipOutput,
+        input_schema = schemas.CreateMembershipInput,
+        output_schema = schemas.CreateMembershipOutput,
         http_method = "POST",
         http_path = "/memberships",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:createPrivacyBudgetTemplate(input, options)
     return self:invokeOperation(input, {
         name = "CreatePrivacyBudgetTemplate",
-        input_schema = types.CreatePrivacyBudgetTemplateInput,
-        output_schema = types.CreatePrivacyBudgetTemplateOutput,
+        input_schema = schemas.CreatePrivacyBudgetTemplateInput,
+        output_schema = schemas.CreatePrivacyBudgetTemplateOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/privacybudgettemplates",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteAnalysisTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAnalysisTemplate",
-        input_schema = types.DeleteAnalysisTemplateInput,
-        output_schema = types.DeleteAnalysisTemplateOutput,
+        input_schema = schemas.DeleteAnalysisTemplateInput,
+        output_schema = schemas.DeleteAnalysisTemplateOutput,
         http_method = "DELETE",
         http_path = "/memberships/{membershipIdentifier}/analysistemplates/{analysisTemplateIdentifier}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteCollaboration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCollaboration",
-        input_schema = types.DeleteCollaborationInput,
-        output_schema = types.DeleteCollaborationOutput,
+        input_schema = schemas.DeleteCollaborationInput,
+        output_schema = schemas.DeleteCollaborationOutput,
         http_method = "DELETE",
         http_path = "/collaborations/{collaborationIdentifier}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteConfiguredAudienceModelAssociation(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfiguredAudienceModelAssociation",
-        input_schema = types.DeleteConfiguredAudienceModelAssociationInput,
-        output_schema = types.DeleteConfiguredAudienceModelAssociationOutput,
+        input_schema = schemas.DeleteConfiguredAudienceModelAssociationInput,
+        output_schema = schemas.DeleteConfiguredAudienceModelAssociationOutput,
         http_method = "DELETE",
         http_path = "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations/{configuredAudienceModelAssociationIdentifier}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteConfiguredTable(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfiguredTable",
-        input_schema = types.DeleteConfiguredTableInput,
-        output_schema = types.DeleteConfiguredTableOutput,
+        input_schema = schemas.DeleteConfiguredTableInput,
+        output_schema = schemas.DeleteConfiguredTableOutput,
         http_method = "DELETE",
         http_path = "/configuredTables/{configuredTableIdentifier}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deleteConfiguredTableAnalysisRule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfiguredTableAnalysisRule",
-        input_schema = types.DeleteConfiguredTableAnalysisRuleInput,
-        output_schema = types.DeleteConfiguredTableAnalysisRuleOutput,
+        input_schema = schemas.DeleteConfiguredTableAnalysisRuleInput,
+        output_schema = schemas.DeleteConfiguredTableAnalysisRuleOutput,
         http_method = "DELETE",
         http_path = "/configuredTables/{configuredTableIdentifier}/analysisRule/{analysisRuleType}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteConfiguredTableAssociation(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfiguredTableAssociation",
-        input_schema = types.DeleteConfiguredTableAssociationInput,
-        output_schema = types.DeleteConfiguredTableAssociationOutput,
+        input_schema = schemas.DeleteConfiguredTableAssociationInput,
+        output_schema = schemas.DeleteConfiguredTableAssociationOutput,
         http_method = "DELETE",
         http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:deleteConfiguredTableAssociationAnalysisRule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfiguredTableAssociationAnalysisRule",
-        input_schema = types.DeleteConfiguredTableAssociationAnalysisRuleInput,
-        output_schema = types.DeleteConfiguredTableAssociationAnalysisRuleOutput,
+        input_schema = schemas.DeleteConfiguredTableAssociationAnalysisRuleInput,
+        output_schema = schemas.DeleteConfiguredTableAssociationAnalysisRuleOutput,
         http_method = "DELETE",
         http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}/analysisRule/{analysisRuleType}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:deleteIdMappingTable(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIdMappingTable",
-        input_schema = types.DeleteIdMappingTableInput,
-        output_schema = types.DeleteIdMappingTableOutput,
+        input_schema = schemas.DeleteIdMappingTableInput,
+        output_schema = schemas.DeleteIdMappingTableOutput,
         http_method = "DELETE",
         http_path = "/memberships/{membershipIdentifier}/idmappingtables/{idMappingTableIdentifier}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:deleteIdNamespaceAssociation(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIdNamespaceAssociation",
-        input_schema = types.DeleteIdNamespaceAssociationInput,
-        output_schema = types.DeleteIdNamespaceAssociationOutput,
+        input_schema = schemas.DeleteIdNamespaceAssociationInput,
+        output_schema = schemas.DeleteIdNamespaceAssociationOutput,
         http_method = "DELETE",
         http_path = "/memberships/{membershipIdentifier}/idnamespaceassociations/{idNamespaceAssociationIdentifier}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:deleteMember(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMember",
-        input_schema = types.DeleteMemberInput,
-        output_schema = types.DeleteMemberOutput,
+        input_schema = schemas.DeleteMemberInput,
+        output_schema = schemas.DeleteMemberOutput,
         http_method = "DELETE",
         http_path = "/collaborations/{collaborationIdentifier}/member/{accountId}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:deleteMembership(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMembership",
-        input_schema = types.DeleteMembershipInput,
-        output_schema = types.DeleteMembershipOutput,
+        input_schema = schemas.DeleteMembershipInput,
+        output_schema = schemas.DeleteMembershipOutput,
         http_method = "DELETE",
         http_path = "/memberships/{membershipIdentifier}",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:deletePrivacyBudgetTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DeletePrivacyBudgetTemplate",
-        input_schema = types.DeletePrivacyBudgetTemplateInput,
-        output_schema = types.DeletePrivacyBudgetTemplateOutput,
+        input_schema = schemas.DeletePrivacyBudgetTemplateInput,
+        output_schema = schemas.DeletePrivacyBudgetTemplateOutput,
         http_method = "DELETE",
         http_path = "/memberships/{membershipIdentifier}/privacybudgettemplates/{privacyBudgetTemplateIdentifier}",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:getAnalysisTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetAnalysisTemplate",
-        input_schema = types.GetAnalysisTemplateInput,
-        output_schema = types.GetAnalysisTemplateOutput,
+        input_schema = schemas.GetAnalysisTemplateInput,
+        output_schema = schemas.GetAnalysisTemplateOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/analysistemplates/{analysisTemplateIdentifier}",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:getCollaboration(input, options)
     return self:invokeOperation(input, {
         name = "GetCollaboration",
-        input_schema = types.GetCollaborationInput,
-        output_schema = types.GetCollaborationOutput,
+        input_schema = schemas.GetCollaborationInput,
+        output_schema = schemas.GetCollaborationOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:getCollaborationAnalysisTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetCollaborationAnalysisTemplate",
-        input_schema = types.GetCollaborationAnalysisTemplateInput,
-        output_schema = types.GetCollaborationAnalysisTemplateOutput,
+        input_schema = schemas.GetCollaborationAnalysisTemplateInput,
+        output_schema = schemas.GetCollaborationAnalysisTemplateOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/analysistemplates/{analysisTemplateArn}",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:getCollaborationChangeRequest(input, options)
     return self:invokeOperation(input, {
         name = "GetCollaborationChangeRequest",
-        input_schema = types.GetCollaborationChangeRequestInput,
-        output_schema = types.GetCollaborationChangeRequestOutput,
+        input_schema = schemas.GetCollaborationChangeRequestInput,
+        output_schema = schemas.GetCollaborationChangeRequestOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/changeRequests/{changeRequestIdentifier}",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:getCollaborationConfiguredAudienceModelAssociation(input, options)
     return self:invokeOperation(input, {
         name = "GetCollaborationConfiguredAudienceModelAssociation",
-        input_schema = types.GetCollaborationConfiguredAudienceModelAssociationInput,
-        output_schema = types.GetCollaborationConfiguredAudienceModelAssociationOutput,
+        input_schema = schemas.GetCollaborationConfiguredAudienceModelAssociationInput,
+        output_schema = schemas.GetCollaborationConfiguredAudienceModelAssociationOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/configuredaudiencemodelassociations/{configuredAudienceModelAssociationIdentifier}",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:getCollaborationIdNamespaceAssociation(input, options)
     return self:invokeOperation(input, {
         name = "GetCollaborationIdNamespaceAssociation",
-        input_schema = types.GetCollaborationIdNamespaceAssociationInput,
-        output_schema = types.GetCollaborationIdNamespaceAssociationOutput,
+        input_schema = schemas.GetCollaborationIdNamespaceAssociationInput,
+        output_schema = schemas.GetCollaborationIdNamespaceAssociationOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/idnamespaceassociations/{idNamespaceAssociationIdentifier}",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:getCollaborationPrivacyBudgetTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetCollaborationPrivacyBudgetTemplate",
-        input_schema = types.GetCollaborationPrivacyBudgetTemplateInput,
-        output_schema = types.GetCollaborationPrivacyBudgetTemplateOutput,
+        input_schema = schemas.GetCollaborationPrivacyBudgetTemplateInput,
+        output_schema = schemas.GetCollaborationPrivacyBudgetTemplateOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/privacybudgettemplates/{privacyBudgetTemplateIdentifier}",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:getConfiguredAudienceModelAssociation(input, options)
     return self:invokeOperation(input, {
         name = "GetConfiguredAudienceModelAssociation",
-        input_schema = types.GetConfiguredAudienceModelAssociationInput,
-        output_schema = types.GetConfiguredAudienceModelAssociationOutput,
+        input_schema = schemas.GetConfiguredAudienceModelAssociationInput,
+        output_schema = schemas.GetConfiguredAudienceModelAssociationOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations/{configuredAudienceModelAssociationIdentifier}",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:getConfiguredTable(input, options)
     return self:invokeOperation(input, {
         name = "GetConfiguredTable",
-        input_schema = types.GetConfiguredTableInput,
-        output_schema = types.GetConfiguredTableOutput,
+        input_schema = schemas.GetConfiguredTableInput,
+        output_schema = schemas.GetConfiguredTableOutput,
         http_method = "GET",
         http_path = "/configuredTables/{configuredTableIdentifier}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:getConfiguredTableAnalysisRule(input, options)
     return self:invokeOperation(input, {
         name = "GetConfiguredTableAnalysisRule",
-        input_schema = types.GetConfiguredTableAnalysisRuleInput,
-        output_schema = types.GetConfiguredTableAnalysisRuleOutput,
+        input_schema = schemas.GetConfiguredTableAnalysisRuleInput,
+        output_schema = schemas.GetConfiguredTableAnalysisRuleOutput,
         http_method = "GET",
         http_path = "/configuredTables/{configuredTableIdentifier}/analysisRule/{analysisRuleType}",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:getConfiguredTableAssociation(input, options)
     return self:invokeOperation(input, {
         name = "GetConfiguredTableAssociation",
-        input_schema = types.GetConfiguredTableAssociationInput,
-        output_schema = types.GetConfiguredTableAssociationOutput,
+        input_schema = schemas.GetConfiguredTableAssociationInput,
+        output_schema = schemas.GetConfiguredTableAssociationOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:getConfiguredTableAssociationAnalysisRule(input, options)
     return self:invokeOperation(input, {
         name = "GetConfiguredTableAssociationAnalysisRule",
-        input_schema = types.GetConfiguredTableAssociationAnalysisRuleInput,
-        output_schema = types.GetConfiguredTableAssociationAnalysisRuleOutput,
+        input_schema = schemas.GetConfiguredTableAssociationAnalysisRuleInput,
+        output_schema = schemas.GetConfiguredTableAssociationAnalysisRuleOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}/analysisRule/{analysisRuleType}",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:getIdMappingTable(input, options)
     return self:invokeOperation(input, {
         name = "GetIdMappingTable",
-        input_schema = types.GetIdMappingTableInput,
-        output_schema = types.GetIdMappingTableOutput,
+        input_schema = schemas.GetIdMappingTableInput,
+        output_schema = schemas.GetIdMappingTableOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/idmappingtables/{idMappingTableIdentifier}",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:getIdNamespaceAssociation(input, options)
     return self:invokeOperation(input, {
         name = "GetIdNamespaceAssociation",
-        input_schema = types.GetIdNamespaceAssociationInput,
-        output_schema = types.GetIdNamespaceAssociationOutput,
+        input_schema = schemas.GetIdNamespaceAssociationInput,
+        output_schema = schemas.GetIdNamespaceAssociationOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/idnamespaceassociations/{idNamespaceAssociationIdentifier}",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:getMembership(input, options)
     return self:invokeOperation(input, {
         name = "GetMembership",
-        input_schema = types.GetMembershipInput,
-        output_schema = types.GetMembershipOutput,
+        input_schema = schemas.GetMembershipInput,
+        output_schema = schemas.GetMembershipOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:getPrivacyBudgetTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetPrivacyBudgetTemplate",
-        input_schema = types.GetPrivacyBudgetTemplateInput,
-        output_schema = types.GetPrivacyBudgetTemplateOutput,
+        input_schema = schemas.GetPrivacyBudgetTemplateInput,
+        output_schema = schemas.GetPrivacyBudgetTemplateOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/privacybudgettemplates/{privacyBudgetTemplateIdentifier}",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:getProtectedJob(input, options)
     return self:invokeOperation(input, {
         name = "GetProtectedJob",
-        input_schema = types.GetProtectedJobInput,
-        output_schema = types.GetProtectedJobOutput,
+        input_schema = schemas.GetProtectedJobInput,
+        output_schema = schemas.GetProtectedJobOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/protectedJobs/{protectedJobIdentifier}",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:getProtectedQuery(input, options)
     return self:invokeOperation(input, {
         name = "GetProtectedQuery",
-        input_schema = types.GetProtectedQueryInput,
-        output_schema = types.GetProtectedQueryOutput,
+        input_schema = schemas.GetProtectedQueryInput,
+        output_schema = schemas.GetProtectedQueryOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/protectedQueries/{protectedQueryIdentifier}",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:getSchema(input, options)
     return self:invokeOperation(input, {
         name = "GetSchema",
-        input_schema = types.GetSchemaInput,
-        output_schema = types.GetSchemaOutput,
+        input_schema = schemas.GetSchemaInput,
+        output_schema = schemas.GetSchemaOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/schemas/{name}",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:getSchemaAnalysisRule(input, options)
     return self:invokeOperation(input, {
         name = "GetSchemaAnalysisRule",
-        input_schema = types.GetSchemaAnalysisRuleInput,
-        output_schema = types.GetSchemaAnalysisRuleOutput,
+        input_schema = schemas.GetSchemaAnalysisRuleInput,
+        output_schema = schemas.GetSchemaAnalysisRuleOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/schemas/{name}/analysisRule/{type}",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:listAnalysisTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListAnalysisTemplates",
-        input_schema = types.ListAnalysisTemplatesInput,
-        output_schema = types.ListAnalysisTemplatesOutput,
+        input_schema = schemas.ListAnalysisTemplatesInput,
+        output_schema = schemas.ListAnalysisTemplatesOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/analysistemplates",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:listCollaborationAnalysisTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListCollaborationAnalysisTemplates",
-        input_schema = types.ListCollaborationAnalysisTemplatesInput,
-        output_schema = types.ListCollaborationAnalysisTemplatesOutput,
+        input_schema = schemas.ListCollaborationAnalysisTemplatesInput,
+        output_schema = schemas.ListCollaborationAnalysisTemplatesOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/analysistemplates",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:listCollaborationChangeRequests(input, options)
     return self:invokeOperation(input, {
         name = "ListCollaborationChangeRequests",
-        input_schema = types.ListCollaborationChangeRequestsInput,
-        output_schema = types.ListCollaborationChangeRequestsOutput,
+        input_schema = schemas.ListCollaborationChangeRequestsInput,
+        output_schema = schemas.ListCollaborationChangeRequestsOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/changeRequests",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:listCollaborationConfiguredAudienceModelAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListCollaborationConfiguredAudienceModelAssociations",
-        input_schema = types.ListCollaborationConfiguredAudienceModelAssociationsInput,
-        output_schema = types.ListCollaborationConfiguredAudienceModelAssociationsOutput,
+        input_schema = schemas.ListCollaborationConfiguredAudienceModelAssociationsInput,
+        output_schema = schemas.ListCollaborationConfiguredAudienceModelAssociationsOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/configuredaudiencemodelassociations",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:listCollaborationIdNamespaceAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListCollaborationIdNamespaceAssociations",
-        input_schema = types.ListCollaborationIdNamespaceAssociationsInput,
-        output_schema = types.ListCollaborationIdNamespaceAssociationsOutput,
+        input_schema = schemas.ListCollaborationIdNamespaceAssociationsInput,
+        output_schema = schemas.ListCollaborationIdNamespaceAssociationsOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/idnamespaceassociations",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:listCollaborationPrivacyBudgets(input, options)
     return self:invokeOperation(input, {
         name = "ListCollaborationPrivacyBudgets",
-        input_schema = types.ListCollaborationPrivacyBudgetsInput,
-        output_schema = types.ListCollaborationPrivacyBudgetsOutput,
+        input_schema = schemas.ListCollaborationPrivacyBudgetsInput,
+        output_schema = schemas.ListCollaborationPrivacyBudgetsOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/privacybudgets",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:listCollaborationPrivacyBudgetTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListCollaborationPrivacyBudgetTemplates",
-        input_schema = types.ListCollaborationPrivacyBudgetTemplatesInput,
-        output_schema = types.ListCollaborationPrivacyBudgetTemplatesOutput,
+        input_schema = schemas.ListCollaborationPrivacyBudgetTemplatesInput,
+        output_schema = schemas.ListCollaborationPrivacyBudgetTemplatesOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/privacybudgettemplates",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:listCollaborations(input, options)
     return self:invokeOperation(input, {
         name = "ListCollaborations",
-        input_schema = types.ListCollaborationsInput,
-        output_schema = types.ListCollaborationsOutput,
+        input_schema = schemas.ListCollaborationsInput,
+        output_schema = schemas.ListCollaborationsOutput,
         http_method = "GET",
         http_path = "/collaborations",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:listConfiguredAudienceModelAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListConfiguredAudienceModelAssociations",
-        input_schema = types.ListConfiguredAudienceModelAssociationsInput,
-        output_schema = types.ListConfiguredAudienceModelAssociationsOutput,
+        input_schema = schemas.ListConfiguredAudienceModelAssociationsInput,
+        output_schema = schemas.ListConfiguredAudienceModelAssociationsOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:listConfiguredTableAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListConfiguredTableAssociations",
-        input_schema = types.ListConfiguredTableAssociationsInput,
-        output_schema = types.ListConfiguredTableAssociationsOutput,
+        input_schema = schemas.ListConfiguredTableAssociationsInput,
+        output_schema = schemas.ListConfiguredTableAssociationsOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:listConfiguredTables(input, options)
     return self:invokeOperation(input, {
         name = "ListConfiguredTables",
-        input_schema = types.ListConfiguredTablesInput,
-        output_schema = types.ListConfiguredTablesOutput,
+        input_schema = schemas.ListConfiguredTablesInput,
+        output_schema = schemas.ListConfiguredTablesOutput,
         http_method = "GET",
         http_path = "/configuredTables",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:listIdMappingTables(input, options)
     return self:invokeOperation(input, {
         name = "ListIdMappingTables",
-        input_schema = types.ListIdMappingTablesInput,
-        output_schema = types.ListIdMappingTablesOutput,
+        input_schema = schemas.ListIdMappingTablesInput,
+        output_schema = schemas.ListIdMappingTablesOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/idmappingtables",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:listIdNamespaceAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListIdNamespaceAssociations",
-        input_schema = types.ListIdNamespaceAssociationsInput,
-        output_schema = types.ListIdNamespaceAssociationsOutput,
+        input_schema = schemas.ListIdNamespaceAssociationsInput,
+        output_schema = schemas.ListIdNamespaceAssociationsOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/idnamespaceassociations",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:listMembers(input, options)
     return self:invokeOperation(input, {
         name = "ListMembers",
-        input_schema = types.ListMembersInput,
-        output_schema = types.ListMembersOutput,
+        input_schema = schemas.ListMembersInput,
+        output_schema = schemas.ListMembersOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/members",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:listMemberships(input, options)
     return self:invokeOperation(input, {
         name = "ListMemberships",
-        input_schema = types.ListMembershipsInput,
-        output_schema = types.ListMembershipsOutput,
+        input_schema = schemas.ListMembershipsInput,
+        output_schema = schemas.ListMembershipsOutput,
         http_method = "GET",
         http_path = "/memberships",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:listPrivacyBudgets(input, options)
     return self:invokeOperation(input, {
         name = "ListPrivacyBudgets",
-        input_schema = types.ListPrivacyBudgetsInput,
-        output_schema = types.ListPrivacyBudgetsOutput,
+        input_schema = schemas.ListPrivacyBudgetsInput,
+        output_schema = schemas.ListPrivacyBudgetsOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/privacybudgets",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:listPrivacyBudgetTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListPrivacyBudgetTemplates",
-        input_schema = types.ListPrivacyBudgetTemplatesInput,
-        output_schema = types.ListPrivacyBudgetTemplatesOutput,
+        input_schema = schemas.ListPrivacyBudgetTemplatesInput,
+        output_schema = schemas.ListPrivacyBudgetTemplatesOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/privacybudgettemplates",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:listProtectedJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListProtectedJobs",
-        input_schema = types.ListProtectedJobsInput,
-        output_schema = types.ListProtectedJobsOutput,
+        input_schema = schemas.ListProtectedJobsInput,
+        output_schema = schemas.ListProtectedJobsOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/protectedJobs",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:listProtectedQueries(input, options)
     return self:invokeOperation(input, {
         name = "ListProtectedQueries",
-        input_schema = types.ListProtectedQueriesInput,
-        output_schema = types.ListProtectedQueriesOutput,
+        input_schema = schemas.ListProtectedQueriesInput,
+        output_schema = schemas.ListProtectedQueriesOutput,
         http_method = "GET",
         http_path = "/memberships/{membershipIdentifier}/protectedQueries",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:listSchemas(input, options)
     return self:invokeOperation(input, {
         name = "ListSchemas",
-        input_schema = types.ListSchemasInput,
-        output_schema = types.ListSchemasOutput,
+        input_schema = schemas.ListSchemasInput,
+        output_schema = schemas.ListSchemasOutput,
         http_method = "GET",
         http_path = "/collaborations/{collaborationIdentifier}/schemas",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:populateIdMappingTable(input, options)
     return self:invokeOperation(input, {
         name = "PopulateIdMappingTable",
-        input_schema = types.PopulateIdMappingTableInput,
-        output_schema = types.PopulateIdMappingTableOutput,
+        input_schema = schemas.PopulateIdMappingTableInput,
+        output_schema = schemas.PopulateIdMappingTableOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/idmappingtables/{idMappingTableIdentifier}/populate",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:previewPrivacyImpact(input, options)
     return self:invokeOperation(input, {
         name = "PreviewPrivacyImpact",
-        input_schema = types.PreviewPrivacyImpactInput,
-        output_schema = types.PreviewPrivacyImpactOutput,
+        input_schema = schemas.PreviewPrivacyImpactInput,
+        output_schema = schemas.PreviewPrivacyImpactOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/previewprivacyimpact",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:startProtectedJob(input, options)
     return self:invokeOperation(input, {
         name = "StartProtectedJob",
-        input_schema = types.StartProtectedJobInput,
-        output_schema = types.StartProtectedJobOutput,
+        input_schema = schemas.StartProtectedJobInput,
+        output_schema = schemas.StartProtectedJobOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/protectedJobs",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:startProtectedQuery(input, options)
     return self:invokeOperation(input, {
         name = "StartProtectedQuery",
-        input_schema = types.StartProtectedQueryInput,
-        output_schema = types.StartProtectedQueryOutput,
+        input_schema = schemas.StartProtectedQueryInput,
+        output_schema = schemas.StartProtectedQueryOutput,
         http_method = "POST",
         http_path = "/memberships/{membershipIdentifier}/protectedQueries",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -1011,8 +1011,8 @@ end
 function Client:updateAnalysisTemplate(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAnalysisTemplate",
-        input_schema = types.UpdateAnalysisTemplateInput,
-        output_schema = types.UpdateAnalysisTemplateOutput,
+        input_schema = schemas.UpdateAnalysisTemplateInput,
+        output_schema = schemas.UpdateAnalysisTemplateOutput,
         http_method = "PATCH",
         http_path = "/memberships/{membershipIdentifier}/analysistemplates/{analysisTemplateIdentifier}",
         effective_auth_schemes = {
@@ -1024,8 +1024,8 @@ end
 function Client:updateCollaboration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCollaboration",
-        input_schema = types.UpdateCollaborationInput,
-        output_schema = types.UpdateCollaborationOutput,
+        input_schema = schemas.UpdateCollaborationInput,
+        output_schema = schemas.UpdateCollaborationOutput,
         http_method = "PATCH",
         http_path = "/collaborations/{collaborationIdentifier}",
         effective_auth_schemes = {
@@ -1037,8 +1037,8 @@ end
 function Client:updateCollaborationChangeRequest(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCollaborationChangeRequest",
-        input_schema = types.UpdateCollaborationChangeRequestInput,
-        output_schema = types.UpdateCollaborationChangeRequestOutput,
+        input_schema = schemas.UpdateCollaborationChangeRequestInput,
+        output_schema = schemas.UpdateCollaborationChangeRequestOutput,
         http_method = "PATCH",
         http_path = "/collaborations/{collaborationIdentifier}/changeRequests/{changeRequestIdentifier}",
         effective_auth_schemes = {
@@ -1050,8 +1050,8 @@ end
 function Client:updateConfiguredAudienceModelAssociation(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConfiguredAudienceModelAssociation",
-        input_schema = types.UpdateConfiguredAudienceModelAssociationInput,
-        output_schema = types.UpdateConfiguredAudienceModelAssociationOutput,
+        input_schema = schemas.UpdateConfiguredAudienceModelAssociationInput,
+        output_schema = schemas.UpdateConfiguredAudienceModelAssociationOutput,
         http_method = "PATCH",
         http_path = "/memberships/{membershipIdentifier}/configuredaudiencemodelassociations/{configuredAudienceModelAssociationIdentifier}",
         effective_auth_schemes = {
@@ -1063,8 +1063,8 @@ end
 function Client:updateConfiguredTable(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConfiguredTable",
-        input_schema = types.UpdateConfiguredTableInput,
-        output_schema = types.UpdateConfiguredTableOutput,
+        input_schema = schemas.UpdateConfiguredTableInput,
+        output_schema = schemas.UpdateConfiguredTableOutput,
         http_method = "PATCH",
         http_path = "/configuredTables/{configuredTableIdentifier}",
         effective_auth_schemes = {
@@ -1076,8 +1076,8 @@ end
 function Client:updateConfiguredTableAnalysisRule(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConfiguredTableAnalysisRule",
-        input_schema = types.UpdateConfiguredTableAnalysisRuleInput,
-        output_schema = types.UpdateConfiguredTableAnalysisRuleOutput,
+        input_schema = schemas.UpdateConfiguredTableAnalysisRuleInput,
+        output_schema = schemas.UpdateConfiguredTableAnalysisRuleOutput,
         http_method = "PATCH",
         http_path = "/configuredTables/{configuredTableIdentifier}/analysisRule/{analysisRuleType}",
         effective_auth_schemes = {
@@ -1089,8 +1089,8 @@ end
 function Client:updateConfiguredTableAssociation(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConfiguredTableAssociation",
-        input_schema = types.UpdateConfiguredTableAssociationInput,
-        output_schema = types.UpdateConfiguredTableAssociationOutput,
+        input_schema = schemas.UpdateConfiguredTableAssociationInput,
+        output_schema = schemas.UpdateConfiguredTableAssociationOutput,
         http_method = "PATCH",
         http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}",
         effective_auth_schemes = {
@@ -1102,8 +1102,8 @@ end
 function Client:updateConfiguredTableAssociationAnalysisRule(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConfiguredTableAssociationAnalysisRule",
-        input_schema = types.UpdateConfiguredTableAssociationAnalysisRuleInput,
-        output_schema = types.UpdateConfiguredTableAssociationAnalysisRuleOutput,
+        input_schema = schemas.UpdateConfiguredTableAssociationAnalysisRuleInput,
+        output_schema = schemas.UpdateConfiguredTableAssociationAnalysisRuleOutput,
         http_method = "PATCH",
         http_path = "/memberships/{membershipIdentifier}/configuredTableAssociations/{configuredTableAssociationIdentifier}/analysisRule/{analysisRuleType}",
         effective_auth_schemes = {
@@ -1115,8 +1115,8 @@ end
 function Client:updateIdMappingTable(input, options)
     return self:invokeOperation(input, {
         name = "UpdateIdMappingTable",
-        input_schema = types.UpdateIdMappingTableInput,
-        output_schema = types.UpdateIdMappingTableOutput,
+        input_schema = schemas.UpdateIdMappingTableInput,
+        output_schema = schemas.UpdateIdMappingTableOutput,
         http_method = "PATCH",
         http_path = "/memberships/{membershipIdentifier}/idmappingtables/{idMappingTableIdentifier}",
         effective_auth_schemes = {
@@ -1128,8 +1128,8 @@ end
 function Client:updateIdNamespaceAssociation(input, options)
     return self:invokeOperation(input, {
         name = "UpdateIdNamespaceAssociation",
-        input_schema = types.UpdateIdNamespaceAssociationInput,
-        output_schema = types.UpdateIdNamespaceAssociationOutput,
+        input_schema = schemas.UpdateIdNamespaceAssociationInput,
+        output_schema = schemas.UpdateIdNamespaceAssociationOutput,
         http_method = "PATCH",
         http_path = "/memberships/{membershipIdentifier}/idnamespaceassociations/{idNamespaceAssociationIdentifier}",
         effective_auth_schemes = {
@@ -1141,8 +1141,8 @@ end
 function Client:updateMembership(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMembership",
-        input_schema = types.UpdateMembershipInput,
-        output_schema = types.UpdateMembershipOutput,
+        input_schema = schemas.UpdateMembershipInput,
+        output_schema = schemas.UpdateMembershipOutput,
         http_method = "PATCH",
         http_path = "/memberships/{membershipIdentifier}",
         effective_auth_schemes = {
@@ -1154,8 +1154,8 @@ end
 function Client:updatePrivacyBudgetTemplate(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePrivacyBudgetTemplate",
-        input_schema = types.UpdatePrivacyBudgetTemplateInput,
-        output_schema = types.UpdatePrivacyBudgetTemplateOutput,
+        input_schema = schemas.UpdatePrivacyBudgetTemplateInput,
+        output_schema = schemas.UpdatePrivacyBudgetTemplateOutput,
         http_method = "PATCH",
         http_path = "/memberships/{membershipIdentifier}/privacybudgettemplates/{privacyBudgetTemplateIdentifier}",
         effective_auth_schemes = {
@@ -1167,8 +1167,8 @@ end
 function Client:updateProtectedJob(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProtectedJob",
-        input_schema = types.UpdateProtectedJobInput,
-        output_schema = types.UpdateProtectedJobOutput,
+        input_schema = schemas.UpdateProtectedJobInput,
+        output_schema = schemas.UpdateProtectedJobOutput,
         http_method = "PATCH",
         http_path = "/memberships/{membershipIdentifier}/protectedJobs/{protectedJobIdentifier}",
         effective_auth_schemes = {
@@ -1180,8 +1180,8 @@ end
 function Client:updateProtectedQuery(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProtectedQuery",
-        input_schema = types.UpdateProtectedQueryInput,
-        output_schema = types.UpdateProtectedQueryOutput,
+        input_schema = schemas.UpdateProtectedQueryInput,
+        output_schema = schemas.UpdateProtectedQueryOutput,
         http_method = "PATCH",
         http_path = "/memberships/{membershipIdentifier}/protectedQueries/{protectedQueryIdentifier}",
         effective_auth_schemes = {

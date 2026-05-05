@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("ivschat.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("ivschat.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("ivschat.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createChatToken(input, options)
     return self:invokeOperation(input, {
         name = "CreateChatToken",
-        input_schema = types.CreateChatTokenInput,
-        output_schema = types.CreateChatTokenOutput,
+        input_schema = schemas.CreateChatTokenInput,
+        output_schema = schemas.CreateChatTokenOutput,
         http_method = "POST",
         http_path = "/CreateChatToken",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createLoggingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateLoggingConfiguration",
-        input_schema = types.CreateLoggingConfigurationInput,
-        output_schema = types.CreateLoggingConfigurationOutput,
+        input_schema = schemas.CreateLoggingConfigurationInput,
+        output_schema = schemas.CreateLoggingConfigurationOutput,
         http_method = "POST",
         http_path = "/CreateLoggingConfiguration",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createRoom(input, options)
     return self:invokeOperation(input, {
         name = "CreateRoom",
-        input_schema = types.CreateRoomInput,
-        output_schema = types.CreateRoomOutput,
+        input_schema = schemas.CreateRoomInput,
+        output_schema = schemas.CreateRoomOutput,
         http_method = "POST",
         http_path = "/CreateRoom",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteLoggingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLoggingConfiguration",
-        input_schema = types.DeleteLoggingConfigurationInput,
-        output_schema = types.DeleteLoggingConfigurationOutput,
+        input_schema = schemas.DeleteLoggingConfigurationInput,
+        output_schema = schemas.DeleteLoggingConfigurationOutput,
         http_method = "POST",
         http_path = "/DeleteLoggingConfiguration",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteMessage(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMessage",
-        input_schema = types.DeleteMessageInput,
-        output_schema = types.DeleteMessageOutput,
+        input_schema = schemas.DeleteMessageInput,
+        output_schema = schemas.DeleteMessageOutput,
         http_method = "POST",
         http_path = "/DeleteMessage",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteRoom(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRoom",
-        input_schema = types.DeleteRoomInput,
-        output_schema = types.DeleteRoomOutput,
+        input_schema = schemas.DeleteRoomInput,
+        output_schema = schemas.DeleteRoomOutput,
         http_method = "POST",
         http_path = "/DeleteRoom",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:disconnectUser(input, options)
     return self:invokeOperation(input, {
         name = "DisconnectUser",
-        input_schema = types.DisconnectUserInput,
-        output_schema = types.DisconnectUserOutput,
+        input_schema = schemas.DisconnectUserInput,
+        output_schema = schemas.DisconnectUserOutput,
         http_method = "POST",
         http_path = "/DisconnectUser",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getLoggingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetLoggingConfiguration",
-        input_schema = types.GetLoggingConfigurationInput,
-        output_schema = types.GetLoggingConfigurationOutput,
+        input_schema = schemas.GetLoggingConfigurationInput,
+        output_schema = schemas.GetLoggingConfigurationOutput,
         http_method = "POST",
         http_path = "/GetLoggingConfiguration",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getRoom(input, options)
     return self:invokeOperation(input, {
         name = "GetRoom",
-        input_schema = types.GetRoomInput,
-        output_schema = types.GetRoomOutput,
+        input_schema = schemas.GetRoomInput,
+        output_schema = schemas.GetRoomOutput,
         http_method = "POST",
         http_path = "/GetRoom",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listLoggingConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListLoggingConfigurations",
-        input_schema = types.ListLoggingConfigurationsInput,
-        output_schema = types.ListLoggingConfigurationsOutput,
+        input_schema = schemas.ListLoggingConfigurationsInput,
+        output_schema = schemas.ListLoggingConfigurationsOutput,
         http_method = "POST",
         http_path = "/ListLoggingConfigurations",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listRooms(input, options)
     return self:invokeOperation(input, {
         name = "ListRooms",
-        input_schema = types.ListRoomsInput,
-        output_schema = types.ListRoomsOutput,
+        input_schema = schemas.ListRoomsInput,
+        output_schema = schemas.ListRoomsOutput,
         http_method = "POST",
         http_path = "/ListRooms",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:sendEvent(input, options)
     return self:invokeOperation(input, {
         name = "SendEvent",
-        input_schema = types.SendEventInput,
-        output_schema = types.SendEventOutput,
+        input_schema = schemas.SendEventInput,
+        output_schema = schemas.SendEventOutput,
         http_method = "POST",
         http_path = "/SendEvent",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:updateLoggingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLoggingConfiguration",
-        input_schema = types.UpdateLoggingConfigurationInput,
-        output_schema = types.UpdateLoggingConfigurationOutput,
+        input_schema = schemas.UpdateLoggingConfigurationInput,
+        output_schema = schemas.UpdateLoggingConfigurationOutput,
         http_method = "POST",
         http_path = "/UpdateLoggingConfiguration",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:updateRoom(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRoom",
-        input_schema = types.UpdateRoomInput,
-        output_schema = types.UpdateRoomOutput,
+        input_schema = schemas.UpdateRoomInput,
+        output_schema = schemas.UpdateRoomOutput,
         http_method = "POST",
         http_path = "/UpdateRoom",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("wafv2.endpoint_rules")
+local schemas = require("wafv2.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("wafv2.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateWebACL(input, options)
     return self:invokeOperation(input, {
         name = "AssociateWebACL",
-        input_schema = types.AssociateWebACLInput,
-        output_schema = types.AssociateWebACLOutput,
+        input_schema = schemas.AssociateWebACLInput,
+        output_schema = schemas.AssociateWebACLOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:checkCapacity(input, options)
     return self:invokeOperation(input, {
         name = "CheckCapacity",
-        input_schema = types.CheckCapacityInput,
-        output_schema = types.CheckCapacityOutput,
+        input_schema = schemas.CheckCapacityInput,
+        output_schema = schemas.CheckCapacityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createAPIKey(input, options)
     return self:invokeOperation(input, {
         name = "CreateAPIKey",
-        input_schema = types.CreateAPIKeyInput,
-        output_schema = types.CreateAPIKeyOutput,
+        input_schema = schemas.CreateAPIKeyInput,
+        output_schema = schemas.CreateAPIKeyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createIPSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateIPSet",
-        input_schema = types.CreateIPSetInput,
-        output_schema = types.CreateIPSetOutput,
+        input_schema = schemas.CreateIPSetInput,
+        output_schema = schemas.CreateIPSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createRegexPatternSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateRegexPatternSet",
-        input_schema = types.CreateRegexPatternSetInput,
-        output_schema = types.CreateRegexPatternSetOutput,
+        input_schema = schemas.CreateRegexPatternSetInput,
+        output_schema = schemas.CreateRegexPatternSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createRuleGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateRuleGroup",
-        input_schema = types.CreateRuleGroupInput,
-        output_schema = types.CreateRuleGroupOutput,
+        input_schema = schemas.CreateRuleGroupInput,
+        output_schema = schemas.CreateRuleGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createWebACL(input, options)
     return self:invokeOperation(input, {
         name = "CreateWebACL",
-        input_schema = types.CreateWebACLInput,
-        output_schema = types.CreateWebACLOutput,
+        input_schema = schemas.CreateWebACLInput,
+        output_schema = schemas.CreateWebACLOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteAPIKey(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAPIKey",
-        input_schema = types.DeleteAPIKeyInput,
-        output_schema = types.DeleteAPIKeyOutput,
+        input_schema = schemas.DeleteAPIKeyInput,
+        output_schema = schemas.DeleteAPIKeyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteFirewallManagerRuleGroups(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFirewallManagerRuleGroups",
-        input_schema = types.DeleteFirewallManagerRuleGroupsInput,
-        output_schema = types.DeleteFirewallManagerRuleGroupsOutput,
+        input_schema = schemas.DeleteFirewallManagerRuleGroupsInput,
+        output_schema = schemas.DeleteFirewallManagerRuleGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteIPSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIPSet",
-        input_schema = types.DeleteIPSetInput,
-        output_schema = types.DeleteIPSetOutput,
+        input_schema = schemas.DeleteIPSetInput,
+        output_schema = schemas.DeleteIPSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteLoggingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLoggingConfiguration",
-        input_schema = types.DeleteLoggingConfigurationInput,
-        output_schema = types.DeleteLoggingConfigurationOutput,
+        input_schema = schemas.DeleteLoggingConfigurationInput,
+        output_schema = schemas.DeleteLoggingConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deletePermissionPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeletePermissionPolicy",
-        input_schema = types.DeletePermissionPolicyInput,
-        output_schema = types.DeletePermissionPolicyOutput,
+        input_schema = schemas.DeletePermissionPolicyInput,
+        output_schema = schemas.DeletePermissionPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteRegexPatternSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRegexPatternSet",
-        input_schema = types.DeleteRegexPatternSetInput,
-        output_schema = types.DeleteRegexPatternSetOutput,
+        input_schema = schemas.DeleteRegexPatternSetInput,
+        output_schema = schemas.DeleteRegexPatternSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteRuleGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRuleGroup",
-        input_schema = types.DeleteRuleGroupInput,
-        output_schema = types.DeleteRuleGroupOutput,
+        input_schema = schemas.DeleteRuleGroupInput,
+        output_schema = schemas.DeleteRuleGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteWebACL(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWebACL",
-        input_schema = types.DeleteWebACLInput,
-        output_schema = types.DeleteWebACLOutput,
+        input_schema = schemas.DeleteWebACLInput,
+        output_schema = schemas.DeleteWebACLOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:describeAllManagedProducts(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAllManagedProducts",
-        input_schema = types.DescribeAllManagedProductsInput,
-        output_schema = types.DescribeAllManagedProductsOutput,
+        input_schema = schemas.DescribeAllManagedProductsInput,
+        output_schema = schemas.DescribeAllManagedProductsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:describeManagedProductsByVendor(input, options)
     return self:invokeOperation(input, {
         name = "DescribeManagedProductsByVendor",
-        input_schema = types.DescribeManagedProductsByVendorInput,
-        output_schema = types.DescribeManagedProductsByVendorOutput,
+        input_schema = schemas.DescribeManagedProductsByVendorInput,
+        output_schema = schemas.DescribeManagedProductsByVendorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:describeManagedRuleGroup(input, options)
     return self:invokeOperation(input, {
         name = "DescribeManagedRuleGroup",
-        input_schema = types.DescribeManagedRuleGroupInput,
-        output_schema = types.DescribeManagedRuleGroupOutput,
+        input_schema = schemas.DescribeManagedRuleGroupInput,
+        output_schema = schemas.DescribeManagedRuleGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:disassociateWebACL(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateWebACL",
-        input_schema = types.DisassociateWebACLInput,
-        output_schema = types.DisassociateWebACLOutput,
+        input_schema = schemas.DisassociateWebACLInput,
+        output_schema = schemas.DisassociateWebACLOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:generateMobileSdkReleaseUrl(input, options)
     return self:invokeOperation(input, {
         name = "GenerateMobileSdkReleaseUrl",
-        input_schema = types.GenerateMobileSdkReleaseUrlInput,
-        output_schema = types.GenerateMobileSdkReleaseUrlOutput,
+        input_schema = schemas.GenerateMobileSdkReleaseUrlInput,
+        output_schema = schemas.GenerateMobileSdkReleaseUrlOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:getDecryptedAPIKey(input, options)
     return self:invokeOperation(input, {
         name = "GetDecryptedAPIKey",
-        input_schema = types.GetDecryptedAPIKeyInput,
-        output_schema = types.GetDecryptedAPIKeyOutput,
+        input_schema = schemas.GetDecryptedAPIKeyInput,
+        output_schema = schemas.GetDecryptedAPIKeyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:getIPSet(input, options)
     return self:invokeOperation(input, {
         name = "GetIPSet",
-        input_schema = types.GetIPSetInput,
-        output_schema = types.GetIPSetOutput,
+        input_schema = schemas.GetIPSetInput,
+        output_schema = schemas.GetIPSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:getLoggingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetLoggingConfiguration",
-        input_schema = types.GetLoggingConfigurationInput,
-        output_schema = types.GetLoggingConfigurationOutput,
+        input_schema = schemas.GetLoggingConfigurationInput,
+        output_schema = schemas.GetLoggingConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:getManagedRuleSet(input, options)
     return self:invokeOperation(input, {
         name = "GetManagedRuleSet",
-        input_schema = types.GetManagedRuleSetInput,
-        output_schema = types.GetManagedRuleSetOutput,
+        input_schema = schemas.GetManagedRuleSetInput,
+        output_schema = schemas.GetManagedRuleSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getMobileSdkRelease(input, options)
     return self:invokeOperation(input, {
         name = "GetMobileSdkRelease",
-        input_schema = types.GetMobileSdkReleaseInput,
-        output_schema = types.GetMobileSdkReleaseOutput,
+        input_schema = schemas.GetMobileSdkReleaseInput,
+        output_schema = schemas.GetMobileSdkReleaseOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:getPermissionPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetPermissionPolicy",
-        input_schema = types.GetPermissionPolicyInput,
-        output_schema = types.GetPermissionPolicyOutput,
+        input_schema = schemas.GetPermissionPolicyInput,
+        output_schema = schemas.GetPermissionPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:getRateBasedStatementManagedKeys(input, options)
     return self:invokeOperation(input, {
         name = "GetRateBasedStatementManagedKeys",
-        input_schema = types.GetRateBasedStatementManagedKeysInput,
-        output_schema = types.GetRateBasedStatementManagedKeysOutput,
+        input_schema = schemas.GetRateBasedStatementManagedKeysInput,
+        output_schema = schemas.GetRateBasedStatementManagedKeysOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:getRegexPatternSet(input, options)
     return self:invokeOperation(input, {
         name = "GetRegexPatternSet",
-        input_schema = types.GetRegexPatternSetInput,
-        output_schema = types.GetRegexPatternSetOutput,
+        input_schema = schemas.GetRegexPatternSetInput,
+        output_schema = schemas.GetRegexPatternSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:getRuleGroup(input, options)
     return self:invokeOperation(input, {
         name = "GetRuleGroup",
-        input_schema = types.GetRuleGroupInput,
-        output_schema = types.GetRuleGroupOutput,
+        input_schema = schemas.GetRuleGroupInput,
+        output_schema = schemas.GetRuleGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:getSampledRequests(input, options)
     return self:invokeOperation(input, {
         name = "GetSampledRequests",
-        input_schema = types.GetSampledRequestsInput,
-        output_schema = types.GetSampledRequestsOutput,
+        input_schema = schemas.GetSampledRequestsInput,
+        output_schema = schemas.GetSampledRequestsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:getTopPathStatisticsByTraffic(input, options)
     return self:invokeOperation(input, {
         name = "GetTopPathStatisticsByTraffic",
-        input_schema = types.GetTopPathStatisticsByTrafficInput,
-        output_schema = types.GetTopPathStatisticsByTrafficOutput,
+        input_schema = schemas.GetTopPathStatisticsByTrafficInput,
+        output_schema = schemas.GetTopPathStatisticsByTrafficOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:getWebACL(input, options)
     return self:invokeOperation(input, {
         name = "GetWebACL",
-        input_schema = types.GetWebACLInput,
-        output_schema = types.GetWebACLOutput,
+        input_schema = schemas.GetWebACLInput,
+        output_schema = schemas.GetWebACLOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:getWebACLForResource(input, options)
     return self:invokeOperation(input, {
         name = "GetWebACLForResource",
-        input_schema = types.GetWebACLForResourceInput,
-        output_schema = types.GetWebACLForResourceOutput,
+        input_schema = schemas.GetWebACLForResourceInput,
+        output_schema = schemas.GetWebACLForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listAPIKeys(input, options)
     return self:invokeOperation(input, {
         name = "ListAPIKeys",
-        input_schema = types.ListAPIKeysInput,
-        output_schema = types.ListAPIKeysOutput,
+        input_schema = schemas.ListAPIKeysInput,
+        output_schema = schemas.ListAPIKeysOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:listAvailableManagedRuleGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListAvailableManagedRuleGroups",
-        input_schema = types.ListAvailableManagedRuleGroupsInput,
-        output_schema = types.ListAvailableManagedRuleGroupsOutput,
+        input_schema = schemas.ListAvailableManagedRuleGroupsInput,
+        output_schema = schemas.ListAvailableManagedRuleGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:listAvailableManagedRuleGroupVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListAvailableManagedRuleGroupVersions",
-        input_schema = types.ListAvailableManagedRuleGroupVersionsInput,
-        output_schema = types.ListAvailableManagedRuleGroupVersionsOutput,
+        input_schema = schemas.ListAvailableManagedRuleGroupVersionsInput,
+        output_schema = schemas.ListAvailableManagedRuleGroupVersionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:listIPSets(input, options)
     return self:invokeOperation(input, {
         name = "ListIPSets",
-        input_schema = types.ListIPSetsInput,
-        output_schema = types.ListIPSetsOutput,
+        input_schema = schemas.ListIPSetsInput,
+        output_schema = schemas.ListIPSetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:listLoggingConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListLoggingConfigurations",
-        input_schema = types.ListLoggingConfigurationsInput,
-        output_schema = types.ListLoggingConfigurationsOutput,
+        input_schema = schemas.ListLoggingConfigurationsInput,
+        output_schema = schemas.ListLoggingConfigurationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:listManagedRuleSets(input, options)
     return self:invokeOperation(input, {
         name = "ListManagedRuleSets",
-        input_schema = types.ListManagedRuleSetsInput,
-        output_schema = types.ListManagedRuleSetsOutput,
+        input_schema = schemas.ListManagedRuleSetsInput,
+        output_schema = schemas.ListManagedRuleSetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:listMobileSdkReleases(input, options)
     return self:invokeOperation(input, {
         name = "ListMobileSdkReleases",
-        input_schema = types.ListMobileSdkReleasesInput,
-        output_schema = types.ListMobileSdkReleasesOutput,
+        input_schema = schemas.ListMobileSdkReleasesInput,
+        output_schema = schemas.ListMobileSdkReleasesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:listRegexPatternSets(input, options)
     return self:invokeOperation(input, {
         name = "ListRegexPatternSets",
-        input_schema = types.ListRegexPatternSetsInput,
-        output_schema = types.ListRegexPatternSetsOutput,
+        input_schema = schemas.ListRegexPatternSetsInput,
+        output_schema = schemas.ListRegexPatternSetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:listResourcesForWebACL(input, options)
     return self:invokeOperation(input, {
         name = "ListResourcesForWebACL",
-        input_schema = types.ListResourcesForWebACLInput,
-        output_schema = types.ListResourcesForWebACLOutput,
+        input_schema = schemas.ListResourcesForWebACLInput,
+        output_schema = schemas.ListResourcesForWebACLOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:listRuleGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListRuleGroups",
-        input_schema = types.ListRuleGroupsInput,
-        output_schema = types.ListRuleGroupsOutput,
+        input_schema = schemas.ListRuleGroupsInput,
+        output_schema = schemas.ListRuleGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:listWebACLs(input, options)
     return self:invokeOperation(input, {
         name = "ListWebACLs",
-        input_schema = types.ListWebACLsInput,
-        output_schema = types.ListWebACLsOutput,
+        input_schema = schemas.ListWebACLsInput,
+        output_schema = schemas.ListWebACLsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:putLoggingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutLoggingConfiguration",
-        input_schema = types.PutLoggingConfigurationInput,
-        output_schema = types.PutLoggingConfigurationOutput,
+        input_schema = schemas.PutLoggingConfigurationInput,
+        output_schema = schemas.PutLoggingConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:putManagedRuleSetVersions(input, options)
     return self:invokeOperation(input, {
         name = "PutManagedRuleSetVersions",
-        input_schema = types.PutManagedRuleSetVersionsInput,
-        output_schema = types.PutManagedRuleSetVersionsOutput,
+        input_schema = schemas.PutManagedRuleSetVersionsInput,
+        output_schema = schemas.PutManagedRuleSetVersionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:putPermissionPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutPermissionPolicy",
-        input_schema = types.PutPermissionPolicyInput,
-        output_schema = types.PutPermissionPolicyOutput,
+        input_schema = schemas.PutPermissionPolicyInput,
+        output_schema = schemas.PutPermissionPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:updateIPSet(input, options)
     return self:invokeOperation(input, {
         name = "UpdateIPSet",
-        input_schema = types.UpdateIPSetInput,
-        output_schema = types.UpdateIPSetOutput,
+        input_schema = schemas.UpdateIPSetInput,
+        output_schema = schemas.UpdateIPSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:updateManagedRuleSetVersionExpiryDate(input, options)
     return self:invokeOperation(input, {
         name = "UpdateManagedRuleSetVersionExpiryDate",
-        input_schema = types.UpdateManagedRuleSetVersionExpiryDateInput,
-        output_schema = types.UpdateManagedRuleSetVersionExpiryDateOutput,
+        input_schema = schemas.UpdateManagedRuleSetVersionExpiryDateInput,
+        output_schema = schemas.UpdateManagedRuleSetVersionExpiryDateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:updateRegexPatternSet(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRegexPatternSet",
-        input_schema = types.UpdateRegexPatternSetInput,
-        output_schema = types.UpdateRegexPatternSetOutput,
+        input_schema = schemas.UpdateRegexPatternSetInput,
+        output_schema = schemas.UpdateRegexPatternSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:updateRuleGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRuleGroup",
-        input_schema = types.UpdateRuleGroupInput,
-        output_schema = types.UpdateRuleGroupOutput,
+        input_schema = schemas.UpdateRuleGroupInput,
+        output_schema = schemas.UpdateRuleGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:updateWebACL(input, options)
     return self:invokeOperation(input, {
         name = "UpdateWebACL",
-        input_schema = types.UpdateWebACLInput,
-        output_schema = types.UpdateWebACLOutput,
+        input_schema = schemas.UpdateWebACLInput,
+        output_schema = schemas.UpdateWebACLOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

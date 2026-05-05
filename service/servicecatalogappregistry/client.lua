@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("servicecatalogappregistry.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("servicecatalogappregistry.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("servicecatalogappregistry.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateAttributeGroup(input, options)
     return self:invokeOperation(input, {
         name = "AssociateAttributeGroup",
-        input_schema = types.AssociateAttributeGroupInput,
-        output_schema = types.AssociateAttributeGroupOutput,
+        input_schema = schemas.AssociateAttributeGroupInput,
+        output_schema = schemas.AssociateAttributeGroupOutput,
         http_method = "PUT",
         http_path = "/applications/{application}/attribute-groups/{attributeGroup}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:associateResource(input, options)
     return self:invokeOperation(input, {
         name = "AssociateResource",
-        input_schema = types.AssociateResourceInput,
-        output_schema = types.AssociateResourceOutput,
+        input_schema = schemas.AssociateResourceInput,
+        output_schema = schemas.AssociateResourceOutput,
         http_method = "PUT",
         http_path = "/applications/{application}/resources/{resourceType}/{resource}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createApplication(input, options)
     return self:invokeOperation(input, {
         name = "CreateApplication",
-        input_schema = types.CreateApplicationInput,
-        output_schema = types.CreateApplicationOutput,
+        input_schema = schemas.CreateApplicationInput,
+        output_schema = schemas.CreateApplicationOutput,
         http_method = "POST",
         http_path = "/applications",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createAttributeGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateAttributeGroup",
-        input_schema = types.CreateAttributeGroupInput,
-        output_schema = types.CreateAttributeGroupOutput,
+        input_schema = schemas.CreateAttributeGroupInput,
+        output_schema = schemas.CreateAttributeGroupOutput,
         http_method = "POST",
         http_path = "/attribute-groups",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteApplication(input, options)
     return self:invokeOperation(input, {
         name = "DeleteApplication",
-        input_schema = types.DeleteApplicationInput,
-        output_schema = types.DeleteApplicationOutput,
+        input_schema = schemas.DeleteApplicationInput,
+        output_schema = schemas.DeleteApplicationOutput,
         http_method = "DELETE",
         http_path = "/applications/{application}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteAttributeGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAttributeGroup",
-        input_schema = types.DeleteAttributeGroupInput,
-        output_schema = types.DeleteAttributeGroupOutput,
+        input_schema = schemas.DeleteAttributeGroupInput,
+        output_schema = schemas.DeleteAttributeGroupOutput,
         http_method = "DELETE",
         http_path = "/attribute-groups/{attributeGroup}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:disassociateAttributeGroup(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateAttributeGroup",
-        input_schema = types.DisassociateAttributeGroupInput,
-        output_schema = types.DisassociateAttributeGroupOutput,
+        input_schema = schemas.DisassociateAttributeGroupInput,
+        output_schema = schemas.DisassociateAttributeGroupOutput,
         http_method = "DELETE",
         http_path = "/applications/{application}/attribute-groups/{attributeGroup}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:disassociateResource(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateResource",
-        input_schema = types.DisassociateResourceInput,
-        output_schema = types.DisassociateResourceOutput,
+        input_schema = schemas.DisassociateResourceInput,
+        output_schema = schemas.DisassociateResourceOutput,
         http_method = "DELETE",
         http_path = "/applications/{application}/resources/{resourceType}/{resource}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getApplication(input, options)
     return self:invokeOperation(input, {
         name = "GetApplication",
-        input_schema = types.GetApplicationInput,
-        output_schema = types.GetApplicationOutput,
+        input_schema = schemas.GetApplicationInput,
+        output_schema = schemas.GetApplicationOutput,
         http_method = "GET",
         http_path = "/applications/{application}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getAssociatedResource(input, options)
     return self:invokeOperation(input, {
         name = "GetAssociatedResource",
-        input_schema = types.GetAssociatedResourceInput,
-        output_schema = types.GetAssociatedResourceOutput,
+        input_schema = schemas.GetAssociatedResourceInput,
+        output_schema = schemas.GetAssociatedResourceOutput,
         http_method = "GET",
         http_path = "/applications/{application}/resources/{resourceType}/{resource}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getAttributeGroup(input, options)
     return self:invokeOperation(input, {
         name = "GetAttributeGroup",
-        input_schema = types.GetAttributeGroupInput,
-        output_schema = types.GetAttributeGroupOutput,
+        input_schema = schemas.GetAttributeGroupInput,
+        output_schema = schemas.GetAttributeGroupOutput,
         http_method = "GET",
         http_path = "/attribute-groups/{attributeGroup}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetConfiguration",
-        input_schema = types.GetConfigurationInput,
-        output_schema = types.GetConfigurationOutput,
+        input_schema = schemas.GetConfigurationInput,
+        output_schema = schemas.GetConfigurationOutput,
         http_method = "GET",
         http_path = "/configuration",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listApplications(input, options)
     return self:invokeOperation(input, {
         name = "ListApplications",
-        input_schema = types.ListApplicationsInput,
-        output_schema = types.ListApplicationsOutput,
+        input_schema = schemas.ListApplicationsInput,
+        output_schema = schemas.ListApplicationsOutput,
         http_method = "GET",
         http_path = "/applications",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listAssociatedAttributeGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListAssociatedAttributeGroups",
-        input_schema = types.ListAssociatedAttributeGroupsInput,
-        output_schema = types.ListAssociatedAttributeGroupsOutput,
+        input_schema = schemas.ListAssociatedAttributeGroupsInput,
+        output_schema = schemas.ListAssociatedAttributeGroupsOutput,
         http_method = "GET",
         http_path = "/applications/{application}/attribute-groups",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listAssociatedResources(input, options)
     return self:invokeOperation(input, {
         name = "ListAssociatedResources",
-        input_schema = types.ListAssociatedResourcesInput,
-        output_schema = types.ListAssociatedResourcesOutput,
+        input_schema = schemas.ListAssociatedResourcesInput,
+        output_schema = schemas.ListAssociatedResourcesOutput,
         http_method = "GET",
         http_path = "/applications/{application}/resources",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listAttributeGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListAttributeGroups",
-        input_schema = types.ListAttributeGroupsInput,
-        output_schema = types.ListAttributeGroupsOutput,
+        input_schema = schemas.ListAttributeGroupsInput,
+        output_schema = schemas.ListAttributeGroupsOutput,
         http_method = "GET",
         http_path = "/attribute-groups",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listAttributeGroupsForApplication(input, options)
     return self:invokeOperation(input, {
         name = "ListAttributeGroupsForApplication",
-        input_schema = types.ListAttributeGroupsForApplicationInput,
-        output_schema = types.ListAttributeGroupsForApplicationOutput,
+        input_schema = schemas.ListAttributeGroupsForApplicationInput,
+        output_schema = schemas.ListAttributeGroupsForApplicationOutput,
         http_method = "GET",
         http_path = "/applications/{application}/attribute-group-details",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:putConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutConfiguration",
-        input_schema = types.PutConfigurationInput,
-        output_schema = types.PutConfigurationOutput,
+        input_schema = schemas.PutConfigurationInput,
+        output_schema = schemas.PutConfigurationOutput,
         http_method = "PUT",
         http_path = "/configuration",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:syncResource(input, options)
     return self:invokeOperation(input, {
         name = "SyncResource",
-        input_schema = types.SyncResourceInput,
-        output_schema = types.SyncResourceOutput,
+        input_schema = schemas.SyncResourceInput,
+        output_schema = schemas.SyncResourceOutput,
         http_method = "POST",
         http_path = "/sync/{resourceType}/{resource}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:updateApplication(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApplication",
-        input_schema = types.UpdateApplicationInput,
-        output_schema = types.UpdateApplicationOutput,
+        input_schema = schemas.UpdateApplicationInput,
+        output_schema = schemas.UpdateApplicationOutput,
         http_method = "PATCH",
         http_path = "/applications/{application}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:updateAttributeGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAttributeGroup",
-        input_schema = types.UpdateAttributeGroupInput,
-        output_schema = types.UpdateAttributeGroupOutput,
+        input_schema = schemas.UpdateAttributeGroupInput,
+        output_schema = schemas.UpdateAttributeGroupOutput,
         http_method = "PATCH",
         http_path = "/attribute-groups/{attributeGroup}",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("aiops.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("aiops.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("aiops.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createInvestigationGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateInvestigationGroup",
-        input_schema = types.CreateInvestigationGroupInput,
-        output_schema = types.CreateInvestigationGroupOutput,
+        input_schema = schemas.CreateInvestigationGroupInput,
+        output_schema = schemas.CreateInvestigationGroupOutput,
         http_method = "POST",
         http_path = "/investigationGroups",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteInvestigationGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteInvestigationGroup",
-        input_schema = types.DeleteInvestigationGroupInput,
-        output_schema = types.DeleteInvestigationGroupOutput,
+        input_schema = schemas.DeleteInvestigationGroupInput,
+        output_schema = schemas.DeleteInvestigationGroupOutput,
         http_method = "DELETE",
         http_path = "/investigationGroups/{identifier}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteInvestigationGroupPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteInvestigationGroupPolicy",
-        input_schema = types.DeleteInvestigationGroupPolicyInput,
-        output_schema = types.DeleteInvestigationGroupPolicyOutput,
+        input_schema = schemas.DeleteInvestigationGroupPolicyInput,
+        output_schema = schemas.DeleteInvestigationGroupPolicyOutput,
         http_method = "DELETE",
         http_path = "/investigationGroups/{identifier}/policy",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getInvestigationGroup(input, options)
     return self:invokeOperation(input, {
         name = "GetInvestigationGroup",
-        input_schema = types.GetInvestigationGroupInput,
-        output_schema = types.GetInvestigationGroupOutput,
+        input_schema = schemas.GetInvestigationGroupInput,
+        output_schema = schemas.GetInvestigationGroupOutput,
         http_method = "GET",
         http_path = "/investigationGroups/{identifier}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getInvestigationGroupPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetInvestigationGroupPolicy",
-        input_schema = types.GetInvestigationGroupPolicyInput,
-        output_schema = types.GetInvestigationGroupPolicyOutput,
+        input_schema = schemas.GetInvestigationGroupPolicyInput,
+        output_schema = schemas.GetInvestigationGroupPolicyOutput,
         http_method = "GET",
         http_path = "/investigationGroups/{identifier}/policy",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:listInvestigationGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListInvestigationGroups",
-        input_schema = types.ListInvestigationGroupsInput,
-        output_schema = types.ListInvestigationGroupsOutput,
+        input_schema = schemas.ListInvestigationGroupsInput,
+        output_schema = schemas.ListInvestigationGroupsOutput,
         http_method = "GET",
         http_path = "/investigationGroups",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:putInvestigationGroupPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutInvestigationGroupPolicy",
-        input_schema = types.PutInvestigationGroupPolicyInput,
-        output_schema = types.PutInvestigationGroupPolicyOutput,
+        input_schema = schemas.PutInvestigationGroupPolicyInput,
+        output_schema = schemas.PutInvestigationGroupPolicyOutput,
         http_method = "POST",
         http_path = "/investigationGroups/{identifier}/policy",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:updateInvestigationGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateInvestigationGroup",
-        input_schema = types.UpdateInvestigationGroupInput,
-        output_schema = types.UpdateInvestigationGroupOutput,
+        input_schema = schemas.UpdateInvestigationGroupInput,
+        output_schema = schemas.UpdateInvestigationGroupOutput,
         http_method = "PATCH",
         http_path = "/investigationGroups/{identifier}",
         effective_auth_schemes = {

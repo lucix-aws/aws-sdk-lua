@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("mq.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("mq.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("mq.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createBroker(input, options)
     return self:invokeOperation(input, {
         name = "CreateBroker",
-        input_schema = types.CreateBrokerInput,
-        output_schema = types.CreateBrokerOutput,
+        input_schema = schemas.CreateBrokerInput,
+        output_schema = schemas.CreateBrokerOutput,
         http_method = "POST",
         http_path = "/v1/brokers",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateConfiguration",
-        input_schema = types.CreateConfigurationInput,
-        output_schema = types.CreateConfigurationOutput,
+        input_schema = schemas.CreateConfigurationInput,
+        output_schema = schemas.CreateConfigurationOutput,
         http_method = "POST",
         http_path = "/v1/configurations",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createTags(input, options)
     return self:invokeOperation(input, {
         name = "CreateTags",
-        input_schema = types.CreateTagsInput,
-        output_schema = types.CreateTagsOutput,
+        input_schema = schemas.CreateTagsInput,
+        output_schema = schemas.CreateTagsOutput,
         http_method = "POST",
         http_path = "/v1/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createUser(input, options)
     return self:invokeOperation(input, {
         name = "CreateUser",
-        input_schema = types.CreateUserInput,
-        output_schema = types.CreateUserOutput,
+        input_schema = schemas.CreateUserInput,
+        output_schema = schemas.CreateUserOutput,
         http_method = "POST",
         http_path = "/v1/brokers/{BrokerId}/users/{Username}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteBroker(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBroker",
-        input_schema = types.DeleteBrokerInput,
-        output_schema = types.DeleteBrokerOutput,
+        input_schema = schemas.DeleteBrokerInput,
+        output_schema = schemas.DeleteBrokerOutput,
         http_method = "DELETE",
         http_path = "/v1/brokers/{BrokerId}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfiguration",
-        input_schema = types.DeleteConfigurationInput,
-        output_schema = types.DeleteConfigurationOutput,
+        input_schema = schemas.DeleteConfigurationInput,
+        output_schema = schemas.DeleteConfigurationOutput,
         http_method = "DELETE",
         http_path = "/v1/configurations/{ConfigurationId}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteTags(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTags",
-        input_schema = types.DeleteTagsInput,
-        output_schema = types.DeleteTagsOutput,
+        input_schema = schemas.DeleteTagsInput,
+        output_schema = schemas.DeleteTagsOutput,
         http_method = "DELETE",
         http_path = "/v1/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteUser(input, options)
     return self:invokeOperation(input, {
         name = "DeleteUser",
-        input_schema = types.DeleteUserInput,
-        output_schema = types.DeleteUserOutput,
+        input_schema = schemas.DeleteUserInput,
+        output_schema = schemas.DeleteUserOutput,
         http_method = "DELETE",
         http_path = "/v1/brokers/{BrokerId}/users/{Username}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:describeBroker(input, options)
     return self:invokeOperation(input, {
         name = "DescribeBroker",
-        input_schema = types.DescribeBrokerInput,
-        output_schema = types.DescribeBrokerOutput,
+        input_schema = schemas.DescribeBrokerInput,
+        output_schema = schemas.DescribeBrokerOutput,
         http_method = "GET",
         http_path = "/v1/brokers/{BrokerId}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:describeBrokerEngineTypes(input, options)
     return self:invokeOperation(input, {
         name = "DescribeBrokerEngineTypes",
-        input_schema = types.DescribeBrokerEngineTypesInput,
-        output_schema = types.DescribeBrokerEngineTypesOutput,
+        input_schema = schemas.DescribeBrokerEngineTypesInput,
+        output_schema = schemas.DescribeBrokerEngineTypesOutput,
         http_method = "GET",
         http_path = "/v1/broker-engine-types",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:describeBrokerInstanceOptions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeBrokerInstanceOptions",
-        input_schema = types.DescribeBrokerInstanceOptionsInput,
-        output_schema = types.DescribeBrokerInstanceOptionsOutput,
+        input_schema = schemas.DescribeBrokerInstanceOptionsInput,
+        output_schema = schemas.DescribeBrokerInstanceOptionsOutput,
         http_method = "GET",
         http_path = "/v1/broker-instance-options",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:describeConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConfiguration",
-        input_schema = types.DescribeConfigurationInput,
-        output_schema = types.DescribeConfigurationOutput,
+        input_schema = schemas.DescribeConfigurationInput,
+        output_schema = schemas.DescribeConfigurationOutput,
         http_method = "GET",
         http_path = "/v1/configurations/{ConfigurationId}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:describeConfigurationRevision(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConfigurationRevision",
-        input_schema = types.DescribeConfigurationRevisionInput,
-        output_schema = types.DescribeConfigurationRevisionOutput,
+        input_schema = schemas.DescribeConfigurationRevisionInput,
+        output_schema = schemas.DescribeConfigurationRevisionOutput,
         http_method = "GET",
         http_path = "/v1/configurations/{ConfigurationId}/revisions/{ConfigurationRevision}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:describeUser(input, options)
     return self:invokeOperation(input, {
         name = "DescribeUser",
-        input_schema = types.DescribeUserInput,
-        output_schema = types.DescribeUserOutput,
+        input_schema = schemas.DescribeUserInput,
+        output_schema = schemas.DescribeUserOutput,
         http_method = "GET",
         http_path = "/v1/brokers/{BrokerId}/users/{Username}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listBrokers(input, options)
     return self:invokeOperation(input, {
         name = "ListBrokers",
-        input_schema = types.ListBrokersInput,
-        output_schema = types.ListBrokersOutput,
+        input_schema = schemas.ListBrokersInput,
+        output_schema = schemas.ListBrokersOutput,
         http_method = "GET",
         http_path = "/v1/brokers",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listConfigurationRevisions(input, options)
     return self:invokeOperation(input, {
         name = "ListConfigurationRevisions",
-        input_schema = types.ListConfigurationRevisionsInput,
-        output_schema = types.ListConfigurationRevisionsOutput,
+        input_schema = schemas.ListConfigurationRevisionsInput,
+        output_schema = schemas.ListConfigurationRevisionsOutput,
         http_method = "GET",
         http_path = "/v1/configurations/{ConfigurationId}/revisions",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListConfigurations",
-        input_schema = types.ListConfigurationsInput,
-        output_schema = types.ListConfigurationsOutput,
+        input_schema = schemas.ListConfigurationsInput,
+        output_schema = schemas.ListConfigurationsOutput,
         http_method = "GET",
         http_path = "/v1/configurations",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listTags(input, options)
     return self:invokeOperation(input, {
         name = "ListTags",
-        input_schema = types.ListTagsInput,
-        output_schema = types.ListTagsOutput,
+        input_schema = schemas.ListTagsInput,
+        output_schema = schemas.ListTagsOutput,
         http_method = "GET",
         http_path = "/v1/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listUsers(input, options)
     return self:invokeOperation(input, {
         name = "ListUsers",
-        input_schema = types.ListUsersInput,
-        output_schema = types.ListUsersOutput,
+        input_schema = schemas.ListUsersInput,
+        output_schema = schemas.ListUsersOutput,
         http_method = "GET",
         http_path = "/v1/brokers/{BrokerId}/users",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:promote(input, options)
     return self:invokeOperation(input, {
         name = "Promote",
-        input_schema = types.PromoteInput,
-        output_schema = types.PromoteOutput,
+        input_schema = schemas.PromoteInput,
+        output_schema = schemas.PromoteOutput,
         http_method = "POST",
         http_path = "/v1/brokers/{BrokerId}/promote",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:rebootBroker(input, options)
     return self:invokeOperation(input, {
         name = "RebootBroker",
-        input_schema = types.RebootBrokerInput,
-        output_schema = types.RebootBrokerOutput,
+        input_schema = schemas.RebootBrokerInput,
+        output_schema = schemas.RebootBrokerOutput,
         http_method = "POST",
         http_path = "/v1/brokers/{BrokerId}/reboot",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:updateBroker(input, options)
     return self:invokeOperation(input, {
         name = "UpdateBroker",
-        input_schema = types.UpdateBrokerInput,
-        output_schema = types.UpdateBrokerOutput,
+        input_schema = schemas.UpdateBrokerInput,
+        output_schema = schemas.UpdateBrokerOutput,
         http_method = "PUT",
         http_path = "/v1/brokers/{BrokerId}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:updateConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConfiguration",
-        input_schema = types.UpdateConfigurationInput,
-        output_schema = types.UpdateConfigurationOutput,
+        input_schema = schemas.UpdateConfigurationInput,
+        output_schema = schemas.UpdateConfigurationOutput,
         http_method = "PUT",
         http_path = "/v1/configurations/{ConfigurationId}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:updateUser(input, options)
     return self:invokeOperation(input, {
         name = "UpdateUser",
-        input_schema = types.UpdateUserInput,
-        output_schema = types.UpdateUserOutput,
+        input_schema = schemas.UpdateUserInput,
+        output_schema = schemas.UpdateUserOutput,
         http_method = "PUT",
         http_path = "/v1/brokers/{BrokerId}/users/{Username}",
         effective_auth_schemes = {

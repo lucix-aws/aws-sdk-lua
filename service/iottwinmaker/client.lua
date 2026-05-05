@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("iottwinmaker.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("iottwinmaker.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("iottwinmaker.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchPutPropertyValues(input, options)
     return self:invokeOperation(input, {
         name = "BatchPutPropertyValues",
-        input_schema = types.BatchPutPropertyValuesInput,
-        output_schema = types.BatchPutPropertyValuesOutput,
+        input_schema = schemas.BatchPutPropertyValuesInput,
+        output_schema = schemas.BatchPutPropertyValuesOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/entity-properties",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:cancelMetadataTransferJob(input, options)
     return self:invokeOperation(input, {
         name = "CancelMetadataTransferJob",
-        input_schema = types.CancelMetadataTransferJobInput,
-        output_schema = types.CancelMetadataTransferJobOutput,
+        input_schema = schemas.CancelMetadataTransferJobInput,
+        output_schema = schemas.CancelMetadataTransferJobOutput,
         http_method = "PUT",
         http_path = "/metadata-transfer-jobs/{metadataTransferJobId}/cancel",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createComponentType(input, options)
     return self:invokeOperation(input, {
         name = "CreateComponentType",
-        input_schema = types.CreateComponentTypeInput,
-        output_schema = types.CreateComponentTypeOutput,
+        input_schema = schemas.CreateComponentTypeInput,
+        output_schema = schemas.CreateComponentTypeOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/component-types/{componentTypeId}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createEntity(input, options)
     return self:invokeOperation(input, {
         name = "CreateEntity",
-        input_schema = types.CreateEntityInput,
-        output_schema = types.CreateEntityOutput,
+        input_schema = schemas.CreateEntityInput,
+        output_schema = schemas.CreateEntityOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/entities",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createMetadataTransferJob(input, options)
     return self:invokeOperation(input, {
         name = "CreateMetadataTransferJob",
-        input_schema = types.CreateMetadataTransferJobInput,
-        output_schema = types.CreateMetadataTransferJobOutput,
+        input_schema = schemas.CreateMetadataTransferJobInput,
+        output_schema = schemas.CreateMetadataTransferJobOutput,
         http_method = "POST",
         http_path = "/metadata-transfer-jobs",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createScene(input, options)
     return self:invokeOperation(input, {
         name = "CreateScene",
-        input_schema = types.CreateSceneInput,
-        output_schema = types.CreateSceneOutput,
+        input_schema = schemas.CreateSceneInput,
+        output_schema = schemas.CreateSceneOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/scenes",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createSyncJob(input, options)
     return self:invokeOperation(input, {
         name = "CreateSyncJob",
-        input_schema = types.CreateSyncJobInput,
-        output_schema = types.CreateSyncJobOutput,
+        input_schema = schemas.CreateSyncJobInput,
+        output_schema = schemas.CreateSyncJobOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/sync-jobs/{syncSource}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createWorkspace(input, options)
     return self:invokeOperation(input, {
         name = "CreateWorkspace",
-        input_schema = types.CreateWorkspaceInput,
-        output_schema = types.CreateWorkspaceOutput,
+        input_schema = schemas.CreateWorkspaceInput,
+        output_schema = schemas.CreateWorkspaceOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteComponentType(input, options)
     return self:invokeOperation(input, {
         name = "DeleteComponentType",
-        input_schema = types.DeleteComponentTypeInput,
-        output_schema = types.DeleteComponentTypeOutput,
+        input_schema = schemas.DeleteComponentTypeInput,
+        output_schema = schemas.DeleteComponentTypeOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{workspaceId}/component-types/{componentTypeId}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteEntity(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEntity",
-        input_schema = types.DeleteEntityInput,
-        output_schema = types.DeleteEntityOutput,
+        input_schema = schemas.DeleteEntityInput,
+        output_schema = schemas.DeleteEntityOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{workspaceId}/entities/{entityId}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteScene(input, options)
     return self:invokeOperation(input, {
         name = "DeleteScene",
-        input_schema = types.DeleteSceneInput,
-        output_schema = types.DeleteSceneOutput,
+        input_schema = schemas.DeleteSceneInput,
+        output_schema = schemas.DeleteSceneOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{workspaceId}/scenes/{sceneId}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteSyncJob(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSyncJob",
-        input_schema = types.DeleteSyncJobInput,
-        output_schema = types.DeleteSyncJobOutput,
+        input_schema = schemas.DeleteSyncJobInput,
+        output_schema = schemas.DeleteSyncJobOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{workspaceId}/sync-jobs/{syncSource}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteWorkspace(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWorkspace",
-        input_schema = types.DeleteWorkspaceInput,
-        output_schema = types.DeleteWorkspaceOutput,
+        input_schema = schemas.DeleteWorkspaceInput,
+        output_schema = schemas.DeleteWorkspaceOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{workspaceId}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:executeQuery(input, options)
     return self:invokeOperation(input, {
         name = "ExecuteQuery",
-        input_schema = types.ExecuteQueryInput,
-        output_schema = types.ExecuteQueryOutput,
+        input_schema = schemas.ExecuteQueryInput,
+        output_schema = schemas.ExecuteQueryOutput,
         http_method = "POST",
         http_path = "/queries/execution",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getComponentType(input, options)
     return self:invokeOperation(input, {
         name = "GetComponentType",
-        input_schema = types.GetComponentTypeInput,
-        output_schema = types.GetComponentTypeOutput,
+        input_schema = schemas.GetComponentTypeInput,
+        output_schema = schemas.GetComponentTypeOutput,
         http_method = "GET",
         http_path = "/workspaces/{workspaceId}/component-types/{componentTypeId}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getEntity(input, options)
     return self:invokeOperation(input, {
         name = "GetEntity",
-        input_schema = types.GetEntityInput,
-        output_schema = types.GetEntityOutput,
+        input_schema = schemas.GetEntityInput,
+        output_schema = schemas.GetEntityOutput,
         http_method = "GET",
         http_path = "/workspaces/{workspaceId}/entities/{entityId}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getMetadataTransferJob(input, options)
     return self:invokeOperation(input, {
         name = "GetMetadataTransferJob",
-        input_schema = types.GetMetadataTransferJobInput,
-        output_schema = types.GetMetadataTransferJobOutput,
+        input_schema = schemas.GetMetadataTransferJobInput,
+        output_schema = schemas.GetMetadataTransferJobOutput,
         http_method = "GET",
         http_path = "/metadata-transfer-jobs/{metadataTransferJobId}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getPricingPlan(input, options)
     return self:invokeOperation(input, {
         name = "GetPricingPlan",
-        input_schema = types.GetPricingPlanInput,
-        output_schema = types.GetPricingPlanOutput,
+        input_schema = schemas.GetPricingPlanInput,
+        output_schema = schemas.GetPricingPlanOutput,
         http_method = "GET",
         http_path = "/pricingplan",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getPropertyValue(input, options)
     return self:invokeOperation(input, {
         name = "GetPropertyValue",
-        input_schema = types.GetPropertyValueInput,
-        output_schema = types.GetPropertyValueOutput,
+        input_schema = schemas.GetPropertyValueInput,
+        output_schema = schemas.GetPropertyValueOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/entity-properties/value",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getPropertyValueHistory(input, options)
     return self:invokeOperation(input, {
         name = "GetPropertyValueHistory",
-        input_schema = types.GetPropertyValueHistoryInput,
-        output_schema = types.GetPropertyValueHistoryOutput,
+        input_schema = schemas.GetPropertyValueHistoryInput,
+        output_schema = schemas.GetPropertyValueHistoryOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/entity-properties/history",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:getScene(input, options)
     return self:invokeOperation(input, {
         name = "GetScene",
-        input_schema = types.GetSceneInput,
-        output_schema = types.GetSceneOutput,
+        input_schema = schemas.GetSceneInput,
+        output_schema = schemas.GetSceneOutput,
         http_method = "GET",
         http_path = "/workspaces/{workspaceId}/scenes/{sceneId}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:getSyncJob(input, options)
     return self:invokeOperation(input, {
         name = "GetSyncJob",
-        input_schema = types.GetSyncJobInput,
-        output_schema = types.GetSyncJobOutput,
+        input_schema = schemas.GetSyncJobInput,
+        output_schema = schemas.GetSyncJobOutput,
         http_method = "GET",
         http_path = "/sync-jobs/{syncSource}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:getWorkspace(input, options)
     return self:invokeOperation(input, {
         name = "GetWorkspace",
-        input_schema = types.GetWorkspaceInput,
-        output_schema = types.GetWorkspaceOutput,
+        input_schema = schemas.GetWorkspaceInput,
+        output_schema = schemas.GetWorkspaceOutput,
         http_method = "GET",
         http_path = "/workspaces/{workspaceId}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listComponents(input, options)
     return self:invokeOperation(input, {
         name = "ListComponents",
-        input_schema = types.ListComponentsInput,
-        output_schema = types.ListComponentsOutput,
+        input_schema = schemas.ListComponentsInput,
+        output_schema = schemas.ListComponentsOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/entities/{entityId}/components-list",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listComponentTypes(input, options)
     return self:invokeOperation(input, {
         name = "ListComponentTypes",
-        input_schema = types.ListComponentTypesInput,
-        output_schema = types.ListComponentTypesOutput,
+        input_schema = schemas.ListComponentTypesInput,
+        output_schema = schemas.ListComponentTypesOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/component-types-list",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listEntities(input, options)
     return self:invokeOperation(input, {
         name = "ListEntities",
-        input_schema = types.ListEntitiesInput,
-        output_schema = types.ListEntitiesOutput,
+        input_schema = schemas.ListEntitiesInput,
+        output_schema = schemas.ListEntitiesOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/entities-list",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listMetadataTransferJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListMetadataTransferJobs",
-        input_schema = types.ListMetadataTransferJobsInput,
-        output_schema = types.ListMetadataTransferJobsOutput,
+        input_schema = schemas.ListMetadataTransferJobsInput,
+        output_schema = schemas.ListMetadataTransferJobsOutput,
         http_method = "POST",
         http_path = "/metadata-transfer-jobs-list",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listProperties(input, options)
     return self:invokeOperation(input, {
         name = "ListProperties",
-        input_schema = types.ListPropertiesInput,
-        output_schema = types.ListPropertiesOutput,
+        input_schema = schemas.ListPropertiesInput,
+        output_schema = schemas.ListPropertiesOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/properties-list",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listScenes(input, options)
     return self:invokeOperation(input, {
         name = "ListScenes",
-        input_schema = types.ListScenesInput,
-        output_schema = types.ListScenesOutput,
+        input_schema = schemas.ListScenesInput,
+        output_schema = schemas.ListScenesOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/scenes-list",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:listSyncJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListSyncJobs",
-        input_schema = types.ListSyncJobsInput,
-        output_schema = types.ListSyncJobsOutput,
+        input_schema = schemas.ListSyncJobsInput,
+        output_schema = schemas.ListSyncJobsOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/sync-jobs-list",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:listSyncResources(input, options)
     return self:invokeOperation(input, {
         name = "ListSyncResources",
-        input_schema = types.ListSyncResourcesInput,
-        output_schema = types.ListSyncResourcesOutput,
+        input_schema = schemas.ListSyncResourcesInput,
+        output_schema = schemas.ListSyncResourcesOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/sync-jobs/{syncSource}/resources-list",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/tags-list",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:listWorkspaces(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkspaces",
-        input_schema = types.ListWorkspacesInput,
-        output_schema = types.ListWorkspacesOutput,
+        input_schema = schemas.ListWorkspacesInput,
+        output_schema = schemas.ListWorkspacesOutput,
         http_method = "POST",
         http_path = "/workspaces-list",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:updateComponentType(input, options)
     return self:invokeOperation(input, {
         name = "UpdateComponentType",
-        input_schema = types.UpdateComponentTypeInput,
-        output_schema = types.UpdateComponentTypeOutput,
+        input_schema = schemas.UpdateComponentTypeInput,
+        output_schema = schemas.UpdateComponentTypeOutput,
         http_method = "PUT",
         http_path = "/workspaces/{workspaceId}/component-types/{componentTypeId}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:updateEntity(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEntity",
-        input_schema = types.UpdateEntityInput,
-        output_schema = types.UpdateEntityOutput,
+        input_schema = schemas.UpdateEntityInput,
+        output_schema = schemas.UpdateEntityOutput,
         http_method = "PUT",
         http_path = "/workspaces/{workspaceId}/entities/{entityId}",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:updatePricingPlan(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePricingPlan",
-        input_schema = types.UpdatePricingPlanInput,
-        output_schema = types.UpdatePricingPlanOutput,
+        input_schema = schemas.UpdatePricingPlanInput,
+        output_schema = schemas.UpdatePricingPlanOutput,
         http_method = "POST",
         http_path = "/pricingplan",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:updateScene(input, options)
     return self:invokeOperation(input, {
         name = "UpdateScene",
-        input_schema = types.UpdateSceneInput,
-        output_schema = types.UpdateSceneOutput,
+        input_schema = schemas.UpdateSceneInput,
+        output_schema = schemas.UpdateSceneOutput,
         http_method = "PUT",
         http_path = "/workspaces/{workspaceId}/scenes/{sceneId}",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:updateWorkspace(input, options)
     return self:invokeOperation(input, {
         name = "UpdateWorkspace",
-        input_schema = types.UpdateWorkspaceInput,
-        output_schema = types.UpdateWorkspaceOutput,
+        input_schema = schemas.UpdateWorkspaceInput,
+        output_schema = schemas.UpdateWorkspaceOutput,
         http_method = "PUT",
         http_path = "/workspaces/{workspaceId}",
         effective_auth_schemes = {

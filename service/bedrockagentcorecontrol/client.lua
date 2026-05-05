@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("bedrockagentcorecontrol.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("bedrockagentcorecontrol.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("bedrockagentcorecontrol.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createAgentRuntime(input, options)
     return self:invokeOperation(input, {
         name = "CreateAgentRuntime",
-        input_schema = types.CreateAgentRuntimeInput,
-        output_schema = types.CreateAgentRuntimeOutput,
+        input_schema = schemas.CreateAgentRuntimeInput,
+        output_schema = schemas.CreateAgentRuntimeOutput,
         http_method = "PUT",
         http_path = "/runtimes/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createAgentRuntimeEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "CreateAgentRuntimeEndpoint",
-        input_schema = types.CreateAgentRuntimeEndpointInput,
-        output_schema = types.CreateAgentRuntimeEndpointOutput,
+        input_schema = schemas.CreateAgentRuntimeEndpointInput,
+        output_schema = schemas.CreateAgentRuntimeEndpointOutput,
         http_method = "PUT",
         http_path = "/runtimes/{agentRuntimeId}/runtime-endpoints/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createApiKeyCredentialProvider(input, options)
     return self:invokeOperation(input, {
         name = "CreateApiKeyCredentialProvider",
-        input_schema = types.CreateApiKeyCredentialProviderInput,
-        output_schema = types.CreateApiKeyCredentialProviderOutput,
+        input_schema = schemas.CreateApiKeyCredentialProviderInput,
+        output_schema = schemas.CreateApiKeyCredentialProviderOutput,
         http_method = "POST",
         http_path = "/identities/CreateApiKeyCredentialProvider",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createBrowser(input, options)
     return self:invokeOperation(input, {
         name = "CreateBrowser",
-        input_schema = types.CreateBrowserInput,
-        output_schema = types.CreateBrowserOutput,
+        input_schema = schemas.CreateBrowserInput,
+        output_schema = schemas.CreateBrowserOutput,
         http_method = "PUT",
         http_path = "/browsers",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createBrowserProfile(input, options)
     return self:invokeOperation(input, {
         name = "CreateBrowserProfile",
-        input_schema = types.CreateBrowserProfileInput,
-        output_schema = types.CreateBrowserProfileOutput,
+        input_schema = schemas.CreateBrowserProfileInput,
+        output_schema = schemas.CreateBrowserProfileOutput,
         http_method = "PUT",
         http_path = "/browser-profiles",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createCodeInterpreter(input, options)
     return self:invokeOperation(input, {
         name = "CreateCodeInterpreter",
-        input_schema = types.CreateCodeInterpreterInput,
-        output_schema = types.CreateCodeInterpreterOutput,
+        input_schema = schemas.CreateCodeInterpreterInput,
+        output_schema = schemas.CreateCodeInterpreterOutput,
         http_method = "PUT",
         http_path = "/code-interpreters",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createConfigurationBundle(input, options)
     return self:invokeOperation(input, {
         name = "CreateConfigurationBundle",
-        input_schema = types.CreateConfigurationBundleInput,
-        output_schema = types.CreateConfigurationBundleOutput,
+        input_schema = schemas.CreateConfigurationBundleInput,
+        output_schema = schemas.CreateConfigurationBundleOutput,
         http_method = "POST",
         http_path = "/configuration-bundles/create",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createEvaluator(input, options)
     return self:invokeOperation(input, {
         name = "CreateEvaluator",
-        input_schema = types.CreateEvaluatorInput,
-        output_schema = types.CreateEvaluatorOutput,
+        input_schema = schemas.CreateEvaluatorInput,
+        output_schema = schemas.CreateEvaluatorOutput,
         http_method = "POST",
         http_path = "/evaluators/create",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createGateway(input, options)
     return self:invokeOperation(input, {
         name = "CreateGateway",
-        input_schema = types.CreateGatewayInput,
-        output_schema = types.CreateGatewayOutput,
+        input_schema = schemas.CreateGatewayInput,
+        output_schema = schemas.CreateGatewayOutput,
         http_method = "POST",
         http_path = "/gateways/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createGatewayRule(input, options)
     return self:invokeOperation(input, {
         name = "CreateGatewayRule",
-        input_schema = types.CreateGatewayRuleInput,
-        output_schema = types.CreateGatewayRuleOutput,
+        input_schema = schemas.CreateGatewayRuleInput,
+        output_schema = schemas.CreateGatewayRuleOutput,
         http_method = "POST",
         http_path = "/gateways/{gatewayIdentifier}/rules",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createGatewayTarget(input, options)
     return self:invokeOperation(input, {
         name = "CreateGatewayTarget",
-        input_schema = types.CreateGatewayTargetInput,
-        output_schema = types.CreateGatewayTargetOutput,
+        input_schema = schemas.CreateGatewayTargetInput,
+        output_schema = schemas.CreateGatewayTargetOutput,
         http_method = "POST",
         http_path = "/gateways/{gatewayIdentifier}/targets/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createHarness(input, options)
     return self:invokeOperation(input, {
         name = "CreateHarness",
-        input_schema = types.CreateHarnessInput,
-        output_schema = types.CreateHarnessOutput,
+        input_schema = schemas.CreateHarnessInput,
+        output_schema = schemas.CreateHarnessOutput,
         http_method = "POST",
         http_path = "/harnesses",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createMemory(input, options)
     return self:invokeOperation(input, {
         name = "CreateMemory",
-        input_schema = types.CreateMemoryInput,
-        output_schema = types.CreateMemoryOutput,
+        input_schema = schemas.CreateMemoryInput,
+        output_schema = schemas.CreateMemoryOutput,
         http_method = "POST",
         http_path = "/memories/create",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:createOauth2CredentialProvider(input, options)
     return self:invokeOperation(input, {
         name = "CreateOauth2CredentialProvider",
-        input_schema = types.CreateOauth2CredentialProviderInput,
-        output_schema = types.CreateOauth2CredentialProviderOutput,
+        input_schema = schemas.CreateOauth2CredentialProviderInput,
+        output_schema = schemas.CreateOauth2CredentialProviderOutput,
         http_method = "POST",
         http_path = "/identities/CreateOauth2CredentialProvider",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:createOnlineEvaluationConfig(input, options)
     return self:invokeOperation(input, {
         name = "CreateOnlineEvaluationConfig",
-        input_schema = types.CreateOnlineEvaluationConfigInput,
-        output_schema = types.CreateOnlineEvaluationConfigOutput,
+        input_schema = schemas.CreateOnlineEvaluationConfigInput,
+        output_schema = schemas.CreateOnlineEvaluationConfigOutput,
         http_method = "POST",
         http_path = "/online-evaluation-configs/create",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:createPolicy(input, options)
     return self:invokeOperation(input, {
         name = "CreatePolicy",
-        input_schema = types.CreatePolicyInput,
-        output_schema = types.CreatePolicyOutput,
+        input_schema = schemas.CreatePolicyInput,
+        output_schema = schemas.CreatePolicyOutput,
         http_method = "POST",
         http_path = "/policy-engines/{policyEngineId}/policies",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:createPolicyEngine(input, options)
     return self:invokeOperation(input, {
         name = "CreatePolicyEngine",
-        input_schema = types.CreatePolicyEngineInput,
-        output_schema = types.CreatePolicyEngineOutput,
+        input_schema = schemas.CreatePolicyEngineInput,
+        output_schema = schemas.CreatePolicyEngineOutput,
         http_method = "POST",
         http_path = "/policy-engines",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:createRegistry(input, options)
     return self:invokeOperation(input, {
         name = "CreateRegistry",
-        input_schema = types.CreateRegistryInput,
-        output_schema = types.CreateRegistryOutput,
+        input_schema = schemas.CreateRegistryInput,
+        output_schema = schemas.CreateRegistryOutput,
         http_method = "POST",
         http_path = "/registries",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:createRegistryRecord(input, options)
     return self:invokeOperation(input, {
         name = "CreateRegistryRecord",
-        input_schema = types.CreateRegistryRecordInput,
-        output_schema = types.CreateRegistryRecordOutput,
+        input_schema = schemas.CreateRegistryRecordInput,
+        output_schema = schemas.CreateRegistryRecordOutput,
         http_method = "POST",
         http_path = "/registries/{registryId}/records",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:createWorkloadIdentity(input, options)
     return self:invokeOperation(input, {
         name = "CreateWorkloadIdentity",
-        input_schema = types.CreateWorkloadIdentityInput,
-        output_schema = types.CreateWorkloadIdentityOutput,
+        input_schema = schemas.CreateWorkloadIdentityInput,
+        output_schema = schemas.CreateWorkloadIdentityOutput,
         http_method = "POST",
         http_path = "/identities/CreateWorkloadIdentity",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteAgentRuntime(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAgentRuntime",
-        input_schema = types.DeleteAgentRuntimeInput,
-        output_schema = types.DeleteAgentRuntimeOutput,
+        input_schema = schemas.DeleteAgentRuntimeInput,
+        output_schema = schemas.DeleteAgentRuntimeOutput,
         http_method = "DELETE",
         http_path = "/runtimes/{agentRuntimeId}/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:deleteAgentRuntimeEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAgentRuntimeEndpoint",
-        input_schema = types.DeleteAgentRuntimeEndpointInput,
-        output_schema = types.DeleteAgentRuntimeEndpointOutput,
+        input_schema = schemas.DeleteAgentRuntimeEndpointInput,
+        output_schema = schemas.DeleteAgentRuntimeEndpointOutput,
         http_method = "DELETE",
         http_path = "/runtimes/{agentRuntimeId}/runtime-endpoints/{endpointName}/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:deleteApiKeyCredentialProvider(input, options)
     return self:invokeOperation(input, {
         name = "DeleteApiKeyCredentialProvider",
-        input_schema = types.DeleteApiKeyCredentialProviderInput,
-        output_schema = types.DeleteApiKeyCredentialProviderOutput,
+        input_schema = schemas.DeleteApiKeyCredentialProviderInput,
+        output_schema = schemas.DeleteApiKeyCredentialProviderOutput,
         http_method = "POST",
         http_path = "/identities/DeleteApiKeyCredentialProvider",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:deleteBrowser(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBrowser",
-        input_schema = types.DeleteBrowserInput,
-        output_schema = types.DeleteBrowserOutput,
+        input_schema = schemas.DeleteBrowserInput,
+        output_schema = schemas.DeleteBrowserOutput,
         http_method = "DELETE",
         http_path = "/browsers/{browserId}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:deleteBrowserProfile(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBrowserProfile",
-        input_schema = types.DeleteBrowserProfileInput,
-        output_schema = types.DeleteBrowserProfileOutput,
+        input_schema = schemas.DeleteBrowserProfileInput,
+        output_schema = schemas.DeleteBrowserProfileOutput,
         http_method = "DELETE",
         http_path = "/browser-profiles/{profileId}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:deleteCodeInterpreter(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCodeInterpreter",
-        input_schema = types.DeleteCodeInterpreterInput,
-        output_schema = types.DeleteCodeInterpreterOutput,
+        input_schema = schemas.DeleteCodeInterpreterInput,
+        output_schema = schemas.DeleteCodeInterpreterOutput,
         http_method = "DELETE",
         http_path = "/code-interpreters/{codeInterpreterId}",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:deleteConfigurationBundle(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfigurationBundle",
-        input_schema = types.DeleteConfigurationBundleInput,
-        output_schema = types.DeleteConfigurationBundleOutput,
+        input_schema = schemas.DeleteConfigurationBundleInput,
+        output_schema = schemas.DeleteConfigurationBundleOutput,
         http_method = "DELETE",
         http_path = "/configuration-bundles/{bundleId}",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:deleteEvaluator(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEvaluator",
-        input_schema = types.DeleteEvaluatorInput,
-        output_schema = types.DeleteEvaluatorOutput,
+        input_schema = schemas.DeleteEvaluatorInput,
+        output_schema = schemas.DeleteEvaluatorOutput,
         http_method = "DELETE",
         http_path = "/evaluators/{evaluatorId}",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:deleteGateway(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGateway",
-        input_schema = types.DeleteGatewayInput,
-        output_schema = types.DeleteGatewayOutput,
+        input_schema = schemas.DeleteGatewayInput,
+        output_schema = schemas.DeleteGatewayOutput,
         http_method = "DELETE",
         http_path = "/gateways/{gatewayIdentifier}/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:deleteGatewayRule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGatewayRule",
-        input_schema = types.DeleteGatewayRuleInput,
-        output_schema = types.DeleteGatewayRuleOutput,
+        input_schema = schemas.DeleteGatewayRuleInput,
+        output_schema = schemas.DeleteGatewayRuleOutput,
         http_method = "DELETE",
         http_path = "/gateways/{gatewayIdentifier}/rules/{ruleId}",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:deleteGatewayTarget(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGatewayTarget",
-        input_schema = types.DeleteGatewayTargetInput,
-        output_schema = types.DeleteGatewayTargetOutput,
+        input_schema = schemas.DeleteGatewayTargetInput,
+        output_schema = schemas.DeleteGatewayTargetOutput,
         http_method = "DELETE",
         http_path = "/gateways/{gatewayIdentifier}/targets/{targetId}/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:deleteHarness(input, options)
     return self:invokeOperation(input, {
         name = "DeleteHarness",
-        input_schema = types.DeleteHarnessInput,
-        output_schema = types.DeleteHarnessOutput,
+        input_schema = schemas.DeleteHarnessInput,
+        output_schema = schemas.DeleteHarnessOutput,
         http_method = "DELETE",
         http_path = "/harnesses/{harnessId}",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:deleteMemory(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMemory",
-        input_schema = types.DeleteMemoryInput,
-        output_schema = types.DeleteMemoryOutput,
+        input_schema = schemas.DeleteMemoryInput,
+        output_schema = schemas.DeleteMemoryOutput,
         http_method = "DELETE",
         http_path = "/memories/{memoryId}/delete",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:deleteOauth2CredentialProvider(input, options)
     return self:invokeOperation(input, {
         name = "DeleteOauth2CredentialProvider",
-        input_schema = types.DeleteOauth2CredentialProviderInput,
-        output_schema = types.DeleteOauth2CredentialProviderOutput,
+        input_schema = schemas.DeleteOauth2CredentialProviderInput,
+        output_schema = schemas.DeleteOauth2CredentialProviderOutput,
         http_method = "POST",
         http_path = "/identities/DeleteOauth2CredentialProvider",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:deleteOnlineEvaluationConfig(input, options)
     return self:invokeOperation(input, {
         name = "DeleteOnlineEvaluationConfig",
-        input_schema = types.DeleteOnlineEvaluationConfigInput,
-        output_schema = types.DeleteOnlineEvaluationConfigOutput,
+        input_schema = schemas.DeleteOnlineEvaluationConfigInput,
+        output_schema = schemas.DeleteOnlineEvaluationConfigOutput,
         http_method = "DELETE",
         http_path = "/online-evaluation-configs/{onlineEvaluationConfigId}",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:deletePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeletePolicy",
-        input_schema = types.DeletePolicyInput,
-        output_schema = types.DeletePolicyOutput,
+        input_schema = schemas.DeletePolicyInput,
+        output_schema = schemas.DeletePolicyOutput,
         http_method = "DELETE",
         http_path = "/policy-engines/{policyEngineId}/policies/{policyId}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:deletePolicyEngine(input, options)
     return self:invokeOperation(input, {
         name = "DeletePolicyEngine",
-        input_schema = types.DeletePolicyEngineInput,
-        output_schema = types.DeletePolicyEngineOutput,
+        input_schema = schemas.DeletePolicyEngineInput,
+        output_schema = schemas.DeletePolicyEngineOutput,
         http_method = "DELETE",
         http_path = "/policy-engines/{policyEngineId}",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:deleteRegistry(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRegistry",
-        input_schema = types.DeleteRegistryInput,
-        output_schema = types.DeleteRegistryOutput,
+        input_schema = schemas.DeleteRegistryInput,
+        output_schema = schemas.DeleteRegistryOutput,
         http_method = "DELETE",
         http_path = "/registries/{registryId}",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:deleteRegistryRecord(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRegistryRecord",
-        input_schema = types.DeleteRegistryRecordInput,
-        output_schema = types.DeleteRegistryRecordOutput,
+        input_schema = schemas.DeleteRegistryRecordInput,
+        output_schema = schemas.DeleteRegistryRecordOutput,
         http_method = "DELETE",
         http_path = "/registries/{registryId}/records/{recordId}",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:deleteResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourcePolicy",
-        input_schema = types.DeleteResourcePolicyInput,
-        output_schema = types.DeleteResourcePolicyOutput,
+        input_schema = schemas.DeleteResourcePolicyInput,
+        output_schema = schemas.DeleteResourcePolicyOutput,
         http_method = "DELETE",
         http_path = "/resourcepolicy/{resourceArn}",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:deleteWorkloadIdentity(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWorkloadIdentity",
-        input_schema = types.DeleteWorkloadIdentityInput,
-        output_schema = types.DeleteWorkloadIdentityOutput,
+        input_schema = schemas.DeleteWorkloadIdentityInput,
+        output_schema = schemas.DeleteWorkloadIdentityOutput,
         http_method = "POST",
         http_path = "/identities/DeleteWorkloadIdentity",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:getAgentRuntime(input, options)
     return self:invokeOperation(input, {
         name = "GetAgentRuntime",
-        input_schema = types.GetAgentRuntimeInput,
-        output_schema = types.GetAgentRuntimeOutput,
+        input_schema = schemas.GetAgentRuntimeInput,
+        output_schema = schemas.GetAgentRuntimeOutput,
         http_method = "GET",
         http_path = "/runtimes/{agentRuntimeId}/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:getAgentRuntimeEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "GetAgentRuntimeEndpoint",
-        input_schema = types.GetAgentRuntimeEndpointInput,
-        output_schema = types.GetAgentRuntimeEndpointOutput,
+        input_schema = schemas.GetAgentRuntimeEndpointInput,
+        output_schema = schemas.GetAgentRuntimeEndpointOutput,
         http_method = "GET",
         http_path = "/runtimes/{agentRuntimeId}/runtime-endpoints/{endpointName}/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:getApiKeyCredentialProvider(input, options)
     return self:invokeOperation(input, {
         name = "GetApiKeyCredentialProvider",
-        input_schema = types.GetApiKeyCredentialProviderInput,
-        output_schema = types.GetApiKeyCredentialProviderOutput,
+        input_schema = schemas.GetApiKeyCredentialProviderInput,
+        output_schema = schemas.GetApiKeyCredentialProviderOutput,
         http_method = "POST",
         http_path = "/identities/GetApiKeyCredentialProvider",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:getBrowser(input, options)
     return self:invokeOperation(input, {
         name = "GetBrowser",
-        input_schema = types.GetBrowserInput,
-        output_schema = types.GetBrowserOutput,
+        input_schema = schemas.GetBrowserInput,
+        output_schema = schemas.GetBrowserOutput,
         http_method = "GET",
         http_path = "/browsers/{browserId}",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:getBrowserProfile(input, options)
     return self:invokeOperation(input, {
         name = "GetBrowserProfile",
-        input_schema = types.GetBrowserProfileInput,
-        output_schema = types.GetBrowserProfileOutput,
+        input_schema = schemas.GetBrowserProfileInput,
+        output_schema = schemas.GetBrowserProfileOutput,
         http_method = "GET",
         http_path = "/browser-profiles/{profileId}",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:getCodeInterpreter(input, options)
     return self:invokeOperation(input, {
         name = "GetCodeInterpreter",
-        input_schema = types.GetCodeInterpreterInput,
-        output_schema = types.GetCodeInterpreterOutput,
+        input_schema = schemas.GetCodeInterpreterInput,
+        output_schema = schemas.GetCodeInterpreterOutput,
         http_method = "GET",
         http_path = "/code-interpreters/{codeInterpreterId}",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:getConfigurationBundle(input, options)
     return self:invokeOperation(input, {
         name = "GetConfigurationBundle",
-        input_schema = types.GetConfigurationBundleInput,
-        output_schema = types.GetConfigurationBundleOutput,
+        input_schema = schemas.GetConfigurationBundleInput,
+        output_schema = schemas.GetConfigurationBundleOutput,
         http_method = "GET",
         http_path = "/configuration-bundles/{bundleId}",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:getConfigurationBundleVersion(input, options)
     return self:invokeOperation(input, {
         name = "GetConfigurationBundleVersion",
-        input_schema = types.GetConfigurationBundleVersionInput,
-        output_schema = types.GetConfigurationBundleVersionOutput,
+        input_schema = schemas.GetConfigurationBundleVersionInput,
+        output_schema = schemas.GetConfigurationBundleVersionOutput,
         http_method = "GET",
         http_path = "/configuration-bundles/{bundleId}/versions/{versionId}",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:getEvaluator(input, options)
     return self:invokeOperation(input, {
         name = "GetEvaluator",
-        input_schema = types.GetEvaluatorInput,
-        output_schema = types.GetEvaluatorOutput,
+        input_schema = schemas.GetEvaluatorInput,
+        output_schema = schemas.GetEvaluatorOutput,
         http_method = "GET",
         http_path = "/evaluators/{evaluatorId}",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:getGateway(input, options)
     return self:invokeOperation(input, {
         name = "GetGateway",
-        input_schema = types.GetGatewayInput,
-        output_schema = types.GetGatewayOutput,
+        input_schema = schemas.GetGatewayInput,
+        output_schema = schemas.GetGatewayOutput,
         http_method = "GET",
         http_path = "/gateways/{gatewayIdentifier}/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:getGatewayRule(input, options)
     return self:invokeOperation(input, {
         name = "GetGatewayRule",
-        input_schema = types.GetGatewayRuleInput,
-        output_schema = types.GetGatewayRuleOutput,
+        input_schema = schemas.GetGatewayRuleInput,
+        output_schema = schemas.GetGatewayRuleOutput,
         http_method = "GET",
         http_path = "/gateways/{gatewayIdentifier}/rules/{ruleId}",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:getGatewayTarget(input, options)
     return self:invokeOperation(input, {
         name = "GetGatewayTarget",
-        input_schema = types.GetGatewayTargetInput,
-        output_schema = types.GetGatewayTargetOutput,
+        input_schema = schemas.GetGatewayTargetInput,
+        output_schema = schemas.GetGatewayTargetOutput,
         http_method = "GET",
         http_path = "/gateways/{gatewayIdentifier}/targets/{targetId}/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:getHarness(input, options)
     return self:invokeOperation(input, {
         name = "GetHarness",
-        input_schema = types.GetHarnessInput,
-        output_schema = types.GetHarnessOutput,
+        input_schema = schemas.GetHarnessInput,
+        output_schema = schemas.GetHarnessOutput,
         http_method = "GET",
         http_path = "/harnesses/{harnessId}",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:getMemory(input, options)
     return self:invokeOperation(input, {
         name = "GetMemory",
-        input_schema = types.GetMemoryInput,
-        output_schema = types.GetMemoryOutput,
+        input_schema = schemas.GetMemoryInput,
+        output_schema = schemas.GetMemoryOutput,
         http_method = "GET",
         http_path = "/memories/{memoryId}/details",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:getOauth2CredentialProvider(input, options)
     return self:invokeOperation(input, {
         name = "GetOauth2CredentialProvider",
-        input_schema = types.GetOauth2CredentialProviderInput,
-        output_schema = types.GetOauth2CredentialProviderOutput,
+        input_schema = schemas.GetOauth2CredentialProviderInput,
+        output_schema = schemas.GetOauth2CredentialProviderOutput,
         http_method = "POST",
         http_path = "/identities/GetOauth2CredentialProvider",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:getOnlineEvaluationConfig(input, options)
     return self:invokeOperation(input, {
         name = "GetOnlineEvaluationConfig",
-        input_schema = types.GetOnlineEvaluationConfigInput,
-        output_schema = types.GetOnlineEvaluationConfigOutput,
+        input_schema = schemas.GetOnlineEvaluationConfigInput,
+        output_schema = schemas.GetOnlineEvaluationConfigOutput,
         http_method = "GET",
         http_path = "/online-evaluation-configs/{onlineEvaluationConfigId}",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:getPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetPolicy",
-        input_schema = types.GetPolicyInput,
-        output_schema = types.GetPolicyOutput,
+        input_schema = schemas.GetPolicyInput,
+        output_schema = schemas.GetPolicyOutput,
         http_method = "GET",
         http_path = "/policy-engines/{policyEngineId}/policies/{policyId}",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:getPolicyEngine(input, options)
     return self:invokeOperation(input, {
         name = "GetPolicyEngine",
-        input_schema = types.GetPolicyEngineInput,
-        output_schema = types.GetPolicyEngineOutput,
+        input_schema = schemas.GetPolicyEngineInput,
+        output_schema = schemas.GetPolicyEngineOutput,
         http_method = "GET",
         http_path = "/policy-engines/{policyEngineId}",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:getPolicyGeneration(input, options)
     return self:invokeOperation(input, {
         name = "GetPolicyGeneration",
-        input_schema = types.GetPolicyGenerationInput,
-        output_schema = types.GetPolicyGenerationOutput,
+        input_schema = schemas.GetPolicyGenerationInput,
+        output_schema = schemas.GetPolicyGenerationOutput,
         http_method = "GET",
         http_path = "/policy-engines/{policyEngineId}/policy-generations/{policyGenerationId}",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:getRegistry(input, options)
     return self:invokeOperation(input, {
         name = "GetRegistry",
-        input_schema = types.GetRegistryInput,
-        output_schema = types.GetRegistryOutput,
+        input_schema = schemas.GetRegistryInput,
+        output_schema = schemas.GetRegistryOutput,
         http_method = "GET",
         http_path = "/registries/{registryId}",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:getRegistryRecord(input, options)
     return self:invokeOperation(input, {
         name = "GetRegistryRecord",
-        input_schema = types.GetRegistryRecordInput,
-        output_schema = types.GetRegistryRecordOutput,
+        input_schema = schemas.GetRegistryRecordInput,
+        output_schema = schemas.GetRegistryRecordOutput,
         http_method = "GET",
         http_path = "/registries/{registryId}/records/{recordId}",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:getResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcePolicy",
-        input_schema = types.GetResourcePolicyInput,
-        output_schema = types.GetResourcePolicyOutput,
+        input_schema = schemas.GetResourcePolicyInput,
+        output_schema = schemas.GetResourcePolicyOutput,
         http_method = "GET",
         http_path = "/resourcepolicy/{resourceArn}",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:getTokenVault(input, options)
     return self:invokeOperation(input, {
         name = "GetTokenVault",
-        input_schema = types.GetTokenVaultInput,
-        output_schema = types.GetTokenVaultOutput,
+        input_schema = schemas.GetTokenVaultInput,
+        output_schema = schemas.GetTokenVaultOutput,
         http_method = "POST",
         http_path = "/identities/get-token-vault",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:getWorkloadIdentity(input, options)
     return self:invokeOperation(input, {
         name = "GetWorkloadIdentity",
-        input_schema = types.GetWorkloadIdentityInput,
-        output_schema = types.GetWorkloadIdentityOutput,
+        input_schema = schemas.GetWorkloadIdentityInput,
+        output_schema = schemas.GetWorkloadIdentityOutput,
         http_method = "POST",
         http_path = "/identities/GetWorkloadIdentity",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:listAgentRuntimeEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "ListAgentRuntimeEndpoints",
-        input_schema = types.ListAgentRuntimeEndpointsInput,
-        output_schema = types.ListAgentRuntimeEndpointsOutput,
+        input_schema = schemas.ListAgentRuntimeEndpointsInput,
+        output_schema = schemas.ListAgentRuntimeEndpointsOutput,
         http_method = "POST",
         http_path = "/runtimes/{agentRuntimeId}/runtime-endpoints/",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:listAgentRuntimes(input, options)
     return self:invokeOperation(input, {
         name = "ListAgentRuntimes",
-        input_schema = types.ListAgentRuntimesInput,
-        output_schema = types.ListAgentRuntimesOutput,
+        input_schema = schemas.ListAgentRuntimesInput,
+        output_schema = schemas.ListAgentRuntimesOutput,
         http_method = "POST",
         http_path = "/runtimes/",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:listAgentRuntimeVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListAgentRuntimeVersions",
-        input_schema = types.ListAgentRuntimeVersionsInput,
-        output_schema = types.ListAgentRuntimeVersionsOutput,
+        input_schema = schemas.ListAgentRuntimeVersionsInput,
+        output_schema = schemas.ListAgentRuntimeVersionsOutput,
         http_method = "POST",
         http_path = "/runtimes/{agentRuntimeId}/versions/",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:listApiKeyCredentialProviders(input, options)
     return self:invokeOperation(input, {
         name = "ListApiKeyCredentialProviders",
-        input_schema = types.ListApiKeyCredentialProvidersInput,
-        output_schema = types.ListApiKeyCredentialProvidersOutput,
+        input_schema = schemas.ListApiKeyCredentialProvidersInput,
+        output_schema = schemas.ListApiKeyCredentialProvidersOutput,
         http_method = "POST",
         http_path = "/identities/ListApiKeyCredentialProviders",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:listBrowserProfiles(input, options)
     return self:invokeOperation(input, {
         name = "ListBrowserProfiles",
-        input_schema = types.ListBrowserProfilesInput,
-        output_schema = types.ListBrowserProfilesOutput,
+        input_schema = schemas.ListBrowserProfilesInput,
+        output_schema = schemas.ListBrowserProfilesOutput,
         http_method = "POST",
         http_path = "/browser-profiles",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:listBrowsers(input, options)
     return self:invokeOperation(input, {
         name = "ListBrowsers",
-        input_schema = types.ListBrowsersInput,
-        output_schema = types.ListBrowsersOutput,
+        input_schema = schemas.ListBrowsersInput,
+        output_schema = schemas.ListBrowsersOutput,
         http_method = "POST",
         http_path = "/browsers",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:listCodeInterpreters(input, options)
     return self:invokeOperation(input, {
         name = "ListCodeInterpreters",
-        input_schema = types.ListCodeInterpretersInput,
-        output_schema = types.ListCodeInterpretersOutput,
+        input_schema = schemas.ListCodeInterpretersInput,
+        output_schema = schemas.ListCodeInterpretersOutput,
         http_method = "POST",
         http_path = "/code-interpreters",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:listConfigurationBundles(input, options)
     return self:invokeOperation(input, {
         name = "ListConfigurationBundles",
-        input_schema = types.ListConfigurationBundlesInput,
-        output_schema = types.ListConfigurationBundlesOutput,
+        input_schema = schemas.ListConfigurationBundlesInput,
+        output_schema = schemas.ListConfigurationBundlesOutput,
         http_method = "POST",
         http_path = "/configuration-bundles",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:listConfigurationBundleVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListConfigurationBundleVersions",
-        input_schema = types.ListConfigurationBundleVersionsInput,
-        output_schema = types.ListConfigurationBundleVersionsOutput,
+        input_schema = schemas.ListConfigurationBundleVersionsInput,
+        output_schema = schemas.ListConfigurationBundleVersionsOutput,
         http_method = "POST",
         http_path = "/configuration-bundles/{bundleId}/versions",
         effective_auth_schemes = {
@@ -1011,8 +1011,8 @@ end
 function Client:listEvaluators(input, options)
     return self:invokeOperation(input, {
         name = "ListEvaluators",
-        input_schema = types.ListEvaluatorsInput,
-        output_schema = types.ListEvaluatorsOutput,
+        input_schema = schemas.ListEvaluatorsInput,
+        output_schema = schemas.ListEvaluatorsOutput,
         http_method = "POST",
         http_path = "/evaluators",
         effective_auth_schemes = {
@@ -1024,8 +1024,8 @@ end
 function Client:listGatewayRules(input, options)
     return self:invokeOperation(input, {
         name = "ListGatewayRules",
-        input_schema = types.ListGatewayRulesInput,
-        output_schema = types.ListGatewayRulesOutput,
+        input_schema = schemas.ListGatewayRulesInput,
+        output_schema = schemas.ListGatewayRulesOutput,
         http_method = "GET",
         http_path = "/gateways/{gatewayIdentifier}/rules",
         effective_auth_schemes = {
@@ -1037,8 +1037,8 @@ end
 function Client:listGateways(input, options)
     return self:invokeOperation(input, {
         name = "ListGateways",
-        input_schema = types.ListGatewaysInput,
-        output_schema = types.ListGatewaysOutput,
+        input_schema = schemas.ListGatewaysInput,
+        output_schema = schemas.ListGatewaysOutput,
         http_method = "GET",
         http_path = "/gateways/",
         effective_auth_schemes = {
@@ -1050,8 +1050,8 @@ end
 function Client:listGatewayTargets(input, options)
     return self:invokeOperation(input, {
         name = "ListGatewayTargets",
-        input_schema = types.ListGatewayTargetsInput,
-        output_schema = types.ListGatewayTargetsOutput,
+        input_schema = schemas.ListGatewayTargetsInput,
+        output_schema = schemas.ListGatewayTargetsOutput,
         http_method = "GET",
         http_path = "/gateways/{gatewayIdentifier}/targets/",
         effective_auth_schemes = {
@@ -1063,8 +1063,8 @@ end
 function Client:listHarnesses(input, options)
     return self:invokeOperation(input, {
         name = "ListHarnesses",
-        input_schema = types.ListHarnessesInput,
-        output_schema = types.ListHarnessesOutput,
+        input_schema = schemas.ListHarnessesInput,
+        output_schema = schemas.ListHarnessesOutput,
         http_method = "GET",
         http_path = "/harnesses",
         effective_auth_schemes = {
@@ -1076,8 +1076,8 @@ end
 function Client:listMemories(input, options)
     return self:invokeOperation(input, {
         name = "ListMemories",
-        input_schema = types.ListMemoriesInput,
-        output_schema = types.ListMemoriesOutput,
+        input_schema = schemas.ListMemoriesInput,
+        output_schema = schemas.ListMemoriesOutput,
         http_method = "POST",
         http_path = "/memories/",
         effective_auth_schemes = {
@@ -1089,8 +1089,8 @@ end
 function Client:listOauth2CredentialProviders(input, options)
     return self:invokeOperation(input, {
         name = "ListOauth2CredentialProviders",
-        input_schema = types.ListOauth2CredentialProvidersInput,
-        output_schema = types.ListOauth2CredentialProvidersOutput,
+        input_schema = schemas.ListOauth2CredentialProvidersInput,
+        output_schema = schemas.ListOauth2CredentialProvidersOutput,
         http_method = "POST",
         http_path = "/identities/ListOauth2CredentialProviders",
         effective_auth_schemes = {
@@ -1102,8 +1102,8 @@ end
 function Client:listOnlineEvaluationConfigs(input, options)
     return self:invokeOperation(input, {
         name = "ListOnlineEvaluationConfigs",
-        input_schema = types.ListOnlineEvaluationConfigsInput,
-        output_schema = types.ListOnlineEvaluationConfigsOutput,
+        input_schema = schemas.ListOnlineEvaluationConfigsInput,
+        output_schema = schemas.ListOnlineEvaluationConfigsOutput,
         http_method = "POST",
         http_path = "/online-evaluation-configs",
         effective_auth_schemes = {
@@ -1115,8 +1115,8 @@ end
 function Client:listPolicies(input, options)
     return self:invokeOperation(input, {
         name = "ListPolicies",
-        input_schema = types.ListPoliciesInput,
-        output_schema = types.ListPoliciesOutput,
+        input_schema = schemas.ListPoliciesInput,
+        output_schema = schemas.ListPoliciesOutput,
         http_method = "GET",
         http_path = "/policy-engines/{policyEngineId}/policies",
         effective_auth_schemes = {
@@ -1128,8 +1128,8 @@ end
 function Client:listPolicyEngines(input, options)
     return self:invokeOperation(input, {
         name = "ListPolicyEngines",
-        input_schema = types.ListPolicyEnginesInput,
-        output_schema = types.ListPolicyEnginesOutput,
+        input_schema = schemas.ListPolicyEnginesInput,
+        output_schema = schemas.ListPolicyEnginesOutput,
         http_method = "GET",
         http_path = "/policy-engines",
         effective_auth_schemes = {
@@ -1141,8 +1141,8 @@ end
 function Client:listPolicyGenerationAssets(input, options)
     return self:invokeOperation(input, {
         name = "ListPolicyGenerationAssets",
-        input_schema = types.ListPolicyGenerationAssetsInput,
-        output_schema = types.ListPolicyGenerationAssetsOutput,
+        input_schema = schemas.ListPolicyGenerationAssetsInput,
+        output_schema = schemas.ListPolicyGenerationAssetsOutput,
         http_method = "GET",
         http_path = "/policy-engines/{policyEngineId}/policy-generations/{policyGenerationId}/assets",
         effective_auth_schemes = {
@@ -1154,8 +1154,8 @@ end
 function Client:listPolicyGenerations(input, options)
     return self:invokeOperation(input, {
         name = "ListPolicyGenerations",
-        input_schema = types.ListPolicyGenerationsInput,
-        output_schema = types.ListPolicyGenerationsOutput,
+        input_schema = schemas.ListPolicyGenerationsInput,
+        output_schema = schemas.ListPolicyGenerationsOutput,
         http_method = "GET",
         http_path = "/policy-engines/{policyEngineId}/policy-generations",
         effective_auth_schemes = {
@@ -1167,8 +1167,8 @@ end
 function Client:listRegistries(input, options)
     return self:invokeOperation(input, {
         name = "ListRegistries",
-        input_schema = types.ListRegistriesInput,
-        output_schema = types.ListRegistriesOutput,
+        input_schema = schemas.ListRegistriesInput,
+        output_schema = schemas.ListRegistriesOutput,
         http_method = "GET",
         http_path = "/registries",
         effective_auth_schemes = {
@@ -1180,8 +1180,8 @@ end
 function Client:listRegistryRecords(input, options)
     return self:invokeOperation(input, {
         name = "ListRegistryRecords",
-        input_schema = types.ListRegistryRecordsInput,
-        output_schema = types.ListRegistryRecordsOutput,
+        input_schema = schemas.ListRegistryRecordsInput,
+        output_schema = schemas.ListRegistryRecordsOutput,
         http_method = "GET",
         http_path = "/registries/{registryId}/records",
         effective_auth_schemes = {
@@ -1193,8 +1193,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -1206,8 +1206,8 @@ end
 function Client:listWorkloadIdentities(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkloadIdentities",
-        input_schema = types.ListWorkloadIdentitiesInput,
-        output_schema = types.ListWorkloadIdentitiesOutput,
+        input_schema = schemas.ListWorkloadIdentitiesInput,
+        output_schema = schemas.ListWorkloadIdentitiesOutput,
         http_method = "POST",
         http_path = "/identities/ListWorkloadIdentities",
         effective_auth_schemes = {
@@ -1219,8 +1219,8 @@ end
 function Client:putResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutResourcePolicy",
-        input_schema = types.PutResourcePolicyInput,
-        output_schema = types.PutResourcePolicyOutput,
+        input_schema = schemas.PutResourcePolicyInput,
+        output_schema = schemas.PutResourcePolicyOutput,
         http_method = "PUT",
         http_path = "/resourcepolicy/{resourceArn}",
         effective_auth_schemes = {
@@ -1232,8 +1232,8 @@ end
 function Client:setTokenVaultCMK(input, options)
     return self:invokeOperation(input, {
         name = "SetTokenVaultCMK",
-        input_schema = types.SetTokenVaultCMKInput,
-        output_schema = types.SetTokenVaultCMKOutput,
+        input_schema = schemas.SetTokenVaultCMKInput,
+        output_schema = schemas.SetTokenVaultCMKOutput,
         http_method = "POST",
         http_path = "/identities/set-token-vault-cmk",
         effective_auth_schemes = {
@@ -1245,8 +1245,8 @@ end
 function Client:startPolicyGeneration(input, options)
     return self:invokeOperation(input, {
         name = "StartPolicyGeneration",
-        input_schema = types.StartPolicyGenerationInput,
-        output_schema = types.StartPolicyGenerationOutput,
+        input_schema = schemas.StartPolicyGenerationInput,
+        output_schema = schemas.StartPolicyGenerationOutput,
         http_method = "POST",
         http_path = "/policy-engines/{policyEngineId}/policy-generations",
         effective_auth_schemes = {
@@ -1258,8 +1258,8 @@ end
 function Client:submitRegistryRecordForApproval(input, options)
     return self:invokeOperation(input, {
         name = "SubmitRegistryRecordForApproval",
-        input_schema = types.SubmitRegistryRecordForApprovalInput,
-        output_schema = types.SubmitRegistryRecordForApprovalOutput,
+        input_schema = schemas.SubmitRegistryRecordForApprovalInput,
+        output_schema = schemas.SubmitRegistryRecordForApprovalOutput,
         http_method = "POST",
         http_path = "/registries/{registryId}/records/{recordId}/submit-for-approval",
         effective_auth_schemes = {
@@ -1271,8 +1271,8 @@ end
 function Client:synchronizeGatewayTargets(input, options)
     return self:invokeOperation(input, {
         name = "SynchronizeGatewayTargets",
-        input_schema = types.SynchronizeGatewayTargetsInput,
-        output_schema = types.SynchronizeGatewayTargetsOutput,
+        input_schema = schemas.SynchronizeGatewayTargetsInput,
+        output_schema = schemas.SynchronizeGatewayTargetsOutput,
         http_method = "PUT",
         http_path = "/gateways/{gatewayIdentifier}/synchronizeTargets",
         effective_auth_schemes = {
@@ -1284,8 +1284,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -1297,8 +1297,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -1310,8 +1310,8 @@ end
 function Client:updateAgentRuntime(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAgentRuntime",
-        input_schema = types.UpdateAgentRuntimeInput,
-        output_schema = types.UpdateAgentRuntimeOutput,
+        input_schema = schemas.UpdateAgentRuntimeInput,
+        output_schema = schemas.UpdateAgentRuntimeOutput,
         http_method = "PUT",
         http_path = "/runtimes/{agentRuntimeId}/",
         effective_auth_schemes = {
@@ -1323,8 +1323,8 @@ end
 function Client:updateAgentRuntimeEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAgentRuntimeEndpoint",
-        input_schema = types.UpdateAgentRuntimeEndpointInput,
-        output_schema = types.UpdateAgentRuntimeEndpointOutput,
+        input_schema = schemas.UpdateAgentRuntimeEndpointInput,
+        output_schema = schemas.UpdateAgentRuntimeEndpointOutput,
         http_method = "PUT",
         http_path = "/runtimes/{agentRuntimeId}/runtime-endpoints/{endpointName}/",
         effective_auth_schemes = {
@@ -1336,8 +1336,8 @@ end
 function Client:updateApiKeyCredentialProvider(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApiKeyCredentialProvider",
-        input_schema = types.UpdateApiKeyCredentialProviderInput,
-        output_schema = types.UpdateApiKeyCredentialProviderOutput,
+        input_schema = schemas.UpdateApiKeyCredentialProviderInput,
+        output_schema = schemas.UpdateApiKeyCredentialProviderOutput,
         http_method = "POST",
         http_path = "/identities/UpdateApiKeyCredentialProvider",
         effective_auth_schemes = {
@@ -1349,8 +1349,8 @@ end
 function Client:updateConfigurationBundle(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConfigurationBundle",
-        input_schema = types.UpdateConfigurationBundleInput,
-        output_schema = types.UpdateConfigurationBundleOutput,
+        input_schema = schemas.UpdateConfigurationBundleInput,
+        output_schema = schemas.UpdateConfigurationBundleOutput,
         http_method = "PUT",
         http_path = "/configuration-bundles/{bundleId}",
         effective_auth_schemes = {
@@ -1362,8 +1362,8 @@ end
 function Client:updateEvaluator(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEvaluator",
-        input_schema = types.UpdateEvaluatorInput,
-        output_schema = types.UpdateEvaluatorOutput,
+        input_schema = schemas.UpdateEvaluatorInput,
+        output_schema = schemas.UpdateEvaluatorOutput,
         http_method = "PUT",
         http_path = "/evaluators/{evaluatorId}",
         effective_auth_schemes = {
@@ -1375,8 +1375,8 @@ end
 function Client:updateGateway(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGateway",
-        input_schema = types.UpdateGatewayInput,
-        output_schema = types.UpdateGatewayOutput,
+        input_schema = schemas.UpdateGatewayInput,
+        output_schema = schemas.UpdateGatewayOutput,
         http_method = "PUT",
         http_path = "/gateways/{gatewayIdentifier}/",
         effective_auth_schemes = {
@@ -1388,8 +1388,8 @@ end
 function Client:updateGatewayRule(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGatewayRule",
-        input_schema = types.UpdateGatewayRuleInput,
-        output_schema = types.UpdateGatewayRuleOutput,
+        input_schema = schemas.UpdateGatewayRuleInput,
+        output_schema = schemas.UpdateGatewayRuleOutput,
         http_method = "PATCH",
         http_path = "/gateways/{gatewayIdentifier}/rules/{ruleId}",
         effective_auth_schemes = {
@@ -1401,8 +1401,8 @@ end
 function Client:updateGatewayTarget(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGatewayTarget",
-        input_schema = types.UpdateGatewayTargetInput,
-        output_schema = types.UpdateGatewayTargetOutput,
+        input_schema = schemas.UpdateGatewayTargetInput,
+        output_schema = schemas.UpdateGatewayTargetOutput,
         http_method = "PUT",
         http_path = "/gateways/{gatewayIdentifier}/targets/{targetId}/",
         effective_auth_schemes = {
@@ -1414,8 +1414,8 @@ end
 function Client:updateHarness(input, options)
     return self:invokeOperation(input, {
         name = "UpdateHarness",
-        input_schema = types.UpdateHarnessInput,
-        output_schema = types.UpdateHarnessOutput,
+        input_schema = schemas.UpdateHarnessInput,
+        output_schema = schemas.UpdateHarnessOutput,
         http_method = "PATCH",
         http_path = "/harnesses/{harnessId}",
         effective_auth_schemes = {
@@ -1427,8 +1427,8 @@ end
 function Client:updateMemory(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMemory",
-        input_schema = types.UpdateMemoryInput,
-        output_schema = types.UpdateMemoryOutput,
+        input_schema = schemas.UpdateMemoryInput,
+        output_schema = schemas.UpdateMemoryOutput,
         http_method = "PUT",
         http_path = "/memories/{memoryId}/update",
         effective_auth_schemes = {
@@ -1440,8 +1440,8 @@ end
 function Client:updateOauth2CredentialProvider(input, options)
     return self:invokeOperation(input, {
         name = "UpdateOauth2CredentialProvider",
-        input_schema = types.UpdateOauth2CredentialProviderInput,
-        output_schema = types.UpdateOauth2CredentialProviderOutput,
+        input_schema = schemas.UpdateOauth2CredentialProviderInput,
+        output_schema = schemas.UpdateOauth2CredentialProviderOutput,
         http_method = "POST",
         http_path = "/identities/UpdateOauth2CredentialProvider",
         effective_auth_schemes = {
@@ -1453,8 +1453,8 @@ end
 function Client:updateOnlineEvaluationConfig(input, options)
     return self:invokeOperation(input, {
         name = "UpdateOnlineEvaluationConfig",
-        input_schema = types.UpdateOnlineEvaluationConfigInput,
-        output_schema = types.UpdateOnlineEvaluationConfigOutput,
+        input_schema = schemas.UpdateOnlineEvaluationConfigInput,
+        output_schema = schemas.UpdateOnlineEvaluationConfigOutput,
         http_method = "PUT",
         http_path = "/online-evaluation-configs/{onlineEvaluationConfigId}",
         effective_auth_schemes = {
@@ -1466,8 +1466,8 @@ end
 function Client:updatePolicy(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePolicy",
-        input_schema = types.UpdatePolicyInput,
-        output_schema = types.UpdatePolicyOutput,
+        input_schema = schemas.UpdatePolicyInput,
+        output_schema = schemas.UpdatePolicyOutput,
         http_method = "PATCH",
         http_path = "/policy-engines/{policyEngineId}/policies/{policyId}",
         effective_auth_schemes = {
@@ -1479,8 +1479,8 @@ end
 function Client:updatePolicyEngine(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePolicyEngine",
-        input_schema = types.UpdatePolicyEngineInput,
-        output_schema = types.UpdatePolicyEngineOutput,
+        input_schema = schemas.UpdatePolicyEngineInput,
+        output_schema = schemas.UpdatePolicyEngineOutput,
         http_method = "PATCH",
         http_path = "/policy-engines/{policyEngineId}",
         effective_auth_schemes = {
@@ -1492,8 +1492,8 @@ end
 function Client:updateRegistry(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRegistry",
-        input_schema = types.UpdateRegistryInput,
-        output_schema = types.UpdateRegistryOutput,
+        input_schema = schemas.UpdateRegistryInput,
+        output_schema = schemas.UpdateRegistryOutput,
         http_method = "PATCH",
         http_path = "/registries/{registryId}",
         effective_auth_schemes = {
@@ -1505,8 +1505,8 @@ end
 function Client:updateRegistryRecord(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRegistryRecord",
-        input_schema = types.UpdateRegistryRecordInput,
-        output_schema = types.UpdateRegistryRecordOutput,
+        input_schema = schemas.UpdateRegistryRecordInput,
+        output_schema = schemas.UpdateRegistryRecordOutput,
         http_method = "PATCH",
         http_path = "/registries/{registryId}/records/{recordId}",
         effective_auth_schemes = {
@@ -1518,8 +1518,8 @@ end
 function Client:updateRegistryRecordStatus(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRegistryRecordStatus",
-        input_schema = types.UpdateRegistryRecordStatusInput,
-        output_schema = types.UpdateRegistryRecordStatusOutput,
+        input_schema = schemas.UpdateRegistryRecordStatusInput,
+        output_schema = schemas.UpdateRegistryRecordStatusOutput,
         http_method = "PATCH",
         http_path = "/registries/{registryId}/records/{recordId}/status",
         effective_auth_schemes = {
@@ -1531,8 +1531,8 @@ end
 function Client:updateWorkloadIdentity(input, options)
     return self:invokeOperation(input, {
         name = "UpdateWorkloadIdentity",
-        input_schema = types.UpdateWorkloadIdentityInput,
-        output_schema = types.UpdateWorkloadIdentityOutput,
+        input_schema = schemas.UpdateWorkloadIdentityInput,
+        output_schema = schemas.UpdateWorkloadIdentityOutput,
         http_method = "POST",
         http_path = "/identities/UpdateWorkloadIdentity",
         effective_auth_schemes = {

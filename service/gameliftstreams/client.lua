@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("gameliftstreams.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("gameliftstreams.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("gameliftstreams.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addStreamGroupLocations(input, options)
     return self:invokeOperation(input, {
         name = "AddStreamGroupLocations",
-        input_schema = types.AddStreamGroupLocationsInput,
-        output_schema = types.AddStreamGroupLocationsOutput,
+        input_schema = schemas.AddStreamGroupLocationsInput,
+        output_schema = schemas.AddStreamGroupLocationsOutput,
         http_method = "POST",
         http_path = "/streamgroups/{Identifier}/locations",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:associateApplications(input, options)
     return self:invokeOperation(input, {
         name = "AssociateApplications",
-        input_schema = types.AssociateApplicationsInput,
-        output_schema = types.AssociateApplicationsOutput,
+        input_schema = schemas.AssociateApplicationsInput,
+        output_schema = schemas.AssociateApplicationsOutput,
         http_method = "POST",
         http_path = "/streamgroups/{Identifier}/associations",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createApplication(input, options)
     return self:invokeOperation(input, {
         name = "CreateApplication",
-        input_schema = types.CreateApplicationInput,
-        output_schema = types.CreateApplicationOutput,
+        input_schema = schemas.CreateApplicationInput,
+        output_schema = schemas.CreateApplicationOutput,
         http_method = "POST",
         http_path = "/applications",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createStreamGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateStreamGroup",
-        input_schema = types.CreateStreamGroupInput,
-        output_schema = types.CreateStreamGroupOutput,
+        input_schema = schemas.CreateStreamGroupInput,
+        output_schema = schemas.CreateStreamGroupOutput,
         http_method = "POST",
         http_path = "/streamgroups",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createStreamSessionConnection(input, options)
     return self:invokeOperation(input, {
         name = "CreateStreamSessionConnection",
-        input_schema = types.CreateStreamSessionConnectionInput,
-        output_schema = types.CreateStreamSessionConnectionOutput,
+        input_schema = schemas.CreateStreamSessionConnectionInput,
+        output_schema = schemas.CreateStreamSessionConnectionOutput,
         http_method = "POST",
         http_path = "/streamgroups/{Identifier}/streamsessions/{StreamSessionIdentifier}/connections",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteApplication(input, options)
     return self:invokeOperation(input, {
         name = "DeleteApplication",
-        input_schema = types.DeleteApplicationInput,
-        output_schema = types.DeleteApplicationOutput,
+        input_schema = schemas.DeleteApplicationInput,
+        output_schema = schemas.DeleteApplicationOutput,
         http_method = "DELETE",
         http_path = "/applications/{Identifier}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteStreamGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteStreamGroup",
-        input_schema = types.DeleteStreamGroupInput,
-        output_schema = types.DeleteStreamGroupOutput,
+        input_schema = schemas.DeleteStreamGroupInput,
+        output_schema = schemas.DeleteStreamGroupOutput,
         http_method = "DELETE",
         http_path = "/streamgroups/{Identifier}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:disassociateApplications(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateApplications",
-        input_schema = types.DisassociateApplicationsInput,
-        output_schema = types.DisassociateApplicationsOutput,
+        input_schema = schemas.DisassociateApplicationsInput,
+        output_schema = schemas.DisassociateApplicationsOutput,
         http_method = "POST",
         http_path = "/streamgroups/{Identifier}/disassociations",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:exportStreamSessionFiles(input, options)
     return self:invokeOperation(input, {
         name = "ExportStreamSessionFiles",
-        input_schema = types.ExportStreamSessionFilesInput,
-        output_schema = types.ExportStreamSessionFilesOutput,
+        input_schema = schemas.ExportStreamSessionFilesInput,
+        output_schema = schemas.ExportStreamSessionFilesOutput,
         http_method = "PUT",
         http_path = "/streamgroups/{Identifier}/streamsessions/{StreamSessionIdentifier}/exportfiles",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getApplication(input, options)
     return self:invokeOperation(input, {
         name = "GetApplication",
-        input_schema = types.GetApplicationInput,
-        output_schema = types.GetApplicationOutput,
+        input_schema = schemas.GetApplicationInput,
+        output_schema = schemas.GetApplicationOutput,
         http_method = "GET",
         http_path = "/applications/{Identifier}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getStreamGroup(input, options)
     return self:invokeOperation(input, {
         name = "GetStreamGroup",
-        input_schema = types.GetStreamGroupInput,
-        output_schema = types.GetStreamGroupOutput,
+        input_schema = schemas.GetStreamGroupInput,
+        output_schema = schemas.GetStreamGroupOutput,
         http_method = "GET",
         http_path = "/streamgroups/{Identifier}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getStreamSession(input, options)
     return self:invokeOperation(input, {
         name = "GetStreamSession",
-        input_schema = types.GetStreamSessionInput,
-        output_schema = types.GetStreamSessionOutput,
+        input_schema = schemas.GetStreamSessionInput,
+        output_schema = schemas.GetStreamSessionOutput,
         http_method = "GET",
         http_path = "/streamgroups/{Identifier}/streamsessions/{StreamSessionIdentifier}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listApplications(input, options)
     return self:invokeOperation(input, {
         name = "ListApplications",
-        input_schema = types.ListApplicationsInput,
-        output_schema = types.ListApplicationsOutput,
+        input_schema = schemas.ListApplicationsInput,
+        output_schema = schemas.ListApplicationsOutput,
         http_method = "GET",
         http_path = "/applications",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listStreamGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListStreamGroups",
-        input_schema = types.ListStreamGroupsInput,
-        output_schema = types.ListStreamGroupsOutput,
+        input_schema = schemas.ListStreamGroupsInput,
+        output_schema = schemas.ListStreamGroupsOutput,
         http_method = "GET",
         http_path = "/streamgroups",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listStreamSessions(input, options)
     return self:invokeOperation(input, {
         name = "ListStreamSessions",
-        input_schema = types.ListStreamSessionsInput,
-        output_schema = types.ListStreamSessionsOutput,
+        input_schema = schemas.ListStreamSessionsInput,
+        output_schema = schemas.ListStreamSessionsOutput,
         http_method = "GET",
         http_path = "/streamgroups/{Identifier}/streamsessions",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listStreamSessionsByAccount(input, options)
     return self:invokeOperation(input, {
         name = "ListStreamSessionsByAccount",
-        input_schema = types.ListStreamSessionsByAccountInput,
-        output_schema = types.ListStreamSessionsByAccountOutput,
+        input_schema = schemas.ListStreamSessionsByAccountInput,
+        output_schema = schemas.ListStreamSessionsByAccountOutput,
         http_method = "GET",
         http_path = "/streamsessions",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:removeStreamGroupLocations(input, options)
     return self:invokeOperation(input, {
         name = "RemoveStreamGroupLocations",
-        input_schema = types.RemoveStreamGroupLocationsInput,
-        output_schema = types.RemoveStreamGroupLocationsOutput,
+        input_schema = schemas.RemoveStreamGroupLocationsInput,
+        output_schema = schemas.RemoveStreamGroupLocationsOutput,
         http_method = "DELETE",
         http_path = "/streamgroups/{Identifier}/locations",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:startStreamSession(input, options)
     return self:invokeOperation(input, {
         name = "StartStreamSession",
-        input_schema = types.StartStreamSessionInput,
-        output_schema = types.StartStreamSessionOutput,
+        input_schema = schemas.StartStreamSessionInput,
+        output_schema = schemas.StartStreamSessionOutput,
         http_method = "POST",
         http_path = "/streamgroups/{Identifier}/streamsessions",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:terminateStreamSession(input, options)
     return self:invokeOperation(input, {
         name = "TerminateStreamSession",
-        input_schema = types.TerminateStreamSessionInput,
-        output_schema = types.TerminateStreamSessionOutput,
+        input_schema = schemas.TerminateStreamSessionInput,
+        output_schema = schemas.TerminateStreamSessionOutput,
         http_method = "DELETE",
         http_path = "/streamgroups/{Identifier}/streamsessions/{StreamSessionIdentifier}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:updateApplication(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApplication",
-        input_schema = types.UpdateApplicationInput,
-        output_schema = types.UpdateApplicationOutput,
+        input_schema = schemas.UpdateApplicationInput,
+        output_schema = schemas.UpdateApplicationOutput,
         http_method = "PATCH",
         http_path = "/applications/{Identifier}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:updateStreamGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateStreamGroup",
-        input_schema = types.UpdateStreamGroupInput,
-        output_schema = types.UpdateStreamGroupOutput,
+        input_schema = schemas.UpdateStreamGroupInput,
+        output_schema = schemas.UpdateStreamGroupOutput,
         http_method = "PATCH",
         http_path = "/streamgroups/{Identifier}",
         effective_auth_schemes = {

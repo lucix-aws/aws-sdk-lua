@@ -556,9 +556,9 @@ end
 
 local type AnalysisType = "Security" | "All"
 
-local type ScanType = "Standard" | "Express"
-
 local type ScanState = "InProgress" | "Successful" | "Failed"
+
+local type ScanType = "Standard" | "Express"
 
 local type Status = "Closed" | "Open" | "All"
 

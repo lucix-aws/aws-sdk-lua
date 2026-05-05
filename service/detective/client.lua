@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("detective.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("detective.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("detective.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptInvitation(input, options)
     return self:invokeOperation(input, {
         name = "AcceptInvitation",
-        input_schema = types.AcceptInvitationInput,
-        output_schema = types.AcceptInvitationOutput,
+        input_schema = schemas.AcceptInvitationInput,
+        output_schema = schemas.AcceptInvitationOutput,
         http_method = "PUT",
         http_path = "/invitation",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchGetGraphMemberDatasources(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetGraphMemberDatasources",
-        input_schema = types.BatchGetGraphMemberDatasourcesInput,
-        output_schema = types.BatchGetGraphMemberDatasourcesOutput,
+        input_schema = schemas.BatchGetGraphMemberDatasourcesInput,
+        output_schema = schemas.BatchGetGraphMemberDatasourcesOutput,
         http_method = "POST",
         http_path = "/graph/datasources/get",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchGetMembershipDatasources(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetMembershipDatasources",
-        input_schema = types.BatchGetMembershipDatasourcesInput,
-        output_schema = types.BatchGetMembershipDatasourcesOutput,
+        input_schema = schemas.BatchGetMembershipDatasourcesInput,
+        output_schema = schemas.BatchGetMembershipDatasourcesOutput,
         http_method = "POST",
         http_path = "/membership/datasources/get",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createGraph(input, options)
     return self:invokeOperation(input, {
         name = "CreateGraph",
-        input_schema = types.CreateGraphInput,
-        output_schema = types.CreateGraphOutput,
+        input_schema = schemas.CreateGraphInput,
+        output_schema = schemas.CreateGraphOutput,
         http_method = "POST",
         http_path = "/graph",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createMembers(input, options)
     return self:invokeOperation(input, {
         name = "CreateMembers",
-        input_schema = types.CreateMembersInput,
-        output_schema = types.CreateMembersOutput,
+        input_schema = schemas.CreateMembersInput,
+        output_schema = schemas.CreateMembersOutput,
         http_method = "POST",
         http_path = "/graph/members",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteGraph(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGraph",
-        input_schema = types.DeleteGraphInput,
-        output_schema = types.DeleteGraphOutput,
+        input_schema = schemas.DeleteGraphInput,
+        output_schema = schemas.DeleteGraphOutput,
         http_method = "POST",
         http_path = "/graph/removal",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteMembers(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMembers",
-        input_schema = types.DeleteMembersInput,
-        output_schema = types.DeleteMembersOutput,
+        input_schema = schemas.DeleteMembersInput,
+        output_schema = schemas.DeleteMembersOutput,
         http_method = "POST",
         http_path = "/graph/members/removal",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:describeOrganizationConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DescribeOrganizationConfiguration",
-        input_schema = types.DescribeOrganizationConfigurationInput,
-        output_schema = types.DescribeOrganizationConfigurationOutput,
+        input_schema = schemas.DescribeOrganizationConfigurationInput,
+        output_schema = schemas.DescribeOrganizationConfigurationOutput,
         http_method = "POST",
         http_path = "/orgs/describeOrganizationConfiguration",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:disableOrganizationAdminAccount(input, options)
     return self:invokeOperation(input, {
         name = "DisableOrganizationAdminAccount",
-        input_schema = types.DisableOrganizationAdminAccountInput,
-        output_schema = types.DisableOrganizationAdminAccountOutput,
+        input_schema = schemas.DisableOrganizationAdminAccountInput,
+        output_schema = schemas.DisableOrganizationAdminAccountOutput,
         http_method = "POST",
         http_path = "/orgs/disableAdminAccount",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:disassociateMembership(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateMembership",
-        input_schema = types.DisassociateMembershipInput,
-        output_schema = types.DisassociateMembershipOutput,
+        input_schema = schemas.DisassociateMembershipInput,
+        output_schema = schemas.DisassociateMembershipOutput,
         http_method = "POST",
         http_path = "/membership/removal",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:enableOrganizationAdminAccount(input, options)
     return self:invokeOperation(input, {
         name = "EnableOrganizationAdminAccount",
-        input_schema = types.EnableOrganizationAdminAccountInput,
-        output_schema = types.EnableOrganizationAdminAccountOutput,
+        input_schema = schemas.EnableOrganizationAdminAccountInput,
+        output_schema = schemas.EnableOrganizationAdminAccountOutput,
         http_method = "POST",
         http_path = "/orgs/enableAdminAccount",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getInvestigation(input, options)
     return self:invokeOperation(input, {
         name = "GetInvestigation",
-        input_schema = types.GetInvestigationInput,
-        output_schema = types.GetInvestigationOutput,
+        input_schema = schemas.GetInvestigationInput,
+        output_schema = schemas.GetInvestigationOutput,
         http_method = "POST",
         http_path = "/investigations/getInvestigation",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getMembers(input, options)
     return self:invokeOperation(input, {
         name = "GetMembers",
-        input_schema = types.GetMembersInput,
-        output_schema = types.GetMembersOutput,
+        input_schema = schemas.GetMembersInput,
+        output_schema = schemas.GetMembersOutput,
         http_method = "POST",
         http_path = "/graph/members/get",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listDatasourcePackages(input, options)
     return self:invokeOperation(input, {
         name = "ListDatasourcePackages",
-        input_schema = types.ListDatasourcePackagesInput,
-        output_schema = types.ListDatasourcePackagesOutput,
+        input_schema = schemas.ListDatasourcePackagesInput,
+        output_schema = schemas.ListDatasourcePackagesOutput,
         http_method = "POST",
         http_path = "/graph/datasources/list",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listGraphs(input, options)
     return self:invokeOperation(input, {
         name = "ListGraphs",
-        input_schema = types.ListGraphsInput,
-        output_schema = types.ListGraphsOutput,
+        input_schema = schemas.ListGraphsInput,
+        output_schema = schemas.ListGraphsOutput,
         http_method = "POST",
         http_path = "/graphs/list",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listIndicators(input, options)
     return self:invokeOperation(input, {
         name = "ListIndicators",
-        input_schema = types.ListIndicatorsInput,
-        output_schema = types.ListIndicatorsOutput,
+        input_schema = schemas.ListIndicatorsInput,
+        output_schema = schemas.ListIndicatorsOutput,
         http_method = "POST",
         http_path = "/investigations/listIndicators",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listInvestigations(input, options)
     return self:invokeOperation(input, {
         name = "ListInvestigations",
-        input_schema = types.ListInvestigationsInput,
-        output_schema = types.ListInvestigationsOutput,
+        input_schema = schemas.ListInvestigationsInput,
+        output_schema = schemas.ListInvestigationsOutput,
         http_method = "POST",
         http_path = "/investigations/listInvestigations",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listInvitations(input, options)
     return self:invokeOperation(input, {
         name = "ListInvitations",
-        input_schema = types.ListInvitationsInput,
-        output_schema = types.ListInvitationsOutput,
+        input_schema = schemas.ListInvitationsInput,
+        output_schema = schemas.ListInvitationsOutput,
         http_method = "POST",
         http_path = "/invitations/list",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listMembers(input, options)
     return self:invokeOperation(input, {
         name = "ListMembers",
-        input_schema = types.ListMembersInput,
-        output_schema = types.ListMembersOutput,
+        input_schema = schemas.ListMembersInput,
+        output_schema = schemas.ListMembersOutput,
         http_method = "POST",
         http_path = "/graph/members/list",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listOrganizationAdminAccounts(input, options)
     return self:invokeOperation(input, {
         name = "ListOrganizationAdminAccounts",
-        input_schema = types.ListOrganizationAdminAccountsInput,
-        output_schema = types.ListOrganizationAdminAccountsOutput,
+        input_schema = schemas.ListOrganizationAdminAccountsInput,
+        output_schema = schemas.ListOrganizationAdminAccountsOutput,
         http_method = "POST",
         http_path = "/orgs/adminAccountslist",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:rejectInvitation(input, options)
     return self:invokeOperation(input, {
         name = "RejectInvitation",
-        input_schema = types.RejectInvitationInput,
-        output_schema = types.RejectInvitationOutput,
+        input_schema = schemas.RejectInvitationInput,
+        output_schema = schemas.RejectInvitationOutput,
         http_method = "POST",
         http_path = "/invitation/removal",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:startInvestigation(input, options)
     return self:invokeOperation(input, {
         name = "StartInvestigation",
-        input_schema = types.StartInvestigationInput,
-        output_schema = types.StartInvestigationOutput,
+        input_schema = schemas.StartInvestigationInput,
+        output_schema = schemas.StartInvestigationOutput,
         http_method = "POST",
         http_path = "/investigations/startInvestigation",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:startMonitoringMember(input, options)
     return self:invokeOperation(input, {
         name = "StartMonitoringMember",
-        input_schema = types.StartMonitoringMemberInput,
-        output_schema = types.StartMonitoringMemberOutput,
+        input_schema = schemas.StartMonitoringMemberInput,
+        output_schema = schemas.StartMonitoringMemberOutput,
         http_method = "POST",
         http_path = "/graph/member/monitoringstate",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:updateDatasourcePackages(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDatasourcePackages",
-        input_schema = types.UpdateDatasourcePackagesInput,
-        output_schema = types.UpdateDatasourcePackagesOutput,
+        input_schema = schemas.UpdateDatasourcePackagesInput,
+        output_schema = schemas.UpdateDatasourcePackagesOutput,
         http_method = "POST",
         http_path = "/graph/datasources/update",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:updateInvestigationState(input, options)
     return self:invokeOperation(input, {
         name = "UpdateInvestigationState",
-        input_schema = types.UpdateInvestigationStateInput,
-        output_schema = types.UpdateInvestigationStateOutput,
+        input_schema = schemas.UpdateInvestigationStateInput,
+        output_schema = schemas.UpdateInvestigationStateOutput,
         http_method = "POST",
         http_path = "/investigations/updateInvestigationState",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:updateOrganizationConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateOrganizationConfiguration",
-        input_schema = types.UpdateOrganizationConfigurationInput,
-        output_schema = types.UpdateOrganizationConfigurationOutput,
+        input_schema = schemas.UpdateOrganizationConfigurationInput,
+        output_schema = schemas.UpdateOrganizationConfigurationOutput,
         http_method = "POST",
         http_path = "/orgs/updateOrganizationConfiguration",
         effective_auth_schemes = {

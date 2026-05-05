@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("connectparticipant.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("connectparticipant.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("connectparticipant.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:cancelParticipantAuthentication(input, options)
     return self:invokeOperation(input, {
         name = "CancelParticipantAuthentication",
-        input_schema = types.CancelParticipantAuthenticationInput,
-        output_schema = types.CancelParticipantAuthenticationOutput,
+        input_schema = schemas.CancelParticipantAuthenticationInput,
+        output_schema = schemas.CancelParticipantAuthenticationOutput,
         http_method = "POST",
         http_path = "/participant/cancel-authentication",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:completeAttachmentUpload(input, options)
     return self:invokeOperation(input, {
         name = "CompleteAttachmentUpload",
-        input_schema = types.CompleteAttachmentUploadInput,
-        output_schema = types.CompleteAttachmentUploadOutput,
+        input_schema = schemas.CompleteAttachmentUploadInput,
+        output_schema = schemas.CompleteAttachmentUploadOutput,
         http_method = "POST",
         http_path = "/participant/complete-attachment-upload",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createParticipantConnection(input, options)
     return self:invokeOperation(input, {
         name = "CreateParticipantConnection",
-        input_schema = types.CreateParticipantConnectionInput,
-        output_schema = types.CreateParticipantConnectionOutput,
+        input_schema = schemas.CreateParticipantConnectionInput,
+        output_schema = schemas.CreateParticipantConnectionOutput,
         http_method = "POST",
         http_path = "/participant/connection",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:describeView(input, options)
     return self:invokeOperation(input, {
         name = "DescribeView",
-        input_schema = types.DescribeViewInput,
-        output_schema = types.DescribeViewOutput,
+        input_schema = schemas.DescribeViewInput,
+        output_schema = schemas.DescribeViewOutput,
         http_method = "GET",
         http_path = "/participant/views/{ViewToken}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:disconnectParticipant(input, options)
     return self:invokeOperation(input, {
         name = "DisconnectParticipant",
-        input_schema = types.DisconnectParticipantInput,
-        output_schema = types.DisconnectParticipantOutput,
+        input_schema = schemas.DisconnectParticipantInput,
+        output_schema = schemas.DisconnectParticipantOutput,
         http_method = "POST",
         http_path = "/participant/disconnect",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getAttachment(input, options)
     return self:invokeOperation(input, {
         name = "GetAttachment",
-        input_schema = types.GetAttachmentInput,
-        output_schema = types.GetAttachmentOutput,
+        input_schema = schemas.GetAttachmentInput,
+        output_schema = schemas.GetAttachmentOutput,
         http_method = "POST",
         http_path = "/participant/attachment",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getAuthenticationUrl(input, options)
     return self:invokeOperation(input, {
         name = "GetAuthenticationUrl",
-        input_schema = types.GetAuthenticationUrlInput,
-        output_schema = types.GetAuthenticationUrlOutput,
+        input_schema = schemas.GetAuthenticationUrlInput,
+        output_schema = schemas.GetAuthenticationUrlOutput,
         http_method = "POST",
         http_path = "/participant/authentication-url",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getTranscript(input, options)
     return self:invokeOperation(input, {
         name = "GetTranscript",
-        input_schema = types.GetTranscriptInput,
-        output_schema = types.GetTranscriptOutput,
+        input_schema = schemas.GetTranscriptInput,
+        output_schema = schemas.GetTranscriptOutput,
         http_method = "POST",
         http_path = "/participant/transcript",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:sendEvent(input, options)
     return self:invokeOperation(input, {
         name = "SendEvent",
-        input_schema = types.SendEventInput,
-        output_schema = types.SendEventOutput,
+        input_schema = schemas.SendEventInput,
+        output_schema = schemas.SendEventOutput,
         http_method = "POST",
         http_path = "/participant/event",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:sendMessage(input, options)
     return self:invokeOperation(input, {
         name = "SendMessage",
-        input_schema = types.SendMessageInput,
-        output_schema = types.SendMessageOutput,
+        input_schema = schemas.SendMessageInput,
+        output_schema = schemas.SendMessageOutput,
         http_method = "POST",
         http_path = "/participant/message",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:startAttachmentUpload(input, options)
     return self:invokeOperation(input, {
         name = "StartAttachmentUpload",
-        input_schema = types.StartAttachmentUploadInput,
-        output_schema = types.StartAttachmentUploadOutput,
+        input_schema = schemas.StartAttachmentUploadInput,
+        output_schema = schemas.StartAttachmentUploadOutput,
         http_method = "POST",
         http_path = "/participant/start-attachment-upload",
         effective_auth_schemes = {

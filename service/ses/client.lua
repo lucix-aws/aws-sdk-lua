@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("ses.endpoint_rules")
 local query_protocol = require("protocol.query")
+local schemas = require("ses.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("ses.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:cloneReceiptRuleSet(input, options)
     return self:invokeOperation(input, {
         name = "CloneReceiptRuleSet",
-        input_schema = types.CloneReceiptRuleSetInput,
-        output_schema = types.CloneReceiptRuleSetOutput,
+        input_schema = schemas.CloneReceiptRuleSetInput,
+        output_schema = schemas.CloneReceiptRuleSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createConfigurationSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateConfigurationSet",
-        input_schema = types.CreateConfigurationSetInput,
-        output_schema = types.CreateConfigurationSetOutput,
+        input_schema = schemas.CreateConfigurationSetInput,
+        output_schema = schemas.CreateConfigurationSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createConfigurationSetEventDestination(input, options)
     return self:invokeOperation(input, {
         name = "CreateConfigurationSetEventDestination",
-        input_schema = types.CreateConfigurationSetEventDestinationInput,
-        output_schema = types.CreateConfigurationSetEventDestinationOutput,
+        input_schema = schemas.CreateConfigurationSetEventDestinationInput,
+        output_schema = schemas.CreateConfigurationSetEventDestinationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createConfigurationSetTrackingOptions(input, options)
     return self:invokeOperation(input, {
         name = "CreateConfigurationSetTrackingOptions",
-        input_schema = types.CreateConfigurationSetTrackingOptionsInput,
-        output_schema = types.CreateConfigurationSetTrackingOptionsOutput,
+        input_schema = schemas.CreateConfigurationSetTrackingOptionsInput,
+        output_schema = schemas.CreateConfigurationSetTrackingOptionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createCustomVerificationEmailTemplate(input, options)
     return self:invokeOperation(input, {
         name = "CreateCustomVerificationEmailTemplate",
-        input_schema = types.CreateCustomVerificationEmailTemplateInput,
-        output_schema = types.CreateCustomVerificationEmailTemplateOutput,
+        input_schema = schemas.CreateCustomVerificationEmailTemplateInput,
+        output_schema = schemas.CreateCustomVerificationEmailTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createReceiptFilter(input, options)
     return self:invokeOperation(input, {
         name = "CreateReceiptFilter",
-        input_schema = types.CreateReceiptFilterInput,
-        output_schema = types.CreateReceiptFilterOutput,
+        input_schema = schemas.CreateReceiptFilterInput,
+        output_schema = schemas.CreateReceiptFilterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createReceiptRule(input, options)
     return self:invokeOperation(input, {
         name = "CreateReceiptRule",
-        input_schema = types.CreateReceiptRuleInput,
-        output_schema = types.CreateReceiptRuleOutput,
+        input_schema = schemas.CreateReceiptRuleInput,
+        output_schema = schemas.CreateReceiptRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createReceiptRuleSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateReceiptRuleSet",
-        input_schema = types.CreateReceiptRuleSetInput,
-        output_schema = types.CreateReceiptRuleSetOutput,
+        input_schema = schemas.CreateReceiptRuleSetInput,
+        output_schema = schemas.CreateReceiptRuleSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createTemplate(input, options)
     return self:invokeOperation(input, {
         name = "CreateTemplate",
-        input_schema = types.CreateTemplateInput,
-        output_schema = types.CreateTemplateOutput,
+        input_schema = schemas.CreateTemplateInput,
+        output_schema = schemas.CreateTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteConfigurationSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfigurationSet",
-        input_schema = types.DeleteConfigurationSetInput,
-        output_schema = types.DeleteConfigurationSetOutput,
+        input_schema = schemas.DeleteConfigurationSetInput,
+        output_schema = schemas.DeleteConfigurationSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteConfigurationSetEventDestination(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfigurationSetEventDestination",
-        input_schema = types.DeleteConfigurationSetEventDestinationInput,
-        output_schema = types.DeleteConfigurationSetEventDestinationOutput,
+        input_schema = schemas.DeleteConfigurationSetEventDestinationInput,
+        output_schema = schemas.DeleteConfigurationSetEventDestinationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteConfigurationSetTrackingOptions(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfigurationSetTrackingOptions",
-        input_schema = types.DeleteConfigurationSetTrackingOptionsInput,
-        output_schema = types.DeleteConfigurationSetTrackingOptionsOutput,
+        input_schema = schemas.DeleteConfigurationSetTrackingOptionsInput,
+        output_schema = schemas.DeleteConfigurationSetTrackingOptionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteCustomVerificationEmailTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCustomVerificationEmailTemplate",
-        input_schema = types.DeleteCustomVerificationEmailTemplateInput,
-        output_schema = types.DeleteCustomVerificationEmailTemplateOutput,
+        input_schema = schemas.DeleteCustomVerificationEmailTemplateInput,
+        output_schema = schemas.DeleteCustomVerificationEmailTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteIdentity(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIdentity",
-        input_schema = types.DeleteIdentityInput,
-        output_schema = types.DeleteIdentityOutput,
+        input_schema = schemas.DeleteIdentityInput,
+        output_schema = schemas.DeleteIdentityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteIdentityPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIdentityPolicy",
-        input_schema = types.DeleteIdentityPolicyInput,
-        output_schema = types.DeleteIdentityPolicyOutput,
+        input_schema = schemas.DeleteIdentityPolicyInput,
+        output_schema = schemas.DeleteIdentityPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteReceiptFilter(input, options)
     return self:invokeOperation(input, {
         name = "DeleteReceiptFilter",
-        input_schema = types.DeleteReceiptFilterInput,
-        output_schema = types.DeleteReceiptFilterOutput,
+        input_schema = schemas.DeleteReceiptFilterInput,
+        output_schema = schemas.DeleteReceiptFilterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteReceiptRule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteReceiptRule",
-        input_schema = types.DeleteReceiptRuleInput,
-        output_schema = types.DeleteReceiptRuleOutput,
+        input_schema = schemas.DeleteReceiptRuleInput,
+        output_schema = schemas.DeleteReceiptRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteReceiptRuleSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteReceiptRuleSet",
-        input_schema = types.DeleteReceiptRuleSetInput,
-        output_schema = types.DeleteReceiptRuleSetOutput,
+        input_schema = schemas.DeleteReceiptRuleSetInput,
+        output_schema = schemas.DeleteReceiptRuleSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTemplate",
-        input_schema = types.DeleteTemplateInput,
-        output_schema = types.DeleteTemplateOutput,
+        input_schema = schemas.DeleteTemplateInput,
+        output_schema = schemas.DeleteTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deleteVerifiedEmailAddress(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVerifiedEmailAddress",
-        input_schema = types.DeleteVerifiedEmailAddressInput,
-        output_schema = types.DeleteVerifiedEmailAddressOutput,
+        input_schema = schemas.DeleteVerifiedEmailAddressInput,
+        output_schema = schemas.DeleteVerifiedEmailAddressOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:describeActiveReceiptRuleSet(input, options)
     return self:invokeOperation(input, {
         name = "DescribeActiveReceiptRuleSet",
-        input_schema = types.DescribeActiveReceiptRuleSetInput,
-        output_schema = types.DescribeActiveReceiptRuleSetOutput,
+        input_schema = schemas.DescribeActiveReceiptRuleSetInput,
+        output_schema = schemas.DescribeActiveReceiptRuleSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:describeConfigurationSet(input, options)
     return self:invokeOperation(input, {
         name = "DescribeConfigurationSet",
-        input_schema = types.DescribeConfigurationSetInput,
-        output_schema = types.DescribeConfigurationSetOutput,
+        input_schema = schemas.DescribeConfigurationSetInput,
+        output_schema = schemas.DescribeConfigurationSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:describeReceiptRule(input, options)
     return self:invokeOperation(input, {
         name = "DescribeReceiptRule",
-        input_schema = types.DescribeReceiptRuleInput,
-        output_schema = types.DescribeReceiptRuleOutput,
+        input_schema = schemas.DescribeReceiptRuleInput,
+        output_schema = schemas.DescribeReceiptRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:describeReceiptRuleSet(input, options)
     return self:invokeOperation(input, {
         name = "DescribeReceiptRuleSet",
-        input_schema = types.DescribeReceiptRuleSetInput,
-        output_schema = types.DescribeReceiptRuleSetOutput,
+        input_schema = schemas.DescribeReceiptRuleSetInput,
+        output_schema = schemas.DescribeReceiptRuleSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getAccountSendingEnabled(input, options)
     return self:invokeOperation(input, {
         name = "GetAccountSendingEnabled",
-        input_schema = types.GetAccountSendingEnabledInput,
-        output_schema = types.GetAccountSendingEnabledOutput,
+        input_schema = schemas.GetAccountSendingEnabledInput,
+        output_schema = schemas.GetAccountSendingEnabledOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:getCustomVerificationEmailTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetCustomVerificationEmailTemplate",
-        input_schema = types.GetCustomVerificationEmailTemplateInput,
-        output_schema = types.GetCustomVerificationEmailTemplateOutput,
+        input_schema = schemas.GetCustomVerificationEmailTemplateInput,
+        output_schema = schemas.GetCustomVerificationEmailTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:getIdentityDkimAttributes(input, options)
     return self:invokeOperation(input, {
         name = "GetIdentityDkimAttributes",
-        input_schema = types.GetIdentityDkimAttributesInput,
-        output_schema = types.GetIdentityDkimAttributesOutput,
+        input_schema = schemas.GetIdentityDkimAttributesInput,
+        output_schema = schemas.GetIdentityDkimAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:getIdentityMailFromDomainAttributes(input, options)
     return self:invokeOperation(input, {
         name = "GetIdentityMailFromDomainAttributes",
-        input_schema = types.GetIdentityMailFromDomainAttributesInput,
-        output_schema = types.GetIdentityMailFromDomainAttributesOutput,
+        input_schema = schemas.GetIdentityMailFromDomainAttributesInput,
+        output_schema = schemas.GetIdentityMailFromDomainAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:getIdentityNotificationAttributes(input, options)
     return self:invokeOperation(input, {
         name = "GetIdentityNotificationAttributes",
-        input_schema = types.GetIdentityNotificationAttributesInput,
-        output_schema = types.GetIdentityNotificationAttributesOutput,
+        input_schema = schemas.GetIdentityNotificationAttributesInput,
+        output_schema = schemas.GetIdentityNotificationAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:getIdentityPolicies(input, options)
     return self:invokeOperation(input, {
         name = "GetIdentityPolicies",
-        input_schema = types.GetIdentityPoliciesInput,
-        output_schema = types.GetIdentityPoliciesOutput,
+        input_schema = schemas.GetIdentityPoliciesInput,
+        output_schema = schemas.GetIdentityPoliciesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:getIdentityVerificationAttributes(input, options)
     return self:invokeOperation(input, {
         name = "GetIdentityVerificationAttributes",
-        input_schema = types.GetIdentityVerificationAttributesInput,
-        output_schema = types.GetIdentityVerificationAttributesOutput,
+        input_schema = schemas.GetIdentityVerificationAttributesInput,
+        output_schema = schemas.GetIdentityVerificationAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:getSendQuota(input, options)
     return self:invokeOperation(input, {
         name = "GetSendQuota",
-        input_schema = types.GetSendQuotaInput,
-        output_schema = types.GetSendQuotaOutput,
+        input_schema = schemas.GetSendQuotaInput,
+        output_schema = schemas.GetSendQuotaOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:getSendStatistics(input, options)
     return self:invokeOperation(input, {
         name = "GetSendStatistics",
-        input_schema = types.GetSendStatisticsInput,
-        output_schema = types.GetSendStatisticsOutput,
+        input_schema = schemas.GetSendStatisticsInput,
+        output_schema = schemas.GetSendStatisticsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:getTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetTemplate",
-        input_schema = types.GetTemplateInput,
-        output_schema = types.GetTemplateOutput,
+        input_schema = schemas.GetTemplateInput,
+        output_schema = schemas.GetTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:listConfigurationSets(input, options)
     return self:invokeOperation(input, {
         name = "ListConfigurationSets",
-        input_schema = types.ListConfigurationSetsInput,
-        output_schema = types.ListConfigurationSetsOutput,
+        input_schema = schemas.ListConfigurationSetsInput,
+        output_schema = schemas.ListConfigurationSetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:listCustomVerificationEmailTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListCustomVerificationEmailTemplates",
-        input_schema = types.ListCustomVerificationEmailTemplatesInput,
-        output_schema = types.ListCustomVerificationEmailTemplatesOutput,
+        input_schema = schemas.ListCustomVerificationEmailTemplatesInput,
+        output_schema = schemas.ListCustomVerificationEmailTemplatesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:listIdentities(input, options)
     return self:invokeOperation(input, {
         name = "ListIdentities",
-        input_schema = types.ListIdentitiesInput,
-        output_schema = types.ListIdentitiesOutput,
+        input_schema = schemas.ListIdentitiesInput,
+        output_schema = schemas.ListIdentitiesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:listIdentityPolicies(input, options)
     return self:invokeOperation(input, {
         name = "ListIdentityPolicies",
-        input_schema = types.ListIdentityPoliciesInput,
-        output_schema = types.ListIdentityPoliciesOutput,
+        input_schema = schemas.ListIdentityPoliciesInput,
+        output_schema = schemas.ListIdentityPoliciesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:listReceiptFilters(input, options)
     return self:invokeOperation(input, {
         name = "ListReceiptFilters",
-        input_schema = types.ListReceiptFiltersInput,
-        output_schema = types.ListReceiptFiltersOutput,
+        input_schema = schemas.ListReceiptFiltersInput,
+        output_schema = schemas.ListReceiptFiltersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:listReceiptRuleSets(input, options)
     return self:invokeOperation(input, {
         name = "ListReceiptRuleSets",
-        input_schema = types.ListReceiptRuleSetsInput,
-        output_schema = types.ListReceiptRuleSetsOutput,
+        input_schema = schemas.ListReceiptRuleSetsInput,
+        output_schema = schemas.ListReceiptRuleSetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:listTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListTemplates",
-        input_schema = types.ListTemplatesInput,
-        output_schema = types.ListTemplatesOutput,
+        input_schema = schemas.ListTemplatesInput,
+        output_schema = schemas.ListTemplatesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:listVerifiedEmailAddresses(input, options)
     return self:invokeOperation(input, {
         name = "ListVerifiedEmailAddresses",
-        input_schema = types.ListVerifiedEmailAddressesInput,
-        output_schema = types.ListVerifiedEmailAddressesOutput,
+        input_schema = schemas.ListVerifiedEmailAddressesInput,
+        output_schema = schemas.ListVerifiedEmailAddressesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:putConfigurationSetDeliveryOptions(input, options)
     return self:invokeOperation(input, {
         name = "PutConfigurationSetDeliveryOptions",
-        input_schema = types.PutConfigurationSetDeliveryOptionsInput,
-        output_schema = types.PutConfigurationSetDeliveryOptionsOutput,
+        input_schema = schemas.PutConfigurationSetDeliveryOptionsInput,
+        output_schema = schemas.PutConfigurationSetDeliveryOptionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:putIdentityPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutIdentityPolicy",
-        input_schema = types.PutIdentityPolicyInput,
-        output_schema = types.PutIdentityPolicyOutput,
+        input_schema = schemas.PutIdentityPolicyInput,
+        output_schema = schemas.PutIdentityPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:reorderReceiptRuleSet(input, options)
     return self:invokeOperation(input, {
         name = "ReorderReceiptRuleSet",
-        input_schema = types.ReorderReceiptRuleSetInput,
-        output_schema = types.ReorderReceiptRuleSetOutput,
+        input_schema = schemas.ReorderReceiptRuleSetInput,
+        output_schema = schemas.ReorderReceiptRuleSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:sendBounce(input, options)
     return self:invokeOperation(input, {
         name = "SendBounce",
-        input_schema = types.SendBounceInput,
-        output_schema = types.SendBounceOutput,
+        input_schema = schemas.SendBounceInput,
+        output_schema = schemas.SendBounceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:sendBulkTemplatedEmail(input, options)
     return self:invokeOperation(input, {
         name = "SendBulkTemplatedEmail",
-        input_schema = types.SendBulkTemplatedEmailInput,
-        output_schema = types.SendBulkTemplatedEmailOutput,
+        input_schema = schemas.SendBulkTemplatedEmailInput,
+        output_schema = schemas.SendBulkTemplatedEmailOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:sendCustomVerificationEmail(input, options)
     return self:invokeOperation(input, {
         name = "SendCustomVerificationEmail",
-        input_schema = types.SendCustomVerificationEmailInput,
-        output_schema = types.SendCustomVerificationEmailOutput,
+        input_schema = schemas.SendCustomVerificationEmailInput,
+        output_schema = schemas.SendCustomVerificationEmailOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:sendEmail(input, options)
     return self:invokeOperation(input, {
         name = "SendEmail",
-        input_schema = types.SendEmailInput,
-        output_schema = types.SendEmailOutput,
+        input_schema = schemas.SendEmailInput,
+        output_schema = schemas.SendEmailOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:sendRawEmail(input, options)
     return self:invokeOperation(input, {
         name = "SendRawEmail",
-        input_schema = types.SendRawEmailInput,
-        output_schema = types.SendRawEmailOutput,
+        input_schema = schemas.SendRawEmailInput,
+        output_schema = schemas.SendRawEmailOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:sendTemplatedEmail(input, options)
     return self:invokeOperation(input, {
         name = "SendTemplatedEmail",
-        input_schema = types.SendTemplatedEmailInput,
-        output_schema = types.SendTemplatedEmailOutput,
+        input_schema = schemas.SendTemplatedEmailInput,
+        output_schema = schemas.SendTemplatedEmailOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:setActiveReceiptRuleSet(input, options)
     return self:invokeOperation(input, {
         name = "SetActiveReceiptRuleSet",
-        input_schema = types.SetActiveReceiptRuleSetInput,
-        output_schema = types.SetActiveReceiptRuleSetOutput,
+        input_schema = schemas.SetActiveReceiptRuleSetInput,
+        output_schema = schemas.SetActiveReceiptRuleSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:setIdentityDkimEnabled(input, options)
     return self:invokeOperation(input, {
         name = "SetIdentityDkimEnabled",
-        input_schema = types.SetIdentityDkimEnabledInput,
-        output_schema = types.SetIdentityDkimEnabledOutput,
+        input_schema = schemas.SetIdentityDkimEnabledInput,
+        output_schema = schemas.SetIdentityDkimEnabledOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:setIdentityFeedbackForwardingEnabled(input, options)
     return self:invokeOperation(input, {
         name = "SetIdentityFeedbackForwardingEnabled",
-        input_schema = types.SetIdentityFeedbackForwardingEnabledInput,
-        output_schema = types.SetIdentityFeedbackForwardingEnabledOutput,
+        input_schema = schemas.SetIdentityFeedbackForwardingEnabledInput,
+        output_schema = schemas.SetIdentityFeedbackForwardingEnabledOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:setIdentityHeadersInNotificationsEnabled(input, options)
     return self:invokeOperation(input, {
         name = "SetIdentityHeadersInNotificationsEnabled",
-        input_schema = types.SetIdentityHeadersInNotificationsEnabledInput,
-        output_schema = types.SetIdentityHeadersInNotificationsEnabledOutput,
+        input_schema = schemas.SetIdentityHeadersInNotificationsEnabledInput,
+        output_schema = schemas.SetIdentityHeadersInNotificationsEnabledOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:setIdentityMailFromDomain(input, options)
     return self:invokeOperation(input, {
         name = "SetIdentityMailFromDomain",
-        input_schema = types.SetIdentityMailFromDomainInput,
-        output_schema = types.SetIdentityMailFromDomainOutput,
+        input_schema = schemas.SetIdentityMailFromDomainInput,
+        output_schema = schemas.SetIdentityMailFromDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:setIdentityNotificationTopic(input, options)
     return self:invokeOperation(input, {
         name = "SetIdentityNotificationTopic",
-        input_schema = types.SetIdentityNotificationTopicInput,
-        output_schema = types.SetIdentityNotificationTopicOutput,
+        input_schema = schemas.SetIdentityNotificationTopicInput,
+        output_schema = schemas.SetIdentityNotificationTopicOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:setReceiptRulePosition(input, options)
     return self:invokeOperation(input, {
         name = "SetReceiptRulePosition",
-        input_schema = types.SetReceiptRulePositionInput,
-        output_schema = types.SetReceiptRulePositionOutput,
+        input_schema = schemas.SetReceiptRulePositionInput,
+        output_schema = schemas.SetReceiptRulePositionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:testRenderTemplate(input, options)
     return self:invokeOperation(input, {
         name = "TestRenderTemplate",
-        input_schema = types.TestRenderTemplateInput,
-        output_schema = types.TestRenderTemplateOutput,
+        input_schema = schemas.TestRenderTemplateInput,
+        output_schema = schemas.TestRenderTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:updateAccountSendingEnabled(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAccountSendingEnabled",
-        input_schema = types.UpdateAccountSendingEnabledInput,
-        output_schema = types.UpdateAccountSendingEnabledOutput,
+        input_schema = schemas.UpdateAccountSendingEnabledInput,
+        output_schema = schemas.UpdateAccountSendingEnabledOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:updateConfigurationSetEventDestination(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConfigurationSetEventDestination",
-        input_schema = types.UpdateConfigurationSetEventDestinationInput,
-        output_schema = types.UpdateConfigurationSetEventDestinationOutput,
+        input_schema = schemas.UpdateConfigurationSetEventDestinationInput,
+        output_schema = schemas.UpdateConfigurationSetEventDestinationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:updateConfigurationSetReputationMetricsEnabled(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConfigurationSetReputationMetricsEnabled",
-        input_schema = types.UpdateConfigurationSetReputationMetricsEnabledInput,
-        output_schema = types.UpdateConfigurationSetReputationMetricsEnabledOutput,
+        input_schema = schemas.UpdateConfigurationSetReputationMetricsEnabledInput,
+        output_schema = schemas.UpdateConfigurationSetReputationMetricsEnabledOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:updateConfigurationSetSendingEnabled(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConfigurationSetSendingEnabled",
-        input_schema = types.UpdateConfigurationSetSendingEnabledInput,
-        output_schema = types.UpdateConfigurationSetSendingEnabledOutput,
+        input_schema = schemas.UpdateConfigurationSetSendingEnabledInput,
+        output_schema = schemas.UpdateConfigurationSetSendingEnabledOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:updateConfigurationSetTrackingOptions(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConfigurationSetTrackingOptions",
-        input_schema = types.UpdateConfigurationSetTrackingOptionsInput,
-        output_schema = types.UpdateConfigurationSetTrackingOptionsOutput,
+        input_schema = schemas.UpdateConfigurationSetTrackingOptionsInput,
+        output_schema = schemas.UpdateConfigurationSetTrackingOptionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:updateCustomVerificationEmailTemplate(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCustomVerificationEmailTemplate",
-        input_schema = types.UpdateCustomVerificationEmailTemplateInput,
-        output_schema = types.UpdateCustomVerificationEmailTemplateOutput,
+        input_schema = schemas.UpdateCustomVerificationEmailTemplateInput,
+        output_schema = schemas.UpdateCustomVerificationEmailTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:updateReceiptRule(input, options)
     return self:invokeOperation(input, {
         name = "UpdateReceiptRule",
-        input_schema = types.UpdateReceiptRuleInput,
-        output_schema = types.UpdateReceiptRuleOutput,
+        input_schema = schemas.UpdateReceiptRuleInput,
+        output_schema = schemas.UpdateReceiptRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:updateTemplate(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTemplate",
-        input_schema = types.UpdateTemplateInput,
-        output_schema = types.UpdateTemplateOutput,
+        input_schema = schemas.UpdateTemplateInput,
+        output_schema = schemas.UpdateTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:verifyDomainDkim(input, options)
     return self:invokeOperation(input, {
         name = "VerifyDomainDkim",
-        input_schema = types.VerifyDomainDkimInput,
-        output_schema = types.VerifyDomainDkimOutput,
+        input_schema = schemas.VerifyDomainDkimInput,
+        output_schema = schemas.VerifyDomainDkimOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:verifyDomainIdentity(input, options)
     return self:invokeOperation(input, {
         name = "VerifyDomainIdentity",
-        input_schema = types.VerifyDomainIdentityInput,
-        output_schema = types.VerifyDomainIdentityOutput,
+        input_schema = schemas.VerifyDomainIdentityInput,
+        output_schema = schemas.VerifyDomainIdentityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:verifyEmailAddress(input, options)
     return self:invokeOperation(input, {
         name = "VerifyEmailAddress",
-        input_schema = types.VerifyEmailAddressInput,
-        output_schema = types.VerifyEmailAddressOutput,
+        input_schema = schemas.VerifyEmailAddressInput,
+        output_schema = schemas.VerifyEmailAddressOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:verifyEmailIdentity(input, options)
     return self:invokeOperation(input, {
         name = "VerifyEmailIdentity",
-        input_schema = types.VerifyEmailIdentityInput,
-        output_schema = types.VerifyEmailIdentityOutput,
+        input_schema = schemas.VerifyEmailIdentityInput,
+        output_schema = schemas.VerifyEmailIdentityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

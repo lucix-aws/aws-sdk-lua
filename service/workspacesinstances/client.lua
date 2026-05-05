@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("workspacesinstances.endpoint_rules")
+local schemas = require("workspacesinstances.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("workspacesinstances.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateVolume(input, options)
     return self:invokeOperation(input, {
         name = "AssociateVolume",
-        input_schema = types.AssociateVolumeInput,
-        output_schema = types.AssociateVolumeOutput,
+        input_schema = schemas.AssociateVolumeInput,
+        output_schema = schemas.AssociateVolumeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createVolume(input, options)
     return self:invokeOperation(input, {
         name = "CreateVolume",
-        input_schema = types.CreateVolumeInput,
-        output_schema = types.CreateVolumeOutput,
+        input_schema = schemas.CreateVolumeInput,
+        output_schema = schemas.CreateVolumeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createWorkspaceInstance(input, options)
     return self:invokeOperation(input, {
         name = "CreateWorkspaceInstance",
-        input_schema = types.CreateWorkspaceInstanceInput,
-        output_schema = types.CreateWorkspaceInstanceOutput,
+        input_schema = schemas.CreateWorkspaceInstanceInput,
+        output_schema = schemas.CreateWorkspaceInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteVolume(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVolume",
-        input_schema = types.DeleteVolumeInput,
-        output_schema = types.DeleteVolumeOutput,
+        input_schema = schemas.DeleteVolumeInput,
+        output_schema = schemas.DeleteVolumeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteWorkspaceInstance(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWorkspaceInstance",
-        input_schema = types.DeleteWorkspaceInstanceInput,
-        output_schema = types.DeleteWorkspaceInstanceOutput,
+        input_schema = schemas.DeleteWorkspaceInstanceInput,
+        output_schema = schemas.DeleteWorkspaceInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:disassociateVolume(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateVolume",
-        input_schema = types.DisassociateVolumeInput,
-        output_schema = types.DisassociateVolumeOutput,
+        input_schema = schemas.DisassociateVolumeInput,
+        output_schema = schemas.DisassociateVolumeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getWorkspaceInstance(input, options)
     return self:invokeOperation(input, {
         name = "GetWorkspaceInstance",
-        input_schema = types.GetWorkspaceInstanceInput,
-        output_schema = types.GetWorkspaceInstanceOutput,
+        input_schema = schemas.GetWorkspaceInstanceInput,
+        output_schema = schemas.GetWorkspaceInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listInstanceTypes(input, options)
     return self:invokeOperation(input, {
         name = "ListInstanceTypes",
-        input_schema = types.ListInstanceTypesInput,
-        output_schema = types.ListInstanceTypesOutput,
+        input_schema = schemas.ListInstanceTypesInput,
+        output_schema = schemas.ListInstanceTypesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listRegions(input, options)
     return self:invokeOperation(input, {
         name = "ListRegions",
-        input_schema = types.ListRegionsInput,
-        output_schema = types.ListRegionsOutput,
+        input_schema = schemas.ListRegionsInput,
+        output_schema = schemas.ListRegionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listWorkspaceInstances(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkspaceInstances",
-        input_schema = types.ListWorkspaceInstancesInput,
-        output_schema = types.ListWorkspaceInstancesOutput,
+        input_schema = schemas.ListWorkspaceInstancesInput,
+        output_schema = schemas.ListWorkspaceInstancesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

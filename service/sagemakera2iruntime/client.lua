@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("sagemakera2iruntime.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("sagemakera2iruntime.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("sagemakera2iruntime.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:deleteHumanLoop(input, options)
     return self:invokeOperation(input, {
         name = "DeleteHumanLoop",
-        input_schema = types.DeleteHumanLoopInput,
-        output_schema = types.DeleteHumanLoopOutput,
+        input_schema = schemas.DeleteHumanLoopInput,
+        output_schema = schemas.DeleteHumanLoopOutput,
         http_method = "DELETE",
         http_path = "/human-loops/{HumanLoopName}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:describeHumanLoop(input, options)
     return self:invokeOperation(input, {
         name = "DescribeHumanLoop",
-        input_schema = types.DescribeHumanLoopInput,
-        output_schema = types.DescribeHumanLoopOutput,
+        input_schema = schemas.DescribeHumanLoopInput,
+        output_schema = schemas.DescribeHumanLoopOutput,
         http_method = "GET",
         http_path = "/human-loops/{HumanLoopName}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:listHumanLoops(input, options)
     return self:invokeOperation(input, {
         name = "ListHumanLoops",
-        input_schema = types.ListHumanLoopsInput,
-        output_schema = types.ListHumanLoopsOutput,
+        input_schema = schemas.ListHumanLoopsInput,
+        output_schema = schemas.ListHumanLoopsOutput,
         http_method = "GET",
         http_path = "/human-loops",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:startHumanLoop(input, options)
     return self:invokeOperation(input, {
         name = "StartHumanLoop",
-        input_schema = types.StartHumanLoopInput,
-        output_schema = types.StartHumanLoopOutput,
+        input_schema = schemas.StartHumanLoopInput,
+        output_schema = schemas.StartHumanLoopOutput,
         http_method = "POST",
         http_path = "/human-loops",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:stopHumanLoop(input, options)
     return self:invokeOperation(input, {
         name = "StopHumanLoop",
-        input_schema = types.StopHumanLoopInput,
-        output_schema = types.StopHumanLoopOutput,
+        input_schema = schemas.StopHumanLoopInput,
+        output_schema = schemas.StopHumanLoopOutput,
         http_method = "POST",
         http_path = "/human-loops/stop",
         effective_auth_schemes = {

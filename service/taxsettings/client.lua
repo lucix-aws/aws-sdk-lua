@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("taxsettings.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("taxsettings.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("taxsettings.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchDeleteTaxRegistration(input, options)
     return self:invokeOperation(input, {
         name = "BatchDeleteTaxRegistration",
-        input_schema = types.BatchDeleteTaxRegistrationInput,
-        output_schema = types.BatchDeleteTaxRegistrationOutput,
+        input_schema = schemas.BatchDeleteTaxRegistrationInput,
+        output_schema = schemas.BatchDeleteTaxRegistrationOutput,
         http_method = "POST",
         http_path = "/BatchDeleteTaxRegistration",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchGetTaxExemptions(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetTaxExemptions",
-        input_schema = types.BatchGetTaxExemptionsInput,
-        output_schema = types.BatchGetTaxExemptionsOutput,
+        input_schema = schemas.BatchGetTaxExemptionsInput,
+        output_schema = schemas.BatchGetTaxExemptionsOutput,
         http_method = "POST",
         http_path = "/BatchGetTaxExemptions",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchPutTaxRegistration(input, options)
     return self:invokeOperation(input, {
         name = "BatchPutTaxRegistration",
-        input_schema = types.BatchPutTaxRegistrationInput,
-        output_schema = types.BatchPutTaxRegistrationOutput,
+        input_schema = schemas.BatchPutTaxRegistrationInput,
+        output_schema = schemas.BatchPutTaxRegistrationOutput,
         http_method = "POST",
         http_path = "/BatchPutTaxRegistration",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteSupplementalTaxRegistration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSupplementalTaxRegistration",
-        input_schema = types.DeleteSupplementalTaxRegistrationInput,
-        output_schema = types.DeleteSupplementalTaxRegistrationOutput,
+        input_schema = schemas.DeleteSupplementalTaxRegistrationInput,
+        output_schema = schemas.DeleteSupplementalTaxRegistrationOutput,
         http_method = "POST",
         http_path = "/DeleteSupplementalTaxRegistration",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteTaxRegistration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTaxRegistration",
-        input_schema = types.DeleteTaxRegistrationInput,
-        output_schema = types.DeleteTaxRegistrationOutput,
+        input_schema = schemas.DeleteTaxRegistrationInput,
+        output_schema = schemas.DeleteTaxRegistrationOutput,
         http_method = "POST",
         http_path = "/DeleteTaxRegistration",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getTaxExemptionTypes(input, options)
     return self:invokeOperation(input, {
         name = "GetTaxExemptionTypes",
-        input_schema = types.GetTaxExemptionTypesInput,
-        output_schema = types.GetTaxExemptionTypesOutput,
+        input_schema = schemas.GetTaxExemptionTypesInput,
+        output_schema = schemas.GetTaxExemptionTypesOutput,
         http_method = "POST",
         http_path = "/GetTaxExemptionTypes",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getTaxInheritance(input, options)
     return self:invokeOperation(input, {
         name = "GetTaxInheritance",
-        input_schema = types.GetTaxInheritanceInput,
-        output_schema = types.GetTaxInheritanceOutput,
+        input_schema = schemas.GetTaxInheritanceInput,
+        output_schema = schemas.GetTaxInheritanceOutput,
         http_method = "POST",
         http_path = "/GetTaxInheritance",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getTaxRegistration(input, options)
     return self:invokeOperation(input, {
         name = "GetTaxRegistration",
-        input_schema = types.GetTaxRegistrationInput,
-        output_schema = types.GetTaxRegistrationOutput,
+        input_schema = schemas.GetTaxRegistrationInput,
+        output_schema = schemas.GetTaxRegistrationOutput,
         http_method = "POST",
         http_path = "/GetTaxRegistration",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getTaxRegistrationDocument(input, options)
     return self:invokeOperation(input, {
         name = "GetTaxRegistrationDocument",
-        input_schema = types.GetTaxRegistrationDocumentInput,
-        output_schema = types.GetTaxRegistrationDocumentOutput,
+        input_schema = schemas.GetTaxRegistrationDocumentInput,
+        output_schema = schemas.GetTaxRegistrationDocumentOutput,
         http_method = "POST",
         http_path = "/GetTaxRegistrationDocument",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listSupplementalTaxRegistrations(input, options)
     return self:invokeOperation(input, {
         name = "ListSupplementalTaxRegistrations",
-        input_schema = types.ListSupplementalTaxRegistrationsInput,
-        output_schema = types.ListSupplementalTaxRegistrationsOutput,
+        input_schema = schemas.ListSupplementalTaxRegistrationsInput,
+        output_schema = schemas.ListSupplementalTaxRegistrationsOutput,
         http_method = "POST",
         http_path = "/ListSupplementalTaxRegistrations",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listTaxExemptions(input, options)
     return self:invokeOperation(input, {
         name = "ListTaxExemptions",
-        input_schema = types.ListTaxExemptionsInput,
-        output_schema = types.ListTaxExemptionsOutput,
+        input_schema = schemas.ListTaxExemptionsInput,
+        output_schema = schemas.ListTaxExemptionsOutput,
         http_method = "POST",
         http_path = "/ListTaxExemptions",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listTaxRegistrations(input, options)
     return self:invokeOperation(input, {
         name = "ListTaxRegistrations",
-        input_schema = types.ListTaxRegistrationsInput,
-        output_schema = types.ListTaxRegistrationsOutput,
+        input_schema = schemas.ListTaxRegistrationsInput,
+        output_schema = schemas.ListTaxRegistrationsOutput,
         http_method = "POST",
         http_path = "/ListTaxRegistrations",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:putSupplementalTaxRegistration(input, options)
     return self:invokeOperation(input, {
         name = "PutSupplementalTaxRegistration",
-        input_schema = types.PutSupplementalTaxRegistrationInput,
-        output_schema = types.PutSupplementalTaxRegistrationOutput,
+        input_schema = schemas.PutSupplementalTaxRegistrationInput,
+        output_schema = schemas.PutSupplementalTaxRegistrationOutput,
         http_method = "POST",
         http_path = "/PutSupplementalTaxRegistration",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:putTaxExemption(input, options)
     return self:invokeOperation(input, {
         name = "PutTaxExemption",
-        input_schema = types.PutTaxExemptionInput,
-        output_schema = types.PutTaxExemptionOutput,
+        input_schema = schemas.PutTaxExemptionInput,
+        output_schema = schemas.PutTaxExemptionOutput,
         http_method = "POST",
         http_path = "/PutTaxExemption",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:putTaxInheritance(input, options)
     return self:invokeOperation(input, {
         name = "PutTaxInheritance",
-        input_schema = types.PutTaxInheritanceInput,
-        output_schema = types.PutTaxInheritanceOutput,
+        input_schema = schemas.PutTaxInheritanceInput,
+        output_schema = schemas.PutTaxInheritanceOutput,
         http_method = "POST",
         http_path = "/PutTaxInheritance",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:putTaxRegistration(input, options)
     return self:invokeOperation(input, {
         name = "PutTaxRegistration",
-        input_schema = types.PutTaxRegistrationInput,
-        output_schema = types.PutTaxRegistrationOutput,
+        input_schema = schemas.PutTaxRegistrationInput,
+        output_schema = schemas.PutTaxRegistrationOutput,
         http_method = "POST",
         http_path = "/PutTaxRegistration",
         effective_auth_schemes = {

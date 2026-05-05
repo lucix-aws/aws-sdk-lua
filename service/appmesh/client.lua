@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("appmesh.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("appmesh.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("appmesh.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createGatewayRoute(input, options)
     return self:invokeOperation(input, {
         name = "CreateGatewayRoute",
-        input_schema = types.CreateGatewayRouteInput,
-        output_schema = types.CreateGatewayRouteOutput,
+        input_schema = schemas.CreateGatewayRouteInput,
+        output_schema = schemas.CreateGatewayRouteOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createMesh(input, options)
     return self:invokeOperation(input, {
         name = "CreateMesh",
-        input_schema = types.CreateMeshInput,
-        output_schema = types.CreateMeshOutput,
+        input_schema = schemas.CreateMeshInput,
+        output_schema = schemas.CreateMeshOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createRoute(input, options)
     return self:invokeOperation(input, {
         name = "CreateRoute",
-        input_schema = types.CreateRouteInput,
-        output_schema = types.CreateRouteOutput,
+        input_schema = schemas.CreateRouteInput,
+        output_schema = schemas.CreateRouteOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}/virtualRouter/{virtualRouterName}/routes",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createVirtualGateway(input, options)
     return self:invokeOperation(input, {
         name = "CreateVirtualGateway",
-        input_schema = types.CreateVirtualGatewayInput,
-        output_schema = types.CreateVirtualGatewayOutput,
+        input_schema = schemas.CreateVirtualGatewayInput,
+        output_schema = schemas.CreateVirtualGatewayOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}/virtualGateways",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createVirtualNode(input, options)
     return self:invokeOperation(input, {
         name = "CreateVirtualNode",
-        input_schema = types.CreateVirtualNodeInput,
-        output_schema = types.CreateVirtualNodeOutput,
+        input_schema = schemas.CreateVirtualNodeInput,
+        output_schema = schemas.CreateVirtualNodeOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}/virtualNodes",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createVirtualRouter(input, options)
     return self:invokeOperation(input, {
         name = "CreateVirtualRouter",
-        input_schema = types.CreateVirtualRouterInput,
-        output_schema = types.CreateVirtualRouterOutput,
+        input_schema = schemas.CreateVirtualRouterInput,
+        output_schema = schemas.CreateVirtualRouterOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}/virtualRouters",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createVirtualService(input, options)
     return self:invokeOperation(input, {
         name = "CreateVirtualService",
-        input_schema = types.CreateVirtualServiceInput,
-        output_schema = types.CreateVirtualServiceOutput,
+        input_schema = schemas.CreateVirtualServiceInput,
+        output_schema = schemas.CreateVirtualServiceOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}/virtualServices",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteGatewayRoute(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGatewayRoute",
-        input_schema = types.DeleteGatewayRouteInput,
-        output_schema = types.DeleteGatewayRouteOutput,
+        input_schema = schemas.DeleteGatewayRouteInput,
+        output_schema = schemas.DeleteGatewayRouteOutput,
         http_method = "DELETE",
         http_path = "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes/{gatewayRouteName}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteMesh(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMesh",
-        input_schema = types.DeleteMeshInput,
-        output_schema = types.DeleteMeshOutput,
+        input_schema = schemas.DeleteMeshInput,
+        output_schema = schemas.DeleteMeshOutput,
         http_method = "DELETE",
         http_path = "/v20190125/meshes/{meshName}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteRoute(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRoute",
-        input_schema = types.DeleteRouteInput,
-        output_schema = types.DeleteRouteOutput,
+        input_schema = schemas.DeleteRouteInput,
+        output_schema = schemas.DeleteRouteOutput,
         http_method = "DELETE",
         http_path = "/v20190125/meshes/{meshName}/virtualRouter/{virtualRouterName}/routes/{routeName}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteVirtualGateway(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVirtualGateway",
-        input_schema = types.DeleteVirtualGatewayInput,
-        output_schema = types.DeleteVirtualGatewayOutput,
+        input_schema = schemas.DeleteVirtualGatewayInput,
+        output_schema = schemas.DeleteVirtualGatewayOutput,
         http_method = "DELETE",
         http_path = "/v20190125/meshes/{meshName}/virtualGateways/{virtualGatewayName}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteVirtualNode(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVirtualNode",
-        input_schema = types.DeleteVirtualNodeInput,
-        output_schema = types.DeleteVirtualNodeOutput,
+        input_schema = schemas.DeleteVirtualNodeInput,
+        output_schema = schemas.DeleteVirtualNodeOutput,
         http_method = "DELETE",
         http_path = "/v20190125/meshes/{meshName}/virtualNodes/{virtualNodeName}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteVirtualRouter(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVirtualRouter",
-        input_schema = types.DeleteVirtualRouterInput,
-        output_schema = types.DeleteVirtualRouterOutput,
+        input_schema = schemas.DeleteVirtualRouterInput,
+        output_schema = schemas.DeleteVirtualRouterOutput,
         http_method = "DELETE",
         http_path = "/v20190125/meshes/{meshName}/virtualRouters/{virtualRouterName}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteVirtualService(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVirtualService",
-        input_schema = types.DeleteVirtualServiceInput,
-        output_schema = types.DeleteVirtualServiceOutput,
+        input_schema = schemas.DeleteVirtualServiceInput,
+        output_schema = schemas.DeleteVirtualServiceOutput,
         http_method = "DELETE",
         http_path = "/v20190125/meshes/{meshName}/virtualServices/{virtualServiceName}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:describeGatewayRoute(input, options)
     return self:invokeOperation(input, {
         name = "DescribeGatewayRoute",
-        input_schema = types.DescribeGatewayRouteInput,
-        output_schema = types.DescribeGatewayRouteOutput,
+        input_schema = schemas.DescribeGatewayRouteInput,
+        output_schema = schemas.DescribeGatewayRouteOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes/{gatewayRouteName}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:describeMesh(input, options)
     return self:invokeOperation(input, {
         name = "DescribeMesh",
-        input_schema = types.DescribeMeshInput,
-        output_schema = types.DescribeMeshOutput,
+        input_schema = schemas.DescribeMeshInput,
+        output_schema = schemas.DescribeMeshOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:describeRoute(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRoute",
-        input_schema = types.DescribeRouteInput,
-        output_schema = types.DescribeRouteOutput,
+        input_schema = schemas.DescribeRouteInput,
+        output_schema = schemas.DescribeRouteOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}/virtualRouter/{virtualRouterName}/routes/{routeName}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:describeVirtualGateway(input, options)
     return self:invokeOperation(input, {
         name = "DescribeVirtualGateway",
-        input_schema = types.DescribeVirtualGatewayInput,
-        output_schema = types.DescribeVirtualGatewayOutput,
+        input_schema = schemas.DescribeVirtualGatewayInput,
+        output_schema = schemas.DescribeVirtualGatewayOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}/virtualGateways/{virtualGatewayName}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:describeVirtualNode(input, options)
     return self:invokeOperation(input, {
         name = "DescribeVirtualNode",
-        input_schema = types.DescribeVirtualNodeInput,
-        output_schema = types.DescribeVirtualNodeOutput,
+        input_schema = schemas.DescribeVirtualNodeInput,
+        output_schema = schemas.DescribeVirtualNodeOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}/virtualNodes/{virtualNodeName}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:describeVirtualRouter(input, options)
     return self:invokeOperation(input, {
         name = "DescribeVirtualRouter",
-        input_schema = types.DescribeVirtualRouterInput,
-        output_schema = types.DescribeVirtualRouterOutput,
+        input_schema = schemas.DescribeVirtualRouterInput,
+        output_schema = schemas.DescribeVirtualRouterOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}/virtualRouters/{virtualRouterName}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:describeVirtualService(input, options)
     return self:invokeOperation(input, {
         name = "DescribeVirtualService",
-        input_schema = types.DescribeVirtualServiceInput,
-        output_schema = types.DescribeVirtualServiceOutput,
+        input_schema = schemas.DescribeVirtualServiceInput,
+        output_schema = schemas.DescribeVirtualServiceOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}/virtualServices/{virtualServiceName}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listGatewayRoutes(input, options)
     return self:invokeOperation(input, {
         name = "ListGatewayRoutes",
-        input_schema = types.ListGatewayRoutesInput,
-        output_schema = types.ListGatewayRoutesOutput,
+        input_schema = schemas.ListGatewayRoutesInput,
+        output_schema = schemas.ListGatewayRoutesOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listMeshes(input, options)
     return self:invokeOperation(input, {
         name = "ListMeshes",
-        input_schema = types.ListMeshesInput,
-        output_schema = types.ListMeshesOutput,
+        input_schema = schemas.ListMeshesInput,
+        output_schema = schemas.ListMeshesOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listRoutes(input, options)
     return self:invokeOperation(input, {
         name = "ListRoutes",
-        input_schema = types.ListRoutesInput,
-        output_schema = types.ListRoutesOutput,
+        input_schema = schemas.ListRoutesInput,
+        output_schema = schemas.ListRoutesOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}/virtualRouter/{virtualRouterName}/routes",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/v20190125/tags",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listVirtualGateways(input, options)
     return self:invokeOperation(input, {
         name = "ListVirtualGateways",
-        input_schema = types.ListVirtualGatewaysInput,
-        output_schema = types.ListVirtualGatewaysOutput,
+        input_schema = schemas.ListVirtualGatewaysInput,
+        output_schema = schemas.ListVirtualGatewaysOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}/virtualGateways",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listVirtualNodes(input, options)
     return self:invokeOperation(input, {
         name = "ListVirtualNodes",
-        input_schema = types.ListVirtualNodesInput,
-        output_schema = types.ListVirtualNodesOutput,
+        input_schema = schemas.ListVirtualNodesInput,
+        output_schema = schemas.ListVirtualNodesOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}/virtualNodes",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listVirtualRouters(input, options)
     return self:invokeOperation(input, {
         name = "ListVirtualRouters",
-        input_schema = types.ListVirtualRoutersInput,
-        output_schema = types.ListVirtualRoutersOutput,
+        input_schema = schemas.ListVirtualRoutersInput,
+        output_schema = schemas.ListVirtualRoutersOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}/virtualRouters",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listVirtualServices(input, options)
     return self:invokeOperation(input, {
         name = "ListVirtualServices",
-        input_schema = types.ListVirtualServicesInput,
-        output_schema = types.ListVirtualServicesOutput,
+        input_schema = schemas.ListVirtualServicesInput,
+        output_schema = schemas.ListVirtualServicesOutput,
         http_method = "GET",
         http_path = "/v20190125/meshes/{meshName}/virtualServices",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "PUT",
         http_path = "/v20190125/tag",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "PUT",
         http_path = "/v20190125/untag",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:updateGatewayRoute(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGatewayRoute",
-        input_schema = types.UpdateGatewayRouteInput,
-        output_schema = types.UpdateGatewayRouteOutput,
+        input_schema = schemas.UpdateGatewayRouteInput,
+        output_schema = schemas.UpdateGatewayRouteOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}/virtualGateway/{virtualGatewayName}/gatewayRoutes/{gatewayRouteName}",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:updateMesh(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMesh",
-        input_schema = types.UpdateMeshInput,
-        output_schema = types.UpdateMeshOutput,
+        input_schema = schemas.UpdateMeshInput,
+        output_schema = schemas.UpdateMeshOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:updateRoute(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRoute",
-        input_schema = types.UpdateRouteInput,
-        output_schema = types.UpdateRouteOutput,
+        input_schema = schemas.UpdateRouteInput,
+        output_schema = schemas.UpdateRouteOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}/virtualRouter/{virtualRouterName}/routes/{routeName}",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:updateVirtualGateway(input, options)
     return self:invokeOperation(input, {
         name = "UpdateVirtualGateway",
-        input_schema = types.UpdateVirtualGatewayInput,
-        output_schema = types.UpdateVirtualGatewayOutput,
+        input_schema = schemas.UpdateVirtualGatewayInput,
+        output_schema = schemas.UpdateVirtualGatewayOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}/virtualGateways/{virtualGatewayName}",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:updateVirtualNode(input, options)
     return self:invokeOperation(input, {
         name = "UpdateVirtualNode",
-        input_schema = types.UpdateVirtualNodeInput,
-        output_schema = types.UpdateVirtualNodeOutput,
+        input_schema = schemas.UpdateVirtualNodeInput,
+        output_schema = schemas.UpdateVirtualNodeOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}/virtualNodes/{virtualNodeName}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:updateVirtualRouter(input, options)
     return self:invokeOperation(input, {
         name = "UpdateVirtualRouter",
-        input_schema = types.UpdateVirtualRouterInput,
-        output_schema = types.UpdateVirtualRouterOutput,
+        input_schema = schemas.UpdateVirtualRouterInput,
+        output_schema = schemas.UpdateVirtualRouterOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}/virtualRouters/{virtualRouterName}",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:updateVirtualService(input, options)
     return self:invokeOperation(input, {
         name = "UpdateVirtualService",
-        input_schema = types.UpdateVirtualServiceInput,
-        output_schema = types.UpdateVirtualServiceOutput,
+        input_schema = schemas.UpdateVirtualServiceInput,
+        output_schema = schemas.UpdateVirtualServiceOutput,
         http_method = "PUT",
         http_path = "/v20190125/meshes/{meshName}/virtualServices/{virtualServiceName}",
         effective_auth_schemes = {

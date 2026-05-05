@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("wellarchitected.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("wellarchitected.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("wellarchitected.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateLenses(input, options)
     return self:invokeOperation(input, {
         name = "AssociateLenses",
-        input_schema = types.AssociateLensesInput,
-        output_schema = types.AssociateLensesOutput,
+        input_schema = schemas.AssociateLensesInput,
+        output_schema = schemas.AssociateLensesOutput,
         http_method = "PATCH",
         http_path = "/workloads/{WorkloadId}/associateLenses",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:associateProfiles(input, options)
     return self:invokeOperation(input, {
         name = "AssociateProfiles",
-        input_schema = types.AssociateProfilesInput,
-        output_schema = types.AssociateProfilesOutput,
+        input_schema = schemas.AssociateProfilesInput,
+        output_schema = schemas.AssociateProfilesOutput,
         http_method = "PATCH",
         http_path = "/workloads/{WorkloadId}/associateProfiles",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createLensShare(input, options)
     return self:invokeOperation(input, {
         name = "CreateLensShare",
-        input_schema = types.CreateLensShareInput,
-        output_schema = types.CreateLensShareOutput,
+        input_schema = schemas.CreateLensShareInput,
+        output_schema = schemas.CreateLensShareOutput,
         http_method = "POST",
         http_path = "/lenses/{LensAlias}/shares",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createLensVersion(input, options)
     return self:invokeOperation(input, {
         name = "CreateLensVersion",
-        input_schema = types.CreateLensVersionInput,
-        output_schema = types.CreateLensVersionOutput,
+        input_schema = schemas.CreateLensVersionInput,
+        output_schema = schemas.CreateLensVersionOutput,
         http_method = "POST",
         http_path = "/lenses/{LensAlias}/versions",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createMilestone(input, options)
     return self:invokeOperation(input, {
         name = "CreateMilestone",
-        input_schema = types.CreateMilestoneInput,
-        output_schema = types.CreateMilestoneOutput,
+        input_schema = schemas.CreateMilestoneInput,
+        output_schema = schemas.CreateMilestoneOutput,
         http_method = "POST",
         http_path = "/workloads/{WorkloadId}/milestones",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createProfile(input, options)
     return self:invokeOperation(input, {
         name = "CreateProfile",
-        input_schema = types.CreateProfileInput,
-        output_schema = types.CreateProfileOutput,
+        input_schema = schemas.CreateProfileInput,
+        output_schema = schemas.CreateProfileOutput,
         http_method = "POST",
         http_path = "/profiles",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createProfileShare(input, options)
     return self:invokeOperation(input, {
         name = "CreateProfileShare",
-        input_schema = types.CreateProfileShareInput,
-        output_schema = types.CreateProfileShareOutput,
+        input_schema = schemas.CreateProfileShareInput,
+        output_schema = schemas.CreateProfileShareOutput,
         http_method = "POST",
         http_path = "/profiles/{ProfileArn}/shares",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createReviewTemplate(input, options)
     return self:invokeOperation(input, {
         name = "CreateReviewTemplate",
-        input_schema = types.CreateReviewTemplateInput,
-        output_schema = types.CreateReviewTemplateOutput,
+        input_schema = schemas.CreateReviewTemplateInput,
+        output_schema = schemas.CreateReviewTemplateOutput,
         http_method = "POST",
         http_path = "/reviewTemplates",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createTemplateShare(input, options)
     return self:invokeOperation(input, {
         name = "CreateTemplateShare",
-        input_schema = types.CreateTemplateShareInput,
-        output_schema = types.CreateTemplateShareOutput,
+        input_schema = schemas.CreateTemplateShareInput,
+        output_schema = schemas.CreateTemplateShareOutput,
         http_method = "POST",
         http_path = "/templates/shares/{TemplateArn}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createWorkload(input, options)
     return self:invokeOperation(input, {
         name = "CreateWorkload",
-        input_schema = types.CreateWorkloadInput,
-        output_schema = types.CreateWorkloadOutput,
+        input_schema = schemas.CreateWorkloadInput,
+        output_schema = schemas.CreateWorkloadOutput,
         http_method = "POST",
         http_path = "/workloads",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createWorkloadShare(input, options)
     return self:invokeOperation(input, {
         name = "CreateWorkloadShare",
-        input_schema = types.CreateWorkloadShareInput,
-        output_schema = types.CreateWorkloadShareOutput,
+        input_schema = schemas.CreateWorkloadShareInput,
+        output_schema = schemas.CreateWorkloadShareOutput,
         http_method = "POST",
         http_path = "/workloads/{WorkloadId}/shares",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteLens(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLens",
-        input_schema = types.DeleteLensInput,
-        output_schema = types.DeleteLensOutput,
+        input_schema = schemas.DeleteLensInput,
+        output_schema = schemas.DeleteLensOutput,
         http_method = "DELETE",
         http_path = "/lenses/{LensAlias}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteLensShare(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLensShare",
-        input_schema = types.DeleteLensShareInput,
-        output_schema = types.DeleteLensShareOutput,
+        input_schema = schemas.DeleteLensShareInput,
+        output_schema = schemas.DeleteLensShareOutput,
         http_method = "DELETE",
         http_path = "/lenses/{LensAlias}/shares/{ShareId}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteProfile(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProfile",
-        input_schema = types.DeleteProfileInput,
-        output_schema = types.DeleteProfileOutput,
+        input_schema = schemas.DeleteProfileInput,
+        output_schema = schemas.DeleteProfileOutput,
         http_method = "DELETE",
         http_path = "/profiles/{ProfileArn}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteProfileShare(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProfileShare",
-        input_schema = types.DeleteProfileShareInput,
-        output_schema = types.DeleteProfileShareOutput,
+        input_schema = schemas.DeleteProfileShareInput,
+        output_schema = schemas.DeleteProfileShareOutput,
         http_method = "DELETE",
         http_path = "/profiles/{ProfileArn}/shares/{ShareId}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteReviewTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DeleteReviewTemplate",
-        input_schema = types.DeleteReviewTemplateInput,
-        output_schema = types.DeleteReviewTemplateOutput,
+        input_schema = schemas.DeleteReviewTemplateInput,
+        output_schema = schemas.DeleteReviewTemplateOutput,
         http_method = "DELETE",
         http_path = "/reviewTemplates/{TemplateArn}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteTemplateShare(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTemplateShare",
-        input_schema = types.DeleteTemplateShareInput,
-        output_schema = types.DeleteTemplateShareOutput,
+        input_schema = schemas.DeleteTemplateShareInput,
+        output_schema = schemas.DeleteTemplateShareOutput,
         http_method = "DELETE",
         http_path = "/templates/shares/{TemplateArn}/{ShareId}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteWorkload(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWorkload",
-        input_schema = types.DeleteWorkloadInput,
-        output_schema = types.DeleteWorkloadOutput,
+        input_schema = schemas.DeleteWorkloadInput,
+        output_schema = schemas.DeleteWorkloadOutput,
         http_method = "DELETE",
         http_path = "/workloads/{WorkloadId}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteWorkloadShare(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWorkloadShare",
-        input_schema = types.DeleteWorkloadShareInput,
-        output_schema = types.DeleteWorkloadShareOutput,
+        input_schema = schemas.DeleteWorkloadShareInput,
+        output_schema = schemas.DeleteWorkloadShareOutput,
         http_method = "DELETE",
         http_path = "/workloads/{WorkloadId}/shares/{ShareId}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:disassociateLenses(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateLenses",
-        input_schema = types.DisassociateLensesInput,
-        output_schema = types.DisassociateLensesOutput,
+        input_schema = schemas.DisassociateLensesInput,
+        output_schema = schemas.DisassociateLensesOutput,
         http_method = "PATCH",
         http_path = "/workloads/{WorkloadId}/disassociateLenses",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:disassociateProfiles(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateProfiles",
-        input_schema = types.DisassociateProfilesInput,
-        output_schema = types.DisassociateProfilesOutput,
+        input_schema = schemas.DisassociateProfilesInput,
+        output_schema = schemas.DisassociateProfilesOutput,
         http_method = "PATCH",
         http_path = "/workloads/{WorkloadId}/disassociateProfiles",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:exportLens(input, options)
     return self:invokeOperation(input, {
         name = "ExportLens",
-        input_schema = types.ExportLensInput,
-        output_schema = types.ExportLensOutput,
+        input_schema = schemas.ExportLensInput,
+        output_schema = schemas.ExportLensOutput,
         http_method = "GET",
         http_path = "/lenses/{LensAlias}/export",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:getAnswer(input, options)
     return self:invokeOperation(input, {
         name = "GetAnswer",
-        input_schema = types.GetAnswerInput,
-        output_schema = types.GetAnswerOutput,
+        input_schema = schemas.GetAnswerInput,
+        output_schema = schemas.GetAnswerOutput,
         http_method = "GET",
         http_path = "/workloads/{WorkloadId}/lensReviews/{LensAlias}/answers/{QuestionId}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:getConsolidatedReport(input, options)
     return self:invokeOperation(input, {
         name = "GetConsolidatedReport",
-        input_schema = types.GetConsolidatedReportInput,
-        output_schema = types.GetConsolidatedReportOutput,
+        input_schema = schemas.GetConsolidatedReportInput,
+        output_schema = schemas.GetConsolidatedReportOutput,
         http_method = "GET",
         http_path = "/consolidatedReport",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getGlobalSettings(input, options)
     return self:invokeOperation(input, {
         name = "GetGlobalSettings",
-        input_schema = types.GetGlobalSettingsInput,
-        output_schema = types.GetGlobalSettingsOutput,
+        input_schema = schemas.GetGlobalSettingsInput,
+        output_schema = schemas.GetGlobalSettingsOutput,
         http_method = "GET",
         http_path = "/global-settings",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:getLens(input, options)
     return self:invokeOperation(input, {
         name = "GetLens",
-        input_schema = types.GetLensInput,
-        output_schema = types.GetLensOutput,
+        input_schema = schemas.GetLensInput,
+        output_schema = schemas.GetLensOutput,
         http_method = "GET",
         http_path = "/lenses/{LensAlias}",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:getLensReview(input, options)
     return self:invokeOperation(input, {
         name = "GetLensReview",
-        input_schema = types.GetLensReviewInput,
-        output_schema = types.GetLensReviewOutput,
+        input_schema = schemas.GetLensReviewInput,
+        output_schema = schemas.GetLensReviewOutput,
         http_method = "GET",
         http_path = "/workloads/{WorkloadId}/lensReviews/{LensAlias}",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:getLensReviewReport(input, options)
     return self:invokeOperation(input, {
         name = "GetLensReviewReport",
-        input_schema = types.GetLensReviewReportInput,
-        output_schema = types.GetLensReviewReportOutput,
+        input_schema = schemas.GetLensReviewReportInput,
+        output_schema = schemas.GetLensReviewReportOutput,
         http_method = "GET",
         http_path = "/workloads/{WorkloadId}/lensReviews/{LensAlias}/report",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:getLensVersionDifference(input, options)
     return self:invokeOperation(input, {
         name = "GetLensVersionDifference",
-        input_schema = types.GetLensVersionDifferenceInput,
-        output_schema = types.GetLensVersionDifferenceOutput,
+        input_schema = schemas.GetLensVersionDifferenceInput,
+        output_schema = schemas.GetLensVersionDifferenceOutput,
         http_method = "GET",
         http_path = "/lenses/{LensAlias}/versionDifference",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:getMilestone(input, options)
     return self:invokeOperation(input, {
         name = "GetMilestone",
-        input_schema = types.GetMilestoneInput,
-        output_schema = types.GetMilestoneOutput,
+        input_schema = schemas.GetMilestoneInput,
+        output_schema = schemas.GetMilestoneOutput,
         http_method = "GET",
         http_path = "/workloads/{WorkloadId}/milestones/{MilestoneNumber}",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:getProfile(input, options)
     return self:invokeOperation(input, {
         name = "GetProfile",
-        input_schema = types.GetProfileInput,
-        output_schema = types.GetProfileOutput,
+        input_schema = schemas.GetProfileInput,
+        output_schema = schemas.GetProfileOutput,
         http_method = "GET",
         http_path = "/profiles/{ProfileArn}",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:getProfileTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetProfileTemplate",
-        input_schema = types.GetProfileTemplateInput,
-        output_schema = types.GetProfileTemplateOutput,
+        input_schema = schemas.GetProfileTemplateInput,
+        output_schema = schemas.GetProfileTemplateOutput,
         http_method = "GET",
         http_path = "/profileTemplate",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:getReviewTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetReviewTemplate",
-        input_schema = types.GetReviewTemplateInput,
-        output_schema = types.GetReviewTemplateOutput,
+        input_schema = schemas.GetReviewTemplateInput,
+        output_schema = schemas.GetReviewTemplateOutput,
         http_method = "GET",
         http_path = "/reviewTemplates/{TemplateArn}",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:getReviewTemplateAnswer(input, options)
     return self:invokeOperation(input, {
         name = "GetReviewTemplateAnswer",
-        input_schema = types.GetReviewTemplateAnswerInput,
-        output_schema = types.GetReviewTemplateAnswerOutput,
+        input_schema = schemas.GetReviewTemplateAnswerInput,
+        output_schema = schemas.GetReviewTemplateAnswerOutput,
         http_method = "GET",
         http_path = "/reviewTemplates/{TemplateArn}/lensReviews/{LensAlias}/answers/{QuestionId}",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:getReviewTemplateLensReview(input, options)
     return self:invokeOperation(input, {
         name = "GetReviewTemplateLensReview",
-        input_schema = types.GetReviewTemplateLensReviewInput,
-        output_schema = types.GetReviewTemplateLensReviewOutput,
+        input_schema = schemas.GetReviewTemplateLensReviewInput,
+        output_schema = schemas.GetReviewTemplateLensReviewOutput,
         http_method = "GET",
         http_path = "/reviewTemplates/{TemplateArn}/lensReviews/{LensAlias}",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:getWorkload(input, options)
     return self:invokeOperation(input, {
         name = "GetWorkload",
-        input_schema = types.GetWorkloadInput,
-        output_schema = types.GetWorkloadOutput,
+        input_schema = schemas.GetWorkloadInput,
+        output_schema = schemas.GetWorkloadOutput,
         http_method = "GET",
         http_path = "/workloads/{WorkloadId}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:importLens(input, options)
     return self:invokeOperation(input, {
         name = "ImportLens",
-        input_schema = types.ImportLensInput,
-        output_schema = types.ImportLensOutput,
+        input_schema = schemas.ImportLensInput,
+        output_schema = schemas.ImportLensOutput,
         http_method = "PUT",
         http_path = "/importLens",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:listAnswers(input, options)
     return self:invokeOperation(input, {
         name = "ListAnswers",
-        input_schema = types.ListAnswersInput,
-        output_schema = types.ListAnswersOutput,
+        input_schema = schemas.ListAnswersInput,
+        output_schema = schemas.ListAnswersOutput,
         http_method = "GET",
         http_path = "/workloads/{WorkloadId}/lensReviews/{LensAlias}/answers",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:listCheckDetails(input, options)
     return self:invokeOperation(input, {
         name = "ListCheckDetails",
-        input_schema = types.ListCheckDetailsInput,
-        output_schema = types.ListCheckDetailsOutput,
+        input_schema = schemas.ListCheckDetailsInput,
+        output_schema = schemas.ListCheckDetailsOutput,
         http_method = "POST",
         http_path = "/workloads/{WorkloadId}/checks",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:listCheckSummaries(input, options)
     return self:invokeOperation(input, {
         name = "ListCheckSummaries",
-        input_schema = types.ListCheckSummariesInput,
-        output_schema = types.ListCheckSummariesOutput,
+        input_schema = schemas.ListCheckSummariesInput,
+        output_schema = schemas.ListCheckSummariesOutput,
         http_method = "POST",
         http_path = "/workloads/{WorkloadId}/checkSummaries",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:listLenses(input, options)
     return self:invokeOperation(input, {
         name = "ListLenses",
-        input_schema = types.ListLensesInput,
-        output_schema = types.ListLensesOutput,
+        input_schema = schemas.ListLensesInput,
+        output_schema = schemas.ListLensesOutput,
         http_method = "GET",
         http_path = "/lenses",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:listLensReviewImprovements(input, options)
     return self:invokeOperation(input, {
         name = "ListLensReviewImprovements",
-        input_schema = types.ListLensReviewImprovementsInput,
-        output_schema = types.ListLensReviewImprovementsOutput,
+        input_schema = schemas.ListLensReviewImprovementsInput,
+        output_schema = schemas.ListLensReviewImprovementsOutput,
         http_method = "GET",
         http_path = "/workloads/{WorkloadId}/lensReviews/{LensAlias}/improvements",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:listLensReviews(input, options)
     return self:invokeOperation(input, {
         name = "ListLensReviews",
-        input_schema = types.ListLensReviewsInput,
-        output_schema = types.ListLensReviewsOutput,
+        input_schema = schemas.ListLensReviewsInput,
+        output_schema = schemas.ListLensReviewsOutput,
         http_method = "GET",
         http_path = "/workloads/{WorkloadId}/lensReviews",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:listLensShares(input, options)
     return self:invokeOperation(input, {
         name = "ListLensShares",
-        input_schema = types.ListLensSharesInput,
-        output_schema = types.ListLensSharesOutput,
+        input_schema = schemas.ListLensSharesInput,
+        output_schema = schemas.ListLensSharesOutput,
         http_method = "GET",
         http_path = "/lenses/{LensAlias}/shares",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:listMilestones(input, options)
     return self:invokeOperation(input, {
         name = "ListMilestones",
-        input_schema = types.ListMilestonesInput,
-        output_schema = types.ListMilestonesOutput,
+        input_schema = schemas.ListMilestonesInput,
+        output_schema = schemas.ListMilestonesOutput,
         http_method = "POST",
         http_path = "/workloads/{WorkloadId}/milestonesSummaries",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:listNotifications(input, options)
     return self:invokeOperation(input, {
         name = "ListNotifications",
-        input_schema = types.ListNotificationsInput,
-        output_schema = types.ListNotificationsOutput,
+        input_schema = schemas.ListNotificationsInput,
+        output_schema = schemas.ListNotificationsOutput,
         http_method = "POST",
         http_path = "/notifications",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:listProfileNotifications(input, options)
     return self:invokeOperation(input, {
         name = "ListProfileNotifications",
-        input_schema = types.ListProfileNotificationsInput,
-        output_schema = types.ListProfileNotificationsOutput,
+        input_schema = schemas.ListProfileNotificationsInput,
+        output_schema = schemas.ListProfileNotificationsOutput,
         http_method = "GET",
         http_path = "/profileNotifications",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:listProfiles(input, options)
     return self:invokeOperation(input, {
         name = "ListProfiles",
-        input_schema = types.ListProfilesInput,
-        output_schema = types.ListProfilesOutput,
+        input_schema = schemas.ListProfilesInput,
+        output_schema = schemas.ListProfilesOutput,
         http_method = "GET",
         http_path = "/profileSummaries",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:listProfileShares(input, options)
     return self:invokeOperation(input, {
         name = "ListProfileShares",
-        input_schema = types.ListProfileSharesInput,
-        output_schema = types.ListProfileSharesOutput,
+        input_schema = schemas.ListProfileSharesInput,
+        output_schema = schemas.ListProfileSharesOutput,
         http_method = "GET",
         http_path = "/profiles/{ProfileArn}/shares",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:listReviewTemplateAnswers(input, options)
     return self:invokeOperation(input, {
         name = "ListReviewTemplateAnswers",
-        input_schema = types.ListReviewTemplateAnswersInput,
-        output_schema = types.ListReviewTemplateAnswersOutput,
+        input_schema = schemas.ListReviewTemplateAnswersInput,
+        output_schema = schemas.ListReviewTemplateAnswersOutput,
         http_method = "GET",
         http_path = "/reviewTemplates/{TemplateArn}/lensReviews/{LensAlias}/answers",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:listReviewTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListReviewTemplates",
-        input_schema = types.ListReviewTemplatesInput,
-        output_schema = types.ListReviewTemplatesOutput,
+        input_schema = schemas.ListReviewTemplatesInput,
+        output_schema = schemas.ListReviewTemplatesOutput,
         http_method = "GET",
         http_path = "/reviewTemplates",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:listShareInvitations(input, options)
     return self:invokeOperation(input, {
         name = "ListShareInvitations",
-        input_schema = types.ListShareInvitationsInput,
-        output_schema = types.ListShareInvitationsOutput,
+        input_schema = schemas.ListShareInvitationsInput,
+        output_schema = schemas.ListShareInvitationsOutput,
         http_method = "GET",
         http_path = "/shareInvitations",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{WorkloadArn}",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:listTemplateShares(input, options)
     return self:invokeOperation(input, {
         name = "ListTemplateShares",
-        input_schema = types.ListTemplateSharesInput,
-        output_schema = types.ListTemplateSharesOutput,
+        input_schema = schemas.ListTemplateSharesInput,
+        output_schema = schemas.ListTemplateSharesOutput,
         http_method = "GET",
         http_path = "/templates/shares/{TemplateArn}",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:listWorkloads(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkloads",
-        input_schema = types.ListWorkloadsInput,
-        output_schema = types.ListWorkloadsOutput,
+        input_schema = schemas.ListWorkloadsInput,
+        output_schema = schemas.ListWorkloadsOutput,
         http_method = "POST",
         http_path = "/workloadsSummaries",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:listWorkloadShares(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkloadShares",
-        input_schema = types.ListWorkloadSharesInput,
-        output_schema = types.ListWorkloadSharesOutput,
+        input_schema = schemas.ListWorkloadSharesInput,
+        output_schema = schemas.ListWorkloadSharesOutput,
         http_method = "GET",
         http_path = "/workloads/{WorkloadId}/shares",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{WorkloadArn}",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{WorkloadArn}",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:updateAnswer(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAnswer",
-        input_schema = types.UpdateAnswerInput,
-        output_schema = types.UpdateAnswerOutput,
+        input_schema = schemas.UpdateAnswerInput,
+        output_schema = schemas.UpdateAnswerOutput,
         http_method = "PATCH",
         http_path = "/workloads/{WorkloadId}/lensReviews/{LensAlias}/answers/{QuestionId}",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:updateGlobalSettings(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGlobalSettings",
-        input_schema = types.UpdateGlobalSettingsInput,
-        output_schema = types.UpdateGlobalSettingsOutput,
+        input_schema = schemas.UpdateGlobalSettingsInput,
+        output_schema = schemas.UpdateGlobalSettingsOutput,
         http_method = "PATCH",
         http_path = "/global-settings",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:updateIntegration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateIntegration",
-        input_schema = types.UpdateIntegrationInput,
-        output_schema = types.UpdateIntegrationOutput,
+        input_schema = schemas.UpdateIntegrationInput,
+        output_schema = schemas.UpdateIntegrationOutput,
         http_method = "POST",
         http_path = "/workloads/{WorkloadId}/updateIntegration",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:updateLensReview(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLensReview",
-        input_schema = types.UpdateLensReviewInput,
-        output_schema = types.UpdateLensReviewOutput,
+        input_schema = schemas.UpdateLensReviewInput,
+        output_schema = schemas.UpdateLensReviewOutput,
         http_method = "PATCH",
         http_path = "/workloads/{WorkloadId}/lensReviews/{LensAlias}",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:updateProfile(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProfile",
-        input_schema = types.UpdateProfileInput,
-        output_schema = types.UpdateProfileOutput,
+        input_schema = schemas.UpdateProfileInput,
+        output_schema = schemas.UpdateProfileOutput,
         http_method = "PATCH",
         http_path = "/profiles/{ProfileArn}",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:updateReviewTemplate(input, options)
     return self:invokeOperation(input, {
         name = "UpdateReviewTemplate",
-        input_schema = types.UpdateReviewTemplateInput,
-        output_schema = types.UpdateReviewTemplateOutput,
+        input_schema = schemas.UpdateReviewTemplateInput,
+        output_schema = schemas.UpdateReviewTemplateOutput,
         http_method = "PATCH",
         http_path = "/reviewTemplates/{TemplateArn}",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:updateReviewTemplateAnswer(input, options)
     return self:invokeOperation(input, {
         name = "UpdateReviewTemplateAnswer",
-        input_schema = types.UpdateReviewTemplateAnswerInput,
-        output_schema = types.UpdateReviewTemplateAnswerOutput,
+        input_schema = schemas.UpdateReviewTemplateAnswerInput,
+        output_schema = schemas.UpdateReviewTemplateAnswerOutput,
         http_method = "PATCH",
         http_path = "/reviewTemplates/{TemplateArn}/lensReviews/{LensAlias}/answers/{QuestionId}",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:updateReviewTemplateLensReview(input, options)
     return self:invokeOperation(input, {
         name = "UpdateReviewTemplateLensReview",
-        input_schema = types.UpdateReviewTemplateLensReviewInput,
-        output_schema = types.UpdateReviewTemplateLensReviewOutput,
+        input_schema = schemas.UpdateReviewTemplateLensReviewInput,
+        output_schema = schemas.UpdateReviewTemplateLensReviewOutput,
         http_method = "PATCH",
         http_path = "/reviewTemplates/{TemplateArn}/lensReviews/{LensAlias}",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:updateShareInvitation(input, options)
     return self:invokeOperation(input, {
         name = "UpdateShareInvitation",
-        input_schema = types.UpdateShareInvitationInput,
-        output_schema = types.UpdateShareInvitationOutput,
+        input_schema = schemas.UpdateShareInvitationInput,
+        output_schema = schemas.UpdateShareInvitationOutput,
         http_method = "PATCH",
         http_path = "/shareInvitations/{ShareInvitationId}",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:updateWorkload(input, options)
     return self:invokeOperation(input, {
         name = "UpdateWorkload",
-        input_schema = types.UpdateWorkloadInput,
-        output_schema = types.UpdateWorkloadOutput,
+        input_schema = schemas.UpdateWorkloadInput,
+        output_schema = schemas.UpdateWorkloadOutput,
         http_method = "PATCH",
         http_path = "/workloads/{WorkloadId}",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:updateWorkloadShare(input, options)
     return self:invokeOperation(input, {
         name = "UpdateWorkloadShare",
-        input_schema = types.UpdateWorkloadShareInput,
-        output_schema = types.UpdateWorkloadShareOutput,
+        input_schema = schemas.UpdateWorkloadShareInput,
+        output_schema = schemas.UpdateWorkloadShareOutput,
         http_method = "PATCH",
         http_path = "/workloads/{WorkloadId}/shares/{ShareId}",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:upgradeLensReview(input, options)
     return self:invokeOperation(input, {
         name = "UpgradeLensReview",
-        input_schema = types.UpgradeLensReviewInput,
-        output_schema = types.UpgradeLensReviewOutput,
+        input_schema = schemas.UpgradeLensReviewInput,
+        output_schema = schemas.UpgradeLensReviewOutput,
         http_method = "PUT",
         http_path = "/workloads/{WorkloadId}/lensReviews/{LensAlias}/upgrade",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:upgradeProfileVersion(input, options)
     return self:invokeOperation(input, {
         name = "UpgradeProfileVersion",
-        input_schema = types.UpgradeProfileVersionInput,
-        output_schema = types.UpgradeProfileVersionOutput,
+        input_schema = schemas.UpgradeProfileVersionInput,
+        output_schema = schemas.UpgradeProfileVersionOutput,
         http_method = "PUT",
         http_path = "/workloads/{WorkloadId}/profiles/{ProfileArn}/upgrade",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:upgradeReviewTemplateLensReview(input, options)
     return self:invokeOperation(input, {
         name = "UpgradeReviewTemplateLensReview",
-        input_schema = types.UpgradeReviewTemplateLensReviewInput,
-        output_schema = types.UpgradeReviewTemplateLensReviewOutput,
+        input_schema = schemas.UpgradeReviewTemplateLensReviewInput,
+        output_schema = schemas.UpgradeReviewTemplateLensReviewOutput,
         http_method = "PUT",
         http_path = "/reviewTemplates/{TemplateArn}/lensReviews/{LensAlias}/upgrade",
         effective_auth_schemes = {

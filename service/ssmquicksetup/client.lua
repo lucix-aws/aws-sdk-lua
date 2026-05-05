@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("ssmquicksetup.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("ssmquicksetup.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("ssmquicksetup.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createConfigurationManager(input, options)
     return self:invokeOperation(input, {
         name = "CreateConfigurationManager",
-        input_schema = types.CreateConfigurationManagerInput,
-        output_schema = types.CreateConfigurationManagerOutput,
+        input_schema = schemas.CreateConfigurationManagerInput,
+        output_schema = schemas.CreateConfigurationManagerOutput,
         http_method = "POST",
         http_path = "/configurationManager",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteConfigurationManager(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConfigurationManager",
-        input_schema = types.DeleteConfigurationManagerInput,
-        output_schema = types.DeleteConfigurationManagerOutput,
+        input_schema = schemas.DeleteConfigurationManagerInput,
+        output_schema = schemas.DeleteConfigurationManagerOutput,
         http_method = "DELETE",
         http_path = "/configurationManager/{ManagerArn}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetConfiguration",
-        input_schema = types.GetConfigurationInput,
-        output_schema = types.GetConfigurationOutput,
+        input_schema = schemas.GetConfigurationInput,
+        output_schema = schemas.GetConfigurationOutput,
         http_method = "GET",
         http_path = "/getConfiguration/{ConfigurationId}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getConfigurationManager(input, options)
     return self:invokeOperation(input, {
         name = "GetConfigurationManager",
-        input_schema = types.GetConfigurationManagerInput,
-        output_schema = types.GetConfigurationManagerOutput,
+        input_schema = schemas.GetConfigurationManagerInput,
+        output_schema = schemas.GetConfigurationManagerOutput,
         http_method = "GET",
         http_path = "/configurationManager/{ManagerArn}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getServiceSettings(input, options)
     return self:invokeOperation(input, {
         name = "GetServiceSettings",
-        input_schema = types.GetServiceSettingsInput,
-        output_schema = types.GetServiceSettingsOutput,
+        input_schema = schemas.GetServiceSettingsInput,
+        output_schema = schemas.GetServiceSettingsOutput,
         http_method = "GET",
         http_path = "/serviceSettings",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:listConfigurationManagers(input, options)
     return self:invokeOperation(input, {
         name = "ListConfigurationManagers",
-        input_schema = types.ListConfigurationManagersInput,
-        output_schema = types.ListConfigurationManagersOutput,
+        input_schema = schemas.ListConfigurationManagersInput,
+        output_schema = schemas.ListConfigurationManagersOutput,
         http_method = "POST",
         http_path = "/listConfigurationManagers",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListConfigurations",
-        input_schema = types.ListConfigurationsInput,
-        output_schema = types.ListConfigurationsOutput,
+        input_schema = schemas.ListConfigurationsInput,
+        output_schema = schemas.ListConfigurationsOutput,
         http_method = "POST",
         http_path = "/listConfigurations",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listQuickSetupTypes(input, options)
     return self:invokeOperation(input, {
         name = "ListQuickSetupTypes",
-        input_schema = types.ListQuickSetupTypesInput,
-        output_schema = types.ListQuickSetupTypesOutput,
+        input_schema = schemas.ListQuickSetupTypesInput,
+        output_schema = schemas.ListQuickSetupTypesOutput,
         http_method = "GET",
         http_path = "/listQuickSetupTypes",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "PUT",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:updateConfigurationDefinition(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConfigurationDefinition",
-        input_schema = types.UpdateConfigurationDefinitionInput,
-        output_schema = types.UpdateConfigurationDefinitionOutput,
+        input_schema = schemas.UpdateConfigurationDefinitionInput,
+        output_schema = schemas.UpdateConfigurationDefinitionOutput,
         http_method = "PUT",
         http_path = "/configurationDefinition/{ManagerArn}/{Id}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:updateConfigurationManager(input, options)
     return self:invokeOperation(input, {
         name = "UpdateConfigurationManager",
-        input_schema = types.UpdateConfigurationManagerInput,
-        output_schema = types.UpdateConfigurationManagerOutput,
+        input_schema = schemas.UpdateConfigurationManagerInput,
+        output_schema = schemas.UpdateConfigurationManagerOutput,
         http_method = "PUT",
         http_path = "/configurationManager/{ManagerArn}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:updateServiceSettings(input, options)
     return self:invokeOperation(input, {
         name = "UpdateServiceSettings",
-        input_schema = types.UpdateServiceSettingsInput,
-        output_schema = types.UpdateServiceSettingsOutput,
+        input_schema = schemas.UpdateServiceSettingsInput,
+        output_schema = schemas.UpdateServiceSettingsOutput,
         http_method = "PUT",
         http_path = "/serviceSettings",
         effective_auth_schemes = {

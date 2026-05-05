@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("codecatalyst.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("codecatalyst.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("codecatalyst.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createAccessToken(input, options)
     return self:invokeOperation(input, {
         name = "CreateAccessToken",
-        input_schema = types.CreateAccessTokenInput,
-        output_schema = types.CreateAccessTokenOutput,
+        input_schema = schemas.CreateAccessTokenInput,
+        output_schema = schemas.CreateAccessTokenOutput,
         http_method = "PUT",
         http_path = "/v1/accessTokens",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createDevEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "CreateDevEnvironment",
-        input_schema = types.CreateDevEnvironmentInput,
-        output_schema = types.CreateDevEnvironmentOutput,
+        input_schema = schemas.CreateDevEnvironmentInput,
+        output_schema = schemas.CreateDevEnvironmentOutput,
         http_method = "PUT",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createProject(input, options)
     return self:invokeOperation(input, {
         name = "CreateProject",
-        input_schema = types.CreateProjectInput,
-        output_schema = types.CreateProjectOutput,
+        input_schema = schemas.CreateProjectInput,
+        output_schema = schemas.CreateProjectOutput,
         http_method = "PUT",
         http_path = "/v1/spaces/{spaceName}/projects",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createSourceRepository(input, options)
     return self:invokeOperation(input, {
         name = "CreateSourceRepository",
-        input_schema = types.CreateSourceRepositoryInput,
-        output_schema = types.CreateSourceRepositoryOutput,
+        input_schema = schemas.CreateSourceRepositoryInput,
+        output_schema = schemas.CreateSourceRepositoryOutput,
         http_method = "PUT",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/sourceRepositories/{name}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createSourceRepositoryBranch(input, options)
     return self:invokeOperation(input, {
         name = "CreateSourceRepositoryBranch",
-        input_schema = types.CreateSourceRepositoryBranchInput,
-        output_schema = types.CreateSourceRepositoryBranchOutput,
+        input_schema = schemas.CreateSourceRepositoryBranchInput,
+        output_schema = schemas.CreateSourceRepositoryBranchOutput,
         http_method = "PUT",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/sourceRepositories/{sourceRepositoryName}/branches/{name}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteAccessToken(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAccessToken",
-        input_schema = types.DeleteAccessTokenInput,
-        output_schema = types.DeleteAccessTokenOutput,
+        input_schema = schemas.DeleteAccessTokenInput,
+        output_schema = schemas.DeleteAccessTokenOutput,
         http_method = "DELETE",
         http_path = "/v1/accessTokens/{id}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteDevEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDevEnvironment",
-        input_schema = types.DeleteDevEnvironmentInput,
-        output_schema = types.DeleteDevEnvironmentOutput,
+        input_schema = schemas.DeleteDevEnvironmentInput,
+        output_schema = schemas.DeleteDevEnvironmentOutput,
         http_method = "DELETE",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments/{id}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteProject(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProject",
-        input_schema = types.DeleteProjectInput,
-        output_schema = types.DeleteProjectOutput,
+        input_schema = schemas.DeleteProjectInput,
+        output_schema = schemas.DeleteProjectOutput,
         http_method = "DELETE",
         http_path = "/v1/spaces/{spaceName}/projects/{name}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteSourceRepository(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSourceRepository",
-        input_schema = types.DeleteSourceRepositoryInput,
-        output_schema = types.DeleteSourceRepositoryOutput,
+        input_schema = schemas.DeleteSourceRepositoryInput,
+        output_schema = schemas.DeleteSourceRepositoryOutput,
         http_method = "DELETE",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/sourceRepositories/{name}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteSpace(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSpace",
-        input_schema = types.DeleteSpaceInput,
-        output_schema = types.DeleteSpaceOutput,
+        input_schema = schemas.DeleteSpaceInput,
+        output_schema = schemas.DeleteSpaceOutput,
         http_method = "DELETE",
         http_path = "/v1/spaces/{name}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getDevEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "GetDevEnvironment",
-        input_schema = types.GetDevEnvironmentInput,
-        output_schema = types.GetDevEnvironmentOutput,
+        input_schema = schemas.GetDevEnvironmentInput,
+        output_schema = schemas.GetDevEnvironmentOutput,
         http_method = "GET",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments/{id}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getProject(input, options)
     return self:invokeOperation(input, {
         name = "GetProject",
-        input_schema = types.GetProjectInput,
-        output_schema = types.GetProjectOutput,
+        input_schema = schemas.GetProjectInput,
+        output_schema = schemas.GetProjectOutput,
         http_method = "GET",
         http_path = "/v1/spaces/{spaceName}/projects/{name}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getSourceRepository(input, options)
     return self:invokeOperation(input, {
         name = "GetSourceRepository",
-        input_schema = types.GetSourceRepositoryInput,
-        output_schema = types.GetSourceRepositoryOutput,
+        input_schema = schemas.GetSourceRepositoryInput,
+        output_schema = schemas.GetSourceRepositoryOutput,
         http_method = "GET",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/sourceRepositories/{name}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getSourceRepositoryCloneUrls(input, options)
     return self:invokeOperation(input, {
         name = "GetSourceRepositoryCloneUrls",
-        input_schema = types.GetSourceRepositoryCloneUrlsInput,
-        output_schema = types.GetSourceRepositoryCloneUrlsOutput,
+        input_schema = schemas.GetSourceRepositoryCloneUrlsInput,
+        output_schema = schemas.GetSourceRepositoryCloneUrlsOutput,
         http_method = "GET",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/sourceRepositories/{sourceRepositoryName}/cloneUrls",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getSpace(input, options)
     return self:invokeOperation(input, {
         name = "GetSpace",
-        input_schema = types.GetSpaceInput,
-        output_schema = types.GetSpaceOutput,
+        input_schema = schemas.GetSpaceInput,
+        output_schema = schemas.GetSpaceOutput,
         http_method = "GET",
         http_path = "/v1/spaces/{name}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getSubscription(input, options)
     return self:invokeOperation(input, {
         name = "GetSubscription",
-        input_schema = types.GetSubscriptionInput,
-        output_schema = types.GetSubscriptionOutput,
+        input_schema = schemas.GetSubscriptionInput,
+        output_schema = schemas.GetSubscriptionOutput,
         http_method = "GET",
         http_path = "/v1/spaces/{spaceName}/subscription",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getUserDetails(input, options)
     return self:invokeOperation(input, {
         name = "GetUserDetails",
-        input_schema = types.GetUserDetailsInput,
-        output_schema = types.GetUserDetailsOutput,
+        input_schema = schemas.GetUserDetailsInput,
+        output_schema = schemas.GetUserDetailsOutput,
         http_method = "GET",
         http_path = "/userDetails",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getWorkflow(input, options)
     return self:invokeOperation(input, {
         name = "GetWorkflow",
-        input_schema = types.GetWorkflowInput,
-        output_schema = types.GetWorkflowOutput,
+        input_schema = schemas.GetWorkflowInput,
+        output_schema = schemas.GetWorkflowOutput,
         http_method = "GET",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/workflows/{id}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getWorkflowRun(input, options)
     return self:invokeOperation(input, {
         name = "GetWorkflowRun",
-        input_schema = types.GetWorkflowRunInput,
-        output_schema = types.GetWorkflowRunOutput,
+        input_schema = schemas.GetWorkflowRunInput,
+        output_schema = schemas.GetWorkflowRunOutput,
         http_method = "GET",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/workflowRuns/{id}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listAccessTokens(input, options)
     return self:invokeOperation(input, {
         name = "ListAccessTokens",
-        input_schema = types.ListAccessTokensInput,
-        output_schema = types.ListAccessTokensOutput,
+        input_schema = schemas.ListAccessTokensInput,
+        output_schema = schemas.ListAccessTokensOutput,
         http_method = "POST",
         http_path = "/v1/accessTokens",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listDevEnvironments(input, options)
     return self:invokeOperation(input, {
         name = "ListDevEnvironments",
-        input_schema = types.ListDevEnvironmentsInput,
-        output_schema = types.ListDevEnvironmentsOutput,
+        input_schema = schemas.ListDevEnvironmentsInput,
+        output_schema = schemas.ListDevEnvironmentsOutput,
         http_method = "POST",
         http_path = "/v1/spaces/{spaceName}/devEnvironments",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listDevEnvironmentSessions(input, options)
     return self:invokeOperation(input, {
         name = "ListDevEnvironmentSessions",
-        input_schema = types.ListDevEnvironmentSessionsInput,
-        output_schema = types.ListDevEnvironmentSessionsOutput,
+        input_schema = schemas.ListDevEnvironmentSessionsInput,
+        output_schema = schemas.ListDevEnvironmentSessionsOutput,
         http_method = "POST",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments/{devEnvironmentId}/sessions",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listEventLogs(input, options)
     return self:invokeOperation(input, {
         name = "ListEventLogs",
-        input_schema = types.ListEventLogsInput,
-        output_schema = types.ListEventLogsOutput,
+        input_schema = schemas.ListEventLogsInput,
+        output_schema = schemas.ListEventLogsOutput,
         http_method = "POST",
         http_path = "/v1/spaces/{spaceName}/eventLogs",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listProjects(input, options)
     return self:invokeOperation(input, {
         name = "ListProjects",
-        input_schema = types.ListProjectsInput,
-        output_schema = types.ListProjectsOutput,
+        input_schema = schemas.ListProjectsInput,
+        output_schema = schemas.ListProjectsOutput,
         http_method = "POST",
         http_path = "/v1/spaces/{spaceName}/projects",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listSourceRepositories(input, options)
     return self:invokeOperation(input, {
         name = "ListSourceRepositories",
-        input_schema = types.ListSourceRepositoriesInput,
-        output_schema = types.ListSourceRepositoriesOutput,
+        input_schema = schemas.ListSourceRepositoriesInput,
+        output_schema = schemas.ListSourceRepositoriesOutput,
         http_method = "POST",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/sourceRepositories",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listSourceRepositoryBranches(input, options)
     return self:invokeOperation(input, {
         name = "ListSourceRepositoryBranches",
-        input_schema = types.ListSourceRepositoryBranchesInput,
-        output_schema = types.ListSourceRepositoryBranchesOutput,
+        input_schema = schemas.ListSourceRepositoryBranchesInput,
+        output_schema = schemas.ListSourceRepositoryBranchesOutput,
         http_method = "POST",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/sourceRepositories/{sourceRepositoryName}/branches",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listSpaces(input, options)
     return self:invokeOperation(input, {
         name = "ListSpaces",
-        input_schema = types.ListSpacesInput,
-        output_schema = types.ListSpacesOutput,
+        input_schema = schemas.ListSpacesInput,
+        output_schema = schemas.ListSpacesOutput,
         http_method = "POST",
         http_path = "/v1/spaces",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listWorkflowRuns(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkflowRuns",
-        input_schema = types.ListWorkflowRunsInput,
-        output_schema = types.ListWorkflowRunsOutput,
+        input_schema = schemas.ListWorkflowRunsInput,
+        output_schema = schemas.ListWorkflowRunsOutput,
         http_method = "POST",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/workflowRuns",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listWorkflows(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkflows",
-        input_schema = types.ListWorkflowsInput,
-        output_schema = types.ListWorkflowsOutput,
+        input_schema = schemas.ListWorkflowsInput,
+        output_schema = schemas.ListWorkflowsOutput,
         http_method = "POST",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/workflows",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:startDevEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "StartDevEnvironment",
-        input_schema = types.StartDevEnvironmentInput,
-        output_schema = types.StartDevEnvironmentOutput,
+        input_schema = schemas.StartDevEnvironmentInput,
+        output_schema = schemas.StartDevEnvironmentOutput,
         http_method = "PUT",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments/{id}/start",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:startDevEnvironmentSession(input, options)
     return self:invokeOperation(input, {
         name = "StartDevEnvironmentSession",
-        input_schema = types.StartDevEnvironmentSessionInput,
-        output_schema = types.StartDevEnvironmentSessionOutput,
+        input_schema = schemas.StartDevEnvironmentSessionInput,
+        output_schema = schemas.StartDevEnvironmentSessionOutput,
         http_method = "PUT",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments/{id}/session",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:startWorkflowRun(input, options)
     return self:invokeOperation(input, {
         name = "StartWorkflowRun",
-        input_schema = types.StartWorkflowRunInput,
-        output_schema = types.StartWorkflowRunOutput,
+        input_schema = schemas.StartWorkflowRunInput,
+        output_schema = schemas.StartWorkflowRunOutput,
         http_method = "PUT",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/workflowRuns",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:stopDevEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "StopDevEnvironment",
-        input_schema = types.StopDevEnvironmentInput,
-        output_schema = types.StopDevEnvironmentOutput,
+        input_schema = schemas.StopDevEnvironmentInput,
+        output_schema = schemas.StopDevEnvironmentOutput,
         http_method = "PUT",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments/{id}/stop",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:stopDevEnvironmentSession(input, options)
     return self:invokeOperation(input, {
         name = "StopDevEnvironmentSession",
-        input_schema = types.StopDevEnvironmentSessionInput,
-        output_schema = types.StopDevEnvironmentSessionOutput,
+        input_schema = schemas.StopDevEnvironmentSessionInput,
+        output_schema = schemas.StopDevEnvironmentSessionOutput,
         http_method = "DELETE",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments/{id}/session/{sessionId}",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:updateDevEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDevEnvironment",
-        input_schema = types.UpdateDevEnvironmentInput,
-        output_schema = types.UpdateDevEnvironmentOutput,
+        input_schema = schemas.UpdateDevEnvironmentInput,
+        output_schema = schemas.UpdateDevEnvironmentOutput,
         http_method = "PATCH",
         http_path = "/v1/spaces/{spaceName}/projects/{projectName}/devEnvironments/{id}",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:updateProject(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProject",
-        input_schema = types.UpdateProjectInput,
-        output_schema = types.UpdateProjectOutput,
+        input_schema = schemas.UpdateProjectInput,
+        output_schema = schemas.UpdateProjectOutput,
         http_method = "PATCH",
         http_path = "/v1/spaces/{spaceName}/projects/{name}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:updateSpace(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSpace",
-        input_schema = types.UpdateSpaceInput,
-        output_schema = types.UpdateSpaceOutput,
+        input_schema = schemas.UpdateSpaceInput,
+        output_schema = schemas.UpdateSpaceOutput,
         http_method = "PATCH",
         http_path = "/v1/spaces/{name}",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:verifySession(input, options)
     return self:invokeOperation(input, {
         name = "VerifySession",
-        input_schema = types.VerifySessionInput,
-        output_schema = types.VerifySessionOutput,
+        input_schema = schemas.VerifySessionInput,
+        output_schema = schemas.VerifySessionOutput,
         http_method = "GET",
         http_path = "/session",
         effective_auth_schemes = {

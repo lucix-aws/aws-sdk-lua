@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("wafregional.endpoint_rules")
+local schemas = require("wafregional.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("wafregional.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateWebACL(input, options)
     return self:invokeOperation(input, {
         name = "AssociateWebACL",
-        input_schema = types.AssociateWebACLInput,
-        output_schema = types.AssociateWebACLOutput,
+        input_schema = schemas.AssociateWebACLInput,
+        output_schema = schemas.AssociateWebACLOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createByteMatchSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateByteMatchSet",
-        input_schema = types.CreateByteMatchSetInput,
-        output_schema = types.CreateByteMatchSetOutput,
+        input_schema = schemas.CreateByteMatchSetInput,
+        output_schema = schemas.CreateByteMatchSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createGeoMatchSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateGeoMatchSet",
-        input_schema = types.CreateGeoMatchSetInput,
-        output_schema = types.CreateGeoMatchSetOutput,
+        input_schema = schemas.CreateGeoMatchSetInput,
+        output_schema = schemas.CreateGeoMatchSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createIPSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateIPSet",
-        input_schema = types.CreateIPSetInput,
-        output_schema = types.CreateIPSetOutput,
+        input_schema = schemas.CreateIPSetInput,
+        output_schema = schemas.CreateIPSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createRateBasedRule(input, options)
     return self:invokeOperation(input, {
         name = "CreateRateBasedRule",
-        input_schema = types.CreateRateBasedRuleInput,
-        output_schema = types.CreateRateBasedRuleOutput,
+        input_schema = schemas.CreateRateBasedRuleInput,
+        output_schema = schemas.CreateRateBasedRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createRegexMatchSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateRegexMatchSet",
-        input_schema = types.CreateRegexMatchSetInput,
-        output_schema = types.CreateRegexMatchSetOutput,
+        input_schema = schemas.CreateRegexMatchSetInput,
+        output_schema = schemas.CreateRegexMatchSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createRegexPatternSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateRegexPatternSet",
-        input_schema = types.CreateRegexPatternSetInput,
-        output_schema = types.CreateRegexPatternSetOutput,
+        input_schema = schemas.CreateRegexPatternSetInput,
+        output_schema = schemas.CreateRegexPatternSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createRule(input, options)
     return self:invokeOperation(input, {
         name = "CreateRule",
-        input_schema = types.CreateRuleInput,
-        output_schema = types.CreateRuleOutput,
+        input_schema = schemas.CreateRuleInput,
+        output_schema = schemas.CreateRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createRuleGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateRuleGroup",
-        input_schema = types.CreateRuleGroupInput,
-        output_schema = types.CreateRuleGroupOutput,
+        input_schema = schemas.CreateRuleGroupInput,
+        output_schema = schemas.CreateRuleGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createSizeConstraintSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateSizeConstraintSet",
-        input_schema = types.CreateSizeConstraintSetInput,
-        output_schema = types.CreateSizeConstraintSetOutput,
+        input_schema = schemas.CreateSizeConstraintSetInput,
+        output_schema = schemas.CreateSizeConstraintSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createSqlInjectionMatchSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateSqlInjectionMatchSet",
-        input_schema = types.CreateSqlInjectionMatchSetInput,
-        output_schema = types.CreateSqlInjectionMatchSetOutput,
+        input_schema = schemas.CreateSqlInjectionMatchSetInput,
+        output_schema = schemas.CreateSqlInjectionMatchSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createWebACL(input, options)
     return self:invokeOperation(input, {
         name = "CreateWebACL",
-        input_schema = types.CreateWebACLInput,
-        output_schema = types.CreateWebACLOutput,
+        input_schema = schemas.CreateWebACLInput,
+        output_schema = schemas.CreateWebACLOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createWebACLMigrationStack(input, options)
     return self:invokeOperation(input, {
         name = "CreateWebACLMigrationStack",
-        input_schema = types.CreateWebACLMigrationStackInput,
-        output_schema = types.CreateWebACLMigrationStackOutput,
+        input_schema = schemas.CreateWebACLMigrationStackInput,
+        output_schema = schemas.CreateWebACLMigrationStackOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:createXssMatchSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateXssMatchSet",
-        input_schema = types.CreateXssMatchSetInput,
-        output_schema = types.CreateXssMatchSetOutput,
+        input_schema = schemas.CreateXssMatchSetInput,
+        output_schema = schemas.CreateXssMatchSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteByteMatchSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteByteMatchSet",
-        input_schema = types.DeleteByteMatchSetInput,
-        output_schema = types.DeleteByteMatchSetOutput,
+        input_schema = schemas.DeleteByteMatchSetInput,
+        output_schema = schemas.DeleteByteMatchSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteGeoMatchSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGeoMatchSet",
-        input_schema = types.DeleteGeoMatchSetInput,
-        output_schema = types.DeleteGeoMatchSetOutput,
+        input_schema = schemas.DeleteGeoMatchSetInput,
+        output_schema = schemas.DeleteGeoMatchSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteIPSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIPSet",
-        input_schema = types.DeleteIPSetInput,
-        output_schema = types.DeleteIPSetOutput,
+        input_schema = schemas.DeleteIPSetInput,
+        output_schema = schemas.DeleteIPSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteLoggingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLoggingConfiguration",
-        input_schema = types.DeleteLoggingConfigurationInput,
-        output_schema = types.DeleteLoggingConfigurationOutput,
+        input_schema = schemas.DeleteLoggingConfigurationInput,
+        output_schema = schemas.DeleteLoggingConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deletePermissionPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeletePermissionPolicy",
-        input_schema = types.DeletePermissionPolicyInput,
-        output_schema = types.DeletePermissionPolicyOutput,
+        input_schema = schemas.DeletePermissionPolicyInput,
+        output_schema = schemas.DeletePermissionPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deleteRateBasedRule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRateBasedRule",
-        input_schema = types.DeleteRateBasedRuleInput,
-        output_schema = types.DeleteRateBasedRuleOutput,
+        input_schema = schemas.DeleteRateBasedRuleInput,
+        output_schema = schemas.DeleteRateBasedRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteRegexMatchSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRegexMatchSet",
-        input_schema = types.DeleteRegexMatchSetInput,
-        output_schema = types.DeleteRegexMatchSetOutput,
+        input_schema = schemas.DeleteRegexMatchSetInput,
+        output_schema = schemas.DeleteRegexMatchSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:deleteRegexPatternSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRegexPatternSet",
-        input_schema = types.DeleteRegexPatternSetInput,
-        output_schema = types.DeleteRegexPatternSetOutput,
+        input_schema = schemas.DeleteRegexPatternSetInput,
+        output_schema = schemas.DeleteRegexPatternSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:deleteRule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRule",
-        input_schema = types.DeleteRuleInput,
-        output_schema = types.DeleteRuleOutput,
+        input_schema = schemas.DeleteRuleInput,
+        output_schema = schemas.DeleteRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:deleteRuleGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRuleGroup",
-        input_schema = types.DeleteRuleGroupInput,
-        output_schema = types.DeleteRuleGroupOutput,
+        input_schema = schemas.DeleteRuleGroupInput,
+        output_schema = schemas.DeleteRuleGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:deleteSizeConstraintSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSizeConstraintSet",
-        input_schema = types.DeleteSizeConstraintSetInput,
-        output_schema = types.DeleteSizeConstraintSetOutput,
+        input_schema = schemas.DeleteSizeConstraintSetInput,
+        output_schema = schemas.DeleteSizeConstraintSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:deleteSqlInjectionMatchSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSqlInjectionMatchSet",
-        input_schema = types.DeleteSqlInjectionMatchSetInput,
-        output_schema = types.DeleteSqlInjectionMatchSetOutput,
+        input_schema = schemas.DeleteSqlInjectionMatchSetInput,
+        output_schema = schemas.DeleteSqlInjectionMatchSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:deleteWebACL(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWebACL",
-        input_schema = types.DeleteWebACLInput,
-        output_schema = types.DeleteWebACLOutput,
+        input_schema = schemas.DeleteWebACLInput,
+        output_schema = schemas.DeleteWebACLOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:deleteXssMatchSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteXssMatchSet",
-        input_schema = types.DeleteXssMatchSetInput,
-        output_schema = types.DeleteXssMatchSetOutput,
+        input_schema = schemas.DeleteXssMatchSetInput,
+        output_schema = schemas.DeleteXssMatchSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:disassociateWebACL(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateWebACL",
-        input_schema = types.DisassociateWebACLInput,
-        output_schema = types.DisassociateWebACLOutput,
+        input_schema = schemas.DisassociateWebACLInput,
+        output_schema = schemas.DisassociateWebACLOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:getByteMatchSet(input, options)
     return self:invokeOperation(input, {
         name = "GetByteMatchSet",
-        input_schema = types.GetByteMatchSetInput,
-        output_schema = types.GetByteMatchSetOutput,
+        input_schema = schemas.GetByteMatchSetInput,
+        output_schema = schemas.GetByteMatchSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:getChangeToken(input, options)
     return self:invokeOperation(input, {
         name = "GetChangeToken",
-        input_schema = types.GetChangeTokenInput,
-        output_schema = types.GetChangeTokenOutput,
+        input_schema = schemas.GetChangeTokenInput,
+        output_schema = schemas.GetChangeTokenOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:getChangeTokenStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetChangeTokenStatus",
-        input_schema = types.GetChangeTokenStatusInput,
-        output_schema = types.GetChangeTokenStatusOutput,
+        input_schema = schemas.GetChangeTokenStatusInput,
+        output_schema = schemas.GetChangeTokenStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:getGeoMatchSet(input, options)
     return self:invokeOperation(input, {
         name = "GetGeoMatchSet",
-        input_schema = types.GetGeoMatchSetInput,
-        output_schema = types.GetGeoMatchSetOutput,
+        input_schema = schemas.GetGeoMatchSetInput,
+        output_schema = schemas.GetGeoMatchSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:getIPSet(input, options)
     return self:invokeOperation(input, {
         name = "GetIPSet",
-        input_schema = types.GetIPSetInput,
-        output_schema = types.GetIPSetOutput,
+        input_schema = schemas.GetIPSetInput,
+        output_schema = schemas.GetIPSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:getLoggingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetLoggingConfiguration",
-        input_schema = types.GetLoggingConfigurationInput,
-        output_schema = types.GetLoggingConfigurationOutput,
+        input_schema = schemas.GetLoggingConfigurationInput,
+        output_schema = schemas.GetLoggingConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:getPermissionPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetPermissionPolicy",
-        input_schema = types.GetPermissionPolicyInput,
-        output_schema = types.GetPermissionPolicyOutput,
+        input_schema = schemas.GetPermissionPolicyInput,
+        output_schema = schemas.GetPermissionPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:getRateBasedRule(input, options)
     return self:invokeOperation(input, {
         name = "GetRateBasedRule",
-        input_schema = types.GetRateBasedRuleInput,
-        output_schema = types.GetRateBasedRuleOutput,
+        input_schema = schemas.GetRateBasedRuleInput,
+        output_schema = schemas.GetRateBasedRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:getRateBasedRuleManagedKeys(input, options)
     return self:invokeOperation(input, {
         name = "GetRateBasedRuleManagedKeys",
-        input_schema = types.GetRateBasedRuleManagedKeysInput,
-        output_schema = types.GetRateBasedRuleManagedKeysOutput,
+        input_schema = schemas.GetRateBasedRuleManagedKeysInput,
+        output_schema = schemas.GetRateBasedRuleManagedKeysOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:getRegexMatchSet(input, options)
     return self:invokeOperation(input, {
         name = "GetRegexMatchSet",
-        input_schema = types.GetRegexMatchSetInput,
-        output_schema = types.GetRegexMatchSetOutput,
+        input_schema = schemas.GetRegexMatchSetInput,
+        output_schema = schemas.GetRegexMatchSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:getRegexPatternSet(input, options)
     return self:invokeOperation(input, {
         name = "GetRegexPatternSet",
-        input_schema = types.GetRegexPatternSetInput,
-        output_schema = types.GetRegexPatternSetOutput,
+        input_schema = schemas.GetRegexPatternSetInput,
+        output_schema = schemas.GetRegexPatternSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:getRule(input, options)
     return self:invokeOperation(input, {
         name = "GetRule",
-        input_schema = types.GetRuleInput,
-        output_schema = types.GetRuleOutput,
+        input_schema = schemas.GetRuleInput,
+        output_schema = schemas.GetRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:getRuleGroup(input, options)
     return self:invokeOperation(input, {
         name = "GetRuleGroup",
-        input_schema = types.GetRuleGroupInput,
-        output_schema = types.GetRuleGroupOutput,
+        input_schema = schemas.GetRuleGroupInput,
+        output_schema = schemas.GetRuleGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:getSampledRequests(input, options)
     return self:invokeOperation(input, {
         name = "GetSampledRequests",
-        input_schema = types.GetSampledRequestsInput,
-        output_schema = types.GetSampledRequestsOutput,
+        input_schema = schemas.GetSampledRequestsInput,
+        output_schema = schemas.GetSampledRequestsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:getSizeConstraintSet(input, options)
     return self:invokeOperation(input, {
         name = "GetSizeConstraintSet",
-        input_schema = types.GetSizeConstraintSetInput,
-        output_schema = types.GetSizeConstraintSetOutput,
+        input_schema = schemas.GetSizeConstraintSetInput,
+        output_schema = schemas.GetSizeConstraintSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:getSqlInjectionMatchSet(input, options)
     return self:invokeOperation(input, {
         name = "GetSqlInjectionMatchSet",
-        input_schema = types.GetSqlInjectionMatchSetInput,
-        output_schema = types.GetSqlInjectionMatchSetOutput,
+        input_schema = schemas.GetSqlInjectionMatchSetInput,
+        output_schema = schemas.GetSqlInjectionMatchSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:getWebACL(input, options)
     return self:invokeOperation(input, {
         name = "GetWebACL",
-        input_schema = types.GetWebACLInput,
-        output_schema = types.GetWebACLOutput,
+        input_schema = schemas.GetWebACLInput,
+        output_schema = schemas.GetWebACLOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:getWebACLForResource(input, options)
     return self:invokeOperation(input, {
         name = "GetWebACLForResource",
-        input_schema = types.GetWebACLForResourceInput,
-        output_schema = types.GetWebACLForResourceOutput,
+        input_schema = schemas.GetWebACLForResourceInput,
+        output_schema = schemas.GetWebACLForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:getXssMatchSet(input, options)
     return self:invokeOperation(input, {
         name = "GetXssMatchSet",
-        input_schema = types.GetXssMatchSetInput,
-        output_schema = types.GetXssMatchSetOutput,
+        input_schema = schemas.GetXssMatchSetInput,
+        output_schema = schemas.GetXssMatchSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:listActivatedRulesInRuleGroup(input, options)
     return self:invokeOperation(input, {
         name = "ListActivatedRulesInRuleGroup",
-        input_schema = types.ListActivatedRulesInRuleGroupInput,
-        output_schema = types.ListActivatedRulesInRuleGroupOutput,
+        input_schema = schemas.ListActivatedRulesInRuleGroupInput,
+        output_schema = schemas.ListActivatedRulesInRuleGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:listByteMatchSets(input, options)
     return self:invokeOperation(input, {
         name = "ListByteMatchSets",
-        input_schema = types.ListByteMatchSetsInput,
-        output_schema = types.ListByteMatchSetsOutput,
+        input_schema = schemas.ListByteMatchSetsInput,
+        output_schema = schemas.ListByteMatchSetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:listGeoMatchSets(input, options)
     return self:invokeOperation(input, {
         name = "ListGeoMatchSets",
-        input_schema = types.ListGeoMatchSetsInput,
-        output_schema = types.ListGeoMatchSetsOutput,
+        input_schema = schemas.ListGeoMatchSetsInput,
+        output_schema = schemas.ListGeoMatchSetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:listIPSets(input, options)
     return self:invokeOperation(input, {
         name = "ListIPSets",
-        input_schema = types.ListIPSetsInput,
-        output_schema = types.ListIPSetsOutput,
+        input_schema = schemas.ListIPSetsInput,
+        output_schema = schemas.ListIPSetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:listLoggingConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListLoggingConfigurations",
-        input_schema = types.ListLoggingConfigurationsInput,
-        output_schema = types.ListLoggingConfigurationsOutput,
+        input_schema = schemas.ListLoggingConfigurationsInput,
+        output_schema = schemas.ListLoggingConfigurationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:listRateBasedRules(input, options)
     return self:invokeOperation(input, {
         name = "ListRateBasedRules",
-        input_schema = types.ListRateBasedRulesInput,
-        output_schema = types.ListRateBasedRulesOutput,
+        input_schema = schemas.ListRateBasedRulesInput,
+        output_schema = schemas.ListRateBasedRulesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:listRegexMatchSets(input, options)
     return self:invokeOperation(input, {
         name = "ListRegexMatchSets",
-        input_schema = types.ListRegexMatchSetsInput,
-        output_schema = types.ListRegexMatchSetsOutput,
+        input_schema = schemas.ListRegexMatchSetsInput,
+        output_schema = schemas.ListRegexMatchSetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:listRegexPatternSets(input, options)
     return self:invokeOperation(input, {
         name = "ListRegexPatternSets",
-        input_schema = types.ListRegexPatternSetsInput,
-        output_schema = types.ListRegexPatternSetsOutput,
+        input_schema = schemas.ListRegexPatternSetsInput,
+        output_schema = schemas.ListRegexPatternSetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:listResourcesForWebACL(input, options)
     return self:invokeOperation(input, {
         name = "ListResourcesForWebACL",
-        input_schema = types.ListResourcesForWebACLInput,
-        output_schema = types.ListResourcesForWebACLOutput,
+        input_schema = schemas.ListResourcesForWebACLInput,
+        output_schema = schemas.ListResourcesForWebACLOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:listRuleGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListRuleGroups",
-        input_schema = types.ListRuleGroupsInput,
-        output_schema = types.ListRuleGroupsOutput,
+        input_schema = schemas.ListRuleGroupsInput,
+        output_schema = schemas.ListRuleGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:listRules(input, options)
     return self:invokeOperation(input, {
         name = "ListRules",
-        input_schema = types.ListRulesInput,
-        output_schema = types.ListRulesOutput,
+        input_schema = schemas.ListRulesInput,
+        output_schema = schemas.ListRulesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:listSizeConstraintSets(input, options)
     return self:invokeOperation(input, {
         name = "ListSizeConstraintSets",
-        input_schema = types.ListSizeConstraintSetsInput,
-        output_schema = types.ListSizeConstraintSetsOutput,
+        input_schema = schemas.ListSizeConstraintSetsInput,
+        output_schema = schemas.ListSizeConstraintSetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:listSqlInjectionMatchSets(input, options)
     return self:invokeOperation(input, {
         name = "ListSqlInjectionMatchSets",
-        input_schema = types.ListSqlInjectionMatchSetsInput,
-        output_schema = types.ListSqlInjectionMatchSetsOutput,
+        input_schema = schemas.ListSqlInjectionMatchSetsInput,
+        output_schema = schemas.ListSqlInjectionMatchSetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:listSubscribedRuleGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListSubscribedRuleGroups",
-        input_schema = types.ListSubscribedRuleGroupsInput,
-        output_schema = types.ListSubscribedRuleGroupsOutput,
+        input_schema = schemas.ListSubscribedRuleGroupsInput,
+        output_schema = schemas.ListSubscribedRuleGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:listWebACLs(input, options)
     return self:invokeOperation(input, {
         name = "ListWebACLs",
-        input_schema = types.ListWebACLsInput,
-        output_schema = types.ListWebACLsOutput,
+        input_schema = schemas.ListWebACLsInput,
+        output_schema = schemas.ListWebACLsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:listXssMatchSets(input, options)
     return self:invokeOperation(input, {
         name = "ListXssMatchSets",
-        input_schema = types.ListXssMatchSetsInput,
-        output_schema = types.ListXssMatchSetsOutput,
+        input_schema = schemas.ListXssMatchSetsInput,
+        output_schema = schemas.ListXssMatchSetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:putLoggingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutLoggingConfiguration",
-        input_schema = types.PutLoggingConfigurationInput,
-        output_schema = types.PutLoggingConfigurationOutput,
+        input_schema = schemas.PutLoggingConfigurationInput,
+        output_schema = schemas.PutLoggingConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:putPermissionPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutPermissionPolicy",
-        input_schema = types.PutPermissionPolicyInput,
-        output_schema = types.PutPermissionPolicyOutput,
+        input_schema = schemas.PutPermissionPolicyInput,
+        output_schema = schemas.PutPermissionPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:updateByteMatchSet(input, options)
     return self:invokeOperation(input, {
         name = "UpdateByteMatchSet",
-        input_schema = types.UpdateByteMatchSetInput,
-        output_schema = types.UpdateByteMatchSetOutput,
+        input_schema = schemas.UpdateByteMatchSetInput,
+        output_schema = schemas.UpdateByteMatchSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:updateGeoMatchSet(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGeoMatchSet",
-        input_schema = types.UpdateGeoMatchSetInput,
-        output_schema = types.UpdateGeoMatchSetOutput,
+        input_schema = schemas.UpdateGeoMatchSetInput,
+        output_schema = schemas.UpdateGeoMatchSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:updateIPSet(input, options)
     return self:invokeOperation(input, {
         name = "UpdateIPSet",
-        input_schema = types.UpdateIPSetInput,
-        output_schema = types.UpdateIPSetOutput,
+        input_schema = schemas.UpdateIPSetInput,
+        output_schema = schemas.UpdateIPSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:updateRateBasedRule(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRateBasedRule",
-        input_schema = types.UpdateRateBasedRuleInput,
-        output_schema = types.UpdateRateBasedRuleOutput,
+        input_schema = schemas.UpdateRateBasedRuleInput,
+        output_schema = schemas.UpdateRateBasedRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:updateRegexMatchSet(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRegexMatchSet",
-        input_schema = types.UpdateRegexMatchSetInput,
-        output_schema = types.UpdateRegexMatchSetOutput,
+        input_schema = schemas.UpdateRegexMatchSetInput,
+        output_schema = schemas.UpdateRegexMatchSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1011,8 +1011,8 @@ end
 function Client:updateRegexPatternSet(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRegexPatternSet",
-        input_schema = types.UpdateRegexPatternSetInput,
-        output_schema = types.UpdateRegexPatternSetOutput,
+        input_schema = schemas.UpdateRegexPatternSetInput,
+        output_schema = schemas.UpdateRegexPatternSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1024,8 +1024,8 @@ end
 function Client:updateRule(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRule",
-        input_schema = types.UpdateRuleInput,
-        output_schema = types.UpdateRuleOutput,
+        input_schema = schemas.UpdateRuleInput,
+        output_schema = schemas.UpdateRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1037,8 +1037,8 @@ end
 function Client:updateRuleGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRuleGroup",
-        input_schema = types.UpdateRuleGroupInput,
-        output_schema = types.UpdateRuleGroupOutput,
+        input_schema = schemas.UpdateRuleGroupInput,
+        output_schema = schemas.UpdateRuleGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1050,8 +1050,8 @@ end
 function Client:updateSizeConstraintSet(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSizeConstraintSet",
-        input_schema = types.UpdateSizeConstraintSetInput,
-        output_schema = types.UpdateSizeConstraintSetOutput,
+        input_schema = schemas.UpdateSizeConstraintSetInput,
+        output_schema = schemas.UpdateSizeConstraintSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1063,8 +1063,8 @@ end
 function Client:updateSqlInjectionMatchSet(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSqlInjectionMatchSet",
-        input_schema = types.UpdateSqlInjectionMatchSetInput,
-        output_schema = types.UpdateSqlInjectionMatchSetOutput,
+        input_schema = schemas.UpdateSqlInjectionMatchSetInput,
+        output_schema = schemas.UpdateSqlInjectionMatchSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1076,8 +1076,8 @@ end
 function Client:updateWebACL(input, options)
     return self:invokeOperation(input, {
         name = "UpdateWebACL",
-        input_schema = types.UpdateWebACLInput,
-        output_schema = types.UpdateWebACLOutput,
+        input_schema = schemas.UpdateWebACLInput,
+        output_schema = schemas.UpdateWebACLOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1089,8 +1089,8 @@ end
 function Client:updateXssMatchSet(input, options)
     return self:invokeOperation(input, {
         name = "UpdateXssMatchSet",
-        input_schema = types.UpdateXssMatchSetInput,
-        output_schema = types.UpdateXssMatchSetOutput,
+        input_schema = schemas.UpdateXssMatchSetInput,
+        output_schema = schemas.UpdateXssMatchSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("verifiedpermissions.endpoint_rules")
+local schemas = require("verifiedpermissions.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("verifiedpermissions.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchGetPolicy(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetPolicy",
-        input_schema = types.BatchGetPolicyInput,
-        output_schema = types.BatchGetPolicyOutput,
+        input_schema = schemas.BatchGetPolicyInput,
+        output_schema = schemas.BatchGetPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchIsAuthorized(input, options)
     return self:invokeOperation(input, {
         name = "BatchIsAuthorized",
-        input_schema = types.BatchIsAuthorizedInput,
-        output_schema = types.BatchIsAuthorizedOutput,
+        input_schema = schemas.BatchIsAuthorizedInput,
+        output_schema = schemas.BatchIsAuthorizedOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchIsAuthorizedWithToken(input, options)
     return self:invokeOperation(input, {
         name = "BatchIsAuthorizedWithToken",
-        input_schema = types.BatchIsAuthorizedWithTokenInput,
-        output_schema = types.BatchIsAuthorizedWithTokenOutput,
+        input_schema = schemas.BatchIsAuthorizedWithTokenInput,
+        output_schema = schemas.BatchIsAuthorizedWithTokenOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createIdentitySource(input, options)
     return self:invokeOperation(input, {
         name = "CreateIdentitySource",
-        input_schema = types.CreateIdentitySourceInput,
-        output_schema = types.CreateIdentitySourceOutput,
+        input_schema = schemas.CreateIdentitySourceInput,
+        output_schema = schemas.CreateIdentitySourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createPolicy(input, options)
     return self:invokeOperation(input, {
         name = "CreatePolicy",
-        input_schema = types.CreatePolicyInput,
-        output_schema = types.CreatePolicyOutput,
+        input_schema = schemas.CreatePolicyInput,
+        output_schema = schemas.CreatePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createPolicyStore(input, options)
     return self:invokeOperation(input, {
         name = "CreatePolicyStore",
-        input_schema = types.CreatePolicyStoreInput,
-        output_schema = types.CreatePolicyStoreOutput,
+        input_schema = schemas.CreatePolicyStoreInput,
+        output_schema = schemas.CreatePolicyStoreOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createPolicyStoreAlias(input, options)
     return self:invokeOperation(input, {
         name = "CreatePolicyStoreAlias",
-        input_schema = types.CreatePolicyStoreAliasInput,
-        output_schema = types.CreatePolicyStoreAliasOutput,
+        input_schema = schemas.CreatePolicyStoreAliasInput,
+        output_schema = schemas.CreatePolicyStoreAliasOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createPolicyTemplate(input, options)
     return self:invokeOperation(input, {
         name = "CreatePolicyTemplate",
-        input_schema = types.CreatePolicyTemplateInput,
-        output_schema = types.CreatePolicyTemplateOutput,
+        input_schema = schemas.CreatePolicyTemplateInput,
+        output_schema = schemas.CreatePolicyTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteIdentitySource(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIdentitySource",
-        input_schema = types.DeleteIdentitySourceInput,
-        output_schema = types.DeleteIdentitySourceOutput,
+        input_schema = schemas.DeleteIdentitySourceInput,
+        output_schema = schemas.DeleteIdentitySourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deletePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeletePolicy",
-        input_schema = types.DeletePolicyInput,
-        output_schema = types.DeletePolicyOutput,
+        input_schema = schemas.DeletePolicyInput,
+        output_schema = schemas.DeletePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deletePolicyStore(input, options)
     return self:invokeOperation(input, {
         name = "DeletePolicyStore",
-        input_schema = types.DeletePolicyStoreInput,
-        output_schema = types.DeletePolicyStoreOutput,
+        input_schema = schemas.DeletePolicyStoreInput,
+        output_schema = schemas.DeletePolicyStoreOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deletePolicyStoreAlias(input, options)
     return self:invokeOperation(input, {
         name = "DeletePolicyStoreAlias",
-        input_schema = types.DeletePolicyStoreAliasInput,
-        output_schema = types.DeletePolicyStoreAliasOutput,
+        input_schema = schemas.DeletePolicyStoreAliasInput,
+        output_schema = schemas.DeletePolicyStoreAliasOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deletePolicyTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DeletePolicyTemplate",
-        input_schema = types.DeletePolicyTemplateInput,
-        output_schema = types.DeletePolicyTemplateOutput,
+        input_schema = schemas.DeletePolicyTemplateInput,
+        output_schema = schemas.DeletePolicyTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getIdentitySource(input, options)
     return self:invokeOperation(input, {
         name = "GetIdentitySource",
-        input_schema = types.GetIdentitySourceInput,
-        output_schema = types.GetIdentitySourceOutput,
+        input_schema = schemas.GetIdentitySourceInput,
+        output_schema = schemas.GetIdentitySourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetPolicy",
-        input_schema = types.GetPolicyInput,
-        output_schema = types.GetPolicyOutput,
+        input_schema = schemas.GetPolicyInput,
+        output_schema = schemas.GetPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getPolicyStore(input, options)
     return self:invokeOperation(input, {
         name = "GetPolicyStore",
-        input_schema = types.GetPolicyStoreInput,
-        output_schema = types.GetPolicyStoreOutput,
+        input_schema = schemas.GetPolicyStoreInput,
+        output_schema = schemas.GetPolicyStoreOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getPolicyStoreAlias(input, options)
     return self:invokeOperation(input, {
         name = "GetPolicyStoreAlias",
-        input_schema = types.GetPolicyStoreAliasInput,
-        output_schema = types.GetPolicyStoreAliasOutput,
+        input_schema = schemas.GetPolicyStoreAliasInput,
+        output_schema = schemas.GetPolicyStoreAliasOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getPolicyTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetPolicyTemplate",
-        input_schema = types.GetPolicyTemplateInput,
-        output_schema = types.GetPolicyTemplateOutput,
+        input_schema = schemas.GetPolicyTemplateInput,
+        output_schema = schemas.GetPolicyTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getSchema(input, options)
     return self:invokeOperation(input, {
         name = "GetSchema",
-        input_schema = types.GetSchemaInput,
-        output_schema = types.GetSchemaOutput,
+        input_schema = schemas.GetSchemaInput,
+        output_schema = schemas.GetSchemaOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:isAuthorized(input, options)
     return self:invokeOperation(input, {
         name = "IsAuthorized",
-        input_schema = types.IsAuthorizedInput,
-        output_schema = types.IsAuthorizedOutput,
+        input_schema = schemas.IsAuthorizedInput,
+        output_schema = schemas.IsAuthorizedOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:isAuthorizedWithToken(input, options)
     return self:invokeOperation(input, {
         name = "IsAuthorizedWithToken",
-        input_schema = types.IsAuthorizedWithTokenInput,
-        output_schema = types.IsAuthorizedWithTokenOutput,
+        input_schema = schemas.IsAuthorizedWithTokenInput,
+        output_schema = schemas.IsAuthorizedWithTokenOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listIdentitySources(input, options)
     return self:invokeOperation(input, {
         name = "ListIdentitySources",
-        input_schema = types.ListIdentitySourcesInput,
-        output_schema = types.ListIdentitySourcesOutput,
+        input_schema = schemas.ListIdentitySourcesInput,
+        output_schema = schemas.ListIdentitySourcesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listPolicies(input, options)
     return self:invokeOperation(input, {
         name = "ListPolicies",
-        input_schema = types.ListPoliciesInput,
-        output_schema = types.ListPoliciesOutput,
+        input_schema = schemas.ListPoliciesInput,
+        output_schema = schemas.ListPoliciesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listPolicyStoreAliases(input, options)
     return self:invokeOperation(input, {
         name = "ListPolicyStoreAliases",
-        input_schema = types.ListPolicyStoreAliasesInput,
-        output_schema = types.ListPolicyStoreAliasesOutput,
+        input_schema = schemas.ListPolicyStoreAliasesInput,
+        output_schema = schemas.ListPolicyStoreAliasesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listPolicyStores(input, options)
     return self:invokeOperation(input, {
         name = "ListPolicyStores",
-        input_schema = types.ListPolicyStoresInput,
-        output_schema = types.ListPolicyStoresOutput,
+        input_schema = schemas.ListPolicyStoresInput,
+        output_schema = schemas.ListPolicyStoresOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listPolicyTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListPolicyTemplates",
-        input_schema = types.ListPolicyTemplatesInput,
-        output_schema = types.ListPolicyTemplatesOutput,
+        input_schema = schemas.ListPolicyTemplatesInput,
+        output_schema = schemas.ListPolicyTemplatesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:putSchema(input, options)
     return self:invokeOperation(input, {
         name = "PutSchema",
-        input_schema = types.PutSchemaInput,
-        output_schema = types.PutSchemaOutput,
+        input_schema = schemas.PutSchemaInput,
+        output_schema = schemas.PutSchemaOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:updateIdentitySource(input, options)
     return self:invokeOperation(input, {
         name = "UpdateIdentitySource",
-        input_schema = types.UpdateIdentitySourceInput,
-        output_schema = types.UpdateIdentitySourceOutput,
+        input_schema = schemas.UpdateIdentitySourceInput,
+        output_schema = schemas.UpdateIdentitySourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:updatePolicy(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePolicy",
-        input_schema = types.UpdatePolicyInput,
-        output_schema = types.UpdatePolicyOutput,
+        input_schema = schemas.UpdatePolicyInput,
+        output_schema = schemas.UpdatePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:updatePolicyStore(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePolicyStore",
-        input_schema = types.UpdatePolicyStoreInput,
-        output_schema = types.UpdatePolicyStoreOutput,
+        input_schema = schemas.UpdatePolicyStoreInput,
+        output_schema = schemas.UpdatePolicyStoreOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:updatePolicyTemplate(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePolicyTemplate",
-        input_schema = types.UpdatePolicyTemplateInput,
-        output_schema = types.UpdatePolicyTemplateOutput,
+        input_schema = schemas.UpdatePolicyTemplateInput,
+        output_schema = schemas.UpdatePolicyTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

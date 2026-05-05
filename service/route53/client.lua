@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("route53.endpoint_rules")
 local restxml_protocol = require("protocol.restxml")
+local schemas = require("route53.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("route53.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:activateKeySigningKey(input, options)
     return self:invokeOperation(input, {
         name = "ActivateKeySigningKey",
-        input_schema = types.ActivateKeySigningKeyInput,
-        output_schema = types.ActivateKeySigningKeyOutput,
+        input_schema = schemas.ActivateKeySigningKeyInput,
+        output_schema = schemas.ActivateKeySigningKeyOutput,
         http_method = "POST",
         http_path = "/2013-04-01/keysigningkey/{HostedZoneId}/{Name}/activate",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:associateVPCWithHostedZone(input, options)
     return self:invokeOperation(input, {
         name = "AssociateVPCWithHostedZone",
-        input_schema = types.AssociateVPCWithHostedZoneInput,
-        output_schema = types.AssociateVPCWithHostedZoneOutput,
+        input_schema = schemas.AssociateVPCWithHostedZoneInput,
+        output_schema = schemas.AssociateVPCWithHostedZoneOutput,
         http_method = "POST",
         http_path = "/2013-04-01/hostedzone/{HostedZoneId}/associatevpc",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:changeCidrCollection(input, options)
     return self:invokeOperation(input, {
         name = "ChangeCidrCollection",
-        input_schema = types.ChangeCidrCollectionInput,
-        output_schema = types.ChangeCidrCollectionOutput,
+        input_schema = schemas.ChangeCidrCollectionInput,
+        output_schema = schemas.ChangeCidrCollectionOutput,
         http_method = "POST",
         http_path = "/2013-04-01/cidrcollection/{Id}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:changeResourceRecordSets(input, options)
     return self:invokeOperation(input, {
         name = "ChangeResourceRecordSets",
-        input_schema = types.ChangeResourceRecordSetsInput,
-        output_schema = types.ChangeResourceRecordSetsOutput,
+        input_schema = schemas.ChangeResourceRecordSetsInput,
+        output_schema = schemas.ChangeResourceRecordSetsOutput,
         http_method = "POST",
         http_path = "/2013-04-01/hostedzone/{HostedZoneId}/rrset",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:changeTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ChangeTagsForResource",
-        input_schema = types.ChangeTagsForResourceInput,
-        output_schema = types.ChangeTagsForResourceOutput,
+        input_schema = schemas.ChangeTagsForResourceInput,
+        output_schema = schemas.ChangeTagsForResourceOutput,
         http_method = "POST",
         http_path = "/2013-04-01/tags/{ResourceType}/{ResourceId}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createCidrCollection(input, options)
     return self:invokeOperation(input, {
         name = "CreateCidrCollection",
-        input_schema = types.CreateCidrCollectionInput,
-        output_schema = types.CreateCidrCollectionOutput,
+        input_schema = schemas.CreateCidrCollectionInput,
+        output_schema = schemas.CreateCidrCollectionOutput,
         http_method = "POST",
         http_path = "/2013-04-01/cidrcollection",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createHealthCheck(input, options)
     return self:invokeOperation(input, {
         name = "CreateHealthCheck",
-        input_schema = types.CreateHealthCheckInput,
-        output_schema = types.CreateHealthCheckOutput,
+        input_schema = schemas.CreateHealthCheckInput,
+        output_schema = schemas.CreateHealthCheckOutput,
         http_method = "POST",
         http_path = "/2013-04-01/healthcheck",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createHostedZone(input, options)
     return self:invokeOperation(input, {
         name = "CreateHostedZone",
-        input_schema = types.CreateHostedZoneInput,
-        output_schema = types.CreateHostedZoneOutput,
+        input_schema = schemas.CreateHostedZoneInput,
+        output_schema = schemas.CreateHostedZoneOutput,
         http_method = "POST",
         http_path = "/2013-04-01/hostedzone",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createKeySigningKey(input, options)
     return self:invokeOperation(input, {
         name = "CreateKeySigningKey",
-        input_schema = types.CreateKeySigningKeyInput,
-        output_schema = types.CreateKeySigningKeyOutput,
+        input_schema = schemas.CreateKeySigningKeyInput,
+        output_schema = schemas.CreateKeySigningKeyOutput,
         http_method = "POST",
         http_path = "/2013-04-01/keysigningkey",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createQueryLoggingConfig(input, options)
     return self:invokeOperation(input, {
         name = "CreateQueryLoggingConfig",
-        input_schema = types.CreateQueryLoggingConfigInput,
-        output_schema = types.CreateQueryLoggingConfigOutput,
+        input_schema = schemas.CreateQueryLoggingConfigInput,
+        output_schema = schemas.CreateQueryLoggingConfigOutput,
         http_method = "POST",
         http_path = "/2013-04-01/queryloggingconfig",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createReusableDelegationSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateReusableDelegationSet",
-        input_schema = types.CreateReusableDelegationSetInput,
-        output_schema = types.CreateReusableDelegationSetOutput,
+        input_schema = schemas.CreateReusableDelegationSetInput,
+        output_schema = schemas.CreateReusableDelegationSetOutput,
         http_method = "POST",
         http_path = "/2013-04-01/delegationset",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createTrafficPolicy(input, options)
     return self:invokeOperation(input, {
         name = "CreateTrafficPolicy",
-        input_schema = types.CreateTrafficPolicyInput,
-        output_schema = types.CreateTrafficPolicyOutput,
+        input_schema = schemas.CreateTrafficPolicyInput,
+        output_schema = schemas.CreateTrafficPolicyOutput,
         http_method = "POST",
         http_path = "/2013-04-01/trafficpolicy",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createTrafficPolicyInstance(input, options)
     return self:invokeOperation(input, {
         name = "CreateTrafficPolicyInstance",
-        input_schema = types.CreateTrafficPolicyInstanceInput,
-        output_schema = types.CreateTrafficPolicyInstanceOutput,
+        input_schema = schemas.CreateTrafficPolicyInstanceInput,
+        output_schema = schemas.CreateTrafficPolicyInstanceOutput,
         http_method = "POST",
         http_path = "/2013-04-01/trafficpolicyinstance",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:createTrafficPolicyVersion(input, options)
     return self:invokeOperation(input, {
         name = "CreateTrafficPolicyVersion",
-        input_schema = types.CreateTrafficPolicyVersionInput,
-        output_schema = types.CreateTrafficPolicyVersionOutput,
+        input_schema = schemas.CreateTrafficPolicyVersionInput,
+        output_schema = schemas.CreateTrafficPolicyVersionOutput,
         http_method = "POST",
         http_path = "/2013-04-01/trafficpolicy/{Id}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:createVPCAssociationAuthorization(input, options)
     return self:invokeOperation(input, {
         name = "CreateVPCAssociationAuthorization",
-        input_schema = types.CreateVPCAssociationAuthorizationInput,
-        output_schema = types.CreateVPCAssociationAuthorizationOutput,
+        input_schema = schemas.CreateVPCAssociationAuthorizationInput,
+        output_schema = schemas.CreateVPCAssociationAuthorizationOutput,
         http_method = "POST",
         http_path = "/2013-04-01/hostedzone/{HostedZoneId}/authorizevpcassociation",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deactivateKeySigningKey(input, options)
     return self:invokeOperation(input, {
         name = "DeactivateKeySigningKey",
-        input_schema = types.DeactivateKeySigningKeyInput,
-        output_schema = types.DeactivateKeySigningKeyOutput,
+        input_schema = schemas.DeactivateKeySigningKeyInput,
+        output_schema = schemas.DeactivateKeySigningKeyOutput,
         http_method = "POST",
         http_path = "/2013-04-01/keysigningkey/{HostedZoneId}/{Name}/deactivate",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteCidrCollection(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCidrCollection",
-        input_schema = types.DeleteCidrCollectionInput,
-        output_schema = types.DeleteCidrCollectionOutput,
+        input_schema = schemas.DeleteCidrCollectionInput,
+        output_schema = schemas.DeleteCidrCollectionOutput,
         http_method = "DELETE",
         http_path = "/2013-04-01/cidrcollection/{Id}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteHealthCheck(input, options)
     return self:invokeOperation(input, {
         name = "DeleteHealthCheck",
-        input_schema = types.DeleteHealthCheckInput,
-        output_schema = types.DeleteHealthCheckOutput,
+        input_schema = schemas.DeleteHealthCheckInput,
+        output_schema = schemas.DeleteHealthCheckOutput,
         http_method = "DELETE",
         http_path = "/2013-04-01/healthcheck/{HealthCheckId}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteHostedZone(input, options)
     return self:invokeOperation(input, {
         name = "DeleteHostedZone",
-        input_schema = types.DeleteHostedZoneInput,
-        output_schema = types.DeleteHostedZoneOutput,
+        input_schema = schemas.DeleteHostedZoneInput,
+        output_schema = schemas.DeleteHostedZoneOutput,
         http_method = "DELETE",
         http_path = "/2013-04-01/hostedzone/{Id}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deleteKeySigningKey(input, options)
     return self:invokeOperation(input, {
         name = "DeleteKeySigningKey",
-        input_schema = types.DeleteKeySigningKeyInput,
-        output_schema = types.DeleteKeySigningKeyOutput,
+        input_schema = schemas.DeleteKeySigningKeyInput,
+        output_schema = schemas.DeleteKeySigningKeyOutput,
         http_method = "DELETE",
         http_path = "/2013-04-01/keysigningkey/{HostedZoneId}/{Name}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteQueryLoggingConfig(input, options)
     return self:invokeOperation(input, {
         name = "DeleteQueryLoggingConfig",
-        input_schema = types.DeleteQueryLoggingConfigInput,
-        output_schema = types.DeleteQueryLoggingConfigOutput,
+        input_schema = schemas.DeleteQueryLoggingConfigInput,
+        output_schema = schemas.DeleteQueryLoggingConfigOutput,
         http_method = "DELETE",
         http_path = "/2013-04-01/queryloggingconfig/{Id}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:deleteReusableDelegationSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteReusableDelegationSet",
-        input_schema = types.DeleteReusableDelegationSetInput,
-        output_schema = types.DeleteReusableDelegationSetOutput,
+        input_schema = schemas.DeleteReusableDelegationSetInput,
+        output_schema = schemas.DeleteReusableDelegationSetOutput,
         http_method = "DELETE",
         http_path = "/2013-04-01/delegationset/{Id}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:deleteTrafficPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTrafficPolicy",
-        input_schema = types.DeleteTrafficPolicyInput,
-        output_schema = types.DeleteTrafficPolicyOutput,
+        input_schema = schemas.DeleteTrafficPolicyInput,
+        output_schema = schemas.DeleteTrafficPolicyOutput,
         http_method = "DELETE",
         http_path = "/2013-04-01/trafficpolicy/{Id}/{Version}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:deleteTrafficPolicyInstance(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTrafficPolicyInstance",
-        input_schema = types.DeleteTrafficPolicyInstanceInput,
-        output_schema = types.DeleteTrafficPolicyInstanceOutput,
+        input_schema = schemas.DeleteTrafficPolicyInstanceInput,
+        output_schema = schemas.DeleteTrafficPolicyInstanceOutput,
         http_method = "DELETE",
         http_path = "/2013-04-01/trafficpolicyinstance/{Id}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:deleteVPCAssociationAuthorization(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVPCAssociationAuthorization",
-        input_schema = types.DeleteVPCAssociationAuthorizationInput,
-        output_schema = types.DeleteVPCAssociationAuthorizationOutput,
+        input_schema = schemas.DeleteVPCAssociationAuthorizationInput,
+        output_schema = schemas.DeleteVPCAssociationAuthorizationOutput,
         http_method = "POST",
         http_path = "/2013-04-01/hostedzone/{HostedZoneId}/deauthorizevpcassociation",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:disableHostedZoneDNSSEC(input, options)
     return self:invokeOperation(input, {
         name = "DisableHostedZoneDNSSEC",
-        input_schema = types.DisableHostedZoneDNSSECInput,
-        output_schema = types.DisableHostedZoneDNSSECOutput,
+        input_schema = schemas.DisableHostedZoneDNSSECInput,
+        output_schema = schemas.DisableHostedZoneDNSSECOutput,
         http_method = "POST",
         http_path = "/2013-04-01/hostedzone/{HostedZoneId}/disable-dnssec",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:disassociateVPCFromHostedZone(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateVPCFromHostedZone",
-        input_schema = types.DisassociateVPCFromHostedZoneInput,
-        output_schema = types.DisassociateVPCFromHostedZoneOutput,
+        input_schema = schemas.DisassociateVPCFromHostedZoneInput,
+        output_schema = schemas.DisassociateVPCFromHostedZoneOutput,
         http_method = "POST",
         http_path = "/2013-04-01/hostedzone/{HostedZoneId}/disassociatevpc",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:enableHostedZoneDNSSEC(input, options)
     return self:invokeOperation(input, {
         name = "EnableHostedZoneDNSSEC",
-        input_schema = types.EnableHostedZoneDNSSECInput,
-        output_schema = types.EnableHostedZoneDNSSECOutput,
+        input_schema = schemas.EnableHostedZoneDNSSECInput,
+        output_schema = schemas.EnableHostedZoneDNSSECOutput,
         http_method = "POST",
         http_path = "/2013-04-01/hostedzone/{HostedZoneId}/enable-dnssec",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:getAccountLimit(input, options)
     return self:invokeOperation(input, {
         name = "GetAccountLimit",
-        input_schema = types.GetAccountLimitInput,
-        output_schema = types.GetAccountLimitOutput,
+        input_schema = schemas.GetAccountLimitInput,
+        output_schema = schemas.GetAccountLimitOutput,
         http_method = "GET",
         http_path = "/2013-04-01/accountlimit/{Type}",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:getChange(input, options)
     return self:invokeOperation(input, {
         name = "GetChange",
-        input_schema = types.GetChangeInput,
-        output_schema = types.GetChangeOutput,
+        input_schema = schemas.GetChangeInput,
+        output_schema = schemas.GetChangeOutput,
         http_method = "GET",
         http_path = "/2013-04-01/change/{Id}",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:getCheckerIpRanges(input, options)
     return self:invokeOperation(input, {
         name = "GetCheckerIpRanges",
-        input_schema = types.GetCheckerIpRangesInput,
-        output_schema = types.GetCheckerIpRangesOutput,
+        input_schema = schemas.GetCheckerIpRangesInput,
+        output_schema = schemas.GetCheckerIpRangesOutput,
         http_method = "GET",
         http_path = "/2013-04-01/checkeripranges",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:getDNSSEC(input, options)
     return self:invokeOperation(input, {
         name = "GetDNSSEC",
-        input_schema = types.GetDNSSECInput,
-        output_schema = types.GetDNSSECOutput,
+        input_schema = schemas.GetDNSSECInput,
+        output_schema = schemas.GetDNSSECOutput,
         http_method = "GET",
         http_path = "/2013-04-01/hostedzone/{HostedZoneId}/dnssec",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:getGeoLocation(input, options)
     return self:invokeOperation(input, {
         name = "GetGeoLocation",
-        input_schema = types.GetGeoLocationInput,
-        output_schema = types.GetGeoLocationOutput,
+        input_schema = schemas.GetGeoLocationInput,
+        output_schema = schemas.GetGeoLocationOutput,
         http_method = "GET",
         http_path = "/2013-04-01/geolocation",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:getHealthCheck(input, options)
     return self:invokeOperation(input, {
         name = "GetHealthCheck",
-        input_schema = types.GetHealthCheckInput,
-        output_schema = types.GetHealthCheckOutput,
+        input_schema = schemas.GetHealthCheckInput,
+        output_schema = schemas.GetHealthCheckOutput,
         http_method = "GET",
         http_path = "/2013-04-01/healthcheck/{HealthCheckId}",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:getHealthCheckCount(input, options)
     return self:invokeOperation(input, {
         name = "GetHealthCheckCount",
-        input_schema = types.GetHealthCheckCountInput,
-        output_schema = types.GetHealthCheckCountOutput,
+        input_schema = schemas.GetHealthCheckCountInput,
+        output_schema = schemas.GetHealthCheckCountOutput,
         http_method = "GET",
         http_path = "/2013-04-01/healthcheckcount",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:getHealthCheckLastFailureReason(input, options)
     return self:invokeOperation(input, {
         name = "GetHealthCheckLastFailureReason",
-        input_schema = types.GetHealthCheckLastFailureReasonInput,
-        output_schema = types.GetHealthCheckLastFailureReasonOutput,
+        input_schema = schemas.GetHealthCheckLastFailureReasonInput,
+        output_schema = schemas.GetHealthCheckLastFailureReasonOutput,
         http_method = "GET",
         http_path = "/2013-04-01/healthcheck/{HealthCheckId}/lastfailurereason",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:getHealthCheckStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetHealthCheckStatus",
-        input_schema = types.GetHealthCheckStatusInput,
-        output_schema = types.GetHealthCheckStatusOutput,
+        input_schema = schemas.GetHealthCheckStatusInput,
+        output_schema = schemas.GetHealthCheckStatusOutput,
         http_method = "GET",
         http_path = "/2013-04-01/healthcheck/{HealthCheckId}/status",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:getHostedZone(input, options)
     return self:invokeOperation(input, {
         name = "GetHostedZone",
-        input_schema = types.GetHostedZoneInput,
-        output_schema = types.GetHostedZoneOutput,
+        input_schema = schemas.GetHostedZoneInput,
+        output_schema = schemas.GetHostedZoneOutput,
         http_method = "GET",
         http_path = "/2013-04-01/hostedzone/{Id}",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:getHostedZoneCount(input, options)
     return self:invokeOperation(input, {
         name = "GetHostedZoneCount",
-        input_schema = types.GetHostedZoneCountInput,
-        output_schema = types.GetHostedZoneCountOutput,
+        input_schema = schemas.GetHostedZoneCountInput,
+        output_schema = schemas.GetHostedZoneCountOutput,
         http_method = "GET",
         http_path = "/2013-04-01/hostedzonecount",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:getHostedZoneLimit(input, options)
     return self:invokeOperation(input, {
         name = "GetHostedZoneLimit",
-        input_schema = types.GetHostedZoneLimitInput,
-        output_schema = types.GetHostedZoneLimitOutput,
+        input_schema = schemas.GetHostedZoneLimitInput,
+        output_schema = schemas.GetHostedZoneLimitOutput,
         http_method = "GET",
         http_path = "/2013-04-01/hostedzonelimit/{HostedZoneId}/{Type}",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:getQueryLoggingConfig(input, options)
     return self:invokeOperation(input, {
         name = "GetQueryLoggingConfig",
-        input_schema = types.GetQueryLoggingConfigInput,
-        output_schema = types.GetQueryLoggingConfigOutput,
+        input_schema = schemas.GetQueryLoggingConfigInput,
+        output_schema = schemas.GetQueryLoggingConfigOutput,
         http_method = "GET",
         http_path = "/2013-04-01/queryloggingconfig/{Id}",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:getReusableDelegationSet(input, options)
     return self:invokeOperation(input, {
         name = "GetReusableDelegationSet",
-        input_schema = types.GetReusableDelegationSetInput,
-        output_schema = types.GetReusableDelegationSetOutput,
+        input_schema = schemas.GetReusableDelegationSetInput,
+        output_schema = schemas.GetReusableDelegationSetOutput,
         http_method = "GET",
         http_path = "/2013-04-01/delegationset/{Id}",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:getReusableDelegationSetLimit(input, options)
     return self:invokeOperation(input, {
         name = "GetReusableDelegationSetLimit",
-        input_schema = types.GetReusableDelegationSetLimitInput,
-        output_schema = types.GetReusableDelegationSetLimitOutput,
+        input_schema = schemas.GetReusableDelegationSetLimitInput,
+        output_schema = schemas.GetReusableDelegationSetLimitOutput,
         http_method = "GET",
         http_path = "/2013-04-01/reusabledelegationsetlimit/{DelegationSetId}/{Type}",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:getTrafficPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetTrafficPolicy",
-        input_schema = types.GetTrafficPolicyInput,
-        output_schema = types.GetTrafficPolicyOutput,
+        input_schema = schemas.GetTrafficPolicyInput,
+        output_schema = schemas.GetTrafficPolicyOutput,
         http_method = "GET",
         http_path = "/2013-04-01/trafficpolicy/{Id}/{Version}",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:getTrafficPolicyInstance(input, options)
     return self:invokeOperation(input, {
         name = "GetTrafficPolicyInstance",
-        input_schema = types.GetTrafficPolicyInstanceInput,
-        output_schema = types.GetTrafficPolicyInstanceOutput,
+        input_schema = schemas.GetTrafficPolicyInstanceInput,
+        output_schema = schemas.GetTrafficPolicyInstanceOutput,
         http_method = "GET",
         http_path = "/2013-04-01/trafficpolicyinstance/{Id}",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:getTrafficPolicyInstanceCount(input, options)
     return self:invokeOperation(input, {
         name = "GetTrafficPolicyInstanceCount",
-        input_schema = types.GetTrafficPolicyInstanceCountInput,
-        output_schema = types.GetTrafficPolicyInstanceCountOutput,
+        input_schema = schemas.GetTrafficPolicyInstanceCountInput,
+        output_schema = schemas.GetTrafficPolicyInstanceCountOutput,
         http_method = "GET",
         http_path = "/2013-04-01/trafficpolicyinstancecount",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:listCidrBlocks(input, options)
     return self:invokeOperation(input, {
         name = "ListCidrBlocks",
-        input_schema = types.ListCidrBlocksInput,
-        output_schema = types.ListCidrBlocksOutput,
+        input_schema = schemas.ListCidrBlocksInput,
+        output_schema = schemas.ListCidrBlocksOutput,
         http_method = "GET",
         http_path = "/2013-04-01/cidrcollection/{CollectionId}/cidrblocks",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:listCidrCollections(input, options)
     return self:invokeOperation(input, {
         name = "ListCidrCollections",
-        input_schema = types.ListCidrCollectionsInput,
-        output_schema = types.ListCidrCollectionsOutput,
+        input_schema = schemas.ListCidrCollectionsInput,
+        output_schema = schemas.ListCidrCollectionsOutput,
         http_method = "GET",
         http_path = "/2013-04-01/cidrcollection",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:listCidrLocations(input, options)
     return self:invokeOperation(input, {
         name = "ListCidrLocations",
-        input_schema = types.ListCidrLocationsInput,
-        output_schema = types.ListCidrLocationsOutput,
+        input_schema = schemas.ListCidrLocationsInput,
+        output_schema = schemas.ListCidrLocationsOutput,
         http_method = "GET",
         http_path = "/2013-04-01/cidrcollection/{CollectionId}",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:listGeoLocations(input, options)
     return self:invokeOperation(input, {
         name = "ListGeoLocations",
-        input_schema = types.ListGeoLocationsInput,
-        output_schema = types.ListGeoLocationsOutput,
+        input_schema = schemas.ListGeoLocationsInput,
+        output_schema = schemas.ListGeoLocationsOutput,
         http_method = "GET",
         http_path = "/2013-04-01/geolocations",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:listHealthChecks(input, options)
     return self:invokeOperation(input, {
         name = "ListHealthChecks",
-        input_schema = types.ListHealthChecksInput,
-        output_schema = types.ListHealthChecksOutput,
+        input_schema = schemas.ListHealthChecksInput,
+        output_schema = schemas.ListHealthChecksOutput,
         http_method = "GET",
         http_path = "/2013-04-01/healthcheck",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:listHostedZones(input, options)
     return self:invokeOperation(input, {
         name = "ListHostedZones",
-        input_schema = types.ListHostedZonesInput,
-        output_schema = types.ListHostedZonesOutput,
+        input_schema = schemas.ListHostedZonesInput,
+        output_schema = schemas.ListHostedZonesOutput,
         http_method = "GET",
         http_path = "/2013-04-01/hostedzone",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:listHostedZonesByName(input, options)
     return self:invokeOperation(input, {
         name = "ListHostedZonesByName",
-        input_schema = types.ListHostedZonesByNameInput,
-        output_schema = types.ListHostedZonesByNameOutput,
+        input_schema = schemas.ListHostedZonesByNameInput,
+        output_schema = schemas.ListHostedZonesByNameOutput,
         http_method = "GET",
         http_path = "/2013-04-01/hostedzonesbyname",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:listHostedZonesByVPC(input, options)
     return self:invokeOperation(input, {
         name = "ListHostedZonesByVPC",
-        input_schema = types.ListHostedZonesByVPCInput,
-        output_schema = types.ListHostedZonesByVPCOutput,
+        input_schema = schemas.ListHostedZonesByVPCInput,
+        output_schema = schemas.ListHostedZonesByVPCOutput,
         http_method = "GET",
         http_path = "/2013-04-01/hostedzonesbyvpc",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:listQueryLoggingConfigs(input, options)
     return self:invokeOperation(input, {
         name = "ListQueryLoggingConfigs",
-        input_schema = types.ListQueryLoggingConfigsInput,
-        output_schema = types.ListQueryLoggingConfigsOutput,
+        input_schema = schemas.ListQueryLoggingConfigsInput,
+        output_schema = schemas.ListQueryLoggingConfigsOutput,
         http_method = "GET",
         http_path = "/2013-04-01/queryloggingconfig",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:listResourceRecordSets(input, options)
     return self:invokeOperation(input, {
         name = "ListResourceRecordSets",
-        input_schema = types.ListResourceRecordSetsInput,
-        output_schema = types.ListResourceRecordSetsOutput,
+        input_schema = schemas.ListResourceRecordSetsInput,
+        output_schema = schemas.ListResourceRecordSetsOutput,
         http_method = "GET",
         http_path = "/2013-04-01/hostedzone/{HostedZoneId}/rrset",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:listReusableDelegationSets(input, options)
     return self:invokeOperation(input, {
         name = "ListReusableDelegationSets",
-        input_schema = types.ListReusableDelegationSetsInput,
-        output_schema = types.ListReusableDelegationSetsOutput,
+        input_schema = schemas.ListReusableDelegationSetsInput,
+        output_schema = schemas.ListReusableDelegationSetsOutput,
         http_method = "GET",
         http_path = "/2013-04-01/delegationset",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/2013-04-01/tags/{ResourceType}/{ResourceId}",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:listTagsForResources(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResources",
-        input_schema = types.ListTagsForResourcesInput,
-        output_schema = types.ListTagsForResourcesOutput,
+        input_schema = schemas.ListTagsForResourcesInput,
+        output_schema = schemas.ListTagsForResourcesOutput,
         http_method = "POST",
         http_path = "/2013-04-01/tags/{ResourceType}",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:listTrafficPolicies(input, options)
     return self:invokeOperation(input, {
         name = "ListTrafficPolicies",
-        input_schema = types.ListTrafficPoliciesInput,
-        output_schema = types.ListTrafficPoliciesOutput,
+        input_schema = schemas.ListTrafficPoliciesInput,
+        output_schema = schemas.ListTrafficPoliciesOutput,
         http_method = "GET",
         http_path = "/2013-04-01/trafficpolicies",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:listTrafficPolicyInstances(input, options)
     return self:invokeOperation(input, {
         name = "ListTrafficPolicyInstances",
-        input_schema = types.ListTrafficPolicyInstancesInput,
-        output_schema = types.ListTrafficPolicyInstancesOutput,
+        input_schema = schemas.ListTrafficPolicyInstancesInput,
+        output_schema = schemas.ListTrafficPolicyInstancesOutput,
         http_method = "GET",
         http_path = "/2013-04-01/trafficpolicyinstances",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:listTrafficPolicyInstancesByHostedZone(input, options)
     return self:invokeOperation(input, {
         name = "ListTrafficPolicyInstancesByHostedZone",
-        input_schema = types.ListTrafficPolicyInstancesByHostedZoneInput,
-        output_schema = types.ListTrafficPolicyInstancesByHostedZoneOutput,
+        input_schema = schemas.ListTrafficPolicyInstancesByHostedZoneInput,
+        output_schema = schemas.ListTrafficPolicyInstancesByHostedZoneOutput,
         http_method = "GET",
         http_path = "/2013-04-01/trafficpolicyinstances/hostedzone",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:listTrafficPolicyInstancesByPolicy(input, options)
     return self:invokeOperation(input, {
         name = "ListTrafficPolicyInstancesByPolicy",
-        input_schema = types.ListTrafficPolicyInstancesByPolicyInput,
-        output_schema = types.ListTrafficPolicyInstancesByPolicyOutput,
+        input_schema = schemas.ListTrafficPolicyInstancesByPolicyInput,
+        output_schema = schemas.ListTrafficPolicyInstancesByPolicyOutput,
         http_method = "GET",
         http_path = "/2013-04-01/trafficpolicyinstances/trafficpolicy",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:listTrafficPolicyVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListTrafficPolicyVersions",
-        input_schema = types.ListTrafficPolicyVersionsInput,
-        output_schema = types.ListTrafficPolicyVersionsOutput,
+        input_schema = schemas.ListTrafficPolicyVersionsInput,
+        output_schema = schemas.ListTrafficPolicyVersionsOutput,
         http_method = "GET",
         http_path = "/2013-04-01/trafficpolicies/{Id}/versions",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:listVPCAssociationAuthorizations(input, options)
     return self:invokeOperation(input, {
         name = "ListVPCAssociationAuthorizations",
-        input_schema = types.ListVPCAssociationAuthorizationsInput,
-        output_schema = types.ListVPCAssociationAuthorizationsOutput,
+        input_schema = schemas.ListVPCAssociationAuthorizationsInput,
+        output_schema = schemas.ListVPCAssociationAuthorizationsOutput,
         http_method = "GET",
         http_path = "/2013-04-01/hostedzone/{HostedZoneId}/authorizevpcassociation",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:testDNSAnswer(input, options)
     return self:invokeOperation(input, {
         name = "TestDNSAnswer",
-        input_schema = types.TestDNSAnswerInput,
-        output_schema = types.TestDNSAnswerOutput,
+        input_schema = schemas.TestDNSAnswerInput,
+        output_schema = schemas.TestDNSAnswerOutput,
         http_method = "GET",
         http_path = "/2013-04-01/testdnsanswer",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:updateHealthCheck(input, options)
     return self:invokeOperation(input, {
         name = "UpdateHealthCheck",
-        input_schema = types.UpdateHealthCheckInput,
-        output_schema = types.UpdateHealthCheckOutput,
+        input_schema = schemas.UpdateHealthCheckInput,
+        output_schema = schemas.UpdateHealthCheckOutput,
         http_method = "POST",
         http_path = "/2013-04-01/healthcheck/{HealthCheckId}",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:updateHostedZoneComment(input, options)
     return self:invokeOperation(input, {
         name = "UpdateHostedZoneComment",
-        input_schema = types.UpdateHostedZoneCommentInput,
-        output_schema = types.UpdateHostedZoneCommentOutput,
+        input_schema = schemas.UpdateHostedZoneCommentInput,
+        output_schema = schemas.UpdateHostedZoneCommentOutput,
         http_method = "POST",
         http_path = "/2013-04-01/hostedzone/{Id}",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:updateHostedZoneFeatures(input, options)
     return self:invokeOperation(input, {
         name = "UpdateHostedZoneFeatures",
-        input_schema = types.UpdateHostedZoneFeaturesInput,
-        output_schema = types.UpdateHostedZoneFeaturesOutput,
+        input_schema = schemas.UpdateHostedZoneFeaturesInput,
+        output_schema = schemas.UpdateHostedZoneFeaturesOutput,
         http_method = "POST",
         http_path = "/2013-04-01/hostedzone/{HostedZoneId}/features",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:updateTrafficPolicyComment(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTrafficPolicyComment",
-        input_schema = types.UpdateTrafficPolicyCommentInput,
-        output_schema = types.UpdateTrafficPolicyCommentOutput,
+        input_schema = schemas.UpdateTrafficPolicyCommentInput,
+        output_schema = schemas.UpdateTrafficPolicyCommentOutput,
         http_method = "POST",
         http_path = "/2013-04-01/trafficpolicy/{Id}/{Version}",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:updateTrafficPolicyInstance(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTrafficPolicyInstance",
-        input_schema = types.UpdateTrafficPolicyInstanceInput,
-        output_schema = types.UpdateTrafficPolicyInstanceOutput,
+        input_schema = schemas.UpdateTrafficPolicyInstanceInput,
+        output_schema = schemas.UpdateTrafficPolicyInstanceOutput,
         http_method = "POST",
         http_path = "/2013-04-01/trafficpolicyinstance/{Id}",
         effective_auth_schemes = {

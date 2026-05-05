@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("wisdom.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("wisdom.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("wisdom.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createAssistant(input, options)
     return self:invokeOperation(input, {
         name = "CreateAssistant",
-        input_schema = types.CreateAssistantInput,
-        output_schema = types.CreateAssistantOutput,
+        input_schema = schemas.CreateAssistantInput,
+        output_schema = schemas.CreateAssistantOutput,
         http_method = "POST",
         http_path = "/assistants",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createAssistantAssociation(input, options)
     return self:invokeOperation(input, {
         name = "CreateAssistantAssociation",
-        input_schema = types.CreateAssistantAssociationInput,
-        output_schema = types.CreateAssistantAssociationOutput,
+        input_schema = schemas.CreateAssistantAssociationInput,
+        output_schema = schemas.CreateAssistantAssociationOutput,
         http_method = "POST",
         http_path = "/assistants/{assistantId}/associations",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createContent(input, options)
     return self:invokeOperation(input, {
         name = "CreateContent",
-        input_schema = types.CreateContentInput,
-        output_schema = types.CreateContentOutput,
+        input_schema = schemas.CreateContentInput,
+        output_schema = schemas.CreateContentOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/contents",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createKnowledgeBase(input, options)
     return self:invokeOperation(input, {
         name = "CreateKnowledgeBase",
-        input_schema = types.CreateKnowledgeBaseInput,
-        output_schema = types.CreateKnowledgeBaseOutput,
+        input_schema = schemas.CreateKnowledgeBaseInput,
+        output_schema = schemas.CreateKnowledgeBaseOutput,
         http_method = "POST",
         http_path = "/knowledgeBases",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createQuickResponse(input, options)
     return self:invokeOperation(input, {
         name = "CreateQuickResponse",
-        input_schema = types.CreateQuickResponseInput,
-        output_schema = types.CreateQuickResponseOutput,
+        input_schema = schemas.CreateQuickResponseInput,
+        output_schema = schemas.CreateQuickResponseOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/quickResponses",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createSession(input, options)
     return self:invokeOperation(input, {
         name = "CreateSession",
-        input_schema = types.CreateSessionInput,
-        output_schema = types.CreateSessionOutput,
+        input_schema = schemas.CreateSessionInput,
+        output_schema = schemas.CreateSessionOutput,
         http_method = "POST",
         http_path = "/assistants/{assistantId}/sessions",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteAssistant(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAssistant",
-        input_schema = types.DeleteAssistantInput,
-        output_schema = types.DeleteAssistantOutput,
+        input_schema = schemas.DeleteAssistantInput,
+        output_schema = schemas.DeleteAssistantOutput,
         http_method = "DELETE",
         http_path = "/assistants/{assistantId}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteAssistantAssociation(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAssistantAssociation",
-        input_schema = types.DeleteAssistantAssociationInput,
-        output_schema = types.DeleteAssistantAssociationOutput,
+        input_schema = schemas.DeleteAssistantAssociationInput,
+        output_schema = schemas.DeleteAssistantAssociationOutput,
         http_method = "DELETE",
         http_path = "/assistants/{assistantId}/associations/{assistantAssociationId}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteContent(input, options)
     return self:invokeOperation(input, {
         name = "DeleteContent",
-        input_schema = types.DeleteContentInput,
-        output_schema = types.DeleteContentOutput,
+        input_schema = schemas.DeleteContentInput,
+        output_schema = schemas.DeleteContentOutput,
         http_method = "DELETE",
         http_path = "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteImportJob(input, options)
     return self:invokeOperation(input, {
         name = "DeleteImportJob",
-        input_schema = types.DeleteImportJobInput,
-        output_schema = types.DeleteImportJobOutput,
+        input_schema = schemas.DeleteImportJobInput,
+        output_schema = schemas.DeleteImportJobOutput,
         http_method = "DELETE",
         http_path = "/knowledgeBases/{knowledgeBaseId}/importJobs/{importJobId}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteKnowledgeBase(input, options)
     return self:invokeOperation(input, {
         name = "DeleteKnowledgeBase",
-        input_schema = types.DeleteKnowledgeBaseInput,
-        output_schema = types.DeleteKnowledgeBaseOutput,
+        input_schema = schemas.DeleteKnowledgeBaseInput,
+        output_schema = schemas.DeleteKnowledgeBaseOutput,
         http_method = "DELETE",
         http_path = "/knowledgeBases/{knowledgeBaseId}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteQuickResponse(input, options)
     return self:invokeOperation(input, {
         name = "DeleteQuickResponse",
-        input_schema = types.DeleteQuickResponseInput,
-        output_schema = types.DeleteQuickResponseOutput,
+        input_schema = schemas.DeleteQuickResponseInput,
+        output_schema = schemas.DeleteQuickResponseOutput,
         http_method = "DELETE",
         http_path = "/knowledgeBases/{knowledgeBaseId}/quickResponses/{quickResponseId}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getAssistant(input, options)
     return self:invokeOperation(input, {
         name = "GetAssistant",
-        input_schema = types.GetAssistantInput,
-        output_schema = types.GetAssistantOutput,
+        input_schema = schemas.GetAssistantInput,
+        output_schema = schemas.GetAssistantOutput,
         http_method = "GET",
         http_path = "/assistants/{assistantId}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getAssistantAssociation(input, options)
     return self:invokeOperation(input, {
         name = "GetAssistantAssociation",
-        input_schema = types.GetAssistantAssociationInput,
-        output_schema = types.GetAssistantAssociationOutput,
+        input_schema = schemas.GetAssistantAssociationInput,
+        output_schema = schemas.GetAssistantAssociationOutput,
         http_method = "GET",
         http_path = "/assistants/{assistantId}/associations/{assistantAssociationId}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getContent(input, options)
     return self:invokeOperation(input, {
         name = "GetContent",
-        input_schema = types.GetContentInput,
-        output_schema = types.GetContentOutput,
+        input_schema = schemas.GetContentInput,
+        output_schema = schemas.GetContentOutput,
         http_method = "GET",
         http_path = "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getContentSummary(input, options)
     return self:invokeOperation(input, {
         name = "GetContentSummary",
-        input_schema = types.GetContentSummaryInput,
-        output_schema = types.GetContentSummaryOutput,
+        input_schema = schemas.GetContentSummaryInput,
+        output_schema = schemas.GetContentSummaryOutput,
         http_method = "GET",
         http_path = "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}/summary",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getImportJob(input, options)
     return self:invokeOperation(input, {
         name = "GetImportJob",
-        input_schema = types.GetImportJobInput,
-        output_schema = types.GetImportJobOutput,
+        input_schema = schemas.GetImportJobInput,
+        output_schema = schemas.GetImportJobOutput,
         http_method = "GET",
         http_path = "/knowledgeBases/{knowledgeBaseId}/importJobs/{importJobId}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getKnowledgeBase(input, options)
     return self:invokeOperation(input, {
         name = "GetKnowledgeBase",
-        input_schema = types.GetKnowledgeBaseInput,
-        output_schema = types.GetKnowledgeBaseOutput,
+        input_schema = schemas.GetKnowledgeBaseInput,
+        output_schema = schemas.GetKnowledgeBaseOutput,
         http_method = "GET",
         http_path = "/knowledgeBases/{knowledgeBaseId}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getQuickResponse(input, options)
     return self:invokeOperation(input, {
         name = "GetQuickResponse",
-        input_schema = types.GetQuickResponseInput,
-        output_schema = types.GetQuickResponseOutput,
+        input_schema = schemas.GetQuickResponseInput,
+        output_schema = schemas.GetQuickResponseOutput,
         http_method = "GET",
         http_path = "/knowledgeBases/{knowledgeBaseId}/quickResponses/{quickResponseId}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "GetRecommendations",
-        input_schema = types.GetRecommendationsInput,
-        output_schema = types.GetRecommendationsOutput,
+        input_schema = schemas.GetRecommendationsInput,
+        output_schema = schemas.GetRecommendationsOutput,
         http_method = "GET",
         http_path = "/assistants/{assistantId}/sessions/{sessionId}/recommendations",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:getSession(input, options)
     return self:invokeOperation(input, {
         name = "GetSession",
-        input_schema = types.GetSessionInput,
-        output_schema = types.GetSessionOutput,
+        input_schema = schemas.GetSessionInput,
+        output_schema = schemas.GetSessionOutput,
         http_method = "GET",
         http_path = "/assistants/{assistantId}/sessions/{sessionId}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listAssistantAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListAssistantAssociations",
-        input_schema = types.ListAssistantAssociationsInput,
-        output_schema = types.ListAssistantAssociationsOutput,
+        input_schema = schemas.ListAssistantAssociationsInput,
+        output_schema = schemas.ListAssistantAssociationsOutput,
         http_method = "GET",
         http_path = "/assistants/{assistantId}/associations",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listAssistants(input, options)
     return self:invokeOperation(input, {
         name = "ListAssistants",
-        input_schema = types.ListAssistantsInput,
-        output_schema = types.ListAssistantsOutput,
+        input_schema = schemas.ListAssistantsInput,
+        output_schema = schemas.ListAssistantsOutput,
         http_method = "GET",
         http_path = "/assistants",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listContents(input, options)
     return self:invokeOperation(input, {
         name = "ListContents",
-        input_schema = types.ListContentsInput,
-        output_schema = types.ListContentsOutput,
+        input_schema = schemas.ListContentsInput,
+        output_schema = schemas.ListContentsOutput,
         http_method = "GET",
         http_path = "/knowledgeBases/{knowledgeBaseId}/contents",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listImportJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListImportJobs",
-        input_schema = types.ListImportJobsInput,
-        output_schema = types.ListImportJobsOutput,
+        input_schema = schemas.ListImportJobsInput,
+        output_schema = schemas.ListImportJobsOutput,
         http_method = "GET",
         http_path = "/knowledgeBases/{knowledgeBaseId}/importJobs",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listKnowledgeBases(input, options)
     return self:invokeOperation(input, {
         name = "ListKnowledgeBases",
-        input_schema = types.ListKnowledgeBasesInput,
-        output_schema = types.ListKnowledgeBasesOutput,
+        input_schema = schemas.ListKnowledgeBasesInput,
+        output_schema = schemas.ListKnowledgeBasesOutput,
         http_method = "GET",
         http_path = "/knowledgeBases",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listQuickResponses(input, options)
     return self:invokeOperation(input, {
         name = "ListQuickResponses",
-        input_schema = types.ListQuickResponsesInput,
-        output_schema = types.ListQuickResponsesOutput,
+        input_schema = schemas.ListQuickResponsesInput,
+        output_schema = schemas.ListQuickResponsesOutput,
         http_method = "GET",
         http_path = "/knowledgeBases/{knowledgeBaseId}/quickResponses",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:notifyRecommendationsReceived(input, options)
     return self:invokeOperation(input, {
         name = "NotifyRecommendationsReceived",
-        input_schema = types.NotifyRecommendationsReceivedInput,
-        output_schema = types.NotifyRecommendationsReceivedOutput,
+        input_schema = schemas.NotifyRecommendationsReceivedInput,
+        output_schema = schemas.NotifyRecommendationsReceivedOutput,
         http_method = "POST",
         http_path = "/assistants/{assistantId}/sessions/{sessionId}/recommendations/notify",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:queryAssistant(input, options)
     return self:invokeOperation(input, {
         name = "QueryAssistant",
-        input_schema = types.QueryAssistantInput,
-        output_schema = types.QueryAssistantOutput,
+        input_schema = schemas.QueryAssistantInput,
+        output_schema = schemas.QueryAssistantOutput,
         http_method = "POST",
         http_path = "/assistants/{assistantId}/query",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:removeKnowledgeBaseTemplateUri(input, options)
     return self:invokeOperation(input, {
         name = "RemoveKnowledgeBaseTemplateUri",
-        input_schema = types.RemoveKnowledgeBaseTemplateUriInput,
-        output_schema = types.RemoveKnowledgeBaseTemplateUriOutput,
+        input_schema = schemas.RemoveKnowledgeBaseTemplateUriInput,
+        output_schema = schemas.RemoveKnowledgeBaseTemplateUriOutput,
         http_method = "DELETE",
         http_path = "/knowledgeBases/{knowledgeBaseId}/templateUri",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:searchContent(input, options)
     return self:invokeOperation(input, {
         name = "SearchContent",
-        input_schema = types.SearchContentInput,
-        output_schema = types.SearchContentOutput,
+        input_schema = schemas.SearchContentInput,
+        output_schema = schemas.SearchContentOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/search",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:searchQuickResponses(input, options)
     return self:invokeOperation(input, {
         name = "SearchQuickResponses",
-        input_schema = types.SearchQuickResponsesInput,
-        output_schema = types.SearchQuickResponsesOutput,
+        input_schema = schemas.SearchQuickResponsesInput,
+        output_schema = schemas.SearchQuickResponsesOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/search/quickResponses",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:searchSessions(input, options)
     return self:invokeOperation(input, {
         name = "SearchSessions",
-        input_schema = types.SearchSessionsInput,
-        output_schema = types.SearchSessionsOutput,
+        input_schema = schemas.SearchSessionsInput,
+        output_schema = schemas.SearchSessionsOutput,
         http_method = "POST",
         http_path = "/assistants/{assistantId}/searchSessions",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:startContentUpload(input, options)
     return self:invokeOperation(input, {
         name = "StartContentUpload",
-        input_schema = types.StartContentUploadInput,
-        output_schema = types.StartContentUploadOutput,
+        input_schema = schemas.StartContentUploadInput,
+        output_schema = schemas.StartContentUploadOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/upload",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:startImportJob(input, options)
     return self:invokeOperation(input, {
         name = "StartImportJob",
-        input_schema = types.StartImportJobInput,
-        output_schema = types.StartImportJobOutput,
+        input_schema = schemas.StartImportJobInput,
+        output_schema = schemas.StartImportJobOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/importJobs",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:updateContent(input, options)
     return self:invokeOperation(input, {
         name = "UpdateContent",
-        input_schema = types.UpdateContentInput,
-        output_schema = types.UpdateContentOutput,
+        input_schema = schemas.UpdateContentInput,
+        output_schema = schemas.UpdateContentOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/contents/{contentId}",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:updateKnowledgeBaseTemplateUri(input, options)
     return self:invokeOperation(input, {
         name = "UpdateKnowledgeBaseTemplateUri",
-        input_schema = types.UpdateKnowledgeBaseTemplateUriInput,
-        output_schema = types.UpdateKnowledgeBaseTemplateUriOutput,
+        input_schema = schemas.UpdateKnowledgeBaseTemplateUriInput,
+        output_schema = schemas.UpdateKnowledgeBaseTemplateUriOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/templateUri",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:updateQuickResponse(input, options)
     return self:invokeOperation(input, {
         name = "UpdateQuickResponse",
-        input_schema = types.UpdateQuickResponseInput,
-        output_schema = types.UpdateQuickResponseOutput,
+        input_schema = schemas.UpdateQuickResponseInput,
+        output_schema = schemas.UpdateQuickResponseOutput,
         http_method = "POST",
         http_path = "/knowledgeBases/{knowledgeBaseId}/quickResponses/{quickResponseId}",
         effective_auth_schemes = {

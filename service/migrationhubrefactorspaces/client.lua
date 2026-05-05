@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("migrationhubrefactorspaces.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("migrationhubrefactorspaces.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("migrationhubrefactorspaces.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createApplication(input, options)
     return self:invokeOperation(input, {
         name = "CreateApplication",
-        input_schema = types.CreateApplicationInput,
-        output_schema = types.CreateApplicationOutput,
+        input_schema = schemas.CreateApplicationInput,
+        output_schema = schemas.CreateApplicationOutput,
         http_method = "POST",
         http_path = "/environments/{EnvironmentIdentifier}/applications",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "CreateEnvironment",
-        input_schema = types.CreateEnvironmentInput,
-        output_schema = types.CreateEnvironmentOutput,
+        input_schema = schemas.CreateEnvironmentInput,
+        output_schema = schemas.CreateEnvironmentOutput,
         http_method = "POST",
         http_path = "/environments",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createRoute(input, options)
     return self:invokeOperation(input, {
         name = "CreateRoute",
-        input_schema = types.CreateRouteInput,
-        output_schema = types.CreateRouteOutput,
+        input_schema = schemas.CreateRouteInput,
+        output_schema = schemas.CreateRouteOutput,
         http_method = "POST",
         http_path = "/environments/{EnvironmentIdentifier}/applications/{ApplicationIdentifier}/routes",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createService(input, options)
     return self:invokeOperation(input, {
         name = "CreateService",
-        input_schema = types.CreateServiceInput,
-        output_schema = types.CreateServiceOutput,
+        input_schema = schemas.CreateServiceInput,
+        output_schema = schemas.CreateServiceOutput,
         http_method = "POST",
         http_path = "/environments/{EnvironmentIdentifier}/applications/{ApplicationIdentifier}/services",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteApplication(input, options)
     return self:invokeOperation(input, {
         name = "DeleteApplication",
-        input_schema = types.DeleteApplicationInput,
-        output_schema = types.DeleteApplicationOutput,
+        input_schema = schemas.DeleteApplicationInput,
+        output_schema = schemas.DeleteApplicationOutput,
         http_method = "DELETE",
         http_path = "/environments/{EnvironmentIdentifier}/applications/{ApplicationIdentifier}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEnvironment",
-        input_schema = types.DeleteEnvironmentInput,
-        output_schema = types.DeleteEnvironmentOutput,
+        input_schema = schemas.DeleteEnvironmentInput,
+        output_schema = schemas.DeleteEnvironmentOutput,
         http_method = "DELETE",
         http_path = "/environments/{EnvironmentIdentifier}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourcePolicy",
-        input_schema = types.DeleteResourcePolicyInput,
-        output_schema = types.DeleteResourcePolicyOutput,
+        input_schema = schemas.DeleteResourcePolicyInput,
+        output_schema = schemas.DeleteResourcePolicyOutput,
         http_method = "DELETE",
         http_path = "/resourcepolicy/{Identifier}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteRoute(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRoute",
-        input_schema = types.DeleteRouteInput,
-        output_schema = types.DeleteRouteOutput,
+        input_schema = schemas.DeleteRouteInput,
+        output_schema = schemas.DeleteRouteOutput,
         http_method = "DELETE",
         http_path = "/environments/{EnvironmentIdentifier}/applications/{ApplicationIdentifier}/routes/{RouteIdentifier}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteService(input, options)
     return self:invokeOperation(input, {
         name = "DeleteService",
-        input_schema = types.DeleteServiceInput,
-        output_schema = types.DeleteServiceOutput,
+        input_schema = schemas.DeleteServiceInput,
+        output_schema = schemas.DeleteServiceOutput,
         http_method = "DELETE",
         http_path = "/environments/{EnvironmentIdentifier}/applications/{ApplicationIdentifier}/services/{ServiceIdentifier}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getApplication(input, options)
     return self:invokeOperation(input, {
         name = "GetApplication",
-        input_schema = types.GetApplicationInput,
-        output_schema = types.GetApplicationOutput,
+        input_schema = schemas.GetApplicationInput,
+        output_schema = schemas.GetApplicationOutput,
         http_method = "GET",
         http_path = "/environments/{EnvironmentIdentifier}/applications/{ApplicationIdentifier}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "GetEnvironment",
-        input_schema = types.GetEnvironmentInput,
-        output_schema = types.GetEnvironmentOutput,
+        input_schema = schemas.GetEnvironmentInput,
+        output_schema = schemas.GetEnvironmentOutput,
         http_method = "GET",
         http_path = "/environments/{EnvironmentIdentifier}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcePolicy",
-        input_schema = types.GetResourcePolicyInput,
-        output_schema = types.GetResourcePolicyOutput,
+        input_schema = schemas.GetResourcePolicyInput,
+        output_schema = schemas.GetResourcePolicyOutput,
         http_method = "GET",
         http_path = "/resourcepolicy/{Identifier}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getRoute(input, options)
     return self:invokeOperation(input, {
         name = "GetRoute",
-        input_schema = types.GetRouteInput,
-        output_schema = types.GetRouteOutput,
+        input_schema = schemas.GetRouteInput,
+        output_schema = schemas.GetRouteOutput,
         http_method = "GET",
         http_path = "/environments/{EnvironmentIdentifier}/applications/{ApplicationIdentifier}/routes/{RouteIdentifier}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getService(input, options)
     return self:invokeOperation(input, {
         name = "GetService",
-        input_schema = types.GetServiceInput,
-        output_schema = types.GetServiceOutput,
+        input_schema = schemas.GetServiceInput,
+        output_schema = schemas.GetServiceOutput,
         http_method = "GET",
         http_path = "/environments/{EnvironmentIdentifier}/applications/{ApplicationIdentifier}/services/{ServiceIdentifier}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listApplications(input, options)
     return self:invokeOperation(input, {
         name = "ListApplications",
-        input_schema = types.ListApplicationsInput,
-        output_schema = types.ListApplicationsOutput,
+        input_schema = schemas.ListApplicationsInput,
+        output_schema = schemas.ListApplicationsOutput,
         http_method = "GET",
         http_path = "/environments/{EnvironmentIdentifier}/applications",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listEnvironments(input, options)
     return self:invokeOperation(input, {
         name = "ListEnvironments",
-        input_schema = types.ListEnvironmentsInput,
-        output_schema = types.ListEnvironmentsOutput,
+        input_schema = schemas.ListEnvironmentsInput,
+        output_schema = schemas.ListEnvironmentsOutput,
         http_method = "GET",
         http_path = "/environments",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listEnvironmentVpcs(input, options)
     return self:invokeOperation(input, {
         name = "ListEnvironmentVpcs",
-        input_schema = types.ListEnvironmentVpcsInput,
-        output_schema = types.ListEnvironmentVpcsOutput,
+        input_schema = schemas.ListEnvironmentVpcsInput,
+        output_schema = schemas.ListEnvironmentVpcsOutput,
         http_method = "GET",
         http_path = "/environments/{EnvironmentIdentifier}/vpcs",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listRoutes(input, options)
     return self:invokeOperation(input, {
         name = "ListRoutes",
-        input_schema = types.ListRoutesInput,
-        output_schema = types.ListRoutesOutput,
+        input_schema = schemas.ListRoutesInput,
+        output_schema = schemas.ListRoutesOutput,
         http_method = "GET",
         http_path = "/environments/{EnvironmentIdentifier}/applications/{ApplicationIdentifier}/routes",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listServices(input, options)
     return self:invokeOperation(input, {
         name = "ListServices",
-        input_schema = types.ListServicesInput,
-        output_schema = types.ListServicesOutput,
+        input_schema = schemas.ListServicesInput,
+        output_schema = schemas.ListServicesOutput,
         http_method = "GET",
         http_path = "/environments/{EnvironmentIdentifier}/applications/{ApplicationIdentifier}/services",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:putResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutResourcePolicy",
-        input_schema = types.PutResourcePolicyInput,
-        output_schema = types.PutResourcePolicyOutput,
+        input_schema = schemas.PutResourcePolicyInput,
+        output_schema = schemas.PutResourcePolicyOutput,
         http_method = "PUT",
         http_path = "/resourcepolicy",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:updateRoute(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRoute",
-        input_schema = types.UpdateRouteInput,
-        output_schema = types.UpdateRouteOutput,
+        input_schema = schemas.UpdateRouteInput,
+        output_schema = schemas.UpdateRouteOutput,
         http_method = "PATCH",
         http_path = "/environments/{EnvironmentIdentifier}/applications/{ApplicationIdentifier}/routes/{RouteIdentifier}",
         effective_auth_schemes = {

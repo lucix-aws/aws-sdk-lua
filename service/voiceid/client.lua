@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("voiceid.endpoint_rules")
+local schemas = require("voiceid.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("voiceid.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateFraudster(input, options)
     return self:invokeOperation(input, {
         name = "AssociateFraudster",
-        input_schema = types.AssociateFraudsterInput,
-        output_schema = types.AssociateFraudsterOutput,
+        input_schema = schemas.AssociateFraudsterInput,
+        output_schema = schemas.AssociateFraudsterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createDomain(input, options)
     return self:invokeOperation(input, {
         name = "CreateDomain",
-        input_schema = types.CreateDomainInput,
-        output_schema = types.CreateDomainOutput,
+        input_schema = schemas.CreateDomainInput,
+        output_schema = schemas.CreateDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createWatchlist(input, options)
     return self:invokeOperation(input, {
         name = "CreateWatchlist",
-        input_schema = types.CreateWatchlistInput,
-        output_schema = types.CreateWatchlistOutput,
+        input_schema = schemas.CreateWatchlistInput,
+        output_schema = schemas.CreateWatchlistOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteDomain(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDomain",
-        input_schema = types.DeleteDomainInput,
-        output_schema = types.DeleteDomainOutput,
+        input_schema = schemas.DeleteDomainInput,
+        output_schema = schemas.DeleteDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteFraudster(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFraudster",
-        input_schema = types.DeleteFraudsterInput,
-        output_schema = types.DeleteFraudsterOutput,
+        input_schema = schemas.DeleteFraudsterInput,
+        output_schema = schemas.DeleteFraudsterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteSpeaker(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSpeaker",
-        input_schema = types.DeleteSpeakerInput,
-        output_schema = types.DeleteSpeakerOutput,
+        input_schema = schemas.DeleteSpeakerInput,
+        output_schema = schemas.DeleteSpeakerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteWatchlist(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWatchlist",
-        input_schema = types.DeleteWatchlistInput,
-        output_schema = types.DeleteWatchlistOutput,
+        input_schema = schemas.DeleteWatchlistInput,
+        output_schema = schemas.DeleteWatchlistOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:describeDomain(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDomain",
-        input_schema = types.DescribeDomainInput,
-        output_schema = types.DescribeDomainOutput,
+        input_schema = schemas.DescribeDomainInput,
+        output_schema = schemas.DescribeDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:describeFraudster(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFraudster",
-        input_schema = types.DescribeFraudsterInput,
-        output_schema = types.DescribeFraudsterOutput,
+        input_schema = schemas.DescribeFraudsterInput,
+        output_schema = schemas.DescribeFraudsterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:describeFraudsterRegistrationJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFraudsterRegistrationJob",
-        input_schema = types.DescribeFraudsterRegistrationJobInput,
-        output_schema = types.DescribeFraudsterRegistrationJobOutput,
+        input_schema = schemas.DescribeFraudsterRegistrationJobInput,
+        output_schema = schemas.DescribeFraudsterRegistrationJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:describeSpeaker(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSpeaker",
-        input_schema = types.DescribeSpeakerInput,
-        output_schema = types.DescribeSpeakerOutput,
+        input_schema = schemas.DescribeSpeakerInput,
+        output_schema = schemas.DescribeSpeakerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:describeSpeakerEnrollmentJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSpeakerEnrollmentJob",
-        input_schema = types.DescribeSpeakerEnrollmentJobInput,
-        output_schema = types.DescribeSpeakerEnrollmentJobOutput,
+        input_schema = schemas.DescribeSpeakerEnrollmentJobInput,
+        output_schema = schemas.DescribeSpeakerEnrollmentJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:describeWatchlist(input, options)
     return self:invokeOperation(input, {
         name = "DescribeWatchlist",
-        input_schema = types.DescribeWatchlistInput,
-        output_schema = types.DescribeWatchlistOutput,
+        input_schema = schemas.DescribeWatchlistInput,
+        output_schema = schemas.DescribeWatchlistOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:disassociateFraudster(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateFraudster",
-        input_schema = types.DisassociateFraudsterInput,
-        output_schema = types.DisassociateFraudsterOutput,
+        input_schema = schemas.DisassociateFraudsterInput,
+        output_schema = schemas.DisassociateFraudsterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:evaluateSession(input, options)
     return self:invokeOperation(input, {
         name = "EvaluateSession",
-        input_schema = types.EvaluateSessionInput,
-        output_schema = types.EvaluateSessionOutput,
+        input_schema = schemas.EvaluateSessionInput,
+        output_schema = schemas.EvaluateSessionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listDomains(input, options)
     return self:invokeOperation(input, {
         name = "ListDomains",
-        input_schema = types.ListDomainsInput,
-        output_schema = types.ListDomainsOutput,
+        input_schema = schemas.ListDomainsInput,
+        output_schema = schemas.ListDomainsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listFraudsterRegistrationJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListFraudsterRegistrationJobs",
-        input_schema = types.ListFraudsterRegistrationJobsInput,
-        output_schema = types.ListFraudsterRegistrationJobsOutput,
+        input_schema = schemas.ListFraudsterRegistrationJobsInput,
+        output_schema = schemas.ListFraudsterRegistrationJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listFraudsters(input, options)
     return self:invokeOperation(input, {
         name = "ListFraudsters",
-        input_schema = types.ListFraudstersInput,
-        output_schema = types.ListFraudstersOutput,
+        input_schema = schemas.ListFraudstersInput,
+        output_schema = schemas.ListFraudstersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listSpeakerEnrollmentJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListSpeakerEnrollmentJobs",
-        input_schema = types.ListSpeakerEnrollmentJobsInput,
-        output_schema = types.ListSpeakerEnrollmentJobsOutput,
+        input_schema = schemas.ListSpeakerEnrollmentJobsInput,
+        output_schema = schemas.ListSpeakerEnrollmentJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listSpeakers(input, options)
     return self:invokeOperation(input, {
         name = "ListSpeakers",
-        input_schema = types.ListSpeakersInput,
-        output_schema = types.ListSpeakersOutput,
+        input_schema = schemas.ListSpeakersInput,
+        output_schema = schemas.ListSpeakersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listWatchlists(input, options)
     return self:invokeOperation(input, {
         name = "ListWatchlists",
-        input_schema = types.ListWatchlistsInput,
-        output_schema = types.ListWatchlistsOutput,
+        input_schema = schemas.ListWatchlistsInput,
+        output_schema = schemas.ListWatchlistsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:optOutSpeaker(input, options)
     return self:invokeOperation(input, {
         name = "OptOutSpeaker",
-        input_schema = types.OptOutSpeakerInput,
-        output_schema = types.OptOutSpeakerOutput,
+        input_schema = schemas.OptOutSpeakerInput,
+        output_schema = schemas.OptOutSpeakerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:startFraudsterRegistrationJob(input, options)
     return self:invokeOperation(input, {
         name = "StartFraudsterRegistrationJob",
-        input_schema = types.StartFraudsterRegistrationJobInput,
-        output_schema = types.StartFraudsterRegistrationJobOutput,
+        input_schema = schemas.StartFraudsterRegistrationJobInput,
+        output_schema = schemas.StartFraudsterRegistrationJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:startSpeakerEnrollmentJob(input, options)
     return self:invokeOperation(input, {
         name = "StartSpeakerEnrollmentJob",
-        input_schema = types.StartSpeakerEnrollmentJobInput,
-        output_schema = types.StartSpeakerEnrollmentJobOutput,
+        input_schema = schemas.StartSpeakerEnrollmentJobInput,
+        output_schema = schemas.StartSpeakerEnrollmentJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:updateDomain(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDomain",
-        input_schema = types.UpdateDomainInput,
-        output_schema = types.UpdateDomainOutput,
+        input_schema = schemas.UpdateDomainInput,
+        output_schema = schemas.UpdateDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:updateWatchlist(input, options)
     return self:invokeOperation(input, {
         name = "UpdateWatchlist",
-        input_schema = types.UpdateWatchlistInput,
-        output_schema = types.UpdateWatchlistOutput,
+        input_schema = schemas.UpdateWatchlistInput,
+        output_schema = schemas.UpdateWatchlistOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

@@ -1,0 +1,1650 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.redshiftdata"
+
+local M = {}
+
+M.ActiveSessionsExceededException = schema.new({
+    id = id.from(_N, "ActiveSessionsExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ActiveSessionsExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ActiveStatementsExceededException = schema.new({
+    id = id.from(_N, "ActiveStatementsExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ActiveStatementsExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchExecuteStatementException = schema.new({
+    id = id.from(_N, "BatchExecuteStatementException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "BatchExecuteStatementException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StatementId = schema.new({
+            id = id.from(_N, "BatchExecuteStatementException", "StatementId"),
+            type = "string",
+            name = "StatementId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SqlParameter = schema.new({
+    id = id.from(_N, "SqlParameter"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "SqlParameter", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "SqlParameter", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchExecuteStatementInput = schema.new({
+    id = id.from(_N, "BatchExecuteStatementInput"),
+    type = "structure",
+    members = {
+        Sqls = schema.new({
+            id = id.from(_N, "BatchExecuteStatementInput", "Sqls"),
+            type = "list",
+            name = "Sqls",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClusterIdentifier = schema.new({
+            id = id.from(_N, "BatchExecuteStatementInput", "ClusterIdentifier"),
+            type = "string",
+            name = "ClusterIdentifier",
+            target_id = prelude.String.id,
+        }),
+        SecretArn = schema.new({
+            id = id.from(_N, "BatchExecuteStatementInput", "SecretArn"),
+            type = "string",
+            name = "SecretArn",
+            target_id = prelude.String.id,
+        }),
+        DbUser = schema.new({
+            id = id.from(_N, "BatchExecuteStatementInput", "DbUser"),
+            type = "string",
+            name = "DbUser",
+            target_id = prelude.String.id,
+        }),
+        Database = schema.new({
+            id = id.from(_N, "BatchExecuteStatementInput", "Database"),
+            type = "string",
+            name = "Database",
+            target_id = prelude.String.id,
+        }),
+        WithEvent = schema.new({
+            id = id.from(_N, "BatchExecuteStatementInput", "WithEvent"),
+            type = "boolean",
+            name = "WithEvent",
+            target_id = prelude.Boolean.id,
+        }),
+        StatementName = schema.new({
+            id = id.from(_N, "BatchExecuteStatementInput", "StatementName"),
+            type = "string",
+            name = "StatementName",
+            target_id = prelude.String.id,
+        }),
+        Parameters = schema.new({
+            id = id.from(_N, "BatchExecuteStatementInput", "Parameters"),
+            type = "list",
+            name = "Parameters",
+            target_id = prelude.Document.id,
+            list_member = M.SqlParameter,
+        }),
+        WorkgroupName = schema.new({
+            id = id.from(_N, "BatchExecuteStatementInput", "WorkgroupName"),
+            type = "string",
+            name = "WorkgroupName",
+            target_id = prelude.String.id,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "BatchExecuteStatementInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        ResultFormat = schema.new({
+            id = id.from(_N, "BatchExecuteStatementInput", "ResultFormat"),
+            type = "string",
+            name = "ResultFormat",
+            target_id = prelude.String.id,
+        }),
+        SessionKeepAliveSeconds = schema.new({
+            id = id.from(_N, "BatchExecuteStatementInput", "SessionKeepAliveSeconds"),
+            type = "integer",
+            name = "SessionKeepAliveSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        SessionId = schema.new({
+            id = id.from(_N, "BatchExecuteStatementInput", "SessionId"),
+            type = "string",
+            name = "SessionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchExecuteStatementOutput = schema.new({
+    id = id.from(_N, "BatchExecuteStatementOutput"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "BatchExecuteStatementOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "BatchExecuteStatementOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        ClusterIdentifier = schema.new({
+            id = id.from(_N, "BatchExecuteStatementOutput", "ClusterIdentifier"),
+            type = "string",
+            name = "ClusterIdentifier",
+            target_id = prelude.String.id,
+        }),
+        DbUser = schema.new({
+            id = id.from(_N, "BatchExecuteStatementOutput", "DbUser"),
+            type = "string",
+            name = "DbUser",
+            target_id = prelude.String.id,
+        }),
+        DbGroups = schema.new({
+            id = id.from(_N, "BatchExecuteStatementOutput", "DbGroups"),
+            type = "list",
+            name = "DbGroups",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Database = schema.new({
+            id = id.from(_N, "BatchExecuteStatementOutput", "Database"),
+            type = "string",
+            name = "Database",
+            target_id = prelude.String.id,
+        }),
+        SecretArn = schema.new({
+            id = id.from(_N, "BatchExecuteStatementOutput", "SecretArn"),
+            type = "string",
+            name = "SecretArn",
+            target_id = prelude.String.id,
+        }),
+        WorkgroupName = schema.new({
+            id = id.from(_N, "BatchExecuteStatementOutput", "WorkgroupName"),
+            type = "string",
+            name = "WorkgroupName",
+            target_id = prelude.String.id,
+        }),
+        SessionId = schema.new({
+            id = id.from(_N, "BatchExecuteStatementOutput", "SessionId"),
+            type = "string",
+            name = "SessionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InternalServerException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceId = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "ResourceId"),
+            type = "string",
+            name = "ResourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ValidationException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CancelStatementInput = schema.new({
+    id = id.from(_N, "CancelStatementInput"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "CancelStatementInput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CancelStatementOutput = schema.new({
+    id = id.from(_N, "CancelStatementOutput"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "CancelStatementOutput", "Status"),
+            type = "boolean",
+            name = "Status",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.DatabaseConnectionException = schema.new({
+    id = id.from(_N, "DatabaseConnectionException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "DatabaseConnectionException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.QueryTimeoutException = schema.new({
+    id = id.from(_N, "QueryTimeoutException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "QueryTimeoutException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ColumnMetadata = schema.new({
+    id = id.from(_N, "ColumnMetadata"),
+    type = "structure",
+    members = {
+        isCaseSensitive = schema.new({
+            id = id.from(_N, "ColumnMetadata", "isCaseSensitive"),
+            type = "boolean",
+            name = "isCaseSensitive",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        isCurrency = schema.new({
+            id = id.from(_N, "ColumnMetadata", "isCurrency"),
+            type = "boolean",
+            name = "isCurrency",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        isSigned = schema.new({
+            id = id.from(_N, "ColumnMetadata", "isSigned"),
+            type = "boolean",
+            name = "isSigned",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        label = schema.new({
+            id = id.from(_N, "ColumnMetadata", "label"),
+            type = "string",
+            name = "label",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "ColumnMetadata", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        nullable = schema.new({
+            id = id.from(_N, "ColumnMetadata", "nullable"),
+            type = "integer",
+            name = "nullable",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        precision = schema.new({
+            id = id.from(_N, "ColumnMetadata", "precision"),
+            type = "integer",
+            name = "precision",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        scale = schema.new({
+            id = id.from(_N, "ColumnMetadata", "scale"),
+            type = "integer",
+            name = "scale",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        schemaName = schema.new({
+            id = id.from(_N, "ColumnMetadata", "schemaName"),
+            type = "string",
+            name = "schemaName",
+            target_id = prelude.String.id,
+        }),
+        tableName = schema.new({
+            id = id.from(_N, "ColumnMetadata", "tableName"),
+            type = "string",
+            name = "tableName",
+            target_id = prelude.String.id,
+        }),
+        typeName = schema.new({
+            id = id.from(_N, "ColumnMetadata", "typeName"),
+            type = "string",
+            name = "typeName",
+            target_id = prelude.String.id,
+        }),
+        length = schema.new({
+            id = id.from(_N, "ColumnMetadata", "length"),
+            type = "integer",
+            name = "length",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        columnDefault = schema.new({
+            id = id.from(_N, "ColumnMetadata", "columnDefault"),
+            type = "string",
+            name = "columnDefault",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeStatementInput = schema.new({
+    id = id.from(_N, "DescribeStatementInput"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "DescribeStatementInput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SubStatementData = schema.new({
+    id = id.from(_N, "SubStatementData"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "SubStatementData", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Duration = schema.new({
+            id = id.from(_N, "SubStatementData", "Duration"),
+            type = "long",
+            name = "Duration",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        Error = schema.new({
+            id = id.from(_N, "SubStatementData", "Error"),
+            type = "string",
+            name = "Error",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "SubStatementData", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "SubStatementData", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "SubStatementData", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        QueryString = schema.new({
+            id = id.from(_N, "SubStatementData", "QueryString"),
+            type = "string",
+            name = "QueryString",
+            target_id = prelude.String.id,
+        }),
+        ResultRows = schema.new({
+            id = id.from(_N, "SubStatementData", "ResultRows"),
+            type = "long",
+            name = "ResultRows",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        ResultSize = schema.new({
+            id = id.from(_N, "SubStatementData", "ResultSize"),
+            type = "long",
+            name = "ResultSize",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        RedshiftQueryId = schema.new({
+            id = id.from(_N, "SubStatementData", "RedshiftQueryId"),
+            type = "long",
+            name = "RedshiftQueryId",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        HasResultSet = schema.new({
+            id = id.from(_N, "SubStatementData", "HasResultSet"),
+            type = "boolean",
+            name = "HasResultSet",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.DescribeStatementOutput = schema.new({
+    id = id.from(_N, "DescribeStatementOutput"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "DescribeStatementOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SecretArn = schema.new({
+            id = id.from(_N, "DescribeStatementOutput", "SecretArn"),
+            type = "string",
+            name = "SecretArn",
+            target_id = prelude.String.id,
+        }),
+        DbUser = schema.new({
+            id = id.from(_N, "DescribeStatementOutput", "DbUser"),
+            type = "string",
+            name = "DbUser",
+            target_id = prelude.String.id,
+        }),
+        Database = schema.new({
+            id = id.from(_N, "DescribeStatementOutput", "Database"),
+            type = "string",
+            name = "Database",
+            target_id = prelude.String.id,
+        }),
+        ClusterIdentifier = schema.new({
+            id = id.from(_N, "DescribeStatementOutput", "ClusterIdentifier"),
+            type = "string",
+            name = "ClusterIdentifier",
+            target_id = prelude.String.id,
+        }),
+        Duration = schema.new({
+            id = id.from(_N, "DescribeStatementOutput", "Duration"),
+            type = "long",
+            name = "Duration",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        Error = schema.new({
+            id = id.from(_N, "DescribeStatementOutput", "Error"),
+            type = "string",
+            name = "Error",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "DescribeStatementOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "DescribeStatementOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "DescribeStatementOutput", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        RedshiftPid = schema.new({
+            id = id.from(_N, "DescribeStatementOutput", "RedshiftPid"),
+            type = "long",
+            name = "RedshiftPid",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        HasResultSet = schema.new({
+            id = id.from(_N, "DescribeStatementOutput", "HasResultSet"),
+            type = "boolean",
+            name = "HasResultSet",
+            target_id = prelude.Boolean.id,
+        }),
+        QueryString = schema.new({
+            id = id.from(_N, "DescribeStatementOutput", "QueryString"),
+            type = "string",
+            name = "QueryString",
+            target_id = prelude.String.id,
+        }),
+        ResultRows = schema.new({
+            id = id.from(_N, "DescribeStatementOutput", "ResultRows"),
+            type = "long",
+            name = "ResultRows",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        ResultSize = schema.new({
+            id = id.from(_N, "DescribeStatementOutput", "ResultSize"),
+            type = "long",
+            name = "ResultSize",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        RedshiftQueryId = schema.new({
+            id = id.from(_N, "DescribeStatementOutput", "RedshiftQueryId"),
+            type = "long",
+            name = "RedshiftQueryId",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        QueryParameters = schema.new({
+            id = id.from(_N, "DescribeStatementOutput", "QueryParameters"),
+            type = "list",
+            name = "QueryParameters",
+            target_id = prelude.Document.id,
+            list_member = M.SqlParameter,
+        }),
+        SubStatements = schema.new({
+            id = id.from(_N, "DescribeStatementOutput", "SubStatements"),
+            type = "list",
+            name = "SubStatements",
+            target_id = prelude.Document.id,
+            list_member = M.SubStatementData,
+        }),
+        WorkgroupName = schema.new({
+            id = id.from(_N, "DescribeStatementOutput", "WorkgroupName"),
+            type = "string",
+            name = "WorkgroupName",
+            target_id = prelude.String.id,
+        }),
+        ResultFormat = schema.new({
+            id = id.from(_N, "DescribeStatementOutput", "ResultFormat"),
+            type = "string",
+            name = "ResultFormat",
+            target_id = prelude.String.id,
+        }),
+        SessionId = schema.new({
+            id = id.from(_N, "DescribeStatementOutput", "SessionId"),
+            type = "string",
+            name = "SessionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeTableInput = schema.new({
+    id = id.from(_N, "DescribeTableInput"),
+    type = "structure",
+    members = {
+        ClusterIdentifier = schema.new({
+            id = id.from(_N, "DescribeTableInput", "ClusterIdentifier"),
+            type = "string",
+            name = "ClusterIdentifier",
+            target_id = prelude.String.id,
+        }),
+        SecretArn = schema.new({
+            id = id.from(_N, "DescribeTableInput", "SecretArn"),
+            type = "string",
+            name = "SecretArn",
+            target_id = prelude.String.id,
+        }),
+        DbUser = schema.new({
+            id = id.from(_N, "DescribeTableInput", "DbUser"),
+            type = "string",
+            name = "DbUser",
+            target_id = prelude.String.id,
+        }),
+        Database = schema.new({
+            id = id.from(_N, "DescribeTableInput", "Database"),
+            type = "string",
+            name = "Database",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ConnectedDatabase = schema.new({
+            id = id.from(_N, "DescribeTableInput", "ConnectedDatabase"),
+            type = "string",
+            name = "ConnectedDatabase",
+            target_id = prelude.String.id,
+        }),
+        Schema = schema.new({
+            id = id.from(_N, "DescribeTableInput", "Schema"),
+            type = "string",
+            name = "Schema",
+            target_id = prelude.String.id,
+        }),
+        Table = schema.new({
+            id = id.from(_N, "DescribeTableInput", "Table"),
+            type = "string",
+            name = "Table",
+            target_id = prelude.String.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeTableInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "DescribeTableInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        WorkgroupName = schema.new({
+            id = id.from(_N, "DescribeTableInput", "WorkgroupName"),
+            type = "string",
+            name = "WorkgroupName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeTableOutput = schema.new({
+    id = id.from(_N, "DescribeTableOutput"),
+    type = "structure",
+    members = {
+        TableName = schema.new({
+            id = id.from(_N, "DescribeTableOutput", "TableName"),
+            type = "string",
+            name = "TableName",
+            target_id = prelude.String.id,
+        }),
+        ColumnList = schema.new({
+            id = id.from(_N, "DescribeTableOutput", "ColumnList"),
+            type = "list",
+            name = "ColumnList",
+            target_id = prelude.Document.id,
+            list_member = M.ColumnMetadata,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeTableOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ExecuteStatementException = schema.new({
+    id = id.from(_N, "ExecuteStatementException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ExecuteStatementException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StatementId = schema.new({
+            id = id.from(_N, "ExecuteStatementException", "StatementId"),
+            type = "string",
+            name = "StatementId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ExecuteStatementInput = schema.new({
+    id = id.from(_N, "ExecuteStatementInput"),
+    type = "structure",
+    members = {
+        Sql = schema.new({
+            id = id.from(_N, "ExecuteStatementInput", "Sql"),
+            type = "string",
+            name = "Sql",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClusterIdentifier = schema.new({
+            id = id.from(_N, "ExecuteStatementInput", "ClusterIdentifier"),
+            type = "string",
+            name = "ClusterIdentifier",
+            target_id = prelude.String.id,
+        }),
+        SecretArn = schema.new({
+            id = id.from(_N, "ExecuteStatementInput", "SecretArn"),
+            type = "string",
+            name = "SecretArn",
+            target_id = prelude.String.id,
+        }),
+        DbUser = schema.new({
+            id = id.from(_N, "ExecuteStatementInput", "DbUser"),
+            type = "string",
+            name = "DbUser",
+            target_id = prelude.String.id,
+        }),
+        Database = schema.new({
+            id = id.from(_N, "ExecuteStatementInput", "Database"),
+            type = "string",
+            name = "Database",
+            target_id = prelude.String.id,
+        }),
+        WithEvent = schema.new({
+            id = id.from(_N, "ExecuteStatementInput", "WithEvent"),
+            type = "boolean",
+            name = "WithEvent",
+            target_id = prelude.Boolean.id,
+        }),
+        StatementName = schema.new({
+            id = id.from(_N, "ExecuteStatementInput", "StatementName"),
+            type = "string",
+            name = "StatementName",
+            target_id = prelude.String.id,
+        }),
+        Parameters = schema.new({
+            id = id.from(_N, "ExecuteStatementInput", "Parameters"),
+            type = "list",
+            name = "Parameters",
+            target_id = prelude.Document.id,
+            list_member = M.SqlParameter,
+        }),
+        WorkgroupName = schema.new({
+            id = id.from(_N, "ExecuteStatementInput", "WorkgroupName"),
+            type = "string",
+            name = "WorkgroupName",
+            target_id = prelude.String.id,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "ExecuteStatementInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        ResultFormat = schema.new({
+            id = id.from(_N, "ExecuteStatementInput", "ResultFormat"),
+            type = "string",
+            name = "ResultFormat",
+            target_id = prelude.String.id,
+        }),
+        SessionKeepAliveSeconds = schema.new({
+            id = id.from(_N, "ExecuteStatementInput", "SessionKeepAliveSeconds"),
+            type = "integer",
+            name = "SessionKeepAliveSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        SessionId = schema.new({
+            id = id.from(_N, "ExecuteStatementInput", "SessionId"),
+            type = "string",
+            name = "SessionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ExecuteStatementOutput = schema.new({
+    id = id.from(_N, "ExecuteStatementOutput"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "ExecuteStatementOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "ExecuteStatementOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        ClusterIdentifier = schema.new({
+            id = id.from(_N, "ExecuteStatementOutput", "ClusterIdentifier"),
+            type = "string",
+            name = "ClusterIdentifier",
+            target_id = prelude.String.id,
+        }),
+        DbUser = schema.new({
+            id = id.from(_N, "ExecuteStatementOutput", "DbUser"),
+            type = "string",
+            name = "DbUser",
+            target_id = prelude.String.id,
+        }),
+        DbGroups = schema.new({
+            id = id.from(_N, "ExecuteStatementOutput", "DbGroups"),
+            type = "list",
+            name = "DbGroups",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Database = schema.new({
+            id = id.from(_N, "ExecuteStatementOutput", "Database"),
+            type = "string",
+            name = "Database",
+            target_id = prelude.String.id,
+        }),
+        SecretArn = schema.new({
+            id = id.from(_N, "ExecuteStatementOutput", "SecretArn"),
+            type = "string",
+            name = "SecretArn",
+            target_id = prelude.String.id,
+        }),
+        WorkgroupName = schema.new({
+            id = id.from(_N, "ExecuteStatementOutput", "WorkgroupName"),
+            type = "string",
+            name = "WorkgroupName",
+            target_id = prelude.String.id,
+        }),
+        SessionId = schema.new({
+            id = id.from(_N, "ExecuteStatementOutput", "SessionId"),
+            type = "string",
+            name = "SessionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Field = schema.new({
+    id = id.from(_N, "Field"),
+    type = "union",
+    members = {
+        isNull = schema.new({
+            id = id.from(_N, "Field", "isNull"),
+            type = "boolean",
+            name = "isNull",
+            target_id = prelude.Boolean.id,
+        }),
+        booleanValue = schema.new({
+            id = id.from(_N, "Field", "booleanValue"),
+            type = "boolean",
+            name = "booleanValue",
+            target_id = prelude.Boolean.id,
+        }),
+        longValue = schema.new({
+            id = id.from(_N, "Field", "longValue"),
+            type = "long",
+            name = "longValue",
+            target_id = prelude.Long.id,
+        }),
+        doubleValue = schema.new({
+            id = id.from(_N, "Field", "doubleValue"),
+            type = "double",
+            name = "doubleValue",
+            target_id = prelude.Double.id,
+        }),
+        stringValue = schema.new({
+            id = id.from(_N, "Field", "stringValue"),
+            type = "string",
+            name = "stringValue",
+            target_id = prelude.String.id,
+        }),
+        blobValue = schema.new({
+            id = id.from(_N, "Field", "blobValue"),
+            type = "blob",
+            name = "blobValue",
+            target_id = prelude.Blob.id,
+        }),
+    },
+})
+
+M.QueryRecords = schema.new({
+    id = id.from(_N, "QueryRecords"),
+    type = "union",
+    members = {
+        CSVRecords = schema.new({
+            id = id.from(_N, "QueryRecords", "CSVRecords"),
+            type = "string",
+            name = "CSVRecords",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetStatementResultInput = schema.new({
+    id = id.from(_N, "GetStatementResultInput"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "GetStatementResultInput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetStatementResultInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetStatementResultOutput = schema.new({
+    id = id.from(_N, "GetStatementResultOutput"),
+    type = "structure",
+    members = {
+        Records = schema.new({
+            id = id.from(_N, "GetStatementResultOutput", "Records"),
+            type = "list",
+            name = "Records",
+            target_id = prelude.Document.id,
+            list_member = prelude.Document,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ColumnMetadata = schema.new({
+            id = id.from(_N, "GetStatementResultOutput", "ColumnMetadata"),
+            type = "list",
+            name = "ColumnMetadata",
+            target_id = prelude.Document.id,
+            list_member = M.ColumnMetadata,
+        }),
+        TotalNumRows = schema.new({
+            id = id.from(_N, "GetStatementResultOutput", "TotalNumRows"),
+            type = "long",
+            name = "TotalNumRows",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetStatementResultOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetStatementResultV2Input = schema.new({
+    id = id.from(_N, "GetStatementResultV2Input"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "GetStatementResultV2Input", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetStatementResultV2Input", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetStatementResultV2Output = schema.new({
+    id = id.from(_N, "GetStatementResultV2Output"),
+    type = "structure",
+    members = {
+        Records = schema.new({
+            id = id.from(_N, "GetStatementResultV2Output", "Records"),
+            type = "list",
+            name = "Records",
+            target_id = prelude.Document.id,
+            list_member = M.QueryRecords,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ColumnMetadata = schema.new({
+            id = id.from(_N, "GetStatementResultV2Output", "ColumnMetadata"),
+            type = "list",
+            name = "ColumnMetadata",
+            target_id = prelude.Document.id,
+            list_member = M.ColumnMetadata,
+        }),
+        TotalNumRows = schema.new({
+            id = id.from(_N, "GetStatementResultV2Output", "TotalNumRows"),
+            type = "long",
+            name = "TotalNumRows",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        ResultFormat = schema.new({
+            id = id.from(_N, "GetStatementResultV2Output", "ResultFormat"),
+            type = "string",
+            name = "ResultFormat",
+            target_id = prelude.String.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetStatementResultV2Output", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListDatabasesInput = schema.new({
+    id = id.from(_N, "ListDatabasesInput"),
+    type = "structure",
+    members = {
+        ClusterIdentifier = schema.new({
+            id = id.from(_N, "ListDatabasesInput", "ClusterIdentifier"),
+            type = "string",
+            name = "ClusterIdentifier",
+            target_id = prelude.String.id,
+        }),
+        Database = schema.new({
+            id = id.from(_N, "ListDatabasesInput", "Database"),
+            type = "string",
+            name = "Database",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SecretArn = schema.new({
+            id = id.from(_N, "ListDatabasesInput", "SecretArn"),
+            type = "string",
+            name = "SecretArn",
+            target_id = prelude.String.id,
+        }),
+        DbUser = schema.new({
+            id = id.from(_N, "ListDatabasesInput", "DbUser"),
+            type = "string",
+            name = "DbUser",
+            target_id = prelude.String.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListDatabasesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListDatabasesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        WorkgroupName = schema.new({
+            id = id.from(_N, "ListDatabasesInput", "WorkgroupName"),
+            type = "string",
+            name = "WorkgroupName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListDatabasesOutput = schema.new({
+    id = id.from(_N, "ListDatabasesOutput"),
+    type = "structure",
+    members = {
+        Databases = schema.new({
+            id = id.from(_N, "ListDatabasesOutput", "Databases"),
+            type = "list",
+            name = "Databases",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListDatabasesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListSchemasInput = schema.new({
+    id = id.from(_N, "ListSchemasInput"),
+    type = "structure",
+    members = {
+        ClusterIdentifier = schema.new({
+            id = id.from(_N, "ListSchemasInput", "ClusterIdentifier"),
+            type = "string",
+            name = "ClusterIdentifier",
+            target_id = prelude.String.id,
+        }),
+        SecretArn = schema.new({
+            id = id.from(_N, "ListSchemasInput", "SecretArn"),
+            type = "string",
+            name = "SecretArn",
+            target_id = prelude.String.id,
+        }),
+        DbUser = schema.new({
+            id = id.from(_N, "ListSchemasInput", "DbUser"),
+            type = "string",
+            name = "DbUser",
+            target_id = prelude.String.id,
+        }),
+        Database = schema.new({
+            id = id.from(_N, "ListSchemasInput", "Database"),
+            type = "string",
+            name = "Database",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ConnectedDatabase = schema.new({
+            id = id.from(_N, "ListSchemasInput", "ConnectedDatabase"),
+            type = "string",
+            name = "ConnectedDatabase",
+            target_id = prelude.String.id,
+        }),
+        SchemaPattern = schema.new({
+            id = id.from(_N, "ListSchemasInput", "SchemaPattern"),
+            type = "string",
+            name = "SchemaPattern",
+            target_id = prelude.String.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListSchemasInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListSchemasInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        WorkgroupName = schema.new({
+            id = id.from(_N, "ListSchemasInput", "WorkgroupName"),
+            type = "string",
+            name = "WorkgroupName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListSchemasOutput = schema.new({
+    id = id.from(_N, "ListSchemasOutput"),
+    type = "structure",
+    members = {
+        Schemas = schema.new({
+            id = id.from(_N, "ListSchemasOutput", "Schemas"),
+            type = "list",
+            name = "Schemas",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListSchemasOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListStatementsInput = schema.new({
+    id = id.from(_N, "ListStatementsInput"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListStatementsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListStatementsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        StatementName = schema.new({
+            id = id.from(_N, "ListStatementsInput", "StatementName"),
+            type = "string",
+            name = "StatementName",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ListStatementsInput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        RoleLevel = schema.new({
+            id = id.from(_N, "ListStatementsInput", "RoleLevel"),
+            type = "boolean",
+            name = "RoleLevel",
+            target_id = prelude.Boolean.id,
+        }),
+        Database = schema.new({
+            id = id.from(_N, "ListStatementsInput", "Database"),
+            type = "string",
+            name = "Database",
+            target_id = prelude.String.id,
+        }),
+        ClusterIdentifier = schema.new({
+            id = id.from(_N, "ListStatementsInput", "ClusterIdentifier"),
+            type = "string",
+            name = "ClusterIdentifier",
+            target_id = prelude.String.id,
+        }),
+        WorkgroupName = schema.new({
+            id = id.from(_N, "ListStatementsInput", "WorkgroupName"),
+            type = "string",
+            name = "WorkgroupName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StatementData = schema.new({
+    id = id.from(_N, "StatementData"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "StatementData", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        QueryString = schema.new({
+            id = id.from(_N, "StatementData", "QueryString"),
+            type = "string",
+            name = "QueryString",
+            target_id = prelude.String.id,
+        }),
+        QueryStrings = schema.new({
+            id = id.from(_N, "StatementData", "QueryStrings"),
+            type = "list",
+            name = "QueryStrings",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        SecretArn = schema.new({
+            id = id.from(_N, "StatementData", "SecretArn"),
+            type = "string",
+            name = "SecretArn",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "StatementData", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        StatementName = schema.new({
+            id = id.from(_N, "StatementData", "StatementName"),
+            type = "string",
+            name = "StatementName",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "StatementData", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "StatementData", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        QueryParameters = schema.new({
+            id = id.from(_N, "StatementData", "QueryParameters"),
+            type = "list",
+            name = "QueryParameters",
+            target_id = prelude.Document.id,
+            list_member = M.SqlParameter,
+        }),
+        IsBatchStatement = schema.new({
+            id = id.from(_N, "StatementData", "IsBatchStatement"),
+            type = "boolean",
+            name = "IsBatchStatement",
+            target_id = prelude.Boolean.id,
+        }),
+        ResultFormat = schema.new({
+            id = id.from(_N, "StatementData", "ResultFormat"),
+            type = "string",
+            name = "ResultFormat",
+            target_id = prelude.String.id,
+        }),
+        SessionId = schema.new({
+            id = id.from(_N, "StatementData", "SessionId"),
+            type = "string",
+            name = "SessionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListStatementsOutput = schema.new({
+    id = id.from(_N, "ListStatementsOutput"),
+    type = "structure",
+    members = {
+        Statements = schema.new({
+            id = id.from(_N, "ListStatementsOutput", "Statements"),
+            type = "list",
+            name = "Statements",
+            target_id = prelude.Document.id,
+            list_member = M.StatementData,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListStatementsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTablesInput = schema.new({
+    id = id.from(_N, "ListTablesInput"),
+    type = "structure",
+    members = {
+        ClusterIdentifier = schema.new({
+            id = id.from(_N, "ListTablesInput", "ClusterIdentifier"),
+            type = "string",
+            name = "ClusterIdentifier",
+            target_id = prelude.String.id,
+        }),
+        SecretArn = schema.new({
+            id = id.from(_N, "ListTablesInput", "SecretArn"),
+            type = "string",
+            name = "SecretArn",
+            target_id = prelude.String.id,
+        }),
+        DbUser = schema.new({
+            id = id.from(_N, "ListTablesInput", "DbUser"),
+            type = "string",
+            name = "DbUser",
+            target_id = prelude.String.id,
+        }),
+        Database = schema.new({
+            id = id.from(_N, "ListTablesInput", "Database"),
+            type = "string",
+            name = "Database",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ConnectedDatabase = schema.new({
+            id = id.from(_N, "ListTablesInput", "ConnectedDatabase"),
+            type = "string",
+            name = "ConnectedDatabase",
+            target_id = prelude.String.id,
+        }),
+        SchemaPattern = schema.new({
+            id = id.from(_N, "ListTablesInput", "SchemaPattern"),
+            type = "string",
+            name = "SchemaPattern",
+            target_id = prelude.String.id,
+        }),
+        TablePattern = schema.new({
+            id = id.from(_N, "ListTablesInput", "TablePattern"),
+            type = "string",
+            name = "TablePattern",
+            target_id = prelude.String.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListTablesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListTablesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        WorkgroupName = schema.new({
+            id = id.from(_N, "ListTablesInput", "WorkgroupName"),
+            type = "string",
+            name = "WorkgroupName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TableMember = schema.new({
+    id = id.from(_N, "TableMember"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "TableMember", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        type = schema.new({
+            id = id.from(_N, "TableMember", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        schema = schema.new({
+            id = id.from(_N, "TableMember", "schema"),
+            type = "string",
+            name = "schema",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTablesOutput = schema.new({
+    id = id.from(_N, "ListTablesOutput"),
+    type = "structure",
+    members = {
+        Tables = schema.new({
+            id = id.from(_N, "ListTablesOutput", "Tables"),
+            type = "list",
+            name = "Tables",
+            target_id = prelude.Document.id,
+            list_member = M.TableMember,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListTablesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+return M

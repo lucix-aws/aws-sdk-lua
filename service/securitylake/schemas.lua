@@ -1,0 +1,2044 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.securitylake"
+
+local M = {}
+
+M.AccessDeniedException = schema.new({
+    id = id.from(_N, "AccessDeniedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "AccessDeniedException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+        errorCode = schema.new({
+            id = id.from(_N, "AccessDeniedException", "errorCode"),
+            type = "string",
+            name = "errorCode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AwsIdentity = schema.new({
+    id = id.from(_N, "AwsIdentity"),
+    type = "structure",
+    members = {
+        principal = schema.new({
+            id = id.from(_N, "AwsIdentity", "principal"),
+            type = "string",
+            name = "principal",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        externalId = schema.new({
+            id = id.from(_N, "AwsIdentity", "externalId"),
+            type = "string",
+            name = "externalId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AwsLogSourceConfiguration = schema.new({
+    id = id.from(_N, "AwsLogSourceConfiguration"),
+    type = "structure",
+    members = {
+        accounts = schema.new({
+            id = id.from(_N, "AwsLogSourceConfiguration", "accounts"),
+            type = "list",
+            name = "accounts",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        regions = schema.new({
+            id = id.from(_N, "AwsLogSourceConfiguration", "regions"),
+            type = "list",
+            name = "regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceName = schema.new({
+            id = id.from(_N, "AwsLogSourceConfiguration", "sourceName"),
+            type = "string",
+            name = "sourceName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceVersion = schema.new({
+            id = id.from(_N, "AwsLogSourceConfiguration", "sourceVersion"),
+            type = "string",
+            name = "sourceVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "latest" },
+            },
+        }),
+    },
+})
+
+M.AwsLogSourceResource = schema.new({
+    id = id.from(_N, "AwsLogSourceResource"),
+    type = "structure",
+    members = {
+        sourceName = schema.new({
+            id = id.from(_N, "AwsLogSourceResource", "sourceName"),
+            type = "string",
+            name = "sourceName",
+            target_id = prelude.String.id,
+        }),
+        sourceVersion = schema.new({
+            id = id.from(_N, "AwsLogSourceResource", "sourceVersion"),
+            type = "string",
+            name = "sourceVersion",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BadRequestException = schema.new({
+    id = id.from(_N, "BadRequestException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "BadRequestException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ConflictException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+        resourceName = schema.new({
+            id = id.from(_N, "ConflictException", "resourceName"),
+            type = "string",
+            name = "resourceName",
+            target_id = prelude.String.id,
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "ConflictException", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateAwsLogSourceInput = schema.new({
+    id = id.from(_N, "CreateAwsLogSourceInput"),
+    type = "structure",
+    members = {
+        sources = schema.new({
+            id = id.from(_N, "CreateAwsLogSourceInput", "sources"),
+            type = "list",
+            name = "sources",
+            target_id = prelude.Document.id,
+            list_member = M.AwsLogSourceConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateAwsLogSourceOutput = schema.new({
+    id = id.from(_N, "CreateAwsLogSourceOutput"),
+    type = "structure",
+    members = {
+        failed = schema.new({
+            id = id.from(_N, "CreateAwsLogSourceOutput", "failed"),
+            type = "list",
+            name = "failed",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InternalServerException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+        resourceName = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "resourceName"),
+            type = "string",
+            name = "resourceName",
+            target_id = prelude.String.id,
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ThrottlingException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+        serviceCode = schema.new({
+            id = id.from(_N, "ThrottlingException", "serviceCode"),
+            type = "string",
+            name = "serviceCode",
+            target_id = prelude.String.id,
+        }),
+        quotaCode = schema.new({
+            id = id.from(_N, "ThrottlingException", "quotaCode"),
+            type = "string",
+            name = "quotaCode",
+            target_id = prelude.String.id,
+        }),
+        retryAfterSeconds = schema.new({
+            id = id.from(_N, "ThrottlingException", "retryAfterSeconds"),
+            type = "integer",
+            name = "retryAfterSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Retry-After" },
+            },
+        }),
+    },
+})
+
+M.CustomLogSourceCrawlerConfiguration = schema.new({
+    id = id.from(_N, "CustomLogSourceCrawlerConfiguration"),
+    type = "structure",
+    members = {
+        roleArn = schema.new({
+            id = id.from(_N, "CustomLogSourceCrawlerConfiguration", "roleArn"),
+            type = "string",
+            name = "roleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CustomLogSourceConfiguration = schema.new({
+    id = id.from(_N, "CustomLogSourceConfiguration"),
+    type = "structure",
+    members = {
+        crawlerConfiguration = schema.new({
+            id = id.from(_N, "CustomLogSourceConfiguration", "crawlerConfiguration"),
+            type = "structure",
+            name = "crawlerConfiguration",
+            target_id = id.from(_N, "CustomLogSourceCrawlerConfiguration"),
+            target = M.CustomLogSourceCrawlerConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        providerIdentity = schema.new({
+            id = id.from(_N, "CustomLogSourceConfiguration", "providerIdentity"),
+            type = "structure",
+            name = "providerIdentity",
+            target_id = id.from(_N, "AwsIdentity"),
+            target = M.AwsIdentity,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateCustomLogSourceInput = schema.new({
+    id = id.from(_N, "CreateCustomLogSourceInput"),
+    type = "structure",
+    members = {
+        sourceName = schema.new({
+            id = id.from(_N, "CreateCustomLogSourceInput", "sourceName"),
+            type = "string",
+            name = "sourceName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceVersion = schema.new({
+            id = id.from(_N, "CreateCustomLogSourceInput", "sourceVersion"),
+            type = "string",
+            name = "sourceVersion",
+            target_id = prelude.String.id,
+        }),
+        eventClasses = schema.new({
+            id = id.from(_N, "CreateCustomLogSourceInput", "eventClasses"),
+            type = "list",
+            name = "eventClasses",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        configuration = schema.new({
+            id = id.from(_N, "CreateCustomLogSourceInput", "configuration"),
+            type = "structure",
+            name = "configuration",
+            target_id = id.from(_N, "CustomLogSourceConfiguration"),
+            target = M.CustomLogSourceConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CustomLogSourceAttributes = schema.new({
+    id = id.from(_N, "CustomLogSourceAttributes"),
+    type = "structure",
+    members = {
+        crawlerArn = schema.new({
+            id = id.from(_N, "CustomLogSourceAttributes", "crawlerArn"),
+            type = "string",
+            name = "crawlerArn",
+            target_id = prelude.String.id,
+        }),
+        databaseArn = schema.new({
+            id = id.from(_N, "CustomLogSourceAttributes", "databaseArn"),
+            type = "string",
+            name = "databaseArn",
+            target_id = prelude.String.id,
+        }),
+        tableArn = schema.new({
+            id = id.from(_N, "CustomLogSourceAttributes", "tableArn"),
+            type = "string",
+            name = "tableArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CustomLogSourceProvider = schema.new({
+    id = id.from(_N, "CustomLogSourceProvider"),
+    type = "structure",
+    members = {
+        roleArn = schema.new({
+            id = id.from(_N, "CustomLogSourceProvider", "roleArn"),
+            type = "string",
+            name = "roleArn",
+            target_id = prelude.String.id,
+        }),
+        location = schema.new({
+            id = id.from(_N, "CustomLogSourceProvider", "location"),
+            type = "string",
+            name = "location",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CustomLogSourceResource = schema.new({
+    id = id.from(_N, "CustomLogSourceResource"),
+    type = "structure",
+    members = {
+        sourceName = schema.new({
+            id = id.from(_N, "CustomLogSourceResource", "sourceName"),
+            type = "string",
+            name = "sourceName",
+            target_id = prelude.String.id,
+        }),
+        sourceVersion = schema.new({
+            id = id.from(_N, "CustomLogSourceResource", "sourceVersion"),
+            type = "string",
+            name = "sourceVersion",
+            target_id = prelude.String.id,
+        }),
+        provider = schema.new({
+            id = id.from(_N, "CustomLogSourceResource", "provider"),
+            type = "structure",
+            name = "provider",
+            target_id = id.from(_N, "CustomLogSourceProvider"),
+            target = M.CustomLogSourceProvider,
+        }),
+        attributes = schema.new({
+            id = id.from(_N, "CustomLogSourceResource", "attributes"),
+            type = "structure",
+            name = "attributes",
+            target_id = id.from(_N, "CustomLogSourceAttributes"),
+            target = M.CustomLogSourceAttributes,
+        }),
+    },
+})
+
+M.CreateCustomLogSourceOutput = schema.new({
+    id = id.from(_N, "CreateCustomLogSourceOutput"),
+    type = "structure",
+    members = {
+        source = schema.new({
+            id = id.from(_N, "CreateCustomLogSourceOutput", "source"),
+            type = "structure",
+            name = "source",
+            target_id = id.from(_N, "CustomLogSourceResource"),
+            target = M.CustomLogSourceResource,
+        }),
+    },
+})
+
+M.DataLakeEncryptionConfiguration = schema.new({
+    id = id.from(_N, "DataLakeEncryptionConfiguration"),
+    type = "structure",
+    members = {
+        kmsKeyId = schema.new({
+            id = id.from(_N, "DataLakeEncryptionConfiguration", "kmsKeyId"),
+            type = "string",
+            name = "kmsKeyId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DataLakeLifecycleExpiration = schema.new({
+    id = id.from(_N, "DataLakeLifecycleExpiration"),
+    type = "structure",
+    members = {
+        days = schema.new({
+            id = id.from(_N, "DataLakeLifecycleExpiration", "days"),
+            type = "integer",
+            name = "days",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.DataLakeLifecycleTransition = schema.new({
+    id = id.from(_N, "DataLakeLifecycleTransition"),
+    type = "structure",
+    members = {
+        storageClass = schema.new({
+            id = id.from(_N, "DataLakeLifecycleTransition", "storageClass"),
+            type = "string",
+            name = "storageClass",
+            target_id = prelude.String.id,
+        }),
+        days = schema.new({
+            id = id.from(_N, "DataLakeLifecycleTransition", "days"),
+            type = "integer",
+            name = "days",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.DataLakeLifecycleConfiguration = schema.new({
+    id = id.from(_N, "DataLakeLifecycleConfiguration"),
+    type = "structure",
+    members = {
+        expiration = schema.new({
+            id = id.from(_N, "DataLakeLifecycleConfiguration", "expiration"),
+            type = "structure",
+            name = "expiration",
+            target_id = id.from(_N, "DataLakeLifecycleExpiration"),
+            target = M.DataLakeLifecycleExpiration,
+        }),
+        transitions = schema.new({
+            id = id.from(_N, "DataLakeLifecycleConfiguration", "transitions"),
+            type = "list",
+            name = "transitions",
+            target_id = prelude.Document.id,
+            list_member = M.DataLakeLifecycleTransition,
+        }),
+    },
+})
+
+M.DataLakeReplicationConfiguration = schema.new({
+    id = id.from(_N, "DataLakeReplicationConfiguration"),
+    type = "structure",
+    members = {
+        regions = schema.new({
+            id = id.from(_N, "DataLakeReplicationConfiguration", "regions"),
+            type = "list",
+            name = "regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        roleArn = schema.new({
+            id = id.from(_N, "DataLakeReplicationConfiguration", "roleArn"),
+            type = "string",
+            name = "roleArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DataLakeConfiguration = schema.new({
+    id = id.from(_N, "DataLakeConfiguration"),
+    type = "structure",
+    members = {
+        region = schema.new({
+            id = id.from(_N, "DataLakeConfiguration", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        encryptionConfiguration = schema.new({
+            id = id.from(_N, "DataLakeConfiguration", "encryptionConfiguration"),
+            type = "structure",
+            name = "encryptionConfiguration",
+            target_id = id.from(_N, "DataLakeEncryptionConfiguration"),
+            target = M.DataLakeEncryptionConfiguration,
+        }),
+        lifecycleConfiguration = schema.new({
+            id = id.from(_N, "DataLakeConfiguration", "lifecycleConfiguration"),
+            type = "structure",
+            name = "lifecycleConfiguration",
+            target_id = id.from(_N, "DataLakeLifecycleConfiguration"),
+            target = M.DataLakeLifecycleConfiguration,
+        }),
+        replicationConfiguration = schema.new({
+            id = id.from(_N, "DataLakeConfiguration", "replicationConfiguration"),
+            type = "structure",
+            name = "replicationConfiguration",
+            target_id = id.from(_N, "DataLakeReplicationConfiguration"),
+            target = M.DataLakeReplicationConfiguration,
+        }),
+    },
+})
+
+M.Tag = schema.new({
+    id = id.from(_N, "Tag"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "Tag", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "Tag", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateDataLakeInput = schema.new({
+    id = id.from(_N, "CreateDataLakeInput"),
+    type = "structure",
+    members = {
+        configurations = schema.new({
+            id = id.from(_N, "CreateDataLakeInput", "configurations"),
+            type = "list",
+            name = "configurations",
+            target_id = prelude.Document.id,
+            list_member = M.DataLakeConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        metaStoreManagerRoleArn = schema.new({
+            id = id.from(_N, "CreateDataLakeInput", "metaStoreManagerRoleArn"),
+            type = "string",
+            name = "metaStoreManagerRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateDataLakeInput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.DataLakeUpdateException = schema.new({
+    id = id.from(_N, "DataLakeUpdateException"),
+    type = "structure",
+    members = {
+        reason = schema.new({
+            id = id.from(_N, "DataLakeUpdateException", "reason"),
+            type = "string",
+            name = "reason",
+            target_id = prelude.String.id,
+        }),
+        code = schema.new({
+            id = id.from(_N, "DataLakeUpdateException", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DataLakeUpdateStatus = schema.new({
+    id = id.from(_N, "DataLakeUpdateStatus"),
+    type = "structure",
+    members = {
+        requestId = schema.new({
+            id = id.from(_N, "DataLakeUpdateStatus", "requestId"),
+            type = "string",
+            name = "requestId",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "DataLakeUpdateStatus", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        exception = schema.new({
+            id = id.from(_N, "DataLakeUpdateStatus", "exception"),
+            type = "structure",
+            name = "exception",
+            target_id = id.from(_N, "DataLakeUpdateException"),
+            target = M.DataLakeUpdateException,
+        }),
+    },
+})
+
+M.DataLakeResource = schema.new({
+    id = id.from(_N, "DataLakeResource"),
+    type = "structure",
+    members = {
+        dataLakeArn = schema.new({
+            id = id.from(_N, "DataLakeResource", "dataLakeArn"),
+            type = "string",
+            name = "dataLakeArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        region = schema.new({
+            id = id.from(_N, "DataLakeResource", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        s3BucketArn = schema.new({
+            id = id.from(_N, "DataLakeResource", "s3BucketArn"),
+            type = "string",
+            name = "s3BucketArn",
+            target_id = prelude.String.id,
+        }),
+        encryptionConfiguration = schema.new({
+            id = id.from(_N, "DataLakeResource", "encryptionConfiguration"),
+            type = "structure",
+            name = "encryptionConfiguration",
+            target_id = id.from(_N, "DataLakeEncryptionConfiguration"),
+            target = M.DataLakeEncryptionConfiguration,
+        }),
+        lifecycleConfiguration = schema.new({
+            id = id.from(_N, "DataLakeResource", "lifecycleConfiguration"),
+            type = "structure",
+            name = "lifecycleConfiguration",
+            target_id = id.from(_N, "DataLakeLifecycleConfiguration"),
+            target = M.DataLakeLifecycleConfiguration,
+        }),
+        replicationConfiguration = schema.new({
+            id = id.from(_N, "DataLakeResource", "replicationConfiguration"),
+            type = "structure",
+            name = "replicationConfiguration",
+            target_id = id.from(_N, "DataLakeReplicationConfiguration"),
+            target = M.DataLakeReplicationConfiguration,
+        }),
+        createStatus = schema.new({
+            id = id.from(_N, "DataLakeResource", "createStatus"),
+            type = "string",
+            name = "createStatus",
+            target_id = prelude.String.id,
+        }),
+        updateStatus = schema.new({
+            id = id.from(_N, "DataLakeResource", "updateStatus"),
+            type = "structure",
+            name = "updateStatus",
+            target_id = id.from(_N, "DataLakeUpdateStatus"),
+            target = M.DataLakeUpdateStatus,
+        }),
+    },
+})
+
+M.CreateDataLakeOutput = schema.new({
+    id = id.from(_N, "CreateDataLakeOutput"),
+    type = "structure",
+    members = {
+        dataLakes = schema.new({
+            id = id.from(_N, "CreateDataLakeOutput", "dataLakes"),
+            type = "list",
+            name = "dataLakes",
+            target_id = prelude.Document.id,
+            list_member = M.DataLakeResource,
+        }),
+    },
+})
+
+M.CreateDataLakeExceptionSubscriptionInput = schema.new({
+    id = id.from(_N, "CreateDataLakeExceptionSubscriptionInput"),
+    type = "structure",
+    members = {
+        subscriptionProtocol = schema.new({
+            id = id.from(_N, "CreateDataLakeExceptionSubscriptionInput", "subscriptionProtocol"),
+            type = "string",
+            name = "subscriptionProtocol",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        notificationEndpoint = schema.new({
+            id = id.from(_N, "CreateDataLakeExceptionSubscriptionInput", "notificationEndpoint"),
+            type = "string",
+            name = "notificationEndpoint",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        exceptionTimeToLive = schema.new({
+            id = id.from(_N, "CreateDataLakeExceptionSubscriptionInput", "exceptionTimeToLive"),
+            type = "long",
+            name = "exceptionTimeToLive",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.CreateDataLakeExceptionSubscriptionOutput = schema.new({
+    id = id.from(_N, "CreateDataLakeExceptionSubscriptionOutput"),
+    type = "structure",
+})
+
+M.DataLakeAutoEnableNewAccountConfiguration = schema.new({
+    id = id.from(_N, "DataLakeAutoEnableNewAccountConfiguration"),
+    type = "structure",
+    members = {
+        region = schema.new({
+            id = id.from(_N, "DataLakeAutoEnableNewAccountConfiguration", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sources = schema.new({
+            id = id.from(_N, "DataLakeAutoEnableNewAccountConfiguration", "sources"),
+            type = "list",
+            name = "sources",
+            target_id = prelude.Document.id,
+            list_member = M.AwsLogSourceResource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateDataLakeOrganizationConfigurationInput = schema.new({
+    id = id.from(_N, "CreateDataLakeOrganizationConfigurationInput"),
+    type = "structure",
+    members = {
+        autoEnableNewAccount = schema.new({
+            id = id.from(_N, "CreateDataLakeOrganizationConfigurationInput", "autoEnableNewAccount"),
+            type = "list",
+            name = "autoEnableNewAccount",
+            target_id = prelude.Document.id,
+            list_member = M.DataLakeAutoEnableNewAccountConfiguration,
+        }),
+    },
+})
+
+M.CreateDataLakeOrganizationConfigurationOutput = schema.new({
+    id = id.from(_N, "CreateDataLakeOrganizationConfigurationOutput"),
+    type = "structure",
+})
+
+M.LogSourceResource = schema.new({
+    id = id.from(_N, "LogSourceResource"),
+    type = "union",
+    members = {
+        awsLogSource = schema.new({
+            id = id.from(_N, "LogSourceResource", "awsLogSource"),
+            type = "structure",
+            name = "awsLogSource",
+            target_id = id.from(_N, "AwsLogSourceResource"),
+            target = M.AwsLogSourceResource,
+        }),
+        customLogSource = schema.new({
+            id = id.from(_N, "LogSourceResource", "customLogSource"),
+            type = "structure",
+            name = "customLogSource",
+            target_id = id.from(_N, "CustomLogSourceResource"),
+            target = M.CustomLogSourceResource,
+        }),
+    },
+})
+
+M.CreateSubscriberInput = schema.new({
+    id = id.from(_N, "CreateSubscriberInput"),
+    type = "structure",
+    members = {
+        subscriberIdentity = schema.new({
+            id = id.from(_N, "CreateSubscriberInput", "subscriberIdentity"),
+            type = "structure",
+            name = "subscriberIdentity",
+            target_id = id.from(_N, "AwsIdentity"),
+            target = M.AwsIdentity,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        subscriberName = schema.new({
+            id = id.from(_N, "CreateSubscriberInput", "subscriberName"),
+            type = "string",
+            name = "subscriberName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        subscriberDescription = schema.new({
+            id = id.from(_N, "CreateSubscriberInput", "subscriberDescription"),
+            type = "string",
+            name = "subscriberDescription",
+            target_id = prelude.String.id,
+        }),
+        sources = schema.new({
+            id = id.from(_N, "CreateSubscriberInput", "sources"),
+            type = "list",
+            name = "sources",
+            target_id = prelude.Document.id,
+            list_member = M.LogSourceResource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        accessTypes = schema.new({
+            id = id.from(_N, "CreateSubscriberInput", "accessTypes"),
+            type = "list",
+            name = "accessTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateSubscriberInput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.SubscriberResource = schema.new({
+    id = id.from(_N, "SubscriberResource"),
+    type = "structure",
+    members = {
+        subscriberId = schema.new({
+            id = id.from(_N, "SubscriberResource", "subscriberId"),
+            type = "string",
+            name = "subscriberId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        subscriberArn = schema.new({
+            id = id.from(_N, "SubscriberResource", "subscriberArn"),
+            type = "string",
+            name = "subscriberArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        subscriberIdentity = schema.new({
+            id = id.from(_N, "SubscriberResource", "subscriberIdentity"),
+            type = "structure",
+            name = "subscriberIdentity",
+            target_id = id.from(_N, "AwsIdentity"),
+            target = M.AwsIdentity,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        subscriberName = schema.new({
+            id = id.from(_N, "SubscriberResource", "subscriberName"),
+            type = "string",
+            name = "subscriberName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        subscriberDescription = schema.new({
+            id = id.from(_N, "SubscriberResource", "subscriberDescription"),
+            type = "string",
+            name = "subscriberDescription",
+            target_id = prelude.String.id,
+        }),
+        sources = schema.new({
+            id = id.from(_N, "SubscriberResource", "sources"),
+            type = "list",
+            name = "sources",
+            target_id = prelude.Document.id,
+            list_member = M.LogSourceResource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        accessTypes = schema.new({
+            id = id.from(_N, "SubscriberResource", "accessTypes"),
+            type = "list",
+            name = "accessTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        roleArn = schema.new({
+            id = id.from(_N, "SubscriberResource", "roleArn"),
+            type = "string",
+            name = "roleArn",
+            target_id = prelude.String.id,
+        }),
+        s3BucketArn = schema.new({
+            id = id.from(_N, "SubscriberResource", "s3BucketArn"),
+            type = "string",
+            name = "s3BucketArn",
+            target_id = prelude.String.id,
+        }),
+        subscriberEndpoint = schema.new({
+            id = id.from(_N, "SubscriberResource", "subscriberEndpoint"),
+            type = "string",
+            name = "subscriberEndpoint",
+            target_id = prelude.String.id,
+        }),
+        subscriberStatus = schema.new({
+            id = id.from(_N, "SubscriberResource", "subscriberStatus"),
+            type = "string",
+            name = "subscriberStatus",
+            target_id = prelude.String.id,
+        }),
+        resourceShareArn = schema.new({
+            id = id.from(_N, "SubscriberResource", "resourceShareArn"),
+            type = "string",
+            name = "resourceShareArn",
+            target_id = prelude.String.id,
+        }),
+        resourceShareName = schema.new({
+            id = id.from(_N, "SubscriberResource", "resourceShareName"),
+            type = "string",
+            name = "resourceShareName",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "SubscriberResource", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "SubscriberResource", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.CreateSubscriberOutput = schema.new({
+    id = id.from(_N, "CreateSubscriberOutput"),
+    type = "structure",
+    members = {
+        subscriber = schema.new({
+            id = id.from(_N, "CreateSubscriberOutput", "subscriber"),
+            type = "structure",
+            name = "subscriber",
+            target_id = id.from(_N, "SubscriberResource"),
+            target = M.SubscriberResource,
+        }),
+    },
+})
+
+M.HttpsNotificationConfiguration = schema.new({
+    id = id.from(_N, "HttpsNotificationConfiguration"),
+    type = "structure",
+    members = {
+        endpoint = schema.new({
+            id = id.from(_N, "HttpsNotificationConfiguration", "endpoint"),
+            type = "string",
+            name = "endpoint",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        authorizationApiKeyName = schema.new({
+            id = id.from(_N, "HttpsNotificationConfiguration", "authorizationApiKeyName"),
+            type = "string",
+            name = "authorizationApiKeyName",
+            target_id = prelude.String.id,
+        }),
+        authorizationApiKeyValue = schema.new({
+            id = id.from(_N, "HttpsNotificationConfiguration", "authorizationApiKeyValue"),
+            type = "string",
+            name = "authorizationApiKeyValue",
+            target_id = prelude.String.id,
+        }),
+        httpMethod = schema.new({
+            id = id.from(_N, "HttpsNotificationConfiguration", "httpMethod"),
+            type = "string",
+            name = "httpMethod",
+            target_id = prelude.String.id,
+        }),
+        targetRoleArn = schema.new({
+            id = id.from(_N, "HttpsNotificationConfiguration", "targetRoleArn"),
+            type = "string",
+            name = "targetRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SqsNotificationConfiguration = schema.new({
+    id = id.from(_N, "SqsNotificationConfiguration"),
+    type = "structure",
+})
+
+M.NotificationConfiguration = schema.new({
+    id = id.from(_N, "NotificationConfiguration"),
+    type = "union",
+    members = {
+        sqsNotificationConfiguration = schema.new({
+            id = id.from(_N, "NotificationConfiguration", "sqsNotificationConfiguration"),
+            type = "structure",
+            name = "sqsNotificationConfiguration",
+            target_id = id.from(_N, "SqsNotificationConfiguration"),
+            target = M.SqsNotificationConfiguration,
+        }),
+        httpsNotificationConfiguration = schema.new({
+            id = id.from(_N, "NotificationConfiguration", "httpsNotificationConfiguration"),
+            type = "structure",
+            name = "httpsNotificationConfiguration",
+            target_id = id.from(_N, "HttpsNotificationConfiguration"),
+            target = M.HttpsNotificationConfiguration,
+        }),
+    },
+})
+
+M.CreateSubscriberNotificationInput = schema.new({
+    id = id.from(_N, "CreateSubscriberNotificationInput"),
+    type = "structure",
+    members = {
+        subscriberId = schema.new({
+            id = id.from(_N, "CreateSubscriberNotificationInput", "subscriberId"),
+            type = "string",
+            name = "subscriberId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        configuration = schema.new({
+            id = id.from(_N, "CreateSubscriberNotificationInput", "configuration"),
+            type = "union",
+            name = "configuration",
+            target_id = id.from(_N, "NotificationConfiguration"),
+            target = M.NotificationConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateSubscriberNotificationOutput = schema.new({
+    id = id.from(_N, "CreateSubscriberNotificationOutput"),
+    type = "structure",
+    members = {
+        subscriberEndpoint = schema.new({
+            id = id.from(_N, "CreateSubscriberNotificationOutput", "subscriberEndpoint"),
+            type = "string",
+            name = "subscriberEndpoint",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteAwsLogSourceInput = schema.new({
+    id = id.from(_N, "DeleteAwsLogSourceInput"),
+    type = "structure",
+    members = {
+        sources = schema.new({
+            id = id.from(_N, "DeleteAwsLogSourceInput", "sources"),
+            type = "list",
+            name = "sources",
+            target_id = prelude.Document.id,
+            list_member = M.AwsLogSourceConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAwsLogSourceOutput = schema.new({
+    id = id.from(_N, "DeleteAwsLogSourceOutput"),
+    type = "structure",
+    members = {
+        failed = schema.new({
+            id = id.from(_N, "DeleteAwsLogSourceOutput", "failed"),
+            type = "list",
+            name = "failed",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.DeleteCustomLogSourceInput = schema.new({
+    id = id.from(_N, "DeleteCustomLogSourceInput"),
+    type = "structure",
+    members = {
+        sourceName = schema.new({
+            id = id.from(_N, "DeleteCustomLogSourceInput", "sourceName"),
+            type = "string",
+            name = "sourceName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        sourceVersion = schema.new({
+            id = id.from(_N, "DeleteCustomLogSourceInput", "sourceVersion"),
+            type = "string",
+            name = "sourceVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "sourceVersion" },
+            },
+        }),
+    },
+})
+
+M.DeleteCustomLogSourceOutput = schema.new({
+    id = id.from(_N, "DeleteCustomLogSourceOutput"),
+    type = "structure",
+})
+
+M.DeleteDataLakeInput = schema.new({
+    id = id.from(_N, "DeleteDataLakeInput"),
+    type = "structure",
+    members = {
+        regions = schema.new({
+            id = id.from(_N, "DeleteDataLakeInput", "regions"),
+            type = "list",
+            name = "regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteDataLakeOutput = schema.new({
+    id = id.from(_N, "DeleteDataLakeOutput"),
+    type = "structure",
+})
+
+M.DeleteDataLakeOrganizationConfigurationInput = schema.new({
+    id = id.from(_N, "DeleteDataLakeOrganizationConfigurationInput"),
+    type = "structure",
+    members = {
+        autoEnableNewAccount = schema.new({
+            id = id.from(_N, "DeleteDataLakeOrganizationConfigurationInput", "autoEnableNewAccount"),
+            type = "list",
+            name = "autoEnableNewAccount",
+            target_id = prelude.Document.id,
+            list_member = M.DataLakeAutoEnableNewAccountConfiguration,
+        }),
+    },
+})
+
+M.DeleteDataLakeOrganizationConfigurationOutput = schema.new({
+    id = id.from(_N, "DeleteDataLakeOrganizationConfigurationOutput"),
+    type = "structure",
+})
+
+M.GetDataLakeOrganizationConfigurationInput = schema.new({
+    id = id.from(_N, "GetDataLakeOrganizationConfigurationInput"),
+    type = "structure",
+})
+
+M.GetDataLakeOrganizationConfigurationOutput = schema.new({
+    id = id.from(_N, "GetDataLakeOrganizationConfigurationOutput"),
+    type = "structure",
+    members = {
+        autoEnableNewAccount = schema.new({
+            id = id.from(_N, "GetDataLakeOrganizationConfigurationOutput", "autoEnableNewAccount"),
+            type = "list",
+            name = "autoEnableNewAccount",
+            target_id = prelude.Document.id,
+            list_member = M.DataLakeAutoEnableNewAccountConfiguration,
+        }),
+    },
+})
+
+M.GetDataLakeSourcesInput = schema.new({
+    id = id.from(_N, "GetDataLakeSourcesInput"),
+    type = "structure",
+    members = {
+        accounts = schema.new({
+            id = id.from(_N, "GetDataLakeSourcesInput", "accounts"),
+            type = "list",
+            name = "accounts",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "GetDataLakeSourcesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 50 },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "GetDataLakeSourcesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DataLakeSourceStatus = schema.new({
+    id = id.from(_N, "DataLakeSourceStatus"),
+    type = "structure",
+    members = {
+        resource = schema.new({
+            id = id.from(_N, "DataLakeSourceStatus", "resource"),
+            type = "string",
+            name = "resource",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "DataLakeSourceStatus", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DataLakeSource = schema.new({
+    id = id.from(_N, "DataLakeSource"),
+    type = "structure",
+    members = {
+        account = schema.new({
+            id = id.from(_N, "DataLakeSource", "account"),
+            type = "string",
+            name = "account",
+            target_id = prelude.String.id,
+        }),
+        sourceName = schema.new({
+            id = id.from(_N, "DataLakeSource", "sourceName"),
+            type = "string",
+            name = "sourceName",
+            target_id = prelude.String.id,
+        }),
+        eventClasses = schema.new({
+            id = id.from(_N, "DataLakeSource", "eventClasses"),
+            type = "list",
+            name = "eventClasses",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        sourceStatuses = schema.new({
+            id = id.from(_N, "DataLakeSource", "sourceStatuses"),
+            type = "list",
+            name = "sourceStatuses",
+            target_id = prelude.Document.id,
+            list_member = M.DataLakeSourceStatus,
+        }),
+    },
+})
+
+M.GetDataLakeSourcesOutput = schema.new({
+    id = id.from(_N, "GetDataLakeSourcesOutput"),
+    type = "structure",
+    members = {
+        dataLakeArn = schema.new({
+            id = id.from(_N, "GetDataLakeSourcesOutput", "dataLakeArn"),
+            type = "string",
+            name = "dataLakeArn",
+            target_id = prelude.String.id,
+        }),
+        dataLakeSources = schema.new({
+            id = id.from(_N, "GetDataLakeSourcesOutput", "dataLakeSources"),
+            type = "list",
+            name = "dataLakeSources",
+            target_id = prelude.Document.id,
+            list_member = M.DataLakeSource,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "GetDataLakeSourcesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListDataLakesInput = schema.new({
+    id = id.from(_N, "ListDataLakesInput"),
+    type = "structure",
+    members = {
+        regions = schema.new({
+            id = id.from(_N, "ListDataLakesInput", "regions"),
+            type = "list",
+            name = "regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "regions" },
+            },
+        }),
+    },
+})
+
+M.ListDataLakesOutput = schema.new({
+    id = id.from(_N, "ListDataLakesOutput"),
+    type = "structure",
+    members = {
+        dataLakes = schema.new({
+            id = id.from(_N, "ListDataLakesOutput", "dataLakes"),
+            type = "list",
+            name = "dataLakes",
+            target_id = prelude.Document.id,
+            list_member = M.DataLakeResource,
+        }),
+    },
+})
+
+M.ListLogSourcesInput = schema.new({
+    id = id.from(_N, "ListLogSourcesInput"),
+    type = "structure",
+    members = {
+        accounts = schema.new({
+            id = id.from(_N, "ListLogSourcesInput", "accounts"),
+            type = "list",
+            name = "accounts",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        regions = schema.new({
+            id = id.from(_N, "ListLogSourcesInput", "regions"),
+            type = "list",
+            name = "regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        sources = schema.new({
+            id = id.from(_N, "ListLogSourcesInput", "sources"),
+            type = "list",
+            name = "sources",
+            target_id = prelude.Document.id,
+            list_member = M.LogSourceResource,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListLogSourcesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 50 },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListLogSourcesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.LogSource = schema.new({
+    id = id.from(_N, "LogSource"),
+    type = "structure",
+    members = {
+        account = schema.new({
+            id = id.from(_N, "LogSource", "account"),
+            type = "string",
+            name = "account",
+            target_id = prelude.String.id,
+        }),
+        region = schema.new({
+            id = id.from(_N, "LogSource", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+        }),
+        sources = schema.new({
+            id = id.from(_N, "LogSource", "sources"),
+            type = "list",
+            name = "sources",
+            target_id = prelude.Document.id,
+            list_member = M.LogSourceResource,
+        }),
+    },
+})
+
+M.ListLogSourcesOutput = schema.new({
+    id = id.from(_N, "ListLogSourcesOutput"),
+    type = "structure",
+    members = {
+        sources = schema.new({
+            id = id.from(_N, "ListLogSourcesOutput", "sources"),
+            type = "list",
+            name = "sources",
+            target_id = prelude.Document.id,
+            list_member = M.LogSource,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListLogSourcesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateDataLakeInput = schema.new({
+    id = id.from(_N, "UpdateDataLakeInput"),
+    type = "structure",
+    members = {
+        configurations = schema.new({
+            id = id.from(_N, "UpdateDataLakeInput", "configurations"),
+            type = "list",
+            name = "configurations",
+            target_id = prelude.Document.id,
+            list_member = M.DataLakeConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        metaStoreManagerRoleArn = schema.new({
+            id = id.from(_N, "UpdateDataLakeInput", "metaStoreManagerRoleArn"),
+            type = "string",
+            name = "metaStoreManagerRoleArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateDataLakeOutput = schema.new({
+    id = id.from(_N, "UpdateDataLakeOutput"),
+    type = "structure",
+    members = {
+        dataLakes = schema.new({
+            id = id.from(_N, "UpdateDataLakeOutput", "dataLakes"),
+            type = "list",
+            name = "dataLakes",
+            target_id = prelude.Document.id,
+            list_member = M.DataLakeResource,
+        }),
+    },
+})
+
+M.DataLakeException = schema.new({
+    id = id.from(_N, "DataLakeException"),
+    type = "structure",
+    members = {
+        region = schema.new({
+            id = id.from(_N, "DataLakeException", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+        }),
+        exception = schema.new({
+            id = id.from(_N, "DataLakeException", "exception"),
+            type = "string",
+            name = "exception",
+            target_id = prelude.String.id,
+        }),
+        remediation = schema.new({
+            id = id.from(_N, "DataLakeException", "remediation"),
+            type = "string",
+            name = "remediation",
+            target_id = prelude.String.id,
+        }),
+        timestamp = schema.new({
+            id = id.from(_N, "DataLakeException", "timestamp"),
+            type = "timestamp",
+            name = "timestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.DeleteDataLakeExceptionSubscriptionInput = schema.new({
+    id = id.from(_N, "DeleteDataLakeExceptionSubscriptionInput"),
+    type = "structure",
+})
+
+M.DeleteDataLakeExceptionSubscriptionOutput = schema.new({
+    id = id.from(_N, "DeleteDataLakeExceptionSubscriptionOutput"),
+    type = "structure",
+})
+
+M.DeleteSubscriberInput = schema.new({
+    id = id.from(_N, "DeleteSubscriberInput"),
+    type = "structure",
+    members = {
+        subscriberId = schema.new({
+            id = id.from(_N, "DeleteSubscriberInput", "subscriberId"),
+            type = "string",
+            name = "subscriberId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteSubscriberOutput = schema.new({
+    id = id.from(_N, "DeleteSubscriberOutput"),
+    type = "structure",
+})
+
+M.DeleteSubscriberNotificationInput = schema.new({
+    id = id.from(_N, "DeleteSubscriberNotificationInput"),
+    type = "structure",
+    members = {
+        subscriberId = schema.new({
+            id = id.from(_N, "DeleteSubscriberNotificationInput", "subscriberId"),
+            type = "string",
+            name = "subscriberId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteSubscriberNotificationOutput = schema.new({
+    id = id.from(_N, "DeleteSubscriberNotificationOutput"),
+    type = "structure",
+})
+
+M.DeregisterDataLakeDelegatedAdministratorInput = schema.new({
+    id = id.from(_N, "DeregisterDataLakeDelegatedAdministratorInput"),
+    type = "structure",
+})
+
+M.DeregisterDataLakeDelegatedAdministratorOutput = schema.new({
+    id = id.from(_N, "DeregisterDataLakeDelegatedAdministratorOutput"),
+    type = "structure",
+})
+
+M.GetDataLakeExceptionSubscriptionInput = schema.new({
+    id = id.from(_N, "GetDataLakeExceptionSubscriptionInput"),
+    type = "structure",
+})
+
+M.GetDataLakeExceptionSubscriptionOutput = schema.new({
+    id = id.from(_N, "GetDataLakeExceptionSubscriptionOutput"),
+    type = "structure",
+    members = {
+        subscriptionProtocol = schema.new({
+            id = id.from(_N, "GetDataLakeExceptionSubscriptionOutput", "subscriptionProtocol"),
+            type = "string",
+            name = "subscriptionProtocol",
+            target_id = prelude.String.id,
+        }),
+        notificationEndpoint = schema.new({
+            id = id.from(_N, "GetDataLakeExceptionSubscriptionOutput", "notificationEndpoint"),
+            type = "string",
+            name = "notificationEndpoint",
+            target_id = prelude.String.id,
+        }),
+        exceptionTimeToLive = schema.new({
+            id = id.from(_N, "GetDataLakeExceptionSubscriptionOutput", "exceptionTimeToLive"),
+            type = "long",
+            name = "exceptionTimeToLive",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.GetSubscriberInput = schema.new({
+    id = id.from(_N, "GetSubscriberInput"),
+    type = "structure",
+    members = {
+        subscriberId = schema.new({
+            id = id.from(_N, "GetSubscriberInput", "subscriberId"),
+            type = "string",
+            name = "subscriberId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetSubscriberOutput = schema.new({
+    id = id.from(_N, "GetSubscriberOutput"),
+    type = "structure",
+    members = {
+        subscriber = schema.new({
+            id = id.from(_N, "GetSubscriberOutput", "subscriber"),
+            type = "structure",
+            name = "subscriber",
+            target_id = id.from(_N, "SubscriberResource"),
+            target = M.SubscriberResource,
+        }),
+    },
+})
+
+M.ListDataLakeExceptionsInput = schema.new({
+    id = id.from(_N, "ListDataLakeExceptionsInput"),
+    type = "structure",
+    members = {
+        regions = schema.new({
+            id = id.from(_N, "ListDataLakeExceptionsInput", "regions"),
+            type = "list",
+            name = "regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListDataLakeExceptionsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 50 },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListDataLakeExceptionsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListDataLakeExceptionsOutput = schema.new({
+    id = id.from(_N, "ListDataLakeExceptionsOutput"),
+    type = "structure",
+    members = {
+        exceptions = schema.new({
+            id = id.from(_N, "ListDataLakeExceptionsOutput", "exceptions"),
+            type = "list",
+            name = "exceptions",
+            target_id = prelude.Document.id,
+            list_member = M.DataLakeException,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListDataLakeExceptionsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListSubscribersInput = schema.new({
+    id = id.from(_N, "ListSubscribersInput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListSubscribersInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListSubscribersInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 50 },
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.ListSubscribersOutput = schema.new({
+    id = id.from(_N, "ListSubscribersOutput"),
+    type = "structure",
+    members = {
+        subscribers = schema.new({
+            id = id.from(_N, "ListSubscribersOutput", "subscribers"),
+            type = "list",
+            name = "subscribers",
+            target_id = prelude.Document.id,
+            list_member = M.SubscriberResource,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListSubscribersOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceOutput"),
+    type = "structure",
+    members = {
+        tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.RegisterDataLakeDelegatedAdministratorInput = schema.new({
+    id = id.from(_N, "RegisterDataLakeDelegatedAdministratorInput"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "RegisterDataLakeDelegatedAdministratorInput", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RegisterDataLakeDelegatedAdministratorOutput = schema.new({
+    id = id.from(_N, "RegisterDataLakeDelegatedAdministratorOutput"),
+    type = "structure",
+})
+
+M.UpdateSubscriberInput = schema.new({
+    id = id.from(_N, "UpdateSubscriberInput"),
+    type = "structure",
+    members = {
+        subscriberId = schema.new({
+            id = id.from(_N, "UpdateSubscriberInput", "subscriberId"),
+            type = "string",
+            name = "subscriberId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        subscriberIdentity = schema.new({
+            id = id.from(_N, "UpdateSubscriberInput", "subscriberIdentity"),
+            type = "structure",
+            name = "subscriberIdentity",
+            target_id = id.from(_N, "AwsIdentity"),
+            target = M.AwsIdentity,
+        }),
+        subscriberName = schema.new({
+            id = id.from(_N, "UpdateSubscriberInput", "subscriberName"),
+            type = "string",
+            name = "subscriberName",
+            target_id = prelude.String.id,
+        }),
+        subscriberDescription = schema.new({
+            id = id.from(_N, "UpdateSubscriberInput", "subscriberDescription"),
+            type = "string",
+            name = "subscriberDescription",
+            target_id = prelude.String.id,
+        }),
+        sources = schema.new({
+            id = id.from(_N, "UpdateSubscriberInput", "sources"),
+            type = "list",
+            name = "sources",
+            target_id = prelude.Document.id,
+            list_member = M.LogSourceResource,
+        }),
+    },
+})
+
+M.UpdateSubscriberOutput = schema.new({
+    id = id.from(_N, "UpdateSubscriberOutput"),
+    type = "structure",
+    members = {
+        subscriber = schema.new({
+            id = id.from(_N, "UpdateSubscriberOutput", "subscriber"),
+            type = "structure",
+            name = "subscriber",
+            target_id = id.from(_N, "SubscriberResource"),
+            target = M.SubscriberResource,
+        }),
+    },
+})
+
+M.UpdateSubscriberNotificationInput = schema.new({
+    id = id.from(_N, "UpdateSubscriberNotificationInput"),
+    type = "structure",
+    members = {
+        subscriberId = schema.new({
+            id = id.from(_N, "UpdateSubscriberNotificationInput", "subscriberId"),
+            type = "string",
+            name = "subscriberId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        configuration = schema.new({
+            id = id.from(_N, "UpdateSubscriberNotificationInput", "configuration"),
+            type = "union",
+            name = "configuration",
+            target_id = id.from(_N, "NotificationConfiguration"),
+            target = M.NotificationConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateSubscriberNotificationOutput = schema.new({
+    id = id.from(_N, "UpdateSubscriberNotificationOutput"),
+    type = "structure",
+    members = {
+        subscriberEndpoint = schema.new({
+            id = id.from(_N, "UpdateSubscriberNotificationOutput", "subscriberEndpoint"),
+            type = "string",
+            name = "subscriberEndpoint",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "TagResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceOutput"),
+    type = "structure",
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "UntagResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        tagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "tagKeys"),
+            type = "list",
+            name = "tagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "tagKeys" },
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
+M.UpdateDataLakeExceptionSubscriptionInput = schema.new({
+    id = id.from(_N, "UpdateDataLakeExceptionSubscriptionInput"),
+    type = "structure",
+    members = {
+        subscriptionProtocol = schema.new({
+            id = id.from(_N, "UpdateDataLakeExceptionSubscriptionInput", "subscriptionProtocol"),
+            type = "string",
+            name = "subscriptionProtocol",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        notificationEndpoint = schema.new({
+            id = id.from(_N, "UpdateDataLakeExceptionSubscriptionInput", "notificationEndpoint"),
+            type = "string",
+            name = "notificationEndpoint",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        exceptionTimeToLive = schema.new({
+            id = id.from(_N, "UpdateDataLakeExceptionSubscriptionInput", "exceptionTimeToLive"),
+            type = "long",
+            name = "exceptionTimeToLive",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.UpdateDataLakeExceptionSubscriptionOutput = schema.new({
+    id = id.from(_N, "UpdateDataLakeExceptionSubscriptionOutput"),
+    type = "structure",
+})
+
+return M

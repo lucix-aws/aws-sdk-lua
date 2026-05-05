@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("licensemanager.endpoint_rules")
+local schemas = require("licensemanager.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("licensemanager.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptGrant(input, options)
     return self:invokeOperation(input, {
         name = "AcceptGrant",
-        input_schema = types.AcceptGrantInput,
-        output_schema = types.AcceptGrantOutput,
+        input_schema = schemas.AcceptGrantInput,
+        output_schema = schemas.AcceptGrantOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:checkInLicense(input, options)
     return self:invokeOperation(input, {
         name = "CheckInLicense",
-        input_schema = types.CheckInLicenseInput,
-        output_schema = types.CheckInLicenseOutput,
+        input_schema = schemas.CheckInLicenseInput,
+        output_schema = schemas.CheckInLicenseOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:checkoutBorrowLicense(input, options)
     return self:invokeOperation(input, {
         name = "CheckoutBorrowLicense",
-        input_schema = types.CheckoutBorrowLicenseInput,
-        output_schema = types.CheckoutBorrowLicenseOutput,
+        input_schema = schemas.CheckoutBorrowLicenseInput,
+        output_schema = schemas.CheckoutBorrowLicenseOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:checkoutLicense(input, options)
     return self:invokeOperation(input, {
         name = "CheckoutLicense",
-        input_schema = types.CheckoutLicenseInput,
-        output_schema = types.CheckoutLicenseOutput,
+        input_schema = schemas.CheckoutLicenseInput,
+        output_schema = schemas.CheckoutLicenseOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createGrant(input, options)
     return self:invokeOperation(input, {
         name = "CreateGrant",
-        input_schema = types.CreateGrantInput,
-        output_schema = types.CreateGrantOutput,
+        input_schema = schemas.CreateGrantInput,
+        output_schema = schemas.CreateGrantOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createGrantVersion(input, options)
     return self:invokeOperation(input, {
         name = "CreateGrantVersion",
-        input_schema = types.CreateGrantVersionInput,
-        output_schema = types.CreateGrantVersionOutput,
+        input_schema = schemas.CreateGrantVersionInput,
+        output_schema = schemas.CreateGrantVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createLicense(input, options)
     return self:invokeOperation(input, {
         name = "CreateLicense",
-        input_schema = types.CreateLicenseInput,
-        output_schema = types.CreateLicenseOutput,
+        input_schema = schemas.CreateLicenseInput,
+        output_schema = schemas.CreateLicenseOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createLicenseAssetGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateLicenseAssetGroup",
-        input_schema = types.CreateLicenseAssetGroupInput,
-        output_schema = types.CreateLicenseAssetGroupOutput,
+        input_schema = schemas.CreateLicenseAssetGroupInput,
+        output_schema = schemas.CreateLicenseAssetGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createLicenseAssetRuleset(input, options)
     return self:invokeOperation(input, {
         name = "CreateLicenseAssetRuleset",
-        input_schema = types.CreateLicenseAssetRulesetInput,
-        output_schema = types.CreateLicenseAssetRulesetOutput,
+        input_schema = schemas.CreateLicenseAssetRulesetInput,
+        output_schema = schemas.CreateLicenseAssetRulesetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createLicenseConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateLicenseConfiguration",
-        input_schema = types.CreateLicenseConfigurationInput,
-        output_schema = types.CreateLicenseConfigurationOutput,
+        input_schema = schemas.CreateLicenseConfigurationInput,
+        output_schema = schemas.CreateLicenseConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createLicenseConversionTaskForResource(input, options)
     return self:invokeOperation(input, {
         name = "CreateLicenseConversionTaskForResource",
-        input_schema = types.CreateLicenseConversionTaskForResourceInput,
-        output_schema = types.CreateLicenseConversionTaskForResourceOutput,
+        input_schema = schemas.CreateLicenseConversionTaskForResourceInput,
+        output_schema = schemas.CreateLicenseConversionTaskForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createLicenseManagerReportGenerator(input, options)
     return self:invokeOperation(input, {
         name = "CreateLicenseManagerReportGenerator",
-        input_schema = types.CreateLicenseManagerReportGeneratorInput,
-        output_schema = types.CreateLicenseManagerReportGeneratorOutput,
+        input_schema = schemas.CreateLicenseManagerReportGeneratorInput,
+        output_schema = schemas.CreateLicenseManagerReportGeneratorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createLicenseVersion(input, options)
     return self:invokeOperation(input, {
         name = "CreateLicenseVersion",
-        input_schema = types.CreateLicenseVersionInput,
-        output_schema = types.CreateLicenseVersionOutput,
+        input_schema = schemas.CreateLicenseVersionInput,
+        output_schema = schemas.CreateLicenseVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:createToken(input, options)
     return self:invokeOperation(input, {
         name = "CreateToken",
-        input_schema = types.CreateTokenInput,
-        output_schema = types.CreateTokenOutput,
+        input_schema = schemas.CreateTokenInput,
+        output_schema = schemas.CreateTokenOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteGrant(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGrant",
-        input_schema = types.DeleteGrantInput,
-        output_schema = types.DeleteGrantOutput,
+        input_schema = schemas.DeleteGrantInput,
+        output_schema = schemas.DeleteGrantOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteLicense(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLicense",
-        input_schema = types.DeleteLicenseInput,
-        output_schema = types.DeleteLicenseOutput,
+        input_schema = schemas.DeleteLicenseInput,
+        output_schema = schemas.DeleteLicenseOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteLicenseAssetGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLicenseAssetGroup",
-        input_schema = types.DeleteLicenseAssetGroupInput,
-        output_schema = types.DeleteLicenseAssetGroupOutput,
+        input_schema = schemas.DeleteLicenseAssetGroupInput,
+        output_schema = schemas.DeleteLicenseAssetGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteLicenseAssetRuleset(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLicenseAssetRuleset",
-        input_schema = types.DeleteLicenseAssetRulesetInput,
-        output_schema = types.DeleteLicenseAssetRulesetOutput,
+        input_schema = schemas.DeleteLicenseAssetRulesetInput,
+        output_schema = schemas.DeleteLicenseAssetRulesetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteLicenseConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLicenseConfiguration",
-        input_schema = types.DeleteLicenseConfigurationInput,
-        output_schema = types.DeleteLicenseConfigurationOutput,
+        input_schema = schemas.DeleteLicenseConfigurationInput,
+        output_schema = schemas.DeleteLicenseConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deleteLicenseManagerReportGenerator(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLicenseManagerReportGenerator",
-        input_schema = types.DeleteLicenseManagerReportGeneratorInput,
-        output_schema = types.DeleteLicenseManagerReportGeneratorOutput,
+        input_schema = schemas.DeleteLicenseManagerReportGeneratorInput,
+        output_schema = schemas.DeleteLicenseManagerReportGeneratorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteToken(input, options)
     return self:invokeOperation(input, {
         name = "DeleteToken",
-        input_schema = types.DeleteTokenInput,
-        output_schema = types.DeleteTokenOutput,
+        input_schema = schemas.DeleteTokenInput,
+        output_schema = schemas.DeleteTokenOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:extendLicenseConsumption(input, options)
     return self:invokeOperation(input, {
         name = "ExtendLicenseConsumption",
-        input_schema = types.ExtendLicenseConsumptionInput,
-        output_schema = types.ExtendLicenseConsumptionOutput,
+        input_schema = schemas.ExtendLicenseConsumptionInput,
+        output_schema = schemas.ExtendLicenseConsumptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:getAccessToken(input, options)
     return self:invokeOperation(input, {
         name = "GetAccessToken",
-        input_schema = types.GetAccessTokenInput,
-        output_schema = types.GetAccessTokenOutput,
+        input_schema = schemas.GetAccessTokenInput,
+        output_schema = schemas.GetAccessTokenOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:getGrant(input, options)
     return self:invokeOperation(input, {
         name = "GetGrant",
-        input_schema = types.GetGrantInput,
-        output_schema = types.GetGrantOutput,
+        input_schema = schemas.GetGrantInput,
+        output_schema = schemas.GetGrantOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getLicense(input, options)
     return self:invokeOperation(input, {
         name = "GetLicense",
-        input_schema = types.GetLicenseInput,
-        output_schema = types.GetLicenseOutput,
+        input_schema = schemas.GetLicenseInput,
+        output_schema = schemas.GetLicenseOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:getLicenseAssetGroup(input, options)
     return self:invokeOperation(input, {
         name = "GetLicenseAssetGroup",
-        input_schema = types.GetLicenseAssetGroupInput,
-        output_schema = types.GetLicenseAssetGroupOutput,
+        input_schema = schemas.GetLicenseAssetGroupInput,
+        output_schema = schemas.GetLicenseAssetGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:getLicenseAssetRuleset(input, options)
     return self:invokeOperation(input, {
         name = "GetLicenseAssetRuleset",
-        input_schema = types.GetLicenseAssetRulesetInput,
-        output_schema = types.GetLicenseAssetRulesetOutput,
+        input_schema = schemas.GetLicenseAssetRulesetInput,
+        output_schema = schemas.GetLicenseAssetRulesetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:getLicenseConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetLicenseConfiguration",
-        input_schema = types.GetLicenseConfigurationInput,
-        output_schema = types.GetLicenseConfigurationOutput,
+        input_schema = schemas.GetLicenseConfigurationInput,
+        output_schema = schemas.GetLicenseConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:getLicenseConversionTask(input, options)
     return self:invokeOperation(input, {
         name = "GetLicenseConversionTask",
-        input_schema = types.GetLicenseConversionTaskInput,
-        output_schema = types.GetLicenseConversionTaskOutput,
+        input_schema = schemas.GetLicenseConversionTaskInput,
+        output_schema = schemas.GetLicenseConversionTaskOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:getLicenseManagerReportGenerator(input, options)
     return self:invokeOperation(input, {
         name = "GetLicenseManagerReportGenerator",
-        input_schema = types.GetLicenseManagerReportGeneratorInput,
-        output_schema = types.GetLicenseManagerReportGeneratorOutput,
+        input_schema = schemas.GetLicenseManagerReportGeneratorInput,
+        output_schema = schemas.GetLicenseManagerReportGeneratorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:getLicenseUsage(input, options)
     return self:invokeOperation(input, {
         name = "GetLicenseUsage",
-        input_schema = types.GetLicenseUsageInput,
-        output_schema = types.GetLicenseUsageOutput,
+        input_schema = schemas.GetLicenseUsageInput,
+        output_schema = schemas.GetLicenseUsageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:getServiceSettings(input, options)
     return self:invokeOperation(input, {
         name = "GetServiceSettings",
-        input_schema = types.GetServiceSettingsInput,
-        output_schema = types.GetServiceSettingsOutput,
+        input_schema = schemas.GetServiceSettingsInput,
+        output_schema = schemas.GetServiceSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:listAssetsForLicenseAssetGroup(input, options)
     return self:invokeOperation(input, {
         name = "ListAssetsForLicenseAssetGroup",
-        input_schema = types.ListAssetsForLicenseAssetGroupInput,
-        output_schema = types.ListAssetsForLicenseAssetGroupOutput,
+        input_schema = schemas.ListAssetsForLicenseAssetGroupInput,
+        output_schema = schemas.ListAssetsForLicenseAssetGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listAssociationsForLicenseConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "ListAssociationsForLicenseConfiguration",
-        input_schema = types.ListAssociationsForLicenseConfigurationInput,
-        output_schema = types.ListAssociationsForLicenseConfigurationOutput,
+        input_schema = schemas.ListAssociationsForLicenseConfigurationInput,
+        output_schema = schemas.ListAssociationsForLicenseConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:listDistributedGrants(input, options)
     return self:invokeOperation(input, {
         name = "ListDistributedGrants",
-        input_schema = types.ListDistributedGrantsInput,
-        output_schema = types.ListDistributedGrantsOutput,
+        input_schema = schemas.ListDistributedGrantsInput,
+        output_schema = schemas.ListDistributedGrantsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:listFailuresForLicenseConfigurationOperations(input, options)
     return self:invokeOperation(input, {
         name = "ListFailuresForLicenseConfigurationOperations",
-        input_schema = types.ListFailuresForLicenseConfigurationOperationsInput,
-        output_schema = types.ListFailuresForLicenseConfigurationOperationsOutput,
+        input_schema = schemas.ListFailuresForLicenseConfigurationOperationsInput,
+        output_schema = schemas.ListFailuresForLicenseConfigurationOperationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:listLicenseAssetGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListLicenseAssetGroups",
-        input_schema = types.ListLicenseAssetGroupsInput,
-        output_schema = types.ListLicenseAssetGroupsOutput,
+        input_schema = schemas.ListLicenseAssetGroupsInput,
+        output_schema = schemas.ListLicenseAssetGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:listLicenseAssetRulesets(input, options)
     return self:invokeOperation(input, {
         name = "ListLicenseAssetRulesets",
-        input_schema = types.ListLicenseAssetRulesetsInput,
-        output_schema = types.ListLicenseAssetRulesetsOutput,
+        input_schema = schemas.ListLicenseAssetRulesetsInput,
+        output_schema = schemas.ListLicenseAssetRulesetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:listLicenseConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListLicenseConfigurations",
-        input_schema = types.ListLicenseConfigurationsInput,
-        output_schema = types.ListLicenseConfigurationsOutput,
+        input_schema = schemas.ListLicenseConfigurationsInput,
+        output_schema = schemas.ListLicenseConfigurationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:listLicenseConfigurationsForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "ListLicenseConfigurationsForOrganization",
-        input_schema = types.ListLicenseConfigurationsForOrganizationInput,
-        output_schema = types.ListLicenseConfigurationsForOrganizationOutput,
+        input_schema = schemas.ListLicenseConfigurationsForOrganizationInput,
+        output_schema = schemas.ListLicenseConfigurationsForOrganizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:listLicenseConversionTasks(input, options)
     return self:invokeOperation(input, {
         name = "ListLicenseConversionTasks",
-        input_schema = types.ListLicenseConversionTasksInput,
-        output_schema = types.ListLicenseConversionTasksOutput,
+        input_schema = schemas.ListLicenseConversionTasksInput,
+        output_schema = schemas.ListLicenseConversionTasksOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:listLicenseManagerReportGenerators(input, options)
     return self:invokeOperation(input, {
         name = "ListLicenseManagerReportGenerators",
-        input_schema = types.ListLicenseManagerReportGeneratorsInput,
-        output_schema = types.ListLicenseManagerReportGeneratorsOutput,
+        input_schema = schemas.ListLicenseManagerReportGeneratorsInput,
+        output_schema = schemas.ListLicenseManagerReportGeneratorsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:listLicenses(input, options)
     return self:invokeOperation(input, {
         name = "ListLicenses",
-        input_schema = types.ListLicensesInput,
-        output_schema = types.ListLicensesOutput,
+        input_schema = schemas.ListLicensesInput,
+        output_schema = schemas.ListLicensesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:listLicenseSpecificationsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListLicenseSpecificationsForResource",
-        input_schema = types.ListLicenseSpecificationsForResourceInput,
-        output_schema = types.ListLicenseSpecificationsForResourceOutput,
+        input_schema = schemas.ListLicenseSpecificationsForResourceInput,
+        output_schema = schemas.ListLicenseSpecificationsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:listLicenseVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListLicenseVersions",
-        input_schema = types.ListLicenseVersionsInput,
-        output_schema = types.ListLicenseVersionsOutput,
+        input_schema = schemas.ListLicenseVersionsInput,
+        output_schema = schemas.ListLicenseVersionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:listReceivedGrants(input, options)
     return self:invokeOperation(input, {
         name = "ListReceivedGrants",
-        input_schema = types.ListReceivedGrantsInput,
-        output_schema = types.ListReceivedGrantsOutput,
+        input_schema = schemas.ListReceivedGrantsInput,
+        output_schema = schemas.ListReceivedGrantsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:listReceivedGrantsForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "ListReceivedGrantsForOrganization",
-        input_schema = types.ListReceivedGrantsForOrganizationInput,
-        output_schema = types.ListReceivedGrantsForOrganizationOutput,
+        input_schema = schemas.ListReceivedGrantsForOrganizationInput,
+        output_schema = schemas.ListReceivedGrantsForOrganizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:listReceivedLicenses(input, options)
     return self:invokeOperation(input, {
         name = "ListReceivedLicenses",
-        input_schema = types.ListReceivedLicensesInput,
-        output_schema = types.ListReceivedLicensesOutput,
+        input_schema = schemas.ListReceivedLicensesInput,
+        output_schema = schemas.ListReceivedLicensesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:listReceivedLicensesForOrganization(input, options)
     return self:invokeOperation(input, {
         name = "ListReceivedLicensesForOrganization",
-        input_schema = types.ListReceivedLicensesForOrganizationInput,
-        output_schema = types.ListReceivedLicensesForOrganizationOutput,
+        input_schema = schemas.ListReceivedLicensesForOrganizationInput,
+        output_schema = schemas.ListReceivedLicensesForOrganizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:listResourceInventory(input, options)
     return self:invokeOperation(input, {
         name = "ListResourceInventory",
-        input_schema = types.ListResourceInventoryInput,
-        output_schema = types.ListResourceInventoryOutput,
+        input_schema = schemas.ListResourceInventoryInput,
+        output_schema = schemas.ListResourceInventoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:listTokens(input, options)
     return self:invokeOperation(input, {
         name = "ListTokens",
-        input_schema = types.ListTokensInput,
-        output_schema = types.ListTokensOutput,
+        input_schema = schemas.ListTokensInput,
+        output_schema = schemas.ListTokensOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:listUsageForLicenseConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "ListUsageForLicenseConfiguration",
-        input_schema = types.ListUsageForLicenseConfigurationInput,
-        output_schema = types.ListUsageForLicenseConfigurationOutput,
+        input_schema = schemas.ListUsageForLicenseConfigurationInput,
+        output_schema = schemas.ListUsageForLicenseConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:rejectGrant(input, options)
     return self:invokeOperation(input, {
         name = "RejectGrant",
-        input_schema = types.RejectGrantInput,
-        output_schema = types.RejectGrantOutput,
+        input_schema = schemas.RejectGrantInput,
+        output_schema = schemas.RejectGrantOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:updateLicenseAssetGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLicenseAssetGroup",
-        input_schema = types.UpdateLicenseAssetGroupInput,
-        output_schema = types.UpdateLicenseAssetGroupOutput,
+        input_schema = schemas.UpdateLicenseAssetGroupInput,
+        output_schema = schemas.UpdateLicenseAssetGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:updateLicenseAssetRuleset(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLicenseAssetRuleset",
-        input_schema = types.UpdateLicenseAssetRulesetInput,
-        output_schema = types.UpdateLicenseAssetRulesetOutput,
+        input_schema = schemas.UpdateLicenseAssetRulesetInput,
+        output_schema = schemas.UpdateLicenseAssetRulesetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:updateLicenseConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLicenseConfiguration",
-        input_schema = types.UpdateLicenseConfigurationInput,
-        output_schema = types.UpdateLicenseConfigurationOutput,
+        input_schema = schemas.UpdateLicenseConfigurationInput,
+        output_schema = schemas.UpdateLicenseConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:updateLicenseManagerReportGenerator(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLicenseManagerReportGenerator",
-        input_schema = types.UpdateLicenseManagerReportGeneratorInput,
-        output_schema = types.UpdateLicenseManagerReportGeneratorOutput,
+        input_schema = schemas.UpdateLicenseManagerReportGeneratorInput,
+        output_schema = schemas.UpdateLicenseManagerReportGeneratorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:updateLicenseSpecificationsForResource(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLicenseSpecificationsForResource",
-        input_schema = types.UpdateLicenseSpecificationsForResourceInput,
-        output_schema = types.UpdateLicenseSpecificationsForResourceOutput,
+        input_schema = schemas.UpdateLicenseSpecificationsForResourceInput,
+        output_schema = schemas.UpdateLicenseSpecificationsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:updateServiceSettings(input, options)
     return self:invokeOperation(input, {
         name = "UpdateServiceSettings",
-        input_schema = types.UpdateServiceSettingsInput,
-        output_schema = types.UpdateServiceSettingsOutput,
+        input_schema = schemas.UpdateServiceSettingsInput,
+        output_schema = schemas.UpdateServiceSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

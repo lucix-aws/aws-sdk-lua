@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("mediastore.endpoint_rules")
+local schemas = require("mediastore.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("mediastore.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createContainer(input, options)
     return self:invokeOperation(input, {
         name = "CreateContainer",
-        input_schema = types.CreateContainerInput,
-        output_schema = types.CreateContainerOutput,
+        input_schema = schemas.CreateContainerInput,
+        output_schema = schemas.CreateContainerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteContainer(input, options)
     return self:invokeOperation(input, {
         name = "DeleteContainer",
-        input_schema = types.DeleteContainerInput,
-        output_schema = types.DeleteContainerOutput,
+        input_schema = schemas.DeleteContainerInput,
+        output_schema = schemas.DeleteContainerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteContainerPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteContainerPolicy",
-        input_schema = types.DeleteContainerPolicyInput,
-        output_schema = types.DeleteContainerPolicyOutput,
+        input_schema = schemas.DeleteContainerPolicyInput,
+        output_schema = schemas.DeleteContainerPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteCorsPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCorsPolicy",
-        input_schema = types.DeleteCorsPolicyInput,
-        output_schema = types.DeleteCorsPolicyOutput,
+        input_schema = schemas.DeleteCorsPolicyInput,
+        output_schema = schemas.DeleteCorsPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteLifecyclePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLifecyclePolicy",
-        input_schema = types.DeleteLifecyclePolicyInput,
-        output_schema = types.DeleteLifecyclePolicyOutput,
+        input_schema = schemas.DeleteLifecyclePolicyInput,
+        output_schema = schemas.DeleteLifecyclePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteMetricPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMetricPolicy",
-        input_schema = types.DeleteMetricPolicyInput,
-        output_schema = types.DeleteMetricPolicyOutput,
+        input_schema = schemas.DeleteMetricPolicyInput,
+        output_schema = schemas.DeleteMetricPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:describeContainer(input, options)
     return self:invokeOperation(input, {
         name = "DescribeContainer",
-        input_schema = types.DescribeContainerInput,
-        output_schema = types.DescribeContainerOutput,
+        input_schema = schemas.DescribeContainerInput,
+        output_schema = schemas.DescribeContainerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getContainerPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetContainerPolicy",
-        input_schema = types.GetContainerPolicyInput,
-        output_schema = types.GetContainerPolicyOutput,
+        input_schema = schemas.GetContainerPolicyInput,
+        output_schema = schemas.GetContainerPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getCorsPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetCorsPolicy",
-        input_schema = types.GetCorsPolicyInput,
-        output_schema = types.GetCorsPolicyOutput,
+        input_schema = schemas.GetCorsPolicyInput,
+        output_schema = schemas.GetCorsPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getLifecyclePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetLifecyclePolicy",
-        input_schema = types.GetLifecyclePolicyInput,
-        output_schema = types.GetLifecyclePolicyOutput,
+        input_schema = schemas.GetLifecyclePolicyInput,
+        output_schema = schemas.GetLifecyclePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getMetricPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetMetricPolicy",
-        input_schema = types.GetMetricPolicyInput,
-        output_schema = types.GetMetricPolicyOutput,
+        input_schema = schemas.GetMetricPolicyInput,
+        output_schema = schemas.GetMetricPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listContainers(input, options)
     return self:invokeOperation(input, {
         name = "ListContainers",
-        input_schema = types.ListContainersInput,
-        output_schema = types.ListContainersOutput,
+        input_schema = schemas.ListContainersInput,
+        output_schema = schemas.ListContainersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:putContainerPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutContainerPolicy",
-        input_schema = types.PutContainerPolicyInput,
-        output_schema = types.PutContainerPolicyOutput,
+        input_schema = schemas.PutContainerPolicyInput,
+        output_schema = schemas.PutContainerPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:putCorsPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutCorsPolicy",
-        input_schema = types.PutCorsPolicyInput,
-        output_schema = types.PutCorsPolicyOutput,
+        input_schema = schemas.PutCorsPolicyInput,
+        output_schema = schemas.PutCorsPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:putLifecyclePolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutLifecyclePolicy",
-        input_schema = types.PutLifecyclePolicyInput,
-        output_schema = types.PutLifecyclePolicyOutput,
+        input_schema = schemas.PutLifecyclePolicyInput,
+        output_schema = schemas.PutLifecyclePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:putMetricPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutMetricPolicy",
-        input_schema = types.PutMetricPolicyInput,
-        output_schema = types.PutMetricPolicyOutput,
+        input_schema = schemas.PutMetricPolicyInput,
+        output_schema = schemas.PutMetricPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:startAccessLogging(input, options)
     return self:invokeOperation(input, {
         name = "StartAccessLogging",
-        input_schema = types.StartAccessLoggingInput,
-        output_schema = types.StartAccessLoggingOutput,
+        input_schema = schemas.StartAccessLoggingInput,
+        output_schema = schemas.StartAccessLoggingOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:stopAccessLogging(input, options)
     return self:invokeOperation(input, {
         name = "StopAccessLogging",
-        input_schema = types.StopAccessLoggingInput,
-        output_schema = types.StopAccessLoggingOutput,
+        input_schema = schemas.StopAccessLoggingInput,
+        output_schema = schemas.StopAccessLoggingOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

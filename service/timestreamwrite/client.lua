@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("timestreamwrite.endpoint_rules")
+local schemas = require("timestreamwrite.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("timestreamwrite.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createBatchLoadTask(input, options)
     return self:invokeOperation(input, {
         name = "CreateBatchLoadTask",
-        input_schema = types.CreateBatchLoadTaskInput,
-        output_schema = types.CreateBatchLoadTaskOutput,
+        input_schema = schemas.CreateBatchLoadTaskInput,
+        output_schema = schemas.CreateBatchLoadTaskOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createDatabase(input, options)
     return self:invokeOperation(input, {
         name = "CreateDatabase",
-        input_schema = types.CreateDatabaseInput,
-        output_schema = types.CreateDatabaseOutput,
+        input_schema = schemas.CreateDatabaseInput,
+        output_schema = schemas.CreateDatabaseOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createTable(input, options)
     return self:invokeOperation(input, {
         name = "CreateTable",
-        input_schema = types.CreateTableInput,
-        output_schema = types.CreateTableOutput,
+        input_schema = schemas.CreateTableInput,
+        output_schema = schemas.CreateTableOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteDatabase(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDatabase",
-        input_schema = types.DeleteDatabaseInput,
-        output_schema = types.DeleteDatabaseOutput,
+        input_schema = schemas.DeleteDatabaseInput,
+        output_schema = schemas.DeleteDatabaseOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteTable(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTable",
-        input_schema = types.DeleteTableInput,
-        output_schema = types.DeleteTableOutput,
+        input_schema = schemas.DeleteTableInput,
+        output_schema = schemas.DeleteTableOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:describeBatchLoadTask(input, options)
     return self:invokeOperation(input, {
         name = "DescribeBatchLoadTask",
-        input_schema = types.DescribeBatchLoadTaskInput,
-        output_schema = types.DescribeBatchLoadTaskOutput,
+        input_schema = schemas.DescribeBatchLoadTaskInput,
+        output_schema = schemas.DescribeBatchLoadTaskOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:describeDatabase(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDatabase",
-        input_schema = types.DescribeDatabaseInput,
-        output_schema = types.DescribeDatabaseOutput,
+        input_schema = schemas.DescribeDatabaseInput,
+        output_schema = schemas.DescribeDatabaseOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:describeEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEndpoints",
-        input_schema = types.DescribeEndpointsInput,
-        output_schema = types.DescribeEndpointsOutput,
+        input_schema = schemas.DescribeEndpointsInput,
+        output_schema = schemas.DescribeEndpointsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:describeTable(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTable",
-        input_schema = types.DescribeTableInput,
-        output_schema = types.DescribeTableOutput,
+        input_schema = schemas.DescribeTableInput,
+        output_schema = schemas.DescribeTableOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listBatchLoadTasks(input, options)
     return self:invokeOperation(input, {
         name = "ListBatchLoadTasks",
-        input_schema = types.ListBatchLoadTasksInput,
-        output_schema = types.ListBatchLoadTasksOutput,
+        input_schema = schemas.ListBatchLoadTasksInput,
+        output_schema = schemas.ListBatchLoadTasksOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listDatabases(input, options)
     return self:invokeOperation(input, {
         name = "ListDatabases",
-        input_schema = types.ListDatabasesInput,
-        output_schema = types.ListDatabasesOutput,
+        input_schema = schemas.ListDatabasesInput,
+        output_schema = schemas.ListDatabasesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listTables(input, options)
     return self:invokeOperation(input, {
         name = "ListTables",
-        input_schema = types.ListTablesInput,
-        output_schema = types.ListTablesOutput,
+        input_schema = schemas.ListTablesInput,
+        output_schema = schemas.ListTablesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:resumeBatchLoadTask(input, options)
     return self:invokeOperation(input, {
         name = "ResumeBatchLoadTask",
-        input_schema = types.ResumeBatchLoadTaskInput,
-        output_schema = types.ResumeBatchLoadTaskOutput,
+        input_schema = schemas.ResumeBatchLoadTaskInput,
+        output_schema = schemas.ResumeBatchLoadTaskOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:updateDatabase(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDatabase",
-        input_schema = types.UpdateDatabaseInput,
-        output_schema = types.UpdateDatabaseOutput,
+        input_schema = schemas.UpdateDatabaseInput,
+        output_schema = schemas.UpdateDatabaseOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:updateTable(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTable",
-        input_schema = types.UpdateTableInput,
-        output_schema = types.UpdateTableOutput,
+        input_schema = schemas.UpdateTableInput,
+        output_schema = schemas.UpdateTableOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:writeRecords(input, options)
     return self:invokeOperation(input, {
         name = "WriteRecords",
-        input_schema = types.WriteRecordsInput,
-        output_schema = types.WriteRecordsOutput,
+        input_schema = schemas.WriteRecordsInput,
+        output_schema = schemas.WriteRecordsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

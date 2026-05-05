@@ -836,25 +836,25 @@ local record ValidationException
     reason: string
 end
 
-local type DbStorageType = "InfluxIOIncludedT1" | "InfluxIOIncludedT2" | "InfluxIOIncludedT3"
-
-local type DbInstanceType = "db.influx.medium" | "db.influx.large" | "db.influx.xlarge" | "db.influx.2xlarge" | "db.influx.4xlarge" | "db.influx.8xlarge" | "db.influx.12xlarge" | "db.influx.16xlarge" | "db.influx.24xlarge"
-
-local type DeploymentType = "SINGLE_AZ" | "WITH_MULTIAZ_STANDBY"
-
-local type ClusterDeploymentType = "MULTI_NODE_READ_REPLICAS"
-
 local type FailoverMode = "AUTOMATIC" | "NO_FAILOVER"
 
-local type ClusterStatus = "CREATING" | "UPDATING" | "DELETING" | "AVAILABLE" | "FAILED" | "DELETED" | "MAINTENANCE" | "UPDATING_INSTANCE_TYPE" | "REBOOTING" | "REBOOT_FAILED" | "PARTIALLY_AVAILABLE"
-
-local type NetworkType = "IPV4" | "DUAL"
+local type DeploymentType = "SINGLE_AZ" | "WITH_MULTIAZ_STANDBY"
 
 local type EngineType = "INFLUXDB_V2" | "INFLUXDB_V3_CORE" | "INFLUXDB_V3_ENTERPRISE"
 
 local type InstanceMode = "PRIMARY" | "STANDBY" | "REPLICA" | "INGEST" | "QUERY" | "COMPACT" | "PROCESS"
 
+local type ClusterStatus = "CREATING" | "UPDATING" | "DELETING" | "AVAILABLE" | "FAILED" | "DELETED" | "MAINTENANCE" | "UPDATING_INSTANCE_TYPE" | "REBOOTING" | "REBOOT_FAILED" | "PARTIALLY_AVAILABLE"
+
 local type Status = "CREATING" | "AVAILABLE" | "DELETING" | "MODIFYING" | "UPDATING" | "DELETED" | "FAILED" | "UPDATING_DEPLOYMENT_TYPE" | "UPDATING_INSTANCE_TYPE" | "MAINTENANCE" | "REBOOTING" | "REBOOT_FAILED"
+
+local type ClusterDeploymentType = "MULTI_NODE_READ_REPLICAS"
+
+local type DbStorageType = "InfluxIOIncludedT1" | "InfluxIOIncludedT2" | "InfluxIOIncludedT3"
+
+local type NetworkType = "IPV4" | "DUAL"
+
+local type DbInstanceType = "db.influx.medium" | "db.influx.large" | "db.influx.xlarge" | "db.influx.2xlarge" | "db.influx.4xlarge" | "db.influx.8xlarge" | "db.influx.12xlarge" | "db.influx.16xlarge" | "db.influx.24xlarge"
 
 local record M
     CreateDbClusterInput: CreateDbClusterInput

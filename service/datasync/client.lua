@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("datasync.endpoint_rules")
+local schemas = require("datasync.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("datasync.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:cancelTaskExecution(input, options)
     return self:invokeOperation(input, {
         name = "CancelTaskExecution",
-        input_schema = types.CancelTaskExecutionInput,
-        output_schema = types.CancelTaskExecutionOutput,
+        input_schema = schemas.CancelTaskExecutionInput,
+        output_schema = schemas.CancelTaskExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createAgent(input, options)
     return self:invokeOperation(input, {
         name = "CreateAgent",
-        input_schema = types.CreateAgentInput,
-        output_schema = types.CreateAgentOutput,
+        input_schema = schemas.CreateAgentInput,
+        output_schema = schemas.CreateAgentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createLocationAzureBlob(input, options)
     return self:invokeOperation(input, {
         name = "CreateLocationAzureBlob",
-        input_schema = types.CreateLocationAzureBlobInput,
-        output_schema = types.CreateLocationAzureBlobOutput,
+        input_schema = schemas.CreateLocationAzureBlobInput,
+        output_schema = schemas.CreateLocationAzureBlobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createLocationEfs(input, options)
     return self:invokeOperation(input, {
         name = "CreateLocationEfs",
-        input_schema = types.CreateLocationEfsInput,
-        output_schema = types.CreateLocationEfsOutput,
+        input_schema = schemas.CreateLocationEfsInput,
+        output_schema = schemas.CreateLocationEfsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createLocationFsxLustre(input, options)
     return self:invokeOperation(input, {
         name = "CreateLocationFsxLustre",
-        input_schema = types.CreateLocationFsxLustreInput,
-        output_schema = types.CreateLocationFsxLustreOutput,
+        input_schema = schemas.CreateLocationFsxLustreInput,
+        output_schema = schemas.CreateLocationFsxLustreOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createLocationFsxOntap(input, options)
     return self:invokeOperation(input, {
         name = "CreateLocationFsxOntap",
-        input_schema = types.CreateLocationFsxOntapInput,
-        output_schema = types.CreateLocationFsxOntapOutput,
+        input_schema = schemas.CreateLocationFsxOntapInput,
+        output_schema = schemas.CreateLocationFsxOntapOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createLocationFsxOpenZfs(input, options)
     return self:invokeOperation(input, {
         name = "CreateLocationFsxOpenZfs",
-        input_schema = types.CreateLocationFsxOpenZfsInput,
-        output_schema = types.CreateLocationFsxOpenZfsOutput,
+        input_schema = schemas.CreateLocationFsxOpenZfsInput,
+        output_schema = schemas.CreateLocationFsxOpenZfsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createLocationFsxWindows(input, options)
     return self:invokeOperation(input, {
         name = "CreateLocationFsxWindows",
-        input_schema = types.CreateLocationFsxWindowsInput,
-        output_schema = types.CreateLocationFsxWindowsOutput,
+        input_schema = schemas.CreateLocationFsxWindowsInput,
+        output_schema = schemas.CreateLocationFsxWindowsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createLocationHdfs(input, options)
     return self:invokeOperation(input, {
         name = "CreateLocationHdfs",
-        input_schema = types.CreateLocationHdfsInput,
-        output_schema = types.CreateLocationHdfsOutput,
+        input_schema = schemas.CreateLocationHdfsInput,
+        output_schema = schemas.CreateLocationHdfsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createLocationNfs(input, options)
     return self:invokeOperation(input, {
         name = "CreateLocationNfs",
-        input_schema = types.CreateLocationNfsInput,
-        output_schema = types.CreateLocationNfsOutput,
+        input_schema = schemas.CreateLocationNfsInput,
+        output_schema = schemas.CreateLocationNfsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createLocationObjectStorage(input, options)
     return self:invokeOperation(input, {
         name = "CreateLocationObjectStorage",
-        input_schema = types.CreateLocationObjectStorageInput,
-        output_schema = types.CreateLocationObjectStorageOutput,
+        input_schema = schemas.CreateLocationObjectStorageInput,
+        output_schema = schemas.CreateLocationObjectStorageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createLocationS3(input, options)
     return self:invokeOperation(input, {
         name = "CreateLocationS3",
-        input_schema = types.CreateLocationS3Input,
-        output_schema = types.CreateLocationS3Output,
+        input_schema = schemas.CreateLocationS3Input,
+        output_schema = schemas.CreateLocationS3Output,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createLocationSmb(input, options)
     return self:invokeOperation(input, {
         name = "CreateLocationSmb",
-        input_schema = types.CreateLocationSmbInput,
-        output_schema = types.CreateLocationSmbOutput,
+        input_schema = schemas.CreateLocationSmbInput,
+        output_schema = schemas.CreateLocationSmbOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:createTask(input, options)
     return self:invokeOperation(input, {
         name = "CreateTask",
-        input_schema = types.CreateTaskInput,
-        output_schema = types.CreateTaskOutput,
+        input_schema = schemas.CreateTaskInput,
+        output_schema = schemas.CreateTaskOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteAgent(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAgent",
-        input_schema = types.DeleteAgentInput,
-        output_schema = types.DeleteAgentOutput,
+        input_schema = schemas.DeleteAgentInput,
+        output_schema = schemas.DeleteAgentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteLocation(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLocation",
-        input_schema = types.DeleteLocationInput,
-        output_schema = types.DeleteLocationOutput,
+        input_schema = schemas.DeleteLocationInput,
+        output_schema = schemas.DeleteLocationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteTask(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTask",
-        input_schema = types.DeleteTaskInput,
-        output_schema = types.DeleteTaskOutput,
+        input_schema = schemas.DeleteTaskInput,
+        output_schema = schemas.DeleteTaskOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:describeAgent(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAgent",
-        input_schema = types.DescribeAgentInput,
-        output_schema = types.DescribeAgentOutput,
+        input_schema = schemas.DescribeAgentInput,
+        output_schema = schemas.DescribeAgentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:describeLocationAzureBlob(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLocationAzureBlob",
-        input_schema = types.DescribeLocationAzureBlobInput,
-        output_schema = types.DescribeLocationAzureBlobOutput,
+        input_schema = schemas.DescribeLocationAzureBlobInput,
+        output_schema = schemas.DescribeLocationAzureBlobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:describeLocationEfs(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLocationEfs",
-        input_schema = types.DescribeLocationEfsInput,
-        output_schema = types.DescribeLocationEfsOutput,
+        input_schema = schemas.DescribeLocationEfsInput,
+        output_schema = schemas.DescribeLocationEfsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:describeLocationFsxLustre(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLocationFsxLustre",
-        input_schema = types.DescribeLocationFsxLustreInput,
-        output_schema = types.DescribeLocationFsxLustreOutput,
+        input_schema = schemas.DescribeLocationFsxLustreInput,
+        output_schema = schemas.DescribeLocationFsxLustreOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:describeLocationFsxOntap(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLocationFsxOntap",
-        input_schema = types.DescribeLocationFsxOntapInput,
-        output_schema = types.DescribeLocationFsxOntapOutput,
+        input_schema = schemas.DescribeLocationFsxOntapInput,
+        output_schema = schemas.DescribeLocationFsxOntapOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:describeLocationFsxOpenZfs(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLocationFsxOpenZfs",
-        input_schema = types.DescribeLocationFsxOpenZfsInput,
-        output_schema = types.DescribeLocationFsxOpenZfsOutput,
+        input_schema = schemas.DescribeLocationFsxOpenZfsInput,
+        output_schema = schemas.DescribeLocationFsxOpenZfsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:describeLocationFsxWindows(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLocationFsxWindows",
-        input_schema = types.DescribeLocationFsxWindowsInput,
-        output_schema = types.DescribeLocationFsxWindowsOutput,
+        input_schema = schemas.DescribeLocationFsxWindowsInput,
+        output_schema = schemas.DescribeLocationFsxWindowsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:describeLocationHdfs(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLocationHdfs",
-        input_schema = types.DescribeLocationHdfsInput,
-        output_schema = types.DescribeLocationHdfsOutput,
+        input_schema = schemas.DescribeLocationHdfsInput,
+        output_schema = schemas.DescribeLocationHdfsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:describeLocationNfs(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLocationNfs",
-        input_schema = types.DescribeLocationNfsInput,
-        output_schema = types.DescribeLocationNfsOutput,
+        input_schema = schemas.DescribeLocationNfsInput,
+        output_schema = schemas.DescribeLocationNfsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:describeLocationObjectStorage(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLocationObjectStorage",
-        input_schema = types.DescribeLocationObjectStorageInput,
-        output_schema = types.DescribeLocationObjectStorageOutput,
+        input_schema = schemas.DescribeLocationObjectStorageInput,
+        output_schema = schemas.DescribeLocationObjectStorageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:describeLocationS3(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLocationS3",
-        input_schema = types.DescribeLocationS3Input,
-        output_schema = types.DescribeLocationS3Output,
+        input_schema = schemas.DescribeLocationS3Input,
+        output_schema = schemas.DescribeLocationS3Output,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:describeLocationSmb(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLocationSmb",
-        input_schema = types.DescribeLocationSmbInput,
-        output_schema = types.DescribeLocationSmbOutput,
+        input_schema = schemas.DescribeLocationSmbInput,
+        output_schema = schemas.DescribeLocationSmbOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:describeTask(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTask",
-        input_schema = types.DescribeTaskInput,
-        output_schema = types.DescribeTaskOutput,
+        input_schema = schemas.DescribeTaskInput,
+        output_schema = schemas.DescribeTaskOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:describeTaskExecution(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTaskExecution",
-        input_schema = types.DescribeTaskExecutionInput,
-        output_schema = types.DescribeTaskExecutionOutput,
+        input_schema = schemas.DescribeTaskExecutionInput,
+        output_schema = schemas.DescribeTaskExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:listAgents(input, options)
     return self:invokeOperation(input, {
         name = "ListAgents",
-        input_schema = types.ListAgentsInput,
-        output_schema = types.ListAgentsOutput,
+        input_schema = schemas.ListAgentsInput,
+        output_schema = schemas.ListAgentsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:listLocations(input, options)
     return self:invokeOperation(input, {
         name = "ListLocations",
-        input_schema = types.ListLocationsInput,
-        output_schema = types.ListLocationsOutput,
+        input_schema = schemas.ListLocationsInput,
+        output_schema = schemas.ListLocationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:listTaskExecutions(input, options)
     return self:invokeOperation(input, {
         name = "ListTaskExecutions",
-        input_schema = types.ListTaskExecutionsInput,
-        output_schema = types.ListTaskExecutionsOutput,
+        input_schema = schemas.ListTaskExecutionsInput,
+        output_schema = schemas.ListTaskExecutionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:listTasks(input, options)
     return self:invokeOperation(input, {
         name = "ListTasks",
-        input_schema = types.ListTasksInput,
-        output_schema = types.ListTasksOutput,
+        input_schema = schemas.ListTasksInput,
+        output_schema = schemas.ListTasksOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:startTaskExecution(input, options)
     return self:invokeOperation(input, {
         name = "StartTaskExecution",
-        input_schema = types.StartTaskExecutionInput,
-        output_schema = types.StartTaskExecutionOutput,
+        input_schema = schemas.StartTaskExecutionInput,
+        output_schema = schemas.StartTaskExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:updateAgent(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAgent",
-        input_schema = types.UpdateAgentInput,
-        output_schema = types.UpdateAgentOutput,
+        input_schema = schemas.UpdateAgentInput,
+        output_schema = schemas.UpdateAgentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:updateLocationAzureBlob(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLocationAzureBlob",
-        input_schema = types.UpdateLocationAzureBlobInput,
-        output_schema = types.UpdateLocationAzureBlobOutput,
+        input_schema = schemas.UpdateLocationAzureBlobInput,
+        output_schema = schemas.UpdateLocationAzureBlobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:updateLocationEfs(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLocationEfs",
-        input_schema = types.UpdateLocationEfsInput,
-        output_schema = types.UpdateLocationEfsOutput,
+        input_schema = schemas.UpdateLocationEfsInput,
+        output_schema = schemas.UpdateLocationEfsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:updateLocationFsxLustre(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLocationFsxLustre",
-        input_schema = types.UpdateLocationFsxLustreInput,
-        output_schema = types.UpdateLocationFsxLustreOutput,
+        input_schema = schemas.UpdateLocationFsxLustreInput,
+        output_schema = schemas.UpdateLocationFsxLustreOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:updateLocationFsxOntap(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLocationFsxOntap",
-        input_schema = types.UpdateLocationFsxOntapInput,
-        output_schema = types.UpdateLocationFsxOntapOutput,
+        input_schema = schemas.UpdateLocationFsxOntapInput,
+        output_schema = schemas.UpdateLocationFsxOntapOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:updateLocationFsxOpenZfs(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLocationFsxOpenZfs",
-        input_schema = types.UpdateLocationFsxOpenZfsInput,
-        output_schema = types.UpdateLocationFsxOpenZfsOutput,
+        input_schema = schemas.UpdateLocationFsxOpenZfsInput,
+        output_schema = schemas.UpdateLocationFsxOpenZfsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:updateLocationFsxWindows(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLocationFsxWindows",
-        input_schema = types.UpdateLocationFsxWindowsInput,
-        output_schema = types.UpdateLocationFsxWindowsOutput,
+        input_schema = schemas.UpdateLocationFsxWindowsInput,
+        output_schema = schemas.UpdateLocationFsxWindowsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:updateLocationHdfs(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLocationHdfs",
-        input_schema = types.UpdateLocationHdfsInput,
-        output_schema = types.UpdateLocationHdfsOutput,
+        input_schema = schemas.UpdateLocationHdfsInput,
+        output_schema = schemas.UpdateLocationHdfsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:updateLocationNfs(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLocationNfs",
-        input_schema = types.UpdateLocationNfsInput,
-        output_schema = types.UpdateLocationNfsOutput,
+        input_schema = schemas.UpdateLocationNfsInput,
+        output_schema = schemas.UpdateLocationNfsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:updateLocationObjectStorage(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLocationObjectStorage",
-        input_schema = types.UpdateLocationObjectStorageInput,
-        output_schema = types.UpdateLocationObjectStorageOutput,
+        input_schema = schemas.UpdateLocationObjectStorageInput,
+        output_schema = schemas.UpdateLocationObjectStorageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:updateLocationS3(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLocationS3",
-        input_schema = types.UpdateLocationS3Input,
-        output_schema = types.UpdateLocationS3Output,
+        input_schema = schemas.UpdateLocationS3Input,
+        output_schema = schemas.UpdateLocationS3Output,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:updateLocationSmb(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLocationSmb",
-        input_schema = types.UpdateLocationSmbInput,
-        output_schema = types.UpdateLocationSmbOutput,
+        input_schema = schemas.UpdateLocationSmbInput,
+        output_schema = schemas.UpdateLocationSmbOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:updateTask(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTask",
-        input_schema = types.UpdateTaskInput,
-        output_schema = types.UpdateTaskOutput,
+        input_schema = schemas.UpdateTaskInput,
+        output_schema = schemas.UpdateTaskOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:updateTaskExecution(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTaskExecution",
-        input_schema = types.UpdateTaskExecutionInput,
-        output_schema = types.UpdateTaskExecutionOutput,
+        input_schema = schemas.UpdateTaskExecutionInput,
+        output_schema = schemas.UpdateTaskExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

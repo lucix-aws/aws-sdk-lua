@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("emrcontainers.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("emrcontainers.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("emrcontainers.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:cancelJobRun(input, options)
     return self:invokeOperation(input, {
         name = "CancelJobRun",
-        input_schema = types.CancelJobRunInput,
-        output_schema = types.CancelJobRunOutput,
+        input_schema = schemas.CancelJobRunInput,
+        output_schema = schemas.CancelJobRunOutput,
         http_method = "DELETE",
         http_path = "/virtualclusters/{virtualClusterId}/jobruns/{id}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createJobTemplate(input, options)
     return self:invokeOperation(input, {
         name = "CreateJobTemplate",
-        input_schema = types.CreateJobTemplateInput,
-        output_schema = types.CreateJobTemplateOutput,
+        input_schema = schemas.CreateJobTemplateInput,
+        output_schema = schemas.CreateJobTemplateOutput,
         http_method = "POST",
         http_path = "/jobtemplates",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createManagedEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "CreateManagedEndpoint",
-        input_schema = types.CreateManagedEndpointInput,
-        output_schema = types.CreateManagedEndpointOutput,
+        input_schema = schemas.CreateManagedEndpointInput,
+        output_schema = schemas.CreateManagedEndpointOutput,
         http_method = "POST",
         http_path = "/virtualclusters/{virtualClusterId}/endpoints",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createSecurityConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateSecurityConfiguration",
-        input_schema = types.CreateSecurityConfigurationInput,
-        output_schema = types.CreateSecurityConfigurationOutput,
+        input_schema = schemas.CreateSecurityConfigurationInput,
+        output_schema = schemas.CreateSecurityConfigurationOutput,
         http_method = "POST",
         http_path = "/securityconfigurations",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createVirtualCluster(input, options)
     return self:invokeOperation(input, {
         name = "CreateVirtualCluster",
-        input_schema = types.CreateVirtualClusterInput,
-        output_schema = types.CreateVirtualClusterOutput,
+        input_schema = schemas.CreateVirtualClusterInput,
+        output_schema = schemas.CreateVirtualClusterOutput,
         http_method = "POST",
         http_path = "/virtualclusters",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteJobTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DeleteJobTemplate",
-        input_schema = types.DeleteJobTemplateInput,
-        output_schema = types.DeleteJobTemplateOutput,
+        input_schema = schemas.DeleteJobTemplateInput,
+        output_schema = schemas.DeleteJobTemplateOutput,
         http_method = "DELETE",
         http_path = "/jobtemplates/{id}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteManagedEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "DeleteManagedEndpoint",
-        input_schema = types.DeleteManagedEndpointInput,
-        output_schema = types.DeleteManagedEndpointOutput,
+        input_schema = schemas.DeleteManagedEndpointInput,
+        output_schema = schemas.DeleteManagedEndpointOutput,
         http_method = "DELETE",
         http_path = "/virtualclusters/{virtualClusterId}/endpoints/{id}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteVirtualCluster(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVirtualCluster",
-        input_schema = types.DeleteVirtualClusterInput,
-        output_schema = types.DeleteVirtualClusterOutput,
+        input_schema = schemas.DeleteVirtualClusterInput,
+        output_schema = schemas.DeleteVirtualClusterOutput,
         http_method = "DELETE",
         http_path = "/virtualclusters/{id}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:describeJobRun(input, options)
     return self:invokeOperation(input, {
         name = "DescribeJobRun",
-        input_schema = types.DescribeJobRunInput,
-        output_schema = types.DescribeJobRunOutput,
+        input_schema = schemas.DescribeJobRunInput,
+        output_schema = schemas.DescribeJobRunOutput,
         http_method = "GET",
         http_path = "/virtualclusters/{virtualClusterId}/jobruns/{id}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:describeJobTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DescribeJobTemplate",
-        input_schema = types.DescribeJobTemplateInput,
-        output_schema = types.DescribeJobTemplateOutput,
+        input_schema = schemas.DescribeJobTemplateInput,
+        output_schema = schemas.DescribeJobTemplateOutput,
         http_method = "GET",
         http_path = "/jobtemplates/{id}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:describeManagedEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "DescribeManagedEndpoint",
-        input_schema = types.DescribeManagedEndpointInput,
-        output_schema = types.DescribeManagedEndpointOutput,
+        input_schema = schemas.DescribeManagedEndpointInput,
+        output_schema = schemas.DescribeManagedEndpointOutput,
         http_method = "GET",
         http_path = "/virtualclusters/{virtualClusterId}/endpoints/{id}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:describeSecurityConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSecurityConfiguration",
-        input_schema = types.DescribeSecurityConfigurationInput,
-        output_schema = types.DescribeSecurityConfigurationOutput,
+        input_schema = schemas.DescribeSecurityConfigurationInput,
+        output_schema = schemas.DescribeSecurityConfigurationOutput,
         http_method = "GET",
         http_path = "/securityconfigurations/{id}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:describeVirtualCluster(input, options)
     return self:invokeOperation(input, {
         name = "DescribeVirtualCluster",
-        input_schema = types.DescribeVirtualClusterInput,
-        output_schema = types.DescribeVirtualClusterOutput,
+        input_schema = schemas.DescribeVirtualClusterInput,
+        output_schema = schemas.DescribeVirtualClusterOutput,
         http_method = "GET",
         http_path = "/virtualclusters/{id}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getManagedEndpointSessionCredentials(input, options)
     return self:invokeOperation(input, {
         name = "GetManagedEndpointSessionCredentials",
-        input_schema = types.GetManagedEndpointSessionCredentialsInput,
-        output_schema = types.GetManagedEndpointSessionCredentialsOutput,
+        input_schema = schemas.GetManagedEndpointSessionCredentialsInput,
+        output_schema = schemas.GetManagedEndpointSessionCredentialsOutput,
         http_method = "POST",
         http_path = "/virtualclusters/{virtualClusterIdentifier}/endpoints/{endpointIdentifier}/credentials",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listJobRuns(input, options)
     return self:invokeOperation(input, {
         name = "ListJobRuns",
-        input_schema = types.ListJobRunsInput,
-        output_schema = types.ListJobRunsOutput,
+        input_schema = schemas.ListJobRunsInput,
+        output_schema = schemas.ListJobRunsOutput,
         http_method = "GET",
         http_path = "/virtualclusters/{virtualClusterId}/jobruns",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listJobTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListJobTemplates",
-        input_schema = types.ListJobTemplatesInput,
-        output_schema = types.ListJobTemplatesOutput,
+        input_schema = schemas.ListJobTemplatesInput,
+        output_schema = schemas.ListJobTemplatesOutput,
         http_method = "GET",
         http_path = "/jobtemplates",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listManagedEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "ListManagedEndpoints",
-        input_schema = types.ListManagedEndpointsInput,
-        output_schema = types.ListManagedEndpointsOutput,
+        input_schema = schemas.ListManagedEndpointsInput,
+        output_schema = schemas.ListManagedEndpointsOutput,
         http_method = "GET",
         http_path = "/virtualclusters/{virtualClusterId}/endpoints",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listSecurityConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListSecurityConfigurations",
-        input_schema = types.ListSecurityConfigurationsInput,
-        output_schema = types.ListSecurityConfigurationsOutput,
+        input_schema = schemas.ListSecurityConfigurationsInput,
+        output_schema = schemas.ListSecurityConfigurationsOutput,
         http_method = "GET",
         http_path = "/securityconfigurations",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listVirtualClusters(input, options)
     return self:invokeOperation(input, {
         name = "ListVirtualClusters",
-        input_schema = types.ListVirtualClustersInput,
-        output_schema = types.ListVirtualClustersOutput,
+        input_schema = schemas.ListVirtualClustersInput,
+        output_schema = schemas.ListVirtualClustersOutput,
         http_method = "GET",
         http_path = "/virtualclusters",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:startJobRun(input, options)
     return self:invokeOperation(input, {
         name = "StartJobRun",
-        input_schema = types.StartJobRunInput,
-        output_schema = types.StartJobRunOutput,
+        input_schema = schemas.StartJobRunInput,
+        output_schema = schemas.StartJobRunOutput,
         http_method = "POST",
         http_path = "/virtualclusters/{virtualClusterId}/jobruns",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {

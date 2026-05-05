@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("iotfleetwise.endpoint_rules")
+local schemas = require("iotfleetwise.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("iotfleetwise.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateVehicleFleet(input, options)
     return self:invokeOperation(input, {
         name = "AssociateVehicleFleet",
-        input_schema = types.AssociateVehicleFleetInput,
-        output_schema = types.AssociateVehicleFleetOutput,
+        input_schema = schemas.AssociateVehicleFleetInput,
+        output_schema = schemas.AssociateVehicleFleetOutput,
         http_method = "PUT",
         http_path = "/vehicles/{vehicleName}/associate",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchCreateVehicle(input, options)
     return self:invokeOperation(input, {
         name = "BatchCreateVehicle",
-        input_schema = types.BatchCreateVehicleInput,
-        output_schema = types.BatchCreateVehicleOutput,
+        input_schema = schemas.BatchCreateVehicleInput,
+        output_schema = schemas.BatchCreateVehicleOutput,
         http_method = "POST",
         http_path = "/vehicles",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchUpdateVehicle(input, options)
     return self:invokeOperation(input, {
         name = "BatchUpdateVehicle",
-        input_schema = types.BatchUpdateVehicleInput,
-        output_schema = types.BatchUpdateVehicleOutput,
+        input_schema = schemas.BatchUpdateVehicleInput,
+        output_schema = schemas.BatchUpdateVehicleOutput,
         http_method = "PUT",
         http_path = "/vehicles",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createCampaign(input, options)
     return self:invokeOperation(input, {
         name = "CreateCampaign",
-        input_schema = types.CreateCampaignInput,
-        output_schema = types.CreateCampaignOutput,
+        input_schema = schemas.CreateCampaignInput,
+        output_schema = schemas.CreateCampaignOutput,
         http_method = "POST",
         http_path = "/campaigns/{name}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createDecoderManifest(input, options)
     return self:invokeOperation(input, {
         name = "CreateDecoderManifest",
-        input_schema = types.CreateDecoderManifestInput,
-        output_schema = types.CreateDecoderManifestOutput,
+        input_schema = schemas.CreateDecoderManifestInput,
+        output_schema = schemas.CreateDecoderManifestOutput,
         http_method = "POST",
         http_path = "/decoder-manifests/{name}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createFleet(input, options)
     return self:invokeOperation(input, {
         name = "CreateFleet",
-        input_schema = types.CreateFleetInput,
-        output_schema = types.CreateFleetOutput,
+        input_schema = schemas.CreateFleetInput,
+        output_schema = schemas.CreateFleetOutput,
         http_method = "POST",
         http_path = "/fleets/{fleetId}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createModelManifest(input, options)
     return self:invokeOperation(input, {
         name = "CreateModelManifest",
-        input_schema = types.CreateModelManifestInput,
-        output_schema = types.CreateModelManifestOutput,
+        input_schema = schemas.CreateModelManifestInput,
+        output_schema = schemas.CreateModelManifestOutput,
         http_method = "POST",
         http_path = "/model-manifests/{name}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createSignalCatalog(input, options)
     return self:invokeOperation(input, {
         name = "CreateSignalCatalog",
-        input_schema = types.CreateSignalCatalogInput,
-        output_schema = types.CreateSignalCatalogOutput,
+        input_schema = schemas.CreateSignalCatalogInput,
+        output_schema = schemas.CreateSignalCatalogOutput,
         http_method = "POST",
         http_path = "/signal-catalogs/{name}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createStateTemplate(input, options)
     return self:invokeOperation(input, {
         name = "CreateStateTemplate",
-        input_schema = types.CreateStateTemplateInput,
-        output_schema = types.CreateStateTemplateOutput,
+        input_schema = schemas.CreateStateTemplateInput,
+        output_schema = schemas.CreateStateTemplateOutput,
         http_method = "POST",
         http_path = "/state-templates/{name}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createVehicle(input, options)
     return self:invokeOperation(input, {
         name = "CreateVehicle",
-        input_schema = types.CreateVehicleInput,
-        output_schema = types.CreateVehicleOutput,
+        input_schema = schemas.CreateVehicleInput,
+        output_schema = schemas.CreateVehicleOutput,
         http_method = "POST",
         http_path = "/vehicles/{vehicleName}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteCampaign(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCampaign",
-        input_schema = types.DeleteCampaignInput,
-        output_schema = types.DeleteCampaignOutput,
+        input_schema = schemas.DeleteCampaignInput,
+        output_schema = schemas.DeleteCampaignOutput,
         http_method = "DELETE",
         http_path = "/campaigns/{name}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteDecoderManifest(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDecoderManifest",
-        input_schema = types.DeleteDecoderManifestInput,
-        output_schema = types.DeleteDecoderManifestOutput,
+        input_schema = schemas.DeleteDecoderManifestInput,
+        output_schema = schemas.DeleteDecoderManifestOutput,
         http_method = "DELETE",
         http_path = "/decoder-manifests/{name}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteFleet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFleet",
-        input_schema = types.DeleteFleetInput,
-        output_schema = types.DeleteFleetOutput,
+        input_schema = schemas.DeleteFleetInput,
+        output_schema = schemas.DeleteFleetOutput,
         http_method = "DELETE",
         http_path = "/fleets/{fleetId}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteModelManifest(input, options)
     return self:invokeOperation(input, {
         name = "DeleteModelManifest",
-        input_schema = types.DeleteModelManifestInput,
-        output_schema = types.DeleteModelManifestOutput,
+        input_schema = schemas.DeleteModelManifestInput,
+        output_schema = schemas.DeleteModelManifestOutput,
         http_method = "DELETE",
         http_path = "/model-manifests/{name}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteSignalCatalog(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSignalCatalog",
-        input_schema = types.DeleteSignalCatalogInput,
-        output_schema = types.DeleteSignalCatalogOutput,
+        input_schema = schemas.DeleteSignalCatalogInput,
+        output_schema = schemas.DeleteSignalCatalogOutput,
         http_method = "DELETE",
         http_path = "/signal-catalogs/{name}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteStateTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DeleteStateTemplate",
-        input_schema = types.DeleteStateTemplateInput,
-        output_schema = types.DeleteStateTemplateOutput,
+        input_schema = schemas.DeleteStateTemplateInput,
+        output_schema = schemas.DeleteStateTemplateOutput,
         http_method = "DELETE",
         http_path = "/state-templates/{identifier}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteVehicle(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVehicle",
-        input_schema = types.DeleteVehicleInput,
-        output_schema = types.DeleteVehicleOutput,
+        input_schema = schemas.DeleteVehicleInput,
+        output_schema = schemas.DeleteVehicleOutput,
         http_method = "DELETE",
         http_path = "/vehicles/{vehicleName}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:disassociateVehicleFleet(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateVehicleFleet",
-        input_schema = types.DisassociateVehicleFleetInput,
-        output_schema = types.DisassociateVehicleFleetOutput,
+        input_schema = schemas.DisassociateVehicleFleetInput,
+        output_schema = schemas.DisassociateVehicleFleetOutput,
         http_method = "PUT",
         http_path = "/vehicles/{vehicleName}/disassociate",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getCampaign(input, options)
     return self:invokeOperation(input, {
         name = "GetCampaign",
-        input_schema = types.GetCampaignInput,
-        output_schema = types.GetCampaignOutput,
+        input_schema = schemas.GetCampaignInput,
+        output_schema = schemas.GetCampaignOutput,
         http_method = "GET",
         http_path = "/campaigns/{name}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getDecoderManifest(input, options)
     return self:invokeOperation(input, {
         name = "GetDecoderManifest",
-        input_schema = types.GetDecoderManifestInput,
-        output_schema = types.GetDecoderManifestOutput,
+        input_schema = schemas.GetDecoderManifestInput,
+        output_schema = schemas.GetDecoderManifestOutput,
         http_method = "GET",
         http_path = "/decoder-manifests/{name}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:getEncryptionConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetEncryptionConfiguration",
-        input_schema = types.GetEncryptionConfigurationInput,
-        output_schema = types.GetEncryptionConfigurationOutput,
+        input_schema = schemas.GetEncryptionConfigurationInput,
+        output_schema = schemas.GetEncryptionConfigurationOutput,
         http_method = "GET",
         http_path = "/encryptionConfiguration",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:getFleet(input, options)
     return self:invokeOperation(input, {
         name = "GetFleet",
-        input_schema = types.GetFleetInput,
-        output_schema = types.GetFleetOutput,
+        input_schema = schemas.GetFleetInput,
+        output_schema = schemas.GetFleetOutput,
         http_method = "GET",
         http_path = "/fleets/{fleetId}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:getLoggingOptions(input, options)
     return self:invokeOperation(input, {
         name = "GetLoggingOptions",
-        input_schema = types.GetLoggingOptionsInput,
-        output_schema = types.GetLoggingOptionsOutput,
+        input_schema = schemas.GetLoggingOptionsInput,
+        output_schema = schemas.GetLoggingOptionsOutput,
         http_method = "GET",
         http_path = "/loggingOptions",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:getModelManifest(input, options)
     return self:invokeOperation(input, {
         name = "GetModelManifest",
-        input_schema = types.GetModelManifestInput,
-        output_schema = types.GetModelManifestOutput,
+        input_schema = schemas.GetModelManifestInput,
+        output_schema = schemas.GetModelManifestOutput,
         http_method = "GET",
         http_path = "/model-manifests/{name}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getRegisterAccountStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetRegisterAccountStatus",
-        input_schema = types.GetRegisterAccountStatusInput,
-        output_schema = types.GetRegisterAccountStatusOutput,
+        input_schema = schemas.GetRegisterAccountStatusInput,
+        output_schema = schemas.GetRegisterAccountStatusOutput,
         http_method = "GET",
         http_path = "/account/registration_status",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:getSignalCatalog(input, options)
     return self:invokeOperation(input, {
         name = "GetSignalCatalog",
-        input_schema = types.GetSignalCatalogInput,
-        output_schema = types.GetSignalCatalogOutput,
+        input_schema = schemas.GetSignalCatalogInput,
+        output_schema = schemas.GetSignalCatalogOutput,
         http_method = "GET",
         http_path = "/signal-catalogs/{name}",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:getStateTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetStateTemplate",
-        input_schema = types.GetStateTemplateInput,
-        output_schema = types.GetStateTemplateOutput,
+        input_schema = schemas.GetStateTemplateInput,
+        output_schema = schemas.GetStateTemplateOutput,
         http_method = "GET",
         http_path = "/state-templates/{identifier}",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:getVehicle(input, options)
     return self:invokeOperation(input, {
         name = "GetVehicle",
-        input_schema = types.GetVehicleInput,
-        output_schema = types.GetVehicleOutput,
+        input_schema = schemas.GetVehicleInput,
+        output_schema = schemas.GetVehicleOutput,
         http_method = "GET",
         http_path = "/vehicles/{vehicleName}",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:getVehicleStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetVehicleStatus",
-        input_schema = types.GetVehicleStatusInput,
-        output_schema = types.GetVehicleStatusOutput,
+        input_schema = schemas.GetVehicleStatusInput,
+        output_schema = schemas.GetVehicleStatusOutput,
         http_method = "GET",
         http_path = "/vehicles/{vehicleName}/status",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:importDecoderManifest(input, options)
     return self:invokeOperation(input, {
         name = "ImportDecoderManifest",
-        input_schema = types.ImportDecoderManifestInput,
-        output_schema = types.ImportDecoderManifestOutput,
+        input_schema = schemas.ImportDecoderManifestInput,
+        output_schema = schemas.ImportDecoderManifestOutput,
         http_method = "PUT",
         http_path = "/decoder-manifests/{name}",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:importSignalCatalog(input, options)
     return self:invokeOperation(input, {
         name = "ImportSignalCatalog",
-        input_schema = types.ImportSignalCatalogInput,
-        output_schema = types.ImportSignalCatalogOutput,
+        input_schema = schemas.ImportSignalCatalogInput,
+        output_schema = schemas.ImportSignalCatalogOutput,
         http_method = "PUT",
         http_path = "/signal-catalogs/{name}/nodes",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:listCampaigns(input, options)
     return self:invokeOperation(input, {
         name = "ListCampaigns",
-        input_schema = types.ListCampaignsInput,
-        output_schema = types.ListCampaignsOutput,
+        input_schema = schemas.ListCampaignsInput,
+        output_schema = schemas.ListCampaignsOutput,
         http_method = "GET",
         http_path = "/campaigns",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:listDecoderManifestNetworkInterfaces(input, options)
     return self:invokeOperation(input, {
         name = "ListDecoderManifestNetworkInterfaces",
-        input_schema = types.ListDecoderManifestNetworkInterfacesInput,
-        output_schema = types.ListDecoderManifestNetworkInterfacesOutput,
+        input_schema = schemas.ListDecoderManifestNetworkInterfacesInput,
+        output_schema = schemas.ListDecoderManifestNetworkInterfacesOutput,
         http_method = "GET",
         http_path = "/decoder-manifests/{name}/network-interfaces",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listDecoderManifests(input, options)
     return self:invokeOperation(input, {
         name = "ListDecoderManifests",
-        input_schema = types.ListDecoderManifestsInput,
-        output_schema = types.ListDecoderManifestsOutput,
+        input_schema = schemas.ListDecoderManifestsInput,
+        output_schema = schemas.ListDecoderManifestsOutput,
         http_method = "GET",
         http_path = "/decoder-manifests",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:listDecoderManifestSignals(input, options)
     return self:invokeOperation(input, {
         name = "ListDecoderManifestSignals",
-        input_schema = types.ListDecoderManifestSignalsInput,
-        output_schema = types.ListDecoderManifestSignalsOutput,
+        input_schema = schemas.ListDecoderManifestSignalsInput,
+        output_schema = schemas.ListDecoderManifestSignalsOutput,
         http_method = "GET",
         http_path = "/decoder-manifests/{name}/signals",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:listFleets(input, options)
     return self:invokeOperation(input, {
         name = "ListFleets",
-        input_schema = types.ListFleetsInput,
-        output_schema = types.ListFleetsOutput,
+        input_schema = schemas.ListFleetsInput,
+        output_schema = schemas.ListFleetsOutput,
         http_method = "GET",
         http_path = "/fleets",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:listFleetsForVehicle(input, options)
     return self:invokeOperation(input, {
         name = "ListFleetsForVehicle",
-        input_schema = types.ListFleetsForVehicleInput,
-        output_schema = types.ListFleetsForVehicleOutput,
+        input_schema = schemas.ListFleetsForVehicleInput,
+        output_schema = schemas.ListFleetsForVehicleOutput,
         http_method = "GET",
         http_path = "/vehicles/{vehicleName}/fleets",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:listModelManifestNodes(input, options)
     return self:invokeOperation(input, {
         name = "ListModelManifestNodes",
-        input_schema = types.ListModelManifestNodesInput,
-        output_schema = types.ListModelManifestNodesOutput,
+        input_schema = schemas.ListModelManifestNodesInput,
+        output_schema = schemas.ListModelManifestNodesOutput,
         http_method = "GET",
         http_path = "/model-manifests/{name}/nodes",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:listModelManifests(input, options)
     return self:invokeOperation(input, {
         name = "ListModelManifests",
-        input_schema = types.ListModelManifestsInput,
-        output_schema = types.ListModelManifestsOutput,
+        input_schema = schemas.ListModelManifestsInput,
+        output_schema = schemas.ListModelManifestsOutput,
         http_method = "GET",
         http_path = "/model-manifests",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:listSignalCatalogNodes(input, options)
     return self:invokeOperation(input, {
         name = "ListSignalCatalogNodes",
-        input_schema = types.ListSignalCatalogNodesInput,
-        output_schema = types.ListSignalCatalogNodesOutput,
+        input_schema = schemas.ListSignalCatalogNodesInput,
+        output_schema = schemas.ListSignalCatalogNodesOutput,
         http_method = "GET",
         http_path = "/signal-catalogs/{name}/nodes",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:listSignalCatalogs(input, options)
     return self:invokeOperation(input, {
         name = "ListSignalCatalogs",
-        input_schema = types.ListSignalCatalogsInput,
-        output_schema = types.ListSignalCatalogsOutput,
+        input_schema = schemas.ListSignalCatalogsInput,
+        output_schema = schemas.ListSignalCatalogsOutput,
         http_method = "GET",
         http_path = "/signal-catalogs",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:listStateTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListStateTemplates",
-        input_schema = types.ListStateTemplatesInput,
-        output_schema = types.ListStateTemplatesOutput,
+        input_schema = schemas.ListStateTemplatesInput,
+        output_schema = schemas.ListStateTemplatesOutput,
         http_method = "GET",
         http_path = "/state-templates",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:listVehicles(input, options)
     return self:invokeOperation(input, {
         name = "ListVehicles",
-        input_schema = types.ListVehiclesInput,
-        output_schema = types.ListVehiclesOutput,
+        input_schema = schemas.ListVehiclesInput,
+        output_schema = schemas.ListVehiclesOutput,
         http_method = "GET",
         http_path = "/vehicles",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:listVehiclesInFleet(input, options)
     return self:invokeOperation(input, {
         name = "ListVehiclesInFleet",
-        input_schema = types.ListVehiclesInFleetInput,
-        output_schema = types.ListVehiclesInFleetOutput,
+        input_schema = schemas.ListVehiclesInFleetInput,
+        output_schema = schemas.ListVehiclesInFleetOutput,
         http_method = "GET",
         http_path = "/fleets/{fleetId}/vehicles",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:putEncryptionConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutEncryptionConfiguration",
-        input_schema = types.PutEncryptionConfigurationInput,
-        output_schema = types.PutEncryptionConfigurationOutput,
+        input_schema = schemas.PutEncryptionConfigurationInput,
+        output_schema = schemas.PutEncryptionConfigurationOutput,
         http_method = "POST",
         http_path = "/encryptionConfiguration",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:putLoggingOptions(input, options)
     return self:invokeOperation(input, {
         name = "PutLoggingOptions",
-        input_schema = types.PutLoggingOptionsInput,
-        output_schema = types.PutLoggingOptionsOutput,
+        input_schema = schemas.PutLoggingOptionsInput,
+        output_schema = schemas.PutLoggingOptionsOutput,
         http_method = "PUT",
         http_path = "/loggingOptions",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:registerAccount(input, options)
     return self:invokeOperation(input, {
         name = "RegisterAccount",
-        input_schema = types.RegisterAccountInput,
-        output_schema = types.RegisterAccountOutput,
+        input_schema = schemas.RegisterAccountInput,
+        output_schema = schemas.RegisterAccountOutput,
         http_method = "POST",
         http_path = "/account/registration",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:updateCampaign(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCampaign",
-        input_schema = types.UpdateCampaignInput,
-        output_schema = types.UpdateCampaignOutput,
+        input_schema = schemas.UpdateCampaignInput,
+        output_schema = schemas.UpdateCampaignOutput,
         http_method = "PUT",
         http_path = "/campaigns/{name}",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:updateDecoderManifest(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDecoderManifest",
-        input_schema = types.UpdateDecoderManifestInput,
-        output_schema = types.UpdateDecoderManifestOutput,
+        input_schema = schemas.UpdateDecoderManifestInput,
+        output_schema = schemas.UpdateDecoderManifestOutput,
         http_method = "PATCH",
         http_path = "/decoder-manifests/{name}",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:updateFleet(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFleet",
-        input_schema = types.UpdateFleetInput,
-        output_schema = types.UpdateFleetOutput,
+        input_schema = schemas.UpdateFleetInput,
+        output_schema = schemas.UpdateFleetOutput,
         http_method = "PATCH",
         http_path = "/fleets/{fleetId}",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:updateModelManifest(input, options)
     return self:invokeOperation(input, {
         name = "UpdateModelManifest",
-        input_schema = types.UpdateModelManifestInput,
-        output_schema = types.UpdateModelManifestOutput,
+        input_schema = schemas.UpdateModelManifestInput,
+        output_schema = schemas.UpdateModelManifestOutput,
         http_method = "PATCH",
         http_path = "/model-manifests/{name}",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:updateSignalCatalog(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSignalCatalog",
-        input_schema = types.UpdateSignalCatalogInput,
-        output_schema = types.UpdateSignalCatalogOutput,
+        input_schema = schemas.UpdateSignalCatalogInput,
+        output_schema = schemas.UpdateSignalCatalogOutput,
         http_method = "PATCH",
         http_path = "/signal-catalogs/{name}",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:updateStateTemplate(input, options)
     return self:invokeOperation(input, {
         name = "UpdateStateTemplate",
-        input_schema = types.UpdateStateTemplateInput,
-        output_schema = types.UpdateStateTemplateOutput,
+        input_schema = schemas.UpdateStateTemplateInput,
+        output_schema = schemas.UpdateStateTemplateOutput,
         http_method = "PATCH",
         http_path = "/state-templates/{identifier}",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:updateVehicle(input, options)
     return self:invokeOperation(input, {
         name = "UpdateVehicle",
-        input_schema = types.UpdateVehicleInput,
-        output_schema = types.UpdateVehicleOutput,
+        input_schema = schemas.UpdateVehicleInput,
+        output_schema = schemas.UpdateVehicleOutput,
         http_method = "PATCH",
         http_path = "/vehicles/{vehicleName}",
         effective_auth_schemes = {

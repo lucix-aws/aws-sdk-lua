@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("redshiftdata.endpoint_rules")
+local schemas = require("redshiftdata.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("redshiftdata.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchExecuteStatement(input, options)
     return self:invokeOperation(input, {
         name = "BatchExecuteStatement",
-        input_schema = types.BatchExecuteStatementInput,
-        output_schema = types.BatchExecuteStatementOutput,
+        input_schema = schemas.BatchExecuteStatementInput,
+        output_schema = schemas.BatchExecuteStatementOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:cancelStatement(input, options)
     return self:invokeOperation(input, {
         name = "CancelStatement",
-        input_schema = types.CancelStatementInput,
-        output_schema = types.CancelStatementOutput,
+        input_schema = schemas.CancelStatementInput,
+        output_schema = schemas.CancelStatementOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:describeStatement(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStatement",
-        input_schema = types.DescribeStatementInput,
-        output_schema = types.DescribeStatementOutput,
+        input_schema = schemas.DescribeStatementInput,
+        output_schema = schemas.DescribeStatementOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:describeTable(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTable",
-        input_schema = types.DescribeTableInput,
-        output_schema = types.DescribeTableOutput,
+        input_schema = schemas.DescribeTableInput,
+        output_schema = schemas.DescribeTableOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:executeStatement(input, options)
     return self:invokeOperation(input, {
         name = "ExecuteStatement",
-        input_schema = types.ExecuteStatementInput,
-        output_schema = types.ExecuteStatementOutput,
+        input_schema = schemas.ExecuteStatementInput,
+        output_schema = schemas.ExecuteStatementOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getStatementResult(input, options)
     return self:invokeOperation(input, {
         name = "GetStatementResult",
-        input_schema = types.GetStatementResultInput,
-        output_schema = types.GetStatementResultOutput,
+        input_schema = schemas.GetStatementResultInput,
+        output_schema = schemas.GetStatementResultOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getStatementResultV2(input, options)
     return self:invokeOperation(input, {
         name = "GetStatementResultV2",
-        input_schema = types.GetStatementResultV2Input,
-        output_schema = types.GetStatementResultV2Output,
+        input_schema = schemas.GetStatementResultV2Input,
+        output_schema = schemas.GetStatementResultV2Output,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listDatabases(input, options)
     return self:invokeOperation(input, {
         name = "ListDatabases",
-        input_schema = types.ListDatabasesInput,
-        output_schema = types.ListDatabasesOutput,
+        input_schema = schemas.ListDatabasesInput,
+        output_schema = schemas.ListDatabasesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listSchemas(input, options)
     return self:invokeOperation(input, {
         name = "ListSchemas",
-        input_schema = types.ListSchemasInput,
-        output_schema = types.ListSchemasOutput,
+        input_schema = schemas.ListSchemasInput,
+        output_schema = schemas.ListSchemasOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listStatements(input, options)
     return self:invokeOperation(input, {
         name = "ListStatements",
-        input_schema = types.ListStatementsInput,
-        output_schema = types.ListStatementsOutput,
+        input_schema = schemas.ListStatementsInput,
+        output_schema = schemas.ListStatementsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listTables(input, options)
     return self:invokeOperation(input, {
         name = "ListTables",
-        input_schema = types.ListTablesInput,
-        output_schema = types.ListTablesOutput,
+        input_schema = schemas.ListTablesInput,
+        output_schema = schemas.ListTablesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

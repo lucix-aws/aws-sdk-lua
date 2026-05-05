@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("georoutes.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("georoutes.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("georoutes.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:calculateIsolines(input, options)
     return self:invokeOperation(input, {
         name = "CalculateIsolines",
-        input_schema = types.CalculateIsolinesInput,
-        output_schema = types.CalculateIsolinesOutput,
+        input_schema = schemas.CalculateIsolinesInput,
+        output_schema = schemas.CalculateIsolinesOutput,
         http_method = "POST",
         http_path = "/isolines",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:calculateRouteMatrix(input, options)
     return self:invokeOperation(input, {
         name = "CalculateRouteMatrix",
-        input_schema = types.CalculateRouteMatrixInput,
-        output_schema = types.CalculateRouteMatrixOutput,
+        input_schema = schemas.CalculateRouteMatrixInput,
+        output_schema = schemas.CalculateRouteMatrixOutput,
         http_method = "POST",
         http_path = "/route-matrix",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:calculateRoutes(input, options)
     return self:invokeOperation(input, {
         name = "CalculateRoutes",
-        input_schema = types.CalculateRoutesInput,
-        output_schema = types.CalculateRoutesOutput,
+        input_schema = schemas.CalculateRoutesInput,
+        output_schema = schemas.CalculateRoutesOutput,
         http_method = "POST",
         http_path = "/routes",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:optimizeWaypoints(input, options)
     return self:invokeOperation(input, {
         name = "OptimizeWaypoints",
-        input_schema = types.OptimizeWaypointsInput,
-        output_schema = types.OptimizeWaypointsOutput,
+        input_schema = schemas.OptimizeWaypointsInput,
+        output_schema = schemas.OptimizeWaypointsOutput,
         http_method = "POST",
         http_path = "/optimize-waypoints",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:snapToRoads(input, options)
     return self:invokeOperation(input, {
         name = "SnapToRoads",
-        input_schema = types.SnapToRoadsInput,
-        output_schema = types.SnapToRoadsOutput,
+        input_schema = schemas.SnapToRoadsInput,
+        output_schema = schemas.SnapToRoadsOutput,
         http_method = "POST",
         http_path = "/snap-to-roads",
         effective_auth_schemes = {

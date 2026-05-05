@@ -1,0 +1,3021 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.observabilityadmin"
+
+local M = {}
+
+M.AccessDeniedException = schema.new({
+    id = id.from(_N, "AccessDeniedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "AccessDeniedException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        amznErrorType = schema.new({
+            id = id.from(_N, "AccessDeniedException", "amznErrorType"),
+            type = "string",
+            name = "amznErrorType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-ErrorType" },
+            },
+        }),
+    },
+})
+
+M.ActionCondition = schema.new({
+    id = id.from(_N, "ActionCondition"),
+    type = "structure",
+    members = {
+        Action = schema.new({
+            id = id.from(_N, "ActionCondition", "Action"),
+            type = "string",
+            name = "Action",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AdvancedFieldSelector = schema.new({
+    id = id.from(_N, "AdvancedFieldSelector"),
+    type = "structure",
+    members = {
+        Field = schema.new({
+            id = id.from(_N, "AdvancedFieldSelector", "Field"),
+            type = "string",
+            name = "Field",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Equals = schema.new({
+            id = id.from(_N, "AdvancedFieldSelector", "Equals"),
+            type = "list",
+            name = "Equals",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        StartsWith = schema.new({
+            id = id.from(_N, "AdvancedFieldSelector", "StartsWith"),
+            type = "list",
+            name = "StartsWith",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        EndsWith = schema.new({
+            id = id.from(_N, "AdvancedFieldSelector", "EndsWith"),
+            type = "list",
+            name = "EndsWith",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        NotEquals = schema.new({
+            id = id.from(_N, "AdvancedFieldSelector", "NotEquals"),
+            type = "list",
+            name = "NotEquals",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        NotStartsWith = schema.new({
+            id = id.from(_N, "AdvancedFieldSelector", "NotStartsWith"),
+            type = "list",
+            name = "NotStartsWith",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        NotEndsWith = schema.new({
+            id = id.from(_N, "AdvancedFieldSelector", "NotEndsWith"),
+            type = "list",
+            name = "NotEndsWith",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.AdvancedEventSelector = schema.new({
+    id = id.from(_N, "AdvancedEventSelector"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "AdvancedEventSelector", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        FieldSelectors = schema.new({
+            id = id.from(_N, "AdvancedEventSelector", "FieldSelectors"),
+            type = "list",
+            name = "FieldSelectors",
+            target_id = prelude.Document.id,
+            list_member = M.AdvancedFieldSelector,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LogsBackupConfiguration = schema.new({
+    id = id.from(_N, "LogsBackupConfiguration"),
+    type = "structure",
+    members = {
+        Region = schema.new({
+            id = id.from(_N, "LogsBackupConfiguration", "Region"),
+            type = "string",
+            name = "Region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KmsKeyArn = schema.new({
+            id = id.from(_N, "LogsBackupConfiguration", "KmsKeyArn"),
+            type = "string",
+            name = "KmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.LogGroupNameConfiguration = schema.new({
+    id = id.from(_N, "LogGroupNameConfiguration"),
+    type = "structure",
+    members = {
+        LogGroupNamePattern = schema.new({
+            id = id.from(_N, "LogGroupNameConfiguration", "LogGroupNamePattern"),
+            type = "string",
+            name = "LogGroupNamePattern",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LogsEncryptionConfiguration = schema.new({
+    id = id.from(_N, "LogsEncryptionConfiguration"),
+    type = "structure",
+    members = {
+        EncryptionStrategy = schema.new({
+            id = id.from(_N, "LogsEncryptionConfiguration", "EncryptionStrategy"),
+            type = "string",
+            name = "EncryptionStrategy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KmsKeyArn = schema.new({
+            id = id.from(_N, "LogsEncryptionConfiguration", "KmsKeyArn"),
+            type = "string",
+            name = "KmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+        EncryptionConflictResolutionStrategy = schema.new({
+            id = id.from(_N, "LogsEncryptionConfiguration", "EncryptionConflictResolutionStrategy"),
+            type = "string",
+            name = "EncryptionConflictResolutionStrategy",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DestinationLogsConfiguration = schema.new({
+    id = id.from(_N, "DestinationLogsConfiguration"),
+    type = "structure",
+    members = {
+        LogsEncryptionConfiguration = schema.new({
+            id = id.from(_N, "DestinationLogsConfiguration", "LogsEncryptionConfiguration"),
+            type = "structure",
+            name = "LogsEncryptionConfiguration",
+            target_id = id.from(_N, "LogsEncryptionConfiguration"),
+            target = M.LogsEncryptionConfiguration,
+        }),
+        BackupConfiguration = schema.new({
+            id = id.from(_N, "DestinationLogsConfiguration", "BackupConfiguration"),
+            type = "structure",
+            name = "BackupConfiguration",
+            target_id = id.from(_N, "LogsBackupConfiguration"),
+            target = M.LogsBackupConfiguration,
+        }),
+        LogGroupNameConfiguration = schema.new({
+            id = id.from(_N, "DestinationLogsConfiguration", "LogGroupNameConfiguration"),
+            type = "structure",
+            name = "LogGroupNameConfiguration",
+            target_id = id.from(_N, "LogGroupNameConfiguration"),
+            target = M.LogGroupNameConfiguration,
+        }),
+    },
+})
+
+M.CentralizationRuleDestination = schema.new({
+    id = id.from(_N, "CentralizationRuleDestination"),
+    type = "structure",
+    members = {
+        Region = schema.new({
+            id = id.from(_N, "CentralizationRuleDestination", "Region"),
+            type = "string",
+            name = "Region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Account = schema.new({
+            id = id.from(_N, "CentralizationRuleDestination", "Account"),
+            type = "string",
+            name = "Account",
+            target_id = prelude.String.id,
+        }),
+        DestinationLogsConfiguration = schema.new({
+            id = id.from(_N, "CentralizationRuleDestination", "DestinationLogsConfiguration"),
+            type = "structure",
+            name = "DestinationLogsConfiguration",
+            target_id = id.from(_N, "DestinationLogsConfiguration"),
+            target = M.DestinationLogsConfiguration,
+        }),
+    },
+})
+
+M.SourceLogsConfiguration = schema.new({
+    id = id.from(_N, "SourceLogsConfiguration"),
+    type = "structure",
+    members = {
+        LogGroupSelectionCriteria = schema.new({
+            id = id.from(_N, "SourceLogsConfiguration", "LogGroupSelectionCriteria"),
+            type = "string",
+            name = "LogGroupSelectionCriteria",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "*" },
+            },
+        }),
+        DataSourceSelectionCriteria = schema.new({
+            id = id.from(_N, "SourceLogsConfiguration", "DataSourceSelectionCriteria"),
+            type = "string",
+            name = "DataSourceSelectionCriteria",
+            target_id = prelude.String.id,
+        }),
+        EncryptedLogGroupStrategy = schema.new({
+            id = id.from(_N, "SourceLogsConfiguration", "EncryptedLogGroupStrategy"),
+            type = "string",
+            name = "EncryptedLogGroupStrategy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CentralizationRuleSource = schema.new({
+    id = id.from(_N, "CentralizationRuleSource"),
+    type = "structure",
+    members = {
+        Regions = schema.new({
+            id = id.from(_N, "CentralizationRuleSource", "Regions"),
+            type = "list",
+            name = "Regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Scope = schema.new({
+            id = id.from(_N, "CentralizationRuleSource", "Scope"),
+            type = "string",
+            name = "Scope",
+            target_id = prelude.String.id,
+        }),
+        SourceLogsConfiguration = schema.new({
+            id = id.from(_N, "CentralizationRuleSource", "SourceLogsConfiguration"),
+            type = "structure",
+            name = "SourceLogsConfiguration",
+            target_id = id.from(_N, "SourceLogsConfiguration"),
+            target = M.SourceLogsConfiguration,
+        }),
+    },
+})
+
+M.CentralizationRule = schema.new({
+    id = id.from(_N, "CentralizationRule"),
+    type = "structure",
+    members = {
+        Source = schema.new({
+            id = id.from(_N, "CentralizationRule", "Source"),
+            type = "structure",
+            name = "Source",
+            target_id = id.from(_N, "CentralizationRuleSource"),
+            target = M.CentralizationRuleSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Destination = schema.new({
+            id = id.from(_N, "CentralizationRule", "Destination"),
+            type = "structure",
+            name = "Destination",
+            target_id = id.from(_N, "CentralizationRuleDestination"),
+            target = M.CentralizationRuleDestination,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CentralizationRuleSummary = schema.new({
+    id = id.from(_N, "CentralizationRuleSummary"),
+    type = "structure",
+    members = {
+        RuleName = schema.new({
+            id = id.from(_N, "CentralizationRuleSummary", "RuleName"),
+            type = "string",
+            name = "RuleName",
+            target_id = prelude.String.id,
+        }),
+        RuleArn = schema.new({
+            id = id.from(_N, "CentralizationRuleSummary", "RuleArn"),
+            type = "string",
+            name = "RuleArn",
+            target_id = prelude.String.id,
+        }),
+        CreatorAccountId = schema.new({
+            id = id.from(_N, "CentralizationRuleSummary", "CreatorAccountId"),
+            type = "string",
+            name = "CreatorAccountId",
+            target_id = prelude.String.id,
+        }),
+        CreatedTimeStamp = schema.new({
+            id = id.from(_N, "CentralizationRuleSummary", "CreatedTimeStamp"),
+            type = "long",
+            name = "CreatedTimeStamp",
+            target_id = prelude.Long.id,
+        }),
+        CreatedRegion = schema.new({
+            id = id.from(_N, "CentralizationRuleSummary", "CreatedRegion"),
+            type = "string",
+            name = "CreatedRegion",
+            target_id = prelude.String.id,
+        }),
+        LastUpdateTimeStamp = schema.new({
+            id = id.from(_N, "CentralizationRuleSummary", "LastUpdateTimeStamp"),
+            type = "long",
+            name = "LastUpdateTimeStamp",
+            target_id = prelude.Long.id,
+        }),
+        RuleHealth = schema.new({
+            id = id.from(_N, "CentralizationRuleSummary", "RuleHealth"),
+            type = "string",
+            name = "RuleHealth",
+            target_id = prelude.String.id,
+        }),
+        FailureReason = schema.new({
+            id = id.from(_N, "CentralizationRuleSummary", "FailureReason"),
+            type = "string",
+            name = "FailureReason",
+            target_id = prelude.String.id,
+        }),
+        DestinationAccountId = schema.new({
+            id = id.from(_N, "CentralizationRuleSummary", "DestinationAccountId"),
+            type = "string",
+            name = "DestinationAccountId",
+            target_id = prelude.String.id,
+        }),
+        DestinationRegion = schema.new({
+            id = id.from(_N, "CentralizationRuleSummary", "DestinationRegion"),
+            type = "string",
+            name = "DestinationRegion",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CloudtrailParameters = schema.new({
+    id = id.from(_N, "CloudtrailParameters"),
+    type = "structure",
+    members = {
+        AdvancedEventSelectors = schema.new({
+            id = id.from(_N, "CloudtrailParameters", "AdvancedEventSelectors"),
+            type = "list",
+            name = "AdvancedEventSelectors",
+            target_id = prelude.Document.id,
+            list_member = M.AdvancedEventSelector,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LabelNameCondition = schema.new({
+    id = id.from(_N, "LabelNameCondition"),
+    type = "structure",
+    members = {
+        LabelName = schema.new({
+            id = id.from(_N, "LabelNameCondition", "LabelName"),
+            type = "string",
+            name = "LabelName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Condition = schema.new({
+    id = id.from(_N, "Condition"),
+    type = "structure",
+    members = {
+        ActionCondition = schema.new({
+            id = id.from(_N, "Condition", "ActionCondition"),
+            type = "structure",
+            name = "ActionCondition",
+            target_id = id.from(_N, "ActionCondition"),
+            target = M.ActionCondition,
+        }),
+        LabelNameCondition = schema.new({
+            id = id.from(_N, "Condition", "LabelNameCondition"),
+            type = "structure",
+            name = "LabelNameCondition",
+            target_id = id.from(_N, "LabelNameCondition"),
+            target = M.LabelNameCondition,
+        }),
+    },
+})
+
+M.DataSource = schema.new({
+    id = id.from(_N, "DataSource"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "DataSource", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "DataSource", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Source = schema.new({
+    id = id.from(_N, "Source"),
+    type = "structure",
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "Source", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConfigurationSummary = schema.new({
+    id = id.from(_N, "ConfigurationSummary"),
+    type = "structure",
+    members = {
+        Sources = schema.new({
+            id = id.from(_N, "ConfigurationSummary", "Sources"),
+            type = "list",
+            name = "Sources",
+            target_id = prelude.Document.id,
+            list_member = M.Source,
+        }),
+        DataSources = schema.new({
+            id = id.from(_N, "ConfigurationSummary", "DataSources"),
+            type = "list",
+            name = "DataSources",
+            target_id = prelude.Document.id,
+            list_member = M.DataSource,
+        }),
+        Processors = schema.new({
+            id = id.from(_N, "ConfigurationSummary", "Processors"),
+            type = "list",
+            name = "Processors",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ProcessorCount = schema.new({
+            id = id.from(_N, "ConfigurationSummary", "ProcessorCount"),
+            type = "integer",
+            name = "ProcessorCount",
+            target_id = prelude.Integer.id,
+        }),
+        Sinks = schema.new({
+            id = id.from(_N, "ConfigurationSummary", "Sinks"),
+            type = "list",
+            name = "Sinks",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ConflictException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        ResourceId = schema.new({
+            id = id.from(_N, "ConflictException", "ResourceId"),
+            type = "string",
+            name = "ResourceId",
+            target_id = prelude.String.id,
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "ConflictException", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateCentralizationRuleForOrganizationInput = schema.new({
+    id = id.from(_N, "CreateCentralizationRuleForOrganizationInput"),
+    type = "structure",
+    members = {
+        RuleName = schema.new({
+            id = id.from(_N, "CreateCentralizationRuleForOrganizationInput", "RuleName"),
+            type = "string",
+            name = "RuleName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Rule = schema.new({
+            id = id.from(_N, "CreateCentralizationRuleForOrganizationInput", "Rule"),
+            type = "structure",
+            name = "Rule",
+            target_id = id.from(_N, "CentralizationRule"),
+            target = M.CentralizationRule,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateCentralizationRuleForOrganizationInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateCentralizationRuleForOrganizationOutput = schema.new({
+    id = id.from(_N, "CreateCentralizationRuleForOrganizationOutput"),
+    type = "structure",
+    members = {
+        RuleArn = schema.new({
+            id = id.from(_N, "CreateCentralizationRuleForOrganizationOutput", "RuleArn"),
+            type = "string",
+            name = "RuleArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InternalServerException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        amznErrorType = schema.new({
+            id = id.from(_N, "InternalServerException", "amznErrorType"),
+            type = "string",
+            name = "amznErrorType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-ErrorType" },
+            },
+        }),
+        retryAfterSeconds = schema.new({
+            id = id.from(_N, "InternalServerException", "retryAfterSeconds"),
+            type = "integer",
+            name = "retryAfterSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Retry-After" },
+            },
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        ResourceId = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "ResourceId"),
+            type = "string",
+            name = "ResourceId",
+            target_id = prelude.String.id,
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+        ServiceCode = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "ServiceCode"),
+            type = "string",
+            name = "ServiceCode",
+            target_id = prelude.String.id,
+        }),
+        QuotaCode = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "QuotaCode"),
+            type = "string",
+            name = "QuotaCode",
+            target_id = prelude.String.id,
+        }),
+        amznErrorType = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "amznErrorType"),
+            type = "string",
+            name = "amznErrorType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-ErrorType" },
+            },
+        }),
+    },
+})
+
+M.TooManyRequestsException = schema.new({
+    id = id.from(_N, "TooManyRequestsException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "TooManyRequestsException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ValidationError = schema.new({
+    id = id.from(_N, "ValidationError"),
+    type = "structure",
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ValidationError", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        Reason = schema.new({
+            id = id.from(_N, "ValidationError", "Reason"),
+            type = "string",
+            name = "Reason",
+            target_id = prelude.String.id,
+        }),
+        FieldMap = schema.new({
+            id = id.from(_N, "ValidationError", "FieldMap"),
+            type = "map",
+            name = "FieldMap",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ValidationException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        Errors = schema.new({
+            id = id.from(_N, "ValidationException", "Errors"),
+            type = "list",
+            name = "Errors",
+            target_id = prelude.Document.id,
+            list_member = M.ValidationError,
+        }),
+    },
+})
+
+M.Encryption = schema.new({
+    id = id.from(_N, "Encryption"),
+    type = "structure",
+    members = {
+        SseAlgorithm = schema.new({
+            id = id.from(_N, "Encryption", "SseAlgorithm"),
+            type = "string",
+            name = "SseAlgorithm",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KmsKeyArn = schema.new({
+            id = id.from(_N, "Encryption", "KmsKeyArn"),
+            type = "string",
+            name = "KmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateS3TableIntegrationInput = schema.new({
+    id = id.from(_N, "CreateS3TableIntegrationInput"),
+    type = "structure",
+    members = {
+        Encryption = schema.new({
+            id = id.from(_N, "CreateS3TableIntegrationInput", "Encryption"),
+            type = "structure",
+            name = "Encryption",
+            target_id = id.from(_N, "Encryption"),
+            target = M.Encryption,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "CreateS3TableIntegrationInput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateS3TableIntegrationInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateS3TableIntegrationOutput = schema.new({
+    id = id.from(_N, "CreateS3TableIntegrationOutput"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "CreateS3TableIntegrationOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TelemetryPipelineConfiguration = schema.new({
+    id = id.from(_N, "TelemetryPipelineConfiguration"),
+    type = "structure",
+    members = {
+        Body = schema.new({
+            id = id.from(_N, "TelemetryPipelineConfiguration", "Body"),
+            type = "string",
+            name = "Body",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateTelemetryPipelineInput = schema.new({
+    id = id.from(_N, "CreateTelemetryPipelineInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateTelemetryPipelineInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Configuration = schema.new({
+            id = id.from(_N, "CreateTelemetryPipelineInput", "Configuration"),
+            type = "structure",
+            name = "Configuration",
+            target_id = id.from(_N, "TelemetryPipelineConfiguration"),
+            target = M.TelemetryPipelineConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateTelemetryPipelineInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateTelemetryPipelineOutput = schema.new({
+    id = id.from(_N, "CreateTelemetryPipelineOutput"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "CreateTelemetryPipelineOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ELBLoadBalancerLoggingParameters = schema.new({
+    id = id.from(_N, "ELBLoadBalancerLoggingParameters"),
+    type = "structure",
+    members = {
+        OutputFormat = schema.new({
+            id = id.from(_N, "ELBLoadBalancerLoggingParameters", "OutputFormat"),
+            type = "string",
+            name = "OutputFormat",
+            target_id = prelude.String.id,
+        }),
+        FieldDelimiter = schema.new({
+            id = id.from(_N, "ELBLoadBalancerLoggingParameters", "FieldDelimiter"),
+            type = "string",
+            name = "FieldDelimiter",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.LogDeliveryParameters = schema.new({
+    id = id.from(_N, "LogDeliveryParameters"),
+    type = "structure",
+    members = {
+        LogTypes = schema.new({
+            id = id.from(_N, "LogDeliveryParameters", "LogTypes"),
+            type = "list",
+            name = "LogTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.MskMonitoringParameters = schema.new({
+    id = id.from(_N, "MskMonitoringParameters"),
+    type = "structure",
+    members = {
+        EnhancedMonitoring = schema.new({
+            id = id.from(_N, "MskMonitoringParameters", "EnhancedMonitoring"),
+            type = "string",
+            name = "EnhancedMonitoring",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.VPCFlowLogParameters = schema.new({
+    id = id.from(_N, "VPCFlowLogParameters"),
+    type = "structure",
+    members = {
+        LogFormat = schema.new({
+            id = id.from(_N, "VPCFlowLogParameters", "LogFormat"),
+            type = "string",
+            name = "LogFormat",
+            target_id = prelude.String.id,
+        }),
+        TrafficType = schema.new({
+            id = id.from(_N, "VPCFlowLogParameters", "TrafficType"),
+            type = "string",
+            name = "TrafficType",
+            target_id = prelude.String.id,
+        }),
+        MaxAggregationInterval = schema.new({
+            id = id.from(_N, "VPCFlowLogParameters", "MaxAggregationInterval"),
+            type = "integer",
+            name = "MaxAggregationInterval",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.Filter = schema.new({
+    id = id.from(_N, "Filter"),
+    type = "structure",
+    members = {
+        Behavior = schema.new({
+            id = id.from(_N, "Filter", "Behavior"),
+            type = "string",
+            name = "Behavior",
+            target_id = prelude.String.id,
+        }),
+        Requirement = schema.new({
+            id = id.from(_N, "Filter", "Requirement"),
+            type = "string",
+            name = "Requirement",
+            target_id = prelude.String.id,
+        }),
+        Conditions = schema.new({
+            id = id.from(_N, "Filter", "Conditions"),
+            type = "list",
+            name = "Conditions",
+            target_id = prelude.Document.id,
+            list_member = M.Condition,
+        }),
+    },
+})
+
+M.LoggingFilter = schema.new({
+    id = id.from(_N, "LoggingFilter"),
+    type = "structure",
+    members = {
+        Filters = schema.new({
+            id = id.from(_N, "LoggingFilter", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.Filter,
+        }),
+        DefaultBehavior = schema.new({
+            id = id.from(_N, "LoggingFilter", "DefaultBehavior"),
+            type = "string",
+            name = "DefaultBehavior",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SingleHeader = schema.new({
+    id = id.from(_N, "SingleHeader"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "SingleHeader", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.FieldToMatch = schema.new({
+    id = id.from(_N, "FieldToMatch"),
+    type = "structure",
+    members = {
+        SingleHeader = schema.new({
+            id = id.from(_N, "FieldToMatch", "SingleHeader"),
+            type = "structure",
+            name = "SingleHeader",
+            target_id = id.from(_N, "SingleHeader"),
+            target = M.SingleHeader,
+        }),
+        UriPath = schema.new({
+            id = id.from(_N, "FieldToMatch", "UriPath"),
+            type = "string",
+            name = "UriPath",
+            target_id = prelude.String.id,
+        }),
+        QueryString = schema.new({
+            id = id.from(_N, "FieldToMatch", "QueryString"),
+            type = "string",
+            name = "QueryString",
+            target_id = prelude.String.id,
+        }),
+        Method = schema.new({
+            id = id.from(_N, "FieldToMatch", "Method"),
+            type = "string",
+            name = "Method",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.WAFLoggingParameters = schema.new({
+    id = id.from(_N, "WAFLoggingParameters"),
+    type = "structure",
+    members = {
+        RedactedFields = schema.new({
+            id = id.from(_N, "WAFLoggingParameters", "RedactedFields"),
+            type = "list",
+            name = "RedactedFields",
+            target_id = prelude.Document.id,
+            list_member = M.FieldToMatch,
+        }),
+        LoggingFilter = schema.new({
+            id = id.from(_N, "WAFLoggingParameters", "LoggingFilter"),
+            type = "structure",
+            name = "LoggingFilter",
+            target_id = id.from(_N, "LoggingFilter"),
+            target = M.LoggingFilter,
+        }),
+        LogType = schema.new({
+            id = id.from(_N, "WAFLoggingParameters", "LogType"),
+            type = "string",
+            name = "LogType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TelemetryDestinationConfiguration = schema.new({
+    id = id.from(_N, "TelemetryDestinationConfiguration"),
+    type = "structure",
+    members = {
+        DestinationType = schema.new({
+            id = id.from(_N, "TelemetryDestinationConfiguration", "DestinationType"),
+            type = "string",
+            name = "DestinationType",
+            target_id = prelude.String.id,
+        }),
+        DestinationPattern = schema.new({
+            id = id.from(_N, "TelemetryDestinationConfiguration", "DestinationPattern"),
+            type = "string",
+            name = "DestinationPattern",
+            target_id = prelude.String.id,
+        }),
+        RetentionInDays = schema.new({
+            id = id.from(_N, "TelemetryDestinationConfiguration", "RetentionInDays"),
+            type = "integer",
+            name = "RetentionInDays",
+            target_id = prelude.Integer.id,
+        }),
+        VPCFlowLogParameters = schema.new({
+            id = id.from(_N, "TelemetryDestinationConfiguration", "VPCFlowLogParameters"),
+            type = "structure",
+            name = "VPCFlowLogParameters",
+            target_id = id.from(_N, "VPCFlowLogParameters"),
+            target = M.VPCFlowLogParameters,
+        }),
+        CloudtrailParameters = schema.new({
+            id = id.from(_N, "TelemetryDestinationConfiguration", "CloudtrailParameters"),
+            type = "structure",
+            name = "CloudtrailParameters",
+            target_id = id.from(_N, "CloudtrailParameters"),
+            target = M.CloudtrailParameters,
+        }),
+        ELBLoadBalancerLoggingParameters = schema.new({
+            id = id.from(_N, "TelemetryDestinationConfiguration", "ELBLoadBalancerLoggingParameters"),
+            type = "structure",
+            name = "ELBLoadBalancerLoggingParameters",
+            target_id = id.from(_N, "ELBLoadBalancerLoggingParameters"),
+            target = M.ELBLoadBalancerLoggingParameters,
+        }),
+        WAFLoggingParameters = schema.new({
+            id = id.from(_N, "TelemetryDestinationConfiguration", "WAFLoggingParameters"),
+            type = "structure",
+            name = "WAFLoggingParameters",
+            target_id = id.from(_N, "WAFLoggingParameters"),
+            target = M.WAFLoggingParameters,
+        }),
+        LogDeliveryParameters = schema.new({
+            id = id.from(_N, "TelemetryDestinationConfiguration", "LogDeliveryParameters"),
+            type = "structure",
+            name = "LogDeliveryParameters",
+            target_id = id.from(_N, "LogDeliveryParameters"),
+            target = M.LogDeliveryParameters,
+        }),
+        MskMonitoringParameters = schema.new({
+            id = id.from(_N, "TelemetryDestinationConfiguration", "MskMonitoringParameters"),
+            type = "structure",
+            name = "MskMonitoringParameters",
+            target_id = id.from(_N, "MskMonitoringParameters"),
+            target = M.MskMonitoringParameters,
+        }),
+    },
+})
+
+M.TelemetryRule = schema.new({
+    id = id.from(_N, "TelemetryRule"),
+    type = "structure",
+    members = {
+        ResourceType = schema.new({
+            id = id.from(_N, "TelemetryRule", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+        TelemetryType = schema.new({
+            id = id.from(_N, "TelemetryRule", "TelemetryType"),
+            type = "string",
+            name = "TelemetryType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TelemetrySourceTypes = schema.new({
+            id = id.from(_N, "TelemetryRule", "TelemetrySourceTypes"),
+            type = "list",
+            name = "TelemetrySourceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        DestinationConfiguration = schema.new({
+            id = id.from(_N, "TelemetryRule", "DestinationConfiguration"),
+            type = "structure",
+            name = "DestinationConfiguration",
+            target_id = id.from(_N, "TelemetryDestinationConfiguration"),
+            target = M.TelemetryDestinationConfiguration,
+        }),
+        Scope = schema.new({
+            id = id.from(_N, "TelemetryRule", "Scope"),
+            type = "string",
+            name = "Scope",
+            target_id = prelude.String.id,
+        }),
+        SelectionCriteria = schema.new({
+            id = id.from(_N, "TelemetryRule", "SelectionCriteria"),
+            type = "string",
+            name = "SelectionCriteria",
+            target_id = prelude.String.id,
+        }),
+        AllowFieldUpdates = schema.new({
+            id = id.from(_N, "TelemetryRule", "AllowFieldUpdates"),
+            type = "boolean",
+            name = "AllowFieldUpdates",
+            target_id = prelude.Boolean.id,
+        }),
+        Regions = schema.new({
+            id = id.from(_N, "TelemetryRule", "Regions"),
+            type = "list",
+            name = "Regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        AllRegions = schema.new({
+            id = id.from(_N, "TelemetryRule", "AllRegions"),
+            type = "boolean",
+            name = "AllRegions",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.CreateTelemetryRuleInput = schema.new({
+    id = id.from(_N, "CreateTelemetryRuleInput"),
+    type = "structure",
+    members = {
+        RuleName = schema.new({
+            id = id.from(_N, "CreateTelemetryRuleInput", "RuleName"),
+            type = "string",
+            name = "RuleName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Rule = schema.new({
+            id = id.from(_N, "CreateTelemetryRuleInput", "Rule"),
+            type = "structure",
+            name = "Rule",
+            target_id = id.from(_N, "TelemetryRule"),
+            target = M.TelemetryRule,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateTelemetryRuleInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateTelemetryRuleOutput = schema.new({
+    id = id.from(_N, "CreateTelemetryRuleOutput"),
+    type = "structure",
+    members = {
+        RuleArn = schema.new({
+            id = id.from(_N, "CreateTelemetryRuleOutput", "RuleArn"),
+            type = "string",
+            name = "RuleArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateTelemetryRuleForOrganizationInput = schema.new({
+    id = id.from(_N, "CreateTelemetryRuleForOrganizationInput"),
+    type = "structure",
+    members = {
+        RuleName = schema.new({
+            id = id.from(_N, "CreateTelemetryRuleForOrganizationInput", "RuleName"),
+            type = "string",
+            name = "RuleName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Rule = schema.new({
+            id = id.from(_N, "CreateTelemetryRuleForOrganizationInput", "Rule"),
+            type = "structure",
+            name = "Rule",
+            target_id = id.from(_N, "TelemetryRule"),
+            target = M.TelemetryRule,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateTelemetryRuleForOrganizationInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateTelemetryRuleForOrganizationOutput = schema.new({
+    id = id.from(_N, "CreateTelemetryRuleForOrganizationOutput"),
+    type = "structure",
+    members = {
+        RuleArn = schema.new({
+            id = id.from(_N, "CreateTelemetryRuleForOrganizationOutput", "RuleArn"),
+            type = "string",
+            name = "RuleArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteCentralizationRuleForOrganizationInput = schema.new({
+    id = id.from(_N, "DeleteCentralizationRuleForOrganizationInput"),
+    type = "structure",
+    members = {
+        RuleIdentifier = schema.new({
+            id = id.from(_N, "DeleteCentralizationRuleForOrganizationInput", "RuleIdentifier"),
+            type = "string",
+            name = "RuleIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteCentralizationRuleForOrganizationOutput = schema.new({
+    id = id.from(_N, "DeleteCentralizationRuleForOrganizationOutput"),
+    type = "structure",
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        ResourceId = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "ResourceId"),
+            type = "string",
+            name = "ResourceId",
+            target_id = prelude.String.id,
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteS3TableIntegrationInput = schema.new({
+    id = id.from(_N, "DeleteS3TableIntegrationInput"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "DeleteS3TableIntegrationInput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteS3TableIntegrationOutput = schema.new({
+    id = id.from(_N, "DeleteS3TableIntegrationOutput"),
+    type = "structure",
+})
+
+M.InvalidStateException = schema.new({
+    id = id.from(_N, "InvalidStateException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InvalidStateException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteTelemetryPipelineInput = schema.new({
+    id = id.from(_N, "DeleteTelemetryPipelineInput"),
+    type = "structure",
+    members = {
+        PipelineIdentifier = schema.new({
+            id = id.from(_N, "DeleteTelemetryPipelineInput", "PipelineIdentifier"),
+            type = "string",
+            name = "PipelineIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteTelemetryPipelineOutput = schema.new({
+    id = id.from(_N, "DeleteTelemetryPipelineOutput"),
+    type = "structure",
+})
+
+M.DeleteTelemetryRuleInput = schema.new({
+    id = id.from(_N, "DeleteTelemetryRuleInput"),
+    type = "structure",
+    members = {
+        RuleIdentifier = schema.new({
+            id = id.from(_N, "DeleteTelemetryRuleInput", "RuleIdentifier"),
+            type = "string",
+            name = "RuleIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteTelemetryRuleOutput = schema.new({
+    id = id.from(_N, "DeleteTelemetryRuleOutput"),
+    type = "structure",
+})
+
+M.DeleteTelemetryRuleForOrganizationInput = schema.new({
+    id = id.from(_N, "DeleteTelemetryRuleForOrganizationInput"),
+    type = "structure",
+    members = {
+        RuleIdentifier = schema.new({
+            id = id.from(_N, "DeleteTelemetryRuleForOrganizationInput", "RuleIdentifier"),
+            type = "string",
+            name = "RuleIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteTelemetryRuleForOrganizationOutput = schema.new({
+    id = id.from(_N, "DeleteTelemetryRuleForOrganizationOutput"),
+    type = "structure",
+})
+
+M.GetCentralizationRuleForOrganizationInput = schema.new({
+    id = id.from(_N, "GetCentralizationRuleForOrganizationInput"),
+    type = "structure",
+    members = {
+        RuleIdentifier = schema.new({
+            id = id.from(_N, "GetCentralizationRuleForOrganizationInput", "RuleIdentifier"),
+            type = "string",
+            name = "RuleIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetCentralizationRuleForOrganizationOutput = schema.new({
+    id = id.from(_N, "GetCentralizationRuleForOrganizationOutput"),
+    type = "structure",
+    members = {
+        RuleName = schema.new({
+            id = id.from(_N, "GetCentralizationRuleForOrganizationOutput", "RuleName"),
+            type = "string",
+            name = "RuleName",
+            target_id = prelude.String.id,
+        }),
+        RuleArn = schema.new({
+            id = id.from(_N, "GetCentralizationRuleForOrganizationOutput", "RuleArn"),
+            type = "string",
+            name = "RuleArn",
+            target_id = prelude.String.id,
+        }),
+        CreatorAccountId = schema.new({
+            id = id.from(_N, "GetCentralizationRuleForOrganizationOutput", "CreatorAccountId"),
+            type = "string",
+            name = "CreatorAccountId",
+            target_id = prelude.String.id,
+        }),
+        CreatedTimeStamp = schema.new({
+            id = id.from(_N, "GetCentralizationRuleForOrganizationOutput", "CreatedTimeStamp"),
+            type = "long",
+            name = "CreatedTimeStamp",
+            target_id = prelude.Long.id,
+        }),
+        CreatedRegion = schema.new({
+            id = id.from(_N, "GetCentralizationRuleForOrganizationOutput", "CreatedRegion"),
+            type = "string",
+            name = "CreatedRegion",
+            target_id = prelude.String.id,
+        }),
+        LastUpdateTimeStamp = schema.new({
+            id = id.from(_N, "GetCentralizationRuleForOrganizationOutput", "LastUpdateTimeStamp"),
+            type = "long",
+            name = "LastUpdateTimeStamp",
+            target_id = prelude.Long.id,
+        }),
+        RuleHealth = schema.new({
+            id = id.from(_N, "GetCentralizationRuleForOrganizationOutput", "RuleHealth"),
+            type = "string",
+            name = "RuleHealth",
+            target_id = prelude.String.id,
+        }),
+        FailureReason = schema.new({
+            id = id.from(_N, "GetCentralizationRuleForOrganizationOutput", "FailureReason"),
+            type = "string",
+            name = "FailureReason",
+            target_id = prelude.String.id,
+        }),
+        CentralizationRule = schema.new({
+            id = id.from(_N, "GetCentralizationRuleForOrganizationOutput", "CentralizationRule"),
+            type = "structure",
+            name = "CentralizationRule",
+            target_id = id.from(_N, "CentralizationRule"),
+            target = M.CentralizationRule,
+        }),
+    },
+})
+
+M.GetS3TableIntegrationInput = schema.new({
+    id = id.from(_N, "GetS3TableIntegrationInput"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "GetS3TableIntegrationInput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetS3TableIntegrationOutput = schema.new({
+    id = id.from(_N, "GetS3TableIntegrationOutput"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "GetS3TableIntegrationOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "GetS3TableIntegrationOutput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "GetS3TableIntegrationOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        Encryption = schema.new({
+            id = id.from(_N, "GetS3TableIntegrationOutput", "Encryption"),
+            type = "structure",
+            name = "Encryption",
+            target_id = id.from(_N, "Encryption"),
+            target = M.Encryption,
+        }),
+        DestinationTableBucketArn = schema.new({
+            id = id.from(_N, "GetS3TableIntegrationOutput", "DestinationTableBucketArn"),
+            type = "string",
+            name = "DestinationTableBucketArn",
+            target_id = prelude.String.id,
+        }),
+        CreatedTimeStamp = schema.new({
+            id = id.from(_N, "GetS3TableIntegrationOutput", "CreatedTimeStamp"),
+            type = "long",
+            name = "CreatedTimeStamp",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.GetTelemetryEnrichmentStatusInput = schema.new({
+    id = id.from(_N, "GetTelemetryEnrichmentStatusInput"),
+    type = "structure",
+})
+
+M.GetTelemetryEnrichmentStatusOutput = schema.new({
+    id = id.from(_N, "GetTelemetryEnrichmentStatusOutput"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "GetTelemetryEnrichmentStatusOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        AwsResourceExplorerManagedViewArn = schema.new({
+            id = id.from(_N, "GetTelemetryEnrichmentStatusOutput", "AwsResourceExplorerManagedViewArn"),
+            type = "string",
+            name = "AwsResourceExplorerManagedViewArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetTelemetryEvaluationStatusInput = schema.new({
+    id = id.from(_N, "GetTelemetryEvaluationStatusInput"),
+    type = "structure",
+})
+
+M.RegionStatus = schema.new({
+    id = id.from(_N, "RegionStatus"),
+    type = "structure",
+    members = {
+        Region = schema.new({
+            id = id.from(_N, "RegionStatus", "Region"),
+            type = "string",
+            name = "Region",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "RegionStatus", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        FailureReason = schema.new({
+            id = id.from(_N, "RegionStatus", "FailureReason"),
+            type = "string",
+            name = "FailureReason",
+            target_id = prelude.String.id,
+        }),
+        RuleArn = schema.new({
+            id = id.from(_N, "RegionStatus", "RuleArn"),
+            type = "string",
+            name = "RuleArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetTelemetryEvaluationStatusOutput = schema.new({
+    id = id.from(_N, "GetTelemetryEvaluationStatusOutput"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "GetTelemetryEvaluationStatusOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        FailureReason = schema.new({
+            id = id.from(_N, "GetTelemetryEvaluationStatusOutput", "FailureReason"),
+            type = "string",
+            name = "FailureReason",
+            target_id = prelude.String.id,
+        }),
+        HomeRegion = schema.new({
+            id = id.from(_N, "GetTelemetryEvaluationStatusOutput", "HomeRegion"),
+            type = "string",
+            name = "HomeRegion",
+            target_id = prelude.String.id,
+        }),
+        RegionStatuses = schema.new({
+            id = id.from(_N, "GetTelemetryEvaluationStatusOutput", "RegionStatuses"),
+            type = "list",
+            name = "RegionStatuses",
+            target_id = prelude.Document.id,
+            list_member = M.RegionStatus,
+        }),
+    },
+})
+
+M.GetTelemetryEvaluationStatusForOrganizationInput = schema.new({
+    id = id.from(_N, "GetTelemetryEvaluationStatusForOrganizationInput"),
+    type = "structure",
+})
+
+M.GetTelemetryEvaluationStatusForOrganizationOutput = schema.new({
+    id = id.from(_N, "GetTelemetryEvaluationStatusForOrganizationOutput"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "GetTelemetryEvaluationStatusForOrganizationOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        FailureReason = schema.new({
+            id = id.from(_N, "GetTelemetryEvaluationStatusForOrganizationOutput", "FailureReason"),
+            type = "string",
+            name = "FailureReason",
+            target_id = prelude.String.id,
+        }),
+        HomeRegion = schema.new({
+            id = id.from(_N, "GetTelemetryEvaluationStatusForOrganizationOutput", "HomeRegion"),
+            type = "string",
+            name = "HomeRegion",
+            target_id = prelude.String.id,
+        }),
+        RegionStatuses = schema.new({
+            id = id.from(_N, "GetTelemetryEvaluationStatusForOrganizationOutput", "RegionStatuses"),
+            type = "list",
+            name = "RegionStatuses",
+            target_id = prelude.Document.id,
+            list_member = M.RegionStatus,
+        }),
+    },
+})
+
+M.GetTelemetryPipelineInput = schema.new({
+    id = id.from(_N, "GetTelemetryPipelineInput"),
+    type = "structure",
+    members = {
+        PipelineIdentifier = schema.new({
+            id = id.from(_N, "GetTelemetryPipelineInput", "PipelineIdentifier"),
+            type = "string",
+            name = "PipelineIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TelemetryPipelineStatusReason = schema.new({
+    id = id.from(_N, "TelemetryPipelineStatusReason"),
+    type = "structure",
+    members = {
+        Description = schema.new({
+            id = id.from(_N, "TelemetryPipelineStatusReason", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TelemetryPipeline = schema.new({
+    id = id.from(_N, "TelemetryPipeline"),
+    type = "structure",
+    members = {
+        CreatedTimeStamp = schema.new({
+            id = id.from(_N, "TelemetryPipeline", "CreatedTimeStamp"),
+            type = "long",
+            name = "CreatedTimeStamp",
+            target_id = prelude.Long.id,
+        }),
+        LastUpdateTimeStamp = schema.new({
+            id = id.from(_N, "TelemetryPipeline", "LastUpdateTimeStamp"),
+            type = "long",
+            name = "LastUpdateTimeStamp",
+            target_id = prelude.Long.id,
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "TelemetryPipeline", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "TelemetryPipeline", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Configuration = schema.new({
+            id = id.from(_N, "TelemetryPipeline", "Configuration"),
+            type = "structure",
+            name = "Configuration",
+            target_id = id.from(_N, "TelemetryPipelineConfiguration"),
+            target = M.TelemetryPipelineConfiguration,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "TelemetryPipeline", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        StatusReason = schema.new({
+            id = id.from(_N, "TelemetryPipeline", "StatusReason"),
+            type = "structure",
+            name = "StatusReason",
+            target_id = id.from(_N, "TelemetryPipelineStatusReason"),
+            target = M.TelemetryPipelineStatusReason,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "TelemetryPipeline", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.GetTelemetryPipelineOutput = schema.new({
+    id = id.from(_N, "GetTelemetryPipelineOutput"),
+    type = "structure",
+    members = {
+        Pipeline = schema.new({
+            id = id.from(_N, "GetTelemetryPipelineOutput", "Pipeline"),
+            type = "structure",
+            name = "Pipeline",
+            target_id = id.from(_N, "TelemetryPipeline"),
+            target = M.TelemetryPipeline,
+        }),
+    },
+})
+
+M.GetTelemetryRuleInput = schema.new({
+    id = id.from(_N, "GetTelemetryRuleInput"),
+    type = "structure",
+    members = {
+        RuleIdentifier = schema.new({
+            id = id.from(_N, "GetTelemetryRuleInput", "RuleIdentifier"),
+            type = "string",
+            name = "RuleIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetTelemetryRuleOutput = schema.new({
+    id = id.from(_N, "GetTelemetryRuleOutput"),
+    type = "structure",
+    members = {
+        RuleName = schema.new({
+            id = id.from(_N, "GetTelemetryRuleOutput", "RuleName"),
+            type = "string",
+            name = "RuleName",
+            target_id = prelude.String.id,
+        }),
+        RuleArn = schema.new({
+            id = id.from(_N, "GetTelemetryRuleOutput", "RuleArn"),
+            type = "string",
+            name = "RuleArn",
+            target_id = prelude.String.id,
+        }),
+        CreatedTimeStamp = schema.new({
+            id = id.from(_N, "GetTelemetryRuleOutput", "CreatedTimeStamp"),
+            type = "long",
+            name = "CreatedTimeStamp",
+            target_id = prelude.Long.id,
+        }),
+        LastUpdateTimeStamp = schema.new({
+            id = id.from(_N, "GetTelemetryRuleOutput", "LastUpdateTimeStamp"),
+            type = "long",
+            name = "LastUpdateTimeStamp",
+            target_id = prelude.Long.id,
+        }),
+        TelemetryRule = schema.new({
+            id = id.from(_N, "GetTelemetryRuleOutput", "TelemetryRule"),
+            type = "structure",
+            name = "TelemetryRule",
+            target_id = id.from(_N, "TelemetryRule"),
+            target = M.TelemetryRule,
+        }),
+        HomeRegion = schema.new({
+            id = id.from(_N, "GetTelemetryRuleOutput", "HomeRegion"),
+            type = "string",
+            name = "HomeRegion",
+            target_id = prelude.String.id,
+        }),
+        IsReplicated = schema.new({
+            id = id.from(_N, "GetTelemetryRuleOutput", "IsReplicated"),
+            type = "boolean",
+            name = "IsReplicated",
+            target_id = prelude.Boolean.id,
+        }),
+        RegionStatuses = schema.new({
+            id = id.from(_N, "GetTelemetryRuleOutput", "RegionStatuses"),
+            type = "list",
+            name = "RegionStatuses",
+            target_id = prelude.Document.id,
+            list_member = M.RegionStatus,
+        }),
+    },
+})
+
+M.GetTelemetryRuleForOrganizationInput = schema.new({
+    id = id.from(_N, "GetTelemetryRuleForOrganizationInput"),
+    type = "structure",
+    members = {
+        RuleIdentifier = schema.new({
+            id = id.from(_N, "GetTelemetryRuleForOrganizationInput", "RuleIdentifier"),
+            type = "string",
+            name = "RuleIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetTelemetryRuleForOrganizationOutput = schema.new({
+    id = id.from(_N, "GetTelemetryRuleForOrganizationOutput"),
+    type = "structure",
+    members = {
+        RuleName = schema.new({
+            id = id.from(_N, "GetTelemetryRuleForOrganizationOutput", "RuleName"),
+            type = "string",
+            name = "RuleName",
+            target_id = prelude.String.id,
+        }),
+        RuleArn = schema.new({
+            id = id.from(_N, "GetTelemetryRuleForOrganizationOutput", "RuleArn"),
+            type = "string",
+            name = "RuleArn",
+            target_id = prelude.String.id,
+        }),
+        CreatedTimeStamp = schema.new({
+            id = id.from(_N, "GetTelemetryRuleForOrganizationOutput", "CreatedTimeStamp"),
+            type = "long",
+            name = "CreatedTimeStamp",
+            target_id = prelude.Long.id,
+        }),
+        LastUpdateTimeStamp = schema.new({
+            id = id.from(_N, "GetTelemetryRuleForOrganizationOutput", "LastUpdateTimeStamp"),
+            type = "long",
+            name = "LastUpdateTimeStamp",
+            target_id = prelude.Long.id,
+        }),
+        TelemetryRule = schema.new({
+            id = id.from(_N, "GetTelemetryRuleForOrganizationOutput", "TelemetryRule"),
+            type = "structure",
+            name = "TelemetryRule",
+            target_id = id.from(_N, "TelemetryRule"),
+            target = M.TelemetryRule,
+        }),
+        HomeRegion = schema.new({
+            id = id.from(_N, "GetTelemetryRuleForOrganizationOutput", "HomeRegion"),
+            type = "string",
+            name = "HomeRegion",
+            target_id = prelude.String.id,
+        }),
+        IsReplicated = schema.new({
+            id = id.from(_N, "GetTelemetryRuleForOrganizationOutput", "IsReplicated"),
+            type = "boolean",
+            name = "IsReplicated",
+            target_id = prelude.Boolean.id,
+        }),
+        RegionStatuses = schema.new({
+            id = id.from(_N, "GetTelemetryRuleForOrganizationOutput", "RegionStatuses"),
+            type = "list",
+            name = "RegionStatuses",
+            target_id = prelude.Document.id,
+            list_member = M.RegionStatus,
+        }),
+    },
+})
+
+M.IntegrationSummary = schema.new({
+    id = id.from(_N, "IntegrationSummary"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "IntegrationSummary", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "IntegrationSummary", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListCentralizationRulesForOrganizationInput = schema.new({
+    id = id.from(_N, "ListCentralizationRulesForOrganizationInput"),
+    type = "structure",
+    members = {
+        RuleNamePrefix = schema.new({
+            id = id.from(_N, "ListCentralizationRulesForOrganizationInput", "RuleNamePrefix"),
+            type = "string",
+            name = "RuleNamePrefix",
+            target_id = prelude.String.id,
+        }),
+        AllRegions = schema.new({
+            id = id.from(_N, "ListCentralizationRulesForOrganizationInput", "AllRegions"),
+            type = "boolean",
+            name = "AllRegions",
+            target_id = prelude.Boolean.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListCentralizationRulesForOrganizationInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCentralizationRulesForOrganizationInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListCentralizationRulesForOrganizationOutput = schema.new({
+    id = id.from(_N, "ListCentralizationRulesForOrganizationOutput"),
+    type = "structure",
+    members = {
+        CentralizationRuleSummaries = schema.new({
+            id = id.from(_N, "ListCentralizationRulesForOrganizationOutput", "CentralizationRuleSummaries"),
+            type = "list",
+            name = "CentralizationRuleSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.CentralizationRuleSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCentralizationRulesForOrganizationOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListResourceTelemetryInput = schema.new({
+    id = id.from(_N, "ListResourceTelemetryInput"),
+    type = "structure",
+    members = {
+        ResourceIdentifierPrefix = schema.new({
+            id = id.from(_N, "ListResourceTelemetryInput", "ResourceIdentifierPrefix"),
+            type = "string",
+            name = "ResourceIdentifierPrefix",
+            target_id = prelude.String.id,
+        }),
+        ResourceTypes = schema.new({
+            id = id.from(_N, "ListResourceTelemetryInput", "ResourceTypes"),
+            type = "list",
+            name = "ResourceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        TelemetryConfigurationState = schema.new({
+            id = id.from(_N, "ListResourceTelemetryInput", "TelemetryConfigurationState"),
+            type = "map",
+            name = "TelemetryConfigurationState",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        ResourceTags = schema.new({
+            id = id.from(_N, "ListResourceTelemetryInput", "ResourceTags"),
+            type = "map",
+            name = "ResourceTags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListResourceTelemetryInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListResourceTelemetryInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TelemetryConfiguration = schema.new({
+    id = id.from(_N, "TelemetryConfiguration"),
+    type = "structure",
+    members = {
+        AccountIdentifier = schema.new({
+            id = id.from(_N, "TelemetryConfiguration", "AccountIdentifier"),
+            type = "string",
+            name = "AccountIdentifier",
+            target_id = prelude.String.id,
+        }),
+        TelemetryConfigurationState = schema.new({
+            id = id.from(_N, "TelemetryConfiguration", "TelemetryConfigurationState"),
+            type = "map",
+            name = "TelemetryConfigurationState",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "TelemetryConfiguration", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+        ResourceIdentifier = schema.new({
+            id = id.from(_N, "TelemetryConfiguration", "ResourceIdentifier"),
+            type = "string",
+            name = "ResourceIdentifier",
+            target_id = prelude.String.id,
+        }),
+        ResourceTags = schema.new({
+            id = id.from(_N, "TelemetryConfiguration", "ResourceTags"),
+            type = "map",
+            name = "ResourceTags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        LastUpdateTimeStamp = schema.new({
+            id = id.from(_N, "TelemetryConfiguration", "LastUpdateTimeStamp"),
+            type = "long",
+            name = "LastUpdateTimeStamp",
+            target_id = prelude.Long.id,
+        }),
+        TelemetrySourceType = schema.new({
+            id = id.from(_N, "TelemetryConfiguration", "TelemetrySourceType"),
+            type = "string",
+            name = "TelemetrySourceType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListResourceTelemetryOutput = schema.new({
+    id = id.from(_N, "ListResourceTelemetryOutput"),
+    type = "structure",
+    members = {
+        TelemetryConfigurations = schema.new({
+            id = id.from(_N, "ListResourceTelemetryOutput", "TelemetryConfigurations"),
+            type = "list",
+            name = "TelemetryConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.TelemetryConfiguration,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListResourceTelemetryOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListResourceTelemetryForOrganizationInput = schema.new({
+    id = id.from(_N, "ListResourceTelemetryForOrganizationInput"),
+    type = "structure",
+    members = {
+        AccountIdentifiers = schema.new({
+            id = id.from(_N, "ListResourceTelemetryForOrganizationInput", "AccountIdentifiers"),
+            type = "list",
+            name = "AccountIdentifiers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ResourceIdentifierPrefix = schema.new({
+            id = id.from(_N, "ListResourceTelemetryForOrganizationInput", "ResourceIdentifierPrefix"),
+            type = "string",
+            name = "ResourceIdentifierPrefix",
+            target_id = prelude.String.id,
+        }),
+        ResourceTypes = schema.new({
+            id = id.from(_N, "ListResourceTelemetryForOrganizationInput", "ResourceTypes"),
+            type = "list",
+            name = "ResourceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        TelemetryConfigurationState = schema.new({
+            id = id.from(_N, "ListResourceTelemetryForOrganizationInput", "TelemetryConfigurationState"),
+            type = "map",
+            name = "TelemetryConfigurationState",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        ResourceTags = schema.new({
+            id = id.from(_N, "ListResourceTelemetryForOrganizationInput", "ResourceTags"),
+            type = "map",
+            name = "ResourceTags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListResourceTelemetryForOrganizationInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListResourceTelemetryForOrganizationInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListResourceTelemetryForOrganizationOutput = schema.new({
+    id = id.from(_N, "ListResourceTelemetryForOrganizationOutput"),
+    type = "structure",
+    members = {
+        TelemetryConfigurations = schema.new({
+            id = id.from(_N, "ListResourceTelemetryForOrganizationOutput", "TelemetryConfigurations"),
+            type = "list",
+            name = "TelemetryConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.TelemetryConfiguration,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListResourceTelemetryForOrganizationOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListS3TableIntegrationsInput = schema.new({
+    id = id.from(_N, "ListS3TableIntegrationsInput"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListS3TableIntegrationsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListS3TableIntegrationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListS3TableIntegrationsOutput = schema.new({
+    id = id.from(_N, "ListS3TableIntegrationsOutput"),
+    type = "structure",
+    members = {
+        IntegrationSummaries = schema.new({
+            id = id.from(_N, "ListS3TableIntegrationsOutput", "IntegrationSummaries"),
+            type = "list",
+            name = "IntegrationSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.IntegrationSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListS3TableIntegrationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceInput"),
+    type = "structure",
+    members = {
+        ResourceARN = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "ResourceARN"),
+            type = "string",
+            name = "ResourceARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceOutput"),
+    type = "structure",
+    members = {
+        Tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListTelemetryPipelinesInput = schema.new({
+    id = id.from(_N, "ListTelemetryPipelinesInput"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListTelemetryPipelinesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListTelemetryPipelinesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TelemetryPipelineSummary = schema.new({
+    id = id.from(_N, "TelemetryPipelineSummary"),
+    type = "structure",
+    members = {
+        CreatedTimeStamp = schema.new({
+            id = id.from(_N, "TelemetryPipelineSummary", "CreatedTimeStamp"),
+            type = "long",
+            name = "CreatedTimeStamp",
+            target_id = prelude.Long.id,
+        }),
+        LastUpdateTimeStamp = schema.new({
+            id = id.from(_N, "TelemetryPipelineSummary", "LastUpdateTimeStamp"),
+            type = "long",
+            name = "LastUpdateTimeStamp",
+            target_id = prelude.Long.id,
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "TelemetryPipelineSummary", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "TelemetryPipelineSummary", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "TelemetryPipelineSummary", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "TelemetryPipelineSummary", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        ConfigurationSummary = schema.new({
+            id = id.from(_N, "TelemetryPipelineSummary", "ConfigurationSummary"),
+            type = "structure",
+            name = "ConfigurationSummary",
+            target_id = id.from(_N, "ConfigurationSummary"),
+            target = M.ConfigurationSummary,
+        }),
+    },
+})
+
+M.ListTelemetryPipelinesOutput = schema.new({
+    id = id.from(_N, "ListTelemetryPipelinesOutput"),
+    type = "structure",
+    members = {
+        PipelineSummaries = schema.new({
+            id = id.from(_N, "ListTelemetryPipelinesOutput", "PipelineSummaries"),
+            type = "list",
+            name = "PipelineSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.TelemetryPipelineSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListTelemetryPipelinesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTelemetryRulesInput = schema.new({
+    id = id.from(_N, "ListTelemetryRulesInput"),
+    type = "structure",
+    members = {
+        RuleNamePrefix = schema.new({
+            id = id.from(_N, "ListTelemetryRulesInput", "RuleNamePrefix"),
+            type = "string",
+            name = "RuleNamePrefix",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListTelemetryRulesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListTelemetryRulesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TelemetryRuleSummary = schema.new({
+    id = id.from(_N, "TelemetryRuleSummary"),
+    type = "structure",
+    members = {
+        RuleName = schema.new({
+            id = id.from(_N, "TelemetryRuleSummary", "RuleName"),
+            type = "string",
+            name = "RuleName",
+            target_id = prelude.String.id,
+        }),
+        RuleArn = schema.new({
+            id = id.from(_N, "TelemetryRuleSummary", "RuleArn"),
+            type = "string",
+            name = "RuleArn",
+            target_id = prelude.String.id,
+        }),
+        CreatedTimeStamp = schema.new({
+            id = id.from(_N, "TelemetryRuleSummary", "CreatedTimeStamp"),
+            type = "long",
+            name = "CreatedTimeStamp",
+            target_id = prelude.Long.id,
+        }),
+        LastUpdateTimeStamp = schema.new({
+            id = id.from(_N, "TelemetryRuleSummary", "LastUpdateTimeStamp"),
+            type = "long",
+            name = "LastUpdateTimeStamp",
+            target_id = prelude.Long.id,
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "TelemetryRuleSummary", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+        TelemetryType = schema.new({
+            id = id.from(_N, "TelemetryRuleSummary", "TelemetryType"),
+            type = "string",
+            name = "TelemetryType",
+            target_id = prelude.String.id,
+        }),
+        TelemetrySourceTypes = schema.new({
+            id = id.from(_N, "TelemetryRuleSummary", "TelemetrySourceTypes"),
+            type = "list",
+            name = "TelemetrySourceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ListTelemetryRulesOutput = schema.new({
+    id = id.from(_N, "ListTelemetryRulesOutput"),
+    type = "structure",
+    members = {
+        TelemetryRuleSummaries = schema.new({
+            id = id.from(_N, "ListTelemetryRulesOutput", "TelemetryRuleSummaries"),
+            type = "list",
+            name = "TelemetryRuleSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.TelemetryRuleSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListTelemetryRulesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTelemetryRulesForOrganizationInput = schema.new({
+    id = id.from(_N, "ListTelemetryRulesForOrganizationInput"),
+    type = "structure",
+    members = {
+        RuleNamePrefix = schema.new({
+            id = id.from(_N, "ListTelemetryRulesForOrganizationInput", "RuleNamePrefix"),
+            type = "string",
+            name = "RuleNamePrefix",
+            target_id = prelude.String.id,
+        }),
+        SourceAccountIds = schema.new({
+            id = id.from(_N, "ListTelemetryRulesForOrganizationInput", "SourceAccountIds"),
+            type = "list",
+            name = "SourceAccountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        SourceOrganizationUnitIds = schema.new({
+            id = id.from(_N, "ListTelemetryRulesForOrganizationInput", "SourceOrganizationUnitIds"),
+            type = "list",
+            name = "SourceOrganizationUnitIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListTelemetryRulesForOrganizationInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListTelemetryRulesForOrganizationInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTelemetryRulesForOrganizationOutput = schema.new({
+    id = id.from(_N, "ListTelemetryRulesForOrganizationOutput"),
+    type = "structure",
+    members = {
+        TelemetryRuleSummaries = schema.new({
+            id = id.from(_N, "ListTelemetryRulesForOrganizationOutput", "TelemetryRuleSummaries"),
+            type = "list",
+            name = "TelemetryRuleSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.TelemetryRuleSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListTelemetryRulesForOrganizationOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StartTelemetryEnrichmentInput = schema.new({
+    id = id.from(_N, "StartTelemetryEnrichmentInput"),
+    type = "structure",
+})
+
+M.StartTelemetryEnrichmentOutput = schema.new({
+    id = id.from(_N, "StartTelemetryEnrichmentOutput"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "StartTelemetryEnrichmentOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        AwsResourceExplorerManagedViewArn = schema.new({
+            id = id.from(_N, "StartTelemetryEnrichmentOutput", "AwsResourceExplorerManagedViewArn"),
+            type = "string",
+            name = "AwsResourceExplorerManagedViewArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StartTelemetryEvaluationInput = schema.new({
+    id = id.from(_N, "StartTelemetryEvaluationInput"),
+    type = "structure",
+    members = {
+        Regions = schema.new({
+            id = id.from(_N, "StartTelemetryEvaluationInput", "Regions"),
+            type = "list",
+            name = "Regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        AllRegions = schema.new({
+            id = id.from(_N, "StartTelemetryEvaluationInput", "AllRegions"),
+            type = "boolean",
+            name = "AllRegions",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.StartTelemetryEvaluationOutput = schema.new({
+    id = id.from(_N, "StartTelemetryEvaluationOutput"),
+    type = "structure",
+})
+
+M.StartTelemetryEvaluationForOrganizationInput = schema.new({
+    id = id.from(_N, "StartTelemetryEvaluationForOrganizationInput"),
+    type = "structure",
+    members = {
+        Regions = schema.new({
+            id = id.from(_N, "StartTelemetryEvaluationForOrganizationInput", "Regions"),
+            type = "list",
+            name = "Regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        AllRegions = schema.new({
+            id = id.from(_N, "StartTelemetryEvaluationForOrganizationInput", "AllRegions"),
+            type = "boolean",
+            name = "AllRegions",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.StartTelemetryEvaluationForOrganizationOutput = schema.new({
+    id = id.from(_N, "StartTelemetryEvaluationForOrganizationOutput"),
+    type = "structure",
+})
+
+M.StopTelemetryEnrichmentInput = schema.new({
+    id = id.from(_N, "StopTelemetryEnrichmentInput"),
+    type = "structure",
+})
+
+M.StopTelemetryEnrichmentOutput = schema.new({
+    id = id.from(_N, "StopTelemetryEnrichmentOutput"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "StopTelemetryEnrichmentOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StopTelemetryEvaluationInput = schema.new({
+    id = id.from(_N, "StopTelemetryEvaluationInput"),
+    type = "structure",
+})
+
+M.StopTelemetryEvaluationOutput = schema.new({
+    id = id.from(_N, "StopTelemetryEvaluationOutput"),
+    type = "structure",
+})
+
+M.StopTelemetryEvaluationForOrganizationInput = schema.new({
+    id = id.from(_N, "StopTelemetryEvaluationForOrganizationInput"),
+    type = "structure",
+})
+
+M.StopTelemetryEvaluationForOrganizationOutput = schema.new({
+    id = id.from(_N, "StopTelemetryEvaluationForOrganizationOutput"),
+    type = "structure",
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceARN = schema.new({
+            id = id.from(_N, "TagResourceInput", "ResourceARN"),
+            type = "string",
+            name = "ResourceARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceOutput"),
+    type = "structure",
+})
+
+M.UpdateTelemetryPipelineInput = schema.new({
+    id = id.from(_N, "UpdateTelemetryPipelineInput"),
+    type = "structure",
+    members = {
+        PipelineIdentifier = schema.new({
+            id = id.from(_N, "UpdateTelemetryPipelineInput", "PipelineIdentifier"),
+            type = "string",
+            name = "PipelineIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Configuration = schema.new({
+            id = id.from(_N, "UpdateTelemetryPipelineInput", "Configuration"),
+            type = "structure",
+            name = "Configuration",
+            target_id = id.from(_N, "TelemetryPipelineConfiguration"),
+            target = M.TelemetryPipelineConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateTelemetryPipelineOutput = schema.new({
+    id = id.from(_N, "UpdateTelemetryPipelineOutput"),
+    type = "structure",
+})
+
+M.Record = schema.new({
+    id = id.from(_N, "Record"),
+    type = "structure",
+    members = {
+        Data = schema.new({
+            id = id.from(_N, "Record", "Data"),
+            type = "string",
+            name = "Data",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "Record", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TestTelemetryPipelineInput = schema.new({
+    id = id.from(_N, "TestTelemetryPipelineInput"),
+    type = "structure",
+    members = {
+        Records = schema.new({
+            id = id.from(_N, "TestTelemetryPipelineInput", "Records"),
+            type = "list",
+            name = "Records",
+            target_id = prelude.Document.id,
+            list_member = M.Record,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Configuration = schema.new({
+            id = id.from(_N, "TestTelemetryPipelineInput", "Configuration"),
+            type = "structure",
+            name = "Configuration",
+            target_id = id.from(_N, "TelemetryPipelineConfiguration"),
+            target = M.TelemetryPipelineConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PipelineOutputError = schema.new({
+    id = id.from(_N, "PipelineOutputError"),
+    type = "structure",
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "PipelineOutputError", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PipelineOutput = schema.new({
+    id = id.from(_N, "PipelineOutput"),
+    type = "structure",
+    members = {
+        Record = schema.new({
+            id = id.from(_N, "PipelineOutput", "Record"),
+            type = "structure",
+            name = "Record",
+            target_id = id.from(_N, "Record"),
+            target = M.Record,
+        }),
+        Error = schema.new({
+            id = id.from(_N, "PipelineOutput", "Error"),
+            type = "structure",
+            name = "Error",
+            target_id = id.from(_N, "PipelineOutputError"),
+            target = M.PipelineOutputError,
+        }),
+    },
+})
+
+M.TestTelemetryPipelineOutput = schema.new({
+    id = id.from(_N, "TestTelemetryPipelineOutput"),
+    type = "structure",
+    members = {
+        Results = schema.new({
+            id = id.from(_N, "TestTelemetryPipelineOutput", "Results"),
+            type = "list",
+            name = "Results",
+            target_id = prelude.Document.id,
+            list_member = M.PipelineOutput,
+        }),
+    },
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceARN = schema.new({
+            id = id.from(_N, "UntagResourceInput", "ResourceARN"),
+            type = "string",
+            name = "ResourceARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "TagKeys"),
+            type = "list",
+            name = "TagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
+M.UpdateCentralizationRuleForOrganizationInput = schema.new({
+    id = id.from(_N, "UpdateCentralizationRuleForOrganizationInput"),
+    type = "structure",
+    members = {
+        RuleIdentifier = schema.new({
+            id = id.from(_N, "UpdateCentralizationRuleForOrganizationInput", "RuleIdentifier"),
+            type = "string",
+            name = "RuleIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Rule = schema.new({
+            id = id.from(_N, "UpdateCentralizationRuleForOrganizationInput", "Rule"),
+            type = "structure",
+            name = "Rule",
+            target_id = id.from(_N, "CentralizationRule"),
+            target = M.CentralizationRule,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateCentralizationRuleForOrganizationOutput = schema.new({
+    id = id.from(_N, "UpdateCentralizationRuleForOrganizationOutput"),
+    type = "structure",
+    members = {
+        RuleArn = schema.new({
+            id = id.from(_N, "UpdateCentralizationRuleForOrganizationOutput", "RuleArn"),
+            type = "string",
+            name = "RuleArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateTelemetryRuleInput = schema.new({
+    id = id.from(_N, "UpdateTelemetryRuleInput"),
+    type = "structure",
+    members = {
+        RuleIdentifier = schema.new({
+            id = id.from(_N, "UpdateTelemetryRuleInput", "RuleIdentifier"),
+            type = "string",
+            name = "RuleIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Rule = schema.new({
+            id = id.from(_N, "UpdateTelemetryRuleInput", "Rule"),
+            type = "structure",
+            name = "Rule",
+            target_id = id.from(_N, "TelemetryRule"),
+            target = M.TelemetryRule,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateTelemetryRuleOutput = schema.new({
+    id = id.from(_N, "UpdateTelemetryRuleOutput"),
+    type = "structure",
+    members = {
+        RuleArn = schema.new({
+            id = id.from(_N, "UpdateTelemetryRuleOutput", "RuleArn"),
+            type = "string",
+            name = "RuleArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateTelemetryRuleForOrganizationInput = schema.new({
+    id = id.from(_N, "UpdateTelemetryRuleForOrganizationInput"),
+    type = "structure",
+    members = {
+        RuleIdentifier = schema.new({
+            id = id.from(_N, "UpdateTelemetryRuleForOrganizationInput", "RuleIdentifier"),
+            type = "string",
+            name = "RuleIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Rule = schema.new({
+            id = id.from(_N, "UpdateTelemetryRuleForOrganizationInput", "Rule"),
+            type = "structure",
+            name = "Rule",
+            target_id = id.from(_N, "TelemetryRule"),
+            target = M.TelemetryRule,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateTelemetryRuleForOrganizationOutput = schema.new({
+    id = id.from(_N, "UpdateTelemetryRuleForOrganizationOutput"),
+    type = "structure",
+    members = {
+        RuleArn = schema.new({
+            id = id.from(_N, "UpdateTelemetryRuleForOrganizationOutput", "RuleArn"),
+            type = "string",
+            name = "RuleArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ValidateTelemetryPipelineConfigurationInput = schema.new({
+    id = id.from(_N, "ValidateTelemetryPipelineConfigurationInput"),
+    type = "structure",
+    members = {
+        Configuration = schema.new({
+            id = id.from(_N, "ValidateTelemetryPipelineConfigurationInput", "Configuration"),
+            type = "structure",
+            name = "Configuration",
+            target_id = id.from(_N, "TelemetryPipelineConfiguration"),
+            target = M.TelemetryPipelineConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ValidateTelemetryPipelineConfigurationOutput = schema.new({
+    id = id.from(_N, "ValidateTelemetryPipelineConfigurationOutput"),
+    type = "structure",
+    members = {
+        Errors = schema.new({
+            id = id.from(_N, "ValidateTelemetryPipelineConfigurationOutput", "Errors"),
+            type = "list",
+            name = "Errors",
+            target_id = prelude.Document.id,
+            list_member = M.ValidationError,
+        }),
+    },
+})
+
+return M

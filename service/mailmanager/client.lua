@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("mailmanager.endpoint_rules")
+local schemas = require("mailmanager.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("mailmanager.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createAddonInstance(input, options)
     return self:invokeOperation(input, {
         name = "CreateAddonInstance",
-        input_schema = types.CreateAddonInstanceInput,
-        output_schema = types.CreateAddonInstanceOutput,
+        input_schema = schemas.CreateAddonInstanceInput,
+        output_schema = schemas.CreateAddonInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createAddonSubscription(input, options)
     return self:invokeOperation(input, {
         name = "CreateAddonSubscription",
-        input_schema = types.CreateAddonSubscriptionInput,
-        output_schema = types.CreateAddonSubscriptionOutput,
+        input_schema = schemas.CreateAddonSubscriptionInput,
+        output_schema = schemas.CreateAddonSubscriptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createAddressList(input, options)
     return self:invokeOperation(input, {
         name = "CreateAddressList",
-        input_schema = types.CreateAddressListInput,
-        output_schema = types.CreateAddressListOutput,
+        input_schema = schemas.CreateAddressListInput,
+        output_schema = schemas.CreateAddressListOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createAddressListImportJob(input, options)
     return self:invokeOperation(input, {
         name = "CreateAddressListImportJob",
-        input_schema = types.CreateAddressListImportJobInput,
-        output_schema = types.CreateAddressListImportJobOutput,
+        input_schema = schemas.CreateAddressListImportJobInput,
+        output_schema = schemas.CreateAddressListImportJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createArchive(input, options)
     return self:invokeOperation(input, {
         name = "CreateArchive",
-        input_schema = types.CreateArchiveInput,
-        output_schema = types.CreateArchiveOutput,
+        input_schema = schemas.CreateArchiveInput,
+        output_schema = schemas.CreateArchiveOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createIngressPoint(input, options)
     return self:invokeOperation(input, {
         name = "CreateIngressPoint",
-        input_schema = types.CreateIngressPointInput,
-        output_schema = types.CreateIngressPointOutput,
+        input_schema = schemas.CreateIngressPointInput,
+        output_schema = schemas.CreateIngressPointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createRelay(input, options)
     return self:invokeOperation(input, {
         name = "CreateRelay",
-        input_schema = types.CreateRelayInput,
-        output_schema = types.CreateRelayOutput,
+        input_schema = schemas.CreateRelayInput,
+        output_schema = schemas.CreateRelayOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createRuleSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateRuleSet",
-        input_schema = types.CreateRuleSetInput,
-        output_schema = types.CreateRuleSetOutput,
+        input_schema = schemas.CreateRuleSetInput,
+        output_schema = schemas.CreateRuleSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createTrafficPolicy(input, options)
     return self:invokeOperation(input, {
         name = "CreateTrafficPolicy",
-        input_schema = types.CreateTrafficPolicyInput,
-        output_schema = types.CreateTrafficPolicyOutput,
+        input_schema = schemas.CreateTrafficPolicyInput,
+        output_schema = schemas.CreateTrafficPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteAddonInstance(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAddonInstance",
-        input_schema = types.DeleteAddonInstanceInput,
-        output_schema = types.DeleteAddonInstanceOutput,
+        input_schema = schemas.DeleteAddonInstanceInput,
+        output_schema = schemas.DeleteAddonInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteAddonSubscription(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAddonSubscription",
-        input_schema = types.DeleteAddonSubscriptionInput,
-        output_schema = types.DeleteAddonSubscriptionOutput,
+        input_schema = schemas.DeleteAddonSubscriptionInput,
+        output_schema = schemas.DeleteAddonSubscriptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteAddressList(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAddressList",
-        input_schema = types.DeleteAddressListInput,
-        output_schema = types.DeleteAddressListOutput,
+        input_schema = schemas.DeleteAddressListInput,
+        output_schema = schemas.DeleteAddressListOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteArchive(input, options)
     return self:invokeOperation(input, {
         name = "DeleteArchive",
-        input_schema = types.DeleteArchiveInput,
-        output_schema = types.DeleteArchiveOutput,
+        input_schema = schemas.DeleteArchiveInput,
+        output_schema = schemas.DeleteArchiveOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteIngressPoint(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIngressPoint",
-        input_schema = types.DeleteIngressPointInput,
-        output_schema = types.DeleteIngressPointOutput,
+        input_schema = schemas.DeleteIngressPointInput,
+        output_schema = schemas.DeleteIngressPointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteRelay(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRelay",
-        input_schema = types.DeleteRelayInput,
-        output_schema = types.DeleteRelayOutput,
+        input_schema = schemas.DeleteRelayInput,
+        output_schema = schemas.DeleteRelayOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteRuleSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRuleSet",
-        input_schema = types.DeleteRuleSetInput,
-        output_schema = types.DeleteRuleSetOutput,
+        input_schema = schemas.DeleteRuleSetInput,
+        output_schema = schemas.DeleteRuleSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteTrafficPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTrafficPolicy",
-        input_schema = types.DeleteTrafficPolicyInput,
-        output_schema = types.DeleteTrafficPolicyOutput,
+        input_schema = schemas.DeleteTrafficPolicyInput,
+        output_schema = schemas.DeleteTrafficPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deregisterMemberFromAddressList(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterMemberFromAddressList",
-        input_schema = types.DeregisterMemberFromAddressListInput,
-        output_schema = types.DeregisterMemberFromAddressListOutput,
+        input_schema = schemas.DeregisterMemberFromAddressListInput,
+        output_schema = schemas.DeregisterMemberFromAddressListOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getAddonInstance(input, options)
     return self:invokeOperation(input, {
         name = "GetAddonInstance",
-        input_schema = types.GetAddonInstanceInput,
-        output_schema = types.GetAddonInstanceOutput,
+        input_schema = schemas.GetAddonInstanceInput,
+        output_schema = schemas.GetAddonInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getAddonSubscription(input, options)
     return self:invokeOperation(input, {
         name = "GetAddonSubscription",
-        input_schema = types.GetAddonSubscriptionInput,
-        output_schema = types.GetAddonSubscriptionOutput,
+        input_schema = schemas.GetAddonSubscriptionInput,
+        output_schema = schemas.GetAddonSubscriptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:getAddressList(input, options)
     return self:invokeOperation(input, {
         name = "GetAddressList",
-        input_schema = types.GetAddressListInput,
-        output_schema = types.GetAddressListOutput,
+        input_schema = schemas.GetAddressListInput,
+        output_schema = schemas.GetAddressListOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:getAddressListImportJob(input, options)
     return self:invokeOperation(input, {
         name = "GetAddressListImportJob",
-        input_schema = types.GetAddressListImportJobInput,
-        output_schema = types.GetAddressListImportJobOutput,
+        input_schema = schemas.GetAddressListImportJobInput,
+        output_schema = schemas.GetAddressListImportJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:getArchive(input, options)
     return self:invokeOperation(input, {
         name = "GetArchive",
-        input_schema = types.GetArchiveInput,
-        output_schema = types.GetArchiveOutput,
+        input_schema = schemas.GetArchiveInput,
+        output_schema = schemas.GetArchiveOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:getArchiveExport(input, options)
     return self:invokeOperation(input, {
         name = "GetArchiveExport",
-        input_schema = types.GetArchiveExportInput,
-        output_schema = types.GetArchiveExportOutput,
+        input_schema = schemas.GetArchiveExportInput,
+        output_schema = schemas.GetArchiveExportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getArchiveMessage(input, options)
     return self:invokeOperation(input, {
         name = "GetArchiveMessage",
-        input_schema = types.GetArchiveMessageInput,
-        output_schema = types.GetArchiveMessageOutput,
+        input_schema = schemas.GetArchiveMessageInput,
+        output_schema = schemas.GetArchiveMessageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:getArchiveMessageContent(input, options)
     return self:invokeOperation(input, {
         name = "GetArchiveMessageContent",
-        input_schema = types.GetArchiveMessageContentInput,
-        output_schema = types.GetArchiveMessageContentOutput,
+        input_schema = schemas.GetArchiveMessageContentInput,
+        output_schema = schemas.GetArchiveMessageContentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:getArchiveSearch(input, options)
     return self:invokeOperation(input, {
         name = "GetArchiveSearch",
-        input_schema = types.GetArchiveSearchInput,
-        output_schema = types.GetArchiveSearchOutput,
+        input_schema = schemas.GetArchiveSearchInput,
+        output_schema = schemas.GetArchiveSearchOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:getArchiveSearchResults(input, options)
     return self:invokeOperation(input, {
         name = "GetArchiveSearchResults",
-        input_schema = types.GetArchiveSearchResultsInput,
-        output_schema = types.GetArchiveSearchResultsOutput,
+        input_schema = schemas.GetArchiveSearchResultsInput,
+        output_schema = schemas.GetArchiveSearchResultsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:getIngressPoint(input, options)
     return self:invokeOperation(input, {
         name = "GetIngressPoint",
-        input_schema = types.GetIngressPointInput,
-        output_schema = types.GetIngressPointOutput,
+        input_schema = schemas.GetIngressPointInput,
+        output_schema = schemas.GetIngressPointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:getMemberOfAddressList(input, options)
     return self:invokeOperation(input, {
         name = "GetMemberOfAddressList",
-        input_schema = types.GetMemberOfAddressListInput,
-        output_schema = types.GetMemberOfAddressListOutput,
+        input_schema = schemas.GetMemberOfAddressListInput,
+        output_schema = schemas.GetMemberOfAddressListOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:getRelay(input, options)
     return self:invokeOperation(input, {
         name = "GetRelay",
-        input_schema = types.GetRelayInput,
-        output_schema = types.GetRelayOutput,
+        input_schema = schemas.GetRelayInput,
+        output_schema = schemas.GetRelayOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:getRuleSet(input, options)
     return self:invokeOperation(input, {
         name = "GetRuleSet",
-        input_schema = types.GetRuleSetInput,
-        output_schema = types.GetRuleSetOutput,
+        input_schema = schemas.GetRuleSetInput,
+        output_schema = schemas.GetRuleSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:getTrafficPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetTrafficPolicy",
-        input_schema = types.GetTrafficPolicyInput,
-        output_schema = types.GetTrafficPolicyOutput,
+        input_schema = schemas.GetTrafficPolicyInput,
+        output_schema = schemas.GetTrafficPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listAddonInstances(input, options)
     return self:invokeOperation(input, {
         name = "ListAddonInstances",
-        input_schema = types.ListAddonInstancesInput,
-        output_schema = types.ListAddonInstancesOutput,
+        input_schema = schemas.ListAddonInstancesInput,
+        output_schema = schemas.ListAddonInstancesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:listAddonSubscriptions(input, options)
     return self:invokeOperation(input, {
         name = "ListAddonSubscriptions",
-        input_schema = types.ListAddonSubscriptionsInput,
-        output_schema = types.ListAddonSubscriptionsOutput,
+        input_schema = schemas.ListAddonSubscriptionsInput,
+        output_schema = schemas.ListAddonSubscriptionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:listAddressListImportJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListAddressListImportJobs",
-        input_schema = types.ListAddressListImportJobsInput,
-        output_schema = types.ListAddressListImportJobsOutput,
+        input_schema = schemas.ListAddressListImportJobsInput,
+        output_schema = schemas.ListAddressListImportJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:listAddressLists(input, options)
     return self:invokeOperation(input, {
         name = "ListAddressLists",
-        input_schema = types.ListAddressListsInput,
-        output_schema = types.ListAddressListsOutput,
+        input_schema = schemas.ListAddressListsInput,
+        output_schema = schemas.ListAddressListsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:listArchiveExports(input, options)
     return self:invokeOperation(input, {
         name = "ListArchiveExports",
-        input_schema = types.ListArchiveExportsInput,
-        output_schema = types.ListArchiveExportsOutput,
+        input_schema = schemas.ListArchiveExportsInput,
+        output_schema = schemas.ListArchiveExportsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:listArchives(input, options)
     return self:invokeOperation(input, {
         name = "ListArchives",
-        input_schema = types.ListArchivesInput,
-        output_schema = types.ListArchivesOutput,
+        input_schema = schemas.ListArchivesInput,
+        output_schema = schemas.ListArchivesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:listArchiveSearches(input, options)
     return self:invokeOperation(input, {
         name = "ListArchiveSearches",
-        input_schema = types.ListArchiveSearchesInput,
-        output_schema = types.ListArchiveSearchesOutput,
+        input_schema = schemas.ListArchiveSearchesInput,
+        output_schema = schemas.ListArchiveSearchesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:listIngressPoints(input, options)
     return self:invokeOperation(input, {
         name = "ListIngressPoints",
-        input_schema = types.ListIngressPointsInput,
-        output_schema = types.ListIngressPointsOutput,
+        input_schema = schemas.ListIngressPointsInput,
+        output_schema = schemas.ListIngressPointsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:listMembersOfAddressList(input, options)
     return self:invokeOperation(input, {
         name = "ListMembersOfAddressList",
-        input_schema = types.ListMembersOfAddressListInput,
-        output_schema = types.ListMembersOfAddressListOutput,
+        input_schema = schemas.ListMembersOfAddressListInput,
+        output_schema = schemas.ListMembersOfAddressListOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:listRelays(input, options)
     return self:invokeOperation(input, {
         name = "ListRelays",
-        input_schema = types.ListRelaysInput,
-        output_schema = types.ListRelaysOutput,
+        input_schema = schemas.ListRelaysInput,
+        output_schema = schemas.ListRelaysOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:listRuleSets(input, options)
     return self:invokeOperation(input, {
         name = "ListRuleSets",
-        input_schema = types.ListRuleSetsInput,
-        output_schema = types.ListRuleSetsOutput,
+        input_schema = schemas.ListRuleSetsInput,
+        output_schema = schemas.ListRuleSetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:listTrafficPolicies(input, options)
     return self:invokeOperation(input, {
         name = "ListTrafficPolicies",
-        input_schema = types.ListTrafficPoliciesInput,
-        output_schema = types.ListTrafficPoliciesOutput,
+        input_schema = schemas.ListTrafficPoliciesInput,
+        output_schema = schemas.ListTrafficPoliciesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:registerMemberToAddressList(input, options)
     return self:invokeOperation(input, {
         name = "RegisterMemberToAddressList",
-        input_schema = types.RegisterMemberToAddressListInput,
-        output_schema = types.RegisterMemberToAddressListOutput,
+        input_schema = schemas.RegisterMemberToAddressListInput,
+        output_schema = schemas.RegisterMemberToAddressListOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:startAddressListImportJob(input, options)
     return self:invokeOperation(input, {
         name = "StartAddressListImportJob",
-        input_schema = types.StartAddressListImportJobInput,
-        output_schema = types.StartAddressListImportJobOutput,
+        input_schema = schemas.StartAddressListImportJobInput,
+        output_schema = schemas.StartAddressListImportJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:startArchiveExport(input, options)
     return self:invokeOperation(input, {
         name = "StartArchiveExport",
-        input_schema = types.StartArchiveExportInput,
-        output_schema = types.StartArchiveExportOutput,
+        input_schema = schemas.StartArchiveExportInput,
+        output_schema = schemas.StartArchiveExportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:startArchiveSearch(input, options)
     return self:invokeOperation(input, {
         name = "StartArchiveSearch",
-        input_schema = types.StartArchiveSearchInput,
-        output_schema = types.StartArchiveSearchOutput,
+        input_schema = schemas.StartArchiveSearchInput,
+        output_schema = schemas.StartArchiveSearchOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:stopAddressListImportJob(input, options)
     return self:invokeOperation(input, {
         name = "StopAddressListImportJob",
-        input_schema = types.StopAddressListImportJobInput,
-        output_schema = types.StopAddressListImportJobOutput,
+        input_schema = schemas.StopAddressListImportJobInput,
+        output_schema = schemas.StopAddressListImportJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:stopArchiveExport(input, options)
     return self:invokeOperation(input, {
         name = "StopArchiveExport",
-        input_schema = types.StopArchiveExportInput,
-        output_schema = types.StopArchiveExportOutput,
+        input_schema = schemas.StopArchiveExportInput,
+        output_schema = schemas.StopArchiveExportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:stopArchiveSearch(input, options)
     return self:invokeOperation(input, {
         name = "StopArchiveSearch",
-        input_schema = types.StopArchiveSearchInput,
-        output_schema = types.StopArchiveSearchOutput,
+        input_schema = schemas.StopArchiveSearchInput,
+        output_schema = schemas.StopArchiveSearchOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:updateArchive(input, options)
     return self:invokeOperation(input, {
         name = "UpdateArchive",
-        input_schema = types.UpdateArchiveInput,
-        output_schema = types.UpdateArchiveOutput,
+        input_schema = schemas.UpdateArchiveInput,
+        output_schema = schemas.UpdateArchiveOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:updateIngressPoint(input, options)
     return self:invokeOperation(input, {
         name = "UpdateIngressPoint",
-        input_schema = types.UpdateIngressPointInput,
-        output_schema = types.UpdateIngressPointOutput,
+        input_schema = schemas.UpdateIngressPointInput,
+        output_schema = schemas.UpdateIngressPointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:updateRelay(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRelay",
-        input_schema = types.UpdateRelayInput,
-        output_schema = types.UpdateRelayOutput,
+        input_schema = schemas.UpdateRelayInput,
+        output_schema = schemas.UpdateRelayOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:updateRuleSet(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRuleSet",
-        input_schema = types.UpdateRuleSetInput,
-        output_schema = types.UpdateRuleSetOutput,
+        input_schema = schemas.UpdateRuleSetInput,
+        output_schema = schemas.UpdateRuleSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:updateTrafficPolicy(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTrafficPolicy",
-        input_schema = types.UpdateTrafficPolicyInput,
-        output_schema = types.UpdateTrafficPolicyOutput,
+        input_schema = schemas.UpdateTrafficPolicyInput,
+        output_schema = schemas.UpdateTrafficPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("resourcegroups.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("resourcegroups.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("resourcegroups.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:cancelTagSyncTask(input, options)
     return self:invokeOperation(input, {
         name = "CancelTagSyncTask",
-        input_schema = types.CancelTagSyncTaskInput,
-        output_schema = types.CancelTagSyncTaskOutput,
+        input_schema = schemas.CancelTagSyncTaskInput,
+        output_schema = schemas.CancelTagSyncTaskOutput,
         http_method = "POST",
         http_path = "/cancel-tag-sync-task",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateGroup",
-        input_schema = types.CreateGroupInput,
-        output_schema = types.CreateGroupOutput,
+        input_schema = schemas.CreateGroupInput,
+        output_schema = schemas.CreateGroupOutput,
         http_method = "POST",
         http_path = "/groups",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGroup",
-        input_schema = types.DeleteGroupInput,
-        output_schema = types.DeleteGroupOutput,
+        input_schema = schemas.DeleteGroupInput,
+        output_schema = schemas.DeleteGroupOutput,
         http_method = "POST",
         http_path = "/delete-group",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getAccountSettings(input, options)
     return self:invokeOperation(input, {
         name = "GetAccountSettings",
-        input_schema = types.GetAccountSettingsInput,
-        output_schema = types.GetAccountSettingsOutput,
+        input_schema = schemas.GetAccountSettingsInput,
+        output_schema = schemas.GetAccountSettingsOutput,
         http_method = "POST",
         http_path = "/get-account-settings",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getGroup(input, options)
     return self:invokeOperation(input, {
         name = "GetGroup",
-        input_schema = types.GetGroupInput,
-        output_schema = types.GetGroupOutput,
+        input_schema = schemas.GetGroupInput,
+        output_schema = schemas.GetGroupOutput,
         http_method = "POST",
         http_path = "/get-group",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getGroupConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetGroupConfiguration",
-        input_schema = types.GetGroupConfigurationInput,
-        output_schema = types.GetGroupConfigurationOutput,
+        input_schema = schemas.GetGroupConfigurationInput,
+        output_schema = schemas.GetGroupConfigurationOutput,
         http_method = "POST",
         http_path = "/get-group-configuration",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getGroupQuery(input, options)
     return self:invokeOperation(input, {
         name = "GetGroupQuery",
-        input_schema = types.GetGroupQueryInput,
-        output_schema = types.GetGroupQueryOutput,
+        input_schema = schemas.GetGroupQueryInput,
+        output_schema = schemas.GetGroupQueryOutput,
         http_method = "POST",
         http_path = "/get-group-query",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getTags(input, options)
     return self:invokeOperation(input, {
         name = "GetTags",
-        input_schema = types.GetTagsInput,
-        output_schema = types.GetTagsOutput,
+        input_schema = schemas.GetTagsInput,
+        output_schema = schemas.GetTagsOutput,
         http_method = "GET",
         http_path = "/resources/{Arn}/tags",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getTagSyncTask(input, options)
     return self:invokeOperation(input, {
         name = "GetTagSyncTask",
-        input_schema = types.GetTagSyncTaskInput,
-        output_schema = types.GetTagSyncTaskOutput,
+        input_schema = schemas.GetTagSyncTaskInput,
+        output_schema = schemas.GetTagSyncTaskOutput,
         http_method = "POST",
         http_path = "/get-tag-sync-task",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:groupResources(input, options)
     return self:invokeOperation(input, {
         name = "GroupResources",
-        input_schema = types.GroupResourcesInput,
-        output_schema = types.GroupResourcesOutput,
+        input_schema = schemas.GroupResourcesInput,
+        output_schema = schemas.GroupResourcesOutput,
         http_method = "POST",
         http_path = "/group-resources",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listGroupingStatuses(input, options)
     return self:invokeOperation(input, {
         name = "ListGroupingStatuses",
-        input_schema = types.ListGroupingStatusesInput,
-        output_schema = types.ListGroupingStatusesOutput,
+        input_schema = schemas.ListGroupingStatusesInput,
+        output_schema = schemas.ListGroupingStatusesOutput,
         http_method = "POST",
         http_path = "/list-grouping-statuses",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listGroupResources(input, options)
     return self:invokeOperation(input, {
         name = "ListGroupResources",
-        input_schema = types.ListGroupResourcesInput,
-        output_schema = types.ListGroupResourcesOutput,
+        input_schema = schemas.ListGroupResourcesInput,
+        output_schema = schemas.ListGroupResourcesOutput,
         http_method = "POST",
         http_path = "/list-group-resources",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListGroups",
-        input_schema = types.ListGroupsInput,
-        output_schema = types.ListGroupsOutput,
+        input_schema = schemas.ListGroupsInput,
+        output_schema = schemas.ListGroupsOutput,
         http_method = "POST",
         http_path = "/groups-list",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listTagSyncTasks(input, options)
     return self:invokeOperation(input, {
         name = "ListTagSyncTasks",
-        input_schema = types.ListTagSyncTasksInput,
-        output_schema = types.ListTagSyncTasksOutput,
+        input_schema = schemas.ListTagSyncTasksInput,
+        output_schema = schemas.ListTagSyncTasksOutput,
         http_method = "POST",
         http_path = "/list-tag-sync-tasks",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:putGroupConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutGroupConfiguration",
-        input_schema = types.PutGroupConfigurationInput,
-        output_schema = types.PutGroupConfigurationOutput,
+        input_schema = schemas.PutGroupConfigurationInput,
+        output_schema = schemas.PutGroupConfigurationOutput,
         http_method = "POST",
         http_path = "/put-group-configuration",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:searchResources(input, options)
     return self:invokeOperation(input, {
         name = "SearchResources",
-        input_schema = types.SearchResourcesInput,
-        output_schema = types.SearchResourcesOutput,
+        input_schema = schemas.SearchResourcesInput,
+        output_schema = schemas.SearchResourcesOutput,
         http_method = "POST",
         http_path = "/resources/search",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:startTagSyncTask(input, options)
     return self:invokeOperation(input, {
         name = "StartTagSyncTask",
-        input_schema = types.StartTagSyncTaskInput,
-        output_schema = types.StartTagSyncTaskOutput,
+        input_schema = schemas.StartTagSyncTaskInput,
+        output_schema = schemas.StartTagSyncTaskOutput,
         http_method = "POST",
         http_path = "/start-tag-sync-task",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:tag(input, options)
     return self:invokeOperation(input, {
         name = "Tag",
-        input_schema = types.TagInput,
-        output_schema = types.TagOutput,
+        input_schema = schemas.TagInput,
+        output_schema = schemas.TagOutput,
         http_method = "PUT",
         http_path = "/resources/{Arn}/tags",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:ungroupResources(input, options)
     return self:invokeOperation(input, {
         name = "UngroupResources",
-        input_schema = types.UngroupResourcesInput,
-        output_schema = types.UngroupResourcesOutput,
+        input_schema = schemas.UngroupResourcesInput,
+        output_schema = schemas.UngroupResourcesOutput,
         http_method = "POST",
         http_path = "/ungroup-resources",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:untag(input, options)
     return self:invokeOperation(input, {
         name = "Untag",
-        input_schema = types.UntagInput,
-        output_schema = types.UntagOutput,
+        input_schema = schemas.UntagInput,
+        output_schema = schemas.UntagOutput,
         http_method = "PATCH",
         http_path = "/resources/{Arn}/tags",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:updateAccountSettings(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAccountSettings",
-        input_schema = types.UpdateAccountSettingsInput,
-        output_schema = types.UpdateAccountSettingsOutput,
+        input_schema = schemas.UpdateAccountSettingsInput,
+        output_schema = schemas.UpdateAccountSettingsOutput,
         http_method = "POST",
         http_path = "/update-account-settings",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:updateGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGroup",
-        input_schema = types.UpdateGroupInput,
-        output_schema = types.UpdateGroupOutput,
+        input_schema = schemas.UpdateGroupInput,
+        output_schema = schemas.UpdateGroupOutput,
         http_method = "POST",
         http_path = "/update-group",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:updateGroupQuery(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGroupQuery",
-        input_schema = types.UpdateGroupQueryInput,
-        output_schema = types.UpdateGroupQueryOutput,
+        input_schema = schemas.UpdateGroupQueryInput,
+        output_schema = schemas.UpdateGroupQueryOutput,
         http_method = "POST",
         http_path = "/update-group-query",
         effective_auth_schemes = {

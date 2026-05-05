@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("iotdataplane.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("iotdataplane.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("iotdataplane.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:deleteConnection(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConnection",
-        input_schema = types.DeleteConnectionInput,
-        output_schema = types.DeleteConnectionOutput,
+        input_schema = schemas.DeleteConnectionInput,
+        output_schema = schemas.DeleteConnectionOutput,
         http_method = "DELETE",
         http_path = "/connections/{clientId}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteThingShadow(input, options)
     return self:invokeOperation(input, {
         name = "DeleteThingShadow",
-        input_schema = types.DeleteThingShadowInput,
-        output_schema = types.DeleteThingShadowOutput,
+        input_schema = schemas.DeleteThingShadowInput,
+        output_schema = schemas.DeleteThingShadowOutput,
         http_method = "DELETE",
         http_path = "/things/{thingName}/shadow",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getRetainedMessage(input, options)
     return self:invokeOperation(input, {
         name = "GetRetainedMessage",
-        input_schema = types.GetRetainedMessageInput,
-        output_schema = types.GetRetainedMessageOutput,
+        input_schema = schemas.GetRetainedMessageInput,
+        output_schema = schemas.GetRetainedMessageOutput,
         http_method = "GET",
         http_path = "/retainedMessage/{topic}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getThingShadow(input, options)
     return self:invokeOperation(input, {
         name = "GetThingShadow",
-        input_schema = types.GetThingShadowInput,
-        output_schema = types.GetThingShadowOutput,
+        input_schema = schemas.GetThingShadowInput,
+        output_schema = schemas.GetThingShadowOutput,
         http_method = "GET",
         http_path = "/things/{thingName}/shadow",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:listNamedShadowsForThing(input, options)
     return self:invokeOperation(input, {
         name = "ListNamedShadowsForThing",
-        input_schema = types.ListNamedShadowsForThingInput,
-        output_schema = types.ListNamedShadowsForThingOutput,
+        input_schema = schemas.ListNamedShadowsForThingInput,
+        output_schema = schemas.ListNamedShadowsForThingOutput,
         http_method = "GET",
         http_path = "/api/things/shadow/ListNamedShadowsForThing/{thingName}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:listRetainedMessages(input, options)
     return self:invokeOperation(input, {
         name = "ListRetainedMessages",
-        input_schema = types.ListRetainedMessagesInput,
-        output_schema = types.ListRetainedMessagesOutput,
+        input_schema = schemas.ListRetainedMessagesInput,
+        output_schema = schemas.ListRetainedMessagesOutput,
         http_method = "GET",
         http_path = "/retainedMessage",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:publish(input, options)
     return self:invokeOperation(input, {
         name = "Publish",
-        input_schema = types.PublishInput,
-        output_schema = types.PublishOutput,
+        input_schema = schemas.PublishInput,
+        output_schema = schemas.PublishOutput,
         http_method = "POST",
         http_path = "/topics/{topic}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:updateThingShadow(input, options)
     return self:invokeOperation(input, {
         name = "UpdateThingShadow",
-        input_schema = types.UpdateThingShadowInput,
-        output_schema = types.UpdateThingShadowOutput,
+        input_schema = schemas.UpdateThingShadowInput,
+        output_schema = schemas.UpdateThingShadowOutput,
         http_method = "POST",
         http_path = "/things/{thingName}/shadow",
         effective_auth_schemes = {

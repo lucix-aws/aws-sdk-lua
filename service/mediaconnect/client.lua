@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("mediaconnect.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("mediaconnect.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("mediaconnect.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addBridgeOutputs(input, options)
     return self:invokeOperation(input, {
         name = "AddBridgeOutputs",
-        input_schema = types.AddBridgeOutputsInput,
-        output_schema = types.AddBridgeOutputsOutput,
+        input_schema = schemas.AddBridgeOutputsInput,
+        output_schema = schemas.AddBridgeOutputsOutput,
         http_method = "POST",
         http_path = "/v1/bridges/{BridgeArn}/outputs",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:addBridgeSources(input, options)
     return self:invokeOperation(input, {
         name = "AddBridgeSources",
-        input_schema = types.AddBridgeSourcesInput,
-        output_schema = types.AddBridgeSourcesOutput,
+        input_schema = schemas.AddBridgeSourcesInput,
+        output_schema = schemas.AddBridgeSourcesOutput,
         http_method = "POST",
         http_path = "/v1/bridges/{BridgeArn}/sources",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:addFlowMediaStreams(input, options)
     return self:invokeOperation(input, {
         name = "AddFlowMediaStreams",
-        input_schema = types.AddFlowMediaStreamsInput,
-        output_schema = types.AddFlowMediaStreamsOutput,
+        input_schema = schemas.AddFlowMediaStreamsInput,
+        output_schema = schemas.AddFlowMediaStreamsOutput,
         http_method = "POST",
         http_path = "/v1/flows/{FlowArn}/mediaStreams",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:addFlowOutputs(input, options)
     return self:invokeOperation(input, {
         name = "AddFlowOutputs",
-        input_schema = types.AddFlowOutputsInput,
-        output_schema = types.AddFlowOutputsOutput,
+        input_schema = schemas.AddFlowOutputsInput,
+        output_schema = schemas.AddFlowOutputsOutput,
         http_method = "POST",
         http_path = "/v1/flows/{FlowArn}/outputs",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:addFlowSources(input, options)
     return self:invokeOperation(input, {
         name = "AddFlowSources",
-        input_schema = types.AddFlowSourcesInput,
-        output_schema = types.AddFlowSourcesOutput,
+        input_schema = schemas.AddFlowSourcesInput,
+        output_schema = schemas.AddFlowSourcesOutput,
         http_method = "POST",
         http_path = "/v1/flows/{FlowArn}/source",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:addFlowVpcInterfaces(input, options)
     return self:invokeOperation(input, {
         name = "AddFlowVpcInterfaces",
-        input_schema = types.AddFlowVpcInterfacesInput,
-        output_schema = types.AddFlowVpcInterfacesOutput,
+        input_schema = schemas.AddFlowVpcInterfacesInput,
+        output_schema = schemas.AddFlowVpcInterfacesOutput,
         http_method = "POST",
         http_path = "/v1/flows/{FlowArn}/vpcInterfaces",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:batchGetRouterInput(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetRouterInput",
-        input_schema = types.BatchGetRouterInputInput,
-        output_schema = types.BatchGetRouterInputOutput,
+        input_schema = schemas.BatchGetRouterInputInput,
+        output_schema = schemas.BatchGetRouterInputOutput,
         http_method = "GET",
         http_path = "/v1/routerInputs",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:batchGetRouterNetworkInterface(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetRouterNetworkInterface",
-        input_schema = types.BatchGetRouterNetworkInterfaceInput,
-        output_schema = types.BatchGetRouterNetworkInterfaceOutput,
+        input_schema = schemas.BatchGetRouterNetworkInterfaceInput,
+        output_schema = schemas.BatchGetRouterNetworkInterfaceOutput,
         http_method = "GET",
         http_path = "/v1/routerNetworkInterfaces",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:batchGetRouterOutput(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetRouterOutput",
-        input_schema = types.BatchGetRouterOutputInput,
-        output_schema = types.BatchGetRouterOutputOutput,
+        input_schema = schemas.BatchGetRouterOutputInput,
+        output_schema = schemas.BatchGetRouterOutputOutput,
         http_method = "GET",
         http_path = "/v1/routerOutputs",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createBridge(input, options)
     return self:invokeOperation(input, {
         name = "CreateBridge",
-        input_schema = types.CreateBridgeInput,
-        output_schema = types.CreateBridgeOutput,
+        input_schema = schemas.CreateBridgeInput,
+        output_schema = schemas.CreateBridgeOutput,
         http_method = "POST",
         http_path = "/v1/bridges",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createFlow(input, options)
     return self:invokeOperation(input, {
         name = "CreateFlow",
-        input_schema = types.CreateFlowInput,
-        output_schema = types.CreateFlowOutput,
+        input_schema = schemas.CreateFlowInput,
+        output_schema = schemas.CreateFlowOutput,
         http_method = "POST",
         http_path = "/v1/flows",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createGateway(input, options)
     return self:invokeOperation(input, {
         name = "CreateGateway",
-        input_schema = types.CreateGatewayInput,
-        output_schema = types.CreateGatewayOutput,
+        input_schema = schemas.CreateGatewayInput,
+        output_schema = schemas.CreateGatewayOutput,
         http_method = "POST",
         http_path = "/v1/gateways",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createRouterInput(input, options)
     return self:invokeOperation(input, {
         name = "CreateRouterInput",
-        input_schema = types.CreateRouterInputInput,
-        output_schema = types.CreateRouterInputOutput,
+        input_schema = schemas.CreateRouterInputInput,
+        output_schema = schemas.CreateRouterInputOutput,
         http_method = "POST",
         http_path = "/v1/routerInput",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:createRouterNetworkInterface(input, options)
     return self:invokeOperation(input, {
         name = "CreateRouterNetworkInterface",
-        input_schema = types.CreateRouterNetworkInterfaceInput,
-        output_schema = types.CreateRouterNetworkInterfaceOutput,
+        input_schema = schemas.CreateRouterNetworkInterfaceInput,
+        output_schema = schemas.CreateRouterNetworkInterfaceOutput,
         http_method = "POST",
         http_path = "/v1/routerNetworkInterface",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:createRouterOutput(input, options)
     return self:invokeOperation(input, {
         name = "CreateRouterOutput",
-        input_schema = types.CreateRouterOutputInput,
-        output_schema = types.CreateRouterOutputOutput,
+        input_schema = schemas.CreateRouterOutputInput,
+        output_schema = schemas.CreateRouterOutputOutput,
         http_method = "POST",
         http_path = "/v1/routerOutput",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteBridge(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBridge",
-        input_schema = types.DeleteBridgeInput,
-        output_schema = types.DeleteBridgeOutput,
+        input_schema = schemas.DeleteBridgeInput,
+        output_schema = schemas.DeleteBridgeOutput,
         http_method = "DELETE",
         http_path = "/v1/bridges/{BridgeArn}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteFlow(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFlow",
-        input_schema = types.DeleteFlowInput,
-        output_schema = types.DeleteFlowOutput,
+        input_schema = schemas.DeleteFlowInput,
+        output_schema = schemas.DeleteFlowOutput,
         http_method = "DELETE",
         http_path = "/v1/flows/{FlowArn}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteGateway(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGateway",
-        input_schema = types.DeleteGatewayInput,
-        output_schema = types.DeleteGatewayOutput,
+        input_schema = schemas.DeleteGatewayInput,
+        output_schema = schemas.DeleteGatewayOutput,
         http_method = "DELETE",
         http_path = "/v1/gateways/{GatewayArn}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteRouterInput(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRouterInput",
-        input_schema = types.DeleteRouterInputInput,
-        output_schema = types.DeleteRouterInputOutput,
+        input_schema = schemas.DeleteRouterInputInput,
+        output_schema = schemas.DeleteRouterInputOutput,
         http_method = "DELETE",
         http_path = "/v1/routerInput/{Arn}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deleteRouterNetworkInterface(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRouterNetworkInterface",
-        input_schema = types.DeleteRouterNetworkInterfaceInput,
-        output_schema = types.DeleteRouterNetworkInterfaceOutput,
+        input_schema = schemas.DeleteRouterNetworkInterfaceInput,
+        output_schema = schemas.DeleteRouterNetworkInterfaceOutput,
         http_method = "DELETE",
         http_path = "/v1/routerNetworkInterface/{Arn}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteRouterOutput(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRouterOutput",
-        input_schema = types.DeleteRouterOutputInput,
-        output_schema = types.DeleteRouterOutputOutput,
+        input_schema = schemas.DeleteRouterOutputInput,
+        output_schema = schemas.DeleteRouterOutputOutput,
         http_method = "DELETE",
         http_path = "/v1/routerOutput/{Arn}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:deregisterGatewayInstance(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterGatewayInstance",
-        input_schema = types.DeregisterGatewayInstanceInput,
-        output_schema = types.DeregisterGatewayInstanceOutput,
+        input_schema = schemas.DeregisterGatewayInstanceInput,
+        output_schema = schemas.DeregisterGatewayInstanceOutput,
         http_method = "DELETE",
         http_path = "/v1/gateway-instances/{GatewayInstanceArn}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:describeBridge(input, options)
     return self:invokeOperation(input, {
         name = "DescribeBridge",
-        input_schema = types.DescribeBridgeInput,
-        output_schema = types.DescribeBridgeOutput,
+        input_schema = schemas.DescribeBridgeInput,
+        output_schema = schemas.DescribeBridgeOutput,
         http_method = "GET",
         http_path = "/v1/bridges/{BridgeArn}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:describeFlow(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFlow",
-        input_schema = types.DescribeFlowInput,
-        output_schema = types.DescribeFlowOutput,
+        input_schema = schemas.DescribeFlowInput,
+        output_schema = schemas.DescribeFlowOutput,
         http_method = "GET",
         http_path = "/v1/flows/{FlowArn}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:describeFlowSourceMetadata(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFlowSourceMetadata",
-        input_schema = types.DescribeFlowSourceMetadataInput,
-        output_schema = types.DescribeFlowSourceMetadataOutput,
+        input_schema = schemas.DescribeFlowSourceMetadataInput,
+        output_schema = schemas.DescribeFlowSourceMetadataOutput,
         http_method = "GET",
         http_path = "/v1/flows/{FlowArn}/source-metadata",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:describeFlowSourceThumbnail(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFlowSourceThumbnail",
-        input_schema = types.DescribeFlowSourceThumbnailInput,
-        output_schema = types.DescribeFlowSourceThumbnailOutput,
+        input_schema = schemas.DescribeFlowSourceThumbnailInput,
+        output_schema = schemas.DescribeFlowSourceThumbnailOutput,
         http_method = "GET",
         http_path = "/v1/flows/{FlowArn}/source-thumbnail",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:describeGateway(input, options)
     return self:invokeOperation(input, {
         name = "DescribeGateway",
-        input_schema = types.DescribeGatewayInput,
-        output_schema = types.DescribeGatewayOutput,
+        input_schema = schemas.DescribeGatewayInput,
+        output_schema = schemas.DescribeGatewayOutput,
         http_method = "GET",
         http_path = "/v1/gateways/{GatewayArn}",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:describeGatewayInstance(input, options)
     return self:invokeOperation(input, {
         name = "DescribeGatewayInstance",
-        input_schema = types.DescribeGatewayInstanceInput,
-        output_schema = types.DescribeGatewayInstanceOutput,
+        input_schema = schemas.DescribeGatewayInstanceInput,
+        output_schema = schemas.DescribeGatewayInstanceOutput,
         http_method = "GET",
         http_path = "/v1/gateway-instances/{GatewayInstanceArn}",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:describeOffering(input, options)
     return self:invokeOperation(input, {
         name = "DescribeOffering",
-        input_schema = types.DescribeOfferingInput,
-        output_schema = types.DescribeOfferingOutput,
+        input_schema = schemas.DescribeOfferingInput,
+        output_schema = schemas.DescribeOfferingOutput,
         http_method = "GET",
         http_path = "/v1/offerings/{OfferingArn}",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:describeReservation(input, options)
     return self:invokeOperation(input, {
         name = "DescribeReservation",
-        input_schema = types.DescribeReservationInput,
-        output_schema = types.DescribeReservationOutput,
+        input_schema = schemas.DescribeReservationInput,
+        output_schema = schemas.DescribeReservationOutput,
         http_method = "GET",
         http_path = "/v1/reservations/{ReservationArn}",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:getRouterInput(input, options)
     return self:invokeOperation(input, {
         name = "GetRouterInput",
-        input_schema = types.GetRouterInputInput,
-        output_schema = types.GetRouterInputOutput,
+        input_schema = schemas.GetRouterInputInput,
+        output_schema = schemas.GetRouterInputOutput,
         http_method = "GET",
         http_path = "/v1/routerInput/{Arn}",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:getRouterInputSourceMetadata(input, options)
     return self:invokeOperation(input, {
         name = "GetRouterInputSourceMetadata",
-        input_schema = types.GetRouterInputSourceMetadataInput,
-        output_schema = types.GetRouterInputSourceMetadataOutput,
+        input_schema = schemas.GetRouterInputSourceMetadataInput,
+        output_schema = schemas.GetRouterInputSourceMetadataOutput,
         http_method = "GET",
         http_path = "/v1/routerInput/{Arn}/source-metadata",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:getRouterInputThumbnail(input, options)
     return self:invokeOperation(input, {
         name = "GetRouterInputThumbnail",
-        input_schema = types.GetRouterInputThumbnailInput,
-        output_schema = types.GetRouterInputThumbnailOutput,
+        input_schema = schemas.GetRouterInputThumbnailInput,
+        output_schema = schemas.GetRouterInputThumbnailOutput,
         http_method = "GET",
         http_path = "/v1/routerInput/{Arn}/thumbnail",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:getRouterNetworkInterface(input, options)
     return self:invokeOperation(input, {
         name = "GetRouterNetworkInterface",
-        input_schema = types.GetRouterNetworkInterfaceInput,
-        output_schema = types.GetRouterNetworkInterfaceOutput,
+        input_schema = schemas.GetRouterNetworkInterfaceInput,
+        output_schema = schemas.GetRouterNetworkInterfaceOutput,
         http_method = "GET",
         http_path = "/v1/routerNetworkInterface/{Arn}",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:getRouterOutput(input, options)
     return self:invokeOperation(input, {
         name = "GetRouterOutput",
-        input_schema = types.GetRouterOutputInput,
-        output_schema = types.GetRouterOutputOutput,
+        input_schema = schemas.GetRouterOutputInput,
+        output_schema = schemas.GetRouterOutputOutput,
         http_method = "GET",
         http_path = "/v1/routerOutput/{Arn}",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:grantFlowEntitlements(input, options)
     return self:invokeOperation(input, {
         name = "GrantFlowEntitlements",
-        input_schema = types.GrantFlowEntitlementsInput,
-        output_schema = types.GrantFlowEntitlementsOutput,
+        input_schema = schemas.GrantFlowEntitlementsInput,
+        output_schema = schemas.GrantFlowEntitlementsOutput,
         http_method = "POST",
         http_path = "/v1/flows/{FlowArn}/entitlements",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:listBridges(input, options)
     return self:invokeOperation(input, {
         name = "ListBridges",
-        input_schema = types.ListBridgesInput,
-        output_schema = types.ListBridgesOutput,
+        input_schema = schemas.ListBridgesInput,
+        output_schema = schemas.ListBridgesOutput,
         http_method = "GET",
         http_path = "/v1/bridges",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:listEntitlements(input, options)
     return self:invokeOperation(input, {
         name = "ListEntitlements",
-        input_schema = types.ListEntitlementsInput,
-        output_schema = types.ListEntitlementsOutput,
+        input_schema = schemas.ListEntitlementsInput,
+        output_schema = schemas.ListEntitlementsOutput,
         http_method = "GET",
         http_path = "/v1/entitlements",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:listFlows(input, options)
     return self:invokeOperation(input, {
         name = "ListFlows",
-        input_schema = types.ListFlowsInput,
-        output_schema = types.ListFlowsOutput,
+        input_schema = schemas.ListFlowsInput,
+        output_schema = schemas.ListFlowsOutput,
         http_method = "GET",
         http_path = "/v1/flows",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:listGatewayInstances(input, options)
     return self:invokeOperation(input, {
         name = "ListGatewayInstances",
-        input_schema = types.ListGatewayInstancesInput,
-        output_schema = types.ListGatewayInstancesOutput,
+        input_schema = schemas.ListGatewayInstancesInput,
+        output_schema = schemas.ListGatewayInstancesOutput,
         http_method = "GET",
         http_path = "/v1/gateway-instances",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:listGateways(input, options)
     return self:invokeOperation(input, {
         name = "ListGateways",
-        input_schema = types.ListGatewaysInput,
-        output_schema = types.ListGatewaysOutput,
+        input_schema = schemas.ListGatewaysInput,
+        output_schema = schemas.ListGatewaysOutput,
         http_method = "GET",
         http_path = "/v1/gateways",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:listOfferings(input, options)
     return self:invokeOperation(input, {
         name = "ListOfferings",
-        input_schema = types.ListOfferingsInput,
-        output_schema = types.ListOfferingsOutput,
+        input_schema = schemas.ListOfferingsInput,
+        output_schema = schemas.ListOfferingsOutput,
         http_method = "GET",
         http_path = "/v1/offerings",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:listReservations(input, options)
     return self:invokeOperation(input, {
         name = "ListReservations",
-        input_schema = types.ListReservationsInput,
-        output_schema = types.ListReservationsOutput,
+        input_schema = schemas.ListReservationsInput,
+        output_schema = schemas.ListReservationsOutput,
         http_method = "GET",
         http_path = "/v1/reservations",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:listRouterInputs(input, options)
     return self:invokeOperation(input, {
         name = "ListRouterInputs",
-        input_schema = types.ListRouterInputsInput,
-        output_schema = types.ListRouterInputsOutput,
+        input_schema = schemas.ListRouterInputsInput,
+        output_schema = schemas.ListRouterInputsOutput,
         http_method = "POST",
         http_path = "/v1/routerInputs",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:listRouterNetworkInterfaces(input, options)
     return self:invokeOperation(input, {
         name = "ListRouterNetworkInterfaces",
-        input_schema = types.ListRouterNetworkInterfacesInput,
-        output_schema = types.ListRouterNetworkInterfacesOutput,
+        input_schema = schemas.ListRouterNetworkInterfacesInput,
+        output_schema = schemas.ListRouterNetworkInterfacesOutput,
         http_method = "POST",
         http_path = "/v1/routerNetworkInterfaces",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:listRouterOutputs(input, options)
     return self:invokeOperation(input, {
         name = "ListRouterOutputs",
-        input_schema = types.ListRouterOutputsInput,
-        output_schema = types.ListRouterOutputsOutput,
+        input_schema = schemas.ListRouterOutputsInput,
+        output_schema = schemas.ListRouterOutputsOutput,
         http_method = "POST",
         http_path = "/v1/routerOutputs",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:listTagsForGlobalResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForGlobalResource",
-        input_schema = types.ListTagsForGlobalResourceInput,
-        output_schema = types.ListTagsForGlobalResourceOutput,
+        input_schema = schemas.ListTagsForGlobalResourceInput,
+        output_schema = schemas.ListTagsForGlobalResourceOutput,
         http_method = "GET",
         http_path = "/tags/global/{ResourceArn}",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:purchaseOffering(input, options)
     return self:invokeOperation(input, {
         name = "PurchaseOffering",
-        input_schema = types.PurchaseOfferingInput,
-        output_schema = types.PurchaseOfferingOutput,
+        input_schema = schemas.PurchaseOfferingInput,
+        output_schema = schemas.PurchaseOfferingOutput,
         http_method = "POST",
         http_path = "/v1/offerings/{OfferingArn}",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:removeBridgeOutput(input, options)
     return self:invokeOperation(input, {
         name = "RemoveBridgeOutput",
-        input_schema = types.RemoveBridgeOutputInput,
-        output_schema = types.RemoveBridgeOutputOutput,
+        input_schema = schemas.RemoveBridgeOutputInput,
+        output_schema = schemas.RemoveBridgeOutputOutput,
         http_method = "DELETE",
         http_path = "/v1/bridges/{BridgeArn}/outputs/{OutputName}",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:removeBridgeSource(input, options)
     return self:invokeOperation(input, {
         name = "RemoveBridgeSource",
-        input_schema = types.RemoveBridgeSourceInput,
-        output_schema = types.RemoveBridgeSourceOutput,
+        input_schema = schemas.RemoveBridgeSourceInput,
+        output_schema = schemas.RemoveBridgeSourceOutput,
         http_method = "DELETE",
         http_path = "/v1/bridges/{BridgeArn}/sources/{SourceName}",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:removeFlowMediaStream(input, options)
     return self:invokeOperation(input, {
         name = "RemoveFlowMediaStream",
-        input_schema = types.RemoveFlowMediaStreamInput,
-        output_schema = types.RemoveFlowMediaStreamOutput,
+        input_schema = schemas.RemoveFlowMediaStreamInput,
+        output_schema = schemas.RemoveFlowMediaStreamOutput,
         http_method = "DELETE",
         http_path = "/v1/flows/{FlowArn}/mediaStreams/{MediaStreamName}",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:removeFlowOutput(input, options)
     return self:invokeOperation(input, {
         name = "RemoveFlowOutput",
-        input_schema = types.RemoveFlowOutputInput,
-        output_schema = types.RemoveFlowOutputOutput,
+        input_schema = schemas.RemoveFlowOutputInput,
+        output_schema = schemas.RemoveFlowOutputOutput,
         http_method = "DELETE",
         http_path = "/v1/flows/{FlowArn}/outputs/{OutputArn}",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:removeFlowSource(input, options)
     return self:invokeOperation(input, {
         name = "RemoveFlowSource",
-        input_schema = types.RemoveFlowSourceInput,
-        output_schema = types.RemoveFlowSourceOutput,
+        input_schema = schemas.RemoveFlowSourceInput,
+        output_schema = schemas.RemoveFlowSourceOutput,
         http_method = "DELETE",
         http_path = "/v1/flows/{FlowArn}/source/{SourceArn}",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:removeFlowVpcInterface(input, options)
     return self:invokeOperation(input, {
         name = "RemoveFlowVpcInterface",
-        input_schema = types.RemoveFlowVpcInterfaceInput,
-        output_schema = types.RemoveFlowVpcInterfaceOutput,
+        input_schema = schemas.RemoveFlowVpcInterfaceInput,
+        output_schema = schemas.RemoveFlowVpcInterfaceOutput,
         http_method = "DELETE",
         http_path = "/v1/flows/{FlowArn}/vpcInterfaces/{VpcInterfaceName}",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:restartRouterInput(input, options)
     return self:invokeOperation(input, {
         name = "RestartRouterInput",
-        input_schema = types.RestartRouterInputInput,
-        output_schema = types.RestartRouterInputOutput,
+        input_schema = schemas.RestartRouterInputInput,
+        output_schema = schemas.RestartRouterInputOutput,
         http_method = "POST",
         http_path = "/v1/routerInput/restart/{Arn}",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:restartRouterOutput(input, options)
     return self:invokeOperation(input, {
         name = "RestartRouterOutput",
-        input_schema = types.RestartRouterOutputInput,
-        output_schema = types.RestartRouterOutputOutput,
+        input_schema = schemas.RestartRouterOutputInput,
+        output_schema = schemas.RestartRouterOutputOutput,
         http_method = "POST",
         http_path = "/v1/routerOutput/restart/{Arn}",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:revokeFlowEntitlement(input, options)
     return self:invokeOperation(input, {
         name = "RevokeFlowEntitlement",
-        input_schema = types.RevokeFlowEntitlementInput,
-        output_schema = types.RevokeFlowEntitlementOutput,
+        input_schema = schemas.RevokeFlowEntitlementInput,
+        output_schema = schemas.RevokeFlowEntitlementOutput,
         http_method = "DELETE",
         http_path = "/v1/flows/{FlowArn}/entitlements/{EntitlementArn}",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:startFlow(input, options)
     return self:invokeOperation(input, {
         name = "StartFlow",
-        input_schema = types.StartFlowInput,
-        output_schema = types.StartFlowOutput,
+        input_schema = schemas.StartFlowInput,
+        output_schema = schemas.StartFlowOutput,
         http_method = "POST",
         http_path = "/v1/flows/start/{FlowArn}",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:startRouterInput(input, options)
     return self:invokeOperation(input, {
         name = "StartRouterInput",
-        input_schema = types.StartRouterInputInput,
-        output_schema = types.StartRouterInputOutput,
+        input_schema = schemas.StartRouterInputInput,
+        output_schema = schemas.StartRouterInputOutput,
         http_method = "POST",
         http_path = "/v1/routerInput/start/{Arn}",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:startRouterOutput(input, options)
     return self:invokeOperation(input, {
         name = "StartRouterOutput",
-        input_schema = types.StartRouterOutputInput,
-        output_schema = types.StartRouterOutputOutput,
+        input_schema = schemas.StartRouterOutputInput,
+        output_schema = schemas.StartRouterOutputOutput,
         http_method = "POST",
         http_path = "/v1/routerOutput/start/{Arn}",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:stopFlow(input, options)
     return self:invokeOperation(input, {
         name = "StopFlow",
-        input_schema = types.StopFlowInput,
-        output_schema = types.StopFlowOutput,
+        input_schema = schemas.StopFlowInput,
+        output_schema = schemas.StopFlowOutput,
         http_method = "POST",
         http_path = "/v1/flows/stop/{FlowArn}",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:stopRouterInput(input, options)
     return self:invokeOperation(input, {
         name = "StopRouterInput",
-        input_schema = types.StopRouterInputInput,
-        output_schema = types.StopRouterInputOutput,
+        input_schema = schemas.StopRouterInputInput,
+        output_schema = schemas.StopRouterInputOutput,
         http_method = "POST",
         http_path = "/v1/routerInput/stop/{Arn}",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:stopRouterOutput(input, options)
     return self:invokeOperation(input, {
         name = "StopRouterOutput",
-        input_schema = types.StopRouterOutputInput,
-        output_schema = types.StopRouterOutputOutput,
+        input_schema = schemas.StopRouterOutputInput,
+        output_schema = schemas.StopRouterOutputOutput,
         http_method = "POST",
         http_path = "/v1/routerOutput/stop/{Arn}",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:tagGlobalResource(input, options)
     return self:invokeOperation(input, {
         name = "TagGlobalResource",
-        input_schema = types.TagGlobalResourceInput,
-        output_schema = types.TagGlobalResourceOutput,
+        input_schema = schemas.TagGlobalResourceInput,
+        output_schema = schemas.TagGlobalResourceOutput,
         http_method = "POST",
         http_path = "/tags/global/{ResourceArn}",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:takeRouterInput(input, options)
     return self:invokeOperation(input, {
         name = "TakeRouterInput",
-        input_schema = types.TakeRouterInputInput,
-        output_schema = types.TakeRouterInputOutput,
+        input_schema = schemas.TakeRouterInputInput,
+        output_schema = schemas.TakeRouterInputOutput,
         http_method = "PUT",
         http_path = "/v1/routerOutput/takeRouterInput/{RouterOutputArn}",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:untagGlobalResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagGlobalResource",
-        input_schema = types.UntagGlobalResourceInput,
-        output_schema = types.UntagGlobalResourceOutput,
+        input_schema = schemas.UntagGlobalResourceInput,
+        output_schema = schemas.UntagGlobalResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/global/{ResourceArn}",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:updateBridge(input, options)
     return self:invokeOperation(input, {
         name = "UpdateBridge",
-        input_schema = types.UpdateBridgeInput,
-        output_schema = types.UpdateBridgeOperationOutput,
+        input_schema = schemas.UpdateBridgeInput,
+        output_schema = schemas.UpdateBridgeOperationOutput,
         http_method = "PUT",
         http_path = "/v1/bridges/{BridgeArn}",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:updateBridgeOutput(input, options)
     return self:invokeOperation(input, {
         name = "UpdateBridgeOutput",
-        input_schema = types.UpdateBridgeOutputInput,
-        output_schema = types.UpdateBridgeOutputOutput,
+        input_schema = schemas.UpdateBridgeOutputInput,
+        output_schema = schemas.UpdateBridgeOutputOutput,
         http_method = "PUT",
         http_path = "/v1/bridges/{BridgeArn}/outputs/{OutputName}",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:updateBridgeSource(input, options)
     return self:invokeOperation(input, {
         name = "UpdateBridgeSource",
-        input_schema = types.UpdateBridgeSourceInput,
-        output_schema = types.UpdateBridgeSourceOutput,
+        input_schema = schemas.UpdateBridgeSourceInput,
+        output_schema = schemas.UpdateBridgeSourceOutput,
         http_method = "PUT",
         http_path = "/v1/bridges/{BridgeArn}/sources/{SourceName}",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:updateBridgeState(input, options)
     return self:invokeOperation(input, {
         name = "UpdateBridgeState",
-        input_schema = types.UpdateBridgeStateInput,
-        output_schema = types.UpdateBridgeStateOutput,
+        input_schema = schemas.UpdateBridgeStateInput,
+        output_schema = schemas.UpdateBridgeStateOutput,
         http_method = "PUT",
         http_path = "/v1/bridges/{BridgeArn}/state",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:updateFlow(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFlow",
-        input_schema = types.UpdateFlowInput,
-        output_schema = types.UpdateFlowOperationOutput,
+        input_schema = schemas.UpdateFlowInput,
+        output_schema = schemas.UpdateFlowOperationOutput,
         http_method = "PUT",
         http_path = "/v1/flows/{FlowArn}",
         effective_auth_schemes = {
@@ -1011,8 +1011,8 @@ end
 function Client:updateFlowEntitlement(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFlowEntitlement",
-        input_schema = types.UpdateFlowEntitlementInput,
-        output_schema = types.UpdateFlowEntitlementOutput,
+        input_schema = schemas.UpdateFlowEntitlementInput,
+        output_schema = schemas.UpdateFlowEntitlementOutput,
         http_method = "PUT",
         http_path = "/v1/flows/{FlowArn}/entitlements/{EntitlementArn}",
         effective_auth_schemes = {
@@ -1024,8 +1024,8 @@ end
 function Client:updateFlowMediaStream(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFlowMediaStream",
-        input_schema = types.UpdateFlowMediaStreamInput,
-        output_schema = types.UpdateFlowMediaStreamOutput,
+        input_schema = schemas.UpdateFlowMediaStreamInput,
+        output_schema = schemas.UpdateFlowMediaStreamOutput,
         http_method = "PUT",
         http_path = "/v1/flows/{FlowArn}/mediaStreams/{MediaStreamName}",
         effective_auth_schemes = {
@@ -1037,8 +1037,8 @@ end
 function Client:updateFlowOutput(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFlowOutput",
-        input_schema = types.UpdateFlowOutputInput,
-        output_schema = types.UpdateFlowOutputOutput,
+        input_schema = schemas.UpdateFlowOutputInput,
+        output_schema = schemas.UpdateFlowOutputOutput,
         http_method = "PUT",
         http_path = "/v1/flows/{FlowArn}/outputs/{OutputArn}",
         effective_auth_schemes = {
@@ -1050,8 +1050,8 @@ end
 function Client:updateFlowSource(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFlowSource",
-        input_schema = types.UpdateFlowSourceInput,
-        output_schema = types.UpdateFlowSourceOutput,
+        input_schema = schemas.UpdateFlowSourceInput,
+        output_schema = schemas.UpdateFlowSourceOutput,
         http_method = "PUT",
         http_path = "/v1/flows/{FlowArn}/source/{SourceArn}",
         effective_auth_schemes = {
@@ -1063,8 +1063,8 @@ end
 function Client:updateGatewayInstance(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGatewayInstance",
-        input_schema = types.UpdateGatewayInstanceInput,
-        output_schema = types.UpdateGatewayInstanceOutput,
+        input_schema = schemas.UpdateGatewayInstanceInput,
+        output_schema = schemas.UpdateGatewayInstanceOutput,
         http_method = "PUT",
         http_path = "/v1/gateway-instances/{GatewayInstanceArn}",
         effective_auth_schemes = {
@@ -1076,8 +1076,8 @@ end
 function Client:updateRouterInput(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRouterInput",
-        input_schema = types.UpdateRouterInputInput,
-        output_schema = types.UpdateRouterInputOutput,
+        input_schema = schemas.UpdateRouterInputInput,
+        output_schema = schemas.UpdateRouterInputOutput,
         http_method = "PUT",
         http_path = "/v1/routerInput/{Arn}",
         effective_auth_schemes = {
@@ -1089,8 +1089,8 @@ end
 function Client:updateRouterNetworkInterface(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRouterNetworkInterface",
-        input_schema = types.UpdateRouterNetworkInterfaceInput,
-        output_schema = types.UpdateRouterNetworkInterfaceOutput,
+        input_schema = schemas.UpdateRouterNetworkInterfaceInput,
+        output_schema = schemas.UpdateRouterNetworkInterfaceOutput,
         http_method = "PUT",
         http_path = "/v1/routerNetworkInterface/{Arn}",
         effective_auth_schemes = {
@@ -1102,8 +1102,8 @@ end
 function Client:updateRouterOutput(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRouterOutput",
-        input_schema = types.UpdateRouterOutputInput,
-        output_schema = types.UpdateRouterOutputOutput,
+        input_schema = schemas.UpdateRouterOutputInput,
+        output_schema = schemas.UpdateRouterOutputOutput,
         http_method = "PUT",
         http_path = "/v1/routerOutput/{Arn}",
         effective_auth_schemes = {

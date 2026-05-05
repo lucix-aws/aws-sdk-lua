@@ -250,29 +250,29 @@ local record ServiceUnavailableException
     Message: string
 end
 
-local type CallAnalyticsLanguageCode = "en-US" | "en-GB" | "es-US" | "fr-CA" | "fr-FR" | "en-AU" | "it-IT" | "de-DE" | "pt-BR"
-
-local type MedicalScribeMediaEncoding = "pcm" | "ogg-opus" | "flac"
-
-local type PartialResultsStability = "high" | "medium" | "low"
-
-local type ContentIdentificationType = "PII"
-
-local type VocabularyFilterMethod = "remove" | "mask" | "tag"
-
-local type Specialty = "PRIMARYCARE" | "CARDIOLOGY" | "NEUROLOGY" | "ONCOLOGY" | "RADIOLOGY" | "UROLOGY"
-
-local type ContentRedactionType = "PII"
+local type LanguageCode = "en-US" | "en-GB" | "es-US" | "fr-CA" | "fr-FR" | "en-AU" | "it-IT" | "de-DE" | "pt-BR" | "ja-JP" | "ko-KR" | "zh-CN" | "th-TH" | "es-ES" | "ar-SA" | "pt-PT" | "ca-ES" | "ar-AE" | "hi-IN" | "zh-HK" | "nl-NL" | "no-NO" | "sv-SE" | "pl-PL" | "fi-FI" | "zh-TW" | "en-IN" | "en-IE" | "en-NZ" | "en-AB" | "en-ZA" | "en-WL" | "de-CH" | "af-ZA" | "eu-ES" | "hr-HR" | "cs-CZ" | "da-DK" | "fa-IR" | "gl-ES" | "el-GR" | "he-IL" | "id-ID" | "lv-LV" | "ms-MY" | "ro-RO" | "ru-RU" | "sr-RS" | "sk-SK" | "so-SO" | "tl-PH" | "uk-UA" | "vi-VN" | "zu-ZA" | "am-ET" | "be-BY" | "bg-BG" | "bn-IN" | "bs-BA" | "ckb-IQ" | "ckb-IR" | "cy-WL" | "es-MX" | "et-ET" | "fa-AF" | "gu-IN" | "ht-HT" | "hu-HU" | "hy-AM" | "is-IS" | "jv-ID" | "ka-GE" | "kab-DZ" | "kk-KZ" | "km-KH" | "kn-IN" | "lg-IN" | "lt-LT" | "mk-MK" | "ml-IN" | "mr-IN" | "my-MM" | "ne-NP" | "or-IN" | "pa-IN" | "ps-AF" | "si-LK" | "sl-SI" | "sq-AL" | "su-ID" | "sw-BI" | "sw-KE" | "sw-RW" | "sw-TZ" | "sw-UG" | "ta-IN" | "te-IN" | "tr-TR" | "uz-UZ"
 
 local type MedicalContentIdentificationType = "PHI"
 
-local type LanguageCode = "en-US" | "en-GB" | "es-US" | "fr-CA" | "fr-FR" | "en-AU" | "it-IT" | "de-DE" | "pt-BR" | "ja-JP" | "ko-KR" | "zh-CN" | "th-TH" | "es-ES" | "ar-SA" | "pt-PT" | "ca-ES" | "ar-AE" | "hi-IN" | "zh-HK" | "nl-NL" | "no-NO" | "sv-SE" | "pl-PL" | "fi-FI" | "zh-TW" | "en-IN" | "en-IE" | "en-NZ" | "en-AB" | "en-ZA" | "en-WL" | "de-CH" | "af-ZA" | "eu-ES" | "hr-HR" | "cs-CZ" | "da-DK" | "fa-IR" | "gl-ES" | "el-GR" | "he-IL" | "id-ID" | "lv-LV" | "ms-MY" | "ro-RO" | "ru-RU" | "sr-RS" | "sk-SK" | "so-SO" | "tl-PH" | "uk-UA" | "vi-VN" | "zu-ZA" | "am-ET" | "be-BY" | "bg-BG" | "bn-IN" | "bs-BA" | "ckb-IQ" | "ckb-IR" | "cy-WL" | "es-MX" | "et-ET" | "fa-AF" | "gu-IN" | "ht-HT" | "hu-HU" | "hy-AM" | "is-IS" | "jv-ID" | "ka-GE" | "kab-DZ" | "kk-KZ" | "km-KH" | "kn-IN" | "lg-IN" | "lt-LT" | "mk-MK" | "ml-IN" | "mr-IN" | "my-MM" | "ne-NP" | "or-IN" | "pa-IN" | "ps-AF" | "si-LK" | "sl-SI" | "sq-AL" | "su-ID" | "sw-BI" | "sw-KE" | "sw-RW" | "sw-TZ" | "sw-UG" | "ta-IN" | "te-IN" | "tr-TR" | "uz-UZ"
-
 local type MediaEncoding = "pcm" | "ogg-opus" | "flac"
+
+local type VocabularyFilterMethod = "remove" | "mask" | "tag"
+
+local type CallAnalyticsLanguageCode = "en-US" | "en-GB" | "es-US" | "fr-CA" | "fr-FR" | "en-AU" | "it-IT" | "de-DE" | "pt-BR"
+
+local type PartialResultsStability = "high" | "medium" | "low"
+
+local type Type = "CONVERSATION" | "DICTATION"
+
+local type MedicalScribeMediaEncoding = "pcm" | "ogg-opus" | "flac"
 
 local type MedicalScribeLanguageCode = "en-US"
 
-local type Type = "CONVERSATION" | "DICTATION"
+local type ContentRedactionType = "PII"
+
+local type ContentIdentificationType = "PII"
+
+local type Specialty = "PRIMARYCARE" | "CARDIOLOGY" | "NEUROLOGY" | "ONCOLOGY" | "RADIOLOGY" | "UROLOGY"
 
 local record M
     GetMedicalScribeStreamInput: GetMedicalScribeStreamInput

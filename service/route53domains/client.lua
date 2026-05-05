@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("route53domains.endpoint_rules")
+local schemas = require("route53domains.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("route53domains.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptDomainTransferFromAnotherAwsAccount(input, options)
     return self:invokeOperation(input, {
         name = "AcceptDomainTransferFromAnotherAwsAccount",
-        input_schema = types.AcceptDomainTransferFromAnotherAwsAccountInput,
-        output_schema = types.AcceptDomainTransferFromAnotherAwsAccountOutput,
+        input_schema = schemas.AcceptDomainTransferFromAnotherAwsAccountInput,
+        output_schema = schemas.AcceptDomainTransferFromAnotherAwsAccountOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:associateDelegationSignerToDomain(input, options)
     return self:invokeOperation(input, {
         name = "AssociateDelegationSignerToDomain",
-        input_schema = types.AssociateDelegationSignerToDomainInput,
-        output_schema = types.AssociateDelegationSignerToDomainOutput,
+        input_schema = schemas.AssociateDelegationSignerToDomainInput,
+        output_schema = schemas.AssociateDelegationSignerToDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:cancelDomainTransferToAnotherAwsAccount(input, options)
     return self:invokeOperation(input, {
         name = "CancelDomainTransferToAnotherAwsAccount",
-        input_schema = types.CancelDomainTransferToAnotherAwsAccountInput,
-        output_schema = types.CancelDomainTransferToAnotherAwsAccountOutput,
+        input_schema = schemas.CancelDomainTransferToAnotherAwsAccountInput,
+        output_schema = schemas.CancelDomainTransferToAnotherAwsAccountOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:checkDomainAvailability(input, options)
     return self:invokeOperation(input, {
         name = "CheckDomainAvailability",
-        input_schema = types.CheckDomainAvailabilityInput,
-        output_schema = types.CheckDomainAvailabilityOutput,
+        input_schema = schemas.CheckDomainAvailabilityInput,
+        output_schema = schemas.CheckDomainAvailabilityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:checkDomainTransferability(input, options)
     return self:invokeOperation(input, {
         name = "CheckDomainTransferability",
-        input_schema = types.CheckDomainTransferabilityInput,
-        output_schema = types.CheckDomainTransferabilityOutput,
+        input_schema = schemas.CheckDomainTransferabilityInput,
+        output_schema = schemas.CheckDomainTransferabilityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteDomain(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDomain",
-        input_schema = types.DeleteDomainInput,
-        output_schema = types.DeleteDomainOutput,
+        input_schema = schemas.DeleteDomainInput,
+        output_schema = schemas.DeleteDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteTagsForDomain(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTagsForDomain",
-        input_schema = types.DeleteTagsForDomainInput,
-        output_schema = types.DeleteTagsForDomainOutput,
+        input_schema = schemas.DeleteTagsForDomainInput,
+        output_schema = schemas.DeleteTagsForDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:disableDomainAutoRenew(input, options)
     return self:invokeOperation(input, {
         name = "DisableDomainAutoRenew",
-        input_schema = types.DisableDomainAutoRenewInput,
-        output_schema = types.DisableDomainAutoRenewOutput,
+        input_schema = schemas.DisableDomainAutoRenewInput,
+        output_schema = schemas.DisableDomainAutoRenewOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:disableDomainTransferLock(input, options)
     return self:invokeOperation(input, {
         name = "DisableDomainTransferLock",
-        input_schema = types.DisableDomainTransferLockInput,
-        output_schema = types.DisableDomainTransferLockOutput,
+        input_schema = schemas.DisableDomainTransferLockInput,
+        output_schema = schemas.DisableDomainTransferLockOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:disassociateDelegationSignerFromDomain(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateDelegationSignerFromDomain",
-        input_schema = types.DisassociateDelegationSignerFromDomainInput,
-        output_schema = types.DisassociateDelegationSignerFromDomainOutput,
+        input_schema = schemas.DisassociateDelegationSignerFromDomainInput,
+        output_schema = schemas.DisassociateDelegationSignerFromDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:enableDomainAutoRenew(input, options)
     return self:invokeOperation(input, {
         name = "EnableDomainAutoRenew",
-        input_schema = types.EnableDomainAutoRenewInput,
-        output_schema = types.EnableDomainAutoRenewOutput,
+        input_schema = schemas.EnableDomainAutoRenewInput,
+        output_schema = schemas.EnableDomainAutoRenewOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:enableDomainTransferLock(input, options)
     return self:invokeOperation(input, {
         name = "EnableDomainTransferLock",
-        input_schema = types.EnableDomainTransferLockInput,
-        output_schema = types.EnableDomainTransferLockOutput,
+        input_schema = schemas.EnableDomainTransferLockInput,
+        output_schema = schemas.EnableDomainTransferLockOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getContactReachabilityStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetContactReachabilityStatus",
-        input_schema = types.GetContactReachabilityStatusInput,
-        output_schema = types.GetContactReachabilityStatusOutput,
+        input_schema = schemas.GetContactReachabilityStatusInput,
+        output_schema = schemas.GetContactReachabilityStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getDomainDetail(input, options)
     return self:invokeOperation(input, {
         name = "GetDomainDetail",
-        input_schema = types.GetDomainDetailInput,
-        output_schema = types.GetDomainDetailOutput,
+        input_schema = schemas.GetDomainDetailInput,
+        output_schema = schemas.GetDomainDetailOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getDomainSuggestions(input, options)
     return self:invokeOperation(input, {
         name = "GetDomainSuggestions",
-        input_schema = types.GetDomainSuggestionsInput,
-        output_schema = types.GetDomainSuggestionsOutput,
+        input_schema = schemas.GetDomainSuggestionsInput,
+        output_schema = schemas.GetDomainSuggestionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getOperationDetail(input, options)
     return self:invokeOperation(input, {
         name = "GetOperationDetail",
-        input_schema = types.GetOperationDetailInput,
-        output_schema = types.GetOperationDetailOutput,
+        input_schema = schemas.GetOperationDetailInput,
+        output_schema = schemas.GetOperationDetailOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listDomains(input, options)
     return self:invokeOperation(input, {
         name = "ListDomains",
-        input_schema = types.ListDomainsInput,
-        output_schema = types.ListDomainsOutput,
+        input_schema = schemas.ListDomainsInput,
+        output_schema = schemas.ListDomainsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listOperations(input, options)
     return self:invokeOperation(input, {
         name = "ListOperations",
-        input_schema = types.ListOperationsInput,
-        output_schema = types.ListOperationsOutput,
+        input_schema = schemas.ListOperationsInput,
+        output_schema = schemas.ListOperationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listPrices(input, options)
     return self:invokeOperation(input, {
         name = "ListPrices",
-        input_schema = types.ListPricesInput,
-        output_schema = types.ListPricesOutput,
+        input_schema = schemas.ListPricesInput,
+        output_schema = schemas.ListPricesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listTagsForDomain(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForDomain",
-        input_schema = types.ListTagsForDomainInput,
-        output_schema = types.ListTagsForDomainOutput,
+        input_schema = schemas.ListTagsForDomainInput,
+        output_schema = schemas.ListTagsForDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:pushDomain(input, options)
     return self:invokeOperation(input, {
         name = "PushDomain",
-        input_schema = types.PushDomainInput,
-        output_schema = types.PushDomainOutput,
+        input_schema = schemas.PushDomainInput,
+        output_schema = schemas.PushDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:registerDomain(input, options)
     return self:invokeOperation(input, {
         name = "RegisterDomain",
-        input_schema = types.RegisterDomainInput,
-        output_schema = types.RegisterDomainOutput,
+        input_schema = schemas.RegisterDomainInput,
+        output_schema = schemas.RegisterDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:rejectDomainTransferFromAnotherAwsAccount(input, options)
     return self:invokeOperation(input, {
         name = "RejectDomainTransferFromAnotherAwsAccount",
-        input_schema = types.RejectDomainTransferFromAnotherAwsAccountInput,
-        output_schema = types.RejectDomainTransferFromAnotherAwsAccountOutput,
+        input_schema = schemas.RejectDomainTransferFromAnotherAwsAccountInput,
+        output_schema = schemas.RejectDomainTransferFromAnotherAwsAccountOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:renewDomain(input, options)
     return self:invokeOperation(input, {
         name = "RenewDomain",
-        input_schema = types.RenewDomainInput,
-        output_schema = types.RenewDomainOutput,
+        input_schema = schemas.RenewDomainInput,
+        output_schema = schemas.RenewDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:resendContactReachabilityEmail(input, options)
     return self:invokeOperation(input, {
         name = "ResendContactReachabilityEmail",
-        input_schema = types.ResendContactReachabilityEmailInput,
-        output_schema = types.ResendContactReachabilityEmailOutput,
+        input_schema = schemas.ResendContactReachabilityEmailInput,
+        output_schema = schemas.ResendContactReachabilityEmailOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:resendOperationAuthorization(input, options)
     return self:invokeOperation(input, {
         name = "ResendOperationAuthorization",
-        input_schema = types.ResendOperationAuthorizationInput,
-        output_schema = types.ResendOperationAuthorizationOutput,
+        input_schema = schemas.ResendOperationAuthorizationInput,
+        output_schema = schemas.ResendOperationAuthorizationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:retrieveDomainAuthCode(input, options)
     return self:invokeOperation(input, {
         name = "RetrieveDomainAuthCode",
-        input_schema = types.RetrieveDomainAuthCodeInput,
-        output_schema = types.RetrieveDomainAuthCodeOutput,
+        input_schema = schemas.RetrieveDomainAuthCodeInput,
+        output_schema = schemas.RetrieveDomainAuthCodeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:transferDomain(input, options)
     return self:invokeOperation(input, {
         name = "TransferDomain",
-        input_schema = types.TransferDomainInput,
-        output_schema = types.TransferDomainOutput,
+        input_schema = schemas.TransferDomainInput,
+        output_schema = schemas.TransferDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:transferDomainToAnotherAwsAccount(input, options)
     return self:invokeOperation(input, {
         name = "TransferDomainToAnotherAwsAccount",
-        input_schema = types.TransferDomainToAnotherAwsAccountInput,
-        output_schema = types.TransferDomainToAnotherAwsAccountOutput,
+        input_schema = schemas.TransferDomainToAnotherAwsAccountInput,
+        output_schema = schemas.TransferDomainToAnotherAwsAccountOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:updateDomainContact(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDomainContact",
-        input_schema = types.UpdateDomainContactInput,
-        output_schema = types.UpdateDomainContactOutput,
+        input_schema = schemas.UpdateDomainContactInput,
+        output_schema = schemas.UpdateDomainContactOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:updateDomainContactPrivacy(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDomainContactPrivacy",
-        input_schema = types.UpdateDomainContactPrivacyInput,
-        output_schema = types.UpdateDomainContactPrivacyOutput,
+        input_schema = schemas.UpdateDomainContactPrivacyInput,
+        output_schema = schemas.UpdateDomainContactPrivacyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:updateDomainNameservers(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDomainNameservers",
-        input_schema = types.UpdateDomainNameserversInput,
-        output_schema = types.UpdateDomainNameserversOutput,
+        input_schema = schemas.UpdateDomainNameserversInput,
+        output_schema = schemas.UpdateDomainNameserversOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:updateTagsForDomain(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTagsForDomain",
-        input_schema = types.UpdateTagsForDomainInput,
-        output_schema = types.UpdateTagsForDomainOutput,
+        input_schema = schemas.UpdateTagsForDomainInput,
+        output_schema = schemas.UpdateTagsForDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:viewBilling(input, options)
     return self:invokeOperation(input, {
         name = "ViewBilling",
-        input_schema = types.ViewBillingInput,
-        output_schema = types.ViewBillingOutput,
+        input_schema = schemas.ViewBillingInput,
+        output_schema = schemas.ViewBillingOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

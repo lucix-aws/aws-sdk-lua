@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("iotsecuretunneling.endpoint_rules")
+local schemas = require("iotsecuretunneling.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("iotsecuretunneling.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:closeTunnel(input, options)
     return self:invokeOperation(input, {
         name = "CloseTunnel",
-        input_schema = types.CloseTunnelInput,
-        output_schema = types.CloseTunnelOutput,
+        input_schema = schemas.CloseTunnelInput,
+        output_schema = schemas.CloseTunnelOutput,
         http_method = "DELETE",
         http_path = "/tunnels/{tunnelId}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:describeTunnel(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTunnel",
-        input_schema = types.DescribeTunnelInput,
-        output_schema = types.DescribeTunnelOutput,
+        input_schema = schemas.DescribeTunnelInput,
+        output_schema = schemas.DescribeTunnelOutput,
         http_method = "GET",
         http_path = "/tunnels/{tunnelId}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:listTunnels(input, options)
     return self:invokeOperation(input, {
         name = "ListTunnels",
-        input_schema = types.ListTunnelsInput,
-        output_schema = types.ListTunnelsOutput,
+        input_schema = schemas.ListTunnelsInput,
+        output_schema = schemas.ListTunnelsOutput,
         http_method = "GET",
         http_path = "/tunnels",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:openTunnel(input, options)
     return self:invokeOperation(input, {
         name = "OpenTunnel",
-        input_schema = types.OpenTunnelInput,
-        output_schema = types.OpenTunnelOutput,
+        input_schema = schemas.OpenTunnelInput,
+        output_schema = schemas.OpenTunnelOutput,
         http_method = "POST",
         http_path = "/tunnels",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:rotateTunnelAccessToken(input, options)
     return self:invokeOperation(input, {
         name = "RotateTunnelAccessToken",
-        input_schema = types.RotateTunnelAccessTokenInput,
-        output_schema = types.RotateTunnelAccessTokenOutput,
+        input_schema = schemas.RotateTunnelAccessTokenInput,
+        output_schema = schemas.RotateTunnelAccessTokenOutput,
         http_method = "POST",
         http_path = "/tunnel/{tunnelId}/rotate",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/untag",
         effective_auth_schemes = {

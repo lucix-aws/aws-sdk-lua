@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("sagemakerfeaturestoreruntime.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("sagemakerfeaturestoreruntime.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("sagemakerfeaturestoreruntime.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchGetRecord(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetRecord",
-        input_schema = types.BatchGetRecordInput,
-        output_schema = types.BatchGetRecordOutput,
+        input_schema = schemas.BatchGetRecordInput,
+        output_schema = schemas.BatchGetRecordOutput,
         http_method = "POST",
         http_path = "/BatchGetRecord",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteRecord(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRecord",
-        input_schema = types.DeleteRecordInput,
-        output_schema = types.DeleteRecordOutput,
+        input_schema = schemas.DeleteRecordInput,
+        output_schema = schemas.DeleteRecordOutput,
         http_method = "DELETE",
         http_path = "/FeatureGroup/{FeatureGroupName}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getRecord(input, options)
     return self:invokeOperation(input, {
         name = "GetRecord",
-        input_schema = types.GetRecordInput,
-        output_schema = types.GetRecordOutput,
+        input_schema = schemas.GetRecordInput,
+        output_schema = schemas.GetRecordOutput,
         http_method = "GET",
         http_path = "/FeatureGroup/{FeatureGroupName}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:putRecord(input, options)
     return self:invokeOperation(input, {
         name = "PutRecord",
-        input_schema = types.PutRecordInput,
-        output_schema = types.PutRecordOutput,
+        input_schema = schemas.PutRecordInput,
+        output_schema = schemas.PutRecordOutput,
         http_method = "PUT",
         http_path = "/FeatureGroup/{FeatureGroupName}",
         effective_auth_schemes = {

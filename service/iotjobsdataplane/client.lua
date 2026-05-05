@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("iotjobsdataplane.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("iotjobsdataplane.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("iotjobsdataplane.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:describeJobExecution(input, options)
     return self:invokeOperation(input, {
         name = "DescribeJobExecution",
-        input_schema = types.DescribeJobExecutionInput,
-        output_schema = types.DescribeJobExecutionOutput,
+        input_schema = schemas.DescribeJobExecutionInput,
+        output_schema = schemas.DescribeJobExecutionOutput,
         http_method = "GET",
         http_path = "/things/{thingName}/jobs/{jobId}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:getPendingJobExecutions(input, options)
     return self:invokeOperation(input, {
         name = "GetPendingJobExecutions",
-        input_schema = types.GetPendingJobExecutionsInput,
-        output_schema = types.GetPendingJobExecutionsOutput,
+        input_schema = schemas.GetPendingJobExecutionsInput,
+        output_schema = schemas.GetPendingJobExecutionsOutput,
         http_method = "GET",
         http_path = "/things/{thingName}/jobs",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:startCommandExecution(input, options)
     return self:invokeOperation(input, {
         name = "StartCommandExecution",
-        input_schema = types.StartCommandExecutionInput,
-        output_schema = types.StartCommandExecutionOutput,
+        input_schema = schemas.StartCommandExecutionInput,
+        output_schema = schemas.StartCommandExecutionOutput,
         http_method = "POST",
         http_path = "/command-executions",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:startNextPendingJobExecution(input, options)
     return self:invokeOperation(input, {
         name = "StartNextPendingJobExecution",
-        input_schema = types.StartNextPendingJobExecutionInput,
-        output_schema = types.StartNextPendingJobExecutionOutput,
+        input_schema = schemas.StartNextPendingJobExecutionInput,
+        output_schema = schemas.StartNextPendingJobExecutionOutput,
         http_method = "PUT",
         http_path = "/things/{thingName}/jobs/$next",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:updateJobExecution(input, options)
     return self:invokeOperation(input, {
         name = "UpdateJobExecution",
-        input_schema = types.UpdateJobExecutionInput,
-        output_schema = types.UpdateJobExecutionOutput,
+        input_schema = schemas.UpdateJobExecutionInput,
+        output_schema = schemas.UpdateJobExecutionOutput,
         http_method = "POST",
         http_path = "/things/{thingName}/jobs/{jobId}",
         effective_auth_schemes = {

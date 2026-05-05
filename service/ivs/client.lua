@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("ivs.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("ivs.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("ivs.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchGetChannel(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetChannel",
-        input_schema = types.BatchGetChannelInput,
-        output_schema = types.BatchGetChannelOutput,
+        input_schema = schemas.BatchGetChannelInput,
+        output_schema = schemas.BatchGetChannelOutput,
         http_method = "POST",
         http_path = "/BatchGetChannel",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchGetStreamKey(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetStreamKey",
-        input_schema = types.BatchGetStreamKeyInput,
-        output_schema = types.BatchGetStreamKeyOutput,
+        input_schema = schemas.BatchGetStreamKeyInput,
+        output_schema = schemas.BatchGetStreamKeyOutput,
         http_method = "POST",
         http_path = "/BatchGetStreamKey",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchStartViewerSessionRevocation(input, options)
     return self:invokeOperation(input, {
         name = "BatchStartViewerSessionRevocation",
-        input_schema = types.BatchStartViewerSessionRevocationInput,
-        output_schema = types.BatchStartViewerSessionRevocationOutput,
+        input_schema = schemas.BatchStartViewerSessionRevocationInput,
+        output_schema = schemas.BatchStartViewerSessionRevocationOutput,
         http_method = "POST",
         http_path = "/BatchStartViewerSessionRevocation",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createAdConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateAdConfiguration",
-        input_schema = types.CreateAdConfigurationInput,
-        output_schema = types.CreateAdConfigurationOutput,
+        input_schema = schemas.CreateAdConfigurationInput,
+        output_schema = schemas.CreateAdConfigurationOutput,
         http_method = "POST",
         http_path = "/CreateAdConfiguration",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createChannel(input, options)
     return self:invokeOperation(input, {
         name = "CreateChannel",
-        input_schema = types.CreateChannelInput,
-        output_schema = types.CreateChannelOutput,
+        input_schema = schemas.CreateChannelInput,
+        output_schema = schemas.CreateChannelOutput,
         http_method = "POST",
         http_path = "/CreateChannel",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createPlaybackRestrictionPolicy(input, options)
     return self:invokeOperation(input, {
         name = "CreatePlaybackRestrictionPolicy",
-        input_schema = types.CreatePlaybackRestrictionPolicyInput,
-        output_schema = types.CreatePlaybackRestrictionPolicyOutput,
+        input_schema = schemas.CreatePlaybackRestrictionPolicyInput,
+        output_schema = schemas.CreatePlaybackRestrictionPolicyOutput,
         http_method = "POST",
         http_path = "/CreatePlaybackRestrictionPolicy",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createRecordingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateRecordingConfiguration",
-        input_schema = types.CreateRecordingConfigurationInput,
-        output_schema = types.CreateRecordingConfigurationOutput,
+        input_schema = schemas.CreateRecordingConfigurationInput,
+        output_schema = schemas.CreateRecordingConfigurationOutput,
         http_method = "POST",
         http_path = "/CreateRecordingConfiguration",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createStreamKey(input, options)
     return self:invokeOperation(input, {
         name = "CreateStreamKey",
-        input_schema = types.CreateStreamKeyInput,
-        output_schema = types.CreateStreamKeyOutput,
+        input_schema = schemas.CreateStreamKeyInput,
+        output_schema = schemas.CreateStreamKeyOutput,
         http_method = "POST",
         http_path = "/CreateStreamKey",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteAdConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAdConfiguration",
-        input_schema = types.DeleteAdConfigurationInput,
-        output_schema = types.DeleteAdConfigurationOutput,
+        input_schema = schemas.DeleteAdConfigurationInput,
+        output_schema = schemas.DeleteAdConfigurationOutput,
         http_method = "POST",
         http_path = "/DeleteAdConfiguration",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteChannel(input, options)
     return self:invokeOperation(input, {
         name = "DeleteChannel",
-        input_schema = types.DeleteChannelInput,
-        output_schema = types.DeleteChannelOutput,
+        input_schema = schemas.DeleteChannelInput,
+        output_schema = schemas.DeleteChannelOutput,
         http_method = "POST",
         http_path = "/DeleteChannel",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deletePlaybackKeyPair(input, options)
     return self:invokeOperation(input, {
         name = "DeletePlaybackKeyPair",
-        input_schema = types.DeletePlaybackKeyPairInput,
-        output_schema = types.DeletePlaybackKeyPairOutput,
+        input_schema = schemas.DeletePlaybackKeyPairInput,
+        output_schema = schemas.DeletePlaybackKeyPairOutput,
         http_method = "POST",
         http_path = "/DeletePlaybackKeyPair",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deletePlaybackRestrictionPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeletePlaybackRestrictionPolicy",
-        input_schema = types.DeletePlaybackRestrictionPolicyInput,
-        output_schema = types.DeletePlaybackRestrictionPolicyOutput,
+        input_schema = schemas.DeletePlaybackRestrictionPolicyInput,
+        output_schema = schemas.DeletePlaybackRestrictionPolicyOutput,
         http_method = "POST",
         http_path = "/DeletePlaybackRestrictionPolicy",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteRecordingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRecordingConfiguration",
-        input_schema = types.DeleteRecordingConfigurationInput,
-        output_schema = types.DeleteRecordingConfigurationOutput,
+        input_schema = schemas.DeleteRecordingConfigurationInput,
+        output_schema = schemas.DeleteRecordingConfigurationOutput,
         http_method = "POST",
         http_path = "/DeleteRecordingConfiguration",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteStreamKey(input, options)
     return self:invokeOperation(input, {
         name = "DeleteStreamKey",
-        input_schema = types.DeleteStreamKeyInput,
-        output_schema = types.DeleteStreamKeyOutput,
+        input_schema = schemas.DeleteStreamKeyInput,
+        output_schema = schemas.DeleteStreamKeyOutput,
         http_method = "POST",
         http_path = "/DeleteStreamKey",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getAdConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetAdConfiguration",
-        input_schema = types.GetAdConfigurationInput,
-        output_schema = types.GetAdConfigurationOutput,
+        input_schema = schemas.GetAdConfigurationInput,
+        output_schema = schemas.GetAdConfigurationOutput,
         http_method = "POST",
         http_path = "/GetAdConfiguration",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getChannel(input, options)
     return self:invokeOperation(input, {
         name = "GetChannel",
-        input_schema = types.GetChannelInput,
-        output_schema = types.GetChannelOutput,
+        input_schema = schemas.GetChannelInput,
+        output_schema = schemas.GetChannelOutput,
         http_method = "POST",
         http_path = "/GetChannel",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getPlaybackKeyPair(input, options)
     return self:invokeOperation(input, {
         name = "GetPlaybackKeyPair",
-        input_schema = types.GetPlaybackKeyPairInput,
-        output_schema = types.GetPlaybackKeyPairOutput,
+        input_schema = schemas.GetPlaybackKeyPairInput,
+        output_schema = schemas.GetPlaybackKeyPairOutput,
         http_method = "POST",
         http_path = "/GetPlaybackKeyPair",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getPlaybackRestrictionPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetPlaybackRestrictionPolicy",
-        input_schema = types.GetPlaybackRestrictionPolicyInput,
-        output_schema = types.GetPlaybackRestrictionPolicyOutput,
+        input_schema = schemas.GetPlaybackRestrictionPolicyInput,
+        output_schema = schemas.GetPlaybackRestrictionPolicyOutput,
         http_method = "POST",
         http_path = "/GetPlaybackRestrictionPolicy",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getRecordingConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetRecordingConfiguration",
-        input_schema = types.GetRecordingConfigurationInput,
-        output_schema = types.GetRecordingConfigurationOutput,
+        input_schema = schemas.GetRecordingConfigurationInput,
+        output_schema = schemas.GetRecordingConfigurationOutput,
         http_method = "POST",
         http_path = "/GetRecordingConfiguration",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getStream(input, options)
     return self:invokeOperation(input, {
         name = "GetStream",
-        input_schema = types.GetStreamInput,
-        output_schema = types.GetStreamOutput,
+        input_schema = schemas.GetStreamInput,
+        output_schema = schemas.GetStreamOutput,
         http_method = "POST",
         http_path = "/GetStream",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:getStreamKey(input, options)
     return self:invokeOperation(input, {
         name = "GetStreamKey",
-        input_schema = types.GetStreamKeyInput,
-        output_schema = types.GetStreamKeyOutput,
+        input_schema = schemas.GetStreamKeyInput,
+        output_schema = schemas.GetStreamKeyOutput,
         http_method = "POST",
         http_path = "/GetStreamKey",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:getStreamSession(input, options)
     return self:invokeOperation(input, {
         name = "GetStreamSession",
-        input_schema = types.GetStreamSessionInput,
-        output_schema = types.GetStreamSessionOutput,
+        input_schema = schemas.GetStreamSessionInput,
+        output_schema = schemas.GetStreamSessionOutput,
         http_method = "POST",
         http_path = "/GetStreamSession",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:importPlaybackKeyPair(input, options)
     return self:invokeOperation(input, {
         name = "ImportPlaybackKeyPair",
-        input_schema = types.ImportPlaybackKeyPairInput,
-        output_schema = types.ImportPlaybackKeyPairOutput,
+        input_schema = schemas.ImportPlaybackKeyPairInput,
+        output_schema = schemas.ImportPlaybackKeyPairOutput,
         http_method = "POST",
         http_path = "/ImportPlaybackKeyPair",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:insertAdBreak(input, options)
     return self:invokeOperation(input, {
         name = "InsertAdBreak",
-        input_schema = types.InsertAdBreakInput,
-        output_schema = types.InsertAdBreakOutput,
+        input_schema = schemas.InsertAdBreakInput,
+        output_schema = schemas.InsertAdBreakOutput,
         http_method = "POST",
         http_path = "/InsertAdBreak",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listAdConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListAdConfigurations",
-        input_schema = types.ListAdConfigurationsInput,
-        output_schema = types.ListAdConfigurationsOutput,
+        input_schema = schemas.ListAdConfigurationsInput,
+        output_schema = schemas.ListAdConfigurationsOutput,
         http_method = "POST",
         http_path = "/ListAdConfigurations",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listChannels(input, options)
     return self:invokeOperation(input, {
         name = "ListChannels",
-        input_schema = types.ListChannelsInput,
-        output_schema = types.ListChannelsOutput,
+        input_schema = schemas.ListChannelsInput,
+        output_schema = schemas.ListChannelsOutput,
         http_method = "POST",
         http_path = "/ListChannels",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listPlaybackKeyPairs(input, options)
     return self:invokeOperation(input, {
         name = "ListPlaybackKeyPairs",
-        input_schema = types.ListPlaybackKeyPairsInput,
-        output_schema = types.ListPlaybackKeyPairsOutput,
+        input_schema = schemas.ListPlaybackKeyPairsInput,
+        output_schema = schemas.ListPlaybackKeyPairsOutput,
         http_method = "POST",
         http_path = "/ListPlaybackKeyPairs",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listPlaybackRestrictionPolicies(input, options)
     return self:invokeOperation(input, {
         name = "ListPlaybackRestrictionPolicies",
-        input_schema = types.ListPlaybackRestrictionPoliciesInput,
-        output_schema = types.ListPlaybackRestrictionPoliciesOutput,
+        input_schema = schemas.ListPlaybackRestrictionPoliciesInput,
+        output_schema = schemas.ListPlaybackRestrictionPoliciesOutput,
         http_method = "POST",
         http_path = "/ListPlaybackRestrictionPolicies",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listRecordingConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListRecordingConfigurations",
-        input_schema = types.ListRecordingConfigurationsInput,
-        output_schema = types.ListRecordingConfigurationsOutput,
+        input_schema = schemas.ListRecordingConfigurationsInput,
+        output_schema = schemas.ListRecordingConfigurationsOutput,
         http_method = "POST",
         http_path = "/ListRecordingConfigurations",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:listStreamKeys(input, options)
     return self:invokeOperation(input, {
         name = "ListStreamKeys",
-        input_schema = types.ListStreamKeysInput,
-        output_schema = types.ListStreamKeysOutput,
+        input_schema = schemas.ListStreamKeysInput,
+        output_schema = schemas.ListStreamKeysOutput,
         http_method = "POST",
         http_path = "/ListStreamKeys",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:listStreams(input, options)
     return self:invokeOperation(input, {
         name = "ListStreams",
-        input_schema = types.ListStreamsInput,
-        output_schema = types.ListStreamsOutput,
+        input_schema = schemas.ListStreamsInput,
+        output_schema = schemas.ListStreamsOutput,
         http_method = "POST",
         http_path = "/ListStreams",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:listStreamSessions(input, options)
     return self:invokeOperation(input, {
         name = "ListStreamSessions",
-        input_schema = types.ListStreamSessionsInput,
-        output_schema = types.ListStreamSessionsOutput,
+        input_schema = schemas.ListStreamSessionsInput,
+        output_schema = schemas.ListStreamSessionsOutput,
         http_method = "POST",
         http_path = "/ListStreamSessions",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:putMetadata(input, options)
     return self:invokeOperation(input, {
         name = "PutMetadata",
-        input_schema = types.PutMetadataInput,
-        output_schema = types.PutMetadataOutput,
+        input_schema = schemas.PutMetadataInput,
+        output_schema = schemas.PutMetadataOutput,
         http_method = "POST",
         http_path = "/PutMetadata",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:startViewerSessionRevocation(input, options)
     return self:invokeOperation(input, {
         name = "StartViewerSessionRevocation",
-        input_schema = types.StartViewerSessionRevocationInput,
-        output_schema = types.StartViewerSessionRevocationOutput,
+        input_schema = schemas.StartViewerSessionRevocationInput,
+        output_schema = schemas.StartViewerSessionRevocationOutput,
         http_method = "POST",
         http_path = "/StartViewerSessionRevocation",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:stopStream(input, options)
     return self:invokeOperation(input, {
         name = "StopStream",
-        input_schema = types.StopStreamInput,
-        output_schema = types.StopStreamOutput,
+        input_schema = schemas.StopStreamInput,
+        output_schema = schemas.StopStreamOutput,
         http_method = "POST",
         http_path = "/StopStream",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:updateChannel(input, options)
     return self:invokeOperation(input, {
         name = "UpdateChannel",
-        input_schema = types.UpdateChannelInput,
-        output_schema = types.UpdateChannelOutput,
+        input_schema = schemas.UpdateChannelInput,
+        output_schema = schemas.UpdateChannelOutput,
         http_method = "POST",
         http_path = "/UpdateChannel",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:updatePlaybackRestrictionPolicy(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePlaybackRestrictionPolicy",
-        input_schema = types.UpdatePlaybackRestrictionPolicyInput,
-        output_schema = types.UpdatePlaybackRestrictionPolicyOutput,
+        input_schema = schemas.UpdatePlaybackRestrictionPolicyInput,
+        output_schema = schemas.UpdatePlaybackRestrictionPolicyOutput,
         http_method = "POST",
         http_path = "/UpdatePlaybackRestrictionPolicy",
         effective_auth_schemes = {

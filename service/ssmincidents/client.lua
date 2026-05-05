@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("ssmincidents.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("ssmincidents.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("ssmincidents.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchGetIncidentFindings(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetIncidentFindings",
-        input_schema = types.BatchGetIncidentFindingsInput,
-        output_schema = types.BatchGetIncidentFindingsOutput,
+        input_schema = schemas.BatchGetIncidentFindingsInput,
+        output_schema = schemas.BatchGetIncidentFindingsOutput,
         http_method = "POST",
         http_path = "/batchGetIncidentFindings",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createReplicationSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateReplicationSet",
-        input_schema = types.CreateReplicationSetInput,
-        output_schema = types.CreateReplicationSetOutput,
+        input_schema = schemas.CreateReplicationSetInput,
+        output_schema = schemas.CreateReplicationSetOutput,
         http_method = "POST",
         http_path = "/createReplicationSet",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createResponsePlan(input, options)
     return self:invokeOperation(input, {
         name = "CreateResponsePlan",
-        input_schema = types.CreateResponsePlanInput,
-        output_schema = types.CreateResponsePlanOutput,
+        input_schema = schemas.CreateResponsePlanInput,
+        output_schema = schemas.CreateResponsePlanOutput,
         http_method = "POST",
         http_path = "/createResponsePlan",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createTimelineEvent(input, options)
     return self:invokeOperation(input, {
         name = "CreateTimelineEvent",
-        input_schema = types.CreateTimelineEventInput,
-        output_schema = types.CreateTimelineEventOutput,
+        input_schema = schemas.CreateTimelineEventInput,
+        output_schema = schemas.CreateTimelineEventOutput,
         http_method = "POST",
         http_path = "/createTimelineEvent",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteIncidentRecord(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIncidentRecord",
-        input_schema = types.DeleteIncidentRecordInput,
-        output_schema = types.DeleteIncidentRecordOutput,
+        input_schema = schemas.DeleteIncidentRecordInput,
+        output_schema = schemas.DeleteIncidentRecordOutput,
         http_method = "POST",
         http_path = "/deleteIncidentRecord",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteReplicationSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteReplicationSet",
-        input_schema = types.DeleteReplicationSetInput,
-        output_schema = types.DeleteReplicationSetOutput,
+        input_schema = schemas.DeleteReplicationSetInput,
+        output_schema = schemas.DeleteReplicationSetOutput,
         http_method = "POST",
         http_path = "/deleteReplicationSet",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourcePolicy",
-        input_schema = types.DeleteResourcePolicyInput,
-        output_schema = types.DeleteResourcePolicyOutput,
+        input_schema = schemas.DeleteResourcePolicyInput,
+        output_schema = schemas.DeleteResourcePolicyOutput,
         http_method = "POST",
         http_path = "/deleteResourcePolicy",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteResponsePlan(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResponsePlan",
-        input_schema = types.DeleteResponsePlanInput,
-        output_schema = types.DeleteResponsePlanOutput,
+        input_schema = schemas.DeleteResponsePlanInput,
+        output_schema = schemas.DeleteResponsePlanOutput,
         http_method = "POST",
         http_path = "/deleteResponsePlan",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteTimelineEvent(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTimelineEvent",
-        input_schema = types.DeleteTimelineEventInput,
-        output_schema = types.DeleteTimelineEventOutput,
+        input_schema = schemas.DeleteTimelineEventInput,
+        output_schema = schemas.DeleteTimelineEventOutput,
         http_method = "POST",
         http_path = "/deleteTimelineEvent",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getIncidentRecord(input, options)
     return self:invokeOperation(input, {
         name = "GetIncidentRecord",
-        input_schema = types.GetIncidentRecordInput,
-        output_schema = types.GetIncidentRecordOutput,
+        input_schema = schemas.GetIncidentRecordInput,
+        output_schema = schemas.GetIncidentRecordOutput,
         http_method = "GET",
         http_path = "/getIncidentRecord",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getReplicationSet(input, options)
     return self:invokeOperation(input, {
         name = "GetReplicationSet",
-        input_schema = types.GetReplicationSetInput,
-        output_schema = types.GetReplicationSetOutput,
+        input_schema = schemas.GetReplicationSetInput,
+        output_schema = schemas.GetReplicationSetOutput,
         http_method = "GET",
         http_path = "/getReplicationSet",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getResourcePolicies(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcePolicies",
-        input_schema = types.GetResourcePoliciesInput,
-        output_schema = types.GetResourcePoliciesOutput,
+        input_schema = schemas.GetResourcePoliciesInput,
+        output_schema = schemas.GetResourcePoliciesOutput,
         http_method = "POST",
         http_path = "/getResourcePolicies",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getResponsePlan(input, options)
     return self:invokeOperation(input, {
         name = "GetResponsePlan",
-        input_schema = types.GetResponsePlanInput,
-        output_schema = types.GetResponsePlanOutput,
+        input_schema = schemas.GetResponsePlanInput,
+        output_schema = schemas.GetResponsePlanOutput,
         http_method = "GET",
         http_path = "/getResponsePlan",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getTimelineEvent(input, options)
     return self:invokeOperation(input, {
         name = "GetTimelineEvent",
-        input_schema = types.GetTimelineEventInput,
-        output_schema = types.GetTimelineEventOutput,
+        input_schema = schemas.GetTimelineEventInput,
+        output_schema = schemas.GetTimelineEventOutput,
         http_method = "GET",
         http_path = "/getTimelineEvent",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listIncidentFindings(input, options)
     return self:invokeOperation(input, {
         name = "ListIncidentFindings",
-        input_schema = types.ListIncidentFindingsInput,
-        output_schema = types.ListIncidentFindingsOutput,
+        input_schema = schemas.ListIncidentFindingsInput,
+        output_schema = schemas.ListIncidentFindingsOutput,
         http_method = "POST",
         http_path = "/listIncidentFindings",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listIncidentRecords(input, options)
     return self:invokeOperation(input, {
         name = "ListIncidentRecords",
-        input_schema = types.ListIncidentRecordsInput,
-        output_schema = types.ListIncidentRecordsOutput,
+        input_schema = schemas.ListIncidentRecordsInput,
+        output_schema = schemas.ListIncidentRecordsOutput,
         http_method = "POST",
         http_path = "/listIncidentRecords",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listRelatedItems(input, options)
     return self:invokeOperation(input, {
         name = "ListRelatedItems",
-        input_schema = types.ListRelatedItemsInput,
-        output_schema = types.ListRelatedItemsOutput,
+        input_schema = schemas.ListRelatedItemsInput,
+        output_schema = schemas.ListRelatedItemsOutput,
         http_method = "POST",
         http_path = "/listRelatedItems",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listReplicationSets(input, options)
     return self:invokeOperation(input, {
         name = "ListReplicationSets",
-        input_schema = types.ListReplicationSetsInput,
-        output_schema = types.ListReplicationSetsOutput,
+        input_schema = schemas.ListReplicationSetsInput,
+        output_schema = schemas.ListReplicationSetsOutput,
         http_method = "POST",
         http_path = "/listReplicationSets",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listResponsePlans(input, options)
     return self:invokeOperation(input, {
         name = "ListResponsePlans",
-        input_schema = types.ListResponsePlansInput,
-        output_schema = types.ListResponsePlansOutput,
+        input_schema = schemas.ListResponsePlansInput,
+        output_schema = schemas.ListResponsePlansOutput,
         http_method = "POST",
         http_path = "/listResponsePlans",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listTimelineEvents(input, options)
     return self:invokeOperation(input, {
         name = "ListTimelineEvents",
-        input_schema = types.ListTimelineEventsInput,
-        output_schema = types.ListTimelineEventsOutput,
+        input_schema = schemas.ListTimelineEventsInput,
+        output_schema = schemas.ListTimelineEventsOutput,
         http_method = "POST",
         http_path = "/listTimelineEvents",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:putResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutResourcePolicy",
-        input_schema = types.PutResourcePolicyInput,
-        output_schema = types.PutResourcePolicyOutput,
+        input_schema = schemas.PutResourcePolicyInput,
+        output_schema = schemas.PutResourcePolicyOutput,
         http_method = "POST",
         http_path = "/putResourcePolicy",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:startIncident(input, options)
     return self:invokeOperation(input, {
         name = "StartIncident",
-        input_schema = types.StartIncidentInput,
-        output_schema = types.StartIncidentOutput,
+        input_schema = schemas.StartIncidentInput,
+        output_schema = schemas.StartIncidentOutput,
         http_method = "POST",
         http_path = "/startIncident",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:updateDeletionProtection(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDeletionProtection",
-        input_schema = types.UpdateDeletionProtectionInput,
-        output_schema = types.UpdateDeletionProtectionOutput,
+        input_schema = schemas.UpdateDeletionProtectionInput,
+        output_schema = schemas.UpdateDeletionProtectionOutput,
         http_method = "POST",
         http_path = "/updateDeletionProtection",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:updateIncidentRecord(input, options)
     return self:invokeOperation(input, {
         name = "UpdateIncidentRecord",
-        input_schema = types.UpdateIncidentRecordInput,
-        output_schema = types.UpdateIncidentRecordOutput,
+        input_schema = schemas.UpdateIncidentRecordInput,
+        output_schema = schemas.UpdateIncidentRecordOutput,
         http_method = "POST",
         http_path = "/updateIncidentRecord",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:updateRelatedItems(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRelatedItems",
-        input_schema = types.UpdateRelatedItemsInput,
-        output_schema = types.UpdateRelatedItemsOutput,
+        input_schema = schemas.UpdateRelatedItemsInput,
+        output_schema = schemas.UpdateRelatedItemsOutput,
         http_method = "POST",
         http_path = "/updateRelatedItems",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:updateReplicationSet(input, options)
     return self:invokeOperation(input, {
         name = "UpdateReplicationSet",
-        input_schema = types.UpdateReplicationSetInput,
-        output_schema = types.UpdateReplicationSetOutput,
+        input_schema = schemas.UpdateReplicationSetInput,
+        output_schema = schemas.UpdateReplicationSetOutput,
         http_method = "POST",
         http_path = "/updateReplicationSet",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:updateResponsePlan(input, options)
     return self:invokeOperation(input, {
         name = "UpdateResponsePlan",
-        input_schema = types.UpdateResponsePlanInput,
-        output_schema = types.UpdateResponsePlanOutput,
+        input_schema = schemas.UpdateResponsePlanInput,
+        output_schema = schemas.UpdateResponsePlanOutput,
         http_method = "POST",
         http_path = "/updateResponsePlan",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:updateTimelineEvent(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTimelineEvent",
-        input_schema = types.UpdateTimelineEventInput,
-        output_schema = types.UpdateTimelineEventOutput,
+        input_schema = schemas.UpdateTimelineEventInput,
+        output_schema = schemas.UpdateTimelineEventOutput,
         http_method = "POST",
         http_path = "/updateTimelineEvent",
         effective_auth_schemes = {

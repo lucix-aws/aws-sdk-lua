@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("emr.endpoint_rules")
+local schemas = require("emr.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("emr.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addInstanceFleet(input, options)
     return self:invokeOperation(input, {
         name = "AddInstanceFleet",
-        input_schema = types.AddInstanceFleetInput,
-        output_schema = types.AddInstanceFleetOutput,
+        input_schema = schemas.AddInstanceFleetInput,
+        output_schema = schemas.AddInstanceFleetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:addInstanceGroups(input, options)
     return self:invokeOperation(input, {
         name = "AddInstanceGroups",
-        input_schema = types.AddInstanceGroupsInput,
-        output_schema = types.AddInstanceGroupsOutput,
+        input_schema = schemas.AddInstanceGroupsInput,
+        output_schema = schemas.AddInstanceGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:addJobFlowSteps(input, options)
     return self:invokeOperation(input, {
         name = "AddJobFlowSteps",
-        input_schema = types.AddJobFlowStepsInput,
-        output_schema = types.AddJobFlowStepsOutput,
+        input_schema = schemas.AddJobFlowStepsInput,
+        output_schema = schemas.AddJobFlowStepsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:addTags(input, options)
     return self:invokeOperation(input, {
         name = "AddTags",
-        input_schema = types.AddTagsInput,
-        output_schema = types.AddTagsOutput,
+        input_schema = schemas.AddTagsInput,
+        output_schema = schemas.AddTagsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:cancelSteps(input, options)
     return self:invokeOperation(input, {
         name = "CancelSteps",
-        input_schema = types.CancelStepsInput,
-        output_schema = types.CancelStepsOutput,
+        input_schema = schemas.CancelStepsInput,
+        output_schema = schemas.CancelStepsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createPersistentAppUI(input, options)
     return self:invokeOperation(input, {
         name = "CreatePersistentAppUI",
-        input_schema = types.CreatePersistentAppUIInput,
-        output_schema = types.CreatePersistentAppUIOutput,
+        input_schema = schemas.CreatePersistentAppUIInput,
+        output_schema = schemas.CreatePersistentAppUIOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createSecurityConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateSecurityConfiguration",
-        input_schema = types.CreateSecurityConfigurationInput,
-        output_schema = types.CreateSecurityConfigurationOutput,
+        input_schema = schemas.CreateSecurityConfigurationInput,
+        output_schema = schemas.CreateSecurityConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createStudio(input, options)
     return self:invokeOperation(input, {
         name = "CreateStudio",
-        input_schema = types.CreateStudioInput,
-        output_schema = types.CreateStudioOutput,
+        input_schema = schemas.CreateStudioInput,
+        output_schema = schemas.CreateStudioOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createStudioSessionMapping(input, options)
     return self:invokeOperation(input, {
         name = "CreateStudioSessionMapping",
-        input_schema = types.CreateStudioSessionMappingInput,
-        output_schema = types.CreateStudioSessionMappingOutput,
+        input_schema = schemas.CreateStudioSessionMappingInput,
+        output_schema = schemas.CreateStudioSessionMappingOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteSecurityConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSecurityConfiguration",
-        input_schema = types.DeleteSecurityConfigurationInput,
-        output_schema = types.DeleteSecurityConfigurationOutput,
+        input_schema = schemas.DeleteSecurityConfigurationInput,
+        output_schema = schemas.DeleteSecurityConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteStudio(input, options)
     return self:invokeOperation(input, {
         name = "DeleteStudio",
-        input_schema = types.DeleteStudioInput,
-        output_schema = types.DeleteStudioOutput,
+        input_schema = schemas.DeleteStudioInput,
+        output_schema = schemas.DeleteStudioOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteStudioSessionMapping(input, options)
     return self:invokeOperation(input, {
         name = "DeleteStudioSessionMapping",
-        input_schema = types.DeleteStudioSessionMappingInput,
-        output_schema = types.DeleteStudioSessionMappingOutput,
+        input_schema = schemas.DeleteStudioSessionMappingInput,
+        output_schema = schemas.DeleteStudioSessionMappingOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:describeCluster(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCluster",
-        input_schema = types.DescribeClusterInput,
-        output_schema = types.DescribeClusterOutput,
+        input_schema = schemas.DescribeClusterInput,
+        output_schema = schemas.DescribeClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:describeJobFlows(input, options)
     return self:invokeOperation(input, {
         name = "DescribeJobFlows",
-        input_schema = types.DescribeJobFlowsInput,
-        output_schema = types.DescribeJobFlowsOutput,
+        input_schema = schemas.DescribeJobFlowsInput,
+        output_schema = schemas.DescribeJobFlowsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:describeNotebookExecution(input, options)
     return self:invokeOperation(input, {
         name = "DescribeNotebookExecution",
-        input_schema = types.DescribeNotebookExecutionInput,
-        output_schema = types.DescribeNotebookExecutionOutput,
+        input_schema = schemas.DescribeNotebookExecutionInput,
+        output_schema = schemas.DescribeNotebookExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:describePersistentAppUI(input, options)
     return self:invokeOperation(input, {
         name = "DescribePersistentAppUI",
-        input_schema = types.DescribePersistentAppUIInput,
-        output_schema = types.DescribePersistentAppUIOutput,
+        input_schema = schemas.DescribePersistentAppUIInput,
+        output_schema = schemas.DescribePersistentAppUIOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:describeReleaseLabel(input, options)
     return self:invokeOperation(input, {
         name = "DescribeReleaseLabel",
-        input_schema = types.DescribeReleaseLabelInput,
-        output_schema = types.DescribeReleaseLabelOutput,
+        input_schema = schemas.DescribeReleaseLabelInput,
+        output_schema = schemas.DescribeReleaseLabelOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:describeSecurityConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSecurityConfiguration",
-        input_schema = types.DescribeSecurityConfigurationInput,
-        output_schema = types.DescribeSecurityConfigurationOutput,
+        input_schema = schemas.DescribeSecurityConfigurationInput,
+        output_schema = schemas.DescribeSecurityConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:describeStep(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStep",
-        input_schema = types.DescribeStepInput,
-        output_schema = types.DescribeStepOutput,
+        input_schema = schemas.DescribeStepInput,
+        output_schema = schemas.DescribeStepOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:describeStudio(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStudio",
-        input_schema = types.DescribeStudioInput,
-        output_schema = types.DescribeStudioOutput,
+        input_schema = schemas.DescribeStudioInput,
+        output_schema = schemas.DescribeStudioOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:getAutoTerminationPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetAutoTerminationPolicy",
-        input_schema = types.GetAutoTerminationPolicyInput,
-        output_schema = types.GetAutoTerminationPolicyOutput,
+        input_schema = schemas.GetAutoTerminationPolicyInput,
+        output_schema = schemas.GetAutoTerminationPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:getBlockPublicAccessConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetBlockPublicAccessConfiguration",
-        input_schema = types.GetBlockPublicAccessConfigurationInput,
-        output_schema = types.GetBlockPublicAccessConfigurationOutput,
+        input_schema = schemas.GetBlockPublicAccessConfigurationInput,
+        output_schema = schemas.GetBlockPublicAccessConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:getClusterSessionCredentials(input, options)
     return self:invokeOperation(input, {
         name = "GetClusterSessionCredentials",
-        input_schema = types.GetClusterSessionCredentialsInput,
-        output_schema = types.GetClusterSessionCredentialsOutput,
+        input_schema = schemas.GetClusterSessionCredentialsInput,
+        output_schema = schemas.GetClusterSessionCredentialsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:getManagedScalingPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetManagedScalingPolicy",
-        input_schema = types.GetManagedScalingPolicyInput,
-        output_schema = types.GetManagedScalingPolicyOutput,
+        input_schema = schemas.GetManagedScalingPolicyInput,
+        output_schema = schemas.GetManagedScalingPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getOnClusterAppUIPresignedURL(input, options)
     return self:invokeOperation(input, {
         name = "GetOnClusterAppUIPresignedURL",
-        input_schema = types.GetOnClusterAppUIPresignedURLInput,
-        output_schema = types.GetOnClusterAppUIPresignedURLOutput,
+        input_schema = schemas.GetOnClusterAppUIPresignedURLInput,
+        output_schema = schemas.GetOnClusterAppUIPresignedURLOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:getPersistentAppUIPresignedURL(input, options)
     return self:invokeOperation(input, {
         name = "GetPersistentAppUIPresignedURL",
-        input_schema = types.GetPersistentAppUIPresignedURLInput,
-        output_schema = types.GetPersistentAppUIPresignedURLOutput,
+        input_schema = schemas.GetPersistentAppUIPresignedURLInput,
+        output_schema = schemas.GetPersistentAppUIPresignedURLOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:getStudioSessionMapping(input, options)
     return self:invokeOperation(input, {
         name = "GetStudioSessionMapping",
-        input_schema = types.GetStudioSessionMappingInput,
-        output_schema = types.GetStudioSessionMappingOutput,
+        input_schema = schemas.GetStudioSessionMappingInput,
+        output_schema = schemas.GetStudioSessionMappingOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listBootstrapActions(input, options)
     return self:invokeOperation(input, {
         name = "ListBootstrapActions",
-        input_schema = types.ListBootstrapActionsInput,
-        output_schema = types.ListBootstrapActionsOutput,
+        input_schema = schemas.ListBootstrapActionsInput,
+        output_schema = schemas.ListBootstrapActionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listClusters(input, options)
     return self:invokeOperation(input, {
         name = "ListClusters",
-        input_schema = types.ListClustersInput,
-        output_schema = types.ListClustersOutput,
+        input_schema = schemas.ListClustersInput,
+        output_schema = schemas.ListClustersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:listInstanceFleets(input, options)
     return self:invokeOperation(input, {
         name = "ListInstanceFleets",
-        input_schema = types.ListInstanceFleetsInput,
-        output_schema = types.ListInstanceFleetsOutput,
+        input_schema = schemas.ListInstanceFleetsInput,
+        output_schema = schemas.ListInstanceFleetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:listInstanceGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListInstanceGroups",
-        input_schema = types.ListInstanceGroupsInput,
-        output_schema = types.ListInstanceGroupsOutput,
+        input_schema = schemas.ListInstanceGroupsInput,
+        output_schema = schemas.ListInstanceGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:listInstances(input, options)
     return self:invokeOperation(input, {
         name = "ListInstances",
-        input_schema = types.ListInstancesInput,
-        output_schema = types.ListInstancesOutput,
+        input_schema = schemas.ListInstancesInput,
+        output_schema = schemas.ListInstancesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:listNotebookExecutions(input, options)
     return self:invokeOperation(input, {
         name = "ListNotebookExecutions",
-        input_schema = types.ListNotebookExecutionsInput,
-        output_schema = types.ListNotebookExecutionsOutput,
+        input_schema = schemas.ListNotebookExecutionsInput,
+        output_schema = schemas.ListNotebookExecutionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listReleaseLabels(input, options)
     return self:invokeOperation(input, {
         name = "ListReleaseLabels",
-        input_schema = types.ListReleaseLabelsInput,
-        output_schema = types.ListReleaseLabelsOutput,
+        input_schema = schemas.ListReleaseLabelsInput,
+        output_schema = schemas.ListReleaseLabelsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:listSecurityConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListSecurityConfigurations",
-        input_schema = types.ListSecurityConfigurationsInput,
-        output_schema = types.ListSecurityConfigurationsOutput,
+        input_schema = schemas.ListSecurityConfigurationsInput,
+        output_schema = schemas.ListSecurityConfigurationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:listSteps(input, options)
     return self:invokeOperation(input, {
         name = "ListSteps",
-        input_schema = types.ListStepsInput,
-        output_schema = types.ListStepsOutput,
+        input_schema = schemas.ListStepsInput,
+        output_schema = schemas.ListStepsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:listStudios(input, options)
     return self:invokeOperation(input, {
         name = "ListStudios",
-        input_schema = types.ListStudiosInput,
-        output_schema = types.ListStudiosOutput,
+        input_schema = schemas.ListStudiosInput,
+        output_schema = schemas.ListStudiosOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:listStudioSessionMappings(input, options)
     return self:invokeOperation(input, {
         name = "ListStudioSessionMappings",
-        input_schema = types.ListStudioSessionMappingsInput,
-        output_schema = types.ListStudioSessionMappingsOutput,
+        input_schema = schemas.ListStudioSessionMappingsInput,
+        output_schema = schemas.ListStudioSessionMappingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:listSupportedInstanceTypes(input, options)
     return self:invokeOperation(input, {
         name = "ListSupportedInstanceTypes",
-        input_schema = types.ListSupportedInstanceTypesInput,
-        output_schema = types.ListSupportedInstanceTypesOutput,
+        input_schema = schemas.ListSupportedInstanceTypesInput,
+        output_schema = schemas.ListSupportedInstanceTypesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:modifyCluster(input, options)
     return self:invokeOperation(input, {
         name = "ModifyCluster",
-        input_schema = types.ModifyClusterInput,
-        output_schema = types.ModifyClusterOutput,
+        input_schema = schemas.ModifyClusterInput,
+        output_schema = schemas.ModifyClusterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:modifyInstanceFleet(input, options)
     return self:invokeOperation(input, {
         name = "ModifyInstanceFleet",
-        input_schema = types.ModifyInstanceFleetInput,
-        output_schema = types.ModifyInstanceFleetOutput,
+        input_schema = schemas.ModifyInstanceFleetInput,
+        output_schema = schemas.ModifyInstanceFleetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:modifyInstanceGroups(input, options)
     return self:invokeOperation(input, {
         name = "ModifyInstanceGroups",
-        input_schema = types.ModifyInstanceGroupsInput,
-        output_schema = types.ModifyInstanceGroupsOutput,
+        input_schema = schemas.ModifyInstanceGroupsInput,
+        output_schema = schemas.ModifyInstanceGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:putAutoScalingPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutAutoScalingPolicy",
-        input_schema = types.PutAutoScalingPolicyInput,
-        output_schema = types.PutAutoScalingPolicyOutput,
+        input_schema = schemas.PutAutoScalingPolicyInput,
+        output_schema = schemas.PutAutoScalingPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:putAutoTerminationPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutAutoTerminationPolicy",
-        input_schema = types.PutAutoTerminationPolicyInput,
-        output_schema = types.PutAutoTerminationPolicyOutput,
+        input_schema = schemas.PutAutoTerminationPolicyInput,
+        output_schema = schemas.PutAutoTerminationPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:putBlockPublicAccessConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutBlockPublicAccessConfiguration",
-        input_schema = types.PutBlockPublicAccessConfigurationInput,
-        output_schema = types.PutBlockPublicAccessConfigurationOutput,
+        input_schema = schemas.PutBlockPublicAccessConfigurationInput,
+        output_schema = schemas.PutBlockPublicAccessConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:putManagedScalingPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutManagedScalingPolicy",
-        input_schema = types.PutManagedScalingPolicyInput,
-        output_schema = types.PutManagedScalingPolicyOutput,
+        input_schema = schemas.PutManagedScalingPolicyInput,
+        output_schema = schemas.PutManagedScalingPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:removeAutoScalingPolicy(input, options)
     return self:invokeOperation(input, {
         name = "RemoveAutoScalingPolicy",
-        input_schema = types.RemoveAutoScalingPolicyInput,
-        output_schema = types.RemoveAutoScalingPolicyOutput,
+        input_schema = schemas.RemoveAutoScalingPolicyInput,
+        output_schema = schemas.RemoveAutoScalingPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:removeAutoTerminationPolicy(input, options)
     return self:invokeOperation(input, {
         name = "RemoveAutoTerminationPolicy",
-        input_schema = types.RemoveAutoTerminationPolicyInput,
-        output_schema = types.RemoveAutoTerminationPolicyOutput,
+        input_schema = schemas.RemoveAutoTerminationPolicyInput,
+        output_schema = schemas.RemoveAutoTerminationPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:removeManagedScalingPolicy(input, options)
     return self:invokeOperation(input, {
         name = "RemoveManagedScalingPolicy",
-        input_schema = types.RemoveManagedScalingPolicyInput,
-        output_schema = types.RemoveManagedScalingPolicyOutput,
+        input_schema = schemas.RemoveManagedScalingPolicyInput,
+        output_schema = schemas.RemoveManagedScalingPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:removeTags(input, options)
     return self:invokeOperation(input, {
         name = "RemoveTags",
-        input_schema = types.RemoveTagsInput,
-        output_schema = types.RemoveTagsOutput,
+        input_schema = schemas.RemoveTagsInput,
+        output_schema = schemas.RemoveTagsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:runJobFlow(input, options)
     return self:invokeOperation(input, {
         name = "RunJobFlow",
-        input_schema = types.RunJobFlowInput,
-        output_schema = types.RunJobFlowOutput,
+        input_schema = schemas.RunJobFlowInput,
+        output_schema = schemas.RunJobFlowOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:setKeepJobFlowAliveWhenNoSteps(input, options)
     return self:invokeOperation(input, {
         name = "SetKeepJobFlowAliveWhenNoSteps",
-        input_schema = types.SetKeepJobFlowAliveWhenNoStepsInput,
-        output_schema = types.SetKeepJobFlowAliveWhenNoStepsOutput,
+        input_schema = schemas.SetKeepJobFlowAliveWhenNoStepsInput,
+        output_schema = schemas.SetKeepJobFlowAliveWhenNoStepsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:setTerminationProtection(input, options)
     return self:invokeOperation(input, {
         name = "SetTerminationProtection",
-        input_schema = types.SetTerminationProtectionInput,
-        output_schema = types.SetTerminationProtectionOutput,
+        input_schema = schemas.SetTerminationProtectionInput,
+        output_schema = schemas.SetTerminationProtectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:setUnhealthyNodeReplacement(input, options)
     return self:invokeOperation(input, {
         name = "SetUnhealthyNodeReplacement",
-        input_schema = types.SetUnhealthyNodeReplacementInput,
-        output_schema = types.SetUnhealthyNodeReplacementOutput,
+        input_schema = schemas.SetUnhealthyNodeReplacementInput,
+        output_schema = schemas.SetUnhealthyNodeReplacementOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:setVisibleToAllUsers(input, options)
     return self:invokeOperation(input, {
         name = "SetVisibleToAllUsers",
-        input_schema = types.SetVisibleToAllUsersInput,
-        output_schema = types.SetVisibleToAllUsersOutput,
+        input_schema = schemas.SetVisibleToAllUsersInput,
+        output_schema = schemas.SetVisibleToAllUsersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:startNotebookExecution(input, options)
     return self:invokeOperation(input, {
         name = "StartNotebookExecution",
-        input_schema = types.StartNotebookExecutionInput,
-        output_schema = types.StartNotebookExecutionOutput,
+        input_schema = schemas.StartNotebookExecutionInput,
+        output_schema = schemas.StartNotebookExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:stopNotebookExecution(input, options)
     return self:invokeOperation(input, {
         name = "StopNotebookExecution",
-        input_schema = types.StopNotebookExecutionInput,
-        output_schema = types.StopNotebookExecutionOutput,
+        input_schema = schemas.StopNotebookExecutionInput,
+        output_schema = schemas.StopNotebookExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:terminateJobFlows(input, options)
     return self:invokeOperation(input, {
         name = "TerminateJobFlows",
-        input_schema = types.TerminateJobFlowsInput,
-        output_schema = types.TerminateJobFlowsOutput,
+        input_schema = schemas.TerminateJobFlowsInput,
+        output_schema = schemas.TerminateJobFlowsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:updateStudio(input, options)
     return self:invokeOperation(input, {
         name = "UpdateStudio",
-        input_schema = types.UpdateStudioInput,
-        output_schema = types.UpdateStudioOutput,
+        input_schema = schemas.UpdateStudioInput,
+        output_schema = schemas.UpdateStudioOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:updateStudioSessionMapping(input, options)
     return self:invokeOperation(input, {
         name = "UpdateStudioSessionMapping",
-        input_schema = types.UpdateStudioSessionMappingInput,
-        output_schema = types.UpdateStudioSessionMappingOutput,
+        input_schema = schemas.UpdateStudioSessionMappingInput,
+        output_schema = schemas.UpdateStudioSessionMappingOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

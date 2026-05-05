@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("appintegrations.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("appintegrations.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("appintegrations.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createApplication(input, options)
     return self:invokeOperation(input, {
         name = "CreateApplication",
-        input_schema = types.CreateApplicationInput,
-        output_schema = types.CreateApplicationOutput,
+        input_schema = schemas.CreateApplicationInput,
+        output_schema = schemas.CreateApplicationOutput,
         http_method = "POST",
         http_path = "/applications",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createDataIntegration(input, options)
     return self:invokeOperation(input, {
         name = "CreateDataIntegration",
-        input_schema = types.CreateDataIntegrationInput,
-        output_schema = types.CreateDataIntegrationOutput,
+        input_schema = schemas.CreateDataIntegrationInput,
+        output_schema = schemas.CreateDataIntegrationOutput,
         http_method = "POST",
         http_path = "/dataIntegrations",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createDataIntegrationAssociation(input, options)
     return self:invokeOperation(input, {
         name = "CreateDataIntegrationAssociation",
-        input_schema = types.CreateDataIntegrationAssociationInput,
-        output_schema = types.CreateDataIntegrationAssociationOutput,
+        input_schema = schemas.CreateDataIntegrationAssociationInput,
+        output_schema = schemas.CreateDataIntegrationAssociationOutput,
         http_method = "POST",
         http_path = "/dataIntegrations/{DataIntegrationIdentifier}/associations",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createEventIntegration(input, options)
     return self:invokeOperation(input, {
         name = "CreateEventIntegration",
-        input_schema = types.CreateEventIntegrationInput,
-        output_schema = types.CreateEventIntegrationOutput,
+        input_schema = schemas.CreateEventIntegrationInput,
+        output_schema = schemas.CreateEventIntegrationOutput,
         http_method = "POST",
         http_path = "/eventIntegrations",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteApplication(input, options)
     return self:invokeOperation(input, {
         name = "DeleteApplication",
-        input_schema = types.DeleteApplicationInput,
-        output_schema = types.DeleteApplicationOutput,
+        input_schema = schemas.DeleteApplicationInput,
+        output_schema = schemas.DeleteApplicationOutput,
         http_method = "DELETE",
         http_path = "/applications/{Arn}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteDataIntegration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDataIntegration",
-        input_schema = types.DeleteDataIntegrationInput,
-        output_schema = types.DeleteDataIntegrationOutput,
+        input_schema = schemas.DeleteDataIntegrationInput,
+        output_schema = schemas.DeleteDataIntegrationOutput,
         http_method = "DELETE",
         http_path = "/dataIntegrations/{DataIntegrationIdentifier}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteEventIntegration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEventIntegration",
-        input_schema = types.DeleteEventIntegrationInput,
-        output_schema = types.DeleteEventIntegrationOutput,
+        input_schema = schemas.DeleteEventIntegrationInput,
+        output_schema = schemas.DeleteEventIntegrationOutput,
         http_method = "DELETE",
         http_path = "/eventIntegrations/{Name}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getApplication(input, options)
     return self:invokeOperation(input, {
         name = "GetApplication",
-        input_schema = types.GetApplicationInput,
-        output_schema = types.GetApplicationOutput,
+        input_schema = schemas.GetApplicationInput,
+        output_schema = schemas.GetApplicationOutput,
         http_method = "GET",
         http_path = "/applications/{Arn}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getDataIntegration(input, options)
     return self:invokeOperation(input, {
         name = "GetDataIntegration",
-        input_schema = types.GetDataIntegrationInput,
-        output_schema = types.GetDataIntegrationOutput,
+        input_schema = schemas.GetDataIntegrationInput,
+        output_schema = schemas.GetDataIntegrationOutput,
         http_method = "GET",
         http_path = "/dataIntegrations/{Identifier}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getEventIntegration(input, options)
     return self:invokeOperation(input, {
         name = "GetEventIntegration",
-        input_schema = types.GetEventIntegrationInput,
-        output_schema = types.GetEventIntegrationOutput,
+        input_schema = schemas.GetEventIntegrationInput,
+        output_schema = schemas.GetEventIntegrationOutput,
         http_method = "GET",
         http_path = "/eventIntegrations/{Name}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listApplicationAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListApplicationAssociations",
-        input_schema = types.ListApplicationAssociationsInput,
-        output_schema = types.ListApplicationAssociationsOutput,
+        input_schema = schemas.ListApplicationAssociationsInput,
+        output_schema = schemas.ListApplicationAssociationsOutput,
         http_method = "GET",
         http_path = "/applications/{ApplicationId}/associations",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listApplications(input, options)
     return self:invokeOperation(input, {
         name = "ListApplications",
-        input_schema = types.ListApplicationsInput,
-        output_schema = types.ListApplicationsOutput,
+        input_schema = schemas.ListApplicationsInput,
+        output_schema = schemas.ListApplicationsOutput,
         http_method = "GET",
         http_path = "/applications",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listDataIntegrationAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListDataIntegrationAssociations",
-        input_schema = types.ListDataIntegrationAssociationsInput,
-        output_schema = types.ListDataIntegrationAssociationsOutput,
+        input_schema = schemas.ListDataIntegrationAssociationsInput,
+        output_schema = schemas.ListDataIntegrationAssociationsOutput,
         http_method = "GET",
         http_path = "/dataIntegrations/{DataIntegrationIdentifier}/associations",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listDataIntegrations(input, options)
     return self:invokeOperation(input, {
         name = "ListDataIntegrations",
-        input_schema = types.ListDataIntegrationsInput,
-        output_schema = types.ListDataIntegrationsOutput,
+        input_schema = schemas.ListDataIntegrationsInput,
+        output_schema = schemas.ListDataIntegrationsOutput,
         http_method = "GET",
         http_path = "/dataIntegrations",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listEventIntegrationAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListEventIntegrationAssociations",
-        input_schema = types.ListEventIntegrationAssociationsInput,
-        output_schema = types.ListEventIntegrationAssociationsOutput,
+        input_schema = schemas.ListEventIntegrationAssociationsInput,
+        output_schema = schemas.ListEventIntegrationAssociationsOutput,
         http_method = "GET",
         http_path = "/eventIntegrations/{EventIntegrationName}/associations",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listEventIntegrations(input, options)
     return self:invokeOperation(input, {
         name = "ListEventIntegrations",
-        input_schema = types.ListEventIntegrationsInput,
-        output_schema = types.ListEventIntegrationsOutput,
+        input_schema = schemas.ListEventIntegrationsInput,
+        output_schema = schemas.ListEventIntegrationsOutput,
         http_method = "GET",
         http_path = "/eventIntegrations",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:updateApplication(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApplication",
-        input_schema = types.UpdateApplicationInput,
-        output_schema = types.UpdateApplicationOutput,
+        input_schema = schemas.UpdateApplicationInput,
+        output_schema = schemas.UpdateApplicationOutput,
         http_method = "PATCH",
         http_path = "/applications/{Arn}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:updateDataIntegration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDataIntegration",
-        input_schema = types.UpdateDataIntegrationInput,
-        output_schema = types.UpdateDataIntegrationOutput,
+        input_schema = schemas.UpdateDataIntegrationInput,
+        output_schema = schemas.UpdateDataIntegrationOutput,
         http_method = "PATCH",
         http_path = "/dataIntegrations/{Identifier}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:updateDataIntegrationAssociation(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDataIntegrationAssociation",
-        input_schema = types.UpdateDataIntegrationAssociationInput,
-        output_schema = types.UpdateDataIntegrationAssociationOutput,
+        input_schema = schemas.UpdateDataIntegrationAssociationInput,
+        output_schema = schemas.UpdateDataIntegrationAssociationOutput,
         http_method = "PATCH",
         http_path = "/dataIntegrations/{DataIntegrationIdentifier}/associations/{DataIntegrationAssociationIdentifier}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:updateEventIntegration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEventIntegration",
-        input_schema = types.UpdateEventIntegrationInput,
-        output_schema = types.UpdateEventIntegrationOutput,
+        input_schema = schemas.UpdateEventIntegrationInput,
+        output_schema = schemas.UpdateEventIntegrationOutput,
         http_method = "PATCH",
         http_path = "/eventIntegrations/{Name}",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("transcribestreaming.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("transcribestreaming.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("transcribestreaming.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getMedicalScribeStream(input, options)
     return self:invokeOperation(input, {
         name = "GetMedicalScribeStream",
-        input_schema = types.GetMedicalScribeStreamInput,
-        output_schema = types.GetMedicalScribeStreamOutput,
+        input_schema = schemas.GetMedicalScribeStreamInput,
+        output_schema = schemas.GetMedicalScribeStreamOutput,
         http_method = "GET",
         http_path = "/medical-scribe-stream/{SessionId}",
         effective_auth_schemes = {

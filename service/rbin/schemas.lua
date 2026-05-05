@@ -1,0 +1,996 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.rbin"
+
+local M = {}
+
+M.ResourceTag = schema.new({
+    id = id.from(_N, "ResourceTag"),
+    type = "structure",
+    members = {
+        ResourceTagKey = schema.new({
+            id = id.from(_N, "ResourceTag", "ResourceTagKey"),
+            type = "string",
+            name = "ResourceTagKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceTagValue = schema.new({
+            id = id.from(_N, "ResourceTag", "ResourceTagValue"),
+            type = "string",
+            name = "ResourceTagValue",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UnlockDelay = schema.new({
+    id = id.from(_N, "UnlockDelay"),
+    type = "structure",
+    members = {
+        UnlockDelayValue = schema.new({
+            id = id.from(_N, "UnlockDelay", "UnlockDelayValue"),
+            type = "integer",
+            name = "UnlockDelayValue",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UnlockDelayUnit = schema.new({
+            id = id.from(_N, "UnlockDelay", "UnlockDelayUnit"),
+            type = "string",
+            name = "UnlockDelayUnit",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LockConfiguration = schema.new({
+    id = id.from(_N, "LockConfiguration"),
+    type = "structure",
+    members = {
+        UnlockDelay = schema.new({
+            id = id.from(_N, "LockConfiguration", "UnlockDelay"),
+            type = "structure",
+            name = "UnlockDelay",
+            target_id = id.from(_N, "UnlockDelay"),
+            target = M.UnlockDelay,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RetentionPeriod = schema.new({
+    id = id.from(_N, "RetentionPeriod"),
+    type = "structure",
+    members = {
+        RetentionPeriodValue = schema.new({
+            id = id.from(_N, "RetentionPeriod", "RetentionPeriodValue"),
+            type = "integer",
+            name = "RetentionPeriodValue",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RetentionPeriodUnit = schema.new({
+            id = id.from(_N, "RetentionPeriod", "RetentionPeriodUnit"),
+            type = "string",
+            name = "RetentionPeriodUnit",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Tag = schema.new({
+    id = id.from(_N, "Tag"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "Tag", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "Tag", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateRuleInput = schema.new({
+    id = id.from(_N, "CreateRuleInput"),
+    type = "structure",
+    members = {
+        RetentionPeriod = schema.new({
+            id = id.from(_N, "CreateRuleInput", "RetentionPeriod"),
+            type = "structure",
+            name = "RetentionPeriod",
+            target_id = id.from(_N, "RetentionPeriod"),
+            target = M.RetentionPeriod,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateRuleInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateRuleInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "CreateRuleInput", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceTags = schema.new({
+            id = id.from(_N, "CreateRuleInput", "ResourceTags"),
+            type = "list",
+            name = "ResourceTags",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceTag,
+        }),
+        LockConfiguration = schema.new({
+            id = id.from(_N, "CreateRuleInput", "LockConfiguration"),
+            type = "structure",
+            name = "LockConfiguration",
+            target_id = id.from(_N, "LockConfiguration"),
+            target = M.LockConfiguration,
+        }),
+        ExcludeResourceTags = schema.new({
+            id = id.from(_N, "CreateRuleInput", "ExcludeResourceTags"),
+            type = "list",
+            name = "ExcludeResourceTags",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceTag,
+        }),
+    },
+})
+
+M.CreateRuleOutput = schema.new({
+    id = id.from(_N, "CreateRuleOutput"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "CreateRuleOutput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+        }),
+        RetentionPeriod = schema.new({
+            id = id.from(_N, "CreateRuleOutput", "RetentionPeriod"),
+            type = "structure",
+            name = "RetentionPeriod",
+            target_id = id.from(_N, "RetentionPeriod"),
+            target = M.RetentionPeriod,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateRuleOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateRuleOutput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "CreateRuleOutput", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+        ResourceTags = schema.new({
+            id = id.from(_N, "CreateRuleOutput", "ResourceTags"),
+            type = "list",
+            name = "ResourceTags",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceTag,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "CreateRuleOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        LockConfiguration = schema.new({
+            id = id.from(_N, "CreateRuleOutput", "LockConfiguration"),
+            type = "structure",
+            name = "LockConfiguration",
+            target_id = id.from(_N, "LockConfiguration"),
+            target = M.LockConfiguration,
+        }),
+        LockState = schema.new({
+            id = id.from(_N, "CreateRuleOutput", "LockState"),
+            type = "string",
+            name = "LockState",
+            target_id = prelude.String.id,
+        }),
+        RuleArn = schema.new({
+            id = id.from(_N, "CreateRuleOutput", "RuleArn"),
+            type = "string",
+            name = "RuleArn",
+            target_id = prelude.String.id,
+        }),
+        ExcludeResourceTags = schema.new({
+            id = id.from(_N, "CreateRuleOutput", "ExcludeResourceTags"),
+            type = "list",
+            name = "ExcludeResourceTags",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceTag,
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InternalServerException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        Reason = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "Reason"),
+            type = "string",
+            name = "Reason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ValidationException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        Reason = schema.new({
+            id = id.from(_N, "ValidationException", "Reason"),
+            type = "string",
+            name = "Reason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ConflictException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        Reason = schema.new({
+            id = id.from(_N, "ConflictException", "Reason"),
+            type = "string",
+            name = "Reason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteRuleInput = schema.new({
+    id = id.from(_N, "DeleteRuleInput"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "DeleteRuleInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteRuleOutput = schema.new({
+    id = id.from(_N, "DeleteRuleOutput"),
+    type = "structure",
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        Reason = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "Reason"),
+            type = "string",
+            name = "Reason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetRuleInput = schema.new({
+    id = id.from(_N, "GetRuleInput"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "GetRuleInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetRuleOutput = schema.new({
+    id = id.from(_N, "GetRuleOutput"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "GetRuleOutput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "GetRuleOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "GetRuleOutput", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+        RetentionPeriod = schema.new({
+            id = id.from(_N, "GetRuleOutput", "RetentionPeriod"),
+            type = "structure",
+            name = "RetentionPeriod",
+            target_id = id.from(_N, "RetentionPeriod"),
+            target = M.RetentionPeriod,
+        }),
+        ResourceTags = schema.new({
+            id = id.from(_N, "GetRuleOutput", "ResourceTags"),
+            type = "list",
+            name = "ResourceTags",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceTag,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "GetRuleOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        LockConfiguration = schema.new({
+            id = id.from(_N, "GetRuleOutput", "LockConfiguration"),
+            type = "structure",
+            name = "LockConfiguration",
+            target_id = id.from(_N, "LockConfiguration"),
+            target = M.LockConfiguration,
+        }),
+        LockState = schema.new({
+            id = id.from(_N, "GetRuleOutput", "LockState"),
+            type = "string",
+            name = "LockState",
+            target_id = prelude.String.id,
+        }),
+        LockEndTime = schema.new({
+            id = id.from(_N, "GetRuleOutput", "LockEndTime"),
+            type = "timestamp",
+            name = "LockEndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        RuleArn = schema.new({
+            id = id.from(_N, "GetRuleOutput", "RuleArn"),
+            type = "string",
+            name = "RuleArn",
+            target_id = prelude.String.id,
+        }),
+        ExcludeResourceTags = schema.new({
+            id = id.from(_N, "GetRuleOutput", "ExcludeResourceTags"),
+            type = "list",
+            name = "ExcludeResourceTags",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceTag,
+        }),
+    },
+})
+
+M.ListRulesInput = schema.new({
+    id = id.from(_N, "ListRulesInput"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListRulesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListRulesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "ListRulesInput", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceTags = schema.new({
+            id = id.from(_N, "ListRulesInput", "ResourceTags"),
+            type = "list",
+            name = "ResourceTags",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceTag,
+        }),
+        LockState = schema.new({
+            id = id.from(_N, "ListRulesInput", "LockState"),
+            type = "string",
+            name = "LockState",
+            target_id = prelude.String.id,
+        }),
+        ExcludeResourceTags = schema.new({
+            id = id.from(_N, "ListRulesInput", "ExcludeResourceTags"),
+            type = "list",
+            name = "ExcludeResourceTags",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceTag,
+        }),
+    },
+})
+
+M.RuleSummary = schema.new({
+    id = id.from(_N, "RuleSummary"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "RuleSummary", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "RuleSummary", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        RetentionPeriod = schema.new({
+            id = id.from(_N, "RuleSummary", "RetentionPeriod"),
+            type = "structure",
+            name = "RetentionPeriod",
+            target_id = id.from(_N, "RetentionPeriod"),
+            target = M.RetentionPeriod,
+        }),
+        LockState = schema.new({
+            id = id.from(_N, "RuleSummary", "LockState"),
+            type = "string",
+            name = "LockState",
+            target_id = prelude.String.id,
+        }),
+        RuleArn = schema.new({
+            id = id.from(_N, "RuleSummary", "RuleArn"),
+            type = "string",
+            name = "RuleArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListRulesOutput = schema.new({
+    id = id.from(_N, "ListRulesOutput"),
+    type = "structure",
+    members = {
+        Rules = schema.new({
+            id = id.from(_N, "ListRulesOutput", "Rules"),
+            type = "list",
+            name = "Rules",
+            target_id = prelude.Document.id,
+            list_member = M.RuleSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListRulesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceOutput"),
+    type = "structure",
+    members = {
+        Tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.LockRuleInput = schema.new({
+    id = id.from(_N, "LockRuleInput"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "LockRuleInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        LockConfiguration = schema.new({
+            id = id.from(_N, "LockRuleInput", "LockConfiguration"),
+            type = "structure",
+            name = "LockConfiguration",
+            target_id = id.from(_N, "LockConfiguration"),
+            target = M.LockConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LockRuleOutput = schema.new({
+    id = id.from(_N, "LockRuleOutput"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "LockRuleOutput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "LockRuleOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "LockRuleOutput", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+        RetentionPeriod = schema.new({
+            id = id.from(_N, "LockRuleOutput", "RetentionPeriod"),
+            type = "structure",
+            name = "RetentionPeriod",
+            target_id = id.from(_N, "RetentionPeriod"),
+            target = M.RetentionPeriod,
+        }),
+        ResourceTags = schema.new({
+            id = id.from(_N, "LockRuleOutput", "ResourceTags"),
+            type = "list",
+            name = "ResourceTags",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceTag,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "LockRuleOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        LockConfiguration = schema.new({
+            id = id.from(_N, "LockRuleOutput", "LockConfiguration"),
+            type = "structure",
+            name = "LockConfiguration",
+            target_id = id.from(_N, "LockConfiguration"),
+            target = M.LockConfiguration,
+        }),
+        LockState = schema.new({
+            id = id.from(_N, "LockRuleOutput", "LockState"),
+            type = "string",
+            name = "LockState",
+            target_id = prelude.String.id,
+        }),
+        RuleArn = schema.new({
+            id = id.from(_N, "LockRuleOutput", "RuleArn"),
+            type = "string",
+            name = "RuleArn",
+            target_id = prelude.String.id,
+        }),
+        ExcludeResourceTags = schema.new({
+            id = id.from(_N, "LockRuleOutput", "ExcludeResourceTags"),
+            type = "list",
+            name = "ExcludeResourceTags",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceTag,
+        }),
+    },
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "TagResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceOutput"),
+    type = "structure",
+})
+
+M.UnlockRuleInput = schema.new({
+    id = id.from(_N, "UnlockRuleInput"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "UnlockRuleInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.UnlockRuleOutput = schema.new({
+    id = id.from(_N, "UnlockRuleOutput"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "UnlockRuleOutput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UnlockRuleOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "UnlockRuleOutput", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+        RetentionPeriod = schema.new({
+            id = id.from(_N, "UnlockRuleOutput", "RetentionPeriod"),
+            type = "structure",
+            name = "RetentionPeriod",
+            target_id = id.from(_N, "RetentionPeriod"),
+            target = M.RetentionPeriod,
+        }),
+        ResourceTags = schema.new({
+            id = id.from(_N, "UnlockRuleOutput", "ResourceTags"),
+            type = "list",
+            name = "ResourceTags",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceTag,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "UnlockRuleOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        LockConfiguration = schema.new({
+            id = id.from(_N, "UnlockRuleOutput", "LockConfiguration"),
+            type = "structure",
+            name = "LockConfiguration",
+            target_id = id.from(_N, "LockConfiguration"),
+            target = M.LockConfiguration,
+        }),
+        LockState = schema.new({
+            id = id.from(_N, "UnlockRuleOutput", "LockState"),
+            type = "string",
+            name = "LockState",
+            target_id = prelude.String.id,
+        }),
+        LockEndTime = schema.new({
+            id = id.from(_N, "UnlockRuleOutput", "LockEndTime"),
+            type = "timestamp",
+            name = "LockEndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        RuleArn = schema.new({
+            id = id.from(_N, "UnlockRuleOutput", "RuleArn"),
+            type = "string",
+            name = "RuleArn",
+            target_id = prelude.String.id,
+        }),
+        ExcludeResourceTags = schema.new({
+            id = id.from(_N, "UnlockRuleOutput", "ExcludeResourceTags"),
+            type = "list",
+            name = "ExcludeResourceTags",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceTag,
+        }),
+    },
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "UntagResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        TagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "TagKeys"),
+            type = "list",
+            name = "TagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "tagKeys" },
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
+M.UpdateRuleInput = schema.new({
+    id = id.from(_N, "UpdateRuleInput"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "UpdateRuleInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        RetentionPeriod = schema.new({
+            id = id.from(_N, "UpdateRuleInput", "RetentionPeriod"),
+            type = "structure",
+            name = "RetentionPeriod",
+            target_id = id.from(_N, "RetentionPeriod"),
+            target = M.RetentionPeriod,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateRuleInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "UpdateRuleInput", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+        ResourceTags = schema.new({
+            id = id.from(_N, "UpdateRuleInput", "ResourceTags"),
+            type = "list",
+            name = "ResourceTags",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceTag,
+        }),
+        ExcludeResourceTags = schema.new({
+            id = id.from(_N, "UpdateRuleInput", "ExcludeResourceTags"),
+            type = "list",
+            name = "ExcludeResourceTags",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceTag,
+        }),
+    },
+})
+
+M.UpdateRuleOutput = schema.new({
+    id = id.from(_N, "UpdateRuleOutput"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "UpdateRuleOutput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+        }),
+        RetentionPeriod = schema.new({
+            id = id.from(_N, "UpdateRuleOutput", "RetentionPeriod"),
+            type = "structure",
+            name = "RetentionPeriod",
+            target_id = id.from(_N, "RetentionPeriod"),
+            target = M.RetentionPeriod,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateRuleOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "UpdateRuleOutput", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+        ResourceTags = schema.new({
+            id = id.from(_N, "UpdateRuleOutput", "ResourceTags"),
+            type = "list",
+            name = "ResourceTags",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceTag,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "UpdateRuleOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        LockState = schema.new({
+            id = id.from(_N, "UpdateRuleOutput", "LockState"),
+            type = "string",
+            name = "LockState",
+            target_id = prelude.String.id,
+        }),
+        LockEndTime = schema.new({
+            id = id.from(_N, "UpdateRuleOutput", "LockEndTime"),
+            type = "timestamp",
+            name = "LockEndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        RuleArn = schema.new({
+            id = id.from(_N, "UpdateRuleOutput", "RuleArn"),
+            type = "string",
+            name = "RuleArn",
+            target_id = prelude.String.id,
+        }),
+        ExcludeResourceTags = schema.new({
+            id = id.from(_N, "UpdateRuleOutput", "ExcludeResourceTags"),
+            type = "list",
+            name = "ExcludeResourceTags",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceTag,
+        }),
+    },
+})
+
+return M

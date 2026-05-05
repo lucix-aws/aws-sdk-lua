@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("ioteventsdata.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("ioteventsdata.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("ioteventsdata.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchAcknowledgeAlarm(input, options)
     return self:invokeOperation(input, {
         name = "BatchAcknowledgeAlarm",
-        input_schema = types.BatchAcknowledgeAlarmInput,
-        output_schema = types.BatchAcknowledgeAlarmOutput,
+        input_schema = schemas.BatchAcknowledgeAlarmInput,
+        output_schema = schemas.BatchAcknowledgeAlarmOutput,
         http_method = "POST",
         http_path = "/alarms/acknowledge",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchDeleteDetector(input, options)
     return self:invokeOperation(input, {
         name = "BatchDeleteDetector",
-        input_schema = types.BatchDeleteDetectorInput,
-        output_schema = types.BatchDeleteDetectorOutput,
+        input_schema = schemas.BatchDeleteDetectorInput,
+        output_schema = schemas.BatchDeleteDetectorOutput,
         http_method = "POST",
         http_path = "/detectors/delete",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchDisableAlarm(input, options)
     return self:invokeOperation(input, {
         name = "BatchDisableAlarm",
-        input_schema = types.BatchDisableAlarmInput,
-        output_schema = types.BatchDisableAlarmOutput,
+        input_schema = schemas.BatchDisableAlarmInput,
+        output_schema = schemas.BatchDisableAlarmOutput,
         http_method = "POST",
         http_path = "/alarms/disable",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:batchEnableAlarm(input, options)
     return self:invokeOperation(input, {
         name = "BatchEnableAlarm",
-        input_schema = types.BatchEnableAlarmInput,
-        output_schema = types.BatchEnableAlarmOutput,
+        input_schema = schemas.BatchEnableAlarmInput,
+        output_schema = schemas.BatchEnableAlarmOutput,
         http_method = "POST",
         http_path = "/alarms/enable",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:batchPutMessage(input, options)
     return self:invokeOperation(input, {
         name = "BatchPutMessage",
-        input_schema = types.BatchPutMessageInput,
-        output_schema = types.BatchPutMessageOutput,
+        input_schema = schemas.BatchPutMessageInput,
+        output_schema = schemas.BatchPutMessageOutput,
         http_method = "POST",
         http_path = "/inputs/messages",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:batchResetAlarm(input, options)
     return self:invokeOperation(input, {
         name = "BatchResetAlarm",
-        input_schema = types.BatchResetAlarmInput,
-        output_schema = types.BatchResetAlarmOutput,
+        input_schema = schemas.BatchResetAlarmInput,
+        output_schema = schemas.BatchResetAlarmOutput,
         http_method = "POST",
         http_path = "/alarms/reset",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:batchSnoozeAlarm(input, options)
     return self:invokeOperation(input, {
         name = "BatchSnoozeAlarm",
-        input_schema = types.BatchSnoozeAlarmInput,
-        output_schema = types.BatchSnoozeAlarmOutput,
+        input_schema = schemas.BatchSnoozeAlarmInput,
+        output_schema = schemas.BatchSnoozeAlarmOutput,
         http_method = "POST",
         http_path = "/alarms/snooze",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:batchUpdateDetector(input, options)
     return self:invokeOperation(input, {
         name = "BatchUpdateDetector",
-        input_schema = types.BatchUpdateDetectorInput,
-        output_schema = types.BatchUpdateDetectorOutput,
+        input_schema = schemas.BatchUpdateDetectorInput,
+        output_schema = schemas.BatchUpdateDetectorOutput,
         http_method = "POST",
         http_path = "/detectors",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:describeAlarm(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAlarm",
-        input_schema = types.DescribeAlarmInput,
-        output_schema = types.DescribeAlarmOutput,
+        input_schema = schemas.DescribeAlarmInput,
+        output_schema = schemas.DescribeAlarmOutput,
         http_method = "GET",
         http_path = "/alarms/{alarmModelName}/keyValues",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:describeDetector(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDetector",
-        input_schema = types.DescribeDetectorInput,
-        output_schema = types.DescribeDetectorOutput,
+        input_schema = schemas.DescribeDetectorInput,
+        output_schema = schemas.DescribeDetectorOutput,
         http_method = "GET",
         http_path = "/detectors/{detectorModelName}/keyValues",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listAlarms(input, options)
     return self:invokeOperation(input, {
         name = "ListAlarms",
-        input_schema = types.ListAlarmsInput,
-        output_schema = types.ListAlarmsOutput,
+        input_schema = schemas.ListAlarmsInput,
+        output_schema = schemas.ListAlarmsOutput,
         http_method = "GET",
         http_path = "/alarms/{alarmModelName}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listDetectors(input, options)
     return self:invokeOperation(input, {
         name = "ListDetectors",
-        input_schema = types.ListDetectorsInput,
-        output_schema = types.ListDetectorsOutput,
+        input_schema = schemas.ListDetectorsInput,
+        output_schema = schemas.ListDetectorsOutput,
         http_method = "GET",
         http_path = "/detectors/{detectorModelName}",
         effective_auth_schemes = {

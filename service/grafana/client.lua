@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("grafana.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("grafana.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("grafana.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateLicense(input, options)
     return self:invokeOperation(input, {
         name = "AssociateLicense",
-        input_schema = types.AssociateLicenseInput,
-        output_schema = types.AssociateLicenseOutput,
+        input_schema = schemas.AssociateLicenseInput,
+        output_schema = schemas.AssociateLicenseOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/licenses/{licenseType}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createWorkspace(input, options)
     return self:invokeOperation(input, {
         name = "CreateWorkspace",
-        input_schema = types.CreateWorkspaceInput,
-        output_schema = types.CreateWorkspaceOutput,
+        input_schema = schemas.CreateWorkspaceInput,
+        output_schema = schemas.CreateWorkspaceOutput,
         http_method = "POST",
         http_path = "/workspaces",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createWorkspaceApiKey(input, options)
     return self:invokeOperation(input, {
         name = "CreateWorkspaceApiKey",
-        input_schema = types.CreateWorkspaceApiKeyInput,
-        output_schema = types.CreateWorkspaceApiKeyOutput,
+        input_schema = schemas.CreateWorkspaceApiKeyInput,
+        output_schema = schemas.CreateWorkspaceApiKeyOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/apikeys",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createWorkspaceServiceAccount(input, options)
     return self:invokeOperation(input, {
         name = "CreateWorkspaceServiceAccount",
-        input_schema = types.CreateWorkspaceServiceAccountInput,
-        output_schema = types.CreateWorkspaceServiceAccountOutput,
+        input_schema = schemas.CreateWorkspaceServiceAccountInput,
+        output_schema = schemas.CreateWorkspaceServiceAccountOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/serviceaccounts",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createWorkspaceServiceAccountToken(input, options)
     return self:invokeOperation(input, {
         name = "CreateWorkspaceServiceAccountToken",
-        input_schema = types.CreateWorkspaceServiceAccountTokenInput,
-        output_schema = types.CreateWorkspaceServiceAccountTokenOutput,
+        input_schema = schemas.CreateWorkspaceServiceAccountTokenInput,
+        output_schema = schemas.CreateWorkspaceServiceAccountTokenOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/serviceaccounts/{serviceAccountId}/tokens",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteWorkspace(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWorkspace",
-        input_schema = types.DeleteWorkspaceInput,
-        output_schema = types.DeleteWorkspaceOutput,
+        input_schema = schemas.DeleteWorkspaceInput,
+        output_schema = schemas.DeleteWorkspaceOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{workspaceId}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteWorkspaceApiKey(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWorkspaceApiKey",
-        input_schema = types.DeleteWorkspaceApiKeyInput,
-        output_schema = types.DeleteWorkspaceApiKeyOutput,
+        input_schema = schemas.DeleteWorkspaceApiKeyInput,
+        output_schema = schemas.DeleteWorkspaceApiKeyOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{workspaceId}/apikeys/{keyName}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteWorkspaceServiceAccount(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWorkspaceServiceAccount",
-        input_schema = types.DeleteWorkspaceServiceAccountInput,
-        output_schema = types.DeleteWorkspaceServiceAccountOutput,
+        input_schema = schemas.DeleteWorkspaceServiceAccountInput,
+        output_schema = schemas.DeleteWorkspaceServiceAccountOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{workspaceId}/serviceaccounts/{serviceAccountId}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteWorkspaceServiceAccountToken(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWorkspaceServiceAccountToken",
-        input_schema = types.DeleteWorkspaceServiceAccountTokenInput,
-        output_schema = types.DeleteWorkspaceServiceAccountTokenOutput,
+        input_schema = schemas.DeleteWorkspaceServiceAccountTokenInput,
+        output_schema = schemas.DeleteWorkspaceServiceAccountTokenOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{workspaceId}/serviceaccounts/{serviceAccountId}/tokens/{tokenId}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:describeWorkspace(input, options)
     return self:invokeOperation(input, {
         name = "DescribeWorkspace",
-        input_schema = types.DescribeWorkspaceInput,
-        output_schema = types.DescribeWorkspaceOutput,
+        input_schema = schemas.DescribeWorkspaceInput,
+        output_schema = schemas.DescribeWorkspaceOutput,
         http_method = "GET",
         http_path = "/workspaces/{workspaceId}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:describeWorkspaceAuthentication(input, options)
     return self:invokeOperation(input, {
         name = "DescribeWorkspaceAuthentication",
-        input_schema = types.DescribeWorkspaceAuthenticationInput,
-        output_schema = types.DescribeWorkspaceAuthenticationOutput,
+        input_schema = schemas.DescribeWorkspaceAuthenticationInput,
+        output_schema = schemas.DescribeWorkspaceAuthenticationOutput,
         http_method = "GET",
         http_path = "/workspaces/{workspaceId}/authentication",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:describeWorkspaceConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DescribeWorkspaceConfiguration",
-        input_schema = types.DescribeWorkspaceConfigurationInput,
-        output_schema = types.DescribeWorkspaceConfigurationOutput,
+        input_schema = schemas.DescribeWorkspaceConfigurationInput,
+        output_schema = schemas.DescribeWorkspaceConfigurationOutput,
         http_method = "GET",
         http_path = "/workspaces/{workspaceId}/configuration",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:disassociateLicense(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateLicense",
-        input_schema = types.DisassociateLicenseInput,
-        output_schema = types.DisassociateLicenseOutput,
+        input_schema = schemas.DisassociateLicenseInput,
+        output_schema = schemas.DisassociateLicenseOutput,
         http_method = "DELETE",
         http_path = "/workspaces/{workspaceId}/licenses/{licenseType}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listPermissions(input, options)
     return self:invokeOperation(input, {
         name = "ListPermissions",
-        input_schema = types.ListPermissionsInput,
-        output_schema = types.ListPermissionsOutput,
+        input_schema = schemas.ListPermissionsInput,
+        output_schema = schemas.ListPermissionsOutput,
         http_method = "GET",
         http_path = "/workspaces/{workspaceId}/permissions",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListVersions",
-        input_schema = types.ListVersionsInput,
-        output_schema = types.ListVersionsOutput,
+        input_schema = schemas.ListVersionsInput,
+        output_schema = schemas.ListVersionsOutput,
         http_method = "GET",
         http_path = "/versions",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listWorkspaces(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkspaces",
-        input_schema = types.ListWorkspacesInput,
-        output_schema = types.ListWorkspacesOutput,
+        input_schema = schemas.ListWorkspacesInput,
+        output_schema = schemas.ListWorkspacesOutput,
         http_method = "GET",
         http_path = "/workspaces",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listWorkspaceServiceAccounts(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkspaceServiceAccounts",
-        input_schema = types.ListWorkspaceServiceAccountsInput,
-        output_schema = types.ListWorkspaceServiceAccountsOutput,
+        input_schema = schemas.ListWorkspaceServiceAccountsInput,
+        output_schema = schemas.ListWorkspaceServiceAccountsOutput,
         http_method = "GET",
         http_path = "/workspaces/{workspaceId}/serviceaccounts",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listWorkspaceServiceAccountTokens(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkspaceServiceAccountTokens",
-        input_schema = types.ListWorkspaceServiceAccountTokensInput,
-        output_schema = types.ListWorkspaceServiceAccountTokensOutput,
+        input_schema = schemas.ListWorkspaceServiceAccountTokensInput,
+        output_schema = schemas.ListWorkspaceServiceAccountTokensOutput,
         http_method = "GET",
         http_path = "/workspaces/{workspaceId}/serviceaccounts/{serviceAccountId}/tokens",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:updatePermissions(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePermissions",
-        input_schema = types.UpdatePermissionsInput,
-        output_schema = types.UpdatePermissionsOutput,
+        input_schema = schemas.UpdatePermissionsInput,
+        output_schema = schemas.UpdatePermissionsOutput,
         http_method = "PATCH",
         http_path = "/workspaces/{workspaceId}/permissions",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:updateWorkspace(input, options)
     return self:invokeOperation(input, {
         name = "UpdateWorkspace",
-        input_schema = types.UpdateWorkspaceInput,
-        output_schema = types.UpdateWorkspaceOutput,
+        input_schema = schemas.UpdateWorkspaceInput,
+        output_schema = schemas.UpdateWorkspaceOutput,
         http_method = "PUT",
         http_path = "/workspaces/{workspaceId}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:updateWorkspaceAuthentication(input, options)
     return self:invokeOperation(input, {
         name = "UpdateWorkspaceAuthentication",
-        input_schema = types.UpdateWorkspaceAuthenticationInput,
-        output_schema = types.UpdateWorkspaceAuthenticationOutput,
+        input_schema = schemas.UpdateWorkspaceAuthenticationInput,
+        output_schema = schemas.UpdateWorkspaceAuthenticationOutput,
         http_method = "POST",
         http_path = "/workspaces/{workspaceId}/authentication",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:updateWorkspaceConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateWorkspaceConfiguration",
-        input_schema = types.UpdateWorkspaceConfigurationInput,
-        output_schema = types.UpdateWorkspaceConfigurationOutput,
+        input_schema = schemas.UpdateWorkspaceConfigurationInput,
+        output_schema = schemas.UpdateWorkspaceConfigurationOutput,
         http_method = "PUT",
         http_path = "/workspaces/{workspaceId}/configuration",
         effective_auth_schemes = {

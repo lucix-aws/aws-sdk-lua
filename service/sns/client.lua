@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("sns.endpoint_rules")
 local query_protocol = require("protocol.query")
+local schemas = require("sns.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("sns.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addPermission(input, options)
     return self:invokeOperation(input, {
         name = "AddPermission",
-        input_schema = types.AddPermissionInput,
-        output_schema = types.AddPermissionOutput,
+        input_schema = schemas.AddPermissionInput,
+        output_schema = schemas.AddPermissionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:checkIfPhoneNumberIsOptedOut(input, options)
     return self:invokeOperation(input, {
         name = "CheckIfPhoneNumberIsOptedOut",
-        input_schema = types.CheckIfPhoneNumberIsOptedOutInput,
-        output_schema = types.CheckIfPhoneNumberIsOptedOutOutput,
+        input_schema = schemas.CheckIfPhoneNumberIsOptedOutInput,
+        output_schema = schemas.CheckIfPhoneNumberIsOptedOutOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:confirmSubscription(input, options)
     return self:invokeOperation(input, {
         name = "ConfirmSubscription",
-        input_schema = types.ConfirmSubscriptionInput,
-        output_schema = types.ConfirmSubscriptionOutput,
+        input_schema = schemas.ConfirmSubscriptionInput,
+        output_schema = schemas.ConfirmSubscriptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createPlatformApplication(input, options)
     return self:invokeOperation(input, {
         name = "CreatePlatformApplication",
-        input_schema = types.CreatePlatformApplicationInput,
-        output_schema = types.CreatePlatformApplicationOutput,
+        input_schema = schemas.CreatePlatformApplicationInput,
+        output_schema = schemas.CreatePlatformApplicationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createPlatformEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "CreatePlatformEndpoint",
-        input_schema = types.CreatePlatformEndpointInput,
-        output_schema = types.CreatePlatformEndpointOutput,
+        input_schema = schemas.CreatePlatformEndpointInput,
+        output_schema = schemas.CreatePlatformEndpointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createSMSSandboxPhoneNumber(input, options)
     return self:invokeOperation(input, {
         name = "CreateSMSSandboxPhoneNumber",
-        input_schema = types.CreateSMSSandboxPhoneNumberInput,
-        output_schema = types.CreateSMSSandboxPhoneNumberOutput,
+        input_schema = schemas.CreateSMSSandboxPhoneNumberInput,
+        output_schema = schemas.CreateSMSSandboxPhoneNumberOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createTopic(input, options)
     return self:invokeOperation(input, {
         name = "CreateTopic",
-        input_schema = types.CreateTopicInput,
-        output_schema = types.CreateTopicOutput,
+        input_schema = schemas.CreateTopicInput,
+        output_schema = schemas.CreateTopicOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEndpoint",
-        input_schema = types.DeleteEndpointInput,
-        output_schema = types.DeleteEndpointOutput,
+        input_schema = schemas.DeleteEndpointInput,
+        output_schema = schemas.DeleteEndpointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deletePlatformApplication(input, options)
     return self:invokeOperation(input, {
         name = "DeletePlatformApplication",
-        input_schema = types.DeletePlatformApplicationInput,
-        output_schema = types.DeletePlatformApplicationOutput,
+        input_schema = schemas.DeletePlatformApplicationInput,
+        output_schema = schemas.DeletePlatformApplicationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteSMSSandboxPhoneNumber(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSMSSandboxPhoneNumber",
-        input_schema = types.DeleteSMSSandboxPhoneNumberInput,
-        output_schema = types.DeleteSMSSandboxPhoneNumberOutput,
+        input_schema = schemas.DeleteSMSSandboxPhoneNumberInput,
+        output_schema = schemas.DeleteSMSSandboxPhoneNumberOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteTopic(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTopic",
-        input_schema = types.DeleteTopicInput,
-        output_schema = types.DeleteTopicOutput,
+        input_schema = schemas.DeleteTopicInput,
+        output_schema = schemas.DeleteTopicOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getDataProtectionPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetDataProtectionPolicy",
-        input_schema = types.GetDataProtectionPolicyInput,
-        output_schema = types.GetDataProtectionPolicyOutput,
+        input_schema = schemas.GetDataProtectionPolicyInput,
+        output_schema = schemas.GetDataProtectionPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getEndpointAttributes(input, options)
     return self:invokeOperation(input, {
         name = "GetEndpointAttributes",
-        input_schema = types.GetEndpointAttributesInput,
-        output_schema = types.GetEndpointAttributesOutput,
+        input_schema = schemas.GetEndpointAttributesInput,
+        output_schema = schemas.GetEndpointAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getPlatformApplicationAttributes(input, options)
     return self:invokeOperation(input, {
         name = "GetPlatformApplicationAttributes",
-        input_schema = types.GetPlatformApplicationAttributesInput,
-        output_schema = types.GetPlatformApplicationAttributesOutput,
+        input_schema = schemas.GetPlatformApplicationAttributesInput,
+        output_schema = schemas.GetPlatformApplicationAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getSMSAttributes(input, options)
     return self:invokeOperation(input, {
         name = "GetSMSAttributes",
-        input_schema = types.GetSMSAttributesInput,
-        output_schema = types.GetSMSAttributesOutput,
+        input_schema = schemas.GetSMSAttributesInput,
+        output_schema = schemas.GetSMSAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getSMSSandboxAccountStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetSMSSandboxAccountStatus",
-        input_schema = types.GetSMSSandboxAccountStatusInput,
-        output_schema = types.GetSMSSandboxAccountStatusOutput,
+        input_schema = schemas.GetSMSSandboxAccountStatusInput,
+        output_schema = schemas.GetSMSSandboxAccountStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getSubscriptionAttributes(input, options)
     return self:invokeOperation(input, {
         name = "GetSubscriptionAttributes",
-        input_schema = types.GetSubscriptionAttributesInput,
-        output_schema = types.GetSubscriptionAttributesOutput,
+        input_schema = schemas.GetSubscriptionAttributesInput,
+        output_schema = schemas.GetSubscriptionAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getTopicAttributes(input, options)
     return self:invokeOperation(input, {
         name = "GetTopicAttributes",
-        input_schema = types.GetTopicAttributesInput,
-        output_schema = types.GetTopicAttributesOutput,
+        input_schema = schemas.GetTopicAttributesInput,
+        output_schema = schemas.GetTopicAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listEndpointsByPlatformApplication(input, options)
     return self:invokeOperation(input, {
         name = "ListEndpointsByPlatformApplication",
-        input_schema = types.ListEndpointsByPlatformApplicationInput,
-        output_schema = types.ListEndpointsByPlatformApplicationOutput,
+        input_schema = schemas.ListEndpointsByPlatformApplicationInput,
+        output_schema = schemas.ListEndpointsByPlatformApplicationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listOriginationNumbers(input, options)
     return self:invokeOperation(input, {
         name = "ListOriginationNumbers",
-        input_schema = types.ListOriginationNumbersInput,
-        output_schema = types.ListOriginationNumbersOutput,
+        input_schema = schemas.ListOriginationNumbersInput,
+        output_schema = schemas.ListOriginationNumbersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listPhoneNumbersOptedOut(input, options)
     return self:invokeOperation(input, {
         name = "ListPhoneNumbersOptedOut",
-        input_schema = types.ListPhoneNumbersOptedOutInput,
-        output_schema = types.ListPhoneNumbersOptedOutOutput,
+        input_schema = schemas.ListPhoneNumbersOptedOutInput,
+        output_schema = schemas.ListPhoneNumbersOptedOutOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listPlatformApplications(input, options)
     return self:invokeOperation(input, {
         name = "ListPlatformApplications",
-        input_schema = types.ListPlatformApplicationsInput,
-        output_schema = types.ListPlatformApplicationsOutput,
+        input_schema = schemas.ListPlatformApplicationsInput,
+        output_schema = schemas.ListPlatformApplicationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listSMSSandboxPhoneNumbers(input, options)
     return self:invokeOperation(input, {
         name = "ListSMSSandboxPhoneNumbers",
-        input_schema = types.ListSMSSandboxPhoneNumbersInput,
-        output_schema = types.ListSMSSandboxPhoneNumbersOutput,
+        input_schema = schemas.ListSMSSandboxPhoneNumbersInput,
+        output_schema = schemas.ListSMSSandboxPhoneNumbersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listSubscriptions(input, options)
     return self:invokeOperation(input, {
         name = "ListSubscriptions",
-        input_schema = types.ListSubscriptionsInput,
-        output_schema = types.ListSubscriptionsOutput,
+        input_schema = schemas.ListSubscriptionsInput,
+        output_schema = schemas.ListSubscriptionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listSubscriptionsByTopic(input, options)
     return self:invokeOperation(input, {
         name = "ListSubscriptionsByTopic",
-        input_schema = types.ListSubscriptionsByTopicInput,
-        output_schema = types.ListSubscriptionsByTopicOutput,
+        input_schema = schemas.ListSubscriptionsByTopicInput,
+        output_schema = schemas.ListSubscriptionsByTopicOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listTopics(input, options)
     return self:invokeOperation(input, {
         name = "ListTopics",
-        input_schema = types.ListTopicsInput,
-        output_schema = types.ListTopicsOutput,
+        input_schema = schemas.ListTopicsInput,
+        output_schema = schemas.ListTopicsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:optInPhoneNumber(input, options)
     return self:invokeOperation(input, {
         name = "OptInPhoneNumber",
-        input_schema = types.OptInPhoneNumberInput,
-        output_schema = types.OptInPhoneNumberOutput,
+        input_schema = schemas.OptInPhoneNumberInput,
+        output_schema = schemas.OptInPhoneNumberOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:publish(input, options)
     return self:invokeOperation(input, {
         name = "Publish",
-        input_schema = types.PublishInput,
-        output_schema = types.PublishOutput,
+        input_schema = schemas.PublishInput,
+        output_schema = schemas.PublishOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:publishBatch(input, options)
     return self:invokeOperation(input, {
         name = "PublishBatch",
-        input_schema = types.PublishBatchInput,
-        output_schema = types.PublishBatchOutput,
+        input_schema = schemas.PublishBatchInput,
+        output_schema = schemas.PublishBatchOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:putDataProtectionPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutDataProtectionPolicy",
-        input_schema = types.PutDataProtectionPolicyInput,
-        output_schema = types.PutDataProtectionPolicyOutput,
+        input_schema = schemas.PutDataProtectionPolicyInput,
+        output_schema = schemas.PutDataProtectionPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:removePermission(input, options)
     return self:invokeOperation(input, {
         name = "RemovePermission",
-        input_schema = types.RemovePermissionInput,
-        output_schema = types.RemovePermissionOutput,
+        input_schema = schemas.RemovePermissionInput,
+        output_schema = schemas.RemovePermissionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:setEndpointAttributes(input, options)
     return self:invokeOperation(input, {
         name = "SetEndpointAttributes",
-        input_schema = types.SetEndpointAttributesInput,
-        output_schema = types.SetEndpointAttributesOutput,
+        input_schema = schemas.SetEndpointAttributesInput,
+        output_schema = schemas.SetEndpointAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:setPlatformApplicationAttributes(input, options)
     return self:invokeOperation(input, {
         name = "SetPlatformApplicationAttributes",
-        input_schema = types.SetPlatformApplicationAttributesInput,
-        output_schema = types.SetPlatformApplicationAttributesOutput,
+        input_schema = schemas.SetPlatformApplicationAttributesInput,
+        output_schema = schemas.SetPlatformApplicationAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:setSMSAttributes(input, options)
     return self:invokeOperation(input, {
         name = "SetSMSAttributes",
-        input_schema = types.SetSMSAttributesInput,
-        output_schema = types.SetSMSAttributesOutput,
+        input_schema = schemas.SetSMSAttributesInput,
+        output_schema = schemas.SetSMSAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:setSubscriptionAttributes(input, options)
     return self:invokeOperation(input, {
         name = "SetSubscriptionAttributes",
-        input_schema = types.SetSubscriptionAttributesInput,
-        output_schema = types.SetSubscriptionAttributesOutput,
+        input_schema = schemas.SetSubscriptionAttributesInput,
+        output_schema = schemas.SetSubscriptionAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:setTopicAttributes(input, options)
     return self:invokeOperation(input, {
         name = "SetTopicAttributes",
-        input_schema = types.SetTopicAttributesInput,
-        output_schema = types.SetTopicAttributesOutput,
+        input_schema = schemas.SetTopicAttributesInput,
+        output_schema = schemas.SetTopicAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:subscribe(input, options)
     return self:invokeOperation(input, {
         name = "Subscribe",
-        input_schema = types.SubscribeInput,
-        output_schema = types.SubscribeOutput,
+        input_schema = schemas.SubscribeInput,
+        output_schema = schemas.SubscribeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:unsubscribe(input, options)
     return self:invokeOperation(input, {
         name = "Unsubscribe",
-        input_schema = types.UnsubscribeInput,
-        output_schema = types.UnsubscribeOutput,
+        input_schema = schemas.UnsubscribeInput,
+        output_schema = schemas.UnsubscribeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:verifySMSSandboxPhoneNumber(input, options)
     return self:invokeOperation(input, {
         name = "VerifySMSSandboxPhoneNumber",
-        input_schema = types.VerifySMSSandboxPhoneNumberInput,
-        output_schema = types.VerifySMSSandboxPhoneNumberOutput,
+        input_schema = schemas.VerifySMSSandboxPhoneNumberInput,
+        output_schema = schemas.VerifySMSSandboxPhoneNumberOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

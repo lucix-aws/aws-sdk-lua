@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("costoptimizationhub.endpoint_rules")
+local schemas = require("costoptimizationhub.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("costoptimizationhub.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getPreferences(input, options)
     return self:invokeOperation(input, {
         name = "GetPreferences",
-        input_schema = types.GetPreferencesInput,
-        output_schema = types.GetPreferencesOutput,
+        input_schema = schemas.GetPreferencesInput,
+        output_schema = schemas.GetPreferencesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:getRecommendation(input, options)
     return self:invokeOperation(input, {
         name = "GetRecommendation",
-        input_schema = types.GetRecommendationInput,
-        output_schema = types.GetRecommendationOutput,
+        input_schema = schemas.GetRecommendationInput,
+        output_schema = schemas.GetRecommendationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:listEfficiencyMetrics(input, options)
     return self:invokeOperation(input, {
         name = "ListEfficiencyMetrics",
-        input_schema = types.ListEfficiencyMetricsInput,
-        output_schema = types.ListEfficiencyMetricsOutput,
+        input_schema = schemas.ListEfficiencyMetricsInput,
+        output_schema = schemas.ListEfficiencyMetricsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:listEnrollmentStatuses(input, options)
     return self:invokeOperation(input, {
         name = "ListEnrollmentStatuses",
-        input_schema = types.ListEnrollmentStatusesInput,
-        output_schema = types.ListEnrollmentStatusesOutput,
+        input_schema = schemas.ListEnrollmentStatusesInput,
+        output_schema = schemas.ListEnrollmentStatusesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:listRecommendations(input, options)
     return self:invokeOperation(input, {
         name = "ListRecommendations",
-        input_schema = types.ListRecommendationsInput,
-        output_schema = types.ListRecommendationsOutput,
+        input_schema = schemas.ListRecommendationsInput,
+        output_schema = schemas.ListRecommendationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:listRecommendationSummaries(input, options)
     return self:invokeOperation(input, {
         name = "ListRecommendationSummaries",
-        input_schema = types.ListRecommendationSummariesInput,
-        output_schema = types.ListRecommendationSummariesOutput,
+        input_schema = schemas.ListRecommendationSummariesInput,
+        output_schema = schemas.ListRecommendationSummariesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:updateEnrollmentStatus(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEnrollmentStatus",
-        input_schema = types.UpdateEnrollmentStatusInput,
-        output_schema = types.UpdateEnrollmentStatusOutput,
+        input_schema = schemas.UpdateEnrollmentStatusInput,
+        output_schema = schemas.UpdateEnrollmentStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:updatePreferences(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePreferences",
-        input_schema = types.UpdatePreferencesInput,
-        output_schema = types.UpdatePreferencesOutput,
+        input_schema = schemas.UpdatePreferencesInput,
+        output_schema = schemas.UpdatePreferencesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

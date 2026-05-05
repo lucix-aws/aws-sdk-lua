@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("healthlake.endpoint_rules")
+local schemas = require("healthlake.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("healthlake.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createFHIRDatastore(input, options)
     return self:invokeOperation(input, {
         name = "CreateFHIRDatastore",
-        input_schema = types.CreateFHIRDatastoreInput,
-        output_schema = types.CreateFHIRDatastoreOutput,
+        input_schema = schemas.CreateFHIRDatastoreInput,
+        output_schema = schemas.CreateFHIRDatastoreOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteFHIRDatastore(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFHIRDatastore",
-        input_schema = types.DeleteFHIRDatastoreInput,
-        output_schema = types.DeleteFHIRDatastoreOutput,
+        input_schema = schemas.DeleteFHIRDatastoreInput,
+        output_schema = schemas.DeleteFHIRDatastoreOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:describeFHIRDatastore(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFHIRDatastore",
-        input_schema = types.DescribeFHIRDatastoreInput,
-        output_schema = types.DescribeFHIRDatastoreOutput,
+        input_schema = schemas.DescribeFHIRDatastoreInput,
+        output_schema = schemas.DescribeFHIRDatastoreOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:describeFHIRExportJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFHIRExportJob",
-        input_schema = types.DescribeFHIRExportJobInput,
-        output_schema = types.DescribeFHIRExportJobOutput,
+        input_schema = schemas.DescribeFHIRExportJobInput,
+        output_schema = schemas.DescribeFHIRExportJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:describeFHIRImportJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFHIRImportJob",
-        input_schema = types.DescribeFHIRImportJobInput,
-        output_schema = types.DescribeFHIRImportJobOutput,
+        input_schema = schemas.DescribeFHIRImportJobInput,
+        output_schema = schemas.DescribeFHIRImportJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:listFHIRDatastores(input, options)
     return self:invokeOperation(input, {
         name = "ListFHIRDatastores",
-        input_schema = types.ListFHIRDatastoresInput,
-        output_schema = types.ListFHIRDatastoresOutput,
+        input_schema = schemas.ListFHIRDatastoresInput,
+        output_schema = schemas.ListFHIRDatastoresOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listFHIRExportJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListFHIRExportJobs",
-        input_schema = types.ListFHIRExportJobsInput,
-        output_schema = types.ListFHIRExportJobsOutput,
+        input_schema = schemas.ListFHIRExportJobsInput,
+        output_schema = schemas.ListFHIRExportJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listFHIRImportJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListFHIRImportJobs",
-        input_schema = types.ListFHIRImportJobsInput,
-        output_schema = types.ListFHIRImportJobsOutput,
+        input_schema = schemas.ListFHIRImportJobsInput,
+        output_schema = schemas.ListFHIRImportJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:startFHIRExportJob(input, options)
     return self:invokeOperation(input, {
         name = "StartFHIRExportJob",
-        input_schema = types.StartFHIRExportJobInput,
-        output_schema = types.StartFHIRExportJobOutput,
+        input_schema = schemas.StartFHIRExportJobInput,
+        output_schema = schemas.StartFHIRExportJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:startFHIRImportJob(input, options)
     return self:invokeOperation(input, {
         name = "StartFHIRImportJob",
-        input_schema = types.StartFHIRImportJobInput,
-        output_schema = types.StartFHIRImportJobOutput,
+        input_schema = schemas.StartFHIRImportJobInput,
+        output_schema = schemas.StartFHIRImportJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

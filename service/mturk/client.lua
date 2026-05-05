@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("mturk.endpoint_rules")
+local schemas = require("mturk.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("mturk.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptQualificationRequest(input, options)
     return self:invokeOperation(input, {
         name = "AcceptQualificationRequest",
-        input_schema = types.AcceptQualificationRequestInput,
-        output_schema = types.AcceptQualificationRequestOutput,
+        input_schema = schemas.AcceptQualificationRequestInput,
+        output_schema = schemas.AcceptQualificationRequestOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:approveAssignment(input, options)
     return self:invokeOperation(input, {
         name = "ApproveAssignment",
-        input_schema = types.ApproveAssignmentInput,
-        output_schema = types.ApproveAssignmentOutput,
+        input_schema = schemas.ApproveAssignmentInput,
+        output_schema = schemas.ApproveAssignmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:associateQualificationWithWorker(input, options)
     return self:invokeOperation(input, {
         name = "AssociateQualificationWithWorker",
-        input_schema = types.AssociateQualificationWithWorkerInput,
-        output_schema = types.AssociateQualificationWithWorkerOutput,
+        input_schema = schemas.AssociateQualificationWithWorkerInput,
+        output_schema = schemas.AssociateQualificationWithWorkerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createAdditionalAssignmentsForHIT(input, options)
     return self:invokeOperation(input, {
         name = "CreateAdditionalAssignmentsForHIT",
-        input_schema = types.CreateAdditionalAssignmentsForHITInput,
-        output_schema = types.CreateAdditionalAssignmentsForHITOutput,
+        input_schema = schemas.CreateAdditionalAssignmentsForHITInput,
+        output_schema = schemas.CreateAdditionalAssignmentsForHITOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createHIT(input, options)
     return self:invokeOperation(input, {
         name = "CreateHIT",
-        input_schema = types.CreateHITInput,
-        output_schema = types.CreateHITOutput,
+        input_schema = schemas.CreateHITInput,
+        output_schema = schemas.CreateHITOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createHITType(input, options)
     return self:invokeOperation(input, {
         name = "CreateHITType",
-        input_schema = types.CreateHITTypeInput,
-        output_schema = types.CreateHITTypeOutput,
+        input_schema = schemas.CreateHITTypeInput,
+        output_schema = schemas.CreateHITTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createHITWithHITType(input, options)
     return self:invokeOperation(input, {
         name = "CreateHITWithHITType",
-        input_schema = types.CreateHITWithHITTypeInput,
-        output_schema = types.CreateHITWithHITTypeOutput,
+        input_schema = schemas.CreateHITWithHITTypeInput,
+        output_schema = schemas.CreateHITWithHITTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createQualificationType(input, options)
     return self:invokeOperation(input, {
         name = "CreateQualificationType",
-        input_schema = types.CreateQualificationTypeInput,
-        output_schema = types.CreateQualificationTypeOutput,
+        input_schema = schemas.CreateQualificationTypeInput,
+        output_schema = schemas.CreateQualificationTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createWorkerBlock(input, options)
     return self:invokeOperation(input, {
         name = "CreateWorkerBlock",
-        input_schema = types.CreateWorkerBlockInput,
-        output_schema = types.CreateWorkerBlockOutput,
+        input_schema = schemas.CreateWorkerBlockInput,
+        output_schema = schemas.CreateWorkerBlockOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteHIT(input, options)
     return self:invokeOperation(input, {
         name = "DeleteHIT",
-        input_schema = types.DeleteHITInput,
-        output_schema = types.DeleteHITOutput,
+        input_schema = schemas.DeleteHITInput,
+        output_schema = schemas.DeleteHITOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteQualificationType(input, options)
     return self:invokeOperation(input, {
         name = "DeleteQualificationType",
-        input_schema = types.DeleteQualificationTypeInput,
-        output_schema = types.DeleteQualificationTypeOutput,
+        input_schema = schemas.DeleteQualificationTypeInput,
+        output_schema = schemas.DeleteQualificationTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteWorkerBlock(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWorkerBlock",
-        input_schema = types.DeleteWorkerBlockInput,
-        output_schema = types.DeleteWorkerBlockOutput,
+        input_schema = schemas.DeleteWorkerBlockInput,
+        output_schema = schemas.DeleteWorkerBlockOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:disassociateQualificationFromWorker(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateQualificationFromWorker",
-        input_schema = types.DisassociateQualificationFromWorkerInput,
-        output_schema = types.DisassociateQualificationFromWorkerOutput,
+        input_schema = schemas.DisassociateQualificationFromWorkerInput,
+        output_schema = schemas.DisassociateQualificationFromWorkerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getAccountBalance(input, options)
     return self:invokeOperation(input, {
         name = "GetAccountBalance",
-        input_schema = types.GetAccountBalanceInput,
-        output_schema = types.GetAccountBalanceOutput,
+        input_schema = schemas.GetAccountBalanceInput,
+        output_schema = schemas.GetAccountBalanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getAssignment(input, options)
     return self:invokeOperation(input, {
         name = "GetAssignment",
-        input_schema = types.GetAssignmentInput,
-        output_schema = types.GetAssignmentOutput,
+        input_schema = schemas.GetAssignmentInput,
+        output_schema = schemas.GetAssignmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getFileUploadURL(input, options)
     return self:invokeOperation(input, {
         name = "GetFileUploadURL",
-        input_schema = types.GetFileUploadURLInput,
-        output_schema = types.GetFileUploadURLOutput,
+        input_schema = schemas.GetFileUploadURLInput,
+        output_schema = schemas.GetFileUploadURLOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getHIT(input, options)
     return self:invokeOperation(input, {
         name = "GetHIT",
-        input_schema = types.GetHITInput,
-        output_schema = types.GetHITOutput,
+        input_schema = schemas.GetHITInput,
+        output_schema = schemas.GetHITOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getQualificationScore(input, options)
     return self:invokeOperation(input, {
         name = "GetQualificationScore",
-        input_schema = types.GetQualificationScoreInput,
-        output_schema = types.GetQualificationScoreOutput,
+        input_schema = schemas.GetQualificationScoreInput,
+        output_schema = schemas.GetQualificationScoreOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getQualificationType(input, options)
     return self:invokeOperation(input, {
         name = "GetQualificationType",
-        input_schema = types.GetQualificationTypeInput,
-        output_schema = types.GetQualificationTypeOutput,
+        input_schema = schemas.GetQualificationTypeInput,
+        output_schema = schemas.GetQualificationTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listAssignmentsForHIT(input, options)
     return self:invokeOperation(input, {
         name = "ListAssignmentsForHIT",
-        input_schema = types.ListAssignmentsForHITInput,
-        output_schema = types.ListAssignmentsForHITOutput,
+        input_schema = schemas.ListAssignmentsForHITInput,
+        output_schema = schemas.ListAssignmentsForHITOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listBonusPayments(input, options)
     return self:invokeOperation(input, {
         name = "ListBonusPayments",
-        input_schema = types.ListBonusPaymentsInput,
-        output_schema = types.ListBonusPaymentsOutput,
+        input_schema = schemas.ListBonusPaymentsInput,
+        output_schema = schemas.ListBonusPaymentsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listHITs(input, options)
     return self:invokeOperation(input, {
         name = "ListHITs",
-        input_schema = types.ListHITsInput,
-        output_schema = types.ListHITsOutput,
+        input_schema = schemas.ListHITsInput,
+        output_schema = schemas.ListHITsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listHITsForQualificationType(input, options)
     return self:invokeOperation(input, {
         name = "ListHITsForQualificationType",
-        input_schema = types.ListHITsForQualificationTypeInput,
-        output_schema = types.ListHITsForQualificationTypeOutput,
+        input_schema = schemas.ListHITsForQualificationTypeInput,
+        output_schema = schemas.ListHITsForQualificationTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listQualificationRequests(input, options)
     return self:invokeOperation(input, {
         name = "ListQualificationRequests",
-        input_schema = types.ListQualificationRequestsInput,
-        output_schema = types.ListQualificationRequestsOutput,
+        input_schema = schemas.ListQualificationRequestsInput,
+        output_schema = schemas.ListQualificationRequestsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listQualificationTypes(input, options)
     return self:invokeOperation(input, {
         name = "ListQualificationTypes",
-        input_schema = types.ListQualificationTypesInput,
-        output_schema = types.ListQualificationTypesOutput,
+        input_schema = schemas.ListQualificationTypesInput,
+        output_schema = schemas.ListQualificationTypesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listReviewableHITs(input, options)
     return self:invokeOperation(input, {
         name = "ListReviewableHITs",
-        input_schema = types.ListReviewableHITsInput,
-        output_schema = types.ListReviewableHITsOutput,
+        input_schema = schemas.ListReviewableHITsInput,
+        output_schema = schemas.ListReviewableHITsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listReviewPolicyResultsForHIT(input, options)
     return self:invokeOperation(input, {
         name = "ListReviewPolicyResultsForHIT",
-        input_schema = types.ListReviewPolicyResultsForHITInput,
-        output_schema = types.ListReviewPolicyResultsForHITOutput,
+        input_schema = schemas.ListReviewPolicyResultsForHITInput,
+        output_schema = schemas.ListReviewPolicyResultsForHITOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listWorkerBlocks(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkerBlocks",
-        input_schema = types.ListWorkerBlocksInput,
-        output_schema = types.ListWorkerBlocksOutput,
+        input_schema = schemas.ListWorkerBlocksInput,
+        output_schema = schemas.ListWorkerBlocksOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listWorkersWithQualificationType(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkersWithQualificationType",
-        input_schema = types.ListWorkersWithQualificationTypeInput,
-        output_schema = types.ListWorkersWithQualificationTypeOutput,
+        input_schema = schemas.ListWorkersWithQualificationTypeInput,
+        output_schema = schemas.ListWorkersWithQualificationTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:notifyWorkers(input, options)
     return self:invokeOperation(input, {
         name = "NotifyWorkers",
-        input_schema = types.NotifyWorkersInput,
-        output_schema = types.NotifyWorkersOutput,
+        input_schema = schemas.NotifyWorkersInput,
+        output_schema = schemas.NotifyWorkersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:rejectAssignment(input, options)
     return self:invokeOperation(input, {
         name = "RejectAssignment",
-        input_schema = types.RejectAssignmentInput,
-        output_schema = types.RejectAssignmentOutput,
+        input_schema = schemas.RejectAssignmentInput,
+        output_schema = schemas.RejectAssignmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:rejectQualificationRequest(input, options)
     return self:invokeOperation(input, {
         name = "RejectQualificationRequest",
-        input_schema = types.RejectQualificationRequestInput,
-        output_schema = types.RejectQualificationRequestOutput,
+        input_schema = schemas.RejectQualificationRequestInput,
+        output_schema = schemas.RejectQualificationRequestOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:sendBonus(input, options)
     return self:invokeOperation(input, {
         name = "SendBonus",
-        input_schema = types.SendBonusInput,
-        output_schema = types.SendBonusOutput,
+        input_schema = schemas.SendBonusInput,
+        output_schema = schemas.SendBonusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:sendTestEventNotification(input, options)
     return self:invokeOperation(input, {
         name = "SendTestEventNotification",
-        input_schema = types.SendTestEventNotificationInput,
-        output_schema = types.SendTestEventNotificationOutput,
+        input_schema = schemas.SendTestEventNotificationInput,
+        output_schema = schemas.SendTestEventNotificationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:updateExpirationForHIT(input, options)
     return self:invokeOperation(input, {
         name = "UpdateExpirationForHIT",
-        input_schema = types.UpdateExpirationForHITInput,
-        output_schema = types.UpdateExpirationForHITOutput,
+        input_schema = schemas.UpdateExpirationForHITInput,
+        output_schema = schemas.UpdateExpirationForHITOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:updateHITReviewStatus(input, options)
     return self:invokeOperation(input, {
         name = "UpdateHITReviewStatus",
-        input_schema = types.UpdateHITReviewStatusInput,
-        output_schema = types.UpdateHITReviewStatusOutput,
+        input_schema = schemas.UpdateHITReviewStatusInput,
+        output_schema = schemas.UpdateHITReviewStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:updateHITTypeOfHIT(input, options)
     return self:invokeOperation(input, {
         name = "UpdateHITTypeOfHIT",
-        input_schema = types.UpdateHITTypeOfHITInput,
-        output_schema = types.UpdateHITTypeOfHITOutput,
+        input_schema = schemas.UpdateHITTypeOfHITInput,
+        output_schema = schemas.UpdateHITTypeOfHITOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:updateNotificationSettings(input, options)
     return self:invokeOperation(input, {
         name = "UpdateNotificationSettings",
-        input_schema = types.UpdateNotificationSettingsInput,
-        output_schema = types.UpdateNotificationSettingsOutput,
+        input_schema = schemas.UpdateNotificationSettingsInput,
+        output_schema = schemas.UpdateNotificationSettingsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:updateQualificationType(input, options)
     return self:invokeOperation(input, {
         name = "UpdateQualificationType",
-        input_schema = types.UpdateQualificationTypeInput,
-        output_schema = types.UpdateQualificationTypeOutput,
+        input_schema = schemas.UpdateQualificationTypeInput,
+        output_schema = schemas.UpdateQualificationTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

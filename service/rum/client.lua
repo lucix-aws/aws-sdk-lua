@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("rum.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("rum.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("rum.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchCreateRumMetricDefinitions(input, options)
     return self:invokeOperation(input, {
         name = "BatchCreateRumMetricDefinitions",
-        input_schema = types.BatchCreateRumMetricDefinitionsInput,
-        output_schema = types.BatchCreateRumMetricDefinitionsOutput,
+        input_schema = schemas.BatchCreateRumMetricDefinitionsInput,
+        output_schema = schemas.BatchCreateRumMetricDefinitionsOutput,
         http_method = "POST",
         http_path = "/rummetrics/{AppMonitorName}/metrics",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchDeleteRumMetricDefinitions(input, options)
     return self:invokeOperation(input, {
         name = "BatchDeleteRumMetricDefinitions",
-        input_schema = types.BatchDeleteRumMetricDefinitionsInput,
-        output_schema = types.BatchDeleteRumMetricDefinitionsOutput,
+        input_schema = schemas.BatchDeleteRumMetricDefinitionsInput,
+        output_schema = schemas.BatchDeleteRumMetricDefinitionsOutput,
         http_method = "DELETE",
         http_path = "/rummetrics/{AppMonitorName}/metrics",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchGetRumMetricDefinitions(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetRumMetricDefinitions",
-        input_schema = types.BatchGetRumMetricDefinitionsInput,
-        output_schema = types.BatchGetRumMetricDefinitionsOutput,
+        input_schema = schemas.BatchGetRumMetricDefinitionsInput,
+        output_schema = schemas.BatchGetRumMetricDefinitionsOutput,
         http_method = "GET",
         http_path = "/rummetrics/{AppMonitorName}/metrics",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createAppMonitor(input, options)
     return self:invokeOperation(input, {
         name = "CreateAppMonitor",
-        input_schema = types.CreateAppMonitorInput,
-        output_schema = types.CreateAppMonitorOutput,
+        input_schema = schemas.CreateAppMonitorInput,
+        output_schema = schemas.CreateAppMonitorOutput,
         http_method = "POST",
         http_path = "/appmonitor",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteAppMonitor(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAppMonitor",
-        input_schema = types.DeleteAppMonitorInput,
-        output_schema = types.DeleteAppMonitorOutput,
+        input_schema = schemas.DeleteAppMonitorInput,
+        output_schema = schemas.DeleteAppMonitorOutput,
         http_method = "DELETE",
         http_path = "/appmonitor/{Name}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourcePolicy",
-        input_schema = types.DeleteResourcePolicyInput,
-        output_schema = types.DeleteResourcePolicyOutput,
+        input_schema = schemas.DeleteResourcePolicyInput,
+        output_schema = schemas.DeleteResourcePolicyOutput,
         http_method = "DELETE",
         http_path = "/appmonitor/{Name}/policy",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteRumMetricsDestination(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRumMetricsDestination",
-        input_schema = types.DeleteRumMetricsDestinationInput,
-        output_schema = types.DeleteRumMetricsDestinationOutput,
+        input_schema = schemas.DeleteRumMetricsDestinationInput,
+        output_schema = schemas.DeleteRumMetricsDestinationOutput,
         http_method = "DELETE",
         http_path = "/rummetrics/{AppMonitorName}/metricsdestination",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getAppMonitor(input, options)
     return self:invokeOperation(input, {
         name = "GetAppMonitor",
-        input_schema = types.GetAppMonitorInput,
-        output_schema = types.GetAppMonitorOutput,
+        input_schema = schemas.GetAppMonitorInput,
+        output_schema = schemas.GetAppMonitorOutput,
         http_method = "GET",
         http_path = "/appmonitor/{Name}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getAppMonitorData(input, options)
     return self:invokeOperation(input, {
         name = "GetAppMonitorData",
-        input_schema = types.GetAppMonitorDataInput,
-        output_schema = types.GetAppMonitorDataOutput,
+        input_schema = schemas.GetAppMonitorDataInput,
+        output_schema = schemas.GetAppMonitorDataOutput,
         http_method = "POST",
         http_path = "/appmonitor/{Name}/data",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcePolicy",
-        input_schema = types.GetResourcePolicyInput,
-        output_schema = types.GetResourcePolicyOutput,
+        input_schema = schemas.GetResourcePolicyInput,
+        output_schema = schemas.GetResourcePolicyOutput,
         http_method = "GET",
         http_path = "/appmonitor/{Name}/policy",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listAppMonitors(input, options)
     return self:invokeOperation(input, {
         name = "ListAppMonitors",
-        input_schema = types.ListAppMonitorsInput,
-        output_schema = types.ListAppMonitorsOutput,
+        input_schema = schemas.ListAppMonitorsInput,
+        output_schema = schemas.ListAppMonitorsOutput,
         http_method = "POST",
         http_path = "/appmonitors",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listRumMetricsDestinations(input, options)
     return self:invokeOperation(input, {
         name = "ListRumMetricsDestinations",
-        input_schema = types.ListRumMetricsDestinationsInput,
-        output_schema = types.ListRumMetricsDestinationsOutput,
+        input_schema = schemas.ListRumMetricsDestinationsInput,
+        output_schema = schemas.ListRumMetricsDestinationsOutput,
         http_method = "GET",
         http_path = "/rummetrics/{AppMonitorName}/metricsdestination",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:putResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutResourcePolicy",
-        input_schema = types.PutResourcePolicyInput,
-        output_schema = types.PutResourcePolicyOutput,
+        input_schema = schemas.PutResourcePolicyInput,
+        output_schema = schemas.PutResourcePolicyOutput,
         http_method = "PUT",
         http_path = "/appmonitor/{Name}/policy",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:putRumEvents(input, options)
     return self:invokeOperation(input, {
         name = "PutRumEvents",
-        input_schema = types.PutRumEventsInput,
-        output_schema = types.PutRumEventsOutput,
+        input_schema = schemas.PutRumEventsInput,
+        output_schema = schemas.PutRumEventsOutput,
         http_method = "POST",
         http_path = "/appmonitors/{Id}/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:putRumMetricsDestination(input, options)
     return self:invokeOperation(input, {
         name = "PutRumMetricsDestination",
-        input_schema = types.PutRumMetricsDestinationInput,
-        output_schema = types.PutRumMetricsDestinationOutput,
+        input_schema = schemas.PutRumMetricsDestinationInput,
+        output_schema = schemas.PutRumMetricsDestinationOutput,
         http_method = "POST",
         http_path = "/rummetrics/{AppMonitorName}/metricsdestination",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:updateAppMonitor(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAppMonitor",
-        input_schema = types.UpdateAppMonitorInput,
-        output_schema = types.UpdateAppMonitorOutput,
+        input_schema = schemas.UpdateAppMonitorInput,
+        output_schema = schemas.UpdateAppMonitorOutput,
         http_method = "PATCH",
         http_path = "/appmonitor/{Name}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:updateRumMetricDefinition(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRumMetricDefinition",
-        input_schema = types.UpdateRumMetricDefinitionInput,
-        output_schema = types.UpdateRumMetricDefinitionOutput,
+        input_schema = schemas.UpdateRumMetricDefinitionInput,
+        output_schema = schemas.UpdateRumMetricDefinitionOutput,
         http_method = "PATCH",
         http_path = "/rummetrics/{AppMonitorName}/metrics",
         effective_auth_schemes = {

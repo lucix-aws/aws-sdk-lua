@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("workmailmessageflow.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("workmailmessageflow.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("workmailmessageflow.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getRawMessageContent(input, options)
     return self:invokeOperation(input, {
         name = "GetRawMessageContent",
-        input_schema = types.GetRawMessageContentInput,
-        output_schema = types.GetRawMessageContentOutput,
+        input_schema = schemas.GetRawMessageContentInput,
+        output_schema = schemas.GetRawMessageContentOutput,
         http_method = "GET",
         http_path = "/messages/{messageId}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:putRawMessageContent(input, options)
     return self:invokeOperation(input, {
         name = "PutRawMessageContent",
-        input_schema = types.PutRawMessageContentInput,
-        output_schema = types.PutRawMessageContentOutput,
+        input_schema = schemas.PutRawMessageContentInput,
+        output_schema = schemas.PutRawMessageContentOutput,
         http_method = "POST",
         http_path = "/messages/{messageId}",
         effective_auth_schemes = {

@@ -736,13 +736,13 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
+local type WorkflowDefinitionStatus = "ACTIVE" | "DELETING"
+
 local type WorkflowRunStatus = "RUNNING" | "SUCCEEDED" | "FAILED" | "TIMED_OUT" | "DELETING"
 
 local type ActStatus = "RUNNING" | "PENDING_CLIENT_ACTION" | "PENDING_HUMAN_ACTION" | "SUCCEEDED" | "FAILED" | "TIMED_OUT"
 
 local type SortOrder = "Ascending" | "Descending"
-
-local type WorkflowDefinitionStatus = "ACTIVE" | "DELETING"
 
 local record M
     CreateActInput: CreateActInput

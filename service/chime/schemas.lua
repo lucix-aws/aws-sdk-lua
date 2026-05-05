@@ -1,0 +1,3905 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.chime"
+
+local M = {}
+
+M.AccessDeniedException = schema.new({
+    id = id.from(_N, "AccessDeniedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "AccessDeniedException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "AccessDeniedException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SigninDelegateGroup = schema.new({
+    id = id.from(_N, "SigninDelegateGroup"),
+    type = "structure",
+    members = {
+        GroupName = schema.new({
+            id = id.from(_N, "SigninDelegateGroup", "GroupName"),
+            type = "string",
+            name = "GroupName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Account = schema.new({
+    id = id.from(_N, "Account"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "Account", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AccountId = schema.new({
+            id = id.from(_N, "Account", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "Account", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AccountType = schema.new({
+            id = id.from(_N, "Account", "AccountType"),
+            type = "string",
+            name = "AccountType",
+            target_id = prelude.String.id,
+        }),
+        CreatedTimestamp = schema.new({
+            id = id.from(_N, "Account", "CreatedTimestamp"),
+            type = "timestamp",
+            name = "CreatedTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        DefaultLicense = schema.new({
+            id = id.from(_N, "Account", "DefaultLicense"),
+            type = "string",
+            name = "DefaultLicense",
+            target_id = prelude.String.id,
+        }),
+        SupportedLicenses = schema.new({
+            id = id.from(_N, "Account", "SupportedLicenses"),
+            type = "list",
+            name = "SupportedLicenses",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        AccountStatus = schema.new({
+            id = id.from(_N, "Account", "AccountStatus"),
+            type = "string",
+            name = "AccountStatus",
+            target_id = prelude.String.id,
+        }),
+        SigninDelegateGroups = schema.new({
+            id = id.from(_N, "Account", "SigninDelegateGroups"),
+            type = "list",
+            name = "SigninDelegateGroups",
+            target_id = prelude.Document.id,
+            list_member = M.SigninDelegateGroup,
+        }),
+    },
+})
+
+M.AccountSettings = schema.new({
+    id = id.from(_N, "AccountSettings"),
+    type = "structure",
+    members = {
+        DisableRemoteControl = schema.new({
+            id = id.from(_N, "AccountSettings", "DisableRemoteControl"),
+            type = "boolean",
+            name = "DisableRemoteControl",
+            target_id = prelude.Boolean.id,
+        }),
+        EnableDialOut = schema.new({
+            id = id.from(_N, "AccountSettings", "EnableDialOut"),
+            type = "boolean",
+            name = "EnableDialOut",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.AlexaForBusinessMetadata = schema.new({
+    id = id.from(_N, "AlexaForBusinessMetadata"),
+    type = "structure",
+    members = {
+        IsAlexaForBusinessEnabled = schema.new({
+            id = id.from(_N, "AlexaForBusinessMetadata", "IsAlexaForBusinessEnabled"),
+            type = "boolean",
+            name = "IsAlexaForBusinessEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        AlexaForBusinessRoomArn = schema.new({
+            id = id.from(_N, "AlexaForBusinessMetadata", "AlexaForBusinessRoomArn"),
+            type = "string",
+            name = "AlexaForBusinessRoomArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AssociatePhoneNumberWithUserInput = schema.new({
+    id = id.from(_N, "AssociatePhoneNumberWithUserInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "AssociatePhoneNumberWithUserInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        UserId = schema.new({
+            id = id.from(_N, "AssociatePhoneNumberWithUserInput", "UserId"),
+            type = "string",
+            name = "UserId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        E164PhoneNumber = schema.new({
+            id = id.from(_N, "AssociatePhoneNumberWithUserInput", "E164PhoneNumber"),
+            type = "string",
+            name = "E164PhoneNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssociatePhoneNumberWithUserOutput = schema.new({
+    id = id.from(_N, "AssociatePhoneNumberWithUserOutput"),
+    type = "structure",
+})
+
+M.BadRequestException = schema.new({
+    id = id.from(_N, "BadRequestException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "BadRequestException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "BadRequestException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ForbiddenException = schema.new({
+    id = id.from(_N, "ForbiddenException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "ForbiddenException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ForbiddenException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.NotFoundException = schema.new({
+    id = id.from(_N, "NotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "NotFoundException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "NotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceFailureException = schema.new({
+    id = id.from(_N, "ServiceFailureException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "ServiceFailureException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ServiceFailureException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceUnavailableException = schema.new({
+    id = id.from(_N, "ServiceUnavailableException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "ServiceUnavailableException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ServiceUnavailableException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ThrottledClientException = schema.new({
+    id = id.from(_N, "ThrottledClientException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "ThrottledClientException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ThrottledClientException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UnauthorizedClientException = schema.new({
+    id = id.from(_N, "UnauthorizedClientException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "UnauthorizedClientException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "UnauthorizedClientException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AssociateSigninDelegateGroupsWithAccountInput = schema.new({
+    id = id.from(_N, "AssociateSigninDelegateGroupsWithAccountInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "AssociateSigninDelegateGroupsWithAccountInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        SigninDelegateGroups = schema.new({
+            id = id.from(_N, "AssociateSigninDelegateGroupsWithAccountInput", "SigninDelegateGroups"),
+            type = "list",
+            name = "SigninDelegateGroups",
+            target_id = prelude.Document.id,
+            list_member = M.SigninDelegateGroup,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssociateSigninDelegateGroupsWithAccountOutput = schema.new({
+    id = id.from(_N, "AssociateSigninDelegateGroupsWithAccountOutput"),
+    type = "structure",
+})
+
+M.MembershipItem = schema.new({
+    id = id.from(_N, "MembershipItem"),
+    type = "structure",
+    members = {
+        MemberId = schema.new({
+            id = id.from(_N, "MembershipItem", "MemberId"),
+            type = "string",
+            name = "MemberId",
+            target_id = prelude.String.id,
+        }),
+        Role = schema.new({
+            id = id.from(_N, "MembershipItem", "Role"),
+            type = "string",
+            name = "Role",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchCreateRoomMembershipInput = schema.new({
+    id = id.from(_N, "BatchCreateRoomMembershipInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "BatchCreateRoomMembershipInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        RoomId = schema.new({
+            id = id.from(_N, "BatchCreateRoomMembershipInput", "RoomId"),
+            type = "string",
+            name = "RoomId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MembershipItemList = schema.new({
+            id = id.from(_N, "BatchCreateRoomMembershipInput", "MembershipItemList"),
+            type = "list",
+            name = "MembershipItemList",
+            target_id = prelude.Document.id,
+            list_member = M.MembershipItem,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.MemberError = schema.new({
+    id = id.from(_N, "MemberError"),
+    type = "structure",
+    members = {
+        MemberId = schema.new({
+            id = id.from(_N, "MemberError", "MemberId"),
+            type = "string",
+            name = "MemberId",
+            target_id = prelude.String.id,
+        }),
+        ErrorCode = schema.new({
+            id = id.from(_N, "MemberError", "ErrorCode"),
+            type = "string",
+            name = "ErrorCode",
+            target_id = prelude.String.id,
+        }),
+        ErrorMessage = schema.new({
+            id = id.from(_N, "MemberError", "ErrorMessage"),
+            type = "string",
+            name = "ErrorMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchCreateRoomMembershipOutput = schema.new({
+    id = id.from(_N, "BatchCreateRoomMembershipOutput"),
+    type = "structure",
+    members = {
+        Errors = schema.new({
+            id = id.from(_N, "BatchCreateRoomMembershipOutput", "Errors"),
+            type = "list",
+            name = "Errors",
+            target_id = prelude.Document.id,
+            list_member = M.MemberError,
+        }),
+    },
+})
+
+M.BatchDeletePhoneNumberInput = schema.new({
+    id = id.from(_N, "BatchDeletePhoneNumberInput"),
+    type = "structure",
+    members = {
+        PhoneNumberIds = schema.new({
+            id = id.from(_N, "BatchDeletePhoneNumberInput", "PhoneNumberIds"),
+            type = "list",
+            name = "PhoneNumberIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PhoneNumberError = schema.new({
+    id = id.from(_N, "PhoneNumberError"),
+    type = "structure",
+    members = {
+        PhoneNumberId = schema.new({
+            id = id.from(_N, "PhoneNumberError", "PhoneNumberId"),
+            type = "string",
+            name = "PhoneNumberId",
+            target_id = prelude.String.id,
+        }),
+        ErrorCode = schema.new({
+            id = id.from(_N, "PhoneNumberError", "ErrorCode"),
+            type = "string",
+            name = "ErrorCode",
+            target_id = prelude.String.id,
+        }),
+        ErrorMessage = schema.new({
+            id = id.from(_N, "PhoneNumberError", "ErrorMessage"),
+            type = "string",
+            name = "ErrorMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchDeletePhoneNumberOutput = schema.new({
+    id = id.from(_N, "BatchDeletePhoneNumberOutput"),
+    type = "structure",
+    members = {
+        PhoneNumberErrors = schema.new({
+            id = id.from(_N, "BatchDeletePhoneNumberOutput", "PhoneNumberErrors"),
+            type = "list",
+            name = "PhoneNumberErrors",
+            target_id = prelude.Document.id,
+            list_member = M.PhoneNumberError,
+        }),
+    },
+})
+
+M.BatchSuspendUserInput = schema.new({
+    id = id.from(_N, "BatchSuspendUserInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "BatchSuspendUserInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        UserIdList = schema.new({
+            id = id.from(_N, "BatchSuspendUserInput", "UserIdList"),
+            type = "list",
+            name = "UserIdList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UserError = schema.new({
+    id = id.from(_N, "UserError"),
+    type = "structure",
+    members = {
+        UserId = schema.new({
+            id = id.from(_N, "UserError", "UserId"),
+            type = "string",
+            name = "UserId",
+            target_id = prelude.String.id,
+        }),
+        ErrorCode = schema.new({
+            id = id.from(_N, "UserError", "ErrorCode"),
+            type = "string",
+            name = "ErrorCode",
+            target_id = prelude.String.id,
+        }),
+        ErrorMessage = schema.new({
+            id = id.from(_N, "UserError", "ErrorMessage"),
+            type = "string",
+            name = "ErrorMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchSuspendUserOutput = schema.new({
+    id = id.from(_N, "BatchSuspendUserOutput"),
+    type = "structure",
+    members = {
+        UserErrors = schema.new({
+            id = id.from(_N, "BatchSuspendUserOutput", "UserErrors"),
+            type = "list",
+            name = "UserErrors",
+            target_id = prelude.Document.id,
+            list_member = M.UserError,
+        }),
+    },
+})
+
+M.BatchUnsuspendUserInput = schema.new({
+    id = id.from(_N, "BatchUnsuspendUserInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "BatchUnsuspendUserInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        UserIdList = schema.new({
+            id = id.from(_N, "BatchUnsuspendUserInput", "UserIdList"),
+            type = "list",
+            name = "UserIdList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchUnsuspendUserOutput = schema.new({
+    id = id.from(_N, "BatchUnsuspendUserOutput"),
+    type = "structure",
+    members = {
+        UserErrors = schema.new({
+            id = id.from(_N, "BatchUnsuspendUserOutput", "UserErrors"),
+            type = "list",
+            name = "UserErrors",
+            target_id = prelude.Document.id,
+            list_member = M.UserError,
+        }),
+    },
+})
+
+M.UpdatePhoneNumberRequestItem = schema.new({
+    id = id.from(_N, "UpdatePhoneNumberRequestItem"),
+    type = "structure",
+    members = {
+        PhoneNumberId = schema.new({
+            id = id.from(_N, "UpdatePhoneNumberRequestItem", "PhoneNumberId"),
+            type = "string",
+            name = "PhoneNumberId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProductType = schema.new({
+            id = id.from(_N, "UpdatePhoneNumberRequestItem", "ProductType"),
+            type = "string",
+            name = "ProductType",
+            target_id = prelude.String.id,
+        }),
+        CallingName = schema.new({
+            id = id.from(_N, "UpdatePhoneNumberRequestItem", "CallingName"),
+            type = "string",
+            name = "CallingName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchUpdatePhoneNumberInput = schema.new({
+    id = id.from(_N, "BatchUpdatePhoneNumberInput"),
+    type = "structure",
+    members = {
+        UpdatePhoneNumberRequestItems = schema.new({
+            id = id.from(_N, "BatchUpdatePhoneNumberInput", "UpdatePhoneNumberRequestItems"),
+            type = "list",
+            name = "UpdatePhoneNumberRequestItems",
+            target_id = prelude.Document.id,
+            list_member = M.UpdatePhoneNumberRequestItem,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchUpdatePhoneNumberOutput = schema.new({
+    id = id.from(_N, "BatchUpdatePhoneNumberOutput"),
+    type = "structure",
+    members = {
+        PhoneNumberErrors = schema.new({
+            id = id.from(_N, "BatchUpdatePhoneNumberOutput", "PhoneNumberErrors"),
+            type = "list",
+            name = "PhoneNumberErrors",
+            target_id = prelude.Document.id,
+            list_member = M.PhoneNumberError,
+        }),
+    },
+})
+
+M.UpdateUserRequestItem = schema.new({
+    id = id.from(_N, "UpdateUserRequestItem"),
+    type = "structure",
+    members = {
+        UserId = schema.new({
+            id = id.from(_N, "UpdateUserRequestItem", "UserId"),
+            type = "string",
+            name = "UserId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LicenseType = schema.new({
+            id = id.from(_N, "UpdateUserRequestItem", "LicenseType"),
+            type = "string",
+            name = "LicenseType",
+            target_id = prelude.String.id,
+        }),
+        UserType = schema.new({
+            id = id.from(_N, "UpdateUserRequestItem", "UserType"),
+            type = "string",
+            name = "UserType",
+            target_id = prelude.String.id,
+        }),
+        AlexaForBusinessMetadata = schema.new({
+            id = id.from(_N, "UpdateUserRequestItem", "AlexaForBusinessMetadata"),
+            type = "structure",
+            name = "AlexaForBusinessMetadata",
+            target_id = id.from(_N, "AlexaForBusinessMetadata"),
+            target = M.AlexaForBusinessMetadata,
+        }),
+    },
+})
+
+M.BatchUpdateUserInput = schema.new({
+    id = id.from(_N, "BatchUpdateUserInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "BatchUpdateUserInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        UpdateUserRequestItems = schema.new({
+            id = id.from(_N, "BatchUpdateUserInput", "UpdateUserRequestItems"),
+            type = "list",
+            name = "UpdateUserRequestItems",
+            target_id = prelude.Document.id,
+            list_member = M.UpdateUserRequestItem,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchUpdateUserOutput = schema.new({
+    id = id.from(_N, "BatchUpdateUserOutput"),
+    type = "structure",
+    members = {
+        UserErrors = schema.new({
+            id = id.from(_N, "BatchUpdateUserOutput", "UserErrors"),
+            type = "list",
+            name = "UserErrors",
+            target_id = prelude.Document.id,
+            list_member = M.UserError,
+        }),
+    },
+})
+
+M.Bot = schema.new({
+    id = id.from(_N, "Bot"),
+    type = "structure",
+    members = {
+        BotId = schema.new({
+            id = id.from(_N, "Bot", "BotId"),
+            type = "string",
+            name = "BotId",
+            target_id = prelude.String.id,
+        }),
+        UserId = schema.new({
+            id = id.from(_N, "Bot", "UserId"),
+            type = "string",
+            name = "UserId",
+            target_id = prelude.String.id,
+        }),
+        DisplayName = schema.new({
+            id = id.from(_N, "Bot", "DisplayName"),
+            type = "string",
+            name = "DisplayName",
+            target_id = prelude.String.id,
+        }),
+        BotType = schema.new({
+            id = id.from(_N, "Bot", "BotType"),
+            type = "string",
+            name = "BotType",
+            target_id = prelude.String.id,
+        }),
+        Disabled = schema.new({
+            id = id.from(_N, "Bot", "Disabled"),
+            type = "boolean",
+            name = "Disabled",
+            target_id = prelude.Boolean.id,
+        }),
+        CreatedTimestamp = schema.new({
+            id = id.from(_N, "Bot", "CreatedTimestamp"),
+            type = "timestamp",
+            name = "CreatedTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        UpdatedTimestamp = schema.new({
+            id = id.from(_N, "Bot", "UpdatedTimestamp"),
+            type = "timestamp",
+            name = "UpdatedTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        BotEmail = schema.new({
+            id = id.from(_N, "Bot", "BotEmail"),
+            type = "string",
+            name = "BotEmail",
+            target_id = prelude.String.id,
+        }),
+        SecurityToken = schema.new({
+            id = id.from(_N, "Bot", "SecurityToken"),
+            type = "string",
+            name = "SecurityToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BusinessCallingSettings = schema.new({
+    id = id.from(_N, "BusinessCallingSettings"),
+    type = "structure",
+    members = {
+        CdrBucket = schema.new({
+            id = id.from(_N, "BusinessCallingSettings", "CdrBucket"),
+            type = "string",
+            name = "CdrBucket",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "ConflictException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ConflictException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConversationRetentionSettings = schema.new({
+    id = id.from(_N, "ConversationRetentionSettings"),
+    type = "structure",
+    members = {
+        RetentionDays = schema.new({
+            id = id.from(_N, "ConversationRetentionSettings", "RetentionDays"),
+            type = "integer",
+            name = "RetentionDays",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.CreateAccountInput = schema.new({
+    id = id.from(_N, "CreateAccountInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateAccountInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateAccountOutput = schema.new({
+    id = id.from(_N, "CreateAccountOutput"),
+    type = "structure",
+    members = {
+        Account = schema.new({
+            id = id.from(_N, "CreateAccountOutput", "Account"),
+            type = "structure",
+            name = "Account",
+            target_id = id.from(_N, "Account"),
+            target = M.Account,
+        }),
+    },
+})
+
+M.CreateBotInput = schema.new({
+    id = id.from(_N, "CreateBotInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "CreateBotInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        DisplayName = schema.new({
+            id = id.from(_N, "CreateBotInput", "DisplayName"),
+            type = "string",
+            name = "DisplayName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Domain = schema.new({
+            id = id.from(_N, "CreateBotInput", "Domain"),
+            type = "string",
+            name = "Domain",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateBotOutput = schema.new({
+    id = id.from(_N, "CreateBotOutput"),
+    type = "structure",
+    members = {
+        Bot = schema.new({
+            id = id.from(_N, "CreateBotOutput", "Bot"),
+            type = "structure",
+            name = "Bot",
+            target_id = id.from(_N, "Bot"),
+            target = M.Bot,
+        }),
+    },
+})
+
+M.ResourceLimitExceededException = schema.new({
+    id = id.from(_N, "ResourceLimitExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "ResourceLimitExceededException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ResourceLimitExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateMeetingDialOutInput = schema.new({
+    id = id.from(_N, "CreateMeetingDialOutInput"),
+    type = "structure",
+    members = {
+        MeetingId = schema.new({
+            id = id.from(_N, "CreateMeetingDialOutInput", "MeetingId"),
+            type = "string",
+            name = "MeetingId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        FromPhoneNumber = schema.new({
+            id = id.from(_N, "CreateMeetingDialOutInput", "FromPhoneNumber"),
+            type = "string",
+            name = "FromPhoneNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ToPhoneNumber = schema.new({
+            id = id.from(_N, "CreateMeetingDialOutInput", "ToPhoneNumber"),
+            type = "string",
+            name = "ToPhoneNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        JoinToken = schema.new({
+            id = id.from(_N, "CreateMeetingDialOutInput", "JoinToken"),
+            type = "string",
+            name = "JoinToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateMeetingDialOutOutput = schema.new({
+    id = id.from(_N, "CreateMeetingDialOutOutput"),
+    type = "structure",
+    members = {
+        TransactionId = schema.new({
+            id = id.from(_N, "CreateMeetingDialOutOutput", "TransactionId"),
+            type = "string",
+            name = "TransactionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreatePhoneNumberOrderInput = schema.new({
+    id = id.from(_N, "CreatePhoneNumberOrderInput"),
+    type = "structure",
+    members = {
+        ProductType = schema.new({
+            id = id.from(_N, "CreatePhoneNumberOrderInput", "ProductType"),
+            type = "string",
+            name = "ProductType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        E164PhoneNumbers = schema.new({
+            id = id.from(_N, "CreatePhoneNumberOrderInput", "E164PhoneNumbers"),
+            type = "list",
+            name = "E164PhoneNumbers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.OrderedPhoneNumber = schema.new({
+    id = id.from(_N, "OrderedPhoneNumber"),
+    type = "structure",
+    members = {
+        E164PhoneNumber = schema.new({
+            id = id.from(_N, "OrderedPhoneNumber", "E164PhoneNumber"),
+            type = "string",
+            name = "E164PhoneNumber",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "OrderedPhoneNumber", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PhoneNumberOrder = schema.new({
+    id = id.from(_N, "PhoneNumberOrder"),
+    type = "structure",
+    members = {
+        PhoneNumberOrderId = schema.new({
+            id = id.from(_N, "PhoneNumberOrder", "PhoneNumberOrderId"),
+            type = "string",
+            name = "PhoneNumberOrderId",
+            target_id = prelude.String.id,
+        }),
+        ProductType = schema.new({
+            id = id.from(_N, "PhoneNumberOrder", "ProductType"),
+            type = "string",
+            name = "ProductType",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "PhoneNumberOrder", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        OrderedPhoneNumbers = schema.new({
+            id = id.from(_N, "PhoneNumberOrder", "OrderedPhoneNumbers"),
+            type = "list",
+            name = "OrderedPhoneNumbers",
+            target_id = prelude.Document.id,
+            list_member = M.OrderedPhoneNumber,
+        }),
+        CreatedTimestamp = schema.new({
+            id = id.from(_N, "PhoneNumberOrder", "CreatedTimestamp"),
+            type = "timestamp",
+            name = "CreatedTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        UpdatedTimestamp = schema.new({
+            id = id.from(_N, "PhoneNumberOrder", "UpdatedTimestamp"),
+            type = "timestamp",
+            name = "UpdatedTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.CreatePhoneNumberOrderOutput = schema.new({
+    id = id.from(_N, "CreatePhoneNumberOrderOutput"),
+    type = "structure",
+    members = {
+        PhoneNumberOrder = schema.new({
+            id = id.from(_N, "CreatePhoneNumberOrderOutput", "PhoneNumberOrder"),
+            type = "structure",
+            name = "PhoneNumberOrder",
+            target_id = id.from(_N, "PhoneNumberOrder"),
+            target = M.PhoneNumberOrder,
+        }),
+    },
+})
+
+M.CreateRoomInput = schema.new({
+    id = id.from(_N, "CreateRoomInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "CreateRoomInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateRoomInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientRequestToken = schema.new({
+            id = id.from(_N, "CreateRoomInput", "ClientRequestToken"),
+            type = "string",
+            name = "ClientRequestToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.Room = schema.new({
+    id = id.from(_N, "Room"),
+    type = "structure",
+    members = {
+        RoomId = schema.new({
+            id = id.from(_N, "Room", "RoomId"),
+            type = "string",
+            name = "RoomId",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "Room", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        AccountId = schema.new({
+            id = id.from(_N, "Room", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+        }),
+        CreatedBy = schema.new({
+            id = id.from(_N, "Room", "CreatedBy"),
+            type = "string",
+            name = "CreatedBy",
+            target_id = prelude.String.id,
+        }),
+        CreatedTimestamp = schema.new({
+            id = id.from(_N, "Room", "CreatedTimestamp"),
+            type = "timestamp",
+            name = "CreatedTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        UpdatedTimestamp = schema.new({
+            id = id.from(_N, "Room", "UpdatedTimestamp"),
+            type = "timestamp",
+            name = "UpdatedTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.CreateRoomOutput = schema.new({
+    id = id.from(_N, "CreateRoomOutput"),
+    type = "structure",
+    members = {
+        Room = schema.new({
+            id = id.from(_N, "CreateRoomOutput", "Room"),
+            type = "structure",
+            name = "Room",
+            target_id = id.from(_N, "Room"),
+            target = M.Room,
+        }),
+    },
+})
+
+M.CreateRoomMembershipInput = schema.new({
+    id = id.from(_N, "CreateRoomMembershipInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "CreateRoomMembershipInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        RoomId = schema.new({
+            id = id.from(_N, "CreateRoomMembershipInput", "RoomId"),
+            type = "string",
+            name = "RoomId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MemberId = schema.new({
+            id = id.from(_N, "CreateRoomMembershipInput", "MemberId"),
+            type = "string",
+            name = "MemberId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Role = schema.new({
+            id = id.from(_N, "CreateRoomMembershipInput", "Role"),
+            type = "string",
+            name = "Role",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Member = schema.new({
+    id = id.from(_N, "Member"),
+    type = "structure",
+    members = {
+        MemberId = schema.new({
+            id = id.from(_N, "Member", "MemberId"),
+            type = "string",
+            name = "MemberId",
+            target_id = prelude.String.id,
+        }),
+        MemberType = schema.new({
+            id = id.from(_N, "Member", "MemberType"),
+            type = "string",
+            name = "MemberType",
+            target_id = prelude.String.id,
+        }),
+        Email = schema.new({
+            id = id.from(_N, "Member", "Email"),
+            type = "string",
+            name = "Email",
+            target_id = prelude.String.id,
+        }),
+        FullName = schema.new({
+            id = id.from(_N, "Member", "FullName"),
+            type = "string",
+            name = "FullName",
+            target_id = prelude.String.id,
+        }),
+        AccountId = schema.new({
+            id = id.from(_N, "Member", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RoomMembership = schema.new({
+    id = id.from(_N, "RoomMembership"),
+    type = "structure",
+    members = {
+        RoomId = schema.new({
+            id = id.from(_N, "RoomMembership", "RoomId"),
+            type = "string",
+            name = "RoomId",
+            target_id = prelude.String.id,
+        }),
+        Member = schema.new({
+            id = id.from(_N, "RoomMembership", "Member"),
+            type = "structure",
+            name = "Member",
+            target_id = id.from(_N, "Member"),
+            target = M.Member,
+        }),
+        Role = schema.new({
+            id = id.from(_N, "RoomMembership", "Role"),
+            type = "string",
+            name = "Role",
+            target_id = prelude.String.id,
+        }),
+        InvitedBy = schema.new({
+            id = id.from(_N, "RoomMembership", "InvitedBy"),
+            type = "string",
+            name = "InvitedBy",
+            target_id = prelude.String.id,
+        }),
+        UpdatedTimestamp = schema.new({
+            id = id.from(_N, "RoomMembership", "UpdatedTimestamp"),
+            type = "timestamp",
+            name = "UpdatedTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.CreateRoomMembershipOutput = schema.new({
+    id = id.from(_N, "CreateRoomMembershipOutput"),
+    type = "structure",
+    members = {
+        RoomMembership = schema.new({
+            id = id.from(_N, "CreateRoomMembershipOutput", "RoomMembership"),
+            type = "structure",
+            name = "RoomMembership",
+            target_id = id.from(_N, "RoomMembership"),
+            target = M.RoomMembership,
+        }),
+    },
+})
+
+M.CreateUserInput = schema.new({
+    id = id.from(_N, "CreateUserInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "CreateUserInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Username = schema.new({
+            id = id.from(_N, "CreateUserInput", "Username"),
+            type = "string",
+            name = "Username",
+            target_id = prelude.String.id,
+        }),
+        Email = schema.new({
+            id = id.from(_N, "CreateUserInput", "Email"),
+            type = "string",
+            name = "Email",
+            target_id = prelude.String.id,
+        }),
+        UserType = schema.new({
+            id = id.from(_N, "CreateUserInput", "UserType"),
+            type = "string",
+            name = "UserType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.User = schema.new({
+    id = id.from(_N, "User"),
+    type = "structure",
+    members = {
+        UserId = schema.new({
+            id = id.from(_N, "User", "UserId"),
+            type = "string",
+            name = "UserId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AccountId = schema.new({
+            id = id.from(_N, "User", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+        }),
+        PrimaryEmail = schema.new({
+            id = id.from(_N, "User", "PrimaryEmail"),
+            type = "string",
+            name = "PrimaryEmail",
+            target_id = prelude.String.id,
+        }),
+        PrimaryProvisionedNumber = schema.new({
+            id = id.from(_N, "User", "PrimaryProvisionedNumber"),
+            type = "string",
+            name = "PrimaryProvisionedNumber",
+            target_id = prelude.String.id,
+        }),
+        DisplayName = schema.new({
+            id = id.from(_N, "User", "DisplayName"),
+            type = "string",
+            name = "DisplayName",
+            target_id = prelude.String.id,
+        }),
+        LicenseType = schema.new({
+            id = id.from(_N, "User", "LicenseType"),
+            type = "string",
+            name = "LicenseType",
+            target_id = prelude.String.id,
+        }),
+        UserType = schema.new({
+            id = id.from(_N, "User", "UserType"),
+            type = "string",
+            name = "UserType",
+            target_id = prelude.String.id,
+        }),
+        UserRegistrationStatus = schema.new({
+            id = id.from(_N, "User", "UserRegistrationStatus"),
+            type = "string",
+            name = "UserRegistrationStatus",
+            target_id = prelude.String.id,
+        }),
+        UserInvitationStatus = schema.new({
+            id = id.from(_N, "User", "UserInvitationStatus"),
+            type = "string",
+            name = "UserInvitationStatus",
+            target_id = prelude.String.id,
+        }),
+        RegisteredOn = schema.new({
+            id = id.from(_N, "User", "RegisteredOn"),
+            type = "timestamp",
+            name = "RegisteredOn",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        InvitedOn = schema.new({
+            id = id.from(_N, "User", "InvitedOn"),
+            type = "timestamp",
+            name = "InvitedOn",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        AlexaForBusinessMetadata = schema.new({
+            id = id.from(_N, "User", "AlexaForBusinessMetadata"),
+            type = "structure",
+            name = "AlexaForBusinessMetadata",
+            target_id = id.from(_N, "AlexaForBusinessMetadata"),
+            target = M.AlexaForBusinessMetadata,
+        }),
+        PersonalPIN = schema.new({
+            id = id.from(_N, "User", "PersonalPIN"),
+            type = "string",
+            name = "PersonalPIN",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateUserOutput = schema.new({
+    id = id.from(_N, "CreateUserOutput"),
+    type = "structure",
+    members = {
+        User = schema.new({
+            id = id.from(_N, "CreateUserOutput", "User"),
+            type = "structure",
+            name = "User",
+            target_id = id.from(_N, "User"),
+            target = M.User,
+        }),
+    },
+})
+
+M.DeleteAccountInput = schema.new({
+    id = id.from(_N, "DeleteAccountInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "DeleteAccountInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAccountOutput = schema.new({
+    id = id.from(_N, "DeleteAccountOutput"),
+    type = "structure",
+})
+
+M.UnprocessableEntityException = schema.new({
+    id = id.from(_N, "UnprocessableEntityException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "UnprocessableEntityException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "UnprocessableEntityException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteEventsConfigurationInput = schema.new({
+    id = id.from(_N, "DeleteEventsConfigurationInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "DeleteEventsConfigurationInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        BotId = schema.new({
+            id = id.from(_N, "DeleteEventsConfigurationInput", "BotId"),
+            type = "string",
+            name = "BotId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteEventsConfigurationOutput = schema.new({
+    id = id.from(_N, "DeleteEventsConfigurationOutput"),
+    type = "structure",
+})
+
+M.DeletePhoneNumberInput = schema.new({
+    id = id.from(_N, "DeletePhoneNumberInput"),
+    type = "structure",
+    members = {
+        PhoneNumberId = schema.new({
+            id = id.from(_N, "DeletePhoneNumberInput", "PhoneNumberId"),
+            type = "string",
+            name = "PhoneNumberId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeletePhoneNumberOutput = schema.new({
+    id = id.from(_N, "DeletePhoneNumberOutput"),
+    type = "structure",
+})
+
+M.DeleteRoomInput = schema.new({
+    id = id.from(_N, "DeleteRoomInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "DeleteRoomInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        RoomId = schema.new({
+            id = id.from(_N, "DeleteRoomInput", "RoomId"),
+            type = "string",
+            name = "RoomId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteRoomOutput = schema.new({
+    id = id.from(_N, "DeleteRoomOutput"),
+    type = "structure",
+})
+
+M.DeleteRoomMembershipInput = schema.new({
+    id = id.from(_N, "DeleteRoomMembershipInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "DeleteRoomMembershipInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        RoomId = schema.new({
+            id = id.from(_N, "DeleteRoomMembershipInput", "RoomId"),
+            type = "string",
+            name = "RoomId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MemberId = schema.new({
+            id = id.from(_N, "DeleteRoomMembershipInput", "MemberId"),
+            type = "string",
+            name = "MemberId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteRoomMembershipOutput = schema.new({
+    id = id.from(_N, "DeleteRoomMembershipOutput"),
+    type = "structure",
+})
+
+M.DisassociatePhoneNumberFromUserInput = schema.new({
+    id = id.from(_N, "DisassociatePhoneNumberFromUserInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "DisassociatePhoneNumberFromUserInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        UserId = schema.new({
+            id = id.from(_N, "DisassociatePhoneNumberFromUserInput", "UserId"),
+            type = "string",
+            name = "UserId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DisassociatePhoneNumberFromUserOutput = schema.new({
+    id = id.from(_N, "DisassociatePhoneNumberFromUserOutput"),
+    type = "structure",
+})
+
+M.DisassociateSigninDelegateGroupsFromAccountInput = schema.new({
+    id = id.from(_N, "DisassociateSigninDelegateGroupsFromAccountInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "DisassociateSigninDelegateGroupsFromAccountInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        GroupNames = schema.new({
+            id = id.from(_N, "DisassociateSigninDelegateGroupsFromAccountInput", "GroupNames"),
+            type = "list",
+            name = "GroupNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DisassociateSigninDelegateGroupsFromAccountOutput = schema.new({
+    id = id.from(_N, "DisassociateSigninDelegateGroupsFromAccountOutput"),
+    type = "structure",
+})
+
+M.EventsConfiguration = schema.new({
+    id = id.from(_N, "EventsConfiguration"),
+    type = "structure",
+    members = {
+        BotId = schema.new({
+            id = id.from(_N, "EventsConfiguration", "BotId"),
+            type = "string",
+            name = "BotId",
+            target_id = prelude.String.id,
+        }),
+        OutboundEventsHTTPSEndpoint = schema.new({
+            id = id.from(_N, "EventsConfiguration", "OutboundEventsHTTPSEndpoint"),
+            type = "string",
+            name = "OutboundEventsHTTPSEndpoint",
+            target_id = prelude.String.id,
+        }),
+        LambdaFunctionArn = schema.new({
+            id = id.from(_N, "EventsConfiguration", "LambdaFunctionArn"),
+            type = "string",
+            name = "LambdaFunctionArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetAccountInput = schema.new({
+    id = id.from(_N, "GetAccountInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "GetAccountInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetAccountOutput = schema.new({
+    id = id.from(_N, "GetAccountOutput"),
+    type = "structure",
+    members = {
+        Account = schema.new({
+            id = id.from(_N, "GetAccountOutput", "Account"),
+            type = "structure",
+            name = "Account",
+            target_id = id.from(_N, "Account"),
+            target = M.Account,
+        }),
+    },
+})
+
+M.GetAccountSettingsInput = schema.new({
+    id = id.from(_N, "GetAccountSettingsInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "GetAccountSettingsInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetAccountSettingsOutput = schema.new({
+    id = id.from(_N, "GetAccountSettingsOutput"),
+    type = "structure",
+    members = {
+        AccountSettings = schema.new({
+            id = id.from(_N, "GetAccountSettingsOutput", "AccountSettings"),
+            type = "structure",
+            name = "AccountSettings",
+            target_id = id.from(_N, "AccountSettings"),
+            target = M.AccountSettings,
+        }),
+    },
+})
+
+M.GetBotInput = schema.new({
+    id = id.from(_N, "GetBotInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "GetBotInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        BotId = schema.new({
+            id = id.from(_N, "GetBotInput", "BotId"),
+            type = "string",
+            name = "BotId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetBotOutput = schema.new({
+    id = id.from(_N, "GetBotOutput"),
+    type = "structure",
+    members = {
+        Bot = schema.new({
+            id = id.from(_N, "GetBotOutput", "Bot"),
+            type = "structure",
+            name = "Bot",
+            target_id = id.from(_N, "Bot"),
+            target = M.Bot,
+        }),
+    },
+})
+
+M.GetEventsConfigurationInput = schema.new({
+    id = id.from(_N, "GetEventsConfigurationInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "GetEventsConfigurationInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        BotId = schema.new({
+            id = id.from(_N, "GetEventsConfigurationInput", "BotId"),
+            type = "string",
+            name = "BotId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetEventsConfigurationOutput = schema.new({
+    id = id.from(_N, "GetEventsConfigurationOutput"),
+    type = "structure",
+    members = {
+        EventsConfiguration = schema.new({
+            id = id.from(_N, "GetEventsConfigurationOutput", "EventsConfiguration"),
+            type = "structure",
+            name = "EventsConfiguration",
+            target_id = id.from(_N, "EventsConfiguration"),
+            target = M.EventsConfiguration,
+        }),
+    },
+})
+
+M.GetGlobalSettingsInput = schema.new({
+    id = id.from(_N, "GetGlobalSettingsInput"),
+    type = "structure",
+})
+
+M.VoiceConnectorSettings = schema.new({
+    id = id.from(_N, "VoiceConnectorSettings"),
+    type = "structure",
+    members = {
+        CdrBucket = schema.new({
+            id = id.from(_N, "VoiceConnectorSettings", "CdrBucket"),
+            type = "string",
+            name = "CdrBucket",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetGlobalSettingsOutput = schema.new({
+    id = id.from(_N, "GetGlobalSettingsOutput"),
+    type = "structure",
+    members = {
+        BusinessCalling = schema.new({
+            id = id.from(_N, "GetGlobalSettingsOutput", "BusinessCalling"),
+            type = "structure",
+            name = "BusinessCalling",
+            target_id = id.from(_N, "BusinessCallingSettings"),
+            target = M.BusinessCallingSettings,
+        }),
+        VoiceConnector = schema.new({
+            id = id.from(_N, "GetGlobalSettingsOutput", "VoiceConnector"),
+            type = "structure",
+            name = "VoiceConnector",
+            target_id = id.from(_N, "VoiceConnectorSettings"),
+            target = M.VoiceConnectorSettings,
+        }),
+    },
+})
+
+M.GetPhoneNumberInput = schema.new({
+    id = id.from(_N, "GetPhoneNumberInput"),
+    type = "structure",
+    members = {
+        PhoneNumberId = schema.new({
+            id = id.from(_N, "GetPhoneNumberInput", "PhoneNumberId"),
+            type = "string",
+            name = "PhoneNumberId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.PhoneNumberAssociation = schema.new({
+    id = id.from(_N, "PhoneNumberAssociation"),
+    type = "structure",
+    members = {
+        Value = schema.new({
+            id = id.from(_N, "PhoneNumberAssociation", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "PhoneNumberAssociation", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        AssociatedTimestamp = schema.new({
+            id = id.from(_N, "PhoneNumberAssociation", "AssociatedTimestamp"),
+            type = "timestamp",
+            name = "AssociatedTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.PhoneNumberCapabilities = schema.new({
+    id = id.from(_N, "PhoneNumberCapabilities"),
+    type = "structure",
+    members = {
+        InboundCall = schema.new({
+            id = id.from(_N, "PhoneNumberCapabilities", "InboundCall"),
+            type = "boolean",
+            name = "InboundCall",
+            target_id = prelude.Boolean.id,
+        }),
+        OutboundCall = schema.new({
+            id = id.from(_N, "PhoneNumberCapabilities", "OutboundCall"),
+            type = "boolean",
+            name = "OutboundCall",
+            target_id = prelude.Boolean.id,
+        }),
+        InboundSMS = schema.new({
+            id = id.from(_N, "PhoneNumberCapabilities", "InboundSMS"),
+            type = "boolean",
+            name = "InboundSMS",
+            target_id = prelude.Boolean.id,
+        }),
+        OutboundSMS = schema.new({
+            id = id.from(_N, "PhoneNumberCapabilities", "OutboundSMS"),
+            type = "boolean",
+            name = "OutboundSMS",
+            target_id = prelude.Boolean.id,
+        }),
+        InboundMMS = schema.new({
+            id = id.from(_N, "PhoneNumberCapabilities", "InboundMMS"),
+            type = "boolean",
+            name = "InboundMMS",
+            target_id = prelude.Boolean.id,
+        }),
+        OutboundMMS = schema.new({
+            id = id.from(_N, "PhoneNumberCapabilities", "OutboundMMS"),
+            type = "boolean",
+            name = "OutboundMMS",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.PhoneNumber = schema.new({
+    id = id.from(_N, "PhoneNumber"),
+    type = "structure",
+    members = {
+        PhoneNumberId = schema.new({
+            id = id.from(_N, "PhoneNumber", "PhoneNumberId"),
+            type = "string",
+            name = "PhoneNumberId",
+            target_id = prelude.String.id,
+        }),
+        E164PhoneNumber = schema.new({
+            id = id.from(_N, "PhoneNumber", "E164PhoneNumber"),
+            type = "string",
+            name = "E164PhoneNumber",
+            target_id = prelude.String.id,
+        }),
+        Country = schema.new({
+            id = id.from(_N, "PhoneNumber", "Country"),
+            type = "string",
+            name = "Country",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "PhoneNumber", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        ProductType = schema.new({
+            id = id.from(_N, "PhoneNumber", "ProductType"),
+            type = "string",
+            name = "ProductType",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "PhoneNumber", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        Capabilities = schema.new({
+            id = id.from(_N, "PhoneNumber", "Capabilities"),
+            type = "structure",
+            name = "Capabilities",
+            target_id = id.from(_N, "PhoneNumberCapabilities"),
+            target = M.PhoneNumberCapabilities,
+        }),
+        Associations = schema.new({
+            id = id.from(_N, "PhoneNumber", "Associations"),
+            type = "list",
+            name = "Associations",
+            target_id = prelude.Document.id,
+            list_member = M.PhoneNumberAssociation,
+        }),
+        CallingName = schema.new({
+            id = id.from(_N, "PhoneNumber", "CallingName"),
+            type = "string",
+            name = "CallingName",
+            target_id = prelude.String.id,
+        }),
+        CallingNameStatus = schema.new({
+            id = id.from(_N, "PhoneNumber", "CallingNameStatus"),
+            type = "string",
+            name = "CallingNameStatus",
+            target_id = prelude.String.id,
+        }),
+        CreatedTimestamp = schema.new({
+            id = id.from(_N, "PhoneNumber", "CreatedTimestamp"),
+            type = "timestamp",
+            name = "CreatedTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        UpdatedTimestamp = schema.new({
+            id = id.from(_N, "PhoneNumber", "UpdatedTimestamp"),
+            type = "timestamp",
+            name = "UpdatedTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        DeletionTimestamp = schema.new({
+            id = id.from(_N, "PhoneNumber", "DeletionTimestamp"),
+            type = "timestamp",
+            name = "DeletionTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.GetPhoneNumberOutput = schema.new({
+    id = id.from(_N, "GetPhoneNumberOutput"),
+    type = "structure",
+    members = {
+        PhoneNumber = schema.new({
+            id = id.from(_N, "GetPhoneNumberOutput", "PhoneNumber"),
+            type = "structure",
+            name = "PhoneNumber",
+            target_id = id.from(_N, "PhoneNumber"),
+            target = M.PhoneNumber,
+        }),
+    },
+})
+
+M.GetPhoneNumberOrderInput = schema.new({
+    id = id.from(_N, "GetPhoneNumberOrderInput"),
+    type = "structure",
+    members = {
+        PhoneNumberOrderId = schema.new({
+            id = id.from(_N, "GetPhoneNumberOrderInput", "PhoneNumberOrderId"),
+            type = "string",
+            name = "PhoneNumberOrderId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetPhoneNumberOrderOutput = schema.new({
+    id = id.from(_N, "GetPhoneNumberOrderOutput"),
+    type = "structure",
+    members = {
+        PhoneNumberOrder = schema.new({
+            id = id.from(_N, "GetPhoneNumberOrderOutput", "PhoneNumberOrder"),
+            type = "structure",
+            name = "PhoneNumberOrder",
+            target_id = id.from(_N, "PhoneNumberOrder"),
+            target = M.PhoneNumberOrder,
+        }),
+    },
+})
+
+M.GetPhoneNumberSettingsInput = schema.new({
+    id = id.from(_N, "GetPhoneNumberSettingsInput"),
+    type = "structure",
+})
+
+M.GetPhoneNumberSettingsOutput = schema.new({
+    id = id.from(_N, "GetPhoneNumberSettingsOutput"),
+    type = "structure",
+    members = {
+        CallingName = schema.new({
+            id = id.from(_N, "GetPhoneNumberSettingsOutput", "CallingName"),
+            type = "string",
+            name = "CallingName",
+            target_id = prelude.String.id,
+        }),
+        CallingNameUpdatedTimestamp = schema.new({
+            id = id.from(_N, "GetPhoneNumberSettingsOutput", "CallingNameUpdatedTimestamp"),
+            type = "timestamp",
+            name = "CallingNameUpdatedTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.GetRetentionSettingsInput = schema.new({
+    id = id.from(_N, "GetRetentionSettingsInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "GetRetentionSettingsInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.RoomRetentionSettings = schema.new({
+    id = id.from(_N, "RoomRetentionSettings"),
+    type = "structure",
+    members = {
+        RetentionDays = schema.new({
+            id = id.from(_N, "RoomRetentionSettings", "RetentionDays"),
+            type = "integer",
+            name = "RetentionDays",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.RetentionSettings = schema.new({
+    id = id.from(_N, "RetentionSettings"),
+    type = "structure",
+    members = {
+        RoomRetentionSettings = schema.new({
+            id = id.from(_N, "RetentionSettings", "RoomRetentionSettings"),
+            type = "structure",
+            name = "RoomRetentionSettings",
+            target_id = id.from(_N, "RoomRetentionSettings"),
+            target = M.RoomRetentionSettings,
+        }),
+        ConversationRetentionSettings = schema.new({
+            id = id.from(_N, "RetentionSettings", "ConversationRetentionSettings"),
+            type = "structure",
+            name = "ConversationRetentionSettings",
+            target_id = id.from(_N, "ConversationRetentionSettings"),
+            target = M.ConversationRetentionSettings,
+        }),
+    },
+})
+
+M.GetRetentionSettingsOutput = schema.new({
+    id = id.from(_N, "GetRetentionSettingsOutput"),
+    type = "structure",
+    members = {
+        RetentionSettings = schema.new({
+            id = id.from(_N, "GetRetentionSettingsOutput", "RetentionSettings"),
+            type = "structure",
+            name = "RetentionSettings",
+            target_id = id.from(_N, "RetentionSettings"),
+            target = M.RetentionSettings,
+        }),
+        InitiateDeletionTimestamp = schema.new({
+            id = id.from(_N, "GetRetentionSettingsOutput", "InitiateDeletionTimestamp"),
+            type = "timestamp",
+            name = "InitiateDeletionTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.GetRoomInput = schema.new({
+    id = id.from(_N, "GetRoomInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "GetRoomInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        RoomId = schema.new({
+            id = id.from(_N, "GetRoomInput", "RoomId"),
+            type = "string",
+            name = "RoomId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetRoomOutput = schema.new({
+    id = id.from(_N, "GetRoomOutput"),
+    type = "structure",
+    members = {
+        Room = schema.new({
+            id = id.from(_N, "GetRoomOutput", "Room"),
+            type = "structure",
+            name = "Room",
+            target_id = id.from(_N, "Room"),
+            target = M.Room,
+        }),
+    },
+})
+
+M.GetUserInput = schema.new({
+    id = id.from(_N, "GetUserInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "GetUserInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        UserId = schema.new({
+            id = id.from(_N, "GetUserInput", "UserId"),
+            type = "string",
+            name = "UserId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetUserOutput = schema.new({
+    id = id.from(_N, "GetUserOutput"),
+    type = "structure",
+    members = {
+        User = schema.new({
+            id = id.from(_N, "GetUserOutput", "User"),
+            type = "structure",
+            name = "User",
+            target_id = id.from(_N, "User"),
+            target = M.User,
+        }),
+    },
+})
+
+M.GetUserSettingsInput = schema.new({
+    id = id.from(_N, "GetUserSettingsInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "GetUserSettingsInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        UserId = schema.new({
+            id = id.from(_N, "GetUserSettingsInput", "UserId"),
+            type = "string",
+            name = "UserId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.TelephonySettings = schema.new({
+    id = id.from(_N, "TelephonySettings"),
+    type = "structure",
+    members = {
+        InboundCalling = schema.new({
+            id = id.from(_N, "TelephonySettings", "InboundCalling"),
+            type = "boolean",
+            name = "InboundCalling",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        OutboundCalling = schema.new({
+            id = id.from(_N, "TelephonySettings", "OutboundCalling"),
+            type = "boolean",
+            name = "OutboundCalling",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SMS = schema.new({
+            id = id.from(_N, "TelephonySettings", "SMS"),
+            type = "boolean",
+            name = "SMS",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UserSettings = schema.new({
+    id = id.from(_N, "UserSettings"),
+    type = "structure",
+    members = {
+        Telephony = schema.new({
+            id = id.from(_N, "UserSettings", "Telephony"),
+            type = "structure",
+            name = "Telephony",
+            target_id = id.from(_N, "TelephonySettings"),
+            target = M.TelephonySettings,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetUserSettingsOutput = schema.new({
+    id = id.from(_N, "GetUserSettingsOutput"),
+    type = "structure",
+    members = {
+        UserSettings = schema.new({
+            id = id.from(_N, "GetUserSettingsOutput", "UserSettings"),
+            type = "structure",
+            name = "UserSettings",
+            target_id = id.from(_N, "UserSettings"),
+            target = M.UserSettings,
+        }),
+    },
+})
+
+M.Invite = schema.new({
+    id = id.from(_N, "Invite"),
+    type = "structure",
+    members = {
+        InviteId = schema.new({
+            id = id.from(_N, "Invite", "InviteId"),
+            type = "string",
+            name = "InviteId",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "Invite", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        EmailAddress = schema.new({
+            id = id.from(_N, "Invite", "EmailAddress"),
+            type = "string",
+            name = "EmailAddress",
+            target_id = prelude.String.id,
+        }),
+        EmailStatus = schema.new({
+            id = id.from(_N, "Invite", "EmailStatus"),
+            type = "string",
+            name = "EmailStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InviteUsersInput = schema.new({
+    id = id.from(_N, "InviteUsersInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "InviteUsersInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        UserEmailList = schema.new({
+            id = id.from(_N, "InviteUsersInput", "UserEmailList"),
+            type = "list",
+            name = "UserEmailList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UserType = schema.new({
+            id = id.from(_N, "InviteUsersInput", "UserType"),
+            type = "string",
+            name = "UserType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InviteUsersOutput = schema.new({
+    id = id.from(_N, "InviteUsersOutput"),
+    type = "structure",
+    members = {
+        Invites = schema.new({
+            id = id.from(_N, "InviteUsersOutput", "Invites"),
+            type = "list",
+            name = "Invites",
+            target_id = prelude.Document.id,
+            list_member = M.Invite,
+        }),
+    },
+})
+
+M.ListAccountsInput = schema.new({
+    id = id.from(_N, "ListAccountsInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "ListAccountsInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "name" },
+            },
+        }),
+        UserEmail = schema.new({
+            id = id.from(_N, "ListAccountsInput", "UserEmail"),
+            type = "string",
+            name = "UserEmail",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "user-email" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAccountsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "next-token" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListAccountsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "max-results" },
+            },
+        }),
+    },
+})
+
+M.ListAccountsOutput = schema.new({
+    id = id.from(_N, "ListAccountsOutput"),
+    type = "structure",
+    members = {
+        Accounts = schema.new({
+            id = id.from(_N, "ListAccountsOutput", "Accounts"),
+            type = "list",
+            name = "Accounts",
+            target_id = prelude.Document.id,
+            list_member = M.Account,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAccountsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListBotsInput = schema.new({
+    id = id.from(_N, "ListBotsInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "ListBotsInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListBotsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "max-results" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListBotsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "next-token" },
+            },
+        }),
+    },
+})
+
+M.ListBotsOutput = schema.new({
+    id = id.from(_N, "ListBotsOutput"),
+    type = "structure",
+    members = {
+        Bots = schema.new({
+            id = id.from(_N, "ListBotsOutput", "Bots"),
+            type = "list",
+            name = "Bots",
+            target_id = prelude.Document.id,
+            list_member = M.Bot,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListBotsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListPhoneNumberOrdersInput = schema.new({
+    id = id.from(_N, "ListPhoneNumberOrdersInput"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListPhoneNumberOrdersInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "next-token" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListPhoneNumberOrdersInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "max-results" },
+            },
+        }),
+    },
+})
+
+M.ListPhoneNumberOrdersOutput = schema.new({
+    id = id.from(_N, "ListPhoneNumberOrdersOutput"),
+    type = "structure",
+    members = {
+        PhoneNumberOrders = schema.new({
+            id = id.from(_N, "ListPhoneNumberOrdersOutput", "PhoneNumberOrders"),
+            type = "list",
+            name = "PhoneNumberOrders",
+            target_id = prelude.Document.id,
+            list_member = M.PhoneNumberOrder,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListPhoneNumberOrdersOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListPhoneNumbersInput = schema.new({
+    id = id.from(_N, "ListPhoneNumbersInput"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "ListPhoneNumbersInput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "status" },
+            },
+        }),
+        ProductType = schema.new({
+            id = id.from(_N, "ListPhoneNumbersInput", "ProductType"),
+            type = "string",
+            name = "ProductType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "product-type" },
+            },
+        }),
+        FilterName = schema.new({
+            id = id.from(_N, "ListPhoneNumbersInput", "FilterName"),
+            type = "string",
+            name = "FilterName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "filter-name" },
+            },
+        }),
+        FilterValue = schema.new({
+            id = id.from(_N, "ListPhoneNumbersInput", "FilterValue"),
+            type = "string",
+            name = "FilterValue",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "filter-value" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListPhoneNumbersInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "max-results" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListPhoneNumbersInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "next-token" },
+            },
+        }),
+    },
+})
+
+M.ListPhoneNumbersOutput = schema.new({
+    id = id.from(_N, "ListPhoneNumbersOutput"),
+    type = "structure",
+    members = {
+        PhoneNumbers = schema.new({
+            id = id.from(_N, "ListPhoneNumbersOutput", "PhoneNumbers"),
+            type = "list",
+            name = "PhoneNumbers",
+            target_id = prelude.Document.id,
+            list_member = M.PhoneNumber,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListPhoneNumbersOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListRoomMembershipsInput = schema.new({
+    id = id.from(_N, "ListRoomMembershipsInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "ListRoomMembershipsInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        RoomId = schema.new({
+            id = id.from(_N, "ListRoomMembershipsInput", "RoomId"),
+            type = "string",
+            name = "RoomId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListRoomMembershipsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "max-results" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListRoomMembershipsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "next-token" },
+            },
+        }),
+    },
+})
+
+M.ListRoomMembershipsOutput = schema.new({
+    id = id.from(_N, "ListRoomMembershipsOutput"),
+    type = "structure",
+    members = {
+        RoomMemberships = schema.new({
+            id = id.from(_N, "ListRoomMembershipsOutput", "RoomMemberships"),
+            type = "list",
+            name = "RoomMemberships",
+            target_id = prelude.Document.id,
+            list_member = M.RoomMembership,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListRoomMembershipsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListRoomsInput = schema.new({
+    id = id.from(_N, "ListRoomsInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "ListRoomsInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MemberId = schema.new({
+            id = id.from(_N, "ListRoomsInput", "MemberId"),
+            type = "string",
+            name = "MemberId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "member-id" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListRoomsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "max-results" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListRoomsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "next-token" },
+            },
+        }),
+    },
+})
+
+M.ListRoomsOutput = schema.new({
+    id = id.from(_N, "ListRoomsOutput"),
+    type = "structure",
+    members = {
+        Rooms = schema.new({
+            id = id.from(_N, "ListRoomsOutput", "Rooms"),
+            type = "list",
+            name = "Rooms",
+            target_id = prelude.Document.id,
+            list_member = M.Room,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListRoomsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListSupportedPhoneNumberCountriesInput = schema.new({
+    id = id.from(_N, "ListSupportedPhoneNumberCountriesInput"),
+    type = "structure",
+    members = {
+        ProductType = schema.new({
+            id = id.from(_N, "ListSupportedPhoneNumberCountriesInput", "ProductType"),
+            type = "string",
+            name = "ProductType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "product-type" },
+            },
+        }),
+    },
+})
+
+M.PhoneNumberCountry = schema.new({
+    id = id.from(_N, "PhoneNumberCountry"),
+    type = "structure",
+    members = {
+        CountryCode = schema.new({
+            id = id.from(_N, "PhoneNumberCountry", "CountryCode"),
+            type = "string",
+            name = "CountryCode",
+            target_id = prelude.String.id,
+        }),
+        SupportedPhoneNumberTypes = schema.new({
+            id = id.from(_N, "PhoneNumberCountry", "SupportedPhoneNumberTypes"),
+            type = "list",
+            name = "SupportedPhoneNumberTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ListSupportedPhoneNumberCountriesOutput = schema.new({
+    id = id.from(_N, "ListSupportedPhoneNumberCountriesOutput"),
+    type = "structure",
+    members = {
+        PhoneNumberCountries = schema.new({
+            id = id.from(_N, "ListSupportedPhoneNumberCountriesOutput", "PhoneNumberCountries"),
+            type = "list",
+            name = "PhoneNumberCountries",
+            target_id = prelude.Document.id,
+            list_member = M.PhoneNumberCountry,
+        }),
+    },
+})
+
+M.ListUsersInput = schema.new({
+    id = id.from(_N, "ListUsersInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "ListUsersInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        UserEmail = schema.new({
+            id = id.from(_N, "ListUsersInput", "UserEmail"),
+            type = "string",
+            name = "UserEmail",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "user-email" },
+            },
+        }),
+        UserType = schema.new({
+            id = id.from(_N, "ListUsersInput", "UserType"),
+            type = "string",
+            name = "UserType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "user-type" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListUsersInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "max-results" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListUsersInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "next-token" },
+            },
+        }),
+    },
+})
+
+M.ListUsersOutput = schema.new({
+    id = id.from(_N, "ListUsersOutput"),
+    type = "structure",
+    members = {
+        Users = schema.new({
+            id = id.from(_N, "ListUsersOutput", "Users"),
+            type = "list",
+            name = "Users",
+            target_id = prelude.Document.id,
+            list_member = M.User,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListUsersOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.LogoutUserInput = schema.new({
+    id = id.from(_N, "LogoutUserInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "LogoutUserInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        UserId = schema.new({
+            id = id.from(_N, "LogoutUserInput", "UserId"),
+            type = "string",
+            name = "UserId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.LogoutUserOutput = schema.new({
+    id = id.from(_N, "LogoutUserOutput"),
+    type = "structure",
+})
+
+M.PutEventsConfigurationInput = schema.new({
+    id = id.from(_N, "PutEventsConfigurationInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "PutEventsConfigurationInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        BotId = schema.new({
+            id = id.from(_N, "PutEventsConfigurationInput", "BotId"),
+            type = "string",
+            name = "BotId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        OutboundEventsHTTPSEndpoint = schema.new({
+            id = id.from(_N, "PutEventsConfigurationInput", "OutboundEventsHTTPSEndpoint"),
+            type = "string",
+            name = "OutboundEventsHTTPSEndpoint",
+            target_id = prelude.String.id,
+        }),
+        LambdaFunctionArn = schema.new({
+            id = id.from(_N, "PutEventsConfigurationInput", "LambdaFunctionArn"),
+            type = "string",
+            name = "LambdaFunctionArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PutEventsConfigurationOutput = schema.new({
+    id = id.from(_N, "PutEventsConfigurationOutput"),
+    type = "structure",
+    members = {
+        EventsConfiguration = schema.new({
+            id = id.from(_N, "PutEventsConfigurationOutput", "EventsConfiguration"),
+            type = "structure",
+            name = "EventsConfiguration",
+            target_id = id.from(_N, "EventsConfiguration"),
+            target = M.EventsConfiguration,
+        }),
+    },
+})
+
+M.PutRetentionSettingsInput = schema.new({
+    id = id.from(_N, "PutRetentionSettingsInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "PutRetentionSettingsInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        RetentionSettings = schema.new({
+            id = id.from(_N, "PutRetentionSettingsInput", "RetentionSettings"),
+            type = "structure",
+            name = "RetentionSettings",
+            target_id = id.from(_N, "RetentionSettings"),
+            target = M.RetentionSettings,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutRetentionSettingsOutput = schema.new({
+    id = id.from(_N, "PutRetentionSettingsOutput"),
+    type = "structure",
+    members = {
+        RetentionSettings = schema.new({
+            id = id.from(_N, "PutRetentionSettingsOutput", "RetentionSettings"),
+            type = "structure",
+            name = "RetentionSettings",
+            target_id = id.from(_N, "RetentionSettings"),
+            target = M.RetentionSettings,
+        }),
+        InitiateDeletionTimestamp = schema.new({
+            id = id.from(_N, "PutRetentionSettingsOutput", "InitiateDeletionTimestamp"),
+            type = "timestamp",
+            name = "InitiateDeletionTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.RedactConversationMessageInput = schema.new({
+    id = id.from(_N, "RedactConversationMessageInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "RedactConversationMessageInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ConversationId = schema.new({
+            id = id.from(_N, "RedactConversationMessageInput", "ConversationId"),
+            type = "string",
+            name = "ConversationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MessageId = schema.new({
+            id = id.from(_N, "RedactConversationMessageInput", "MessageId"),
+            type = "string",
+            name = "MessageId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.RedactConversationMessageOutput = schema.new({
+    id = id.from(_N, "RedactConversationMessageOutput"),
+    type = "structure",
+})
+
+M.RedactRoomMessageInput = schema.new({
+    id = id.from(_N, "RedactRoomMessageInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "RedactRoomMessageInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        RoomId = schema.new({
+            id = id.from(_N, "RedactRoomMessageInput", "RoomId"),
+            type = "string",
+            name = "RoomId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MessageId = schema.new({
+            id = id.from(_N, "RedactRoomMessageInput", "MessageId"),
+            type = "string",
+            name = "MessageId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.RedactRoomMessageOutput = schema.new({
+    id = id.from(_N, "RedactRoomMessageOutput"),
+    type = "structure",
+})
+
+M.RegenerateSecurityTokenInput = schema.new({
+    id = id.from(_N, "RegenerateSecurityTokenInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "RegenerateSecurityTokenInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        BotId = schema.new({
+            id = id.from(_N, "RegenerateSecurityTokenInput", "BotId"),
+            type = "string",
+            name = "BotId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.RegenerateSecurityTokenOutput = schema.new({
+    id = id.from(_N, "RegenerateSecurityTokenOutput"),
+    type = "structure",
+    members = {
+        Bot = schema.new({
+            id = id.from(_N, "RegenerateSecurityTokenOutput", "Bot"),
+            type = "structure",
+            name = "Bot",
+            target_id = id.from(_N, "Bot"),
+            target = M.Bot,
+        }),
+    },
+})
+
+M.ResetPersonalPINInput = schema.new({
+    id = id.from(_N, "ResetPersonalPINInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "ResetPersonalPINInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        UserId = schema.new({
+            id = id.from(_N, "ResetPersonalPINInput", "UserId"),
+            type = "string",
+            name = "UserId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ResetPersonalPINOutput = schema.new({
+    id = id.from(_N, "ResetPersonalPINOutput"),
+    type = "structure",
+    members = {
+        User = schema.new({
+            id = id.from(_N, "ResetPersonalPINOutput", "User"),
+            type = "structure",
+            name = "User",
+            target_id = id.from(_N, "User"),
+            target = M.User,
+        }),
+    },
+})
+
+M.RestorePhoneNumberInput = schema.new({
+    id = id.from(_N, "RestorePhoneNumberInput"),
+    type = "structure",
+    members = {
+        PhoneNumberId = schema.new({
+            id = id.from(_N, "RestorePhoneNumberInput", "PhoneNumberId"),
+            type = "string",
+            name = "PhoneNumberId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.RestorePhoneNumberOutput = schema.new({
+    id = id.from(_N, "RestorePhoneNumberOutput"),
+    type = "structure",
+    members = {
+        PhoneNumber = schema.new({
+            id = id.from(_N, "RestorePhoneNumberOutput", "PhoneNumber"),
+            type = "structure",
+            name = "PhoneNumber",
+            target_id = id.from(_N, "PhoneNumber"),
+            target = M.PhoneNumber,
+        }),
+    },
+})
+
+M.SearchAvailablePhoneNumbersInput = schema.new({
+    id = id.from(_N, "SearchAvailablePhoneNumbersInput"),
+    type = "structure",
+    members = {
+        AreaCode = schema.new({
+            id = id.from(_N, "SearchAvailablePhoneNumbersInput", "AreaCode"),
+            type = "string",
+            name = "AreaCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "area-code" },
+            },
+        }),
+        City = schema.new({
+            id = id.from(_N, "SearchAvailablePhoneNumbersInput", "City"),
+            type = "string",
+            name = "City",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "city" },
+            },
+        }),
+        Country = schema.new({
+            id = id.from(_N, "SearchAvailablePhoneNumbersInput", "Country"),
+            type = "string",
+            name = "Country",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "country" },
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "SearchAvailablePhoneNumbersInput", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "state" },
+            },
+        }),
+        TollFreePrefix = schema.new({
+            id = id.from(_N, "SearchAvailablePhoneNumbersInput", "TollFreePrefix"),
+            type = "string",
+            name = "TollFreePrefix",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "toll-free-prefix" },
+            },
+        }),
+        PhoneNumberType = schema.new({
+            id = id.from(_N, "SearchAvailablePhoneNumbersInput", "PhoneNumberType"),
+            type = "string",
+            name = "PhoneNumberType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "phone-number-type" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "SearchAvailablePhoneNumbersInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "max-results" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "SearchAvailablePhoneNumbersInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "next-token" },
+            },
+        }),
+    },
+})
+
+M.SearchAvailablePhoneNumbersOutput = schema.new({
+    id = id.from(_N, "SearchAvailablePhoneNumbersOutput"),
+    type = "structure",
+    members = {
+        E164PhoneNumbers = schema.new({
+            id = id.from(_N, "SearchAvailablePhoneNumbersOutput", "E164PhoneNumbers"),
+            type = "list",
+            name = "E164PhoneNumbers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "SearchAvailablePhoneNumbersOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateAccountInput = schema.new({
+    id = id.from(_N, "UpdateAccountInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "UpdateAccountInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateAccountInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        DefaultLicense = schema.new({
+            id = id.from(_N, "UpdateAccountInput", "DefaultLicense"),
+            type = "string",
+            name = "DefaultLicense",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateAccountOutput = schema.new({
+    id = id.from(_N, "UpdateAccountOutput"),
+    type = "structure",
+    members = {
+        Account = schema.new({
+            id = id.from(_N, "UpdateAccountOutput", "Account"),
+            type = "structure",
+            name = "Account",
+            target_id = id.from(_N, "Account"),
+            target = M.Account,
+        }),
+    },
+})
+
+M.UpdateAccountSettingsInput = schema.new({
+    id = id.from(_N, "UpdateAccountSettingsInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "UpdateAccountSettingsInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AccountSettings = schema.new({
+            id = id.from(_N, "UpdateAccountSettingsInput", "AccountSettings"),
+            type = "structure",
+            name = "AccountSettings",
+            target_id = id.from(_N, "AccountSettings"),
+            target = M.AccountSettings,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateAccountSettingsOutput = schema.new({
+    id = id.from(_N, "UpdateAccountSettingsOutput"),
+    type = "structure",
+})
+
+M.UpdateBotInput = schema.new({
+    id = id.from(_N, "UpdateBotInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "UpdateBotInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        BotId = schema.new({
+            id = id.from(_N, "UpdateBotInput", "BotId"),
+            type = "string",
+            name = "BotId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Disabled = schema.new({
+            id = id.from(_N, "UpdateBotInput", "Disabled"),
+            type = "boolean",
+            name = "Disabled",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.UpdateBotOutput = schema.new({
+    id = id.from(_N, "UpdateBotOutput"),
+    type = "structure",
+    members = {
+        Bot = schema.new({
+            id = id.from(_N, "UpdateBotOutput", "Bot"),
+            type = "structure",
+            name = "Bot",
+            target_id = id.from(_N, "Bot"),
+            target = M.Bot,
+        }),
+    },
+})
+
+M.UpdateGlobalSettingsInput = schema.new({
+    id = id.from(_N, "UpdateGlobalSettingsInput"),
+    type = "structure",
+    members = {
+        BusinessCalling = schema.new({
+            id = id.from(_N, "UpdateGlobalSettingsInput", "BusinessCalling"),
+            type = "structure",
+            name = "BusinessCalling",
+            target_id = id.from(_N, "BusinessCallingSettings"),
+            target = M.BusinessCallingSettings,
+        }),
+        VoiceConnector = schema.new({
+            id = id.from(_N, "UpdateGlobalSettingsInput", "VoiceConnector"),
+            type = "structure",
+            name = "VoiceConnector",
+            target_id = id.from(_N, "VoiceConnectorSettings"),
+            target = M.VoiceConnectorSettings,
+        }),
+    },
+})
+
+M.UpdateGlobalSettingsOutput = schema.new({
+    id = id.from(_N, "UpdateGlobalSettingsOutput"),
+    type = "structure",
+})
+
+M.UpdatePhoneNumberInput = schema.new({
+    id = id.from(_N, "UpdatePhoneNumberInput"),
+    type = "structure",
+    members = {
+        PhoneNumberId = schema.new({
+            id = id.from(_N, "UpdatePhoneNumberInput", "PhoneNumberId"),
+            type = "string",
+            name = "PhoneNumberId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ProductType = schema.new({
+            id = id.from(_N, "UpdatePhoneNumberInput", "ProductType"),
+            type = "string",
+            name = "ProductType",
+            target_id = prelude.String.id,
+        }),
+        CallingName = schema.new({
+            id = id.from(_N, "UpdatePhoneNumberInput", "CallingName"),
+            type = "string",
+            name = "CallingName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdatePhoneNumberOutput = schema.new({
+    id = id.from(_N, "UpdatePhoneNumberOutput"),
+    type = "structure",
+    members = {
+        PhoneNumber = schema.new({
+            id = id.from(_N, "UpdatePhoneNumberOutput", "PhoneNumber"),
+            type = "structure",
+            name = "PhoneNumber",
+            target_id = id.from(_N, "PhoneNumber"),
+            target = M.PhoneNumber,
+        }),
+    },
+})
+
+M.UpdatePhoneNumberSettingsInput = schema.new({
+    id = id.from(_N, "UpdatePhoneNumberSettingsInput"),
+    type = "structure",
+    members = {
+        CallingName = schema.new({
+            id = id.from(_N, "UpdatePhoneNumberSettingsInput", "CallingName"),
+            type = "string",
+            name = "CallingName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdatePhoneNumberSettingsOutput = schema.new({
+    id = id.from(_N, "UpdatePhoneNumberSettingsOutput"),
+    type = "structure",
+})
+
+M.UpdateRoomInput = schema.new({
+    id = id.from(_N, "UpdateRoomInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "UpdateRoomInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        RoomId = schema.new({
+            id = id.from(_N, "UpdateRoomInput", "RoomId"),
+            type = "string",
+            name = "RoomId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateRoomInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateRoomOutput = schema.new({
+    id = id.from(_N, "UpdateRoomOutput"),
+    type = "structure",
+    members = {
+        Room = schema.new({
+            id = id.from(_N, "UpdateRoomOutput", "Room"),
+            type = "structure",
+            name = "Room",
+            target_id = id.from(_N, "Room"),
+            target = M.Room,
+        }),
+    },
+})
+
+M.UpdateRoomMembershipInput = schema.new({
+    id = id.from(_N, "UpdateRoomMembershipInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "UpdateRoomMembershipInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        RoomId = schema.new({
+            id = id.from(_N, "UpdateRoomMembershipInput", "RoomId"),
+            type = "string",
+            name = "RoomId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MemberId = schema.new({
+            id = id.from(_N, "UpdateRoomMembershipInput", "MemberId"),
+            type = "string",
+            name = "MemberId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Role = schema.new({
+            id = id.from(_N, "UpdateRoomMembershipInput", "Role"),
+            type = "string",
+            name = "Role",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateRoomMembershipOutput = schema.new({
+    id = id.from(_N, "UpdateRoomMembershipOutput"),
+    type = "structure",
+    members = {
+        RoomMembership = schema.new({
+            id = id.from(_N, "UpdateRoomMembershipOutput", "RoomMembership"),
+            type = "structure",
+            name = "RoomMembership",
+            target_id = id.from(_N, "RoomMembership"),
+            target = M.RoomMembership,
+        }),
+    },
+})
+
+M.UpdateUserInput = schema.new({
+    id = id.from(_N, "UpdateUserInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "UpdateUserInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        UserId = schema.new({
+            id = id.from(_N, "UpdateUserInput", "UserId"),
+            type = "string",
+            name = "UserId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        LicenseType = schema.new({
+            id = id.from(_N, "UpdateUserInput", "LicenseType"),
+            type = "string",
+            name = "LicenseType",
+            target_id = prelude.String.id,
+        }),
+        UserType = schema.new({
+            id = id.from(_N, "UpdateUserInput", "UserType"),
+            type = "string",
+            name = "UserType",
+            target_id = prelude.String.id,
+        }),
+        AlexaForBusinessMetadata = schema.new({
+            id = id.from(_N, "UpdateUserInput", "AlexaForBusinessMetadata"),
+            type = "structure",
+            name = "AlexaForBusinessMetadata",
+            target_id = id.from(_N, "AlexaForBusinessMetadata"),
+            target = M.AlexaForBusinessMetadata,
+        }),
+    },
+})
+
+M.UpdateUserOutput = schema.new({
+    id = id.from(_N, "UpdateUserOutput"),
+    type = "structure",
+    members = {
+        User = schema.new({
+            id = id.from(_N, "UpdateUserOutput", "User"),
+            type = "structure",
+            name = "User",
+            target_id = id.from(_N, "User"),
+            target = M.User,
+        }),
+    },
+})
+
+M.UpdateUserSettingsInput = schema.new({
+    id = id.from(_N, "UpdateUserSettingsInput"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "UpdateUserSettingsInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        UserId = schema.new({
+            id = id.from(_N, "UpdateUserSettingsInput", "UserId"),
+            type = "string",
+            name = "UserId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        UserSettings = schema.new({
+            id = id.from(_N, "UpdateUserSettingsInput", "UserSettings"),
+            type = "structure",
+            name = "UserSettings",
+            target_id = id.from(_N, "UserSettings"),
+            target = M.UserSettings,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateUserSettingsOutput = schema.new({
+    id = id.from(_N, "UpdateUserSettingsOutput"),
+    type = "structure",
+})
+
+return M

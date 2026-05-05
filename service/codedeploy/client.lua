@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("codedeploy.endpoint_rules")
+local schemas = require("codedeploy.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("codedeploy.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addTagsToOnPremisesInstances(input, options)
     return self:invokeOperation(input, {
         name = "AddTagsToOnPremisesInstances",
-        input_schema = types.AddTagsToOnPremisesInstancesInput,
-        output_schema = types.AddTagsToOnPremisesInstancesOutput,
+        input_schema = schemas.AddTagsToOnPremisesInstancesInput,
+        output_schema = schemas.AddTagsToOnPremisesInstancesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchGetApplicationRevisions(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetApplicationRevisions",
-        input_schema = types.BatchGetApplicationRevisionsInput,
-        output_schema = types.BatchGetApplicationRevisionsOutput,
+        input_schema = schemas.BatchGetApplicationRevisionsInput,
+        output_schema = schemas.BatchGetApplicationRevisionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchGetApplications(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetApplications",
-        input_schema = types.BatchGetApplicationsInput,
-        output_schema = types.BatchGetApplicationsOutput,
+        input_schema = schemas.BatchGetApplicationsInput,
+        output_schema = schemas.BatchGetApplicationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:batchGetDeploymentGroups(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetDeploymentGroups",
-        input_schema = types.BatchGetDeploymentGroupsInput,
-        output_schema = types.BatchGetDeploymentGroupsOutput,
+        input_schema = schemas.BatchGetDeploymentGroupsInput,
+        output_schema = schemas.BatchGetDeploymentGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:batchGetDeploymentInstances(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetDeploymentInstances",
-        input_schema = types.BatchGetDeploymentInstancesInput,
-        output_schema = types.BatchGetDeploymentInstancesOutput,
+        input_schema = schemas.BatchGetDeploymentInstancesInput,
+        output_schema = schemas.BatchGetDeploymentInstancesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:batchGetDeployments(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetDeployments",
-        input_schema = types.BatchGetDeploymentsInput,
-        output_schema = types.BatchGetDeploymentsOutput,
+        input_schema = schemas.BatchGetDeploymentsInput,
+        output_schema = schemas.BatchGetDeploymentsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:batchGetDeploymentTargets(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetDeploymentTargets",
-        input_schema = types.BatchGetDeploymentTargetsInput,
-        output_schema = types.BatchGetDeploymentTargetsOutput,
+        input_schema = schemas.BatchGetDeploymentTargetsInput,
+        output_schema = schemas.BatchGetDeploymentTargetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:batchGetOnPremisesInstances(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetOnPremisesInstances",
-        input_schema = types.BatchGetOnPremisesInstancesInput,
-        output_schema = types.BatchGetOnPremisesInstancesOutput,
+        input_schema = schemas.BatchGetOnPremisesInstancesInput,
+        output_schema = schemas.BatchGetOnPremisesInstancesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:continueDeployment(input, options)
     return self:invokeOperation(input, {
         name = "ContinueDeployment",
-        input_schema = types.ContinueDeploymentInput,
-        output_schema = types.ContinueDeploymentOutput,
+        input_schema = schemas.ContinueDeploymentInput,
+        output_schema = schemas.ContinueDeploymentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createApplication(input, options)
     return self:invokeOperation(input, {
         name = "CreateApplication",
-        input_schema = types.CreateApplicationInput,
-        output_schema = types.CreateApplicationOutput,
+        input_schema = schemas.CreateApplicationInput,
+        output_schema = schemas.CreateApplicationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createDeployment(input, options)
     return self:invokeOperation(input, {
         name = "CreateDeployment",
-        input_schema = types.CreateDeploymentInput,
-        output_schema = types.CreateDeploymentOutput,
+        input_schema = schemas.CreateDeploymentInput,
+        output_schema = schemas.CreateDeploymentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createDeploymentConfig(input, options)
     return self:invokeOperation(input, {
         name = "CreateDeploymentConfig",
-        input_schema = types.CreateDeploymentConfigInput,
-        output_schema = types.CreateDeploymentConfigOutput,
+        input_schema = schemas.CreateDeploymentConfigInput,
+        output_schema = schemas.CreateDeploymentConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createDeploymentGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateDeploymentGroup",
-        input_schema = types.CreateDeploymentGroupInput,
-        output_schema = types.CreateDeploymentGroupOutput,
+        input_schema = schemas.CreateDeploymentGroupInput,
+        output_schema = schemas.CreateDeploymentGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteApplication(input, options)
     return self:invokeOperation(input, {
         name = "DeleteApplication",
-        input_schema = types.DeleteApplicationInput,
-        output_schema = types.DeleteApplicationOutput,
+        input_schema = schemas.DeleteApplicationInput,
+        output_schema = schemas.DeleteApplicationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteDeploymentConfig(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDeploymentConfig",
-        input_schema = types.DeleteDeploymentConfigInput,
-        output_schema = types.DeleteDeploymentConfigOutput,
+        input_schema = schemas.DeleteDeploymentConfigInput,
+        output_schema = schemas.DeleteDeploymentConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteDeploymentGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDeploymentGroup",
-        input_schema = types.DeleteDeploymentGroupInput,
-        output_schema = types.DeleteDeploymentGroupOutput,
+        input_schema = schemas.DeleteDeploymentGroupInput,
+        output_schema = schemas.DeleteDeploymentGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteGitHubAccountToken(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGitHubAccountToken",
-        input_schema = types.DeleteGitHubAccountTokenInput,
-        output_schema = types.DeleteGitHubAccountTokenOutput,
+        input_schema = schemas.DeleteGitHubAccountTokenInput,
+        output_schema = schemas.DeleteGitHubAccountTokenOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteResourcesByExternalId(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourcesByExternalId",
-        input_schema = types.DeleteResourcesByExternalIdInput,
-        output_schema = types.DeleteResourcesByExternalIdOutput,
+        input_schema = schemas.DeleteResourcesByExternalIdInput,
+        output_schema = schemas.DeleteResourcesByExternalIdOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deregisterOnPremisesInstance(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterOnPremisesInstance",
-        input_schema = types.DeregisterOnPremisesInstanceInput,
-        output_schema = types.DeregisterOnPremisesInstanceOutput,
+        input_schema = schemas.DeregisterOnPremisesInstanceInput,
+        output_schema = schemas.DeregisterOnPremisesInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getApplication(input, options)
     return self:invokeOperation(input, {
         name = "GetApplication",
-        input_schema = types.GetApplicationInput,
-        output_schema = types.GetApplicationOutput,
+        input_schema = schemas.GetApplicationInput,
+        output_schema = schemas.GetApplicationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:getApplicationRevision(input, options)
     return self:invokeOperation(input, {
         name = "GetApplicationRevision",
-        input_schema = types.GetApplicationRevisionInput,
-        output_schema = types.GetApplicationRevisionOutput,
+        input_schema = schemas.GetApplicationRevisionInput,
+        output_schema = schemas.GetApplicationRevisionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:getDeployment(input, options)
     return self:invokeOperation(input, {
         name = "GetDeployment",
-        input_schema = types.GetDeploymentInput,
-        output_schema = types.GetDeploymentOutput,
+        input_schema = schemas.GetDeploymentInput,
+        output_schema = schemas.GetDeploymentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:getDeploymentConfig(input, options)
     return self:invokeOperation(input, {
         name = "GetDeploymentConfig",
-        input_schema = types.GetDeploymentConfigInput,
-        output_schema = types.GetDeploymentConfigOutput,
+        input_schema = schemas.GetDeploymentConfigInput,
+        output_schema = schemas.GetDeploymentConfigOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:getDeploymentGroup(input, options)
     return self:invokeOperation(input, {
         name = "GetDeploymentGroup",
-        input_schema = types.GetDeploymentGroupInput,
-        output_schema = types.GetDeploymentGroupOutput,
+        input_schema = schemas.GetDeploymentGroupInput,
+        output_schema = schemas.GetDeploymentGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getDeploymentInstance(input, options)
     return self:invokeOperation(input, {
         name = "GetDeploymentInstance",
-        input_schema = types.GetDeploymentInstanceInput,
-        output_schema = types.GetDeploymentInstanceOutput,
+        input_schema = schemas.GetDeploymentInstanceInput,
+        output_schema = schemas.GetDeploymentInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:getDeploymentTarget(input, options)
     return self:invokeOperation(input, {
         name = "GetDeploymentTarget",
-        input_schema = types.GetDeploymentTargetInput,
-        output_schema = types.GetDeploymentTargetOutput,
+        input_schema = schemas.GetDeploymentTargetInput,
+        output_schema = schemas.GetDeploymentTargetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:getOnPremisesInstance(input, options)
     return self:invokeOperation(input, {
         name = "GetOnPremisesInstance",
-        input_schema = types.GetOnPremisesInstanceInput,
-        output_schema = types.GetOnPremisesInstanceOutput,
+        input_schema = schemas.GetOnPremisesInstanceInput,
+        output_schema = schemas.GetOnPremisesInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listApplicationRevisions(input, options)
     return self:invokeOperation(input, {
         name = "ListApplicationRevisions",
-        input_schema = types.ListApplicationRevisionsInput,
-        output_schema = types.ListApplicationRevisionsOutput,
+        input_schema = schemas.ListApplicationRevisionsInput,
+        output_schema = schemas.ListApplicationRevisionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listApplications(input, options)
     return self:invokeOperation(input, {
         name = "ListApplications",
-        input_schema = types.ListApplicationsInput,
-        output_schema = types.ListApplicationsOutput,
+        input_schema = schemas.ListApplicationsInput,
+        output_schema = schemas.ListApplicationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:listDeploymentConfigs(input, options)
     return self:invokeOperation(input, {
         name = "ListDeploymentConfigs",
-        input_schema = types.ListDeploymentConfigsInput,
-        output_schema = types.ListDeploymentConfigsOutput,
+        input_schema = schemas.ListDeploymentConfigsInput,
+        output_schema = schemas.ListDeploymentConfigsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:listDeploymentGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListDeploymentGroups",
-        input_schema = types.ListDeploymentGroupsInput,
-        output_schema = types.ListDeploymentGroupsOutput,
+        input_schema = schemas.ListDeploymentGroupsInput,
+        output_schema = schemas.ListDeploymentGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:listDeploymentInstances(input, options)
     return self:invokeOperation(input, {
         name = "ListDeploymentInstances",
-        input_schema = types.ListDeploymentInstancesInput,
-        output_schema = types.ListDeploymentInstancesOutput,
+        input_schema = schemas.ListDeploymentInstancesInput,
+        output_schema = schemas.ListDeploymentInstancesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:listDeployments(input, options)
     return self:invokeOperation(input, {
         name = "ListDeployments",
-        input_schema = types.ListDeploymentsInput,
-        output_schema = types.ListDeploymentsOutput,
+        input_schema = schemas.ListDeploymentsInput,
+        output_schema = schemas.ListDeploymentsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listDeploymentTargets(input, options)
     return self:invokeOperation(input, {
         name = "ListDeploymentTargets",
-        input_schema = types.ListDeploymentTargetsInput,
-        output_schema = types.ListDeploymentTargetsOutput,
+        input_schema = schemas.ListDeploymentTargetsInput,
+        output_schema = schemas.ListDeploymentTargetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:listGitHubAccountTokenNames(input, options)
     return self:invokeOperation(input, {
         name = "ListGitHubAccountTokenNames",
-        input_schema = types.ListGitHubAccountTokenNamesInput,
-        output_schema = types.ListGitHubAccountTokenNamesOutput,
+        input_schema = schemas.ListGitHubAccountTokenNamesInput,
+        output_schema = schemas.ListGitHubAccountTokenNamesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:listOnPremisesInstances(input, options)
     return self:invokeOperation(input, {
         name = "ListOnPremisesInstances",
-        input_schema = types.ListOnPremisesInstancesInput,
-        output_schema = types.ListOnPremisesInstancesOutput,
+        input_schema = schemas.ListOnPremisesInstancesInput,
+        output_schema = schemas.ListOnPremisesInstancesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:putLifecycleEventHookExecutionStatus(input, options)
     return self:invokeOperation(input, {
         name = "PutLifecycleEventHookExecutionStatus",
-        input_schema = types.PutLifecycleEventHookExecutionStatusInput,
-        output_schema = types.PutLifecycleEventHookExecutionStatusOutput,
+        input_schema = schemas.PutLifecycleEventHookExecutionStatusInput,
+        output_schema = schemas.PutLifecycleEventHookExecutionStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:registerApplicationRevision(input, options)
     return self:invokeOperation(input, {
         name = "RegisterApplicationRevision",
-        input_schema = types.RegisterApplicationRevisionInput,
-        output_schema = types.RegisterApplicationRevisionOutput,
+        input_schema = schemas.RegisterApplicationRevisionInput,
+        output_schema = schemas.RegisterApplicationRevisionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:registerOnPremisesInstance(input, options)
     return self:invokeOperation(input, {
         name = "RegisterOnPremisesInstance",
-        input_schema = types.RegisterOnPremisesInstanceInput,
-        output_schema = types.RegisterOnPremisesInstanceOutput,
+        input_schema = schemas.RegisterOnPremisesInstanceInput,
+        output_schema = schemas.RegisterOnPremisesInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:removeTagsFromOnPremisesInstances(input, options)
     return self:invokeOperation(input, {
         name = "RemoveTagsFromOnPremisesInstances",
-        input_schema = types.RemoveTagsFromOnPremisesInstancesInput,
-        output_schema = types.RemoveTagsFromOnPremisesInstancesOutput,
+        input_schema = schemas.RemoveTagsFromOnPremisesInstancesInput,
+        output_schema = schemas.RemoveTagsFromOnPremisesInstancesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:skipWaitTimeForInstanceTermination(input, options)
     return self:invokeOperation(input, {
         name = "SkipWaitTimeForInstanceTermination",
-        input_schema = types.SkipWaitTimeForInstanceTerminationInput,
-        output_schema = types.SkipWaitTimeForInstanceTerminationOutput,
+        input_schema = schemas.SkipWaitTimeForInstanceTerminationInput,
+        output_schema = schemas.SkipWaitTimeForInstanceTerminationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:stopDeployment(input, options)
     return self:invokeOperation(input, {
         name = "StopDeployment",
-        input_schema = types.StopDeploymentInput,
-        output_schema = types.StopDeploymentOutput,
+        input_schema = schemas.StopDeploymentInput,
+        output_schema = schemas.StopDeploymentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:updateApplication(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApplication",
-        input_schema = types.UpdateApplicationInput,
-        output_schema = types.UpdateApplicationOutput,
+        input_schema = schemas.UpdateApplicationInput,
+        output_schema = schemas.UpdateApplicationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:updateDeploymentGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDeploymentGroup",
-        input_schema = types.UpdateDeploymentGroupInput,
-        output_schema = types.UpdateDeploymentGroupOutput,
+        input_schema = schemas.UpdateDeploymentGroupInput,
+        output_schema = schemas.UpdateDeploymentGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

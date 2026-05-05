@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("support.endpoint_rules")
+local schemas = require("support.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("support.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addAttachmentsToSet(input, options)
     return self:invokeOperation(input, {
         name = "AddAttachmentsToSet",
-        input_schema = types.AddAttachmentsToSetInput,
-        output_schema = types.AddAttachmentsToSetOutput,
+        input_schema = schemas.AddAttachmentsToSetInput,
+        output_schema = schemas.AddAttachmentsToSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:addCommunicationToCase(input, options)
     return self:invokeOperation(input, {
         name = "AddCommunicationToCase",
-        input_schema = types.AddCommunicationToCaseInput,
-        output_schema = types.AddCommunicationToCaseOutput,
+        input_schema = schemas.AddCommunicationToCaseInput,
+        output_schema = schemas.AddCommunicationToCaseOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createCase(input, options)
     return self:invokeOperation(input, {
         name = "CreateCase",
-        input_schema = types.CreateCaseInput,
-        output_schema = types.CreateCaseOutput,
+        input_schema = schemas.CreateCaseInput,
+        output_schema = schemas.CreateCaseOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:describeAttachment(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAttachment",
-        input_schema = types.DescribeAttachmentInput,
-        output_schema = types.DescribeAttachmentOutput,
+        input_schema = schemas.DescribeAttachmentInput,
+        output_schema = schemas.DescribeAttachmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:describeCases(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCases",
-        input_schema = types.DescribeCasesInput,
-        output_schema = types.DescribeCasesOutput,
+        input_schema = schemas.DescribeCasesInput,
+        output_schema = schemas.DescribeCasesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:describeCommunications(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCommunications",
-        input_schema = types.DescribeCommunicationsInput,
-        output_schema = types.DescribeCommunicationsOutput,
+        input_schema = schemas.DescribeCommunicationsInput,
+        output_schema = schemas.DescribeCommunicationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:describeCreateCaseOptions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCreateCaseOptions",
-        input_schema = types.DescribeCreateCaseOptionsInput,
-        output_schema = types.DescribeCreateCaseOptionsOutput,
+        input_schema = schemas.DescribeCreateCaseOptionsInput,
+        output_schema = schemas.DescribeCreateCaseOptionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:describeServices(input, options)
     return self:invokeOperation(input, {
         name = "DescribeServices",
-        input_schema = types.DescribeServicesInput,
-        output_schema = types.DescribeServicesOutput,
+        input_schema = schemas.DescribeServicesInput,
+        output_schema = schemas.DescribeServicesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:describeSeverityLevels(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSeverityLevels",
-        input_schema = types.DescribeSeverityLevelsInput,
-        output_schema = types.DescribeSeverityLevelsOutput,
+        input_schema = schemas.DescribeSeverityLevelsInput,
+        output_schema = schemas.DescribeSeverityLevelsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:describeSupportedLanguages(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSupportedLanguages",
-        input_schema = types.DescribeSupportedLanguagesInput,
-        output_schema = types.DescribeSupportedLanguagesOutput,
+        input_schema = schemas.DescribeSupportedLanguagesInput,
+        output_schema = schemas.DescribeSupportedLanguagesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:describeTrustedAdvisorCheckRefreshStatuses(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTrustedAdvisorCheckRefreshStatuses",
-        input_schema = types.DescribeTrustedAdvisorCheckRefreshStatusesInput,
-        output_schema = types.DescribeTrustedAdvisorCheckRefreshStatusesOutput,
+        input_schema = schemas.DescribeTrustedAdvisorCheckRefreshStatusesInput,
+        output_schema = schemas.DescribeTrustedAdvisorCheckRefreshStatusesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:describeTrustedAdvisorCheckResult(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTrustedAdvisorCheckResult",
-        input_schema = types.DescribeTrustedAdvisorCheckResultInput,
-        output_schema = types.DescribeTrustedAdvisorCheckResultOutput,
+        input_schema = schemas.DescribeTrustedAdvisorCheckResultInput,
+        output_schema = schemas.DescribeTrustedAdvisorCheckResultOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:describeTrustedAdvisorChecks(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTrustedAdvisorChecks",
-        input_schema = types.DescribeTrustedAdvisorChecksInput,
-        output_schema = types.DescribeTrustedAdvisorChecksOutput,
+        input_schema = schemas.DescribeTrustedAdvisorChecksInput,
+        output_schema = schemas.DescribeTrustedAdvisorChecksOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:describeTrustedAdvisorCheckSummaries(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTrustedAdvisorCheckSummaries",
-        input_schema = types.DescribeTrustedAdvisorCheckSummariesInput,
-        output_schema = types.DescribeTrustedAdvisorCheckSummariesOutput,
+        input_schema = schemas.DescribeTrustedAdvisorCheckSummariesInput,
+        output_schema = schemas.DescribeTrustedAdvisorCheckSummariesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:refreshTrustedAdvisorCheck(input, options)
     return self:invokeOperation(input, {
         name = "RefreshTrustedAdvisorCheck",
-        input_schema = types.RefreshTrustedAdvisorCheckInput,
-        output_schema = types.RefreshTrustedAdvisorCheckOutput,
+        input_schema = schemas.RefreshTrustedAdvisorCheckInput,
+        output_schema = schemas.RefreshTrustedAdvisorCheckOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:resolveCase(input, options)
     return self:invokeOperation(input, {
         name = "ResolveCase",
-        input_schema = types.ResolveCaseInput,
-        output_schema = types.ResolveCaseOutput,
+        input_schema = schemas.ResolveCaseInput,
+        output_schema = schemas.ResolveCaseOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

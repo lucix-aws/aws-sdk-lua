@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("mpa.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("mpa.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("mpa.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:cancelSession(input, options)
     return self:invokeOperation(input, {
         name = "CancelSession",
-        input_schema = types.CancelSessionInput,
-        output_schema = types.CancelSessionOutput,
+        input_schema = schemas.CancelSessionInput,
+        output_schema = schemas.CancelSessionOutput,
         http_method = "PUT",
         http_path = "/sessions/{SessionArn}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createApprovalTeam(input, options)
     return self:invokeOperation(input, {
         name = "CreateApprovalTeam",
-        input_schema = types.CreateApprovalTeamInput,
-        output_schema = types.CreateApprovalTeamOutput,
+        input_schema = schemas.CreateApprovalTeamInput,
+        output_schema = schemas.CreateApprovalTeamOutput,
         http_method = "POST",
         http_path = "/approval-teams",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createIdentitySource(input, options)
     return self:invokeOperation(input, {
         name = "CreateIdentitySource",
-        input_schema = types.CreateIdentitySourceInput,
-        output_schema = types.CreateIdentitySourceOutput,
+        input_schema = schemas.CreateIdentitySourceInput,
+        output_schema = schemas.CreateIdentitySourceOutput,
         http_method = "POST",
         http_path = "/identity-sources",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteIdentitySource(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIdentitySource",
-        input_schema = types.DeleteIdentitySourceInput,
-        output_schema = types.DeleteIdentitySourceOutput,
+        input_schema = schemas.DeleteIdentitySourceInput,
+        output_schema = schemas.DeleteIdentitySourceOutput,
         http_method = "DELETE",
         http_path = "/identity-sources/{IdentitySourceArn}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteInactiveApprovalTeamVersion(input, options)
     return self:invokeOperation(input, {
         name = "DeleteInactiveApprovalTeamVersion",
-        input_schema = types.DeleteInactiveApprovalTeamVersionInput,
-        output_schema = types.DeleteInactiveApprovalTeamVersionOutput,
+        input_schema = schemas.DeleteInactiveApprovalTeamVersionInput,
+        output_schema = schemas.DeleteInactiveApprovalTeamVersionOutput,
         http_method = "DELETE",
         http_path = "/approval-teams/{Arn}/{VersionId}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getApprovalTeam(input, options)
     return self:invokeOperation(input, {
         name = "GetApprovalTeam",
-        input_schema = types.GetApprovalTeamInput,
-        output_schema = types.GetApprovalTeamOutput,
+        input_schema = schemas.GetApprovalTeamInput,
+        output_schema = schemas.GetApprovalTeamOutput,
         http_method = "GET",
         http_path = "/approval-teams/{Arn}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getIdentitySource(input, options)
     return self:invokeOperation(input, {
         name = "GetIdentitySource",
-        input_schema = types.GetIdentitySourceInput,
-        output_schema = types.GetIdentitySourceOutput,
+        input_schema = schemas.GetIdentitySourceInput,
+        output_schema = schemas.GetIdentitySourceOutput,
         http_method = "GET",
         http_path = "/identity-sources/{IdentitySourceArn}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getPolicyVersion(input, options)
     return self:invokeOperation(input, {
         name = "GetPolicyVersion",
-        input_schema = types.GetPolicyVersionInput,
-        output_schema = types.GetPolicyVersionOutput,
+        input_schema = schemas.GetPolicyVersionInput,
+        output_schema = schemas.GetPolicyVersionOutput,
         http_method = "GET",
         http_path = "/policy-versions/{PolicyVersionArn}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcePolicy",
-        input_schema = types.GetResourcePolicyInput,
-        output_schema = types.GetResourcePolicyOutput,
+        input_schema = schemas.GetResourcePolicyInput,
+        output_schema = schemas.GetResourcePolicyOutput,
         http_method = "POST",
         http_path = "/GetResourcePolicy",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getSession(input, options)
     return self:invokeOperation(input, {
         name = "GetSession",
-        input_schema = types.GetSessionInput,
-        output_schema = types.GetSessionOutput,
+        input_schema = schemas.GetSessionInput,
+        output_schema = schemas.GetSessionOutput,
         http_method = "GET",
         http_path = "/sessions/{SessionArn}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listApprovalTeams(input, options)
     return self:invokeOperation(input, {
         name = "ListApprovalTeams",
-        input_schema = types.ListApprovalTeamsInput,
-        output_schema = types.ListApprovalTeamsOutput,
+        input_schema = schemas.ListApprovalTeamsInput,
+        output_schema = schemas.ListApprovalTeamsOutput,
         http_method = "POST",
         http_path = "/approval-teams/?List",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listIdentitySources(input, options)
     return self:invokeOperation(input, {
         name = "ListIdentitySources",
-        input_schema = types.ListIdentitySourcesInput,
-        output_schema = types.ListIdentitySourcesOutput,
+        input_schema = schemas.ListIdentitySourcesInput,
+        output_schema = schemas.ListIdentitySourcesOutput,
         http_method = "POST",
         http_path = "/identity-sources/?List",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listPolicies(input, options)
     return self:invokeOperation(input, {
         name = "ListPolicies",
-        input_schema = types.ListPoliciesInput,
-        output_schema = types.ListPoliciesOutput,
+        input_schema = schemas.ListPoliciesInput,
+        output_schema = schemas.ListPoliciesOutput,
         http_method = "POST",
         http_path = "/policies/?List",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listPolicyVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListPolicyVersions",
-        input_schema = types.ListPolicyVersionsInput,
-        output_schema = types.ListPolicyVersionsOutput,
+        input_schema = schemas.ListPolicyVersionsInput,
+        output_schema = schemas.ListPolicyVersionsOutput,
         http_method = "POST",
         http_path = "/policies/{PolicyArn}/?List",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listResourcePolicies(input, options)
     return self:invokeOperation(input, {
         name = "ListResourcePolicies",
-        input_schema = types.ListResourcePoliciesInput,
-        output_schema = types.ListResourcePoliciesOutput,
+        input_schema = schemas.ListResourcePoliciesInput,
+        output_schema = schemas.ListResourcePoliciesOutput,
         http_method = "POST",
         http_path = "/resource-policies/{ResourceArn}/?List",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listSessions(input, options)
     return self:invokeOperation(input, {
         name = "ListSessions",
-        input_schema = types.ListSessionsInput,
-        output_schema = types.ListSessionsOutput,
+        input_schema = schemas.ListSessionsInput,
+        output_schema = schemas.ListSessionsOutput,
         http_method = "POST",
         http_path = "/approval-teams/{ApprovalTeamArn}/sessions/?List",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:startActiveApprovalTeamDeletion(input, options)
     return self:invokeOperation(input, {
         name = "StartActiveApprovalTeamDeletion",
-        input_schema = types.StartActiveApprovalTeamDeletionInput,
-        output_schema = types.StartActiveApprovalTeamDeletionOutput,
+        input_schema = schemas.StartActiveApprovalTeamDeletionInput,
+        output_schema = schemas.StartActiveApprovalTeamDeletionOutput,
         http_method = "POST",
         http_path = "/approval-teams/{Arn}?Delete",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:startApprovalTeamBaseline(input, options)
     return self:invokeOperation(input, {
         name = "StartApprovalTeamBaseline",
-        input_schema = types.StartApprovalTeamBaselineInput,
-        output_schema = types.StartApprovalTeamBaselineOutput,
+        input_schema = schemas.StartApprovalTeamBaselineInput,
+        output_schema = schemas.StartApprovalTeamBaselineOutput,
         http_method = "POST",
         http_path = "/approval-teams/{Arn}/baseline",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "PUT",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:updateApprovalTeam(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApprovalTeam",
-        input_schema = types.UpdateApprovalTeamInput,
-        output_schema = types.UpdateApprovalTeamOutput,
+        input_schema = schemas.UpdateApprovalTeamInput,
+        output_schema = schemas.UpdateApprovalTeamOutput,
         http_method = "PATCH",
         http_path = "/approval-teams/{Arn}",
         effective_auth_schemes = {

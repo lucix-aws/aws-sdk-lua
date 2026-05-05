@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("cloudformation.endpoint_rules")
 local query_protocol = require("protocol.query")
+local schemas = require("cloudformation.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("cloudformation.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:activateOrganizationsAccess(input, options)
     return self:invokeOperation(input, {
         name = "ActivateOrganizationsAccess",
-        input_schema = types.ActivateOrganizationsAccessInput,
-        output_schema = types.ActivateOrganizationsAccessOutput,
+        input_schema = schemas.ActivateOrganizationsAccessInput,
+        output_schema = schemas.ActivateOrganizationsAccessOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:activateType(input, options)
     return self:invokeOperation(input, {
         name = "ActivateType",
-        input_schema = types.ActivateTypeInput,
-        output_schema = types.ActivateTypeOutput,
+        input_schema = schemas.ActivateTypeInput,
+        output_schema = schemas.ActivateTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchDescribeTypeConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "BatchDescribeTypeConfigurations",
-        input_schema = types.BatchDescribeTypeConfigurationsInput,
-        output_schema = types.BatchDescribeTypeConfigurationsOutput,
+        input_schema = schemas.BatchDescribeTypeConfigurationsInput,
+        output_schema = schemas.BatchDescribeTypeConfigurationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:cancelUpdateStack(input, options)
     return self:invokeOperation(input, {
         name = "CancelUpdateStack",
-        input_schema = types.CancelUpdateStackInput,
-        output_schema = types.CancelUpdateStackOutput,
+        input_schema = schemas.CancelUpdateStackInput,
+        output_schema = schemas.CancelUpdateStackOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:continueUpdateRollback(input, options)
     return self:invokeOperation(input, {
         name = "ContinueUpdateRollback",
-        input_schema = types.ContinueUpdateRollbackInput,
-        output_schema = types.ContinueUpdateRollbackOutput,
+        input_schema = schemas.ContinueUpdateRollbackInput,
+        output_schema = schemas.ContinueUpdateRollbackOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createChangeSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateChangeSet",
-        input_schema = types.CreateChangeSetInput,
-        output_schema = types.CreateChangeSetOutput,
+        input_schema = schemas.CreateChangeSetInput,
+        output_schema = schemas.CreateChangeSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createGeneratedTemplate(input, options)
     return self:invokeOperation(input, {
         name = "CreateGeneratedTemplate",
-        input_schema = types.CreateGeneratedTemplateInput,
-        output_schema = types.CreateGeneratedTemplateOutput,
+        input_schema = schemas.CreateGeneratedTemplateInput,
+        output_schema = schemas.CreateGeneratedTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createStack(input, options)
     return self:invokeOperation(input, {
         name = "CreateStack",
-        input_schema = types.CreateStackInput,
-        output_schema = types.CreateStackOutput,
+        input_schema = schemas.CreateStackInput,
+        output_schema = schemas.CreateStackOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createStackInstances(input, options)
     return self:invokeOperation(input, {
         name = "CreateStackInstances",
-        input_schema = types.CreateStackInstancesInput,
-        output_schema = types.CreateStackInstancesOutput,
+        input_schema = schemas.CreateStackInstancesInput,
+        output_schema = schemas.CreateStackInstancesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createStackRefactor(input, options)
     return self:invokeOperation(input, {
         name = "CreateStackRefactor",
-        input_schema = types.CreateStackRefactorInput,
-        output_schema = types.CreateStackRefactorOutput,
+        input_schema = schemas.CreateStackRefactorInput,
+        output_schema = schemas.CreateStackRefactorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createStackSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateStackSet",
-        input_schema = types.CreateStackSetInput,
-        output_schema = types.CreateStackSetOutput,
+        input_schema = schemas.CreateStackSetInput,
+        output_schema = schemas.CreateStackSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deactivateOrganizationsAccess(input, options)
     return self:invokeOperation(input, {
         name = "DeactivateOrganizationsAccess",
-        input_schema = types.DeactivateOrganizationsAccessInput,
-        output_schema = types.DeactivateOrganizationsAccessOutput,
+        input_schema = schemas.DeactivateOrganizationsAccessInput,
+        output_schema = schemas.DeactivateOrganizationsAccessOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deactivateType(input, options)
     return self:invokeOperation(input, {
         name = "DeactivateType",
-        input_schema = types.DeactivateTypeInput,
-        output_schema = types.DeactivateTypeOutput,
+        input_schema = schemas.DeactivateTypeInput,
+        output_schema = schemas.DeactivateTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteChangeSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteChangeSet",
-        input_schema = types.DeleteChangeSetInput,
-        output_schema = types.DeleteChangeSetOutput,
+        input_schema = schemas.DeleteChangeSetInput,
+        output_schema = schemas.DeleteChangeSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteGeneratedTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGeneratedTemplate",
-        input_schema = types.DeleteGeneratedTemplateInput,
-        output_schema = types.DeleteGeneratedTemplateOutput,
+        input_schema = schemas.DeleteGeneratedTemplateInput,
+        output_schema = schemas.DeleteGeneratedTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteStack(input, options)
     return self:invokeOperation(input, {
         name = "DeleteStack",
-        input_schema = types.DeleteStackInput,
-        output_schema = types.DeleteStackOutput,
+        input_schema = schemas.DeleteStackInput,
+        output_schema = schemas.DeleteStackOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteStackInstances(input, options)
     return self:invokeOperation(input, {
         name = "DeleteStackInstances",
-        input_schema = types.DeleteStackInstancesInput,
-        output_schema = types.DeleteStackInstancesOutput,
+        input_schema = schemas.DeleteStackInstancesInput,
+        output_schema = schemas.DeleteStackInstancesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteStackSet(input, options)
     return self:invokeOperation(input, {
         name = "DeleteStackSet",
-        input_schema = types.DeleteStackSetInput,
-        output_schema = types.DeleteStackSetOutput,
+        input_schema = schemas.DeleteStackSetInput,
+        output_schema = schemas.DeleteStackSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deregisterType(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterType",
-        input_schema = types.DeregisterTypeInput,
-        output_schema = types.DeregisterTypeOutput,
+        input_schema = schemas.DeregisterTypeInput,
+        output_schema = schemas.DeregisterTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:describeAccountLimits(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAccountLimits",
-        input_schema = types.DescribeAccountLimitsInput,
-        output_schema = types.DescribeAccountLimitsOutput,
+        input_schema = schemas.DescribeAccountLimitsInput,
+        output_schema = schemas.DescribeAccountLimitsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:describeChangeSet(input, options)
     return self:invokeOperation(input, {
         name = "DescribeChangeSet",
-        input_schema = types.DescribeChangeSetInput,
-        output_schema = types.DescribeChangeSetOutput,
+        input_schema = schemas.DescribeChangeSetInput,
+        output_schema = schemas.DescribeChangeSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:describeChangeSetHooks(input, options)
     return self:invokeOperation(input, {
         name = "DescribeChangeSetHooks",
-        input_schema = types.DescribeChangeSetHooksInput,
-        output_schema = types.DescribeChangeSetHooksOutput,
+        input_schema = schemas.DescribeChangeSetHooksInput,
+        output_schema = schemas.DescribeChangeSetHooksOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:describeEvents(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEvents",
-        input_schema = types.DescribeEventsInput,
-        output_schema = types.DescribeEventsOutput,
+        input_schema = schemas.DescribeEventsInput,
+        output_schema = schemas.DescribeEventsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:describeGeneratedTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DescribeGeneratedTemplate",
-        input_schema = types.DescribeGeneratedTemplateInput,
-        output_schema = types.DescribeGeneratedTemplateOutput,
+        input_schema = schemas.DescribeGeneratedTemplateInput,
+        output_schema = schemas.DescribeGeneratedTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:describeOrganizationsAccess(input, options)
     return self:invokeOperation(input, {
         name = "DescribeOrganizationsAccess",
-        input_schema = types.DescribeOrganizationsAccessInput,
-        output_schema = types.DescribeOrganizationsAccessOutput,
+        input_schema = schemas.DescribeOrganizationsAccessInput,
+        output_schema = schemas.DescribeOrganizationsAccessOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:describePublisher(input, options)
     return self:invokeOperation(input, {
         name = "DescribePublisher",
-        input_schema = types.DescribePublisherInput,
-        output_schema = types.DescribePublisherOutput,
+        input_schema = schemas.DescribePublisherInput,
+        output_schema = schemas.DescribePublisherOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:describeResourceScan(input, options)
     return self:invokeOperation(input, {
         name = "DescribeResourceScan",
-        input_schema = types.DescribeResourceScanInput,
-        output_schema = types.DescribeResourceScanOutput,
+        input_schema = schemas.DescribeResourceScanInput,
+        output_schema = schemas.DescribeResourceScanOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:describeStackDriftDetectionStatus(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStackDriftDetectionStatus",
-        input_schema = types.DescribeStackDriftDetectionStatusInput,
-        output_schema = types.DescribeStackDriftDetectionStatusOutput,
+        input_schema = schemas.DescribeStackDriftDetectionStatusInput,
+        output_schema = schemas.DescribeStackDriftDetectionStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:describeStackEvents(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStackEvents",
-        input_schema = types.DescribeStackEventsInput,
-        output_schema = types.DescribeStackEventsOutput,
+        input_schema = schemas.DescribeStackEventsInput,
+        output_schema = schemas.DescribeStackEventsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:describeStackInstance(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStackInstance",
-        input_schema = types.DescribeStackInstanceInput,
-        output_schema = types.DescribeStackInstanceOutput,
+        input_schema = schemas.DescribeStackInstanceInput,
+        output_schema = schemas.DescribeStackInstanceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:describeStackRefactor(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStackRefactor",
-        input_schema = types.DescribeStackRefactorInput,
-        output_schema = types.DescribeStackRefactorOutput,
+        input_schema = schemas.DescribeStackRefactorInput,
+        output_schema = schemas.DescribeStackRefactorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:describeStackResource(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStackResource",
-        input_schema = types.DescribeStackResourceInput,
-        output_schema = types.DescribeStackResourceOutput,
+        input_schema = schemas.DescribeStackResourceInput,
+        output_schema = schemas.DescribeStackResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:describeStackResourceDrifts(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStackResourceDrifts",
-        input_schema = types.DescribeStackResourceDriftsInput,
-        output_schema = types.DescribeStackResourceDriftsOutput,
+        input_schema = schemas.DescribeStackResourceDriftsInput,
+        output_schema = schemas.DescribeStackResourceDriftsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:describeStackResources(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStackResources",
-        input_schema = types.DescribeStackResourcesInput,
-        output_schema = types.DescribeStackResourcesOutput,
+        input_schema = schemas.DescribeStackResourcesInput,
+        output_schema = schemas.DescribeStackResourcesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:describeStacks(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStacks",
-        input_schema = types.DescribeStacksInput,
-        output_schema = types.DescribeStacksOutput,
+        input_schema = schemas.DescribeStacksInput,
+        output_schema = schemas.DescribeStacksOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:describeStackSet(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStackSet",
-        input_schema = types.DescribeStackSetInput,
-        output_schema = types.DescribeStackSetOutput,
+        input_schema = schemas.DescribeStackSetInput,
+        output_schema = schemas.DescribeStackSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:describeStackSetOperation(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStackSetOperation",
-        input_schema = types.DescribeStackSetOperationInput,
-        output_schema = types.DescribeStackSetOperationOutput,
+        input_schema = schemas.DescribeStackSetOperationInput,
+        output_schema = schemas.DescribeStackSetOperationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:describeType(input, options)
     return self:invokeOperation(input, {
         name = "DescribeType",
-        input_schema = types.DescribeTypeInput,
-        output_schema = types.DescribeTypeOutput,
+        input_schema = schemas.DescribeTypeInput,
+        output_schema = schemas.DescribeTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:describeTypeRegistration(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTypeRegistration",
-        input_schema = types.DescribeTypeRegistrationInput,
-        output_schema = types.DescribeTypeRegistrationOutput,
+        input_schema = schemas.DescribeTypeRegistrationInput,
+        output_schema = schemas.DescribeTypeRegistrationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:detectStackDrift(input, options)
     return self:invokeOperation(input, {
         name = "DetectStackDrift",
-        input_schema = types.DetectStackDriftInput,
-        output_schema = types.DetectStackDriftOutput,
+        input_schema = schemas.DetectStackDriftInput,
+        output_schema = schemas.DetectStackDriftOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:detectStackResourceDrift(input, options)
     return self:invokeOperation(input, {
         name = "DetectStackResourceDrift",
-        input_schema = types.DetectStackResourceDriftInput,
-        output_schema = types.DetectStackResourceDriftOutput,
+        input_schema = schemas.DetectStackResourceDriftInput,
+        output_schema = schemas.DetectStackResourceDriftOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:detectStackSetDrift(input, options)
     return self:invokeOperation(input, {
         name = "DetectStackSetDrift",
-        input_schema = types.DetectStackSetDriftInput,
-        output_schema = types.DetectStackSetDriftOutput,
+        input_schema = schemas.DetectStackSetDriftInput,
+        output_schema = schemas.DetectStackSetDriftOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:estimateTemplateCost(input, options)
     return self:invokeOperation(input, {
         name = "EstimateTemplateCost",
-        input_schema = types.EstimateTemplateCostInput,
-        output_schema = types.EstimateTemplateCostOutput,
+        input_schema = schemas.EstimateTemplateCostInput,
+        output_schema = schemas.EstimateTemplateCostOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:executeChangeSet(input, options)
     return self:invokeOperation(input, {
         name = "ExecuteChangeSet",
-        input_schema = types.ExecuteChangeSetInput,
-        output_schema = types.ExecuteChangeSetOutput,
+        input_schema = schemas.ExecuteChangeSetInput,
+        output_schema = schemas.ExecuteChangeSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:executeStackRefactor(input, options)
     return self:invokeOperation(input, {
         name = "ExecuteStackRefactor",
-        input_schema = types.ExecuteStackRefactorInput,
-        output_schema = types.ExecuteStackRefactorOutput,
+        input_schema = schemas.ExecuteStackRefactorInput,
+        output_schema = schemas.ExecuteStackRefactorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:getGeneratedTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetGeneratedTemplate",
-        input_schema = types.GetGeneratedTemplateInput,
-        output_schema = types.GetGeneratedTemplateOutput,
+        input_schema = schemas.GetGeneratedTemplateInput,
+        output_schema = schemas.GetGeneratedTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:getHookResult(input, options)
     return self:invokeOperation(input, {
         name = "GetHookResult",
-        input_schema = types.GetHookResultInput,
-        output_schema = types.GetHookResultOutput,
+        input_schema = schemas.GetHookResultInput,
+        output_schema = schemas.GetHookResultOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:getStackPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetStackPolicy",
-        input_schema = types.GetStackPolicyInput,
-        output_schema = types.GetStackPolicyOutput,
+        input_schema = schemas.GetStackPolicyInput,
+        output_schema = schemas.GetStackPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:getTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetTemplate",
-        input_schema = types.GetTemplateInput,
-        output_schema = types.GetTemplateOutput,
+        input_schema = schemas.GetTemplateInput,
+        output_schema = schemas.GetTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:getTemplateSummary(input, options)
     return self:invokeOperation(input, {
         name = "GetTemplateSummary",
-        input_schema = types.GetTemplateSummaryInput,
-        output_schema = types.GetTemplateSummaryOutput,
+        input_schema = schemas.GetTemplateSummaryInput,
+        output_schema = schemas.GetTemplateSummaryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:importStacksToStackSet(input, options)
     return self:invokeOperation(input, {
         name = "ImportStacksToStackSet",
-        input_schema = types.ImportStacksToStackSetInput,
-        output_schema = types.ImportStacksToStackSetOutput,
+        input_schema = schemas.ImportStacksToStackSetInput,
+        output_schema = schemas.ImportStacksToStackSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:listChangeSets(input, options)
     return self:invokeOperation(input, {
         name = "ListChangeSets",
-        input_schema = types.ListChangeSetsInput,
-        output_schema = types.ListChangeSetsOutput,
+        input_schema = schemas.ListChangeSetsInput,
+        output_schema = schemas.ListChangeSetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:listExports(input, options)
     return self:invokeOperation(input, {
         name = "ListExports",
-        input_schema = types.ListExportsInput,
-        output_schema = types.ListExportsOutput,
+        input_schema = schemas.ListExportsInput,
+        output_schema = schemas.ListExportsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:listGeneratedTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListGeneratedTemplates",
-        input_schema = types.ListGeneratedTemplatesInput,
-        output_schema = types.ListGeneratedTemplatesOutput,
+        input_schema = schemas.ListGeneratedTemplatesInput,
+        output_schema = schemas.ListGeneratedTemplatesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:listHookResults(input, options)
     return self:invokeOperation(input, {
         name = "ListHookResults",
-        input_schema = types.ListHookResultsInput,
-        output_schema = types.ListHookResultsOutput,
+        input_schema = schemas.ListHookResultsInput,
+        output_schema = schemas.ListHookResultsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:listImports(input, options)
     return self:invokeOperation(input, {
         name = "ListImports",
-        input_schema = types.ListImportsInput,
-        output_schema = types.ListImportsOutput,
+        input_schema = schemas.ListImportsInput,
+        output_schema = schemas.ListImportsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:listResourceScanRelatedResources(input, options)
     return self:invokeOperation(input, {
         name = "ListResourceScanRelatedResources",
-        input_schema = types.ListResourceScanRelatedResourcesInput,
-        output_schema = types.ListResourceScanRelatedResourcesOutput,
+        input_schema = schemas.ListResourceScanRelatedResourcesInput,
+        output_schema = schemas.ListResourceScanRelatedResourcesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:listResourceScanResources(input, options)
     return self:invokeOperation(input, {
         name = "ListResourceScanResources",
-        input_schema = types.ListResourceScanResourcesInput,
-        output_schema = types.ListResourceScanResourcesOutput,
+        input_schema = schemas.ListResourceScanResourcesInput,
+        output_schema = schemas.ListResourceScanResourcesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:listResourceScans(input, options)
     return self:invokeOperation(input, {
         name = "ListResourceScans",
-        input_schema = types.ListResourceScansInput,
-        output_schema = types.ListResourceScansOutput,
+        input_schema = schemas.ListResourceScansInput,
+        output_schema = schemas.ListResourceScansOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:listStackInstanceResourceDrifts(input, options)
     return self:invokeOperation(input, {
         name = "ListStackInstanceResourceDrifts",
-        input_schema = types.ListStackInstanceResourceDriftsInput,
-        output_schema = types.ListStackInstanceResourceDriftsOutput,
+        input_schema = schemas.ListStackInstanceResourceDriftsInput,
+        output_schema = schemas.ListStackInstanceResourceDriftsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:listStackInstances(input, options)
     return self:invokeOperation(input, {
         name = "ListStackInstances",
-        input_schema = types.ListStackInstancesInput,
-        output_schema = types.ListStackInstancesOutput,
+        input_schema = schemas.ListStackInstancesInput,
+        output_schema = schemas.ListStackInstancesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:listStackRefactorActions(input, options)
     return self:invokeOperation(input, {
         name = "ListStackRefactorActions",
-        input_schema = types.ListStackRefactorActionsInput,
-        output_schema = types.ListStackRefactorActionsOutput,
+        input_schema = schemas.ListStackRefactorActionsInput,
+        output_schema = schemas.ListStackRefactorActionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:listStackRefactors(input, options)
     return self:invokeOperation(input, {
         name = "ListStackRefactors",
-        input_schema = types.ListStackRefactorsInput,
-        output_schema = types.ListStackRefactorsOutput,
+        input_schema = schemas.ListStackRefactorsInput,
+        output_schema = schemas.ListStackRefactorsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:listStackResources(input, options)
     return self:invokeOperation(input, {
         name = "ListStackResources",
-        input_schema = types.ListStackResourcesInput,
-        output_schema = types.ListStackResourcesOutput,
+        input_schema = schemas.ListStackResourcesInput,
+        output_schema = schemas.ListStackResourcesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:listStacks(input, options)
     return self:invokeOperation(input, {
         name = "ListStacks",
-        input_schema = types.ListStacksInput,
-        output_schema = types.ListStacksOutput,
+        input_schema = schemas.ListStacksInput,
+        output_schema = schemas.ListStacksOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:listStackSetAutoDeploymentTargets(input, options)
     return self:invokeOperation(input, {
         name = "ListStackSetAutoDeploymentTargets",
-        input_schema = types.ListStackSetAutoDeploymentTargetsInput,
-        output_schema = types.ListStackSetAutoDeploymentTargetsOutput,
+        input_schema = schemas.ListStackSetAutoDeploymentTargetsInput,
+        output_schema = schemas.ListStackSetAutoDeploymentTargetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:listStackSetOperationResults(input, options)
     return self:invokeOperation(input, {
         name = "ListStackSetOperationResults",
-        input_schema = types.ListStackSetOperationResultsInput,
-        output_schema = types.ListStackSetOperationResultsOutput,
+        input_schema = schemas.ListStackSetOperationResultsInput,
+        output_schema = schemas.ListStackSetOperationResultsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:listStackSetOperations(input, options)
     return self:invokeOperation(input, {
         name = "ListStackSetOperations",
-        input_schema = types.ListStackSetOperationsInput,
-        output_schema = types.ListStackSetOperationsOutput,
+        input_schema = schemas.ListStackSetOperationsInput,
+        output_schema = schemas.ListStackSetOperationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:listStackSets(input, options)
     return self:invokeOperation(input, {
         name = "ListStackSets",
-        input_schema = types.ListStackSetsInput,
-        output_schema = types.ListStackSetsOutput,
+        input_schema = schemas.ListStackSetsInput,
+        output_schema = schemas.ListStackSetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:listTypeRegistrations(input, options)
     return self:invokeOperation(input, {
         name = "ListTypeRegistrations",
-        input_schema = types.ListTypeRegistrationsInput,
-        output_schema = types.ListTypeRegistrationsOutput,
+        input_schema = schemas.ListTypeRegistrationsInput,
+        output_schema = schemas.ListTypeRegistrationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:listTypes(input, options)
     return self:invokeOperation(input, {
         name = "ListTypes",
-        input_schema = types.ListTypesInput,
-        output_schema = types.ListTypesOutput,
+        input_schema = schemas.ListTypesInput,
+        output_schema = schemas.ListTypesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:listTypeVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListTypeVersions",
-        input_schema = types.ListTypeVersionsInput,
-        output_schema = types.ListTypeVersionsOutput,
+        input_schema = schemas.ListTypeVersionsInput,
+        output_schema = schemas.ListTypeVersionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:publishType(input, options)
     return self:invokeOperation(input, {
         name = "PublishType",
-        input_schema = types.PublishTypeInput,
-        output_schema = types.PublishTypeOutput,
+        input_schema = schemas.PublishTypeInput,
+        output_schema = schemas.PublishTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:recordHandlerProgress(input, options)
     return self:invokeOperation(input, {
         name = "RecordHandlerProgress",
-        input_schema = types.RecordHandlerProgressInput,
-        output_schema = types.RecordHandlerProgressOutput,
+        input_schema = schemas.RecordHandlerProgressInput,
+        output_schema = schemas.RecordHandlerProgressOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1011,8 +1011,8 @@ end
 function Client:registerPublisher(input, options)
     return self:invokeOperation(input, {
         name = "RegisterPublisher",
-        input_schema = types.RegisterPublisherInput,
-        output_schema = types.RegisterPublisherOutput,
+        input_schema = schemas.RegisterPublisherInput,
+        output_schema = schemas.RegisterPublisherOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1024,8 +1024,8 @@ end
 function Client:registerType(input, options)
     return self:invokeOperation(input, {
         name = "RegisterType",
-        input_schema = types.RegisterTypeInput,
-        output_schema = types.RegisterTypeOutput,
+        input_schema = schemas.RegisterTypeInput,
+        output_schema = schemas.RegisterTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1037,8 +1037,8 @@ end
 function Client:rollbackStack(input, options)
     return self:invokeOperation(input, {
         name = "RollbackStack",
-        input_schema = types.RollbackStackInput,
-        output_schema = types.RollbackStackOutput,
+        input_schema = schemas.RollbackStackInput,
+        output_schema = schemas.RollbackStackOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1050,8 +1050,8 @@ end
 function Client:setStackPolicy(input, options)
     return self:invokeOperation(input, {
         name = "SetStackPolicy",
-        input_schema = types.SetStackPolicyInput,
-        output_schema = types.SetStackPolicyOutput,
+        input_schema = schemas.SetStackPolicyInput,
+        output_schema = schemas.SetStackPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1063,8 +1063,8 @@ end
 function Client:setTypeConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "SetTypeConfiguration",
-        input_schema = types.SetTypeConfigurationInput,
-        output_schema = types.SetTypeConfigurationOutput,
+        input_schema = schemas.SetTypeConfigurationInput,
+        output_schema = schemas.SetTypeConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1076,8 +1076,8 @@ end
 function Client:setTypeDefaultVersion(input, options)
     return self:invokeOperation(input, {
         name = "SetTypeDefaultVersion",
-        input_schema = types.SetTypeDefaultVersionInput,
-        output_schema = types.SetTypeDefaultVersionOutput,
+        input_schema = schemas.SetTypeDefaultVersionInput,
+        output_schema = schemas.SetTypeDefaultVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1089,8 +1089,8 @@ end
 function Client:signalResource(input, options)
     return self:invokeOperation(input, {
         name = "SignalResource",
-        input_schema = types.SignalResourceInput,
-        output_schema = types.SignalResourceOutput,
+        input_schema = schemas.SignalResourceInput,
+        output_schema = schemas.SignalResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1102,8 +1102,8 @@ end
 function Client:startResourceScan(input, options)
     return self:invokeOperation(input, {
         name = "StartResourceScan",
-        input_schema = types.StartResourceScanInput,
-        output_schema = types.StartResourceScanOutput,
+        input_schema = schemas.StartResourceScanInput,
+        output_schema = schemas.StartResourceScanOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1115,8 +1115,8 @@ end
 function Client:stopStackSetOperation(input, options)
     return self:invokeOperation(input, {
         name = "StopStackSetOperation",
-        input_schema = types.StopStackSetOperationInput,
-        output_schema = types.StopStackSetOperationOutput,
+        input_schema = schemas.StopStackSetOperationInput,
+        output_schema = schemas.StopStackSetOperationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1128,8 +1128,8 @@ end
 function Client:testType(input, options)
     return self:invokeOperation(input, {
         name = "TestType",
-        input_schema = types.TestTypeInput,
-        output_schema = types.TestTypeOutput,
+        input_schema = schemas.TestTypeInput,
+        output_schema = schemas.TestTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1141,8 +1141,8 @@ end
 function Client:updateGeneratedTemplate(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGeneratedTemplate",
-        input_schema = types.UpdateGeneratedTemplateInput,
-        output_schema = types.UpdateGeneratedTemplateOutput,
+        input_schema = schemas.UpdateGeneratedTemplateInput,
+        output_schema = schemas.UpdateGeneratedTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1154,8 +1154,8 @@ end
 function Client:updateStack(input, options)
     return self:invokeOperation(input, {
         name = "UpdateStack",
-        input_schema = types.UpdateStackInput,
-        output_schema = types.UpdateStackOutput,
+        input_schema = schemas.UpdateStackInput,
+        output_schema = schemas.UpdateStackOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1167,8 +1167,8 @@ end
 function Client:updateStackInstances(input, options)
     return self:invokeOperation(input, {
         name = "UpdateStackInstances",
-        input_schema = types.UpdateStackInstancesInput,
-        output_schema = types.UpdateStackInstancesOutput,
+        input_schema = schemas.UpdateStackInstancesInput,
+        output_schema = schemas.UpdateStackInstancesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1180,8 +1180,8 @@ end
 function Client:updateStackSet(input, options)
     return self:invokeOperation(input, {
         name = "UpdateStackSet",
-        input_schema = types.UpdateStackSetInput,
-        output_schema = types.UpdateStackSetOutput,
+        input_schema = schemas.UpdateStackSetInput,
+        output_schema = schemas.UpdateStackSetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1193,8 +1193,8 @@ end
 function Client:updateTerminationProtection(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTerminationProtection",
-        input_schema = types.UpdateTerminationProtectionInput,
-        output_schema = types.UpdateTerminationProtectionOutput,
+        input_schema = schemas.UpdateTerminationProtectionInput,
+        output_schema = schemas.UpdateTerminationProtectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1206,8 +1206,8 @@ end
 function Client:validateTemplate(input, options)
     return self:invokeOperation(input, {
         name = "ValidateTemplate",
-        input_schema = types.ValidateTemplateInput,
-        output_schema = types.ValidateTemplateOutput,
+        input_schema = schemas.ValidateTemplateInput,
+        output_schema = schemas.ValidateTemplateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

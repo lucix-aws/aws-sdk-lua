@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("partnercentralchannel.endpoint_rules")
+local schemas = require("partnercentralchannel.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("partnercentralchannel.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptChannelHandshake(input, options)
     return self:invokeOperation(input, {
         name = "AcceptChannelHandshake",
-        input_schema = types.AcceptChannelHandshakeInput,
-        output_schema = types.AcceptChannelHandshakeOutput,
+        input_schema = schemas.AcceptChannelHandshakeInput,
+        output_schema = schemas.AcceptChannelHandshakeOutput,
         http_method = "POST",
         http_path = "/AcceptChannelHandshake",
         effective_auth_schemes = {
@@ -63,8 +63,8 @@ end
 function Client:cancelChannelHandshake(input, options)
     return self:invokeOperation(input, {
         name = "CancelChannelHandshake",
-        input_schema = types.CancelChannelHandshakeInput,
-        output_schema = types.CancelChannelHandshakeOutput,
+        input_schema = schemas.CancelChannelHandshakeInput,
+        output_schema = schemas.CancelChannelHandshakeOutput,
         http_method = "POST",
         http_path = "/CancelChannelHandshake",
         effective_auth_schemes = {
@@ -77,8 +77,8 @@ end
 function Client:createChannelHandshake(input, options)
     return self:invokeOperation(input, {
         name = "CreateChannelHandshake",
-        input_schema = types.CreateChannelHandshakeInput,
-        output_schema = types.CreateChannelHandshakeOutput,
+        input_schema = schemas.CreateChannelHandshakeInput,
+        output_schema = schemas.CreateChannelHandshakeOutput,
         http_method = "POST",
         http_path = "/CreateChannelHandshake",
         effective_auth_schemes = {
@@ -91,8 +91,8 @@ end
 function Client:createProgramManagementAccount(input, options)
     return self:invokeOperation(input, {
         name = "CreateProgramManagementAccount",
-        input_schema = types.CreateProgramManagementAccountInput,
-        output_schema = types.CreateProgramManagementAccountOutput,
+        input_schema = schemas.CreateProgramManagementAccountInput,
+        output_schema = schemas.CreateProgramManagementAccountOutput,
         http_method = "POST",
         http_path = "/CreateProgramManagementAccount",
         effective_auth_schemes = {
@@ -105,8 +105,8 @@ end
 function Client:createRelationship(input, options)
     return self:invokeOperation(input, {
         name = "CreateRelationship",
-        input_schema = types.CreateRelationshipInput,
-        output_schema = types.CreateRelationshipOutput,
+        input_schema = schemas.CreateRelationshipInput,
+        output_schema = schemas.CreateRelationshipOutput,
         http_method = "POST",
         http_path = "/CreateRelationship",
         effective_auth_schemes = {
@@ -119,8 +119,8 @@ end
 function Client:deleteProgramManagementAccount(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProgramManagementAccount",
-        input_schema = types.DeleteProgramManagementAccountInput,
-        output_schema = types.DeleteProgramManagementAccountOutput,
+        input_schema = schemas.DeleteProgramManagementAccountInput,
+        output_schema = schemas.DeleteProgramManagementAccountOutput,
         http_method = "POST",
         http_path = "/DeleteProgramManagementAccount",
         effective_auth_schemes = {
@@ -133,8 +133,8 @@ end
 function Client:deleteRelationship(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRelationship",
-        input_schema = types.DeleteRelationshipInput,
-        output_schema = types.DeleteRelationshipOutput,
+        input_schema = schemas.DeleteRelationshipInput,
+        output_schema = schemas.DeleteRelationshipOutput,
         http_method = "POST",
         http_path = "/DeleteRelationship",
         effective_auth_schemes = {
@@ -147,8 +147,8 @@ end
 function Client:getRelationship(input, options)
     return self:invokeOperation(input, {
         name = "GetRelationship",
-        input_schema = types.GetRelationshipInput,
-        output_schema = types.GetRelationshipOutput,
+        input_schema = schemas.GetRelationshipInput,
+        output_schema = schemas.GetRelationshipOutput,
         http_method = "POST",
         http_path = "/GetRelationship",
         effective_auth_schemes = {
@@ -161,8 +161,8 @@ end
 function Client:listChannelHandshakes(input, options)
     return self:invokeOperation(input, {
         name = "ListChannelHandshakes",
-        input_schema = types.ListChannelHandshakesInput,
-        output_schema = types.ListChannelHandshakesOutput,
+        input_schema = schemas.ListChannelHandshakesInput,
+        output_schema = schemas.ListChannelHandshakesOutput,
         http_method = "POST",
         http_path = "/ListChannelHandshakes",
         effective_auth_schemes = {
@@ -175,8 +175,8 @@ end
 function Client:listProgramManagementAccounts(input, options)
     return self:invokeOperation(input, {
         name = "ListProgramManagementAccounts",
-        input_schema = types.ListProgramManagementAccountsInput,
-        output_schema = types.ListProgramManagementAccountsOutput,
+        input_schema = schemas.ListProgramManagementAccountsInput,
+        output_schema = schemas.ListProgramManagementAccountsOutput,
         http_method = "POST",
         http_path = "/ListProgramManagementAccounts",
         effective_auth_schemes = {
@@ -189,8 +189,8 @@ end
 function Client:listRelationships(input, options)
     return self:invokeOperation(input, {
         name = "ListRelationships",
-        input_schema = types.ListRelationshipsInput,
-        output_schema = types.ListRelationshipsOutput,
+        input_schema = schemas.ListRelationshipsInput,
+        output_schema = schemas.ListRelationshipsOutput,
         http_method = "POST",
         http_path = "/ListRelationships",
         effective_auth_schemes = {
@@ -203,8 +203,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/ListTagsForResource",
         effective_auth_schemes = {
@@ -217,8 +217,8 @@ end
 function Client:rejectChannelHandshake(input, options)
     return self:invokeOperation(input, {
         name = "RejectChannelHandshake",
-        input_schema = types.RejectChannelHandshakeInput,
-        output_schema = types.RejectChannelHandshakeOutput,
+        input_schema = schemas.RejectChannelHandshakeInput,
+        output_schema = schemas.RejectChannelHandshakeOutput,
         http_method = "POST",
         http_path = "/RejectChannelHandshake",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/TagResource",
         effective_auth_schemes = {
@@ -245,8 +245,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/UntagResource",
         effective_auth_schemes = {
@@ -259,8 +259,8 @@ end
 function Client:updateProgramManagementAccount(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProgramManagementAccount",
-        input_schema = types.UpdateProgramManagementAccountInput,
-        output_schema = types.UpdateProgramManagementAccountOutput,
+        input_schema = schemas.UpdateProgramManagementAccountInput,
+        output_schema = schemas.UpdateProgramManagementAccountOutput,
         http_method = "POST",
         http_path = "/UpdateProgramManagementAccount",
         effective_auth_schemes = {
@@ -273,8 +273,8 @@ end
 function Client:updateRelationship(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRelationship",
-        input_schema = types.UpdateRelationshipInput,
-        output_schema = types.UpdateRelationshipOutput,
+        input_schema = schemas.UpdateRelationshipInput,
+        output_schema = schemas.UpdateRelationshipOutput,
         http_method = "POST",
         http_path = "/UpdateRelationship",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("supplychain.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("supplychain.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("supplychain.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createBillOfMaterialsImportJob(input, options)
     return self:invokeOperation(input, {
         name = "CreateBillOfMaterialsImportJob",
-        input_schema = types.CreateBillOfMaterialsImportJobInput,
-        output_schema = types.CreateBillOfMaterialsImportJobOutput,
+        input_schema = schemas.CreateBillOfMaterialsImportJobInput,
+        output_schema = schemas.CreateBillOfMaterialsImportJobOutput,
         http_method = "POST",
         http_path = "/api/configuration/instances/{instanceId}/bill-of-materials-import-jobs",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createDataIntegrationFlow(input, options)
     return self:invokeOperation(input, {
         name = "CreateDataIntegrationFlow",
-        input_schema = types.CreateDataIntegrationFlowInput,
-        output_schema = types.CreateDataIntegrationFlowOutput,
+        input_schema = schemas.CreateDataIntegrationFlowInput,
+        output_schema = schemas.CreateDataIntegrationFlowOutput,
         http_method = "PUT",
         http_path = "/api/data-integration/instance/{instanceId}/data-integration-flows/{name}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createDataLakeDataset(input, options)
     return self:invokeOperation(input, {
         name = "CreateDataLakeDataset",
-        input_schema = types.CreateDataLakeDatasetInput,
-        output_schema = types.CreateDataLakeDatasetOutput,
+        input_schema = schemas.CreateDataLakeDatasetInput,
+        output_schema = schemas.CreateDataLakeDatasetOutput,
         http_method = "PUT",
         http_path = "/api/datalake/instance/{instanceId}/namespaces/{namespace}/datasets/{name}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createDataLakeNamespace(input, options)
     return self:invokeOperation(input, {
         name = "CreateDataLakeNamespace",
-        input_schema = types.CreateDataLakeNamespaceInput,
-        output_schema = types.CreateDataLakeNamespaceOutput,
+        input_schema = schemas.CreateDataLakeNamespaceInput,
+        output_schema = schemas.CreateDataLakeNamespaceOutput,
         http_method = "PUT",
         http_path = "/api/datalake/instance/{instanceId}/namespaces/{name}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createInstance(input, options)
     return self:invokeOperation(input, {
         name = "CreateInstance",
-        input_schema = types.CreateInstanceInput,
-        output_schema = types.CreateInstanceOutput,
+        input_schema = schemas.CreateInstanceInput,
+        output_schema = schemas.CreateInstanceOutput,
         http_method = "POST",
         http_path = "/api/instance",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteDataIntegrationFlow(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDataIntegrationFlow",
-        input_schema = types.DeleteDataIntegrationFlowInput,
-        output_schema = types.DeleteDataIntegrationFlowOutput,
+        input_schema = schemas.DeleteDataIntegrationFlowInput,
+        output_schema = schemas.DeleteDataIntegrationFlowOutput,
         http_method = "DELETE",
         http_path = "/api/data-integration/instance/{instanceId}/data-integration-flows/{name}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteDataLakeDataset(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDataLakeDataset",
-        input_schema = types.DeleteDataLakeDatasetInput,
-        output_schema = types.DeleteDataLakeDatasetOutput,
+        input_schema = schemas.DeleteDataLakeDatasetInput,
+        output_schema = schemas.DeleteDataLakeDatasetOutput,
         http_method = "DELETE",
         http_path = "/api/datalake/instance/{instanceId}/namespaces/{namespace}/datasets/{name}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteDataLakeNamespace(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDataLakeNamespace",
-        input_schema = types.DeleteDataLakeNamespaceInput,
-        output_schema = types.DeleteDataLakeNamespaceOutput,
+        input_schema = schemas.DeleteDataLakeNamespaceInput,
+        output_schema = schemas.DeleteDataLakeNamespaceOutput,
         http_method = "DELETE",
         http_path = "/api/datalake/instance/{instanceId}/namespaces/{name}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteInstance(input, options)
     return self:invokeOperation(input, {
         name = "DeleteInstance",
-        input_schema = types.DeleteInstanceInput,
-        output_schema = types.DeleteInstanceOutput,
+        input_schema = schemas.DeleteInstanceInput,
+        output_schema = schemas.DeleteInstanceOutput,
         http_method = "DELETE",
         http_path = "/api/instance/{instanceId}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getBillOfMaterialsImportJob(input, options)
     return self:invokeOperation(input, {
         name = "GetBillOfMaterialsImportJob",
-        input_schema = types.GetBillOfMaterialsImportJobInput,
-        output_schema = types.GetBillOfMaterialsImportJobOutput,
+        input_schema = schemas.GetBillOfMaterialsImportJobInput,
+        output_schema = schemas.GetBillOfMaterialsImportJobOutput,
         http_method = "GET",
         http_path = "/api/configuration/instances/{instanceId}/bill-of-materials-import-jobs/{jobId}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getDataIntegrationEvent(input, options)
     return self:invokeOperation(input, {
         name = "GetDataIntegrationEvent",
-        input_schema = types.GetDataIntegrationEventInput,
-        output_schema = types.GetDataIntegrationEventOutput,
+        input_schema = schemas.GetDataIntegrationEventInput,
+        output_schema = schemas.GetDataIntegrationEventOutput,
         http_method = "GET",
         http_path = "/api-data/data-integration/instance/{instanceId}/data-integration-events/{eventId}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getDataIntegrationFlow(input, options)
     return self:invokeOperation(input, {
         name = "GetDataIntegrationFlow",
-        input_schema = types.GetDataIntegrationFlowInput,
-        output_schema = types.GetDataIntegrationFlowOutput,
+        input_schema = schemas.GetDataIntegrationFlowInput,
+        output_schema = schemas.GetDataIntegrationFlowOutput,
         http_method = "GET",
         http_path = "/api/data-integration/instance/{instanceId}/data-integration-flows/{name}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getDataIntegrationFlowExecution(input, options)
     return self:invokeOperation(input, {
         name = "GetDataIntegrationFlowExecution",
-        input_schema = types.GetDataIntegrationFlowExecutionInput,
-        output_schema = types.GetDataIntegrationFlowExecutionOutput,
+        input_schema = schemas.GetDataIntegrationFlowExecutionInput,
+        output_schema = schemas.GetDataIntegrationFlowExecutionOutput,
         http_method = "GET",
         http_path = "/api-data/data-integration/instance/{instanceId}/data-integration-flows/{flowName}/executions/{executionId}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getDataLakeDataset(input, options)
     return self:invokeOperation(input, {
         name = "GetDataLakeDataset",
-        input_schema = types.GetDataLakeDatasetInput,
-        output_schema = types.GetDataLakeDatasetOutput,
+        input_schema = schemas.GetDataLakeDatasetInput,
+        output_schema = schemas.GetDataLakeDatasetOutput,
         http_method = "GET",
         http_path = "/api/datalake/instance/{instanceId}/namespaces/{namespace}/datasets/{name}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getDataLakeNamespace(input, options)
     return self:invokeOperation(input, {
         name = "GetDataLakeNamespace",
-        input_schema = types.GetDataLakeNamespaceInput,
-        output_schema = types.GetDataLakeNamespaceOutput,
+        input_schema = schemas.GetDataLakeNamespaceInput,
+        output_schema = schemas.GetDataLakeNamespaceOutput,
         http_method = "GET",
         http_path = "/api/datalake/instance/{instanceId}/namespaces/{name}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getInstance(input, options)
     return self:invokeOperation(input, {
         name = "GetInstance",
-        input_schema = types.GetInstanceInput,
-        output_schema = types.GetInstanceOutput,
+        input_schema = schemas.GetInstanceInput,
+        output_schema = schemas.GetInstanceOutput,
         http_method = "GET",
         http_path = "/api/instance/{instanceId}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listDataIntegrationEvents(input, options)
     return self:invokeOperation(input, {
         name = "ListDataIntegrationEvents",
-        input_schema = types.ListDataIntegrationEventsInput,
-        output_schema = types.ListDataIntegrationEventsOutput,
+        input_schema = schemas.ListDataIntegrationEventsInput,
+        output_schema = schemas.ListDataIntegrationEventsOutput,
         http_method = "GET",
         http_path = "/api-data/data-integration/instance/{instanceId}/data-integration-events",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listDataIntegrationFlowExecutions(input, options)
     return self:invokeOperation(input, {
         name = "ListDataIntegrationFlowExecutions",
-        input_schema = types.ListDataIntegrationFlowExecutionsInput,
-        output_schema = types.ListDataIntegrationFlowExecutionsOutput,
+        input_schema = schemas.ListDataIntegrationFlowExecutionsInput,
+        output_schema = schemas.ListDataIntegrationFlowExecutionsOutput,
         http_method = "GET",
         http_path = "/api-data/data-integration/instance/{instanceId}/data-integration-flows/{flowName}/executions",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listDataIntegrationFlows(input, options)
     return self:invokeOperation(input, {
         name = "ListDataIntegrationFlows",
-        input_schema = types.ListDataIntegrationFlowsInput,
-        output_schema = types.ListDataIntegrationFlowsOutput,
+        input_schema = schemas.ListDataIntegrationFlowsInput,
+        output_schema = schemas.ListDataIntegrationFlowsOutput,
         http_method = "GET",
         http_path = "/api/data-integration/instance/{instanceId}/data-integration-flows",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listDataLakeDatasets(input, options)
     return self:invokeOperation(input, {
         name = "ListDataLakeDatasets",
-        input_schema = types.ListDataLakeDatasetsInput,
-        output_schema = types.ListDataLakeDatasetsOutput,
+        input_schema = schemas.ListDataLakeDatasetsInput,
+        output_schema = schemas.ListDataLakeDatasetsOutput,
         http_method = "GET",
         http_path = "/api/datalake/instance/{instanceId}/namespaces/{namespace}/datasets",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listDataLakeNamespaces(input, options)
     return self:invokeOperation(input, {
         name = "ListDataLakeNamespaces",
-        input_schema = types.ListDataLakeNamespacesInput,
-        output_schema = types.ListDataLakeNamespacesOutput,
+        input_schema = schemas.ListDataLakeNamespacesInput,
+        output_schema = schemas.ListDataLakeNamespacesOutput,
         http_method = "GET",
         http_path = "/api/datalake/instance/{instanceId}/namespaces",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listInstances(input, options)
     return self:invokeOperation(input, {
         name = "ListInstances",
-        input_schema = types.ListInstancesInput,
-        output_schema = types.ListInstancesOutput,
+        input_schema = schemas.ListInstancesInput,
+        output_schema = schemas.ListInstancesOutput,
         http_method = "GET",
         http_path = "/api/instance",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/api/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:sendDataIntegrationEvent(input, options)
     return self:invokeOperation(input, {
         name = "SendDataIntegrationEvent",
-        input_schema = types.SendDataIntegrationEventInput,
-        output_schema = types.SendDataIntegrationEventOutput,
+        input_schema = schemas.SendDataIntegrationEventInput,
+        output_schema = schemas.SendDataIntegrationEventOutput,
         http_method = "POST",
         http_path = "/api-data/data-integration/instance/{instanceId}/data-integration-events",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/api/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/api/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:updateDataIntegrationFlow(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDataIntegrationFlow",
-        input_schema = types.UpdateDataIntegrationFlowInput,
-        output_schema = types.UpdateDataIntegrationFlowOutput,
+        input_schema = schemas.UpdateDataIntegrationFlowInput,
+        output_schema = schemas.UpdateDataIntegrationFlowOutput,
         http_method = "PATCH",
         http_path = "/api/data-integration/instance/{instanceId}/data-integration-flows/{name}",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:updateDataLakeDataset(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDataLakeDataset",
-        input_schema = types.UpdateDataLakeDatasetInput,
-        output_schema = types.UpdateDataLakeDatasetOutput,
+        input_schema = schemas.UpdateDataLakeDatasetInput,
+        output_schema = schemas.UpdateDataLakeDatasetOutput,
         http_method = "PATCH",
         http_path = "/api/datalake/instance/{instanceId}/namespaces/{namespace}/datasets/{name}",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:updateDataLakeNamespace(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDataLakeNamespace",
-        input_schema = types.UpdateDataLakeNamespaceInput,
-        output_schema = types.UpdateDataLakeNamespaceOutput,
+        input_schema = schemas.UpdateDataLakeNamespaceInput,
+        output_schema = schemas.UpdateDataLakeNamespaceOutput,
         http_method = "PATCH",
         http_path = "/api/datalake/instance/{instanceId}/namespaces/{name}",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:updateInstance(input, options)
     return self:invokeOperation(input, {
         name = "UpdateInstance",
-        input_schema = types.UpdateInstanceInput,
-        output_schema = types.UpdateInstanceOutput,
+        input_schema = schemas.UpdateInstanceInput,
+        output_schema = schemas.UpdateInstanceOutput,
         http_method = "PATCH",
         http_path = "/api/instance/{instanceId}",
         effective_auth_schemes = {

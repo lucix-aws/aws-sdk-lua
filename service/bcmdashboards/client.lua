@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("bcmdashboards.endpoint_rules")
+local schemas = require("bcmdashboards.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("bcmdashboards.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createDashboard(input, options)
     return self:invokeOperation(input, {
         name = "CreateDashboard",
-        input_schema = types.CreateDashboardInput,
-        output_schema = types.CreateDashboardOutput,
+        input_schema = schemas.CreateDashboardInput,
+        output_schema = schemas.CreateDashboardOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createScheduledReport(input, options)
     return self:invokeOperation(input, {
         name = "CreateScheduledReport",
-        input_schema = types.CreateScheduledReportInput,
-        output_schema = types.CreateScheduledReportOutput,
+        input_schema = schemas.CreateScheduledReportInput,
+        output_schema = schemas.CreateScheduledReportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteDashboard(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDashboard",
-        input_schema = types.DeleteDashboardInput,
-        output_schema = types.DeleteDashboardOutput,
+        input_schema = schemas.DeleteDashboardInput,
+        output_schema = schemas.DeleteDashboardOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteScheduledReport(input, options)
     return self:invokeOperation(input, {
         name = "DeleteScheduledReport",
-        input_schema = types.DeleteScheduledReportInput,
-        output_schema = types.DeleteScheduledReportOutput,
+        input_schema = schemas.DeleteScheduledReportInput,
+        output_schema = schemas.DeleteScheduledReportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:executeScheduledReport(input, options)
     return self:invokeOperation(input, {
         name = "ExecuteScheduledReport",
-        input_schema = types.ExecuteScheduledReportInput,
-        output_schema = types.ExecuteScheduledReportOutput,
+        input_schema = schemas.ExecuteScheduledReportInput,
+        output_schema = schemas.ExecuteScheduledReportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getDashboard(input, options)
     return self:invokeOperation(input, {
         name = "GetDashboard",
-        input_schema = types.GetDashboardInput,
-        output_schema = types.GetDashboardOutput,
+        input_schema = schemas.GetDashboardInput,
+        output_schema = schemas.GetDashboardOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcePolicy",
-        input_schema = types.GetResourcePolicyInput,
-        output_schema = types.GetResourcePolicyOutput,
+        input_schema = schemas.GetResourcePolicyInput,
+        output_schema = schemas.GetResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getScheduledReport(input, options)
     return self:invokeOperation(input, {
         name = "GetScheduledReport",
-        input_schema = types.GetScheduledReportInput,
-        output_schema = types.GetScheduledReportOutput,
+        input_schema = schemas.GetScheduledReportInput,
+        output_schema = schemas.GetScheduledReportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listDashboards(input, options)
     return self:invokeOperation(input, {
         name = "ListDashboards",
-        input_schema = types.ListDashboardsInput,
-        output_schema = types.ListDashboardsOutput,
+        input_schema = schemas.ListDashboardsInput,
+        output_schema = schemas.ListDashboardsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listScheduledReports(input, options)
     return self:invokeOperation(input, {
         name = "ListScheduledReports",
-        input_schema = types.ListScheduledReportsInput,
-        output_schema = types.ListScheduledReportsOutput,
+        input_schema = schemas.ListScheduledReportsInput,
+        output_schema = schemas.ListScheduledReportsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:updateDashboard(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDashboard",
-        input_schema = types.UpdateDashboardInput,
-        output_schema = types.UpdateDashboardOutput,
+        input_schema = schemas.UpdateDashboardInput,
+        output_schema = schemas.UpdateDashboardOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:updateScheduledReport(input, options)
     return self:invokeOperation(input, {
         name = "UpdateScheduledReport",
-        input_schema = types.UpdateScheduledReportInput,
-        output_schema = types.UpdateScheduledReportOutput,
+        input_schema = schemas.UpdateScheduledReportInput,
+        output_schema = schemas.UpdateScheduledReportOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

@@ -1,0 +1,2880 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.paymentcryptography"
+
+local M = {}
+
+M.AccessDeniedException = schema.new({
+    id = id.from(_N, "AccessDeniedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "AccessDeniedException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AddKeyReplicationRegionsInput = schema.new({
+    id = id.from(_N, "AddKeyReplicationRegionsInput"),
+    type = "structure",
+    members = {
+        KeyIdentifier = schema.new({
+            id = id.from(_N, "AddKeyReplicationRegionsInput", "KeyIdentifier"),
+            type = "string",
+            name = "KeyIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ReplicationRegions = schema.new({
+            id = id.from(_N, "AddKeyReplicationRegionsInput", "ReplicationRegions"),
+            type = "list",
+            name = "ReplicationRegions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.KeyModesOfUse = schema.new({
+    id = id.from(_N, "KeyModesOfUse"),
+    type = "structure",
+    members = {
+        Encrypt = schema.new({
+            id = id.from(_N, "KeyModesOfUse", "Encrypt"),
+            type = "boolean",
+            name = "Encrypt",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        Decrypt = schema.new({
+            id = id.from(_N, "KeyModesOfUse", "Decrypt"),
+            type = "boolean",
+            name = "Decrypt",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        Wrap = schema.new({
+            id = id.from(_N, "KeyModesOfUse", "Wrap"),
+            type = "boolean",
+            name = "Wrap",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        Unwrap = schema.new({
+            id = id.from(_N, "KeyModesOfUse", "Unwrap"),
+            type = "boolean",
+            name = "Unwrap",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        Generate = schema.new({
+            id = id.from(_N, "KeyModesOfUse", "Generate"),
+            type = "boolean",
+            name = "Generate",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        Sign = schema.new({
+            id = id.from(_N, "KeyModesOfUse", "Sign"),
+            type = "boolean",
+            name = "Sign",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        Verify = schema.new({
+            id = id.from(_N, "KeyModesOfUse", "Verify"),
+            type = "boolean",
+            name = "Verify",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        DeriveKey = schema.new({
+            id = id.from(_N, "KeyModesOfUse", "DeriveKey"),
+            type = "boolean",
+            name = "DeriveKey",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        NoRestrictions = schema.new({
+            id = id.from(_N, "KeyModesOfUse", "NoRestrictions"),
+            type = "boolean",
+            name = "NoRestrictions",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+    },
+})
+
+M.KeyAttributes = schema.new({
+    id = id.from(_N, "KeyAttributes"),
+    type = "structure",
+    members = {
+        KeyUsage = schema.new({
+            id = id.from(_N, "KeyAttributes", "KeyUsage"),
+            type = "string",
+            name = "KeyUsage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyClass = schema.new({
+            id = id.from(_N, "KeyAttributes", "KeyClass"),
+            type = "string",
+            name = "KeyClass",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyAlgorithm = schema.new({
+            id = id.from(_N, "KeyAttributes", "KeyAlgorithm"),
+            type = "string",
+            name = "KeyAlgorithm",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyModesOfUse = schema.new({
+            id = id.from(_N, "KeyAttributes", "KeyModesOfUse"),
+            type = "structure",
+            name = "KeyModesOfUse",
+            target_id = id.from(_N, "KeyModesOfUse"),
+            target = M.KeyModesOfUse,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.MpaStatus = schema.new({
+    id = id.from(_N, "MpaStatus"),
+    type = "structure",
+    members = {
+        MpaSessionArn = schema.new({
+            id = id.from(_N, "MpaStatus", "MpaSessionArn"),
+            type = "string",
+            name = "MpaSessionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "MpaStatus", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InitiationDate = schema.new({
+            id = id.from(_N, "MpaStatus", "InitiationDate"),
+            type = "timestamp",
+            name = "InitiationDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StatusMessage = schema.new({
+            id = id.from(_N, "MpaStatus", "StatusMessage"),
+            type = "string",
+            name = "StatusMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ReplicationStatusType = schema.new({
+    id = id.from(_N, "ReplicationStatusType"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "ReplicationStatusType", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StatusMessage = schema.new({
+            id = id.from(_N, "ReplicationStatusType", "StatusMessage"),
+            type = "string",
+            name = "StatusMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Key = schema.new({
+    id = id.from(_N, "Key"),
+    type = "structure",
+    members = {
+        KeyArn = schema.new({
+            id = id.from(_N, "Key", "KeyArn"),
+            type = "string",
+            name = "KeyArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyAttributes = schema.new({
+            id = id.from(_N, "Key", "KeyAttributes"),
+            type = "structure",
+            name = "KeyAttributes",
+            target_id = id.from(_N, "KeyAttributes"),
+            target = M.KeyAttributes,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyCheckValue = schema.new({
+            id = id.from(_N, "Key", "KeyCheckValue"),
+            type = "string",
+            name = "KeyCheckValue",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyCheckValueAlgorithm = schema.new({
+            id = id.from(_N, "Key", "KeyCheckValueAlgorithm"),
+            type = "string",
+            name = "KeyCheckValueAlgorithm",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Enabled = schema.new({
+            id = id.from(_N, "Key", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Exportable = schema.new({
+            id = id.from(_N, "Key", "Exportable"),
+            type = "boolean",
+            name = "Exportable",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyState = schema.new({
+            id = id.from(_N, "Key", "KeyState"),
+            type = "string",
+            name = "KeyState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyOrigin = schema.new({
+            id = id.from(_N, "Key", "KeyOrigin"),
+            type = "string",
+            name = "KeyOrigin",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreateTimestamp = schema.new({
+            id = id.from(_N, "Key", "CreateTimestamp"),
+            type = "timestamp",
+            name = "CreateTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UsageStartTimestamp = schema.new({
+            id = id.from(_N, "Key", "UsageStartTimestamp"),
+            type = "timestamp",
+            name = "UsageStartTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        UsageStopTimestamp = schema.new({
+            id = id.from(_N, "Key", "UsageStopTimestamp"),
+            type = "timestamp",
+            name = "UsageStopTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        DeletePendingTimestamp = schema.new({
+            id = id.from(_N, "Key", "DeletePendingTimestamp"),
+            type = "timestamp",
+            name = "DeletePendingTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        DeleteTimestamp = schema.new({
+            id = id.from(_N, "Key", "DeleteTimestamp"),
+            type = "timestamp",
+            name = "DeleteTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        DeriveKeyUsage = schema.new({
+            id = id.from(_N, "Key", "DeriveKeyUsage"),
+            type = "string",
+            name = "DeriveKeyUsage",
+            target_id = prelude.String.id,
+        }),
+        MultiRegionKeyType = schema.new({
+            id = id.from(_N, "Key", "MultiRegionKeyType"),
+            type = "string",
+            name = "MultiRegionKeyType",
+            target_id = prelude.String.id,
+        }),
+        PrimaryRegion = schema.new({
+            id = id.from(_N, "Key", "PrimaryRegion"),
+            type = "string",
+            name = "PrimaryRegion",
+            target_id = prelude.String.id,
+        }),
+        ReplicationStatus = schema.new({
+            id = id.from(_N, "Key", "ReplicationStatus"),
+            type = "map",
+            name = "ReplicationStatus",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.ReplicationStatusType,
+        }),
+        UsingDefaultReplicationRegions = schema.new({
+            id = id.from(_N, "Key", "UsingDefaultReplicationRegions"),
+            type = "boolean",
+            name = "UsingDefaultReplicationRegions",
+            target_id = prelude.Boolean.id,
+        }),
+        MpaStatus = schema.new({
+            id = id.from(_N, "Key", "MpaStatus"),
+            type = "structure",
+            name = "MpaStatus",
+            target_id = id.from(_N, "MpaStatus"),
+            target = M.MpaStatus,
+        }),
+    },
+})
+
+M.AddKeyReplicationRegionsOutput = schema.new({
+    id = id.from(_N, "AddKeyReplicationRegionsOutput"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "AddKeyReplicationRegionsOutput", "Key"),
+            type = "structure",
+            name = "Key",
+            target_id = id.from(_N, "Key"),
+            target = M.Key,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ConflictException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InternalServerException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        ResourceId = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "ResourceId"),
+            type = "string",
+            name = "ResourceId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ThrottlingException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ValidationException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Alias = schema.new({
+    id = id.from(_N, "Alias"),
+    type = "structure",
+    members = {
+        AliasName = schema.new({
+            id = id.from(_N, "Alias", "AliasName"),
+            type = "string",
+            name = "AliasName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyArn = schema.new({
+            id = id.from(_N, "Alias", "KeyArn"),
+            type = "string",
+            name = "KeyArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateAliasInput = schema.new({
+    id = id.from(_N, "CreateAliasInput"),
+    type = "structure",
+    members = {
+        AliasName = schema.new({
+            id = id.from(_N, "CreateAliasInput", "AliasName"),
+            type = "string",
+            name = "AliasName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyArn = schema.new({
+            id = id.from(_N, "CreateAliasInput", "KeyArn"),
+            type = "string",
+            name = "KeyArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateAliasOutput = schema.new({
+    id = id.from(_N, "CreateAliasOutput"),
+    type = "structure",
+    members = {
+        Alias = schema.new({
+            id = id.from(_N, "CreateAliasOutput", "Alias"),
+            type = "structure",
+            name = "Alias",
+            target_id = id.from(_N, "Alias"),
+            target = M.Alias,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ServiceUnavailableException = schema.new({
+    id = id.from(_N, "ServiceUnavailableException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ServiceUnavailableException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteAliasInput = schema.new({
+    id = id.from(_N, "DeleteAliasInput"),
+    type = "structure",
+    members = {
+        AliasName = schema.new({
+            id = id.from(_N, "DeleteAliasInput", "AliasName"),
+            type = "string",
+            name = "AliasName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAliasOutput = schema.new({
+    id = id.from(_N, "DeleteAliasOutput"),
+    type = "structure",
+})
+
+M.GetAliasInput = schema.new({
+    id = id.from(_N, "GetAliasInput"),
+    type = "structure",
+    members = {
+        AliasName = schema.new({
+            id = id.from(_N, "GetAliasInput", "AliasName"),
+            type = "string",
+            name = "AliasName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetAliasOutput = schema.new({
+    id = id.from(_N, "GetAliasOutput"),
+    type = "structure",
+    members = {
+        Alias = schema.new({
+            id = id.from(_N, "GetAliasOutput", "Alias"),
+            type = "structure",
+            name = "Alias",
+            target_id = id.from(_N, "Alias"),
+            target = M.Alias,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListAliasesInput = schema.new({
+    id = id.from(_N, "ListAliasesInput"),
+    type = "structure",
+    members = {
+        KeyArn = schema.new({
+            id = id.from(_N, "ListAliasesInput", "KeyArn"),
+            type = "string",
+            name = "KeyArn",
+            target_id = prelude.String.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAliasesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListAliasesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ListAliasesOutput = schema.new({
+    id = id.from(_N, "ListAliasesOutput"),
+    type = "structure",
+    members = {
+        Aliases = schema.new({
+            id = id.from(_N, "ListAliasesOutput", "Aliases"),
+            type = "list",
+            name = "Aliases",
+            target_id = prelude.Document.id,
+            list_member = M.Alias,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAliasesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateAliasInput = schema.new({
+    id = id.from(_N, "UpdateAliasInput"),
+    type = "structure",
+    members = {
+        AliasName = schema.new({
+            id = id.from(_N, "UpdateAliasInput", "AliasName"),
+            type = "string",
+            name = "AliasName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyArn = schema.new({
+            id = id.from(_N, "UpdateAliasInput", "KeyArn"),
+            type = "string",
+            name = "KeyArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateAliasOutput = schema.new({
+    id = id.from(_N, "UpdateAliasOutput"),
+    type = "structure",
+    members = {
+        Alias = schema.new({
+            id = id.from(_N, "UpdateAliasOutput", "Alias"),
+            type = "structure",
+            name = "Alias",
+            target_id = id.from(_N, "Alias"),
+            target = M.Alias,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssociateMpaTeamInput = schema.new({
+    id = id.from(_N, "AssociateMpaTeamInput"),
+    type = "structure",
+    members = {
+        Action = schema.new({
+            id = id.from(_N, "AssociateMpaTeamInput", "Action"),
+            type = "string",
+            name = "Action",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MpaTeamArn = schema.new({
+            id = id.from(_N, "AssociateMpaTeamInput", "MpaTeamArn"),
+            type = "string",
+            name = "MpaTeamArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequesterComment = schema.new({
+            id = id.from(_N, "AssociateMpaTeamInput", "RequesterComment"),
+            type = "string",
+            name = "RequesterComment",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.MpaTeamAssociation = schema.new({
+    id = id.from(_N, "MpaTeamAssociation"),
+    type = "structure",
+    members = {
+        Action = schema.new({
+            id = id.from(_N, "MpaTeamAssociation", "Action"),
+            type = "string",
+            name = "Action",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MpaTeamArn = schema.new({
+            id = id.from(_N, "MpaTeamAssociation", "MpaTeamArn"),
+            type = "string",
+            name = "MpaTeamArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AssociationState = schema.new({
+            id = id.from(_N, "MpaTeamAssociation", "AssociationState"),
+            type = "string",
+            name = "AssociationState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MpaStatus = schema.new({
+            id = id.from(_N, "MpaTeamAssociation", "MpaStatus"),
+            type = "structure",
+            name = "MpaStatus",
+            target_id = id.from(_N, "MpaStatus"),
+            target = M.MpaStatus,
+        }),
+    },
+})
+
+M.AssociateMpaTeamOutput = schema.new({
+    id = id.from(_N, "AssociateMpaTeamOutput"),
+    type = "structure",
+    members = {
+        MpaTeamAssociation = schema.new({
+            id = id.from(_N, "AssociateMpaTeamOutput", "MpaTeamAssociation"),
+            type = "structure",
+            name = "MpaTeamAssociation",
+            target_id = id.from(_N, "MpaTeamAssociation"),
+            target = M.MpaTeamAssociation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CertificateSubjectType = schema.new({
+    id = id.from(_N, "CertificateSubjectType"),
+    type = "structure",
+    members = {
+        CommonName = schema.new({
+            id = id.from(_N, "CertificateSubjectType", "CommonName"),
+            type = "string",
+            name = "CommonName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        OrganizationUnit = schema.new({
+            id = id.from(_N, "CertificateSubjectType", "OrganizationUnit"),
+            type = "string",
+            name = "OrganizationUnit",
+            target_id = prelude.String.id,
+        }),
+        Organization = schema.new({
+            id = id.from(_N, "CertificateSubjectType", "Organization"),
+            type = "string",
+            name = "Organization",
+            target_id = prelude.String.id,
+        }),
+        City = schema.new({
+            id = id.from(_N, "CertificateSubjectType", "City"),
+            type = "string",
+            name = "City",
+            target_id = prelude.String.id,
+        }),
+        Country = schema.new({
+            id = id.from(_N, "CertificateSubjectType", "Country"),
+            type = "string",
+            name = "Country",
+            target_id = prelude.String.id,
+        }),
+        StateOrProvince = schema.new({
+            id = id.from(_N, "CertificateSubjectType", "StateOrProvince"),
+            type = "string",
+            name = "StateOrProvince",
+            target_id = prelude.String.id,
+        }),
+        EmailAddress = schema.new({
+            id = id.from(_N, "CertificateSubjectType", "EmailAddress"),
+            type = "string",
+            name = "EmailAddress",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Tag = schema.new({
+    id = id.from(_N, "Tag"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "Tag", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "Tag", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateKeyInput = schema.new({
+    id = id.from(_N, "CreateKeyInput"),
+    type = "structure",
+    members = {
+        KeyAttributes = schema.new({
+            id = id.from(_N, "CreateKeyInput", "KeyAttributes"),
+            type = "structure",
+            name = "KeyAttributes",
+            target_id = id.from(_N, "KeyAttributes"),
+            target = M.KeyAttributes,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyCheckValueAlgorithm = schema.new({
+            id = id.from(_N, "CreateKeyInput", "KeyCheckValueAlgorithm"),
+            type = "string",
+            name = "KeyCheckValueAlgorithm",
+            target_id = prelude.String.id,
+        }),
+        Exportable = schema.new({
+            id = id.from(_N, "CreateKeyInput", "Exportable"),
+            type = "boolean",
+            name = "Exportable",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Enabled = schema.new({
+            id = id.from(_N, "CreateKeyInput", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateKeyInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        DeriveKeyUsage = schema.new({
+            id = id.from(_N, "CreateKeyInput", "DeriveKeyUsage"),
+            type = "string",
+            name = "DeriveKeyUsage",
+            target_id = prelude.String.id,
+        }),
+        ReplicationRegions = schema.new({
+            id = id.from(_N, "CreateKeyInput", "ReplicationRegions"),
+            type = "list",
+            name = "ReplicationRegions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.CreateKeyOutput = schema.new({
+    id = id.from(_N, "CreateKeyOutput"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "CreateKeyOutput", "Key"),
+            type = "structure",
+            name = "Key",
+            target_id = id.from(_N, "Key"),
+            target = M.Key,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteKeyInput = schema.new({
+    id = id.from(_N, "DeleteKeyInput"),
+    type = "structure",
+    members = {
+        KeyIdentifier = schema.new({
+            id = id.from(_N, "DeleteKeyInput", "KeyIdentifier"),
+            type = "string",
+            name = "KeyIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DeleteKeyInDays = schema.new({
+            id = id.from(_N, "DeleteKeyInput", "DeleteKeyInDays"),
+            type = "integer",
+            name = "DeleteKeyInDays",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.DeleteKeyOutput = schema.new({
+    id = id.from(_N, "DeleteKeyOutput"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "DeleteKeyOutput", "Key"),
+            type = "structure",
+            name = "Key",
+            target_id = id.from(_N, "Key"),
+            target = M.Key,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteResourcePolicyInput = schema.new({
+    id = id.from(_N, "DeleteResourcePolicyInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "DeleteResourcePolicyInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteResourcePolicyOutput = schema.new({
+    id = id.from(_N, "DeleteResourcePolicyOutput"),
+    type = "structure",
+})
+
+M.DiffieHellmanDerivationData = schema.new({
+    id = id.from(_N, "DiffieHellmanDerivationData"),
+    type = "union",
+    members = {
+        SharedInformation = schema.new({
+            id = id.from(_N, "DiffieHellmanDerivationData", "SharedInformation"),
+            type = "string",
+            name = "SharedInformation",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DisableDefaultKeyReplicationRegionsInput = schema.new({
+    id = id.from(_N, "DisableDefaultKeyReplicationRegionsInput"),
+    type = "structure",
+    members = {
+        ReplicationRegions = schema.new({
+            id = id.from(_N, "DisableDefaultKeyReplicationRegionsInput", "ReplicationRegions"),
+            type = "list",
+            name = "ReplicationRegions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DisableDefaultKeyReplicationRegionsOutput = schema.new({
+    id = id.from(_N, "DisableDefaultKeyReplicationRegionsOutput"),
+    type = "structure",
+    members = {
+        EnabledReplicationRegions = schema.new({
+            id = id.from(_N, "DisableDefaultKeyReplicationRegionsOutput", "EnabledReplicationRegions"),
+            type = "list",
+            name = "EnabledReplicationRegions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DisassociateMpaTeamInput = schema.new({
+    id = id.from(_N, "DisassociateMpaTeamInput"),
+    type = "structure",
+    members = {
+        Action = schema.new({
+            id = id.from(_N, "DisassociateMpaTeamInput", "Action"),
+            type = "string",
+            name = "Action",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequesterComment = schema.new({
+            id = id.from(_N, "DisassociateMpaTeamInput", "RequesterComment"),
+            type = "string",
+            name = "RequesterComment",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DisassociateMpaTeamOutput = schema.new({
+    id = id.from(_N, "DisassociateMpaTeamOutput"),
+    type = "structure",
+    members = {
+        MpaTeamAssociation = schema.new({
+            id = id.from(_N, "DisassociateMpaTeamOutput", "MpaTeamAssociation"),
+            type = "structure",
+            name = "MpaTeamAssociation",
+            target_id = id.from(_N, "MpaTeamAssociation"),
+            target = M.MpaTeamAssociation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.EnableDefaultKeyReplicationRegionsInput = schema.new({
+    id = id.from(_N, "EnableDefaultKeyReplicationRegionsInput"),
+    type = "structure",
+    members = {
+        ReplicationRegions = schema.new({
+            id = id.from(_N, "EnableDefaultKeyReplicationRegionsInput", "ReplicationRegions"),
+            type = "list",
+            name = "ReplicationRegions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.EnableDefaultKeyReplicationRegionsOutput = schema.new({
+    id = id.from(_N, "EnableDefaultKeyReplicationRegionsOutput"),
+    type = "structure",
+    members = {
+        EnabledReplicationRegions = schema.new({
+            id = id.from(_N, "EnableDefaultKeyReplicationRegionsOutput", "EnabledReplicationRegions"),
+            type = "list",
+            name = "EnabledReplicationRegions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ExportAs2805KeyCryptogram = schema.new({
+    id = id.from(_N, "ExportAs2805KeyCryptogram"),
+    type = "structure",
+    members = {
+        WrappingKeyIdentifier = schema.new({
+            id = id.from(_N, "ExportAs2805KeyCryptogram", "WrappingKeyIdentifier"),
+            type = "string",
+            name = "WrappingKeyIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        As2805KeyVariant = schema.new({
+            id = id.from(_N, "ExportAs2805KeyCryptogram", "As2805KeyVariant"),
+            type = "string",
+            name = "As2805KeyVariant",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ExportDukptInitialKey = schema.new({
+    id = id.from(_N, "ExportDukptInitialKey"),
+    type = "structure",
+    members = {
+        KeySerialNumber = schema.new({
+            id = id.from(_N, "ExportDukptInitialKey", "KeySerialNumber"),
+            type = "string",
+            name = "KeySerialNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ExportAttributes = schema.new({
+    id = id.from(_N, "ExportAttributes"),
+    type = "structure",
+    members = {
+        ExportDukptInitialKey = schema.new({
+            id = id.from(_N, "ExportAttributes", "ExportDukptInitialKey"),
+            type = "structure",
+            name = "ExportDukptInitialKey",
+            target_id = id.from(_N, "ExportDukptInitialKey"),
+            target = M.ExportDukptInitialKey,
+        }),
+        KeyCheckValueAlgorithm = schema.new({
+            id = id.from(_N, "ExportAttributes", "KeyCheckValueAlgorithm"),
+            type = "string",
+            name = "KeyCheckValueAlgorithm",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.KeyBlockHeaders = schema.new({
+    id = id.from(_N, "KeyBlockHeaders"),
+    type = "structure",
+    members = {
+        KeyModesOfUse = schema.new({
+            id = id.from(_N, "KeyBlockHeaders", "KeyModesOfUse"),
+            type = "structure",
+            name = "KeyModesOfUse",
+            target_id = id.from(_N, "KeyModesOfUse"),
+            target = M.KeyModesOfUse,
+        }),
+        KeyExportability = schema.new({
+            id = id.from(_N, "KeyBlockHeaders", "KeyExportability"),
+            type = "string",
+            name = "KeyExportability",
+            target_id = prelude.String.id,
+        }),
+        KeyVersion = schema.new({
+            id = id.from(_N, "KeyBlockHeaders", "KeyVersion"),
+            type = "string",
+            name = "KeyVersion",
+            target_id = prelude.String.id,
+        }),
+        OptionalBlocks = schema.new({
+            id = id.from(_N, "KeyBlockHeaders", "OptionalBlocks"),
+            type = "map",
+            name = "OptionalBlocks",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.ExportDiffieHellmanTr31KeyBlock = schema.new({
+    id = id.from(_N, "ExportDiffieHellmanTr31KeyBlock"),
+    type = "structure",
+    members = {
+        PrivateKeyIdentifier = schema.new({
+            id = id.from(_N, "ExportDiffieHellmanTr31KeyBlock", "PrivateKeyIdentifier"),
+            type = "string",
+            name = "PrivateKeyIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CertificateAuthorityPublicKeyIdentifier = schema.new({
+            id = id.from(_N, "ExportDiffieHellmanTr31KeyBlock", "CertificateAuthorityPublicKeyIdentifier"),
+            type = "string",
+            name = "CertificateAuthorityPublicKeyIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PublicKeyCertificate = schema.new({
+            id = id.from(_N, "ExportDiffieHellmanTr31KeyBlock", "PublicKeyCertificate"),
+            type = "string",
+            name = "PublicKeyCertificate",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DeriveKeyAlgorithm = schema.new({
+            id = id.from(_N, "ExportDiffieHellmanTr31KeyBlock", "DeriveKeyAlgorithm"),
+            type = "string",
+            name = "DeriveKeyAlgorithm",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyDerivationFunction = schema.new({
+            id = id.from(_N, "ExportDiffieHellmanTr31KeyBlock", "KeyDerivationFunction"),
+            type = "string",
+            name = "KeyDerivationFunction",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyDerivationHashAlgorithm = schema.new({
+            id = id.from(_N, "ExportDiffieHellmanTr31KeyBlock", "KeyDerivationHashAlgorithm"),
+            type = "string",
+            name = "KeyDerivationHashAlgorithm",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DerivationData = schema.new({
+            id = id.from(_N, "ExportDiffieHellmanTr31KeyBlock", "DerivationData"),
+            type = "union",
+            name = "DerivationData",
+            target_id = id.from(_N, "DiffieHellmanDerivationData"),
+            target = M.DiffieHellmanDerivationData,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyBlockHeaders = schema.new({
+            id = id.from(_N, "ExportDiffieHellmanTr31KeyBlock", "KeyBlockHeaders"),
+            type = "structure",
+            name = "KeyBlockHeaders",
+            target_id = id.from(_N, "KeyBlockHeaders"),
+            target = M.KeyBlockHeaders,
+        }),
+    },
+})
+
+M.ExportKeyCryptogram = schema.new({
+    id = id.from(_N, "ExportKeyCryptogram"),
+    type = "structure",
+    members = {
+        CertificateAuthorityPublicKeyIdentifier = schema.new({
+            id = id.from(_N, "ExportKeyCryptogram", "CertificateAuthorityPublicKeyIdentifier"),
+            type = "string",
+            name = "CertificateAuthorityPublicKeyIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        WrappingKeyCertificate = schema.new({
+            id = id.from(_N, "ExportKeyCryptogram", "WrappingKeyCertificate"),
+            type = "string",
+            name = "WrappingKeyCertificate",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        WrappingSpec = schema.new({
+            id = id.from(_N, "ExportKeyCryptogram", "WrappingSpec"),
+            type = "string",
+            name = "WrappingSpec",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ExportTr31KeyBlock = schema.new({
+    id = id.from(_N, "ExportTr31KeyBlock"),
+    type = "structure",
+    members = {
+        WrappingKeyIdentifier = schema.new({
+            id = id.from(_N, "ExportTr31KeyBlock", "WrappingKeyIdentifier"),
+            type = "string",
+            name = "WrappingKeyIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyBlockHeaders = schema.new({
+            id = id.from(_N, "ExportTr31KeyBlock", "KeyBlockHeaders"),
+            type = "structure",
+            name = "KeyBlockHeaders",
+            target_id = id.from(_N, "KeyBlockHeaders"),
+            target = M.KeyBlockHeaders,
+        }),
+    },
+})
+
+M.ExportTr34KeyBlock = schema.new({
+    id = id.from(_N, "ExportTr34KeyBlock"),
+    type = "structure",
+    members = {
+        CertificateAuthorityPublicKeyIdentifier = schema.new({
+            id = id.from(_N, "ExportTr34KeyBlock", "CertificateAuthorityPublicKeyIdentifier"),
+            type = "string",
+            name = "CertificateAuthorityPublicKeyIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        WrappingKeyCertificate = schema.new({
+            id = id.from(_N, "ExportTr34KeyBlock", "WrappingKeyCertificate"),
+            type = "string",
+            name = "WrappingKeyCertificate",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExportToken = schema.new({
+            id = id.from(_N, "ExportTr34KeyBlock", "ExportToken"),
+            type = "string",
+            name = "ExportToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "" },
+            },
+        }),
+        SigningKeyIdentifier = schema.new({
+            id = id.from(_N, "ExportTr34KeyBlock", "SigningKeyIdentifier"),
+            type = "string",
+            name = "SigningKeyIdentifier",
+            target_id = prelude.String.id,
+        }),
+        SigningKeyCertificate = schema.new({
+            id = id.from(_N, "ExportTr34KeyBlock", "SigningKeyCertificate"),
+            type = "string",
+            name = "SigningKeyCertificate",
+            target_id = prelude.String.id,
+        }),
+        KeyBlockFormat = schema.new({
+            id = id.from(_N, "ExportTr34KeyBlock", "KeyBlockFormat"),
+            type = "string",
+            name = "KeyBlockFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RandomNonce = schema.new({
+            id = id.from(_N, "ExportTr34KeyBlock", "RandomNonce"),
+            type = "string",
+            name = "RandomNonce",
+            target_id = prelude.String.id,
+        }),
+        KeyBlockHeaders = schema.new({
+            id = id.from(_N, "ExportTr34KeyBlock", "KeyBlockHeaders"),
+            type = "structure",
+            name = "KeyBlockHeaders",
+            target_id = id.from(_N, "KeyBlockHeaders"),
+            target = M.KeyBlockHeaders,
+        }),
+    },
+})
+
+M.ExportKeyMaterial = schema.new({
+    id = id.from(_N, "ExportKeyMaterial"),
+    type = "union",
+    members = {
+        Tr31KeyBlock = schema.new({
+            id = id.from(_N, "ExportKeyMaterial", "Tr31KeyBlock"),
+            type = "structure",
+            name = "Tr31KeyBlock",
+            target_id = id.from(_N, "ExportTr31KeyBlock"),
+            target = M.ExportTr31KeyBlock,
+        }),
+        Tr34KeyBlock = schema.new({
+            id = id.from(_N, "ExportKeyMaterial", "Tr34KeyBlock"),
+            type = "structure",
+            name = "Tr34KeyBlock",
+            target_id = id.from(_N, "ExportTr34KeyBlock"),
+            target = M.ExportTr34KeyBlock,
+        }),
+        KeyCryptogram = schema.new({
+            id = id.from(_N, "ExportKeyMaterial", "KeyCryptogram"),
+            type = "structure",
+            name = "KeyCryptogram",
+            target_id = id.from(_N, "ExportKeyCryptogram"),
+            target = M.ExportKeyCryptogram,
+        }),
+        DiffieHellmanTr31KeyBlock = schema.new({
+            id = id.from(_N, "ExportKeyMaterial", "DiffieHellmanTr31KeyBlock"),
+            type = "structure",
+            name = "DiffieHellmanTr31KeyBlock",
+            target_id = id.from(_N, "ExportDiffieHellmanTr31KeyBlock"),
+            target = M.ExportDiffieHellmanTr31KeyBlock,
+        }),
+        As2805KeyCryptogram = schema.new({
+            id = id.from(_N, "ExportKeyMaterial", "As2805KeyCryptogram"),
+            type = "structure",
+            name = "As2805KeyCryptogram",
+            target_id = id.from(_N, "ExportAs2805KeyCryptogram"),
+            target = M.ExportAs2805KeyCryptogram,
+        }),
+    },
+})
+
+M.ExportKeyInput = schema.new({
+    id = id.from(_N, "ExportKeyInput"),
+    type = "structure",
+    members = {
+        KeyMaterial = schema.new({
+            id = id.from(_N, "ExportKeyInput", "KeyMaterial"),
+            type = "union",
+            name = "KeyMaterial",
+            target_id = id.from(_N, "ExportKeyMaterial"),
+            target = M.ExportKeyMaterial,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExportKeyIdentifier = schema.new({
+            id = id.from(_N, "ExportKeyInput", "ExportKeyIdentifier"),
+            type = "string",
+            name = "ExportKeyIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExportAttributes = schema.new({
+            id = id.from(_N, "ExportKeyInput", "ExportAttributes"),
+            type = "structure",
+            name = "ExportAttributes",
+            target_id = id.from(_N, "ExportAttributes"),
+            target = M.ExportAttributes,
+        }),
+    },
+})
+
+M.WrappedKey = schema.new({
+    id = id.from(_N, "WrappedKey"),
+    type = "structure",
+    members = {
+        WrappingKeyArn = schema.new({
+            id = id.from(_N, "WrappedKey", "WrappingKeyArn"),
+            type = "string",
+            name = "WrappingKeyArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        WrappedKeyMaterialFormat = schema.new({
+            id = id.from(_N, "WrappedKey", "WrappedKeyMaterialFormat"),
+            type = "string",
+            name = "WrappedKeyMaterialFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyMaterial = schema.new({
+            id = id.from(_N, "WrappedKey", "KeyMaterial"),
+            type = "string",
+            name = "KeyMaterial",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyCheckValue = schema.new({
+            id = id.from(_N, "WrappedKey", "KeyCheckValue"),
+            type = "string",
+            name = "KeyCheckValue",
+            target_id = prelude.String.id,
+        }),
+        KeyCheckValueAlgorithm = schema.new({
+            id = id.from(_N, "WrappedKey", "KeyCheckValueAlgorithm"),
+            type = "string",
+            name = "KeyCheckValueAlgorithm",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ExportKeyOutput = schema.new({
+    id = id.from(_N, "ExportKeyOutput"),
+    type = "structure",
+    members = {
+        WrappedKey = schema.new({
+            id = id.from(_N, "ExportKeyOutput", "WrappedKey"),
+            type = "structure",
+            name = "WrappedKey",
+            target_id = id.from(_N, "WrappedKey"),
+            target = M.WrappedKey,
+        }),
+    },
+})
+
+M.GetCertificateSigningRequestInput = schema.new({
+    id = id.from(_N, "GetCertificateSigningRequestInput"),
+    type = "structure",
+    members = {
+        KeyIdentifier = schema.new({
+            id = id.from(_N, "GetCertificateSigningRequestInput", "KeyIdentifier"),
+            type = "string",
+            name = "KeyIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SigningAlgorithm = schema.new({
+            id = id.from(_N, "GetCertificateSigningRequestInput", "SigningAlgorithm"),
+            type = "string",
+            name = "SigningAlgorithm",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CertificateSubject = schema.new({
+            id = id.from(_N, "GetCertificateSigningRequestInput", "CertificateSubject"),
+            type = "structure",
+            name = "CertificateSubject",
+            target_id = id.from(_N, "CertificateSubjectType"),
+            target = M.CertificateSubjectType,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetCertificateSigningRequestOutput = schema.new({
+    id = id.from(_N, "GetCertificateSigningRequestOutput"),
+    type = "structure",
+    members = {
+        CertificateSigningRequest = schema.new({
+            id = id.from(_N, "GetCertificateSigningRequestOutput", "CertificateSigningRequest"),
+            type = "string",
+            name = "CertificateSigningRequest",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetDefaultKeyReplicationRegionsInput = schema.new({
+    id = id.from(_N, "GetDefaultKeyReplicationRegionsInput"),
+    type = "structure",
+})
+
+M.GetDefaultKeyReplicationRegionsOutput = schema.new({
+    id = id.from(_N, "GetDefaultKeyReplicationRegionsOutput"),
+    type = "structure",
+    members = {
+        EnabledReplicationRegions = schema.new({
+            id = id.from(_N, "GetDefaultKeyReplicationRegionsOutput", "EnabledReplicationRegions"),
+            type = "list",
+            name = "EnabledReplicationRegions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetKeyInput = schema.new({
+    id = id.from(_N, "GetKeyInput"),
+    type = "structure",
+    members = {
+        KeyIdentifier = schema.new({
+            id = id.from(_N, "GetKeyInput", "KeyIdentifier"),
+            type = "string",
+            name = "KeyIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetKeyOutput = schema.new({
+    id = id.from(_N, "GetKeyOutput"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "GetKeyOutput", "Key"),
+            type = "structure",
+            name = "Key",
+            target_id = id.from(_N, "Key"),
+            target = M.Key,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetMpaTeamAssociationInput = schema.new({
+    id = id.from(_N, "GetMpaTeamAssociationInput"),
+    type = "structure",
+    members = {
+        Action = schema.new({
+            id = id.from(_N, "GetMpaTeamAssociationInput", "Action"),
+            type = "string",
+            name = "Action",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetMpaTeamAssociationOutput = schema.new({
+    id = id.from(_N, "GetMpaTeamAssociationOutput"),
+    type = "structure",
+    members = {
+        MpaTeamAssociation = schema.new({
+            id = id.from(_N, "GetMpaTeamAssociationOutput", "MpaTeamAssociation"),
+            type = "structure",
+            name = "MpaTeamAssociation",
+            target_id = id.from(_N, "MpaTeamAssociation"),
+            target = M.MpaTeamAssociation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetParametersForExportInput = schema.new({
+    id = id.from(_N, "GetParametersForExportInput"),
+    type = "structure",
+    members = {
+        KeyMaterialType = schema.new({
+            id = id.from(_N, "GetParametersForExportInput", "KeyMaterialType"),
+            type = "string",
+            name = "KeyMaterialType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SigningKeyAlgorithm = schema.new({
+            id = id.from(_N, "GetParametersForExportInput", "SigningKeyAlgorithm"),
+            type = "string",
+            name = "SigningKeyAlgorithm",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ReuseLastGeneratedToken = schema.new({
+            id = id.from(_N, "GetParametersForExportInput", "ReuseLastGeneratedToken"),
+            type = "boolean",
+            name = "ReuseLastGeneratedToken",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.GetParametersForExportOutput = schema.new({
+    id = id.from(_N, "GetParametersForExportOutput"),
+    type = "structure",
+    members = {
+        SigningKeyCertificate = schema.new({
+            id = id.from(_N, "GetParametersForExportOutput", "SigningKeyCertificate"),
+            type = "string",
+            name = "SigningKeyCertificate",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SigningKeyCertificateChain = schema.new({
+            id = id.from(_N, "GetParametersForExportOutput", "SigningKeyCertificateChain"),
+            type = "string",
+            name = "SigningKeyCertificateChain",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SigningKeyAlgorithm = schema.new({
+            id = id.from(_N, "GetParametersForExportOutput", "SigningKeyAlgorithm"),
+            type = "string",
+            name = "SigningKeyAlgorithm",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExportToken = schema.new({
+            id = id.from(_N, "GetParametersForExportOutput", "ExportToken"),
+            type = "string",
+            name = "ExportToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ParametersValidUntilTimestamp = schema.new({
+            id = id.from(_N, "GetParametersForExportOutput", "ParametersValidUntilTimestamp"),
+            type = "timestamp",
+            name = "ParametersValidUntilTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetParametersForImportInput = schema.new({
+    id = id.from(_N, "GetParametersForImportInput"),
+    type = "structure",
+    members = {
+        KeyMaterialType = schema.new({
+            id = id.from(_N, "GetParametersForImportInput", "KeyMaterialType"),
+            type = "string",
+            name = "KeyMaterialType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        WrappingKeyAlgorithm = schema.new({
+            id = id.from(_N, "GetParametersForImportInput", "WrappingKeyAlgorithm"),
+            type = "string",
+            name = "WrappingKeyAlgorithm",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ReuseLastGeneratedToken = schema.new({
+            id = id.from(_N, "GetParametersForImportInput", "ReuseLastGeneratedToken"),
+            type = "boolean",
+            name = "ReuseLastGeneratedToken",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.GetParametersForImportOutput = schema.new({
+    id = id.from(_N, "GetParametersForImportOutput"),
+    type = "structure",
+    members = {
+        WrappingKeyCertificate = schema.new({
+            id = id.from(_N, "GetParametersForImportOutput", "WrappingKeyCertificate"),
+            type = "string",
+            name = "WrappingKeyCertificate",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        WrappingKeyCertificateChain = schema.new({
+            id = id.from(_N, "GetParametersForImportOutput", "WrappingKeyCertificateChain"),
+            type = "string",
+            name = "WrappingKeyCertificateChain",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        WrappingKeyAlgorithm = schema.new({
+            id = id.from(_N, "GetParametersForImportOutput", "WrappingKeyAlgorithm"),
+            type = "string",
+            name = "WrappingKeyAlgorithm",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ImportToken = schema.new({
+            id = id.from(_N, "GetParametersForImportOutput", "ImportToken"),
+            type = "string",
+            name = "ImportToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ParametersValidUntilTimestamp = schema.new({
+            id = id.from(_N, "GetParametersForImportOutput", "ParametersValidUntilTimestamp"),
+            type = "timestamp",
+            name = "ParametersValidUntilTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetPublicKeyCertificateInput = schema.new({
+    id = id.from(_N, "GetPublicKeyCertificateInput"),
+    type = "structure",
+    members = {
+        KeyIdentifier = schema.new({
+            id = id.from(_N, "GetPublicKeyCertificateInput", "KeyIdentifier"),
+            type = "string",
+            name = "KeyIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetPublicKeyCertificateOutput = schema.new({
+    id = id.from(_N, "GetPublicKeyCertificateOutput"),
+    type = "structure",
+    members = {
+        KeyCertificate = schema.new({
+            id = id.from(_N, "GetPublicKeyCertificateOutput", "KeyCertificate"),
+            type = "string",
+            name = "KeyCertificate",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyCertificateChain = schema.new({
+            id = id.from(_N, "GetPublicKeyCertificateOutput", "KeyCertificateChain"),
+            type = "string",
+            name = "KeyCertificateChain",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetResourcePolicyInput = schema.new({
+    id = id.from(_N, "GetResourcePolicyInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "GetResourcePolicyInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetResourcePolicyOutput = schema.new({
+    id = id.from(_N, "GetResourcePolicyOutput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "GetResourcePolicyOutput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Policy = schema.new({
+            id = id.from(_N, "GetResourcePolicyOutput", "Policy"),
+            type = "string",
+            name = "Policy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ImportAs2805KeyCryptogram = schema.new({
+    id = id.from(_N, "ImportAs2805KeyCryptogram"),
+    type = "structure",
+    members = {
+        As2805KeyVariant = schema.new({
+            id = id.from(_N, "ImportAs2805KeyCryptogram", "As2805KeyVariant"),
+            type = "string",
+            name = "As2805KeyVariant",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyModesOfUse = schema.new({
+            id = id.from(_N, "ImportAs2805KeyCryptogram", "KeyModesOfUse"),
+            type = "structure",
+            name = "KeyModesOfUse",
+            target_id = id.from(_N, "KeyModesOfUse"),
+            target = M.KeyModesOfUse,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyAlgorithm = schema.new({
+            id = id.from(_N, "ImportAs2805KeyCryptogram", "KeyAlgorithm"),
+            type = "string",
+            name = "KeyAlgorithm",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Exportable = schema.new({
+            id = id.from(_N, "ImportAs2805KeyCryptogram", "Exportable"),
+            type = "boolean",
+            name = "Exportable",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        WrappingKeyIdentifier = schema.new({
+            id = id.from(_N, "ImportAs2805KeyCryptogram", "WrappingKeyIdentifier"),
+            type = "string",
+            name = "WrappingKeyIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        WrappedKeyCryptogram = schema.new({
+            id = id.from(_N, "ImportAs2805KeyCryptogram", "WrappedKeyCryptogram"),
+            type = "string",
+            name = "WrappedKeyCryptogram",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ImportDiffieHellmanTr31KeyBlock = schema.new({
+    id = id.from(_N, "ImportDiffieHellmanTr31KeyBlock"),
+    type = "structure",
+    members = {
+        PrivateKeyIdentifier = schema.new({
+            id = id.from(_N, "ImportDiffieHellmanTr31KeyBlock", "PrivateKeyIdentifier"),
+            type = "string",
+            name = "PrivateKeyIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CertificateAuthorityPublicKeyIdentifier = schema.new({
+            id = id.from(_N, "ImportDiffieHellmanTr31KeyBlock", "CertificateAuthorityPublicKeyIdentifier"),
+            type = "string",
+            name = "CertificateAuthorityPublicKeyIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PublicKeyCertificate = schema.new({
+            id = id.from(_N, "ImportDiffieHellmanTr31KeyBlock", "PublicKeyCertificate"),
+            type = "string",
+            name = "PublicKeyCertificate",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DeriveKeyAlgorithm = schema.new({
+            id = id.from(_N, "ImportDiffieHellmanTr31KeyBlock", "DeriveKeyAlgorithm"),
+            type = "string",
+            name = "DeriveKeyAlgorithm",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyDerivationFunction = schema.new({
+            id = id.from(_N, "ImportDiffieHellmanTr31KeyBlock", "KeyDerivationFunction"),
+            type = "string",
+            name = "KeyDerivationFunction",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyDerivationHashAlgorithm = schema.new({
+            id = id.from(_N, "ImportDiffieHellmanTr31KeyBlock", "KeyDerivationHashAlgorithm"),
+            type = "string",
+            name = "KeyDerivationHashAlgorithm",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DerivationData = schema.new({
+            id = id.from(_N, "ImportDiffieHellmanTr31KeyBlock", "DerivationData"),
+            type = "union",
+            name = "DerivationData",
+            target_id = id.from(_N, "DiffieHellmanDerivationData"),
+            target = M.DiffieHellmanDerivationData,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        WrappedKeyBlock = schema.new({
+            id = id.from(_N, "ImportDiffieHellmanTr31KeyBlock", "WrappedKeyBlock"),
+            type = "string",
+            name = "WrappedKeyBlock",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ImportKeyCryptogram = schema.new({
+    id = id.from(_N, "ImportKeyCryptogram"),
+    type = "structure",
+    members = {
+        KeyAttributes = schema.new({
+            id = id.from(_N, "ImportKeyCryptogram", "KeyAttributes"),
+            type = "structure",
+            name = "KeyAttributes",
+            target_id = id.from(_N, "KeyAttributes"),
+            target = M.KeyAttributes,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Exportable = schema.new({
+            id = id.from(_N, "ImportKeyCryptogram", "Exportable"),
+            type = "boolean",
+            name = "Exportable",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        WrappedKeyCryptogram = schema.new({
+            id = id.from(_N, "ImportKeyCryptogram", "WrappedKeyCryptogram"),
+            type = "string",
+            name = "WrappedKeyCryptogram",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ImportToken = schema.new({
+            id = id.from(_N, "ImportKeyCryptogram", "ImportToken"),
+            type = "string",
+            name = "ImportToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        WrappingSpec = schema.new({
+            id = id.from(_N, "ImportKeyCryptogram", "WrappingSpec"),
+            type = "string",
+            name = "WrappingSpec",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RootCertificatePublicKey = schema.new({
+    id = id.from(_N, "RootCertificatePublicKey"),
+    type = "structure",
+    members = {
+        KeyAttributes = schema.new({
+            id = id.from(_N, "RootCertificatePublicKey", "KeyAttributes"),
+            type = "structure",
+            name = "KeyAttributes",
+            target_id = id.from(_N, "KeyAttributes"),
+            target = M.KeyAttributes,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PublicKeyCertificate = schema.new({
+            id = id.from(_N, "RootCertificatePublicKey", "PublicKeyCertificate"),
+            type = "string",
+            name = "PublicKeyCertificate",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ImportTr31KeyBlock = schema.new({
+    id = id.from(_N, "ImportTr31KeyBlock"),
+    type = "structure",
+    members = {
+        WrappingKeyIdentifier = schema.new({
+            id = id.from(_N, "ImportTr31KeyBlock", "WrappingKeyIdentifier"),
+            type = "string",
+            name = "WrappingKeyIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        WrappedKeyBlock = schema.new({
+            id = id.from(_N, "ImportTr31KeyBlock", "WrappedKeyBlock"),
+            type = "string",
+            name = "WrappedKeyBlock",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ImportTr34KeyBlock = schema.new({
+    id = id.from(_N, "ImportTr34KeyBlock"),
+    type = "structure",
+    members = {
+        CertificateAuthorityPublicKeyIdentifier = schema.new({
+            id = id.from(_N, "ImportTr34KeyBlock", "CertificateAuthorityPublicKeyIdentifier"),
+            type = "string",
+            name = "CertificateAuthorityPublicKeyIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SigningKeyCertificate = schema.new({
+            id = id.from(_N, "ImportTr34KeyBlock", "SigningKeyCertificate"),
+            type = "string",
+            name = "SigningKeyCertificate",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ImportToken = schema.new({
+            id = id.from(_N, "ImportTr34KeyBlock", "ImportToken"),
+            type = "string",
+            name = "ImportToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "" },
+            },
+        }),
+        WrappingKeyIdentifier = schema.new({
+            id = id.from(_N, "ImportTr34KeyBlock", "WrappingKeyIdentifier"),
+            type = "string",
+            name = "WrappingKeyIdentifier",
+            target_id = prelude.String.id,
+        }),
+        WrappingKeyCertificate = schema.new({
+            id = id.from(_N, "ImportTr34KeyBlock", "WrappingKeyCertificate"),
+            type = "string",
+            name = "WrappingKeyCertificate",
+            target_id = prelude.String.id,
+        }),
+        WrappedKeyBlock = schema.new({
+            id = id.from(_N, "ImportTr34KeyBlock", "WrappedKeyBlock"),
+            type = "string",
+            name = "WrappedKeyBlock",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyBlockFormat = schema.new({
+            id = id.from(_N, "ImportTr34KeyBlock", "KeyBlockFormat"),
+            type = "string",
+            name = "KeyBlockFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RandomNonce = schema.new({
+            id = id.from(_N, "ImportTr34KeyBlock", "RandomNonce"),
+            type = "string",
+            name = "RandomNonce",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TrustedCertificatePublicKey = schema.new({
+    id = id.from(_N, "TrustedCertificatePublicKey"),
+    type = "structure",
+    members = {
+        KeyAttributes = schema.new({
+            id = id.from(_N, "TrustedCertificatePublicKey", "KeyAttributes"),
+            type = "structure",
+            name = "KeyAttributes",
+            target_id = id.from(_N, "KeyAttributes"),
+            target = M.KeyAttributes,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PublicKeyCertificate = schema.new({
+            id = id.from(_N, "TrustedCertificatePublicKey", "PublicKeyCertificate"),
+            type = "string",
+            name = "PublicKeyCertificate",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CertificateAuthorityPublicKeyIdentifier = schema.new({
+            id = id.from(_N, "TrustedCertificatePublicKey", "CertificateAuthorityPublicKeyIdentifier"),
+            type = "string",
+            name = "CertificateAuthorityPublicKeyIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ImportKeyMaterial = schema.new({
+    id = id.from(_N, "ImportKeyMaterial"),
+    type = "union",
+    members = {
+        RootCertificatePublicKey = schema.new({
+            id = id.from(_N, "ImportKeyMaterial", "RootCertificatePublicKey"),
+            type = "structure",
+            name = "RootCertificatePublicKey",
+            target_id = id.from(_N, "RootCertificatePublicKey"),
+            target = M.RootCertificatePublicKey,
+        }),
+        TrustedCertificatePublicKey = schema.new({
+            id = id.from(_N, "ImportKeyMaterial", "TrustedCertificatePublicKey"),
+            type = "structure",
+            name = "TrustedCertificatePublicKey",
+            target_id = id.from(_N, "TrustedCertificatePublicKey"),
+            target = M.TrustedCertificatePublicKey,
+        }),
+        Tr31KeyBlock = schema.new({
+            id = id.from(_N, "ImportKeyMaterial", "Tr31KeyBlock"),
+            type = "structure",
+            name = "Tr31KeyBlock",
+            target_id = id.from(_N, "ImportTr31KeyBlock"),
+            target = M.ImportTr31KeyBlock,
+        }),
+        Tr34KeyBlock = schema.new({
+            id = id.from(_N, "ImportKeyMaterial", "Tr34KeyBlock"),
+            type = "structure",
+            name = "Tr34KeyBlock",
+            target_id = id.from(_N, "ImportTr34KeyBlock"),
+            target = M.ImportTr34KeyBlock,
+        }),
+        KeyCryptogram = schema.new({
+            id = id.from(_N, "ImportKeyMaterial", "KeyCryptogram"),
+            type = "structure",
+            name = "KeyCryptogram",
+            target_id = id.from(_N, "ImportKeyCryptogram"),
+            target = M.ImportKeyCryptogram,
+        }),
+        DiffieHellmanTr31KeyBlock = schema.new({
+            id = id.from(_N, "ImportKeyMaterial", "DiffieHellmanTr31KeyBlock"),
+            type = "structure",
+            name = "DiffieHellmanTr31KeyBlock",
+            target_id = id.from(_N, "ImportDiffieHellmanTr31KeyBlock"),
+            target = M.ImportDiffieHellmanTr31KeyBlock,
+        }),
+        As2805KeyCryptogram = schema.new({
+            id = id.from(_N, "ImportKeyMaterial", "As2805KeyCryptogram"),
+            type = "structure",
+            name = "As2805KeyCryptogram",
+            target_id = id.from(_N, "ImportAs2805KeyCryptogram"),
+            target = M.ImportAs2805KeyCryptogram,
+        }),
+    },
+})
+
+M.ImportKeyInput = schema.new({
+    id = id.from(_N, "ImportKeyInput"),
+    type = "structure",
+    members = {
+        KeyMaterial = schema.new({
+            id = id.from(_N, "ImportKeyInput", "KeyMaterial"),
+            type = "union",
+            name = "KeyMaterial",
+            target_id = id.from(_N, "ImportKeyMaterial"),
+            target = M.ImportKeyMaterial,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyCheckValueAlgorithm = schema.new({
+            id = id.from(_N, "ImportKeyInput", "KeyCheckValueAlgorithm"),
+            type = "string",
+            name = "KeyCheckValueAlgorithm",
+            target_id = prelude.String.id,
+        }),
+        Enabled = schema.new({
+            id = id.from(_N, "ImportKeyInput", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "ImportKeyInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        ReplicationRegions = schema.new({
+            id = id.from(_N, "ImportKeyInput", "ReplicationRegions"),
+            type = "list",
+            name = "ReplicationRegions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        RequesterComment = schema.new({
+            id = id.from(_N, "ImportKeyInput", "RequesterComment"),
+            type = "string",
+            name = "RequesterComment",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ImportKeyOutput = schema.new({
+    id = id.from(_N, "ImportKeyOutput"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "ImportKeyOutput", "Key"),
+            type = "structure",
+            name = "Key",
+            target_id = id.from(_N, "Key"),
+            target = M.Key,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListKeysInput = schema.new({
+    id = id.from(_N, "ListKeysInput"),
+    type = "structure",
+    members = {
+        KeyState = schema.new({
+            id = id.from(_N, "ListKeysInput", "KeyState"),
+            type = "string",
+            name = "KeyState",
+            target_id = prelude.String.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListKeysInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListKeysInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.KeySummary = schema.new({
+    id = id.from(_N, "KeySummary"),
+    type = "structure",
+    members = {
+        KeyArn = schema.new({
+            id = id.from(_N, "KeySummary", "KeyArn"),
+            type = "string",
+            name = "KeyArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyState = schema.new({
+            id = id.from(_N, "KeySummary", "KeyState"),
+            type = "string",
+            name = "KeyState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyAttributes = schema.new({
+            id = id.from(_N, "KeySummary", "KeyAttributes"),
+            type = "structure",
+            name = "KeyAttributes",
+            target_id = id.from(_N, "KeyAttributes"),
+            target = M.KeyAttributes,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyCheckValue = schema.new({
+            id = id.from(_N, "KeySummary", "KeyCheckValue"),
+            type = "string",
+            name = "KeyCheckValue",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Exportable = schema.new({
+            id = id.from(_N, "KeySummary", "Exportable"),
+            type = "boolean",
+            name = "Exportable",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Enabled = schema.new({
+            id = id.from(_N, "KeySummary", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MultiRegionKeyType = schema.new({
+            id = id.from(_N, "KeySummary", "MultiRegionKeyType"),
+            type = "string",
+            name = "MultiRegionKeyType",
+            target_id = prelude.String.id,
+        }),
+        PrimaryRegion = schema.new({
+            id = id.from(_N, "KeySummary", "PrimaryRegion"),
+            type = "string",
+            name = "PrimaryRegion",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListKeysOutput = schema.new({
+    id = id.from(_N, "ListKeysOutput"),
+    type = "structure",
+    members = {
+        Keys = schema.new({
+            id = id.from(_N, "ListKeysOutput", "Keys"),
+            type = "list",
+            name = "Keys",
+            target_id = prelude.Document.id,
+            list_member = M.KeySummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListKeysOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RemoveKeyReplicationRegionsInput = schema.new({
+    id = id.from(_N, "RemoveKeyReplicationRegionsInput"),
+    type = "structure",
+    members = {
+        KeyIdentifier = schema.new({
+            id = id.from(_N, "RemoveKeyReplicationRegionsInput", "KeyIdentifier"),
+            type = "string",
+            name = "KeyIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ReplicationRegions = schema.new({
+            id = id.from(_N, "RemoveKeyReplicationRegionsInput", "ReplicationRegions"),
+            type = "list",
+            name = "ReplicationRegions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RemoveKeyReplicationRegionsOutput = schema.new({
+    id = id.from(_N, "RemoveKeyReplicationRegionsOutput"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "RemoveKeyReplicationRegionsOutput", "Key"),
+            type = "structure",
+            name = "Key",
+            target_id = id.from(_N, "Key"),
+            target = M.Key,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RestoreKeyInput = schema.new({
+    id = id.from(_N, "RestoreKeyInput"),
+    type = "structure",
+    members = {
+        KeyIdentifier = schema.new({
+            id = id.from(_N, "RestoreKeyInput", "KeyIdentifier"),
+            type = "string",
+            name = "KeyIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RestoreKeyOutput = schema.new({
+    id = id.from(_N, "RestoreKeyOutput"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "RestoreKeyOutput", "Key"),
+            type = "structure",
+            name = "Key",
+            target_id = id.from(_N, "Key"),
+            target = M.Key,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StartKeyUsageInput = schema.new({
+    id = id.from(_N, "StartKeyUsageInput"),
+    type = "structure",
+    members = {
+        KeyIdentifier = schema.new({
+            id = id.from(_N, "StartKeyUsageInput", "KeyIdentifier"),
+            type = "string",
+            name = "KeyIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StartKeyUsageOutput = schema.new({
+    id = id.from(_N, "StartKeyUsageOutput"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "StartKeyUsageOutput", "Key"),
+            type = "structure",
+            name = "Key",
+            target_id = id.from(_N, "Key"),
+            target = M.Key,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StopKeyUsageInput = schema.new({
+    id = id.from(_N, "StopKeyUsageInput"),
+    type = "structure",
+    members = {
+        KeyIdentifier = schema.new({
+            id = id.from(_N, "StopKeyUsageInput", "KeyIdentifier"),
+            type = "string",
+            name = "KeyIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StopKeyUsageOutput = schema.new({
+    id = id.from(_N, "StopKeyUsageOutput"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "StopKeyUsageOutput", "Key"),
+            type = "structure",
+            name = "Key",
+            target_id = id.from(_N, "Key"),
+            target = M.Key,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceOutput"),
+    type = "structure",
+    members = {
+        Tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PublicPolicyException = schema.new({
+    id = id.from(_N, "PublicPolicyException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "PublicPolicyException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PutResourcePolicyInput = schema.new({
+    id = id.from(_N, "PutResourcePolicyInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "PutResourcePolicyInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Policy = schema.new({
+            id = id.from(_N, "PutResourcePolicyInput", "Policy"),
+            type = "string",
+            name = "Policy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutResourcePolicyOutput = schema.new({
+    id = id.from(_N, "PutResourcePolicyOutput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "PutResourcePolicyOutput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Policy = schema.new({
+            id = id.from(_N, "PutResourcePolicyOutput", "Policy"),
+            type = "string",
+            name = "Policy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "TagResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceOutput"),
+    type = "structure",
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "UntagResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "TagKeys"),
+            type = "list",
+            name = "TagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
+return M

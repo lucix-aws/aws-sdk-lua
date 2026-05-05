@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("rtbfabric.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("rtbfabric.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("rtbfabric.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptLink(input, options)
     return self:invokeOperation(input, {
         name = "AcceptLink",
-        input_schema = types.AcceptLinkInput,
-        output_schema = types.AcceptLinkOutput,
+        input_schema = schemas.AcceptLinkInput,
+        output_schema = schemas.AcceptLinkOutput,
         http_method = "POST",
         http_path = "/gateway/{gatewayId}/link/{linkId}/accept",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createInboundExternalLink(input, options)
     return self:invokeOperation(input, {
         name = "CreateInboundExternalLink",
-        input_schema = types.CreateInboundExternalLinkInput,
-        output_schema = types.CreateInboundExternalLinkOutput,
+        input_schema = schemas.CreateInboundExternalLinkInput,
+        output_schema = schemas.CreateInboundExternalLinkOutput,
         http_method = "POST",
         http_path = "/responder-gateway/{gatewayId}/inbound-external-link",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createLink(input, options)
     return self:invokeOperation(input, {
         name = "CreateLink",
-        input_schema = types.CreateLinkInput,
-        output_schema = types.CreateLinkOutput,
+        input_schema = schemas.CreateLinkInput,
+        output_schema = schemas.CreateLinkOutput,
         http_method = "POST",
         http_path = "/gateway/{gatewayId}/create-link",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createOutboundExternalLink(input, options)
     return self:invokeOperation(input, {
         name = "CreateOutboundExternalLink",
-        input_schema = types.CreateOutboundExternalLinkInput,
-        output_schema = types.CreateOutboundExternalLinkOutput,
+        input_schema = schemas.CreateOutboundExternalLinkInput,
+        output_schema = schemas.CreateOutboundExternalLinkOutput,
         http_method = "POST",
         http_path = "/requester-gateway/{gatewayId}/outbound-external-link",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createRequesterGateway(input, options)
     return self:invokeOperation(input, {
         name = "CreateRequesterGateway",
-        input_schema = types.CreateRequesterGatewayInput,
-        output_schema = types.CreateRequesterGatewayOutput,
+        input_schema = schemas.CreateRequesterGatewayInput,
+        output_schema = schemas.CreateRequesterGatewayOutput,
         http_method = "POST",
         http_path = "/requester-gateway",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createResponderGateway(input, options)
     return self:invokeOperation(input, {
         name = "CreateResponderGateway",
-        input_schema = types.CreateResponderGatewayInput,
-        output_schema = types.CreateResponderGatewayOutput,
+        input_schema = schemas.CreateResponderGatewayInput,
+        output_schema = schemas.CreateResponderGatewayOutput,
         http_method = "POST",
         http_path = "/responder-gateway",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteInboundExternalLink(input, options)
     return self:invokeOperation(input, {
         name = "DeleteInboundExternalLink",
-        input_schema = types.DeleteInboundExternalLinkInput,
-        output_schema = types.DeleteInboundExternalLinkOutput,
+        input_schema = schemas.DeleteInboundExternalLinkInput,
+        output_schema = schemas.DeleteInboundExternalLinkOutput,
         http_method = "DELETE",
         http_path = "/responder-gateway/{gatewayId}/inbound-external-link/{linkId}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteLink(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLink",
-        input_schema = types.DeleteLinkInput,
-        output_schema = types.DeleteLinkOutput,
+        input_schema = schemas.DeleteLinkInput,
+        output_schema = schemas.DeleteLinkOutput,
         http_method = "DELETE",
         http_path = "/gateway/{gatewayId}/link/{linkId}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteOutboundExternalLink(input, options)
     return self:invokeOperation(input, {
         name = "DeleteOutboundExternalLink",
-        input_schema = types.DeleteOutboundExternalLinkInput,
-        output_schema = types.DeleteOutboundExternalLinkOutput,
+        input_schema = schemas.DeleteOutboundExternalLinkInput,
+        output_schema = schemas.DeleteOutboundExternalLinkOutput,
         http_method = "DELETE",
         http_path = "/requester-gateway/{gatewayId}/outbound-external-link/{linkId}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteRequesterGateway(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRequesterGateway",
-        input_schema = types.DeleteRequesterGatewayInput,
-        output_schema = types.DeleteRequesterGatewayOutput,
+        input_schema = schemas.DeleteRequesterGatewayInput,
+        output_schema = schemas.DeleteRequesterGatewayOutput,
         http_method = "DELETE",
         http_path = "/requester-gateway/{gatewayId}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteResponderGateway(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResponderGateway",
-        input_schema = types.DeleteResponderGatewayInput,
-        output_schema = types.DeleteResponderGatewayOutput,
+        input_schema = schemas.DeleteResponderGatewayInput,
+        output_schema = schemas.DeleteResponderGatewayOutput,
         http_method = "DELETE",
         http_path = "/responder-gateway/{gatewayId}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getInboundExternalLink(input, options)
     return self:invokeOperation(input, {
         name = "GetInboundExternalLink",
-        input_schema = types.GetInboundExternalLinkInput,
-        output_schema = types.GetInboundExternalLinkOutput,
+        input_schema = schemas.GetInboundExternalLinkInput,
+        output_schema = schemas.GetInboundExternalLinkOutput,
         http_method = "GET",
         http_path = "/responder-gateway/{gatewayId}/inbound-external-link/{linkId}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getLink(input, options)
     return self:invokeOperation(input, {
         name = "GetLink",
-        input_schema = types.GetLinkInput,
-        output_schema = types.GetLinkOutput,
+        input_schema = schemas.GetLinkInput,
+        output_schema = schemas.GetLinkOutput,
         http_method = "GET",
         http_path = "/gateway/{gatewayId}/link/{linkId}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getOutboundExternalLink(input, options)
     return self:invokeOperation(input, {
         name = "GetOutboundExternalLink",
-        input_schema = types.GetOutboundExternalLinkInput,
-        output_schema = types.GetOutboundExternalLinkOutput,
+        input_schema = schemas.GetOutboundExternalLinkInput,
+        output_schema = schemas.GetOutboundExternalLinkOutput,
         http_method = "GET",
         http_path = "/requester-gateway/{gatewayId}/outbound-external-link/{linkId}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getRequesterGateway(input, options)
     return self:invokeOperation(input, {
         name = "GetRequesterGateway",
-        input_schema = types.GetRequesterGatewayInput,
-        output_schema = types.GetRequesterGatewayOutput,
+        input_schema = schemas.GetRequesterGatewayInput,
+        output_schema = schemas.GetRequesterGatewayOutput,
         http_method = "GET",
         http_path = "/requester-gateway/{gatewayId}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getResponderGateway(input, options)
     return self:invokeOperation(input, {
         name = "GetResponderGateway",
-        input_schema = types.GetResponderGatewayInput,
-        output_schema = types.GetResponderGatewayOutput,
+        input_schema = schemas.GetResponderGatewayInput,
+        output_schema = schemas.GetResponderGatewayOutput,
         http_method = "GET",
         http_path = "/responder-gateway/{gatewayId}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listLinks(input, options)
     return self:invokeOperation(input, {
         name = "ListLinks",
-        input_schema = types.ListLinksInput,
-        output_schema = types.ListLinksOutput,
+        input_schema = schemas.ListLinksInput,
+        output_schema = schemas.ListLinksOutput,
         http_method = "GET",
         http_path = "/gateway/{gatewayId}/links/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listRequesterGateways(input, options)
     return self:invokeOperation(input, {
         name = "ListRequesterGateways",
-        input_schema = types.ListRequesterGatewaysInput,
-        output_schema = types.ListRequesterGatewaysOutput,
+        input_schema = schemas.ListRequesterGatewaysInput,
+        output_schema = schemas.ListRequesterGatewaysOutput,
         http_method = "GET",
         http_path = "/requester-gateways",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listResponderGateways(input, options)
     return self:invokeOperation(input, {
         name = "ListResponderGateways",
-        input_schema = types.ListResponderGatewaysInput,
-        output_schema = types.ListResponderGatewaysOutput,
+        input_schema = schemas.ListResponderGatewaysInput,
+        output_schema = schemas.ListResponderGatewaysOutput,
         http_method = "GET",
         http_path = "/responder-gateways",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:rejectLink(input, options)
     return self:invokeOperation(input, {
         name = "RejectLink",
-        input_schema = types.RejectLinkInput,
-        output_schema = types.RejectLinkOutput,
+        input_schema = schemas.RejectLinkInput,
+        output_schema = schemas.RejectLinkOutput,
         http_method = "POST",
         http_path = "/gateway/{gatewayId}/link/{linkId}/reject",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:updateLink(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLink",
-        input_schema = types.UpdateLinkInput,
-        output_schema = types.UpdateLinkOutput,
+        input_schema = schemas.UpdateLinkInput,
+        output_schema = schemas.UpdateLinkOutput,
         http_method = "PATCH",
         http_path = "/gateway/{gatewayId}/link/{linkId}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:updateLinkModuleFlow(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLinkModuleFlow",
-        input_schema = types.UpdateLinkModuleFlowInput,
-        output_schema = types.UpdateLinkModuleFlowOutput,
+        input_schema = schemas.UpdateLinkModuleFlowInput,
+        output_schema = schemas.UpdateLinkModuleFlowOutput,
         http_method = "POST",
         http_path = "/gateway/{gatewayId}/link/{linkId}/module-flow",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:updateRequesterGateway(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRequesterGateway",
-        input_schema = types.UpdateRequesterGatewayInput,
-        output_schema = types.UpdateRequesterGatewayOutput,
+        input_schema = schemas.UpdateRequesterGatewayInput,
+        output_schema = schemas.UpdateRequesterGatewayOutput,
         http_method = "POST",
         http_path = "/requester-gateway/{gatewayId}/update",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:updateResponderGateway(input, options)
     return self:invokeOperation(input, {
         name = "UpdateResponderGateway",
-        input_schema = types.UpdateResponderGatewayInput,
-        output_schema = types.UpdateResponderGatewayOutput,
+        input_schema = schemas.UpdateResponderGatewayInput,
+        output_schema = schemas.UpdateResponderGatewayOutput,
         http_method = "POST",
         http_path = "/responder-gateway/{gatewayId}/update",
         effective_auth_schemes = {

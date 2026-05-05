@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("signer.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("signer.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("signer.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addProfilePermission(input, options)
     return self:invokeOperation(input, {
         name = "AddProfilePermission",
-        input_schema = types.AddProfilePermissionInput,
-        output_schema = types.AddProfilePermissionOutput,
+        input_schema = schemas.AddProfilePermissionInput,
+        output_schema = schemas.AddProfilePermissionOutput,
         http_method = "POST",
         http_path = "/signing-profiles/{profileName}/permissions",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:cancelSigningProfile(input, options)
     return self:invokeOperation(input, {
         name = "CancelSigningProfile",
-        input_schema = types.CancelSigningProfileInput,
-        output_schema = types.CancelSigningProfileOutput,
+        input_schema = schemas.CancelSigningProfileInput,
+        output_schema = schemas.CancelSigningProfileOutput,
         http_method = "DELETE",
         http_path = "/signing-profiles/{profileName}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:describeSigningJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSigningJob",
-        input_schema = types.DescribeSigningJobInput,
-        output_schema = types.DescribeSigningJobOutput,
+        input_schema = schemas.DescribeSigningJobInput,
+        output_schema = schemas.DescribeSigningJobOutput,
         http_method = "GET",
         http_path = "/signing-jobs/{jobId}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getRevocationStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetRevocationStatus",
-        input_schema = types.GetRevocationStatusInput,
-        output_schema = types.GetRevocationStatusOutput,
+        input_schema = schemas.GetRevocationStatusInput,
+        output_schema = schemas.GetRevocationStatusOutput,
         http_method = "GET",
         http_path = "/revocations",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getSigningPlatform(input, options)
     return self:invokeOperation(input, {
         name = "GetSigningPlatform",
-        input_schema = types.GetSigningPlatformInput,
-        output_schema = types.GetSigningPlatformOutput,
+        input_schema = schemas.GetSigningPlatformInput,
+        output_schema = schemas.GetSigningPlatformOutput,
         http_method = "GET",
         http_path = "/signing-platforms/{platformId}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getSigningProfile(input, options)
     return self:invokeOperation(input, {
         name = "GetSigningProfile",
-        input_schema = types.GetSigningProfileInput,
-        output_schema = types.GetSigningProfileOutput,
+        input_schema = schemas.GetSigningProfileInput,
+        output_schema = schemas.GetSigningProfileOutput,
         http_method = "GET",
         http_path = "/signing-profiles/{profileName}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listProfilePermissions(input, options)
     return self:invokeOperation(input, {
         name = "ListProfilePermissions",
-        input_schema = types.ListProfilePermissionsInput,
-        output_schema = types.ListProfilePermissionsOutput,
+        input_schema = schemas.ListProfilePermissionsInput,
+        output_schema = schemas.ListProfilePermissionsOutput,
         http_method = "GET",
         http_path = "/signing-profiles/{profileName}/permissions",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listSigningJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListSigningJobs",
-        input_schema = types.ListSigningJobsInput,
-        output_schema = types.ListSigningJobsOutput,
+        input_schema = schemas.ListSigningJobsInput,
+        output_schema = schemas.ListSigningJobsOutput,
         http_method = "GET",
         http_path = "/signing-jobs",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listSigningPlatforms(input, options)
     return self:invokeOperation(input, {
         name = "ListSigningPlatforms",
-        input_schema = types.ListSigningPlatformsInput,
-        output_schema = types.ListSigningPlatformsOutput,
+        input_schema = schemas.ListSigningPlatformsInput,
+        output_schema = schemas.ListSigningPlatformsOutput,
         http_method = "GET",
         http_path = "/signing-platforms",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listSigningProfiles(input, options)
     return self:invokeOperation(input, {
         name = "ListSigningProfiles",
-        input_schema = types.ListSigningProfilesInput,
-        output_schema = types.ListSigningProfilesOutput,
+        input_schema = schemas.ListSigningProfilesInput,
+        output_schema = schemas.ListSigningProfilesOutput,
         http_method = "GET",
         http_path = "/signing-profiles",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:putSigningProfile(input, options)
     return self:invokeOperation(input, {
         name = "PutSigningProfile",
-        input_schema = types.PutSigningProfileInput,
-        output_schema = types.PutSigningProfileOutput,
+        input_schema = schemas.PutSigningProfileInput,
+        output_schema = schemas.PutSigningProfileOutput,
         http_method = "PUT",
         http_path = "/signing-profiles/{profileName}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:removeProfilePermission(input, options)
     return self:invokeOperation(input, {
         name = "RemoveProfilePermission",
-        input_schema = types.RemoveProfilePermissionInput,
-        output_schema = types.RemoveProfilePermissionOutput,
+        input_schema = schemas.RemoveProfilePermissionInput,
+        output_schema = schemas.RemoveProfilePermissionOutput,
         http_method = "DELETE",
         http_path = "/signing-profiles/{profileName}/permissions/{statementId}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:revokeSignature(input, options)
     return self:invokeOperation(input, {
         name = "RevokeSignature",
-        input_schema = types.RevokeSignatureInput,
-        output_schema = types.RevokeSignatureOutput,
+        input_schema = schemas.RevokeSignatureInput,
+        output_schema = schemas.RevokeSignatureOutput,
         http_method = "PUT",
         http_path = "/signing-jobs/{jobId}/revoke",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:revokeSigningProfile(input, options)
     return self:invokeOperation(input, {
         name = "RevokeSigningProfile",
-        input_schema = types.RevokeSigningProfileInput,
-        output_schema = types.RevokeSigningProfileOutput,
+        input_schema = schemas.RevokeSigningProfileInput,
+        output_schema = schemas.RevokeSigningProfileOutput,
         http_method = "PUT",
         http_path = "/signing-profiles/{profileName}/revoke",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:signPayload(input, options)
     return self:invokeOperation(input, {
         name = "SignPayload",
-        input_schema = types.SignPayloadInput,
-        output_schema = types.SignPayloadOutput,
+        input_schema = schemas.SignPayloadInput,
+        output_schema = schemas.SignPayloadOutput,
         http_method = "POST",
         http_path = "/signing-jobs/with-payload",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:startSigningJob(input, options)
     return self:invokeOperation(input, {
         name = "StartSigningJob",
-        input_schema = types.StartSigningJobInput,
-        output_schema = types.StartSigningJobOutput,
+        input_schema = schemas.StartSigningJobInput,
+        output_schema = schemas.StartSigningJobOutput,
         http_method = "POST",
         http_path = "/signing-jobs",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {

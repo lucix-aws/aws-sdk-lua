@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("marketplaceentitlementservice.endpoint_rules")
+local schemas = require("marketplaceentitlementservice.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("marketplaceentitlementservice.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getEntitlements(input, options)
     return self:invokeOperation(input, {
         name = "GetEntitlements",
-        input_schema = types.GetEntitlementsInput,
-        output_schema = types.GetEntitlementsOutput,
+        input_schema = schemas.GetEntitlementsInput,
+        output_schema = schemas.GetEntitlementsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

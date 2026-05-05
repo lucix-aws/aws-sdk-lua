@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("kinesisvideosignaling.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("kinesisvideosignaling.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("kinesisvideosignaling.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getIceServerConfig(input, options)
     return self:invokeOperation(input, {
         name = "GetIceServerConfig",
-        input_schema = types.GetIceServerConfigInput,
-        output_schema = types.GetIceServerConfigOutput,
+        input_schema = schemas.GetIceServerConfigInput,
+        output_schema = schemas.GetIceServerConfigOutput,
         http_method = "POST",
         http_path = "/v1/get-ice-server-config",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:sendAlexaOfferToMaster(input, options)
     return self:invokeOperation(input, {
         name = "SendAlexaOfferToMaster",
-        input_schema = types.SendAlexaOfferToMasterInput,
-        output_schema = types.SendAlexaOfferToMasterOutput,
+        input_schema = schemas.SendAlexaOfferToMasterInput,
+        output_schema = schemas.SendAlexaOfferToMasterOutput,
         http_method = "POST",
         http_path = "/v1/send-alexa-offer-to-master",
         effective_auth_schemes = {

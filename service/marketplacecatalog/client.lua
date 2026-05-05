@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("marketplacecatalog.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("marketplacecatalog.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("marketplacecatalog.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchDescribeEntities(input, options)
     return self:invokeOperation(input, {
         name = "BatchDescribeEntities",
-        input_schema = types.BatchDescribeEntitiesInput,
-        output_schema = types.BatchDescribeEntitiesOutput,
+        input_schema = schemas.BatchDescribeEntitiesInput,
+        output_schema = schemas.BatchDescribeEntitiesOutput,
         http_method = "POST",
         http_path = "/BatchDescribeEntities",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:cancelChangeSet(input, options)
     return self:invokeOperation(input, {
         name = "CancelChangeSet",
-        input_schema = types.CancelChangeSetInput,
-        output_schema = types.CancelChangeSetOutput,
+        input_schema = schemas.CancelChangeSetInput,
+        output_schema = schemas.CancelChangeSetOutput,
         http_method = "PATCH",
         http_path = "/CancelChangeSet",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourcePolicy",
-        input_schema = types.DeleteResourcePolicyInput,
-        output_schema = types.DeleteResourcePolicyOutput,
+        input_schema = schemas.DeleteResourcePolicyInput,
+        output_schema = schemas.DeleteResourcePolicyOutput,
         http_method = "DELETE",
         http_path = "/DeleteResourcePolicy",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:describeChangeSet(input, options)
     return self:invokeOperation(input, {
         name = "DescribeChangeSet",
-        input_schema = types.DescribeChangeSetInput,
-        output_schema = types.DescribeChangeSetOutput,
+        input_schema = schemas.DescribeChangeSetInput,
+        output_schema = schemas.DescribeChangeSetOutput,
         http_method = "GET",
         http_path = "/DescribeChangeSet",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:describeEntity(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEntity",
-        input_schema = types.DescribeEntityInput,
-        output_schema = types.DescribeEntityOutput,
+        input_schema = schemas.DescribeEntityInput,
+        output_schema = schemas.DescribeEntityOutput,
         http_method = "GET",
         http_path = "/DescribeEntity",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcePolicy",
-        input_schema = types.GetResourcePolicyInput,
-        output_schema = types.GetResourcePolicyOutput,
+        input_schema = schemas.GetResourcePolicyInput,
+        output_schema = schemas.GetResourcePolicyOutput,
         http_method = "GET",
         http_path = "/GetResourcePolicy",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listChangeSets(input, options)
     return self:invokeOperation(input, {
         name = "ListChangeSets",
-        input_schema = types.ListChangeSetsInput,
-        output_schema = types.ListChangeSetsOutput,
+        input_schema = schemas.ListChangeSetsInput,
+        output_schema = schemas.ListChangeSetsOutput,
         http_method = "POST",
         http_path = "/ListChangeSets",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listEntities(input, options)
     return self:invokeOperation(input, {
         name = "ListEntities",
-        input_schema = types.ListEntitiesInput,
-        output_schema = types.ListEntitiesOutput,
+        input_schema = schemas.ListEntitiesInput,
+        output_schema = schemas.ListEntitiesOutput,
         http_method = "POST",
         http_path = "/ListEntities",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/ListTagsForResource",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:putResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutResourcePolicy",
-        input_schema = types.PutResourcePolicyInput,
-        output_schema = types.PutResourcePolicyOutput,
+        input_schema = schemas.PutResourcePolicyInput,
+        output_schema = schemas.PutResourcePolicyOutput,
         http_method = "POST",
         http_path = "/PutResourcePolicy",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:startChangeSet(input, options)
     return self:invokeOperation(input, {
         name = "StartChangeSet",
-        input_schema = types.StartChangeSetInput,
-        output_schema = types.StartChangeSetOutput,
+        input_schema = schemas.StartChangeSetInput,
+        output_schema = schemas.StartChangeSetOutput,
         http_method = "POST",
         http_path = "/StartChangeSet",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/TagResource",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/UntagResource",
         effective_auth_schemes = {

@@ -1,0 +1,10051 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.macie2"
+
+local M = {}
+
+M.AdminAccount = schema.new({
+    id = id.from(_N, "AdminAccount"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "AdminAccount", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "accountId" },
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "AdminAccount", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "status" },
+            },
+        }),
+    },
+})
+
+M.AllowListSummary = schema.new({
+    id = id.from(_N, "AllowListSummary"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "AllowListSummary", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "AllowListSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "createdAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "createdAt" },
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "AllowListSummary", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "AllowListSummary", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "id" },
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "AllowListSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "AllowListSummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "updatedAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "updatedAt" },
+            },
+        }),
+    },
+})
+
+M.AutomatedDiscoveryAccount = schema.new({
+    id = id.from(_N, "AutomatedDiscoveryAccount"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "AutomatedDiscoveryAccount", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "accountId" },
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "AutomatedDiscoveryAccount", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "status" },
+            },
+        }),
+    },
+})
+
+M.AutomatedDiscoveryAccountUpdate = schema.new({
+    id = id.from(_N, "AutomatedDiscoveryAccountUpdate"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "AutomatedDiscoveryAccountUpdate", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "accountId" },
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "AutomatedDiscoveryAccountUpdate", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "status" },
+            },
+        }),
+    },
+})
+
+M.AutomatedDiscoveryAccountUpdateError = schema.new({
+    id = id.from(_N, "AutomatedDiscoveryAccountUpdateError"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "AutomatedDiscoveryAccountUpdateError", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "accountId" },
+            },
+        }),
+        errorCode = schema.new({
+            id = id.from(_N, "AutomatedDiscoveryAccountUpdateError", "errorCode"),
+            type = "string",
+            name = "errorCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "errorCode" },
+            },
+        }),
+    },
+})
+
+M.BatchGetCustomDataIdentifierSummary = schema.new({
+    id = id.from(_N, "BatchGetCustomDataIdentifierSummary"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "BatchGetCustomDataIdentifierSummary", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "BatchGetCustomDataIdentifierSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "createdAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "createdAt" },
+            },
+        }),
+        deleted = schema.new({
+            id = id.from(_N, "BatchGetCustomDataIdentifierSummary", "deleted"),
+            type = "boolean",
+            name = "deleted",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "deleted" },
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "BatchGetCustomDataIdentifierSummary", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "BatchGetCustomDataIdentifierSummary", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "id" },
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "BatchGetCustomDataIdentifierSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+    },
+})
+
+M.JobDetails = schema.new({
+    id = id.from(_N, "JobDetails"),
+    type = "structure",
+    members = {
+        isDefinedInJob = schema.new({
+            id = id.from(_N, "JobDetails", "isDefinedInJob"),
+            type = "string",
+            name = "isDefinedInJob",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "isDefinedInJob" },
+            },
+        }),
+        isMonitoredByJob = schema.new({
+            id = id.from(_N, "JobDetails", "isMonitoredByJob"),
+            type = "string",
+            name = "isMonitoredByJob",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "isMonitoredByJob" },
+            },
+        }),
+        lastJobId = schema.new({
+            id = id.from(_N, "JobDetails", "lastJobId"),
+            type = "string",
+            name = "lastJobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "lastJobId" },
+            },
+        }),
+        lastJobRunTime = schema.new({
+            id = id.from(_N, "JobDetails", "lastJobRunTime"),
+            type = "timestamp",
+            name = "lastJobRunTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "lastJobRunTime" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "lastJobRunTime" },
+            },
+        }),
+    },
+})
+
+M.ObjectCountByEncryptionType = schema.new({
+    id = id.from(_N, "ObjectCountByEncryptionType"),
+    type = "structure",
+    members = {
+        customerManaged = schema.new({
+            id = id.from(_N, "ObjectCountByEncryptionType", "customerManaged"),
+            type = "long",
+            name = "customerManaged",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "customerManaged" },
+            },
+        }),
+        kmsManaged = schema.new({
+            id = id.from(_N, "ObjectCountByEncryptionType", "kmsManaged"),
+            type = "long",
+            name = "kmsManaged",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "kmsManaged" },
+            },
+        }),
+        s3Managed = schema.new({
+            id = id.from(_N, "ObjectCountByEncryptionType", "s3Managed"),
+            type = "long",
+            name = "s3Managed",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "s3Managed" },
+            },
+        }),
+        unencrypted = schema.new({
+            id = id.from(_N, "ObjectCountByEncryptionType", "unencrypted"),
+            type = "long",
+            name = "unencrypted",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "unencrypted" },
+            },
+        }),
+        unknown = schema.new({
+            id = id.from(_N, "ObjectCountByEncryptionType", "unknown"),
+            type = "long",
+            name = "unknown",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "unknown" },
+            },
+        }),
+    },
+})
+
+M.BlockPublicAccess = schema.new({
+    id = id.from(_N, "BlockPublicAccess"),
+    type = "structure",
+    members = {
+        blockPublicAcls = schema.new({
+            id = id.from(_N, "BlockPublicAccess", "blockPublicAcls"),
+            type = "boolean",
+            name = "blockPublicAcls",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "blockPublicAcls" },
+            },
+        }),
+        blockPublicPolicy = schema.new({
+            id = id.from(_N, "BlockPublicAccess", "blockPublicPolicy"),
+            type = "boolean",
+            name = "blockPublicPolicy",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "blockPublicPolicy" },
+            },
+        }),
+        ignorePublicAcls = schema.new({
+            id = id.from(_N, "BlockPublicAccess", "ignorePublicAcls"),
+            type = "boolean",
+            name = "ignorePublicAcls",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "ignorePublicAcls" },
+            },
+        }),
+        restrictPublicBuckets = schema.new({
+            id = id.from(_N, "BlockPublicAccess", "restrictPublicBuckets"),
+            type = "boolean",
+            name = "restrictPublicBuckets",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "restrictPublicBuckets" },
+            },
+        }),
+    },
+})
+
+M.AccountLevelPermissions = schema.new({
+    id = id.from(_N, "AccountLevelPermissions"),
+    type = "structure",
+    members = {
+        blockPublicAccess = schema.new({
+            id = id.from(_N, "AccountLevelPermissions", "blockPublicAccess"),
+            type = "structure",
+            name = "blockPublicAccess",
+            target_id = id.from(_N, "BlockPublicAccess"),
+            target = M.BlockPublicAccess,
+            traits = {
+                [traits.JSON_NAME] = { name = "blockPublicAccess" },
+            },
+        }),
+    },
+})
+
+M.AccessControlList = schema.new({
+    id = id.from(_N, "AccessControlList"),
+    type = "structure",
+    members = {
+        allowsPublicReadAccess = schema.new({
+            id = id.from(_N, "AccessControlList", "allowsPublicReadAccess"),
+            type = "boolean",
+            name = "allowsPublicReadAccess",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "allowsPublicReadAccess" },
+            },
+        }),
+        allowsPublicWriteAccess = schema.new({
+            id = id.from(_N, "AccessControlList", "allowsPublicWriteAccess"),
+            type = "boolean",
+            name = "allowsPublicWriteAccess",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "allowsPublicWriteAccess" },
+            },
+        }),
+    },
+})
+
+M.BucketPolicy = schema.new({
+    id = id.from(_N, "BucketPolicy"),
+    type = "structure",
+    members = {
+        allowsPublicReadAccess = schema.new({
+            id = id.from(_N, "BucketPolicy", "allowsPublicReadAccess"),
+            type = "boolean",
+            name = "allowsPublicReadAccess",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "allowsPublicReadAccess" },
+            },
+        }),
+        allowsPublicWriteAccess = schema.new({
+            id = id.from(_N, "BucketPolicy", "allowsPublicWriteAccess"),
+            type = "boolean",
+            name = "allowsPublicWriteAccess",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "allowsPublicWriteAccess" },
+            },
+        }),
+    },
+})
+
+M.BucketLevelPermissions = schema.new({
+    id = id.from(_N, "BucketLevelPermissions"),
+    type = "structure",
+    members = {
+        accessControlList = schema.new({
+            id = id.from(_N, "BucketLevelPermissions", "accessControlList"),
+            type = "structure",
+            name = "accessControlList",
+            target_id = id.from(_N, "AccessControlList"),
+            target = M.AccessControlList,
+            traits = {
+                [traits.JSON_NAME] = { name = "accessControlList" },
+            },
+        }),
+        blockPublicAccess = schema.new({
+            id = id.from(_N, "BucketLevelPermissions", "blockPublicAccess"),
+            type = "structure",
+            name = "blockPublicAccess",
+            target_id = id.from(_N, "BlockPublicAccess"),
+            target = M.BlockPublicAccess,
+            traits = {
+                [traits.JSON_NAME] = { name = "blockPublicAccess" },
+            },
+        }),
+        bucketPolicy = schema.new({
+            id = id.from(_N, "BucketLevelPermissions", "bucketPolicy"),
+            type = "structure",
+            name = "bucketPolicy",
+            target_id = id.from(_N, "BucketPolicy"),
+            target = M.BucketPolicy,
+            traits = {
+                [traits.JSON_NAME] = { name = "bucketPolicy" },
+            },
+        }),
+    },
+})
+
+M.BucketPermissionConfiguration = schema.new({
+    id = id.from(_N, "BucketPermissionConfiguration"),
+    type = "structure",
+    members = {
+        accountLevelPermissions = schema.new({
+            id = id.from(_N, "BucketPermissionConfiguration", "accountLevelPermissions"),
+            type = "structure",
+            name = "accountLevelPermissions",
+            target_id = id.from(_N, "AccountLevelPermissions"),
+            target = M.AccountLevelPermissions,
+            traits = {
+                [traits.JSON_NAME] = { name = "accountLevelPermissions" },
+            },
+        }),
+        bucketLevelPermissions = schema.new({
+            id = id.from(_N, "BucketPermissionConfiguration", "bucketLevelPermissions"),
+            type = "structure",
+            name = "bucketLevelPermissions",
+            target_id = id.from(_N, "BucketLevelPermissions"),
+            target = M.BucketLevelPermissions,
+            traits = {
+                [traits.JSON_NAME] = { name = "bucketLevelPermissions" },
+            },
+        }),
+    },
+})
+
+M.BucketPublicAccess = schema.new({
+    id = id.from(_N, "BucketPublicAccess"),
+    type = "structure",
+    members = {
+        effectivePermission = schema.new({
+            id = id.from(_N, "BucketPublicAccess", "effectivePermission"),
+            type = "string",
+            name = "effectivePermission",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "effectivePermission" },
+            },
+        }),
+        permissionConfiguration = schema.new({
+            id = id.from(_N, "BucketPublicAccess", "permissionConfiguration"),
+            type = "structure",
+            name = "permissionConfiguration",
+            target_id = id.from(_N, "BucketPermissionConfiguration"),
+            target = M.BucketPermissionConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "permissionConfiguration" },
+            },
+        }),
+    },
+})
+
+M.ReplicationDetails = schema.new({
+    id = id.from(_N, "ReplicationDetails"),
+    type = "structure",
+    members = {
+        replicated = schema.new({
+            id = id.from(_N, "ReplicationDetails", "replicated"),
+            type = "boolean",
+            name = "replicated",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "replicated" },
+            },
+        }),
+        replicatedExternally = schema.new({
+            id = id.from(_N, "ReplicationDetails", "replicatedExternally"),
+            type = "boolean",
+            name = "replicatedExternally",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "replicatedExternally" },
+            },
+        }),
+        replicationAccounts = schema.new({
+            id = id.from(_N, "ReplicationDetails", "replicationAccounts"),
+            type = "list",
+            name = "replicationAccounts",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "replicationAccounts" },
+            },
+        }),
+    },
+})
+
+M.BucketServerSideEncryption = schema.new({
+    id = id.from(_N, "BucketServerSideEncryption"),
+    type = "structure",
+    members = {
+        kmsMasterKeyId = schema.new({
+            id = id.from(_N, "BucketServerSideEncryption", "kmsMasterKeyId"),
+            type = "string",
+            name = "kmsMasterKeyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "kmsMasterKeyId" },
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "BucketServerSideEncryption", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "type" },
+            },
+        }),
+    },
+})
+
+M.KeyValuePair = schema.new({
+    id = id.from(_N, "KeyValuePair"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "KeyValuePair", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "key" },
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "KeyValuePair", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "value" },
+            },
+        }),
+    },
+})
+
+M.ObjectLevelStatistics = schema.new({
+    id = id.from(_N, "ObjectLevelStatistics"),
+    type = "structure",
+    members = {
+        fileType = schema.new({
+            id = id.from(_N, "ObjectLevelStatistics", "fileType"),
+            type = "long",
+            name = "fileType",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "fileType" },
+            },
+        }),
+        storageClass = schema.new({
+            id = id.from(_N, "ObjectLevelStatistics", "storageClass"),
+            type = "long",
+            name = "storageClass",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "storageClass" },
+            },
+        }),
+        total = schema.new({
+            id = id.from(_N, "ObjectLevelStatistics", "total"),
+            type = "long",
+            name = "total",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "total" },
+            },
+        }),
+    },
+})
+
+M.BucketMetadata = schema.new({
+    id = id.from(_N, "BucketMetadata"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "BucketMetadata", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "accountId" },
+            },
+        }),
+        allowsUnencryptedObjectUploads = schema.new({
+            id = id.from(_N, "BucketMetadata", "allowsUnencryptedObjectUploads"),
+            type = "string",
+            name = "allowsUnencryptedObjectUploads",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "allowsUnencryptedObjectUploads" },
+            },
+        }),
+        automatedDiscoveryMonitoringStatus = schema.new({
+            id = id.from(_N, "BucketMetadata", "automatedDiscoveryMonitoringStatus"),
+            type = "string",
+            name = "automatedDiscoveryMonitoringStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "automatedDiscoveryMonitoringStatus" },
+            },
+        }),
+        bucketArn = schema.new({
+            id = id.from(_N, "BucketMetadata", "bucketArn"),
+            type = "string",
+            name = "bucketArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "bucketArn" },
+            },
+        }),
+        bucketCreatedAt = schema.new({
+            id = id.from(_N, "BucketMetadata", "bucketCreatedAt"),
+            type = "timestamp",
+            name = "bucketCreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "bucketCreatedAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "bucketCreatedAt" },
+            },
+        }),
+        bucketName = schema.new({
+            id = id.from(_N, "BucketMetadata", "bucketName"),
+            type = "string",
+            name = "bucketName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "bucketName" },
+            },
+        }),
+        classifiableObjectCount = schema.new({
+            id = id.from(_N, "BucketMetadata", "classifiableObjectCount"),
+            type = "long",
+            name = "classifiableObjectCount",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "classifiableObjectCount" },
+            },
+        }),
+        classifiableSizeInBytes = schema.new({
+            id = id.from(_N, "BucketMetadata", "classifiableSizeInBytes"),
+            type = "long",
+            name = "classifiableSizeInBytes",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "classifiableSizeInBytes" },
+            },
+        }),
+        errorCode = schema.new({
+            id = id.from(_N, "BucketMetadata", "errorCode"),
+            type = "string",
+            name = "errorCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "errorCode" },
+            },
+        }),
+        errorMessage = schema.new({
+            id = id.from(_N, "BucketMetadata", "errorMessage"),
+            type = "string",
+            name = "errorMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "errorMessage" },
+            },
+        }),
+        jobDetails = schema.new({
+            id = id.from(_N, "BucketMetadata", "jobDetails"),
+            type = "structure",
+            name = "jobDetails",
+            target_id = id.from(_N, "JobDetails"),
+            target = M.JobDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "jobDetails" },
+            },
+        }),
+        lastAutomatedDiscoveryTime = schema.new({
+            id = id.from(_N, "BucketMetadata", "lastAutomatedDiscoveryTime"),
+            type = "timestamp",
+            name = "lastAutomatedDiscoveryTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "lastAutomatedDiscoveryTime" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "lastAutomatedDiscoveryTime" },
+            },
+        }),
+        lastUpdated = schema.new({
+            id = id.from(_N, "BucketMetadata", "lastUpdated"),
+            type = "timestamp",
+            name = "lastUpdated",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "lastUpdated" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "lastUpdated" },
+            },
+        }),
+        objectCount = schema.new({
+            id = id.from(_N, "BucketMetadata", "objectCount"),
+            type = "long",
+            name = "objectCount",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "objectCount" },
+            },
+        }),
+        objectCountByEncryptionType = schema.new({
+            id = id.from(_N, "BucketMetadata", "objectCountByEncryptionType"),
+            type = "structure",
+            name = "objectCountByEncryptionType",
+            target_id = id.from(_N, "ObjectCountByEncryptionType"),
+            target = M.ObjectCountByEncryptionType,
+            traits = {
+                [traits.JSON_NAME] = { name = "objectCountByEncryptionType" },
+            },
+        }),
+        publicAccess = schema.new({
+            id = id.from(_N, "BucketMetadata", "publicAccess"),
+            type = "structure",
+            name = "publicAccess",
+            target_id = id.from(_N, "BucketPublicAccess"),
+            target = M.BucketPublicAccess,
+            traits = {
+                [traits.JSON_NAME] = { name = "publicAccess" },
+            },
+        }),
+        region = schema.new({
+            id = id.from(_N, "BucketMetadata", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "region" },
+            },
+        }),
+        replicationDetails = schema.new({
+            id = id.from(_N, "BucketMetadata", "replicationDetails"),
+            type = "structure",
+            name = "replicationDetails",
+            target_id = id.from(_N, "ReplicationDetails"),
+            target = M.ReplicationDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "replicationDetails" },
+            },
+        }),
+        sensitivityScore = schema.new({
+            id = id.from(_N, "BucketMetadata", "sensitivityScore"),
+            type = "integer",
+            name = "sensitivityScore",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sensitivityScore" },
+            },
+        }),
+        serverSideEncryption = schema.new({
+            id = id.from(_N, "BucketMetadata", "serverSideEncryption"),
+            type = "structure",
+            name = "serverSideEncryption",
+            target_id = id.from(_N, "BucketServerSideEncryption"),
+            target = M.BucketServerSideEncryption,
+            traits = {
+                [traits.JSON_NAME] = { name = "serverSideEncryption" },
+            },
+        }),
+        sharedAccess = schema.new({
+            id = id.from(_N, "BucketMetadata", "sharedAccess"),
+            type = "string",
+            name = "sharedAccess",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sharedAccess" },
+            },
+        }),
+        sizeInBytes = schema.new({
+            id = id.from(_N, "BucketMetadata", "sizeInBytes"),
+            type = "long",
+            name = "sizeInBytes",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sizeInBytes" },
+            },
+        }),
+        sizeInBytesCompressed = schema.new({
+            id = id.from(_N, "BucketMetadata", "sizeInBytesCompressed"),
+            type = "long",
+            name = "sizeInBytesCompressed",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sizeInBytesCompressed" },
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "BucketMetadata", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.KeyValuePair,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+        unclassifiableObjectCount = schema.new({
+            id = id.from(_N, "BucketMetadata", "unclassifiableObjectCount"),
+            type = "structure",
+            name = "unclassifiableObjectCount",
+            target_id = id.from(_N, "ObjectLevelStatistics"),
+            target = M.ObjectLevelStatistics,
+            traits = {
+                [traits.JSON_NAME] = { name = "unclassifiableObjectCount" },
+            },
+        }),
+        unclassifiableObjectSizeInBytes = schema.new({
+            id = id.from(_N, "BucketMetadata", "unclassifiableObjectSizeInBytes"),
+            type = "structure",
+            name = "unclassifiableObjectSizeInBytes",
+            target_id = id.from(_N, "ObjectLevelStatistics"),
+            target = M.ObjectLevelStatistics,
+            traits = {
+                [traits.JSON_NAME] = { name = "unclassifiableObjectSizeInBytes" },
+            },
+        }),
+        versioning = schema.new({
+            id = id.from(_N, "BucketMetadata", "versioning"),
+            type = "boolean",
+            name = "versioning",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "versioning" },
+            },
+        }),
+    },
+})
+
+M.ClassificationScopeSummary = schema.new({
+    id = id.from(_N, "ClassificationScopeSummary"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "ClassificationScopeSummary", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "id" },
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "ClassificationScopeSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+    },
+})
+
+M.SimpleCriterionForJob = schema.new({
+    id = id.from(_N, "SimpleCriterionForJob"),
+    type = "structure",
+    members = {
+        comparator = schema.new({
+            id = id.from(_N, "SimpleCriterionForJob", "comparator"),
+            type = "string",
+            name = "comparator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "comparator" },
+            },
+        }),
+        key = schema.new({
+            id = id.from(_N, "SimpleCriterionForJob", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "key" },
+            },
+        }),
+        values = schema.new({
+            id = id.from(_N, "SimpleCriterionForJob", "values"),
+            type = "list",
+            name = "values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "values" },
+            },
+        }),
+    },
+})
+
+M.TagCriterionPairForJob = schema.new({
+    id = id.from(_N, "TagCriterionPairForJob"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "TagCriterionPairForJob", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "key" },
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "TagCriterionPairForJob", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "value" },
+            },
+        }),
+    },
+})
+
+M.TagCriterionForJob = schema.new({
+    id = id.from(_N, "TagCriterionForJob"),
+    type = "structure",
+    members = {
+        comparator = schema.new({
+            id = id.from(_N, "TagCriterionForJob", "comparator"),
+            type = "string",
+            name = "comparator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "comparator" },
+            },
+        }),
+        tagValues = schema.new({
+            id = id.from(_N, "TagCriterionForJob", "tagValues"),
+            type = "list",
+            name = "tagValues",
+            target_id = prelude.Document.id,
+            list_member = M.TagCriterionPairForJob,
+            traits = {
+                [traits.JSON_NAME] = { name = "tagValues" },
+            },
+        }),
+    },
+})
+
+M.CriteriaForJob = schema.new({
+    id = id.from(_N, "CriteriaForJob"),
+    type = "structure",
+    members = {
+        simpleCriterion = schema.new({
+            id = id.from(_N, "CriteriaForJob", "simpleCriterion"),
+            type = "structure",
+            name = "simpleCriterion",
+            target_id = id.from(_N, "SimpleCriterionForJob"),
+            target = M.SimpleCriterionForJob,
+            traits = {
+                [traits.JSON_NAME] = { name = "simpleCriterion" },
+            },
+        }),
+        tagCriterion = schema.new({
+            id = id.from(_N, "CriteriaForJob", "tagCriterion"),
+            type = "structure",
+            name = "tagCriterion",
+            target_id = id.from(_N, "TagCriterionForJob"),
+            target = M.TagCriterionForJob,
+            traits = {
+                [traits.JSON_NAME] = { name = "tagCriterion" },
+            },
+        }),
+    },
+})
+
+M.CustomDataIdentifierSummary = schema.new({
+    id = id.from(_N, "CustomDataIdentifierSummary"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "CustomDataIdentifierSummary", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CustomDataIdentifierSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "createdAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "createdAt" },
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CustomDataIdentifierSummary", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "CustomDataIdentifierSummary", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "id" },
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "CustomDataIdentifierSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+    },
+})
+
+M.DetectedDataDetails = schema.new({
+    id = id.from(_N, "DetectedDataDetails"),
+    type = "structure",
+    members = {
+        value = schema.new({
+            id = id.from(_N, "DetectedDataDetails", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "value" },
+            },
+        }),
+    },
+})
+
+M.Detection = schema.new({
+    id = id.from(_N, "Detection"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "Detection", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        count = schema.new({
+            id = id.from(_N, "Detection", "count"),
+            type = "long",
+            name = "count",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "count" },
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "Detection", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "id" },
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "Detection", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        suppressed = schema.new({
+            id = id.from(_N, "Detection", "suppressed"),
+            type = "boolean",
+            name = "suppressed",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "suppressed" },
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "Detection", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "type" },
+            },
+        }),
+    },
+})
+
+M.Cell = schema.new({
+    id = id.from(_N, "Cell"),
+    type = "structure",
+    members = {
+        cellReference = schema.new({
+            id = id.from(_N, "Cell", "cellReference"),
+            type = "string",
+            name = "cellReference",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "cellReference" },
+            },
+        }),
+        column = schema.new({
+            id = id.from(_N, "Cell", "column"),
+            type = "long",
+            name = "column",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "column" },
+            },
+        }),
+        columnName = schema.new({
+            id = id.from(_N, "Cell", "columnName"),
+            type = "string",
+            name = "columnName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "columnName" },
+            },
+        }),
+        row = schema.new({
+            id = id.from(_N, "Cell", "row"),
+            type = "long",
+            name = "row",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "row" },
+            },
+        }),
+    },
+})
+
+M.Range = schema.new({
+    id = id.from(_N, "Range"),
+    type = "structure",
+    members = {
+        end = schema.new({
+            id = id.from(_N, "Range", "end"),
+            type = "long",
+            name = "end",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "end" },
+            },
+        }),
+        start = schema.new({
+            id = id.from(_N, "Range", "start"),
+            type = "long",
+            name = "start",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "start" },
+            },
+        }),
+        startColumn = schema.new({
+            id = id.from(_N, "Range", "startColumn"),
+            type = "long",
+            name = "startColumn",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "startColumn" },
+            },
+        }),
+    },
+})
+
+M.Page = schema.new({
+    id = id.from(_N, "Page"),
+    type = "structure",
+    members = {
+        lineRange = schema.new({
+            id = id.from(_N, "Page", "lineRange"),
+            type = "structure",
+            name = "lineRange",
+            target_id = id.from(_N, "Range"),
+            target = M.Range,
+            traits = {
+                [traits.JSON_NAME] = { name = "lineRange" },
+            },
+        }),
+        offsetRange = schema.new({
+            id = id.from(_N, "Page", "offsetRange"),
+            type = "structure",
+            name = "offsetRange",
+            target_id = id.from(_N, "Range"),
+            target = M.Range,
+            traits = {
+                [traits.JSON_NAME] = { name = "offsetRange" },
+            },
+        }),
+        pageNumber = schema.new({
+            id = id.from(_N, "Page", "pageNumber"),
+            type = "long",
+            name = "pageNumber",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "pageNumber" },
+            },
+        }),
+    },
+})
+
+M.Record = schema.new({
+    id = id.from(_N, "Record"),
+    type = "structure",
+    members = {
+        jsonPath = schema.new({
+            id = id.from(_N, "Record", "jsonPath"),
+            type = "string",
+            name = "jsonPath",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "jsonPath" },
+            },
+        }),
+        recordIndex = schema.new({
+            id = id.from(_N, "Record", "recordIndex"),
+            type = "long",
+            name = "recordIndex",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "recordIndex" },
+            },
+        }),
+    },
+})
+
+M.Occurrences = schema.new({
+    id = id.from(_N, "Occurrences"),
+    type = "structure",
+    members = {
+        cells = schema.new({
+            id = id.from(_N, "Occurrences", "cells"),
+            type = "list",
+            name = "cells",
+            target_id = prelude.Document.id,
+            list_member = M.Cell,
+            traits = {
+                [traits.JSON_NAME] = { name = "cells" },
+            },
+        }),
+        lineRanges = schema.new({
+            id = id.from(_N, "Occurrences", "lineRanges"),
+            type = "list",
+            name = "lineRanges",
+            target_id = prelude.Document.id,
+            list_member = M.Range,
+            traits = {
+                [traits.JSON_NAME] = { name = "lineRanges" },
+            },
+        }),
+        offsetRanges = schema.new({
+            id = id.from(_N, "Occurrences", "offsetRanges"),
+            type = "list",
+            name = "offsetRanges",
+            target_id = prelude.Document.id,
+            list_member = M.Range,
+            traits = {
+                [traits.JSON_NAME] = { name = "offsetRanges" },
+            },
+        }),
+        pages = schema.new({
+            id = id.from(_N, "Occurrences", "pages"),
+            type = "list",
+            name = "pages",
+            target_id = prelude.Document.id,
+            list_member = M.Page,
+            traits = {
+                [traits.JSON_NAME] = { name = "pages" },
+            },
+        }),
+        records = schema.new({
+            id = id.from(_N, "Occurrences", "records"),
+            type = "list",
+            name = "records",
+            target_id = prelude.Document.id,
+            list_member = M.Record,
+            traits = {
+                [traits.JSON_NAME] = { name = "records" },
+            },
+        }),
+    },
+})
+
+M.CustomDetection = schema.new({
+    id = id.from(_N, "CustomDetection"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "CustomDetection", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        count = schema.new({
+            id = id.from(_N, "CustomDetection", "count"),
+            type = "long",
+            name = "count",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "count" },
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "CustomDetection", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        occurrences = schema.new({
+            id = id.from(_N, "CustomDetection", "occurrences"),
+            type = "structure",
+            name = "occurrences",
+            target_id = id.from(_N, "Occurrences"),
+            target = M.Occurrences,
+            traits = {
+                [traits.JSON_NAME] = { name = "occurrences" },
+            },
+        }),
+    },
+})
+
+M.CustomDataIdentifiers = schema.new({
+    id = id.from(_N, "CustomDataIdentifiers"),
+    type = "structure",
+    members = {
+        detections = schema.new({
+            id = id.from(_N, "CustomDataIdentifiers", "detections"),
+            type = "list",
+            name = "detections",
+            target_id = prelude.Document.id,
+            list_member = M.CustomDetection,
+            traits = {
+                [traits.JSON_NAME] = { name = "detections" },
+            },
+        }),
+        totalCount = schema.new({
+            id = id.from(_N, "CustomDataIdentifiers", "totalCount"),
+            type = "long",
+            name = "totalCount",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "totalCount" },
+            },
+        }),
+    },
+})
+
+M.DefaultDetection = schema.new({
+    id = id.from(_N, "DefaultDetection"),
+    type = "structure",
+    members = {
+        count = schema.new({
+            id = id.from(_N, "DefaultDetection", "count"),
+            type = "long",
+            name = "count",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "count" },
+            },
+        }),
+        occurrences = schema.new({
+            id = id.from(_N, "DefaultDetection", "occurrences"),
+            type = "structure",
+            name = "occurrences",
+            target_id = id.from(_N, "Occurrences"),
+            target = M.Occurrences,
+            traits = {
+                [traits.JSON_NAME] = { name = "occurrences" },
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "DefaultDetection", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "type" },
+            },
+        }),
+    },
+})
+
+M.SensitiveDataItem = schema.new({
+    id = id.from(_N, "SensitiveDataItem"),
+    type = "structure",
+    members = {
+        category = schema.new({
+            id = id.from(_N, "SensitiveDataItem", "category"),
+            type = "string",
+            name = "category",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "category" },
+            },
+        }),
+        detections = schema.new({
+            id = id.from(_N, "SensitiveDataItem", "detections"),
+            type = "list",
+            name = "detections",
+            target_id = prelude.Document.id,
+            list_member = M.DefaultDetection,
+            traits = {
+                [traits.JSON_NAME] = { name = "detections" },
+            },
+        }),
+        totalCount = schema.new({
+            id = id.from(_N, "SensitiveDataItem", "totalCount"),
+            type = "long",
+            name = "totalCount",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "totalCount" },
+            },
+        }),
+    },
+})
+
+M.ClassificationResultStatus = schema.new({
+    id = id.from(_N, "ClassificationResultStatus"),
+    type = "structure",
+    members = {
+        code = schema.new({
+            id = id.from(_N, "ClassificationResultStatus", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "code" },
+            },
+        }),
+        reason = schema.new({
+            id = id.from(_N, "ClassificationResultStatus", "reason"),
+            type = "string",
+            name = "reason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "reason" },
+            },
+        }),
+    },
+})
+
+M.ClassificationResult = schema.new({
+    id = id.from(_N, "ClassificationResult"),
+    type = "structure",
+    members = {
+        additionalOccurrences = schema.new({
+            id = id.from(_N, "ClassificationResult", "additionalOccurrences"),
+            type = "boolean",
+            name = "additionalOccurrences",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "additionalOccurrences" },
+            },
+        }),
+        customDataIdentifiers = schema.new({
+            id = id.from(_N, "ClassificationResult", "customDataIdentifiers"),
+            type = "structure",
+            name = "customDataIdentifiers",
+            target_id = id.from(_N, "CustomDataIdentifiers"),
+            target = M.CustomDataIdentifiers,
+            traits = {
+                [traits.JSON_NAME] = { name = "customDataIdentifiers" },
+            },
+        }),
+        mimeType = schema.new({
+            id = id.from(_N, "ClassificationResult", "mimeType"),
+            type = "string",
+            name = "mimeType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "mimeType" },
+            },
+        }),
+        sensitiveData = schema.new({
+            id = id.from(_N, "ClassificationResult", "sensitiveData"),
+            type = "list",
+            name = "sensitiveData",
+            target_id = prelude.Document.id,
+            list_member = M.SensitiveDataItem,
+            traits = {
+                [traits.JSON_NAME] = { name = "sensitiveData" },
+            },
+        }),
+        sizeClassified = schema.new({
+            id = id.from(_N, "ClassificationResult", "sizeClassified"),
+            type = "long",
+            name = "sizeClassified",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sizeClassified" },
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "ClassificationResult", "status"),
+            type = "structure",
+            name = "status",
+            target_id = id.from(_N, "ClassificationResultStatus"),
+            target = M.ClassificationResultStatus,
+            traits = {
+                [traits.JSON_NAME] = { name = "status" },
+            },
+        }),
+    },
+})
+
+M.ClassificationDetails = schema.new({
+    id = id.from(_N, "ClassificationDetails"),
+    type = "structure",
+    members = {
+        detailedResultsLocation = schema.new({
+            id = id.from(_N, "ClassificationDetails", "detailedResultsLocation"),
+            type = "string",
+            name = "detailedResultsLocation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "detailedResultsLocation" },
+            },
+        }),
+        jobArn = schema.new({
+            id = id.from(_N, "ClassificationDetails", "jobArn"),
+            type = "string",
+            name = "jobArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "jobArn" },
+            },
+        }),
+        jobId = schema.new({
+            id = id.from(_N, "ClassificationDetails", "jobId"),
+            type = "string",
+            name = "jobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "jobId" },
+            },
+        }),
+        originType = schema.new({
+            id = id.from(_N, "ClassificationDetails", "originType"),
+            type = "string",
+            name = "originType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "originType" },
+            },
+        }),
+        result = schema.new({
+            id = id.from(_N, "ClassificationDetails", "result"),
+            type = "structure",
+            name = "result",
+            target_id = id.from(_N, "ClassificationResult"),
+            target = M.ClassificationResult,
+            traits = {
+                [traits.JSON_NAME] = { name = "result" },
+            },
+        }),
+    },
+})
+
+M.ApiCallDetails = schema.new({
+    id = id.from(_N, "ApiCallDetails"),
+    type = "structure",
+    members = {
+        api = schema.new({
+            id = id.from(_N, "ApiCallDetails", "api"),
+            type = "string",
+            name = "api",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "api" },
+            },
+        }),
+        apiServiceName = schema.new({
+            id = id.from(_N, "ApiCallDetails", "apiServiceName"),
+            type = "string",
+            name = "apiServiceName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "apiServiceName" },
+            },
+        }),
+        firstSeen = schema.new({
+            id = id.from(_N, "ApiCallDetails", "firstSeen"),
+            type = "timestamp",
+            name = "firstSeen",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "firstSeen" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "firstSeen" },
+            },
+        }),
+        lastSeen = schema.new({
+            id = id.from(_N, "ApiCallDetails", "lastSeen"),
+            type = "timestamp",
+            name = "lastSeen",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "lastSeen" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "lastSeen" },
+            },
+        }),
+    },
+})
+
+M.FindingAction = schema.new({
+    id = id.from(_N, "FindingAction"),
+    type = "structure",
+    members = {
+        actionType = schema.new({
+            id = id.from(_N, "FindingAction", "actionType"),
+            type = "string",
+            name = "actionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "actionType" },
+            },
+        }),
+        apiCallDetails = schema.new({
+            id = id.from(_N, "FindingAction", "apiCallDetails"),
+            type = "structure",
+            name = "apiCallDetails",
+            target_id = id.from(_N, "ApiCallDetails"),
+            target = M.ApiCallDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "apiCallDetails" },
+            },
+        }),
+    },
+})
+
+M.DomainDetails = schema.new({
+    id = id.from(_N, "DomainDetails"),
+    type = "structure",
+    members = {
+        domainName = schema.new({
+            id = id.from(_N, "DomainDetails", "domainName"),
+            type = "string",
+            name = "domainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "domainName" },
+            },
+        }),
+    },
+})
+
+M.IpCity = schema.new({
+    id = id.from(_N, "IpCity"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "IpCity", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+    },
+})
+
+M.IpCountry = schema.new({
+    id = id.from(_N, "IpCountry"),
+    type = "structure",
+    members = {
+        code = schema.new({
+            id = id.from(_N, "IpCountry", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "code" },
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "IpCountry", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+    },
+})
+
+M.IpGeoLocation = schema.new({
+    id = id.from(_N, "IpGeoLocation"),
+    type = "structure",
+    members = {
+        lat = schema.new({
+            id = id.from(_N, "IpGeoLocation", "lat"),
+            type = "double",
+            name = "lat",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "lat" },
+            },
+        }),
+        lon = schema.new({
+            id = id.from(_N, "IpGeoLocation", "lon"),
+            type = "double",
+            name = "lon",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "lon" },
+            },
+        }),
+    },
+})
+
+M.IpOwner = schema.new({
+    id = id.from(_N, "IpOwner"),
+    type = "structure",
+    members = {
+        asn = schema.new({
+            id = id.from(_N, "IpOwner", "asn"),
+            type = "string",
+            name = "asn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "asn" },
+            },
+        }),
+        asnOrg = schema.new({
+            id = id.from(_N, "IpOwner", "asnOrg"),
+            type = "string",
+            name = "asnOrg",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "asnOrg" },
+            },
+        }),
+        isp = schema.new({
+            id = id.from(_N, "IpOwner", "isp"),
+            type = "string",
+            name = "isp",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "isp" },
+            },
+        }),
+        org = schema.new({
+            id = id.from(_N, "IpOwner", "org"),
+            type = "string",
+            name = "org",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "org" },
+            },
+        }),
+    },
+})
+
+M.IpAddressDetails = schema.new({
+    id = id.from(_N, "IpAddressDetails"),
+    type = "structure",
+    members = {
+        ipAddressV4 = schema.new({
+            id = id.from(_N, "IpAddressDetails", "ipAddressV4"),
+            type = "string",
+            name = "ipAddressV4",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "ipAddressV4" },
+            },
+        }),
+        ipCity = schema.new({
+            id = id.from(_N, "IpAddressDetails", "ipCity"),
+            type = "structure",
+            name = "ipCity",
+            target_id = id.from(_N, "IpCity"),
+            target = M.IpCity,
+            traits = {
+                [traits.JSON_NAME] = { name = "ipCity" },
+            },
+        }),
+        ipCountry = schema.new({
+            id = id.from(_N, "IpAddressDetails", "ipCountry"),
+            type = "structure",
+            name = "ipCountry",
+            target_id = id.from(_N, "IpCountry"),
+            target = M.IpCountry,
+            traits = {
+                [traits.JSON_NAME] = { name = "ipCountry" },
+            },
+        }),
+        ipGeoLocation = schema.new({
+            id = id.from(_N, "IpAddressDetails", "ipGeoLocation"),
+            type = "structure",
+            name = "ipGeoLocation",
+            target_id = id.from(_N, "IpGeoLocation"),
+            target = M.IpGeoLocation,
+            traits = {
+                [traits.JSON_NAME] = { name = "ipGeoLocation" },
+            },
+        }),
+        ipOwner = schema.new({
+            id = id.from(_N, "IpAddressDetails", "ipOwner"),
+            type = "structure",
+            name = "ipOwner",
+            target_id = id.from(_N, "IpOwner"),
+            target = M.IpOwner,
+            traits = {
+                [traits.JSON_NAME] = { name = "ipOwner" },
+            },
+        }),
+    },
+})
+
+M.SessionContextAttributes = schema.new({
+    id = id.from(_N, "SessionContextAttributes"),
+    type = "structure",
+    members = {
+        creationDate = schema.new({
+            id = id.from(_N, "SessionContextAttributes", "creationDate"),
+            type = "timestamp",
+            name = "creationDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "creationDate" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "creationDate" },
+            },
+        }),
+        mfaAuthenticated = schema.new({
+            id = id.from(_N, "SessionContextAttributes", "mfaAuthenticated"),
+            type = "boolean",
+            name = "mfaAuthenticated",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "mfaAuthenticated" },
+            },
+        }),
+    },
+})
+
+M.SessionIssuer = schema.new({
+    id = id.from(_N, "SessionIssuer"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "SessionIssuer", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "accountId" },
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "SessionIssuer", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        principalId = schema.new({
+            id = id.from(_N, "SessionIssuer", "principalId"),
+            type = "string",
+            name = "principalId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "principalId" },
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "SessionIssuer", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "type" },
+            },
+        }),
+        userName = schema.new({
+            id = id.from(_N, "SessionIssuer", "userName"),
+            type = "string",
+            name = "userName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "userName" },
+            },
+        }),
+    },
+})
+
+M.SessionContext = schema.new({
+    id = id.from(_N, "SessionContext"),
+    type = "structure",
+    members = {
+        attributes = schema.new({
+            id = id.from(_N, "SessionContext", "attributes"),
+            type = "structure",
+            name = "attributes",
+            target_id = id.from(_N, "SessionContextAttributes"),
+            target = M.SessionContextAttributes,
+            traits = {
+                [traits.JSON_NAME] = { name = "attributes" },
+            },
+        }),
+        sessionIssuer = schema.new({
+            id = id.from(_N, "SessionContext", "sessionIssuer"),
+            type = "structure",
+            name = "sessionIssuer",
+            target_id = id.from(_N, "SessionIssuer"),
+            target = M.SessionIssuer,
+            traits = {
+                [traits.JSON_NAME] = { name = "sessionIssuer" },
+            },
+        }),
+    },
+})
+
+M.AssumedRole = schema.new({
+    id = id.from(_N, "AssumedRole"),
+    type = "structure",
+    members = {
+        accessKeyId = schema.new({
+            id = id.from(_N, "AssumedRole", "accessKeyId"),
+            type = "string",
+            name = "accessKeyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "accessKeyId" },
+            },
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "AssumedRole", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "accountId" },
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "AssumedRole", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        principalId = schema.new({
+            id = id.from(_N, "AssumedRole", "principalId"),
+            type = "string",
+            name = "principalId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "principalId" },
+            },
+        }),
+        sessionContext = schema.new({
+            id = id.from(_N, "AssumedRole", "sessionContext"),
+            type = "structure",
+            name = "sessionContext",
+            target_id = id.from(_N, "SessionContext"),
+            target = M.SessionContext,
+            traits = {
+                [traits.JSON_NAME] = { name = "sessionContext" },
+            },
+        }),
+    },
+})
+
+M.AwsAccount = schema.new({
+    id = id.from(_N, "AwsAccount"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "AwsAccount", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "accountId" },
+            },
+        }),
+        principalId = schema.new({
+            id = id.from(_N, "AwsAccount", "principalId"),
+            type = "string",
+            name = "principalId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "principalId" },
+            },
+        }),
+    },
+})
+
+M.AwsService = schema.new({
+    id = id.from(_N, "AwsService"),
+    type = "structure",
+    members = {
+        invokedBy = schema.new({
+            id = id.from(_N, "AwsService", "invokedBy"),
+            type = "string",
+            name = "invokedBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "invokedBy" },
+            },
+        }),
+    },
+})
+
+M.FederatedUser = schema.new({
+    id = id.from(_N, "FederatedUser"),
+    type = "structure",
+    members = {
+        accessKeyId = schema.new({
+            id = id.from(_N, "FederatedUser", "accessKeyId"),
+            type = "string",
+            name = "accessKeyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "accessKeyId" },
+            },
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "FederatedUser", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "accountId" },
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "FederatedUser", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        principalId = schema.new({
+            id = id.from(_N, "FederatedUser", "principalId"),
+            type = "string",
+            name = "principalId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "principalId" },
+            },
+        }),
+        sessionContext = schema.new({
+            id = id.from(_N, "FederatedUser", "sessionContext"),
+            type = "structure",
+            name = "sessionContext",
+            target_id = id.from(_N, "SessionContext"),
+            target = M.SessionContext,
+            traits = {
+                [traits.JSON_NAME] = { name = "sessionContext" },
+            },
+        }),
+    },
+})
+
+M.IamUser = schema.new({
+    id = id.from(_N, "IamUser"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "IamUser", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "accountId" },
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "IamUser", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        principalId = schema.new({
+            id = id.from(_N, "IamUser", "principalId"),
+            type = "string",
+            name = "principalId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "principalId" },
+            },
+        }),
+        userName = schema.new({
+            id = id.from(_N, "IamUser", "userName"),
+            type = "string",
+            name = "userName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "userName" },
+            },
+        }),
+    },
+})
+
+M.UserIdentityRoot = schema.new({
+    id = id.from(_N, "UserIdentityRoot"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "UserIdentityRoot", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "accountId" },
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "UserIdentityRoot", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        principalId = schema.new({
+            id = id.from(_N, "UserIdentityRoot", "principalId"),
+            type = "string",
+            name = "principalId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "principalId" },
+            },
+        }),
+    },
+})
+
+M.UserIdentity = schema.new({
+    id = id.from(_N, "UserIdentity"),
+    type = "structure",
+    members = {
+        assumedRole = schema.new({
+            id = id.from(_N, "UserIdentity", "assumedRole"),
+            type = "structure",
+            name = "assumedRole",
+            target_id = id.from(_N, "AssumedRole"),
+            target = M.AssumedRole,
+            traits = {
+                [traits.JSON_NAME] = { name = "assumedRole" },
+            },
+        }),
+        awsAccount = schema.new({
+            id = id.from(_N, "UserIdentity", "awsAccount"),
+            type = "structure",
+            name = "awsAccount",
+            target_id = id.from(_N, "AwsAccount"),
+            target = M.AwsAccount,
+            traits = {
+                [traits.JSON_NAME] = { name = "awsAccount" },
+            },
+        }),
+        awsService = schema.new({
+            id = id.from(_N, "UserIdentity", "awsService"),
+            type = "structure",
+            name = "awsService",
+            target_id = id.from(_N, "AwsService"),
+            target = M.AwsService,
+            traits = {
+                [traits.JSON_NAME] = { name = "awsService" },
+            },
+        }),
+        federatedUser = schema.new({
+            id = id.from(_N, "UserIdentity", "federatedUser"),
+            type = "structure",
+            name = "federatedUser",
+            target_id = id.from(_N, "FederatedUser"),
+            target = M.FederatedUser,
+            traits = {
+                [traits.JSON_NAME] = { name = "federatedUser" },
+            },
+        }),
+        iamUser = schema.new({
+            id = id.from(_N, "UserIdentity", "iamUser"),
+            type = "structure",
+            name = "iamUser",
+            target_id = id.from(_N, "IamUser"),
+            target = M.IamUser,
+            traits = {
+                [traits.JSON_NAME] = { name = "iamUser" },
+            },
+        }),
+        root = schema.new({
+            id = id.from(_N, "UserIdentity", "root"),
+            type = "structure",
+            name = "root",
+            target_id = id.from(_N, "UserIdentityRoot"),
+            target = M.UserIdentityRoot,
+            traits = {
+                [traits.JSON_NAME] = { name = "root" },
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "UserIdentity", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "type" },
+            },
+        }),
+    },
+})
+
+M.FindingActor = schema.new({
+    id = id.from(_N, "FindingActor"),
+    type = "structure",
+    members = {
+        domainDetails = schema.new({
+            id = id.from(_N, "FindingActor", "domainDetails"),
+            type = "structure",
+            name = "domainDetails",
+            target_id = id.from(_N, "DomainDetails"),
+            target = M.DomainDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "domainDetails" },
+            },
+        }),
+        ipAddressDetails = schema.new({
+            id = id.from(_N, "FindingActor", "ipAddressDetails"),
+            type = "structure",
+            name = "ipAddressDetails",
+            target_id = id.from(_N, "IpAddressDetails"),
+            target = M.IpAddressDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "ipAddressDetails" },
+            },
+        }),
+        userIdentity = schema.new({
+            id = id.from(_N, "FindingActor", "userIdentity"),
+            type = "structure",
+            name = "userIdentity",
+            target_id = id.from(_N, "UserIdentity"),
+            target = M.UserIdentity,
+            traits = {
+                [traits.JSON_NAME] = { name = "userIdentity" },
+            },
+        }),
+    },
+})
+
+M.PolicyDetails = schema.new({
+    id = id.from(_N, "PolicyDetails"),
+    type = "structure",
+    members = {
+        action = schema.new({
+            id = id.from(_N, "PolicyDetails", "action"),
+            type = "structure",
+            name = "action",
+            target_id = id.from(_N, "FindingAction"),
+            target = M.FindingAction,
+            traits = {
+                [traits.JSON_NAME] = { name = "action" },
+            },
+        }),
+        actor = schema.new({
+            id = id.from(_N, "PolicyDetails", "actor"),
+            type = "structure",
+            name = "actor",
+            target_id = id.from(_N, "FindingActor"),
+            target = M.FindingActor,
+            traits = {
+                [traits.JSON_NAME] = { name = "actor" },
+            },
+        }),
+    },
+})
+
+M.ServerSideEncryption = schema.new({
+    id = id.from(_N, "ServerSideEncryption"),
+    type = "structure",
+    members = {
+        encryptionType = schema.new({
+            id = id.from(_N, "ServerSideEncryption", "encryptionType"),
+            type = "string",
+            name = "encryptionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "encryptionType" },
+            },
+        }),
+        kmsMasterKeyId = schema.new({
+            id = id.from(_N, "ServerSideEncryption", "kmsMasterKeyId"),
+            type = "string",
+            name = "kmsMasterKeyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "kmsMasterKeyId" },
+            },
+        }),
+    },
+})
+
+M.S3BucketOwner = schema.new({
+    id = id.from(_N, "S3BucketOwner"),
+    type = "structure",
+    members = {
+        displayName = schema.new({
+            id = id.from(_N, "S3BucketOwner", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "displayName" },
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "S3BucketOwner", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "id" },
+            },
+        }),
+    },
+})
+
+M.S3Bucket = schema.new({
+    id = id.from(_N, "S3Bucket"),
+    type = "structure",
+    members = {
+        allowsUnencryptedObjectUploads = schema.new({
+            id = id.from(_N, "S3Bucket", "allowsUnencryptedObjectUploads"),
+            type = "string",
+            name = "allowsUnencryptedObjectUploads",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "allowsUnencryptedObjectUploads" },
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "S3Bucket", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "S3Bucket", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "createdAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "createdAt" },
+            },
+        }),
+        defaultServerSideEncryption = schema.new({
+            id = id.from(_N, "S3Bucket", "defaultServerSideEncryption"),
+            type = "structure",
+            name = "defaultServerSideEncryption",
+            target_id = id.from(_N, "ServerSideEncryption"),
+            target = M.ServerSideEncryption,
+            traits = {
+                [traits.JSON_NAME] = { name = "defaultServerSideEncryption" },
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "S3Bucket", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        owner = schema.new({
+            id = id.from(_N, "S3Bucket", "owner"),
+            type = "structure",
+            name = "owner",
+            target_id = id.from(_N, "S3BucketOwner"),
+            target = M.S3BucketOwner,
+            traits = {
+                [traits.JSON_NAME] = { name = "owner" },
+            },
+        }),
+        publicAccess = schema.new({
+            id = id.from(_N, "S3Bucket", "publicAccess"),
+            type = "structure",
+            name = "publicAccess",
+            target_id = id.from(_N, "BucketPublicAccess"),
+            target = M.BucketPublicAccess,
+            traits = {
+                [traits.JSON_NAME] = { name = "publicAccess" },
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "S3Bucket", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.KeyValuePair,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+    },
+})
+
+M.S3Object = schema.new({
+    id = id.from(_N, "S3Object"),
+    type = "structure",
+    members = {
+        bucketArn = schema.new({
+            id = id.from(_N, "S3Object", "bucketArn"),
+            type = "string",
+            name = "bucketArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "bucketArn" },
+            },
+        }),
+        eTag = schema.new({
+            id = id.from(_N, "S3Object", "eTag"),
+            type = "string",
+            name = "eTag",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "eTag" },
+            },
+        }),
+        extension = schema.new({
+            id = id.from(_N, "S3Object", "extension"),
+            type = "string",
+            name = "extension",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "extension" },
+            },
+        }),
+        key = schema.new({
+            id = id.from(_N, "S3Object", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "key" },
+            },
+        }),
+        lastModified = schema.new({
+            id = id.from(_N, "S3Object", "lastModified"),
+            type = "timestamp",
+            name = "lastModified",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "lastModified" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "lastModified" },
+            },
+        }),
+        path = schema.new({
+            id = id.from(_N, "S3Object", "path"),
+            type = "string",
+            name = "path",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "path" },
+            },
+        }),
+        publicAccess = schema.new({
+            id = id.from(_N, "S3Object", "publicAccess"),
+            type = "boolean",
+            name = "publicAccess",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "publicAccess" },
+            },
+        }),
+        serverSideEncryption = schema.new({
+            id = id.from(_N, "S3Object", "serverSideEncryption"),
+            type = "structure",
+            name = "serverSideEncryption",
+            target_id = id.from(_N, "ServerSideEncryption"),
+            target = M.ServerSideEncryption,
+            traits = {
+                [traits.JSON_NAME] = { name = "serverSideEncryption" },
+            },
+        }),
+        size = schema.new({
+            id = id.from(_N, "S3Object", "size"),
+            type = "long",
+            name = "size",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "size" },
+            },
+        }),
+        storageClass = schema.new({
+            id = id.from(_N, "S3Object", "storageClass"),
+            type = "string",
+            name = "storageClass",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "storageClass" },
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "S3Object", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.KeyValuePair,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+        versionId = schema.new({
+            id = id.from(_N, "S3Object", "versionId"),
+            type = "string",
+            name = "versionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "versionId" },
+            },
+        }),
+    },
+})
+
+M.ResourcesAffected = schema.new({
+    id = id.from(_N, "ResourcesAffected"),
+    type = "structure",
+    members = {
+        s3Bucket = schema.new({
+            id = id.from(_N, "ResourcesAffected", "s3Bucket"),
+            type = "structure",
+            name = "s3Bucket",
+            target_id = id.from(_N, "S3Bucket"),
+            target = M.S3Bucket,
+            traits = {
+                [traits.JSON_NAME] = { name = "s3Bucket" },
+            },
+        }),
+        s3Object = schema.new({
+            id = id.from(_N, "ResourcesAffected", "s3Object"),
+            type = "structure",
+            name = "s3Object",
+            target_id = id.from(_N, "S3Object"),
+            target = M.S3Object,
+            traits = {
+                [traits.JSON_NAME] = { name = "s3Object" },
+            },
+        }),
+    },
+})
+
+M.Severity = schema.new({
+    id = id.from(_N, "Severity"),
+    type = "structure",
+    members = {
+        description = schema.new({
+            id = id.from(_N, "Severity", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        score = schema.new({
+            id = id.from(_N, "Severity", "score"),
+            type = "long",
+            name = "score",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "score" },
+            },
+        }),
+    },
+})
+
+M.Finding = schema.new({
+    id = id.from(_N, "Finding"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "Finding", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "accountId" },
+            },
+        }),
+        archived = schema.new({
+            id = id.from(_N, "Finding", "archived"),
+            type = "boolean",
+            name = "archived",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "archived" },
+            },
+        }),
+        category = schema.new({
+            id = id.from(_N, "Finding", "category"),
+            type = "string",
+            name = "category",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "category" },
+            },
+        }),
+        classificationDetails = schema.new({
+            id = id.from(_N, "Finding", "classificationDetails"),
+            type = "structure",
+            name = "classificationDetails",
+            target_id = id.from(_N, "ClassificationDetails"),
+            target = M.ClassificationDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "classificationDetails" },
+            },
+        }),
+        count = schema.new({
+            id = id.from(_N, "Finding", "count"),
+            type = "long",
+            name = "count",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "count" },
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "Finding", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "createdAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "createdAt" },
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "Finding", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "Finding", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "id" },
+            },
+        }),
+        partition = schema.new({
+            id = id.from(_N, "Finding", "partition"),
+            type = "string",
+            name = "partition",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "partition" },
+            },
+        }),
+        policyDetails = schema.new({
+            id = id.from(_N, "Finding", "policyDetails"),
+            type = "structure",
+            name = "policyDetails",
+            target_id = id.from(_N, "PolicyDetails"),
+            target = M.PolicyDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "policyDetails" },
+            },
+        }),
+        region = schema.new({
+            id = id.from(_N, "Finding", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "region" },
+            },
+        }),
+        resourcesAffected = schema.new({
+            id = id.from(_N, "Finding", "resourcesAffected"),
+            type = "structure",
+            name = "resourcesAffected",
+            target_id = id.from(_N, "ResourcesAffected"),
+            target = M.ResourcesAffected,
+            traits = {
+                [traits.JSON_NAME] = { name = "resourcesAffected" },
+            },
+        }),
+        sample = schema.new({
+            id = id.from(_N, "Finding", "sample"),
+            type = "boolean",
+            name = "sample",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sample" },
+            },
+        }),
+        schemaVersion = schema.new({
+            id = id.from(_N, "Finding", "schemaVersion"),
+            type = "string",
+            name = "schemaVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "schemaVersion" },
+            },
+        }),
+        severity = schema.new({
+            id = id.from(_N, "Finding", "severity"),
+            type = "structure",
+            name = "severity",
+            target_id = id.from(_N, "Severity"),
+            target = M.Severity,
+            traits = {
+                [traits.JSON_NAME] = { name = "severity" },
+            },
+        }),
+        title = schema.new({
+            id = id.from(_N, "Finding", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "title" },
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "Finding", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "type" },
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "Finding", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "updatedAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "updatedAt" },
+            },
+        }),
+    },
+})
+
+M.FindingsFilterListItem = schema.new({
+    id = id.from(_N, "FindingsFilterListItem"),
+    type = "structure",
+    members = {
+        action = schema.new({
+            id = id.from(_N, "FindingsFilterListItem", "action"),
+            type = "string",
+            name = "action",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "action" },
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "FindingsFilterListItem", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "FindingsFilterListItem", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "id" },
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "FindingsFilterListItem", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "FindingsFilterListItem", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+    },
+})
+
+M.GroupCount = schema.new({
+    id = id.from(_N, "GroupCount"),
+    type = "structure",
+    members = {
+        count = schema.new({
+            id = id.from(_N, "GroupCount", "count"),
+            type = "long",
+            name = "count",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "count" },
+            },
+        }),
+        groupKey = schema.new({
+            id = id.from(_N, "GroupCount", "groupKey"),
+            type = "string",
+            name = "groupKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "groupKey" },
+            },
+        }),
+    },
+})
+
+M.Invitation = schema.new({
+    id = id.from(_N, "Invitation"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "Invitation", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "accountId" },
+            },
+        }),
+        invitationId = schema.new({
+            id = id.from(_N, "Invitation", "invitationId"),
+            type = "string",
+            name = "invitationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "invitationId" },
+            },
+        }),
+        invitedAt = schema.new({
+            id = id.from(_N, "Invitation", "invitedAt"),
+            type = "timestamp",
+            name = "invitedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "invitedAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "invitedAt" },
+            },
+        }),
+        relationshipStatus = schema.new({
+            id = id.from(_N, "Invitation", "relationshipStatus"),
+            type = "string",
+            name = "relationshipStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "relationshipStatus" },
+            },
+        }),
+    },
+})
+
+M.SimpleScopeTerm = schema.new({
+    id = id.from(_N, "SimpleScopeTerm"),
+    type = "structure",
+    members = {
+        comparator = schema.new({
+            id = id.from(_N, "SimpleScopeTerm", "comparator"),
+            type = "string",
+            name = "comparator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "comparator" },
+            },
+        }),
+        key = schema.new({
+            id = id.from(_N, "SimpleScopeTerm", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "key" },
+            },
+        }),
+        values = schema.new({
+            id = id.from(_N, "SimpleScopeTerm", "values"),
+            type = "list",
+            name = "values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "values" },
+            },
+        }),
+    },
+})
+
+M.TagValuePair = schema.new({
+    id = id.from(_N, "TagValuePair"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "TagValuePair", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "key" },
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "TagValuePair", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "value" },
+            },
+        }),
+    },
+})
+
+M.TagScopeTerm = schema.new({
+    id = id.from(_N, "TagScopeTerm"),
+    type = "structure",
+    members = {
+        comparator = schema.new({
+            id = id.from(_N, "TagScopeTerm", "comparator"),
+            type = "string",
+            name = "comparator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "comparator" },
+            },
+        }),
+        key = schema.new({
+            id = id.from(_N, "TagScopeTerm", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "key" },
+            },
+        }),
+        tagValues = schema.new({
+            id = id.from(_N, "TagScopeTerm", "tagValues"),
+            type = "list",
+            name = "tagValues",
+            target_id = prelude.Document.id,
+            list_member = M.TagValuePair,
+            traits = {
+                [traits.JSON_NAME] = { name = "tagValues" },
+            },
+        }),
+        target = schema.new({
+            id = id.from(_N, "TagScopeTerm", "target"),
+            type = "string",
+            name = "target",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "target" },
+            },
+        }),
+    },
+})
+
+M.JobScopeTerm = schema.new({
+    id = id.from(_N, "JobScopeTerm"),
+    type = "structure",
+    members = {
+        simpleScopeTerm = schema.new({
+            id = id.from(_N, "JobScopeTerm", "simpleScopeTerm"),
+            type = "structure",
+            name = "simpleScopeTerm",
+            target_id = id.from(_N, "SimpleScopeTerm"),
+            target = M.SimpleScopeTerm,
+            traits = {
+                [traits.JSON_NAME] = { name = "simpleScopeTerm" },
+            },
+        }),
+        tagScopeTerm = schema.new({
+            id = id.from(_N, "JobScopeTerm", "tagScopeTerm"),
+            type = "structure",
+            name = "tagScopeTerm",
+            target_id = id.from(_N, "TagScopeTerm"),
+            target = M.TagScopeTerm,
+            traits = {
+                [traits.JSON_NAME] = { name = "tagScopeTerm" },
+            },
+        }),
+    },
+})
+
+M.CriteriaBlockForJob = schema.new({
+    id = id.from(_N, "CriteriaBlockForJob"),
+    type = "structure",
+    members = {
+        and = schema.new({
+            id = id.from(_N, "CriteriaBlockForJob", "and"),
+            type = "list",
+            name = "and",
+            target_id = prelude.Document.id,
+            list_member = M.CriteriaForJob,
+            traits = {
+                [traits.JSON_NAME] = { name = "and" },
+            },
+        }),
+    },
+})
+
+M.S3BucketCriteriaForJob = schema.new({
+    id = id.from(_N, "S3BucketCriteriaForJob"),
+    type = "structure",
+    members = {
+        excludes = schema.new({
+            id = id.from(_N, "S3BucketCriteriaForJob", "excludes"),
+            type = "structure",
+            name = "excludes",
+            target_id = id.from(_N, "CriteriaBlockForJob"),
+            target = M.CriteriaBlockForJob,
+            traits = {
+                [traits.JSON_NAME] = { name = "excludes" },
+            },
+        }),
+        includes = schema.new({
+            id = id.from(_N, "S3BucketCriteriaForJob", "includes"),
+            type = "structure",
+            name = "includes",
+            target_id = id.from(_N, "CriteriaBlockForJob"),
+            target = M.CriteriaBlockForJob,
+            traits = {
+                [traits.JSON_NAME] = { name = "includes" },
+            },
+        }),
+    },
+})
+
+M.S3BucketDefinitionForJob = schema.new({
+    id = id.from(_N, "S3BucketDefinitionForJob"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "S3BucketDefinitionForJob", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "accountId" },
+            },
+        }),
+        buckets = schema.new({
+            id = id.from(_N, "S3BucketDefinitionForJob", "buckets"),
+            type = "list",
+            name = "buckets",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "buckets" },
+            },
+        }),
+    },
+})
+
+M.LastRunErrorStatus = schema.new({
+    id = id.from(_N, "LastRunErrorStatus"),
+    type = "structure",
+    members = {
+        code = schema.new({
+            id = id.from(_N, "LastRunErrorStatus", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "code" },
+            },
+        }),
+    },
+})
+
+M.UserPausedDetails = schema.new({
+    id = id.from(_N, "UserPausedDetails"),
+    type = "structure",
+    members = {
+        jobExpiresAt = schema.new({
+            id = id.from(_N, "UserPausedDetails", "jobExpiresAt"),
+            type = "timestamp",
+            name = "jobExpiresAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "jobExpiresAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "jobExpiresAt" },
+            },
+        }),
+        jobImminentExpirationHealthEventArn = schema.new({
+            id = id.from(_N, "UserPausedDetails", "jobImminentExpirationHealthEventArn"),
+            type = "string",
+            name = "jobImminentExpirationHealthEventArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "jobImminentExpirationHealthEventArn" },
+            },
+        }),
+        jobPausedAt = schema.new({
+            id = id.from(_N, "UserPausedDetails", "jobPausedAt"),
+            type = "timestamp",
+            name = "jobPausedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "jobPausedAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "jobPausedAt" },
+            },
+        }),
+    },
+})
+
+M.JobSummary = schema.new({
+    id = id.from(_N, "JobSummary"),
+    type = "structure",
+    members = {
+        bucketCriteria = schema.new({
+            id = id.from(_N, "JobSummary", "bucketCriteria"),
+            type = "structure",
+            name = "bucketCriteria",
+            target_id = id.from(_N, "S3BucketCriteriaForJob"),
+            target = M.S3BucketCriteriaForJob,
+            traits = {
+                [traits.JSON_NAME] = { name = "bucketCriteria" },
+            },
+        }),
+        bucketDefinitions = schema.new({
+            id = id.from(_N, "JobSummary", "bucketDefinitions"),
+            type = "list",
+            name = "bucketDefinitions",
+            target_id = prelude.Document.id,
+            list_member = M.S3BucketDefinitionForJob,
+            traits = {
+                [traits.JSON_NAME] = { name = "bucketDefinitions" },
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "JobSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "createdAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "createdAt" },
+            },
+        }),
+        jobId = schema.new({
+            id = id.from(_N, "JobSummary", "jobId"),
+            type = "string",
+            name = "jobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "jobId" },
+            },
+        }),
+        jobStatus = schema.new({
+            id = id.from(_N, "JobSummary", "jobStatus"),
+            type = "string",
+            name = "jobStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "jobStatus" },
+            },
+        }),
+        jobType = schema.new({
+            id = id.from(_N, "JobSummary", "jobType"),
+            type = "string",
+            name = "jobType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "jobType" },
+            },
+        }),
+        lastRunErrorStatus = schema.new({
+            id = id.from(_N, "JobSummary", "lastRunErrorStatus"),
+            type = "structure",
+            name = "lastRunErrorStatus",
+            target_id = id.from(_N, "LastRunErrorStatus"),
+            target = M.LastRunErrorStatus,
+            traits = {
+                [traits.JSON_NAME] = { name = "lastRunErrorStatus" },
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "JobSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        userPausedDetails = schema.new({
+            id = id.from(_N, "JobSummary", "userPausedDetails"),
+            type = "structure",
+            name = "userPausedDetails",
+            target_id = id.from(_N, "UserPausedDetails"),
+            target = M.UserPausedDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "userPausedDetails" },
+            },
+        }),
+    },
+})
+
+M.ListJobsFilterTerm = schema.new({
+    id = id.from(_N, "ListJobsFilterTerm"),
+    type = "structure",
+    members = {
+        comparator = schema.new({
+            id = id.from(_N, "ListJobsFilterTerm", "comparator"),
+            type = "string",
+            name = "comparator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "comparator" },
+            },
+        }),
+        key = schema.new({
+            id = id.from(_N, "ListJobsFilterTerm", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "key" },
+            },
+        }),
+        values = schema.new({
+            id = id.from(_N, "ListJobsFilterTerm", "values"),
+            type = "list",
+            name = "values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "values" },
+            },
+        }),
+    },
+})
+
+M.ManagedDataIdentifierSummary = schema.new({
+    id = id.from(_N, "ManagedDataIdentifierSummary"),
+    type = "structure",
+    members = {
+        category = schema.new({
+            id = id.from(_N, "ManagedDataIdentifierSummary", "category"),
+            type = "string",
+            name = "category",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "category" },
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "ManagedDataIdentifierSummary", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "id" },
+            },
+        }),
+    },
+})
+
+M.MatchingBucket = schema.new({
+    id = id.from(_N, "MatchingBucket"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "MatchingBucket", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "accountId" },
+            },
+        }),
+        automatedDiscoveryMonitoringStatus = schema.new({
+            id = id.from(_N, "MatchingBucket", "automatedDiscoveryMonitoringStatus"),
+            type = "string",
+            name = "automatedDiscoveryMonitoringStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "automatedDiscoveryMonitoringStatus" },
+            },
+        }),
+        bucketName = schema.new({
+            id = id.from(_N, "MatchingBucket", "bucketName"),
+            type = "string",
+            name = "bucketName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "bucketName" },
+            },
+        }),
+        classifiableObjectCount = schema.new({
+            id = id.from(_N, "MatchingBucket", "classifiableObjectCount"),
+            type = "long",
+            name = "classifiableObjectCount",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "classifiableObjectCount" },
+            },
+        }),
+        classifiableSizeInBytes = schema.new({
+            id = id.from(_N, "MatchingBucket", "classifiableSizeInBytes"),
+            type = "long",
+            name = "classifiableSizeInBytes",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "classifiableSizeInBytes" },
+            },
+        }),
+        errorCode = schema.new({
+            id = id.from(_N, "MatchingBucket", "errorCode"),
+            type = "string",
+            name = "errorCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "errorCode" },
+            },
+        }),
+        errorMessage = schema.new({
+            id = id.from(_N, "MatchingBucket", "errorMessage"),
+            type = "string",
+            name = "errorMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "errorMessage" },
+            },
+        }),
+        jobDetails = schema.new({
+            id = id.from(_N, "MatchingBucket", "jobDetails"),
+            type = "structure",
+            name = "jobDetails",
+            target_id = id.from(_N, "JobDetails"),
+            target = M.JobDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "jobDetails" },
+            },
+        }),
+        lastAutomatedDiscoveryTime = schema.new({
+            id = id.from(_N, "MatchingBucket", "lastAutomatedDiscoveryTime"),
+            type = "timestamp",
+            name = "lastAutomatedDiscoveryTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "lastAutomatedDiscoveryTime" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "lastAutomatedDiscoveryTime" },
+            },
+        }),
+        objectCount = schema.new({
+            id = id.from(_N, "MatchingBucket", "objectCount"),
+            type = "long",
+            name = "objectCount",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "objectCount" },
+            },
+        }),
+        objectCountByEncryptionType = schema.new({
+            id = id.from(_N, "MatchingBucket", "objectCountByEncryptionType"),
+            type = "structure",
+            name = "objectCountByEncryptionType",
+            target_id = id.from(_N, "ObjectCountByEncryptionType"),
+            target = M.ObjectCountByEncryptionType,
+            traits = {
+                [traits.JSON_NAME] = { name = "objectCountByEncryptionType" },
+            },
+        }),
+        sensitivityScore = schema.new({
+            id = id.from(_N, "MatchingBucket", "sensitivityScore"),
+            type = "integer",
+            name = "sensitivityScore",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sensitivityScore" },
+            },
+        }),
+        sizeInBytes = schema.new({
+            id = id.from(_N, "MatchingBucket", "sizeInBytes"),
+            type = "long",
+            name = "sizeInBytes",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sizeInBytes" },
+            },
+        }),
+        sizeInBytesCompressed = schema.new({
+            id = id.from(_N, "MatchingBucket", "sizeInBytesCompressed"),
+            type = "long",
+            name = "sizeInBytesCompressed",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sizeInBytesCompressed" },
+            },
+        }),
+        unclassifiableObjectCount = schema.new({
+            id = id.from(_N, "MatchingBucket", "unclassifiableObjectCount"),
+            type = "structure",
+            name = "unclassifiableObjectCount",
+            target_id = id.from(_N, "ObjectLevelStatistics"),
+            target = M.ObjectLevelStatistics,
+            traits = {
+                [traits.JSON_NAME] = { name = "unclassifiableObjectCount" },
+            },
+        }),
+        unclassifiableObjectSizeInBytes = schema.new({
+            id = id.from(_N, "MatchingBucket", "unclassifiableObjectSizeInBytes"),
+            type = "structure",
+            name = "unclassifiableObjectSizeInBytes",
+            target_id = id.from(_N, "ObjectLevelStatistics"),
+            target = M.ObjectLevelStatistics,
+            traits = {
+                [traits.JSON_NAME] = { name = "unclassifiableObjectSizeInBytes" },
+            },
+        }),
+    },
+})
+
+M.MatchingResource = schema.new({
+    id = id.from(_N, "MatchingResource"),
+    type = "structure",
+    members = {
+        matchingBucket = schema.new({
+            id = id.from(_N, "MatchingResource", "matchingBucket"),
+            type = "structure",
+            name = "matchingBucket",
+            target_id = id.from(_N, "MatchingBucket"),
+            target = M.MatchingBucket,
+            traits = {
+                [traits.JSON_NAME] = { name = "matchingBucket" },
+            },
+        }),
+    },
+})
+
+M.Member = schema.new({
+    id = id.from(_N, "Member"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "Member", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "accountId" },
+            },
+        }),
+        administratorAccountId = schema.new({
+            id = id.from(_N, "Member", "administratorAccountId"),
+            type = "string",
+            name = "administratorAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "administratorAccountId" },
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "Member", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        email = schema.new({
+            id = id.from(_N, "Member", "email"),
+            type = "string",
+            name = "email",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "email" },
+            },
+        }),
+        invitedAt = schema.new({
+            id = id.from(_N, "Member", "invitedAt"),
+            type = "timestamp",
+            name = "invitedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "invitedAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "invitedAt" },
+            },
+        }),
+        masterAccountId = schema.new({
+            id = id.from(_N, "Member", "masterAccountId"),
+            type = "string",
+            name = "masterAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "masterAccountId" },
+            },
+        }),
+        relationshipStatus = schema.new({
+            id = id.from(_N, "Member", "relationshipStatus"),
+            type = "string",
+            name = "relationshipStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "relationshipStatus" },
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "Member", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "Member", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "updatedAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "updatedAt" },
+            },
+        }),
+    },
+})
+
+M.ResourceProfileArtifact = schema.new({
+    id = id.from(_N, "ResourceProfileArtifact"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "ResourceProfileArtifact", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        classificationResultStatus = schema.new({
+            id = id.from(_N, "ResourceProfileArtifact", "classificationResultStatus"),
+            type = "string",
+            name = "classificationResultStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "classificationResultStatus" },
+            },
+        }),
+        sensitive = schema.new({
+            id = id.from(_N, "ResourceProfileArtifact", "sensitive"),
+            type = "boolean",
+            name = "sensitive",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sensitive" },
+            },
+        }),
+    },
+})
+
+M.SearchResourcesSimpleCriterion = schema.new({
+    id = id.from(_N, "SearchResourcesSimpleCriterion"),
+    type = "structure",
+    members = {
+        comparator = schema.new({
+            id = id.from(_N, "SearchResourcesSimpleCriterion", "comparator"),
+            type = "string",
+            name = "comparator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "comparator" },
+            },
+        }),
+        key = schema.new({
+            id = id.from(_N, "SearchResourcesSimpleCriterion", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "key" },
+            },
+        }),
+        values = schema.new({
+            id = id.from(_N, "SearchResourcesSimpleCriterion", "values"),
+            type = "list",
+            name = "values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "values" },
+            },
+        }),
+    },
+})
+
+M.SearchResourcesTagCriterionPair = schema.new({
+    id = id.from(_N, "SearchResourcesTagCriterionPair"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "SearchResourcesTagCriterionPair", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "key" },
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "SearchResourcesTagCriterionPair", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "value" },
+            },
+        }),
+    },
+})
+
+M.SearchResourcesTagCriterion = schema.new({
+    id = id.from(_N, "SearchResourcesTagCriterion"),
+    type = "structure",
+    members = {
+        comparator = schema.new({
+            id = id.from(_N, "SearchResourcesTagCriterion", "comparator"),
+            type = "string",
+            name = "comparator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "comparator" },
+            },
+        }),
+        tagValues = schema.new({
+            id = id.from(_N, "SearchResourcesTagCriterion", "tagValues"),
+            type = "list",
+            name = "tagValues",
+            target_id = prelude.Document.id,
+            list_member = M.SearchResourcesTagCriterionPair,
+            traits = {
+                [traits.JSON_NAME] = { name = "tagValues" },
+            },
+        }),
+    },
+})
+
+M.SearchResourcesCriteria = schema.new({
+    id = id.from(_N, "SearchResourcesCriteria"),
+    type = "structure",
+    members = {
+        simpleCriterion = schema.new({
+            id = id.from(_N, "SearchResourcesCriteria", "simpleCriterion"),
+            type = "structure",
+            name = "simpleCriterion",
+            target_id = id.from(_N, "SearchResourcesSimpleCriterion"),
+            target = M.SearchResourcesSimpleCriterion,
+            traits = {
+                [traits.JSON_NAME] = { name = "simpleCriterion" },
+            },
+        }),
+        tagCriterion = schema.new({
+            id = id.from(_N, "SearchResourcesCriteria", "tagCriterion"),
+            type = "structure",
+            name = "tagCriterion",
+            target_id = id.from(_N, "SearchResourcesTagCriterion"),
+            target = M.SearchResourcesTagCriterion,
+            traits = {
+                [traits.JSON_NAME] = { name = "tagCriterion" },
+            },
+        }),
+    },
+})
+
+M.SensitivityInspectionTemplatesEntry = schema.new({
+    id = id.from(_N, "SensitivityInspectionTemplatesEntry"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "SensitivityInspectionTemplatesEntry", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "id" },
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "SensitivityInspectionTemplatesEntry", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+    },
+})
+
+M.SuppressDataIdentifier = schema.new({
+    id = id.from(_N, "SuppressDataIdentifier"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "SuppressDataIdentifier", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "id" },
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "SuppressDataIdentifier", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "type" },
+            },
+        }),
+    },
+})
+
+M.UnprocessedAccount = schema.new({
+    id = id.from(_N, "UnprocessedAccount"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "UnprocessedAccount", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "accountId" },
+            },
+        }),
+        errorCode = schema.new({
+            id = id.from(_N, "UnprocessedAccount", "errorCode"),
+            type = "string",
+            name = "errorCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "errorCode" },
+            },
+        }),
+        errorMessage = schema.new({
+            id = id.from(_N, "UnprocessedAccount", "errorMessage"),
+            type = "string",
+            name = "errorMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "errorMessage" },
+            },
+        }),
+    },
+})
+
+M.ServiceLimit = schema.new({
+    id = id.from(_N, "ServiceLimit"),
+    type = "structure",
+    members = {
+        isServiceLimited = schema.new({
+            id = id.from(_N, "ServiceLimit", "isServiceLimited"),
+            type = "boolean",
+            name = "isServiceLimited",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "isServiceLimited" },
+            },
+        }),
+        unit = schema.new({
+            id = id.from(_N, "ServiceLimit", "unit"),
+            type = "string",
+            name = "unit",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "unit" },
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "ServiceLimit", "value"),
+            type = "long",
+            name = "value",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "value" },
+            },
+        }),
+    },
+})
+
+M.UsageByAccount = schema.new({
+    id = id.from(_N, "UsageByAccount"),
+    type = "structure",
+    members = {
+        currency = schema.new({
+            id = id.from(_N, "UsageByAccount", "currency"),
+            type = "string",
+            name = "currency",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "currency" },
+            },
+        }),
+        estimatedCost = schema.new({
+            id = id.from(_N, "UsageByAccount", "estimatedCost"),
+            type = "string",
+            name = "estimatedCost",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "estimatedCost" },
+            },
+        }),
+        serviceLimit = schema.new({
+            id = id.from(_N, "UsageByAccount", "serviceLimit"),
+            type = "structure",
+            name = "serviceLimit",
+            target_id = id.from(_N, "ServiceLimit"),
+            target = M.ServiceLimit,
+            traits = {
+                [traits.JSON_NAME] = { name = "serviceLimit" },
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "UsageByAccount", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "type" },
+            },
+        }),
+    },
+})
+
+M.UsageRecord = schema.new({
+    id = id.from(_N, "UsageRecord"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "UsageRecord", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "accountId" },
+            },
+        }),
+        automatedDiscoveryFreeTrialStartDate = schema.new({
+            id = id.from(_N, "UsageRecord", "automatedDiscoveryFreeTrialStartDate"),
+            type = "timestamp",
+            name = "automatedDiscoveryFreeTrialStartDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "automatedDiscoveryFreeTrialStartDate" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "automatedDiscoveryFreeTrialStartDate" },
+            },
+        }),
+        freeTrialStartDate = schema.new({
+            id = id.from(_N, "UsageRecord", "freeTrialStartDate"),
+            type = "timestamp",
+            name = "freeTrialStartDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "freeTrialStartDate" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "freeTrialStartDate" },
+            },
+        }),
+        usage = schema.new({
+            id = id.from(_N, "UsageRecord", "usage"),
+            type = "list",
+            name = "usage",
+            target_id = prelude.Document.id,
+            list_member = M.UsageByAccount,
+            traits = {
+                [traits.JSON_NAME] = { name = "usage" },
+            },
+        }),
+    },
+})
+
+M.UsageStatisticsFilter = schema.new({
+    id = id.from(_N, "UsageStatisticsFilter"),
+    type = "structure",
+    members = {
+        comparator = schema.new({
+            id = id.from(_N, "UsageStatisticsFilter", "comparator"),
+            type = "string",
+            name = "comparator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "comparator" },
+            },
+        }),
+        key = schema.new({
+            id = id.from(_N, "UsageStatisticsFilter", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "key" },
+            },
+        }),
+        values = schema.new({
+            id = id.from(_N, "UsageStatisticsFilter", "values"),
+            type = "list",
+            name = "values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "values" },
+            },
+        }),
+    },
+})
+
+M.UsageTotal = schema.new({
+    id = id.from(_N, "UsageTotal"),
+    type = "structure",
+    members = {
+        currency = schema.new({
+            id = id.from(_N, "UsageTotal", "currency"),
+            type = "string",
+            name = "currency",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "currency" },
+            },
+        }),
+        estimatedCost = schema.new({
+            id = id.from(_N, "UsageTotal", "estimatedCost"),
+            type = "string",
+            name = "estimatedCost",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "estimatedCost" },
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "UsageTotal", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "type" },
+            },
+        }),
+    },
+})
+
+M.AcceptInvitationInput = schema.new({
+    id = id.from(_N, "AcceptInvitationInput"),
+    type = "structure",
+    members = {
+        administratorAccountId = schema.new({
+            id = id.from(_N, "AcceptInvitationInput", "administratorAccountId"),
+            type = "string",
+            name = "administratorAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "administratorAccountId" },
+            },
+        }),
+        invitationId = schema.new({
+            id = id.from(_N, "AcceptInvitationInput", "invitationId"),
+            type = "string",
+            name = "invitationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "invitationId" },
+            },
+        }),
+        masterAccount = schema.new({
+            id = id.from(_N, "AcceptInvitationInput", "masterAccount"),
+            type = "string",
+            name = "masterAccount",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "masterAccount" },
+            },
+        }),
+    },
+})
+
+M.AcceptInvitationOutput = schema.new({
+    id = id.from(_N, "AcceptInvitationOutput"),
+    type = "structure",
+})
+
+M.AccessDeniedException = schema.new({
+    id = id.from(_N, "AccessDeniedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "AccessDeniedException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ConflictException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InternalServerException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ThrottlingException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.AccountDetail = schema.new({
+    id = id.from(_N, "AccountDetail"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "AccountDetail", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "accountId" },
+            },
+        }),
+        email = schema.new({
+            id = id.from(_N, "AccountDetail", "email"),
+            type = "string",
+            name = "email",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "email" },
+            },
+        }),
+    },
+})
+
+M.S3WordsList = schema.new({
+    id = id.from(_N, "S3WordsList"),
+    type = "structure",
+    members = {
+        bucketName = schema.new({
+            id = id.from(_N, "S3WordsList", "bucketName"),
+            type = "string",
+            name = "bucketName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "bucketName" },
+            },
+        }),
+        objectKey = schema.new({
+            id = id.from(_N, "S3WordsList", "objectKey"),
+            type = "string",
+            name = "objectKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "objectKey" },
+            },
+        }),
+    },
+})
+
+M.AllowListCriteria = schema.new({
+    id = id.from(_N, "AllowListCriteria"),
+    type = "structure",
+    members = {
+        regex = schema.new({
+            id = id.from(_N, "AllowListCriteria", "regex"),
+            type = "string",
+            name = "regex",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "regex" },
+            },
+        }),
+        s3WordsList = schema.new({
+            id = id.from(_N, "AllowListCriteria", "s3WordsList"),
+            type = "structure",
+            name = "s3WordsList",
+            target_id = id.from(_N, "S3WordsList"),
+            target = M.S3WordsList,
+            traits = {
+                [traits.JSON_NAME] = { name = "s3WordsList" },
+            },
+        }),
+    },
+})
+
+M.AllowListStatus = schema.new({
+    id = id.from(_N, "AllowListStatus"),
+    type = "structure",
+    members = {
+        code = schema.new({
+            id = id.from(_N, "AllowListStatus", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "code" },
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "AllowListStatus", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+    },
+})
+
+M.BatchGetCustomDataIdentifiersInput = schema.new({
+    id = id.from(_N, "BatchGetCustomDataIdentifiersInput"),
+    type = "structure",
+    members = {
+        ids = schema.new({
+            id = id.from(_N, "BatchGetCustomDataIdentifiersInput", "ids"),
+            type = "list",
+            name = "ids",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "ids" },
+            },
+        }),
+    },
+})
+
+M.BatchGetCustomDataIdentifiersOutput = schema.new({
+    id = id.from(_N, "BatchGetCustomDataIdentifiersOutput"),
+    type = "structure",
+    members = {
+        customDataIdentifiers = schema.new({
+            id = id.from(_N, "BatchGetCustomDataIdentifiersOutput", "customDataIdentifiers"),
+            type = "list",
+            name = "customDataIdentifiers",
+            target_id = prelude.Document.id,
+            list_member = M.BatchGetCustomDataIdentifierSummary,
+            traits = {
+                [traits.JSON_NAME] = { name = "customDataIdentifiers" },
+            },
+        }),
+        notFoundIdentifierIds = schema.new({
+            id = id.from(_N, "BatchGetCustomDataIdentifiersOutput", "notFoundIdentifierIds"),
+            type = "list",
+            name = "notFoundIdentifierIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "notFoundIdentifierIds" },
+            },
+        }),
+    },
+})
+
+M.BatchUpdateAutomatedDiscoveryAccountsInput = schema.new({
+    id = id.from(_N, "BatchUpdateAutomatedDiscoveryAccountsInput"),
+    type = "structure",
+    members = {
+        accounts = schema.new({
+            id = id.from(_N, "BatchUpdateAutomatedDiscoveryAccountsInput", "accounts"),
+            type = "list",
+            name = "accounts",
+            target_id = prelude.Document.id,
+            list_member = M.AutomatedDiscoveryAccountUpdate,
+            traits = {
+                [traits.JSON_NAME] = { name = "accounts" },
+            },
+        }),
+    },
+})
+
+M.BatchUpdateAutomatedDiscoveryAccountsOutput = schema.new({
+    id = id.from(_N, "BatchUpdateAutomatedDiscoveryAccountsOutput"),
+    type = "structure",
+    members = {
+        errors = schema.new({
+            id = id.from(_N, "BatchUpdateAutomatedDiscoveryAccountsOutput", "errors"),
+            type = "list",
+            name = "errors",
+            target_id = prelude.Document.id,
+            list_member = M.AutomatedDiscoveryAccountUpdateError,
+            traits = {
+                [traits.JSON_NAME] = { name = "errors" },
+            },
+        }),
+    },
+})
+
+M.BucketCountByEffectivePermission = schema.new({
+    id = id.from(_N, "BucketCountByEffectivePermission"),
+    type = "structure",
+    members = {
+        publiclyAccessible = schema.new({
+            id = id.from(_N, "BucketCountByEffectivePermission", "publiclyAccessible"),
+            type = "long",
+            name = "publiclyAccessible",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "publiclyAccessible" },
+            },
+        }),
+        publiclyReadable = schema.new({
+            id = id.from(_N, "BucketCountByEffectivePermission", "publiclyReadable"),
+            type = "long",
+            name = "publiclyReadable",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "publiclyReadable" },
+            },
+        }),
+        publiclyWritable = schema.new({
+            id = id.from(_N, "BucketCountByEffectivePermission", "publiclyWritable"),
+            type = "long",
+            name = "publiclyWritable",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "publiclyWritable" },
+            },
+        }),
+        unknown = schema.new({
+            id = id.from(_N, "BucketCountByEffectivePermission", "unknown"),
+            type = "long",
+            name = "unknown",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "unknown" },
+            },
+        }),
+    },
+})
+
+M.BucketCountByEncryptionType = schema.new({
+    id = id.from(_N, "BucketCountByEncryptionType"),
+    type = "structure",
+    members = {
+        kmsManaged = schema.new({
+            id = id.from(_N, "BucketCountByEncryptionType", "kmsManaged"),
+            type = "long",
+            name = "kmsManaged",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "kmsManaged" },
+            },
+        }),
+        s3Managed = schema.new({
+            id = id.from(_N, "BucketCountByEncryptionType", "s3Managed"),
+            type = "long",
+            name = "s3Managed",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "s3Managed" },
+            },
+        }),
+        unencrypted = schema.new({
+            id = id.from(_N, "BucketCountByEncryptionType", "unencrypted"),
+            type = "long",
+            name = "unencrypted",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "unencrypted" },
+            },
+        }),
+        unknown = schema.new({
+            id = id.from(_N, "BucketCountByEncryptionType", "unknown"),
+            type = "long",
+            name = "unknown",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "unknown" },
+            },
+        }),
+    },
+})
+
+M.BucketCountBySharedAccessType = schema.new({
+    id = id.from(_N, "BucketCountBySharedAccessType"),
+    type = "structure",
+    members = {
+        external = schema.new({
+            id = id.from(_N, "BucketCountBySharedAccessType", "external"),
+            type = "long",
+            name = "external",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "external" },
+            },
+        }),
+        internal = schema.new({
+            id = id.from(_N, "BucketCountBySharedAccessType", "internal"),
+            type = "long",
+            name = "internal",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "internal" },
+            },
+        }),
+        notShared = schema.new({
+            id = id.from(_N, "BucketCountBySharedAccessType", "notShared"),
+            type = "long",
+            name = "notShared",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "notShared" },
+            },
+        }),
+        unknown = schema.new({
+            id = id.from(_N, "BucketCountBySharedAccessType", "unknown"),
+            type = "long",
+            name = "unknown",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "unknown" },
+            },
+        }),
+    },
+})
+
+M.BucketCountPolicyAllowsUnencryptedObjectUploads = schema.new({
+    id = id.from(_N, "BucketCountPolicyAllowsUnencryptedObjectUploads"),
+    type = "structure",
+    members = {
+        allowsUnencryptedObjectUploads = schema.new({
+            id = id.from(_N, "BucketCountPolicyAllowsUnencryptedObjectUploads", "allowsUnencryptedObjectUploads"),
+            type = "long",
+            name = "allowsUnencryptedObjectUploads",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "allowsUnencryptedObjectUploads" },
+            },
+        }),
+        deniesUnencryptedObjectUploads = schema.new({
+            id = id.from(_N, "BucketCountPolicyAllowsUnencryptedObjectUploads", "deniesUnencryptedObjectUploads"),
+            type = "long",
+            name = "deniesUnencryptedObjectUploads",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "deniesUnencryptedObjectUploads" },
+            },
+        }),
+        unknown = schema.new({
+            id = id.from(_N, "BucketCountPolicyAllowsUnencryptedObjectUploads", "unknown"),
+            type = "long",
+            name = "unknown",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "unknown" },
+            },
+        }),
+    },
+})
+
+M.BucketCriteriaAdditionalProperties = schema.new({
+    id = id.from(_N, "BucketCriteriaAdditionalProperties"),
+    type = "structure",
+    members = {
+        eq = schema.new({
+            id = id.from(_N, "BucketCriteriaAdditionalProperties", "eq"),
+            type = "list",
+            name = "eq",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "eq" },
+            },
+        }),
+        gt = schema.new({
+            id = id.from(_N, "BucketCriteriaAdditionalProperties", "gt"),
+            type = "long",
+            name = "gt",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "gt" },
+            },
+        }),
+        gte = schema.new({
+            id = id.from(_N, "BucketCriteriaAdditionalProperties", "gte"),
+            type = "long",
+            name = "gte",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "gte" },
+            },
+        }),
+        lt = schema.new({
+            id = id.from(_N, "BucketCriteriaAdditionalProperties", "lt"),
+            type = "long",
+            name = "lt",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "lt" },
+            },
+        }),
+        lte = schema.new({
+            id = id.from(_N, "BucketCriteriaAdditionalProperties", "lte"),
+            type = "long",
+            name = "lte",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "lte" },
+            },
+        }),
+        neq = schema.new({
+            id = id.from(_N, "BucketCriteriaAdditionalProperties", "neq"),
+            type = "list",
+            name = "neq",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "neq" },
+            },
+        }),
+        prefix = schema.new({
+            id = id.from(_N, "BucketCriteriaAdditionalProperties", "prefix"),
+            type = "string",
+            name = "prefix",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "prefix" },
+            },
+        }),
+    },
+})
+
+M.BucketSortCriteria = schema.new({
+    id = id.from(_N, "BucketSortCriteria"),
+    type = "structure",
+    members = {
+        attributeName = schema.new({
+            id = id.from(_N, "BucketSortCriteria", "attributeName"),
+            type = "string",
+            name = "attributeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "attributeName" },
+            },
+        }),
+        orderBy = schema.new({
+            id = id.from(_N, "BucketSortCriteria", "orderBy"),
+            type = "string",
+            name = "orderBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "orderBy" },
+            },
+        }),
+    },
+})
+
+M.SensitivityAggregations = schema.new({
+    id = id.from(_N, "SensitivityAggregations"),
+    type = "structure",
+    members = {
+        classifiableSizeInBytes = schema.new({
+            id = id.from(_N, "SensitivityAggregations", "classifiableSizeInBytes"),
+            type = "long",
+            name = "classifiableSizeInBytes",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "classifiableSizeInBytes" },
+            },
+        }),
+        publiclyAccessibleCount = schema.new({
+            id = id.from(_N, "SensitivityAggregations", "publiclyAccessibleCount"),
+            type = "long",
+            name = "publiclyAccessibleCount",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "publiclyAccessibleCount" },
+            },
+        }),
+        totalCount = schema.new({
+            id = id.from(_N, "SensitivityAggregations", "totalCount"),
+            type = "long",
+            name = "totalCount",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "totalCount" },
+            },
+        }),
+        totalSizeInBytes = schema.new({
+            id = id.from(_N, "SensitivityAggregations", "totalSizeInBytes"),
+            type = "long",
+            name = "totalSizeInBytes",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "totalSizeInBytes" },
+            },
+        }),
+    },
+})
+
+M.BucketStatisticsBySensitivity = schema.new({
+    id = id.from(_N, "BucketStatisticsBySensitivity"),
+    type = "structure",
+    members = {
+        classificationError = schema.new({
+            id = id.from(_N, "BucketStatisticsBySensitivity", "classificationError"),
+            type = "structure",
+            name = "classificationError",
+            target_id = id.from(_N, "SensitivityAggregations"),
+            target = M.SensitivityAggregations,
+            traits = {
+                [traits.JSON_NAME] = { name = "classificationError" },
+            },
+        }),
+        notClassified = schema.new({
+            id = id.from(_N, "BucketStatisticsBySensitivity", "notClassified"),
+            type = "structure",
+            name = "notClassified",
+            target_id = id.from(_N, "SensitivityAggregations"),
+            target = M.SensitivityAggregations,
+            traits = {
+                [traits.JSON_NAME] = { name = "notClassified" },
+            },
+        }),
+        notSensitive = schema.new({
+            id = id.from(_N, "BucketStatisticsBySensitivity", "notSensitive"),
+            type = "structure",
+            name = "notSensitive",
+            target_id = id.from(_N, "SensitivityAggregations"),
+            target = M.SensitivityAggregations,
+            traits = {
+                [traits.JSON_NAME] = { name = "notSensitive" },
+            },
+        }),
+        sensitive = schema.new({
+            id = id.from(_N, "BucketStatisticsBySensitivity", "sensitive"),
+            type = "structure",
+            name = "sensitive",
+            target_id = id.from(_N, "SensitivityAggregations"),
+            target = M.SensitivityAggregations,
+            traits = {
+                [traits.JSON_NAME] = { name = "sensitive" },
+            },
+        }),
+    },
+})
+
+M.S3Destination = schema.new({
+    id = id.from(_N, "S3Destination"),
+    type = "structure",
+    members = {
+        bucketName = schema.new({
+            id = id.from(_N, "S3Destination", "bucketName"),
+            type = "string",
+            name = "bucketName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "bucketName" },
+            },
+        }),
+        expectedBucketOwner = schema.new({
+            id = id.from(_N, "S3Destination", "expectedBucketOwner"),
+            type = "string",
+            name = "expectedBucketOwner",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "expectedBucketOwner" },
+            },
+        }),
+        keyPrefix = schema.new({
+            id = id.from(_N, "S3Destination", "keyPrefix"),
+            type = "string",
+            name = "keyPrefix",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "keyPrefix" },
+            },
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "S3Destination", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "kmsKeyArn" },
+            },
+        }),
+    },
+})
+
+M.ClassificationExportConfiguration = schema.new({
+    id = id.from(_N, "ClassificationExportConfiguration"),
+    type = "structure",
+    members = {
+        s3Destination = schema.new({
+            id = id.from(_N, "ClassificationExportConfiguration", "s3Destination"),
+            type = "structure",
+            name = "s3Destination",
+            target_id = id.from(_N, "S3Destination"),
+            target = M.S3Destination,
+            traits = {
+                [traits.JSON_NAME] = { name = "s3Destination" },
+            },
+        }),
+    },
+})
+
+M.CreateAllowListInput = schema.new({
+    id = id.from(_N, "CreateAllowListInput"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "CreateAllowListInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "clientToken" },
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        criteria = schema.new({
+            id = id.from(_N, "CreateAllowListInput", "criteria"),
+            type = "structure",
+            name = "criteria",
+            target_id = id.from(_N, "AllowListCriteria"),
+            target = M.AllowListCriteria,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "criteria" },
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateAllowListInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "CreateAllowListInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateAllowListInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+    },
+})
+
+M.CreateAllowListOutput = schema.new({
+    id = id.from(_N, "CreateAllowListOutput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "CreateAllowListOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "CreateAllowListOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "id" },
+            },
+        }),
+    },
+})
+
+M.JobScopingBlock = schema.new({
+    id = id.from(_N, "JobScopingBlock"),
+    type = "structure",
+    members = {
+        and = schema.new({
+            id = id.from(_N, "JobScopingBlock", "and"),
+            type = "list",
+            name = "and",
+            target_id = prelude.Document.id,
+            list_member = M.JobScopeTerm,
+            traits = {
+                [traits.JSON_NAME] = { name = "and" },
+            },
+        }),
+    },
+})
+
+M.Scoping = schema.new({
+    id = id.from(_N, "Scoping"),
+    type = "structure",
+    members = {
+        excludes = schema.new({
+            id = id.from(_N, "Scoping", "excludes"),
+            type = "structure",
+            name = "excludes",
+            target_id = id.from(_N, "JobScopingBlock"),
+            target = M.JobScopingBlock,
+            traits = {
+                [traits.JSON_NAME] = { name = "excludes" },
+            },
+        }),
+        includes = schema.new({
+            id = id.from(_N, "Scoping", "includes"),
+            type = "structure",
+            name = "includes",
+            target_id = id.from(_N, "JobScopingBlock"),
+            target = M.JobScopingBlock,
+            traits = {
+                [traits.JSON_NAME] = { name = "includes" },
+            },
+        }),
+    },
+})
+
+M.S3JobDefinition = schema.new({
+    id = id.from(_N, "S3JobDefinition"),
+    type = "structure",
+    members = {
+        bucketCriteria = schema.new({
+            id = id.from(_N, "S3JobDefinition", "bucketCriteria"),
+            type = "structure",
+            name = "bucketCriteria",
+            target_id = id.from(_N, "S3BucketCriteriaForJob"),
+            target = M.S3BucketCriteriaForJob,
+            traits = {
+                [traits.JSON_NAME] = { name = "bucketCriteria" },
+            },
+        }),
+        bucketDefinitions = schema.new({
+            id = id.from(_N, "S3JobDefinition", "bucketDefinitions"),
+            type = "list",
+            name = "bucketDefinitions",
+            target_id = prelude.Document.id,
+            list_member = M.S3BucketDefinitionForJob,
+            traits = {
+                [traits.JSON_NAME] = { name = "bucketDefinitions" },
+            },
+        }),
+        scoping = schema.new({
+            id = id.from(_N, "S3JobDefinition", "scoping"),
+            type = "structure",
+            name = "scoping",
+            target_id = id.from(_N, "Scoping"),
+            target = M.Scoping,
+            traits = {
+                [traits.JSON_NAME] = { name = "scoping" },
+            },
+        }),
+    },
+})
+
+M.DailySchedule = schema.new({
+    id = id.from(_N, "DailySchedule"),
+    type = "structure",
+})
+
+M.MonthlySchedule = schema.new({
+    id = id.from(_N, "MonthlySchedule"),
+    type = "structure",
+    members = {
+        dayOfMonth = schema.new({
+            id = id.from(_N, "MonthlySchedule", "dayOfMonth"),
+            type = "integer",
+            name = "dayOfMonth",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "dayOfMonth" },
+            },
+        }),
+    },
+})
+
+M.WeeklySchedule = schema.new({
+    id = id.from(_N, "WeeklySchedule"),
+    type = "structure",
+    members = {
+        dayOfWeek = schema.new({
+            id = id.from(_N, "WeeklySchedule", "dayOfWeek"),
+            type = "string",
+            name = "dayOfWeek",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "dayOfWeek" },
+            },
+        }),
+    },
+})
+
+M.JobScheduleFrequency = schema.new({
+    id = id.from(_N, "JobScheduleFrequency"),
+    type = "structure",
+    members = {
+        dailySchedule = schema.new({
+            id = id.from(_N, "JobScheduleFrequency", "dailySchedule"),
+            type = "structure",
+            name = "dailySchedule",
+            target_id = id.from(_N, "DailySchedule"),
+            target = M.DailySchedule,
+            traits = {
+                [traits.JSON_NAME] = { name = "dailySchedule" },
+            },
+        }),
+        monthlySchedule = schema.new({
+            id = id.from(_N, "JobScheduleFrequency", "monthlySchedule"),
+            type = "structure",
+            name = "monthlySchedule",
+            target_id = id.from(_N, "MonthlySchedule"),
+            target = M.MonthlySchedule,
+            traits = {
+                [traits.JSON_NAME] = { name = "monthlySchedule" },
+            },
+        }),
+        weeklySchedule = schema.new({
+            id = id.from(_N, "JobScheduleFrequency", "weeklySchedule"),
+            type = "structure",
+            name = "weeklySchedule",
+            target_id = id.from(_N, "WeeklySchedule"),
+            target = M.WeeklySchedule,
+            traits = {
+                [traits.JSON_NAME] = { name = "weeklySchedule" },
+            },
+        }),
+    },
+})
+
+M.CreateClassificationJobInput = schema.new({
+    id = id.from(_N, "CreateClassificationJobInput"),
+    type = "structure",
+    members = {
+        allowListIds = schema.new({
+            id = id.from(_N, "CreateClassificationJobInput", "allowListIds"),
+            type = "list",
+            name = "allowListIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "allowListIds" },
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateClassificationJobInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "clientToken" },
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        customDataIdentifierIds = schema.new({
+            id = id.from(_N, "CreateClassificationJobInput", "customDataIdentifierIds"),
+            type = "list",
+            name = "customDataIdentifierIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "customDataIdentifierIds" },
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateClassificationJobInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        initialRun = schema.new({
+            id = id.from(_N, "CreateClassificationJobInput", "initialRun"),
+            type = "boolean",
+            name = "initialRun",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "initialRun" },
+            },
+        }),
+        jobType = schema.new({
+            id = id.from(_N, "CreateClassificationJobInput", "jobType"),
+            type = "string",
+            name = "jobType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "jobType" },
+            },
+        }),
+        managedDataIdentifierIds = schema.new({
+            id = id.from(_N, "CreateClassificationJobInput", "managedDataIdentifierIds"),
+            type = "list",
+            name = "managedDataIdentifierIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "managedDataIdentifierIds" },
+            },
+        }),
+        managedDataIdentifierSelector = schema.new({
+            id = id.from(_N, "CreateClassificationJobInput", "managedDataIdentifierSelector"),
+            type = "string",
+            name = "managedDataIdentifierSelector",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "managedDataIdentifierSelector" },
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "CreateClassificationJobInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        s3JobDefinition = schema.new({
+            id = id.from(_N, "CreateClassificationJobInput", "s3JobDefinition"),
+            type = "structure",
+            name = "s3JobDefinition",
+            target_id = id.from(_N, "S3JobDefinition"),
+            target = M.S3JobDefinition,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "s3JobDefinition" },
+            },
+        }),
+        samplingPercentage = schema.new({
+            id = id.from(_N, "CreateClassificationJobInput", "samplingPercentage"),
+            type = "integer",
+            name = "samplingPercentage",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "samplingPercentage" },
+            },
+        }),
+        scheduleFrequency = schema.new({
+            id = id.from(_N, "CreateClassificationJobInput", "scheduleFrequency"),
+            type = "structure",
+            name = "scheduleFrequency",
+            target_id = id.from(_N, "JobScheduleFrequency"),
+            target = M.JobScheduleFrequency,
+            traits = {
+                [traits.JSON_NAME] = { name = "scheduleFrequency" },
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateClassificationJobInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+    },
+})
+
+M.CreateClassificationJobOutput = schema.new({
+    id = id.from(_N, "CreateClassificationJobOutput"),
+    type = "structure",
+    members = {
+        jobArn = schema.new({
+            id = id.from(_N, "CreateClassificationJobOutput", "jobArn"),
+            type = "string",
+            name = "jobArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "jobArn" },
+            },
+        }),
+        jobId = schema.new({
+            id = id.from(_N, "CreateClassificationJobOutput", "jobId"),
+            type = "string",
+            name = "jobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "jobId" },
+            },
+        }),
+    },
+})
+
+M.SeverityLevel = schema.new({
+    id = id.from(_N, "SeverityLevel"),
+    type = "structure",
+    members = {
+        occurrencesThreshold = schema.new({
+            id = id.from(_N, "SeverityLevel", "occurrencesThreshold"),
+            type = "long",
+            name = "occurrencesThreshold",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "occurrencesThreshold" },
+            },
+        }),
+        severity = schema.new({
+            id = id.from(_N, "SeverityLevel", "severity"),
+            type = "string",
+            name = "severity",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "severity" },
+            },
+        }),
+    },
+})
+
+M.CreateCustomDataIdentifierInput = schema.new({
+    id = id.from(_N, "CreateCustomDataIdentifierInput"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "CreateCustomDataIdentifierInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "clientToken" },
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateCustomDataIdentifierInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        ignoreWords = schema.new({
+            id = id.from(_N, "CreateCustomDataIdentifierInput", "ignoreWords"),
+            type = "list",
+            name = "ignoreWords",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "ignoreWords" },
+            },
+        }),
+        keywords = schema.new({
+            id = id.from(_N, "CreateCustomDataIdentifierInput", "keywords"),
+            type = "list",
+            name = "keywords",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "keywords" },
+            },
+        }),
+        maximumMatchDistance = schema.new({
+            id = id.from(_N, "CreateCustomDataIdentifierInput", "maximumMatchDistance"),
+            type = "integer",
+            name = "maximumMatchDistance",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "maximumMatchDistance" },
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "CreateCustomDataIdentifierInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        regex = schema.new({
+            id = id.from(_N, "CreateCustomDataIdentifierInput", "regex"),
+            type = "string",
+            name = "regex",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "regex" },
+            },
+        }),
+        severityLevels = schema.new({
+            id = id.from(_N, "CreateCustomDataIdentifierInput", "severityLevels"),
+            type = "list",
+            name = "severityLevels",
+            target_id = prelude.Document.id,
+            list_member = M.SeverityLevel,
+            traits = {
+                [traits.JSON_NAME] = { name = "severityLevels" },
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateCustomDataIdentifierInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+    },
+})
+
+M.CreateCustomDataIdentifierOutput = schema.new({
+    id = id.from(_N, "CreateCustomDataIdentifierOutput"),
+    type = "structure",
+    members = {
+        customDataIdentifierId = schema.new({
+            id = id.from(_N, "CreateCustomDataIdentifierOutput", "customDataIdentifierId"),
+            type = "string",
+            name = "customDataIdentifierId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "customDataIdentifierId" },
+            },
+        }),
+    },
+})
+
+M.CriterionAdditionalProperties = schema.new({
+    id = id.from(_N, "CriterionAdditionalProperties"),
+    type = "structure",
+    members = {
+        eq = schema.new({
+            id = id.from(_N, "CriterionAdditionalProperties", "eq"),
+            type = "list",
+            name = "eq",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "eq" },
+            },
+        }),
+        eqExactMatch = schema.new({
+            id = id.from(_N, "CriterionAdditionalProperties", "eqExactMatch"),
+            type = "list",
+            name = "eqExactMatch",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "eqExactMatch" },
+            },
+        }),
+        gt = schema.new({
+            id = id.from(_N, "CriterionAdditionalProperties", "gt"),
+            type = "long",
+            name = "gt",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "gt" },
+            },
+        }),
+        gte = schema.new({
+            id = id.from(_N, "CriterionAdditionalProperties", "gte"),
+            type = "long",
+            name = "gte",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "gte" },
+            },
+        }),
+        lt = schema.new({
+            id = id.from(_N, "CriterionAdditionalProperties", "lt"),
+            type = "long",
+            name = "lt",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "lt" },
+            },
+        }),
+        lte = schema.new({
+            id = id.from(_N, "CriterionAdditionalProperties", "lte"),
+            type = "long",
+            name = "lte",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "lte" },
+            },
+        }),
+        neq = schema.new({
+            id = id.from(_N, "CriterionAdditionalProperties", "neq"),
+            type = "list",
+            name = "neq",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "neq" },
+            },
+        }),
+    },
+})
+
+M.FindingCriteria = schema.new({
+    id = id.from(_N, "FindingCriteria"),
+    type = "structure",
+    members = {
+        criterion = schema.new({
+            id = id.from(_N, "FindingCriteria", "criterion"),
+            type = "map",
+            name = "criterion",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.CriterionAdditionalProperties,
+            traits = {
+                [traits.JSON_NAME] = { name = "criterion" },
+            },
+        }),
+    },
+})
+
+M.CreateFindingsFilterInput = schema.new({
+    id = id.from(_N, "CreateFindingsFilterInput"),
+    type = "structure",
+    members = {
+        action = schema.new({
+            id = id.from(_N, "CreateFindingsFilterInput", "action"),
+            type = "string",
+            name = "action",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "action" },
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateFindingsFilterInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "clientToken" },
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateFindingsFilterInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        findingCriteria = schema.new({
+            id = id.from(_N, "CreateFindingsFilterInput", "findingCriteria"),
+            type = "structure",
+            name = "findingCriteria",
+            target_id = id.from(_N, "FindingCriteria"),
+            target = M.FindingCriteria,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "findingCriteria" },
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "CreateFindingsFilterInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        position = schema.new({
+            id = id.from(_N, "CreateFindingsFilterInput", "position"),
+            type = "integer",
+            name = "position",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "position" },
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateFindingsFilterInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+    },
+})
+
+M.CreateFindingsFilterOutput = schema.new({
+    id = id.from(_N, "CreateFindingsFilterOutput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "CreateFindingsFilterOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "CreateFindingsFilterOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "id" },
+            },
+        }),
+    },
+})
+
+M.CreateInvitationsInput = schema.new({
+    id = id.from(_N, "CreateInvitationsInput"),
+    type = "structure",
+    members = {
+        accountIds = schema.new({
+            id = id.from(_N, "CreateInvitationsInput", "accountIds"),
+            type = "list",
+            name = "accountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "accountIds" },
+            },
+        }),
+        disableEmailNotification = schema.new({
+            id = id.from(_N, "CreateInvitationsInput", "disableEmailNotification"),
+            type = "boolean",
+            name = "disableEmailNotification",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "disableEmailNotification" },
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "CreateInvitationsInput", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.CreateInvitationsOutput = schema.new({
+    id = id.from(_N, "CreateInvitationsOutput"),
+    type = "structure",
+    members = {
+        unprocessedAccounts = schema.new({
+            id = id.from(_N, "CreateInvitationsOutput", "unprocessedAccounts"),
+            type = "list",
+            name = "unprocessedAccounts",
+            target_id = prelude.Document.id,
+            list_member = M.UnprocessedAccount,
+            traits = {
+                [traits.JSON_NAME] = { name = "unprocessedAccounts" },
+            },
+        }),
+    },
+})
+
+M.CreateMemberInput = schema.new({
+    id = id.from(_N, "CreateMemberInput"),
+    type = "structure",
+    members = {
+        account = schema.new({
+            id = id.from(_N, "CreateMemberInput", "account"),
+            type = "structure",
+            name = "account",
+            target_id = id.from(_N, "AccountDetail"),
+            target = M.AccountDetail,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "account" },
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateMemberInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+    },
+})
+
+M.CreateMemberOutput = schema.new({
+    id = id.from(_N, "CreateMemberOutput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "CreateMemberOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+    },
+})
+
+M.CreateSampleFindingsInput = schema.new({
+    id = id.from(_N, "CreateSampleFindingsInput"),
+    type = "structure",
+    members = {
+        findingTypes = schema.new({
+            id = id.from(_N, "CreateSampleFindingsInput", "findingTypes"),
+            type = "list",
+            name = "findingTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "findingTypes" },
+            },
+        }),
+    },
+})
+
+M.CreateSampleFindingsOutput = schema.new({
+    id = id.from(_N, "CreateSampleFindingsOutput"),
+    type = "structure",
+})
+
+M.DeclineInvitationsInput = schema.new({
+    id = id.from(_N, "DeclineInvitationsInput"),
+    type = "structure",
+    members = {
+        accountIds = schema.new({
+            id = id.from(_N, "DeclineInvitationsInput", "accountIds"),
+            type = "list",
+            name = "accountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "accountIds" },
+            },
+        }),
+    },
+})
+
+M.DeclineInvitationsOutput = schema.new({
+    id = id.from(_N, "DeclineInvitationsOutput"),
+    type = "structure",
+    members = {
+        unprocessedAccounts = schema.new({
+            id = id.from(_N, "DeclineInvitationsOutput", "unprocessedAccounts"),
+            type = "list",
+            name = "unprocessedAccounts",
+            target_id = prelude.Document.id,
+            list_member = M.UnprocessedAccount,
+            traits = {
+                [traits.JSON_NAME] = { name = "unprocessedAccounts" },
+            },
+        }),
+    },
+})
+
+M.DeleteAllowListInput = schema.new({
+    id = id.from(_N, "DeleteAllowListInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DeleteAllowListInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ignoreJobChecks = schema.new({
+            id = id.from(_N, "DeleteAllowListInput", "ignoreJobChecks"),
+            type = "string",
+            name = "ignoreJobChecks",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "ignoreJobChecks" },
+            },
+        }),
+    },
+})
+
+M.DeleteAllowListOutput = schema.new({
+    id = id.from(_N, "DeleteAllowListOutput"),
+    type = "structure",
+})
+
+M.DeleteCustomDataIdentifierInput = schema.new({
+    id = id.from(_N, "DeleteCustomDataIdentifierInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DeleteCustomDataIdentifierInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteCustomDataIdentifierOutput = schema.new({
+    id = id.from(_N, "DeleteCustomDataIdentifierOutput"),
+    type = "structure",
+})
+
+M.DeleteFindingsFilterInput = schema.new({
+    id = id.from(_N, "DeleteFindingsFilterInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DeleteFindingsFilterInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteFindingsFilterOutput = schema.new({
+    id = id.from(_N, "DeleteFindingsFilterOutput"),
+    type = "structure",
+})
+
+M.DeleteInvitationsInput = schema.new({
+    id = id.from(_N, "DeleteInvitationsInput"),
+    type = "structure",
+    members = {
+        accountIds = schema.new({
+            id = id.from(_N, "DeleteInvitationsInput", "accountIds"),
+            type = "list",
+            name = "accountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "accountIds" },
+            },
+        }),
+    },
+})
+
+M.DeleteInvitationsOutput = schema.new({
+    id = id.from(_N, "DeleteInvitationsOutput"),
+    type = "structure",
+    members = {
+        unprocessedAccounts = schema.new({
+            id = id.from(_N, "DeleteInvitationsOutput", "unprocessedAccounts"),
+            type = "list",
+            name = "unprocessedAccounts",
+            target_id = prelude.Document.id,
+            list_member = M.UnprocessedAccount,
+            traits = {
+                [traits.JSON_NAME] = { name = "unprocessedAccounts" },
+            },
+        }),
+    },
+})
+
+M.DeleteMemberInput = schema.new({
+    id = id.from(_N, "DeleteMemberInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DeleteMemberInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteMemberOutput = schema.new({
+    id = id.from(_N, "DeleteMemberOutput"),
+    type = "structure",
+})
+
+M.DescribeBucketsInput = schema.new({
+    id = id.from(_N, "DescribeBucketsInput"),
+    type = "structure",
+    members = {
+        criteria = schema.new({
+            id = id.from(_N, "DescribeBucketsInput", "criteria"),
+            type = "map",
+            name = "criteria",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.BucketCriteriaAdditionalProperties,
+            traits = {
+                [traits.JSON_NAME] = { name = "criteria" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "DescribeBucketsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "DescribeBucketsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+        sortCriteria = schema.new({
+            id = id.from(_N, "DescribeBucketsInput", "sortCriteria"),
+            type = "structure",
+            name = "sortCriteria",
+            target_id = id.from(_N, "BucketSortCriteria"),
+            target = M.BucketSortCriteria,
+            traits = {
+                [traits.JSON_NAME] = { name = "sortCriteria" },
+            },
+        }),
+    },
+})
+
+M.DescribeBucketsOutput = schema.new({
+    id = id.from(_N, "DescribeBucketsOutput"),
+    type = "structure",
+    members = {
+        buckets = schema.new({
+            id = id.from(_N, "DescribeBucketsOutput", "buckets"),
+            type = "list",
+            name = "buckets",
+            target_id = prelude.Document.id,
+            list_member = M.BucketMetadata,
+            traits = {
+                [traits.JSON_NAME] = { name = "buckets" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "DescribeBucketsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.DescribeClassificationJobInput = schema.new({
+    id = id.from(_N, "DescribeClassificationJobInput"),
+    type = "structure",
+    members = {
+        jobId = schema.new({
+            id = id.from(_N, "DescribeClassificationJobInput", "jobId"),
+            type = "string",
+            name = "jobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.Statistics = schema.new({
+    id = id.from(_N, "Statistics"),
+    type = "structure",
+    members = {
+        approximateNumberOfObjectsToProcess = schema.new({
+            id = id.from(_N, "Statistics", "approximateNumberOfObjectsToProcess"),
+            type = "double",
+            name = "approximateNumberOfObjectsToProcess",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "approximateNumberOfObjectsToProcess" },
+            },
+        }),
+        numberOfRuns = schema.new({
+            id = id.from(_N, "Statistics", "numberOfRuns"),
+            type = "double",
+            name = "numberOfRuns",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "numberOfRuns" },
+            },
+        }),
+    },
+})
+
+M.DescribeClassificationJobOutput = schema.new({
+    id = id.from(_N, "DescribeClassificationJobOutput"),
+    type = "structure",
+    members = {
+        allowListIds = schema.new({
+            id = id.from(_N, "DescribeClassificationJobOutput", "allowListIds"),
+            type = "list",
+            name = "allowListIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "allowListIds" },
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "DescribeClassificationJobOutput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "clientToken" },
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "DescribeClassificationJobOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "createdAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "createdAt" },
+            },
+        }),
+        customDataIdentifierIds = schema.new({
+            id = id.from(_N, "DescribeClassificationJobOutput", "customDataIdentifierIds"),
+            type = "list",
+            name = "customDataIdentifierIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "customDataIdentifierIds" },
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "DescribeClassificationJobOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        initialRun = schema.new({
+            id = id.from(_N, "DescribeClassificationJobOutput", "initialRun"),
+            type = "boolean",
+            name = "initialRun",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "initialRun" },
+            },
+        }),
+        jobArn = schema.new({
+            id = id.from(_N, "DescribeClassificationJobOutput", "jobArn"),
+            type = "string",
+            name = "jobArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "jobArn" },
+            },
+        }),
+        jobId = schema.new({
+            id = id.from(_N, "DescribeClassificationJobOutput", "jobId"),
+            type = "string",
+            name = "jobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "jobId" },
+            },
+        }),
+        jobStatus = schema.new({
+            id = id.from(_N, "DescribeClassificationJobOutput", "jobStatus"),
+            type = "string",
+            name = "jobStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "jobStatus" },
+            },
+        }),
+        jobType = schema.new({
+            id = id.from(_N, "DescribeClassificationJobOutput", "jobType"),
+            type = "string",
+            name = "jobType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "jobType" },
+            },
+        }),
+        lastRunErrorStatus = schema.new({
+            id = id.from(_N, "DescribeClassificationJobOutput", "lastRunErrorStatus"),
+            type = "structure",
+            name = "lastRunErrorStatus",
+            target_id = id.from(_N, "LastRunErrorStatus"),
+            target = M.LastRunErrorStatus,
+            traits = {
+                [traits.JSON_NAME] = { name = "lastRunErrorStatus" },
+            },
+        }),
+        lastRunTime = schema.new({
+            id = id.from(_N, "DescribeClassificationJobOutput", "lastRunTime"),
+            type = "timestamp",
+            name = "lastRunTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "lastRunTime" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "lastRunTime" },
+            },
+        }),
+        managedDataIdentifierIds = schema.new({
+            id = id.from(_N, "DescribeClassificationJobOutput", "managedDataIdentifierIds"),
+            type = "list",
+            name = "managedDataIdentifierIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "managedDataIdentifierIds" },
+            },
+        }),
+        managedDataIdentifierSelector = schema.new({
+            id = id.from(_N, "DescribeClassificationJobOutput", "managedDataIdentifierSelector"),
+            type = "string",
+            name = "managedDataIdentifierSelector",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "managedDataIdentifierSelector" },
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "DescribeClassificationJobOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        s3JobDefinition = schema.new({
+            id = id.from(_N, "DescribeClassificationJobOutput", "s3JobDefinition"),
+            type = "structure",
+            name = "s3JobDefinition",
+            target_id = id.from(_N, "S3JobDefinition"),
+            target = M.S3JobDefinition,
+            traits = {
+                [traits.JSON_NAME] = { name = "s3JobDefinition" },
+            },
+        }),
+        samplingPercentage = schema.new({
+            id = id.from(_N, "DescribeClassificationJobOutput", "samplingPercentage"),
+            type = "integer",
+            name = "samplingPercentage",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "samplingPercentage" },
+            },
+        }),
+        scheduleFrequency = schema.new({
+            id = id.from(_N, "DescribeClassificationJobOutput", "scheduleFrequency"),
+            type = "structure",
+            name = "scheduleFrequency",
+            target_id = id.from(_N, "JobScheduleFrequency"),
+            target = M.JobScheduleFrequency,
+            traits = {
+                [traits.JSON_NAME] = { name = "scheduleFrequency" },
+            },
+        }),
+        statistics = schema.new({
+            id = id.from(_N, "DescribeClassificationJobOutput", "statistics"),
+            type = "structure",
+            name = "statistics",
+            target_id = id.from(_N, "Statistics"),
+            target = M.Statistics,
+            traits = {
+                [traits.JSON_NAME] = { name = "statistics" },
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "DescribeClassificationJobOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+        userPausedDetails = schema.new({
+            id = id.from(_N, "DescribeClassificationJobOutput", "userPausedDetails"),
+            type = "structure",
+            name = "userPausedDetails",
+            target_id = id.from(_N, "UserPausedDetails"),
+            target = M.UserPausedDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "userPausedDetails" },
+            },
+        }),
+    },
+})
+
+M.DescribeOrganizationConfigurationInput = schema.new({
+    id = id.from(_N, "DescribeOrganizationConfigurationInput"),
+    type = "structure",
+})
+
+M.DescribeOrganizationConfigurationOutput = schema.new({
+    id = id.from(_N, "DescribeOrganizationConfigurationOutput"),
+    type = "structure",
+    members = {
+        autoEnable = schema.new({
+            id = id.from(_N, "DescribeOrganizationConfigurationOutput", "autoEnable"),
+            type = "boolean",
+            name = "autoEnable",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "autoEnable" },
+            },
+        }),
+        maxAccountLimitReached = schema.new({
+            id = id.from(_N, "DescribeOrganizationConfigurationOutput", "maxAccountLimitReached"),
+            type = "boolean",
+            name = "maxAccountLimitReached",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "maxAccountLimitReached" },
+            },
+        }),
+    },
+})
+
+M.DisableMacieInput = schema.new({
+    id = id.from(_N, "DisableMacieInput"),
+    type = "structure",
+})
+
+M.DisableMacieOutput = schema.new({
+    id = id.from(_N, "DisableMacieOutput"),
+    type = "structure",
+})
+
+M.DisableOrganizationAdminAccountInput = schema.new({
+    id = id.from(_N, "DisableOrganizationAdminAccountInput"),
+    type = "structure",
+    members = {
+        adminAccountId = schema.new({
+            id = id.from(_N, "DisableOrganizationAdminAccountInput", "adminAccountId"),
+            type = "string",
+            name = "adminAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "adminAccountId" },
+            },
+        }),
+    },
+})
+
+M.DisableOrganizationAdminAccountOutput = schema.new({
+    id = id.from(_N, "DisableOrganizationAdminAccountOutput"),
+    type = "structure",
+})
+
+M.DisassociateFromAdministratorAccountInput = schema.new({
+    id = id.from(_N, "DisassociateFromAdministratorAccountInput"),
+    type = "structure",
+})
+
+M.DisassociateFromAdministratorAccountOutput = schema.new({
+    id = id.from(_N, "DisassociateFromAdministratorAccountOutput"),
+    type = "structure",
+})
+
+M.DisassociateFromMasterAccountInput = schema.new({
+    id = id.from(_N, "DisassociateFromMasterAccountInput"),
+    type = "structure",
+})
+
+M.DisassociateFromMasterAccountOutput = schema.new({
+    id = id.from(_N, "DisassociateFromMasterAccountOutput"),
+    type = "structure",
+})
+
+M.DisassociateMemberInput = schema.new({
+    id = id.from(_N, "DisassociateMemberInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DisassociateMemberInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DisassociateMemberOutput = schema.new({
+    id = id.from(_N, "DisassociateMemberOutput"),
+    type = "structure",
+})
+
+M.EnableMacieInput = schema.new({
+    id = id.from(_N, "EnableMacieInput"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "EnableMacieInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "clientToken" },
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        findingPublishingFrequency = schema.new({
+            id = id.from(_N, "EnableMacieInput", "findingPublishingFrequency"),
+            type = "string",
+            name = "findingPublishingFrequency",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "findingPublishingFrequency" },
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "EnableMacieInput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "status" },
+            },
+        }),
+    },
+})
+
+M.EnableMacieOutput = schema.new({
+    id = id.from(_N, "EnableMacieOutput"),
+    type = "structure",
+})
+
+M.EnableOrganizationAdminAccountInput = schema.new({
+    id = id.from(_N, "EnableOrganizationAdminAccountInput"),
+    type = "structure",
+    members = {
+        adminAccountId = schema.new({
+            id = id.from(_N, "EnableOrganizationAdminAccountInput", "adminAccountId"),
+            type = "string",
+            name = "adminAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "adminAccountId" },
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "EnableOrganizationAdminAccountInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "clientToken" },
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.EnableOrganizationAdminAccountOutput = schema.new({
+    id = id.from(_N, "EnableOrganizationAdminAccountOutput"),
+    type = "structure",
+})
+
+M.FindingStatisticsSortCriteria = schema.new({
+    id = id.from(_N, "FindingStatisticsSortCriteria"),
+    type = "structure",
+    members = {
+        attributeName = schema.new({
+            id = id.from(_N, "FindingStatisticsSortCriteria", "attributeName"),
+            type = "string",
+            name = "attributeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "attributeName" },
+            },
+        }),
+        orderBy = schema.new({
+            id = id.from(_N, "FindingStatisticsSortCriteria", "orderBy"),
+            type = "string",
+            name = "orderBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "orderBy" },
+            },
+        }),
+    },
+})
+
+M.GetAdministratorAccountInput = schema.new({
+    id = id.from(_N, "GetAdministratorAccountInput"),
+    type = "structure",
+})
+
+M.GetAdministratorAccountOutput = schema.new({
+    id = id.from(_N, "GetAdministratorAccountOutput"),
+    type = "structure",
+    members = {
+        administrator = schema.new({
+            id = id.from(_N, "GetAdministratorAccountOutput", "administrator"),
+            type = "structure",
+            name = "administrator",
+            target_id = id.from(_N, "Invitation"),
+            target = M.Invitation,
+            traits = {
+                [traits.JSON_NAME] = { name = "administrator" },
+            },
+        }),
+    },
+})
+
+M.GetAllowListInput = schema.new({
+    id = id.from(_N, "GetAllowListInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "GetAllowListInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetAllowListOutput = schema.new({
+    id = id.from(_N, "GetAllowListOutput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "GetAllowListOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetAllowListOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "createdAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "createdAt" },
+            },
+        }),
+        criteria = schema.new({
+            id = id.from(_N, "GetAllowListOutput", "criteria"),
+            type = "structure",
+            name = "criteria",
+            target_id = id.from(_N, "AllowListCriteria"),
+            target = M.AllowListCriteria,
+            traits = {
+                [traits.JSON_NAME] = { name = "criteria" },
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "GetAllowListOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "GetAllowListOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "id" },
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "GetAllowListOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetAllowListOutput", "status"),
+            type = "structure",
+            name = "status",
+            target_id = id.from(_N, "AllowListStatus"),
+            target = M.AllowListStatus,
+            traits = {
+                [traits.JSON_NAME] = { name = "status" },
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "GetAllowListOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "GetAllowListOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "updatedAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "updatedAt" },
+            },
+        }),
+    },
+})
+
+M.GetAutomatedDiscoveryConfigurationInput = schema.new({
+    id = id.from(_N, "GetAutomatedDiscoveryConfigurationInput"),
+    type = "structure",
+})
+
+M.GetAutomatedDiscoveryConfigurationOutput = schema.new({
+    id = id.from(_N, "GetAutomatedDiscoveryConfigurationOutput"),
+    type = "structure",
+    members = {
+        autoEnableOrganizationMembers = schema.new({
+            id = id.from(_N, "GetAutomatedDiscoveryConfigurationOutput", "autoEnableOrganizationMembers"),
+            type = "string",
+            name = "autoEnableOrganizationMembers",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "autoEnableOrganizationMembers" },
+            },
+        }),
+        classificationScopeId = schema.new({
+            id = id.from(_N, "GetAutomatedDiscoveryConfigurationOutput", "classificationScopeId"),
+            type = "string",
+            name = "classificationScopeId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "classificationScopeId" },
+            },
+        }),
+        disabledAt = schema.new({
+            id = id.from(_N, "GetAutomatedDiscoveryConfigurationOutput", "disabledAt"),
+            type = "timestamp",
+            name = "disabledAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "disabledAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "disabledAt" },
+            },
+        }),
+        firstEnabledAt = schema.new({
+            id = id.from(_N, "GetAutomatedDiscoveryConfigurationOutput", "firstEnabledAt"),
+            type = "timestamp",
+            name = "firstEnabledAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "firstEnabledAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "firstEnabledAt" },
+            },
+        }),
+        lastUpdatedAt = schema.new({
+            id = id.from(_N, "GetAutomatedDiscoveryConfigurationOutput", "lastUpdatedAt"),
+            type = "timestamp",
+            name = "lastUpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "lastUpdatedAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "lastUpdatedAt" },
+            },
+        }),
+        sensitivityInspectionTemplateId = schema.new({
+            id = id.from(_N, "GetAutomatedDiscoveryConfigurationOutput", "sensitivityInspectionTemplateId"),
+            type = "string",
+            name = "sensitivityInspectionTemplateId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sensitivityInspectionTemplateId" },
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetAutomatedDiscoveryConfigurationOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "status" },
+            },
+        }),
+    },
+})
+
+M.GetBucketStatisticsInput = schema.new({
+    id = id.from(_N, "GetBucketStatisticsInput"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "GetBucketStatisticsInput", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "accountId" },
+            },
+        }),
+    },
+})
+
+M.GetBucketStatisticsOutput = schema.new({
+    id = id.from(_N, "GetBucketStatisticsOutput"),
+    type = "structure",
+    members = {
+        bucketCount = schema.new({
+            id = id.from(_N, "GetBucketStatisticsOutput", "bucketCount"),
+            type = "long",
+            name = "bucketCount",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "bucketCount" },
+            },
+        }),
+        bucketCountByEffectivePermission = schema.new({
+            id = id.from(_N, "GetBucketStatisticsOutput", "bucketCountByEffectivePermission"),
+            type = "structure",
+            name = "bucketCountByEffectivePermission",
+            target_id = id.from(_N, "BucketCountByEffectivePermission"),
+            target = M.BucketCountByEffectivePermission,
+            traits = {
+                [traits.JSON_NAME] = { name = "bucketCountByEffectivePermission" },
+            },
+        }),
+        bucketCountByEncryptionType = schema.new({
+            id = id.from(_N, "GetBucketStatisticsOutput", "bucketCountByEncryptionType"),
+            type = "structure",
+            name = "bucketCountByEncryptionType",
+            target_id = id.from(_N, "BucketCountByEncryptionType"),
+            target = M.BucketCountByEncryptionType,
+            traits = {
+                [traits.JSON_NAME] = { name = "bucketCountByEncryptionType" },
+            },
+        }),
+        bucketCountByObjectEncryptionRequirement = schema.new({
+            id = id.from(_N, "GetBucketStatisticsOutput", "bucketCountByObjectEncryptionRequirement"),
+            type = "structure",
+            name = "bucketCountByObjectEncryptionRequirement",
+            target_id = id.from(_N, "BucketCountPolicyAllowsUnencryptedObjectUploads"),
+            target = M.BucketCountPolicyAllowsUnencryptedObjectUploads,
+            traits = {
+                [traits.JSON_NAME] = { name = "bucketCountByObjectEncryptionRequirement" },
+            },
+        }),
+        bucketCountBySharedAccessType = schema.new({
+            id = id.from(_N, "GetBucketStatisticsOutput", "bucketCountBySharedAccessType"),
+            type = "structure",
+            name = "bucketCountBySharedAccessType",
+            target_id = id.from(_N, "BucketCountBySharedAccessType"),
+            target = M.BucketCountBySharedAccessType,
+            traits = {
+                [traits.JSON_NAME] = { name = "bucketCountBySharedAccessType" },
+            },
+        }),
+        bucketStatisticsBySensitivity = schema.new({
+            id = id.from(_N, "GetBucketStatisticsOutput", "bucketStatisticsBySensitivity"),
+            type = "structure",
+            name = "bucketStatisticsBySensitivity",
+            target_id = id.from(_N, "BucketStatisticsBySensitivity"),
+            target = M.BucketStatisticsBySensitivity,
+            traits = {
+                [traits.JSON_NAME] = { name = "bucketStatisticsBySensitivity" },
+            },
+        }),
+        classifiableObjectCount = schema.new({
+            id = id.from(_N, "GetBucketStatisticsOutput", "classifiableObjectCount"),
+            type = "long",
+            name = "classifiableObjectCount",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "classifiableObjectCount" },
+            },
+        }),
+        classifiableSizeInBytes = schema.new({
+            id = id.from(_N, "GetBucketStatisticsOutput", "classifiableSizeInBytes"),
+            type = "long",
+            name = "classifiableSizeInBytes",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "classifiableSizeInBytes" },
+            },
+        }),
+        lastUpdated = schema.new({
+            id = id.from(_N, "GetBucketStatisticsOutput", "lastUpdated"),
+            type = "timestamp",
+            name = "lastUpdated",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "lastUpdated" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "lastUpdated" },
+            },
+        }),
+        objectCount = schema.new({
+            id = id.from(_N, "GetBucketStatisticsOutput", "objectCount"),
+            type = "long",
+            name = "objectCount",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "objectCount" },
+            },
+        }),
+        sizeInBytes = schema.new({
+            id = id.from(_N, "GetBucketStatisticsOutput", "sizeInBytes"),
+            type = "long",
+            name = "sizeInBytes",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sizeInBytes" },
+            },
+        }),
+        sizeInBytesCompressed = schema.new({
+            id = id.from(_N, "GetBucketStatisticsOutput", "sizeInBytesCompressed"),
+            type = "long",
+            name = "sizeInBytesCompressed",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sizeInBytesCompressed" },
+            },
+        }),
+        unclassifiableObjectCount = schema.new({
+            id = id.from(_N, "GetBucketStatisticsOutput", "unclassifiableObjectCount"),
+            type = "structure",
+            name = "unclassifiableObjectCount",
+            target_id = id.from(_N, "ObjectLevelStatistics"),
+            target = M.ObjectLevelStatistics,
+            traits = {
+                [traits.JSON_NAME] = { name = "unclassifiableObjectCount" },
+            },
+        }),
+        unclassifiableObjectSizeInBytes = schema.new({
+            id = id.from(_N, "GetBucketStatisticsOutput", "unclassifiableObjectSizeInBytes"),
+            type = "structure",
+            name = "unclassifiableObjectSizeInBytes",
+            target_id = id.from(_N, "ObjectLevelStatistics"),
+            target = M.ObjectLevelStatistics,
+            traits = {
+                [traits.JSON_NAME] = { name = "unclassifiableObjectSizeInBytes" },
+            },
+        }),
+    },
+})
+
+M.GetClassificationExportConfigurationInput = schema.new({
+    id = id.from(_N, "GetClassificationExportConfigurationInput"),
+    type = "structure",
+})
+
+M.GetClassificationExportConfigurationOutput = schema.new({
+    id = id.from(_N, "GetClassificationExportConfigurationOutput"),
+    type = "structure",
+    members = {
+        configuration = schema.new({
+            id = id.from(_N, "GetClassificationExportConfigurationOutput", "configuration"),
+            type = "structure",
+            name = "configuration",
+            target_id = id.from(_N, "ClassificationExportConfiguration"),
+            target = M.ClassificationExportConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "configuration" },
+            },
+        }),
+    },
+})
+
+M.GetClassificationScopeInput = schema.new({
+    id = id.from(_N, "GetClassificationScopeInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "GetClassificationScopeInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.S3ClassificationScopeExclusion = schema.new({
+    id = id.from(_N, "S3ClassificationScopeExclusion"),
+    type = "structure",
+    members = {
+        bucketNames = schema.new({
+            id = id.from(_N, "S3ClassificationScopeExclusion", "bucketNames"),
+            type = "list",
+            name = "bucketNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "bucketNames" },
+            },
+        }),
+    },
+})
+
+M.S3ClassificationScope = schema.new({
+    id = id.from(_N, "S3ClassificationScope"),
+    type = "structure",
+    members = {
+        excludes = schema.new({
+            id = id.from(_N, "S3ClassificationScope", "excludes"),
+            type = "structure",
+            name = "excludes",
+            target_id = id.from(_N, "S3ClassificationScopeExclusion"),
+            target = M.S3ClassificationScopeExclusion,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "excludes" },
+            },
+        }),
+    },
+})
+
+M.GetClassificationScopeOutput = schema.new({
+    id = id.from(_N, "GetClassificationScopeOutput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "GetClassificationScopeOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "id" },
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "GetClassificationScopeOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        s3 = schema.new({
+            id = id.from(_N, "GetClassificationScopeOutput", "s3"),
+            type = "structure",
+            name = "s3",
+            target_id = id.from(_N, "S3ClassificationScope"),
+            target = M.S3ClassificationScope,
+            traits = {
+                [traits.JSON_NAME] = { name = "s3" },
+            },
+        }),
+    },
+})
+
+M.GetCustomDataIdentifierInput = schema.new({
+    id = id.from(_N, "GetCustomDataIdentifierInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "GetCustomDataIdentifierInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetCustomDataIdentifierOutput = schema.new({
+    id = id.from(_N, "GetCustomDataIdentifierOutput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "GetCustomDataIdentifierOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetCustomDataIdentifierOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "createdAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "createdAt" },
+            },
+        }),
+        deleted = schema.new({
+            id = id.from(_N, "GetCustomDataIdentifierOutput", "deleted"),
+            type = "boolean",
+            name = "deleted",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "deleted" },
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "GetCustomDataIdentifierOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "GetCustomDataIdentifierOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "id" },
+            },
+        }),
+        ignoreWords = schema.new({
+            id = id.from(_N, "GetCustomDataIdentifierOutput", "ignoreWords"),
+            type = "list",
+            name = "ignoreWords",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "ignoreWords" },
+            },
+        }),
+        keywords = schema.new({
+            id = id.from(_N, "GetCustomDataIdentifierOutput", "keywords"),
+            type = "list",
+            name = "keywords",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "keywords" },
+            },
+        }),
+        maximumMatchDistance = schema.new({
+            id = id.from(_N, "GetCustomDataIdentifierOutput", "maximumMatchDistance"),
+            type = "integer",
+            name = "maximumMatchDistance",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "maximumMatchDistance" },
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "GetCustomDataIdentifierOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        regex = schema.new({
+            id = id.from(_N, "GetCustomDataIdentifierOutput", "regex"),
+            type = "string",
+            name = "regex",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "regex" },
+            },
+        }),
+        severityLevels = schema.new({
+            id = id.from(_N, "GetCustomDataIdentifierOutput", "severityLevels"),
+            type = "list",
+            name = "severityLevels",
+            target_id = prelude.Document.id,
+            list_member = M.SeverityLevel,
+            traits = {
+                [traits.JSON_NAME] = { name = "severityLevels" },
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "GetCustomDataIdentifierOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+    },
+})
+
+M.SortCriteria = schema.new({
+    id = id.from(_N, "SortCriteria"),
+    type = "structure",
+    members = {
+        attributeName = schema.new({
+            id = id.from(_N, "SortCriteria", "attributeName"),
+            type = "string",
+            name = "attributeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "attributeName" },
+            },
+        }),
+        orderBy = schema.new({
+            id = id.from(_N, "SortCriteria", "orderBy"),
+            type = "string",
+            name = "orderBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "orderBy" },
+            },
+        }),
+    },
+})
+
+M.GetFindingsInput = schema.new({
+    id = id.from(_N, "GetFindingsInput"),
+    type = "structure",
+    members = {
+        findingIds = schema.new({
+            id = id.from(_N, "GetFindingsInput", "findingIds"),
+            type = "list",
+            name = "findingIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "findingIds" },
+            },
+        }),
+        sortCriteria = schema.new({
+            id = id.from(_N, "GetFindingsInput", "sortCriteria"),
+            type = "structure",
+            name = "sortCriteria",
+            target_id = id.from(_N, "SortCriteria"),
+            target = M.SortCriteria,
+            traits = {
+                [traits.JSON_NAME] = { name = "sortCriteria" },
+            },
+        }),
+    },
+})
+
+M.GetFindingsOutput = schema.new({
+    id = id.from(_N, "GetFindingsOutput"),
+    type = "structure",
+    members = {
+        findings = schema.new({
+            id = id.from(_N, "GetFindingsOutput", "findings"),
+            type = "list",
+            name = "findings",
+            target_id = prelude.Document.id,
+            list_member = M.Finding,
+            traits = {
+                [traits.JSON_NAME] = { name = "findings" },
+            },
+        }),
+    },
+})
+
+M.GetFindingsFilterInput = schema.new({
+    id = id.from(_N, "GetFindingsFilterInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "GetFindingsFilterInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetFindingsFilterOutput = schema.new({
+    id = id.from(_N, "GetFindingsFilterOutput"),
+    type = "structure",
+    members = {
+        action = schema.new({
+            id = id.from(_N, "GetFindingsFilterOutput", "action"),
+            type = "string",
+            name = "action",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "action" },
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "GetFindingsFilterOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "GetFindingsFilterOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        findingCriteria = schema.new({
+            id = id.from(_N, "GetFindingsFilterOutput", "findingCriteria"),
+            type = "structure",
+            name = "findingCriteria",
+            target_id = id.from(_N, "FindingCriteria"),
+            target = M.FindingCriteria,
+            traits = {
+                [traits.JSON_NAME] = { name = "findingCriteria" },
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "GetFindingsFilterOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "id" },
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "GetFindingsFilterOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        position = schema.new({
+            id = id.from(_N, "GetFindingsFilterOutput", "position"),
+            type = "integer",
+            name = "position",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "position" },
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "GetFindingsFilterOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+    },
+})
+
+M.GetFindingsPublicationConfigurationInput = schema.new({
+    id = id.from(_N, "GetFindingsPublicationConfigurationInput"),
+    type = "structure",
+})
+
+M.SecurityHubConfiguration = schema.new({
+    id = id.from(_N, "SecurityHubConfiguration"),
+    type = "structure",
+    members = {
+        publishClassificationFindings = schema.new({
+            id = id.from(_N, "SecurityHubConfiguration", "publishClassificationFindings"),
+            type = "boolean",
+            name = "publishClassificationFindings",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "publishClassificationFindings" },
+            },
+        }),
+        publishPolicyFindings = schema.new({
+            id = id.from(_N, "SecurityHubConfiguration", "publishPolicyFindings"),
+            type = "boolean",
+            name = "publishPolicyFindings",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "publishPolicyFindings" },
+            },
+        }),
+    },
+})
+
+M.GetFindingsPublicationConfigurationOutput = schema.new({
+    id = id.from(_N, "GetFindingsPublicationConfigurationOutput"),
+    type = "structure",
+    members = {
+        securityHubConfiguration = schema.new({
+            id = id.from(_N, "GetFindingsPublicationConfigurationOutput", "securityHubConfiguration"),
+            type = "structure",
+            name = "securityHubConfiguration",
+            target_id = id.from(_N, "SecurityHubConfiguration"),
+            target = M.SecurityHubConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "securityHubConfiguration" },
+            },
+        }),
+    },
+})
+
+M.GetFindingStatisticsInput = schema.new({
+    id = id.from(_N, "GetFindingStatisticsInput"),
+    type = "structure",
+    members = {
+        findingCriteria = schema.new({
+            id = id.from(_N, "GetFindingStatisticsInput", "findingCriteria"),
+            type = "structure",
+            name = "findingCriteria",
+            target_id = id.from(_N, "FindingCriteria"),
+            target = M.FindingCriteria,
+            traits = {
+                [traits.JSON_NAME] = { name = "findingCriteria" },
+            },
+        }),
+        groupBy = schema.new({
+            id = id.from(_N, "GetFindingStatisticsInput", "groupBy"),
+            type = "string",
+            name = "groupBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "groupBy" },
+            },
+        }),
+        size = schema.new({
+            id = id.from(_N, "GetFindingStatisticsInput", "size"),
+            type = "integer",
+            name = "size",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "size" },
+            },
+        }),
+        sortCriteria = schema.new({
+            id = id.from(_N, "GetFindingStatisticsInput", "sortCriteria"),
+            type = "structure",
+            name = "sortCriteria",
+            target_id = id.from(_N, "FindingStatisticsSortCriteria"),
+            target = M.FindingStatisticsSortCriteria,
+            traits = {
+                [traits.JSON_NAME] = { name = "sortCriteria" },
+            },
+        }),
+    },
+})
+
+M.GetFindingStatisticsOutput = schema.new({
+    id = id.from(_N, "GetFindingStatisticsOutput"),
+    type = "structure",
+    members = {
+        countsByGroup = schema.new({
+            id = id.from(_N, "GetFindingStatisticsOutput", "countsByGroup"),
+            type = "list",
+            name = "countsByGroup",
+            target_id = prelude.Document.id,
+            list_member = M.GroupCount,
+            traits = {
+                [traits.JSON_NAME] = { name = "countsByGroup" },
+            },
+        }),
+    },
+})
+
+M.GetInvitationsCountInput = schema.new({
+    id = id.from(_N, "GetInvitationsCountInput"),
+    type = "structure",
+})
+
+M.GetInvitationsCountOutput = schema.new({
+    id = id.from(_N, "GetInvitationsCountOutput"),
+    type = "structure",
+    members = {
+        invitationsCount = schema.new({
+            id = id.from(_N, "GetInvitationsCountOutput", "invitationsCount"),
+            type = "long",
+            name = "invitationsCount",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "invitationsCount" },
+            },
+        }),
+    },
+})
+
+M.GetMacieSessionInput = schema.new({
+    id = id.from(_N, "GetMacieSessionInput"),
+    type = "structure",
+})
+
+M.GetMacieSessionOutput = schema.new({
+    id = id.from(_N, "GetMacieSessionOutput"),
+    type = "structure",
+    members = {
+        createdAt = schema.new({
+            id = id.from(_N, "GetMacieSessionOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "createdAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "createdAt" },
+            },
+        }),
+        findingPublishingFrequency = schema.new({
+            id = id.from(_N, "GetMacieSessionOutput", "findingPublishingFrequency"),
+            type = "string",
+            name = "findingPublishingFrequency",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "findingPublishingFrequency" },
+            },
+        }),
+        serviceRole = schema.new({
+            id = id.from(_N, "GetMacieSessionOutput", "serviceRole"),
+            type = "string",
+            name = "serviceRole",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "serviceRole" },
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetMacieSessionOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "status" },
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "GetMacieSessionOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "updatedAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "updatedAt" },
+            },
+        }),
+    },
+})
+
+M.GetMasterAccountInput = schema.new({
+    id = id.from(_N, "GetMasterAccountInput"),
+    type = "structure",
+})
+
+M.GetMasterAccountOutput = schema.new({
+    id = id.from(_N, "GetMasterAccountOutput"),
+    type = "structure",
+    members = {
+        master = schema.new({
+            id = id.from(_N, "GetMasterAccountOutput", "master"),
+            type = "structure",
+            name = "master",
+            target_id = id.from(_N, "Invitation"),
+            target = M.Invitation,
+            traits = {
+                [traits.JSON_NAME] = { name = "master" },
+            },
+        }),
+    },
+})
+
+M.GetMemberInput = schema.new({
+    id = id.from(_N, "GetMemberInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "GetMemberInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetMemberOutput = schema.new({
+    id = id.from(_N, "GetMemberOutput"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "GetMemberOutput", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "accountId" },
+            },
+        }),
+        administratorAccountId = schema.new({
+            id = id.from(_N, "GetMemberOutput", "administratorAccountId"),
+            type = "string",
+            name = "administratorAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "administratorAccountId" },
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "GetMemberOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        email = schema.new({
+            id = id.from(_N, "GetMemberOutput", "email"),
+            type = "string",
+            name = "email",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "email" },
+            },
+        }),
+        invitedAt = schema.new({
+            id = id.from(_N, "GetMemberOutput", "invitedAt"),
+            type = "timestamp",
+            name = "invitedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "invitedAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "invitedAt" },
+            },
+        }),
+        masterAccountId = schema.new({
+            id = id.from(_N, "GetMemberOutput", "masterAccountId"),
+            type = "string",
+            name = "masterAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "masterAccountId" },
+            },
+        }),
+        relationshipStatus = schema.new({
+            id = id.from(_N, "GetMemberOutput", "relationshipStatus"),
+            type = "string",
+            name = "relationshipStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "relationshipStatus" },
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "GetMemberOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "GetMemberOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "updatedAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "updatedAt" },
+            },
+        }),
+    },
+})
+
+M.GetResourceProfileInput = schema.new({
+    id = id.from(_N, "GetResourceProfileInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "GetResourceProfileInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "resourceArn" },
+            },
+        }),
+    },
+})
+
+M.ResourceStatistics = schema.new({
+    id = id.from(_N, "ResourceStatistics"),
+    type = "structure",
+    members = {
+        totalBytesClassified = schema.new({
+            id = id.from(_N, "ResourceStatistics", "totalBytesClassified"),
+            type = "long",
+            name = "totalBytesClassified",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "totalBytesClassified" },
+            },
+        }),
+        totalDetections = schema.new({
+            id = id.from(_N, "ResourceStatistics", "totalDetections"),
+            type = "long",
+            name = "totalDetections",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "totalDetections" },
+            },
+        }),
+        totalDetectionsSuppressed = schema.new({
+            id = id.from(_N, "ResourceStatistics", "totalDetectionsSuppressed"),
+            type = "long",
+            name = "totalDetectionsSuppressed",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "totalDetectionsSuppressed" },
+            },
+        }),
+        totalItemsClassified = schema.new({
+            id = id.from(_N, "ResourceStatistics", "totalItemsClassified"),
+            type = "long",
+            name = "totalItemsClassified",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "totalItemsClassified" },
+            },
+        }),
+        totalItemsSensitive = schema.new({
+            id = id.from(_N, "ResourceStatistics", "totalItemsSensitive"),
+            type = "long",
+            name = "totalItemsSensitive",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "totalItemsSensitive" },
+            },
+        }),
+        totalItemsSkipped = schema.new({
+            id = id.from(_N, "ResourceStatistics", "totalItemsSkipped"),
+            type = "long",
+            name = "totalItemsSkipped",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "totalItemsSkipped" },
+            },
+        }),
+        totalItemsSkippedInvalidEncryption = schema.new({
+            id = id.from(_N, "ResourceStatistics", "totalItemsSkippedInvalidEncryption"),
+            type = "long",
+            name = "totalItemsSkippedInvalidEncryption",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "totalItemsSkippedInvalidEncryption" },
+            },
+        }),
+        totalItemsSkippedInvalidKms = schema.new({
+            id = id.from(_N, "ResourceStatistics", "totalItemsSkippedInvalidKms"),
+            type = "long",
+            name = "totalItemsSkippedInvalidKms",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "totalItemsSkippedInvalidKms" },
+            },
+        }),
+        totalItemsSkippedPermissionDenied = schema.new({
+            id = id.from(_N, "ResourceStatistics", "totalItemsSkippedPermissionDenied"),
+            type = "long",
+            name = "totalItemsSkippedPermissionDenied",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "totalItemsSkippedPermissionDenied" },
+            },
+        }),
+    },
+})
+
+M.GetResourceProfileOutput = schema.new({
+    id = id.from(_N, "GetResourceProfileOutput"),
+    type = "structure",
+    members = {
+        profileUpdatedAt = schema.new({
+            id = id.from(_N, "GetResourceProfileOutput", "profileUpdatedAt"),
+            type = "timestamp",
+            name = "profileUpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "profileUpdatedAt" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.JSON_NAME] = { name = "profileUpdatedAt" },
+            },
+        }),
+        sensitivityScore = schema.new({
+            id = id.from(_N, "GetResourceProfileOutput", "sensitivityScore"),
+            type = "integer",
+            name = "sensitivityScore",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sensitivityScore" },
+            },
+        }),
+        sensitivityScoreOverridden = schema.new({
+            id = id.from(_N, "GetResourceProfileOutput", "sensitivityScoreOverridden"),
+            type = "boolean",
+            name = "sensitivityScoreOverridden",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sensitivityScoreOverridden" },
+            },
+        }),
+        statistics = schema.new({
+            id = id.from(_N, "GetResourceProfileOutput", "statistics"),
+            type = "structure",
+            name = "statistics",
+            target_id = id.from(_N, "ResourceStatistics"),
+            target = M.ResourceStatistics,
+            traits = {
+                [traits.JSON_NAME] = { name = "statistics" },
+            },
+        }),
+    },
+})
+
+M.GetRevealConfigurationInput = schema.new({
+    id = id.from(_N, "GetRevealConfigurationInput"),
+    type = "structure",
+})
+
+M.RevealConfiguration = schema.new({
+    id = id.from(_N, "RevealConfiguration"),
+    type = "structure",
+    members = {
+        kmsKeyId = schema.new({
+            id = id.from(_N, "RevealConfiguration", "kmsKeyId"),
+            type = "string",
+            name = "kmsKeyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "kmsKeyId" },
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "RevealConfiguration", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "status" },
+            },
+        }),
+    },
+})
+
+M.RetrievalConfiguration = schema.new({
+    id = id.from(_N, "RetrievalConfiguration"),
+    type = "structure",
+    members = {
+        externalId = schema.new({
+            id = id.from(_N, "RetrievalConfiguration", "externalId"),
+            type = "string",
+            name = "externalId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "externalId" },
+            },
+        }),
+        retrievalMode = schema.new({
+            id = id.from(_N, "RetrievalConfiguration", "retrievalMode"),
+            type = "string",
+            name = "retrievalMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "retrievalMode" },
+            },
+        }),
+        roleName = schema.new({
+            id = id.from(_N, "RetrievalConfiguration", "roleName"),
+            type = "string",
+            name = "roleName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "roleName" },
+            },
+        }),
+    },
+})
+
+M.GetRevealConfigurationOutput = schema.new({
+    id = id.from(_N, "GetRevealConfigurationOutput"),
+    type = "structure",
+    members = {
+        configuration = schema.new({
+            id = id.from(_N, "GetRevealConfigurationOutput", "configuration"),
+            type = "structure",
+            name = "configuration",
+            target_id = id.from(_N, "RevealConfiguration"),
+            target = M.RevealConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "configuration" },
+            },
+        }),
+        retrievalConfiguration = schema.new({
+            id = id.from(_N, "GetRevealConfigurationOutput", "retrievalConfiguration"),
+            type = "structure",
+            name = "retrievalConfiguration",
+            target_id = id.from(_N, "RetrievalConfiguration"),
+            target = M.RetrievalConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "retrievalConfiguration" },
+            },
+        }),
+    },
+})
+
+M.GetSensitiveDataOccurrencesInput = schema.new({
+    id = id.from(_N, "GetSensitiveDataOccurrencesInput"),
+    type = "structure",
+    members = {
+        findingId = schema.new({
+            id = id.from(_N, "GetSensitiveDataOccurrencesInput", "findingId"),
+            type = "string",
+            name = "findingId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetSensitiveDataOccurrencesOutput = schema.new({
+    id = id.from(_N, "GetSensitiveDataOccurrencesOutput"),
+    type = "structure",
+    members = {
+        error = schema.new({
+            id = id.from(_N, "GetSensitiveDataOccurrencesOutput", "error"),
+            type = "string",
+            name = "error",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "error" },
+            },
+        }),
+        sensitiveDataOccurrences = schema.new({
+            id = id.from(_N, "GetSensitiveDataOccurrencesOutput", "sensitiveDataOccurrences"),
+            type = "map",
+            name = "sensitiveDataOccurrences",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.Document,
+            traits = {
+                [traits.JSON_NAME] = { name = "sensitiveDataOccurrences" },
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetSensitiveDataOccurrencesOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "status" },
+            },
+        }),
+    },
+})
+
+M.UnprocessableEntityException = schema.new({
+    id = id.from(_N, "UnprocessableEntityException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "UnprocessableEntityException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.GetSensitiveDataOccurrencesAvailabilityInput = schema.new({
+    id = id.from(_N, "GetSensitiveDataOccurrencesAvailabilityInput"),
+    type = "structure",
+    members = {
+        findingId = schema.new({
+            id = id.from(_N, "GetSensitiveDataOccurrencesAvailabilityInput", "findingId"),
+            type = "string",
+            name = "findingId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetSensitiveDataOccurrencesAvailabilityOutput = schema.new({
+    id = id.from(_N, "GetSensitiveDataOccurrencesAvailabilityOutput"),
+    type = "structure",
+    members = {
+        code = schema.new({
+            id = id.from(_N, "GetSensitiveDataOccurrencesAvailabilityOutput", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "code" },
+            },
+        }),
+        reasons = schema.new({
+            id = id.from(_N, "GetSensitiveDataOccurrencesAvailabilityOutput", "reasons"),
+            type = "list",
+            name = "reasons",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "reasons" },
+            },
+        }),
+    },
+})
+
+M.GetSensitivityInspectionTemplateInput = schema.new({
+    id = id.from(_N, "GetSensitivityInspectionTemplateInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "GetSensitivityInspectionTemplateInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.SensitivityInspectionTemplateExcludes = schema.new({
+    id = id.from(_N, "SensitivityInspectionTemplateExcludes"),
+    type = "structure",
+    members = {
+        managedDataIdentifierIds = schema.new({
+            id = id.from(_N, "SensitivityInspectionTemplateExcludes", "managedDataIdentifierIds"),
+            type = "list",
+            name = "managedDataIdentifierIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "managedDataIdentifierIds" },
+            },
+        }),
+    },
+})
+
+M.SensitivityInspectionTemplateIncludes = schema.new({
+    id = id.from(_N, "SensitivityInspectionTemplateIncludes"),
+    type = "structure",
+    members = {
+        allowListIds = schema.new({
+            id = id.from(_N, "SensitivityInspectionTemplateIncludes", "allowListIds"),
+            type = "list",
+            name = "allowListIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "allowListIds" },
+            },
+        }),
+        customDataIdentifierIds = schema.new({
+            id = id.from(_N, "SensitivityInspectionTemplateIncludes", "customDataIdentifierIds"),
+            type = "list",
+            name = "customDataIdentifierIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "customDataIdentifierIds" },
+            },
+        }),
+        managedDataIdentifierIds = schema.new({
+            id = id.from(_N, "SensitivityInspectionTemplateIncludes", "managedDataIdentifierIds"),
+            type = "list",
+            name = "managedDataIdentifierIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "managedDataIdentifierIds" },
+            },
+        }),
+    },
+})
+
+M.GetSensitivityInspectionTemplateOutput = schema.new({
+    id = id.from(_N, "GetSensitivityInspectionTemplateOutput"),
+    type = "structure",
+    members = {
+        description = schema.new({
+            id = id.from(_N, "GetSensitivityInspectionTemplateOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        excludes = schema.new({
+            id = id.from(_N, "GetSensitivityInspectionTemplateOutput", "excludes"),
+            type = "structure",
+            name = "excludes",
+            target_id = id.from(_N, "SensitivityInspectionTemplateExcludes"),
+            target = M.SensitivityInspectionTemplateExcludes,
+            traits = {
+                [traits.JSON_NAME] = { name = "excludes" },
+            },
+        }),
+        includes = schema.new({
+            id = id.from(_N, "GetSensitivityInspectionTemplateOutput", "includes"),
+            type = "structure",
+            name = "includes",
+            target_id = id.from(_N, "SensitivityInspectionTemplateIncludes"),
+            target = M.SensitivityInspectionTemplateIncludes,
+            traits = {
+                [traits.JSON_NAME] = { name = "includes" },
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "GetSensitivityInspectionTemplateOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        sensitivityInspectionTemplateId = schema.new({
+            id = id.from(_N, "GetSensitivityInspectionTemplateOutput", "sensitivityInspectionTemplateId"),
+            type = "string",
+            name = "sensitivityInspectionTemplateId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sensitivityInspectionTemplateId" },
+            },
+        }),
+    },
+})
+
+M.UsageStatisticsSortBy = schema.new({
+    id = id.from(_N, "UsageStatisticsSortBy"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "UsageStatisticsSortBy", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "key" },
+            },
+        }),
+        orderBy = schema.new({
+            id = id.from(_N, "UsageStatisticsSortBy", "orderBy"),
+            type = "string",
+            name = "orderBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "orderBy" },
+            },
+        }),
+    },
+})
+
+M.GetUsageStatisticsInput = schema.new({
+    id = id.from(_N, "GetUsageStatisticsInput"),
+    type = "structure",
+    members = {
+        filterBy = schema.new({
+            id = id.from(_N, "GetUsageStatisticsInput", "filterBy"),
+            type = "list",
+            name = "filterBy",
+            target_id = prelude.Document.id,
+            list_member = M.UsageStatisticsFilter,
+            traits = {
+                [traits.JSON_NAME] = { name = "filterBy" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "GetUsageStatisticsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "GetUsageStatisticsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+        sortBy = schema.new({
+            id = id.from(_N, "GetUsageStatisticsInput", "sortBy"),
+            type = "structure",
+            name = "sortBy",
+            target_id = id.from(_N, "UsageStatisticsSortBy"),
+            target = M.UsageStatisticsSortBy,
+            traits = {
+                [traits.JSON_NAME] = { name = "sortBy" },
+            },
+        }),
+        timeRange = schema.new({
+            id = id.from(_N, "GetUsageStatisticsInput", "timeRange"),
+            type = "string",
+            name = "timeRange",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "timeRange" },
+            },
+        }),
+    },
+})
+
+M.GetUsageStatisticsOutput = schema.new({
+    id = id.from(_N, "GetUsageStatisticsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "GetUsageStatisticsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+        records = schema.new({
+            id = id.from(_N, "GetUsageStatisticsOutput", "records"),
+            type = "list",
+            name = "records",
+            target_id = prelude.Document.id,
+            list_member = M.UsageRecord,
+            traits = {
+                [traits.JSON_NAME] = { name = "records" },
+            },
+        }),
+        timeRange = schema.new({
+            id = id.from(_N, "GetUsageStatisticsOutput", "timeRange"),
+            type = "string",
+            name = "timeRange",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "timeRange" },
+            },
+        }),
+    },
+})
+
+M.GetUsageTotalsInput = schema.new({
+    id = id.from(_N, "GetUsageTotalsInput"),
+    type = "structure",
+    members = {
+        timeRange = schema.new({
+            id = id.from(_N, "GetUsageTotalsInput", "timeRange"),
+            type = "string",
+            name = "timeRange",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "timeRange" },
+            },
+        }),
+    },
+})
+
+M.GetUsageTotalsOutput = schema.new({
+    id = id.from(_N, "GetUsageTotalsOutput"),
+    type = "structure",
+    members = {
+        timeRange = schema.new({
+            id = id.from(_N, "GetUsageTotalsOutput", "timeRange"),
+            type = "string",
+            name = "timeRange",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "timeRange" },
+            },
+        }),
+        usageTotals = schema.new({
+            id = id.from(_N, "GetUsageTotalsOutput", "usageTotals"),
+            type = "list",
+            name = "usageTotals",
+            target_id = prelude.Document.id,
+            list_member = M.UsageTotal,
+            traits = {
+                [traits.JSON_NAME] = { name = "usageTotals" },
+            },
+        }),
+    },
+})
+
+M.ListAllowListsInput = schema.new({
+    id = id.from(_N, "ListAllowListsInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListAllowListsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAllowListsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListAllowListsOutput = schema.new({
+    id = id.from(_N, "ListAllowListsOutput"),
+    type = "structure",
+    members = {
+        allowLists = schema.new({
+            id = id.from(_N, "ListAllowListsOutput", "allowLists"),
+            type = "list",
+            name = "allowLists",
+            target_id = prelude.Document.id,
+            list_member = M.AllowListSummary,
+            traits = {
+                [traits.JSON_NAME] = { name = "allowLists" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAllowListsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListAutomatedDiscoveryAccountsInput = schema.new({
+    id = id.from(_N, "ListAutomatedDiscoveryAccountsInput"),
+    type = "structure",
+    members = {
+        accountIds = schema.new({
+            id = id.from(_N, "ListAutomatedDiscoveryAccountsInput", "accountIds"),
+            type = "list",
+            name = "accountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "accountIds" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListAutomatedDiscoveryAccountsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutomatedDiscoveryAccountsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListAutomatedDiscoveryAccountsOutput = schema.new({
+    id = id.from(_N, "ListAutomatedDiscoveryAccountsOutput"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListAutomatedDiscoveryAccountsOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.AutomatedDiscoveryAccount,
+            traits = {
+                [traits.JSON_NAME] = { name = "items" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutomatedDiscoveryAccountsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListJobsFilterCriteria = schema.new({
+    id = id.from(_N, "ListJobsFilterCriteria"),
+    type = "structure",
+    members = {
+        excludes = schema.new({
+            id = id.from(_N, "ListJobsFilterCriteria", "excludes"),
+            type = "list",
+            name = "excludes",
+            target_id = prelude.Document.id,
+            list_member = M.ListJobsFilterTerm,
+            traits = {
+                [traits.JSON_NAME] = { name = "excludes" },
+            },
+        }),
+        includes = schema.new({
+            id = id.from(_N, "ListJobsFilterCriteria", "includes"),
+            type = "list",
+            name = "includes",
+            target_id = prelude.Document.id,
+            list_member = M.ListJobsFilterTerm,
+            traits = {
+                [traits.JSON_NAME] = { name = "includes" },
+            },
+        }),
+    },
+})
+
+M.ListJobsSortCriteria = schema.new({
+    id = id.from(_N, "ListJobsSortCriteria"),
+    type = "structure",
+    members = {
+        attributeName = schema.new({
+            id = id.from(_N, "ListJobsSortCriteria", "attributeName"),
+            type = "string",
+            name = "attributeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "attributeName" },
+            },
+        }),
+        orderBy = schema.new({
+            id = id.from(_N, "ListJobsSortCriteria", "orderBy"),
+            type = "string",
+            name = "orderBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "orderBy" },
+            },
+        }),
+    },
+})
+
+M.ListClassificationJobsInput = schema.new({
+    id = id.from(_N, "ListClassificationJobsInput"),
+    type = "structure",
+    members = {
+        filterCriteria = schema.new({
+            id = id.from(_N, "ListClassificationJobsInput", "filterCriteria"),
+            type = "structure",
+            name = "filterCriteria",
+            target_id = id.from(_N, "ListJobsFilterCriteria"),
+            target = M.ListJobsFilterCriteria,
+            traits = {
+                [traits.JSON_NAME] = { name = "filterCriteria" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListClassificationJobsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListClassificationJobsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+        sortCriteria = schema.new({
+            id = id.from(_N, "ListClassificationJobsInput", "sortCriteria"),
+            type = "structure",
+            name = "sortCriteria",
+            target_id = id.from(_N, "ListJobsSortCriteria"),
+            target = M.ListJobsSortCriteria,
+            traits = {
+                [traits.JSON_NAME] = { name = "sortCriteria" },
+            },
+        }),
+    },
+})
+
+M.ListClassificationJobsOutput = schema.new({
+    id = id.from(_N, "ListClassificationJobsOutput"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListClassificationJobsOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.JobSummary,
+            traits = {
+                [traits.JSON_NAME] = { name = "items" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListClassificationJobsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListClassificationScopesInput = schema.new({
+    id = id.from(_N, "ListClassificationScopesInput"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "ListClassificationScopesInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "name" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListClassificationScopesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListClassificationScopesOutput = schema.new({
+    id = id.from(_N, "ListClassificationScopesOutput"),
+    type = "structure",
+    members = {
+        classificationScopes = schema.new({
+            id = id.from(_N, "ListClassificationScopesOutput", "classificationScopes"),
+            type = "list",
+            name = "classificationScopes",
+            target_id = prelude.Document.id,
+            list_member = M.ClassificationScopeSummary,
+            traits = {
+                [traits.JSON_NAME] = { name = "classificationScopes" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListClassificationScopesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListCustomDataIdentifiersInput = schema.new({
+    id = id.from(_N, "ListCustomDataIdentifiersInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListCustomDataIdentifiersInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListCustomDataIdentifiersInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListCustomDataIdentifiersOutput = schema.new({
+    id = id.from(_N, "ListCustomDataIdentifiersOutput"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListCustomDataIdentifiersOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.CustomDataIdentifierSummary,
+            traits = {
+                [traits.JSON_NAME] = { name = "items" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListCustomDataIdentifiersOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListFindingsInput = schema.new({
+    id = id.from(_N, "ListFindingsInput"),
+    type = "structure",
+    members = {
+        findingCriteria = schema.new({
+            id = id.from(_N, "ListFindingsInput", "findingCriteria"),
+            type = "structure",
+            name = "findingCriteria",
+            target_id = id.from(_N, "FindingCriteria"),
+            target = M.FindingCriteria,
+            traits = {
+                [traits.JSON_NAME] = { name = "findingCriteria" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListFindingsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListFindingsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+        sortCriteria = schema.new({
+            id = id.from(_N, "ListFindingsInput", "sortCriteria"),
+            type = "structure",
+            name = "sortCriteria",
+            target_id = id.from(_N, "SortCriteria"),
+            target = M.SortCriteria,
+            traits = {
+                [traits.JSON_NAME] = { name = "sortCriteria" },
+            },
+        }),
+    },
+})
+
+M.ListFindingsOutput = schema.new({
+    id = id.from(_N, "ListFindingsOutput"),
+    type = "structure",
+    members = {
+        findingIds = schema.new({
+            id = id.from(_N, "ListFindingsOutput", "findingIds"),
+            type = "list",
+            name = "findingIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "findingIds" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListFindingsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListFindingsFiltersInput = schema.new({
+    id = id.from(_N, "ListFindingsFiltersInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListFindingsFiltersInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListFindingsFiltersInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListFindingsFiltersOutput = schema.new({
+    id = id.from(_N, "ListFindingsFiltersOutput"),
+    type = "structure",
+    members = {
+        findingsFilterListItems = schema.new({
+            id = id.from(_N, "ListFindingsFiltersOutput", "findingsFilterListItems"),
+            type = "list",
+            name = "findingsFilterListItems",
+            target_id = prelude.Document.id,
+            list_member = M.FindingsFilterListItem,
+            traits = {
+                [traits.JSON_NAME] = { name = "findingsFilterListItems" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListFindingsFiltersOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListInvitationsInput = schema.new({
+    id = id.from(_N, "ListInvitationsInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListInvitationsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListInvitationsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListInvitationsOutput = schema.new({
+    id = id.from(_N, "ListInvitationsOutput"),
+    type = "structure",
+    members = {
+        invitations = schema.new({
+            id = id.from(_N, "ListInvitationsOutput", "invitations"),
+            type = "list",
+            name = "invitations",
+            target_id = prelude.Document.id,
+            list_member = M.Invitation,
+            traits = {
+                [traits.JSON_NAME] = { name = "invitations" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListInvitationsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListManagedDataIdentifiersInput = schema.new({
+    id = id.from(_N, "ListManagedDataIdentifiersInput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListManagedDataIdentifiersInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListManagedDataIdentifiersOutput = schema.new({
+    id = id.from(_N, "ListManagedDataIdentifiersOutput"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListManagedDataIdentifiersOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.ManagedDataIdentifierSummary,
+            traits = {
+                [traits.JSON_NAME] = { name = "items" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListManagedDataIdentifiersOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListMembersInput = schema.new({
+    id = id.from(_N, "ListMembersInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListMembersInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListMembersInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        onlyAssociated = schema.new({
+            id = id.from(_N, "ListMembersInput", "onlyAssociated"),
+            type = "string",
+            name = "onlyAssociated",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "onlyAssociated" },
+            },
+        }),
+    },
+})
+
+M.ListMembersOutput = schema.new({
+    id = id.from(_N, "ListMembersOutput"),
+    type = "structure",
+    members = {
+        members = schema.new({
+            id = id.from(_N, "ListMembersOutput", "members"),
+            type = "list",
+            name = "members",
+            target_id = prelude.Document.id,
+            list_member = M.Member,
+            traits = {
+                [traits.JSON_NAME] = { name = "members" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListMembersOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListOrganizationAdminAccountsInput = schema.new({
+    id = id.from(_N, "ListOrganizationAdminAccountsInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListOrganizationAdminAccountsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListOrganizationAdminAccountsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListOrganizationAdminAccountsOutput = schema.new({
+    id = id.from(_N, "ListOrganizationAdminAccountsOutput"),
+    type = "structure",
+    members = {
+        adminAccounts = schema.new({
+            id = id.from(_N, "ListOrganizationAdminAccountsOutput", "adminAccounts"),
+            type = "list",
+            name = "adminAccounts",
+            target_id = prelude.Document.id,
+            list_member = M.AdminAccount,
+            traits = {
+                [traits.JSON_NAME] = { name = "adminAccounts" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListOrganizationAdminAccountsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListResourceProfileArtifactsInput = schema.new({
+    id = id.from(_N, "ListResourceProfileArtifactsInput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListResourceProfileArtifactsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        resourceArn = schema.new({
+            id = id.from(_N, "ListResourceProfileArtifactsInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "resourceArn" },
+            },
+        }),
+    },
+})
+
+M.ListResourceProfileArtifactsOutput = schema.new({
+    id = id.from(_N, "ListResourceProfileArtifactsOutput"),
+    type = "structure",
+    members = {
+        artifacts = schema.new({
+            id = id.from(_N, "ListResourceProfileArtifactsOutput", "artifacts"),
+            type = "list",
+            name = "artifacts",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceProfileArtifact,
+            traits = {
+                [traits.JSON_NAME] = { name = "artifacts" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListResourceProfileArtifactsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListResourceProfileDetectionsInput = schema.new({
+    id = id.from(_N, "ListResourceProfileDetectionsInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListResourceProfileDetectionsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListResourceProfileDetectionsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        resourceArn = schema.new({
+            id = id.from(_N, "ListResourceProfileDetectionsInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "resourceArn" },
+            },
+        }),
+    },
+})
+
+M.ListResourceProfileDetectionsOutput = schema.new({
+    id = id.from(_N, "ListResourceProfileDetectionsOutput"),
+    type = "structure",
+    members = {
+        detections = schema.new({
+            id = id.from(_N, "ListResourceProfileDetectionsOutput", "detections"),
+            type = "list",
+            name = "detections",
+            target_id = prelude.Document.id,
+            list_member = M.Detection,
+            traits = {
+                [traits.JSON_NAME] = { name = "detections" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListResourceProfileDetectionsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListSensitivityInspectionTemplatesInput = schema.new({
+    id = id.from(_N, "ListSensitivityInspectionTemplatesInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListSensitivityInspectionTemplatesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListSensitivityInspectionTemplatesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListSensitivityInspectionTemplatesOutput = schema.new({
+    id = id.from(_N, "ListSensitivityInspectionTemplatesOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListSensitivityInspectionTemplatesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+        sensitivityInspectionTemplates = schema.new({
+            id = id.from(_N, "ListSensitivityInspectionTemplatesOutput", "sensitivityInspectionTemplates"),
+            type = "list",
+            name = "sensitivityInspectionTemplates",
+            target_id = prelude.Document.id,
+            list_member = M.SensitivityInspectionTemplatesEntry,
+            traits = {
+                [traits.JSON_NAME] = { name = "sensitivityInspectionTemplates" },
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceOutput"),
+    type = "structure",
+    members = {
+        tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+    },
+})
+
+M.PutClassificationExportConfigurationInput = schema.new({
+    id = id.from(_N, "PutClassificationExportConfigurationInput"),
+    type = "structure",
+    members = {
+        configuration = schema.new({
+            id = id.from(_N, "PutClassificationExportConfigurationInput", "configuration"),
+            type = "structure",
+            name = "configuration",
+            target_id = id.from(_N, "ClassificationExportConfiguration"),
+            target = M.ClassificationExportConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "configuration" },
+            },
+        }),
+    },
+})
+
+M.PutClassificationExportConfigurationOutput = schema.new({
+    id = id.from(_N, "PutClassificationExportConfigurationOutput"),
+    type = "structure",
+    members = {
+        configuration = schema.new({
+            id = id.from(_N, "PutClassificationExportConfigurationOutput", "configuration"),
+            type = "structure",
+            name = "configuration",
+            target_id = id.from(_N, "ClassificationExportConfiguration"),
+            target = M.ClassificationExportConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "configuration" },
+            },
+        }),
+    },
+})
+
+M.PutFindingsPublicationConfigurationInput = schema.new({
+    id = id.from(_N, "PutFindingsPublicationConfigurationInput"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "PutFindingsPublicationConfigurationInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "clientToken" },
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        securityHubConfiguration = schema.new({
+            id = id.from(_N, "PutFindingsPublicationConfigurationInput", "securityHubConfiguration"),
+            type = "structure",
+            name = "securityHubConfiguration",
+            target_id = id.from(_N, "SecurityHubConfiguration"),
+            target = M.SecurityHubConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "securityHubConfiguration" },
+            },
+        }),
+    },
+})
+
+M.PutFindingsPublicationConfigurationOutput = schema.new({
+    id = id.from(_N, "PutFindingsPublicationConfigurationOutput"),
+    type = "structure",
+})
+
+M.SearchResourcesCriteriaBlock = schema.new({
+    id = id.from(_N, "SearchResourcesCriteriaBlock"),
+    type = "structure",
+    members = {
+        and = schema.new({
+            id = id.from(_N, "SearchResourcesCriteriaBlock", "and"),
+            type = "list",
+            name = "and",
+            target_id = prelude.Document.id,
+            list_member = M.SearchResourcesCriteria,
+            traits = {
+                [traits.JSON_NAME] = { name = "and" },
+            },
+        }),
+    },
+})
+
+M.SearchResourcesBucketCriteria = schema.new({
+    id = id.from(_N, "SearchResourcesBucketCriteria"),
+    type = "structure",
+    members = {
+        excludes = schema.new({
+            id = id.from(_N, "SearchResourcesBucketCriteria", "excludes"),
+            type = "structure",
+            name = "excludes",
+            target_id = id.from(_N, "SearchResourcesCriteriaBlock"),
+            target = M.SearchResourcesCriteriaBlock,
+            traits = {
+                [traits.JSON_NAME] = { name = "excludes" },
+            },
+        }),
+        includes = schema.new({
+            id = id.from(_N, "SearchResourcesBucketCriteria", "includes"),
+            type = "structure",
+            name = "includes",
+            target_id = id.from(_N, "SearchResourcesCriteriaBlock"),
+            target = M.SearchResourcesCriteriaBlock,
+            traits = {
+                [traits.JSON_NAME] = { name = "includes" },
+            },
+        }),
+    },
+})
+
+M.SearchResourcesSortCriteria = schema.new({
+    id = id.from(_N, "SearchResourcesSortCriteria"),
+    type = "structure",
+    members = {
+        attributeName = schema.new({
+            id = id.from(_N, "SearchResourcesSortCriteria", "attributeName"),
+            type = "string",
+            name = "attributeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "attributeName" },
+            },
+        }),
+        orderBy = schema.new({
+            id = id.from(_N, "SearchResourcesSortCriteria", "orderBy"),
+            type = "string",
+            name = "orderBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "orderBy" },
+            },
+        }),
+    },
+})
+
+M.SearchResourcesInput = schema.new({
+    id = id.from(_N, "SearchResourcesInput"),
+    type = "structure",
+    members = {
+        bucketCriteria = schema.new({
+            id = id.from(_N, "SearchResourcesInput", "bucketCriteria"),
+            type = "structure",
+            name = "bucketCriteria",
+            target_id = id.from(_N, "SearchResourcesBucketCriteria"),
+            target = M.SearchResourcesBucketCriteria,
+            traits = {
+                [traits.JSON_NAME] = { name = "bucketCriteria" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "SearchResourcesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "SearchResourcesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+        sortCriteria = schema.new({
+            id = id.from(_N, "SearchResourcesInput", "sortCriteria"),
+            type = "structure",
+            name = "sortCriteria",
+            target_id = id.from(_N, "SearchResourcesSortCriteria"),
+            target = M.SearchResourcesSortCriteria,
+            traits = {
+                [traits.JSON_NAME] = { name = "sortCriteria" },
+            },
+        }),
+    },
+})
+
+M.SearchResourcesOutput = schema.new({
+    id = id.from(_N, "SearchResourcesOutput"),
+    type = "structure",
+    members = {
+        matchingResources = schema.new({
+            id = id.from(_N, "SearchResourcesOutput", "matchingResources"),
+            type = "list",
+            name = "matchingResources",
+            target_id = prelude.Document.id,
+            list_member = M.MatchingResource,
+            traits = {
+                [traits.JSON_NAME] = { name = "matchingResources" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "SearchResourcesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "TagResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceOutput"),
+    type = "structure",
+})
+
+M.TestCustomDataIdentifierInput = schema.new({
+    id = id.from(_N, "TestCustomDataIdentifierInput"),
+    type = "structure",
+    members = {
+        ignoreWords = schema.new({
+            id = id.from(_N, "TestCustomDataIdentifierInput", "ignoreWords"),
+            type = "list",
+            name = "ignoreWords",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "ignoreWords" },
+            },
+        }),
+        keywords = schema.new({
+            id = id.from(_N, "TestCustomDataIdentifierInput", "keywords"),
+            type = "list",
+            name = "keywords",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "keywords" },
+            },
+        }),
+        maximumMatchDistance = schema.new({
+            id = id.from(_N, "TestCustomDataIdentifierInput", "maximumMatchDistance"),
+            type = "integer",
+            name = "maximumMatchDistance",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "maximumMatchDistance" },
+            },
+        }),
+        regex = schema.new({
+            id = id.from(_N, "TestCustomDataIdentifierInput", "regex"),
+            type = "string",
+            name = "regex",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "regex" },
+            },
+        }),
+        sampleText = schema.new({
+            id = id.from(_N, "TestCustomDataIdentifierInput", "sampleText"),
+            type = "string",
+            name = "sampleText",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "sampleText" },
+            },
+        }),
+    },
+})
+
+M.TestCustomDataIdentifierOutput = schema.new({
+    id = id.from(_N, "TestCustomDataIdentifierOutput"),
+    type = "structure",
+    members = {
+        matchCount = schema.new({
+            id = id.from(_N, "TestCustomDataIdentifierOutput", "matchCount"),
+            type = "integer",
+            name = "matchCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "matchCount" },
+            },
+        }),
+    },
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "UntagResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        tagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "tagKeys"),
+            type = "list",
+            name = "tagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "tagKeys" },
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
+M.UpdateAllowListInput = schema.new({
+    id = id.from(_N, "UpdateAllowListInput"),
+    type = "structure",
+    members = {
+        criteria = schema.new({
+            id = id.from(_N, "UpdateAllowListInput", "criteria"),
+            type = "structure",
+            name = "criteria",
+            target_id = id.from(_N, "AllowListCriteria"),
+            target = M.AllowListCriteria,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "criteria" },
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateAllowListInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "UpdateAllowListInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "UpdateAllowListInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+    },
+})
+
+M.UpdateAllowListOutput = schema.new({
+    id = id.from(_N, "UpdateAllowListOutput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "UpdateAllowListOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "UpdateAllowListOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "id" },
+            },
+        }),
+    },
+})
+
+M.UpdateAutomatedDiscoveryConfigurationInput = schema.new({
+    id = id.from(_N, "UpdateAutomatedDiscoveryConfigurationInput"),
+    type = "structure",
+    members = {
+        autoEnableOrganizationMembers = schema.new({
+            id = id.from(_N, "UpdateAutomatedDiscoveryConfigurationInput", "autoEnableOrganizationMembers"),
+            type = "string",
+            name = "autoEnableOrganizationMembers",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "autoEnableOrganizationMembers" },
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdateAutomatedDiscoveryConfigurationInput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "status" },
+            },
+        }),
+    },
+})
+
+M.UpdateAutomatedDiscoveryConfigurationOutput = schema.new({
+    id = id.from(_N, "UpdateAutomatedDiscoveryConfigurationOutput"),
+    type = "structure",
+})
+
+M.UpdateClassificationJobInput = schema.new({
+    id = id.from(_N, "UpdateClassificationJobInput"),
+    type = "structure",
+    members = {
+        jobId = schema.new({
+            id = id.from(_N, "UpdateClassificationJobInput", "jobId"),
+            type = "string",
+            name = "jobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        jobStatus = schema.new({
+            id = id.from(_N, "UpdateClassificationJobInput", "jobStatus"),
+            type = "string",
+            name = "jobStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "jobStatus" },
+            },
+        }),
+    },
+})
+
+M.UpdateClassificationJobOutput = schema.new({
+    id = id.from(_N, "UpdateClassificationJobOutput"),
+    type = "structure",
+})
+
+M.S3ClassificationScopeExclusionUpdate = schema.new({
+    id = id.from(_N, "S3ClassificationScopeExclusionUpdate"),
+    type = "structure",
+    members = {
+        bucketNames = schema.new({
+            id = id.from(_N, "S3ClassificationScopeExclusionUpdate", "bucketNames"),
+            type = "list",
+            name = "bucketNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "bucketNames" },
+            },
+        }),
+        operation = schema.new({
+            id = id.from(_N, "S3ClassificationScopeExclusionUpdate", "operation"),
+            type = "string",
+            name = "operation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "operation" },
+            },
+        }),
+    },
+})
+
+M.S3ClassificationScopeUpdate = schema.new({
+    id = id.from(_N, "S3ClassificationScopeUpdate"),
+    type = "structure",
+    members = {
+        excludes = schema.new({
+            id = id.from(_N, "S3ClassificationScopeUpdate", "excludes"),
+            type = "structure",
+            name = "excludes",
+            target_id = id.from(_N, "S3ClassificationScopeExclusionUpdate"),
+            target = M.S3ClassificationScopeExclusionUpdate,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "excludes" },
+            },
+        }),
+    },
+})
+
+M.UpdateClassificationScopeInput = schema.new({
+    id = id.from(_N, "UpdateClassificationScopeInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "UpdateClassificationScopeInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        s3 = schema.new({
+            id = id.from(_N, "UpdateClassificationScopeInput", "s3"),
+            type = "structure",
+            name = "s3",
+            target_id = id.from(_N, "S3ClassificationScopeUpdate"),
+            target = M.S3ClassificationScopeUpdate,
+            traits = {
+                [traits.JSON_NAME] = { name = "s3" },
+            },
+        }),
+    },
+})
+
+M.UpdateClassificationScopeOutput = schema.new({
+    id = id.from(_N, "UpdateClassificationScopeOutput"),
+    type = "structure",
+})
+
+M.UpdateFindingsFilterInput = schema.new({
+    id = id.from(_N, "UpdateFindingsFilterInput"),
+    type = "structure",
+    members = {
+        action = schema.new({
+            id = id.from(_N, "UpdateFindingsFilterInput", "action"),
+            type = "string",
+            name = "action",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "action" },
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "UpdateFindingsFilterInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "clientToken" },
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateFindingsFilterInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        findingCriteria = schema.new({
+            id = id.from(_N, "UpdateFindingsFilterInput", "findingCriteria"),
+            type = "structure",
+            name = "findingCriteria",
+            target_id = id.from(_N, "FindingCriteria"),
+            target = M.FindingCriteria,
+            traits = {
+                [traits.JSON_NAME] = { name = "findingCriteria" },
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "UpdateFindingsFilterInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "UpdateFindingsFilterInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        position = schema.new({
+            id = id.from(_N, "UpdateFindingsFilterInput", "position"),
+            type = "integer",
+            name = "position",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "position" },
+            },
+        }),
+    },
+})
+
+M.UpdateFindingsFilterOutput = schema.new({
+    id = id.from(_N, "UpdateFindingsFilterOutput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "UpdateFindingsFilterOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "UpdateFindingsFilterOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "id" },
+            },
+        }),
+    },
+})
+
+M.UpdateMacieSessionInput = schema.new({
+    id = id.from(_N, "UpdateMacieSessionInput"),
+    type = "structure",
+    members = {
+        findingPublishingFrequency = schema.new({
+            id = id.from(_N, "UpdateMacieSessionInput", "findingPublishingFrequency"),
+            type = "string",
+            name = "findingPublishingFrequency",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "findingPublishingFrequency" },
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdateMacieSessionInput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "status" },
+            },
+        }),
+    },
+})
+
+M.UpdateMacieSessionOutput = schema.new({
+    id = id.from(_N, "UpdateMacieSessionOutput"),
+    type = "structure",
+})
+
+M.UpdateMemberSessionInput = schema.new({
+    id = id.from(_N, "UpdateMemberSessionInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "UpdateMemberSessionInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdateMemberSessionInput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "status" },
+            },
+        }),
+    },
+})
+
+M.UpdateMemberSessionOutput = schema.new({
+    id = id.from(_N, "UpdateMemberSessionOutput"),
+    type = "structure",
+})
+
+M.UpdateOrganizationConfigurationInput = schema.new({
+    id = id.from(_N, "UpdateOrganizationConfigurationInput"),
+    type = "structure",
+    members = {
+        autoEnable = schema.new({
+            id = id.from(_N, "UpdateOrganizationConfigurationInput", "autoEnable"),
+            type = "boolean",
+            name = "autoEnable",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "autoEnable" },
+            },
+        }),
+    },
+})
+
+M.UpdateOrganizationConfigurationOutput = schema.new({
+    id = id.from(_N, "UpdateOrganizationConfigurationOutput"),
+    type = "structure",
+})
+
+M.UpdateResourceProfileInput = schema.new({
+    id = id.from(_N, "UpdateResourceProfileInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "UpdateResourceProfileInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "resourceArn" },
+            },
+        }),
+        sensitivityScoreOverride = schema.new({
+            id = id.from(_N, "UpdateResourceProfileInput", "sensitivityScoreOverride"),
+            type = "integer",
+            name = "sensitivityScoreOverride",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sensitivityScoreOverride" },
+            },
+        }),
+    },
+})
+
+M.UpdateResourceProfileOutput = schema.new({
+    id = id.from(_N, "UpdateResourceProfileOutput"),
+    type = "structure",
+})
+
+M.UpdateResourceProfileDetectionsInput = schema.new({
+    id = id.from(_N, "UpdateResourceProfileDetectionsInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "UpdateResourceProfileDetectionsInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "resourceArn" },
+            },
+        }),
+        suppressDataIdentifiers = schema.new({
+            id = id.from(_N, "UpdateResourceProfileDetectionsInput", "suppressDataIdentifiers"),
+            type = "list",
+            name = "suppressDataIdentifiers",
+            target_id = prelude.Document.id,
+            list_member = M.SuppressDataIdentifier,
+            traits = {
+                [traits.JSON_NAME] = { name = "suppressDataIdentifiers" },
+            },
+        }),
+    },
+})
+
+M.UpdateResourceProfileDetectionsOutput = schema.new({
+    id = id.from(_N, "UpdateResourceProfileDetectionsOutput"),
+    type = "structure",
+})
+
+M.UpdateRetrievalConfiguration = schema.new({
+    id = id.from(_N, "UpdateRetrievalConfiguration"),
+    type = "structure",
+    members = {
+        retrievalMode = schema.new({
+            id = id.from(_N, "UpdateRetrievalConfiguration", "retrievalMode"),
+            type = "string",
+            name = "retrievalMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "retrievalMode" },
+            },
+        }),
+        roleName = schema.new({
+            id = id.from(_N, "UpdateRetrievalConfiguration", "roleName"),
+            type = "string",
+            name = "roleName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "roleName" },
+            },
+        }),
+    },
+})
+
+M.UpdateRevealConfigurationInput = schema.new({
+    id = id.from(_N, "UpdateRevealConfigurationInput"),
+    type = "structure",
+    members = {
+        configuration = schema.new({
+            id = id.from(_N, "UpdateRevealConfigurationInput", "configuration"),
+            type = "structure",
+            name = "configuration",
+            target_id = id.from(_N, "RevealConfiguration"),
+            target = M.RevealConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "configuration" },
+            },
+        }),
+        retrievalConfiguration = schema.new({
+            id = id.from(_N, "UpdateRevealConfigurationInput", "retrievalConfiguration"),
+            type = "structure",
+            name = "retrievalConfiguration",
+            target_id = id.from(_N, "UpdateRetrievalConfiguration"),
+            target = M.UpdateRetrievalConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "retrievalConfiguration" },
+            },
+        }),
+    },
+})
+
+M.UpdateRevealConfigurationOutput = schema.new({
+    id = id.from(_N, "UpdateRevealConfigurationOutput"),
+    type = "structure",
+    members = {
+        configuration = schema.new({
+            id = id.from(_N, "UpdateRevealConfigurationOutput", "configuration"),
+            type = "structure",
+            name = "configuration",
+            target_id = id.from(_N, "RevealConfiguration"),
+            target = M.RevealConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "configuration" },
+            },
+        }),
+        retrievalConfiguration = schema.new({
+            id = id.from(_N, "UpdateRevealConfigurationOutput", "retrievalConfiguration"),
+            type = "structure",
+            name = "retrievalConfiguration",
+            target_id = id.from(_N, "RetrievalConfiguration"),
+            target = M.RetrievalConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "retrievalConfiguration" },
+            },
+        }),
+    },
+})
+
+M.UpdateSensitivityInspectionTemplateInput = schema.new({
+    id = id.from(_N, "UpdateSensitivityInspectionTemplateInput"),
+    type = "structure",
+    members = {
+        description = schema.new({
+            id = id.from(_N, "UpdateSensitivityInspectionTemplateInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "description" },
+            },
+        }),
+        excludes = schema.new({
+            id = id.from(_N, "UpdateSensitivityInspectionTemplateInput", "excludes"),
+            type = "structure",
+            name = "excludes",
+            target_id = id.from(_N, "SensitivityInspectionTemplateExcludes"),
+            target = M.SensitivityInspectionTemplateExcludes,
+            traits = {
+                [traits.JSON_NAME] = { name = "excludes" },
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "UpdateSensitivityInspectionTemplateInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        includes = schema.new({
+            id = id.from(_N, "UpdateSensitivityInspectionTemplateInput", "includes"),
+            type = "structure",
+            name = "includes",
+            target_id = id.from(_N, "SensitivityInspectionTemplateIncludes"),
+            target = M.SensitivityInspectionTemplateIncludes,
+            traits = {
+                [traits.JSON_NAME] = { name = "includes" },
+            },
+        }),
+    },
+})
+
+M.UpdateSensitivityInspectionTemplateOutput = schema.new({
+    id = id.from(_N, "UpdateSensitivityInspectionTemplateOutput"),
+    type = "structure",
+})
+
+return M

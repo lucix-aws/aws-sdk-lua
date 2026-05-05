@@ -1,0 +1,3339 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.connectcampaignsv2"
+
+local M = {}
+
+M.AccessDeniedException = schema.new({
+    id = id.from(_N, "AccessDeniedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "AccessDeniedException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        xAmzErrorType = schema.new({
+            id = id.from(_N, "AccessDeniedException", "xAmzErrorType"),
+            type = "string",
+            name = "xAmzErrorType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-ErrorType" },
+            },
+        }),
+    },
+})
+
+M.AgentlessConfig = schema.new({
+    id = id.from(_N, "AgentlessConfig"),
+    type = "structure",
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ConflictException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        xAmzErrorType = schema.new({
+            id = id.from(_N, "ConflictException", "xAmzErrorType"),
+            type = "string",
+            name = "xAmzErrorType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-ErrorType" },
+            },
+        }),
+    },
+})
+
+M.EmailOutboundConfig = schema.new({
+    id = id.from(_N, "EmailOutboundConfig"),
+    type = "structure",
+    members = {
+        connectSourceEmailAddress = schema.new({
+            id = id.from(_N, "EmailOutboundConfig", "connectSourceEmailAddress"),
+            type = "string",
+            name = "connectSourceEmailAddress",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceEmailAddressDisplayName = schema.new({
+            id = id.from(_N, "EmailOutboundConfig", "sourceEmailAddressDisplayName"),
+            type = "string",
+            name = "sourceEmailAddressDisplayName",
+            target_id = prelude.String.id,
+        }),
+        wisdomTemplateArn = schema.new({
+            id = id.from(_N, "EmailOutboundConfig", "wisdomTemplateArn"),
+            type = "string",
+            name = "wisdomTemplateArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.EmailOutboundMode = schema.new({
+    id = id.from(_N, "EmailOutboundMode"),
+    type = "union",
+    members = {
+        agentless = schema.new({
+            id = id.from(_N, "EmailOutboundMode", "agentless"),
+            type = "structure",
+            name = "agentless",
+            target_id = id.from(_N, "AgentlessConfig"),
+            target = M.AgentlessConfig,
+        }),
+    },
+})
+
+M.EmailChannelSubtypeConfig = schema.new({
+    id = id.from(_N, "EmailChannelSubtypeConfig"),
+    type = "structure",
+    members = {
+        capacity = schema.new({
+            id = id.from(_N, "EmailChannelSubtypeConfig", "capacity"),
+            type = "double",
+            name = "capacity",
+            target_id = prelude.Double.id,
+        }),
+        outboundMode = schema.new({
+            id = id.from(_N, "EmailChannelSubtypeConfig", "outboundMode"),
+            type = "union",
+            name = "outboundMode",
+            target_id = id.from(_N, "EmailOutboundMode"),
+            target = M.EmailOutboundMode,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        defaultOutboundConfig = schema.new({
+            id = id.from(_N, "EmailChannelSubtypeConfig", "defaultOutboundConfig"),
+            type = "structure",
+            name = "defaultOutboundConfig",
+            target_id = id.from(_N, "EmailOutboundConfig"),
+            target = M.EmailOutboundConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SmsOutboundConfig = schema.new({
+    id = id.from(_N, "SmsOutboundConfig"),
+    type = "structure",
+    members = {
+        connectSourcePhoneNumberArn = schema.new({
+            id = id.from(_N, "SmsOutboundConfig", "connectSourcePhoneNumberArn"),
+            type = "string",
+            name = "connectSourcePhoneNumberArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        wisdomTemplateArn = schema.new({
+            id = id.from(_N, "SmsOutboundConfig", "wisdomTemplateArn"),
+            type = "string",
+            name = "wisdomTemplateArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SmsOutboundMode = schema.new({
+    id = id.from(_N, "SmsOutboundMode"),
+    type = "union",
+    members = {
+        agentless = schema.new({
+            id = id.from(_N, "SmsOutboundMode", "agentless"),
+            type = "structure",
+            name = "agentless",
+            target_id = id.from(_N, "AgentlessConfig"),
+            target = M.AgentlessConfig,
+        }),
+    },
+})
+
+M.SmsChannelSubtypeConfig = schema.new({
+    id = id.from(_N, "SmsChannelSubtypeConfig"),
+    type = "structure",
+    members = {
+        capacity = schema.new({
+            id = id.from(_N, "SmsChannelSubtypeConfig", "capacity"),
+            type = "double",
+            name = "capacity",
+            target_id = prelude.Double.id,
+        }),
+        outboundMode = schema.new({
+            id = id.from(_N, "SmsChannelSubtypeConfig", "outboundMode"),
+            type = "union",
+            name = "outboundMode",
+            target_id = id.from(_N, "SmsOutboundMode"),
+            target = M.SmsOutboundMode,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        defaultOutboundConfig = schema.new({
+            id = id.from(_N, "SmsChannelSubtypeConfig", "defaultOutboundConfig"),
+            type = "structure",
+            name = "defaultOutboundConfig",
+            target_id = id.from(_N, "SmsOutboundConfig"),
+            target = M.SmsOutboundConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AnswerMachineDetectionConfig = schema.new({
+    id = id.from(_N, "AnswerMachineDetectionConfig"),
+    type = "structure",
+    members = {
+        enableAnswerMachineDetection = schema.new({
+            id = id.from(_N, "AnswerMachineDetectionConfig", "enableAnswerMachineDetection"),
+            type = "boolean",
+            name = "enableAnswerMachineDetection",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        awaitAnswerMachinePrompt = schema.new({
+            id = id.from(_N, "AnswerMachineDetectionConfig", "awaitAnswerMachinePrompt"),
+            type = "boolean",
+            name = "awaitAnswerMachinePrompt",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+    },
+})
+
+M.TelephonyOutboundConfig = schema.new({
+    id = id.from(_N, "TelephonyOutboundConfig"),
+    type = "structure",
+    members = {
+        connectContactFlowId = schema.new({
+            id = id.from(_N, "TelephonyOutboundConfig", "connectContactFlowId"),
+            type = "string",
+            name = "connectContactFlowId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        connectSourcePhoneNumber = schema.new({
+            id = id.from(_N, "TelephonyOutboundConfig", "connectSourcePhoneNumber"),
+            type = "string",
+            name = "connectSourcePhoneNumber",
+            target_id = prelude.String.id,
+        }),
+        answerMachineDetectionConfig = schema.new({
+            id = id.from(_N, "TelephonyOutboundConfig", "answerMachineDetectionConfig"),
+            type = "structure",
+            name = "answerMachineDetectionConfig",
+            target_id = id.from(_N, "AnswerMachineDetectionConfig"),
+            target = M.AnswerMachineDetectionConfig,
+        }),
+        ringTimeout = schema.new({
+            id = id.from(_N, "TelephonyOutboundConfig", "ringTimeout"),
+            type = "integer",
+            name = "ringTimeout",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.PredictiveConfig = schema.new({
+    id = id.from(_N, "PredictiveConfig"),
+    type = "structure",
+    members = {
+        bandwidthAllocation = schema.new({
+            id = id.from(_N, "PredictiveConfig", "bandwidthAllocation"),
+            type = "double",
+            name = "bandwidthAllocation",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TimeoutConfig = schema.new({
+    id = id.from(_N, "TimeoutConfig"),
+    type = "structure",
+    members = {
+        durationInSeconds = schema.new({
+            id = id.from(_N, "TimeoutConfig", "durationInSeconds"),
+            type = "integer",
+            name = "durationInSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PreviewConfig = schema.new({
+    id = id.from(_N, "PreviewConfig"),
+    type = "structure",
+    members = {
+        bandwidthAllocation = schema.new({
+            id = id.from(_N, "PreviewConfig", "bandwidthAllocation"),
+            type = "double",
+            name = "bandwidthAllocation",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        timeoutConfig = schema.new({
+            id = id.from(_N, "PreviewConfig", "timeoutConfig"),
+            type = "structure",
+            name = "timeoutConfig",
+            target_id = id.from(_N, "TimeoutConfig"),
+            target = M.TimeoutConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        agentActions = schema.new({
+            id = id.from(_N, "PreviewConfig", "agentActions"),
+            type = "list",
+            name = "agentActions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ProgressiveConfig = schema.new({
+    id = id.from(_N, "ProgressiveConfig"),
+    type = "structure",
+    members = {
+        bandwidthAllocation = schema.new({
+            id = id.from(_N, "ProgressiveConfig", "bandwidthAllocation"),
+            type = "double",
+            name = "bandwidthAllocation",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TelephonyOutboundMode = schema.new({
+    id = id.from(_N, "TelephonyOutboundMode"),
+    type = "union",
+    members = {
+        progressive = schema.new({
+            id = id.from(_N, "TelephonyOutboundMode", "progressive"),
+            type = "structure",
+            name = "progressive",
+            target_id = id.from(_N, "ProgressiveConfig"),
+            target = M.ProgressiveConfig,
+        }),
+        predictive = schema.new({
+            id = id.from(_N, "TelephonyOutboundMode", "predictive"),
+            type = "structure",
+            name = "predictive",
+            target_id = id.from(_N, "PredictiveConfig"),
+            target = M.PredictiveConfig,
+        }),
+        agentless = schema.new({
+            id = id.from(_N, "TelephonyOutboundMode", "agentless"),
+            type = "structure",
+            name = "agentless",
+            target_id = id.from(_N, "AgentlessConfig"),
+            target = M.AgentlessConfig,
+        }),
+        preview = schema.new({
+            id = id.from(_N, "TelephonyOutboundMode", "preview"),
+            type = "structure",
+            name = "preview",
+            target_id = id.from(_N, "PreviewConfig"),
+            target = M.PreviewConfig,
+        }),
+    },
+})
+
+M.TelephonyChannelSubtypeConfig = schema.new({
+    id = id.from(_N, "TelephonyChannelSubtypeConfig"),
+    type = "structure",
+    members = {
+        capacity = schema.new({
+            id = id.from(_N, "TelephonyChannelSubtypeConfig", "capacity"),
+            type = "double",
+            name = "capacity",
+            target_id = prelude.Double.id,
+        }),
+        connectQueueId = schema.new({
+            id = id.from(_N, "TelephonyChannelSubtypeConfig", "connectQueueId"),
+            type = "string",
+            name = "connectQueueId",
+            target_id = prelude.String.id,
+        }),
+        outboundMode = schema.new({
+            id = id.from(_N, "TelephonyChannelSubtypeConfig", "outboundMode"),
+            type = "union",
+            name = "outboundMode",
+            target_id = id.from(_N, "TelephonyOutboundMode"),
+            target = M.TelephonyOutboundMode,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        defaultOutboundConfig = schema.new({
+            id = id.from(_N, "TelephonyChannelSubtypeConfig", "defaultOutboundConfig"),
+            type = "structure",
+            name = "defaultOutboundConfig",
+            target_id = id.from(_N, "TelephonyOutboundConfig"),
+            target = M.TelephonyOutboundConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.WhatsAppOutboundConfig = schema.new({
+    id = id.from(_N, "WhatsAppOutboundConfig"),
+    type = "structure",
+    members = {
+        connectSourcePhoneNumberArn = schema.new({
+            id = id.from(_N, "WhatsAppOutboundConfig", "connectSourcePhoneNumberArn"),
+            type = "string",
+            name = "connectSourcePhoneNumberArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        wisdomTemplateArn = schema.new({
+            id = id.from(_N, "WhatsAppOutboundConfig", "wisdomTemplateArn"),
+            type = "string",
+            name = "wisdomTemplateArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.WhatsAppOutboundMode = schema.new({
+    id = id.from(_N, "WhatsAppOutboundMode"),
+    type = "union",
+    members = {
+        agentless = schema.new({
+            id = id.from(_N, "WhatsAppOutboundMode", "agentless"),
+            type = "structure",
+            name = "agentless",
+            target_id = id.from(_N, "AgentlessConfig"),
+            target = M.AgentlessConfig,
+        }),
+    },
+})
+
+M.WhatsAppChannelSubtypeConfig = schema.new({
+    id = id.from(_N, "WhatsAppChannelSubtypeConfig"),
+    type = "structure",
+    members = {
+        capacity = schema.new({
+            id = id.from(_N, "WhatsAppChannelSubtypeConfig", "capacity"),
+            type = "double",
+            name = "capacity",
+            target_id = prelude.Double.id,
+        }),
+        outboundMode = schema.new({
+            id = id.from(_N, "WhatsAppChannelSubtypeConfig", "outboundMode"),
+            type = "union",
+            name = "outboundMode",
+            target_id = id.from(_N, "WhatsAppOutboundMode"),
+            target = M.WhatsAppOutboundMode,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        defaultOutboundConfig = schema.new({
+            id = id.from(_N, "WhatsAppChannelSubtypeConfig", "defaultOutboundConfig"),
+            type = "structure",
+            name = "defaultOutboundConfig",
+            target_id = id.from(_N, "WhatsAppOutboundConfig"),
+            target = M.WhatsAppOutboundConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ChannelSubtypeConfig = schema.new({
+    id = id.from(_N, "ChannelSubtypeConfig"),
+    type = "structure",
+    members = {
+        telephony = schema.new({
+            id = id.from(_N, "ChannelSubtypeConfig", "telephony"),
+            type = "structure",
+            name = "telephony",
+            target_id = id.from(_N, "TelephonyChannelSubtypeConfig"),
+            target = M.TelephonyChannelSubtypeConfig,
+        }),
+        sms = schema.new({
+            id = id.from(_N, "ChannelSubtypeConfig", "sms"),
+            type = "structure",
+            name = "sms",
+            target_id = id.from(_N, "SmsChannelSubtypeConfig"),
+            target = M.SmsChannelSubtypeConfig,
+        }),
+        email = schema.new({
+            id = id.from(_N, "ChannelSubtypeConfig", "email"),
+            type = "structure",
+            name = "email",
+            target_id = id.from(_N, "EmailChannelSubtypeConfig"),
+            target = M.EmailChannelSubtypeConfig,
+        }),
+        whatsApp = schema.new({
+            id = id.from(_N, "ChannelSubtypeConfig", "whatsApp"),
+            type = "structure",
+            name = "whatsApp",
+            target_id = id.from(_N, "WhatsAppChannelSubtypeConfig"),
+            target = M.WhatsAppChannelSubtypeConfig,
+        }),
+    },
+})
+
+M.CommunicationLimit = schema.new({
+    id = id.from(_N, "CommunicationLimit"),
+    type = "structure",
+    members = {
+        maxCountPerRecipient = schema.new({
+            id = id.from(_N, "CommunicationLimit", "maxCountPerRecipient"),
+            type = "integer",
+            name = "maxCountPerRecipient",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        frequency = schema.new({
+            id = id.from(_N, "CommunicationLimit", "frequency"),
+            type = "integer",
+            name = "frequency",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        unit = schema.new({
+            id = id.from(_N, "CommunicationLimit", "unit"),
+            type = "string",
+            name = "unit",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CommunicationLimits = schema.new({
+    id = id.from(_N, "CommunicationLimits"),
+    type = "union",
+    members = {
+        communicationLimitsList = schema.new({
+            id = id.from(_N, "CommunicationLimits", "communicationLimitsList"),
+            type = "list",
+            name = "communicationLimitsList",
+            target_id = prelude.Document.id,
+            list_member = M.CommunicationLimit,
+        }),
+    },
+})
+
+M.CommunicationLimitsConfig = schema.new({
+    id = id.from(_N, "CommunicationLimitsConfig"),
+    type = "structure",
+    members = {
+        allChannelSubtypes = schema.new({
+            id = id.from(_N, "CommunicationLimitsConfig", "allChannelSubtypes"),
+            type = "union",
+            name = "allChannelSubtypes",
+            target_id = id.from(_N, "CommunicationLimits"),
+            target = M.CommunicationLimits,
+        }),
+        instanceLimitsHandling = schema.new({
+            id = id.from(_N, "CommunicationLimitsConfig", "instanceLimitsHandling"),
+            type = "string",
+            name = "instanceLimitsHandling",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TimeRange = schema.new({
+    id = id.from(_N, "TimeRange"),
+    type = "structure",
+    members = {
+        startTime = schema.new({
+            id = id.from(_N, "TimeRange", "startTime"),
+            type = "string",
+            name = "startTime",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endTime = schema.new({
+            id = id.from(_N, "TimeRange", "endTime"),
+            type = "string",
+            name = "endTime",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.OpenHours = schema.new({
+    id = id.from(_N, "OpenHours"),
+    type = "union",
+    members = {
+        dailyHours = schema.new({
+            id = id.from(_N, "OpenHours", "dailyHours"),
+            type = "map",
+            name = "dailyHours",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.Document,
+        }),
+    },
+})
+
+M.RestrictedPeriod = schema.new({
+    id = id.from(_N, "RestrictedPeriod"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "RestrictedPeriod", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        startDate = schema.new({
+            id = id.from(_N, "RestrictedPeriod", "startDate"),
+            type = "string",
+            name = "startDate",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endDate = schema.new({
+            id = id.from(_N, "RestrictedPeriod", "endDate"),
+            type = "string",
+            name = "endDate",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RestrictedPeriods = schema.new({
+    id = id.from(_N, "RestrictedPeriods"),
+    type = "union",
+    members = {
+        restrictedPeriodList = schema.new({
+            id = id.from(_N, "RestrictedPeriods", "restrictedPeriodList"),
+            type = "list",
+            name = "restrictedPeriodList",
+            target_id = prelude.Document.id,
+            list_member = M.RestrictedPeriod,
+        }),
+    },
+})
+
+M.TimeWindow = schema.new({
+    id = id.from(_N, "TimeWindow"),
+    type = "structure",
+    members = {
+        openHours = schema.new({
+            id = id.from(_N, "TimeWindow", "openHours"),
+            type = "union",
+            name = "openHours",
+            target_id = id.from(_N, "OpenHours"),
+            target = M.OpenHours,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        restrictedPeriods = schema.new({
+            id = id.from(_N, "TimeWindow", "restrictedPeriods"),
+            type = "union",
+            name = "restrictedPeriods",
+            target_id = id.from(_N, "RestrictedPeriods"),
+            target = M.RestrictedPeriods,
+        }),
+    },
+})
+
+M.LocalTimeZoneConfig = schema.new({
+    id = id.from(_N, "LocalTimeZoneConfig"),
+    type = "structure",
+    members = {
+        defaultTimeZone = schema.new({
+            id = id.from(_N, "LocalTimeZoneConfig", "defaultTimeZone"),
+            type = "string",
+            name = "defaultTimeZone",
+            target_id = prelude.String.id,
+        }),
+        localTimeZoneDetection = schema.new({
+            id = id.from(_N, "LocalTimeZoneConfig", "localTimeZoneDetection"),
+            type = "list",
+            name = "localTimeZoneDetection",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.CommunicationTimeConfig = schema.new({
+    id = id.from(_N, "CommunicationTimeConfig"),
+    type = "structure",
+    members = {
+        localTimeZoneConfig = schema.new({
+            id = id.from(_N, "CommunicationTimeConfig", "localTimeZoneConfig"),
+            type = "structure",
+            name = "localTimeZoneConfig",
+            target_id = id.from(_N, "LocalTimeZoneConfig"),
+            target = M.LocalTimeZoneConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        telephony = schema.new({
+            id = id.from(_N, "CommunicationTimeConfig", "telephony"),
+            type = "structure",
+            name = "telephony",
+            target_id = id.from(_N, "TimeWindow"),
+            target = M.TimeWindow,
+        }),
+        sms = schema.new({
+            id = id.from(_N, "CommunicationTimeConfig", "sms"),
+            type = "structure",
+            name = "sms",
+            target_id = id.from(_N, "TimeWindow"),
+            target = M.TimeWindow,
+        }),
+        email = schema.new({
+            id = id.from(_N, "CommunicationTimeConfig", "email"),
+            type = "structure",
+            name = "email",
+            target_id = id.from(_N, "TimeWindow"),
+            target = M.TimeWindow,
+        }),
+        whatsApp = schema.new({
+            id = id.from(_N, "CommunicationTimeConfig", "whatsApp"),
+            type = "structure",
+            name = "whatsApp",
+            target_id = id.from(_N, "TimeWindow"),
+            target = M.TimeWindow,
+        }),
+    },
+})
+
+M.EntryLimitsConfig = schema.new({
+    id = id.from(_N, "EntryLimitsConfig"),
+    type = "structure",
+    members = {
+        maxEntryCount = schema.new({
+            id = id.from(_N, "EntryLimitsConfig", "maxEntryCount"),
+            type = "integer",
+            name = "maxEntryCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        minEntryInterval = schema.new({
+            id = id.from(_N, "EntryLimitsConfig", "minEntryInterval"),
+            type = "string",
+            name = "minEntryInterval",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Schedule = schema.new({
+    id = id.from(_N, "Schedule"),
+    type = "structure",
+    members = {
+        startTime = schema.new({
+            id = id.from(_N, "Schedule", "startTime"),
+            type = "timestamp",
+            name = "startTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endTime = schema.new({
+            id = id.from(_N, "Schedule", "endTime"),
+            type = "timestamp",
+            name = "endTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        refreshFrequency = schema.new({
+            id = id.from(_N, "Schedule", "refreshFrequency"),
+            type = "string",
+            name = "refreshFrequency",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EventTrigger = schema.new({
+    id = id.from(_N, "EventTrigger"),
+    type = "structure",
+    members = {
+        customerProfilesDomainArn = schema.new({
+            id = id.from(_N, "EventTrigger", "customerProfilesDomainArn"),
+            type = "string",
+            name = "customerProfilesDomainArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Source = schema.new({
+    id = id.from(_N, "Source"),
+    type = "union",
+    members = {
+        customerProfilesSegmentArn = schema.new({
+            id = id.from(_N, "Source", "customerProfilesSegmentArn"),
+            type = "string",
+            name = "customerProfilesSegmentArn",
+            target_id = prelude.String.id,
+        }),
+        eventTrigger = schema.new({
+            id = id.from(_N, "Source", "eventTrigger"),
+            type = "structure",
+            name = "eventTrigger",
+            target_id = id.from(_N, "EventTrigger"),
+            target = M.EventTrigger,
+        }),
+    },
+})
+
+M.CreateCampaignInput = schema.new({
+    id = id.from(_N, "CreateCampaignInput"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "CreateCampaignInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        connectInstanceId = schema.new({
+            id = id.from(_N, "CreateCampaignInput", "connectInstanceId"),
+            type = "string",
+            name = "connectInstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        channelSubtypeConfig = schema.new({
+            id = id.from(_N, "CreateCampaignInput", "channelSubtypeConfig"),
+            type = "structure",
+            name = "channelSubtypeConfig",
+            target_id = id.from(_N, "ChannelSubtypeConfig"),
+            target = M.ChannelSubtypeConfig,
+        }),
+        type = schema.new({
+            id = id.from(_N, "CreateCampaignInput", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        source = schema.new({
+            id = id.from(_N, "CreateCampaignInput", "source"),
+            type = "union",
+            name = "source",
+            target_id = id.from(_N, "Source"),
+            target = M.Source,
+        }),
+        connectCampaignFlowArn = schema.new({
+            id = id.from(_N, "CreateCampaignInput", "connectCampaignFlowArn"),
+            type = "string",
+            name = "connectCampaignFlowArn",
+            target_id = prelude.String.id,
+        }),
+        schedule = schema.new({
+            id = id.from(_N, "CreateCampaignInput", "schedule"),
+            type = "structure",
+            name = "schedule",
+            target_id = id.from(_N, "Schedule"),
+            target = M.Schedule,
+        }),
+        entryLimitsConfig = schema.new({
+            id = id.from(_N, "CreateCampaignInput", "entryLimitsConfig"),
+            type = "structure",
+            name = "entryLimitsConfig",
+            target_id = id.from(_N, "EntryLimitsConfig"),
+            target = M.EntryLimitsConfig,
+        }),
+        communicationTimeConfig = schema.new({
+            id = id.from(_N, "CreateCampaignInput", "communicationTimeConfig"),
+            type = "structure",
+            name = "communicationTimeConfig",
+            target_id = id.from(_N, "CommunicationTimeConfig"),
+            target = M.CommunicationTimeConfig,
+        }),
+        communicationLimitsOverride = schema.new({
+            id = id.from(_N, "CreateCampaignInput", "communicationLimitsOverride"),
+            type = "structure",
+            name = "communicationLimitsOverride",
+            target_id = id.from(_N, "CommunicationLimitsConfig"),
+            target = M.CommunicationLimitsConfig,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateCampaignInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateCampaignOutput = schema.new({
+    id = id.from(_N, "CreateCampaignOutput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "CreateCampaignOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+        arn = schema.new({
+            id = id.from(_N, "CreateCampaignOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateCampaignOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InternalServerException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        xAmzErrorType = schema.new({
+            id = id.from(_N, "InternalServerException", "xAmzErrorType"),
+            type = "string",
+            name = "xAmzErrorType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-ErrorType" },
+            },
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        xAmzErrorType = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "xAmzErrorType"),
+            type = "string",
+            name = "xAmzErrorType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-ErrorType" },
+            },
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        xAmzErrorType = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "xAmzErrorType"),
+            type = "string",
+            name = "xAmzErrorType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-ErrorType" },
+            },
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ThrottlingException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        xAmzErrorType = schema.new({
+            id = id.from(_N, "ThrottlingException", "xAmzErrorType"),
+            type = "string",
+            name = "xAmzErrorType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-ErrorType" },
+            },
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        xAmzErrorType = schema.new({
+            id = id.from(_N, "ValidationException", "xAmzErrorType"),
+            type = "string",
+            name = "xAmzErrorType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-ErrorType" },
+            },
+        }),
+    },
+})
+
+M.DeleteCampaignInput = schema.new({
+    id = id.from(_N, "DeleteCampaignInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DeleteCampaignInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteCampaignOutput = schema.new({
+    id = id.from(_N, "DeleteCampaignOutput"),
+    type = "structure",
+})
+
+M.DeleteCampaignChannelSubtypeConfigInput = schema.new({
+    id = id.from(_N, "DeleteCampaignChannelSubtypeConfigInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DeleteCampaignChannelSubtypeConfigInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        channelSubtype = schema.new({
+            id = id.from(_N, "DeleteCampaignChannelSubtypeConfigInput", "channelSubtype"),
+            type = "string",
+            name = "channelSubtype",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "channelSubtype" },
+            },
+        }),
+    },
+})
+
+M.DeleteCampaignChannelSubtypeConfigOutput = schema.new({
+    id = id.from(_N, "DeleteCampaignChannelSubtypeConfigOutput"),
+    type = "structure",
+})
+
+M.DeleteCampaignCommunicationLimitsInput = schema.new({
+    id = id.from(_N, "DeleteCampaignCommunicationLimitsInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DeleteCampaignCommunicationLimitsInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        config = schema.new({
+            id = id.from(_N, "DeleteCampaignCommunicationLimitsInput", "config"),
+            type = "string",
+            name = "config",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "config" },
+            },
+        }),
+    },
+})
+
+M.DeleteCampaignCommunicationLimitsOutput = schema.new({
+    id = id.from(_N, "DeleteCampaignCommunicationLimitsOutput"),
+    type = "structure",
+})
+
+M.InvalidCampaignStateException = schema.new({
+    id = id.from(_N, "InvalidCampaignStateException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        state = schema.new({
+            id = id.from(_N, "InvalidCampaignStateException", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "InvalidCampaignStateException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        xAmzErrorType = schema.new({
+            id = id.from(_N, "InvalidCampaignStateException", "xAmzErrorType"),
+            type = "string",
+            name = "xAmzErrorType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-ErrorType" },
+            },
+        }),
+    },
+})
+
+M.DeleteCampaignCommunicationTimeInput = schema.new({
+    id = id.from(_N, "DeleteCampaignCommunicationTimeInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DeleteCampaignCommunicationTimeInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        config = schema.new({
+            id = id.from(_N, "DeleteCampaignCommunicationTimeInput", "config"),
+            type = "string",
+            name = "config",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "config" },
+            },
+        }),
+    },
+})
+
+M.DeleteCampaignCommunicationTimeOutput = schema.new({
+    id = id.from(_N, "DeleteCampaignCommunicationTimeOutput"),
+    type = "structure",
+})
+
+M.DeleteCampaignEntryLimitsInput = schema.new({
+    id = id.from(_N, "DeleteCampaignEntryLimitsInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DeleteCampaignEntryLimitsInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteCampaignEntryLimitsOutput = schema.new({
+    id = id.from(_N, "DeleteCampaignEntryLimitsOutput"),
+    type = "structure",
+})
+
+M.DeleteConnectInstanceConfigInput = schema.new({
+    id = id.from(_N, "DeleteConnectInstanceConfigInput"),
+    type = "structure",
+    members = {
+        connectInstanceId = schema.new({
+            id = id.from(_N, "DeleteConnectInstanceConfigInput", "connectInstanceId"),
+            type = "string",
+            name = "connectInstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        campaignDeletionPolicy = schema.new({
+            id = id.from(_N, "DeleteConnectInstanceConfigInput", "campaignDeletionPolicy"),
+            type = "string",
+            name = "campaignDeletionPolicy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "campaignDeletionPolicy" },
+            },
+        }),
+    },
+})
+
+M.DeleteConnectInstanceConfigOutput = schema.new({
+    id = id.from(_N, "DeleteConnectInstanceConfigOutput"),
+    type = "structure",
+})
+
+M.InvalidStateException = schema.new({
+    id = id.from(_N, "InvalidStateException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InvalidStateException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        xAmzErrorType = schema.new({
+            id = id.from(_N, "InvalidStateException", "xAmzErrorType"),
+            type = "string",
+            name = "xAmzErrorType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-ErrorType" },
+            },
+        }),
+    },
+})
+
+M.CustomerProfilesIntegrationIdentifier = schema.new({
+    id = id.from(_N, "CustomerProfilesIntegrationIdentifier"),
+    type = "structure",
+    members = {
+        domainArn = schema.new({
+            id = id.from(_N, "CustomerProfilesIntegrationIdentifier", "domainArn"),
+            type = "string",
+            name = "domainArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LambdaIntegrationIdentifier = schema.new({
+    id = id.from(_N, "LambdaIntegrationIdentifier"),
+    type = "structure",
+    members = {
+        functionArn = schema.new({
+            id = id.from(_N, "LambdaIntegrationIdentifier", "functionArn"),
+            type = "string",
+            name = "functionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.QConnectIntegrationIdentifier = schema.new({
+    id = id.from(_N, "QConnectIntegrationIdentifier"),
+    type = "structure",
+    members = {
+        knowledgeBaseArn = schema.new({
+            id = id.from(_N, "QConnectIntegrationIdentifier", "knowledgeBaseArn"),
+            type = "string",
+            name = "knowledgeBaseArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.IntegrationIdentifier = schema.new({
+    id = id.from(_N, "IntegrationIdentifier"),
+    type = "union",
+    members = {
+        customerProfiles = schema.new({
+            id = id.from(_N, "IntegrationIdentifier", "customerProfiles"),
+            type = "structure",
+            name = "customerProfiles",
+            target_id = id.from(_N, "CustomerProfilesIntegrationIdentifier"),
+            target = M.CustomerProfilesIntegrationIdentifier,
+        }),
+        qConnect = schema.new({
+            id = id.from(_N, "IntegrationIdentifier", "qConnect"),
+            type = "structure",
+            name = "qConnect",
+            target_id = id.from(_N, "QConnectIntegrationIdentifier"),
+            target = M.QConnectIntegrationIdentifier,
+        }),
+        lambda = schema.new({
+            id = id.from(_N, "IntegrationIdentifier", "lambda"),
+            type = "structure",
+            name = "lambda",
+            target_id = id.from(_N, "LambdaIntegrationIdentifier"),
+            target = M.LambdaIntegrationIdentifier,
+        }),
+    },
+})
+
+M.DeleteConnectInstanceIntegrationInput = schema.new({
+    id = id.from(_N, "DeleteConnectInstanceIntegrationInput"),
+    type = "structure",
+    members = {
+        connectInstanceId = schema.new({
+            id = id.from(_N, "DeleteConnectInstanceIntegrationInput", "connectInstanceId"),
+            type = "string",
+            name = "connectInstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        integrationIdentifier = schema.new({
+            id = id.from(_N, "DeleteConnectInstanceIntegrationInput", "integrationIdentifier"),
+            type = "union",
+            name = "integrationIdentifier",
+            target_id = id.from(_N, "IntegrationIdentifier"),
+            target = M.IntegrationIdentifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteConnectInstanceIntegrationOutput = schema.new({
+    id = id.from(_N, "DeleteConnectInstanceIntegrationOutput"),
+    type = "structure",
+})
+
+M.DeleteInstanceOnboardingJobInput = schema.new({
+    id = id.from(_N, "DeleteInstanceOnboardingJobInput"),
+    type = "structure",
+    members = {
+        connectInstanceId = schema.new({
+            id = id.from(_N, "DeleteInstanceOnboardingJobInput", "connectInstanceId"),
+            type = "string",
+            name = "connectInstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteInstanceOnboardingJobOutput = schema.new({
+    id = id.from(_N, "DeleteInstanceOnboardingJobOutput"),
+    type = "structure",
+})
+
+M.DescribeCampaignInput = schema.new({
+    id = id.from(_N, "DescribeCampaignInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DescribeCampaignInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.Campaign = schema.new({
+    id = id.from(_N, "Campaign"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "Campaign", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "Campaign", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "Campaign", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        connectInstanceId = schema.new({
+            id = id.from(_N, "Campaign", "connectInstanceId"),
+            type = "string",
+            name = "connectInstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        channelSubtypeConfig = schema.new({
+            id = id.from(_N, "Campaign", "channelSubtypeConfig"),
+            type = "structure",
+            name = "channelSubtypeConfig",
+            target_id = id.from(_N, "ChannelSubtypeConfig"),
+            target = M.ChannelSubtypeConfig,
+        }),
+        type = schema.new({
+            id = id.from(_N, "Campaign", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        source = schema.new({
+            id = id.from(_N, "Campaign", "source"),
+            type = "union",
+            name = "source",
+            target_id = id.from(_N, "Source"),
+            target = M.Source,
+        }),
+        connectCampaignFlowArn = schema.new({
+            id = id.from(_N, "Campaign", "connectCampaignFlowArn"),
+            type = "string",
+            name = "connectCampaignFlowArn",
+            target_id = prelude.String.id,
+        }),
+        schedule = schema.new({
+            id = id.from(_N, "Campaign", "schedule"),
+            type = "structure",
+            name = "schedule",
+            target_id = id.from(_N, "Schedule"),
+            target = M.Schedule,
+        }),
+        entryLimitsConfig = schema.new({
+            id = id.from(_N, "Campaign", "entryLimitsConfig"),
+            type = "structure",
+            name = "entryLimitsConfig",
+            target_id = id.from(_N, "EntryLimitsConfig"),
+            target = M.EntryLimitsConfig,
+        }),
+        communicationTimeConfig = schema.new({
+            id = id.from(_N, "Campaign", "communicationTimeConfig"),
+            type = "structure",
+            name = "communicationTimeConfig",
+            target_id = id.from(_N, "CommunicationTimeConfig"),
+            target = M.CommunicationTimeConfig,
+        }),
+        communicationLimitsOverride = schema.new({
+            id = id.from(_N, "Campaign", "communicationLimitsOverride"),
+            type = "structure",
+            name = "communicationLimitsOverride",
+            target_id = id.from(_N, "CommunicationLimitsConfig"),
+            target = M.CommunicationLimitsConfig,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "Campaign", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.DescribeCampaignOutput = schema.new({
+    id = id.from(_N, "DescribeCampaignOutput"),
+    type = "structure",
+    members = {
+        campaign = schema.new({
+            id = id.from(_N, "DescribeCampaignOutput", "campaign"),
+            type = "structure",
+            name = "campaign",
+            target_id = id.from(_N, "Campaign"),
+            target = M.Campaign,
+        }),
+    },
+})
+
+M.GetCampaignStateInput = schema.new({
+    id = id.from(_N, "GetCampaignStateInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "GetCampaignStateInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetCampaignStateOutput = schema.new({
+    id = id.from(_N, "GetCampaignStateOutput"),
+    type = "structure",
+    members = {
+        state = schema.new({
+            id = id.from(_N, "GetCampaignStateOutput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetCampaignStateBatchInput = schema.new({
+    id = id.from(_N, "GetCampaignStateBatchInput"),
+    type = "structure",
+    members = {
+        campaignIds = schema.new({
+            id = id.from(_N, "GetCampaignStateBatchInput", "campaignIds"),
+            type = "list",
+            name = "campaignIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.FailedCampaignStateResponse = schema.new({
+    id = id.from(_N, "FailedCampaignStateResponse"),
+    type = "structure",
+    members = {
+        campaignId = schema.new({
+            id = id.from(_N, "FailedCampaignStateResponse", "campaignId"),
+            type = "string",
+            name = "campaignId",
+            target_id = prelude.String.id,
+        }),
+        failureCode = schema.new({
+            id = id.from(_N, "FailedCampaignStateResponse", "failureCode"),
+            type = "string",
+            name = "failureCode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SuccessfulCampaignStateResponse = schema.new({
+    id = id.from(_N, "SuccessfulCampaignStateResponse"),
+    type = "structure",
+    members = {
+        campaignId = schema.new({
+            id = id.from(_N, "SuccessfulCampaignStateResponse", "campaignId"),
+            type = "string",
+            name = "campaignId",
+            target_id = prelude.String.id,
+        }),
+        state = schema.new({
+            id = id.from(_N, "SuccessfulCampaignStateResponse", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetCampaignStateBatchOutput = schema.new({
+    id = id.from(_N, "GetCampaignStateBatchOutput"),
+    type = "structure",
+    members = {
+        successfulRequests = schema.new({
+            id = id.from(_N, "GetCampaignStateBatchOutput", "successfulRequests"),
+            type = "list",
+            name = "successfulRequests",
+            target_id = prelude.Document.id,
+            list_member = M.SuccessfulCampaignStateResponse,
+        }),
+        failedRequests = schema.new({
+            id = id.from(_N, "GetCampaignStateBatchOutput", "failedRequests"),
+            type = "list",
+            name = "failedRequests",
+            target_id = prelude.Document.id,
+            list_member = M.FailedCampaignStateResponse,
+        }),
+    },
+})
+
+M.GetConnectInstanceConfigInput = schema.new({
+    id = id.from(_N, "GetConnectInstanceConfigInput"),
+    type = "structure",
+    members = {
+        connectInstanceId = schema.new({
+            id = id.from(_N, "GetConnectInstanceConfigInput", "connectInstanceId"),
+            type = "string",
+            name = "connectInstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.EncryptionConfig = schema.new({
+    id = id.from(_N, "EncryptionConfig"),
+    type = "structure",
+    members = {
+        enabled = schema.new({
+            id = id.from(_N, "EncryptionConfig", "enabled"),
+            type = "boolean",
+            name = "enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        encryptionType = schema.new({
+            id = id.from(_N, "EncryptionConfig", "encryptionType"),
+            type = "string",
+            name = "encryptionType",
+            target_id = prelude.String.id,
+        }),
+        keyArn = schema.new({
+            id = id.from(_N, "EncryptionConfig", "keyArn"),
+            type = "string",
+            name = "keyArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InstanceConfig = schema.new({
+    id = id.from(_N, "InstanceConfig"),
+    type = "structure",
+    members = {
+        connectInstanceId = schema.new({
+            id = id.from(_N, "InstanceConfig", "connectInstanceId"),
+            type = "string",
+            name = "connectInstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        serviceLinkedRoleArn = schema.new({
+            id = id.from(_N, "InstanceConfig", "serviceLinkedRoleArn"),
+            type = "string",
+            name = "serviceLinkedRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        encryptionConfig = schema.new({
+            id = id.from(_N, "InstanceConfig", "encryptionConfig"),
+            type = "structure",
+            name = "encryptionConfig",
+            target_id = id.from(_N, "EncryptionConfig"),
+            target = M.EncryptionConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetConnectInstanceConfigOutput = schema.new({
+    id = id.from(_N, "GetConnectInstanceConfigOutput"),
+    type = "structure",
+    members = {
+        connectInstanceConfig = schema.new({
+            id = id.from(_N, "GetConnectInstanceConfigOutput", "connectInstanceConfig"),
+            type = "structure",
+            name = "connectInstanceConfig",
+            target_id = id.from(_N, "InstanceConfig"),
+            target = M.InstanceConfig,
+        }),
+    },
+})
+
+M.GetInstanceCommunicationLimitsInput = schema.new({
+    id = id.from(_N, "GetInstanceCommunicationLimitsInput"),
+    type = "structure",
+    members = {
+        connectInstanceId = schema.new({
+            id = id.from(_N, "GetInstanceCommunicationLimitsInput", "connectInstanceId"),
+            type = "string",
+            name = "connectInstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.InstanceCommunicationLimitsConfig = schema.new({
+    id = id.from(_N, "InstanceCommunicationLimitsConfig"),
+    type = "structure",
+    members = {
+        allChannelSubtypes = schema.new({
+            id = id.from(_N, "InstanceCommunicationLimitsConfig", "allChannelSubtypes"),
+            type = "union",
+            name = "allChannelSubtypes",
+            target_id = id.from(_N, "CommunicationLimits"),
+            target = M.CommunicationLimits,
+        }),
+    },
+})
+
+M.GetInstanceCommunicationLimitsOutput = schema.new({
+    id = id.from(_N, "GetInstanceCommunicationLimitsOutput"),
+    type = "structure",
+    members = {
+        communicationLimitsConfig = schema.new({
+            id = id.from(_N, "GetInstanceCommunicationLimitsOutput", "communicationLimitsConfig"),
+            type = "structure",
+            name = "communicationLimitsConfig",
+            target_id = id.from(_N, "InstanceCommunicationLimitsConfig"),
+            target = M.InstanceCommunicationLimitsConfig,
+        }),
+    },
+})
+
+M.GetInstanceOnboardingJobStatusInput = schema.new({
+    id = id.from(_N, "GetInstanceOnboardingJobStatusInput"),
+    type = "structure",
+    members = {
+        connectInstanceId = schema.new({
+            id = id.from(_N, "GetInstanceOnboardingJobStatusInput", "connectInstanceId"),
+            type = "string",
+            name = "connectInstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.InstanceOnboardingJobStatus = schema.new({
+    id = id.from(_N, "InstanceOnboardingJobStatus"),
+    type = "structure",
+    members = {
+        connectInstanceId = schema.new({
+            id = id.from(_N, "InstanceOnboardingJobStatus", "connectInstanceId"),
+            type = "string",
+            name = "connectInstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "InstanceOnboardingJobStatus", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        failureCode = schema.new({
+            id = id.from(_N, "InstanceOnboardingJobStatus", "failureCode"),
+            type = "string",
+            name = "failureCode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetInstanceOnboardingJobStatusOutput = schema.new({
+    id = id.from(_N, "GetInstanceOnboardingJobStatusOutput"),
+    type = "structure",
+    members = {
+        connectInstanceOnboardingJobStatus = schema.new({
+            id = id.from(_N, "GetInstanceOnboardingJobStatusOutput", "connectInstanceOnboardingJobStatus"),
+            type = "structure",
+            name = "connectInstanceOnboardingJobStatus",
+            target_id = id.from(_N, "InstanceOnboardingJobStatus"),
+            target = M.InstanceOnboardingJobStatus,
+        }),
+    },
+})
+
+M.InstanceIdFilter = schema.new({
+    id = id.from(_N, "InstanceIdFilter"),
+    type = "structure",
+    members = {
+        value = schema.new({
+            id = id.from(_N, "InstanceIdFilter", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        operator = schema.new({
+            id = id.from(_N, "InstanceIdFilter", "operator"),
+            type = "string",
+            name = "operator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CampaignFilters = schema.new({
+    id = id.from(_N, "CampaignFilters"),
+    type = "structure",
+    members = {
+        instanceIdFilter = schema.new({
+            id = id.from(_N, "CampaignFilters", "instanceIdFilter"),
+            type = "structure",
+            name = "instanceIdFilter",
+            target_id = id.from(_N, "InstanceIdFilter"),
+            target = M.InstanceIdFilter,
+        }),
+    },
+})
+
+M.ListCampaignsInput = schema.new({
+    id = id.from(_N, "ListCampaignsInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListCampaignsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListCampaignsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        filters = schema.new({
+            id = id.from(_N, "ListCampaignsInput", "filters"),
+            type = "structure",
+            name = "filters",
+            target_id = id.from(_N, "CampaignFilters"),
+            target = M.CampaignFilters,
+        }),
+    },
+})
+
+M.CampaignSummary = schema.new({
+    id = id.from(_N, "CampaignSummary"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "CampaignSummary", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "CampaignSummary", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "CampaignSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        connectInstanceId = schema.new({
+            id = id.from(_N, "CampaignSummary", "connectInstanceId"),
+            type = "string",
+            name = "connectInstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        channelSubtypes = schema.new({
+            id = id.from(_N, "CampaignSummary", "channelSubtypes"),
+            type = "list",
+            name = "channelSubtypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "CampaignSummary", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        schedule = schema.new({
+            id = id.from(_N, "CampaignSummary", "schedule"),
+            type = "structure",
+            name = "schedule",
+            target_id = id.from(_N, "Schedule"),
+            target = M.Schedule,
+        }),
+        entryLimitsConfig = schema.new({
+            id = id.from(_N, "CampaignSummary", "entryLimitsConfig"),
+            type = "structure",
+            name = "entryLimitsConfig",
+            target_id = id.from(_N, "EntryLimitsConfig"),
+            target = M.EntryLimitsConfig,
+        }),
+        connectCampaignFlowArn = schema.new({
+            id = id.from(_N, "CampaignSummary", "connectCampaignFlowArn"),
+            type = "string",
+            name = "connectCampaignFlowArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListCampaignsOutput = schema.new({
+    id = id.from(_N, "ListCampaignsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListCampaignsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        campaignSummaryList = schema.new({
+            id = id.from(_N, "ListCampaignsOutput", "campaignSummaryList"),
+            type = "list",
+            name = "campaignSummaryList",
+            target_id = prelude.Document.id,
+            list_member = M.CampaignSummary,
+        }),
+    },
+})
+
+M.ListConnectInstanceIntegrationsInput = schema.new({
+    id = id.from(_N, "ListConnectInstanceIntegrationsInput"),
+    type = "structure",
+    members = {
+        connectInstanceId = schema.new({
+            id = id.from(_N, "ListConnectInstanceIntegrationsInput", "connectInstanceId"),
+            type = "string",
+            name = "connectInstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListConnectInstanceIntegrationsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListConnectInstanceIntegrationsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.CustomerProfilesIntegrationSummary = schema.new({
+    id = id.from(_N, "CustomerProfilesIntegrationSummary"),
+    type = "structure",
+    members = {
+        domainArn = schema.new({
+            id = id.from(_N, "CustomerProfilesIntegrationSummary", "domainArn"),
+            type = "string",
+            name = "domainArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        objectTypeNames = schema.new({
+            id = id.from(_N, "CustomerProfilesIntegrationSummary", "objectTypeNames"),
+            type = "map",
+            name = "objectTypeNames",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LambdaIntegrationSummary = schema.new({
+    id = id.from(_N, "LambdaIntegrationSummary"),
+    type = "structure",
+    members = {
+        functionArn = schema.new({
+            id = id.from(_N, "LambdaIntegrationSummary", "functionArn"),
+            type = "string",
+            name = "functionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.QConnectIntegrationSummary = schema.new({
+    id = id.from(_N, "QConnectIntegrationSummary"),
+    type = "structure",
+    members = {
+        knowledgeBaseArn = schema.new({
+            id = id.from(_N, "QConnectIntegrationSummary", "knowledgeBaseArn"),
+            type = "string",
+            name = "knowledgeBaseArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.IntegrationSummary = schema.new({
+    id = id.from(_N, "IntegrationSummary"),
+    type = "union",
+    members = {
+        customerProfiles = schema.new({
+            id = id.from(_N, "IntegrationSummary", "customerProfiles"),
+            type = "structure",
+            name = "customerProfiles",
+            target_id = id.from(_N, "CustomerProfilesIntegrationSummary"),
+            target = M.CustomerProfilesIntegrationSummary,
+        }),
+        qConnect = schema.new({
+            id = id.from(_N, "IntegrationSummary", "qConnect"),
+            type = "structure",
+            name = "qConnect",
+            target_id = id.from(_N, "QConnectIntegrationSummary"),
+            target = M.QConnectIntegrationSummary,
+        }),
+        lambda = schema.new({
+            id = id.from(_N, "IntegrationSummary", "lambda"),
+            type = "structure",
+            name = "lambda",
+            target_id = id.from(_N, "LambdaIntegrationSummary"),
+            target = M.LambdaIntegrationSummary,
+        }),
+    },
+})
+
+M.ListConnectInstanceIntegrationsOutput = schema.new({
+    id = id.from(_N, "ListConnectInstanceIntegrationsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListConnectInstanceIntegrationsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        integrationSummaryList = schema.new({
+            id = id.from(_N, "ListConnectInstanceIntegrationsOutput", "integrationSummaryList"),
+            type = "list",
+            name = "integrationSummaryList",
+            target_id = prelude.Document.id,
+            list_member = M.IntegrationSummary,
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceInput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceOutput"),
+    type = "structure",
+    members = {
+        tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.PauseCampaignInput = schema.new({
+    id = id.from(_N, "PauseCampaignInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "PauseCampaignInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.PauseCampaignOutput = schema.new({
+    id = id.from(_N, "PauseCampaignOutput"),
+    type = "structure",
+})
+
+M.CustomerProfilesIntegrationConfig = schema.new({
+    id = id.from(_N, "CustomerProfilesIntegrationConfig"),
+    type = "structure",
+    members = {
+        domainArn = schema.new({
+            id = id.from(_N, "CustomerProfilesIntegrationConfig", "domainArn"),
+            type = "string",
+            name = "domainArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        objectTypeNames = schema.new({
+            id = id.from(_N, "CustomerProfilesIntegrationConfig", "objectTypeNames"),
+            type = "map",
+            name = "objectTypeNames",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LambdaIntegrationConfig = schema.new({
+    id = id.from(_N, "LambdaIntegrationConfig"),
+    type = "structure",
+    members = {
+        functionArn = schema.new({
+            id = id.from(_N, "LambdaIntegrationConfig", "functionArn"),
+            type = "string",
+            name = "functionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.QConnectIntegrationConfig = schema.new({
+    id = id.from(_N, "QConnectIntegrationConfig"),
+    type = "structure",
+    members = {
+        knowledgeBaseArn = schema.new({
+            id = id.from(_N, "QConnectIntegrationConfig", "knowledgeBaseArn"),
+            type = "string",
+            name = "knowledgeBaseArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.IntegrationConfig = schema.new({
+    id = id.from(_N, "IntegrationConfig"),
+    type = "union",
+    members = {
+        customerProfiles = schema.new({
+            id = id.from(_N, "IntegrationConfig", "customerProfiles"),
+            type = "structure",
+            name = "customerProfiles",
+            target_id = id.from(_N, "CustomerProfilesIntegrationConfig"),
+            target = M.CustomerProfilesIntegrationConfig,
+        }),
+        qConnect = schema.new({
+            id = id.from(_N, "IntegrationConfig", "qConnect"),
+            type = "structure",
+            name = "qConnect",
+            target_id = id.from(_N, "QConnectIntegrationConfig"),
+            target = M.QConnectIntegrationConfig,
+        }),
+        lambda = schema.new({
+            id = id.from(_N, "IntegrationConfig", "lambda"),
+            type = "structure",
+            name = "lambda",
+            target_id = id.from(_N, "LambdaIntegrationConfig"),
+            target = M.LambdaIntegrationConfig,
+        }),
+    },
+})
+
+M.PutConnectInstanceIntegrationInput = schema.new({
+    id = id.from(_N, "PutConnectInstanceIntegrationInput"),
+    type = "structure",
+    members = {
+        connectInstanceId = schema.new({
+            id = id.from(_N, "PutConnectInstanceIntegrationInput", "connectInstanceId"),
+            type = "string",
+            name = "connectInstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        integrationConfig = schema.new({
+            id = id.from(_N, "PutConnectInstanceIntegrationInput", "integrationConfig"),
+            type = "union",
+            name = "integrationConfig",
+            target_id = id.from(_N, "IntegrationConfig"),
+            target = M.IntegrationConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutConnectInstanceIntegrationOutput = schema.new({
+    id = id.from(_N, "PutConnectInstanceIntegrationOutput"),
+    type = "structure",
+})
+
+M.PutInstanceCommunicationLimitsInput = schema.new({
+    id = id.from(_N, "PutInstanceCommunicationLimitsInput"),
+    type = "structure",
+    members = {
+        connectInstanceId = schema.new({
+            id = id.from(_N, "PutInstanceCommunicationLimitsInput", "connectInstanceId"),
+            type = "string",
+            name = "connectInstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        communicationLimitsConfig = schema.new({
+            id = id.from(_N, "PutInstanceCommunicationLimitsInput", "communicationLimitsConfig"),
+            type = "structure",
+            name = "communicationLimitsConfig",
+            target_id = id.from(_N, "InstanceCommunicationLimitsConfig"),
+            target = M.InstanceCommunicationLimitsConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutInstanceCommunicationLimitsOutput = schema.new({
+    id = id.from(_N, "PutInstanceCommunicationLimitsOutput"),
+    type = "structure",
+})
+
+M.EmailChannelSubtypeParameters = schema.new({
+    id = id.from(_N, "EmailChannelSubtypeParameters"),
+    type = "structure",
+    members = {
+        destinationEmailAddress = schema.new({
+            id = id.from(_N, "EmailChannelSubtypeParameters", "destinationEmailAddress"),
+            type = "string",
+            name = "destinationEmailAddress",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        connectSourceEmailAddress = schema.new({
+            id = id.from(_N, "EmailChannelSubtypeParameters", "connectSourceEmailAddress"),
+            type = "string",
+            name = "connectSourceEmailAddress",
+            target_id = prelude.String.id,
+        }),
+        templateArn = schema.new({
+            id = id.from(_N, "EmailChannelSubtypeParameters", "templateArn"),
+            type = "string",
+            name = "templateArn",
+            target_id = prelude.String.id,
+        }),
+        templateParameters = schema.new({
+            id = id.from(_N, "EmailChannelSubtypeParameters", "templateParameters"),
+            type = "map",
+            name = "templateParameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SmsChannelSubtypeParameters = schema.new({
+    id = id.from(_N, "SmsChannelSubtypeParameters"),
+    type = "structure",
+    members = {
+        destinationPhoneNumber = schema.new({
+            id = id.from(_N, "SmsChannelSubtypeParameters", "destinationPhoneNumber"),
+            type = "string",
+            name = "destinationPhoneNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        connectSourcePhoneNumberArn = schema.new({
+            id = id.from(_N, "SmsChannelSubtypeParameters", "connectSourcePhoneNumberArn"),
+            type = "string",
+            name = "connectSourcePhoneNumberArn",
+            target_id = prelude.String.id,
+        }),
+        templateArn = schema.new({
+            id = id.from(_N, "SmsChannelSubtypeParameters", "templateArn"),
+            type = "string",
+            name = "templateArn",
+            target_id = prelude.String.id,
+        }),
+        templateParameters = schema.new({
+            id = id.from(_N, "SmsChannelSubtypeParameters", "templateParameters"),
+            type = "map",
+            name = "templateParameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TelephonyChannelSubtypeParameters = schema.new({
+    id = id.from(_N, "TelephonyChannelSubtypeParameters"),
+    type = "structure",
+    members = {
+        destinationPhoneNumber = schema.new({
+            id = id.from(_N, "TelephonyChannelSubtypeParameters", "destinationPhoneNumber"),
+            type = "string",
+            name = "destinationPhoneNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        attributes = schema.new({
+            id = id.from(_N, "TelephonyChannelSubtypeParameters", "attributes"),
+            type = "map",
+            name = "attributes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        connectSourcePhoneNumber = schema.new({
+            id = id.from(_N, "TelephonyChannelSubtypeParameters", "connectSourcePhoneNumber"),
+            type = "string",
+            name = "connectSourcePhoneNumber",
+            target_id = prelude.String.id,
+        }),
+        answerMachineDetectionConfig = schema.new({
+            id = id.from(_N, "TelephonyChannelSubtypeParameters", "answerMachineDetectionConfig"),
+            type = "structure",
+            name = "answerMachineDetectionConfig",
+            target_id = id.from(_N, "AnswerMachineDetectionConfig"),
+            target = M.AnswerMachineDetectionConfig,
+        }),
+        ringTimeout = schema.new({
+            id = id.from(_N, "TelephonyChannelSubtypeParameters", "ringTimeout"),
+            type = "integer",
+            name = "ringTimeout",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.WhatsAppChannelSubtypeParameters = schema.new({
+    id = id.from(_N, "WhatsAppChannelSubtypeParameters"),
+    type = "structure",
+    members = {
+        destinationPhoneNumber = schema.new({
+            id = id.from(_N, "WhatsAppChannelSubtypeParameters", "destinationPhoneNumber"),
+            type = "string",
+            name = "destinationPhoneNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        connectSourcePhoneNumberArn = schema.new({
+            id = id.from(_N, "WhatsAppChannelSubtypeParameters", "connectSourcePhoneNumberArn"),
+            type = "string",
+            name = "connectSourcePhoneNumberArn",
+            target_id = prelude.String.id,
+        }),
+        templateArn = schema.new({
+            id = id.from(_N, "WhatsAppChannelSubtypeParameters", "templateArn"),
+            type = "string",
+            name = "templateArn",
+            target_id = prelude.String.id,
+        }),
+        templateParameters = schema.new({
+            id = id.from(_N, "WhatsAppChannelSubtypeParameters", "templateParameters"),
+            type = "map",
+            name = "templateParameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ChannelSubtypeParameters = schema.new({
+    id = id.from(_N, "ChannelSubtypeParameters"),
+    type = "union",
+    members = {
+        telephony = schema.new({
+            id = id.from(_N, "ChannelSubtypeParameters", "telephony"),
+            type = "structure",
+            name = "telephony",
+            target_id = id.from(_N, "TelephonyChannelSubtypeParameters"),
+            target = M.TelephonyChannelSubtypeParameters,
+        }),
+        sms = schema.new({
+            id = id.from(_N, "ChannelSubtypeParameters", "sms"),
+            type = "structure",
+            name = "sms",
+            target_id = id.from(_N, "SmsChannelSubtypeParameters"),
+            target = M.SmsChannelSubtypeParameters,
+        }),
+        email = schema.new({
+            id = id.from(_N, "ChannelSubtypeParameters", "email"),
+            type = "structure",
+            name = "email",
+            target_id = id.from(_N, "EmailChannelSubtypeParameters"),
+            target = M.EmailChannelSubtypeParameters,
+        }),
+        whatsApp = schema.new({
+            id = id.from(_N, "ChannelSubtypeParameters", "whatsApp"),
+            type = "structure",
+            name = "whatsApp",
+            target_id = id.from(_N, "WhatsAppChannelSubtypeParameters"),
+            target = M.WhatsAppChannelSubtypeParameters,
+        }),
+    },
+})
+
+M.OutboundRequest = schema.new({
+    id = id.from(_N, "OutboundRequest"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "OutboundRequest", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        expirationTime = schema.new({
+            id = id.from(_N, "OutboundRequest", "expirationTime"),
+            type = "timestamp",
+            name = "expirationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        channelSubtypeParameters = schema.new({
+            id = id.from(_N, "OutboundRequest", "channelSubtypeParameters"),
+            type = "union",
+            name = "channelSubtypeParameters",
+            target_id = id.from(_N, "ChannelSubtypeParameters"),
+            target = M.ChannelSubtypeParameters,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutOutboundRequestBatchInput = schema.new({
+    id = id.from(_N, "PutOutboundRequestBatchInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "PutOutboundRequestBatchInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        outboundRequests = schema.new({
+            id = id.from(_N, "PutOutboundRequestBatchInput", "outboundRequests"),
+            type = "list",
+            name = "outboundRequests",
+            target_id = prelude.Document.id,
+            list_member = M.OutboundRequest,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.FailedRequest = schema.new({
+    id = id.from(_N, "FailedRequest"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "FailedRequest", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+        }),
+        id = schema.new({
+            id = id.from(_N, "FailedRequest", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+        failureCode = schema.new({
+            id = id.from(_N, "FailedRequest", "failureCode"),
+            type = "string",
+            name = "failureCode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SuccessfulRequest = schema.new({
+    id = id.from(_N, "SuccessfulRequest"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "SuccessfulRequest", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+        }),
+        id = schema.new({
+            id = id.from(_N, "SuccessfulRequest", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PutOutboundRequestBatchOutput = schema.new({
+    id = id.from(_N, "PutOutboundRequestBatchOutput"),
+    type = "structure",
+    members = {
+        successfulRequests = schema.new({
+            id = id.from(_N, "PutOutboundRequestBatchOutput", "successfulRequests"),
+            type = "list",
+            name = "successfulRequests",
+            target_id = prelude.Document.id,
+            list_member = M.SuccessfulRequest,
+        }),
+        failedRequests = schema.new({
+            id = id.from(_N, "PutOutboundRequestBatchOutput", "failedRequests"),
+            type = "list",
+            name = "failedRequests",
+            target_id = prelude.Document.id,
+            list_member = M.FailedRequest,
+        }),
+    },
+})
+
+M.ProfileOutboundRequest = schema.new({
+    id = id.from(_N, "ProfileOutboundRequest"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "ProfileOutboundRequest", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        profileId = schema.new({
+            id = id.from(_N, "ProfileOutboundRequest", "profileId"),
+            type = "string",
+            name = "profileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        expirationTime = schema.new({
+            id = id.from(_N, "ProfileOutboundRequest", "expirationTime"),
+            type = "timestamp",
+            name = "expirationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.PutProfileOutboundRequestBatchInput = schema.new({
+    id = id.from(_N, "PutProfileOutboundRequestBatchInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "PutProfileOutboundRequestBatchInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        profileOutboundRequests = schema.new({
+            id = id.from(_N, "PutProfileOutboundRequestBatchInput", "profileOutboundRequests"),
+            type = "list",
+            name = "profileOutboundRequests",
+            target_id = prelude.Document.id,
+            list_member = M.ProfileOutboundRequest,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.FailedProfileOutboundRequest = schema.new({
+    id = id.from(_N, "FailedProfileOutboundRequest"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "FailedProfileOutboundRequest", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+        }),
+        id = schema.new({
+            id = id.from(_N, "FailedProfileOutboundRequest", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+        failureCode = schema.new({
+            id = id.from(_N, "FailedProfileOutboundRequest", "failureCode"),
+            type = "string",
+            name = "failureCode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SuccessfulProfileOutboundRequest = schema.new({
+    id = id.from(_N, "SuccessfulProfileOutboundRequest"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "SuccessfulProfileOutboundRequest", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+        }),
+        id = schema.new({
+            id = id.from(_N, "SuccessfulProfileOutboundRequest", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PutProfileOutboundRequestBatchOutput = schema.new({
+    id = id.from(_N, "PutProfileOutboundRequestBatchOutput"),
+    type = "structure",
+    members = {
+        successfulRequests = schema.new({
+            id = id.from(_N, "PutProfileOutboundRequestBatchOutput", "successfulRequests"),
+            type = "list",
+            name = "successfulRequests",
+            target_id = prelude.Document.id,
+            list_member = M.SuccessfulProfileOutboundRequest,
+        }),
+        failedRequests = schema.new({
+            id = id.from(_N, "PutProfileOutboundRequestBatchOutput", "failedRequests"),
+            type = "list",
+            name = "failedRequests",
+            target_id = prelude.Document.id,
+            list_member = M.FailedProfileOutboundRequest,
+        }),
+    },
+})
+
+M.ResumeCampaignInput = schema.new({
+    id = id.from(_N, "ResumeCampaignInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "ResumeCampaignInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ResumeCampaignOutput = schema.new({
+    id = id.from(_N, "ResumeCampaignOutput"),
+    type = "structure",
+})
+
+M.StartCampaignInput = schema.new({
+    id = id.from(_N, "StartCampaignInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "StartCampaignInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.StartCampaignOutput = schema.new({
+    id = id.from(_N, "StartCampaignOutput"),
+    type = "structure",
+})
+
+M.StartInstanceOnboardingJobInput = schema.new({
+    id = id.from(_N, "StartInstanceOnboardingJobInput"),
+    type = "structure",
+    members = {
+        connectInstanceId = schema.new({
+            id = id.from(_N, "StartInstanceOnboardingJobInput", "connectInstanceId"),
+            type = "string",
+            name = "connectInstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        encryptionConfig = schema.new({
+            id = id.from(_N, "StartInstanceOnboardingJobInput", "encryptionConfig"),
+            type = "structure",
+            name = "encryptionConfig",
+            target_id = id.from(_N, "EncryptionConfig"),
+            target = M.EncryptionConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StartInstanceOnboardingJobOutput = schema.new({
+    id = id.from(_N, "StartInstanceOnboardingJobOutput"),
+    type = "structure",
+    members = {
+        connectInstanceOnboardingJobStatus = schema.new({
+            id = id.from(_N, "StartInstanceOnboardingJobOutput", "connectInstanceOnboardingJobStatus"),
+            type = "structure",
+            name = "connectInstanceOnboardingJobStatus",
+            target_id = id.from(_N, "InstanceOnboardingJobStatus"),
+            target = M.InstanceOnboardingJobStatus,
+        }),
+    },
+})
+
+M.StopCampaignInput = schema.new({
+    id = id.from(_N, "StopCampaignInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "StopCampaignInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.StopCampaignOutput = schema.new({
+    id = id.from(_N, "StopCampaignOutput"),
+    type = "structure",
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceInput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "TagResourceInput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceOutput"),
+    type = "structure",
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceInput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "UntagResourceInput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        tagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "tagKeys"),
+            type = "list",
+            name = "tagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "tagKeys" },
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
+M.UpdateCampaignChannelSubtypeConfigInput = schema.new({
+    id = id.from(_N, "UpdateCampaignChannelSubtypeConfigInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "UpdateCampaignChannelSubtypeConfigInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        channelSubtypeConfig = schema.new({
+            id = id.from(_N, "UpdateCampaignChannelSubtypeConfigInput", "channelSubtypeConfig"),
+            type = "structure",
+            name = "channelSubtypeConfig",
+            target_id = id.from(_N, "ChannelSubtypeConfig"),
+            target = M.ChannelSubtypeConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateCampaignChannelSubtypeConfigOutput = schema.new({
+    id = id.from(_N, "UpdateCampaignChannelSubtypeConfigOutput"),
+    type = "structure",
+})
+
+M.UpdateCampaignCommunicationLimitsInput = schema.new({
+    id = id.from(_N, "UpdateCampaignCommunicationLimitsInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "UpdateCampaignCommunicationLimitsInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        communicationLimitsOverride = schema.new({
+            id = id.from(_N, "UpdateCampaignCommunicationLimitsInput", "communicationLimitsOverride"),
+            type = "structure",
+            name = "communicationLimitsOverride",
+            target_id = id.from(_N, "CommunicationLimitsConfig"),
+            target = M.CommunicationLimitsConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateCampaignCommunicationLimitsOutput = schema.new({
+    id = id.from(_N, "UpdateCampaignCommunicationLimitsOutput"),
+    type = "structure",
+})
+
+M.UpdateCampaignCommunicationTimeInput = schema.new({
+    id = id.from(_N, "UpdateCampaignCommunicationTimeInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "UpdateCampaignCommunicationTimeInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        communicationTimeConfig = schema.new({
+            id = id.from(_N, "UpdateCampaignCommunicationTimeInput", "communicationTimeConfig"),
+            type = "structure",
+            name = "communicationTimeConfig",
+            target_id = id.from(_N, "CommunicationTimeConfig"),
+            target = M.CommunicationTimeConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateCampaignCommunicationTimeOutput = schema.new({
+    id = id.from(_N, "UpdateCampaignCommunicationTimeOutput"),
+    type = "structure",
+})
+
+M.UpdateCampaignEntryLimitsInput = schema.new({
+    id = id.from(_N, "UpdateCampaignEntryLimitsInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "UpdateCampaignEntryLimitsInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        entryLimitsConfig = schema.new({
+            id = id.from(_N, "UpdateCampaignEntryLimitsInput", "entryLimitsConfig"),
+            type = "structure",
+            name = "entryLimitsConfig",
+            target_id = id.from(_N, "EntryLimitsConfig"),
+            target = M.EntryLimitsConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateCampaignEntryLimitsOutput = schema.new({
+    id = id.from(_N, "UpdateCampaignEntryLimitsOutput"),
+    type = "structure",
+})
+
+M.UpdateCampaignFlowAssociationInput = schema.new({
+    id = id.from(_N, "UpdateCampaignFlowAssociationInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "UpdateCampaignFlowAssociationInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        connectCampaignFlowArn = schema.new({
+            id = id.from(_N, "UpdateCampaignFlowAssociationInput", "connectCampaignFlowArn"),
+            type = "string",
+            name = "connectCampaignFlowArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateCampaignFlowAssociationOutput = schema.new({
+    id = id.from(_N, "UpdateCampaignFlowAssociationOutput"),
+    type = "structure",
+})
+
+M.UpdateCampaignNameInput = schema.new({
+    id = id.from(_N, "UpdateCampaignNameInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "UpdateCampaignNameInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "UpdateCampaignNameInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateCampaignNameOutput = schema.new({
+    id = id.from(_N, "UpdateCampaignNameOutput"),
+    type = "structure",
+})
+
+M.UpdateCampaignScheduleInput = schema.new({
+    id = id.from(_N, "UpdateCampaignScheduleInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "UpdateCampaignScheduleInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        schedule = schema.new({
+            id = id.from(_N, "UpdateCampaignScheduleInput", "schedule"),
+            type = "structure",
+            name = "schedule",
+            target_id = id.from(_N, "Schedule"),
+            target = M.Schedule,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateCampaignScheduleOutput = schema.new({
+    id = id.from(_N, "UpdateCampaignScheduleOutput"),
+    type = "structure",
+})
+
+M.UpdateCampaignSourceInput = schema.new({
+    id = id.from(_N, "UpdateCampaignSourceInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "UpdateCampaignSourceInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        source = schema.new({
+            id = id.from(_N, "UpdateCampaignSourceInput", "source"),
+            type = "union",
+            name = "source",
+            target_id = id.from(_N, "Source"),
+            target = M.Source,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateCampaignSourceOutput = schema.new({
+    id = id.from(_N, "UpdateCampaignSourceOutput"),
+    type = "structure",
+})
+
+return M

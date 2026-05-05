@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("notificationscontacts.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("notificationscontacts.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("notificationscontacts.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:activateEmailContact(input, options)
     return self:invokeOperation(input, {
         name = "ActivateEmailContact",
-        input_schema = types.ActivateEmailContactInput,
-        output_schema = types.ActivateEmailContactOutput,
+        input_schema = schemas.ActivateEmailContactInput,
+        output_schema = schemas.ActivateEmailContactOutput,
         http_method = "PUT",
         http_path = "/emailcontacts/{arn}/activate/{code}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createEmailContact(input, options)
     return self:invokeOperation(input, {
         name = "CreateEmailContact",
-        input_schema = types.CreateEmailContactInput,
-        output_schema = types.CreateEmailContactOutput,
+        input_schema = schemas.CreateEmailContactInput,
+        output_schema = schemas.CreateEmailContactOutput,
         http_method = "POST",
         http_path = "/2022-09-19/emailcontacts",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteEmailContact(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEmailContact",
-        input_schema = types.DeleteEmailContactInput,
-        output_schema = types.DeleteEmailContactOutput,
+        input_schema = schemas.DeleteEmailContactInput,
+        output_schema = schemas.DeleteEmailContactOutput,
         http_method = "DELETE",
         http_path = "/emailcontacts/{arn}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getEmailContact(input, options)
     return self:invokeOperation(input, {
         name = "GetEmailContact",
-        input_schema = types.GetEmailContactInput,
-        output_schema = types.GetEmailContactOutput,
+        input_schema = schemas.GetEmailContactInput,
+        output_schema = schemas.GetEmailContactOutput,
         http_method = "GET",
         http_path = "/emailcontacts/{arn}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:listEmailContacts(input, options)
     return self:invokeOperation(input, {
         name = "ListEmailContacts",
-        input_schema = types.ListEmailContactsInput,
-        output_schema = types.ListEmailContactsOutput,
+        input_schema = schemas.ListEmailContactsInput,
+        output_schema = schemas.ListEmailContactsOutput,
         http_method = "GET",
         http_path = "/emailcontacts",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{arn}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:sendActivationCode(input, options)
     return self:invokeOperation(input, {
         name = "SendActivationCode",
-        input_schema = types.SendActivationCodeInput,
-        output_schema = types.SendActivationCodeOutput,
+        input_schema = schemas.SendActivationCodeInput,
+        output_schema = schemas.SendActivationCodeOutput,
         http_method = "POST",
         http_path = "/2022-10-31/emailcontacts/{arn}/activate/send",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{arn}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{arn}",
         effective_auth_schemes = {

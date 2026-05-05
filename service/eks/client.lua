@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("eks.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("eks.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("eks.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateAccessPolicy(input, options)
     return self:invokeOperation(input, {
         name = "AssociateAccessPolicy",
-        input_schema = types.AssociateAccessPolicyInput,
-        output_schema = types.AssociateAccessPolicyOutput,
+        input_schema = schemas.AssociateAccessPolicyInput,
+        output_schema = schemas.AssociateAccessPolicyOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/access-entries/{principalArn}/access-policies",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:associateEncryptionConfig(input, options)
     return self:invokeOperation(input, {
         name = "AssociateEncryptionConfig",
-        input_schema = types.AssociateEncryptionConfigInput,
-        output_schema = types.AssociateEncryptionConfigOutput,
+        input_schema = schemas.AssociateEncryptionConfigInput,
+        output_schema = schemas.AssociateEncryptionConfigOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/encryption-config/associate",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:associateIdentityProviderConfig(input, options)
     return self:invokeOperation(input, {
         name = "AssociateIdentityProviderConfig",
-        input_schema = types.AssociateIdentityProviderConfigInput,
-        output_schema = types.AssociateIdentityProviderConfigOutput,
+        input_schema = schemas.AssociateIdentityProviderConfigInput,
+        output_schema = schemas.AssociateIdentityProviderConfigOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/identity-provider-configs/associate",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createAccessEntry(input, options)
     return self:invokeOperation(input, {
         name = "CreateAccessEntry",
-        input_schema = types.CreateAccessEntryInput,
-        output_schema = types.CreateAccessEntryOutput,
+        input_schema = schemas.CreateAccessEntryInput,
+        output_schema = schemas.CreateAccessEntryOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/access-entries",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createAddon(input, options)
     return self:invokeOperation(input, {
         name = "CreateAddon",
-        input_schema = types.CreateAddonInput,
-        output_schema = types.CreateAddonOutput,
+        input_schema = schemas.CreateAddonInput,
+        output_schema = schemas.CreateAddonOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/addons",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createCapability(input, options)
     return self:invokeOperation(input, {
         name = "CreateCapability",
-        input_schema = types.CreateCapabilityInput,
-        output_schema = types.CreateCapabilityOutput,
+        input_schema = schemas.CreateCapabilityInput,
+        output_schema = schemas.CreateCapabilityOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/capabilities",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createCluster(input, options)
     return self:invokeOperation(input, {
         name = "CreateCluster",
-        input_schema = types.CreateClusterInput,
-        output_schema = types.CreateClusterOutput,
+        input_schema = schemas.CreateClusterInput,
+        output_schema = schemas.CreateClusterOutput,
         http_method = "POST",
         http_path = "/clusters",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createEksAnywhereSubscription(input, options)
     return self:invokeOperation(input, {
         name = "CreateEksAnywhereSubscription",
-        input_schema = types.CreateEksAnywhereSubscriptionInput,
-        output_schema = types.CreateEksAnywhereSubscriptionOutput,
+        input_schema = schemas.CreateEksAnywhereSubscriptionInput,
+        output_schema = schemas.CreateEksAnywhereSubscriptionOutput,
         http_method = "POST",
         http_path = "/eks-anywhere-subscriptions",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createFargateProfile(input, options)
     return self:invokeOperation(input, {
         name = "CreateFargateProfile",
-        input_schema = types.CreateFargateProfileInput,
-        output_schema = types.CreateFargateProfileOutput,
+        input_schema = schemas.CreateFargateProfileInput,
+        output_schema = schemas.CreateFargateProfileOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/fargate-profiles",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createNodegroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateNodegroup",
-        input_schema = types.CreateNodegroupInput,
-        output_schema = types.CreateNodegroupOutput,
+        input_schema = schemas.CreateNodegroupInput,
+        output_schema = schemas.CreateNodegroupOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/node-groups",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createPodIdentityAssociation(input, options)
     return self:invokeOperation(input, {
         name = "CreatePodIdentityAssociation",
-        input_schema = types.CreatePodIdentityAssociationInput,
-        output_schema = types.CreatePodIdentityAssociationOutput,
+        input_schema = schemas.CreatePodIdentityAssociationInput,
+        output_schema = schemas.CreatePodIdentityAssociationOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/pod-identity-associations",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteAccessEntry(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAccessEntry",
-        input_schema = types.DeleteAccessEntryInput,
-        output_schema = types.DeleteAccessEntryOutput,
+        input_schema = schemas.DeleteAccessEntryInput,
+        output_schema = schemas.DeleteAccessEntryOutput,
         http_method = "DELETE",
         http_path = "/clusters/{clusterName}/access-entries/{principalArn}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteAddon(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAddon",
-        input_schema = types.DeleteAddonInput,
-        output_schema = types.DeleteAddonOutput,
+        input_schema = schemas.DeleteAddonInput,
+        output_schema = schemas.DeleteAddonOutput,
         http_method = "DELETE",
         http_path = "/clusters/{clusterName}/addons/{addonName}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteCapability(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCapability",
-        input_schema = types.DeleteCapabilityInput,
-        output_schema = types.DeleteCapabilityOutput,
+        input_schema = schemas.DeleteCapabilityInput,
+        output_schema = schemas.DeleteCapabilityOutput,
         http_method = "DELETE",
         http_path = "/clusters/{clusterName}/capabilities/{capabilityName}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteCluster(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCluster",
-        input_schema = types.DeleteClusterInput,
-        output_schema = types.DeleteClusterOutput,
+        input_schema = schemas.DeleteClusterInput,
+        output_schema = schemas.DeleteClusterOutput,
         http_method = "DELETE",
         http_path = "/clusters/{name}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteEksAnywhereSubscription(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEksAnywhereSubscription",
-        input_schema = types.DeleteEksAnywhereSubscriptionInput,
-        output_schema = types.DeleteEksAnywhereSubscriptionOutput,
+        input_schema = schemas.DeleteEksAnywhereSubscriptionInput,
+        output_schema = schemas.DeleteEksAnywhereSubscriptionOutput,
         http_method = "DELETE",
         http_path = "/eks-anywhere-subscriptions/{id}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteFargateProfile(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFargateProfile",
-        input_schema = types.DeleteFargateProfileInput,
-        output_schema = types.DeleteFargateProfileOutput,
+        input_schema = schemas.DeleteFargateProfileInput,
+        output_schema = schemas.DeleteFargateProfileOutput,
         http_method = "DELETE",
         http_path = "/clusters/{clusterName}/fargate-profiles/{fargateProfileName}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteNodegroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteNodegroup",
-        input_schema = types.DeleteNodegroupInput,
-        output_schema = types.DeleteNodegroupOutput,
+        input_schema = schemas.DeleteNodegroupInput,
+        output_schema = schemas.DeleteNodegroupOutput,
         http_method = "DELETE",
         http_path = "/clusters/{clusterName}/node-groups/{nodegroupName}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deletePodIdentityAssociation(input, options)
     return self:invokeOperation(input, {
         name = "DeletePodIdentityAssociation",
-        input_schema = types.DeletePodIdentityAssociationInput,
-        output_schema = types.DeletePodIdentityAssociationOutput,
+        input_schema = schemas.DeletePodIdentityAssociationInput,
+        output_schema = schemas.DeletePodIdentityAssociationOutput,
         http_method = "DELETE",
         http_path = "/clusters/{clusterName}/pod-identity-associations/{associationId}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deregisterCluster(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterCluster",
-        input_schema = types.DeregisterClusterInput,
-        output_schema = types.DeregisterClusterOutput,
+        input_schema = schemas.DeregisterClusterInput,
+        output_schema = schemas.DeregisterClusterOutput,
         http_method = "DELETE",
         http_path = "/cluster-registrations/{name}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:describeAccessEntry(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAccessEntry",
-        input_schema = types.DescribeAccessEntryInput,
-        output_schema = types.DescribeAccessEntryOutput,
+        input_schema = schemas.DescribeAccessEntryInput,
+        output_schema = schemas.DescribeAccessEntryOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/access-entries/{principalArn}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:describeAddon(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAddon",
-        input_schema = types.DescribeAddonInput,
-        output_schema = types.DescribeAddonOutput,
+        input_schema = schemas.DescribeAddonInput,
+        output_schema = schemas.DescribeAddonOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/addons/{addonName}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:describeAddonConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAddonConfiguration",
-        input_schema = types.DescribeAddonConfigurationInput,
-        output_schema = types.DescribeAddonConfigurationOutput,
+        input_schema = schemas.DescribeAddonConfigurationInput,
+        output_schema = schemas.DescribeAddonConfigurationOutput,
         http_method = "GET",
         http_path = "/addons/configuration-schemas",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:describeAddonVersions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAddonVersions",
-        input_schema = types.DescribeAddonVersionsInput,
-        output_schema = types.DescribeAddonVersionsOutput,
+        input_schema = schemas.DescribeAddonVersionsInput,
+        output_schema = schemas.DescribeAddonVersionsOutput,
         http_method = "GET",
         http_path = "/addons/supported-versions",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:describeCapability(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCapability",
-        input_schema = types.DescribeCapabilityInput,
-        output_schema = types.DescribeCapabilityOutput,
+        input_schema = schemas.DescribeCapabilityInput,
+        output_schema = schemas.DescribeCapabilityOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/capabilities/{capabilityName}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:describeCluster(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCluster",
-        input_schema = types.DescribeClusterInput,
-        output_schema = types.DescribeClusterOutput,
+        input_schema = schemas.DescribeClusterInput,
+        output_schema = schemas.DescribeClusterOutput,
         http_method = "GET",
         http_path = "/clusters/{name}",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:describeClusterVersions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeClusterVersions",
-        input_schema = types.DescribeClusterVersionsInput,
-        output_schema = types.DescribeClusterVersionsOutput,
+        input_schema = schemas.DescribeClusterVersionsInput,
+        output_schema = schemas.DescribeClusterVersionsOutput,
         http_method = "GET",
         http_path = "/cluster-versions",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:describeEksAnywhereSubscription(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEksAnywhereSubscription",
-        input_schema = types.DescribeEksAnywhereSubscriptionInput,
-        output_schema = types.DescribeEksAnywhereSubscriptionOutput,
+        input_schema = schemas.DescribeEksAnywhereSubscriptionInput,
+        output_schema = schemas.DescribeEksAnywhereSubscriptionOutput,
         http_method = "GET",
         http_path = "/eks-anywhere-subscriptions/{id}",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:describeFargateProfile(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFargateProfile",
-        input_schema = types.DescribeFargateProfileInput,
-        output_schema = types.DescribeFargateProfileOutput,
+        input_schema = schemas.DescribeFargateProfileInput,
+        output_schema = schemas.DescribeFargateProfileOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/fargate-profiles/{fargateProfileName}",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:describeIdentityProviderConfig(input, options)
     return self:invokeOperation(input, {
         name = "DescribeIdentityProviderConfig",
-        input_schema = types.DescribeIdentityProviderConfigInput,
-        output_schema = types.DescribeIdentityProviderConfigOutput,
+        input_schema = schemas.DescribeIdentityProviderConfigInput,
+        output_schema = schemas.DescribeIdentityProviderConfigOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/identity-provider-configs/describe",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:describeInsight(input, options)
     return self:invokeOperation(input, {
         name = "DescribeInsight",
-        input_schema = types.DescribeInsightInput,
-        output_schema = types.DescribeInsightOutput,
+        input_schema = schemas.DescribeInsightInput,
+        output_schema = schemas.DescribeInsightOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/insights/{id}",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:describeInsightsRefresh(input, options)
     return self:invokeOperation(input, {
         name = "DescribeInsightsRefresh",
-        input_schema = types.DescribeInsightsRefreshInput,
-        output_schema = types.DescribeInsightsRefreshOutput,
+        input_schema = schemas.DescribeInsightsRefreshInput,
+        output_schema = schemas.DescribeInsightsRefreshOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/insights-refresh",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:describeNodegroup(input, options)
     return self:invokeOperation(input, {
         name = "DescribeNodegroup",
-        input_schema = types.DescribeNodegroupInput,
-        output_schema = types.DescribeNodegroupOutput,
+        input_schema = schemas.DescribeNodegroupInput,
+        output_schema = schemas.DescribeNodegroupOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/node-groups/{nodegroupName}",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:describePodIdentityAssociation(input, options)
     return self:invokeOperation(input, {
         name = "DescribePodIdentityAssociation",
-        input_schema = types.DescribePodIdentityAssociationInput,
-        output_schema = types.DescribePodIdentityAssociationOutput,
+        input_schema = schemas.DescribePodIdentityAssociationInput,
+        output_schema = schemas.DescribePodIdentityAssociationOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/pod-identity-associations/{associationId}",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:describeUpdate(input, options)
     return self:invokeOperation(input, {
         name = "DescribeUpdate",
-        input_schema = types.DescribeUpdateInput,
-        output_schema = types.DescribeUpdateOutput,
+        input_schema = schemas.DescribeUpdateInput,
+        output_schema = schemas.DescribeUpdateOutput,
         http_method = "GET",
         http_path = "/clusters/{name}/updates/{updateId}",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:disassociateAccessPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateAccessPolicy",
-        input_schema = types.DisassociateAccessPolicyInput,
-        output_schema = types.DisassociateAccessPolicyOutput,
+        input_schema = schemas.DisassociateAccessPolicyInput,
+        output_schema = schemas.DisassociateAccessPolicyOutput,
         http_method = "DELETE",
         http_path = "/clusters/{clusterName}/access-entries/{principalArn}/access-policies/{policyArn}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:disassociateIdentityProviderConfig(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateIdentityProviderConfig",
-        input_schema = types.DisassociateIdentityProviderConfigInput,
-        output_schema = types.DisassociateIdentityProviderConfigOutput,
+        input_schema = schemas.DisassociateIdentityProviderConfigInput,
+        output_schema = schemas.DisassociateIdentityProviderConfigOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/identity-provider-configs/disassociate",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:listAccessEntries(input, options)
     return self:invokeOperation(input, {
         name = "ListAccessEntries",
-        input_schema = types.ListAccessEntriesInput,
-        output_schema = types.ListAccessEntriesOutput,
+        input_schema = schemas.ListAccessEntriesInput,
+        output_schema = schemas.ListAccessEntriesOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/access-entries",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:listAccessPolicies(input, options)
     return self:invokeOperation(input, {
         name = "ListAccessPolicies",
-        input_schema = types.ListAccessPoliciesInput,
-        output_schema = types.ListAccessPoliciesOutput,
+        input_schema = schemas.ListAccessPoliciesInput,
+        output_schema = schemas.ListAccessPoliciesOutput,
         http_method = "GET",
         http_path = "/access-policies",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:listAddons(input, options)
     return self:invokeOperation(input, {
         name = "ListAddons",
-        input_schema = types.ListAddonsInput,
-        output_schema = types.ListAddonsOutput,
+        input_schema = schemas.ListAddonsInput,
+        output_schema = schemas.ListAddonsOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/addons",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:listAssociatedAccessPolicies(input, options)
     return self:invokeOperation(input, {
         name = "ListAssociatedAccessPolicies",
-        input_schema = types.ListAssociatedAccessPoliciesInput,
-        output_schema = types.ListAssociatedAccessPoliciesOutput,
+        input_schema = schemas.ListAssociatedAccessPoliciesInput,
+        output_schema = schemas.ListAssociatedAccessPoliciesOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/access-entries/{principalArn}/access-policies",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:listCapabilities(input, options)
     return self:invokeOperation(input, {
         name = "ListCapabilities",
-        input_schema = types.ListCapabilitiesInput,
-        output_schema = types.ListCapabilitiesOutput,
+        input_schema = schemas.ListCapabilitiesInput,
+        output_schema = schemas.ListCapabilitiesOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/capabilities",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:listClusters(input, options)
     return self:invokeOperation(input, {
         name = "ListClusters",
-        input_schema = types.ListClustersInput,
-        output_schema = types.ListClustersOutput,
+        input_schema = schemas.ListClustersInput,
+        output_schema = schemas.ListClustersOutput,
         http_method = "GET",
         http_path = "/clusters",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:listEksAnywhereSubscriptions(input, options)
     return self:invokeOperation(input, {
         name = "ListEksAnywhereSubscriptions",
-        input_schema = types.ListEksAnywhereSubscriptionsInput,
-        output_schema = types.ListEksAnywhereSubscriptionsOutput,
+        input_schema = schemas.ListEksAnywhereSubscriptionsInput,
+        output_schema = schemas.ListEksAnywhereSubscriptionsOutput,
         http_method = "GET",
         http_path = "/eks-anywhere-subscriptions",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:listFargateProfiles(input, options)
     return self:invokeOperation(input, {
         name = "ListFargateProfiles",
-        input_schema = types.ListFargateProfilesInput,
-        output_schema = types.ListFargateProfilesOutput,
+        input_schema = schemas.ListFargateProfilesInput,
+        output_schema = schemas.ListFargateProfilesOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/fargate-profiles",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:listIdentityProviderConfigs(input, options)
     return self:invokeOperation(input, {
         name = "ListIdentityProviderConfigs",
-        input_schema = types.ListIdentityProviderConfigsInput,
-        output_schema = types.ListIdentityProviderConfigsOutput,
+        input_schema = schemas.ListIdentityProviderConfigsInput,
+        output_schema = schemas.ListIdentityProviderConfigsOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/identity-provider-configs",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:listInsights(input, options)
     return self:invokeOperation(input, {
         name = "ListInsights",
-        input_schema = types.ListInsightsInput,
-        output_schema = types.ListInsightsOutput,
+        input_schema = schemas.ListInsightsInput,
+        output_schema = schemas.ListInsightsOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/insights",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:listNodegroups(input, options)
     return self:invokeOperation(input, {
         name = "ListNodegroups",
-        input_schema = types.ListNodegroupsInput,
-        output_schema = types.ListNodegroupsOutput,
+        input_schema = schemas.ListNodegroupsInput,
+        output_schema = schemas.ListNodegroupsOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/node-groups",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:listPodIdentityAssociations(input, options)
     return self:invokeOperation(input, {
         name = "ListPodIdentityAssociations",
-        input_schema = types.ListPodIdentityAssociationsInput,
-        output_schema = types.ListPodIdentityAssociationsOutput,
+        input_schema = schemas.ListPodIdentityAssociationsInput,
+        output_schema = schemas.ListPodIdentityAssociationsOutput,
         http_method = "GET",
         http_path = "/clusters/{clusterName}/pod-identity-associations",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:listUpdates(input, options)
     return self:invokeOperation(input, {
         name = "ListUpdates",
-        input_schema = types.ListUpdatesInput,
-        output_schema = types.ListUpdatesOutput,
+        input_schema = schemas.ListUpdatesInput,
+        output_schema = schemas.ListUpdatesOutput,
         http_method = "GET",
         http_path = "/clusters/{name}/updates",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:registerCluster(input, options)
     return self:invokeOperation(input, {
         name = "RegisterCluster",
-        input_schema = types.RegisterClusterInput,
-        output_schema = types.RegisterClusterOutput,
+        input_schema = schemas.RegisterClusterInput,
+        output_schema = schemas.RegisterClusterOutput,
         http_method = "POST",
         http_path = "/cluster-registrations",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:startInsightsRefresh(input, options)
     return self:invokeOperation(input, {
         name = "StartInsightsRefresh",
-        input_schema = types.StartInsightsRefreshInput,
-        output_schema = types.StartInsightsRefreshOutput,
+        input_schema = schemas.StartInsightsRefreshInput,
+        output_schema = schemas.StartInsightsRefreshOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/insights-refresh",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:updateAccessEntry(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAccessEntry",
-        input_schema = types.UpdateAccessEntryInput,
-        output_schema = types.UpdateAccessEntryOutput,
+        input_schema = schemas.UpdateAccessEntryInput,
+        output_schema = schemas.UpdateAccessEntryOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/access-entries/{principalArn}",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:updateAddon(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAddon",
-        input_schema = types.UpdateAddonInput,
-        output_schema = types.UpdateAddonOutput,
+        input_schema = schemas.UpdateAddonInput,
+        output_schema = schemas.UpdateAddonOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/addons/{addonName}/update",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:updateCapability(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCapability",
-        input_schema = types.UpdateCapabilityInput,
-        output_schema = types.UpdateCapabilityOutput,
+        input_schema = schemas.UpdateCapabilityInput,
+        output_schema = schemas.UpdateCapabilityOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/capabilities/{capabilityName}",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:updateClusterConfig(input, options)
     return self:invokeOperation(input, {
         name = "UpdateClusterConfig",
-        input_schema = types.UpdateClusterConfigInput,
-        output_schema = types.UpdateClusterConfigOutput,
+        input_schema = schemas.UpdateClusterConfigInput,
+        output_schema = schemas.UpdateClusterConfigOutput,
         http_method = "POST",
         http_path = "/clusters/{name}/update-config",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:updateClusterVersion(input, options)
     return self:invokeOperation(input, {
         name = "UpdateClusterVersion",
-        input_schema = types.UpdateClusterVersionInput,
-        output_schema = types.UpdateClusterVersionOutput,
+        input_schema = schemas.UpdateClusterVersionInput,
+        output_schema = schemas.UpdateClusterVersionOutput,
         http_method = "POST",
         http_path = "/clusters/{name}/updates",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:updateEksAnywhereSubscription(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEksAnywhereSubscription",
-        input_schema = types.UpdateEksAnywhereSubscriptionInput,
-        output_schema = types.UpdateEksAnywhereSubscriptionOutput,
+        input_schema = schemas.UpdateEksAnywhereSubscriptionInput,
+        output_schema = schemas.UpdateEksAnywhereSubscriptionOutput,
         http_method = "POST",
         http_path = "/eks-anywhere-subscriptions/{id}",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:updateNodegroupConfig(input, options)
     return self:invokeOperation(input, {
         name = "UpdateNodegroupConfig",
-        input_schema = types.UpdateNodegroupConfigInput,
-        output_schema = types.UpdateNodegroupConfigOutput,
+        input_schema = schemas.UpdateNodegroupConfigInput,
+        output_schema = schemas.UpdateNodegroupConfigOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/node-groups/{nodegroupName}/update-config",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:updateNodegroupVersion(input, options)
     return self:invokeOperation(input, {
         name = "UpdateNodegroupVersion",
-        input_schema = types.UpdateNodegroupVersionInput,
-        output_schema = types.UpdateNodegroupVersionOutput,
+        input_schema = schemas.UpdateNodegroupVersionInput,
+        output_schema = schemas.UpdateNodegroupVersionOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/node-groups/{nodegroupName}/update-version",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:updatePodIdentityAssociation(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePodIdentityAssociation",
-        input_schema = types.UpdatePodIdentityAssociationInput,
-        output_schema = types.UpdatePodIdentityAssociationOutput,
+        input_schema = schemas.UpdatePodIdentityAssociationInput,
+        output_schema = schemas.UpdatePodIdentityAssociationOutput,
         http_method = "POST",
         http_path = "/clusters/{clusterName}/pod-identity-associations/{associationId}",
         effective_auth_schemes = {

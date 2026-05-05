@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("arczonalshift.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("arczonalshift.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("arczonalshift.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:cancelPracticeRun(input, options)
     return self:invokeOperation(input, {
         name = "CancelPracticeRun",
-        input_schema = types.CancelPracticeRunInput,
-        output_schema = types.CancelPracticeRunOutput,
+        input_schema = schemas.CancelPracticeRunInput,
+        output_schema = schemas.CancelPracticeRunOutput,
         http_method = "DELETE",
         http_path = "/practiceruns/{zonalShiftId}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:cancelZonalShift(input, options)
     return self:invokeOperation(input, {
         name = "CancelZonalShift",
-        input_schema = types.CancelZonalShiftInput,
-        output_schema = types.CancelZonalShiftOutput,
+        input_schema = schemas.CancelZonalShiftInput,
+        output_schema = schemas.CancelZonalShiftOutput,
         http_method = "DELETE",
         http_path = "/zonalshifts/{zonalShiftId}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createPracticeRunConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreatePracticeRunConfiguration",
-        input_schema = types.CreatePracticeRunConfigurationInput,
-        output_schema = types.CreatePracticeRunConfigurationOutput,
+        input_schema = schemas.CreatePracticeRunConfigurationInput,
+        output_schema = schemas.CreatePracticeRunConfigurationOutput,
         http_method = "POST",
         http_path = "/configuration",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deletePracticeRunConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeletePracticeRunConfiguration",
-        input_schema = types.DeletePracticeRunConfigurationInput,
-        output_schema = types.DeletePracticeRunConfigurationOutput,
+        input_schema = schemas.DeletePracticeRunConfigurationInput,
+        output_schema = schemas.DeletePracticeRunConfigurationOutput,
         http_method = "DELETE",
         http_path = "/configuration/{resourceIdentifier}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getAutoshiftObserverNotificationStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetAutoshiftObserverNotificationStatus",
-        input_schema = types.GetAutoshiftObserverNotificationStatusInput,
-        output_schema = types.GetAutoshiftObserverNotificationStatusOutput,
+        input_schema = schemas.GetAutoshiftObserverNotificationStatusInput,
+        output_schema = schemas.GetAutoshiftObserverNotificationStatusOutput,
         http_method = "GET",
         http_path = "/autoshift-observer-notification",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getManagedResource(input, options)
     return self:invokeOperation(input, {
         name = "GetManagedResource",
-        input_schema = types.GetManagedResourceInput,
-        output_schema = types.GetManagedResourceOutput,
+        input_schema = schemas.GetManagedResourceInput,
+        output_schema = schemas.GetManagedResourceOutput,
         http_method = "GET",
         http_path = "/managedresources/{resourceIdentifier}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listAutoshifts(input, options)
     return self:invokeOperation(input, {
         name = "ListAutoshifts",
-        input_schema = types.ListAutoshiftsInput,
-        output_schema = types.ListAutoshiftsOutput,
+        input_schema = schemas.ListAutoshiftsInput,
+        output_schema = schemas.ListAutoshiftsOutput,
         http_method = "GET",
         http_path = "/autoshifts",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listManagedResources(input, options)
     return self:invokeOperation(input, {
         name = "ListManagedResources",
-        input_schema = types.ListManagedResourcesInput,
-        output_schema = types.ListManagedResourcesOutput,
+        input_schema = schemas.ListManagedResourcesInput,
+        output_schema = schemas.ListManagedResourcesOutput,
         http_method = "GET",
         http_path = "/managedresources",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listZonalShifts(input, options)
     return self:invokeOperation(input, {
         name = "ListZonalShifts",
-        input_schema = types.ListZonalShiftsInput,
-        output_schema = types.ListZonalShiftsOutput,
+        input_schema = schemas.ListZonalShiftsInput,
+        output_schema = schemas.ListZonalShiftsOutput,
         http_method = "GET",
         http_path = "/zonalshifts",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:startPracticeRun(input, options)
     return self:invokeOperation(input, {
         name = "StartPracticeRun",
-        input_schema = types.StartPracticeRunInput,
-        output_schema = types.StartPracticeRunOutput,
+        input_schema = schemas.StartPracticeRunInput,
+        output_schema = schemas.StartPracticeRunOutput,
         http_method = "POST",
         http_path = "/practiceruns",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:startZonalShift(input, options)
     return self:invokeOperation(input, {
         name = "StartZonalShift",
-        input_schema = types.StartZonalShiftInput,
-        output_schema = types.StartZonalShiftOutput,
+        input_schema = schemas.StartZonalShiftInput,
+        output_schema = schemas.StartZonalShiftOutput,
         http_method = "POST",
         http_path = "/zonalshifts",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:updateAutoshiftObserverNotificationStatus(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAutoshiftObserverNotificationStatus",
-        input_schema = types.UpdateAutoshiftObserverNotificationStatusInput,
-        output_schema = types.UpdateAutoshiftObserverNotificationStatusOutput,
+        input_schema = schemas.UpdateAutoshiftObserverNotificationStatusInput,
+        output_schema = schemas.UpdateAutoshiftObserverNotificationStatusOutput,
         http_method = "PUT",
         http_path = "/autoshift-observer-notification",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:updatePracticeRunConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePracticeRunConfiguration",
-        input_schema = types.UpdatePracticeRunConfigurationInput,
-        output_schema = types.UpdatePracticeRunConfigurationOutput,
+        input_schema = schemas.UpdatePracticeRunConfigurationInput,
+        output_schema = schemas.UpdatePracticeRunConfigurationOutput,
         http_method = "PATCH",
         http_path = "/configuration/{resourceIdentifier}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:updateZonalAutoshiftConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateZonalAutoshiftConfiguration",
-        input_schema = types.UpdateZonalAutoshiftConfigurationInput,
-        output_schema = types.UpdateZonalAutoshiftConfigurationOutput,
+        input_schema = schemas.UpdateZonalAutoshiftConfigurationInput,
+        output_schema = schemas.UpdateZonalAutoshiftConfigurationOutput,
         http_method = "PUT",
         http_path = "/managedresources/{resourceIdentifier}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:updateZonalShift(input, options)
     return self:invokeOperation(input, {
         name = "UpdateZonalShift",
-        input_schema = types.UpdateZonalShiftInput,
-        output_schema = types.UpdateZonalShiftOutput,
+        input_schema = schemas.UpdateZonalShiftInput,
+        output_schema = schemas.UpdateZonalShiftOutput,
         http_method = "PATCH",
         http_path = "/zonalshifts/{zonalShiftId}",
         effective_auth_schemes = {

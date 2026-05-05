@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("secretsmanager.endpoint_rules")
+local schemas = require("secretsmanager.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("secretsmanager.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchGetSecretValue(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetSecretValue",
-        input_schema = types.BatchGetSecretValueInput,
-        output_schema = types.BatchGetSecretValueOutput,
+        input_schema = schemas.BatchGetSecretValueInput,
+        output_schema = schemas.BatchGetSecretValueOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:cancelRotateSecret(input, options)
     return self:invokeOperation(input, {
         name = "CancelRotateSecret",
-        input_schema = types.CancelRotateSecretInput,
-        output_schema = types.CancelRotateSecretOutput,
+        input_schema = schemas.CancelRotateSecretInput,
+        output_schema = schemas.CancelRotateSecretOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createSecret(input, options)
     return self:invokeOperation(input, {
         name = "CreateSecret",
-        input_schema = types.CreateSecretInput,
-        output_schema = types.CreateSecretOutput,
+        input_schema = schemas.CreateSecretInput,
+        output_schema = schemas.CreateSecretOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourcePolicy",
-        input_schema = types.DeleteResourcePolicyInput,
-        output_schema = types.DeleteResourcePolicyOutput,
+        input_schema = schemas.DeleteResourcePolicyInput,
+        output_schema = schemas.DeleteResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteSecret(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSecret",
-        input_schema = types.DeleteSecretInput,
-        output_schema = types.DeleteSecretOutput,
+        input_schema = schemas.DeleteSecretInput,
+        output_schema = schemas.DeleteSecretOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:describeSecret(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSecret",
-        input_schema = types.DescribeSecretInput,
-        output_schema = types.DescribeSecretOutput,
+        input_schema = schemas.DescribeSecretInput,
+        output_schema = schemas.DescribeSecretOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getRandomPassword(input, options)
     return self:invokeOperation(input, {
         name = "GetRandomPassword",
-        input_schema = types.GetRandomPasswordInput,
-        output_schema = types.GetRandomPasswordOutput,
+        input_schema = schemas.GetRandomPasswordInput,
+        output_schema = schemas.GetRandomPasswordOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcePolicy",
-        input_schema = types.GetResourcePolicyInput,
-        output_schema = types.GetResourcePolicyOutput,
+        input_schema = schemas.GetResourcePolicyInput,
+        output_schema = schemas.GetResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getSecretValue(input, options)
     return self:invokeOperation(input, {
         name = "GetSecretValue",
-        input_schema = types.GetSecretValueInput,
-        output_schema = types.GetSecretValueOutput,
+        input_schema = schemas.GetSecretValueInput,
+        output_schema = schemas.GetSecretValueOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listSecrets(input, options)
     return self:invokeOperation(input, {
         name = "ListSecrets",
-        input_schema = types.ListSecretsInput,
-        output_schema = types.ListSecretsOutput,
+        input_schema = schemas.ListSecretsInput,
+        output_schema = schemas.ListSecretsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listSecretVersionIds(input, options)
     return self:invokeOperation(input, {
         name = "ListSecretVersionIds",
-        input_schema = types.ListSecretVersionIdsInput,
-        output_schema = types.ListSecretVersionIdsOutput,
+        input_schema = schemas.ListSecretVersionIdsInput,
+        output_schema = schemas.ListSecretVersionIdsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:putResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutResourcePolicy",
-        input_schema = types.PutResourcePolicyInput,
-        output_schema = types.PutResourcePolicyOutput,
+        input_schema = schemas.PutResourcePolicyInput,
+        output_schema = schemas.PutResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:putSecretValue(input, options)
     return self:invokeOperation(input, {
         name = "PutSecretValue",
-        input_schema = types.PutSecretValueInput,
-        output_schema = types.PutSecretValueOutput,
+        input_schema = schemas.PutSecretValueInput,
+        output_schema = schemas.PutSecretValueOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:removeRegionsFromReplication(input, options)
     return self:invokeOperation(input, {
         name = "RemoveRegionsFromReplication",
-        input_schema = types.RemoveRegionsFromReplicationInput,
-        output_schema = types.RemoveRegionsFromReplicationOutput,
+        input_schema = schemas.RemoveRegionsFromReplicationInput,
+        output_schema = schemas.RemoveRegionsFromReplicationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:replicateSecretToRegions(input, options)
     return self:invokeOperation(input, {
         name = "ReplicateSecretToRegions",
-        input_schema = types.ReplicateSecretToRegionsInput,
-        output_schema = types.ReplicateSecretToRegionsOutput,
+        input_schema = schemas.ReplicateSecretToRegionsInput,
+        output_schema = schemas.ReplicateSecretToRegionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:restoreSecret(input, options)
     return self:invokeOperation(input, {
         name = "RestoreSecret",
-        input_schema = types.RestoreSecretInput,
-        output_schema = types.RestoreSecretOutput,
+        input_schema = schemas.RestoreSecretInput,
+        output_schema = schemas.RestoreSecretOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:rotateSecret(input, options)
     return self:invokeOperation(input, {
         name = "RotateSecret",
-        input_schema = types.RotateSecretInput,
-        output_schema = types.RotateSecretOutput,
+        input_schema = schemas.RotateSecretInput,
+        output_schema = schemas.RotateSecretOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:stopReplicationToReplica(input, options)
     return self:invokeOperation(input, {
         name = "StopReplicationToReplica",
-        input_schema = types.StopReplicationToReplicaInput,
-        output_schema = types.StopReplicationToReplicaOutput,
+        input_schema = schemas.StopReplicationToReplicaInput,
+        output_schema = schemas.StopReplicationToReplicaOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:updateSecret(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSecret",
-        input_schema = types.UpdateSecretInput,
-        output_schema = types.UpdateSecretOutput,
+        input_schema = schemas.UpdateSecretInput,
+        output_schema = schemas.UpdateSecretOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:updateSecretVersionStage(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSecretVersionStage",
-        input_schema = types.UpdateSecretVersionStageInput,
-        output_schema = types.UpdateSecretVersionStageOutput,
+        input_schema = schemas.UpdateSecretVersionStageInput,
+        output_schema = schemas.UpdateSecretVersionStageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:validateResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "ValidateResourcePolicy",
-        input_schema = types.ValidateResourcePolicyInput,
-        output_schema = types.ValidateResourcePolicyOutput,
+        input_schema = schemas.ValidateResourcePolicyInput,
+        output_schema = schemas.ValidateResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

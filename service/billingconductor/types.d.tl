@@ -1334,11 +1334,11 @@ local record ValidationException
     Fields: {ValidationExceptionField}
 end
 
-local type PricingRuleScope = "GLOBAL" | "SERVICE" | "BILLING_ENTITY" | "SKU"
-
 local type PricingRuleType = "MARKUP" | "DISCOUNT" | "TIERING"
 
 local type ComputationRuleEnum = "ITEMIZED" | "CONSOLIDATED"
+
+local type PricingRuleScope = "GLOBAL" | "SERVICE" | "BILLING_ENTITY" | "SKU"
 
 local type BillingGroupStatus = "ACTIVE" | "PRIMARY_ACCOUNT_MISSING" | "PENDING"
 

@@ -1,0 +1,2423 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.evs"
+
+local M = {}
+
+M.AssociateEipToVlanInput = schema.new({
+    id = id.from(_N, "AssociateEipToVlanInput"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "AssociateEipToVlanInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        environmentId = schema.new({
+            id = id.from(_N, "AssociateEipToVlanInput", "environmentId"),
+            type = "string",
+            name = "environmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        vlanName = schema.new({
+            id = id.from(_N, "AssociateEipToVlanInput", "vlanName"),
+            type = "string",
+            name = "vlanName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        allocationId = schema.new({
+            id = id.from(_N, "AssociateEipToVlanInput", "allocationId"),
+            type = "string",
+            name = "allocationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.EipAssociation = schema.new({
+    id = id.from(_N, "EipAssociation"),
+    type = "structure",
+    members = {
+        associationId = schema.new({
+            id = id.from(_N, "EipAssociation", "associationId"),
+            type = "string",
+            name = "associationId",
+            target_id = prelude.String.id,
+        }),
+        allocationId = schema.new({
+            id = id.from(_N, "EipAssociation", "allocationId"),
+            type = "string",
+            name = "allocationId",
+            target_id = prelude.String.id,
+        }),
+        ipAddress = schema.new({
+            id = id.from(_N, "EipAssociation", "ipAddress"),
+            type = "string",
+            name = "ipAddress",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Vlan = schema.new({
+    id = id.from(_N, "Vlan"),
+    type = "structure",
+    members = {
+        vlanId = schema.new({
+            id = id.from(_N, "Vlan", "vlanId"),
+            type = "integer",
+            name = "vlanId",
+            target_id = prelude.Integer.id,
+        }),
+        cidr = schema.new({
+            id = id.from(_N, "Vlan", "cidr"),
+            type = "string",
+            name = "cidr",
+            target_id = prelude.String.id,
+        }),
+        availabilityZone = schema.new({
+            id = id.from(_N, "Vlan", "availabilityZone"),
+            type = "string",
+            name = "availabilityZone",
+            target_id = prelude.String.id,
+        }),
+        functionName = schema.new({
+            id = id.from(_N, "Vlan", "functionName"),
+            type = "string",
+            name = "functionName",
+            target_id = prelude.String.id,
+        }),
+        subnetId = schema.new({
+            id = id.from(_N, "Vlan", "subnetId"),
+            type = "string",
+            name = "subnetId",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "Vlan", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        modifiedAt = schema.new({
+            id = id.from(_N, "Vlan", "modifiedAt"),
+            type = "timestamp",
+            name = "modifiedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        vlanState = schema.new({
+            id = id.from(_N, "Vlan", "vlanState"),
+            type = "string",
+            name = "vlanState",
+            target_id = prelude.String.id,
+        }),
+        stateDetails = schema.new({
+            id = id.from(_N, "Vlan", "stateDetails"),
+            type = "string",
+            name = "stateDetails",
+            target_id = prelude.String.id,
+        }),
+        eipAssociations = schema.new({
+            id = id.from(_N, "Vlan", "eipAssociations"),
+            type = "list",
+            name = "eipAssociations",
+            target_id = prelude.Document.id,
+            list_member = M.EipAssociation,
+        }),
+        isPublic = schema.new({
+            id = id.from(_N, "Vlan", "isPublic"),
+            type = "boolean",
+            name = "isPublic",
+            target_id = prelude.Boolean.id,
+        }),
+        networkAclId = schema.new({
+            id = id.from(_N, "Vlan", "networkAclId"),
+            type = "string",
+            name = "networkAclId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AssociateEipToVlanOutput = schema.new({
+    id = id.from(_N, "AssociateEipToVlanOutput"),
+    type = "structure",
+    members = {
+        vlan = schema.new({
+            id = id.from(_N, "AssociateEipToVlanOutput", "vlan"),
+            type = "structure",
+            name = "vlan",
+            target_id = id.from(_N, "Vlan"),
+            target = M.Vlan,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ThrottlingException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        retryAfterSeconds = schema.new({
+            id = id.from(_N, "ThrottlingException", "retryAfterSeconds"),
+            type = "integer",
+            name = "retryAfterSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Retry-After" },
+            },
+        }),
+    },
+})
+
+M.ValidationExceptionField = schema.new({
+    id = id.from(_N, "ValidationExceptionField"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "ValidationExceptionField", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "ValidationExceptionField", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        reason = schema.new({
+            id = id.from(_N, "ValidationException", "reason"),
+            type = "string",
+            name = "reason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fieldList = schema.new({
+            id = id.from(_N, "ValidationException", "fieldList"),
+            type = "list",
+            name = "fieldList",
+            target_id = prelude.Document.id,
+            list_member = M.ValidationExceptionField,
+        }),
+    },
+})
+
+M.CreateEntitlementInput = schema.new({
+    id = id.from(_N, "CreateEntitlementInput"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "CreateEntitlementInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        environmentId = schema.new({
+            id = id.from(_N, "CreateEntitlementInput", "environmentId"),
+            type = "string",
+            name = "environmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        connectorId = schema.new({
+            id = id.from(_N, "CreateEntitlementInput", "connectorId"),
+            type = "string",
+            name = "connectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        entitlementType = schema.new({
+            id = id.from(_N, "CreateEntitlementInput", "entitlementType"),
+            type = "string",
+            name = "entitlementType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        vmIds = schema.new({
+            id = id.from(_N, "CreateEntitlementInput", "vmIds"),
+            type = "list",
+            name = "vmIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ErrorDetail = schema.new({
+    id = id.from(_N, "ErrorDetail"),
+    type = "structure",
+    members = {
+        errorCode = schema.new({
+            id = id.from(_N, "ErrorDetail", "errorCode"),
+            type = "string",
+            name = "errorCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errorMessage = schema.new({
+            id = id.from(_N, "ErrorDetail", "errorMessage"),
+            type = "string",
+            name = "errorMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.VmEntitlement = schema.new({
+    id = id.from(_N, "VmEntitlement"),
+    type = "structure",
+    members = {
+        vmId = schema.new({
+            id = id.from(_N, "VmEntitlement", "vmId"),
+            type = "string",
+            name = "vmId",
+            target_id = prelude.String.id,
+        }),
+        environmentId = schema.new({
+            id = id.from(_N, "VmEntitlement", "environmentId"),
+            type = "string",
+            name = "environmentId",
+            target_id = prelude.String.id,
+        }),
+        connectorId = schema.new({
+            id = id.from(_N, "VmEntitlement", "connectorId"),
+            type = "string",
+            name = "connectorId",
+            target_id = prelude.String.id,
+        }),
+        vmName = schema.new({
+            id = id.from(_N, "VmEntitlement", "vmName"),
+            type = "string",
+            name = "vmName",
+            target_id = prelude.String.id,
+        }),
+        type = schema.new({
+            id = id.from(_N, "VmEntitlement", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "VmEntitlement", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        lastSyncedAt = schema.new({
+            id = id.from(_N, "VmEntitlement", "lastSyncedAt"),
+            type = "timestamp",
+            name = "lastSyncedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        startedAt = schema.new({
+            id = id.from(_N, "VmEntitlement", "startedAt"),
+            type = "timestamp",
+            name = "startedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        stoppedAt = schema.new({
+            id = id.from(_N, "VmEntitlement", "stoppedAt"),
+            type = "timestamp",
+            name = "stoppedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        errorDetail = schema.new({
+            id = id.from(_N, "VmEntitlement", "errorDetail"),
+            type = "structure",
+            name = "errorDetail",
+            target_id = id.from(_N, "ErrorDetail"),
+            target = M.ErrorDetail,
+        }),
+    },
+})
+
+M.CreateEntitlementOutput = schema.new({
+    id = id.from(_N, "CreateEntitlementOutput"),
+    type = "structure",
+    members = {
+        entitlements = schema.new({
+            id = id.from(_N, "CreateEntitlementOutput", "entitlements"),
+            type = "list",
+            name = "entitlements",
+            target_id = prelude.Document.id,
+            list_member = M.VmEntitlement,
+        }),
+    },
+})
+
+M.ConnectivityInfo = schema.new({
+    id = id.from(_N, "ConnectivityInfo"),
+    type = "structure",
+    members = {
+        privateRouteServerPeerings = schema.new({
+            id = id.from(_N, "ConnectivityInfo", "privateRouteServerPeerings"),
+            type = "list",
+            name = "privateRouteServerPeerings",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.HostInfoForCreate = schema.new({
+    id = id.from(_N, "HostInfoForCreate"),
+    type = "structure",
+    members = {
+        hostName = schema.new({
+            id = id.from(_N, "HostInfoForCreate", "hostName"),
+            type = "string",
+            name = "hostName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        keyName = schema.new({
+            id = id.from(_N, "HostInfoForCreate", "keyName"),
+            type = "string",
+            name = "keyName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        instanceType = schema.new({
+            id = id.from(_N, "HostInfoForCreate", "instanceType"),
+            type = "string",
+            name = "instanceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        placementGroupId = schema.new({
+            id = id.from(_N, "HostInfoForCreate", "placementGroupId"),
+            type = "string",
+            name = "placementGroupId",
+            target_id = prelude.String.id,
+        }),
+        dedicatedHostId = schema.new({
+            id = id.from(_N, "HostInfoForCreate", "dedicatedHostId"),
+            type = "string",
+            name = "dedicatedHostId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InitialVlanInfo = schema.new({
+    id = id.from(_N, "InitialVlanInfo"),
+    type = "structure",
+    members = {
+        cidr = schema.new({
+            id = id.from(_N, "InitialVlanInfo", "cidr"),
+            type = "string",
+            name = "cidr",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InitialVlans = schema.new({
+    id = id.from(_N, "InitialVlans"),
+    type = "structure",
+    members = {
+        vmkManagement = schema.new({
+            id = id.from(_N, "InitialVlans", "vmkManagement"),
+            type = "structure",
+            name = "vmkManagement",
+            target_id = id.from(_N, "InitialVlanInfo"),
+            target = M.InitialVlanInfo,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        vmManagement = schema.new({
+            id = id.from(_N, "InitialVlans", "vmManagement"),
+            type = "structure",
+            name = "vmManagement",
+            target_id = id.from(_N, "InitialVlanInfo"),
+            target = M.InitialVlanInfo,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        vMotion = schema.new({
+            id = id.from(_N, "InitialVlans", "vMotion"),
+            type = "structure",
+            name = "vMotion",
+            target_id = id.from(_N, "InitialVlanInfo"),
+            target = M.InitialVlanInfo,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        vSan = schema.new({
+            id = id.from(_N, "InitialVlans", "vSan"),
+            type = "structure",
+            name = "vSan",
+            target_id = id.from(_N, "InitialVlanInfo"),
+            target = M.InitialVlanInfo,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        vTep = schema.new({
+            id = id.from(_N, "InitialVlans", "vTep"),
+            type = "structure",
+            name = "vTep",
+            target_id = id.from(_N, "InitialVlanInfo"),
+            target = M.InitialVlanInfo,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        edgeVTep = schema.new({
+            id = id.from(_N, "InitialVlans", "edgeVTep"),
+            type = "structure",
+            name = "edgeVTep",
+            target_id = id.from(_N, "InitialVlanInfo"),
+            target = M.InitialVlanInfo,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nsxUplink = schema.new({
+            id = id.from(_N, "InitialVlans", "nsxUplink"),
+            type = "structure",
+            name = "nsxUplink",
+            target_id = id.from(_N, "InitialVlanInfo"),
+            target = M.InitialVlanInfo,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        hcx = schema.new({
+            id = id.from(_N, "InitialVlans", "hcx"),
+            type = "structure",
+            name = "hcx",
+            target_id = id.from(_N, "InitialVlanInfo"),
+            target = M.InitialVlanInfo,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        expansionVlan1 = schema.new({
+            id = id.from(_N, "InitialVlans", "expansionVlan1"),
+            type = "structure",
+            name = "expansionVlan1",
+            target_id = id.from(_N, "InitialVlanInfo"),
+            target = M.InitialVlanInfo,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        expansionVlan2 = schema.new({
+            id = id.from(_N, "InitialVlans", "expansionVlan2"),
+            type = "structure",
+            name = "expansionVlan2",
+            target_id = id.from(_N, "InitialVlanInfo"),
+            target = M.InitialVlanInfo,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        isHcxPublic = schema.new({
+            id = id.from(_N, "InitialVlans", "isHcxPublic"),
+            type = "boolean",
+            name = "isHcxPublic",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        hcxNetworkAclId = schema.new({
+            id = id.from(_N, "InitialVlans", "hcxNetworkAclId"),
+            type = "string",
+            name = "hcxNetworkAclId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.LicenseInfo = schema.new({
+    id = id.from(_N, "LicenseInfo"),
+    type = "structure",
+    members = {
+        solutionKey = schema.new({
+            id = id.from(_N, "LicenseInfo", "solutionKey"),
+            type = "string",
+            name = "solutionKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        vsanKey = schema.new({
+            id = id.from(_N, "LicenseInfo", "vsanKey"),
+            type = "string",
+            name = "vsanKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ServiceAccessSecurityGroups = schema.new({
+    id = id.from(_N, "ServiceAccessSecurityGroups"),
+    type = "structure",
+    members = {
+        securityGroups = schema.new({
+            id = id.from(_N, "ServiceAccessSecurityGroups", "securityGroups"),
+            type = "list",
+            name = "securityGroups",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.VcfHostnames = schema.new({
+    id = id.from(_N, "VcfHostnames"),
+    type = "structure",
+    members = {
+        vCenter = schema.new({
+            id = id.from(_N, "VcfHostnames", "vCenter"),
+            type = "string",
+            name = "vCenter",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nsx = schema.new({
+            id = id.from(_N, "VcfHostnames", "nsx"),
+            type = "string",
+            name = "nsx",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nsxManager1 = schema.new({
+            id = id.from(_N, "VcfHostnames", "nsxManager1"),
+            type = "string",
+            name = "nsxManager1",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nsxManager2 = schema.new({
+            id = id.from(_N, "VcfHostnames", "nsxManager2"),
+            type = "string",
+            name = "nsxManager2",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nsxManager3 = schema.new({
+            id = id.from(_N, "VcfHostnames", "nsxManager3"),
+            type = "string",
+            name = "nsxManager3",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nsxEdge1 = schema.new({
+            id = id.from(_N, "VcfHostnames", "nsxEdge1"),
+            type = "string",
+            name = "nsxEdge1",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nsxEdge2 = schema.new({
+            id = id.from(_N, "VcfHostnames", "nsxEdge2"),
+            type = "string",
+            name = "nsxEdge2",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sddcManager = schema.new({
+            id = id.from(_N, "VcfHostnames", "sddcManager"),
+            type = "string",
+            name = "sddcManager",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        cloudBuilder = schema.new({
+            id = id.from(_N, "VcfHostnames", "cloudBuilder"),
+            type = "string",
+            name = "cloudBuilder",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateEnvironmentInput = schema.new({
+    id = id.from(_N, "CreateEnvironmentInput"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "CreateEnvironmentInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        environmentName = schema.new({
+            id = id.from(_N, "CreateEnvironmentInput", "environmentName"),
+            type = "string",
+            name = "environmentName",
+            target_id = prelude.String.id,
+        }),
+        kmsKeyId = schema.new({
+            id = id.from(_N, "CreateEnvironmentInput", "kmsKeyId"),
+            type = "string",
+            name = "kmsKeyId",
+            target_id = prelude.String.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateEnvironmentInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        serviceAccessSecurityGroups = schema.new({
+            id = id.from(_N, "CreateEnvironmentInput", "serviceAccessSecurityGroups"),
+            type = "structure",
+            name = "serviceAccessSecurityGroups",
+            target_id = id.from(_N, "ServiceAccessSecurityGroups"),
+            target = M.ServiceAccessSecurityGroups,
+        }),
+        vpcId = schema.new({
+            id = id.from(_N, "CreateEnvironmentInput", "vpcId"),
+            type = "string",
+            name = "vpcId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        serviceAccessSubnetId = schema.new({
+            id = id.from(_N, "CreateEnvironmentInput", "serviceAccessSubnetId"),
+            type = "string",
+            name = "serviceAccessSubnetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        vcfVersion = schema.new({
+            id = id.from(_N, "CreateEnvironmentInput", "vcfVersion"),
+            type = "string",
+            name = "vcfVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        termsAccepted = schema.new({
+            id = id.from(_N, "CreateEnvironmentInput", "termsAccepted"),
+            type = "boolean",
+            name = "termsAccepted",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        licenseInfo = schema.new({
+            id = id.from(_N, "CreateEnvironmentInput", "licenseInfo"),
+            type = "list",
+            name = "licenseInfo",
+            target_id = prelude.Document.id,
+            list_member = M.LicenseInfo,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        initialVlans = schema.new({
+            id = id.from(_N, "CreateEnvironmentInput", "initialVlans"),
+            type = "structure",
+            name = "initialVlans",
+            target_id = id.from(_N, "InitialVlans"),
+            target = M.InitialVlans,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        hosts = schema.new({
+            id = id.from(_N, "CreateEnvironmentInput", "hosts"),
+            type = "list",
+            name = "hosts",
+            target_id = prelude.Document.id,
+            list_member = M.HostInfoForCreate,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        connectivityInfo = schema.new({
+            id = id.from(_N, "CreateEnvironmentInput", "connectivityInfo"),
+            type = "structure",
+            name = "connectivityInfo",
+            target_id = id.from(_N, "ConnectivityInfo"),
+            target = M.ConnectivityInfo,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        vcfHostnames = schema.new({
+            id = id.from(_N, "CreateEnvironmentInput", "vcfHostnames"),
+            type = "structure",
+            name = "vcfHostnames",
+            target_id = id.from(_N, "VcfHostnames"),
+            target = M.VcfHostnames,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        siteId = schema.new({
+            id = id.from(_N, "CreateEnvironmentInput", "siteId"),
+            type = "string",
+            name = "siteId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Check = schema.new({
+    id = id.from(_N, "Check"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "Check", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        result = schema.new({
+            id = id.from(_N, "Check", "result"),
+            type = "string",
+            name = "result",
+            target_id = prelude.String.id,
+        }),
+        impairedSince = schema.new({
+            id = id.from(_N, "Check", "impairedSince"),
+            type = "timestamp",
+            name = "impairedSince",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.Secret = schema.new({
+    id = id.from(_N, "Secret"),
+    type = "structure",
+    members = {
+        secretArn = schema.new({
+            id = id.from(_N, "Secret", "secretArn"),
+            type = "string",
+            name = "secretArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Environment = schema.new({
+    id = id.from(_N, "Environment"),
+    type = "structure",
+    members = {
+        environmentId = schema.new({
+            id = id.from(_N, "Environment", "environmentId"),
+            type = "string",
+            name = "environmentId",
+            target_id = prelude.String.id,
+        }),
+        environmentState = schema.new({
+            id = id.from(_N, "Environment", "environmentState"),
+            type = "string",
+            name = "environmentState",
+            target_id = prelude.String.id,
+        }),
+        stateDetails = schema.new({
+            id = id.from(_N, "Environment", "stateDetails"),
+            type = "string",
+            name = "stateDetails",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "Environment", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        modifiedAt = schema.new({
+            id = id.from(_N, "Environment", "modifiedAt"),
+            type = "timestamp",
+            name = "modifiedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        environmentArn = schema.new({
+            id = id.from(_N, "Environment", "environmentArn"),
+            type = "string",
+            name = "environmentArn",
+            target_id = prelude.String.id,
+        }),
+        environmentName = schema.new({
+            id = id.from(_N, "Environment", "environmentName"),
+            type = "string",
+            name = "environmentName",
+            target_id = prelude.String.id,
+        }),
+        vpcId = schema.new({
+            id = id.from(_N, "Environment", "vpcId"),
+            type = "string",
+            name = "vpcId",
+            target_id = prelude.String.id,
+        }),
+        serviceAccessSubnetId = schema.new({
+            id = id.from(_N, "Environment", "serviceAccessSubnetId"),
+            type = "string",
+            name = "serviceAccessSubnetId",
+            target_id = prelude.String.id,
+        }),
+        vcfVersion = schema.new({
+            id = id.from(_N, "Environment", "vcfVersion"),
+            type = "string",
+            name = "vcfVersion",
+            target_id = prelude.String.id,
+        }),
+        termsAccepted = schema.new({
+            id = id.from(_N, "Environment", "termsAccepted"),
+            type = "boolean",
+            name = "termsAccepted",
+            target_id = prelude.Boolean.id,
+        }),
+        licenseInfo = schema.new({
+            id = id.from(_N, "Environment", "licenseInfo"),
+            type = "list",
+            name = "licenseInfo",
+            target_id = prelude.Document.id,
+            list_member = M.LicenseInfo,
+        }),
+        siteId = schema.new({
+            id = id.from(_N, "Environment", "siteId"),
+            type = "string",
+            name = "siteId",
+            target_id = prelude.String.id,
+        }),
+        environmentStatus = schema.new({
+            id = id.from(_N, "Environment", "environmentStatus"),
+            type = "string",
+            name = "environmentStatus",
+            target_id = prelude.String.id,
+        }),
+        checks = schema.new({
+            id = id.from(_N, "Environment", "checks"),
+            type = "list",
+            name = "checks",
+            target_id = prelude.Document.id,
+            list_member = M.Check,
+        }),
+        connectivityInfo = schema.new({
+            id = id.from(_N, "Environment", "connectivityInfo"),
+            type = "structure",
+            name = "connectivityInfo",
+            target_id = id.from(_N, "ConnectivityInfo"),
+            target = M.ConnectivityInfo,
+        }),
+        vcfHostnames = schema.new({
+            id = id.from(_N, "Environment", "vcfHostnames"),
+            type = "structure",
+            name = "vcfHostnames",
+            target_id = id.from(_N, "VcfHostnames"),
+            target = M.VcfHostnames,
+        }),
+        kmsKeyId = schema.new({
+            id = id.from(_N, "Environment", "kmsKeyId"),
+            type = "string",
+            name = "kmsKeyId",
+            target_id = prelude.String.id,
+        }),
+        serviceAccessSecurityGroups = schema.new({
+            id = id.from(_N, "Environment", "serviceAccessSecurityGroups"),
+            type = "structure",
+            name = "serviceAccessSecurityGroups",
+            target_id = id.from(_N, "ServiceAccessSecurityGroups"),
+            target = M.ServiceAccessSecurityGroups,
+        }),
+        credentials = schema.new({
+            id = id.from(_N, "Environment", "credentials"),
+            type = "list",
+            name = "credentials",
+            target_id = prelude.Document.id,
+            list_member = M.Secret,
+        }),
+    },
+})
+
+M.CreateEnvironmentOutput = schema.new({
+    id = id.from(_N, "CreateEnvironmentOutput"),
+    type = "structure",
+    members = {
+        environment = schema.new({
+            id = id.from(_N, "CreateEnvironmentOutput", "environment"),
+            type = "structure",
+            name = "environment",
+            target_id = id.from(_N, "Environment"),
+            target = M.Environment,
+        }),
+    },
+})
+
+M.CreateEnvironmentConnectorInput = schema.new({
+    id = id.from(_N, "CreateEnvironmentConnectorInput"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "CreateEnvironmentConnectorInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        environmentId = schema.new({
+            id = id.from(_N, "CreateEnvironmentConnectorInput", "environmentId"),
+            type = "string",
+            name = "environmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "CreateEnvironmentConnectorInput", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        applianceFqdn = schema.new({
+            id = id.from(_N, "CreateEnvironmentConnectorInput", "applianceFqdn"),
+            type = "string",
+            name = "applianceFqdn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        secretIdentifier = schema.new({
+            id = id.from(_N, "CreateEnvironmentConnectorInput", "secretIdentifier"),
+            type = "string",
+            name = "secretIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ConnectorCheck = schema.new({
+    id = id.from(_N, "ConnectorCheck"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "ConnectorCheck", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        result = schema.new({
+            id = id.from(_N, "ConnectorCheck", "result"),
+            type = "string",
+            name = "result",
+            target_id = prelude.String.id,
+        }),
+        lastCheckAttempt = schema.new({
+            id = id.from(_N, "ConnectorCheck", "lastCheckAttempt"),
+            type = "timestamp",
+            name = "lastCheckAttempt",
+            target_id = prelude.Timestamp.id,
+        }),
+        impairedSince = schema.new({
+            id = id.from(_N, "ConnectorCheck", "impairedSince"),
+            type = "timestamp",
+            name = "impairedSince",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.Connector = schema.new({
+    id = id.from(_N, "Connector"),
+    type = "structure",
+    members = {
+        environmentId = schema.new({
+            id = id.from(_N, "Connector", "environmentId"),
+            type = "string",
+            name = "environmentId",
+            target_id = prelude.String.id,
+        }),
+        connectorId = schema.new({
+            id = id.from(_N, "Connector", "connectorId"),
+            type = "string",
+            name = "connectorId",
+            target_id = prelude.String.id,
+        }),
+        type = schema.new({
+            id = id.from(_N, "Connector", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        applianceFqdn = schema.new({
+            id = id.from(_N, "Connector", "applianceFqdn"),
+            type = "string",
+            name = "applianceFqdn",
+            target_id = prelude.String.id,
+        }),
+        secretArn = schema.new({
+            id = id.from(_N, "Connector", "secretArn"),
+            type = "string",
+            name = "secretArn",
+            target_id = prelude.String.id,
+        }),
+        state = schema.new({
+            id = id.from(_N, "Connector", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+        }),
+        stateDetails = schema.new({
+            id = id.from(_N, "Connector", "stateDetails"),
+            type = "string",
+            name = "stateDetails",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "Connector", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        checks = schema.new({
+            id = id.from(_N, "Connector", "checks"),
+            type = "list",
+            name = "checks",
+            target_id = prelude.Document.id,
+            list_member = M.ConnectorCheck,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "Connector", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        modifiedAt = schema.new({
+            id = id.from(_N, "Connector", "modifiedAt"),
+            type = "timestamp",
+            name = "modifiedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.CreateEnvironmentConnectorOutput = schema.new({
+    id = id.from(_N, "CreateEnvironmentConnectorOutput"),
+    type = "structure",
+    members = {
+        connector = schema.new({
+            id = id.from(_N, "CreateEnvironmentConnectorOutput", "connector"),
+            type = "structure",
+            name = "connector",
+            target_id = id.from(_N, "Connector"),
+            target = M.Connector,
+        }),
+    },
+})
+
+M.CreateEnvironmentHostInput = schema.new({
+    id = id.from(_N, "CreateEnvironmentHostInput"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "CreateEnvironmentHostInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        environmentId = schema.new({
+            id = id.from(_N, "CreateEnvironmentHostInput", "environmentId"),
+            type = "string",
+            name = "environmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        host = schema.new({
+            id = id.from(_N, "CreateEnvironmentHostInput", "host"),
+            type = "structure",
+            name = "host",
+            target_id = id.from(_N, "HostInfoForCreate"),
+            target = M.HostInfoForCreate,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        esxVersion = schema.new({
+            id = id.from(_N, "CreateEnvironmentHostInput", "esxVersion"),
+            type = "string",
+            name = "esxVersion",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EnvironmentSummary = schema.new({
+    id = id.from(_N, "EnvironmentSummary"),
+    type = "structure",
+    members = {
+        environmentId = schema.new({
+            id = id.from(_N, "EnvironmentSummary", "environmentId"),
+            type = "string",
+            name = "environmentId",
+            target_id = prelude.String.id,
+        }),
+        environmentName = schema.new({
+            id = id.from(_N, "EnvironmentSummary", "environmentName"),
+            type = "string",
+            name = "environmentName",
+            target_id = prelude.String.id,
+        }),
+        vcfVersion = schema.new({
+            id = id.from(_N, "EnvironmentSummary", "vcfVersion"),
+            type = "string",
+            name = "vcfVersion",
+            target_id = prelude.String.id,
+        }),
+        environmentStatus = schema.new({
+            id = id.from(_N, "EnvironmentSummary", "environmentStatus"),
+            type = "string",
+            name = "environmentStatus",
+            target_id = prelude.String.id,
+        }),
+        environmentState = schema.new({
+            id = id.from(_N, "EnvironmentSummary", "environmentState"),
+            type = "string",
+            name = "environmentState",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "EnvironmentSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        modifiedAt = schema.new({
+            id = id.from(_N, "EnvironmentSummary", "modifiedAt"),
+            type = "timestamp",
+            name = "modifiedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        environmentArn = schema.new({
+            id = id.from(_N, "EnvironmentSummary", "environmentArn"),
+            type = "string",
+            name = "environmentArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.NetworkInterface = schema.new({
+    id = id.from(_N, "NetworkInterface"),
+    type = "structure",
+    members = {
+        networkInterfaceId = schema.new({
+            id = id.from(_N, "NetworkInterface", "networkInterfaceId"),
+            type = "string",
+            name = "networkInterfaceId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Host = schema.new({
+    id = id.from(_N, "Host"),
+    type = "structure",
+    members = {
+        hostName = schema.new({
+            id = id.from(_N, "Host", "hostName"),
+            type = "string",
+            name = "hostName",
+            target_id = prelude.String.id,
+        }),
+        ipAddress = schema.new({
+            id = id.from(_N, "Host", "ipAddress"),
+            type = "string",
+            name = "ipAddress",
+            target_id = prelude.String.id,
+        }),
+        keyName = schema.new({
+            id = id.from(_N, "Host", "keyName"),
+            type = "string",
+            name = "keyName",
+            target_id = prelude.String.id,
+        }),
+        instanceType = schema.new({
+            id = id.from(_N, "Host", "instanceType"),
+            type = "string",
+            name = "instanceType",
+            target_id = prelude.String.id,
+        }),
+        placementGroupId = schema.new({
+            id = id.from(_N, "Host", "placementGroupId"),
+            type = "string",
+            name = "placementGroupId",
+            target_id = prelude.String.id,
+        }),
+        dedicatedHostId = schema.new({
+            id = id.from(_N, "Host", "dedicatedHostId"),
+            type = "string",
+            name = "dedicatedHostId",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "Host", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        modifiedAt = schema.new({
+            id = id.from(_N, "Host", "modifiedAt"),
+            type = "timestamp",
+            name = "modifiedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        hostState = schema.new({
+            id = id.from(_N, "Host", "hostState"),
+            type = "string",
+            name = "hostState",
+            target_id = prelude.String.id,
+        }),
+        stateDetails = schema.new({
+            id = id.from(_N, "Host", "stateDetails"),
+            type = "string",
+            name = "stateDetails",
+            target_id = prelude.String.id,
+        }),
+        ec2InstanceId = schema.new({
+            id = id.from(_N, "Host", "ec2InstanceId"),
+            type = "string",
+            name = "ec2InstanceId",
+            target_id = prelude.String.id,
+        }),
+        networkInterfaces = schema.new({
+            id = id.from(_N, "Host", "networkInterfaces"),
+            type = "list",
+            name = "networkInterfaces",
+            target_id = prelude.Document.id,
+            list_member = M.NetworkInterface,
+        }),
+    },
+})
+
+M.CreateEnvironmentHostOutput = schema.new({
+    id = id.from(_N, "CreateEnvironmentHostOutput"),
+    type = "structure",
+    members = {
+        environmentSummary = schema.new({
+            id = id.from(_N, "CreateEnvironmentHostOutput", "environmentSummary"),
+            type = "structure",
+            name = "environmentSummary",
+            target_id = id.from(_N, "EnvironmentSummary"),
+            target = M.EnvironmentSummary,
+        }),
+        host = schema.new({
+            id = id.from(_N, "CreateEnvironmentHostOutput", "host"),
+            type = "structure",
+            name = "host",
+            target_id = id.from(_N, "Host"),
+            target = M.Host,
+        }),
+    },
+})
+
+M.DeleteEntitlementInput = schema.new({
+    id = id.from(_N, "DeleteEntitlementInput"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "DeleteEntitlementInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        environmentId = schema.new({
+            id = id.from(_N, "DeleteEntitlementInput", "environmentId"),
+            type = "string",
+            name = "environmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        connectorId = schema.new({
+            id = id.from(_N, "DeleteEntitlementInput", "connectorId"),
+            type = "string",
+            name = "connectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        entitlementType = schema.new({
+            id = id.from(_N, "DeleteEntitlementInput", "entitlementType"),
+            type = "string",
+            name = "entitlementType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        vmIds = schema.new({
+            id = id.from(_N, "DeleteEntitlementInput", "vmIds"),
+            type = "list",
+            name = "vmIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteEntitlementOutput = schema.new({
+    id = id.from(_N, "DeleteEntitlementOutput"),
+    type = "structure",
+    members = {
+        entitlements = schema.new({
+            id = id.from(_N, "DeleteEntitlementOutput", "entitlements"),
+            type = "list",
+            name = "entitlements",
+            target_id = prelude.Document.id,
+            list_member = M.VmEntitlement,
+        }),
+    },
+})
+
+M.DeleteEnvironmentInput = schema.new({
+    id = id.from(_N, "DeleteEnvironmentInput"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "DeleteEnvironmentInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        environmentId = schema.new({
+            id = id.from(_N, "DeleteEnvironmentInput", "environmentId"),
+            type = "string",
+            name = "environmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteEnvironmentOutput = schema.new({
+    id = id.from(_N, "DeleteEnvironmentOutput"),
+    type = "structure",
+    members = {
+        environment = schema.new({
+            id = id.from(_N, "DeleteEnvironmentOutput", "environment"),
+            type = "structure",
+            name = "environment",
+            target_id = id.from(_N, "Environment"),
+            target = M.Environment,
+        }),
+    },
+})
+
+M.DeleteEnvironmentConnectorInput = schema.new({
+    id = id.from(_N, "DeleteEnvironmentConnectorInput"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "DeleteEnvironmentConnectorInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        environmentId = schema.new({
+            id = id.from(_N, "DeleteEnvironmentConnectorInput", "environmentId"),
+            type = "string",
+            name = "environmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        connectorId = schema.new({
+            id = id.from(_N, "DeleteEnvironmentConnectorInput", "connectorId"),
+            type = "string",
+            name = "connectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteEnvironmentConnectorOutput = schema.new({
+    id = id.from(_N, "DeleteEnvironmentConnectorOutput"),
+    type = "structure",
+    members = {
+        connector = schema.new({
+            id = id.from(_N, "DeleteEnvironmentConnectorOutput", "connector"),
+            type = "structure",
+            name = "connector",
+            target_id = id.from(_N, "Connector"),
+            target = M.Connector,
+        }),
+        environmentSummary = schema.new({
+            id = id.from(_N, "DeleteEnvironmentConnectorOutput", "environmentSummary"),
+            type = "structure",
+            name = "environmentSummary",
+            target_id = id.from(_N, "EnvironmentSummary"),
+            target = M.EnvironmentSummary,
+        }),
+    },
+})
+
+M.DeleteEnvironmentHostInput = schema.new({
+    id = id.from(_N, "DeleteEnvironmentHostInput"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "DeleteEnvironmentHostInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        environmentId = schema.new({
+            id = id.from(_N, "DeleteEnvironmentHostInput", "environmentId"),
+            type = "string",
+            name = "environmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        hostName = schema.new({
+            id = id.from(_N, "DeleteEnvironmentHostInput", "hostName"),
+            type = "string",
+            name = "hostName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteEnvironmentHostOutput = schema.new({
+    id = id.from(_N, "DeleteEnvironmentHostOutput"),
+    type = "structure",
+    members = {
+        environmentSummary = schema.new({
+            id = id.from(_N, "DeleteEnvironmentHostOutput", "environmentSummary"),
+            type = "structure",
+            name = "environmentSummary",
+            target_id = id.from(_N, "EnvironmentSummary"),
+            target = M.EnvironmentSummary,
+        }),
+        host = schema.new({
+            id = id.from(_N, "DeleteEnvironmentHostOutput", "host"),
+            type = "structure",
+            name = "host",
+            target_id = id.from(_N, "Host"),
+            target = M.Host,
+        }),
+    },
+})
+
+M.DisassociateEipFromVlanInput = schema.new({
+    id = id.from(_N, "DisassociateEipFromVlanInput"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "DisassociateEipFromVlanInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        environmentId = schema.new({
+            id = id.from(_N, "DisassociateEipFromVlanInput", "environmentId"),
+            type = "string",
+            name = "environmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        vlanName = schema.new({
+            id = id.from(_N, "DisassociateEipFromVlanInput", "vlanName"),
+            type = "string",
+            name = "vlanName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        associationId = schema.new({
+            id = id.from(_N, "DisassociateEipFromVlanInput", "associationId"),
+            type = "string",
+            name = "associationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DisassociateEipFromVlanOutput = schema.new({
+    id = id.from(_N, "DisassociateEipFromVlanOutput"),
+    type = "structure",
+    members = {
+        vlan = schema.new({
+            id = id.from(_N, "DisassociateEipFromVlanOutput", "vlan"),
+            type = "structure",
+            name = "vlan",
+            target_id = id.from(_N, "Vlan"),
+            target = M.Vlan,
+        }),
+    },
+})
+
+M.GetEnvironmentInput = schema.new({
+    id = id.from(_N, "GetEnvironmentInput"),
+    type = "structure",
+    members = {
+        environmentId = schema.new({
+            id = id.from(_N, "GetEnvironmentInput", "environmentId"),
+            type = "string",
+            name = "environmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetEnvironmentOutput = schema.new({
+    id = id.from(_N, "GetEnvironmentOutput"),
+    type = "structure",
+    members = {
+        environment = schema.new({
+            id = id.from(_N, "GetEnvironmentOutput", "environment"),
+            type = "structure",
+            name = "environment",
+            target_id = id.from(_N, "Environment"),
+            target = M.Environment,
+        }),
+    },
+})
+
+M.ListEnvironmentConnectorsInput = schema.new({
+    id = id.from(_N, "ListEnvironmentConnectorsInput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListEnvironmentConnectorsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListEnvironmentConnectorsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        environmentId = schema.new({
+            id = id.from(_N, "ListEnvironmentConnectorsInput", "environmentId"),
+            type = "string",
+            name = "environmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ListEnvironmentConnectorsOutput = schema.new({
+    id = id.from(_N, "ListEnvironmentConnectorsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListEnvironmentConnectorsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        connectors = schema.new({
+            id = id.from(_N, "ListEnvironmentConnectorsOutput", "connectors"),
+            type = "list",
+            name = "connectors",
+            target_id = prelude.Document.id,
+            list_member = M.Connector,
+        }),
+    },
+})
+
+M.ListEnvironmentHostsInput = schema.new({
+    id = id.from(_N, "ListEnvironmentHostsInput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListEnvironmentHostsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListEnvironmentHostsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        environmentId = schema.new({
+            id = id.from(_N, "ListEnvironmentHostsInput", "environmentId"),
+            type = "string",
+            name = "environmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ListEnvironmentHostsOutput = schema.new({
+    id = id.from(_N, "ListEnvironmentHostsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListEnvironmentHostsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        environmentHosts = schema.new({
+            id = id.from(_N, "ListEnvironmentHostsOutput", "environmentHosts"),
+            type = "list",
+            name = "environmentHosts",
+            target_id = prelude.Document.id,
+            list_member = M.Host,
+        }),
+    },
+})
+
+M.ListEnvironmentsInput = schema.new({
+    id = id.from(_N, "ListEnvironmentsInput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListEnvironmentsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListEnvironmentsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "ListEnvironmentsInput", "state"),
+            type = "list",
+            name = "state",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "state" },
+            },
+        }),
+    },
+})
+
+M.ListEnvironmentsOutput = schema.new({
+    id = id.from(_N, "ListEnvironmentsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListEnvironmentsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        environmentSummaries = schema.new({
+            id = id.from(_N, "ListEnvironmentsOutput", "environmentSummaries"),
+            type = "list",
+            name = "environmentSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.EnvironmentSummary,
+        }),
+    },
+})
+
+M.ListEnvironmentVlansInput = schema.new({
+    id = id.from(_N, "ListEnvironmentVlansInput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListEnvironmentVlansInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListEnvironmentVlansInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        environmentId = schema.new({
+            id = id.from(_N, "ListEnvironmentVlansInput", "environmentId"),
+            type = "string",
+            name = "environmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ListEnvironmentVlansOutput = schema.new({
+    id = id.from(_N, "ListEnvironmentVlansOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListEnvironmentVlansOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        environmentVlans = schema.new({
+            id = id.from(_N, "ListEnvironmentVlansOutput", "environmentVlans"),
+            type = "list",
+            name = "environmentVlans",
+            target_id = prelude.Document.id,
+            list_member = M.Vlan,
+        }),
+    },
+})
+
+M.ListVmEntitlementsInput = schema.new({
+    id = id.from(_N, "ListVmEntitlementsInput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListVmEntitlementsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListVmEntitlementsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        environmentId = schema.new({
+            id = id.from(_N, "ListVmEntitlementsInput", "environmentId"),
+            type = "string",
+            name = "environmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        connectorId = schema.new({
+            id = id.from(_N, "ListVmEntitlementsInput", "connectorId"),
+            type = "string",
+            name = "connectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        entitlementType = schema.new({
+            id = id.from(_N, "ListVmEntitlementsInput", "entitlementType"),
+            type = "string",
+            name = "entitlementType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListVmEntitlementsOutput = schema.new({
+    id = id.from(_N, "ListVmEntitlementsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListVmEntitlementsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        entitlements = schema.new({
+            id = id.from(_N, "ListVmEntitlementsOutput", "entitlements"),
+            type = "list",
+            name = "entitlements",
+            target_id = prelude.Document.id,
+            list_member = M.VmEntitlement,
+        }),
+    },
+})
+
+M.UpdateEnvironmentConnectorInput = schema.new({
+    id = id.from(_N, "UpdateEnvironmentConnectorInput"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "UpdateEnvironmentConnectorInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        environmentId = schema.new({
+            id = id.from(_N, "UpdateEnvironmentConnectorInput", "environmentId"),
+            type = "string",
+            name = "environmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        connectorId = schema.new({
+            id = id.from(_N, "UpdateEnvironmentConnectorInput", "connectorId"),
+            type = "string",
+            name = "connectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        applianceFqdn = schema.new({
+            id = id.from(_N, "UpdateEnvironmentConnectorInput", "applianceFqdn"),
+            type = "string",
+            name = "applianceFqdn",
+            target_id = prelude.String.id,
+        }),
+        secretIdentifier = schema.new({
+            id = id.from(_N, "UpdateEnvironmentConnectorInput", "secretIdentifier"),
+            type = "string",
+            name = "secretIdentifier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateEnvironmentConnectorOutput = schema.new({
+    id = id.from(_N, "UpdateEnvironmentConnectorOutput"),
+    type = "structure",
+    members = {
+        connector = schema.new({
+            id = id.from(_N, "UpdateEnvironmentConnectorOutput", "connector"),
+            type = "structure",
+            name = "connector",
+            target_id = id.from(_N, "Connector"),
+            target = M.Connector,
+        }),
+    },
+})
+
+M.GetVersionsInput = schema.new({
+    id = id.from(_N, "GetVersionsInput"),
+    type = "structure",
+})
+
+M.InstanceTypeEsxVersionsInfo = schema.new({
+    id = id.from(_N, "InstanceTypeEsxVersionsInfo"),
+    type = "structure",
+    members = {
+        instanceType = schema.new({
+            id = id.from(_N, "InstanceTypeEsxVersionsInfo", "instanceType"),
+            type = "string",
+            name = "instanceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        esxVersions = schema.new({
+            id = id.from(_N, "InstanceTypeEsxVersionsInfo", "esxVersions"),
+            type = "list",
+            name = "esxVersions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.VcfVersionInfo = schema.new({
+    id = id.from(_N, "VcfVersionInfo"),
+    type = "structure",
+    members = {
+        vcfVersion = schema.new({
+            id = id.from(_N, "VcfVersionInfo", "vcfVersion"),
+            type = "string",
+            name = "vcfVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "VcfVersionInfo", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        defaultEsxVersion = schema.new({
+            id = id.from(_N, "VcfVersionInfo", "defaultEsxVersion"),
+            type = "string",
+            name = "defaultEsxVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        instanceTypes = schema.new({
+            id = id.from(_N, "VcfVersionInfo", "instanceTypes"),
+            type = "list",
+            name = "instanceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetVersionsOutput = schema.new({
+    id = id.from(_N, "GetVersionsOutput"),
+    type = "structure",
+    members = {
+        vcfVersions = schema.new({
+            id = id.from(_N, "GetVersionsOutput", "vcfVersions"),
+            type = "list",
+            name = "vcfVersions",
+            target_id = prelude.Document.id,
+            list_member = M.VcfVersionInfo,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        instanceTypeEsxVersions = schema.new({
+            id = id.from(_N, "GetVersionsOutput", "instanceTypeEsxVersions"),
+            type = "list",
+            name = "instanceTypeEsxVersions",
+            target_id = prelude.Document.id,
+            list_member = M.InstanceTypeEsxVersionsInfo,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InternalServerException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceOutput"),
+    type = "structure",
+    members = {
+        tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagPolicyException = schema.new({
+    id = id.from(_N, "TagPolicyException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "TagPolicyException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "TagResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceOutput"),
+    type = "structure",
+})
+
+M.TooManyTagsException = schema.new({
+    id = id.from(_N, "TooManyTagsException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "TooManyTagsException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "UntagResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "tagKeys"),
+            type = "list",
+            name = "tagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
+return M

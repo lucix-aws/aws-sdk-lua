@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("firehose.endpoint_rules")
+local schemas = require("firehose.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("firehose.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createDeliveryStream(input, options)
     return self:invokeOperation(input, {
         name = "CreateDeliveryStream",
-        input_schema = types.CreateDeliveryStreamInput,
-        output_schema = types.CreateDeliveryStreamOutput,
+        input_schema = schemas.CreateDeliveryStreamInput,
+        output_schema = schemas.CreateDeliveryStreamOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteDeliveryStream(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDeliveryStream",
-        input_schema = types.DeleteDeliveryStreamInput,
-        output_schema = types.DeleteDeliveryStreamOutput,
+        input_schema = schemas.DeleteDeliveryStreamInput,
+        output_schema = schemas.DeleteDeliveryStreamOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:describeDeliveryStream(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDeliveryStream",
-        input_schema = types.DescribeDeliveryStreamInput,
-        output_schema = types.DescribeDeliveryStreamOutput,
+        input_schema = schemas.DescribeDeliveryStreamInput,
+        output_schema = schemas.DescribeDeliveryStreamOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:listDeliveryStreams(input, options)
     return self:invokeOperation(input, {
         name = "ListDeliveryStreams",
-        input_schema = types.ListDeliveryStreamsInput,
-        output_schema = types.ListDeliveryStreamsOutput,
+        input_schema = schemas.ListDeliveryStreamsInput,
+        output_schema = schemas.ListDeliveryStreamsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:listTagsForDeliveryStream(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForDeliveryStream",
-        input_schema = types.ListTagsForDeliveryStreamInput,
-        output_schema = types.ListTagsForDeliveryStreamOutput,
+        input_schema = schemas.ListTagsForDeliveryStreamInput,
+        output_schema = schemas.ListTagsForDeliveryStreamOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:putRecord(input, options)
     return self:invokeOperation(input, {
         name = "PutRecord",
-        input_schema = types.PutRecordInput,
-        output_schema = types.PutRecordOutput,
+        input_schema = schemas.PutRecordInput,
+        output_schema = schemas.PutRecordOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:putRecordBatch(input, options)
     return self:invokeOperation(input, {
         name = "PutRecordBatch",
-        input_schema = types.PutRecordBatchInput,
-        output_schema = types.PutRecordBatchOutput,
+        input_schema = schemas.PutRecordBatchInput,
+        output_schema = schemas.PutRecordBatchOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:startDeliveryStreamEncryption(input, options)
     return self:invokeOperation(input, {
         name = "StartDeliveryStreamEncryption",
-        input_schema = types.StartDeliveryStreamEncryptionInput,
-        output_schema = types.StartDeliveryStreamEncryptionOutput,
+        input_schema = schemas.StartDeliveryStreamEncryptionInput,
+        output_schema = schemas.StartDeliveryStreamEncryptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:stopDeliveryStreamEncryption(input, options)
     return self:invokeOperation(input, {
         name = "StopDeliveryStreamEncryption",
-        input_schema = types.StopDeliveryStreamEncryptionInput,
-        output_schema = types.StopDeliveryStreamEncryptionOutput,
+        input_schema = schemas.StopDeliveryStreamEncryptionInput,
+        output_schema = schemas.StopDeliveryStreamEncryptionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:tagDeliveryStream(input, options)
     return self:invokeOperation(input, {
         name = "TagDeliveryStream",
-        input_schema = types.TagDeliveryStreamInput,
-        output_schema = types.TagDeliveryStreamOutput,
+        input_schema = schemas.TagDeliveryStreamInput,
+        output_schema = schemas.TagDeliveryStreamOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:untagDeliveryStream(input, options)
     return self:invokeOperation(input, {
         name = "UntagDeliveryStream",
-        input_schema = types.UntagDeliveryStreamInput,
-        output_schema = types.UntagDeliveryStreamOutput,
+        input_schema = schemas.UntagDeliveryStreamInput,
+        output_schema = schemas.UntagDeliveryStreamOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:updateDestination(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDestination",
-        input_schema = types.UpdateDestinationInput,
-        output_schema = types.UpdateDestinationOutput,
+        input_schema = schemas.UpdateDestinationInput,
+        output_schema = schemas.UpdateDestinationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

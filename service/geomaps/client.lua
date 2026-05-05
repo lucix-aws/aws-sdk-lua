@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("geomaps.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("geomaps.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("geomaps.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getGlyphs(input, options)
     return self:invokeOperation(input, {
         name = "GetGlyphs",
-        input_schema = types.GetGlyphsInput,
-        output_schema = types.GetGlyphsOutput,
+        input_schema = schemas.GetGlyphsInput,
+        output_schema = schemas.GetGlyphsOutput,
         http_method = "GET",
         http_path = "/glyphs/{FontStack}/{FontUnicodeRange}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:getSprites(input, options)
     return self:invokeOperation(input, {
         name = "GetSprites",
-        input_schema = types.GetSpritesInput,
-        output_schema = types.GetSpritesOutput,
+        input_schema = schemas.GetSpritesInput,
+        output_schema = schemas.GetSpritesOutput,
         http_method = "GET",
         http_path = "/styles/{Style}/{ColorScheme}/{Variant}/sprites/{FileName}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getStaticMap(input, options)
     return self:invokeOperation(input, {
         name = "GetStaticMap",
-        input_schema = types.GetStaticMapInput,
-        output_schema = types.GetStaticMapOutput,
+        input_schema = schemas.GetStaticMapInput,
+        output_schema = schemas.GetStaticMapOutput,
         http_method = "GET",
         http_path = "/static/{FileName}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getStyleDescriptor(input, options)
     return self:invokeOperation(input, {
         name = "GetStyleDescriptor",
-        input_schema = types.GetStyleDescriptorInput,
-        output_schema = types.GetStyleDescriptorOutput,
+        input_schema = schemas.GetStyleDescriptorInput,
+        output_schema = schemas.GetStyleDescriptorOutput,
         http_method = "GET",
         http_path = "/styles/{Style}/descriptor",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getTile(input, options)
     return self:invokeOperation(input, {
         name = "GetTile",
-        input_schema = types.GetTileInput,
-        output_schema = types.GetTileOutput,
+        input_schema = schemas.GetTileInput,
+        output_schema = schemas.GetTileOutput,
         http_method = "GET",
         http_path = "/tiles/{Tileset}/{Z}/{X}/{Y}",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("apigatewayv2.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("apigatewayv2.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("apigatewayv2.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createApi(input, options)
     return self:invokeOperation(input, {
         name = "CreateApi",
-        input_schema = types.CreateApiInput,
-        output_schema = types.CreateApiOutput,
+        input_schema = schemas.CreateApiInput,
+        output_schema = schemas.CreateApiOutput,
         http_method = "POST",
         http_path = "/v2/apis",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createApiMapping(input, options)
     return self:invokeOperation(input, {
         name = "CreateApiMapping",
-        input_schema = types.CreateApiMappingInput,
-        output_schema = types.CreateApiMappingOutput,
+        input_schema = schemas.CreateApiMappingInput,
+        output_schema = schemas.CreateApiMappingOutput,
         http_method = "POST",
         http_path = "/v2/domainnames/{DomainName}/apimappings",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createAuthorizer(input, options)
     return self:invokeOperation(input, {
         name = "CreateAuthorizer",
-        input_schema = types.CreateAuthorizerInput,
-        output_schema = types.CreateAuthorizerOutput,
+        input_schema = schemas.CreateAuthorizerInput,
+        output_schema = schemas.CreateAuthorizerOutput,
         http_method = "POST",
         http_path = "/v2/apis/{ApiId}/authorizers",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createDeployment(input, options)
     return self:invokeOperation(input, {
         name = "CreateDeployment",
-        input_schema = types.CreateDeploymentInput,
-        output_schema = types.CreateDeploymentOutput,
+        input_schema = schemas.CreateDeploymentInput,
+        output_schema = schemas.CreateDeploymentOutput,
         http_method = "POST",
         http_path = "/v2/apis/{ApiId}/deployments",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createDomainName(input, options)
     return self:invokeOperation(input, {
         name = "CreateDomainName",
-        input_schema = types.CreateDomainNameInput,
-        output_schema = types.CreateDomainNameOutput,
+        input_schema = schemas.CreateDomainNameInput,
+        output_schema = schemas.CreateDomainNameOutput,
         http_method = "POST",
         http_path = "/v2/domainnames",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createIntegration(input, options)
     return self:invokeOperation(input, {
         name = "CreateIntegration",
-        input_schema = types.CreateIntegrationInput,
-        output_schema = types.CreateIntegrationOutput,
+        input_schema = schemas.CreateIntegrationInput,
+        output_schema = schemas.CreateIntegrationOutput,
         http_method = "POST",
         http_path = "/v2/apis/{ApiId}/integrations",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createIntegrationResponse(input, options)
     return self:invokeOperation(input, {
         name = "CreateIntegrationResponse",
-        input_schema = types.CreateIntegrationResponseInput,
-        output_schema = types.CreateIntegrationResponseOutput,
+        input_schema = schemas.CreateIntegrationResponseInput,
+        output_schema = schemas.CreateIntegrationResponseOutput,
         http_method = "POST",
         http_path = "/v2/apis/{ApiId}/integrations/{IntegrationId}/integrationresponses",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createModel(input, options)
     return self:invokeOperation(input, {
         name = "CreateModel",
-        input_schema = types.CreateModelInput,
-        output_schema = types.CreateModelOutput,
+        input_schema = schemas.CreateModelInput,
+        output_schema = schemas.CreateModelOutput,
         http_method = "POST",
         http_path = "/v2/apis/{ApiId}/models",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createPortal(input, options)
     return self:invokeOperation(input, {
         name = "CreatePortal",
-        input_schema = types.CreatePortalInput,
-        output_schema = types.CreatePortalOutput,
+        input_schema = schemas.CreatePortalInput,
+        output_schema = schemas.CreatePortalOutput,
         http_method = "POST",
         http_path = "/v2/portals",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createPortalProduct(input, options)
     return self:invokeOperation(input, {
         name = "CreatePortalProduct",
-        input_schema = types.CreatePortalProductInput,
-        output_schema = types.CreatePortalProductOutput,
+        input_schema = schemas.CreatePortalProductInput,
+        output_schema = schemas.CreatePortalProductOutput,
         http_method = "POST",
         http_path = "/v2/portalproducts",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createProductPage(input, options)
     return self:invokeOperation(input, {
         name = "CreateProductPage",
-        input_schema = types.CreateProductPageInput,
-        output_schema = types.CreateProductPageOutput,
+        input_schema = schemas.CreateProductPageInput,
+        output_schema = schemas.CreateProductPageOutput,
         http_method = "POST",
         http_path = "/v2/portalproducts/{PortalProductId}/productpages",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createProductRestEndpointPage(input, options)
     return self:invokeOperation(input, {
         name = "CreateProductRestEndpointPage",
-        input_schema = types.CreateProductRestEndpointPageInput,
-        output_schema = types.CreateProductRestEndpointPageOutput,
+        input_schema = schemas.CreateProductRestEndpointPageInput,
+        output_schema = schemas.CreateProductRestEndpointPageOutput,
         http_method = "POST",
         http_path = "/v2/portalproducts/{PortalProductId}/productrestendpointpages",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createRoute(input, options)
     return self:invokeOperation(input, {
         name = "CreateRoute",
-        input_schema = types.CreateRouteInput,
-        output_schema = types.CreateRouteOutput,
+        input_schema = schemas.CreateRouteInput,
+        output_schema = schemas.CreateRouteOutput,
         http_method = "POST",
         http_path = "/v2/apis/{ApiId}/routes",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:createRouteResponse(input, options)
     return self:invokeOperation(input, {
         name = "CreateRouteResponse",
-        input_schema = types.CreateRouteResponseInput,
-        output_schema = types.CreateRouteResponseOutput,
+        input_schema = schemas.CreateRouteResponseInput,
+        output_schema = schemas.CreateRouteResponseOutput,
         http_method = "POST",
         http_path = "/v2/apis/{ApiId}/routes/{RouteId}/routeresponses",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:createRoutingRule(input, options)
     return self:invokeOperation(input, {
         name = "CreateRoutingRule",
-        input_schema = types.CreateRoutingRuleInput,
-        output_schema = types.CreateRoutingRuleOutput,
+        input_schema = schemas.CreateRoutingRuleInput,
+        output_schema = schemas.CreateRoutingRuleOutput,
         http_method = "POST",
         http_path = "/v2/domainnames/{DomainName}/routingrules",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:createStage(input, options)
     return self:invokeOperation(input, {
         name = "CreateStage",
-        input_schema = types.CreateStageInput,
-        output_schema = types.CreateStageOutput,
+        input_schema = schemas.CreateStageInput,
+        output_schema = schemas.CreateStageOutput,
         http_method = "POST",
         http_path = "/v2/apis/{ApiId}/stages",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:createVpcLink(input, options)
     return self:invokeOperation(input, {
         name = "CreateVpcLink",
-        input_schema = types.CreateVpcLinkInput,
-        output_schema = types.CreateVpcLinkOutput,
+        input_schema = schemas.CreateVpcLinkInput,
+        output_schema = schemas.CreateVpcLinkOutput,
         http_method = "POST",
         http_path = "/v2/vpclinks",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteAccessLogSettings(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAccessLogSettings",
-        input_schema = types.DeleteAccessLogSettingsInput,
-        output_schema = types.DeleteAccessLogSettingsOutput,
+        input_schema = schemas.DeleteAccessLogSettingsInput,
+        output_schema = schemas.DeleteAccessLogSettingsOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/stages/{StageName}/accesslogsettings",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteApi(input, options)
     return self:invokeOperation(input, {
         name = "DeleteApi",
-        input_schema = types.DeleteApiInput,
-        output_schema = types.DeleteApiOutput,
+        input_schema = schemas.DeleteApiInput,
+        output_schema = schemas.DeleteApiOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deleteApiMapping(input, options)
     return self:invokeOperation(input, {
         name = "DeleteApiMapping",
-        input_schema = types.DeleteApiMappingInput,
-        output_schema = types.DeleteApiMappingOutput,
+        input_schema = schemas.DeleteApiMappingInput,
+        output_schema = schemas.DeleteApiMappingOutput,
         http_method = "DELETE",
         http_path = "/v2/domainnames/{DomainName}/apimappings/{ApiMappingId}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteAuthorizer(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAuthorizer",
-        input_schema = types.DeleteAuthorizerInput,
-        output_schema = types.DeleteAuthorizerOutput,
+        input_schema = schemas.DeleteAuthorizerInput,
+        output_schema = schemas.DeleteAuthorizerOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/authorizers/{AuthorizerId}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:deleteCorsConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCorsConfiguration",
-        input_schema = types.DeleteCorsConfigurationInput,
-        output_schema = types.DeleteCorsConfigurationOutput,
+        input_schema = schemas.DeleteCorsConfigurationInput,
+        output_schema = schemas.DeleteCorsConfigurationOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/cors",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:deleteDeployment(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDeployment",
-        input_schema = types.DeleteDeploymentInput,
-        output_schema = types.DeleteDeploymentOutput,
+        input_schema = schemas.DeleteDeploymentInput,
+        output_schema = schemas.DeleteDeploymentOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/deployments/{DeploymentId}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:deleteDomainName(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDomainName",
-        input_schema = types.DeleteDomainNameInput,
-        output_schema = types.DeleteDomainNameOutput,
+        input_schema = schemas.DeleteDomainNameInput,
+        output_schema = schemas.DeleteDomainNameOutput,
         http_method = "DELETE",
         http_path = "/v2/domainnames/{DomainName}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:deleteIntegration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIntegration",
-        input_schema = types.DeleteIntegrationInput,
-        output_schema = types.DeleteIntegrationOutput,
+        input_schema = schemas.DeleteIntegrationInput,
+        output_schema = schemas.DeleteIntegrationOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/integrations/{IntegrationId}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:deleteIntegrationResponse(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIntegrationResponse",
-        input_schema = types.DeleteIntegrationResponseInput,
-        output_schema = types.DeleteIntegrationResponseOutput,
+        input_schema = schemas.DeleteIntegrationResponseInput,
+        output_schema = schemas.DeleteIntegrationResponseOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/integrations/{IntegrationId}/integrationresponses/{IntegrationResponseId}",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:deleteModel(input, options)
     return self:invokeOperation(input, {
         name = "DeleteModel",
-        input_schema = types.DeleteModelInput,
-        output_schema = types.DeleteModelOutput,
+        input_schema = schemas.DeleteModelInput,
+        output_schema = schemas.DeleteModelOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/models/{ModelId}",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:deletePortal(input, options)
     return self:invokeOperation(input, {
         name = "DeletePortal",
-        input_schema = types.DeletePortalInput,
-        output_schema = types.DeletePortalOutput,
+        input_schema = schemas.DeletePortalInput,
+        output_schema = schemas.DeletePortalOutput,
         http_method = "DELETE",
         http_path = "/v2/portals/{PortalId}",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:deletePortalProduct(input, options)
     return self:invokeOperation(input, {
         name = "DeletePortalProduct",
-        input_schema = types.DeletePortalProductInput,
-        output_schema = types.DeletePortalProductOutput,
+        input_schema = schemas.DeletePortalProductInput,
+        output_schema = schemas.DeletePortalProductOutput,
         http_method = "DELETE",
         http_path = "/v2/portalproducts/{PortalProductId}",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:deletePortalProductSharingPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeletePortalProductSharingPolicy",
-        input_schema = types.DeletePortalProductSharingPolicyInput,
-        output_schema = types.DeletePortalProductSharingPolicyOutput,
+        input_schema = schemas.DeletePortalProductSharingPolicyInput,
+        output_schema = schemas.DeletePortalProductSharingPolicyOutput,
         http_method = "DELETE",
         http_path = "/v2/portalproducts/{PortalProductId}/sharingpolicy",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:deleteProductPage(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProductPage",
-        input_schema = types.DeleteProductPageInput,
-        output_schema = types.DeleteProductPageOutput,
+        input_schema = schemas.DeleteProductPageInput,
+        output_schema = schemas.DeleteProductPageOutput,
         http_method = "DELETE",
         http_path = "/v2/portalproducts/{PortalProductId}/productpages/{ProductPageId}",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:deleteProductRestEndpointPage(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProductRestEndpointPage",
-        input_schema = types.DeleteProductRestEndpointPageInput,
-        output_schema = types.DeleteProductRestEndpointPageOutput,
+        input_schema = schemas.DeleteProductRestEndpointPageInput,
+        output_schema = schemas.DeleteProductRestEndpointPageOutput,
         http_method = "DELETE",
         http_path = "/v2/portalproducts/{PortalProductId}/productrestendpointpages/{ProductRestEndpointPageId}",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:deleteRoute(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRoute",
-        input_schema = types.DeleteRouteInput,
-        output_schema = types.DeleteRouteOutput,
+        input_schema = schemas.DeleteRouteInput,
+        output_schema = schemas.DeleteRouteOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/routes/{RouteId}",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:deleteRouteRequestParameter(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRouteRequestParameter",
-        input_schema = types.DeleteRouteRequestParameterInput,
-        output_schema = types.DeleteRouteRequestParameterOutput,
+        input_schema = schemas.DeleteRouteRequestParameterInput,
+        output_schema = schemas.DeleteRouteRequestParameterOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/routes/{RouteId}/requestparameters/{RequestParameterKey}",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:deleteRouteResponse(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRouteResponse",
-        input_schema = types.DeleteRouteResponseInput,
-        output_schema = types.DeleteRouteResponseOutput,
+        input_schema = schemas.DeleteRouteResponseInput,
+        output_schema = schemas.DeleteRouteResponseOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/routes/{RouteId}/routeresponses/{RouteResponseId}",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:deleteRouteSettings(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRouteSettings",
-        input_schema = types.DeleteRouteSettingsInput,
-        output_schema = types.DeleteRouteSettingsOutput,
+        input_schema = schemas.DeleteRouteSettingsInput,
+        output_schema = schemas.DeleteRouteSettingsOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/stages/{StageName}/routesettings/{RouteKey}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:deleteRoutingRule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRoutingRule",
-        input_schema = types.DeleteRoutingRuleInput,
-        output_schema = types.DeleteRoutingRuleOutput,
+        input_schema = schemas.DeleteRoutingRuleInput,
+        output_schema = schemas.DeleteRoutingRuleOutput,
         http_method = "DELETE",
         http_path = "/v2/domainnames/{DomainName}/routingrules/{RoutingRuleId}",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:deleteStage(input, options)
     return self:invokeOperation(input, {
         name = "DeleteStage",
-        input_schema = types.DeleteStageInput,
-        output_schema = types.DeleteStageOutput,
+        input_schema = schemas.DeleteStageInput,
+        output_schema = schemas.DeleteStageOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/stages/{StageName}",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:deleteVpcLink(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVpcLink",
-        input_schema = types.DeleteVpcLinkInput,
-        output_schema = types.DeleteVpcLinkOutput,
+        input_schema = schemas.DeleteVpcLinkInput,
+        output_schema = schemas.DeleteVpcLinkOutput,
         http_method = "DELETE",
         http_path = "/v2/vpclinks/{VpcLinkId}",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:disablePortal(input, options)
     return self:invokeOperation(input, {
         name = "DisablePortal",
-        input_schema = types.DisablePortalInput,
-        output_schema = types.DisablePortalOutput,
+        input_schema = schemas.DisablePortalInput,
+        output_schema = schemas.DisablePortalOutput,
         http_method = "DELETE",
         http_path = "/v2/portals/{PortalId}/publish",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:exportApi(input, options)
     return self:invokeOperation(input, {
         name = "ExportApi",
-        input_schema = types.ExportApiInput,
-        output_schema = types.ExportApiOutput,
+        input_schema = schemas.ExportApiInput,
+        output_schema = schemas.ExportApiOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/exports/{Specification}",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:getApi(input, options)
     return self:invokeOperation(input, {
         name = "GetApi",
-        input_schema = types.GetApiInput,
-        output_schema = types.GetApiOutput,
+        input_schema = schemas.GetApiInput,
+        output_schema = schemas.GetApiOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:getApiMapping(input, options)
     return self:invokeOperation(input, {
         name = "GetApiMapping",
-        input_schema = types.GetApiMappingInput,
-        output_schema = types.GetApiMappingOutput,
+        input_schema = schemas.GetApiMappingInput,
+        output_schema = schemas.GetApiMappingOutput,
         http_method = "GET",
         http_path = "/v2/domainnames/{DomainName}/apimappings/{ApiMappingId}",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:getApiMappings(input, options)
     return self:invokeOperation(input, {
         name = "GetApiMappings",
-        input_schema = types.GetApiMappingsInput,
-        output_schema = types.GetApiMappingsOutput,
+        input_schema = schemas.GetApiMappingsInput,
+        output_schema = schemas.GetApiMappingsOutput,
         http_method = "GET",
         http_path = "/v2/domainnames/{DomainName}/apimappings",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:getApis(input, options)
     return self:invokeOperation(input, {
         name = "GetApis",
-        input_schema = types.GetApisInput,
-        output_schema = types.GetApisOutput,
+        input_schema = schemas.GetApisInput,
+        output_schema = schemas.GetApisOutput,
         http_method = "GET",
         http_path = "/v2/apis",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:getAuthorizer(input, options)
     return self:invokeOperation(input, {
         name = "GetAuthorizer",
-        input_schema = types.GetAuthorizerInput,
-        output_schema = types.GetAuthorizerOutput,
+        input_schema = schemas.GetAuthorizerInput,
+        output_schema = schemas.GetAuthorizerOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/authorizers/{AuthorizerId}",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:getAuthorizers(input, options)
     return self:invokeOperation(input, {
         name = "GetAuthorizers",
-        input_schema = types.GetAuthorizersInput,
-        output_schema = types.GetAuthorizersOutput,
+        input_schema = schemas.GetAuthorizersInput,
+        output_schema = schemas.GetAuthorizersOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/authorizers",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:getDeployment(input, options)
     return self:invokeOperation(input, {
         name = "GetDeployment",
-        input_schema = types.GetDeploymentInput,
-        output_schema = types.GetDeploymentOutput,
+        input_schema = schemas.GetDeploymentInput,
+        output_schema = schemas.GetDeploymentOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/deployments/{DeploymentId}",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:getDeployments(input, options)
     return self:invokeOperation(input, {
         name = "GetDeployments",
-        input_schema = types.GetDeploymentsInput,
-        output_schema = types.GetDeploymentsOutput,
+        input_schema = schemas.GetDeploymentsInput,
+        output_schema = schemas.GetDeploymentsOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/deployments",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:getDomainName(input, options)
     return self:invokeOperation(input, {
         name = "GetDomainName",
-        input_schema = types.GetDomainNameInput,
-        output_schema = types.GetDomainNameOutput,
+        input_schema = schemas.GetDomainNameInput,
+        output_schema = schemas.GetDomainNameOutput,
         http_method = "GET",
         http_path = "/v2/domainnames/{DomainName}",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:getDomainNames(input, options)
     return self:invokeOperation(input, {
         name = "GetDomainNames",
-        input_schema = types.GetDomainNamesInput,
-        output_schema = types.GetDomainNamesOutput,
+        input_schema = schemas.GetDomainNamesInput,
+        output_schema = schemas.GetDomainNamesOutput,
         http_method = "GET",
         http_path = "/v2/domainnames",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:getIntegration(input, options)
     return self:invokeOperation(input, {
         name = "GetIntegration",
-        input_schema = types.GetIntegrationInput,
-        output_schema = types.GetIntegrationOutput,
+        input_schema = schemas.GetIntegrationInput,
+        output_schema = schemas.GetIntegrationOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/integrations/{IntegrationId}",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:getIntegrationResponse(input, options)
     return self:invokeOperation(input, {
         name = "GetIntegrationResponse",
-        input_schema = types.GetIntegrationResponseInput,
-        output_schema = types.GetIntegrationResponseOutput,
+        input_schema = schemas.GetIntegrationResponseInput,
+        output_schema = schemas.GetIntegrationResponseOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/integrations/{IntegrationId}/integrationresponses/{IntegrationResponseId}",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:getIntegrationResponses(input, options)
     return self:invokeOperation(input, {
         name = "GetIntegrationResponses",
-        input_schema = types.GetIntegrationResponsesInput,
-        output_schema = types.GetIntegrationResponsesOutput,
+        input_schema = schemas.GetIntegrationResponsesInput,
+        output_schema = schemas.GetIntegrationResponsesOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/integrations/{IntegrationId}/integrationresponses",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:getIntegrations(input, options)
     return self:invokeOperation(input, {
         name = "GetIntegrations",
-        input_schema = types.GetIntegrationsInput,
-        output_schema = types.GetIntegrationsOutput,
+        input_schema = schemas.GetIntegrationsInput,
+        output_schema = schemas.GetIntegrationsOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/integrations",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:getModel(input, options)
     return self:invokeOperation(input, {
         name = "GetModel",
-        input_schema = types.GetModelInput,
-        output_schema = types.GetModelOutput,
+        input_schema = schemas.GetModelInput,
+        output_schema = schemas.GetModelOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/models/{ModelId}",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:getModels(input, options)
     return self:invokeOperation(input, {
         name = "GetModels",
-        input_schema = types.GetModelsInput,
-        output_schema = types.GetModelsOutput,
+        input_schema = schemas.GetModelsInput,
+        output_schema = schemas.GetModelsOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/models",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:getModelTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetModelTemplate",
-        input_schema = types.GetModelTemplateInput,
-        output_schema = types.GetModelTemplateOutput,
+        input_schema = schemas.GetModelTemplateInput,
+        output_schema = schemas.GetModelTemplateOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/models/{ModelId}/template",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:getPortal(input, options)
     return self:invokeOperation(input, {
         name = "GetPortal",
-        input_schema = types.GetPortalInput,
-        output_schema = types.GetPortalOutput,
+        input_schema = schemas.GetPortalInput,
+        output_schema = schemas.GetPortalOutput,
         http_method = "GET",
         http_path = "/v2/portals/{PortalId}",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:getPortalProduct(input, options)
     return self:invokeOperation(input, {
         name = "GetPortalProduct",
-        input_schema = types.GetPortalProductInput,
-        output_schema = types.GetPortalProductOutput,
+        input_schema = schemas.GetPortalProductInput,
+        output_schema = schemas.GetPortalProductOutput,
         http_method = "GET",
         http_path = "/v2/portalproducts/{PortalProductId}",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:getPortalProductSharingPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetPortalProductSharingPolicy",
-        input_schema = types.GetPortalProductSharingPolicyInput,
-        output_schema = types.GetPortalProductSharingPolicyOutput,
+        input_schema = schemas.GetPortalProductSharingPolicyInput,
+        output_schema = schemas.GetPortalProductSharingPolicyOutput,
         http_method = "GET",
         http_path = "/v2/portalproducts/{PortalProductId}/sharingpolicy",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:getProductPage(input, options)
     return self:invokeOperation(input, {
         name = "GetProductPage",
-        input_schema = types.GetProductPageInput,
-        output_schema = types.GetProductPageOutput,
+        input_schema = schemas.GetProductPageInput,
+        output_schema = schemas.GetProductPageOutput,
         http_method = "GET",
         http_path = "/v2/portalproducts/{PortalProductId}/productpages/{ProductPageId}",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:getProductRestEndpointPage(input, options)
     return self:invokeOperation(input, {
         name = "GetProductRestEndpointPage",
-        input_schema = types.GetProductRestEndpointPageInput,
-        output_schema = types.GetProductRestEndpointPageOutput,
+        input_schema = schemas.GetProductRestEndpointPageInput,
+        output_schema = schemas.GetProductRestEndpointPageOutput,
         http_method = "GET",
         http_path = "/v2/portalproducts/{PortalProductId}/productrestendpointpages/{ProductRestEndpointPageId}",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:getRoute(input, options)
     return self:invokeOperation(input, {
         name = "GetRoute",
-        input_schema = types.GetRouteInput,
-        output_schema = types.GetRouteOutput,
+        input_schema = schemas.GetRouteInput,
+        output_schema = schemas.GetRouteOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/routes/{RouteId}",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:getRouteResponse(input, options)
     return self:invokeOperation(input, {
         name = "GetRouteResponse",
-        input_schema = types.GetRouteResponseInput,
-        output_schema = types.GetRouteResponseOutput,
+        input_schema = schemas.GetRouteResponseInput,
+        output_schema = schemas.GetRouteResponseOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/routes/{RouteId}/routeresponses/{RouteResponseId}",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:getRouteResponses(input, options)
     return self:invokeOperation(input, {
         name = "GetRouteResponses",
-        input_schema = types.GetRouteResponsesInput,
-        output_schema = types.GetRouteResponsesOutput,
+        input_schema = schemas.GetRouteResponsesInput,
+        output_schema = schemas.GetRouteResponsesOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/routes/{RouteId}/routeresponses",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:getRoutes(input, options)
     return self:invokeOperation(input, {
         name = "GetRoutes",
-        input_schema = types.GetRoutesInput,
-        output_schema = types.GetRoutesOutput,
+        input_schema = schemas.GetRoutesInput,
+        output_schema = schemas.GetRoutesOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/routes",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:getRoutingRule(input, options)
     return self:invokeOperation(input, {
         name = "GetRoutingRule",
-        input_schema = types.GetRoutingRuleInput,
-        output_schema = types.GetRoutingRuleOutput,
+        input_schema = schemas.GetRoutingRuleInput,
+        output_schema = schemas.GetRoutingRuleOutput,
         http_method = "GET",
         http_path = "/v2/domainnames/{DomainName}/routingrules/{RoutingRuleId}",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:getStage(input, options)
     return self:invokeOperation(input, {
         name = "GetStage",
-        input_schema = types.GetStageInput,
-        output_schema = types.GetStageOutput,
+        input_schema = schemas.GetStageInput,
+        output_schema = schemas.GetStageOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/stages/{StageName}",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:getStages(input, options)
     return self:invokeOperation(input, {
         name = "GetStages",
-        input_schema = types.GetStagesInput,
-        output_schema = types.GetStagesOutput,
+        input_schema = schemas.GetStagesInput,
+        output_schema = schemas.GetStagesOutput,
         http_method = "GET",
         http_path = "/v2/apis/{ApiId}/stages",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:getTags(input, options)
     return self:invokeOperation(input, {
         name = "GetTags",
-        input_schema = types.GetTagsInput,
-        output_schema = types.GetTagsOutput,
+        input_schema = schemas.GetTagsInput,
+        output_schema = schemas.GetTagsOutput,
         http_method = "GET",
         http_path = "/v2/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:getVpcLink(input, options)
     return self:invokeOperation(input, {
         name = "GetVpcLink",
-        input_schema = types.GetVpcLinkInput,
-        output_schema = types.GetVpcLinkOutput,
+        input_schema = schemas.GetVpcLinkInput,
+        output_schema = schemas.GetVpcLinkOutput,
         http_method = "GET",
         http_path = "/v2/vpclinks/{VpcLinkId}",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:getVpcLinks(input, options)
     return self:invokeOperation(input, {
         name = "GetVpcLinks",
-        input_schema = types.GetVpcLinksInput,
-        output_schema = types.GetVpcLinksOutput,
+        input_schema = schemas.GetVpcLinksInput,
+        output_schema = schemas.GetVpcLinksOutput,
         http_method = "GET",
         http_path = "/v2/vpclinks",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:importApi(input, options)
     return self:invokeOperation(input, {
         name = "ImportApi",
-        input_schema = types.ImportApiInput,
-        output_schema = types.ImportApiOutput,
+        input_schema = schemas.ImportApiInput,
+        output_schema = schemas.ImportApiOutput,
         http_method = "PUT",
         http_path = "/v2/apis",
         effective_auth_schemes = {
@@ -1011,8 +1011,8 @@ end
 function Client:listPortalProducts(input, options)
     return self:invokeOperation(input, {
         name = "ListPortalProducts",
-        input_schema = types.ListPortalProductsInput,
-        output_schema = types.ListPortalProductsOutput,
+        input_schema = schemas.ListPortalProductsInput,
+        output_schema = schemas.ListPortalProductsOutput,
         http_method = "GET",
         http_path = "/v2/portalproducts",
         effective_auth_schemes = {
@@ -1024,8 +1024,8 @@ end
 function Client:listPortals(input, options)
     return self:invokeOperation(input, {
         name = "ListPortals",
-        input_schema = types.ListPortalsInput,
-        output_schema = types.ListPortalsOutput,
+        input_schema = schemas.ListPortalsInput,
+        output_schema = schemas.ListPortalsOutput,
         http_method = "GET",
         http_path = "/v2/portals",
         effective_auth_schemes = {
@@ -1037,8 +1037,8 @@ end
 function Client:listProductPages(input, options)
     return self:invokeOperation(input, {
         name = "ListProductPages",
-        input_schema = types.ListProductPagesInput,
-        output_schema = types.ListProductPagesOutput,
+        input_schema = schemas.ListProductPagesInput,
+        output_schema = schemas.ListProductPagesOutput,
         http_method = "GET",
         http_path = "/v2/portalproducts/{PortalProductId}/productpages",
         effective_auth_schemes = {
@@ -1050,8 +1050,8 @@ end
 function Client:listProductRestEndpointPages(input, options)
     return self:invokeOperation(input, {
         name = "ListProductRestEndpointPages",
-        input_schema = types.ListProductRestEndpointPagesInput,
-        output_schema = types.ListProductRestEndpointPagesOutput,
+        input_schema = schemas.ListProductRestEndpointPagesInput,
+        output_schema = schemas.ListProductRestEndpointPagesOutput,
         http_method = "GET",
         http_path = "/v2/portalproducts/{PortalProductId}/productrestendpointpages",
         effective_auth_schemes = {
@@ -1063,8 +1063,8 @@ end
 function Client:listRoutingRules(input, options)
     return self:invokeOperation(input, {
         name = "ListRoutingRules",
-        input_schema = types.ListRoutingRulesInput,
-        output_schema = types.ListRoutingRulesOutput,
+        input_schema = schemas.ListRoutingRulesInput,
+        output_schema = schemas.ListRoutingRulesOutput,
         http_method = "GET",
         http_path = "/v2/domainnames/{DomainName}/routingrules",
         effective_auth_schemes = {
@@ -1076,8 +1076,8 @@ end
 function Client:previewPortal(input, options)
     return self:invokeOperation(input, {
         name = "PreviewPortal",
-        input_schema = types.PreviewPortalInput,
-        output_schema = types.PreviewPortalOutput,
+        input_schema = schemas.PreviewPortalInput,
+        output_schema = schemas.PreviewPortalOutput,
         http_method = "POST",
         http_path = "/v2/portals/{PortalId}/preview",
         effective_auth_schemes = {
@@ -1089,8 +1089,8 @@ end
 function Client:publishPortal(input, options)
     return self:invokeOperation(input, {
         name = "PublishPortal",
-        input_schema = types.PublishPortalInput,
-        output_schema = types.PublishPortalOutput,
+        input_schema = schemas.PublishPortalInput,
+        output_schema = schemas.PublishPortalOutput,
         http_method = "POST",
         http_path = "/v2/portals/{PortalId}/publish",
         effective_auth_schemes = {
@@ -1102,8 +1102,8 @@ end
 function Client:putPortalProductSharingPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutPortalProductSharingPolicy",
-        input_schema = types.PutPortalProductSharingPolicyInput,
-        output_schema = types.PutPortalProductSharingPolicyOutput,
+        input_schema = schemas.PutPortalProductSharingPolicyInput,
+        output_schema = schemas.PutPortalProductSharingPolicyOutput,
         http_method = "PUT",
         http_path = "/v2/portalproducts/{PortalProductId}/sharingpolicy",
         effective_auth_schemes = {
@@ -1115,8 +1115,8 @@ end
 function Client:putRoutingRule(input, options)
     return self:invokeOperation(input, {
         name = "PutRoutingRule",
-        input_schema = types.PutRoutingRuleInput,
-        output_schema = types.PutRoutingRuleOutput,
+        input_schema = schemas.PutRoutingRuleInput,
+        output_schema = schemas.PutRoutingRuleOutput,
         http_method = "PUT",
         http_path = "/v2/domainnames/{DomainName}/routingrules/{RoutingRuleId}",
         effective_auth_schemes = {
@@ -1128,8 +1128,8 @@ end
 function Client:reimportApi(input, options)
     return self:invokeOperation(input, {
         name = "ReimportApi",
-        input_schema = types.ReimportApiInput,
-        output_schema = types.ReimportApiOutput,
+        input_schema = schemas.ReimportApiInput,
+        output_schema = schemas.ReimportApiOutput,
         http_method = "PUT",
         http_path = "/v2/apis/{ApiId}",
         effective_auth_schemes = {
@@ -1141,8 +1141,8 @@ end
 function Client:resetAuthorizersCache(input, options)
     return self:invokeOperation(input, {
         name = "ResetAuthorizersCache",
-        input_schema = types.ResetAuthorizersCacheInput,
-        output_schema = types.ResetAuthorizersCacheOutput,
+        input_schema = schemas.ResetAuthorizersCacheInput,
+        output_schema = schemas.ResetAuthorizersCacheOutput,
         http_method = "DELETE",
         http_path = "/v2/apis/{ApiId}/stages/{StageName}/cache/authorizers",
         effective_auth_schemes = {
@@ -1154,8 +1154,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/v2/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -1167,8 +1167,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/v2/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -1180,8 +1180,8 @@ end
 function Client:updateApi(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApi",
-        input_schema = types.UpdateApiInput,
-        output_schema = types.UpdateApiOutput,
+        input_schema = schemas.UpdateApiInput,
+        output_schema = schemas.UpdateApiOutput,
         http_method = "PATCH",
         http_path = "/v2/apis/{ApiId}",
         effective_auth_schemes = {
@@ -1193,8 +1193,8 @@ end
 function Client:updateApiMapping(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApiMapping",
-        input_schema = types.UpdateApiMappingInput,
-        output_schema = types.UpdateApiMappingOutput,
+        input_schema = schemas.UpdateApiMappingInput,
+        output_schema = schemas.UpdateApiMappingOutput,
         http_method = "PATCH",
         http_path = "/v2/domainnames/{DomainName}/apimappings/{ApiMappingId}",
         effective_auth_schemes = {
@@ -1206,8 +1206,8 @@ end
 function Client:updateAuthorizer(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAuthorizer",
-        input_schema = types.UpdateAuthorizerInput,
-        output_schema = types.UpdateAuthorizerOutput,
+        input_schema = schemas.UpdateAuthorizerInput,
+        output_schema = schemas.UpdateAuthorizerOutput,
         http_method = "PATCH",
         http_path = "/v2/apis/{ApiId}/authorizers/{AuthorizerId}",
         effective_auth_schemes = {
@@ -1219,8 +1219,8 @@ end
 function Client:updateDeployment(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDeployment",
-        input_schema = types.UpdateDeploymentInput,
-        output_schema = types.UpdateDeploymentOutput,
+        input_schema = schemas.UpdateDeploymentInput,
+        output_schema = schemas.UpdateDeploymentOutput,
         http_method = "PATCH",
         http_path = "/v2/apis/{ApiId}/deployments/{DeploymentId}",
         effective_auth_schemes = {
@@ -1232,8 +1232,8 @@ end
 function Client:updateDomainName(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDomainName",
-        input_schema = types.UpdateDomainNameInput,
-        output_schema = types.UpdateDomainNameOutput,
+        input_schema = schemas.UpdateDomainNameInput,
+        output_schema = schemas.UpdateDomainNameOutput,
         http_method = "PATCH",
         http_path = "/v2/domainnames/{DomainName}",
         effective_auth_schemes = {
@@ -1245,8 +1245,8 @@ end
 function Client:updateIntegration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateIntegration",
-        input_schema = types.UpdateIntegrationInput,
-        output_schema = types.UpdateIntegrationOutput,
+        input_schema = schemas.UpdateIntegrationInput,
+        output_schema = schemas.UpdateIntegrationOutput,
         http_method = "PATCH",
         http_path = "/v2/apis/{ApiId}/integrations/{IntegrationId}",
         effective_auth_schemes = {
@@ -1258,8 +1258,8 @@ end
 function Client:updateIntegrationResponse(input, options)
     return self:invokeOperation(input, {
         name = "UpdateIntegrationResponse",
-        input_schema = types.UpdateIntegrationResponseInput,
-        output_schema = types.UpdateIntegrationResponseOutput,
+        input_schema = schemas.UpdateIntegrationResponseInput,
+        output_schema = schemas.UpdateIntegrationResponseOutput,
         http_method = "PATCH",
         http_path = "/v2/apis/{ApiId}/integrations/{IntegrationId}/integrationresponses/{IntegrationResponseId}",
         effective_auth_schemes = {
@@ -1271,8 +1271,8 @@ end
 function Client:updateModel(input, options)
     return self:invokeOperation(input, {
         name = "UpdateModel",
-        input_schema = types.UpdateModelInput,
-        output_schema = types.UpdateModelOutput,
+        input_schema = schemas.UpdateModelInput,
+        output_schema = schemas.UpdateModelOutput,
         http_method = "PATCH",
         http_path = "/v2/apis/{ApiId}/models/{ModelId}",
         effective_auth_schemes = {
@@ -1284,8 +1284,8 @@ end
 function Client:updatePortal(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePortal",
-        input_schema = types.UpdatePortalInput,
-        output_schema = types.UpdatePortalOutput,
+        input_schema = schemas.UpdatePortalInput,
+        output_schema = schemas.UpdatePortalOutput,
         http_method = "PATCH",
         http_path = "/v2/portals/{PortalId}",
         effective_auth_schemes = {
@@ -1297,8 +1297,8 @@ end
 function Client:updatePortalProduct(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePortalProduct",
-        input_schema = types.UpdatePortalProductInput,
-        output_schema = types.UpdatePortalProductOutput,
+        input_schema = schemas.UpdatePortalProductInput,
+        output_schema = schemas.UpdatePortalProductOutput,
         http_method = "PATCH",
         http_path = "/v2/portalproducts/{PortalProductId}",
         effective_auth_schemes = {
@@ -1310,8 +1310,8 @@ end
 function Client:updateProductPage(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProductPage",
-        input_schema = types.UpdateProductPageInput,
-        output_schema = types.UpdateProductPageOutput,
+        input_schema = schemas.UpdateProductPageInput,
+        output_schema = schemas.UpdateProductPageOutput,
         http_method = "PATCH",
         http_path = "/v2/portalproducts/{PortalProductId}/productpages/{ProductPageId}",
         effective_auth_schemes = {
@@ -1323,8 +1323,8 @@ end
 function Client:updateProductRestEndpointPage(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProductRestEndpointPage",
-        input_schema = types.UpdateProductRestEndpointPageInput,
-        output_schema = types.UpdateProductRestEndpointPageOutput,
+        input_schema = schemas.UpdateProductRestEndpointPageInput,
+        output_schema = schemas.UpdateProductRestEndpointPageOutput,
         http_method = "PATCH",
         http_path = "/v2/portalproducts/{PortalProductId}/productrestendpointpages/{ProductRestEndpointPageId}",
         effective_auth_schemes = {
@@ -1336,8 +1336,8 @@ end
 function Client:updateRoute(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRoute",
-        input_schema = types.UpdateRouteInput,
-        output_schema = types.UpdateRouteOutput,
+        input_schema = schemas.UpdateRouteInput,
+        output_schema = schemas.UpdateRouteOutput,
         http_method = "PATCH",
         http_path = "/v2/apis/{ApiId}/routes/{RouteId}",
         effective_auth_schemes = {
@@ -1349,8 +1349,8 @@ end
 function Client:updateRouteResponse(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRouteResponse",
-        input_schema = types.UpdateRouteResponseInput,
-        output_schema = types.UpdateRouteResponseOutput,
+        input_schema = schemas.UpdateRouteResponseInput,
+        output_schema = schemas.UpdateRouteResponseOutput,
         http_method = "PATCH",
         http_path = "/v2/apis/{ApiId}/routes/{RouteId}/routeresponses/{RouteResponseId}",
         effective_auth_schemes = {
@@ -1362,8 +1362,8 @@ end
 function Client:updateStage(input, options)
     return self:invokeOperation(input, {
         name = "UpdateStage",
-        input_schema = types.UpdateStageInput,
-        output_schema = types.UpdateStageOutput,
+        input_schema = schemas.UpdateStageInput,
+        output_schema = schemas.UpdateStageOutput,
         http_method = "PATCH",
         http_path = "/v2/apis/{ApiId}/stages/{StageName}",
         effective_auth_schemes = {
@@ -1375,8 +1375,8 @@ end
 function Client:updateVpcLink(input, options)
     return self:invokeOperation(input, {
         name = "UpdateVpcLink",
-        input_schema = types.UpdateVpcLinkInput,
-        output_schema = types.UpdateVpcLinkOutput,
+        input_schema = schemas.UpdateVpcLinkInput,
+        output_schema = schemas.UpdateVpcLinkOutput,
         http_method = "PATCH",
         http_path = "/v2/vpclinks/{VpcLinkId}",
         effective_auth_schemes = {

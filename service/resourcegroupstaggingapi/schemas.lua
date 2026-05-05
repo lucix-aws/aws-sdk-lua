@@ -1,0 +1,714 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.resourcegroupstaggingapi"
+
+local M = {}
+
+M.ComplianceDetails = schema.new({
+    id = id.from(_N, "ComplianceDetails"),
+    type = "structure",
+    members = {
+        NoncompliantKeys = schema.new({
+            id = id.from(_N, "ComplianceDetails", "NoncompliantKeys"),
+            type = "list",
+            name = "NoncompliantKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        KeysWithNoncompliantValues = schema.new({
+            id = id.from(_N, "ComplianceDetails", "KeysWithNoncompliantValues"),
+            type = "list",
+            name = "KeysWithNoncompliantValues",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ComplianceStatus = schema.new({
+            id = id.from(_N, "ComplianceDetails", "ComplianceStatus"),
+            type = "boolean",
+            name = "ComplianceStatus",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ConcurrentModificationException = schema.new({
+    id = id.from(_N, "ConcurrentModificationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ConcurrentModificationException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConstraintViolationException = schema.new({
+    id = id.from(_N, "ConstraintViolationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ConstraintViolationException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeReportCreationInput = schema.new({
+    id = id.from(_N, "DescribeReportCreationInput"),
+    type = "structure",
+})
+
+M.DescribeReportCreationOutput = schema.new({
+    id = id.from(_N, "DescribeReportCreationOutput"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "DescribeReportCreationOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        S3Location = schema.new({
+            id = id.from(_N, "DescribeReportCreationOutput", "S3Location"),
+            type = "string",
+            name = "S3Location",
+            target_id = prelude.String.id,
+        }),
+        StartDate = schema.new({
+            id = id.from(_N, "DescribeReportCreationOutput", "StartDate"),
+            type = "string",
+            name = "StartDate",
+            target_id = prelude.String.id,
+        }),
+        ErrorMessage = schema.new({
+            id = id.from(_N, "DescribeReportCreationOutput", "ErrorMessage"),
+            type = "string",
+            name = "ErrorMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InternalServiceException = schema.new({
+    id = id.from(_N, "InternalServiceException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InternalServiceException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidParameterException = schema.new({
+    id = id.from(_N, "InvalidParameterException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InvalidParameterException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ThrottledException = schema.new({
+    id = id.from(_N, "ThrottledException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ThrottledException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.FailureInfo = schema.new({
+    id = id.from(_N, "FailureInfo"),
+    type = "structure",
+    members = {
+        StatusCode = schema.new({
+            id = id.from(_N, "FailureInfo", "StatusCode"),
+            type = "integer",
+            name = "StatusCode",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        ErrorCode = schema.new({
+            id = id.from(_N, "FailureInfo", "ErrorCode"),
+            type = "string",
+            name = "ErrorCode",
+            target_id = prelude.String.id,
+        }),
+        ErrorMessage = schema.new({
+            id = id.from(_N, "FailureInfo", "ErrorMessage"),
+            type = "string",
+            name = "ErrorMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetComplianceSummaryInput = schema.new({
+    id = id.from(_N, "GetComplianceSummaryInput"),
+    type = "structure",
+    members = {
+        TargetIdFilters = schema.new({
+            id = id.from(_N, "GetComplianceSummaryInput", "TargetIdFilters"),
+            type = "list",
+            name = "TargetIdFilters",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        RegionFilters = schema.new({
+            id = id.from(_N, "GetComplianceSummaryInput", "RegionFilters"),
+            type = "list",
+            name = "RegionFilters",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ResourceTypeFilters = schema.new({
+            id = id.from(_N, "GetComplianceSummaryInput", "ResourceTypeFilters"),
+            type = "list",
+            name = "ResourceTypeFilters",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        TagKeyFilters = schema.new({
+            id = id.from(_N, "GetComplianceSummaryInput", "TagKeyFilters"),
+            type = "list",
+            name = "TagKeyFilters",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        GroupBy = schema.new({
+            id = id.from(_N, "GetComplianceSummaryInput", "GroupBy"),
+            type = "list",
+            name = "GroupBy",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "GetComplianceSummaryInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        PaginationToken = schema.new({
+            id = id.from(_N, "GetComplianceSummaryInput", "PaginationToken"),
+            type = "string",
+            name = "PaginationToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Summary = schema.new({
+    id = id.from(_N, "Summary"),
+    type = "structure",
+    members = {
+        LastUpdated = schema.new({
+            id = id.from(_N, "Summary", "LastUpdated"),
+            type = "string",
+            name = "LastUpdated",
+            target_id = prelude.String.id,
+        }),
+        TargetId = schema.new({
+            id = id.from(_N, "Summary", "TargetId"),
+            type = "string",
+            name = "TargetId",
+            target_id = prelude.String.id,
+        }),
+        TargetIdType = schema.new({
+            id = id.from(_N, "Summary", "TargetIdType"),
+            type = "string",
+            name = "TargetIdType",
+            target_id = prelude.String.id,
+        }),
+        Region = schema.new({
+            id = id.from(_N, "Summary", "Region"),
+            type = "string",
+            name = "Region",
+            target_id = prelude.String.id,
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "Summary", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+        NonCompliantResources = schema.new({
+            id = id.from(_N, "Summary", "NonCompliantResources"),
+            type = "long",
+            name = "NonCompliantResources",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
+M.GetComplianceSummaryOutput = schema.new({
+    id = id.from(_N, "GetComplianceSummaryOutput"),
+    type = "structure",
+    members = {
+        SummaryList = schema.new({
+            id = id.from(_N, "GetComplianceSummaryOutput", "SummaryList"),
+            type = "list",
+            name = "SummaryList",
+            target_id = prelude.Document.id,
+            list_member = M.Summary,
+        }),
+        PaginationToken = schema.new({
+            id = id.from(_N, "GetComplianceSummaryOutput", "PaginationToken"),
+            type = "string",
+            name = "PaginationToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TagFilter = schema.new({
+    id = id.from(_N, "TagFilter"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "TagFilter", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+        }),
+        Values = schema.new({
+            id = id.from(_N, "TagFilter", "Values"),
+            type = "list",
+            name = "Values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.GetResourcesInput = schema.new({
+    id = id.from(_N, "GetResourcesInput"),
+    type = "structure",
+    members = {
+        PaginationToken = schema.new({
+            id = id.from(_N, "GetResourcesInput", "PaginationToken"),
+            type = "string",
+            name = "PaginationToken",
+            target_id = prelude.String.id,
+        }),
+        TagFilters = schema.new({
+            id = id.from(_N, "GetResourcesInput", "TagFilters"),
+            type = "list",
+            name = "TagFilters",
+            target_id = prelude.Document.id,
+            list_member = M.TagFilter,
+        }),
+        ResourcesPerPage = schema.new({
+            id = id.from(_N, "GetResourcesInput", "ResourcesPerPage"),
+            type = "integer",
+            name = "ResourcesPerPage",
+            target_id = prelude.Integer.id,
+        }),
+        TagsPerPage = schema.new({
+            id = id.from(_N, "GetResourcesInput", "TagsPerPage"),
+            type = "integer",
+            name = "TagsPerPage",
+            target_id = prelude.Integer.id,
+        }),
+        ResourceTypeFilters = schema.new({
+            id = id.from(_N, "GetResourcesInput", "ResourceTypeFilters"),
+            type = "list",
+            name = "ResourceTypeFilters",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        IncludeComplianceDetails = schema.new({
+            id = id.from(_N, "GetResourcesInput", "IncludeComplianceDetails"),
+            type = "boolean",
+            name = "IncludeComplianceDetails",
+            target_id = prelude.Boolean.id,
+        }),
+        ExcludeCompliantResources = schema.new({
+            id = id.from(_N, "GetResourcesInput", "ExcludeCompliantResources"),
+            type = "boolean",
+            name = "ExcludeCompliantResources",
+            target_id = prelude.Boolean.id,
+        }),
+        ResourceARNList = schema.new({
+            id = id.from(_N, "GetResourcesInput", "ResourceARNList"),
+            type = "list",
+            name = "ResourceARNList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.Tag = schema.new({
+    id = id.from(_N, "Tag"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "Tag", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "Tag", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ResourceTagMapping = schema.new({
+    id = id.from(_N, "ResourceTagMapping"),
+    type = "structure",
+    members = {
+        ResourceARN = schema.new({
+            id = id.from(_N, "ResourceTagMapping", "ResourceARN"),
+            type = "string",
+            name = "ResourceARN",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "ResourceTagMapping", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        ComplianceDetails = schema.new({
+            id = id.from(_N, "ResourceTagMapping", "ComplianceDetails"),
+            type = "structure",
+            name = "ComplianceDetails",
+            target_id = id.from(_N, "ComplianceDetails"),
+            target = M.ComplianceDetails,
+        }),
+    },
+})
+
+M.GetResourcesOutput = schema.new({
+    id = id.from(_N, "GetResourcesOutput"),
+    type = "structure",
+    members = {
+        PaginationToken = schema.new({
+            id = id.from(_N, "GetResourcesOutput", "PaginationToken"),
+            type = "string",
+            name = "PaginationToken",
+            target_id = prelude.String.id,
+        }),
+        ResourceTagMappingList = schema.new({
+            id = id.from(_N, "GetResourcesOutput", "ResourceTagMappingList"),
+            type = "list",
+            name = "ResourceTagMappingList",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceTagMapping,
+        }),
+    },
+})
+
+M.PaginationTokenExpiredException = schema.new({
+    id = id.from(_N, "PaginationTokenExpiredException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "PaginationTokenExpiredException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetTagKeysInput = schema.new({
+    id = id.from(_N, "GetTagKeysInput"),
+    type = "structure",
+    members = {
+        PaginationToken = schema.new({
+            id = id.from(_N, "GetTagKeysInput", "PaginationToken"),
+            type = "string",
+            name = "PaginationToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetTagKeysOutput = schema.new({
+    id = id.from(_N, "GetTagKeysOutput"),
+    type = "structure",
+    members = {
+        PaginationToken = schema.new({
+            id = id.from(_N, "GetTagKeysOutput", "PaginationToken"),
+            type = "string",
+            name = "PaginationToken",
+            target_id = prelude.String.id,
+        }),
+        TagKeys = schema.new({
+            id = id.from(_N, "GetTagKeysOutput", "TagKeys"),
+            type = "list",
+            name = "TagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.GetTagValuesInput = schema.new({
+    id = id.from(_N, "GetTagValuesInput"),
+    type = "structure",
+    members = {
+        PaginationToken = schema.new({
+            id = id.from(_N, "GetTagValuesInput", "PaginationToken"),
+            type = "string",
+            name = "PaginationToken",
+            target_id = prelude.String.id,
+        }),
+        Key = schema.new({
+            id = id.from(_N, "GetTagValuesInput", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetTagValuesOutput = schema.new({
+    id = id.from(_N, "GetTagValuesOutput"),
+    type = "structure",
+    members = {
+        PaginationToken = schema.new({
+            id = id.from(_N, "GetTagValuesOutput", "PaginationToken"),
+            type = "string",
+            name = "PaginationToken",
+            target_id = prelude.String.id,
+        }),
+        TagValues = schema.new({
+            id = id.from(_N, "GetTagValuesOutput", "TagValues"),
+            type = "list",
+            name = "TagValues",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ListRequiredTagsInput = schema.new({
+    id = id.from(_N, "ListRequiredTagsInput"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListRequiredTagsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListRequiredTagsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.RequiredTag = schema.new({
+    id = id.from(_N, "RequiredTag"),
+    type = "structure",
+    members = {
+        ResourceType = schema.new({
+            id = id.from(_N, "RequiredTag", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+        CloudFormationResourceTypes = schema.new({
+            id = id.from(_N, "RequiredTag", "CloudFormationResourceTypes"),
+            type = "list",
+            name = "CloudFormationResourceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ReportingTagKeys = schema.new({
+            id = id.from(_N, "RequiredTag", "ReportingTagKeys"),
+            type = "list",
+            name = "ReportingTagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ListRequiredTagsOutput = schema.new({
+    id = id.from(_N, "ListRequiredTagsOutput"),
+    type = "structure",
+    members = {
+        RequiredTags = schema.new({
+            id = id.from(_N, "ListRequiredTagsOutput", "RequiredTags"),
+            type = "list",
+            name = "RequiredTags",
+            target_id = prelude.Document.id,
+            list_member = M.RequiredTag,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListRequiredTagsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StartReportCreationInput = schema.new({
+    id = id.from(_N, "StartReportCreationInput"),
+    type = "structure",
+    members = {
+        S3Bucket = schema.new({
+            id = id.from(_N, "StartReportCreationInput", "S3Bucket"),
+            type = "string",
+            name = "S3Bucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StartReportCreationOutput = schema.new({
+    id = id.from(_N, "StartReportCreationOutput"),
+    type = "structure",
+})
+
+M.TagResourcesInput = schema.new({
+    id = id.from(_N, "TagResourcesInput"),
+    type = "structure",
+    members = {
+        ResourceARNList = schema.new({
+            id = id.from(_N, "TagResourcesInput", "ResourceARNList"),
+            type = "list",
+            name = "ResourceARNList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "TagResourcesInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourcesOutput = schema.new({
+    id = id.from(_N, "TagResourcesOutput"),
+    type = "structure",
+    members = {
+        FailedResourcesMap = schema.new({
+            id = id.from(_N, "TagResourcesOutput", "FailedResourcesMap"),
+            type = "map",
+            name = "FailedResourcesMap",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.FailureInfo,
+        }),
+    },
+})
+
+M.UntagResourcesInput = schema.new({
+    id = id.from(_N, "UntagResourcesInput"),
+    type = "structure",
+    members = {
+        ResourceARNList = schema.new({
+            id = id.from(_N, "UntagResourcesInput", "ResourceARNList"),
+            type = "list",
+            name = "ResourceARNList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TagKeys = schema.new({
+            id = id.from(_N, "UntagResourcesInput", "TagKeys"),
+            type = "list",
+            name = "TagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UntagResourcesOutput = schema.new({
+    id = id.from(_N, "UntagResourcesOutput"),
+    type = "structure",
+    members = {
+        FailedResourcesMap = schema.new({
+            id = id.from(_N, "UntagResourcesOutput", "FailedResourcesMap"),
+            type = "map",
+            name = "FailedResourcesMap",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.FailureInfo,
+        }),
+    },
+})
+
+return M

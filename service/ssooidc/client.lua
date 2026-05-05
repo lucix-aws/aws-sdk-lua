@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("ssooidc.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("ssooidc.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("ssooidc.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createToken(input, options)
     return self:invokeOperation(input, {
         name = "CreateToken",
-        input_schema = types.CreateTokenInput,
-        output_schema = types.CreateTokenOutput,
+        input_schema = schemas.CreateTokenInput,
+        output_schema = schemas.CreateTokenOutput,
         http_method = "POST",
         http_path = "/token",
         effective_auth_schemes = {
@@ -61,8 +61,8 @@ end
 function Client:createTokenWithIAM(input, options)
     return self:invokeOperation(input, {
         name = "CreateTokenWithIAM",
-        input_schema = types.CreateTokenWithIAMInput,
-        output_schema = types.CreateTokenWithIAMOutput,
+        input_schema = schemas.CreateTokenWithIAMInput,
+        output_schema = schemas.CreateTokenWithIAMOutput,
         http_method = "POST",
         http_path = "/token?aws_iam=t",
         effective_auth_schemes = {
@@ -74,8 +74,8 @@ end
 function Client:registerClient(input, options)
     return self:invokeOperation(input, {
         name = "RegisterClient",
-        input_schema = types.RegisterClientInput,
-        output_schema = types.RegisterClientOutput,
+        input_schema = schemas.RegisterClientInput,
+        output_schema = schemas.RegisterClientOutput,
         http_method = "POST",
         http_path = "/client/register",
         effective_auth_schemes = {
@@ -86,8 +86,8 @@ end
 function Client:startDeviceAuthorization(input, options)
     return self:invokeOperation(input, {
         name = "StartDeviceAuthorization",
-        input_schema = types.StartDeviceAuthorizationInput,
-        output_schema = types.StartDeviceAuthorizationOutput,
+        input_schema = schemas.StartDeviceAuthorizationInput,
+        output_schema = schemas.StartDeviceAuthorizationOutput,
         http_method = "POST",
         http_path = "/device_authorization",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("novaact.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("novaact.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("novaact.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createAct(input, options)
     return self:invokeOperation(input, {
         name = "CreateAct",
-        input_schema = types.CreateActInput,
-        output_schema = types.CreateActOutput,
+        input_schema = schemas.CreateActInput,
+        output_schema = schemas.CreateActOutput,
         http_method = "PUT",
         http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}/sessions/{sessionId}/acts",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createSession(input, options)
     return self:invokeOperation(input, {
         name = "CreateSession",
-        input_schema = types.CreateSessionInput,
-        output_schema = types.CreateSessionOutput,
+        input_schema = schemas.CreateSessionInput,
+        output_schema = schemas.CreateSessionOutput,
         http_method = "PUT",
         http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}/sessions",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createWorkflowDefinition(input, options)
     return self:invokeOperation(input, {
         name = "CreateWorkflowDefinition",
-        input_schema = types.CreateWorkflowDefinitionInput,
-        output_schema = types.CreateWorkflowDefinitionOutput,
+        input_schema = schemas.CreateWorkflowDefinitionInput,
+        output_schema = schemas.CreateWorkflowDefinitionOutput,
         http_method = "PUT",
         http_path = "/workflow-definitions",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createWorkflowRun(input, options)
     return self:invokeOperation(input, {
         name = "CreateWorkflowRun",
-        input_schema = types.CreateWorkflowRunInput,
-        output_schema = types.CreateWorkflowRunOutput,
+        input_schema = schemas.CreateWorkflowRunInput,
+        output_schema = schemas.CreateWorkflowRunOutput,
         http_method = "PUT",
         http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteWorkflowDefinition(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWorkflowDefinition",
-        input_schema = types.DeleteWorkflowDefinitionInput,
-        output_schema = types.DeleteWorkflowDefinitionOutput,
+        input_schema = schemas.DeleteWorkflowDefinitionInput,
+        output_schema = schemas.DeleteWorkflowDefinitionOutput,
         http_method = "DELETE",
         http_path = "/workflow-definitions/{workflowDefinitionName}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteWorkflowRun(input, options)
     return self:invokeOperation(input, {
         name = "DeleteWorkflowRun",
-        input_schema = types.DeleteWorkflowRunInput,
-        output_schema = types.DeleteWorkflowRunOutput,
+        input_schema = schemas.DeleteWorkflowRunInput,
+        output_schema = schemas.DeleteWorkflowRunOutput,
         http_method = "DELETE",
         http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getWorkflowDefinition(input, options)
     return self:invokeOperation(input, {
         name = "GetWorkflowDefinition",
-        input_schema = types.GetWorkflowDefinitionInput,
-        output_schema = types.GetWorkflowDefinitionOutput,
+        input_schema = schemas.GetWorkflowDefinitionInput,
+        output_schema = schemas.GetWorkflowDefinitionOutput,
         http_method = "GET",
         http_path = "/workflow-definitions/{workflowDefinitionName}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getWorkflowRun(input, options)
     return self:invokeOperation(input, {
         name = "GetWorkflowRun",
-        input_schema = types.GetWorkflowRunInput,
-        output_schema = types.GetWorkflowRunOutput,
+        input_schema = schemas.GetWorkflowRunInput,
+        output_schema = schemas.GetWorkflowRunOutput,
         http_method = "GET",
         http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:invokeActStep(input, options)
     return self:invokeOperation(input, {
         name = "InvokeActStep",
-        input_schema = types.InvokeActStepInput,
-        output_schema = types.InvokeActStepOutput,
+        input_schema = schemas.InvokeActStepInput,
+        output_schema = schemas.InvokeActStepOutput,
         http_method = "PUT",
         http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}/sessions/{sessionId}/acts/{actId}/invoke-step/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listActs(input, options)
     return self:invokeOperation(input, {
         name = "ListActs",
-        input_schema = types.ListActsInput,
-        output_schema = types.ListActsOutput,
+        input_schema = schemas.ListActsInput,
+        output_schema = schemas.ListActsOutput,
         http_method = "POST",
         http_path = "/workflow-definitions/{workflowDefinitionName}/acts",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listModels(input, options)
     return self:invokeOperation(input, {
         name = "ListModels",
-        input_schema = types.ListModelsInput,
-        output_schema = types.ListModelsOutput,
+        input_schema = schemas.ListModelsInput,
+        output_schema = schemas.ListModelsOutput,
         http_method = "POST",
         http_path = "/models",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listSessions(input, options)
     return self:invokeOperation(input, {
         name = "ListSessions",
-        input_schema = types.ListSessionsInput,
-        output_schema = types.ListSessionsOutput,
+        input_schema = schemas.ListSessionsInput,
+        output_schema = schemas.ListSessionsOutput,
         http_method = "POST",
         http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listWorkflowDefinitions(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkflowDefinitions",
-        input_schema = types.ListWorkflowDefinitionsInput,
-        output_schema = types.ListWorkflowDefinitionsOutput,
+        input_schema = schemas.ListWorkflowDefinitionsInput,
+        output_schema = schemas.ListWorkflowDefinitionsOutput,
         http_method = "POST",
         http_path = "/workflow-definitions",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listWorkflowRuns(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkflowRuns",
-        input_schema = types.ListWorkflowRunsInput,
-        output_schema = types.ListWorkflowRunsOutput,
+        input_schema = schemas.ListWorkflowRunsInput,
+        output_schema = schemas.ListWorkflowRunsOutput,
         http_method = "POST",
         http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:updateAct(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAct",
-        input_schema = types.UpdateActInput,
-        output_schema = types.UpdateActOutput,
+        input_schema = schemas.UpdateActInput,
+        output_schema = schemas.UpdateActOutput,
         http_method = "PUT",
         http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}/sessions/{sessionId}/acts/{actId}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:updateWorkflowRun(input, options)
     return self:invokeOperation(input, {
         name = "UpdateWorkflowRun",
-        input_schema = types.UpdateWorkflowRunInput,
-        output_schema = types.UpdateWorkflowRunOutput,
+        input_schema = schemas.UpdateWorkflowRunInput,
+        output_schema = schemas.UpdateWorkflowRunOutput,
         http_method = "PUT",
         http_path = "/workflow-definitions/{workflowDefinitionName}/workflow-runs/{workflowRunId}",
         effective_auth_schemes = {

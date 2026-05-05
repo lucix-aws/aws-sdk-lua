@@ -1,0 +1,732 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.aiops"
+
+local M = {}
+
+M.AccessDeniedException = schema.new({
+    id = id.from(_N, "AccessDeniedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "AccessDeniedException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ConflictException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ForbiddenException = schema.new({
+    id = id.from(_N, "ForbiddenException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ForbiddenException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InternalServerException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CrossAccountConfiguration = schema.new({
+    id = id.from(_N, "CrossAccountConfiguration"),
+    type = "structure",
+    members = {
+        sourceRoleArn = schema.new({
+            id = id.from(_N, "CrossAccountConfiguration", "sourceRoleArn"),
+            type = "string",
+            name = "sourceRoleArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EncryptionConfiguration = schema.new({
+    id = id.from(_N, "EncryptionConfiguration"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "EncryptionConfiguration", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        kmsKeyId = schema.new({
+            id = id.from(_N, "EncryptionConfiguration", "kmsKeyId"),
+            type = "string",
+            name = "kmsKeyId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateInvestigationGroupInput = schema.new({
+    id = id.from(_N, "CreateInvestigationGroupInput"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "CreateInvestigationGroupInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        roleArn = schema.new({
+            id = id.from(_N, "CreateInvestigationGroupInput", "roleArn"),
+            type = "string",
+            name = "roleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        encryptionConfiguration = schema.new({
+            id = id.from(_N, "CreateInvestigationGroupInput", "encryptionConfiguration"),
+            type = "structure",
+            name = "encryptionConfiguration",
+            target_id = id.from(_N, "EncryptionConfiguration"),
+            target = M.EncryptionConfiguration,
+        }),
+        retentionInDays = schema.new({
+            id = id.from(_N, "CreateInvestigationGroupInput", "retentionInDays"),
+            type = "long",
+            name = "retentionInDays",
+            target_id = prelude.Long.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateInvestigationGroupInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        tagKeyBoundaries = schema.new({
+            id = id.from(_N, "CreateInvestigationGroupInput", "tagKeyBoundaries"),
+            type = "list",
+            name = "tagKeyBoundaries",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        chatbotNotificationChannel = schema.new({
+            id = id.from(_N, "CreateInvestigationGroupInput", "chatbotNotificationChannel"),
+            type = "map",
+            name = "chatbotNotificationChannel",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.Document,
+        }),
+        isCloudTrailEventHistoryEnabled = schema.new({
+            id = id.from(_N, "CreateInvestigationGroupInput", "isCloudTrailEventHistoryEnabled"),
+            type = "boolean",
+            name = "isCloudTrailEventHistoryEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        crossAccountConfigurations = schema.new({
+            id = id.from(_N, "CreateInvestigationGroupInput", "crossAccountConfigurations"),
+            type = "list",
+            name = "crossAccountConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.CrossAccountConfiguration,
+        }),
+    },
+})
+
+M.CreateInvestigationGroupOutput = schema.new({
+    id = id.from(_N, "CreateInvestigationGroupOutput"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "CreateInvestigationGroupOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+        }),
+        serviceCode = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "serviceCode"),
+            type = "string",
+            name = "serviceCode",
+            target_id = prelude.String.id,
+        }),
+        quotaCode = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "quotaCode"),
+            type = "string",
+            name = "quotaCode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ThrottlingException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteInvestigationGroupInput = schema.new({
+    id = id.from(_N, "DeleteInvestigationGroupInput"),
+    type = "structure",
+    members = {
+        identifier = schema.new({
+            id = id.from(_N, "DeleteInvestigationGroupInput", "identifier"),
+            type = "string",
+            name = "identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteInvestigationGroupOutput = schema.new({
+    id = id.from(_N, "DeleteInvestigationGroupOutput"),
+    type = "structure",
+})
+
+M.GetInvestigationGroupInput = schema.new({
+    id = id.from(_N, "GetInvestigationGroupInput"),
+    type = "structure",
+    members = {
+        identifier = schema.new({
+            id = id.from(_N, "GetInvestigationGroupInput", "identifier"),
+            type = "string",
+            name = "identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetInvestigationGroupOutput = schema.new({
+    id = id.from(_N, "GetInvestigationGroupOutput"),
+    type = "structure",
+    members = {
+        createdBy = schema.new({
+            id = id.from(_N, "GetInvestigationGroupOutput", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetInvestigationGroupOutput", "createdAt"),
+            type = "long",
+            name = "createdAt",
+            target_id = prelude.Long.id,
+        }),
+        lastModifiedBy = schema.new({
+            id = id.from(_N, "GetInvestigationGroupOutput", "lastModifiedBy"),
+            type = "string",
+            name = "lastModifiedBy",
+            target_id = prelude.String.id,
+        }),
+        lastModifiedAt = schema.new({
+            id = id.from(_N, "GetInvestigationGroupOutput", "lastModifiedAt"),
+            type = "long",
+            name = "lastModifiedAt",
+            target_id = prelude.Long.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "GetInvestigationGroupOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        arn = schema.new({
+            id = id.from(_N, "GetInvestigationGroupOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+        }),
+        roleArn = schema.new({
+            id = id.from(_N, "GetInvestigationGroupOutput", "roleArn"),
+            type = "string",
+            name = "roleArn",
+            target_id = prelude.String.id,
+        }),
+        encryptionConfiguration = schema.new({
+            id = id.from(_N, "GetInvestigationGroupOutput", "encryptionConfiguration"),
+            type = "structure",
+            name = "encryptionConfiguration",
+            target_id = id.from(_N, "EncryptionConfiguration"),
+            target = M.EncryptionConfiguration,
+        }),
+        retentionInDays = schema.new({
+            id = id.from(_N, "GetInvestigationGroupOutput", "retentionInDays"),
+            type = "long",
+            name = "retentionInDays",
+            target_id = prelude.Long.id,
+        }),
+        chatbotNotificationChannel = schema.new({
+            id = id.from(_N, "GetInvestigationGroupOutput", "chatbotNotificationChannel"),
+            type = "map",
+            name = "chatbotNotificationChannel",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.Document,
+        }),
+        tagKeyBoundaries = schema.new({
+            id = id.from(_N, "GetInvestigationGroupOutput", "tagKeyBoundaries"),
+            type = "list",
+            name = "tagKeyBoundaries",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        isCloudTrailEventHistoryEnabled = schema.new({
+            id = id.from(_N, "GetInvestigationGroupOutput", "isCloudTrailEventHistoryEnabled"),
+            type = "boolean",
+            name = "isCloudTrailEventHistoryEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        crossAccountConfigurations = schema.new({
+            id = id.from(_N, "GetInvestigationGroupOutput", "crossAccountConfigurations"),
+            type = "list",
+            name = "crossAccountConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.CrossAccountConfiguration,
+        }),
+    },
+})
+
+M.ListInvestigationGroupsInput = schema.new({
+    id = id.from(_N, "ListInvestigationGroupsInput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListInvestigationGroupsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListInvestigationGroupsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.ListInvestigationGroupsModel = schema.new({
+    id = id.from(_N, "ListInvestigationGroupsModel"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "ListInvestigationGroupsModel", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "ListInvestigationGroupsModel", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListInvestigationGroupsOutput = schema.new({
+    id = id.from(_N, "ListInvestigationGroupsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListInvestigationGroupsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        investigationGroups = schema.new({
+            id = id.from(_N, "ListInvestigationGroupsOutput", "investigationGroups"),
+            type = "list",
+            name = "investigationGroups",
+            target_id = prelude.Document.id,
+            list_member = M.ListInvestigationGroupsModel,
+        }),
+    },
+})
+
+M.UpdateInvestigationGroupInput = schema.new({
+    id = id.from(_N, "UpdateInvestigationGroupInput"),
+    type = "structure",
+    members = {
+        identifier = schema.new({
+            id = id.from(_N, "UpdateInvestigationGroupInput", "identifier"),
+            type = "string",
+            name = "identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        roleArn = schema.new({
+            id = id.from(_N, "UpdateInvestigationGroupInput", "roleArn"),
+            type = "string",
+            name = "roleArn",
+            target_id = prelude.String.id,
+        }),
+        encryptionConfiguration = schema.new({
+            id = id.from(_N, "UpdateInvestigationGroupInput", "encryptionConfiguration"),
+            type = "structure",
+            name = "encryptionConfiguration",
+            target_id = id.from(_N, "EncryptionConfiguration"),
+            target = M.EncryptionConfiguration,
+        }),
+        tagKeyBoundaries = schema.new({
+            id = id.from(_N, "UpdateInvestigationGroupInput", "tagKeyBoundaries"),
+            type = "list",
+            name = "tagKeyBoundaries",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        chatbotNotificationChannel = schema.new({
+            id = id.from(_N, "UpdateInvestigationGroupInput", "chatbotNotificationChannel"),
+            type = "map",
+            name = "chatbotNotificationChannel",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.Document,
+        }),
+        isCloudTrailEventHistoryEnabled = schema.new({
+            id = id.from(_N, "UpdateInvestigationGroupInput", "isCloudTrailEventHistoryEnabled"),
+            type = "boolean",
+            name = "isCloudTrailEventHistoryEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        crossAccountConfigurations = schema.new({
+            id = id.from(_N, "UpdateInvestigationGroupInput", "crossAccountConfigurations"),
+            type = "list",
+            name = "crossAccountConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.CrossAccountConfiguration,
+        }),
+    },
+})
+
+M.UpdateInvestigationGroupOutput = schema.new({
+    id = id.from(_N, "UpdateInvestigationGroupOutput"),
+    type = "structure",
+})
+
+M.DeleteInvestigationGroupPolicyInput = schema.new({
+    id = id.from(_N, "DeleteInvestigationGroupPolicyInput"),
+    type = "structure",
+    members = {
+        identifier = schema.new({
+            id = id.from(_N, "DeleteInvestigationGroupPolicyInput", "identifier"),
+            type = "string",
+            name = "identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteInvestigationGroupPolicyOutput = schema.new({
+    id = id.from(_N, "DeleteInvestigationGroupPolicyOutput"),
+    type = "structure",
+})
+
+M.GetInvestigationGroupPolicyInput = schema.new({
+    id = id.from(_N, "GetInvestigationGroupPolicyInput"),
+    type = "structure",
+    members = {
+        identifier = schema.new({
+            id = id.from(_N, "GetInvestigationGroupPolicyInput", "identifier"),
+            type = "string",
+            name = "identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetInvestigationGroupPolicyOutput = schema.new({
+    id = id.from(_N, "GetInvestigationGroupPolicyOutput"),
+    type = "structure",
+    members = {
+        investigationGroupArn = schema.new({
+            id = id.from(_N, "GetInvestigationGroupPolicyOutput", "investigationGroupArn"),
+            type = "string",
+            name = "investigationGroupArn",
+            target_id = prelude.String.id,
+        }),
+        policy = schema.new({
+            id = id.from(_N, "GetInvestigationGroupPolicyOutput", "policy"),
+            type = "string",
+            name = "policy",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PutInvestigationGroupPolicyInput = schema.new({
+    id = id.from(_N, "PutInvestigationGroupPolicyInput"),
+    type = "structure",
+    members = {
+        identifier = schema.new({
+            id = id.from(_N, "PutInvestigationGroupPolicyInput", "identifier"),
+            type = "string",
+            name = "identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        policy = schema.new({
+            id = id.from(_N, "PutInvestigationGroupPolicyInput", "policy"),
+            type = "string",
+            name = "policy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutInvestigationGroupPolicyOutput = schema.new({
+    id = id.from(_N, "PutInvestigationGroupPolicyOutput"),
+    type = "structure",
+    members = {
+        investigationGroupArn = schema.new({
+            id = id.from(_N, "PutInvestigationGroupPolicyOutput", "investigationGroupArn"),
+            type = "string",
+            name = "investigationGroupArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceOutput"),
+    type = "structure",
+    members = {
+        tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "TagResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceOutput"),
+    type = "structure",
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "UntagResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        tagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "tagKeys"),
+            type = "list",
+            name = "tagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "tagKeys" },
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
+return M

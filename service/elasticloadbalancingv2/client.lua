@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("elasticloadbalancingv2.endpoint_rules")
 local query_protocol = require("protocol.query")
+local schemas = require("elasticloadbalancingv2.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("elasticloadbalancingv2.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:addListenerCertificates(input, options)
     return self:invokeOperation(input, {
         name = "AddListenerCertificates",
-        input_schema = types.AddListenerCertificatesInput,
-        output_schema = types.AddListenerCertificatesOutput,
+        input_schema = schemas.AddListenerCertificatesInput,
+        output_schema = schemas.AddListenerCertificatesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:addTags(input, options)
     return self:invokeOperation(input, {
         name = "AddTags",
-        input_schema = types.AddTagsInput,
-        output_schema = types.AddTagsOutput,
+        input_schema = schemas.AddTagsInput,
+        output_schema = schemas.AddTagsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:addTrustStoreRevocations(input, options)
     return self:invokeOperation(input, {
         name = "AddTrustStoreRevocations",
-        input_schema = types.AddTrustStoreRevocationsInput,
-        output_schema = types.AddTrustStoreRevocationsOutput,
+        input_schema = schemas.AddTrustStoreRevocationsInput,
+        output_schema = schemas.AddTrustStoreRevocationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createListener(input, options)
     return self:invokeOperation(input, {
         name = "CreateListener",
-        input_schema = types.CreateListenerInput,
-        output_schema = types.CreateListenerOutput,
+        input_schema = schemas.CreateListenerInput,
+        output_schema = schemas.CreateListenerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createLoadBalancer(input, options)
     return self:invokeOperation(input, {
         name = "CreateLoadBalancer",
-        input_schema = types.CreateLoadBalancerInput,
-        output_schema = types.CreateLoadBalancerOutput,
+        input_schema = schemas.CreateLoadBalancerInput,
+        output_schema = schemas.CreateLoadBalancerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createRule(input, options)
     return self:invokeOperation(input, {
         name = "CreateRule",
-        input_schema = types.CreateRuleInput,
-        output_schema = types.CreateRuleOutput,
+        input_schema = schemas.CreateRuleInput,
+        output_schema = schemas.CreateRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createTargetGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateTargetGroup",
-        input_schema = types.CreateTargetGroupInput,
-        output_schema = types.CreateTargetGroupOutput,
+        input_schema = schemas.CreateTargetGroupInput,
+        output_schema = schemas.CreateTargetGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createTrustStore(input, options)
     return self:invokeOperation(input, {
         name = "CreateTrustStore",
-        input_schema = types.CreateTrustStoreInput,
-        output_schema = types.CreateTrustStoreOutput,
+        input_schema = schemas.CreateTrustStoreInput,
+        output_schema = schemas.CreateTrustStoreOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteListener(input, options)
     return self:invokeOperation(input, {
         name = "DeleteListener",
-        input_schema = types.DeleteListenerInput,
-        output_schema = types.DeleteListenerOutput,
+        input_schema = schemas.DeleteListenerInput,
+        output_schema = schemas.DeleteListenerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteLoadBalancer(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLoadBalancer",
-        input_schema = types.DeleteLoadBalancerInput,
-        output_schema = types.DeleteLoadBalancerOutput,
+        input_schema = schemas.DeleteLoadBalancerInput,
+        output_schema = schemas.DeleteLoadBalancerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteRule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRule",
-        input_schema = types.DeleteRuleInput,
-        output_schema = types.DeleteRuleOutput,
+        input_schema = schemas.DeleteRuleInput,
+        output_schema = schemas.DeleteRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteSharedTrustStoreAssociation(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSharedTrustStoreAssociation",
-        input_schema = types.DeleteSharedTrustStoreAssociationInput,
-        output_schema = types.DeleteSharedTrustStoreAssociationOutput,
+        input_schema = schemas.DeleteSharedTrustStoreAssociationInput,
+        output_schema = schemas.DeleteSharedTrustStoreAssociationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteTargetGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTargetGroup",
-        input_schema = types.DeleteTargetGroupInput,
-        output_schema = types.DeleteTargetGroupOutput,
+        input_schema = schemas.DeleteTargetGroupInput,
+        output_schema = schemas.DeleteTargetGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteTrustStore(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTrustStore",
-        input_schema = types.DeleteTrustStoreInput,
-        output_schema = types.DeleteTrustStoreOutput,
+        input_schema = schemas.DeleteTrustStoreInput,
+        output_schema = schemas.DeleteTrustStoreOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deregisterTargets(input, options)
     return self:invokeOperation(input, {
         name = "DeregisterTargets",
-        input_schema = types.DeregisterTargetsInput,
-        output_schema = types.DeregisterTargetsOutput,
+        input_schema = schemas.DeregisterTargetsInput,
+        output_schema = schemas.DeregisterTargetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:describeAccountLimits(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAccountLimits",
-        input_schema = types.DescribeAccountLimitsInput,
-        output_schema = types.DescribeAccountLimitsOutput,
+        input_schema = schemas.DescribeAccountLimitsInput,
+        output_schema = schemas.DescribeAccountLimitsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:describeCapacityReservation(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCapacityReservation",
-        input_schema = types.DescribeCapacityReservationInput,
-        output_schema = types.DescribeCapacityReservationOutput,
+        input_schema = schemas.DescribeCapacityReservationInput,
+        output_schema = schemas.DescribeCapacityReservationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:describeListenerAttributes(input, options)
     return self:invokeOperation(input, {
         name = "DescribeListenerAttributes",
-        input_schema = types.DescribeListenerAttributesInput,
-        output_schema = types.DescribeListenerAttributesOutput,
+        input_schema = schemas.DescribeListenerAttributesInput,
+        output_schema = schemas.DescribeListenerAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:describeListenerCertificates(input, options)
     return self:invokeOperation(input, {
         name = "DescribeListenerCertificates",
-        input_schema = types.DescribeListenerCertificatesInput,
-        output_schema = types.DescribeListenerCertificatesOutput,
+        input_schema = schemas.DescribeListenerCertificatesInput,
+        output_schema = schemas.DescribeListenerCertificatesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:describeListeners(input, options)
     return self:invokeOperation(input, {
         name = "DescribeListeners",
-        input_schema = types.DescribeListenersInput,
-        output_schema = types.DescribeListenersOutput,
+        input_schema = schemas.DescribeListenersInput,
+        output_schema = schemas.DescribeListenersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:describeLoadBalancerAttributes(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLoadBalancerAttributes",
-        input_schema = types.DescribeLoadBalancerAttributesInput,
-        output_schema = types.DescribeLoadBalancerAttributesOutput,
+        input_schema = schemas.DescribeLoadBalancerAttributesInput,
+        output_schema = schemas.DescribeLoadBalancerAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:describeLoadBalancers(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLoadBalancers",
-        input_schema = types.DescribeLoadBalancersInput,
-        output_schema = types.DescribeLoadBalancersOutput,
+        input_schema = schemas.DescribeLoadBalancersInput,
+        output_schema = schemas.DescribeLoadBalancersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:describeRules(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRules",
-        input_schema = types.DescribeRulesInput,
-        output_schema = types.DescribeRulesOutput,
+        input_schema = schemas.DescribeRulesInput,
+        output_schema = schemas.DescribeRulesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:describeSSLPolicies(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSSLPolicies",
-        input_schema = types.DescribeSSLPoliciesInput,
-        output_schema = types.DescribeSSLPoliciesOutput,
+        input_schema = schemas.DescribeSSLPoliciesInput,
+        output_schema = schemas.DescribeSSLPoliciesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:describeTags(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTags",
-        input_schema = types.DescribeTagsInput,
-        output_schema = types.DescribeTagsOutput,
+        input_schema = schemas.DescribeTagsInput,
+        output_schema = schemas.DescribeTagsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:describeTargetGroupAttributes(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTargetGroupAttributes",
-        input_schema = types.DescribeTargetGroupAttributesInput,
-        output_schema = types.DescribeTargetGroupAttributesOutput,
+        input_schema = schemas.DescribeTargetGroupAttributesInput,
+        output_schema = schemas.DescribeTargetGroupAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:describeTargetGroups(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTargetGroups",
-        input_schema = types.DescribeTargetGroupsInput,
-        output_schema = types.DescribeTargetGroupsOutput,
+        input_schema = schemas.DescribeTargetGroupsInput,
+        output_schema = schemas.DescribeTargetGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:describeTargetHealth(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTargetHealth",
-        input_schema = types.DescribeTargetHealthInput,
-        output_schema = types.DescribeTargetHealthOutput,
+        input_schema = schemas.DescribeTargetHealthInput,
+        output_schema = schemas.DescribeTargetHealthOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:describeTrustStoreAssociations(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTrustStoreAssociations",
-        input_schema = types.DescribeTrustStoreAssociationsInput,
-        output_schema = types.DescribeTrustStoreAssociationsOutput,
+        input_schema = schemas.DescribeTrustStoreAssociationsInput,
+        output_schema = schemas.DescribeTrustStoreAssociationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:describeTrustStoreRevocations(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTrustStoreRevocations",
-        input_schema = types.DescribeTrustStoreRevocationsInput,
-        output_schema = types.DescribeTrustStoreRevocationsOutput,
+        input_schema = schemas.DescribeTrustStoreRevocationsInput,
+        output_schema = schemas.DescribeTrustStoreRevocationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:describeTrustStores(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTrustStores",
-        input_schema = types.DescribeTrustStoresInput,
-        output_schema = types.DescribeTrustStoresOutput,
+        input_schema = schemas.DescribeTrustStoresInput,
+        output_schema = schemas.DescribeTrustStoresOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:getResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcePolicy",
-        input_schema = types.GetResourcePolicyInput,
-        output_schema = types.GetResourcePolicyOutput,
+        input_schema = schemas.GetResourcePolicyInput,
+        output_schema = schemas.GetResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:getTrustStoreCaCertificatesBundle(input, options)
     return self:invokeOperation(input, {
         name = "GetTrustStoreCaCertificatesBundle",
-        input_schema = types.GetTrustStoreCaCertificatesBundleInput,
-        output_schema = types.GetTrustStoreCaCertificatesBundleOutput,
+        input_schema = schemas.GetTrustStoreCaCertificatesBundleInput,
+        output_schema = schemas.GetTrustStoreCaCertificatesBundleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:getTrustStoreRevocationContent(input, options)
     return self:invokeOperation(input, {
         name = "GetTrustStoreRevocationContent",
-        input_schema = types.GetTrustStoreRevocationContentInput,
-        output_schema = types.GetTrustStoreRevocationContentOutput,
+        input_schema = schemas.GetTrustStoreRevocationContentInput,
+        output_schema = schemas.GetTrustStoreRevocationContentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:modifyCapacityReservation(input, options)
     return self:invokeOperation(input, {
         name = "ModifyCapacityReservation",
-        input_schema = types.ModifyCapacityReservationInput,
-        output_schema = types.ModifyCapacityReservationOutput,
+        input_schema = schemas.ModifyCapacityReservationInput,
+        output_schema = schemas.ModifyCapacityReservationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:modifyIpPools(input, options)
     return self:invokeOperation(input, {
         name = "ModifyIpPools",
-        input_schema = types.ModifyIpPoolsInput,
-        output_schema = types.ModifyIpPoolsOutput,
+        input_schema = schemas.ModifyIpPoolsInput,
+        output_schema = schemas.ModifyIpPoolsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:modifyListener(input, options)
     return self:invokeOperation(input, {
         name = "ModifyListener",
-        input_schema = types.ModifyListenerInput,
-        output_schema = types.ModifyListenerOutput,
+        input_schema = schemas.ModifyListenerInput,
+        output_schema = schemas.ModifyListenerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:modifyListenerAttributes(input, options)
     return self:invokeOperation(input, {
         name = "ModifyListenerAttributes",
-        input_schema = types.ModifyListenerAttributesInput,
-        output_schema = types.ModifyListenerAttributesOutput,
+        input_schema = schemas.ModifyListenerAttributesInput,
+        output_schema = schemas.ModifyListenerAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:modifyLoadBalancerAttributes(input, options)
     return self:invokeOperation(input, {
         name = "ModifyLoadBalancerAttributes",
-        input_schema = types.ModifyLoadBalancerAttributesInput,
-        output_schema = types.ModifyLoadBalancerAttributesOutput,
+        input_schema = schemas.ModifyLoadBalancerAttributesInput,
+        output_schema = schemas.ModifyLoadBalancerAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:modifyRule(input, options)
     return self:invokeOperation(input, {
         name = "ModifyRule",
-        input_schema = types.ModifyRuleInput,
-        output_schema = types.ModifyRuleOutput,
+        input_schema = schemas.ModifyRuleInput,
+        output_schema = schemas.ModifyRuleOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:modifyTargetGroup(input, options)
     return self:invokeOperation(input, {
         name = "ModifyTargetGroup",
-        input_schema = types.ModifyTargetGroupInput,
-        output_schema = types.ModifyTargetGroupOutput,
+        input_schema = schemas.ModifyTargetGroupInput,
+        output_schema = schemas.ModifyTargetGroupOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:modifyTargetGroupAttributes(input, options)
     return self:invokeOperation(input, {
         name = "ModifyTargetGroupAttributes",
-        input_schema = types.ModifyTargetGroupAttributesInput,
-        output_schema = types.ModifyTargetGroupAttributesOutput,
+        input_schema = schemas.ModifyTargetGroupAttributesInput,
+        output_schema = schemas.ModifyTargetGroupAttributesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:modifyTrustStore(input, options)
     return self:invokeOperation(input, {
         name = "ModifyTrustStore",
-        input_schema = types.ModifyTrustStoreInput,
-        output_schema = types.ModifyTrustStoreOutput,
+        input_schema = schemas.ModifyTrustStoreInput,
+        output_schema = schemas.ModifyTrustStoreOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:registerTargets(input, options)
     return self:invokeOperation(input, {
         name = "RegisterTargets",
-        input_schema = types.RegisterTargetsInput,
-        output_schema = types.RegisterTargetsOutput,
+        input_schema = schemas.RegisterTargetsInput,
+        output_schema = schemas.RegisterTargetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:removeListenerCertificates(input, options)
     return self:invokeOperation(input, {
         name = "RemoveListenerCertificates",
-        input_schema = types.RemoveListenerCertificatesInput,
-        output_schema = types.RemoveListenerCertificatesOutput,
+        input_schema = schemas.RemoveListenerCertificatesInput,
+        output_schema = schemas.RemoveListenerCertificatesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:removeTags(input, options)
     return self:invokeOperation(input, {
         name = "RemoveTags",
-        input_schema = types.RemoveTagsInput,
-        output_schema = types.RemoveTagsOutput,
+        input_schema = schemas.RemoveTagsInput,
+        output_schema = schemas.RemoveTagsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:removeTrustStoreRevocations(input, options)
     return self:invokeOperation(input, {
         name = "RemoveTrustStoreRevocations",
-        input_schema = types.RemoveTrustStoreRevocationsInput,
-        output_schema = types.RemoveTrustStoreRevocationsOutput,
+        input_schema = schemas.RemoveTrustStoreRevocationsInput,
+        output_schema = schemas.RemoveTrustStoreRevocationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:setIpAddressType(input, options)
     return self:invokeOperation(input, {
         name = "SetIpAddressType",
-        input_schema = types.SetIpAddressTypeInput,
-        output_schema = types.SetIpAddressTypeOutput,
+        input_schema = schemas.SetIpAddressTypeInput,
+        output_schema = schemas.SetIpAddressTypeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:setRulePriorities(input, options)
     return self:invokeOperation(input, {
         name = "SetRulePriorities",
-        input_schema = types.SetRulePrioritiesInput,
-        output_schema = types.SetRulePrioritiesOutput,
+        input_schema = schemas.SetRulePrioritiesInput,
+        output_schema = schemas.SetRulePrioritiesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:setSecurityGroups(input, options)
     return self:invokeOperation(input, {
         name = "SetSecurityGroups",
-        input_schema = types.SetSecurityGroupsInput,
-        output_schema = types.SetSecurityGroupsOutput,
+        input_schema = schemas.SetSecurityGroupsInput,
+        output_schema = schemas.SetSecurityGroupsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:setSubnets(input, options)
     return self:invokeOperation(input, {
         name = "SetSubnets",
-        input_schema = types.SetSubnetsInput,
-        output_schema = types.SetSubnetsOutput,
+        input_schema = schemas.SetSubnetsInput,
+        output_schema = schemas.SetSubnetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

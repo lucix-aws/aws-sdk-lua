@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("bedrockagent.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("bedrockagent.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("bedrockagent.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateAgentCollaborator(input, options)
     return self:invokeOperation(input, {
         name = "AssociateAgentCollaborator",
-        input_schema = types.AssociateAgentCollaboratorInput,
-        output_schema = types.AssociateAgentCollaboratorOutput,
+        input_schema = schemas.AssociateAgentCollaboratorInput,
+        output_schema = schemas.AssociateAgentCollaboratorOutput,
         http_method = "PUT",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/agentcollaborators/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:associateAgentKnowledgeBase(input, options)
     return self:invokeOperation(input, {
         name = "AssociateAgentKnowledgeBase",
-        input_schema = types.AssociateAgentKnowledgeBaseInput,
-        output_schema = types.AssociateAgentKnowledgeBaseOutput,
+        input_schema = schemas.AssociateAgentKnowledgeBaseInput,
+        output_schema = schemas.AssociateAgentKnowledgeBaseOutput,
         http_method = "PUT",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createAgent(input, options)
     return self:invokeOperation(input, {
         name = "CreateAgent",
-        input_schema = types.CreateAgentInput,
-        output_schema = types.CreateAgentOutput,
+        input_schema = schemas.CreateAgentInput,
+        output_schema = schemas.CreateAgentOutput,
         http_method = "PUT",
         http_path = "/agents/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createAgentActionGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateAgentActionGroup",
-        input_schema = types.CreateAgentActionGroupInput,
-        output_schema = types.CreateAgentActionGroupOutput,
+        input_schema = schemas.CreateAgentActionGroupInput,
+        output_schema = schemas.CreateAgentActionGroupOutput,
         http_method = "PUT",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/actiongroups/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createAgentAlias(input, options)
     return self:invokeOperation(input, {
         name = "CreateAgentAlias",
-        input_schema = types.CreateAgentAliasInput,
-        output_schema = types.CreateAgentAliasOutput,
+        input_schema = schemas.CreateAgentAliasInput,
+        output_schema = schemas.CreateAgentAliasOutput,
         http_method = "PUT",
         http_path = "/agents/{agentId}/agentaliases/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createDataSource(input, options)
     return self:invokeOperation(input, {
         name = "CreateDataSource",
-        input_schema = types.CreateDataSourceInput,
-        output_schema = types.CreateDataSourceOutput,
+        input_schema = schemas.CreateDataSourceInput,
+        output_schema = schemas.CreateDataSourceOutput,
         http_method = "PUT",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createFlow(input, options)
     return self:invokeOperation(input, {
         name = "CreateFlow",
-        input_schema = types.CreateFlowInput,
-        output_schema = types.CreateFlowOutput,
+        input_schema = schemas.CreateFlowInput,
+        output_schema = schemas.CreateFlowOutput,
         http_method = "POST",
         http_path = "/flows/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createFlowAlias(input, options)
     return self:invokeOperation(input, {
         name = "CreateFlowAlias",
-        input_schema = types.CreateFlowAliasInput,
-        output_schema = types.CreateFlowAliasOutput,
+        input_schema = schemas.CreateFlowAliasInput,
+        output_schema = schemas.CreateFlowAliasOutput,
         http_method = "POST",
         http_path = "/flows/{flowIdentifier}/aliases",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createFlowVersion(input, options)
     return self:invokeOperation(input, {
         name = "CreateFlowVersion",
-        input_schema = types.CreateFlowVersionInput,
-        output_schema = types.CreateFlowVersionOutput,
+        input_schema = schemas.CreateFlowVersionInput,
+        output_schema = schemas.CreateFlowVersionOutput,
         http_method = "POST",
         http_path = "/flows/{flowIdentifier}/versions",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createKnowledgeBase(input, options)
     return self:invokeOperation(input, {
         name = "CreateKnowledgeBase",
-        input_schema = types.CreateKnowledgeBaseInput,
-        output_schema = types.CreateKnowledgeBaseOutput,
+        input_schema = schemas.CreateKnowledgeBaseInput,
+        output_schema = schemas.CreateKnowledgeBaseOutput,
         http_method = "PUT",
         http_path = "/knowledgebases/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createPrompt(input, options)
     return self:invokeOperation(input, {
         name = "CreatePrompt",
-        input_schema = types.CreatePromptInput,
-        output_schema = types.CreatePromptOutput,
+        input_schema = schemas.CreatePromptInput,
+        output_schema = schemas.CreatePromptOutput,
         http_method = "POST",
         http_path = "/prompts/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createPromptVersion(input, options)
     return self:invokeOperation(input, {
         name = "CreatePromptVersion",
-        input_schema = types.CreatePromptVersionInput,
-        output_schema = types.CreatePromptVersionOutput,
+        input_schema = schemas.CreatePromptVersionInput,
+        output_schema = schemas.CreatePromptVersionOutput,
         http_method = "POST",
         http_path = "/prompts/{promptIdentifier}/versions",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteAgent(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAgent",
-        input_schema = types.DeleteAgentInput,
-        output_schema = types.DeleteAgentOutput,
+        input_schema = schemas.DeleteAgentInput,
+        output_schema = schemas.DeleteAgentOutput,
         http_method = "DELETE",
         http_path = "/agents/{agentId}/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteAgentActionGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAgentActionGroup",
-        input_schema = types.DeleteAgentActionGroupInput,
-        output_schema = types.DeleteAgentActionGroupOutput,
+        input_schema = schemas.DeleteAgentActionGroupInput,
+        output_schema = schemas.DeleteAgentActionGroupOutput,
         http_method = "DELETE",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/actiongroups/{actionGroupId}/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteAgentAlias(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAgentAlias",
-        input_schema = types.DeleteAgentAliasInput,
-        output_schema = types.DeleteAgentAliasOutput,
+        input_schema = schemas.DeleteAgentAliasInput,
+        output_schema = schemas.DeleteAgentAliasOutput,
         http_method = "DELETE",
         http_path = "/agents/{agentId}/agentaliases/{agentAliasId}/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteAgentVersion(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAgentVersion",
-        input_schema = types.DeleteAgentVersionInput,
-        output_schema = types.DeleteAgentVersionOutput,
+        input_schema = schemas.DeleteAgentVersionInput,
+        output_schema = schemas.DeleteAgentVersionOutput,
         http_method = "DELETE",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteDataSource(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDataSource",
-        input_schema = types.DeleteDataSourceInput,
-        output_schema = types.DeleteDataSourceOutput,
+        input_schema = schemas.DeleteDataSourceInput,
+        output_schema = schemas.DeleteDataSourceOutput,
         http_method = "DELETE",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteFlow(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFlow",
-        input_schema = types.DeleteFlowInput,
-        output_schema = types.DeleteFlowOutput,
+        input_schema = schemas.DeleteFlowInput,
+        output_schema = schemas.DeleteFlowOutput,
         http_method = "DELETE",
         http_path = "/flows/{flowIdentifier}/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:deleteFlowAlias(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFlowAlias",
-        input_schema = types.DeleteFlowAliasInput,
-        output_schema = types.DeleteFlowAliasOutput,
+        input_schema = schemas.DeleteFlowAliasInput,
+        output_schema = schemas.DeleteFlowAliasOutput,
         http_method = "DELETE",
         http_path = "/flows/{flowIdentifier}/aliases/{aliasIdentifier}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deleteFlowVersion(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFlowVersion",
-        input_schema = types.DeleteFlowVersionInput,
-        output_schema = types.DeleteFlowVersionOutput,
+        input_schema = schemas.DeleteFlowVersionInput,
+        output_schema = schemas.DeleteFlowVersionOutput,
         http_method = "DELETE",
         http_path = "/flows/{flowIdentifier}/versions/{flowVersion}/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteKnowledgeBase(input, options)
     return self:invokeOperation(input, {
         name = "DeleteKnowledgeBase",
-        input_schema = types.DeleteKnowledgeBaseInput,
-        output_schema = types.DeleteKnowledgeBaseOutput,
+        input_schema = schemas.DeleteKnowledgeBaseInput,
+        output_schema = schemas.DeleteKnowledgeBaseOutput,
         http_method = "DELETE",
         http_path = "/knowledgebases/{knowledgeBaseId}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:deleteKnowledgeBaseDocuments(input, options)
     return self:invokeOperation(input, {
         name = "DeleteKnowledgeBaseDocuments",
-        input_schema = types.DeleteKnowledgeBaseDocumentsInput,
-        output_schema = types.DeleteKnowledgeBaseDocumentsOutput,
+        input_schema = schemas.DeleteKnowledgeBaseDocumentsInput,
+        output_schema = schemas.DeleteKnowledgeBaseDocumentsOutput,
         http_method = "POST",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/documents/deleteDocuments",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:deletePrompt(input, options)
     return self:invokeOperation(input, {
         name = "DeletePrompt",
-        input_schema = types.DeletePromptInput,
-        output_schema = types.DeletePromptOutput,
+        input_schema = schemas.DeletePromptInput,
+        output_schema = schemas.DeletePromptOutput,
         http_method = "DELETE",
         http_path = "/prompts/{promptIdentifier}/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:disassociateAgentCollaborator(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateAgentCollaborator",
-        input_schema = types.DisassociateAgentCollaboratorInput,
-        output_schema = types.DisassociateAgentCollaboratorOutput,
+        input_schema = schemas.DisassociateAgentCollaboratorInput,
+        output_schema = schemas.DisassociateAgentCollaboratorOutput,
         http_method = "DELETE",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/agentcollaborators/{collaboratorId}/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:disassociateAgentKnowledgeBase(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateAgentKnowledgeBase",
-        input_schema = types.DisassociateAgentKnowledgeBaseInput,
-        output_schema = types.DisassociateAgentKnowledgeBaseOutput,
+        input_schema = schemas.DisassociateAgentKnowledgeBaseInput,
+        output_schema = schemas.DisassociateAgentKnowledgeBaseOutput,
         http_method = "DELETE",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/{knowledgeBaseId}/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:getAgent(input, options)
     return self:invokeOperation(input, {
         name = "GetAgent",
-        input_schema = types.GetAgentInput,
-        output_schema = types.GetAgentOutput,
+        input_schema = schemas.GetAgentInput,
+        output_schema = schemas.GetAgentOutput,
         http_method = "GET",
         http_path = "/agents/{agentId}/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:getAgentActionGroup(input, options)
     return self:invokeOperation(input, {
         name = "GetAgentActionGroup",
-        input_schema = types.GetAgentActionGroupInput,
-        output_schema = types.GetAgentActionGroupOutput,
+        input_schema = schemas.GetAgentActionGroupInput,
+        output_schema = schemas.GetAgentActionGroupOutput,
         http_method = "GET",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/actiongroups/{actionGroupId}/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:getAgentAlias(input, options)
     return self:invokeOperation(input, {
         name = "GetAgentAlias",
-        input_schema = types.GetAgentAliasInput,
-        output_schema = types.GetAgentAliasOutput,
+        input_schema = schemas.GetAgentAliasInput,
+        output_schema = schemas.GetAgentAliasOutput,
         http_method = "GET",
         http_path = "/agents/{agentId}/agentaliases/{agentAliasId}/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:getAgentCollaborator(input, options)
     return self:invokeOperation(input, {
         name = "GetAgentCollaborator",
-        input_schema = types.GetAgentCollaboratorInput,
-        output_schema = types.GetAgentCollaboratorOutput,
+        input_schema = schemas.GetAgentCollaboratorInput,
+        output_schema = schemas.GetAgentCollaboratorOutput,
         http_method = "GET",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/agentcollaborators/{collaboratorId}/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:getAgentKnowledgeBase(input, options)
     return self:invokeOperation(input, {
         name = "GetAgentKnowledgeBase",
-        input_schema = types.GetAgentKnowledgeBaseInput,
-        output_schema = types.GetAgentKnowledgeBaseOutput,
+        input_schema = schemas.GetAgentKnowledgeBaseInput,
+        output_schema = schemas.GetAgentKnowledgeBaseOutput,
         http_method = "GET",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/{knowledgeBaseId}/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:getAgentVersion(input, options)
     return self:invokeOperation(input, {
         name = "GetAgentVersion",
-        input_schema = types.GetAgentVersionInput,
-        output_schema = types.GetAgentVersionOutput,
+        input_schema = schemas.GetAgentVersionInput,
+        output_schema = schemas.GetAgentVersionOutput,
         http_method = "GET",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:getDataSource(input, options)
     return self:invokeOperation(input, {
         name = "GetDataSource",
-        input_schema = types.GetDataSourceInput,
-        output_schema = types.GetDataSourceOutput,
+        input_schema = schemas.GetDataSourceInput,
+        output_schema = schemas.GetDataSourceOutput,
         http_method = "GET",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:getFlow(input, options)
     return self:invokeOperation(input, {
         name = "GetFlow",
-        input_schema = types.GetFlowInput,
-        output_schema = types.GetFlowOutput,
+        input_schema = schemas.GetFlowInput,
+        output_schema = schemas.GetFlowOutput,
         http_method = "GET",
         http_path = "/flows/{flowIdentifier}/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:getFlowAlias(input, options)
     return self:invokeOperation(input, {
         name = "GetFlowAlias",
-        input_schema = types.GetFlowAliasInput,
-        output_schema = types.GetFlowAliasOutput,
+        input_schema = schemas.GetFlowAliasInput,
+        output_schema = schemas.GetFlowAliasOutput,
         http_method = "GET",
         http_path = "/flows/{flowIdentifier}/aliases/{aliasIdentifier}",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:getFlowVersion(input, options)
     return self:invokeOperation(input, {
         name = "GetFlowVersion",
-        input_schema = types.GetFlowVersionInput,
-        output_schema = types.GetFlowVersionOutput,
+        input_schema = schemas.GetFlowVersionInput,
+        output_schema = schemas.GetFlowVersionOutput,
         http_method = "GET",
         http_path = "/flows/{flowIdentifier}/versions/{flowVersion}/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:getIngestionJob(input, options)
     return self:invokeOperation(input, {
         name = "GetIngestionJob",
-        input_schema = types.GetIngestionJobInput,
-        output_schema = types.GetIngestionJobOutput,
+        input_schema = schemas.GetIngestionJobInput,
+        output_schema = schemas.GetIngestionJobOutput,
         http_method = "GET",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/ingestionjobs/{ingestionJobId}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:getKnowledgeBase(input, options)
     return self:invokeOperation(input, {
         name = "GetKnowledgeBase",
-        input_schema = types.GetKnowledgeBaseInput,
-        output_schema = types.GetKnowledgeBaseOutput,
+        input_schema = schemas.GetKnowledgeBaseInput,
+        output_schema = schemas.GetKnowledgeBaseOutput,
         http_method = "GET",
         http_path = "/knowledgebases/{knowledgeBaseId}",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:getKnowledgeBaseDocuments(input, options)
     return self:invokeOperation(input, {
         name = "GetKnowledgeBaseDocuments",
-        input_schema = types.GetKnowledgeBaseDocumentsInput,
-        output_schema = types.GetKnowledgeBaseDocumentsOutput,
+        input_schema = schemas.GetKnowledgeBaseDocumentsInput,
+        output_schema = schemas.GetKnowledgeBaseDocumentsOutput,
         http_method = "POST",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/documents/getDocuments",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:getPrompt(input, options)
     return self:invokeOperation(input, {
         name = "GetPrompt",
-        input_schema = types.GetPromptInput,
-        output_schema = types.GetPromptOutput,
+        input_schema = schemas.GetPromptInput,
+        output_schema = schemas.GetPromptOutput,
         http_method = "GET",
         http_path = "/prompts/{promptIdentifier}/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:ingestKnowledgeBaseDocuments(input, options)
     return self:invokeOperation(input, {
         name = "IngestKnowledgeBaseDocuments",
-        input_schema = types.IngestKnowledgeBaseDocumentsInput,
-        output_schema = types.IngestKnowledgeBaseDocumentsOutput,
+        input_schema = schemas.IngestKnowledgeBaseDocumentsInput,
+        output_schema = schemas.IngestKnowledgeBaseDocumentsOutput,
         http_method = "PUT",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/documents",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:listAgentActionGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListAgentActionGroups",
-        input_schema = types.ListAgentActionGroupsInput,
-        output_schema = types.ListAgentActionGroupsOutput,
+        input_schema = schemas.ListAgentActionGroupsInput,
+        output_schema = schemas.ListAgentActionGroupsOutput,
         http_method = "POST",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/actiongroups/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:listAgentAliases(input, options)
     return self:invokeOperation(input, {
         name = "ListAgentAliases",
-        input_schema = types.ListAgentAliasesInput,
-        output_schema = types.ListAgentAliasesOutput,
+        input_schema = schemas.ListAgentAliasesInput,
+        output_schema = schemas.ListAgentAliasesOutput,
         http_method = "POST",
         http_path = "/agents/{agentId}/agentaliases/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:listAgentCollaborators(input, options)
     return self:invokeOperation(input, {
         name = "ListAgentCollaborators",
-        input_schema = types.ListAgentCollaboratorsInput,
-        output_schema = types.ListAgentCollaboratorsOutput,
+        input_schema = schemas.ListAgentCollaboratorsInput,
+        output_schema = schemas.ListAgentCollaboratorsOutput,
         http_method = "POST",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/agentcollaborators/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:listAgentKnowledgeBases(input, options)
     return self:invokeOperation(input, {
         name = "ListAgentKnowledgeBases",
-        input_schema = types.ListAgentKnowledgeBasesInput,
-        output_schema = types.ListAgentKnowledgeBasesOutput,
+        input_schema = schemas.ListAgentKnowledgeBasesInput,
+        output_schema = schemas.ListAgentKnowledgeBasesOutput,
         http_method = "POST",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:listAgents(input, options)
     return self:invokeOperation(input, {
         name = "ListAgents",
-        input_schema = types.ListAgentsInput,
-        output_schema = types.ListAgentsOutput,
+        input_schema = schemas.ListAgentsInput,
+        output_schema = schemas.ListAgentsOutput,
         http_method = "POST",
         http_path = "/agents/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:listAgentVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListAgentVersions",
-        input_schema = types.ListAgentVersionsInput,
-        output_schema = types.ListAgentVersionsOutput,
+        input_schema = schemas.ListAgentVersionsInput,
+        output_schema = schemas.ListAgentVersionsOutput,
         http_method = "POST",
         http_path = "/agents/{agentId}/agentversions/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:listDataSources(input, options)
     return self:invokeOperation(input, {
         name = "ListDataSources",
-        input_schema = types.ListDataSourcesInput,
-        output_schema = types.ListDataSourcesOutput,
+        input_schema = schemas.ListDataSourcesInput,
+        output_schema = schemas.ListDataSourcesOutput,
         http_method = "POST",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:listFlowAliases(input, options)
     return self:invokeOperation(input, {
         name = "ListFlowAliases",
-        input_schema = types.ListFlowAliasesInput,
-        output_schema = types.ListFlowAliasesOutput,
+        input_schema = schemas.ListFlowAliasesInput,
+        output_schema = schemas.ListFlowAliasesOutput,
         http_method = "GET",
         http_path = "/flows/{flowIdentifier}/aliases",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:listFlows(input, options)
     return self:invokeOperation(input, {
         name = "ListFlows",
-        input_schema = types.ListFlowsInput,
-        output_schema = types.ListFlowsOutput,
+        input_schema = schemas.ListFlowsInput,
+        output_schema = schemas.ListFlowsOutput,
         http_method = "GET",
         http_path = "/flows/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:listFlowVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListFlowVersions",
-        input_schema = types.ListFlowVersionsInput,
-        output_schema = types.ListFlowVersionsOutput,
+        input_schema = schemas.ListFlowVersionsInput,
+        output_schema = schemas.ListFlowVersionsOutput,
         http_method = "GET",
         http_path = "/flows/{flowIdentifier}/versions",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:listIngestionJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListIngestionJobs",
-        input_schema = types.ListIngestionJobsInput,
-        output_schema = types.ListIngestionJobsOutput,
+        input_schema = schemas.ListIngestionJobsInput,
+        output_schema = schemas.ListIngestionJobsOutput,
         http_method = "POST",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/ingestionjobs/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:listKnowledgeBaseDocuments(input, options)
     return self:invokeOperation(input, {
         name = "ListKnowledgeBaseDocuments",
-        input_schema = types.ListKnowledgeBaseDocumentsInput,
-        output_schema = types.ListKnowledgeBaseDocumentsOutput,
+        input_schema = schemas.ListKnowledgeBaseDocumentsInput,
+        output_schema = schemas.ListKnowledgeBaseDocumentsOutput,
         http_method = "POST",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/documents",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:listKnowledgeBases(input, options)
     return self:invokeOperation(input, {
         name = "ListKnowledgeBases",
-        input_schema = types.ListKnowledgeBasesInput,
-        output_schema = types.ListKnowledgeBasesOutput,
+        input_schema = schemas.ListKnowledgeBasesInput,
+        output_schema = schemas.ListKnowledgeBasesOutput,
         http_method = "POST",
         http_path = "/knowledgebases/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:listPrompts(input, options)
     return self:invokeOperation(input, {
         name = "ListPrompts",
-        input_schema = types.ListPromptsInput,
-        output_schema = types.ListPromptsOutput,
+        input_schema = schemas.ListPromptsInput,
+        output_schema = schemas.ListPromptsOutput,
         http_method = "GET",
         http_path = "/prompts/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:prepareAgent(input, options)
     return self:invokeOperation(input, {
         name = "PrepareAgent",
-        input_schema = types.PrepareAgentInput,
-        output_schema = types.PrepareAgentOutput,
+        input_schema = schemas.PrepareAgentInput,
+        output_schema = schemas.PrepareAgentOutput,
         http_method = "POST",
         http_path = "/agents/{agentId}/",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:prepareFlow(input, options)
     return self:invokeOperation(input, {
         name = "PrepareFlow",
-        input_schema = types.PrepareFlowInput,
-        output_schema = types.PrepareFlowOutput,
+        input_schema = schemas.PrepareFlowInput,
+        output_schema = schemas.PrepareFlowOutput,
         http_method = "POST",
         http_path = "/flows/{flowIdentifier}/",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:startIngestionJob(input, options)
     return self:invokeOperation(input, {
         name = "StartIngestionJob",
-        input_schema = types.StartIngestionJobInput,
-        output_schema = types.StartIngestionJobOutput,
+        input_schema = schemas.StartIngestionJobInput,
+        output_schema = schemas.StartIngestionJobOutput,
         http_method = "PUT",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/ingestionjobs/",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:stopIngestionJob(input, options)
     return self:invokeOperation(input, {
         name = "StopIngestionJob",
-        input_schema = types.StopIngestionJobInput,
-        output_schema = types.StopIngestionJobOutput,
+        input_schema = schemas.StopIngestionJobInput,
+        output_schema = schemas.StopIngestionJobOutput,
         http_method = "POST",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/ingestionjobs/{ingestionJobId}/stop",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:updateAgent(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAgent",
-        input_schema = types.UpdateAgentInput,
-        output_schema = types.UpdateAgentOutput,
+        input_schema = schemas.UpdateAgentInput,
+        output_schema = schemas.UpdateAgentOutput,
         http_method = "PUT",
         http_path = "/agents/{agentId}/",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:updateAgentActionGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAgentActionGroup",
-        input_schema = types.UpdateAgentActionGroupInput,
-        output_schema = types.UpdateAgentActionGroupOutput,
+        input_schema = schemas.UpdateAgentActionGroupInput,
+        output_schema = schemas.UpdateAgentActionGroupOutput,
         http_method = "PUT",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/actiongroups/{actionGroupId}/",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:updateAgentAlias(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAgentAlias",
-        input_schema = types.UpdateAgentAliasInput,
-        output_schema = types.UpdateAgentAliasOutput,
+        input_schema = schemas.UpdateAgentAliasInput,
+        output_schema = schemas.UpdateAgentAliasOutput,
         http_method = "PUT",
         http_path = "/agents/{agentId}/agentaliases/{agentAliasId}/",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:updateAgentCollaborator(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAgentCollaborator",
-        input_schema = types.UpdateAgentCollaboratorInput,
-        output_schema = types.UpdateAgentCollaboratorOutput,
+        input_schema = schemas.UpdateAgentCollaboratorInput,
+        output_schema = schemas.UpdateAgentCollaboratorOutput,
         http_method = "PUT",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/agentcollaborators/{collaboratorId}/",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:updateAgentKnowledgeBase(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAgentKnowledgeBase",
-        input_schema = types.UpdateAgentKnowledgeBaseInput,
-        output_schema = types.UpdateAgentKnowledgeBaseOutput,
+        input_schema = schemas.UpdateAgentKnowledgeBaseInput,
+        output_schema = schemas.UpdateAgentKnowledgeBaseOutput,
         http_method = "PUT",
         http_path = "/agents/{agentId}/agentversions/{agentVersion}/knowledgebases/{knowledgeBaseId}/",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:updateDataSource(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDataSource",
-        input_schema = types.UpdateDataSourceInput,
-        output_schema = types.UpdateDataSourceOutput,
+        input_schema = schemas.UpdateDataSourceInput,
+        output_schema = schemas.UpdateDataSourceOutput,
         http_method = "PUT",
         http_path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:updateFlow(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFlow",
-        input_schema = types.UpdateFlowInput,
-        output_schema = types.UpdateFlowOutput,
+        input_schema = schemas.UpdateFlowInput,
+        output_schema = schemas.UpdateFlowOutput,
         http_method = "PUT",
         http_path = "/flows/{flowIdentifier}/",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:updateFlowAlias(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFlowAlias",
-        input_schema = types.UpdateFlowAliasInput,
-        output_schema = types.UpdateFlowAliasOutput,
+        input_schema = schemas.UpdateFlowAliasInput,
+        output_schema = schemas.UpdateFlowAliasOutput,
         http_method = "PUT",
         http_path = "/flows/{flowIdentifier}/aliases/{aliasIdentifier}",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:updateKnowledgeBase(input, options)
     return self:invokeOperation(input, {
         name = "UpdateKnowledgeBase",
-        input_schema = types.UpdateKnowledgeBaseInput,
-        output_schema = types.UpdateKnowledgeBaseOutput,
+        input_schema = schemas.UpdateKnowledgeBaseInput,
+        output_schema = schemas.UpdateKnowledgeBaseOutput,
         http_method = "PUT",
         http_path = "/knowledgebases/{knowledgeBaseId}",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:updatePrompt(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePrompt",
-        input_schema = types.UpdatePromptInput,
-        output_schema = types.UpdatePromptOutput,
+        input_schema = schemas.UpdatePromptInput,
+        output_schema = schemas.UpdatePromptOutput,
         http_method = "PUT",
         http_path = "/prompts/{promptIdentifier}/",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:validateFlowDefinition(input, options)
     return self:invokeOperation(input, {
         name = "ValidateFlowDefinition",
-        input_schema = types.ValidateFlowDefinitionInput,
-        output_schema = types.ValidateFlowDefinitionOutput,
+        input_schema = schemas.ValidateFlowDefinitionInput,
+        output_schema = schemas.ValidateFlowDefinitionOutput,
         http_method = "POST",
         http_path = "/flows/validate-definition",
         effective_auth_schemes = {

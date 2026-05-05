@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("uxc.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("uxc.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("uxc.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getAccountCustomizations(input, options)
     return self:invokeOperation(input, {
         name = "GetAccountCustomizations",
-        input_schema = types.GetAccountCustomizationsInput,
-        output_schema = types.GetAccountCustomizationsOutput,
+        input_schema = schemas.GetAccountCustomizationsInput,
+        output_schema = schemas.GetAccountCustomizationsOutput,
         http_method = "GET",
         http_path = "/v1/account-customizations",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:listServices(input, options)
     return self:invokeOperation(input, {
         name = "ListServices",
-        input_schema = types.ListServicesInput,
-        output_schema = types.ListServicesOutput,
+        input_schema = schemas.ListServicesInput,
+        output_schema = schemas.ListServicesOutput,
         http_method = "GET",
         http_path = "/v1/services",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:updateAccountCustomizations(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAccountCustomizations",
-        input_schema = types.UpdateAccountCustomizationsInput,
-        output_schema = types.UpdateAccountCustomizationsOutput,
+        input_schema = schemas.UpdateAccountCustomizationsInput,
+        output_schema = schemas.UpdateAccountCustomizationsOutput,
         http_method = "PATCH",
         http_path = "/v1/account-customizations",
         effective_auth_schemes = {

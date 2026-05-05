@@ -1,0 +1,3564 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.geoplaces"
+
+local M = {}
+
+M.AccessDeniedException = schema.new({
+    id = id.from(_N, "AccessDeniedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "AccessDeniedException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.AccessPoint = schema.new({
+    id = id.from(_N, "AccessPoint"),
+    type = "structure",
+    members = {
+        Position = schema.new({
+            id = id.from(_N, "AccessPoint", "Position"),
+            type = "list",
+            name = "Position",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+    },
+})
+
+M.Category = schema.new({
+    id = id.from(_N, "Category"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "Category", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "Category", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LocalizedName = schema.new({
+            id = id.from(_N, "Category", "LocalizedName"),
+            type = "string",
+            name = "LocalizedName",
+            target_id = prelude.String.id,
+        }),
+        Primary = schema.new({
+            id = id.from(_N, "Category", "Primary"),
+            type = "boolean",
+            name = "Primary",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.AccessRestriction = schema.new({
+    id = id.from(_N, "AccessRestriction"),
+    type = "structure",
+    members = {
+        Restricted = schema.new({
+            id = id.from(_N, "AccessRestriction", "Restricted"),
+            type = "boolean",
+            name = "Restricted",
+            target_id = prelude.Boolean.id,
+        }),
+        Categories = schema.new({
+            id = id.from(_N, "AccessRestriction", "Categories"),
+            type = "list",
+            name = "Categories",
+            target_id = prelude.Document.id,
+            list_member = M.Category,
+        }),
+    },
+})
+
+M.Country = schema.new({
+    id = id.from(_N, "Country"),
+    type = "structure",
+    members = {
+        Code2 = schema.new({
+            id = id.from(_N, "Country", "Code2"),
+            type = "string",
+            name = "Code2",
+            target_id = prelude.String.id,
+        }),
+        Code3 = schema.new({
+            id = id.from(_N, "Country", "Code3"),
+            type = "string",
+            name = "Code3",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "Country", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Region = schema.new({
+    id = id.from(_N, "Region"),
+    type = "structure",
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "Region", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "Region", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SecondaryAddressComponent = schema.new({
+    id = id.from(_N, "SecondaryAddressComponent"),
+    type = "structure",
+    members = {
+        Number = schema.new({
+            id = id.from(_N, "SecondaryAddressComponent", "Number"),
+            type = "string",
+            name = "Number",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Designator = schema.new({
+            id = id.from(_N, "SecondaryAddressComponent", "Designator"),
+            type = "string",
+            name = "Designator",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StreetComponents = schema.new({
+    id = id.from(_N, "StreetComponents"),
+    type = "structure",
+    members = {
+        BaseName = schema.new({
+            id = id.from(_N, "StreetComponents", "BaseName"),
+            type = "string",
+            name = "BaseName",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "StreetComponents", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        TypePlacement = schema.new({
+            id = id.from(_N, "StreetComponents", "TypePlacement"),
+            type = "string",
+            name = "TypePlacement",
+            target_id = prelude.String.id,
+        }),
+        TypeSeparator = schema.new({
+            id = id.from(_N, "StreetComponents", "TypeSeparator"),
+            type = "string",
+            name = "TypeSeparator",
+            target_id = prelude.String.id,
+        }),
+        Prefix = schema.new({
+            id = id.from(_N, "StreetComponents", "Prefix"),
+            type = "string",
+            name = "Prefix",
+            target_id = prelude.String.id,
+        }),
+        Suffix = schema.new({
+            id = id.from(_N, "StreetComponents", "Suffix"),
+            type = "string",
+            name = "Suffix",
+            target_id = prelude.String.id,
+        }),
+        Direction = schema.new({
+            id = id.from(_N, "StreetComponents", "Direction"),
+            type = "string",
+            name = "Direction",
+            target_id = prelude.String.id,
+        }),
+        Language = schema.new({
+            id = id.from(_N, "StreetComponents", "Language"),
+            type = "string",
+            name = "Language",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SubRegion = schema.new({
+    id = id.from(_N, "SubRegion"),
+    type = "structure",
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "SubRegion", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "SubRegion", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Address = schema.new({
+    id = id.from(_N, "Address"),
+    type = "structure",
+    members = {
+        Label = schema.new({
+            id = id.from(_N, "Address", "Label"),
+            type = "string",
+            name = "Label",
+            target_id = prelude.String.id,
+        }),
+        Country = schema.new({
+            id = id.from(_N, "Address", "Country"),
+            type = "structure",
+            name = "Country",
+            target_id = id.from(_N, "Country"),
+            target = M.Country,
+        }),
+        Region = schema.new({
+            id = id.from(_N, "Address", "Region"),
+            type = "structure",
+            name = "Region",
+            target_id = id.from(_N, "Region"),
+            target = M.Region,
+        }),
+        SubRegion = schema.new({
+            id = id.from(_N, "Address", "SubRegion"),
+            type = "structure",
+            name = "SubRegion",
+            target_id = id.from(_N, "SubRegion"),
+            target = M.SubRegion,
+        }),
+        Locality = schema.new({
+            id = id.from(_N, "Address", "Locality"),
+            type = "string",
+            name = "Locality",
+            target_id = prelude.String.id,
+        }),
+        District = schema.new({
+            id = id.from(_N, "Address", "District"),
+            type = "string",
+            name = "District",
+            target_id = prelude.String.id,
+        }),
+        SubDistrict = schema.new({
+            id = id.from(_N, "Address", "SubDistrict"),
+            type = "string",
+            name = "SubDistrict",
+            target_id = prelude.String.id,
+        }),
+        PostalCode = schema.new({
+            id = id.from(_N, "Address", "PostalCode"),
+            type = "string",
+            name = "PostalCode",
+            target_id = prelude.String.id,
+        }),
+        Block = schema.new({
+            id = id.from(_N, "Address", "Block"),
+            type = "string",
+            name = "Block",
+            target_id = prelude.String.id,
+        }),
+        SubBlock = schema.new({
+            id = id.from(_N, "Address", "SubBlock"),
+            type = "string",
+            name = "SubBlock",
+            target_id = prelude.String.id,
+        }),
+        Intersection = schema.new({
+            id = id.from(_N, "Address", "Intersection"),
+            type = "list",
+            name = "Intersection",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Street = schema.new({
+            id = id.from(_N, "Address", "Street"),
+            type = "string",
+            name = "Street",
+            target_id = prelude.String.id,
+        }),
+        StreetComponents = schema.new({
+            id = id.from(_N, "Address", "StreetComponents"),
+            type = "list",
+            name = "StreetComponents",
+            target_id = prelude.Document.id,
+            list_member = M.StreetComponents,
+        }),
+        AddressNumber = schema.new({
+            id = id.from(_N, "Address", "AddressNumber"),
+            type = "string",
+            name = "AddressNumber",
+            target_id = prelude.String.id,
+        }),
+        Building = schema.new({
+            id = id.from(_N, "Address", "Building"),
+            type = "string",
+            name = "Building",
+            target_id = prelude.String.id,
+        }),
+        SecondaryAddressComponents = schema.new({
+            id = id.from(_N, "Address", "SecondaryAddressComponents"),
+            type = "list",
+            name = "SecondaryAddressComponents",
+            target_id = prelude.Document.id,
+            list_member = M.SecondaryAddressComponent,
+        }),
+    },
+})
+
+M.SecondaryAddressComponentMatchScore = schema.new({
+    id = id.from(_N, "SecondaryAddressComponentMatchScore"),
+    type = "structure",
+    members = {
+        Number = schema.new({
+            id = id.from(_N, "SecondaryAddressComponentMatchScore", "Number"),
+            type = "double",
+            name = "Number",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
+M.AddressComponentMatchScores = schema.new({
+    id = id.from(_N, "AddressComponentMatchScores"),
+    type = "structure",
+    members = {
+        Country = schema.new({
+            id = id.from(_N, "AddressComponentMatchScores", "Country"),
+            type = "double",
+            name = "Country",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        Region = schema.new({
+            id = id.from(_N, "AddressComponentMatchScores", "Region"),
+            type = "double",
+            name = "Region",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        SubRegion = schema.new({
+            id = id.from(_N, "AddressComponentMatchScores", "SubRegion"),
+            type = "double",
+            name = "SubRegion",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        Locality = schema.new({
+            id = id.from(_N, "AddressComponentMatchScores", "Locality"),
+            type = "double",
+            name = "Locality",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        District = schema.new({
+            id = id.from(_N, "AddressComponentMatchScores", "District"),
+            type = "double",
+            name = "District",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        SubDistrict = schema.new({
+            id = id.from(_N, "AddressComponentMatchScores", "SubDistrict"),
+            type = "double",
+            name = "SubDistrict",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        PostalCode = schema.new({
+            id = id.from(_N, "AddressComponentMatchScores", "PostalCode"),
+            type = "double",
+            name = "PostalCode",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        Block = schema.new({
+            id = id.from(_N, "AddressComponentMatchScores", "Block"),
+            type = "double",
+            name = "Block",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        SubBlock = schema.new({
+            id = id.from(_N, "AddressComponentMatchScores", "SubBlock"),
+            type = "double",
+            name = "SubBlock",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        Intersection = schema.new({
+            id = id.from(_N, "AddressComponentMatchScores", "Intersection"),
+            type = "list",
+            name = "Intersection",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        AddressNumber = schema.new({
+            id = id.from(_N, "AddressComponentMatchScores", "AddressNumber"),
+            type = "double",
+            name = "AddressNumber",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        Building = schema.new({
+            id = id.from(_N, "AddressComponentMatchScores", "Building"),
+            type = "double",
+            name = "Building",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        SecondaryAddressComponents = schema.new({
+            id = id.from(_N, "AddressComponentMatchScores", "SecondaryAddressComponents"),
+            type = "list",
+            name = "SecondaryAddressComponents",
+            target_id = prelude.Document.id,
+            list_member = M.SecondaryAddressComponentMatchScore,
+        }),
+    },
+})
+
+M.PhonemeTranscription = schema.new({
+    id = id.from(_N, "PhonemeTranscription"),
+    type = "structure",
+    members = {
+        Value = schema.new({
+            id = id.from(_N, "PhonemeTranscription", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+        }),
+        Language = schema.new({
+            id = id.from(_N, "PhonemeTranscription", "Language"),
+            type = "string",
+            name = "Language",
+            target_id = prelude.String.id,
+        }),
+        Preferred = schema.new({
+            id = id.from(_N, "PhonemeTranscription", "Preferred"),
+            type = "boolean",
+            name = "Preferred",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.AddressComponentPhonemes = schema.new({
+    id = id.from(_N, "AddressComponentPhonemes"),
+    type = "structure",
+    members = {
+        Country = schema.new({
+            id = id.from(_N, "AddressComponentPhonemes", "Country"),
+            type = "list",
+            name = "Country",
+            target_id = prelude.Document.id,
+            list_member = M.PhonemeTranscription,
+        }),
+        Region = schema.new({
+            id = id.from(_N, "AddressComponentPhonemes", "Region"),
+            type = "list",
+            name = "Region",
+            target_id = prelude.Document.id,
+            list_member = M.PhonemeTranscription,
+        }),
+        SubRegion = schema.new({
+            id = id.from(_N, "AddressComponentPhonemes", "SubRegion"),
+            type = "list",
+            name = "SubRegion",
+            target_id = prelude.Document.id,
+            list_member = M.PhonemeTranscription,
+        }),
+        Locality = schema.new({
+            id = id.from(_N, "AddressComponentPhonemes", "Locality"),
+            type = "list",
+            name = "Locality",
+            target_id = prelude.Document.id,
+            list_member = M.PhonemeTranscription,
+        }),
+        District = schema.new({
+            id = id.from(_N, "AddressComponentPhonemes", "District"),
+            type = "list",
+            name = "District",
+            target_id = prelude.Document.id,
+            list_member = M.PhonemeTranscription,
+        }),
+        SubDistrict = schema.new({
+            id = id.from(_N, "AddressComponentPhonemes", "SubDistrict"),
+            type = "list",
+            name = "SubDistrict",
+            target_id = prelude.Document.id,
+            list_member = M.PhonemeTranscription,
+        }),
+        Block = schema.new({
+            id = id.from(_N, "AddressComponentPhonemes", "Block"),
+            type = "list",
+            name = "Block",
+            target_id = prelude.Document.id,
+            list_member = M.PhonemeTranscription,
+        }),
+        SubBlock = schema.new({
+            id = id.from(_N, "AddressComponentPhonemes", "SubBlock"),
+            type = "list",
+            name = "SubBlock",
+            target_id = prelude.Document.id,
+            list_member = M.PhonemeTranscription,
+        }),
+        Street = schema.new({
+            id = id.from(_N, "AddressComponentPhonemes", "Street"),
+            type = "list",
+            name = "Street",
+            target_id = prelude.Document.id,
+            list_member = M.PhonemeTranscription,
+        }),
+    },
+})
+
+M.FilterCircle = schema.new({
+    id = id.from(_N, "FilterCircle"),
+    type = "structure",
+    members = {
+        Center = schema.new({
+            id = id.from(_N, "FilterCircle", "Center"),
+            type = "list",
+            name = "Center",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Radius = schema.new({
+            id = id.from(_N, "FilterCircle", "Radius"),
+            type = "long",
+            name = "Radius",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+    },
+})
+
+M.AutocompleteFilter = schema.new({
+    id = id.from(_N, "AutocompleteFilter"),
+    type = "structure",
+    members = {
+        BoundingBox = schema.new({
+            id = id.from(_N, "AutocompleteFilter", "BoundingBox"),
+            type = "list",
+            name = "BoundingBox",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        Circle = schema.new({
+            id = id.from(_N, "AutocompleteFilter", "Circle"),
+            type = "structure",
+            name = "Circle",
+            target_id = id.from(_N, "FilterCircle"),
+            target = M.FilterCircle,
+        }),
+        IncludeCountries = schema.new({
+            id = id.from(_N, "AutocompleteFilter", "IncludeCountries"),
+            type = "list",
+            name = "IncludeCountries",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        IncludePlaceTypes = schema.new({
+            id = id.from(_N, "AutocompleteFilter", "IncludePlaceTypes"),
+            type = "list",
+            name = "IncludePlaceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.AutocompleteInput = schema.new({
+    id = id.from(_N, "AutocompleteInput"),
+    type = "structure",
+    members = {
+        QueryText = schema.new({
+            id = id.from(_N, "AutocompleteInput", "QueryText"),
+            type = "string",
+            name = "QueryText",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "AutocompleteInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        BiasPosition = schema.new({
+            id = id.from(_N, "AutocompleteInput", "BiasPosition"),
+            type = "list",
+            name = "BiasPosition",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        Filter = schema.new({
+            id = id.from(_N, "AutocompleteInput", "Filter"),
+            type = "structure",
+            name = "Filter",
+            target_id = id.from(_N, "AutocompleteFilter"),
+            target = M.AutocompleteFilter,
+        }),
+        PostalCodeMode = schema.new({
+            id = id.from(_N, "AutocompleteInput", "PostalCodeMode"),
+            type = "string",
+            name = "PostalCodeMode",
+            target_id = prelude.String.id,
+        }),
+        AdditionalFeatures = schema.new({
+            id = id.from(_N, "AutocompleteInput", "AdditionalFeatures"),
+            type = "list",
+            name = "AdditionalFeatures",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Language = schema.new({
+            id = id.from(_N, "AutocompleteInput", "Language"),
+            type = "string",
+            name = "Language",
+            target_id = prelude.String.id,
+        }),
+        PoliticalView = schema.new({
+            id = id.from(_N, "AutocompleteInput", "PoliticalView"),
+            type = "string",
+            name = "PoliticalView",
+            target_id = prelude.String.id,
+        }),
+        IntendedUse = schema.new({
+            id = id.from(_N, "AutocompleteInput", "IntendedUse"),
+            type = "string",
+            name = "IntendedUse",
+            target_id = prelude.String.id,
+        }),
+        Key = schema.new({
+            id = id.from(_N, "AutocompleteInput", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "key" },
+            },
+        }),
+    },
+})
+
+M.Highlight = schema.new({
+    id = id.from(_N, "Highlight"),
+    type = "structure",
+    members = {
+        StartIndex = schema.new({
+            id = id.from(_N, "Highlight", "StartIndex"),
+            type = "integer",
+            name = "StartIndex",
+            target_id = prelude.Integer.id,
+        }),
+        EndIndex = schema.new({
+            id = id.from(_N, "Highlight", "EndIndex"),
+            type = "integer",
+            name = "EndIndex",
+            target_id = prelude.Integer.id,
+        }),
+        Value = schema.new({
+            id = id.from(_N, "Highlight", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CountryHighlights = schema.new({
+    id = id.from(_N, "CountryHighlights"),
+    type = "structure",
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "CountryHighlights", "Code"),
+            type = "list",
+            name = "Code",
+            target_id = prelude.Document.id,
+            list_member = M.Highlight,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CountryHighlights", "Name"),
+            type = "list",
+            name = "Name",
+            target_id = prelude.Document.id,
+            list_member = M.Highlight,
+        }),
+    },
+})
+
+M.RegionHighlights = schema.new({
+    id = id.from(_N, "RegionHighlights"),
+    type = "structure",
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "RegionHighlights", "Code"),
+            type = "list",
+            name = "Code",
+            target_id = prelude.Document.id,
+            list_member = M.Highlight,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "RegionHighlights", "Name"),
+            type = "list",
+            name = "Name",
+            target_id = prelude.Document.id,
+            list_member = M.Highlight,
+        }),
+    },
+})
+
+M.SubRegionHighlights = schema.new({
+    id = id.from(_N, "SubRegionHighlights"),
+    type = "structure",
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "SubRegionHighlights", "Code"),
+            type = "list",
+            name = "Code",
+            target_id = prelude.Document.id,
+            list_member = M.Highlight,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "SubRegionHighlights", "Name"),
+            type = "list",
+            name = "Name",
+            target_id = prelude.Document.id,
+            list_member = M.Highlight,
+        }),
+    },
+})
+
+M.AutocompleteAddressHighlights = schema.new({
+    id = id.from(_N, "AutocompleteAddressHighlights"),
+    type = "structure",
+    members = {
+        Label = schema.new({
+            id = id.from(_N, "AutocompleteAddressHighlights", "Label"),
+            type = "list",
+            name = "Label",
+            target_id = prelude.Document.id,
+            list_member = M.Highlight,
+        }),
+        Country = schema.new({
+            id = id.from(_N, "AutocompleteAddressHighlights", "Country"),
+            type = "structure",
+            name = "Country",
+            target_id = id.from(_N, "CountryHighlights"),
+            target = M.CountryHighlights,
+        }),
+        Region = schema.new({
+            id = id.from(_N, "AutocompleteAddressHighlights", "Region"),
+            type = "structure",
+            name = "Region",
+            target_id = id.from(_N, "RegionHighlights"),
+            target = M.RegionHighlights,
+        }),
+        SubRegion = schema.new({
+            id = id.from(_N, "AutocompleteAddressHighlights", "SubRegion"),
+            type = "structure",
+            name = "SubRegion",
+            target_id = id.from(_N, "SubRegionHighlights"),
+            target = M.SubRegionHighlights,
+        }),
+        Locality = schema.new({
+            id = id.from(_N, "AutocompleteAddressHighlights", "Locality"),
+            type = "list",
+            name = "Locality",
+            target_id = prelude.Document.id,
+            list_member = M.Highlight,
+        }),
+        District = schema.new({
+            id = id.from(_N, "AutocompleteAddressHighlights", "District"),
+            type = "list",
+            name = "District",
+            target_id = prelude.Document.id,
+            list_member = M.Highlight,
+        }),
+        SubDistrict = schema.new({
+            id = id.from(_N, "AutocompleteAddressHighlights", "SubDistrict"),
+            type = "list",
+            name = "SubDistrict",
+            target_id = prelude.Document.id,
+            list_member = M.Highlight,
+        }),
+        Street = schema.new({
+            id = id.from(_N, "AutocompleteAddressHighlights", "Street"),
+            type = "list",
+            name = "Street",
+            target_id = prelude.Document.id,
+            list_member = M.Highlight,
+        }),
+        Block = schema.new({
+            id = id.from(_N, "AutocompleteAddressHighlights", "Block"),
+            type = "list",
+            name = "Block",
+            target_id = prelude.Document.id,
+            list_member = M.Highlight,
+        }),
+        SubBlock = schema.new({
+            id = id.from(_N, "AutocompleteAddressHighlights", "SubBlock"),
+            type = "list",
+            name = "SubBlock",
+            target_id = prelude.Document.id,
+            list_member = M.Highlight,
+        }),
+        Intersection = schema.new({
+            id = id.from(_N, "AutocompleteAddressHighlights", "Intersection"),
+            type = "list",
+            name = "Intersection",
+            target_id = prelude.Document.id,
+            list_member = prelude.Document,
+        }),
+        PostalCode = schema.new({
+            id = id.from(_N, "AutocompleteAddressHighlights", "PostalCode"),
+            type = "list",
+            name = "PostalCode",
+            target_id = prelude.Document.id,
+            list_member = M.Highlight,
+        }),
+        AddressNumber = schema.new({
+            id = id.from(_N, "AutocompleteAddressHighlights", "AddressNumber"),
+            type = "list",
+            name = "AddressNumber",
+            target_id = prelude.Document.id,
+            list_member = M.Highlight,
+        }),
+        Building = schema.new({
+            id = id.from(_N, "AutocompleteAddressHighlights", "Building"),
+            type = "list",
+            name = "Building",
+            target_id = prelude.Document.id,
+            list_member = M.Highlight,
+        }),
+    },
+})
+
+M.AutocompleteHighlights = schema.new({
+    id = id.from(_N, "AutocompleteHighlights"),
+    type = "structure",
+    members = {
+        Title = schema.new({
+            id = id.from(_N, "AutocompleteHighlights", "Title"),
+            type = "list",
+            name = "Title",
+            target_id = prelude.Document.id,
+            list_member = M.Highlight,
+        }),
+        Address = schema.new({
+            id = id.from(_N, "AutocompleteHighlights", "Address"),
+            type = "structure",
+            name = "Address",
+            target_id = id.from(_N, "AutocompleteAddressHighlights"),
+            target = M.AutocompleteAddressHighlights,
+        }),
+    },
+})
+
+M.AutocompleteResultItem = schema.new({
+    id = id.from(_N, "AutocompleteResultItem"),
+    type = "structure",
+    members = {
+        PlaceId = schema.new({
+            id = id.from(_N, "AutocompleteResultItem", "PlaceId"),
+            type = "string",
+            name = "PlaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PlaceType = schema.new({
+            id = id.from(_N, "AutocompleteResultItem", "PlaceType"),
+            type = "string",
+            name = "PlaceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Title = schema.new({
+            id = id.from(_N, "AutocompleteResultItem", "Title"),
+            type = "string",
+            name = "Title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Address = schema.new({
+            id = id.from(_N, "AutocompleteResultItem", "Address"),
+            type = "structure",
+            name = "Address",
+            target_id = id.from(_N, "Address"),
+            target = M.Address,
+        }),
+        Distance = schema.new({
+            id = id.from(_N, "AutocompleteResultItem", "Distance"),
+            type = "long",
+            name = "Distance",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        Language = schema.new({
+            id = id.from(_N, "AutocompleteResultItem", "Language"),
+            type = "string",
+            name = "Language",
+            target_id = prelude.String.id,
+        }),
+        PoliticalView = schema.new({
+            id = id.from(_N, "AutocompleteResultItem", "PoliticalView"),
+            type = "string",
+            name = "PoliticalView",
+            target_id = prelude.String.id,
+        }),
+        Highlights = schema.new({
+            id = id.from(_N, "AutocompleteResultItem", "Highlights"),
+            type = "structure",
+            name = "Highlights",
+            target_id = id.from(_N, "AutocompleteHighlights"),
+            target = M.AutocompleteHighlights,
+        }),
+    },
+})
+
+M.AutocompleteOutput = schema.new({
+    id = id.from(_N, "AutocompleteOutput"),
+    type = "structure",
+    members = {
+        PricingBucket = schema.new({
+            id = id.from(_N, "AutocompleteOutput", "PricingBucket"),
+            type = "string",
+            name = "PricingBucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-geo-pricing-bucket" },
+            },
+        }),
+        ResultItems = schema.new({
+            id = id.from(_N, "AutocompleteOutput", "ResultItems"),
+            type = "list",
+            name = "ResultItems",
+            target_id = prelude.Document.id,
+            list_member = M.AutocompleteResultItem,
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InternalServerException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ThrottlingException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.ValidationExceptionField = schema.new({
+    id = id.from(_N, "ValidationExceptionField"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "ValidationExceptionField", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ValidationExceptionField", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ValidationException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+        Reason = schema.new({
+            id = id.from(_N, "ValidationException", "Reason"),
+            type = "string",
+            name = "Reason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "reason" },
+            },
+        }),
+        FieldList = schema.new({
+            id = id.from(_N, "ValidationException", "FieldList"),
+            type = "list",
+            name = "FieldList",
+            target_id = prelude.Document.id,
+            list_member = M.ValidationExceptionField,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "fieldList" },
+            },
+        }),
+    },
+})
+
+M.BusinessChain = schema.new({
+    id = id.from(_N, "BusinessChain"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "BusinessChain", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Id = schema.new({
+            id = id.from(_N, "BusinessChain", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ComponentMatchScores = schema.new({
+    id = id.from(_N, "ComponentMatchScores"),
+    type = "structure",
+    members = {
+        Title = schema.new({
+            id = id.from(_N, "ComponentMatchScores", "Title"),
+            type = "double",
+            name = "Title",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        Address = schema.new({
+            id = id.from(_N, "ComponentMatchScores", "Address"),
+            type = "structure",
+            name = "Address",
+            target_id = id.from(_N, "AddressComponentMatchScores"),
+            target = M.AddressComponentMatchScores,
+        }),
+    },
+})
+
+M.ContactDetails = schema.new({
+    id = id.from(_N, "ContactDetails"),
+    type = "structure",
+    members = {
+        Label = schema.new({
+            id = id.from(_N, "ContactDetails", "Label"),
+            type = "string",
+            name = "Label",
+            target_id = prelude.String.id,
+        }),
+        Value = schema.new({
+            id = id.from(_N, "ContactDetails", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+        }),
+        Categories = schema.new({
+            id = id.from(_N, "ContactDetails", "Categories"),
+            type = "list",
+            name = "Categories",
+            target_id = prelude.Document.id,
+            list_member = M.Category,
+        }),
+    },
+})
+
+M.Contacts = schema.new({
+    id = id.from(_N, "Contacts"),
+    type = "structure",
+    members = {
+        Phones = schema.new({
+            id = id.from(_N, "Contacts", "Phones"),
+            type = "list",
+            name = "Phones",
+            target_id = prelude.Document.id,
+            list_member = M.ContactDetails,
+        }),
+        Faxes = schema.new({
+            id = id.from(_N, "Contacts", "Faxes"),
+            type = "list",
+            name = "Faxes",
+            target_id = prelude.Document.id,
+            list_member = M.ContactDetails,
+        }),
+        Websites = schema.new({
+            id = id.from(_N, "Contacts", "Websites"),
+            type = "list",
+            name = "Websites",
+            target_id = prelude.Document.id,
+            list_member = M.ContactDetails,
+        }),
+        Emails = schema.new({
+            id = id.from(_N, "Contacts", "Emails"),
+            type = "list",
+            name = "Emails",
+            target_id = prelude.Document.id,
+            list_member = M.ContactDetails,
+        }),
+    },
+})
+
+M.FoodType = schema.new({
+    id = id.from(_N, "FoodType"),
+    type = "structure",
+    members = {
+        LocalizedName = schema.new({
+            id = id.from(_N, "FoodType", "LocalizedName"),
+            type = "string",
+            name = "LocalizedName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Id = schema.new({
+            id = id.from(_N, "FoodType", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        Primary = schema.new({
+            id = id.from(_N, "FoodType", "Primary"),
+            type = "boolean",
+            name = "Primary",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.GeocodeFilter = schema.new({
+    id = id.from(_N, "GeocodeFilter"),
+    type = "structure",
+    members = {
+        IncludeCountries = schema.new({
+            id = id.from(_N, "GeocodeFilter", "IncludeCountries"),
+            type = "list",
+            name = "IncludeCountries",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        IncludePlaceTypes = schema.new({
+            id = id.from(_N, "GeocodeFilter", "IncludePlaceTypes"),
+            type = "list",
+            name = "IncludePlaceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.GeocodeQueryComponents = schema.new({
+    id = id.from(_N, "GeocodeQueryComponents"),
+    type = "structure",
+    members = {
+        Country = schema.new({
+            id = id.from(_N, "GeocodeQueryComponents", "Country"),
+            type = "string",
+            name = "Country",
+            target_id = prelude.String.id,
+        }),
+        Region = schema.new({
+            id = id.from(_N, "GeocodeQueryComponents", "Region"),
+            type = "string",
+            name = "Region",
+            target_id = prelude.String.id,
+        }),
+        SubRegion = schema.new({
+            id = id.from(_N, "GeocodeQueryComponents", "SubRegion"),
+            type = "string",
+            name = "SubRegion",
+            target_id = prelude.String.id,
+        }),
+        Locality = schema.new({
+            id = id.from(_N, "GeocodeQueryComponents", "Locality"),
+            type = "string",
+            name = "Locality",
+            target_id = prelude.String.id,
+        }),
+        District = schema.new({
+            id = id.from(_N, "GeocodeQueryComponents", "District"),
+            type = "string",
+            name = "District",
+            target_id = prelude.String.id,
+        }),
+        Street = schema.new({
+            id = id.from(_N, "GeocodeQueryComponents", "Street"),
+            type = "string",
+            name = "Street",
+            target_id = prelude.String.id,
+        }),
+        AddressNumber = schema.new({
+            id = id.from(_N, "GeocodeQueryComponents", "AddressNumber"),
+            type = "string",
+            name = "AddressNumber",
+            target_id = prelude.String.id,
+        }),
+        PostalCode = schema.new({
+            id = id.from(_N, "GeocodeQueryComponents", "PostalCode"),
+            type = "string",
+            name = "PostalCode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GeocodeInput = schema.new({
+    id = id.from(_N, "GeocodeInput"),
+    type = "structure",
+    members = {
+        QueryText = schema.new({
+            id = id.from(_N, "GeocodeInput", "QueryText"),
+            type = "string",
+            name = "QueryText",
+            target_id = prelude.String.id,
+        }),
+        QueryComponents = schema.new({
+            id = id.from(_N, "GeocodeInput", "QueryComponents"),
+            type = "structure",
+            name = "QueryComponents",
+            target_id = id.from(_N, "GeocodeQueryComponents"),
+            target = M.GeocodeQueryComponents,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "GeocodeInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        BiasPosition = schema.new({
+            id = id.from(_N, "GeocodeInput", "BiasPosition"),
+            type = "list",
+            name = "BiasPosition",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        Filter = schema.new({
+            id = id.from(_N, "GeocodeInput", "Filter"),
+            type = "structure",
+            name = "Filter",
+            target_id = id.from(_N, "GeocodeFilter"),
+            target = M.GeocodeFilter,
+        }),
+        AdditionalFeatures = schema.new({
+            id = id.from(_N, "GeocodeInput", "AdditionalFeatures"),
+            type = "list",
+            name = "AdditionalFeatures",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Language = schema.new({
+            id = id.from(_N, "GeocodeInput", "Language"),
+            type = "string",
+            name = "Language",
+            target_id = prelude.String.id,
+        }),
+        PoliticalView = schema.new({
+            id = id.from(_N, "GeocodeInput", "PoliticalView"),
+            type = "string",
+            name = "PoliticalView",
+            target_id = prelude.String.id,
+        }),
+        IntendedUse = schema.new({
+            id = id.from(_N, "GeocodeInput", "IntendedUse"),
+            type = "string",
+            name = "IntendedUse",
+            target_id = prelude.String.id,
+        }),
+        Key = schema.new({
+            id = id.from(_N, "GeocodeInput", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "key" },
+            },
+        }),
+    },
+})
+
+M.Intersection = schema.new({
+    id = id.from(_N, "Intersection"),
+    type = "structure",
+    members = {
+        PlaceId = schema.new({
+            id = id.from(_N, "Intersection", "PlaceId"),
+            type = "string",
+            name = "PlaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Title = schema.new({
+            id = id.from(_N, "Intersection", "Title"),
+            type = "string",
+            name = "Title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Address = schema.new({
+            id = id.from(_N, "Intersection", "Address"),
+            type = "structure",
+            name = "Address",
+            target_id = id.from(_N, "Address"),
+            target = M.Address,
+        }),
+        Position = schema.new({
+            id = id.from(_N, "Intersection", "Position"),
+            type = "list",
+            name = "Position",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        Distance = schema.new({
+            id = id.from(_N, "Intersection", "Distance"),
+            type = "long",
+            name = "Distance",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        RouteDistance = schema.new({
+            id = id.from(_N, "Intersection", "RouteDistance"),
+            type = "long",
+            name = "RouteDistance",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        MapView = schema.new({
+            id = id.from(_N, "Intersection", "MapView"),
+            type = "list",
+            name = "MapView",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        AccessPoints = schema.new({
+            id = id.from(_N, "Intersection", "AccessPoints"),
+            type = "list",
+            name = "AccessPoints",
+            target_id = prelude.Document.id,
+            list_member = M.AccessPoint,
+        }),
+    },
+})
+
+M.RelatedPlace = schema.new({
+    id = id.from(_N, "RelatedPlace"),
+    type = "structure",
+    members = {
+        PlaceId = schema.new({
+            id = id.from(_N, "RelatedPlace", "PlaceId"),
+            type = "string",
+            name = "PlaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PlaceType = schema.new({
+            id = id.from(_N, "RelatedPlace", "PlaceType"),
+            type = "string",
+            name = "PlaceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Title = schema.new({
+            id = id.from(_N, "RelatedPlace", "Title"),
+            type = "string",
+            name = "Title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Address = schema.new({
+            id = id.from(_N, "RelatedPlace", "Address"),
+            type = "structure",
+            name = "Address",
+            target_id = id.from(_N, "Address"),
+            target = M.Address,
+        }),
+        Position = schema.new({
+            id = id.from(_N, "RelatedPlace", "Position"),
+            type = "list",
+            name = "Position",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        AccessPoints = schema.new({
+            id = id.from(_N, "RelatedPlace", "AccessPoints"),
+            type = "list",
+            name = "AccessPoints",
+            target_id = prelude.Document.id,
+            list_member = M.AccessPoint,
+        }),
+    },
+})
+
+M.MatchScoreDetails = schema.new({
+    id = id.from(_N, "MatchScoreDetails"),
+    type = "structure",
+    members = {
+        Overall = schema.new({
+            id = id.from(_N, "MatchScoreDetails", "Overall"),
+            type = "double",
+            name = "Overall",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        Components = schema.new({
+            id = id.from(_N, "MatchScoreDetails", "Components"),
+            type = "structure",
+            name = "Components",
+            target_id = id.from(_N, "ComponentMatchScores"),
+            target = M.ComponentMatchScores,
+        }),
+    },
+})
+
+M.ParsedQueryComponent = schema.new({
+    id = id.from(_N, "ParsedQueryComponent"),
+    type = "structure",
+    members = {
+        StartIndex = schema.new({
+            id = id.from(_N, "ParsedQueryComponent", "StartIndex"),
+            type = "integer",
+            name = "StartIndex",
+            target_id = prelude.Integer.id,
+        }),
+        EndIndex = schema.new({
+            id = id.from(_N, "ParsedQueryComponent", "EndIndex"),
+            type = "integer",
+            name = "EndIndex",
+            target_id = prelude.Integer.id,
+        }),
+        Value = schema.new({
+            id = id.from(_N, "ParsedQueryComponent", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+        }),
+        QueryComponent = schema.new({
+            id = id.from(_N, "ParsedQueryComponent", "QueryComponent"),
+            type = "string",
+            name = "QueryComponent",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ParsedQuerySecondaryAddressComponent = schema.new({
+    id = id.from(_N, "ParsedQuerySecondaryAddressComponent"),
+    type = "structure",
+    members = {
+        StartIndex = schema.new({
+            id = id.from(_N, "ParsedQuerySecondaryAddressComponent", "StartIndex"),
+            type = "integer",
+            name = "StartIndex",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndIndex = schema.new({
+            id = id.from(_N, "ParsedQuerySecondaryAddressComponent", "EndIndex"),
+            type = "integer",
+            name = "EndIndex",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "ParsedQuerySecondaryAddressComponent", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Number = schema.new({
+            id = id.from(_N, "ParsedQuerySecondaryAddressComponent", "Number"),
+            type = "string",
+            name = "Number",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Designator = schema.new({
+            id = id.from(_N, "ParsedQuerySecondaryAddressComponent", "Designator"),
+            type = "string",
+            name = "Designator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GeocodeParsedQueryAddressComponents = schema.new({
+    id = id.from(_N, "GeocodeParsedQueryAddressComponents"),
+    type = "structure",
+    members = {
+        Country = schema.new({
+            id = id.from(_N, "GeocodeParsedQueryAddressComponents", "Country"),
+            type = "list",
+            name = "Country",
+            target_id = prelude.Document.id,
+            list_member = M.ParsedQueryComponent,
+        }),
+        Region = schema.new({
+            id = id.from(_N, "GeocodeParsedQueryAddressComponents", "Region"),
+            type = "list",
+            name = "Region",
+            target_id = prelude.Document.id,
+            list_member = M.ParsedQueryComponent,
+        }),
+        SubRegion = schema.new({
+            id = id.from(_N, "GeocodeParsedQueryAddressComponents", "SubRegion"),
+            type = "list",
+            name = "SubRegion",
+            target_id = prelude.Document.id,
+            list_member = M.ParsedQueryComponent,
+        }),
+        Locality = schema.new({
+            id = id.from(_N, "GeocodeParsedQueryAddressComponents", "Locality"),
+            type = "list",
+            name = "Locality",
+            target_id = prelude.Document.id,
+            list_member = M.ParsedQueryComponent,
+        }),
+        District = schema.new({
+            id = id.from(_N, "GeocodeParsedQueryAddressComponents", "District"),
+            type = "list",
+            name = "District",
+            target_id = prelude.Document.id,
+            list_member = M.ParsedQueryComponent,
+        }),
+        SubDistrict = schema.new({
+            id = id.from(_N, "GeocodeParsedQueryAddressComponents", "SubDistrict"),
+            type = "list",
+            name = "SubDistrict",
+            target_id = prelude.Document.id,
+            list_member = M.ParsedQueryComponent,
+        }),
+        PostalCode = schema.new({
+            id = id.from(_N, "GeocodeParsedQueryAddressComponents", "PostalCode"),
+            type = "list",
+            name = "PostalCode",
+            target_id = prelude.Document.id,
+            list_member = M.ParsedQueryComponent,
+        }),
+        Block = schema.new({
+            id = id.from(_N, "GeocodeParsedQueryAddressComponents", "Block"),
+            type = "list",
+            name = "Block",
+            target_id = prelude.Document.id,
+            list_member = M.ParsedQueryComponent,
+        }),
+        SubBlock = schema.new({
+            id = id.from(_N, "GeocodeParsedQueryAddressComponents", "SubBlock"),
+            type = "list",
+            name = "SubBlock",
+            target_id = prelude.Document.id,
+            list_member = M.ParsedQueryComponent,
+        }),
+        Street = schema.new({
+            id = id.from(_N, "GeocodeParsedQueryAddressComponents", "Street"),
+            type = "list",
+            name = "Street",
+            target_id = prelude.Document.id,
+            list_member = M.ParsedQueryComponent,
+        }),
+        AddressNumber = schema.new({
+            id = id.from(_N, "GeocodeParsedQueryAddressComponents", "AddressNumber"),
+            type = "list",
+            name = "AddressNumber",
+            target_id = prelude.Document.id,
+            list_member = M.ParsedQueryComponent,
+        }),
+        Building = schema.new({
+            id = id.from(_N, "GeocodeParsedQueryAddressComponents", "Building"),
+            type = "list",
+            name = "Building",
+            target_id = prelude.Document.id,
+            list_member = M.ParsedQueryComponent,
+        }),
+        SecondaryAddressComponents = schema.new({
+            id = id.from(_N, "GeocodeParsedQueryAddressComponents", "SecondaryAddressComponents"),
+            type = "list",
+            name = "SecondaryAddressComponents",
+            target_id = prelude.Document.id,
+            list_member = M.ParsedQuerySecondaryAddressComponent,
+        }),
+    },
+})
+
+M.GeocodeParsedQuery = schema.new({
+    id = id.from(_N, "GeocodeParsedQuery"),
+    type = "structure",
+    members = {
+        Title = schema.new({
+            id = id.from(_N, "GeocodeParsedQuery", "Title"),
+            type = "list",
+            name = "Title",
+            target_id = prelude.Document.id,
+            list_member = M.ParsedQueryComponent,
+        }),
+        Address = schema.new({
+            id = id.from(_N, "GeocodeParsedQuery", "Address"),
+            type = "structure",
+            name = "Address",
+            target_id = id.from(_N, "GeocodeParsedQueryAddressComponents"),
+            target = M.GeocodeParsedQueryAddressComponents,
+        }),
+    },
+})
+
+M.UspsZip = schema.new({
+    id = id.from(_N, "UspsZip"),
+    type = "structure",
+    members = {
+        ZipClassificationCode = schema.new({
+            id = id.from(_N, "UspsZip", "ZipClassificationCode"),
+            type = "string",
+            name = "ZipClassificationCode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UspsZipPlus4 = schema.new({
+    id = id.from(_N, "UspsZipPlus4"),
+    type = "structure",
+    members = {
+        RecordTypeCode = schema.new({
+            id = id.from(_N, "UspsZipPlus4", "RecordTypeCode"),
+            type = "string",
+            name = "RecordTypeCode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PostalCodeDetails = schema.new({
+    id = id.from(_N, "PostalCodeDetails"),
+    type = "structure",
+    members = {
+        PostalCode = schema.new({
+            id = id.from(_N, "PostalCodeDetails", "PostalCode"),
+            type = "string",
+            name = "PostalCode",
+            target_id = prelude.String.id,
+        }),
+        PostalAuthority = schema.new({
+            id = id.from(_N, "PostalCodeDetails", "PostalAuthority"),
+            type = "string",
+            name = "PostalAuthority",
+            target_id = prelude.String.id,
+        }),
+        PostalCodeType = schema.new({
+            id = id.from(_N, "PostalCodeDetails", "PostalCodeType"),
+            type = "string",
+            name = "PostalCodeType",
+            target_id = prelude.String.id,
+        }),
+        UspsZip = schema.new({
+            id = id.from(_N, "PostalCodeDetails", "UspsZip"),
+            type = "structure",
+            name = "UspsZip",
+            target_id = id.from(_N, "UspsZip"),
+            target = M.UspsZip,
+        }),
+        UspsZipPlus4 = schema.new({
+            id = id.from(_N, "PostalCodeDetails", "UspsZipPlus4"),
+            type = "structure",
+            name = "UspsZipPlus4",
+            target_id = id.from(_N, "UspsZipPlus4"),
+            target = M.UspsZipPlus4,
+        }),
+    },
+})
+
+M.TimeZone = schema.new({
+    id = id.from(_N, "TimeZone"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "TimeZone", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Offset = schema.new({
+            id = id.from(_N, "TimeZone", "Offset"),
+            type = "string",
+            name = "Offset",
+            target_id = prelude.String.id,
+        }),
+        OffsetSeconds = schema.new({
+            id = id.from(_N, "TimeZone", "OffsetSeconds"),
+            type = "long",
+            name = "OffsetSeconds",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
+M.GeocodeResultItem = schema.new({
+    id = id.from(_N, "GeocodeResultItem"),
+    type = "structure",
+    members = {
+        PlaceId = schema.new({
+            id = id.from(_N, "GeocodeResultItem", "PlaceId"),
+            type = "string",
+            name = "PlaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PlaceType = schema.new({
+            id = id.from(_N, "GeocodeResultItem", "PlaceType"),
+            type = "string",
+            name = "PlaceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Title = schema.new({
+            id = id.from(_N, "GeocodeResultItem", "Title"),
+            type = "string",
+            name = "Title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Address = schema.new({
+            id = id.from(_N, "GeocodeResultItem", "Address"),
+            type = "structure",
+            name = "Address",
+            target_id = id.from(_N, "Address"),
+            target = M.Address,
+        }),
+        AddressNumberCorrected = schema.new({
+            id = id.from(_N, "GeocodeResultItem", "AddressNumberCorrected"),
+            type = "boolean",
+            name = "AddressNumberCorrected",
+            target_id = prelude.Boolean.id,
+        }),
+        PostalCodeDetails = schema.new({
+            id = id.from(_N, "GeocodeResultItem", "PostalCodeDetails"),
+            type = "list",
+            name = "PostalCodeDetails",
+            target_id = prelude.Document.id,
+            list_member = M.PostalCodeDetails,
+        }),
+        Position = schema.new({
+            id = id.from(_N, "GeocodeResultItem", "Position"),
+            type = "list",
+            name = "Position",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        Distance = schema.new({
+            id = id.from(_N, "GeocodeResultItem", "Distance"),
+            type = "long",
+            name = "Distance",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        MapView = schema.new({
+            id = id.from(_N, "GeocodeResultItem", "MapView"),
+            type = "list",
+            name = "MapView",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        Categories = schema.new({
+            id = id.from(_N, "GeocodeResultItem", "Categories"),
+            type = "list",
+            name = "Categories",
+            target_id = prelude.Document.id,
+            list_member = M.Category,
+        }),
+        FoodTypes = schema.new({
+            id = id.from(_N, "GeocodeResultItem", "FoodTypes"),
+            type = "list",
+            name = "FoodTypes",
+            target_id = prelude.Document.id,
+            list_member = M.FoodType,
+        }),
+        AccessPoints = schema.new({
+            id = id.from(_N, "GeocodeResultItem", "AccessPoints"),
+            type = "list",
+            name = "AccessPoints",
+            target_id = prelude.Document.id,
+            list_member = M.AccessPoint,
+        }),
+        TimeZone = schema.new({
+            id = id.from(_N, "GeocodeResultItem", "TimeZone"),
+            type = "structure",
+            name = "TimeZone",
+            target_id = id.from(_N, "TimeZone"),
+            target = M.TimeZone,
+        }),
+        PoliticalView = schema.new({
+            id = id.from(_N, "GeocodeResultItem", "PoliticalView"),
+            type = "string",
+            name = "PoliticalView",
+            target_id = prelude.String.id,
+        }),
+        MatchScores = schema.new({
+            id = id.from(_N, "GeocodeResultItem", "MatchScores"),
+            type = "structure",
+            name = "MatchScores",
+            target_id = id.from(_N, "MatchScoreDetails"),
+            target = M.MatchScoreDetails,
+        }),
+        ParsedQuery = schema.new({
+            id = id.from(_N, "GeocodeResultItem", "ParsedQuery"),
+            type = "structure",
+            name = "ParsedQuery",
+            target_id = id.from(_N, "GeocodeParsedQuery"),
+            target = M.GeocodeParsedQuery,
+        }),
+        Intersections = schema.new({
+            id = id.from(_N, "GeocodeResultItem", "Intersections"),
+            type = "list",
+            name = "Intersections",
+            target_id = prelude.Document.id,
+            list_member = M.Intersection,
+        }),
+        MainAddress = schema.new({
+            id = id.from(_N, "GeocodeResultItem", "MainAddress"),
+            type = "structure",
+            name = "MainAddress",
+            target_id = id.from(_N, "RelatedPlace"),
+            target = M.RelatedPlace,
+        }),
+        SecondaryAddresses = schema.new({
+            id = id.from(_N, "GeocodeResultItem", "SecondaryAddresses"),
+            type = "list",
+            name = "SecondaryAddresses",
+            target_id = prelude.Document.id,
+            list_member = M.RelatedPlace,
+        }),
+    },
+})
+
+M.GeocodeOutput = schema.new({
+    id = id.from(_N, "GeocodeOutput"),
+    type = "structure",
+    members = {
+        PricingBucket = schema.new({
+            id = id.from(_N, "GeocodeOutput", "PricingBucket"),
+            type = "string",
+            name = "PricingBucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-geo-pricing-bucket" },
+            },
+        }),
+        ResultItems = schema.new({
+            id = id.from(_N, "GeocodeOutput", "ResultItems"),
+            type = "list",
+            name = "ResultItems",
+            target_id = prelude.Document.id,
+            list_member = M.GeocodeResultItem,
+        }),
+    },
+})
+
+M.GetPlaceInput = schema.new({
+    id = id.from(_N, "GetPlaceInput"),
+    type = "structure",
+    members = {
+        PlaceId = schema.new({
+            id = id.from(_N, "GetPlaceInput", "PlaceId"),
+            type = "string",
+            name = "PlaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AdditionalFeatures = schema.new({
+            id = id.from(_N, "GetPlaceInput", "AdditionalFeatures"),
+            type = "list",
+            name = "AdditionalFeatures",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "additional-features" },
+            },
+        }),
+        Language = schema.new({
+            id = id.from(_N, "GetPlaceInput", "Language"),
+            type = "string",
+            name = "Language",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "language" },
+            },
+        }),
+        PoliticalView = schema.new({
+            id = id.from(_N, "GetPlaceInput", "PoliticalView"),
+            type = "string",
+            name = "PoliticalView",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "political-view" },
+            },
+        }),
+        IntendedUse = schema.new({
+            id = id.from(_N, "GetPlaceInput", "IntendedUse"),
+            type = "string",
+            name = "IntendedUse",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "intended-use" },
+            },
+        }),
+        Key = schema.new({
+            id = id.from(_N, "GetPlaceInput", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "key" },
+            },
+        }),
+    },
+})
+
+M.OpeningHoursComponents = schema.new({
+    id = id.from(_N, "OpeningHoursComponents"),
+    type = "structure",
+    members = {
+        OpenTime = schema.new({
+            id = id.from(_N, "OpeningHoursComponents", "OpenTime"),
+            type = "string",
+            name = "OpenTime",
+            target_id = prelude.String.id,
+        }),
+        OpenDuration = schema.new({
+            id = id.from(_N, "OpeningHoursComponents", "OpenDuration"),
+            type = "string",
+            name = "OpenDuration",
+            target_id = prelude.String.id,
+        }),
+        Recurrence = schema.new({
+            id = id.from(_N, "OpeningHoursComponents", "Recurrence"),
+            type = "string",
+            name = "Recurrence",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.OpeningHours = schema.new({
+    id = id.from(_N, "OpeningHours"),
+    type = "structure",
+    members = {
+        Display = schema.new({
+            id = id.from(_N, "OpeningHours", "Display"),
+            type = "list",
+            name = "Display",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        OpenNow = schema.new({
+            id = id.from(_N, "OpeningHours", "OpenNow"),
+            type = "boolean",
+            name = "OpenNow",
+            target_id = prelude.Boolean.id,
+        }),
+        Components = schema.new({
+            id = id.from(_N, "OpeningHours", "Components"),
+            type = "list",
+            name = "Components",
+            target_id = prelude.Document.id,
+            list_member = M.OpeningHoursComponents,
+        }),
+        Categories = schema.new({
+            id = id.from(_N, "OpeningHours", "Categories"),
+            type = "list",
+            name = "Categories",
+            target_id = prelude.Document.id,
+            list_member = M.Category,
+        }),
+    },
+})
+
+M.PhonemeDetails = schema.new({
+    id = id.from(_N, "PhonemeDetails"),
+    type = "structure",
+    members = {
+        Title = schema.new({
+            id = id.from(_N, "PhonemeDetails", "Title"),
+            type = "list",
+            name = "Title",
+            target_id = prelude.Document.id,
+            list_member = M.PhonemeTranscription,
+        }),
+        Address = schema.new({
+            id = id.from(_N, "PhonemeDetails", "Address"),
+            type = "structure",
+            name = "Address",
+            target_id = id.from(_N, "AddressComponentPhonemes"),
+            target = M.AddressComponentPhonemes,
+        }),
+    },
+})
+
+M.GetPlaceOutput = schema.new({
+    id = id.from(_N, "GetPlaceOutput"),
+    type = "structure",
+    members = {
+        PlaceId = schema.new({
+            id = id.from(_N, "GetPlaceOutput", "PlaceId"),
+            type = "string",
+            name = "PlaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PlaceType = schema.new({
+            id = id.from(_N, "GetPlaceOutput", "PlaceType"),
+            type = "string",
+            name = "PlaceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Title = schema.new({
+            id = id.from(_N, "GetPlaceOutput", "Title"),
+            type = "string",
+            name = "Title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PricingBucket = schema.new({
+            id = id.from(_N, "GetPlaceOutput", "PricingBucket"),
+            type = "string",
+            name = "PricingBucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-geo-pricing-bucket" },
+            },
+        }),
+        Address = schema.new({
+            id = id.from(_N, "GetPlaceOutput", "Address"),
+            type = "structure",
+            name = "Address",
+            target_id = id.from(_N, "Address"),
+            target = M.Address,
+        }),
+        AddressNumberCorrected = schema.new({
+            id = id.from(_N, "GetPlaceOutput", "AddressNumberCorrected"),
+            type = "boolean",
+            name = "AddressNumberCorrected",
+            target_id = prelude.Boolean.id,
+        }),
+        PostalCodeDetails = schema.new({
+            id = id.from(_N, "GetPlaceOutput", "PostalCodeDetails"),
+            type = "list",
+            name = "PostalCodeDetails",
+            target_id = prelude.Document.id,
+            list_member = M.PostalCodeDetails,
+        }),
+        Position = schema.new({
+            id = id.from(_N, "GetPlaceOutput", "Position"),
+            type = "list",
+            name = "Position",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        MapView = schema.new({
+            id = id.from(_N, "GetPlaceOutput", "MapView"),
+            type = "list",
+            name = "MapView",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        Categories = schema.new({
+            id = id.from(_N, "GetPlaceOutput", "Categories"),
+            type = "list",
+            name = "Categories",
+            target_id = prelude.Document.id,
+            list_member = M.Category,
+        }),
+        FoodTypes = schema.new({
+            id = id.from(_N, "GetPlaceOutput", "FoodTypes"),
+            type = "list",
+            name = "FoodTypes",
+            target_id = prelude.Document.id,
+            list_member = M.FoodType,
+        }),
+        BusinessChains = schema.new({
+            id = id.from(_N, "GetPlaceOutput", "BusinessChains"),
+            type = "list",
+            name = "BusinessChains",
+            target_id = prelude.Document.id,
+            list_member = M.BusinessChain,
+        }),
+        Contacts = schema.new({
+            id = id.from(_N, "GetPlaceOutput", "Contacts"),
+            type = "structure",
+            name = "Contacts",
+            target_id = id.from(_N, "Contacts"),
+            target = M.Contacts,
+        }),
+        OpeningHours = schema.new({
+            id = id.from(_N, "GetPlaceOutput", "OpeningHours"),
+            type = "list",
+            name = "OpeningHours",
+            target_id = prelude.Document.id,
+            list_member = M.OpeningHours,
+        }),
+        AccessPoints = schema.new({
+            id = id.from(_N, "GetPlaceOutput", "AccessPoints"),
+            type = "list",
+            name = "AccessPoints",
+            target_id = prelude.Document.id,
+            list_member = M.AccessPoint,
+        }),
+        AccessRestrictions = schema.new({
+            id = id.from(_N, "GetPlaceOutput", "AccessRestrictions"),
+            type = "list",
+            name = "AccessRestrictions",
+            target_id = prelude.Document.id,
+            list_member = M.AccessRestriction,
+        }),
+        TimeZone = schema.new({
+            id = id.from(_N, "GetPlaceOutput", "TimeZone"),
+            type = "structure",
+            name = "TimeZone",
+            target_id = id.from(_N, "TimeZone"),
+            target = M.TimeZone,
+        }),
+        PoliticalView = schema.new({
+            id = id.from(_N, "GetPlaceOutput", "PoliticalView"),
+            type = "string",
+            name = "PoliticalView",
+            target_id = prelude.String.id,
+        }),
+        Phonemes = schema.new({
+            id = id.from(_N, "GetPlaceOutput", "Phonemes"),
+            type = "structure",
+            name = "Phonemes",
+            target_id = id.from(_N, "PhonemeDetails"),
+            target = M.PhonemeDetails,
+        }),
+        MainAddress = schema.new({
+            id = id.from(_N, "GetPlaceOutput", "MainAddress"),
+            type = "structure",
+            name = "MainAddress",
+            target_id = id.from(_N, "RelatedPlace"),
+            target = M.RelatedPlace,
+        }),
+        SecondaryAddresses = schema.new({
+            id = id.from(_N, "GetPlaceOutput", "SecondaryAddresses"),
+            type = "list",
+            name = "SecondaryAddresses",
+            target_id = prelude.Document.id,
+            list_member = M.RelatedPlace,
+        }),
+    },
+})
+
+M.ReverseGeocodeFilter = schema.new({
+    id = id.from(_N, "ReverseGeocodeFilter"),
+    type = "structure",
+    members = {
+        IncludePlaceTypes = schema.new({
+            id = id.from(_N, "ReverseGeocodeFilter", "IncludePlaceTypes"),
+            type = "list",
+            name = "IncludePlaceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ReverseGeocodeInput = schema.new({
+    id = id.from(_N, "ReverseGeocodeInput"),
+    type = "structure",
+    members = {
+        QueryPosition = schema.new({
+            id = id.from(_N, "ReverseGeocodeInput", "QueryPosition"),
+            type = "list",
+            name = "QueryPosition",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        QueryRadius = schema.new({
+            id = id.from(_N, "ReverseGeocodeInput", "QueryRadius"),
+            type = "long",
+            name = "QueryRadius",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ReverseGeocodeInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        Filter = schema.new({
+            id = id.from(_N, "ReverseGeocodeInput", "Filter"),
+            type = "structure",
+            name = "Filter",
+            target_id = id.from(_N, "ReverseGeocodeFilter"),
+            target = M.ReverseGeocodeFilter,
+        }),
+        AdditionalFeatures = schema.new({
+            id = id.from(_N, "ReverseGeocodeInput", "AdditionalFeatures"),
+            type = "list",
+            name = "AdditionalFeatures",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Language = schema.new({
+            id = id.from(_N, "ReverseGeocodeInput", "Language"),
+            type = "string",
+            name = "Language",
+            target_id = prelude.String.id,
+        }),
+        PoliticalView = schema.new({
+            id = id.from(_N, "ReverseGeocodeInput", "PoliticalView"),
+            type = "string",
+            name = "PoliticalView",
+            target_id = prelude.String.id,
+        }),
+        IntendedUse = schema.new({
+            id = id.from(_N, "ReverseGeocodeInput", "IntendedUse"),
+            type = "string",
+            name = "IntendedUse",
+            target_id = prelude.String.id,
+        }),
+        Key = schema.new({
+            id = id.from(_N, "ReverseGeocodeInput", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "key" },
+            },
+        }),
+        Heading = schema.new({
+            id = id.from(_N, "ReverseGeocodeInput", "Heading"),
+            type = "double",
+            name = "Heading",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
+M.ReverseGeocodeResultItem = schema.new({
+    id = id.from(_N, "ReverseGeocodeResultItem"),
+    type = "structure",
+    members = {
+        PlaceId = schema.new({
+            id = id.from(_N, "ReverseGeocodeResultItem", "PlaceId"),
+            type = "string",
+            name = "PlaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PlaceType = schema.new({
+            id = id.from(_N, "ReverseGeocodeResultItem", "PlaceType"),
+            type = "string",
+            name = "PlaceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Title = schema.new({
+            id = id.from(_N, "ReverseGeocodeResultItem", "Title"),
+            type = "string",
+            name = "Title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Address = schema.new({
+            id = id.from(_N, "ReverseGeocodeResultItem", "Address"),
+            type = "structure",
+            name = "Address",
+            target_id = id.from(_N, "Address"),
+            target = M.Address,
+        }),
+        AddressNumberCorrected = schema.new({
+            id = id.from(_N, "ReverseGeocodeResultItem", "AddressNumberCorrected"),
+            type = "boolean",
+            name = "AddressNumberCorrected",
+            target_id = prelude.Boolean.id,
+        }),
+        PostalCodeDetails = schema.new({
+            id = id.from(_N, "ReverseGeocodeResultItem", "PostalCodeDetails"),
+            type = "list",
+            name = "PostalCodeDetails",
+            target_id = prelude.Document.id,
+            list_member = M.PostalCodeDetails,
+        }),
+        Position = schema.new({
+            id = id.from(_N, "ReverseGeocodeResultItem", "Position"),
+            type = "list",
+            name = "Position",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        Distance = schema.new({
+            id = id.from(_N, "ReverseGeocodeResultItem", "Distance"),
+            type = "long",
+            name = "Distance",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        MapView = schema.new({
+            id = id.from(_N, "ReverseGeocodeResultItem", "MapView"),
+            type = "list",
+            name = "MapView",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        Categories = schema.new({
+            id = id.from(_N, "ReverseGeocodeResultItem", "Categories"),
+            type = "list",
+            name = "Categories",
+            target_id = prelude.Document.id,
+            list_member = M.Category,
+        }),
+        FoodTypes = schema.new({
+            id = id.from(_N, "ReverseGeocodeResultItem", "FoodTypes"),
+            type = "list",
+            name = "FoodTypes",
+            target_id = prelude.Document.id,
+            list_member = M.FoodType,
+        }),
+        AccessPoints = schema.new({
+            id = id.from(_N, "ReverseGeocodeResultItem", "AccessPoints"),
+            type = "list",
+            name = "AccessPoints",
+            target_id = prelude.Document.id,
+            list_member = M.AccessPoint,
+        }),
+        TimeZone = schema.new({
+            id = id.from(_N, "ReverseGeocodeResultItem", "TimeZone"),
+            type = "structure",
+            name = "TimeZone",
+            target_id = id.from(_N, "TimeZone"),
+            target = M.TimeZone,
+        }),
+        PoliticalView = schema.new({
+            id = id.from(_N, "ReverseGeocodeResultItem", "PoliticalView"),
+            type = "string",
+            name = "PoliticalView",
+            target_id = prelude.String.id,
+        }),
+        Intersections = schema.new({
+            id = id.from(_N, "ReverseGeocodeResultItem", "Intersections"),
+            type = "list",
+            name = "Intersections",
+            target_id = prelude.Document.id,
+            list_member = M.Intersection,
+        }),
+    },
+})
+
+M.ReverseGeocodeOutput = schema.new({
+    id = id.from(_N, "ReverseGeocodeOutput"),
+    type = "structure",
+    members = {
+        PricingBucket = schema.new({
+            id = id.from(_N, "ReverseGeocodeOutput", "PricingBucket"),
+            type = "string",
+            name = "PricingBucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-geo-pricing-bucket" },
+            },
+        }),
+        ResultItems = schema.new({
+            id = id.from(_N, "ReverseGeocodeOutput", "ResultItems"),
+            type = "list",
+            name = "ResultItems",
+            target_id = prelude.Document.id,
+            list_member = M.ReverseGeocodeResultItem,
+        }),
+    },
+})
+
+M.SearchNearbyFilter = schema.new({
+    id = id.from(_N, "SearchNearbyFilter"),
+    type = "structure",
+    members = {
+        BoundingBox = schema.new({
+            id = id.from(_N, "SearchNearbyFilter", "BoundingBox"),
+            type = "list",
+            name = "BoundingBox",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        IncludeCountries = schema.new({
+            id = id.from(_N, "SearchNearbyFilter", "IncludeCountries"),
+            type = "list",
+            name = "IncludeCountries",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        IncludeCategories = schema.new({
+            id = id.from(_N, "SearchNearbyFilter", "IncludeCategories"),
+            type = "list",
+            name = "IncludeCategories",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ExcludeCategories = schema.new({
+            id = id.from(_N, "SearchNearbyFilter", "ExcludeCategories"),
+            type = "list",
+            name = "ExcludeCategories",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        IncludeBusinessChains = schema.new({
+            id = id.from(_N, "SearchNearbyFilter", "IncludeBusinessChains"),
+            type = "list",
+            name = "IncludeBusinessChains",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ExcludeBusinessChains = schema.new({
+            id = id.from(_N, "SearchNearbyFilter", "ExcludeBusinessChains"),
+            type = "list",
+            name = "ExcludeBusinessChains",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        IncludeFoodTypes = schema.new({
+            id = id.from(_N, "SearchNearbyFilter", "IncludeFoodTypes"),
+            type = "list",
+            name = "IncludeFoodTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ExcludeFoodTypes = schema.new({
+            id = id.from(_N, "SearchNearbyFilter", "ExcludeFoodTypes"),
+            type = "list",
+            name = "ExcludeFoodTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.SearchNearbyInput = schema.new({
+    id = id.from(_N, "SearchNearbyInput"),
+    type = "structure",
+    members = {
+        QueryPosition = schema.new({
+            id = id.from(_N, "SearchNearbyInput", "QueryPosition"),
+            type = "list",
+            name = "QueryPosition",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        QueryRadius = schema.new({
+            id = id.from(_N, "SearchNearbyInput", "QueryRadius"),
+            type = "long",
+            name = "QueryRadius",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "SearchNearbyInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        Filter = schema.new({
+            id = id.from(_N, "SearchNearbyInput", "Filter"),
+            type = "structure",
+            name = "Filter",
+            target_id = id.from(_N, "SearchNearbyFilter"),
+            target = M.SearchNearbyFilter,
+        }),
+        AdditionalFeatures = schema.new({
+            id = id.from(_N, "SearchNearbyInput", "AdditionalFeatures"),
+            type = "list",
+            name = "AdditionalFeatures",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Language = schema.new({
+            id = id.from(_N, "SearchNearbyInput", "Language"),
+            type = "string",
+            name = "Language",
+            target_id = prelude.String.id,
+        }),
+        PoliticalView = schema.new({
+            id = id.from(_N, "SearchNearbyInput", "PoliticalView"),
+            type = "string",
+            name = "PoliticalView",
+            target_id = prelude.String.id,
+        }),
+        IntendedUse = schema.new({
+            id = id.from(_N, "SearchNearbyInput", "IntendedUse"),
+            type = "string",
+            name = "IntendedUse",
+            target_id = prelude.String.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "SearchNearbyInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        Key = schema.new({
+            id = id.from(_N, "SearchNearbyInput", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "key" },
+            },
+        }),
+    },
+})
+
+M.SearchNearbyResultItem = schema.new({
+    id = id.from(_N, "SearchNearbyResultItem"),
+    type = "structure",
+    members = {
+        PlaceId = schema.new({
+            id = id.from(_N, "SearchNearbyResultItem", "PlaceId"),
+            type = "string",
+            name = "PlaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PlaceType = schema.new({
+            id = id.from(_N, "SearchNearbyResultItem", "PlaceType"),
+            type = "string",
+            name = "PlaceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Title = schema.new({
+            id = id.from(_N, "SearchNearbyResultItem", "Title"),
+            type = "string",
+            name = "Title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Address = schema.new({
+            id = id.from(_N, "SearchNearbyResultItem", "Address"),
+            type = "structure",
+            name = "Address",
+            target_id = id.from(_N, "Address"),
+            target = M.Address,
+        }),
+        AddressNumberCorrected = schema.new({
+            id = id.from(_N, "SearchNearbyResultItem", "AddressNumberCorrected"),
+            type = "boolean",
+            name = "AddressNumberCorrected",
+            target_id = prelude.Boolean.id,
+        }),
+        Position = schema.new({
+            id = id.from(_N, "SearchNearbyResultItem", "Position"),
+            type = "list",
+            name = "Position",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        Distance = schema.new({
+            id = id.from(_N, "SearchNearbyResultItem", "Distance"),
+            type = "long",
+            name = "Distance",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        MapView = schema.new({
+            id = id.from(_N, "SearchNearbyResultItem", "MapView"),
+            type = "list",
+            name = "MapView",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        Categories = schema.new({
+            id = id.from(_N, "SearchNearbyResultItem", "Categories"),
+            type = "list",
+            name = "Categories",
+            target_id = prelude.Document.id,
+            list_member = M.Category,
+        }),
+        FoodTypes = schema.new({
+            id = id.from(_N, "SearchNearbyResultItem", "FoodTypes"),
+            type = "list",
+            name = "FoodTypes",
+            target_id = prelude.Document.id,
+            list_member = M.FoodType,
+        }),
+        BusinessChains = schema.new({
+            id = id.from(_N, "SearchNearbyResultItem", "BusinessChains"),
+            type = "list",
+            name = "BusinessChains",
+            target_id = prelude.Document.id,
+            list_member = M.BusinessChain,
+        }),
+        Contacts = schema.new({
+            id = id.from(_N, "SearchNearbyResultItem", "Contacts"),
+            type = "structure",
+            name = "Contacts",
+            target_id = id.from(_N, "Contacts"),
+            target = M.Contacts,
+        }),
+        OpeningHours = schema.new({
+            id = id.from(_N, "SearchNearbyResultItem", "OpeningHours"),
+            type = "list",
+            name = "OpeningHours",
+            target_id = prelude.Document.id,
+            list_member = M.OpeningHours,
+        }),
+        AccessPoints = schema.new({
+            id = id.from(_N, "SearchNearbyResultItem", "AccessPoints"),
+            type = "list",
+            name = "AccessPoints",
+            target_id = prelude.Document.id,
+            list_member = M.AccessPoint,
+        }),
+        AccessRestrictions = schema.new({
+            id = id.from(_N, "SearchNearbyResultItem", "AccessRestrictions"),
+            type = "list",
+            name = "AccessRestrictions",
+            target_id = prelude.Document.id,
+            list_member = M.AccessRestriction,
+        }),
+        TimeZone = schema.new({
+            id = id.from(_N, "SearchNearbyResultItem", "TimeZone"),
+            type = "structure",
+            name = "TimeZone",
+            target_id = id.from(_N, "TimeZone"),
+            target = M.TimeZone,
+        }),
+        PoliticalView = schema.new({
+            id = id.from(_N, "SearchNearbyResultItem", "PoliticalView"),
+            type = "string",
+            name = "PoliticalView",
+            target_id = prelude.String.id,
+        }),
+        Phonemes = schema.new({
+            id = id.from(_N, "SearchNearbyResultItem", "Phonemes"),
+            type = "structure",
+            name = "Phonemes",
+            target_id = id.from(_N, "PhonemeDetails"),
+            target = M.PhonemeDetails,
+        }),
+    },
+})
+
+M.SearchNearbyOutput = schema.new({
+    id = id.from(_N, "SearchNearbyOutput"),
+    type = "structure",
+    members = {
+        PricingBucket = schema.new({
+            id = id.from(_N, "SearchNearbyOutput", "PricingBucket"),
+            type = "string",
+            name = "PricingBucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-geo-pricing-bucket" },
+            },
+        }),
+        ResultItems = schema.new({
+            id = id.from(_N, "SearchNearbyOutput", "ResultItems"),
+            type = "list",
+            name = "ResultItems",
+            target_id = prelude.Document.id,
+            list_member = M.SearchNearbyResultItem,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "SearchNearbyOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SearchTextFilter = schema.new({
+    id = id.from(_N, "SearchTextFilter"),
+    type = "structure",
+    members = {
+        BoundingBox = schema.new({
+            id = id.from(_N, "SearchTextFilter", "BoundingBox"),
+            type = "list",
+            name = "BoundingBox",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        Circle = schema.new({
+            id = id.from(_N, "SearchTextFilter", "Circle"),
+            type = "structure",
+            name = "Circle",
+            target_id = id.from(_N, "FilterCircle"),
+            target = M.FilterCircle,
+        }),
+        IncludeCountries = schema.new({
+            id = id.from(_N, "SearchTextFilter", "IncludeCountries"),
+            type = "list",
+            name = "IncludeCountries",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.SearchTextInput = schema.new({
+    id = id.from(_N, "SearchTextInput"),
+    type = "structure",
+    members = {
+        QueryText = schema.new({
+            id = id.from(_N, "SearchTextInput", "QueryText"),
+            type = "string",
+            name = "QueryText",
+            target_id = prelude.String.id,
+        }),
+        QueryId = schema.new({
+            id = id.from(_N, "SearchTextInput", "QueryId"),
+            type = "string",
+            name = "QueryId",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "SearchTextInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        BiasPosition = schema.new({
+            id = id.from(_N, "SearchTextInput", "BiasPosition"),
+            type = "list",
+            name = "BiasPosition",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        Filter = schema.new({
+            id = id.from(_N, "SearchTextInput", "Filter"),
+            type = "structure",
+            name = "Filter",
+            target_id = id.from(_N, "SearchTextFilter"),
+            target = M.SearchTextFilter,
+        }),
+        AdditionalFeatures = schema.new({
+            id = id.from(_N, "SearchTextInput", "AdditionalFeatures"),
+            type = "list",
+            name = "AdditionalFeatures",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Language = schema.new({
+            id = id.from(_N, "SearchTextInput", "Language"),
+            type = "string",
+            name = "Language",
+            target_id = prelude.String.id,
+        }),
+        PoliticalView = schema.new({
+            id = id.from(_N, "SearchTextInput", "PoliticalView"),
+            type = "string",
+            name = "PoliticalView",
+            target_id = prelude.String.id,
+        }),
+        IntendedUse = schema.new({
+            id = id.from(_N, "SearchTextInput", "IntendedUse"),
+            type = "string",
+            name = "IntendedUse",
+            target_id = prelude.String.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "SearchTextInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        Key = schema.new({
+            id = id.from(_N, "SearchTextInput", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "key" },
+            },
+        }),
+    },
+})
+
+M.SearchTextResultItem = schema.new({
+    id = id.from(_N, "SearchTextResultItem"),
+    type = "structure",
+    members = {
+        PlaceId = schema.new({
+            id = id.from(_N, "SearchTextResultItem", "PlaceId"),
+            type = "string",
+            name = "PlaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PlaceType = schema.new({
+            id = id.from(_N, "SearchTextResultItem", "PlaceType"),
+            type = "string",
+            name = "PlaceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Title = schema.new({
+            id = id.from(_N, "SearchTextResultItem", "Title"),
+            type = "string",
+            name = "Title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Address = schema.new({
+            id = id.from(_N, "SearchTextResultItem", "Address"),
+            type = "structure",
+            name = "Address",
+            target_id = id.from(_N, "Address"),
+            target = M.Address,
+        }),
+        AddressNumberCorrected = schema.new({
+            id = id.from(_N, "SearchTextResultItem", "AddressNumberCorrected"),
+            type = "boolean",
+            name = "AddressNumberCorrected",
+            target_id = prelude.Boolean.id,
+        }),
+        Position = schema.new({
+            id = id.from(_N, "SearchTextResultItem", "Position"),
+            type = "list",
+            name = "Position",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        Distance = schema.new({
+            id = id.from(_N, "SearchTextResultItem", "Distance"),
+            type = "long",
+            name = "Distance",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        MapView = schema.new({
+            id = id.from(_N, "SearchTextResultItem", "MapView"),
+            type = "list",
+            name = "MapView",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        Categories = schema.new({
+            id = id.from(_N, "SearchTextResultItem", "Categories"),
+            type = "list",
+            name = "Categories",
+            target_id = prelude.Document.id,
+            list_member = M.Category,
+        }),
+        FoodTypes = schema.new({
+            id = id.from(_N, "SearchTextResultItem", "FoodTypes"),
+            type = "list",
+            name = "FoodTypes",
+            target_id = prelude.Document.id,
+            list_member = M.FoodType,
+        }),
+        BusinessChains = schema.new({
+            id = id.from(_N, "SearchTextResultItem", "BusinessChains"),
+            type = "list",
+            name = "BusinessChains",
+            target_id = prelude.Document.id,
+            list_member = M.BusinessChain,
+        }),
+        Contacts = schema.new({
+            id = id.from(_N, "SearchTextResultItem", "Contacts"),
+            type = "structure",
+            name = "Contacts",
+            target_id = id.from(_N, "Contacts"),
+            target = M.Contacts,
+        }),
+        OpeningHours = schema.new({
+            id = id.from(_N, "SearchTextResultItem", "OpeningHours"),
+            type = "list",
+            name = "OpeningHours",
+            target_id = prelude.Document.id,
+            list_member = M.OpeningHours,
+        }),
+        AccessPoints = schema.new({
+            id = id.from(_N, "SearchTextResultItem", "AccessPoints"),
+            type = "list",
+            name = "AccessPoints",
+            target_id = prelude.Document.id,
+            list_member = M.AccessPoint,
+        }),
+        AccessRestrictions = schema.new({
+            id = id.from(_N, "SearchTextResultItem", "AccessRestrictions"),
+            type = "list",
+            name = "AccessRestrictions",
+            target_id = prelude.Document.id,
+            list_member = M.AccessRestriction,
+        }),
+        TimeZone = schema.new({
+            id = id.from(_N, "SearchTextResultItem", "TimeZone"),
+            type = "structure",
+            name = "TimeZone",
+            target_id = id.from(_N, "TimeZone"),
+            target = M.TimeZone,
+        }),
+        PoliticalView = schema.new({
+            id = id.from(_N, "SearchTextResultItem", "PoliticalView"),
+            type = "string",
+            name = "PoliticalView",
+            target_id = prelude.String.id,
+        }),
+        Phonemes = schema.new({
+            id = id.from(_N, "SearchTextResultItem", "Phonemes"),
+            type = "structure",
+            name = "Phonemes",
+            target_id = id.from(_N, "PhonemeDetails"),
+            target = M.PhonemeDetails,
+        }),
+    },
+})
+
+M.SearchTextOutput = schema.new({
+    id = id.from(_N, "SearchTextOutput"),
+    type = "structure",
+    members = {
+        PricingBucket = schema.new({
+            id = id.from(_N, "SearchTextOutput", "PricingBucket"),
+            type = "string",
+            name = "PricingBucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-geo-pricing-bucket" },
+            },
+        }),
+        ResultItems = schema.new({
+            id = id.from(_N, "SearchTextOutput", "ResultItems"),
+            type = "list",
+            name = "ResultItems",
+            target_id = prelude.Document.id,
+            list_member = M.SearchTextResultItem,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "SearchTextOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SuggestFilter = schema.new({
+    id = id.from(_N, "SuggestFilter"),
+    type = "structure",
+    members = {
+        BoundingBox = schema.new({
+            id = id.from(_N, "SuggestFilter", "BoundingBox"),
+            type = "list",
+            name = "BoundingBox",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        Circle = schema.new({
+            id = id.from(_N, "SuggestFilter", "Circle"),
+            type = "structure",
+            name = "Circle",
+            target_id = id.from(_N, "FilterCircle"),
+            target = M.FilterCircle,
+        }),
+        IncludeCountries = schema.new({
+            id = id.from(_N, "SuggestFilter", "IncludeCountries"),
+            type = "list",
+            name = "IncludeCountries",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.SuggestInput = schema.new({
+    id = id.from(_N, "SuggestInput"),
+    type = "structure",
+    members = {
+        QueryText = schema.new({
+            id = id.from(_N, "SuggestInput", "QueryText"),
+            type = "string",
+            name = "QueryText",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "SuggestInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        MaxQueryRefinements = schema.new({
+            id = id.from(_N, "SuggestInput", "MaxQueryRefinements"),
+            type = "integer",
+            name = "MaxQueryRefinements",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        BiasPosition = schema.new({
+            id = id.from(_N, "SuggestInput", "BiasPosition"),
+            type = "list",
+            name = "BiasPosition",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        Filter = schema.new({
+            id = id.from(_N, "SuggestInput", "Filter"),
+            type = "structure",
+            name = "Filter",
+            target_id = id.from(_N, "SuggestFilter"),
+            target = M.SuggestFilter,
+        }),
+        AdditionalFeatures = schema.new({
+            id = id.from(_N, "SuggestInput", "AdditionalFeatures"),
+            type = "list",
+            name = "AdditionalFeatures",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Language = schema.new({
+            id = id.from(_N, "SuggestInput", "Language"),
+            type = "string",
+            name = "Language",
+            target_id = prelude.String.id,
+        }),
+        PoliticalView = schema.new({
+            id = id.from(_N, "SuggestInput", "PoliticalView"),
+            type = "string",
+            name = "PoliticalView",
+            target_id = prelude.String.id,
+        }),
+        IntendedUse = schema.new({
+            id = id.from(_N, "SuggestInput", "IntendedUse"),
+            type = "string",
+            name = "IntendedUse",
+            target_id = prelude.String.id,
+        }),
+        Key = schema.new({
+            id = id.from(_N, "SuggestInput", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "key" },
+            },
+        }),
+    },
+})
+
+M.QueryRefinement = schema.new({
+    id = id.from(_N, "QueryRefinement"),
+    type = "structure",
+    members = {
+        RefinedTerm = schema.new({
+            id = id.from(_N, "QueryRefinement", "RefinedTerm"),
+            type = "string",
+            name = "RefinedTerm",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        OriginalTerm = schema.new({
+            id = id.from(_N, "QueryRefinement", "OriginalTerm"),
+            type = "string",
+            name = "OriginalTerm",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StartIndex = schema.new({
+            id = id.from(_N, "QueryRefinement", "StartIndex"),
+            type = "integer",
+            name = "StartIndex",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndIndex = schema.new({
+            id = id.from(_N, "QueryRefinement", "EndIndex"),
+            type = "integer",
+            name = "EndIndex",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SuggestAddressHighlights = schema.new({
+    id = id.from(_N, "SuggestAddressHighlights"),
+    type = "structure",
+    members = {
+        Label = schema.new({
+            id = id.from(_N, "SuggestAddressHighlights", "Label"),
+            type = "list",
+            name = "Label",
+            target_id = prelude.Document.id,
+            list_member = M.Highlight,
+        }),
+    },
+})
+
+M.SuggestHighlights = schema.new({
+    id = id.from(_N, "SuggestHighlights"),
+    type = "structure",
+    members = {
+        Title = schema.new({
+            id = id.from(_N, "SuggestHighlights", "Title"),
+            type = "list",
+            name = "Title",
+            target_id = prelude.Document.id,
+            list_member = M.Highlight,
+        }),
+        Address = schema.new({
+            id = id.from(_N, "SuggestHighlights", "Address"),
+            type = "structure",
+            name = "Address",
+            target_id = id.from(_N, "SuggestAddressHighlights"),
+            target = M.SuggestAddressHighlights,
+        }),
+    },
+})
+
+M.SuggestPlaceResult = schema.new({
+    id = id.from(_N, "SuggestPlaceResult"),
+    type = "structure",
+    members = {
+        PlaceId = schema.new({
+            id = id.from(_N, "SuggestPlaceResult", "PlaceId"),
+            type = "string",
+            name = "PlaceId",
+            target_id = prelude.String.id,
+        }),
+        PlaceType = schema.new({
+            id = id.from(_N, "SuggestPlaceResult", "PlaceType"),
+            type = "string",
+            name = "PlaceType",
+            target_id = prelude.String.id,
+        }),
+        Address = schema.new({
+            id = id.from(_N, "SuggestPlaceResult", "Address"),
+            type = "structure",
+            name = "Address",
+            target_id = id.from(_N, "Address"),
+            target = M.Address,
+        }),
+        Position = schema.new({
+            id = id.from(_N, "SuggestPlaceResult", "Position"),
+            type = "list",
+            name = "Position",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        Distance = schema.new({
+            id = id.from(_N, "SuggestPlaceResult", "Distance"),
+            type = "long",
+            name = "Distance",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        MapView = schema.new({
+            id = id.from(_N, "SuggestPlaceResult", "MapView"),
+            type = "list",
+            name = "MapView",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        Categories = schema.new({
+            id = id.from(_N, "SuggestPlaceResult", "Categories"),
+            type = "list",
+            name = "Categories",
+            target_id = prelude.Document.id,
+            list_member = M.Category,
+        }),
+        FoodTypes = schema.new({
+            id = id.from(_N, "SuggestPlaceResult", "FoodTypes"),
+            type = "list",
+            name = "FoodTypes",
+            target_id = prelude.Document.id,
+            list_member = M.FoodType,
+        }),
+        BusinessChains = schema.new({
+            id = id.from(_N, "SuggestPlaceResult", "BusinessChains"),
+            type = "list",
+            name = "BusinessChains",
+            target_id = prelude.Document.id,
+            list_member = M.BusinessChain,
+        }),
+        AccessPoints = schema.new({
+            id = id.from(_N, "SuggestPlaceResult", "AccessPoints"),
+            type = "list",
+            name = "AccessPoints",
+            target_id = prelude.Document.id,
+            list_member = M.AccessPoint,
+        }),
+        AccessRestrictions = schema.new({
+            id = id.from(_N, "SuggestPlaceResult", "AccessRestrictions"),
+            type = "list",
+            name = "AccessRestrictions",
+            target_id = prelude.Document.id,
+            list_member = M.AccessRestriction,
+        }),
+        TimeZone = schema.new({
+            id = id.from(_N, "SuggestPlaceResult", "TimeZone"),
+            type = "structure",
+            name = "TimeZone",
+            target_id = id.from(_N, "TimeZone"),
+            target = M.TimeZone,
+        }),
+        PoliticalView = schema.new({
+            id = id.from(_N, "SuggestPlaceResult", "PoliticalView"),
+            type = "string",
+            name = "PoliticalView",
+            target_id = prelude.String.id,
+        }),
+        Phonemes = schema.new({
+            id = id.from(_N, "SuggestPlaceResult", "Phonemes"),
+            type = "structure",
+            name = "Phonemes",
+            target_id = id.from(_N, "PhonemeDetails"),
+            target = M.PhonemeDetails,
+        }),
+    },
+})
+
+M.SuggestQueryResult = schema.new({
+    id = id.from(_N, "SuggestQueryResult"),
+    type = "structure",
+    members = {
+        QueryId = schema.new({
+            id = id.from(_N, "SuggestQueryResult", "QueryId"),
+            type = "string",
+            name = "QueryId",
+            target_id = prelude.String.id,
+        }),
+        QueryType = schema.new({
+            id = id.from(_N, "SuggestQueryResult", "QueryType"),
+            type = "string",
+            name = "QueryType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SuggestResultItem = schema.new({
+    id = id.from(_N, "SuggestResultItem"),
+    type = "structure",
+    members = {
+        Title = schema.new({
+            id = id.from(_N, "SuggestResultItem", "Title"),
+            type = "string",
+            name = "Title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SuggestResultItemType = schema.new({
+            id = id.from(_N, "SuggestResultItem", "SuggestResultItemType"),
+            type = "string",
+            name = "SuggestResultItemType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Place = schema.new({
+            id = id.from(_N, "SuggestResultItem", "Place"),
+            type = "structure",
+            name = "Place",
+            target_id = id.from(_N, "SuggestPlaceResult"),
+            target = M.SuggestPlaceResult,
+        }),
+        Query = schema.new({
+            id = id.from(_N, "SuggestResultItem", "Query"),
+            type = "structure",
+            name = "Query",
+            target_id = id.from(_N, "SuggestQueryResult"),
+            target = M.SuggestQueryResult,
+        }),
+        Highlights = schema.new({
+            id = id.from(_N, "SuggestResultItem", "Highlights"),
+            type = "structure",
+            name = "Highlights",
+            target_id = id.from(_N, "SuggestHighlights"),
+            target = M.SuggestHighlights,
+        }),
+    },
+})
+
+M.SuggestOutput = schema.new({
+    id = id.from(_N, "SuggestOutput"),
+    type = "structure",
+    members = {
+        PricingBucket = schema.new({
+            id = id.from(_N, "SuggestOutput", "PricingBucket"),
+            type = "string",
+            name = "PricingBucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_HEADER] = { name = "x-amz-geo-pricing-bucket" },
+            },
+        }),
+        ResultItems = schema.new({
+            id = id.from(_N, "SuggestOutput", "ResultItems"),
+            type = "list",
+            name = "ResultItems",
+            target_id = prelude.Document.id,
+            list_member = M.SuggestResultItem,
+        }),
+        QueryRefinements = schema.new({
+            id = id.from(_N, "SuggestOutput", "QueryRefinements"),
+            type = "list",
+            name = "QueryRefinements",
+            target_id = prelude.Document.id,
+            list_member = M.QueryRefinement,
+        }),
+    },
+})
+
+return M

@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("iotsitewise.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("iotsitewise.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("iotsitewise.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateAssets(input, options)
     return self:invokeOperation(input, {
         name = "AssociateAssets",
-        input_schema = types.AssociateAssetsInput,
-        output_schema = types.AssociateAssetsOutput,
+        input_schema = schemas.AssociateAssetsInput,
+        output_schema = schemas.AssociateAssetsOutput,
         http_method = "POST",
         http_path = "/assets/{assetId}/associate",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:associateTimeSeriesToAssetProperty(input, options)
     return self:invokeOperation(input, {
         name = "AssociateTimeSeriesToAssetProperty",
-        input_schema = types.AssociateTimeSeriesToAssetPropertyInput,
-        output_schema = types.AssociateTimeSeriesToAssetPropertyOutput,
+        input_schema = schemas.AssociateTimeSeriesToAssetPropertyInput,
+        output_schema = schemas.AssociateTimeSeriesToAssetPropertyOutput,
         http_method = "POST",
         http_path = "/timeseries/associate",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchAssociateProjectAssets(input, options)
     return self:invokeOperation(input, {
         name = "BatchAssociateProjectAssets",
-        input_schema = types.BatchAssociateProjectAssetsInput,
-        output_schema = types.BatchAssociateProjectAssetsOutput,
+        input_schema = schemas.BatchAssociateProjectAssetsInput,
+        output_schema = schemas.BatchAssociateProjectAssetsOutput,
         http_method = "POST",
         http_path = "/projects/{projectId}/assets/associate",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:batchDisassociateProjectAssets(input, options)
     return self:invokeOperation(input, {
         name = "BatchDisassociateProjectAssets",
-        input_schema = types.BatchDisassociateProjectAssetsInput,
-        output_schema = types.BatchDisassociateProjectAssetsOutput,
+        input_schema = schemas.BatchDisassociateProjectAssetsInput,
+        output_schema = schemas.BatchDisassociateProjectAssetsOutput,
         http_method = "POST",
         http_path = "/projects/{projectId}/assets/disassociate",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:batchGetAssetPropertyAggregates(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetAssetPropertyAggregates",
-        input_schema = types.BatchGetAssetPropertyAggregatesInput,
-        output_schema = types.BatchGetAssetPropertyAggregatesOutput,
+        input_schema = schemas.BatchGetAssetPropertyAggregatesInput,
+        output_schema = schemas.BatchGetAssetPropertyAggregatesOutput,
         http_method = "POST",
         http_path = "/properties/batch/aggregates",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:batchGetAssetPropertyValue(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetAssetPropertyValue",
-        input_schema = types.BatchGetAssetPropertyValueInput,
-        output_schema = types.BatchGetAssetPropertyValueOutput,
+        input_schema = schemas.BatchGetAssetPropertyValueInput,
+        output_schema = schemas.BatchGetAssetPropertyValueOutput,
         http_method = "POST",
         http_path = "/properties/batch/latest",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:batchGetAssetPropertyValueHistory(input, options)
     return self:invokeOperation(input, {
         name = "BatchGetAssetPropertyValueHistory",
-        input_schema = types.BatchGetAssetPropertyValueHistoryInput,
-        output_schema = types.BatchGetAssetPropertyValueHistoryOutput,
+        input_schema = schemas.BatchGetAssetPropertyValueHistoryInput,
+        output_schema = schemas.BatchGetAssetPropertyValueHistoryOutput,
         http_method = "POST",
         http_path = "/properties/batch/history",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:batchPutAssetPropertyValue(input, options)
     return self:invokeOperation(input, {
         name = "BatchPutAssetPropertyValue",
-        input_schema = types.BatchPutAssetPropertyValueInput,
-        output_schema = types.BatchPutAssetPropertyValueOutput,
+        input_schema = schemas.BatchPutAssetPropertyValueInput,
+        output_schema = schemas.BatchPutAssetPropertyValueOutput,
         http_method = "POST",
         http_path = "/properties",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createAccessPolicy(input, options)
     return self:invokeOperation(input, {
         name = "CreateAccessPolicy",
-        input_schema = types.CreateAccessPolicyInput,
-        output_schema = types.CreateAccessPolicyOutput,
+        input_schema = schemas.CreateAccessPolicyInput,
+        output_schema = schemas.CreateAccessPolicyOutput,
         http_method = "POST",
         http_path = "/access-policies",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createAsset(input, options)
     return self:invokeOperation(input, {
         name = "CreateAsset",
-        input_schema = types.CreateAssetInput,
-        output_schema = types.CreateAssetOutput,
+        input_schema = schemas.CreateAssetInput,
+        output_schema = schemas.CreateAssetOutput,
         http_method = "POST",
         http_path = "/assets",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createAssetModel(input, options)
     return self:invokeOperation(input, {
         name = "CreateAssetModel",
-        input_schema = types.CreateAssetModelInput,
-        output_schema = types.CreateAssetModelOutput,
+        input_schema = schemas.CreateAssetModelInput,
+        output_schema = schemas.CreateAssetModelOutput,
         http_method = "POST",
         http_path = "/asset-models",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createAssetModelCompositeModel(input, options)
     return self:invokeOperation(input, {
         name = "CreateAssetModelCompositeModel",
-        input_schema = types.CreateAssetModelCompositeModelInput,
-        output_schema = types.CreateAssetModelCompositeModelOutput,
+        input_schema = schemas.CreateAssetModelCompositeModelInput,
+        output_schema = schemas.CreateAssetModelCompositeModelOutput,
         http_method = "POST",
         http_path = "/asset-models/{assetModelId}/composite-models",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createBulkImportJob(input, options)
     return self:invokeOperation(input, {
         name = "CreateBulkImportJob",
-        input_schema = types.CreateBulkImportJobInput,
-        output_schema = types.CreateBulkImportJobOutput,
+        input_schema = schemas.CreateBulkImportJobInput,
+        output_schema = schemas.CreateBulkImportJobOutput,
         http_method = "POST",
         http_path = "/jobs",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:createComputationModel(input, options)
     return self:invokeOperation(input, {
         name = "CreateComputationModel",
-        input_schema = types.CreateComputationModelInput,
-        output_schema = types.CreateComputationModelOutput,
+        input_schema = schemas.CreateComputationModelInput,
+        output_schema = schemas.CreateComputationModelOutput,
         http_method = "POST",
         http_path = "/computation-models",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:createDashboard(input, options)
     return self:invokeOperation(input, {
         name = "CreateDashboard",
-        input_schema = types.CreateDashboardInput,
-        output_schema = types.CreateDashboardOutput,
+        input_schema = schemas.CreateDashboardInput,
+        output_schema = schemas.CreateDashboardOutput,
         http_method = "POST",
         http_path = "/dashboards",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:createDataset(input, options)
     return self:invokeOperation(input, {
         name = "CreateDataset",
-        input_schema = types.CreateDatasetInput,
-        output_schema = types.CreateDatasetOutput,
+        input_schema = schemas.CreateDatasetInput,
+        output_schema = schemas.CreateDatasetOutput,
         http_method = "POST",
         http_path = "/datasets",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:createGateway(input, options)
     return self:invokeOperation(input, {
         name = "CreateGateway",
-        input_schema = types.CreateGatewayInput,
-        output_schema = types.CreateGatewayOutput,
+        input_schema = schemas.CreateGatewayInput,
+        output_schema = schemas.CreateGatewayOutput,
         http_method = "POST",
         http_path = "/20200301/gateways",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:createPortal(input, options)
     return self:invokeOperation(input, {
         name = "CreatePortal",
-        input_schema = types.CreatePortalInput,
-        output_schema = types.CreatePortalOutput,
+        input_schema = schemas.CreatePortalInput,
+        output_schema = schemas.CreatePortalOutput,
         http_method = "POST",
         http_path = "/portals",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:createProject(input, options)
     return self:invokeOperation(input, {
         name = "CreateProject",
-        input_schema = types.CreateProjectInput,
-        output_schema = types.CreateProjectOutput,
+        input_schema = schemas.CreateProjectInput,
+        output_schema = schemas.CreateProjectOutput,
         http_method = "POST",
         http_path = "/projects",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:deleteAccessPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAccessPolicy",
-        input_schema = types.DeleteAccessPolicyInput,
-        output_schema = types.DeleteAccessPolicyOutput,
+        input_schema = schemas.DeleteAccessPolicyInput,
+        output_schema = schemas.DeleteAccessPolicyOutput,
         http_method = "DELETE",
         http_path = "/access-policies/{accessPolicyId}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:deleteAsset(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAsset",
-        input_schema = types.DeleteAssetInput,
-        output_schema = types.DeleteAssetOutput,
+        input_schema = schemas.DeleteAssetInput,
+        output_schema = schemas.DeleteAssetOutput,
         http_method = "DELETE",
         http_path = "/assets/{assetId}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:deleteAssetModel(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAssetModel",
-        input_schema = types.DeleteAssetModelInput,
-        output_schema = types.DeleteAssetModelOutput,
+        input_schema = schemas.DeleteAssetModelInput,
+        output_schema = schemas.DeleteAssetModelOutput,
         http_method = "DELETE",
         http_path = "/asset-models/{assetModelId}",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:deleteAssetModelCompositeModel(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAssetModelCompositeModel",
-        input_schema = types.DeleteAssetModelCompositeModelInput,
-        output_schema = types.DeleteAssetModelCompositeModelOutput,
+        input_schema = schemas.DeleteAssetModelCompositeModelInput,
+        output_schema = schemas.DeleteAssetModelCompositeModelOutput,
         http_method = "DELETE",
         http_path = "/asset-models/{assetModelId}/composite-models/{assetModelCompositeModelId}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:deleteAssetModelInterfaceRelationship(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAssetModelInterfaceRelationship",
-        input_schema = types.DeleteAssetModelInterfaceRelationshipInput,
-        output_schema = types.DeleteAssetModelInterfaceRelationshipOutput,
+        input_schema = schemas.DeleteAssetModelInterfaceRelationshipInput,
+        output_schema = schemas.DeleteAssetModelInterfaceRelationshipOutput,
         http_method = "DELETE",
         http_path = "/asset-models/{assetModelId}/interface/{interfaceAssetModelId}/asset-model-interface-relationship",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:deleteComputationModel(input, options)
     return self:invokeOperation(input, {
         name = "DeleteComputationModel",
-        input_schema = types.DeleteComputationModelInput,
-        output_schema = types.DeleteComputationModelOutput,
+        input_schema = schemas.DeleteComputationModelInput,
+        output_schema = schemas.DeleteComputationModelOutput,
         http_method = "DELETE",
         http_path = "/computation-models/{computationModelId}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:deleteDashboard(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDashboard",
-        input_schema = types.DeleteDashboardInput,
-        output_schema = types.DeleteDashboardOutput,
+        input_schema = schemas.DeleteDashboardInput,
+        output_schema = schemas.DeleteDashboardOutput,
         http_method = "DELETE",
         http_path = "/dashboards/{dashboardId}",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:deleteDataset(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDataset",
-        input_schema = types.DeleteDatasetInput,
-        output_schema = types.DeleteDatasetOutput,
+        input_schema = schemas.DeleteDatasetInput,
+        output_schema = schemas.DeleteDatasetOutput,
         http_method = "DELETE",
         http_path = "/datasets/{datasetId}",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:deleteGateway(input, options)
     return self:invokeOperation(input, {
         name = "DeleteGateway",
-        input_schema = types.DeleteGatewayInput,
-        output_schema = types.DeleteGatewayOutput,
+        input_schema = schemas.DeleteGatewayInput,
+        output_schema = schemas.DeleteGatewayOutput,
         http_method = "DELETE",
         http_path = "/20200301/gateways/{gatewayId}",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:deletePortal(input, options)
     return self:invokeOperation(input, {
         name = "DeletePortal",
-        input_schema = types.DeletePortalInput,
-        output_schema = types.DeletePortalOutput,
+        input_schema = schemas.DeletePortalInput,
+        output_schema = schemas.DeletePortalOutput,
         http_method = "DELETE",
         http_path = "/portals/{portalId}",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:deleteProject(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProject",
-        input_schema = types.DeleteProjectInput,
-        output_schema = types.DeleteProjectOutput,
+        input_schema = schemas.DeleteProjectInput,
+        output_schema = schemas.DeleteProjectOutput,
         http_method = "DELETE",
         http_path = "/projects/{projectId}",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:deleteTimeSeries(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTimeSeries",
-        input_schema = types.DeleteTimeSeriesInput,
-        output_schema = types.DeleteTimeSeriesOutput,
+        input_schema = schemas.DeleteTimeSeriesInput,
+        output_schema = schemas.DeleteTimeSeriesOutput,
         http_method = "POST",
         http_path = "/timeseries/delete",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:describeAccessPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAccessPolicy",
-        input_schema = types.DescribeAccessPolicyInput,
-        output_schema = types.DescribeAccessPolicyOutput,
+        input_schema = schemas.DescribeAccessPolicyInput,
+        output_schema = schemas.DescribeAccessPolicyOutput,
         http_method = "GET",
         http_path = "/access-policies/{accessPolicyId}",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:describeAction(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAction",
-        input_schema = types.DescribeActionInput,
-        output_schema = types.DescribeActionOutput,
+        input_schema = schemas.DescribeActionInput,
+        output_schema = schemas.DescribeActionOutput,
         http_method = "GET",
         http_path = "/actions/{actionId}",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:describeAsset(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAsset",
-        input_schema = types.DescribeAssetInput,
-        output_schema = types.DescribeAssetOutput,
+        input_schema = schemas.DescribeAssetInput,
+        output_schema = schemas.DescribeAssetOutput,
         http_method = "GET",
         http_path = "/assets/{assetId}",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:describeAssetCompositeModel(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAssetCompositeModel",
-        input_schema = types.DescribeAssetCompositeModelInput,
-        output_schema = types.DescribeAssetCompositeModelOutput,
+        input_schema = schemas.DescribeAssetCompositeModelInput,
+        output_schema = schemas.DescribeAssetCompositeModelOutput,
         http_method = "GET",
         http_path = "/assets/{assetId}/composite-models/{assetCompositeModelId}",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:describeAssetModel(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAssetModel",
-        input_schema = types.DescribeAssetModelInput,
-        output_schema = types.DescribeAssetModelOutput,
+        input_schema = schemas.DescribeAssetModelInput,
+        output_schema = schemas.DescribeAssetModelOutput,
         http_method = "GET",
         http_path = "/asset-models/{assetModelId}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:describeAssetModelCompositeModel(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAssetModelCompositeModel",
-        input_schema = types.DescribeAssetModelCompositeModelInput,
-        output_schema = types.DescribeAssetModelCompositeModelOutput,
+        input_schema = schemas.DescribeAssetModelCompositeModelInput,
+        output_schema = schemas.DescribeAssetModelCompositeModelOutput,
         http_method = "GET",
         http_path = "/asset-models/{assetModelId}/composite-models/{assetModelCompositeModelId}",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:describeAssetModelInterfaceRelationship(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAssetModelInterfaceRelationship",
-        input_schema = types.DescribeAssetModelInterfaceRelationshipInput,
-        output_schema = types.DescribeAssetModelInterfaceRelationshipOutput,
+        input_schema = schemas.DescribeAssetModelInterfaceRelationshipInput,
+        output_schema = schemas.DescribeAssetModelInterfaceRelationshipOutput,
         http_method = "GET",
         http_path = "/asset-models/{assetModelId}/interface/{interfaceAssetModelId}/asset-model-interface-relationship",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:describeAssetProperty(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAssetProperty",
-        input_schema = types.DescribeAssetPropertyInput,
-        output_schema = types.DescribeAssetPropertyOutput,
+        input_schema = schemas.DescribeAssetPropertyInput,
+        output_schema = schemas.DescribeAssetPropertyOutput,
         http_method = "GET",
         http_path = "/assets/{assetId}/properties/{propertyId}",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:describeBulkImportJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribeBulkImportJob",
-        input_schema = types.DescribeBulkImportJobInput,
-        output_schema = types.DescribeBulkImportJobOutput,
+        input_schema = schemas.DescribeBulkImportJobInput,
+        output_schema = schemas.DescribeBulkImportJobOutput,
         http_method = "GET",
         http_path = "/jobs/{jobId}",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:describeComputationModel(input, options)
     return self:invokeOperation(input, {
         name = "DescribeComputationModel",
-        input_schema = types.DescribeComputationModelInput,
-        output_schema = types.DescribeComputationModelOutput,
+        input_schema = schemas.DescribeComputationModelInput,
+        output_schema = schemas.DescribeComputationModelOutput,
         http_method = "GET",
         http_path = "/computation-models/{computationModelId}",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:describeComputationModelExecutionSummary(input, options)
     return self:invokeOperation(input, {
         name = "DescribeComputationModelExecutionSummary",
-        input_schema = types.DescribeComputationModelExecutionSummaryInput,
-        output_schema = types.DescribeComputationModelExecutionSummaryOutput,
+        input_schema = schemas.DescribeComputationModelExecutionSummaryInput,
+        output_schema = schemas.DescribeComputationModelExecutionSummaryOutput,
         http_method = "GET",
         http_path = "/computation-models/{computationModelId}/execution-summary",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:describeDashboard(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDashboard",
-        input_schema = types.DescribeDashboardInput,
-        output_schema = types.DescribeDashboardOutput,
+        input_schema = schemas.DescribeDashboardInput,
+        output_schema = schemas.DescribeDashboardOutput,
         http_method = "GET",
         http_path = "/dashboards/{dashboardId}",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:describeDataset(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDataset",
-        input_schema = types.DescribeDatasetInput,
-        output_schema = types.DescribeDatasetOutput,
+        input_schema = schemas.DescribeDatasetInput,
+        output_schema = schemas.DescribeDatasetOutput,
         http_method = "GET",
         http_path = "/datasets/{datasetId}",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:describeDefaultEncryptionConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDefaultEncryptionConfiguration",
-        input_schema = types.DescribeDefaultEncryptionConfigurationInput,
-        output_schema = types.DescribeDefaultEncryptionConfigurationOutput,
+        input_schema = schemas.DescribeDefaultEncryptionConfigurationInput,
+        output_schema = schemas.DescribeDefaultEncryptionConfigurationOutput,
         http_method = "GET",
         http_path = "/configuration/account/encryption",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:describeExecution(input, options)
     return self:invokeOperation(input, {
         name = "DescribeExecution",
-        input_schema = types.DescribeExecutionInput,
-        output_schema = types.DescribeExecutionOutput,
+        input_schema = schemas.DescribeExecutionInput,
+        output_schema = schemas.DescribeExecutionOutput,
         http_method = "GET",
         http_path = "/executions/{executionId}",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:describeGateway(input, options)
     return self:invokeOperation(input, {
         name = "DescribeGateway",
-        input_schema = types.DescribeGatewayInput,
-        output_schema = types.DescribeGatewayOutput,
+        input_schema = schemas.DescribeGatewayInput,
+        output_schema = schemas.DescribeGatewayOutput,
         http_method = "GET",
         http_path = "/20200301/gateways/{gatewayId}",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:describeGatewayCapabilityConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DescribeGatewayCapabilityConfiguration",
-        input_schema = types.DescribeGatewayCapabilityConfigurationInput,
-        output_schema = types.DescribeGatewayCapabilityConfigurationOutput,
+        input_schema = schemas.DescribeGatewayCapabilityConfigurationInput,
+        output_schema = schemas.DescribeGatewayCapabilityConfigurationOutput,
         http_method = "GET",
         http_path = "/20200301/gateways/{gatewayId}/capability/{capabilityNamespace}",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:describeLoggingOptions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLoggingOptions",
-        input_schema = types.DescribeLoggingOptionsInput,
-        output_schema = types.DescribeLoggingOptionsOutput,
+        input_schema = schemas.DescribeLoggingOptionsInput,
+        output_schema = schemas.DescribeLoggingOptionsOutput,
         http_method = "GET",
         http_path = "/logging",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:describePortal(input, options)
     return self:invokeOperation(input, {
         name = "DescribePortal",
-        input_schema = types.DescribePortalInput,
-        output_schema = types.DescribePortalOutput,
+        input_schema = schemas.DescribePortalInput,
+        output_schema = schemas.DescribePortalOutput,
         http_method = "GET",
         http_path = "/portals/{portalId}",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:describeProject(input, options)
     return self:invokeOperation(input, {
         name = "DescribeProject",
-        input_schema = types.DescribeProjectInput,
-        output_schema = types.DescribeProjectOutput,
+        input_schema = schemas.DescribeProjectInput,
+        output_schema = schemas.DescribeProjectOutput,
         http_method = "GET",
         http_path = "/projects/{projectId}",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:describeStorageConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStorageConfiguration",
-        input_schema = types.DescribeStorageConfigurationInput,
-        output_schema = types.DescribeStorageConfigurationOutput,
+        input_schema = schemas.DescribeStorageConfigurationInput,
+        output_schema = schemas.DescribeStorageConfigurationOutput,
         http_method = "GET",
         http_path = "/configuration/account/storage",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:describeTimeSeries(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTimeSeries",
-        input_schema = types.DescribeTimeSeriesInput,
-        output_schema = types.DescribeTimeSeriesOutput,
+        input_schema = schemas.DescribeTimeSeriesInput,
+        output_schema = schemas.DescribeTimeSeriesOutput,
         http_method = "GET",
         http_path = "/timeseries/describe",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:disassociateAssets(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateAssets",
-        input_schema = types.DisassociateAssetsInput,
-        output_schema = types.DisassociateAssetsOutput,
+        input_schema = schemas.DisassociateAssetsInput,
+        output_schema = schemas.DisassociateAssetsOutput,
         http_method = "POST",
         http_path = "/assets/{assetId}/disassociate",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:disassociateTimeSeriesFromAssetProperty(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateTimeSeriesFromAssetProperty",
-        input_schema = types.DisassociateTimeSeriesFromAssetPropertyInput,
-        output_schema = types.DisassociateTimeSeriesFromAssetPropertyOutput,
+        input_schema = schemas.DisassociateTimeSeriesFromAssetPropertyInput,
+        output_schema = schemas.DisassociateTimeSeriesFromAssetPropertyOutput,
         http_method = "POST",
         http_path = "/timeseries/disassociate",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:executeAction(input, options)
     return self:invokeOperation(input, {
         name = "ExecuteAction",
-        input_schema = types.ExecuteActionInput,
-        output_schema = types.ExecuteActionOutput,
+        input_schema = schemas.ExecuteActionInput,
+        output_schema = schemas.ExecuteActionOutput,
         http_method = "POST",
         http_path = "/actions",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:executeQuery(input, options)
     return self:invokeOperation(input, {
         name = "ExecuteQuery",
-        input_schema = types.ExecuteQueryInput,
-        output_schema = types.ExecuteQueryOutput,
+        input_schema = schemas.ExecuteQueryInput,
+        output_schema = schemas.ExecuteQueryOutput,
         http_method = "POST",
         http_path = "/queries/execution",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:getAssetPropertyAggregates(input, options)
     return self:invokeOperation(input, {
         name = "GetAssetPropertyAggregates",
-        input_schema = types.GetAssetPropertyAggregatesInput,
-        output_schema = types.GetAssetPropertyAggregatesOutput,
+        input_schema = schemas.GetAssetPropertyAggregatesInput,
+        output_schema = schemas.GetAssetPropertyAggregatesOutput,
         http_method = "GET",
         http_path = "/properties/aggregates",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:getAssetPropertyValue(input, options)
     return self:invokeOperation(input, {
         name = "GetAssetPropertyValue",
-        input_schema = types.GetAssetPropertyValueInput,
-        output_schema = types.GetAssetPropertyValueOutput,
+        input_schema = schemas.GetAssetPropertyValueInput,
+        output_schema = schemas.GetAssetPropertyValueOutput,
         http_method = "GET",
         http_path = "/properties/latest",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:getAssetPropertyValueHistory(input, options)
     return self:invokeOperation(input, {
         name = "GetAssetPropertyValueHistory",
-        input_schema = types.GetAssetPropertyValueHistoryInput,
-        output_schema = types.GetAssetPropertyValueHistoryOutput,
+        input_schema = schemas.GetAssetPropertyValueHistoryInput,
+        output_schema = schemas.GetAssetPropertyValueHistoryOutput,
         http_method = "GET",
         http_path = "/properties/history",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:getInterpolatedAssetPropertyValues(input, options)
     return self:invokeOperation(input, {
         name = "GetInterpolatedAssetPropertyValues",
-        input_schema = types.GetInterpolatedAssetPropertyValuesInput,
-        output_schema = types.GetInterpolatedAssetPropertyValuesOutput,
+        input_schema = schemas.GetInterpolatedAssetPropertyValuesInput,
+        output_schema = schemas.GetInterpolatedAssetPropertyValuesOutput,
         http_method = "GET",
         http_path = "/properties/interpolated",
         effective_auth_schemes = {
@@ -842,11 +842,11 @@ end
 function Client:invokeAssistant(input, options)
     return self:invokeOperation(input, {
         name = "InvokeAssistant",
-        input_schema = types.InvokeAssistantInput,
-        output_schema = types.InvokeAssistantOutput,
+        input_schema = schemas.InvokeAssistantInput,
+        output_schema = schemas.InvokeAssistantOutput,
         http_method = "POST",
         http_path = "/assistant/invocation",
-        event_stream = types.ResponseStream,
+        event_stream = schemas.ResponseStream,
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -856,8 +856,8 @@ end
 function Client:listAccessPolicies(input, options)
     return self:invokeOperation(input, {
         name = "ListAccessPolicies",
-        input_schema = types.ListAccessPoliciesInput,
-        output_schema = types.ListAccessPoliciesOutput,
+        input_schema = schemas.ListAccessPoliciesInput,
+        output_schema = schemas.ListAccessPoliciesOutput,
         http_method = "GET",
         http_path = "/access-policies",
         effective_auth_schemes = {
@@ -869,8 +869,8 @@ end
 function Client:listActions(input, options)
     return self:invokeOperation(input, {
         name = "ListActions",
-        input_schema = types.ListActionsInput,
-        output_schema = types.ListActionsOutput,
+        input_schema = schemas.ListActionsInput,
+        output_schema = schemas.ListActionsOutput,
         http_method = "GET",
         http_path = "/actions",
         effective_auth_schemes = {
@@ -882,8 +882,8 @@ end
 function Client:listAssetModelCompositeModels(input, options)
     return self:invokeOperation(input, {
         name = "ListAssetModelCompositeModels",
-        input_schema = types.ListAssetModelCompositeModelsInput,
-        output_schema = types.ListAssetModelCompositeModelsOutput,
+        input_schema = schemas.ListAssetModelCompositeModelsInput,
+        output_schema = schemas.ListAssetModelCompositeModelsOutput,
         http_method = "GET",
         http_path = "/asset-models/{assetModelId}/composite-models",
         effective_auth_schemes = {
@@ -895,8 +895,8 @@ end
 function Client:listAssetModelProperties(input, options)
     return self:invokeOperation(input, {
         name = "ListAssetModelProperties",
-        input_schema = types.ListAssetModelPropertiesInput,
-        output_schema = types.ListAssetModelPropertiesOutput,
+        input_schema = schemas.ListAssetModelPropertiesInput,
+        output_schema = schemas.ListAssetModelPropertiesOutput,
         http_method = "GET",
         http_path = "/asset-models/{assetModelId}/properties",
         effective_auth_schemes = {
@@ -908,8 +908,8 @@ end
 function Client:listAssetModels(input, options)
     return self:invokeOperation(input, {
         name = "ListAssetModels",
-        input_schema = types.ListAssetModelsInput,
-        output_schema = types.ListAssetModelsOutput,
+        input_schema = schemas.ListAssetModelsInput,
+        output_schema = schemas.ListAssetModelsOutput,
         http_method = "GET",
         http_path = "/asset-models",
         effective_auth_schemes = {
@@ -921,8 +921,8 @@ end
 function Client:listAssetProperties(input, options)
     return self:invokeOperation(input, {
         name = "ListAssetProperties",
-        input_schema = types.ListAssetPropertiesInput,
-        output_schema = types.ListAssetPropertiesOutput,
+        input_schema = schemas.ListAssetPropertiesInput,
+        output_schema = schemas.ListAssetPropertiesOutput,
         http_method = "GET",
         http_path = "/assets/{assetId}/properties",
         effective_auth_schemes = {
@@ -934,8 +934,8 @@ end
 function Client:listAssetRelationships(input, options)
     return self:invokeOperation(input, {
         name = "ListAssetRelationships",
-        input_schema = types.ListAssetRelationshipsInput,
-        output_schema = types.ListAssetRelationshipsOutput,
+        input_schema = schemas.ListAssetRelationshipsInput,
+        output_schema = schemas.ListAssetRelationshipsOutput,
         http_method = "GET",
         http_path = "/assets/{assetId}/assetRelationships",
         effective_auth_schemes = {
@@ -947,8 +947,8 @@ end
 function Client:listAssets(input, options)
     return self:invokeOperation(input, {
         name = "ListAssets",
-        input_schema = types.ListAssetsInput,
-        output_schema = types.ListAssetsOutput,
+        input_schema = schemas.ListAssetsInput,
+        output_schema = schemas.ListAssetsOutput,
         http_method = "GET",
         http_path = "/assets",
         effective_auth_schemes = {
@@ -960,8 +960,8 @@ end
 function Client:listAssociatedAssets(input, options)
     return self:invokeOperation(input, {
         name = "ListAssociatedAssets",
-        input_schema = types.ListAssociatedAssetsInput,
-        output_schema = types.ListAssociatedAssetsOutput,
+        input_schema = schemas.ListAssociatedAssetsInput,
+        output_schema = schemas.ListAssociatedAssetsOutput,
         http_method = "GET",
         http_path = "/assets/{assetId}/hierarchies",
         effective_auth_schemes = {
@@ -973,8 +973,8 @@ end
 function Client:listBulkImportJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListBulkImportJobs",
-        input_schema = types.ListBulkImportJobsInput,
-        output_schema = types.ListBulkImportJobsOutput,
+        input_schema = schemas.ListBulkImportJobsInput,
+        output_schema = schemas.ListBulkImportJobsOutput,
         http_method = "GET",
         http_path = "/jobs",
         effective_auth_schemes = {
@@ -986,8 +986,8 @@ end
 function Client:listCompositionRelationships(input, options)
     return self:invokeOperation(input, {
         name = "ListCompositionRelationships",
-        input_schema = types.ListCompositionRelationshipsInput,
-        output_schema = types.ListCompositionRelationshipsOutput,
+        input_schema = schemas.ListCompositionRelationshipsInput,
+        output_schema = schemas.ListCompositionRelationshipsOutput,
         http_method = "GET",
         http_path = "/asset-models/{assetModelId}/composition-relationships",
         effective_auth_schemes = {
@@ -999,8 +999,8 @@ end
 function Client:listComputationModelDataBindingUsages(input, options)
     return self:invokeOperation(input, {
         name = "ListComputationModelDataBindingUsages",
-        input_schema = types.ListComputationModelDataBindingUsagesInput,
-        output_schema = types.ListComputationModelDataBindingUsagesOutput,
+        input_schema = schemas.ListComputationModelDataBindingUsagesInput,
+        output_schema = schemas.ListComputationModelDataBindingUsagesOutput,
         http_method = "POST",
         http_path = "/computation-models/data-binding-usages",
         effective_auth_schemes = {
@@ -1012,8 +1012,8 @@ end
 function Client:listComputationModelResolveToResources(input, options)
     return self:invokeOperation(input, {
         name = "ListComputationModelResolveToResources",
-        input_schema = types.ListComputationModelResolveToResourcesInput,
-        output_schema = types.ListComputationModelResolveToResourcesOutput,
+        input_schema = schemas.ListComputationModelResolveToResourcesInput,
+        output_schema = schemas.ListComputationModelResolveToResourcesOutput,
         http_method = "GET",
         http_path = "/computation-models/{computationModelId}/resolve-to-resources",
         effective_auth_schemes = {
@@ -1025,8 +1025,8 @@ end
 function Client:listComputationModels(input, options)
     return self:invokeOperation(input, {
         name = "ListComputationModels",
-        input_schema = types.ListComputationModelsInput,
-        output_schema = types.ListComputationModelsOutput,
+        input_schema = schemas.ListComputationModelsInput,
+        output_schema = schemas.ListComputationModelsOutput,
         http_method = "GET",
         http_path = "/computation-models",
         effective_auth_schemes = {
@@ -1038,8 +1038,8 @@ end
 function Client:listDashboards(input, options)
     return self:invokeOperation(input, {
         name = "ListDashboards",
-        input_schema = types.ListDashboardsInput,
-        output_schema = types.ListDashboardsOutput,
+        input_schema = schemas.ListDashboardsInput,
+        output_schema = schemas.ListDashboardsOutput,
         http_method = "GET",
         http_path = "/dashboards",
         effective_auth_schemes = {
@@ -1051,8 +1051,8 @@ end
 function Client:listDatasets(input, options)
     return self:invokeOperation(input, {
         name = "ListDatasets",
-        input_schema = types.ListDatasetsInput,
-        output_schema = types.ListDatasetsOutput,
+        input_schema = schemas.ListDatasetsInput,
+        output_schema = schemas.ListDatasetsOutput,
         http_method = "GET",
         http_path = "/datasets",
         effective_auth_schemes = {
@@ -1064,8 +1064,8 @@ end
 function Client:listExecutions(input, options)
     return self:invokeOperation(input, {
         name = "ListExecutions",
-        input_schema = types.ListExecutionsInput,
-        output_schema = types.ListExecutionsOutput,
+        input_schema = schemas.ListExecutionsInput,
+        output_schema = schemas.ListExecutionsOutput,
         http_method = "GET",
         http_path = "/executions",
         effective_auth_schemes = {
@@ -1077,8 +1077,8 @@ end
 function Client:listGateways(input, options)
     return self:invokeOperation(input, {
         name = "ListGateways",
-        input_schema = types.ListGatewaysInput,
-        output_schema = types.ListGatewaysOutput,
+        input_schema = schemas.ListGatewaysInput,
+        output_schema = schemas.ListGatewaysOutput,
         http_method = "GET",
         http_path = "/20200301/gateways",
         effective_auth_schemes = {
@@ -1090,8 +1090,8 @@ end
 function Client:listInterfaceRelationships(input, options)
     return self:invokeOperation(input, {
         name = "ListInterfaceRelationships",
-        input_schema = types.ListInterfaceRelationshipsInput,
-        output_schema = types.ListInterfaceRelationshipsOutput,
+        input_schema = schemas.ListInterfaceRelationshipsInput,
+        output_schema = schemas.ListInterfaceRelationshipsOutput,
         http_method = "GET",
         http_path = "/interface/{interfaceAssetModelId}/asset-models",
         effective_auth_schemes = {
@@ -1103,8 +1103,8 @@ end
 function Client:listPortals(input, options)
     return self:invokeOperation(input, {
         name = "ListPortals",
-        input_schema = types.ListPortalsInput,
-        output_schema = types.ListPortalsOutput,
+        input_schema = schemas.ListPortalsInput,
+        output_schema = schemas.ListPortalsOutput,
         http_method = "GET",
         http_path = "/portals",
         effective_auth_schemes = {
@@ -1116,8 +1116,8 @@ end
 function Client:listProjectAssets(input, options)
     return self:invokeOperation(input, {
         name = "ListProjectAssets",
-        input_schema = types.ListProjectAssetsInput,
-        output_schema = types.ListProjectAssetsOutput,
+        input_schema = schemas.ListProjectAssetsInput,
+        output_schema = schemas.ListProjectAssetsOutput,
         http_method = "GET",
         http_path = "/projects/{projectId}/assets",
         effective_auth_schemes = {
@@ -1129,8 +1129,8 @@ end
 function Client:listProjects(input, options)
     return self:invokeOperation(input, {
         name = "ListProjects",
-        input_schema = types.ListProjectsInput,
-        output_schema = types.ListProjectsOutput,
+        input_schema = schemas.ListProjectsInput,
+        output_schema = schemas.ListProjectsOutput,
         http_method = "GET",
         http_path = "/projects",
         effective_auth_schemes = {
@@ -1142,8 +1142,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags",
         effective_auth_schemes = {
@@ -1155,8 +1155,8 @@ end
 function Client:listTimeSeries(input, options)
     return self:invokeOperation(input, {
         name = "ListTimeSeries",
-        input_schema = types.ListTimeSeriesInput,
-        output_schema = types.ListTimeSeriesOutput,
+        input_schema = schemas.ListTimeSeriesInput,
+        output_schema = schemas.ListTimeSeriesOutput,
         http_method = "GET",
         http_path = "/timeseries",
         effective_auth_schemes = {
@@ -1168,8 +1168,8 @@ end
 function Client:putAssetModelInterfaceRelationship(input, options)
     return self:invokeOperation(input, {
         name = "PutAssetModelInterfaceRelationship",
-        input_schema = types.PutAssetModelInterfaceRelationshipInput,
-        output_schema = types.PutAssetModelInterfaceRelationshipOutput,
+        input_schema = schemas.PutAssetModelInterfaceRelationshipInput,
+        output_schema = schemas.PutAssetModelInterfaceRelationshipOutput,
         http_method = "PUT",
         http_path = "/asset-models/{assetModelId}/interface/{interfaceAssetModelId}/asset-model-interface-relationship",
         effective_auth_schemes = {
@@ -1181,8 +1181,8 @@ end
 function Client:putDefaultEncryptionConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutDefaultEncryptionConfiguration",
-        input_schema = types.PutDefaultEncryptionConfigurationInput,
-        output_schema = types.PutDefaultEncryptionConfigurationOutput,
+        input_schema = schemas.PutDefaultEncryptionConfigurationInput,
+        output_schema = schemas.PutDefaultEncryptionConfigurationOutput,
         http_method = "POST",
         http_path = "/configuration/account/encryption",
         effective_auth_schemes = {
@@ -1194,8 +1194,8 @@ end
 function Client:putLoggingOptions(input, options)
     return self:invokeOperation(input, {
         name = "PutLoggingOptions",
-        input_schema = types.PutLoggingOptionsInput,
-        output_schema = types.PutLoggingOptionsOutput,
+        input_schema = schemas.PutLoggingOptionsInput,
+        output_schema = schemas.PutLoggingOptionsOutput,
         http_method = "PUT",
         http_path = "/logging",
         effective_auth_schemes = {
@@ -1207,8 +1207,8 @@ end
 function Client:putStorageConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutStorageConfiguration",
-        input_schema = types.PutStorageConfigurationInput,
-        output_schema = types.PutStorageConfigurationOutput,
+        input_schema = schemas.PutStorageConfigurationInput,
+        output_schema = schemas.PutStorageConfigurationOutput,
         http_method = "POST",
         http_path = "/configuration/account/storage",
         effective_auth_schemes = {
@@ -1220,8 +1220,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags",
         effective_auth_schemes = {
@@ -1233,8 +1233,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags",
         effective_auth_schemes = {
@@ -1246,8 +1246,8 @@ end
 function Client:updateAccessPolicy(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAccessPolicy",
-        input_schema = types.UpdateAccessPolicyInput,
-        output_schema = types.UpdateAccessPolicyOutput,
+        input_schema = schemas.UpdateAccessPolicyInput,
+        output_schema = schemas.UpdateAccessPolicyOutput,
         http_method = "PUT",
         http_path = "/access-policies/{accessPolicyId}",
         effective_auth_schemes = {
@@ -1259,8 +1259,8 @@ end
 function Client:updateAsset(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAsset",
-        input_schema = types.UpdateAssetInput,
-        output_schema = types.UpdateAssetOutput,
+        input_schema = schemas.UpdateAssetInput,
+        output_schema = schemas.UpdateAssetOutput,
         http_method = "PUT",
         http_path = "/assets/{assetId}",
         effective_auth_schemes = {
@@ -1272,8 +1272,8 @@ end
 function Client:updateAssetModel(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAssetModel",
-        input_schema = types.UpdateAssetModelInput,
-        output_schema = types.UpdateAssetModelOutput,
+        input_schema = schemas.UpdateAssetModelInput,
+        output_schema = schemas.UpdateAssetModelOutput,
         http_method = "PUT",
         http_path = "/asset-models/{assetModelId}",
         effective_auth_schemes = {
@@ -1285,8 +1285,8 @@ end
 function Client:updateAssetModelCompositeModel(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAssetModelCompositeModel",
-        input_schema = types.UpdateAssetModelCompositeModelInput,
-        output_schema = types.UpdateAssetModelCompositeModelOutput,
+        input_schema = schemas.UpdateAssetModelCompositeModelInput,
+        output_schema = schemas.UpdateAssetModelCompositeModelOutput,
         http_method = "PUT",
         http_path = "/asset-models/{assetModelId}/composite-models/{assetModelCompositeModelId}",
         effective_auth_schemes = {
@@ -1298,8 +1298,8 @@ end
 function Client:updateAssetProperty(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAssetProperty",
-        input_schema = types.UpdateAssetPropertyInput,
-        output_schema = types.UpdateAssetPropertyOutput,
+        input_schema = schemas.UpdateAssetPropertyInput,
+        output_schema = schemas.UpdateAssetPropertyOutput,
         http_method = "PUT",
         http_path = "/assets/{assetId}/properties/{propertyId}",
         effective_auth_schemes = {
@@ -1311,8 +1311,8 @@ end
 function Client:updateComputationModel(input, options)
     return self:invokeOperation(input, {
         name = "UpdateComputationModel",
-        input_schema = types.UpdateComputationModelInput,
-        output_schema = types.UpdateComputationModelOutput,
+        input_schema = schemas.UpdateComputationModelInput,
+        output_schema = schemas.UpdateComputationModelOutput,
         http_method = "POST",
         http_path = "/computation-models/{computationModelId}",
         effective_auth_schemes = {
@@ -1324,8 +1324,8 @@ end
 function Client:updateDashboard(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDashboard",
-        input_schema = types.UpdateDashboardInput,
-        output_schema = types.UpdateDashboardOutput,
+        input_schema = schemas.UpdateDashboardInput,
+        output_schema = schemas.UpdateDashboardOutput,
         http_method = "PUT",
         http_path = "/dashboards/{dashboardId}",
         effective_auth_schemes = {
@@ -1337,8 +1337,8 @@ end
 function Client:updateDataset(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDataset",
-        input_schema = types.UpdateDatasetInput,
-        output_schema = types.UpdateDatasetOutput,
+        input_schema = schemas.UpdateDatasetInput,
+        output_schema = schemas.UpdateDatasetOutput,
         http_method = "PUT",
         http_path = "/datasets/{datasetId}",
         effective_auth_schemes = {
@@ -1350,8 +1350,8 @@ end
 function Client:updateGateway(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGateway",
-        input_schema = types.UpdateGatewayInput,
-        output_schema = types.UpdateGatewayOutput,
+        input_schema = schemas.UpdateGatewayInput,
+        output_schema = schemas.UpdateGatewayOutput,
         http_method = "PUT",
         http_path = "/20200301/gateways/{gatewayId}",
         effective_auth_schemes = {
@@ -1363,8 +1363,8 @@ end
 function Client:updateGatewayCapabilityConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateGatewayCapabilityConfiguration",
-        input_schema = types.UpdateGatewayCapabilityConfigurationInput,
-        output_schema = types.UpdateGatewayCapabilityConfigurationOutput,
+        input_schema = schemas.UpdateGatewayCapabilityConfigurationInput,
+        output_schema = schemas.UpdateGatewayCapabilityConfigurationOutput,
         http_method = "POST",
         http_path = "/20200301/gateways/{gatewayId}/capability",
         effective_auth_schemes = {
@@ -1376,8 +1376,8 @@ end
 function Client:updatePortal(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePortal",
-        input_schema = types.UpdatePortalInput,
-        output_schema = types.UpdatePortalOutput,
+        input_schema = schemas.UpdatePortalInput,
+        output_schema = schemas.UpdatePortalOutput,
         http_method = "PUT",
         http_path = "/portals/{portalId}",
         effective_auth_schemes = {
@@ -1389,8 +1389,8 @@ end
 function Client:updateProject(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProject",
-        input_schema = types.UpdateProjectInput,
-        output_schema = types.UpdateProjectOutput,
+        input_schema = schemas.UpdateProjectInput,
+        output_schema = schemas.UpdateProjectOutput,
         http_method = "PUT",
         http_path = "/projects/{projectId}",
         effective_auth_schemes = {

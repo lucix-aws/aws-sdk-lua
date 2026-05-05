@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("comprehend.endpoint_rules")
+local schemas = require("comprehend.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("comprehend.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchDetectDominantLanguage(input, options)
     return self:invokeOperation(input, {
         name = "BatchDetectDominantLanguage",
-        input_schema = types.BatchDetectDominantLanguageInput,
-        output_schema = types.BatchDetectDominantLanguageOutput,
+        input_schema = schemas.BatchDetectDominantLanguageInput,
+        output_schema = schemas.BatchDetectDominantLanguageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchDetectEntities(input, options)
     return self:invokeOperation(input, {
         name = "BatchDetectEntities",
-        input_schema = types.BatchDetectEntitiesInput,
-        output_schema = types.BatchDetectEntitiesOutput,
+        input_schema = schemas.BatchDetectEntitiesInput,
+        output_schema = schemas.BatchDetectEntitiesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchDetectKeyPhrases(input, options)
     return self:invokeOperation(input, {
         name = "BatchDetectKeyPhrases",
-        input_schema = types.BatchDetectKeyPhrasesInput,
-        output_schema = types.BatchDetectKeyPhrasesOutput,
+        input_schema = schemas.BatchDetectKeyPhrasesInput,
+        output_schema = schemas.BatchDetectKeyPhrasesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:batchDetectSentiment(input, options)
     return self:invokeOperation(input, {
         name = "BatchDetectSentiment",
-        input_schema = types.BatchDetectSentimentInput,
-        output_schema = types.BatchDetectSentimentOutput,
+        input_schema = schemas.BatchDetectSentimentInput,
+        output_schema = schemas.BatchDetectSentimentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:batchDetectSyntax(input, options)
     return self:invokeOperation(input, {
         name = "BatchDetectSyntax",
-        input_schema = types.BatchDetectSyntaxInput,
-        output_schema = types.BatchDetectSyntaxOutput,
+        input_schema = schemas.BatchDetectSyntaxInput,
+        output_schema = schemas.BatchDetectSyntaxOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:batchDetectTargetedSentiment(input, options)
     return self:invokeOperation(input, {
         name = "BatchDetectTargetedSentiment",
-        input_schema = types.BatchDetectTargetedSentimentInput,
-        output_schema = types.BatchDetectTargetedSentimentOutput,
+        input_schema = schemas.BatchDetectTargetedSentimentInput,
+        output_schema = schemas.BatchDetectTargetedSentimentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:classifyDocument(input, options)
     return self:invokeOperation(input, {
         name = "ClassifyDocument",
-        input_schema = types.ClassifyDocumentInput,
-        output_schema = types.ClassifyDocumentOutput,
+        input_schema = schemas.ClassifyDocumentInput,
+        output_schema = schemas.ClassifyDocumentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:containsPiiEntities(input, options)
     return self:invokeOperation(input, {
         name = "ContainsPiiEntities",
-        input_schema = types.ContainsPiiEntitiesInput,
-        output_schema = types.ContainsPiiEntitiesOutput,
+        input_schema = schemas.ContainsPiiEntitiesInput,
+        output_schema = schemas.ContainsPiiEntitiesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createDataset(input, options)
     return self:invokeOperation(input, {
         name = "CreateDataset",
-        input_schema = types.CreateDatasetInput,
-        output_schema = types.CreateDatasetOutput,
+        input_schema = schemas.CreateDatasetInput,
+        output_schema = schemas.CreateDatasetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createDocumentClassifier(input, options)
     return self:invokeOperation(input, {
         name = "CreateDocumentClassifier",
-        input_schema = types.CreateDocumentClassifierInput,
-        output_schema = types.CreateDocumentClassifierOutput,
+        input_schema = schemas.CreateDocumentClassifierInput,
+        output_schema = schemas.CreateDocumentClassifierOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "CreateEndpoint",
-        input_schema = types.CreateEndpointInput,
-        output_schema = types.CreateEndpointOutput,
+        input_schema = schemas.CreateEndpointInput,
+        output_schema = schemas.CreateEndpointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createEntityRecognizer(input, options)
     return self:invokeOperation(input, {
         name = "CreateEntityRecognizer",
-        input_schema = types.CreateEntityRecognizerInput,
-        output_schema = types.CreateEntityRecognizerOutput,
+        input_schema = schemas.CreateEntityRecognizerInput,
+        output_schema = schemas.CreateEntityRecognizerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createFlywheel(input, options)
     return self:invokeOperation(input, {
         name = "CreateFlywheel",
-        input_schema = types.CreateFlywheelInput,
-        output_schema = types.CreateFlywheelOutput,
+        input_schema = schemas.CreateFlywheelInput,
+        output_schema = schemas.CreateFlywheelOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteDocumentClassifier(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDocumentClassifier",
-        input_schema = types.DeleteDocumentClassifierInput,
-        output_schema = types.DeleteDocumentClassifierOutput,
+        input_schema = schemas.DeleteDocumentClassifierInput,
+        output_schema = schemas.DeleteDocumentClassifierOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEndpoint",
-        input_schema = types.DeleteEndpointInput,
-        output_schema = types.DeleteEndpointOutput,
+        input_schema = schemas.DeleteEndpointInput,
+        output_schema = schemas.DeleteEndpointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteEntityRecognizer(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEntityRecognizer",
-        input_schema = types.DeleteEntityRecognizerInput,
-        output_schema = types.DeleteEntityRecognizerOutput,
+        input_schema = schemas.DeleteEntityRecognizerInput,
+        output_schema = schemas.DeleteEntityRecognizerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteFlywheel(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFlywheel",
-        input_schema = types.DeleteFlywheelInput,
-        output_schema = types.DeleteFlywheelOutput,
+        input_schema = schemas.DeleteFlywheelInput,
+        output_schema = schemas.DeleteFlywheelOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteResourcePolicy",
-        input_schema = types.DeleteResourcePolicyInput,
-        output_schema = types.DeleteResourcePolicyOutput,
+        input_schema = schemas.DeleteResourcePolicyInput,
+        output_schema = schemas.DeleteResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:describeDataset(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDataset",
-        input_schema = types.DescribeDatasetInput,
-        output_schema = types.DescribeDatasetOutput,
+        input_schema = schemas.DescribeDatasetInput,
+        output_schema = schemas.DescribeDatasetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:describeDocumentClassificationJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDocumentClassificationJob",
-        input_schema = types.DescribeDocumentClassificationJobInput,
-        output_schema = types.DescribeDocumentClassificationJobOutput,
+        input_schema = schemas.DescribeDocumentClassificationJobInput,
+        output_schema = schemas.DescribeDocumentClassificationJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:describeDocumentClassifier(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDocumentClassifier",
-        input_schema = types.DescribeDocumentClassifierInput,
-        output_schema = types.DescribeDocumentClassifierOutput,
+        input_schema = schemas.DescribeDocumentClassifierInput,
+        output_schema = schemas.DescribeDocumentClassifierOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:describeDominantLanguageDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDominantLanguageDetectionJob",
-        input_schema = types.DescribeDominantLanguageDetectionJobInput,
-        output_schema = types.DescribeDominantLanguageDetectionJobOutput,
+        input_schema = schemas.DescribeDominantLanguageDetectionJobInput,
+        output_schema = schemas.DescribeDominantLanguageDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:describeEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEndpoint",
-        input_schema = types.DescribeEndpointInput,
-        output_schema = types.DescribeEndpointOutput,
+        input_schema = schemas.DescribeEndpointInput,
+        output_schema = schemas.DescribeEndpointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:describeEntitiesDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEntitiesDetectionJob",
-        input_schema = types.DescribeEntitiesDetectionJobInput,
-        output_schema = types.DescribeEntitiesDetectionJobOutput,
+        input_schema = schemas.DescribeEntitiesDetectionJobInput,
+        output_schema = schemas.DescribeEntitiesDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:describeEntityRecognizer(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEntityRecognizer",
-        input_schema = types.DescribeEntityRecognizerInput,
-        output_schema = types.DescribeEntityRecognizerOutput,
+        input_schema = schemas.DescribeEntityRecognizerInput,
+        output_schema = schemas.DescribeEntityRecognizerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:describeEventsDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEventsDetectionJob",
-        input_schema = types.DescribeEventsDetectionJobInput,
-        output_schema = types.DescribeEventsDetectionJobOutput,
+        input_schema = schemas.DescribeEventsDetectionJobInput,
+        output_schema = schemas.DescribeEventsDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:describeFlywheel(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFlywheel",
-        input_schema = types.DescribeFlywheelInput,
-        output_schema = types.DescribeFlywheelOutput,
+        input_schema = schemas.DescribeFlywheelInput,
+        output_schema = schemas.DescribeFlywheelOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:describeFlywheelIteration(input, options)
     return self:invokeOperation(input, {
         name = "DescribeFlywheelIteration",
-        input_schema = types.DescribeFlywheelIterationInput,
-        output_schema = types.DescribeFlywheelIterationOutput,
+        input_schema = schemas.DescribeFlywheelIterationInput,
+        output_schema = schemas.DescribeFlywheelIterationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:describeKeyPhrasesDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribeKeyPhrasesDetectionJob",
-        input_schema = types.DescribeKeyPhrasesDetectionJobInput,
-        output_schema = types.DescribeKeyPhrasesDetectionJobOutput,
+        input_schema = schemas.DescribeKeyPhrasesDetectionJobInput,
+        output_schema = schemas.DescribeKeyPhrasesDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:describePiiEntitiesDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribePiiEntitiesDetectionJob",
-        input_schema = types.DescribePiiEntitiesDetectionJobInput,
-        output_schema = types.DescribePiiEntitiesDetectionJobOutput,
+        input_schema = schemas.DescribePiiEntitiesDetectionJobInput,
+        output_schema = schemas.DescribePiiEntitiesDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:describeResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DescribeResourcePolicy",
-        input_schema = types.DescribeResourcePolicyInput,
-        output_schema = types.DescribeResourcePolicyOutput,
+        input_schema = schemas.DescribeResourcePolicyInput,
+        output_schema = schemas.DescribeResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:describeSentimentDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSentimentDetectionJob",
-        input_schema = types.DescribeSentimentDetectionJobInput,
-        output_schema = types.DescribeSentimentDetectionJobOutput,
+        input_schema = schemas.DescribeSentimentDetectionJobInput,
+        output_schema = schemas.DescribeSentimentDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:describeTargetedSentimentDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTargetedSentimentDetectionJob",
-        input_schema = types.DescribeTargetedSentimentDetectionJobInput,
-        output_schema = types.DescribeTargetedSentimentDetectionJobOutput,
+        input_schema = schemas.DescribeTargetedSentimentDetectionJobInput,
+        output_schema = schemas.DescribeTargetedSentimentDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:describeTopicsDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTopicsDetectionJob",
-        input_schema = types.DescribeTopicsDetectionJobInput,
-        output_schema = types.DescribeTopicsDetectionJobOutput,
+        input_schema = schemas.DescribeTopicsDetectionJobInput,
+        output_schema = schemas.DescribeTopicsDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:detectDominantLanguage(input, options)
     return self:invokeOperation(input, {
         name = "DetectDominantLanguage",
-        input_schema = types.DetectDominantLanguageInput,
-        output_schema = types.DetectDominantLanguageOutput,
+        input_schema = schemas.DetectDominantLanguageInput,
+        output_schema = schemas.DetectDominantLanguageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:detectEntities(input, options)
     return self:invokeOperation(input, {
         name = "DetectEntities",
-        input_schema = types.DetectEntitiesInput,
-        output_schema = types.DetectEntitiesOutput,
+        input_schema = schemas.DetectEntitiesInput,
+        output_schema = schemas.DetectEntitiesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:detectKeyPhrases(input, options)
     return self:invokeOperation(input, {
         name = "DetectKeyPhrases",
-        input_schema = types.DetectKeyPhrasesInput,
-        output_schema = types.DetectKeyPhrasesOutput,
+        input_schema = schemas.DetectKeyPhrasesInput,
+        output_schema = schemas.DetectKeyPhrasesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:detectPiiEntities(input, options)
     return self:invokeOperation(input, {
         name = "DetectPiiEntities",
-        input_schema = types.DetectPiiEntitiesInput,
-        output_schema = types.DetectPiiEntitiesOutput,
+        input_schema = schemas.DetectPiiEntitiesInput,
+        output_schema = schemas.DetectPiiEntitiesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:detectSentiment(input, options)
     return self:invokeOperation(input, {
         name = "DetectSentiment",
-        input_schema = types.DetectSentimentInput,
-        output_schema = types.DetectSentimentOutput,
+        input_schema = schemas.DetectSentimentInput,
+        output_schema = schemas.DetectSentimentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:detectSyntax(input, options)
     return self:invokeOperation(input, {
         name = "DetectSyntax",
-        input_schema = types.DetectSyntaxInput,
-        output_schema = types.DetectSyntaxOutput,
+        input_schema = schemas.DetectSyntaxInput,
+        output_schema = schemas.DetectSyntaxOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:detectTargetedSentiment(input, options)
     return self:invokeOperation(input, {
         name = "DetectTargetedSentiment",
-        input_schema = types.DetectTargetedSentimentInput,
-        output_schema = types.DetectTargetedSentimentOutput,
+        input_schema = schemas.DetectTargetedSentimentInput,
+        output_schema = schemas.DetectTargetedSentimentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:detectToxicContent(input, options)
     return self:invokeOperation(input, {
         name = "DetectToxicContent",
-        input_schema = types.DetectToxicContentInput,
-        output_schema = types.DetectToxicContentOutput,
+        input_schema = schemas.DetectToxicContentInput,
+        output_schema = schemas.DetectToxicContentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:importModel(input, options)
     return self:invokeOperation(input, {
         name = "ImportModel",
-        input_schema = types.ImportModelInput,
-        output_schema = types.ImportModelOutput,
+        input_schema = schemas.ImportModelInput,
+        output_schema = schemas.ImportModelOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:listDatasets(input, options)
     return self:invokeOperation(input, {
         name = "ListDatasets",
-        input_schema = types.ListDatasetsInput,
-        output_schema = types.ListDatasetsOutput,
+        input_schema = schemas.ListDatasetsInput,
+        output_schema = schemas.ListDatasetsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:listDocumentClassificationJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListDocumentClassificationJobs",
-        input_schema = types.ListDocumentClassificationJobsInput,
-        output_schema = types.ListDocumentClassificationJobsOutput,
+        input_schema = schemas.ListDocumentClassificationJobsInput,
+        output_schema = schemas.ListDocumentClassificationJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:listDocumentClassifiers(input, options)
     return self:invokeOperation(input, {
         name = "ListDocumentClassifiers",
-        input_schema = types.ListDocumentClassifiersInput,
-        output_schema = types.ListDocumentClassifiersOutput,
+        input_schema = schemas.ListDocumentClassifiersInput,
+        output_schema = schemas.ListDocumentClassifiersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:listDocumentClassifierSummaries(input, options)
     return self:invokeOperation(input, {
         name = "ListDocumentClassifierSummaries",
-        input_schema = types.ListDocumentClassifierSummariesInput,
-        output_schema = types.ListDocumentClassifierSummariesOutput,
+        input_schema = schemas.ListDocumentClassifierSummariesInput,
+        output_schema = schemas.ListDocumentClassifierSummariesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:listDominantLanguageDetectionJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListDominantLanguageDetectionJobs",
-        input_schema = types.ListDominantLanguageDetectionJobsInput,
-        output_schema = types.ListDominantLanguageDetectionJobsOutput,
+        input_schema = schemas.ListDominantLanguageDetectionJobsInput,
+        output_schema = schemas.ListDominantLanguageDetectionJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:listEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "ListEndpoints",
-        input_schema = types.ListEndpointsInput,
-        output_schema = types.ListEndpointsOutput,
+        input_schema = schemas.ListEndpointsInput,
+        output_schema = schemas.ListEndpointsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:listEntitiesDetectionJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListEntitiesDetectionJobs",
-        input_schema = types.ListEntitiesDetectionJobsInput,
-        output_schema = types.ListEntitiesDetectionJobsOutput,
+        input_schema = schemas.ListEntitiesDetectionJobsInput,
+        output_schema = schemas.ListEntitiesDetectionJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:listEntityRecognizers(input, options)
     return self:invokeOperation(input, {
         name = "ListEntityRecognizers",
-        input_schema = types.ListEntityRecognizersInput,
-        output_schema = types.ListEntityRecognizersOutput,
+        input_schema = schemas.ListEntityRecognizersInput,
+        output_schema = schemas.ListEntityRecognizersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:listEntityRecognizerSummaries(input, options)
     return self:invokeOperation(input, {
         name = "ListEntityRecognizerSummaries",
-        input_schema = types.ListEntityRecognizerSummariesInput,
-        output_schema = types.ListEntityRecognizerSummariesOutput,
+        input_schema = schemas.ListEntityRecognizerSummariesInput,
+        output_schema = schemas.ListEntityRecognizerSummariesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:listEventsDetectionJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListEventsDetectionJobs",
-        input_schema = types.ListEventsDetectionJobsInput,
-        output_schema = types.ListEventsDetectionJobsOutput,
+        input_schema = schemas.ListEventsDetectionJobsInput,
+        output_schema = schemas.ListEventsDetectionJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:listFlywheelIterationHistory(input, options)
     return self:invokeOperation(input, {
         name = "ListFlywheelIterationHistory",
-        input_schema = types.ListFlywheelIterationHistoryInput,
-        output_schema = types.ListFlywheelIterationHistoryOutput,
+        input_schema = schemas.ListFlywheelIterationHistoryInput,
+        output_schema = schemas.ListFlywheelIterationHistoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:listFlywheels(input, options)
     return self:invokeOperation(input, {
         name = "ListFlywheels",
-        input_schema = types.ListFlywheelsInput,
-        output_schema = types.ListFlywheelsOutput,
+        input_schema = schemas.ListFlywheelsInput,
+        output_schema = schemas.ListFlywheelsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:listKeyPhrasesDetectionJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListKeyPhrasesDetectionJobs",
-        input_schema = types.ListKeyPhrasesDetectionJobsInput,
-        output_schema = types.ListKeyPhrasesDetectionJobsOutput,
+        input_schema = schemas.ListKeyPhrasesDetectionJobsInput,
+        output_schema = schemas.ListKeyPhrasesDetectionJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:listPiiEntitiesDetectionJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListPiiEntitiesDetectionJobs",
-        input_schema = types.ListPiiEntitiesDetectionJobsInput,
-        output_schema = types.ListPiiEntitiesDetectionJobsOutput,
+        input_schema = schemas.ListPiiEntitiesDetectionJobsInput,
+        output_schema = schemas.ListPiiEntitiesDetectionJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:listSentimentDetectionJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListSentimentDetectionJobs",
-        input_schema = types.ListSentimentDetectionJobsInput,
-        output_schema = types.ListSentimentDetectionJobsOutput,
+        input_schema = schemas.ListSentimentDetectionJobsInput,
+        output_schema = schemas.ListSentimentDetectionJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:listTargetedSentimentDetectionJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListTargetedSentimentDetectionJobs",
-        input_schema = types.ListTargetedSentimentDetectionJobsInput,
-        output_schema = types.ListTargetedSentimentDetectionJobsOutput,
+        input_schema = schemas.ListTargetedSentimentDetectionJobsInput,
+        output_schema = schemas.ListTargetedSentimentDetectionJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:listTopicsDetectionJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListTopicsDetectionJobs",
-        input_schema = types.ListTopicsDetectionJobsInput,
-        output_schema = types.ListTopicsDetectionJobsOutput,
+        input_schema = schemas.ListTopicsDetectionJobsInput,
+        output_schema = schemas.ListTopicsDetectionJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:putResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutResourcePolicy",
-        input_schema = types.PutResourcePolicyInput,
-        output_schema = types.PutResourcePolicyOutput,
+        input_schema = schemas.PutResourcePolicyInput,
+        output_schema = schemas.PutResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:startDocumentClassificationJob(input, options)
     return self:invokeOperation(input, {
         name = "StartDocumentClassificationJob",
-        input_schema = types.StartDocumentClassificationJobInput,
-        output_schema = types.StartDocumentClassificationJobOutput,
+        input_schema = schemas.StartDocumentClassificationJobInput,
+        output_schema = schemas.StartDocumentClassificationJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:startDominantLanguageDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "StartDominantLanguageDetectionJob",
-        input_schema = types.StartDominantLanguageDetectionJobInput,
-        output_schema = types.StartDominantLanguageDetectionJobOutput,
+        input_schema = schemas.StartDominantLanguageDetectionJobInput,
+        output_schema = schemas.StartDominantLanguageDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:startEntitiesDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "StartEntitiesDetectionJob",
-        input_schema = types.StartEntitiesDetectionJobInput,
-        output_schema = types.StartEntitiesDetectionJobOutput,
+        input_schema = schemas.StartEntitiesDetectionJobInput,
+        output_schema = schemas.StartEntitiesDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:startEventsDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "StartEventsDetectionJob",
-        input_schema = types.StartEventsDetectionJobInput,
-        output_schema = types.StartEventsDetectionJobOutput,
+        input_schema = schemas.StartEventsDetectionJobInput,
+        output_schema = schemas.StartEventsDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:startFlywheelIteration(input, options)
     return self:invokeOperation(input, {
         name = "StartFlywheelIteration",
-        input_schema = types.StartFlywheelIterationInput,
-        output_schema = types.StartFlywheelIterationOutput,
+        input_schema = schemas.StartFlywheelIterationInput,
+        output_schema = schemas.StartFlywheelIterationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:startKeyPhrasesDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "StartKeyPhrasesDetectionJob",
-        input_schema = types.StartKeyPhrasesDetectionJobInput,
-        output_schema = types.StartKeyPhrasesDetectionJobOutput,
+        input_schema = schemas.StartKeyPhrasesDetectionJobInput,
+        output_schema = schemas.StartKeyPhrasesDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:startPiiEntitiesDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "StartPiiEntitiesDetectionJob",
-        input_schema = types.StartPiiEntitiesDetectionJobInput,
-        output_schema = types.StartPiiEntitiesDetectionJobOutput,
+        input_schema = schemas.StartPiiEntitiesDetectionJobInput,
+        output_schema = schemas.StartPiiEntitiesDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:startSentimentDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "StartSentimentDetectionJob",
-        input_schema = types.StartSentimentDetectionJobInput,
-        output_schema = types.StartSentimentDetectionJobOutput,
+        input_schema = schemas.StartSentimentDetectionJobInput,
+        output_schema = schemas.StartSentimentDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:startTargetedSentimentDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "StartTargetedSentimentDetectionJob",
-        input_schema = types.StartTargetedSentimentDetectionJobInput,
-        output_schema = types.StartTargetedSentimentDetectionJobOutput,
+        input_schema = schemas.StartTargetedSentimentDetectionJobInput,
+        output_schema = schemas.StartTargetedSentimentDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:startTopicsDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "StartTopicsDetectionJob",
-        input_schema = types.StartTopicsDetectionJobInput,
-        output_schema = types.StartTopicsDetectionJobOutput,
+        input_schema = schemas.StartTopicsDetectionJobInput,
+        output_schema = schemas.StartTopicsDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:stopDominantLanguageDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "StopDominantLanguageDetectionJob",
-        input_schema = types.StopDominantLanguageDetectionJobInput,
-        output_schema = types.StopDominantLanguageDetectionJobOutput,
+        input_schema = schemas.StopDominantLanguageDetectionJobInput,
+        output_schema = schemas.StopDominantLanguageDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:stopEntitiesDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "StopEntitiesDetectionJob",
-        input_schema = types.StopEntitiesDetectionJobInput,
-        output_schema = types.StopEntitiesDetectionJobOutput,
+        input_schema = schemas.StopEntitiesDetectionJobInput,
+        output_schema = schemas.StopEntitiesDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1011,8 +1011,8 @@ end
 function Client:stopEventsDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "StopEventsDetectionJob",
-        input_schema = types.StopEventsDetectionJobInput,
-        output_schema = types.StopEventsDetectionJobOutput,
+        input_schema = schemas.StopEventsDetectionJobInput,
+        output_schema = schemas.StopEventsDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1024,8 +1024,8 @@ end
 function Client:stopKeyPhrasesDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "StopKeyPhrasesDetectionJob",
-        input_schema = types.StopKeyPhrasesDetectionJobInput,
-        output_schema = types.StopKeyPhrasesDetectionJobOutput,
+        input_schema = schemas.StopKeyPhrasesDetectionJobInput,
+        output_schema = schemas.StopKeyPhrasesDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1037,8 +1037,8 @@ end
 function Client:stopPiiEntitiesDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "StopPiiEntitiesDetectionJob",
-        input_schema = types.StopPiiEntitiesDetectionJobInput,
-        output_schema = types.StopPiiEntitiesDetectionJobOutput,
+        input_schema = schemas.StopPiiEntitiesDetectionJobInput,
+        output_schema = schemas.StopPiiEntitiesDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1050,8 +1050,8 @@ end
 function Client:stopSentimentDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "StopSentimentDetectionJob",
-        input_schema = types.StopSentimentDetectionJobInput,
-        output_schema = types.StopSentimentDetectionJobOutput,
+        input_schema = schemas.StopSentimentDetectionJobInput,
+        output_schema = schemas.StopSentimentDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1063,8 +1063,8 @@ end
 function Client:stopTargetedSentimentDetectionJob(input, options)
     return self:invokeOperation(input, {
         name = "StopTargetedSentimentDetectionJob",
-        input_schema = types.StopTargetedSentimentDetectionJobInput,
-        output_schema = types.StopTargetedSentimentDetectionJobOutput,
+        input_schema = schemas.StopTargetedSentimentDetectionJobInput,
+        output_schema = schemas.StopTargetedSentimentDetectionJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1076,8 +1076,8 @@ end
 function Client:stopTrainingDocumentClassifier(input, options)
     return self:invokeOperation(input, {
         name = "StopTrainingDocumentClassifier",
-        input_schema = types.StopTrainingDocumentClassifierInput,
-        output_schema = types.StopTrainingDocumentClassifierOutput,
+        input_schema = schemas.StopTrainingDocumentClassifierInput,
+        output_schema = schemas.StopTrainingDocumentClassifierOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1089,8 +1089,8 @@ end
 function Client:stopTrainingEntityRecognizer(input, options)
     return self:invokeOperation(input, {
         name = "StopTrainingEntityRecognizer",
-        input_schema = types.StopTrainingEntityRecognizerInput,
-        output_schema = types.StopTrainingEntityRecognizerOutput,
+        input_schema = schemas.StopTrainingEntityRecognizerInput,
+        output_schema = schemas.StopTrainingEntityRecognizerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1102,8 +1102,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1115,8 +1115,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1128,8 +1128,8 @@ end
 function Client:updateEndpoint(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEndpoint",
-        input_schema = types.UpdateEndpointInput,
-        output_schema = types.UpdateEndpointOutput,
+        input_schema = schemas.UpdateEndpointInput,
+        output_schema = schemas.UpdateEndpointOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1141,8 +1141,8 @@ end
 function Client:updateFlywheel(input, options)
     return self:invokeOperation(input, {
         name = "UpdateFlywheel",
-        input_schema = types.UpdateFlywheelInput,
-        output_schema = types.UpdateFlywheelOutput,
+        input_schema = schemas.UpdateFlywheelInput,
+        output_schema = schemas.UpdateFlywheelOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

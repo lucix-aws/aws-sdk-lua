@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("snowdevicemanagement.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("snowdevicemanagement.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("snowdevicemanagement.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:cancelTask(input, options)
     return self:invokeOperation(input, {
         name = "CancelTask",
-        input_schema = types.CancelTaskInput,
-        output_schema = types.CancelTaskOutput,
+        input_schema = schemas.CancelTaskInput,
+        output_schema = schemas.CancelTaskOutput,
         http_method = "POST",
         http_path = "/task/{taskId}/cancel",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createTask(input, options)
     return self:invokeOperation(input, {
         name = "CreateTask",
-        input_schema = types.CreateTaskInput,
-        output_schema = types.CreateTaskOutput,
+        input_schema = schemas.CreateTaskInput,
+        output_schema = schemas.CreateTaskOutput,
         http_method = "POST",
         http_path = "/task",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:describeDevice(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDevice",
-        input_schema = types.DescribeDeviceInput,
-        output_schema = types.DescribeDeviceOutput,
+        input_schema = schemas.DescribeDeviceInput,
+        output_schema = schemas.DescribeDeviceOutput,
         http_method = "POST",
         http_path = "/managed-device/{managedDeviceId}/describe",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:describeDeviceEc2Instances(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDeviceEc2Instances",
-        input_schema = types.DescribeDeviceEc2InstancesInput,
-        output_schema = types.DescribeDeviceEc2InstancesOutput,
+        input_schema = schemas.DescribeDeviceEc2InstancesInput,
+        output_schema = schemas.DescribeDeviceEc2InstancesOutput,
         http_method = "POST",
         http_path = "/managed-device/{managedDeviceId}/resources/ec2/describe",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:describeExecution(input, options)
     return self:invokeOperation(input, {
         name = "DescribeExecution",
-        input_schema = types.DescribeExecutionInput,
-        output_schema = types.DescribeExecutionOutput,
+        input_schema = schemas.DescribeExecutionInput,
+        output_schema = schemas.DescribeExecutionOutput,
         http_method = "POST",
         http_path = "/task/{taskId}/execution/{managedDeviceId}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:describeTask(input, options)
     return self:invokeOperation(input, {
         name = "DescribeTask",
-        input_schema = types.DescribeTaskInput,
-        output_schema = types.DescribeTaskOutput,
+        input_schema = schemas.DescribeTaskInput,
+        output_schema = schemas.DescribeTaskOutput,
         http_method = "POST",
         http_path = "/task/{taskId}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listDeviceResources(input, options)
     return self:invokeOperation(input, {
         name = "ListDeviceResources",
-        input_schema = types.ListDeviceResourcesInput,
-        output_schema = types.ListDeviceResourcesOutput,
+        input_schema = schemas.ListDeviceResourcesInput,
+        output_schema = schemas.ListDeviceResourcesOutput,
         http_method = "GET",
         http_path = "/managed-device/{managedDeviceId}/resources",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listDevices(input, options)
     return self:invokeOperation(input, {
         name = "ListDevices",
-        input_schema = types.ListDevicesInput,
-        output_schema = types.ListDevicesOutput,
+        input_schema = schemas.ListDevicesInput,
+        output_schema = schemas.ListDevicesOutput,
         http_method = "GET",
         http_path = "/managed-devices",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listExecutions(input, options)
     return self:invokeOperation(input, {
         name = "ListExecutions",
-        input_schema = types.ListExecutionsInput,
-        output_schema = types.ListExecutionsOutput,
+        input_schema = schemas.ListExecutionsInput,
+        output_schema = schemas.ListExecutionsOutput,
         http_method = "GET",
         http_path = "/executions",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listTasks(input, options)
     return self:invokeOperation(input, {
         name = "ListTasks",
-        input_schema = types.ListTasksInput,
-        output_schema = types.ListTasksOutput,
+        input_schema = schemas.ListTasksInput,
+        output_schema = schemas.ListTasksOutput,
         http_method = "GET",
         http_path = "/tasks",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {

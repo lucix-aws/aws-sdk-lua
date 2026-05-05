@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("m2.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("m2.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("m2.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:cancelBatchJobExecution(input, options)
     return self:invokeOperation(input, {
         name = "CancelBatchJobExecution",
-        input_schema = types.CancelBatchJobExecutionInput,
-        output_schema = types.CancelBatchJobExecutionOutput,
+        input_schema = schemas.CancelBatchJobExecutionInput,
+        output_schema = schemas.CancelBatchJobExecutionOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/batch-job-executions/{executionId}/cancel",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createApplication(input, options)
     return self:invokeOperation(input, {
         name = "CreateApplication",
-        input_schema = types.CreateApplicationInput,
-        output_schema = types.CreateApplicationOutput,
+        input_schema = schemas.CreateApplicationInput,
+        output_schema = schemas.CreateApplicationOutput,
         http_method = "POST",
         http_path = "/applications",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createDataSetExportTask(input, options)
     return self:invokeOperation(input, {
         name = "CreateDataSetExportTask",
-        input_schema = types.CreateDataSetExportTaskInput,
-        output_schema = types.CreateDataSetExportTaskOutput,
+        input_schema = schemas.CreateDataSetExportTaskInput,
+        output_schema = schemas.CreateDataSetExportTaskOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/dataset-export-task",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createDataSetImportTask(input, options)
     return self:invokeOperation(input, {
         name = "CreateDataSetImportTask",
-        input_schema = types.CreateDataSetImportTaskInput,
-        output_schema = types.CreateDataSetImportTaskOutput,
+        input_schema = schemas.CreateDataSetImportTaskInput,
+        output_schema = schemas.CreateDataSetImportTaskOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/dataset-import-task",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createDeployment(input, options)
     return self:invokeOperation(input, {
         name = "CreateDeployment",
-        input_schema = types.CreateDeploymentInput,
-        output_schema = types.CreateDeploymentOutput,
+        input_schema = schemas.CreateDeploymentInput,
+        output_schema = schemas.CreateDeploymentOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/deployments",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "CreateEnvironment",
-        input_schema = types.CreateEnvironmentInput,
-        output_schema = types.CreateEnvironmentOutput,
+        input_schema = schemas.CreateEnvironmentInput,
+        output_schema = schemas.CreateEnvironmentOutput,
         http_method = "POST",
         http_path = "/environments",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteApplication(input, options)
     return self:invokeOperation(input, {
         name = "DeleteApplication",
-        input_schema = types.DeleteApplicationInput,
-        output_schema = types.DeleteApplicationOutput,
+        input_schema = schemas.DeleteApplicationInput,
+        output_schema = schemas.DeleteApplicationOutput,
         http_method = "DELETE",
         http_path = "/applications/{applicationId}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteApplicationFromEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "DeleteApplicationFromEnvironment",
-        input_schema = types.DeleteApplicationFromEnvironmentInput,
-        output_schema = types.DeleteApplicationFromEnvironmentOutput,
+        input_schema = schemas.DeleteApplicationFromEnvironmentInput,
+        output_schema = schemas.DeleteApplicationFromEnvironmentOutput,
         http_method = "DELETE",
         http_path = "/applications/{applicationId}/environment/{environmentId}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEnvironment",
-        input_schema = types.DeleteEnvironmentInput,
-        output_schema = types.DeleteEnvironmentOutput,
+        input_schema = schemas.DeleteEnvironmentInput,
+        output_schema = schemas.DeleteEnvironmentOutput,
         http_method = "DELETE",
         http_path = "/environments/{environmentId}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getApplication(input, options)
     return self:invokeOperation(input, {
         name = "GetApplication",
-        input_schema = types.GetApplicationInput,
-        output_schema = types.GetApplicationOutput,
+        input_schema = schemas.GetApplicationInput,
+        output_schema = schemas.GetApplicationOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getApplicationVersion(input, options)
     return self:invokeOperation(input, {
         name = "GetApplicationVersion",
-        input_schema = types.GetApplicationVersionInput,
-        output_schema = types.GetApplicationVersionOutput,
+        input_schema = schemas.GetApplicationVersionInput,
+        output_schema = schemas.GetApplicationVersionOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/versions/{applicationVersion}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getBatchJobExecution(input, options)
     return self:invokeOperation(input, {
         name = "GetBatchJobExecution",
-        input_schema = types.GetBatchJobExecutionInput,
-        output_schema = types.GetBatchJobExecutionOutput,
+        input_schema = schemas.GetBatchJobExecutionInput,
+        output_schema = schemas.GetBatchJobExecutionOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/batch-job-executions/{executionId}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getDataSetDetails(input, options)
     return self:invokeOperation(input, {
         name = "GetDataSetDetails",
-        input_schema = types.GetDataSetDetailsInput,
-        output_schema = types.GetDataSetDetailsOutput,
+        input_schema = schemas.GetDataSetDetailsInput,
+        output_schema = schemas.GetDataSetDetailsOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/datasets/{dataSetName}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getDataSetExportTask(input, options)
     return self:invokeOperation(input, {
         name = "GetDataSetExportTask",
-        input_schema = types.GetDataSetExportTaskInput,
-        output_schema = types.GetDataSetExportTaskOutput,
+        input_schema = schemas.GetDataSetExportTaskInput,
+        output_schema = schemas.GetDataSetExportTaskOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/dataset-export-tasks/{taskId}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getDataSetImportTask(input, options)
     return self:invokeOperation(input, {
         name = "GetDataSetImportTask",
-        input_schema = types.GetDataSetImportTaskInput,
-        output_schema = types.GetDataSetImportTaskOutput,
+        input_schema = schemas.GetDataSetImportTaskInput,
+        output_schema = schemas.GetDataSetImportTaskOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/dataset-import-tasks/{taskId}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getDeployment(input, options)
     return self:invokeOperation(input, {
         name = "GetDeployment",
-        input_schema = types.GetDeploymentInput,
-        output_schema = types.GetDeploymentOutput,
+        input_schema = schemas.GetDeploymentInput,
+        output_schema = schemas.GetDeploymentOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/deployments/{deploymentId}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "GetEnvironment",
-        input_schema = types.GetEnvironmentInput,
-        output_schema = types.GetEnvironmentOutput,
+        input_schema = schemas.GetEnvironmentInput,
+        output_schema = schemas.GetEnvironmentOutput,
         http_method = "GET",
         http_path = "/environments/{environmentId}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getSignedBluinsightsUrl(input, options)
     return self:invokeOperation(input, {
         name = "GetSignedBluinsightsUrl",
-        input_schema = types.GetSignedBluinsightsUrlInput,
-        output_schema = types.GetSignedBluinsightsUrlOutput,
+        input_schema = schemas.GetSignedBluinsightsUrlInput,
+        output_schema = schemas.GetSignedBluinsightsUrlOutput,
         http_method = "GET",
         http_path = "/signed-bi-url",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listApplications(input, options)
     return self:invokeOperation(input, {
         name = "ListApplications",
-        input_schema = types.ListApplicationsInput,
-        output_schema = types.ListApplicationsOutput,
+        input_schema = schemas.ListApplicationsInput,
+        output_schema = schemas.ListApplicationsOutput,
         http_method = "GET",
         http_path = "/applications",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listApplicationVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListApplicationVersions",
-        input_schema = types.ListApplicationVersionsInput,
-        output_schema = types.ListApplicationVersionsOutput,
+        input_schema = schemas.ListApplicationVersionsInput,
+        output_schema = schemas.ListApplicationVersionsOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/versions",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listBatchJobDefinitions(input, options)
     return self:invokeOperation(input, {
         name = "ListBatchJobDefinitions",
-        input_schema = types.ListBatchJobDefinitionsInput,
-        output_schema = types.ListBatchJobDefinitionsOutput,
+        input_schema = schemas.ListBatchJobDefinitionsInput,
+        output_schema = schemas.ListBatchJobDefinitionsOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/batch-job-definitions",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listBatchJobExecutions(input, options)
     return self:invokeOperation(input, {
         name = "ListBatchJobExecutions",
-        input_schema = types.ListBatchJobExecutionsInput,
-        output_schema = types.ListBatchJobExecutionsOutput,
+        input_schema = schemas.ListBatchJobExecutionsInput,
+        output_schema = schemas.ListBatchJobExecutionsOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/batch-job-executions",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listBatchJobRestartPoints(input, options)
     return self:invokeOperation(input, {
         name = "ListBatchJobRestartPoints",
-        input_schema = types.ListBatchJobRestartPointsInput,
-        output_schema = types.ListBatchJobRestartPointsOutput,
+        input_schema = schemas.ListBatchJobRestartPointsInput,
+        output_schema = schemas.ListBatchJobRestartPointsOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/batch-job-executions/{executionId}/steps",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listDataSetExportHistory(input, options)
     return self:invokeOperation(input, {
         name = "ListDataSetExportHistory",
-        input_schema = types.ListDataSetExportHistoryInput,
-        output_schema = types.ListDataSetExportHistoryOutput,
+        input_schema = schemas.ListDataSetExportHistoryInput,
+        output_schema = schemas.ListDataSetExportHistoryOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/dataset-export-tasks",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listDataSetImportHistory(input, options)
     return self:invokeOperation(input, {
         name = "ListDataSetImportHistory",
-        input_schema = types.ListDataSetImportHistoryInput,
-        output_schema = types.ListDataSetImportHistoryOutput,
+        input_schema = schemas.ListDataSetImportHistoryInput,
+        output_schema = schemas.ListDataSetImportHistoryOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/dataset-import-tasks",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listDataSets(input, options)
     return self:invokeOperation(input, {
         name = "ListDataSets",
-        input_schema = types.ListDataSetsInput,
-        output_schema = types.ListDataSetsOutput,
+        input_schema = schemas.ListDataSetsInput,
+        output_schema = schemas.ListDataSetsOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/datasets",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listDeployments(input, options)
     return self:invokeOperation(input, {
         name = "ListDeployments",
-        input_schema = types.ListDeploymentsInput,
-        output_schema = types.ListDeploymentsOutput,
+        input_schema = schemas.ListDeploymentsInput,
+        output_schema = schemas.ListDeploymentsOutput,
         http_method = "GET",
         http_path = "/applications/{applicationId}/deployments",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listEngineVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListEngineVersions",
-        input_schema = types.ListEngineVersionsInput,
-        output_schema = types.ListEngineVersionsOutput,
+        input_schema = schemas.ListEngineVersionsInput,
+        output_schema = schemas.ListEngineVersionsOutput,
         http_method = "GET",
         http_path = "/engine-versions",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listEnvironments(input, options)
     return self:invokeOperation(input, {
         name = "ListEnvironments",
-        input_schema = types.ListEnvironmentsInput,
-        output_schema = types.ListEnvironmentsOutput,
+        input_schema = schemas.ListEnvironmentsInput,
+        output_schema = schemas.ListEnvironmentsOutput,
         http_method = "GET",
         http_path = "/environments",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:startApplication(input, options)
     return self:invokeOperation(input, {
         name = "StartApplication",
-        input_schema = types.StartApplicationInput,
-        output_schema = types.StartApplicationOutput,
+        input_schema = schemas.StartApplicationInput,
+        output_schema = schemas.StartApplicationOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/start",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:startBatchJob(input, options)
     return self:invokeOperation(input, {
         name = "StartBatchJob",
-        input_schema = types.StartBatchJobInput,
-        output_schema = types.StartBatchJobOutput,
+        input_schema = schemas.StartBatchJobInput,
+        output_schema = schemas.StartBatchJobOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/batch-job",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:stopApplication(input, options)
     return self:invokeOperation(input, {
         name = "StopApplication",
-        input_schema = types.StopApplicationInput,
-        output_schema = types.StopApplicationOutput,
+        input_schema = schemas.StopApplicationInput,
+        output_schema = schemas.StopApplicationOutput,
         http_method = "POST",
         http_path = "/applications/{applicationId}/stop",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:updateApplication(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApplication",
-        input_schema = types.UpdateApplicationInput,
-        output_schema = types.UpdateApplicationOutput,
+        input_schema = schemas.UpdateApplicationInput,
+        output_schema = schemas.UpdateApplicationOutput,
         http_method = "PATCH",
         http_path = "/applications/{applicationId}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:updateEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEnvironment",
-        input_schema = types.UpdateEnvironmentInput,
-        output_schema = types.UpdateEnvironmentOutput,
+        input_schema = schemas.UpdateEnvironmentInput,
+        output_schema = schemas.UpdateEnvironmentOutput,
         http_method = "PATCH",
         http_path = "/environments/{environmentId}",
         effective_auth_schemes = {

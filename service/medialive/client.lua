@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("medialive.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("medialive.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("medialive.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:acceptInputDeviceTransfer(input, options)
     return self:invokeOperation(input, {
         name = "AcceptInputDeviceTransfer",
-        input_schema = types.AcceptInputDeviceTransferInput,
-        output_schema = types.AcceptInputDeviceTransferOutput,
+        input_schema = schemas.AcceptInputDeviceTransferInput,
+        output_schema = schemas.AcceptInputDeviceTransferOutput,
         http_method = "POST",
         http_path = "/prod/inputDevices/{InputDeviceId}/accept",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchDelete(input, options)
     return self:invokeOperation(input, {
         name = "BatchDelete",
-        input_schema = types.BatchDeleteInput,
-        output_schema = types.BatchDeleteOutput,
+        input_schema = schemas.BatchDeleteInput,
+        output_schema = schemas.BatchDeleteOutput,
         http_method = "POST",
         http_path = "/prod/batch/delete",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:batchStart(input, options)
     return self:invokeOperation(input, {
         name = "BatchStart",
-        input_schema = types.BatchStartInput,
-        output_schema = types.BatchStartOutput,
+        input_schema = schemas.BatchStartInput,
+        output_schema = schemas.BatchStartOutput,
         http_method = "POST",
         http_path = "/prod/batch/start",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:batchStop(input, options)
     return self:invokeOperation(input, {
         name = "BatchStop",
-        input_schema = types.BatchStopInput,
-        output_schema = types.BatchStopOutput,
+        input_schema = schemas.BatchStopInput,
+        output_schema = schemas.BatchStopOutput,
         http_method = "POST",
         http_path = "/prod/batch/stop",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:batchUpdateSchedule(input, options)
     return self:invokeOperation(input, {
         name = "BatchUpdateSchedule",
-        input_schema = types.BatchUpdateScheduleInput,
-        output_schema = types.BatchUpdateScheduleOutput,
+        input_schema = schemas.BatchUpdateScheduleInput,
+        output_schema = schemas.BatchUpdateScheduleOutput,
         http_method = "PUT",
         http_path = "/prod/channels/{ChannelId}/schedule",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:cancelInputDeviceTransfer(input, options)
     return self:invokeOperation(input, {
         name = "CancelInputDeviceTransfer",
-        input_schema = types.CancelInputDeviceTransferInput,
-        output_schema = types.CancelInputDeviceTransferOutput,
+        input_schema = schemas.CancelInputDeviceTransferInput,
+        output_schema = schemas.CancelInputDeviceTransferOutput,
         http_method = "POST",
         http_path = "/prod/inputDevices/{InputDeviceId}/cancel",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:claimDevice(input, options)
     return self:invokeOperation(input, {
         name = "ClaimDevice",
-        input_schema = types.ClaimDeviceInput,
-        output_schema = types.ClaimDeviceOutput,
+        input_schema = schemas.ClaimDeviceInput,
+        output_schema = schemas.ClaimDeviceOutput,
         http_method = "POST",
         http_path = "/prod/claimDevice",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createChannel(input, options)
     return self:invokeOperation(input, {
         name = "CreateChannel",
-        input_schema = types.CreateChannelInput,
-        output_schema = types.CreateChannelOutput,
+        input_schema = schemas.CreateChannelInput,
+        output_schema = schemas.CreateChannelOutput,
         http_method = "POST",
         http_path = "/prod/channels",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createChannelPlacementGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateChannelPlacementGroup",
-        input_schema = types.CreateChannelPlacementGroupInput,
-        output_schema = types.CreateChannelPlacementGroupOutput,
+        input_schema = schemas.CreateChannelPlacementGroupInput,
+        output_schema = schemas.CreateChannelPlacementGroupOutput,
         http_method = "POST",
         http_path = "/prod/clusters/{ClusterId}/channelplacementgroups",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createCloudWatchAlarmTemplate(input, options)
     return self:invokeOperation(input, {
         name = "CreateCloudWatchAlarmTemplate",
-        input_schema = types.CreateCloudWatchAlarmTemplateInput,
-        output_schema = types.CreateCloudWatchAlarmTemplateOutput,
+        input_schema = schemas.CreateCloudWatchAlarmTemplateInput,
+        output_schema = schemas.CreateCloudWatchAlarmTemplateOutput,
         http_method = "POST",
         http_path = "/prod/cloudwatch-alarm-templates",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:createCloudWatchAlarmTemplateGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateCloudWatchAlarmTemplateGroup",
-        input_schema = types.CreateCloudWatchAlarmTemplateGroupInput,
-        output_schema = types.CreateCloudWatchAlarmTemplateGroupOutput,
+        input_schema = schemas.CreateCloudWatchAlarmTemplateGroupInput,
+        output_schema = schemas.CreateCloudWatchAlarmTemplateGroupOutput,
         http_method = "POST",
         http_path = "/prod/cloudwatch-alarm-template-groups",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:createCluster(input, options)
     return self:invokeOperation(input, {
         name = "CreateCluster",
-        input_schema = types.CreateClusterInput,
-        output_schema = types.CreateClusterOutput,
+        input_schema = schemas.CreateClusterInput,
+        output_schema = schemas.CreateClusterOutput,
         http_method = "POST",
         http_path = "/prod/clusters",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:createEventBridgeRuleTemplate(input, options)
     return self:invokeOperation(input, {
         name = "CreateEventBridgeRuleTemplate",
-        input_schema = types.CreateEventBridgeRuleTemplateInput,
-        output_schema = types.CreateEventBridgeRuleTemplateOutput,
+        input_schema = schemas.CreateEventBridgeRuleTemplateInput,
+        output_schema = schemas.CreateEventBridgeRuleTemplateOutput,
         http_method = "POST",
         http_path = "/prod/eventbridge-rule-templates",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:createEventBridgeRuleTemplateGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateEventBridgeRuleTemplateGroup",
-        input_schema = types.CreateEventBridgeRuleTemplateGroupInput,
-        output_schema = types.CreateEventBridgeRuleTemplateGroupOutput,
+        input_schema = schemas.CreateEventBridgeRuleTemplateGroupInput,
+        output_schema = schemas.CreateEventBridgeRuleTemplateGroupOutput,
         http_method = "POST",
         http_path = "/prod/eventbridge-rule-template-groups",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:createInput(input, options)
     return self:invokeOperation(input, {
         name = "CreateInput",
-        input_schema = types.CreateInputInput,
-        output_schema = types.CreateInputOutput,
+        input_schema = schemas.CreateInputInput,
+        output_schema = schemas.CreateInputOutput,
         http_method = "POST",
         http_path = "/prod/inputs",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:createInputSecurityGroup(input, options)
     return self:invokeOperation(input, {
         name = "CreateInputSecurityGroup",
-        input_schema = types.CreateInputSecurityGroupInput,
-        output_schema = types.CreateInputSecurityGroupOutput,
+        input_schema = schemas.CreateInputSecurityGroupInput,
+        output_schema = schemas.CreateInputSecurityGroupOutput,
         http_method = "POST",
         http_path = "/prod/inputSecurityGroups",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:createMultiplex(input, options)
     return self:invokeOperation(input, {
         name = "CreateMultiplex",
-        input_schema = types.CreateMultiplexInput,
-        output_schema = types.CreateMultiplexOutput,
+        input_schema = schemas.CreateMultiplexInput,
+        output_schema = schemas.CreateMultiplexOutput,
         http_method = "POST",
         http_path = "/prod/multiplexes",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:createMultiplexProgram(input, options)
     return self:invokeOperation(input, {
         name = "CreateMultiplexProgram",
-        input_schema = types.CreateMultiplexProgramInput,
-        output_schema = types.CreateMultiplexProgramOutput,
+        input_schema = schemas.CreateMultiplexProgramInput,
+        output_schema = schemas.CreateMultiplexProgramOutput,
         http_method = "POST",
         http_path = "/prod/multiplexes/{MultiplexId}/programs",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:createNetwork(input, options)
     return self:invokeOperation(input, {
         name = "CreateNetwork",
-        input_schema = types.CreateNetworkInput,
-        output_schema = types.CreateNetworkOutput,
+        input_schema = schemas.CreateNetworkInput,
+        output_schema = schemas.CreateNetworkOutput,
         http_method = "POST",
         http_path = "/prod/networks",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:createNode(input, options)
     return self:invokeOperation(input, {
         name = "CreateNode",
-        input_schema = types.CreateNodeInput,
-        output_schema = types.CreateNodeOutput,
+        input_schema = schemas.CreateNodeInput,
+        output_schema = schemas.CreateNodeOutput,
         http_method = "POST",
         http_path = "/prod/clusters/{ClusterId}/nodes",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:createNodeRegistrationScript(input, options)
     return self:invokeOperation(input, {
         name = "CreateNodeRegistrationScript",
-        input_schema = types.CreateNodeRegistrationScriptInput,
-        output_schema = types.CreateNodeRegistrationScriptOutput,
+        input_schema = schemas.CreateNodeRegistrationScriptInput,
+        output_schema = schemas.CreateNodeRegistrationScriptOutput,
         http_method = "POST",
         http_path = "/prod/clusters/{ClusterId}/nodeRegistrationScript",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:createPartnerInput(input, options)
     return self:invokeOperation(input, {
         name = "CreatePartnerInput",
-        input_schema = types.CreatePartnerInputInput,
-        output_schema = types.CreatePartnerInputOutput,
+        input_schema = schemas.CreatePartnerInputInput,
+        output_schema = schemas.CreatePartnerInputOutput,
         http_method = "POST",
         http_path = "/prod/inputs/{InputId}/partners",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:createSdiSource(input, options)
     return self:invokeOperation(input, {
         name = "CreateSdiSource",
-        input_schema = types.CreateSdiSourceInput,
-        output_schema = types.CreateSdiSourceOutput,
+        input_schema = schemas.CreateSdiSourceInput,
+        output_schema = schemas.CreateSdiSourceOutput,
         http_method = "POST",
         http_path = "/prod/sdiSources",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:createSignalMap(input, options)
     return self:invokeOperation(input, {
         name = "CreateSignalMap",
-        input_schema = types.CreateSignalMapInput,
-        output_schema = types.CreateSignalMapOutput,
+        input_schema = schemas.CreateSignalMapInput,
+        output_schema = schemas.CreateSignalMapOutput,
         http_method = "POST",
         http_path = "/prod/signal-maps",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:createTags(input, options)
     return self:invokeOperation(input, {
         name = "CreateTags",
-        input_schema = types.CreateTagsInput,
-        output_schema = types.CreateTagsOutput,
+        input_schema = schemas.CreateTagsInput,
+        output_schema = schemas.CreateTagsOutput,
         http_method = "POST",
         http_path = "/prod/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:deleteChannel(input, options)
     return self:invokeOperation(input, {
         name = "DeleteChannel",
-        input_schema = types.DeleteChannelInput,
-        output_schema = types.DeleteChannelOutput,
+        input_schema = schemas.DeleteChannelInput,
+        output_schema = schemas.DeleteChannelOutput,
         http_method = "DELETE",
         http_path = "/prod/channels/{ChannelId}",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:deleteChannelPlacementGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteChannelPlacementGroup",
-        input_schema = types.DeleteChannelPlacementGroupInput,
-        output_schema = types.DeleteChannelPlacementGroupOutput,
+        input_schema = schemas.DeleteChannelPlacementGroupInput,
+        output_schema = schemas.DeleteChannelPlacementGroupOutput,
         http_method = "DELETE",
         http_path = "/prod/clusters/{ClusterId}/channelplacementgroups/{ChannelPlacementGroupId}",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:deleteCloudWatchAlarmTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCloudWatchAlarmTemplate",
-        input_schema = types.DeleteCloudWatchAlarmTemplateInput,
-        output_schema = types.DeleteCloudWatchAlarmTemplateOutput,
+        input_schema = schemas.DeleteCloudWatchAlarmTemplateInput,
+        output_schema = schemas.DeleteCloudWatchAlarmTemplateOutput,
         http_method = "DELETE",
         http_path = "/prod/cloudwatch-alarm-templates/{Identifier}",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:deleteCloudWatchAlarmTemplateGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCloudWatchAlarmTemplateGroup",
-        input_schema = types.DeleteCloudWatchAlarmTemplateGroupInput,
-        output_schema = types.DeleteCloudWatchAlarmTemplateGroupOutput,
+        input_schema = schemas.DeleteCloudWatchAlarmTemplateGroupInput,
+        output_schema = schemas.DeleteCloudWatchAlarmTemplateGroupOutput,
         http_method = "DELETE",
         http_path = "/prod/cloudwatch-alarm-template-groups/{Identifier}",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:deleteCluster(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCluster",
-        input_schema = types.DeleteClusterInput,
-        output_schema = types.DeleteClusterOutput,
+        input_schema = schemas.DeleteClusterInput,
+        output_schema = schemas.DeleteClusterOutput,
         http_method = "DELETE",
         http_path = "/prod/clusters/{ClusterId}",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:deleteEventBridgeRuleTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEventBridgeRuleTemplate",
-        input_schema = types.DeleteEventBridgeRuleTemplateInput,
-        output_schema = types.DeleteEventBridgeRuleTemplateOutput,
+        input_schema = schemas.DeleteEventBridgeRuleTemplateInput,
+        output_schema = schemas.DeleteEventBridgeRuleTemplateOutput,
         http_method = "DELETE",
         http_path = "/prod/eventbridge-rule-templates/{Identifier}",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:deleteEventBridgeRuleTemplateGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEventBridgeRuleTemplateGroup",
-        input_schema = types.DeleteEventBridgeRuleTemplateGroupInput,
-        output_schema = types.DeleteEventBridgeRuleTemplateGroupOutput,
+        input_schema = schemas.DeleteEventBridgeRuleTemplateGroupInput,
+        output_schema = schemas.DeleteEventBridgeRuleTemplateGroupOutput,
         http_method = "DELETE",
         http_path = "/prod/eventbridge-rule-template-groups/{Identifier}",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:deleteInput(input, options)
     return self:invokeOperation(input, {
         name = "DeleteInput",
-        input_schema = types.DeleteInputInput,
-        output_schema = types.DeleteInputOutput,
+        input_schema = schemas.DeleteInputInput,
+        output_schema = schemas.DeleteInputOutput,
         http_method = "DELETE",
         http_path = "/prod/inputs/{InputId}",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:deleteInputSecurityGroup(input, options)
     return self:invokeOperation(input, {
         name = "DeleteInputSecurityGroup",
-        input_schema = types.DeleteInputSecurityGroupInput,
-        output_schema = types.DeleteInputSecurityGroupOutput,
+        input_schema = schemas.DeleteInputSecurityGroupInput,
+        output_schema = schemas.DeleteInputSecurityGroupOutput,
         http_method = "DELETE",
         http_path = "/prod/inputSecurityGroups/{InputSecurityGroupId}",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:deleteMultiplex(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMultiplex",
-        input_schema = types.DeleteMultiplexInput,
-        output_schema = types.DeleteMultiplexOutput,
+        input_schema = schemas.DeleteMultiplexInput,
+        output_schema = schemas.DeleteMultiplexOutput,
         http_method = "DELETE",
         http_path = "/prod/multiplexes/{MultiplexId}",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:deleteMultiplexProgram(input, options)
     return self:invokeOperation(input, {
         name = "DeleteMultiplexProgram",
-        input_schema = types.DeleteMultiplexProgramInput,
-        output_schema = types.DeleteMultiplexProgramOutput,
+        input_schema = schemas.DeleteMultiplexProgramInput,
+        output_schema = schemas.DeleteMultiplexProgramOutput,
         http_method = "DELETE",
         http_path = "/prod/multiplexes/{MultiplexId}/programs/{ProgramName}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:deleteNetwork(input, options)
     return self:invokeOperation(input, {
         name = "DeleteNetwork",
-        input_schema = types.DeleteNetworkInput,
-        output_schema = types.DeleteNetworkOutput,
+        input_schema = schemas.DeleteNetworkInput,
+        output_schema = schemas.DeleteNetworkOutput,
         http_method = "DELETE",
         http_path = "/prod/networks/{NetworkId}",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:deleteNode(input, options)
     return self:invokeOperation(input, {
         name = "DeleteNode",
-        input_schema = types.DeleteNodeInput,
-        output_schema = types.DeleteNodeOutput,
+        input_schema = schemas.DeleteNodeInput,
+        output_schema = schemas.DeleteNodeOutput,
         http_method = "DELETE",
         http_path = "/prod/clusters/{ClusterId}/nodes/{NodeId}",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:deleteReservation(input, options)
     return self:invokeOperation(input, {
         name = "DeleteReservation",
-        input_schema = types.DeleteReservationInput,
-        output_schema = types.DeleteReservationOutput,
+        input_schema = schemas.DeleteReservationInput,
+        output_schema = schemas.DeleteReservationOutput,
         http_method = "DELETE",
         http_path = "/prod/reservations/{ReservationId}",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:deleteSchedule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSchedule",
-        input_schema = types.DeleteScheduleInput,
-        output_schema = types.DeleteScheduleOutput,
+        input_schema = schemas.DeleteScheduleInput,
+        output_schema = schemas.DeleteScheduleOutput,
         http_method = "DELETE",
         http_path = "/prod/channels/{ChannelId}/schedule",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:deleteSdiSource(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSdiSource",
-        input_schema = types.DeleteSdiSourceInput,
-        output_schema = types.DeleteSdiSourceOutput,
+        input_schema = schemas.DeleteSdiSourceInput,
+        output_schema = schemas.DeleteSdiSourceOutput,
         http_method = "DELETE",
         http_path = "/prod/sdiSources/{SdiSourceId}",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:deleteSignalMap(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSignalMap",
-        input_schema = types.DeleteSignalMapInput,
-        output_schema = types.DeleteSignalMapOutput,
+        input_schema = schemas.DeleteSignalMapInput,
+        output_schema = schemas.DeleteSignalMapOutput,
         http_method = "DELETE",
         http_path = "/prod/signal-maps/{Identifier}",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:deleteTags(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTags",
-        input_schema = types.DeleteTagsInput,
-        output_schema = types.DeleteTagsOutput,
+        input_schema = schemas.DeleteTagsInput,
+        output_schema = schemas.DeleteTagsOutput,
         http_method = "DELETE",
         http_path = "/prod/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:describeAccountConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAccountConfiguration",
-        input_schema = types.DescribeAccountConfigurationInput,
-        output_schema = types.DescribeAccountConfigurationOutput,
+        input_schema = schemas.DescribeAccountConfigurationInput,
+        output_schema = schemas.DescribeAccountConfigurationOutput,
         http_method = "GET",
         http_path = "/prod/accountConfiguration",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:describeChannel(input, options)
     return self:invokeOperation(input, {
         name = "DescribeChannel",
-        input_schema = types.DescribeChannelInput,
-        output_schema = types.DescribeChannelOutput,
+        input_schema = schemas.DescribeChannelInput,
+        output_schema = schemas.DescribeChannelOutput,
         http_method = "GET",
         http_path = "/prod/channels/{ChannelId}",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:describeChannelPlacementGroup(input, options)
     return self:invokeOperation(input, {
         name = "DescribeChannelPlacementGroup",
-        input_schema = types.DescribeChannelPlacementGroupInput,
-        output_schema = types.DescribeChannelPlacementGroupOutput,
+        input_schema = schemas.DescribeChannelPlacementGroupInput,
+        output_schema = schemas.DescribeChannelPlacementGroupOutput,
         http_method = "GET",
         http_path = "/prod/clusters/{ClusterId}/channelplacementgroups/{ChannelPlacementGroupId}",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:describeCluster(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCluster",
-        input_schema = types.DescribeClusterInput,
-        output_schema = types.DescribeClusterOutput,
+        input_schema = schemas.DescribeClusterInput,
+        output_schema = schemas.DescribeClusterOutput,
         http_method = "GET",
         http_path = "/prod/clusters/{ClusterId}",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:describeInput(input, options)
     return self:invokeOperation(input, {
         name = "DescribeInput",
-        input_schema = types.DescribeInputInput,
-        output_schema = types.DescribeInputOutput,
+        input_schema = schemas.DescribeInputInput,
+        output_schema = schemas.DescribeInputOutput,
         http_method = "GET",
         http_path = "/prod/inputs/{InputId}",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:describeInputDevice(input, options)
     return self:invokeOperation(input, {
         name = "DescribeInputDevice",
-        input_schema = types.DescribeInputDeviceInput,
-        output_schema = types.DescribeInputDeviceOutput,
+        input_schema = schemas.DescribeInputDeviceInput,
+        output_schema = schemas.DescribeInputDeviceOutput,
         http_method = "GET",
         http_path = "/prod/inputDevices/{InputDeviceId}",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:describeInputDeviceThumbnail(input, options)
     return self:invokeOperation(input, {
         name = "DescribeInputDeviceThumbnail",
-        input_schema = types.DescribeInputDeviceThumbnailInput,
-        output_schema = types.DescribeInputDeviceThumbnailOutput,
+        input_schema = schemas.DescribeInputDeviceThumbnailInput,
+        output_schema = schemas.DescribeInputDeviceThumbnailOutput,
         http_method = "GET",
         http_path = "/prod/inputDevices/{InputDeviceId}/thumbnailData",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:describeInputSecurityGroup(input, options)
     return self:invokeOperation(input, {
         name = "DescribeInputSecurityGroup",
-        input_schema = types.DescribeInputSecurityGroupInput,
-        output_schema = types.DescribeInputSecurityGroupOutput,
+        input_schema = schemas.DescribeInputSecurityGroupInput,
+        output_schema = schemas.DescribeInputSecurityGroupOutput,
         http_method = "GET",
         http_path = "/prod/inputSecurityGroups/{InputSecurityGroupId}",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:describeMultiplex(input, options)
     return self:invokeOperation(input, {
         name = "DescribeMultiplex",
-        input_schema = types.DescribeMultiplexInput,
-        output_schema = types.DescribeMultiplexOutput,
+        input_schema = schemas.DescribeMultiplexInput,
+        output_schema = schemas.DescribeMultiplexOutput,
         http_method = "GET",
         http_path = "/prod/multiplexes/{MultiplexId}",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:describeMultiplexProgram(input, options)
     return self:invokeOperation(input, {
         name = "DescribeMultiplexProgram",
-        input_schema = types.DescribeMultiplexProgramInput,
-        output_schema = types.DescribeMultiplexProgramOutput,
+        input_schema = schemas.DescribeMultiplexProgramInput,
+        output_schema = schemas.DescribeMultiplexProgramOutput,
         http_method = "GET",
         http_path = "/prod/multiplexes/{MultiplexId}/programs/{ProgramName}",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:describeNetwork(input, options)
     return self:invokeOperation(input, {
         name = "DescribeNetwork",
-        input_schema = types.DescribeNetworkInput,
-        output_schema = types.DescribeNetworkOutput,
+        input_schema = schemas.DescribeNetworkInput,
+        output_schema = schemas.DescribeNetworkOutput,
         http_method = "GET",
         http_path = "/prod/networks/{NetworkId}",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:describeNode(input, options)
     return self:invokeOperation(input, {
         name = "DescribeNode",
-        input_schema = types.DescribeNodeInput,
-        output_schema = types.DescribeNodeOutput,
+        input_schema = schemas.DescribeNodeInput,
+        output_schema = schemas.DescribeNodeOutput,
         http_method = "GET",
         http_path = "/prod/clusters/{ClusterId}/nodes/{NodeId}",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:describeOffering(input, options)
     return self:invokeOperation(input, {
         name = "DescribeOffering",
-        input_schema = types.DescribeOfferingInput,
-        output_schema = types.DescribeOfferingOutput,
+        input_schema = schemas.DescribeOfferingInput,
+        output_schema = schemas.DescribeOfferingOutput,
         http_method = "GET",
         http_path = "/prod/offerings/{OfferingId}",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:describeReservation(input, options)
     return self:invokeOperation(input, {
         name = "DescribeReservation",
-        input_schema = types.DescribeReservationInput,
-        output_schema = types.DescribeReservationOutput,
+        input_schema = schemas.DescribeReservationInput,
+        output_schema = schemas.DescribeReservationOutput,
         http_method = "GET",
         http_path = "/prod/reservations/{ReservationId}",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:describeSchedule(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSchedule",
-        input_schema = types.DescribeScheduleInput,
-        output_schema = types.DescribeScheduleOutput,
+        input_schema = schemas.DescribeScheduleInput,
+        output_schema = schemas.DescribeScheduleOutput,
         http_method = "GET",
         http_path = "/prod/channels/{ChannelId}/schedule",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:describeSdiSource(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSdiSource",
-        input_schema = types.DescribeSdiSourceInput,
-        output_schema = types.DescribeSdiSourceOutput,
+        input_schema = schemas.DescribeSdiSourceInput,
+        output_schema = schemas.DescribeSdiSourceOutput,
         http_method = "GET",
         http_path = "/prod/sdiSources/{SdiSourceId}",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:describeThumbnails(input, options)
     return self:invokeOperation(input, {
         name = "DescribeThumbnails",
-        input_schema = types.DescribeThumbnailsInput,
-        output_schema = types.DescribeThumbnailsOutput,
+        input_schema = schemas.DescribeThumbnailsInput,
+        output_schema = schemas.DescribeThumbnailsOutput,
         http_method = "GET",
         http_path = "/prod/channels/{ChannelId}/thumbnails",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:getCloudWatchAlarmTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetCloudWatchAlarmTemplate",
-        input_schema = types.GetCloudWatchAlarmTemplateInput,
-        output_schema = types.GetCloudWatchAlarmTemplateOutput,
+        input_schema = schemas.GetCloudWatchAlarmTemplateInput,
+        output_schema = schemas.GetCloudWatchAlarmTemplateOutput,
         http_method = "GET",
         http_path = "/prod/cloudwatch-alarm-templates/{Identifier}",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:getCloudWatchAlarmTemplateGroup(input, options)
     return self:invokeOperation(input, {
         name = "GetCloudWatchAlarmTemplateGroup",
-        input_schema = types.GetCloudWatchAlarmTemplateGroupInput,
-        output_schema = types.GetCloudWatchAlarmTemplateGroupOutput,
+        input_schema = schemas.GetCloudWatchAlarmTemplateGroupInput,
+        output_schema = schemas.GetCloudWatchAlarmTemplateGroupOutput,
         http_method = "GET",
         http_path = "/prod/cloudwatch-alarm-template-groups/{Identifier}",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:getEventBridgeRuleTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetEventBridgeRuleTemplate",
-        input_schema = types.GetEventBridgeRuleTemplateInput,
-        output_schema = types.GetEventBridgeRuleTemplateOutput,
+        input_schema = schemas.GetEventBridgeRuleTemplateInput,
+        output_schema = schemas.GetEventBridgeRuleTemplateOutput,
         http_method = "GET",
         http_path = "/prod/eventbridge-rule-templates/{Identifier}",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:getEventBridgeRuleTemplateGroup(input, options)
     return self:invokeOperation(input, {
         name = "GetEventBridgeRuleTemplateGroup",
-        input_schema = types.GetEventBridgeRuleTemplateGroupInput,
-        output_schema = types.GetEventBridgeRuleTemplateGroupOutput,
+        input_schema = schemas.GetEventBridgeRuleTemplateGroupInput,
+        output_schema = schemas.GetEventBridgeRuleTemplateGroupOutput,
         http_method = "GET",
         http_path = "/prod/eventbridge-rule-template-groups/{Identifier}",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:getSignalMap(input, options)
     return self:invokeOperation(input, {
         name = "GetSignalMap",
-        input_schema = types.GetSignalMapInput,
-        output_schema = types.GetSignalMapOutput,
+        input_schema = schemas.GetSignalMapInput,
+        output_schema = schemas.GetSignalMapOutput,
         http_method = "GET",
         http_path = "/prod/signal-maps/{Identifier}",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:listAlerts(input, options)
     return self:invokeOperation(input, {
         name = "ListAlerts",
-        input_schema = types.ListAlertsInput,
-        output_schema = types.ListAlertsOutput,
+        input_schema = schemas.ListAlertsInput,
+        output_schema = schemas.ListAlertsOutput,
         http_method = "GET",
         http_path = "/prod/channels/{ChannelId}/alerts",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:listChannelPlacementGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListChannelPlacementGroups",
-        input_schema = types.ListChannelPlacementGroupsInput,
-        output_schema = types.ListChannelPlacementGroupsOutput,
+        input_schema = schemas.ListChannelPlacementGroupsInput,
+        output_schema = schemas.ListChannelPlacementGroupsOutput,
         http_method = "GET",
         http_path = "/prod/clusters/{ClusterId}/channelplacementgroups",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:listChannels(input, options)
     return self:invokeOperation(input, {
         name = "ListChannels",
-        input_schema = types.ListChannelsInput,
-        output_schema = types.ListChannelsOutput,
+        input_schema = schemas.ListChannelsInput,
+        output_schema = schemas.ListChannelsOutput,
         http_method = "GET",
         http_path = "/prod/channels",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:listCloudWatchAlarmTemplateGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListCloudWatchAlarmTemplateGroups",
-        input_schema = types.ListCloudWatchAlarmTemplateGroupsInput,
-        output_schema = types.ListCloudWatchAlarmTemplateGroupsOutput,
+        input_schema = schemas.ListCloudWatchAlarmTemplateGroupsInput,
+        output_schema = schemas.ListCloudWatchAlarmTemplateGroupsOutput,
         http_method = "GET",
         http_path = "/prod/cloudwatch-alarm-template-groups",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:listCloudWatchAlarmTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListCloudWatchAlarmTemplates",
-        input_schema = types.ListCloudWatchAlarmTemplatesInput,
-        output_schema = types.ListCloudWatchAlarmTemplatesOutput,
+        input_schema = schemas.ListCloudWatchAlarmTemplatesInput,
+        output_schema = schemas.ListCloudWatchAlarmTemplatesOutput,
         http_method = "GET",
         http_path = "/prod/cloudwatch-alarm-templates",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:listClusterAlerts(input, options)
     return self:invokeOperation(input, {
         name = "ListClusterAlerts",
-        input_schema = types.ListClusterAlertsInput,
-        output_schema = types.ListClusterAlertsOutput,
+        input_schema = schemas.ListClusterAlertsInput,
+        output_schema = schemas.ListClusterAlertsOutput,
         http_method = "GET",
         http_path = "/prod/clusters/{ClusterId}/alerts",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:listClusters(input, options)
     return self:invokeOperation(input, {
         name = "ListClusters",
-        input_schema = types.ListClustersInput,
-        output_schema = types.ListClustersOutput,
+        input_schema = schemas.ListClustersInput,
+        output_schema = schemas.ListClustersOutput,
         http_method = "GET",
         http_path = "/prod/clusters",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:listEventBridgeRuleTemplateGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListEventBridgeRuleTemplateGroups",
-        input_schema = types.ListEventBridgeRuleTemplateGroupsInput,
-        output_schema = types.ListEventBridgeRuleTemplateGroupsOutput,
+        input_schema = schemas.ListEventBridgeRuleTemplateGroupsInput,
+        output_schema = schemas.ListEventBridgeRuleTemplateGroupsOutput,
         http_method = "GET",
         http_path = "/prod/eventbridge-rule-template-groups",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:listEventBridgeRuleTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListEventBridgeRuleTemplates",
-        input_schema = types.ListEventBridgeRuleTemplatesInput,
-        output_schema = types.ListEventBridgeRuleTemplatesOutput,
+        input_schema = schemas.ListEventBridgeRuleTemplatesInput,
+        output_schema = schemas.ListEventBridgeRuleTemplatesOutput,
         http_method = "GET",
         http_path = "/prod/eventbridge-rule-templates",
         effective_auth_schemes = {
@@ -1011,8 +1011,8 @@ end
 function Client:listInputDevices(input, options)
     return self:invokeOperation(input, {
         name = "ListInputDevices",
-        input_schema = types.ListInputDevicesInput,
-        output_schema = types.ListInputDevicesOutput,
+        input_schema = schemas.ListInputDevicesInput,
+        output_schema = schemas.ListInputDevicesOutput,
         http_method = "GET",
         http_path = "/prod/inputDevices",
         effective_auth_schemes = {
@@ -1024,8 +1024,8 @@ end
 function Client:listInputDeviceTransfers(input, options)
     return self:invokeOperation(input, {
         name = "ListInputDeviceTransfers",
-        input_schema = types.ListInputDeviceTransfersInput,
-        output_schema = types.ListInputDeviceTransfersOutput,
+        input_schema = schemas.ListInputDeviceTransfersInput,
+        output_schema = schemas.ListInputDeviceTransfersOutput,
         http_method = "GET",
         http_path = "/prod/inputDeviceTransfers",
         effective_auth_schemes = {
@@ -1037,8 +1037,8 @@ end
 function Client:listInputs(input, options)
     return self:invokeOperation(input, {
         name = "ListInputs",
-        input_schema = types.ListInputsInput,
-        output_schema = types.ListInputsOutput,
+        input_schema = schemas.ListInputsInput,
+        output_schema = schemas.ListInputsOutput,
         http_method = "GET",
         http_path = "/prod/inputs",
         effective_auth_schemes = {
@@ -1050,8 +1050,8 @@ end
 function Client:listInputSecurityGroups(input, options)
     return self:invokeOperation(input, {
         name = "ListInputSecurityGroups",
-        input_schema = types.ListInputSecurityGroupsInput,
-        output_schema = types.ListInputSecurityGroupsOutput,
+        input_schema = schemas.ListInputSecurityGroupsInput,
+        output_schema = schemas.ListInputSecurityGroupsOutput,
         http_method = "GET",
         http_path = "/prod/inputSecurityGroups",
         effective_auth_schemes = {
@@ -1063,8 +1063,8 @@ end
 function Client:listMultiplexAlerts(input, options)
     return self:invokeOperation(input, {
         name = "ListMultiplexAlerts",
-        input_schema = types.ListMultiplexAlertsInput,
-        output_schema = types.ListMultiplexAlertsOutput,
+        input_schema = schemas.ListMultiplexAlertsInput,
+        output_schema = schemas.ListMultiplexAlertsOutput,
         http_method = "GET",
         http_path = "/prod/multiplexes/{MultiplexId}/alerts",
         effective_auth_schemes = {
@@ -1076,8 +1076,8 @@ end
 function Client:listMultiplexes(input, options)
     return self:invokeOperation(input, {
         name = "ListMultiplexes",
-        input_schema = types.ListMultiplexesInput,
-        output_schema = types.ListMultiplexesOutput,
+        input_schema = schemas.ListMultiplexesInput,
+        output_schema = schemas.ListMultiplexesOutput,
         http_method = "GET",
         http_path = "/prod/multiplexes",
         effective_auth_schemes = {
@@ -1089,8 +1089,8 @@ end
 function Client:listMultiplexPrograms(input, options)
     return self:invokeOperation(input, {
         name = "ListMultiplexPrograms",
-        input_schema = types.ListMultiplexProgramsInput,
-        output_schema = types.ListMultiplexProgramsOutput,
+        input_schema = schemas.ListMultiplexProgramsInput,
+        output_schema = schemas.ListMultiplexProgramsOutput,
         http_method = "GET",
         http_path = "/prod/multiplexes/{MultiplexId}/programs",
         effective_auth_schemes = {
@@ -1102,8 +1102,8 @@ end
 function Client:listNetworks(input, options)
     return self:invokeOperation(input, {
         name = "ListNetworks",
-        input_schema = types.ListNetworksInput,
-        output_schema = types.ListNetworksOutput,
+        input_schema = schemas.ListNetworksInput,
+        output_schema = schemas.ListNetworksOutput,
         http_method = "GET",
         http_path = "/prod/networks",
         effective_auth_schemes = {
@@ -1115,8 +1115,8 @@ end
 function Client:listNodes(input, options)
     return self:invokeOperation(input, {
         name = "ListNodes",
-        input_schema = types.ListNodesInput,
-        output_schema = types.ListNodesOutput,
+        input_schema = schemas.ListNodesInput,
+        output_schema = schemas.ListNodesOutput,
         http_method = "GET",
         http_path = "/prod/clusters/{ClusterId}/nodes",
         effective_auth_schemes = {
@@ -1128,8 +1128,8 @@ end
 function Client:listOfferings(input, options)
     return self:invokeOperation(input, {
         name = "ListOfferings",
-        input_schema = types.ListOfferingsInput,
-        output_schema = types.ListOfferingsOutput,
+        input_schema = schemas.ListOfferingsInput,
+        output_schema = schemas.ListOfferingsOutput,
         http_method = "GET",
         http_path = "/prod/offerings",
         effective_auth_schemes = {
@@ -1141,8 +1141,8 @@ end
 function Client:listReservations(input, options)
     return self:invokeOperation(input, {
         name = "ListReservations",
-        input_schema = types.ListReservationsInput,
-        output_schema = types.ListReservationsOutput,
+        input_schema = schemas.ListReservationsInput,
+        output_schema = schemas.ListReservationsOutput,
         http_method = "GET",
         http_path = "/prod/reservations",
         effective_auth_schemes = {
@@ -1154,8 +1154,8 @@ end
 function Client:listSdiSources(input, options)
     return self:invokeOperation(input, {
         name = "ListSdiSources",
-        input_schema = types.ListSdiSourcesInput,
-        output_schema = types.ListSdiSourcesOutput,
+        input_schema = schemas.ListSdiSourcesInput,
+        output_schema = schemas.ListSdiSourcesOutput,
         http_method = "GET",
         http_path = "/prod/sdiSources",
         effective_auth_schemes = {
@@ -1167,8 +1167,8 @@ end
 function Client:listSignalMaps(input, options)
     return self:invokeOperation(input, {
         name = "ListSignalMaps",
-        input_schema = types.ListSignalMapsInput,
-        output_schema = types.ListSignalMapsOutput,
+        input_schema = schemas.ListSignalMapsInput,
+        output_schema = schemas.ListSignalMapsOutput,
         http_method = "GET",
         http_path = "/prod/signal-maps",
         effective_auth_schemes = {
@@ -1180,8 +1180,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/prod/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -1193,8 +1193,8 @@ end
 function Client:listVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListVersions",
-        input_schema = types.ListVersionsInput,
-        output_schema = types.ListVersionsOutput,
+        input_schema = schemas.ListVersionsInput,
+        output_schema = schemas.ListVersionsOutput,
         http_method = "GET",
         http_path = "/prod/versions",
         effective_auth_schemes = {
@@ -1206,8 +1206,8 @@ end
 function Client:purchaseOffering(input, options)
     return self:invokeOperation(input, {
         name = "PurchaseOffering",
-        input_schema = types.PurchaseOfferingInput,
-        output_schema = types.PurchaseOfferingOutput,
+        input_schema = schemas.PurchaseOfferingInput,
+        output_schema = schemas.PurchaseOfferingOutput,
         http_method = "POST",
         http_path = "/prod/offerings/{OfferingId}/purchase",
         effective_auth_schemes = {
@@ -1219,8 +1219,8 @@ end
 function Client:rebootInputDevice(input, options)
     return self:invokeOperation(input, {
         name = "RebootInputDevice",
-        input_schema = types.RebootInputDeviceInput,
-        output_schema = types.RebootInputDeviceOutput,
+        input_schema = schemas.RebootInputDeviceInput,
+        output_schema = schemas.RebootInputDeviceOutput,
         http_method = "POST",
         http_path = "/prod/inputDevices/{InputDeviceId}/reboot",
         effective_auth_schemes = {
@@ -1232,8 +1232,8 @@ end
 function Client:rejectInputDeviceTransfer(input, options)
     return self:invokeOperation(input, {
         name = "RejectInputDeviceTransfer",
-        input_schema = types.RejectInputDeviceTransferInput,
-        output_schema = types.RejectInputDeviceTransferOutput,
+        input_schema = schemas.RejectInputDeviceTransferInput,
+        output_schema = schemas.RejectInputDeviceTransferOutput,
         http_method = "POST",
         http_path = "/prod/inputDevices/{InputDeviceId}/reject",
         effective_auth_schemes = {
@@ -1245,8 +1245,8 @@ end
 function Client:restartChannelPipelines(input, options)
     return self:invokeOperation(input, {
         name = "RestartChannelPipelines",
-        input_schema = types.RestartChannelPipelinesInput,
-        output_schema = types.RestartChannelPipelinesOutput,
+        input_schema = schemas.RestartChannelPipelinesInput,
+        output_schema = schemas.RestartChannelPipelinesOutput,
         http_method = "POST",
         http_path = "/prod/channels/{ChannelId}/restartChannelPipelines",
         effective_auth_schemes = {
@@ -1258,8 +1258,8 @@ end
 function Client:startChannel(input, options)
     return self:invokeOperation(input, {
         name = "StartChannel",
-        input_schema = types.StartChannelInput,
-        output_schema = types.StartChannelOutput,
+        input_schema = schemas.StartChannelInput,
+        output_schema = schemas.StartChannelOutput,
         http_method = "POST",
         http_path = "/prod/channels/{ChannelId}/start",
         effective_auth_schemes = {
@@ -1271,8 +1271,8 @@ end
 function Client:startDeleteMonitorDeployment(input, options)
     return self:invokeOperation(input, {
         name = "StartDeleteMonitorDeployment",
-        input_schema = types.StartDeleteMonitorDeploymentInput,
-        output_schema = types.StartDeleteMonitorDeploymentOutput,
+        input_schema = schemas.StartDeleteMonitorDeploymentInput,
+        output_schema = schemas.StartDeleteMonitorDeploymentOutput,
         http_method = "DELETE",
         http_path = "/prod/signal-maps/{Identifier}/monitor-deployment",
         effective_auth_schemes = {
@@ -1284,8 +1284,8 @@ end
 function Client:startInputDevice(input, options)
     return self:invokeOperation(input, {
         name = "StartInputDevice",
-        input_schema = types.StartInputDeviceInput,
-        output_schema = types.StartInputDeviceOutput,
+        input_schema = schemas.StartInputDeviceInput,
+        output_schema = schemas.StartInputDeviceOutput,
         http_method = "POST",
         http_path = "/prod/inputDevices/{InputDeviceId}/start",
         effective_auth_schemes = {
@@ -1297,8 +1297,8 @@ end
 function Client:startInputDeviceMaintenanceWindow(input, options)
     return self:invokeOperation(input, {
         name = "StartInputDeviceMaintenanceWindow",
-        input_schema = types.StartInputDeviceMaintenanceWindowInput,
-        output_schema = types.StartInputDeviceMaintenanceWindowOutput,
+        input_schema = schemas.StartInputDeviceMaintenanceWindowInput,
+        output_schema = schemas.StartInputDeviceMaintenanceWindowOutput,
         http_method = "POST",
         http_path = "/prod/inputDevices/{InputDeviceId}/startInputDeviceMaintenanceWindow",
         effective_auth_schemes = {
@@ -1310,8 +1310,8 @@ end
 function Client:startMonitorDeployment(input, options)
     return self:invokeOperation(input, {
         name = "StartMonitorDeployment",
-        input_schema = types.StartMonitorDeploymentInput,
-        output_schema = types.StartMonitorDeploymentOutput,
+        input_schema = schemas.StartMonitorDeploymentInput,
+        output_schema = schemas.StartMonitorDeploymentOutput,
         http_method = "POST",
         http_path = "/prod/signal-maps/{Identifier}/monitor-deployment",
         effective_auth_schemes = {
@@ -1323,8 +1323,8 @@ end
 function Client:startMultiplex(input, options)
     return self:invokeOperation(input, {
         name = "StartMultiplex",
-        input_schema = types.StartMultiplexInput,
-        output_schema = types.StartMultiplexOutput,
+        input_schema = schemas.StartMultiplexInput,
+        output_schema = schemas.StartMultiplexOutput,
         http_method = "POST",
         http_path = "/prod/multiplexes/{MultiplexId}/start",
         effective_auth_schemes = {
@@ -1336,8 +1336,8 @@ end
 function Client:startUpdateSignalMap(input, options)
     return self:invokeOperation(input, {
         name = "StartUpdateSignalMap",
-        input_schema = types.StartUpdateSignalMapInput,
-        output_schema = types.StartUpdateSignalMapOutput,
+        input_schema = schemas.StartUpdateSignalMapInput,
+        output_schema = schemas.StartUpdateSignalMapOutput,
         http_method = "PATCH",
         http_path = "/prod/signal-maps/{Identifier}",
         effective_auth_schemes = {
@@ -1349,8 +1349,8 @@ end
 function Client:stopChannel(input, options)
     return self:invokeOperation(input, {
         name = "StopChannel",
-        input_schema = types.StopChannelInput,
-        output_schema = types.StopChannelOutput,
+        input_schema = schemas.StopChannelInput,
+        output_schema = schemas.StopChannelOutput,
         http_method = "POST",
         http_path = "/prod/channels/{ChannelId}/stop",
         effective_auth_schemes = {
@@ -1362,8 +1362,8 @@ end
 function Client:stopInputDevice(input, options)
     return self:invokeOperation(input, {
         name = "StopInputDevice",
-        input_schema = types.StopInputDeviceInput,
-        output_schema = types.StopInputDeviceOutput,
+        input_schema = schemas.StopInputDeviceInput,
+        output_schema = schemas.StopInputDeviceOutput,
         http_method = "POST",
         http_path = "/prod/inputDevices/{InputDeviceId}/stop",
         effective_auth_schemes = {
@@ -1375,8 +1375,8 @@ end
 function Client:stopMultiplex(input, options)
     return self:invokeOperation(input, {
         name = "StopMultiplex",
-        input_schema = types.StopMultiplexInput,
-        output_schema = types.StopMultiplexOutput,
+        input_schema = schemas.StopMultiplexInput,
+        output_schema = schemas.StopMultiplexOutput,
         http_method = "POST",
         http_path = "/prod/multiplexes/{MultiplexId}/stop",
         effective_auth_schemes = {
@@ -1388,8 +1388,8 @@ end
 function Client:transferInputDevice(input, options)
     return self:invokeOperation(input, {
         name = "TransferInputDevice",
-        input_schema = types.TransferInputDeviceInput,
-        output_schema = types.TransferInputDeviceOutput,
+        input_schema = schemas.TransferInputDeviceInput,
+        output_schema = schemas.TransferInputDeviceOutput,
         http_method = "POST",
         http_path = "/prod/inputDevices/{InputDeviceId}/transfer",
         effective_auth_schemes = {
@@ -1401,8 +1401,8 @@ end
 function Client:updateAccountConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAccountConfiguration",
-        input_schema = types.UpdateAccountConfigurationInput,
-        output_schema = types.UpdateAccountConfigurationOutput,
+        input_schema = schemas.UpdateAccountConfigurationInput,
+        output_schema = schemas.UpdateAccountConfigurationOutput,
         http_method = "PUT",
         http_path = "/prod/accountConfiguration",
         effective_auth_schemes = {
@@ -1414,8 +1414,8 @@ end
 function Client:updateChannel(input, options)
     return self:invokeOperation(input, {
         name = "UpdateChannel",
-        input_schema = types.UpdateChannelInput,
-        output_schema = types.UpdateChannelOutput,
+        input_schema = schemas.UpdateChannelInput,
+        output_schema = schemas.UpdateChannelOutput,
         http_method = "PUT",
         http_path = "/prod/channels/{ChannelId}",
         effective_auth_schemes = {
@@ -1427,8 +1427,8 @@ end
 function Client:updateChannelClass(input, options)
     return self:invokeOperation(input, {
         name = "UpdateChannelClass",
-        input_schema = types.UpdateChannelClassInput,
-        output_schema = types.UpdateChannelClassOutput,
+        input_schema = schemas.UpdateChannelClassInput,
+        output_schema = schemas.UpdateChannelClassOutput,
         http_method = "PUT",
         http_path = "/prod/channels/{ChannelId}/channelClass",
         effective_auth_schemes = {
@@ -1440,8 +1440,8 @@ end
 function Client:updateChannelPlacementGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateChannelPlacementGroup",
-        input_schema = types.UpdateChannelPlacementGroupInput,
-        output_schema = types.UpdateChannelPlacementGroupOutput,
+        input_schema = schemas.UpdateChannelPlacementGroupInput,
+        output_schema = schemas.UpdateChannelPlacementGroupOutput,
         http_method = "PUT",
         http_path = "/prod/clusters/{ClusterId}/channelplacementgroups/{ChannelPlacementGroupId}",
         effective_auth_schemes = {
@@ -1453,8 +1453,8 @@ end
 function Client:updateCloudWatchAlarmTemplate(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCloudWatchAlarmTemplate",
-        input_schema = types.UpdateCloudWatchAlarmTemplateInput,
-        output_schema = types.UpdateCloudWatchAlarmTemplateOutput,
+        input_schema = schemas.UpdateCloudWatchAlarmTemplateInput,
+        output_schema = schemas.UpdateCloudWatchAlarmTemplateOutput,
         http_method = "PATCH",
         http_path = "/prod/cloudwatch-alarm-templates/{Identifier}",
         effective_auth_schemes = {
@@ -1466,8 +1466,8 @@ end
 function Client:updateCloudWatchAlarmTemplateGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCloudWatchAlarmTemplateGroup",
-        input_schema = types.UpdateCloudWatchAlarmTemplateGroupInput,
-        output_schema = types.UpdateCloudWatchAlarmTemplateGroupOutput,
+        input_schema = schemas.UpdateCloudWatchAlarmTemplateGroupInput,
+        output_schema = schemas.UpdateCloudWatchAlarmTemplateGroupOutput,
         http_method = "PATCH",
         http_path = "/prod/cloudwatch-alarm-template-groups/{Identifier}",
         effective_auth_schemes = {
@@ -1479,8 +1479,8 @@ end
 function Client:updateCluster(input, options)
     return self:invokeOperation(input, {
         name = "UpdateCluster",
-        input_schema = types.UpdateClusterInput,
-        output_schema = types.UpdateClusterOutput,
+        input_schema = schemas.UpdateClusterInput,
+        output_schema = schemas.UpdateClusterOutput,
         http_method = "PUT",
         http_path = "/prod/clusters/{ClusterId}",
         effective_auth_schemes = {
@@ -1492,8 +1492,8 @@ end
 function Client:updateEventBridgeRuleTemplate(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEventBridgeRuleTemplate",
-        input_schema = types.UpdateEventBridgeRuleTemplateInput,
-        output_schema = types.UpdateEventBridgeRuleTemplateOutput,
+        input_schema = schemas.UpdateEventBridgeRuleTemplateInput,
+        output_schema = schemas.UpdateEventBridgeRuleTemplateOutput,
         http_method = "PATCH",
         http_path = "/prod/eventbridge-rule-templates/{Identifier}",
         effective_auth_schemes = {
@@ -1505,8 +1505,8 @@ end
 function Client:updateEventBridgeRuleTemplateGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEventBridgeRuleTemplateGroup",
-        input_schema = types.UpdateEventBridgeRuleTemplateGroupInput,
-        output_schema = types.UpdateEventBridgeRuleTemplateGroupOutput,
+        input_schema = schemas.UpdateEventBridgeRuleTemplateGroupInput,
+        output_schema = schemas.UpdateEventBridgeRuleTemplateGroupOutput,
         http_method = "PATCH",
         http_path = "/prod/eventbridge-rule-template-groups/{Identifier}",
         effective_auth_schemes = {
@@ -1518,8 +1518,8 @@ end
 function Client:updateInput(input, options)
     return self:invokeOperation(input, {
         name = "UpdateInput",
-        input_schema = types.UpdateInputInput,
-        output_schema = types.UpdateInputOutput,
+        input_schema = schemas.UpdateInputInput,
+        output_schema = schemas.UpdateInputOutput,
         http_method = "PUT",
         http_path = "/prod/inputs/{InputId}",
         effective_auth_schemes = {
@@ -1531,8 +1531,8 @@ end
 function Client:updateInputDevice(input, options)
     return self:invokeOperation(input, {
         name = "UpdateInputDevice",
-        input_schema = types.UpdateInputDeviceInput,
-        output_schema = types.UpdateInputDeviceOutput,
+        input_schema = schemas.UpdateInputDeviceInput,
+        output_schema = schemas.UpdateInputDeviceOutput,
         http_method = "PUT",
         http_path = "/prod/inputDevices/{InputDeviceId}",
         effective_auth_schemes = {
@@ -1544,8 +1544,8 @@ end
 function Client:updateInputSecurityGroup(input, options)
     return self:invokeOperation(input, {
         name = "UpdateInputSecurityGroup",
-        input_schema = types.UpdateInputSecurityGroupInput,
-        output_schema = types.UpdateInputSecurityGroupOutput,
+        input_schema = schemas.UpdateInputSecurityGroupInput,
+        output_schema = schemas.UpdateInputSecurityGroupOutput,
         http_method = "PUT",
         http_path = "/prod/inputSecurityGroups/{InputSecurityGroupId}",
         effective_auth_schemes = {
@@ -1557,8 +1557,8 @@ end
 function Client:updateMultiplex(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMultiplex",
-        input_schema = types.UpdateMultiplexInput,
-        output_schema = types.UpdateMultiplexOutput,
+        input_schema = schemas.UpdateMultiplexInput,
+        output_schema = schemas.UpdateMultiplexOutput,
         http_method = "PUT",
         http_path = "/prod/multiplexes/{MultiplexId}",
         effective_auth_schemes = {
@@ -1570,8 +1570,8 @@ end
 function Client:updateMultiplexProgram(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMultiplexProgram",
-        input_schema = types.UpdateMultiplexProgramInput,
-        output_schema = types.UpdateMultiplexProgramOutput,
+        input_schema = schemas.UpdateMultiplexProgramInput,
+        output_schema = schemas.UpdateMultiplexProgramOutput,
         http_method = "PUT",
         http_path = "/prod/multiplexes/{MultiplexId}/programs/{ProgramName}",
         effective_auth_schemes = {
@@ -1583,8 +1583,8 @@ end
 function Client:updateNetwork(input, options)
     return self:invokeOperation(input, {
         name = "UpdateNetwork",
-        input_schema = types.UpdateNetworkInput,
-        output_schema = types.UpdateNetworkOutput,
+        input_schema = schemas.UpdateNetworkInput,
+        output_schema = schemas.UpdateNetworkOutput,
         http_method = "PUT",
         http_path = "/prod/networks/{NetworkId}",
         effective_auth_schemes = {
@@ -1596,8 +1596,8 @@ end
 function Client:updateNode(input, options)
     return self:invokeOperation(input, {
         name = "UpdateNode",
-        input_schema = types.UpdateNodeInput,
-        output_schema = types.UpdateNodeOutput,
+        input_schema = schemas.UpdateNodeInput,
+        output_schema = schemas.UpdateNodeOutput,
         http_method = "PUT",
         http_path = "/prod/clusters/{ClusterId}/nodes/{NodeId}",
         effective_auth_schemes = {
@@ -1609,8 +1609,8 @@ end
 function Client:updateNodeState(input, options)
     return self:invokeOperation(input, {
         name = "UpdateNodeState",
-        input_schema = types.UpdateNodeStateInput,
-        output_schema = types.UpdateNodeStateOutput,
+        input_schema = schemas.UpdateNodeStateInput,
+        output_schema = schemas.UpdateNodeStateOutput,
         http_method = "PUT",
         http_path = "/prod/clusters/{ClusterId}/nodes/{NodeId}/state",
         effective_auth_schemes = {
@@ -1622,8 +1622,8 @@ end
 function Client:updateReservation(input, options)
     return self:invokeOperation(input, {
         name = "UpdateReservation",
-        input_schema = types.UpdateReservationInput,
-        output_schema = types.UpdateReservationOutput,
+        input_schema = schemas.UpdateReservationInput,
+        output_schema = schemas.UpdateReservationOutput,
         http_method = "PUT",
         http_path = "/prod/reservations/{ReservationId}",
         effective_auth_schemes = {
@@ -1635,8 +1635,8 @@ end
 function Client:updateSdiSource(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSdiSource",
-        input_schema = types.UpdateSdiSourceInput,
-        output_schema = types.UpdateSdiSourceOutput,
+        input_schema = schemas.UpdateSdiSourceInput,
+        output_schema = schemas.UpdateSdiSourceOutput,
         http_method = "PUT",
         http_path = "/prod/sdiSources/{SdiSourceId}",
         effective_auth_schemes = {

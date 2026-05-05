@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("kinesisvideowebrtcstorage.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("kinesisvideowebrtcstorage.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("kinesisvideowebrtcstorage.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:joinStorageSession(input, options)
     return self:invokeOperation(input, {
         name = "JoinStorageSession",
-        input_schema = types.JoinStorageSessionInput,
-        output_schema = types.JoinStorageSessionOutput,
+        input_schema = schemas.JoinStorageSessionInput,
+        output_schema = schemas.JoinStorageSessionOutput,
         http_method = "POST",
         http_path = "/joinStorageSession",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:joinStorageSessionAsViewer(input, options)
     return self:invokeOperation(input, {
         name = "JoinStorageSessionAsViewer",
-        input_schema = types.JoinStorageSessionAsViewerInput,
-        output_schema = types.JoinStorageSessionAsViewerOutput,
+        input_schema = schemas.JoinStorageSessionAsViewerInput,
+        output_schema = schemas.JoinStorageSessionAsViewerOutput,
         http_method = "POST",
         http_path = "/joinStorageSessionAsViewer",
         effective_auth_schemes = {

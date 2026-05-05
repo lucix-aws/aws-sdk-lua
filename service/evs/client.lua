@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("evs.endpoint_rules")
+local schemas = require("evs.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("evs.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateEipToVlan(input, options)
     return self:invokeOperation(input, {
         name = "AssociateEipToVlan",
-        input_schema = types.AssociateEipToVlanInput,
-        output_schema = types.AssociateEipToVlanOutput,
+        input_schema = schemas.AssociateEipToVlanInput,
+        output_schema = schemas.AssociateEipToVlanOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createEntitlement(input, options)
     return self:invokeOperation(input, {
         name = "CreateEntitlement",
-        input_schema = types.CreateEntitlementInput,
-        output_schema = types.CreateEntitlementOutput,
+        input_schema = schemas.CreateEntitlementInput,
+        output_schema = schemas.CreateEntitlementOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "CreateEnvironment",
-        input_schema = types.CreateEnvironmentInput,
-        output_schema = types.CreateEnvironmentOutput,
+        input_schema = schemas.CreateEnvironmentInput,
+        output_schema = schemas.CreateEnvironmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createEnvironmentConnector(input, options)
     return self:invokeOperation(input, {
         name = "CreateEnvironmentConnector",
-        input_schema = types.CreateEnvironmentConnectorInput,
-        output_schema = types.CreateEnvironmentConnectorOutput,
+        input_schema = schemas.CreateEnvironmentConnectorInput,
+        output_schema = schemas.CreateEnvironmentConnectorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createEnvironmentHost(input, options)
     return self:invokeOperation(input, {
         name = "CreateEnvironmentHost",
-        input_schema = types.CreateEnvironmentHostInput,
-        output_schema = types.CreateEnvironmentHostOutput,
+        input_schema = schemas.CreateEnvironmentHostInput,
+        output_schema = schemas.CreateEnvironmentHostOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteEntitlement(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEntitlement",
-        input_schema = types.DeleteEntitlementInput,
-        output_schema = types.DeleteEntitlementOutput,
+        input_schema = schemas.DeleteEntitlementInput,
+        output_schema = schemas.DeleteEntitlementOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEnvironment",
-        input_schema = types.DeleteEnvironmentInput,
-        output_schema = types.DeleteEnvironmentOutput,
+        input_schema = schemas.DeleteEnvironmentInput,
+        output_schema = schemas.DeleteEnvironmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteEnvironmentConnector(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEnvironmentConnector",
-        input_schema = types.DeleteEnvironmentConnectorInput,
-        output_schema = types.DeleteEnvironmentConnectorOutput,
+        input_schema = schemas.DeleteEnvironmentConnectorInput,
+        output_schema = schemas.DeleteEnvironmentConnectorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteEnvironmentHost(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEnvironmentHost",
-        input_schema = types.DeleteEnvironmentHostInput,
-        output_schema = types.DeleteEnvironmentHostOutput,
+        input_schema = schemas.DeleteEnvironmentHostInput,
+        output_schema = schemas.DeleteEnvironmentHostOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:disassociateEipFromVlan(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateEipFromVlan",
-        input_schema = types.DisassociateEipFromVlanInput,
-        output_schema = types.DisassociateEipFromVlanOutput,
+        input_schema = schemas.DisassociateEipFromVlanInput,
+        output_schema = schemas.DisassociateEipFromVlanOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getEnvironment(input, options)
     return self:invokeOperation(input, {
         name = "GetEnvironment",
-        input_schema = types.GetEnvironmentInput,
-        output_schema = types.GetEnvironmentOutput,
+        input_schema = schemas.GetEnvironmentInput,
+        output_schema = schemas.GetEnvironmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getVersions(input, options)
     return self:invokeOperation(input, {
         name = "GetVersions",
-        input_schema = types.GetVersionsInput,
-        output_schema = types.GetVersionsOutput,
+        input_schema = schemas.GetVersionsInput,
+        output_schema = schemas.GetVersionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:listEnvironmentConnectors(input, options)
     return self:invokeOperation(input, {
         name = "ListEnvironmentConnectors",
-        input_schema = types.ListEnvironmentConnectorsInput,
-        output_schema = types.ListEnvironmentConnectorsOutput,
+        input_schema = schemas.ListEnvironmentConnectorsInput,
+        output_schema = schemas.ListEnvironmentConnectorsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:listEnvironmentHosts(input, options)
     return self:invokeOperation(input, {
         name = "ListEnvironmentHosts",
-        input_schema = types.ListEnvironmentHostsInput,
-        output_schema = types.ListEnvironmentHostsOutput,
+        input_schema = schemas.ListEnvironmentHostsInput,
+        output_schema = schemas.ListEnvironmentHostsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:listEnvironments(input, options)
     return self:invokeOperation(input, {
         name = "ListEnvironments",
-        input_schema = types.ListEnvironmentsInput,
-        output_schema = types.ListEnvironmentsOutput,
+        input_schema = schemas.ListEnvironmentsInput,
+        output_schema = schemas.ListEnvironmentsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listEnvironmentVlans(input, options)
     return self:invokeOperation(input, {
         name = "ListEnvironmentVlans",
-        input_schema = types.ListEnvironmentVlansInput,
-        output_schema = types.ListEnvironmentVlansOutput,
+        input_schema = schemas.ListEnvironmentVlansInput,
+        output_schema = schemas.ListEnvironmentVlansOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listVmEntitlements(input, options)
     return self:invokeOperation(input, {
         name = "ListVmEntitlements",
-        input_schema = types.ListVmEntitlementsInput,
-        output_schema = types.ListVmEntitlementsOutput,
+        input_schema = schemas.ListVmEntitlementsInput,
+        output_schema = schemas.ListVmEntitlementsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:updateEnvironmentConnector(input, options)
     return self:invokeOperation(input, {
         name = "UpdateEnvironmentConnector",
-        input_schema = types.UpdateEnvironmentConnectorInput,
-        output_schema = types.UpdateEnvironmentConnectorOutput,
+        input_schema = schemas.UpdateEnvironmentConnectorInput,
+        output_schema = schemas.UpdateEnvironmentConnectorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

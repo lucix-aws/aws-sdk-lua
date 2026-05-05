@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("rekognition.endpoint_rules")
+local schemas = require("rekognition.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("rekognition.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateFaces(input, options)
     return self:invokeOperation(input, {
         name = "AssociateFaces",
-        input_schema = types.AssociateFacesInput,
-        output_schema = types.AssociateFacesOutput,
+        input_schema = schemas.AssociateFacesInput,
+        output_schema = schemas.AssociateFacesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:compareFaces(input, options)
     return self:invokeOperation(input, {
         name = "CompareFaces",
-        input_schema = types.CompareFacesInput,
-        output_schema = types.CompareFacesOutput,
+        input_schema = schemas.CompareFacesInput,
+        output_schema = schemas.CompareFacesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:copyProjectVersion(input, options)
     return self:invokeOperation(input, {
         name = "CopyProjectVersion",
-        input_schema = types.CopyProjectVersionInput,
-        output_schema = types.CopyProjectVersionOutput,
+        input_schema = schemas.CopyProjectVersionInput,
+        output_schema = schemas.CopyProjectVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createCollection(input, options)
     return self:invokeOperation(input, {
         name = "CreateCollection",
-        input_schema = types.CreateCollectionInput,
-        output_schema = types.CreateCollectionOutput,
+        input_schema = schemas.CreateCollectionInput,
+        output_schema = schemas.CreateCollectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createDataset(input, options)
     return self:invokeOperation(input, {
         name = "CreateDataset",
-        input_schema = types.CreateDatasetInput,
-        output_schema = types.CreateDatasetOutput,
+        input_schema = schemas.CreateDatasetInput,
+        output_schema = schemas.CreateDatasetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createFaceLivenessSession(input, options)
     return self:invokeOperation(input, {
         name = "CreateFaceLivenessSession",
-        input_schema = types.CreateFaceLivenessSessionInput,
-        output_schema = types.CreateFaceLivenessSessionOutput,
+        input_schema = schemas.CreateFaceLivenessSessionInput,
+        output_schema = schemas.CreateFaceLivenessSessionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createProject(input, options)
     return self:invokeOperation(input, {
         name = "CreateProject",
-        input_schema = types.CreateProjectInput,
-        output_schema = types.CreateProjectOutput,
+        input_schema = schemas.CreateProjectInput,
+        output_schema = schemas.CreateProjectOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createProjectVersion(input, options)
     return self:invokeOperation(input, {
         name = "CreateProjectVersion",
-        input_schema = types.CreateProjectVersionInput,
-        output_schema = types.CreateProjectVersionOutput,
+        input_schema = schemas.CreateProjectVersionInput,
+        output_schema = schemas.CreateProjectVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:createStreamProcessor(input, options)
     return self:invokeOperation(input, {
         name = "CreateStreamProcessor",
-        input_schema = types.CreateStreamProcessorInput,
-        output_schema = types.CreateStreamProcessorOutput,
+        input_schema = schemas.CreateStreamProcessorInput,
+        output_schema = schemas.CreateStreamProcessorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:createUser(input, options)
     return self:invokeOperation(input, {
         name = "CreateUser",
-        input_schema = types.CreateUserInput,
-        output_schema = types.CreateUserOutput,
+        input_schema = schemas.CreateUserInput,
+        output_schema = schemas.CreateUserOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteCollection(input, options)
     return self:invokeOperation(input, {
         name = "DeleteCollection",
-        input_schema = types.DeleteCollectionInput,
-        output_schema = types.DeleteCollectionOutput,
+        input_schema = schemas.DeleteCollectionInput,
+        output_schema = schemas.DeleteCollectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteDataset(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDataset",
-        input_schema = types.DeleteDatasetInput,
-        output_schema = types.DeleteDatasetOutput,
+        input_schema = schemas.DeleteDatasetInput,
+        output_schema = schemas.DeleteDatasetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteFaces(input, options)
     return self:invokeOperation(input, {
         name = "DeleteFaces",
-        input_schema = types.DeleteFacesInput,
-        output_schema = types.DeleteFacesOutput,
+        input_schema = schemas.DeleteFacesInput,
+        output_schema = schemas.DeleteFacesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteProject(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProject",
-        input_schema = types.DeleteProjectInput,
-        output_schema = types.DeleteProjectOutput,
+        input_schema = schemas.DeleteProjectInput,
+        output_schema = schemas.DeleteProjectOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteProjectPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProjectPolicy",
-        input_schema = types.DeleteProjectPolicyInput,
-        output_schema = types.DeleteProjectPolicyOutput,
+        input_schema = schemas.DeleteProjectPolicyInput,
+        output_schema = schemas.DeleteProjectPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteProjectVersion(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProjectVersion",
-        input_schema = types.DeleteProjectVersionInput,
-        output_schema = types.DeleteProjectVersionOutput,
+        input_schema = schemas.DeleteProjectVersionInput,
+        output_schema = schemas.DeleteProjectVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:deleteStreamProcessor(input, options)
     return self:invokeOperation(input, {
         name = "DeleteStreamProcessor",
-        input_schema = types.DeleteStreamProcessorInput,
-        output_schema = types.DeleteStreamProcessorOutput,
+        input_schema = schemas.DeleteStreamProcessorInput,
+        output_schema = schemas.DeleteStreamProcessorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:deleteUser(input, options)
     return self:invokeOperation(input, {
         name = "DeleteUser",
-        input_schema = types.DeleteUserInput,
-        output_schema = types.DeleteUserOutput,
+        input_schema = schemas.DeleteUserInput,
+        output_schema = schemas.DeleteUserOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:describeCollection(input, options)
     return self:invokeOperation(input, {
         name = "DescribeCollection",
-        input_schema = types.DescribeCollectionInput,
-        output_schema = types.DescribeCollectionOutput,
+        input_schema = schemas.DescribeCollectionInput,
+        output_schema = schemas.DescribeCollectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:describeDataset(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDataset",
-        input_schema = types.DescribeDatasetInput,
-        output_schema = types.DescribeDatasetOutput,
+        input_schema = schemas.DescribeDatasetInput,
+        output_schema = schemas.DescribeDatasetOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:describeProjects(input, options)
     return self:invokeOperation(input, {
         name = "DescribeProjects",
-        input_schema = types.DescribeProjectsInput,
-        output_schema = types.DescribeProjectsOutput,
+        input_schema = schemas.DescribeProjectsInput,
+        output_schema = schemas.DescribeProjectsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:describeProjectVersions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeProjectVersions",
-        input_schema = types.DescribeProjectVersionsInput,
-        output_schema = types.DescribeProjectVersionsOutput,
+        input_schema = schemas.DescribeProjectVersionsInput,
+        output_schema = schemas.DescribeProjectVersionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:describeStreamProcessor(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStreamProcessor",
-        input_schema = types.DescribeStreamProcessorInput,
-        output_schema = types.DescribeStreamProcessorOutput,
+        input_schema = schemas.DescribeStreamProcessorInput,
+        output_schema = schemas.DescribeStreamProcessorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:detectCustomLabels(input, options)
     return self:invokeOperation(input, {
         name = "DetectCustomLabels",
-        input_schema = types.DetectCustomLabelsInput,
-        output_schema = types.DetectCustomLabelsOutput,
+        input_schema = schemas.DetectCustomLabelsInput,
+        output_schema = schemas.DetectCustomLabelsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:detectFaces(input, options)
     return self:invokeOperation(input, {
         name = "DetectFaces",
-        input_schema = types.DetectFacesInput,
-        output_schema = types.DetectFacesOutput,
+        input_schema = schemas.DetectFacesInput,
+        output_schema = schemas.DetectFacesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:detectLabels(input, options)
     return self:invokeOperation(input, {
         name = "DetectLabels",
-        input_schema = types.DetectLabelsInput,
-        output_schema = types.DetectLabelsOutput,
+        input_schema = schemas.DetectLabelsInput,
+        output_schema = schemas.DetectLabelsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:detectModerationLabels(input, options)
     return self:invokeOperation(input, {
         name = "DetectModerationLabels",
-        input_schema = types.DetectModerationLabelsInput,
-        output_schema = types.DetectModerationLabelsOutput,
+        input_schema = schemas.DetectModerationLabelsInput,
+        output_schema = schemas.DetectModerationLabelsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:detectProtectiveEquipment(input, options)
     return self:invokeOperation(input, {
         name = "DetectProtectiveEquipment",
-        input_schema = types.DetectProtectiveEquipmentInput,
-        output_schema = types.DetectProtectiveEquipmentOutput,
+        input_schema = schemas.DetectProtectiveEquipmentInput,
+        output_schema = schemas.DetectProtectiveEquipmentOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:detectText(input, options)
     return self:invokeOperation(input, {
         name = "DetectText",
-        input_schema = types.DetectTextInput,
-        output_schema = types.DetectTextOutput,
+        input_schema = schemas.DetectTextInput,
+        output_schema = schemas.DetectTextOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:disassociateFaces(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateFaces",
-        input_schema = types.DisassociateFacesInput,
-        output_schema = types.DisassociateFacesOutput,
+        input_schema = schemas.DisassociateFacesInput,
+        output_schema = schemas.DisassociateFacesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:distributeDatasetEntries(input, options)
     return self:invokeOperation(input, {
         name = "DistributeDatasetEntries",
-        input_schema = types.DistributeDatasetEntriesInput,
-        output_schema = types.DistributeDatasetEntriesOutput,
+        input_schema = schemas.DistributeDatasetEntriesInput,
+        output_schema = schemas.DistributeDatasetEntriesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:getCelebrityInfo(input, options)
     return self:invokeOperation(input, {
         name = "GetCelebrityInfo",
-        input_schema = types.GetCelebrityInfoInput,
-        output_schema = types.GetCelebrityInfoOutput,
+        input_schema = schemas.GetCelebrityInfoInput,
+        output_schema = schemas.GetCelebrityInfoOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:getCelebrityRecognition(input, options)
     return self:invokeOperation(input, {
         name = "GetCelebrityRecognition",
-        input_schema = types.GetCelebrityRecognitionInput,
-        output_schema = types.GetCelebrityRecognitionOutput,
+        input_schema = schemas.GetCelebrityRecognitionInput,
+        output_schema = schemas.GetCelebrityRecognitionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:getContentModeration(input, options)
     return self:invokeOperation(input, {
         name = "GetContentModeration",
-        input_schema = types.GetContentModerationInput,
-        output_schema = types.GetContentModerationOutput,
+        input_schema = schemas.GetContentModerationInput,
+        output_schema = schemas.GetContentModerationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:getFaceDetection(input, options)
     return self:invokeOperation(input, {
         name = "GetFaceDetection",
-        input_schema = types.GetFaceDetectionInput,
-        output_schema = types.GetFaceDetectionOutput,
+        input_schema = schemas.GetFaceDetectionInput,
+        output_schema = schemas.GetFaceDetectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:getFaceLivenessSessionResults(input, options)
     return self:invokeOperation(input, {
         name = "GetFaceLivenessSessionResults",
-        input_schema = types.GetFaceLivenessSessionResultsInput,
-        output_schema = types.GetFaceLivenessSessionResultsOutput,
+        input_schema = schemas.GetFaceLivenessSessionResultsInput,
+        output_schema = schemas.GetFaceLivenessSessionResultsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:getFaceSearch(input, options)
     return self:invokeOperation(input, {
         name = "GetFaceSearch",
-        input_schema = types.GetFaceSearchInput,
-        output_schema = types.GetFaceSearchOutput,
+        input_schema = schemas.GetFaceSearchInput,
+        output_schema = schemas.GetFaceSearchOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:getLabelDetection(input, options)
     return self:invokeOperation(input, {
         name = "GetLabelDetection",
-        input_schema = types.GetLabelDetectionInput,
-        output_schema = types.GetLabelDetectionOutput,
+        input_schema = schemas.GetLabelDetectionInput,
+        output_schema = schemas.GetLabelDetectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:getMediaAnalysisJob(input, options)
     return self:invokeOperation(input, {
         name = "GetMediaAnalysisJob",
-        input_schema = types.GetMediaAnalysisJobInput,
-        output_schema = types.GetMediaAnalysisJobOutput,
+        input_schema = schemas.GetMediaAnalysisJobInput,
+        output_schema = schemas.GetMediaAnalysisJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:getPersonTracking(input, options)
     return self:invokeOperation(input, {
         name = "GetPersonTracking",
-        input_schema = types.GetPersonTrackingInput,
-        output_schema = types.GetPersonTrackingOutput,
+        input_schema = schemas.GetPersonTrackingInput,
+        output_schema = schemas.GetPersonTrackingOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:getSegmentDetection(input, options)
     return self:invokeOperation(input, {
         name = "GetSegmentDetection",
-        input_schema = types.GetSegmentDetectionInput,
-        output_schema = types.GetSegmentDetectionOutput,
+        input_schema = schemas.GetSegmentDetectionInput,
+        output_schema = schemas.GetSegmentDetectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:getTextDetection(input, options)
     return self:invokeOperation(input, {
         name = "GetTextDetection",
-        input_schema = types.GetTextDetectionInput,
-        output_schema = types.GetTextDetectionOutput,
+        input_schema = schemas.GetTextDetectionInput,
+        output_schema = schemas.GetTextDetectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:indexFaces(input, options)
     return self:invokeOperation(input, {
         name = "IndexFaces",
-        input_schema = types.IndexFacesInput,
-        output_schema = types.IndexFacesOutput,
+        input_schema = schemas.IndexFacesInput,
+        output_schema = schemas.IndexFacesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:listCollections(input, options)
     return self:invokeOperation(input, {
         name = "ListCollections",
-        input_schema = types.ListCollectionsInput,
-        output_schema = types.ListCollectionsOutput,
+        input_schema = schemas.ListCollectionsInput,
+        output_schema = schemas.ListCollectionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:listDatasetEntries(input, options)
     return self:invokeOperation(input, {
         name = "ListDatasetEntries",
-        input_schema = types.ListDatasetEntriesInput,
-        output_schema = types.ListDatasetEntriesOutput,
+        input_schema = schemas.ListDatasetEntriesInput,
+        output_schema = schemas.ListDatasetEntriesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:listDatasetLabels(input, options)
     return self:invokeOperation(input, {
         name = "ListDatasetLabels",
-        input_schema = types.ListDatasetLabelsInput,
-        output_schema = types.ListDatasetLabelsOutput,
+        input_schema = schemas.ListDatasetLabelsInput,
+        output_schema = schemas.ListDatasetLabelsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:listFaces(input, options)
     return self:invokeOperation(input, {
         name = "ListFaces",
-        input_schema = types.ListFacesInput,
-        output_schema = types.ListFacesOutput,
+        input_schema = schemas.ListFacesInput,
+        output_schema = schemas.ListFacesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:listMediaAnalysisJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListMediaAnalysisJobs",
-        input_schema = types.ListMediaAnalysisJobsInput,
-        output_schema = types.ListMediaAnalysisJobsOutput,
+        input_schema = schemas.ListMediaAnalysisJobsInput,
+        output_schema = schemas.ListMediaAnalysisJobsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:listProjectPolicies(input, options)
     return self:invokeOperation(input, {
         name = "ListProjectPolicies",
-        input_schema = types.ListProjectPoliciesInput,
-        output_schema = types.ListProjectPoliciesOutput,
+        input_schema = schemas.ListProjectPoliciesInput,
+        output_schema = schemas.ListProjectPoliciesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -686,8 +686,8 @@ end
 function Client:listStreamProcessors(input, options)
     return self:invokeOperation(input, {
         name = "ListStreamProcessors",
-        input_schema = types.ListStreamProcessorsInput,
-        output_schema = types.ListStreamProcessorsOutput,
+        input_schema = schemas.ListStreamProcessorsInput,
+        output_schema = schemas.ListStreamProcessorsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -699,8 +699,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -712,8 +712,8 @@ end
 function Client:listUsers(input, options)
     return self:invokeOperation(input, {
         name = "ListUsers",
-        input_schema = types.ListUsersInput,
-        output_schema = types.ListUsersOutput,
+        input_schema = schemas.ListUsersInput,
+        output_schema = schemas.ListUsersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -725,8 +725,8 @@ end
 function Client:putProjectPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutProjectPolicy",
-        input_schema = types.PutProjectPolicyInput,
-        output_schema = types.PutProjectPolicyOutput,
+        input_schema = schemas.PutProjectPolicyInput,
+        output_schema = schemas.PutProjectPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -738,8 +738,8 @@ end
 function Client:recognizeCelebrities(input, options)
     return self:invokeOperation(input, {
         name = "RecognizeCelebrities",
-        input_schema = types.RecognizeCelebritiesInput,
-        output_schema = types.RecognizeCelebritiesOutput,
+        input_schema = schemas.RecognizeCelebritiesInput,
+        output_schema = schemas.RecognizeCelebritiesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -751,8 +751,8 @@ end
 function Client:searchFaces(input, options)
     return self:invokeOperation(input, {
         name = "SearchFaces",
-        input_schema = types.SearchFacesInput,
-        output_schema = types.SearchFacesOutput,
+        input_schema = schemas.SearchFacesInput,
+        output_schema = schemas.SearchFacesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -764,8 +764,8 @@ end
 function Client:searchFacesByImage(input, options)
     return self:invokeOperation(input, {
         name = "SearchFacesByImage",
-        input_schema = types.SearchFacesByImageInput,
-        output_schema = types.SearchFacesByImageOutput,
+        input_schema = schemas.SearchFacesByImageInput,
+        output_schema = schemas.SearchFacesByImageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -777,8 +777,8 @@ end
 function Client:searchUsers(input, options)
     return self:invokeOperation(input, {
         name = "SearchUsers",
-        input_schema = types.SearchUsersInput,
-        output_schema = types.SearchUsersOutput,
+        input_schema = schemas.SearchUsersInput,
+        output_schema = schemas.SearchUsersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -790,8 +790,8 @@ end
 function Client:searchUsersByImage(input, options)
     return self:invokeOperation(input, {
         name = "SearchUsersByImage",
-        input_schema = types.SearchUsersByImageInput,
-        output_schema = types.SearchUsersByImageOutput,
+        input_schema = schemas.SearchUsersByImageInput,
+        output_schema = schemas.SearchUsersByImageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -803,8 +803,8 @@ end
 function Client:startCelebrityRecognition(input, options)
     return self:invokeOperation(input, {
         name = "StartCelebrityRecognition",
-        input_schema = types.StartCelebrityRecognitionInput,
-        output_schema = types.StartCelebrityRecognitionOutput,
+        input_schema = schemas.StartCelebrityRecognitionInput,
+        output_schema = schemas.StartCelebrityRecognitionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -816,8 +816,8 @@ end
 function Client:startContentModeration(input, options)
     return self:invokeOperation(input, {
         name = "StartContentModeration",
-        input_schema = types.StartContentModerationInput,
-        output_schema = types.StartContentModerationOutput,
+        input_schema = schemas.StartContentModerationInput,
+        output_schema = schemas.StartContentModerationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -829,8 +829,8 @@ end
 function Client:startFaceDetection(input, options)
     return self:invokeOperation(input, {
         name = "StartFaceDetection",
-        input_schema = types.StartFaceDetectionInput,
-        output_schema = types.StartFaceDetectionOutput,
+        input_schema = schemas.StartFaceDetectionInput,
+        output_schema = schemas.StartFaceDetectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -842,8 +842,8 @@ end
 function Client:startFaceSearch(input, options)
     return self:invokeOperation(input, {
         name = "StartFaceSearch",
-        input_schema = types.StartFaceSearchInput,
-        output_schema = types.StartFaceSearchOutput,
+        input_schema = schemas.StartFaceSearchInput,
+        output_schema = schemas.StartFaceSearchOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -855,8 +855,8 @@ end
 function Client:startLabelDetection(input, options)
     return self:invokeOperation(input, {
         name = "StartLabelDetection",
-        input_schema = types.StartLabelDetectionInput,
-        output_schema = types.StartLabelDetectionOutput,
+        input_schema = schemas.StartLabelDetectionInput,
+        output_schema = schemas.StartLabelDetectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -868,8 +868,8 @@ end
 function Client:startMediaAnalysisJob(input, options)
     return self:invokeOperation(input, {
         name = "StartMediaAnalysisJob",
-        input_schema = types.StartMediaAnalysisJobInput,
-        output_schema = types.StartMediaAnalysisJobOutput,
+        input_schema = schemas.StartMediaAnalysisJobInput,
+        output_schema = schemas.StartMediaAnalysisJobOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -881,8 +881,8 @@ end
 function Client:startPersonTracking(input, options)
     return self:invokeOperation(input, {
         name = "StartPersonTracking",
-        input_schema = types.StartPersonTrackingInput,
-        output_schema = types.StartPersonTrackingOutput,
+        input_schema = schemas.StartPersonTrackingInput,
+        output_schema = schemas.StartPersonTrackingOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -894,8 +894,8 @@ end
 function Client:startProjectVersion(input, options)
     return self:invokeOperation(input, {
         name = "StartProjectVersion",
-        input_schema = types.StartProjectVersionInput,
-        output_schema = types.StartProjectVersionOutput,
+        input_schema = schemas.StartProjectVersionInput,
+        output_schema = schemas.StartProjectVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -907,8 +907,8 @@ end
 function Client:startSegmentDetection(input, options)
     return self:invokeOperation(input, {
         name = "StartSegmentDetection",
-        input_schema = types.StartSegmentDetectionInput,
-        output_schema = types.StartSegmentDetectionOutput,
+        input_schema = schemas.StartSegmentDetectionInput,
+        output_schema = schemas.StartSegmentDetectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -920,8 +920,8 @@ end
 function Client:startStreamProcessor(input, options)
     return self:invokeOperation(input, {
         name = "StartStreamProcessor",
-        input_schema = types.StartStreamProcessorInput,
-        output_schema = types.StartStreamProcessorOutput,
+        input_schema = schemas.StartStreamProcessorInput,
+        output_schema = schemas.StartStreamProcessorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -933,8 +933,8 @@ end
 function Client:startTextDetection(input, options)
     return self:invokeOperation(input, {
         name = "StartTextDetection",
-        input_schema = types.StartTextDetectionInput,
-        output_schema = types.StartTextDetectionOutput,
+        input_schema = schemas.StartTextDetectionInput,
+        output_schema = schemas.StartTextDetectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -946,8 +946,8 @@ end
 function Client:stopProjectVersion(input, options)
     return self:invokeOperation(input, {
         name = "StopProjectVersion",
-        input_schema = types.StopProjectVersionInput,
-        output_schema = types.StopProjectVersionOutput,
+        input_schema = schemas.StopProjectVersionInput,
+        output_schema = schemas.StopProjectVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -959,8 +959,8 @@ end
 function Client:stopStreamProcessor(input, options)
     return self:invokeOperation(input, {
         name = "StopStreamProcessor",
-        input_schema = types.StopStreamProcessorInput,
-        output_schema = types.StopStreamProcessorOutput,
+        input_schema = schemas.StopStreamProcessorInput,
+        output_schema = schemas.StopStreamProcessorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -972,8 +972,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -985,8 +985,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -998,8 +998,8 @@ end
 function Client:updateDatasetEntries(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDatasetEntries",
-        input_schema = types.UpdateDatasetEntriesInput,
-        output_schema = types.UpdateDatasetEntriesOutput,
+        input_schema = schemas.UpdateDatasetEntriesInput,
+        output_schema = schemas.UpdateDatasetEntriesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -1011,8 +1011,8 @@ end
 function Client:updateStreamProcessor(input, options)
     return self:invokeOperation(input, {
         name = "UpdateStreamProcessor",
-        input_schema = types.UpdateStreamProcessorInput,
-        output_schema = types.UpdateStreamProcessorOutput,
+        input_schema = schemas.UpdateStreamProcessorInput,
+        output_schema = schemas.UpdateStreamProcessorOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("sfn.endpoint_rules")
+local schemas = require("sfn.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("sfn.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createActivity(input, options)
     return self:invokeOperation(input, {
         name = "CreateActivity",
-        input_schema = types.CreateActivityInput,
-        output_schema = types.CreateActivityOutput,
+        input_schema = schemas.CreateActivityInput,
+        output_schema = schemas.CreateActivityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createStateMachine(input, options)
     return self:invokeOperation(input, {
         name = "CreateStateMachine",
-        input_schema = types.CreateStateMachineInput,
-        output_schema = types.CreateStateMachineOutput,
+        input_schema = schemas.CreateStateMachineInput,
+        output_schema = schemas.CreateStateMachineOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createStateMachineAlias(input, options)
     return self:invokeOperation(input, {
         name = "CreateStateMachineAlias",
-        input_schema = types.CreateStateMachineAliasInput,
-        output_schema = types.CreateStateMachineAliasOutput,
+        input_schema = schemas.CreateStateMachineAliasInput,
+        output_schema = schemas.CreateStateMachineAliasOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteActivity(input, options)
     return self:invokeOperation(input, {
         name = "DeleteActivity",
-        input_schema = types.DeleteActivityInput,
-        output_schema = types.DeleteActivityOutput,
+        input_schema = schemas.DeleteActivityInput,
+        output_schema = schemas.DeleteActivityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteStateMachine(input, options)
     return self:invokeOperation(input, {
         name = "DeleteStateMachine",
-        input_schema = types.DeleteStateMachineInput,
-        output_schema = types.DeleteStateMachineOutput,
+        input_schema = schemas.DeleteStateMachineInput,
+        output_schema = schemas.DeleteStateMachineOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteStateMachineAlias(input, options)
     return self:invokeOperation(input, {
         name = "DeleteStateMachineAlias",
-        input_schema = types.DeleteStateMachineAliasInput,
-        output_schema = types.DeleteStateMachineAliasOutput,
+        input_schema = schemas.DeleteStateMachineAliasInput,
+        output_schema = schemas.DeleteStateMachineAliasOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteStateMachineVersion(input, options)
     return self:invokeOperation(input, {
         name = "DeleteStateMachineVersion",
-        input_schema = types.DeleteStateMachineVersionInput,
-        output_schema = types.DeleteStateMachineVersionOutput,
+        input_schema = schemas.DeleteStateMachineVersionInput,
+        output_schema = schemas.DeleteStateMachineVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:describeActivity(input, options)
     return self:invokeOperation(input, {
         name = "DescribeActivity",
-        input_schema = types.DescribeActivityInput,
-        output_schema = types.DescribeActivityOutput,
+        input_schema = schemas.DescribeActivityInput,
+        output_schema = schemas.DescribeActivityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:describeExecution(input, options)
     return self:invokeOperation(input, {
         name = "DescribeExecution",
-        input_schema = types.DescribeExecutionInput,
-        output_schema = types.DescribeExecutionOutput,
+        input_schema = schemas.DescribeExecutionInput,
+        output_schema = schemas.DescribeExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:describeMapRun(input, options)
     return self:invokeOperation(input, {
         name = "DescribeMapRun",
-        input_schema = types.DescribeMapRunInput,
-        output_schema = types.DescribeMapRunOutput,
+        input_schema = schemas.DescribeMapRunInput,
+        output_schema = schemas.DescribeMapRunOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:describeStateMachine(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStateMachine",
-        input_schema = types.DescribeStateMachineInput,
-        output_schema = types.DescribeStateMachineOutput,
+        input_schema = schemas.DescribeStateMachineInput,
+        output_schema = schemas.DescribeStateMachineOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:describeStateMachineAlias(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStateMachineAlias",
-        input_schema = types.DescribeStateMachineAliasInput,
-        output_schema = types.DescribeStateMachineAliasOutput,
+        input_schema = schemas.DescribeStateMachineAliasInput,
+        output_schema = schemas.DescribeStateMachineAliasOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:describeStateMachineForExecution(input, options)
     return self:invokeOperation(input, {
         name = "DescribeStateMachineForExecution",
-        input_schema = types.DescribeStateMachineForExecutionInput,
-        output_schema = types.DescribeStateMachineForExecutionOutput,
+        input_schema = schemas.DescribeStateMachineForExecutionInput,
+        output_schema = schemas.DescribeStateMachineForExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getActivityTask(input, options)
     return self:invokeOperation(input, {
         name = "GetActivityTask",
-        input_schema = types.GetActivityTaskInput,
-        output_schema = types.GetActivityTaskOutput,
+        input_schema = schemas.GetActivityTaskInput,
+        output_schema = schemas.GetActivityTaskOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getExecutionHistory(input, options)
     return self:invokeOperation(input, {
         name = "GetExecutionHistory",
-        input_schema = types.GetExecutionHistoryInput,
-        output_schema = types.GetExecutionHistoryOutput,
+        input_schema = schemas.GetExecutionHistoryInput,
+        output_schema = schemas.GetExecutionHistoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listActivities(input, options)
     return self:invokeOperation(input, {
         name = "ListActivities",
-        input_schema = types.ListActivitiesInput,
-        output_schema = types.ListActivitiesOutput,
+        input_schema = schemas.ListActivitiesInput,
+        output_schema = schemas.ListActivitiesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listExecutions(input, options)
     return self:invokeOperation(input, {
         name = "ListExecutions",
-        input_schema = types.ListExecutionsInput,
-        output_schema = types.ListExecutionsOutput,
+        input_schema = schemas.ListExecutionsInput,
+        output_schema = schemas.ListExecutionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listMapRuns(input, options)
     return self:invokeOperation(input, {
         name = "ListMapRuns",
-        input_schema = types.ListMapRunsInput,
-        output_schema = types.ListMapRunsOutput,
+        input_schema = schemas.ListMapRunsInput,
+        output_schema = schemas.ListMapRunsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listStateMachineAliases(input, options)
     return self:invokeOperation(input, {
         name = "ListStateMachineAliases",
-        input_schema = types.ListStateMachineAliasesInput,
-        output_schema = types.ListStateMachineAliasesOutput,
+        input_schema = schemas.ListStateMachineAliasesInput,
+        output_schema = schemas.ListStateMachineAliasesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listStateMachines(input, options)
     return self:invokeOperation(input, {
         name = "ListStateMachines",
-        input_schema = types.ListStateMachinesInput,
-        output_schema = types.ListStateMachinesOutput,
+        input_schema = schemas.ListStateMachinesInput,
+        output_schema = schemas.ListStateMachinesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listStateMachineVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListStateMachineVersions",
-        input_schema = types.ListStateMachineVersionsInput,
-        output_schema = types.ListStateMachineVersionsOutput,
+        input_schema = schemas.ListStateMachineVersionsInput,
+        output_schema = schemas.ListStateMachineVersionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:publishStateMachineVersion(input, options)
     return self:invokeOperation(input, {
         name = "PublishStateMachineVersion",
-        input_schema = types.PublishStateMachineVersionInput,
-        output_schema = types.PublishStateMachineVersionOutput,
+        input_schema = schemas.PublishStateMachineVersionInput,
+        output_schema = schemas.PublishStateMachineVersionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:redriveExecution(input, options)
     return self:invokeOperation(input, {
         name = "RedriveExecution",
-        input_schema = types.RedriveExecutionInput,
-        output_schema = types.RedriveExecutionOutput,
+        input_schema = schemas.RedriveExecutionInput,
+        output_schema = schemas.RedriveExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:sendTaskFailure(input, options)
     return self:invokeOperation(input, {
         name = "SendTaskFailure",
-        input_schema = types.SendTaskFailureInput,
-        output_schema = types.SendTaskFailureOutput,
+        input_schema = schemas.SendTaskFailureInput,
+        output_schema = schemas.SendTaskFailureOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:sendTaskHeartbeat(input, options)
     return self:invokeOperation(input, {
         name = "SendTaskHeartbeat",
-        input_schema = types.SendTaskHeartbeatInput,
-        output_schema = types.SendTaskHeartbeatOutput,
+        input_schema = schemas.SendTaskHeartbeatInput,
+        output_schema = schemas.SendTaskHeartbeatOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:sendTaskSuccess(input, options)
     return self:invokeOperation(input, {
         name = "SendTaskSuccess",
-        input_schema = types.SendTaskSuccessInput,
-        output_schema = types.SendTaskSuccessOutput,
+        input_schema = schemas.SendTaskSuccessInput,
+        output_schema = schemas.SendTaskSuccessOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:startExecution(input, options)
     return self:invokeOperation(input, {
         name = "StartExecution",
-        input_schema = types.StartExecutionInput,
-        output_schema = types.StartExecutionOutput,
+        input_schema = schemas.StartExecutionInput,
+        output_schema = schemas.StartExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:startSyncExecution(input, options)
     return self:invokeOperation(input, {
         name = "StartSyncExecution",
-        input_schema = types.StartSyncExecutionInput,
-        output_schema = types.StartSyncExecutionOutput,
+        input_schema = schemas.StartSyncExecutionInput,
+        output_schema = schemas.StartSyncExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:stopExecution(input, options)
     return self:invokeOperation(input, {
         name = "StopExecution",
-        input_schema = types.StopExecutionInput,
-        output_schema = types.StopExecutionOutput,
+        input_schema = schemas.StopExecutionInput,
+        output_schema = schemas.StopExecutionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:testState(input, options)
     return self:invokeOperation(input, {
         name = "TestState",
-        input_schema = types.TestStateInput,
-        output_schema = types.TestStateOutput,
+        input_schema = schemas.TestStateInput,
+        output_schema = schemas.TestStateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:updateMapRun(input, options)
     return self:invokeOperation(input, {
         name = "UpdateMapRun",
-        input_schema = types.UpdateMapRunInput,
-        output_schema = types.UpdateMapRunOutput,
+        input_schema = schemas.UpdateMapRunInput,
+        output_schema = schemas.UpdateMapRunOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:updateStateMachine(input, options)
     return self:invokeOperation(input, {
         name = "UpdateStateMachine",
-        input_schema = types.UpdateStateMachineInput,
-        output_schema = types.UpdateStateMachineOutput,
+        input_schema = schemas.UpdateStateMachineInput,
+        output_schema = schemas.UpdateStateMachineOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:updateStateMachineAlias(input, options)
     return self:invokeOperation(input, {
         name = "UpdateStateMachineAlias",
-        input_schema = types.UpdateStateMachineAliasInput,
-        output_schema = types.UpdateStateMachineAliasOutput,
+        input_schema = schemas.UpdateStateMachineAliasInput,
+        output_schema = schemas.UpdateStateMachineAliasOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:validateStateMachineDefinition(input, options)
     return self:invokeOperation(input, {
         name = "ValidateStateMachineDefinition",
-        input_schema = types.ValidateStateMachineDefinitionInput,
-        output_schema = types.ValidateStateMachineDefinitionOutput,
+        input_schema = schemas.ValidateStateMachineDefinitionInput,
+        output_schema = schemas.ValidateStateMachineDefinitionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

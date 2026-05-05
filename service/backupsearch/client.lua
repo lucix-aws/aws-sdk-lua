@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("backupsearch.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("backupsearch.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("backupsearch.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getSearchJob(input, options)
     return self:invokeOperation(input, {
         name = "GetSearchJob",
-        input_schema = types.GetSearchJobInput,
-        output_schema = types.GetSearchJobOutput,
+        input_schema = schemas.GetSearchJobInput,
+        output_schema = schemas.GetSearchJobOutput,
         http_method = "GET",
         http_path = "/search-jobs/{SearchJobIdentifier}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:getSearchResultExportJob(input, options)
     return self:invokeOperation(input, {
         name = "GetSearchResultExportJob",
-        input_schema = types.GetSearchResultExportJobInput,
-        output_schema = types.GetSearchResultExportJobOutput,
+        input_schema = schemas.GetSearchResultExportJobInput,
+        output_schema = schemas.GetSearchResultExportJobOutput,
         http_method = "GET",
         http_path = "/export-search-jobs/{ExportJobIdentifier}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:listSearchJobBackups(input, options)
     return self:invokeOperation(input, {
         name = "ListSearchJobBackups",
-        input_schema = types.ListSearchJobBackupsInput,
-        output_schema = types.ListSearchJobBackupsOutput,
+        input_schema = schemas.ListSearchJobBackupsInput,
+        output_schema = schemas.ListSearchJobBackupsOutput,
         http_method = "GET",
         http_path = "/search-jobs/{SearchJobIdentifier}/backups",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:listSearchJobResults(input, options)
     return self:invokeOperation(input, {
         name = "ListSearchJobResults",
-        input_schema = types.ListSearchJobResultsInput,
-        output_schema = types.ListSearchJobResultsOutput,
+        input_schema = schemas.ListSearchJobResultsInput,
+        output_schema = schemas.ListSearchJobResultsOutput,
         http_method = "GET",
         http_path = "/search-jobs/{SearchJobIdentifier}/search-results",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:listSearchJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListSearchJobs",
-        input_schema = types.ListSearchJobsInput,
-        output_schema = types.ListSearchJobsOutput,
+        input_schema = schemas.ListSearchJobsInput,
+        output_schema = schemas.ListSearchJobsOutput,
         http_method = "GET",
         http_path = "/search-jobs",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:listSearchResultExportJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListSearchResultExportJobs",
-        input_schema = types.ListSearchResultExportJobsInput,
-        output_schema = types.ListSearchResultExportJobsOutput,
+        input_schema = schemas.ListSearchResultExportJobsInput,
+        output_schema = schemas.ListSearchResultExportJobsOutput,
         http_method = "GET",
         http_path = "/export-search-jobs",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:startSearchJob(input, options)
     return self:invokeOperation(input, {
         name = "StartSearchJob",
-        input_schema = types.StartSearchJobInput,
-        output_schema = types.StartSearchJobOutput,
+        input_schema = schemas.StartSearchJobInput,
+        output_schema = schemas.StartSearchJobOutput,
         http_method = "PUT",
         http_path = "/search-jobs",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:startSearchResultExportJob(input, options)
     return self:invokeOperation(input, {
         name = "StartSearchResultExportJob",
-        input_schema = types.StartSearchResultExportJobInput,
-        output_schema = types.StartSearchResultExportJobOutput,
+        input_schema = schemas.StartSearchResultExportJobInput,
+        output_schema = schemas.StartSearchResultExportJobOutput,
         http_method = "PUT",
         http_path = "/export-search-jobs",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:stopSearchJob(input, options)
     return self:invokeOperation(input, {
         name = "StopSearchJob",
-        input_schema = types.StopSearchJobInput,
-        output_schema = types.StopSearchJobOutput,
+        input_schema = schemas.StopSearchJobInput,
+        output_schema = schemas.StopSearchJobOutput,
         http_method = "PUT",
         http_path = "/search-jobs/{SearchJobIdentifier}/actions/cancel",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {

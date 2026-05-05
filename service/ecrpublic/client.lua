@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("ecrpublic.endpoint_rules")
+local schemas = require("ecrpublic.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("ecrpublic.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchCheckLayerAvailability(input, options)
     return self:invokeOperation(input, {
         name = "BatchCheckLayerAvailability",
-        input_schema = types.BatchCheckLayerAvailabilityInput,
-        output_schema = types.BatchCheckLayerAvailabilityOutput,
+        input_schema = schemas.BatchCheckLayerAvailabilityInput,
+        output_schema = schemas.BatchCheckLayerAvailabilityOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:batchDeleteImage(input, options)
     return self:invokeOperation(input, {
         name = "BatchDeleteImage",
-        input_schema = types.BatchDeleteImageInput,
-        output_schema = types.BatchDeleteImageOutput,
+        input_schema = schemas.BatchDeleteImageInput,
+        output_schema = schemas.BatchDeleteImageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:completeLayerUpload(input, options)
     return self:invokeOperation(input, {
         name = "CompleteLayerUpload",
-        input_schema = types.CompleteLayerUploadInput,
-        output_schema = types.CompleteLayerUploadOutput,
+        input_schema = schemas.CompleteLayerUploadInput,
+        output_schema = schemas.CompleteLayerUploadOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createRepository(input, options)
     return self:invokeOperation(input, {
         name = "CreateRepository",
-        input_schema = types.CreateRepositoryInput,
-        output_schema = types.CreateRepositoryOutput,
+        input_schema = schemas.CreateRepositoryInput,
+        output_schema = schemas.CreateRepositoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteRepository(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRepository",
-        input_schema = types.DeleteRepositoryInput,
-        output_schema = types.DeleteRepositoryOutput,
+        input_schema = schemas.DeleteRepositoryInput,
+        output_schema = schemas.DeleteRepositoryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteRepositoryPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRepositoryPolicy",
-        input_schema = types.DeleteRepositoryPolicyInput,
-        output_schema = types.DeleteRepositoryPolicyOutput,
+        input_schema = schemas.DeleteRepositoryPolicyInput,
+        output_schema = schemas.DeleteRepositoryPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:describeImages(input, options)
     return self:invokeOperation(input, {
         name = "DescribeImages",
-        input_schema = types.DescribeImagesInput,
-        output_schema = types.DescribeImagesOutput,
+        input_schema = schemas.DescribeImagesInput,
+        output_schema = schemas.DescribeImagesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:describeImageTags(input, options)
     return self:invokeOperation(input, {
         name = "DescribeImageTags",
-        input_schema = types.DescribeImageTagsInput,
-        output_schema = types.DescribeImageTagsOutput,
+        input_schema = schemas.DescribeImageTagsInput,
+        output_schema = schemas.DescribeImageTagsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:describeRegistries(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRegistries",
-        input_schema = types.DescribeRegistriesInput,
-        output_schema = types.DescribeRegistriesOutput,
+        input_schema = schemas.DescribeRegistriesInput,
+        output_schema = schemas.DescribeRegistriesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:describeRepositories(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRepositories",
-        input_schema = types.DescribeRepositoriesInput,
-        output_schema = types.DescribeRepositoriesOutput,
+        input_schema = schemas.DescribeRepositoriesInput,
+        output_schema = schemas.DescribeRepositoriesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getAuthorizationToken(input, options)
     return self:invokeOperation(input, {
         name = "GetAuthorizationToken",
-        input_schema = types.GetAuthorizationTokenInput,
-        output_schema = types.GetAuthorizationTokenOutput,
+        input_schema = schemas.GetAuthorizationTokenInput,
+        output_schema = schemas.GetAuthorizationTokenOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getRegistryCatalogData(input, options)
     return self:invokeOperation(input, {
         name = "GetRegistryCatalogData",
-        input_schema = types.GetRegistryCatalogDataInput,
-        output_schema = types.GetRegistryCatalogDataOutput,
+        input_schema = schemas.GetRegistryCatalogDataInput,
+        output_schema = schemas.GetRegistryCatalogDataOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getRepositoryCatalogData(input, options)
     return self:invokeOperation(input, {
         name = "GetRepositoryCatalogData",
-        input_schema = types.GetRepositoryCatalogDataInput,
-        output_schema = types.GetRepositoryCatalogDataOutput,
+        input_schema = schemas.GetRepositoryCatalogDataInput,
+        output_schema = schemas.GetRepositoryCatalogDataOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getRepositoryPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetRepositoryPolicy",
-        input_schema = types.GetRepositoryPolicyInput,
-        output_schema = types.GetRepositoryPolicyOutput,
+        input_schema = schemas.GetRepositoryPolicyInput,
+        output_schema = schemas.GetRepositoryPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:initiateLayerUpload(input, options)
     return self:invokeOperation(input, {
         name = "InitiateLayerUpload",
-        input_schema = types.InitiateLayerUploadInput,
-        output_schema = types.InitiateLayerUploadOutput,
+        input_schema = schemas.InitiateLayerUploadInput,
+        output_schema = schemas.InitiateLayerUploadOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:putImage(input, options)
     return self:invokeOperation(input, {
         name = "PutImage",
-        input_schema = types.PutImageInput,
-        output_schema = types.PutImageOutput,
+        input_schema = schemas.PutImageInput,
+        output_schema = schemas.PutImageOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:putRegistryCatalogData(input, options)
     return self:invokeOperation(input, {
         name = "PutRegistryCatalogData",
-        input_schema = types.PutRegistryCatalogDataInput,
-        output_schema = types.PutRegistryCatalogDataOutput,
+        input_schema = schemas.PutRegistryCatalogDataInput,
+        output_schema = schemas.PutRegistryCatalogDataOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:putRepositoryCatalogData(input, options)
     return self:invokeOperation(input, {
         name = "PutRepositoryCatalogData",
-        input_schema = types.PutRepositoryCatalogDataInput,
-        output_schema = types.PutRepositoryCatalogDataOutput,
+        input_schema = schemas.PutRepositoryCatalogDataInput,
+        output_schema = schemas.PutRepositoryCatalogDataOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:setRepositoryPolicy(input, options)
     return self:invokeOperation(input, {
         name = "SetRepositoryPolicy",
-        input_schema = types.SetRepositoryPolicyInput,
-        output_schema = types.SetRepositoryPolicyOutput,
+        input_schema = schemas.SetRepositoryPolicyInput,
+        output_schema = schemas.SetRepositoryPolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:uploadLayerPart(input, options)
     return self:invokeOperation(input, {
         name = "UploadLayerPart",
-        input_schema = types.UploadLayerPartInput,
-        output_schema = types.UploadLayerPartOutput,
+        input_schema = schemas.UploadLayerPartInput,
+        output_schema = schemas.UploadLayerPartOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

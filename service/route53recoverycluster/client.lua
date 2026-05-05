@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("route53recoverycluster.endpoint_rules")
+local schemas = require("route53recoverycluster.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("route53recoverycluster.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getRoutingControlState(input, options)
     return self:invokeOperation(input, {
         name = "GetRoutingControlState",
-        input_schema = types.GetRoutingControlStateInput,
-        output_schema = types.GetRoutingControlStateOutput,
+        input_schema = schemas.GetRoutingControlStateInput,
+        output_schema = schemas.GetRoutingControlStateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:listRoutingControls(input, options)
     return self:invokeOperation(input, {
         name = "ListRoutingControls",
-        input_schema = types.ListRoutingControlsInput,
-        output_schema = types.ListRoutingControlsOutput,
+        input_schema = schemas.ListRoutingControlsInput,
+        output_schema = schemas.ListRoutingControlsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:updateRoutingControlState(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRoutingControlState",
-        input_schema = types.UpdateRoutingControlStateInput,
-        output_schema = types.UpdateRoutingControlStateOutput,
+        input_schema = schemas.UpdateRoutingControlStateInput,
+        output_schema = schemas.UpdateRoutingControlStateOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:updateRoutingControlStates(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRoutingControlStates",
-        input_schema = types.UpdateRoutingControlStatesInput,
-        output_schema = types.UpdateRoutingControlStatesOutput,
+        input_schema = schemas.UpdateRoutingControlStatesInput,
+        output_schema = schemas.UpdateRoutingControlStatesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

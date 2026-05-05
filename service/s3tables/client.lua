@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("s3tables.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("s3tables.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("s3tables.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createNamespace(input, options)
     return self:invokeOperation(input, {
         name = "CreateNamespace",
-        input_schema = types.CreateNamespaceInput,
-        output_schema = types.CreateNamespaceOutput,
+        input_schema = schemas.CreateNamespaceInput,
+        output_schema = schemas.CreateNamespaceOutput,
         http_method = "PUT",
         http_path = "/namespaces/{tableBucketARN}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createTable(input, options)
     return self:invokeOperation(input, {
         name = "CreateTable",
-        input_schema = types.CreateTableInput,
-        output_schema = types.CreateTableOutput,
+        input_schema = schemas.CreateTableInput,
+        output_schema = schemas.CreateTableOutput,
         http_method = "PUT",
         http_path = "/tables/{tableBucketARN}/{namespace}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createTableBucket(input, options)
     return self:invokeOperation(input, {
         name = "CreateTableBucket",
-        input_schema = types.CreateTableBucketInput,
-        output_schema = types.CreateTableBucketOutput,
+        input_schema = schemas.CreateTableBucketInput,
+        output_schema = schemas.CreateTableBucketOutput,
         http_method = "PUT",
         http_path = "/buckets",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteNamespace(input, options)
     return self:invokeOperation(input, {
         name = "DeleteNamespace",
-        input_schema = types.DeleteNamespaceInput,
-        output_schema = types.DeleteNamespaceOutput,
+        input_schema = schemas.DeleteNamespaceInput,
+        output_schema = schemas.DeleteNamespaceOutput,
         http_method = "DELETE",
         http_path = "/namespaces/{tableBucketARN}/{namespace}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteTable(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTable",
-        input_schema = types.DeleteTableInput,
-        output_schema = types.DeleteTableOutput,
+        input_schema = schemas.DeleteTableInput,
+        output_schema = schemas.DeleteTableOutput,
         http_method = "DELETE",
         http_path = "/tables/{tableBucketARN}/{namespace}/{name}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteTableBucket(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTableBucket",
-        input_schema = types.DeleteTableBucketInput,
-        output_schema = types.DeleteTableBucketOutput,
+        input_schema = schemas.DeleteTableBucketInput,
+        output_schema = schemas.DeleteTableBucketOutput,
         http_method = "DELETE",
         http_path = "/buckets/{tableBucketARN}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteTableBucketEncryption(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTableBucketEncryption",
-        input_schema = types.DeleteTableBucketEncryptionInput,
-        output_schema = types.DeleteTableBucketEncryptionOutput,
+        input_schema = schemas.DeleteTableBucketEncryptionInput,
+        output_schema = schemas.DeleteTableBucketEncryptionOutput,
         http_method = "DELETE",
         http_path = "/buckets/{tableBucketARN}/encryption",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteTableBucketMetricsConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTableBucketMetricsConfiguration",
-        input_schema = types.DeleteTableBucketMetricsConfigurationInput,
-        output_schema = types.DeleteTableBucketMetricsConfigurationOutput,
+        input_schema = schemas.DeleteTableBucketMetricsConfigurationInput,
+        output_schema = schemas.DeleteTableBucketMetricsConfigurationOutput,
         http_method = "DELETE",
         http_path = "/buckets/{tableBucketARN}/metrics",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteTableBucketPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTableBucketPolicy",
-        input_schema = types.DeleteTableBucketPolicyInput,
-        output_schema = types.DeleteTableBucketPolicyOutput,
+        input_schema = schemas.DeleteTableBucketPolicyInput,
+        output_schema = schemas.DeleteTableBucketPolicyOutput,
         http_method = "DELETE",
         http_path = "/buckets/{tableBucketARN}/policy",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteTableBucketReplication(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTableBucketReplication",
-        input_schema = types.DeleteTableBucketReplicationInput,
-        output_schema = types.DeleteTableBucketReplicationOutput,
+        input_schema = schemas.DeleteTableBucketReplicationInput,
+        output_schema = schemas.DeleteTableBucketReplicationOutput,
         http_method = "DELETE",
         http_path = "/table-bucket-replication",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteTablePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTablePolicy",
-        input_schema = types.DeleteTablePolicyInput,
-        output_schema = types.DeleteTablePolicyOutput,
+        input_schema = schemas.DeleteTablePolicyInput,
+        output_schema = schemas.DeleteTablePolicyOutput,
         http_method = "DELETE",
         http_path = "/tables/{tableBucketARN}/{namespace}/{name}/policy",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteTableReplication(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTableReplication",
-        input_schema = types.DeleteTableReplicationInput,
-        output_schema = types.DeleteTableReplicationOutput,
+        input_schema = schemas.DeleteTableReplicationInput,
+        output_schema = schemas.DeleteTableReplicationOutput,
         http_method = "DELETE",
         http_path = "/table-replication",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getNamespace(input, options)
     return self:invokeOperation(input, {
         name = "GetNamespace",
-        input_schema = types.GetNamespaceInput,
-        output_schema = types.GetNamespaceOutput,
+        input_schema = schemas.GetNamespaceInput,
+        output_schema = schemas.GetNamespaceOutput,
         http_method = "GET",
         http_path = "/namespaces/{tableBucketARN}/{namespace}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getTable(input, options)
     return self:invokeOperation(input, {
         name = "GetTable",
-        input_schema = types.GetTableInput,
-        output_schema = types.GetTableOutput,
+        input_schema = schemas.GetTableInput,
+        output_schema = schemas.GetTableOutput,
         http_method = "GET",
         http_path = "/get-table",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getTableBucket(input, options)
     return self:invokeOperation(input, {
         name = "GetTableBucket",
-        input_schema = types.GetTableBucketInput,
-        output_schema = types.GetTableBucketOutput,
+        input_schema = schemas.GetTableBucketInput,
+        output_schema = schemas.GetTableBucketOutput,
         http_method = "GET",
         http_path = "/buckets/{tableBucketARN}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getTableBucketEncryption(input, options)
     return self:invokeOperation(input, {
         name = "GetTableBucketEncryption",
-        input_schema = types.GetTableBucketEncryptionInput,
-        output_schema = types.GetTableBucketEncryptionOutput,
+        input_schema = schemas.GetTableBucketEncryptionInput,
+        output_schema = schemas.GetTableBucketEncryptionOutput,
         http_method = "GET",
         http_path = "/buckets/{tableBucketARN}/encryption",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getTableBucketMaintenanceConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetTableBucketMaintenanceConfiguration",
-        input_schema = types.GetTableBucketMaintenanceConfigurationInput,
-        output_schema = types.GetTableBucketMaintenanceConfigurationOutput,
+        input_schema = schemas.GetTableBucketMaintenanceConfigurationInput,
+        output_schema = schemas.GetTableBucketMaintenanceConfigurationOutput,
         http_method = "GET",
         http_path = "/buckets/{tableBucketARN}/maintenance",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getTableBucketMetricsConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetTableBucketMetricsConfiguration",
-        input_schema = types.GetTableBucketMetricsConfigurationInput,
-        output_schema = types.GetTableBucketMetricsConfigurationOutput,
+        input_schema = schemas.GetTableBucketMetricsConfigurationInput,
+        output_schema = schemas.GetTableBucketMetricsConfigurationOutput,
         http_method = "GET",
         http_path = "/buckets/{tableBucketARN}/metrics",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getTableBucketPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetTableBucketPolicy",
-        input_schema = types.GetTableBucketPolicyInput,
-        output_schema = types.GetTableBucketPolicyOutput,
+        input_schema = schemas.GetTableBucketPolicyInput,
+        output_schema = schemas.GetTableBucketPolicyOutput,
         http_method = "GET",
         http_path = "/buckets/{tableBucketARN}/policy",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:getTableBucketReplication(input, options)
     return self:invokeOperation(input, {
         name = "GetTableBucketReplication",
-        input_schema = types.GetTableBucketReplicationInput,
-        output_schema = types.GetTableBucketReplicationOutput,
+        input_schema = schemas.GetTableBucketReplicationInput,
+        output_schema = schemas.GetTableBucketReplicationOutput,
         http_method = "GET",
         http_path = "/table-bucket-replication",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:getTableBucketStorageClass(input, options)
     return self:invokeOperation(input, {
         name = "GetTableBucketStorageClass",
-        input_schema = types.GetTableBucketStorageClassInput,
-        output_schema = types.GetTableBucketStorageClassOutput,
+        input_schema = schemas.GetTableBucketStorageClassInput,
+        output_schema = schemas.GetTableBucketStorageClassOutput,
         http_method = "GET",
         http_path = "/buckets/{tableBucketARN}/storage-class",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:getTableEncryption(input, options)
     return self:invokeOperation(input, {
         name = "GetTableEncryption",
-        input_schema = types.GetTableEncryptionInput,
-        output_schema = types.GetTableEncryptionOutput,
+        input_schema = schemas.GetTableEncryptionInput,
+        output_schema = schemas.GetTableEncryptionOutput,
         http_method = "GET",
         http_path = "/tables/{tableBucketARN}/{namespace}/{name}/encryption",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:getTableMaintenanceConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetTableMaintenanceConfiguration",
-        input_schema = types.GetTableMaintenanceConfigurationInput,
-        output_schema = types.GetTableMaintenanceConfigurationOutput,
+        input_schema = schemas.GetTableMaintenanceConfigurationInput,
+        output_schema = schemas.GetTableMaintenanceConfigurationOutput,
         http_method = "GET",
         http_path = "/tables/{tableBucketARN}/{namespace}/{name}/maintenance",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:getTableMaintenanceJobStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetTableMaintenanceJobStatus",
-        input_schema = types.GetTableMaintenanceJobStatusInput,
-        output_schema = types.GetTableMaintenanceJobStatusOutput,
+        input_schema = schemas.GetTableMaintenanceJobStatusInput,
+        output_schema = schemas.GetTableMaintenanceJobStatusOutput,
         http_method = "GET",
         http_path = "/tables/{tableBucketARN}/{namespace}/{name}/maintenance-job-status",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getTableMetadataLocation(input, options)
     return self:invokeOperation(input, {
         name = "GetTableMetadataLocation",
-        input_schema = types.GetTableMetadataLocationInput,
-        output_schema = types.GetTableMetadataLocationOutput,
+        input_schema = schemas.GetTableMetadataLocationInput,
+        output_schema = schemas.GetTableMetadataLocationOutput,
         http_method = "GET",
         http_path = "/tables/{tableBucketARN}/{namespace}/{name}/metadata-location",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:getTablePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetTablePolicy",
-        input_schema = types.GetTablePolicyInput,
-        output_schema = types.GetTablePolicyOutput,
+        input_schema = schemas.GetTablePolicyInput,
+        output_schema = schemas.GetTablePolicyOutput,
         http_method = "GET",
         http_path = "/tables/{tableBucketARN}/{namespace}/{name}/policy",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:getTableRecordExpirationConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetTableRecordExpirationConfiguration",
-        input_schema = types.GetTableRecordExpirationConfigurationInput,
-        output_schema = types.GetTableRecordExpirationConfigurationOutput,
+        input_schema = schemas.GetTableRecordExpirationConfigurationInput,
+        output_schema = schemas.GetTableRecordExpirationConfigurationOutput,
         http_method = "GET",
         http_path = "/table-record-expiration",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:getTableRecordExpirationJobStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetTableRecordExpirationJobStatus",
-        input_schema = types.GetTableRecordExpirationJobStatusInput,
-        output_schema = types.GetTableRecordExpirationJobStatusOutput,
+        input_schema = schemas.GetTableRecordExpirationJobStatusInput,
+        output_schema = schemas.GetTableRecordExpirationJobStatusOutput,
         http_method = "GET",
         http_path = "/table-record-expiration-job-status",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:getTableReplication(input, options)
     return self:invokeOperation(input, {
         name = "GetTableReplication",
-        input_schema = types.GetTableReplicationInput,
-        output_schema = types.GetTableReplicationOutput,
+        input_schema = schemas.GetTableReplicationInput,
+        output_schema = schemas.GetTableReplicationOutput,
         http_method = "GET",
         http_path = "/table-replication",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:getTableReplicationStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetTableReplicationStatus",
-        input_schema = types.GetTableReplicationStatusInput,
-        output_schema = types.GetTableReplicationStatusOutput,
+        input_schema = schemas.GetTableReplicationStatusInput,
+        output_schema = schemas.GetTableReplicationStatusOutput,
         http_method = "GET",
         http_path = "/replication-status",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:getTableStorageClass(input, options)
     return self:invokeOperation(input, {
         name = "GetTableStorageClass",
-        input_schema = types.GetTableStorageClassInput,
-        output_schema = types.GetTableStorageClassOutput,
+        input_schema = schemas.GetTableStorageClassInput,
+        output_schema = schemas.GetTableStorageClassOutput,
         http_method = "GET",
         http_path = "/tables/{tableBucketARN}/{namespace}/{name}/storage-class",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:listNamespaces(input, options)
     return self:invokeOperation(input, {
         name = "ListNamespaces",
-        input_schema = types.ListNamespacesInput,
-        output_schema = types.ListNamespacesOutput,
+        input_schema = schemas.ListNamespacesInput,
+        output_schema = schemas.ListNamespacesOutput,
         http_method = "GET",
         http_path = "/namespaces/{tableBucketARN}",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:listTableBuckets(input, options)
     return self:invokeOperation(input, {
         name = "ListTableBuckets",
-        input_schema = types.ListTableBucketsInput,
-        output_schema = types.ListTableBucketsOutput,
+        input_schema = schemas.ListTableBucketsInput,
+        output_schema = schemas.ListTableBucketsOutput,
         http_method = "GET",
         http_path = "/buckets",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:listTables(input, options)
     return self:invokeOperation(input, {
         name = "ListTables",
-        input_schema = types.ListTablesInput,
-        output_schema = types.ListTablesOutput,
+        input_schema = schemas.ListTablesInput,
+        output_schema = schemas.ListTablesOutput,
         http_method = "GET",
         http_path = "/tables/{tableBucketARN}",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tag/{resourceArn}",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:putTableBucketEncryption(input, options)
     return self:invokeOperation(input, {
         name = "PutTableBucketEncryption",
-        input_schema = types.PutTableBucketEncryptionInput,
-        output_schema = types.PutTableBucketEncryptionOutput,
+        input_schema = schemas.PutTableBucketEncryptionInput,
+        output_schema = schemas.PutTableBucketEncryptionOutput,
         http_method = "PUT",
         http_path = "/buckets/{tableBucketARN}/encryption",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:putTableBucketMaintenanceConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutTableBucketMaintenanceConfiguration",
-        input_schema = types.PutTableBucketMaintenanceConfigurationInput,
-        output_schema = types.PutTableBucketMaintenanceConfigurationOutput,
+        input_schema = schemas.PutTableBucketMaintenanceConfigurationInput,
+        output_schema = schemas.PutTableBucketMaintenanceConfigurationOutput,
         http_method = "PUT",
         http_path = "/buckets/{tableBucketARN}/maintenance/{type}",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:putTableBucketMetricsConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutTableBucketMetricsConfiguration",
-        input_schema = types.PutTableBucketMetricsConfigurationInput,
-        output_schema = types.PutTableBucketMetricsConfigurationOutput,
+        input_schema = schemas.PutTableBucketMetricsConfigurationInput,
+        output_schema = schemas.PutTableBucketMetricsConfigurationOutput,
         http_method = "PUT",
         http_path = "/buckets/{tableBucketARN}/metrics",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:putTableBucketPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutTableBucketPolicy",
-        input_schema = types.PutTableBucketPolicyInput,
-        output_schema = types.PutTableBucketPolicyOutput,
+        input_schema = schemas.PutTableBucketPolicyInput,
+        output_schema = schemas.PutTableBucketPolicyOutput,
         http_method = "PUT",
         http_path = "/buckets/{tableBucketARN}/policy",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:putTableBucketReplication(input, options)
     return self:invokeOperation(input, {
         name = "PutTableBucketReplication",
-        input_schema = types.PutTableBucketReplicationInput,
-        output_schema = types.PutTableBucketReplicationOutput,
+        input_schema = schemas.PutTableBucketReplicationInput,
+        output_schema = schemas.PutTableBucketReplicationOutput,
         http_method = "PUT",
         http_path = "/table-bucket-replication",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:putTableBucketStorageClass(input, options)
     return self:invokeOperation(input, {
         name = "PutTableBucketStorageClass",
-        input_schema = types.PutTableBucketStorageClassInput,
-        output_schema = types.PutTableBucketStorageClassOutput,
+        input_schema = schemas.PutTableBucketStorageClassInput,
+        output_schema = schemas.PutTableBucketStorageClassOutput,
         http_method = "PUT",
         http_path = "/buckets/{tableBucketARN}/storage-class",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:putTableMaintenanceConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutTableMaintenanceConfiguration",
-        input_schema = types.PutTableMaintenanceConfigurationInput,
-        output_schema = types.PutTableMaintenanceConfigurationOutput,
+        input_schema = schemas.PutTableMaintenanceConfigurationInput,
+        output_schema = schemas.PutTableMaintenanceConfigurationOutput,
         http_method = "PUT",
         http_path = "/tables/{tableBucketARN}/{namespace}/{name}/maintenance/{type}",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:putTablePolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutTablePolicy",
-        input_schema = types.PutTablePolicyInput,
-        output_schema = types.PutTablePolicyOutput,
+        input_schema = schemas.PutTablePolicyInput,
+        output_schema = schemas.PutTablePolicyOutput,
         http_method = "PUT",
         http_path = "/tables/{tableBucketARN}/{namespace}/{name}/policy",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:putTableRecordExpirationConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutTableRecordExpirationConfiguration",
-        input_schema = types.PutTableRecordExpirationConfigurationInput,
-        output_schema = types.PutTableRecordExpirationConfigurationOutput,
+        input_schema = schemas.PutTableRecordExpirationConfigurationInput,
+        output_schema = schemas.PutTableRecordExpirationConfigurationOutput,
         http_method = "PUT",
         http_path = "/table-record-expiration",
         effective_auth_schemes = {
@@ -621,8 +621,8 @@ end
 function Client:putTableReplication(input, options)
     return self:invokeOperation(input, {
         name = "PutTableReplication",
-        input_schema = types.PutTableReplicationInput,
-        output_schema = types.PutTableReplicationOutput,
+        input_schema = schemas.PutTableReplicationInput,
+        output_schema = schemas.PutTableReplicationOutput,
         http_method = "PUT",
         http_path = "/table-replication",
         effective_auth_schemes = {
@@ -634,8 +634,8 @@ end
 function Client:renameTable(input, options)
     return self:invokeOperation(input, {
         name = "RenameTable",
-        input_schema = types.RenameTableInput,
-        output_schema = types.RenameTableOutput,
+        input_schema = schemas.RenameTableInput,
+        output_schema = schemas.RenameTableOutput,
         http_method = "PUT",
         http_path = "/tables/{tableBucketARN}/{namespace}/{name}/rename",
         effective_auth_schemes = {
@@ -647,8 +647,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tag/{resourceArn}",
         effective_auth_schemes = {
@@ -660,8 +660,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tag/{resourceArn}",
         effective_auth_schemes = {
@@ -673,8 +673,8 @@ end
 function Client:updateTableMetadataLocation(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTableMetadataLocation",
-        input_schema = types.UpdateTableMetadataLocationInput,
-        output_schema = types.UpdateTableMetadataLocationOutput,
+        input_schema = schemas.UpdateTableMetadataLocationInput,
+        output_schema = schemas.UpdateTableMetadataLocationOutput,
         http_method = "PUT",
         http_path = "/tables/{tableBucketARN}/{namespace}/{name}/metadata-location",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("sso.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("sso.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("sso.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:getRoleCredentials(input, options)
     return self:invokeOperation(input, {
         name = "GetRoleCredentials",
-        input_schema = types.GetRoleCredentialsInput,
-        output_schema = types.GetRoleCredentialsOutput,
+        input_schema = schemas.GetRoleCredentialsInput,
+        output_schema = schemas.GetRoleCredentialsOutput,
         http_method = "GET",
         http_path = "/federation/credentials",
         effective_auth_schemes = {
@@ -61,8 +61,8 @@ end
 function Client:listAccountRoles(input, options)
     return self:invokeOperation(input, {
         name = "ListAccountRoles",
-        input_schema = types.ListAccountRolesInput,
-        output_schema = types.ListAccountRolesOutput,
+        input_schema = schemas.ListAccountRolesInput,
+        output_schema = schemas.ListAccountRolesOutput,
         http_method = "GET",
         http_path = "/assignment/roles",
         effective_auth_schemes = {
@@ -73,8 +73,8 @@ end
 function Client:listAccounts(input, options)
     return self:invokeOperation(input, {
         name = "ListAccounts",
-        input_schema = types.ListAccountsInput,
-        output_schema = types.ListAccountsOutput,
+        input_schema = schemas.ListAccountsInput,
+        output_schema = schemas.ListAccountsOutput,
         http_method = "GET",
         http_path = "/assignment/accounts",
         effective_auth_schemes = {
@@ -85,8 +85,8 @@ end
 function Client:logout(input, options)
     return self:invokeOperation(input, {
         name = "Logout",
-        input_schema = types.LogoutInput,
-        output_schema = types.LogoutOutput,
+        input_schema = schemas.LogoutInput,
+        output_schema = schemas.LogoutOutput,
         http_method = "POST",
         http_path = "/logout",
         effective_auth_schemes = {

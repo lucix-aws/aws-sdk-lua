@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("amplifyuibuilder.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("amplifyuibuilder.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("amplifyuibuilder.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createComponent(input, options)
     return self:invokeOperation(input, {
         name = "CreateComponent",
-        input_schema = types.CreateComponentInput,
-        output_schema = types.CreateComponentOutput,
+        input_schema = schemas.CreateComponentInput,
+        output_schema = schemas.CreateComponentOutput,
         http_method = "POST",
         http_path = "/app/{appId}/environment/{environmentName}/components",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createForm(input, options)
     return self:invokeOperation(input, {
         name = "CreateForm",
-        input_schema = types.CreateFormInput,
-        output_schema = types.CreateFormOutput,
+        input_schema = schemas.CreateFormInput,
+        output_schema = schemas.CreateFormOutput,
         http_method = "POST",
         http_path = "/app/{appId}/environment/{environmentName}/forms",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createTheme(input, options)
     return self:invokeOperation(input, {
         name = "CreateTheme",
-        input_schema = types.CreateThemeInput,
-        output_schema = types.CreateThemeOutput,
+        input_schema = schemas.CreateThemeInput,
+        output_schema = schemas.CreateThemeOutput,
         http_method = "POST",
         http_path = "/app/{appId}/environment/{environmentName}/themes",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:deleteComponent(input, options)
     return self:invokeOperation(input, {
         name = "DeleteComponent",
-        input_schema = types.DeleteComponentInput,
-        output_schema = types.DeleteComponentOutput,
+        input_schema = schemas.DeleteComponentInput,
+        output_schema = schemas.DeleteComponentOutput,
         http_method = "DELETE",
         http_path = "/app/{appId}/environment/{environmentName}/components/{id}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteForm(input, options)
     return self:invokeOperation(input, {
         name = "DeleteForm",
-        input_schema = types.DeleteFormInput,
-        output_schema = types.DeleteFormOutput,
+        input_schema = schemas.DeleteFormInput,
+        output_schema = schemas.DeleteFormOutput,
         http_method = "DELETE",
         http_path = "/app/{appId}/environment/{environmentName}/forms/{id}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteTheme(input, options)
     return self:invokeOperation(input, {
         name = "DeleteTheme",
-        input_schema = types.DeleteThemeInput,
-        output_schema = types.DeleteThemeOutput,
+        input_schema = schemas.DeleteThemeInput,
+        output_schema = schemas.DeleteThemeOutput,
         http_method = "DELETE",
         http_path = "/app/{appId}/environment/{environmentName}/themes/{id}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:exchangeCodeForToken(input, options)
     return self:invokeOperation(input, {
         name = "ExchangeCodeForToken",
-        input_schema = types.ExchangeCodeForTokenInput,
-        output_schema = types.ExchangeCodeForTokenOutput,
+        input_schema = schemas.ExchangeCodeForTokenInput,
+        output_schema = schemas.ExchangeCodeForTokenOutput,
         http_method = "POST",
         http_path = "/tokens/{provider}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:exportComponents(input, options)
     return self:invokeOperation(input, {
         name = "ExportComponents",
-        input_schema = types.ExportComponentsInput,
-        output_schema = types.ExportComponentsOutput,
+        input_schema = schemas.ExportComponentsInput,
+        output_schema = schemas.ExportComponentsOutput,
         http_method = "GET",
         http_path = "/export/app/{appId}/environment/{environmentName}/components",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:exportForms(input, options)
     return self:invokeOperation(input, {
         name = "ExportForms",
-        input_schema = types.ExportFormsInput,
-        output_schema = types.ExportFormsOutput,
+        input_schema = schemas.ExportFormsInput,
+        output_schema = schemas.ExportFormsOutput,
         http_method = "GET",
         http_path = "/export/app/{appId}/environment/{environmentName}/forms",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:exportThemes(input, options)
     return self:invokeOperation(input, {
         name = "ExportThemes",
-        input_schema = types.ExportThemesInput,
-        output_schema = types.ExportThemesOutput,
+        input_schema = schemas.ExportThemesInput,
+        output_schema = schemas.ExportThemesOutput,
         http_method = "GET",
         http_path = "/export/app/{appId}/environment/{environmentName}/themes",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getCodegenJob(input, options)
     return self:invokeOperation(input, {
         name = "GetCodegenJob",
-        input_schema = types.GetCodegenJobInput,
-        output_schema = types.GetCodegenJobOutput,
+        input_schema = schemas.GetCodegenJobInput,
+        output_schema = schemas.GetCodegenJobOutput,
         http_method = "GET",
         http_path = "/app/{appId}/environment/{environmentName}/codegen-jobs/{id}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getComponent(input, options)
     return self:invokeOperation(input, {
         name = "GetComponent",
-        input_schema = types.GetComponentInput,
-        output_schema = types.GetComponentOutput,
+        input_schema = schemas.GetComponentInput,
+        output_schema = schemas.GetComponentOutput,
         http_method = "GET",
         http_path = "/app/{appId}/environment/{environmentName}/components/{id}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getForm(input, options)
     return self:invokeOperation(input, {
         name = "GetForm",
-        input_schema = types.GetFormInput,
-        output_schema = types.GetFormOutput,
+        input_schema = schemas.GetFormInput,
+        output_schema = schemas.GetFormOutput,
         http_method = "GET",
         http_path = "/app/{appId}/environment/{environmentName}/forms/{id}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getMetadata(input, options)
     return self:invokeOperation(input, {
         name = "GetMetadata",
-        input_schema = types.GetMetadataInput,
-        output_schema = types.GetMetadataOutput,
+        input_schema = schemas.GetMetadataInput,
+        output_schema = schemas.GetMetadataOutput,
         http_method = "GET",
         http_path = "/app/{appId}/environment/{environmentName}/metadata",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getTheme(input, options)
     return self:invokeOperation(input, {
         name = "GetTheme",
-        input_schema = types.GetThemeInput,
-        output_schema = types.GetThemeOutput,
+        input_schema = schemas.GetThemeInput,
+        output_schema = schemas.GetThemeOutput,
         http_method = "GET",
         http_path = "/app/{appId}/environment/{environmentName}/themes/{id}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listCodegenJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListCodegenJobs",
-        input_schema = types.ListCodegenJobsInput,
-        output_schema = types.ListCodegenJobsOutput,
+        input_schema = schemas.ListCodegenJobsInput,
+        output_schema = schemas.ListCodegenJobsOutput,
         http_method = "GET",
         http_path = "/app/{appId}/environment/{environmentName}/codegen-jobs",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listComponents(input, options)
     return self:invokeOperation(input, {
         name = "ListComponents",
-        input_schema = types.ListComponentsInput,
-        output_schema = types.ListComponentsOutput,
+        input_schema = schemas.ListComponentsInput,
+        output_schema = schemas.ListComponentsOutput,
         http_method = "GET",
         http_path = "/app/{appId}/environment/{environmentName}/components",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listForms(input, options)
     return self:invokeOperation(input, {
         name = "ListForms",
-        input_schema = types.ListFormsInput,
-        output_schema = types.ListFormsOutput,
+        input_schema = schemas.ListFormsInput,
+        output_schema = schemas.ListFormsOutput,
         http_method = "GET",
         http_path = "/app/{appId}/environment/{environmentName}/forms",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listThemes(input, options)
     return self:invokeOperation(input, {
         name = "ListThemes",
-        input_schema = types.ListThemesInput,
-        output_schema = types.ListThemesOutput,
+        input_schema = schemas.ListThemesInput,
+        output_schema = schemas.ListThemesOutput,
         http_method = "GET",
         http_path = "/app/{appId}/environment/{environmentName}/themes",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:putMetadataFlag(input, options)
     return self:invokeOperation(input, {
         name = "PutMetadataFlag",
-        input_schema = types.PutMetadataFlagInput,
-        output_schema = types.PutMetadataFlagOutput,
+        input_schema = schemas.PutMetadataFlagInput,
+        output_schema = schemas.PutMetadataFlagOutput,
         http_method = "PUT",
         http_path = "/app/{appId}/environment/{environmentName}/metadata/features/{featureName}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:refreshToken(input, options)
     return self:invokeOperation(input, {
         name = "RefreshToken",
-        input_schema = types.RefreshTokenInput,
-        output_schema = types.RefreshTokenOutput,
+        input_schema = schemas.RefreshTokenInput,
+        output_schema = schemas.RefreshTokenOutput,
         http_method = "POST",
         http_path = "/tokens/{provider}/refresh",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:startCodegenJob(input, options)
     return self:invokeOperation(input, {
         name = "StartCodegenJob",
-        input_schema = types.StartCodegenJobInput,
-        output_schema = types.StartCodegenJobOutput,
+        input_schema = schemas.StartCodegenJobInput,
+        output_schema = schemas.StartCodegenJobOutput,
         http_method = "POST",
         http_path = "/app/{appId}/environment/{environmentName}/codegen-jobs",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:updateComponent(input, options)
     return self:invokeOperation(input, {
         name = "UpdateComponent",
-        input_schema = types.UpdateComponentInput,
-        output_schema = types.UpdateComponentOutput,
+        input_schema = schemas.UpdateComponentInput,
+        output_schema = schemas.UpdateComponentOutput,
         http_method = "PATCH",
         http_path = "/app/{appId}/environment/{environmentName}/components/{id}",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:updateForm(input, options)
     return self:invokeOperation(input, {
         name = "UpdateForm",
-        input_schema = types.UpdateFormInput,
-        output_schema = types.UpdateFormOutput,
+        input_schema = schemas.UpdateFormInput,
+        output_schema = schemas.UpdateFormOutput,
         http_method = "PATCH",
         http_path = "/app/{appId}/environment/{environmentName}/forms/{id}",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:updateTheme(input, options)
     return self:invokeOperation(input, {
         name = "UpdateTheme",
-        input_schema = types.UpdateThemeInput,
-        output_schema = types.UpdateThemeOutput,
+        input_schema = schemas.UpdateThemeInput,
+        output_schema = schemas.UpdateThemeOutput,
         http_method = "PATCH",
         http_path = "/app/{appId}/environment/{environmentName}/themes/{id}",
         effective_auth_schemes = {

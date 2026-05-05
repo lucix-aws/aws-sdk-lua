@@ -1,0 +1,10071 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.gamelift"
+
+local M = {}
+
+M.AcceptMatchInput = schema.new({
+    id = id.from(_N, "AcceptMatchInput"),
+    type = "structure",
+    members = {
+        TicketId = schema.new({
+            id = id.from(_N, "AcceptMatchInput", "TicketId"),
+            type = "string",
+            name = "TicketId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PlayerIds = schema.new({
+            id = id.from(_N, "AcceptMatchInput", "PlayerIds"),
+            type = "list",
+            name = "PlayerIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AcceptanceType = schema.new({
+            id = id.from(_N, "AcceptMatchInput", "AcceptanceType"),
+            type = "string",
+            name = "AcceptanceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AcceptMatchOutput = schema.new({
+    id = id.from(_N, "AcceptMatchOutput"),
+    type = "structure",
+})
+
+M.InternalServiceException = schema.new({
+    id = id.from(_N, "InternalServiceException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InternalServiceException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidRequestException = schema.new({
+    id = id.from(_N, "InvalidRequestException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InvalidRequestException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.NotFoundException = schema.new({
+    id = id.from(_N, "NotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "NotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UnsupportedRegionException = schema.new({
+    id = id.from(_N, "UnsupportedRegionException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "UnsupportedRegionException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RoutingStrategy = schema.new({
+    id = id.from(_N, "RoutingStrategy"),
+    type = "structure",
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "RoutingStrategy", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        FleetId = schema.new({
+            id = id.from(_N, "RoutingStrategy", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "RoutingStrategy", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Alias = schema.new({
+    id = id.from(_N, "Alias"),
+    type = "structure",
+    members = {
+        AliasId = schema.new({
+            id = id.from(_N, "Alias", "AliasId"),
+            type = "string",
+            name = "AliasId",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "Alias", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        AliasArn = schema.new({
+            id = id.from(_N, "Alias", "AliasArn"),
+            type = "string",
+            name = "AliasArn",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "Alias", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        RoutingStrategy = schema.new({
+            id = id.from(_N, "Alias", "RoutingStrategy"),
+            type = "structure",
+            name = "RoutingStrategy",
+            target_id = id.from(_N, "RoutingStrategy"),
+            target = M.RoutingStrategy,
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "Alias", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastUpdatedTime = schema.new({
+            id = id.from(_N, "Alias", "LastUpdatedTime"),
+            type = "timestamp",
+            name = "LastUpdatedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.AnywhereConfiguration = schema.new({
+    id = id.from(_N, "AnywhereConfiguration"),
+    type = "structure",
+    members = {
+        Cost = schema.new({
+            id = id.from(_N, "AnywhereConfiguration", "Cost"),
+            type = "string",
+            name = "Cost",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AttributeValue = schema.new({
+    id = id.from(_N, "AttributeValue"),
+    type = "structure",
+    members = {
+        S = schema.new({
+            id = id.from(_N, "AttributeValue", "S"),
+            type = "string",
+            name = "S",
+            target_id = prelude.String.id,
+        }),
+        N = schema.new({
+            id = id.from(_N, "AttributeValue", "N"),
+            type = "double",
+            name = "N",
+            target_id = prelude.Double.id,
+        }),
+        SL = schema.new({
+            id = id.from(_N, "AttributeValue", "SL"),
+            type = "list",
+            name = "SL",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        SDM = schema.new({
+            id = id.from(_N, "AttributeValue", "SDM"),
+            type = "map",
+            name = "SDM",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.Double,
+        }),
+    },
+})
+
+M.AwsCredentials = schema.new({
+    id = id.from(_N, "AwsCredentials"),
+    type = "structure",
+    members = {
+        AccessKeyId = schema.new({
+            id = id.from(_N, "AwsCredentials", "AccessKeyId"),
+            type = "string",
+            name = "AccessKeyId",
+            target_id = prelude.String.id,
+        }),
+        SecretAccessKey = schema.new({
+            id = id.from(_N, "AwsCredentials", "SecretAccessKey"),
+            type = "string",
+            name = "SecretAccessKey",
+            target_id = prelude.String.id,
+        }),
+        SessionToken = schema.new({
+            id = id.from(_N, "AwsCredentials", "SessionToken"),
+            type = "string",
+            name = "SessionToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Build = schema.new({
+    id = id.from(_N, "Build"),
+    type = "structure",
+    members = {
+        BuildId = schema.new({
+            id = id.from(_N, "Build", "BuildId"),
+            type = "string",
+            name = "BuildId",
+            target_id = prelude.String.id,
+        }),
+        BuildArn = schema.new({
+            id = id.from(_N, "Build", "BuildArn"),
+            type = "string",
+            name = "BuildArn",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "Build", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Version = schema.new({
+            id = id.from(_N, "Build", "Version"),
+            type = "string",
+            name = "Version",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "Build", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        SizeOnDisk = schema.new({
+            id = id.from(_N, "Build", "SizeOnDisk"),
+            type = "long",
+            name = "SizeOnDisk",
+            target_id = prelude.Long.id,
+        }),
+        OperatingSystem = schema.new({
+            id = id.from(_N, "Build", "OperatingSystem"),
+            type = "string",
+            name = "OperatingSystem",
+            target_id = prelude.String.id,
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "Build", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        ServerSdkVersion = schema.new({
+            id = id.from(_N, "Build", "ServerSdkVersion"),
+            type = "string",
+            name = "ServerSdkVersion",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CertificateConfiguration = schema.new({
+    id = id.from(_N, "CertificateConfiguration"),
+    type = "structure",
+    members = {
+        CertificateType = schema.new({
+            id = id.from(_N, "CertificateConfiguration", "CertificateType"),
+            type = "string",
+            name = "CertificateType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ClaimFilterOption = schema.new({
+    id = id.from(_N, "ClaimFilterOption"),
+    type = "structure",
+    members = {
+        InstanceStatuses = schema.new({
+            id = id.from(_N, "ClaimFilterOption", "InstanceStatuses"),
+            type = "list",
+            name = "InstanceStatuses",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ClaimGameServerInput = schema.new({
+    id = id.from(_N, "ClaimGameServerInput"),
+    type = "structure",
+    members = {
+        GameServerGroupName = schema.new({
+            id = id.from(_N, "ClaimGameServerInput", "GameServerGroupName"),
+            type = "string",
+            name = "GameServerGroupName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        GameServerId = schema.new({
+            id = id.from(_N, "ClaimGameServerInput", "GameServerId"),
+            type = "string",
+            name = "GameServerId",
+            target_id = prelude.String.id,
+        }),
+        GameServerData = schema.new({
+            id = id.from(_N, "ClaimGameServerInput", "GameServerData"),
+            type = "string",
+            name = "GameServerData",
+            target_id = prelude.String.id,
+        }),
+        FilterOption = schema.new({
+            id = id.from(_N, "ClaimGameServerInput", "FilterOption"),
+            type = "structure",
+            name = "FilterOption",
+            target_id = id.from(_N, "ClaimFilterOption"),
+            target = M.ClaimFilterOption,
+        }),
+    },
+})
+
+M.GameServer = schema.new({
+    id = id.from(_N, "GameServer"),
+    type = "structure",
+    members = {
+        GameServerGroupName = schema.new({
+            id = id.from(_N, "GameServer", "GameServerGroupName"),
+            type = "string",
+            name = "GameServerGroupName",
+            target_id = prelude.String.id,
+        }),
+        GameServerGroupArn = schema.new({
+            id = id.from(_N, "GameServer", "GameServerGroupArn"),
+            type = "string",
+            name = "GameServerGroupArn",
+            target_id = prelude.String.id,
+        }),
+        GameServerId = schema.new({
+            id = id.from(_N, "GameServer", "GameServerId"),
+            type = "string",
+            name = "GameServerId",
+            target_id = prelude.String.id,
+        }),
+        InstanceId = schema.new({
+            id = id.from(_N, "GameServer", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+        }),
+        ConnectionInfo = schema.new({
+            id = id.from(_N, "GameServer", "ConnectionInfo"),
+            type = "string",
+            name = "ConnectionInfo",
+            target_id = prelude.String.id,
+        }),
+        GameServerData = schema.new({
+            id = id.from(_N, "GameServer", "GameServerData"),
+            type = "string",
+            name = "GameServerData",
+            target_id = prelude.String.id,
+        }),
+        ClaimStatus = schema.new({
+            id = id.from(_N, "GameServer", "ClaimStatus"),
+            type = "string",
+            name = "ClaimStatus",
+            target_id = prelude.String.id,
+        }),
+        UtilizationStatus = schema.new({
+            id = id.from(_N, "GameServer", "UtilizationStatus"),
+            type = "string",
+            name = "UtilizationStatus",
+            target_id = prelude.String.id,
+        }),
+        RegistrationTime = schema.new({
+            id = id.from(_N, "GameServer", "RegistrationTime"),
+            type = "timestamp",
+            name = "RegistrationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastClaimTime = schema.new({
+            id = id.from(_N, "GameServer", "LastClaimTime"),
+            type = "timestamp",
+            name = "LastClaimTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastHealthCheckTime = schema.new({
+            id = id.from(_N, "GameServer", "LastHealthCheckTime"),
+            type = "timestamp",
+            name = "LastHealthCheckTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ClaimGameServerOutput = schema.new({
+    id = id.from(_N, "ClaimGameServerOutput"),
+    type = "structure",
+    members = {
+        GameServer = schema.new({
+            id = id.from(_N, "ClaimGameServerOutput", "GameServer"),
+            type = "structure",
+            name = "GameServer",
+            target_id = id.from(_N, "GameServer"),
+            target = M.GameServer,
+        }),
+    },
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ConflictException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.OutOfCapacityException = schema.new({
+    id = id.from(_N, "OutOfCapacityException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "OutOfCapacityException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UnauthorizedException = schema.new({
+    id = id.from(_N, "UnauthorizedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "UnauthorizedException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ContainerAttribute = schema.new({
+    id = id.from(_N, "ContainerAttribute"),
+    type = "structure",
+    members = {
+        ContainerName = schema.new({
+            id = id.from(_N, "ContainerAttribute", "ContainerName"),
+            type = "string",
+            name = "ContainerName",
+            target_id = prelude.String.id,
+        }),
+        ContainerRuntimeId = schema.new({
+            id = id.from(_N, "ContainerAttribute", "ContainerRuntimeId"),
+            type = "string",
+            name = "ContainerRuntimeId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Compute = schema.new({
+    id = id.from(_N, "Compute"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "Compute", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        FleetArn = schema.new({
+            id = id.from(_N, "Compute", "FleetArn"),
+            type = "string",
+            name = "FleetArn",
+            target_id = prelude.String.id,
+        }),
+        ComputeName = schema.new({
+            id = id.from(_N, "Compute", "ComputeName"),
+            type = "string",
+            name = "ComputeName",
+            target_id = prelude.String.id,
+        }),
+        ComputeArn = schema.new({
+            id = id.from(_N, "Compute", "ComputeArn"),
+            type = "string",
+            name = "ComputeArn",
+            target_id = prelude.String.id,
+        }),
+        IpAddress = schema.new({
+            id = id.from(_N, "Compute", "IpAddress"),
+            type = "string",
+            name = "IpAddress",
+            target_id = prelude.String.id,
+        }),
+        DnsName = schema.new({
+            id = id.from(_N, "Compute", "DnsName"),
+            type = "string",
+            name = "DnsName",
+            target_id = prelude.String.id,
+        }),
+        ComputeStatus = schema.new({
+            id = id.from(_N, "Compute", "ComputeStatus"),
+            type = "string",
+            name = "ComputeStatus",
+            target_id = prelude.String.id,
+        }),
+        Location = schema.new({
+            id = id.from(_N, "Compute", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "Compute", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        OperatingSystem = schema.new({
+            id = id.from(_N, "Compute", "OperatingSystem"),
+            type = "string",
+            name = "OperatingSystem",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "Compute", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        GameLiftServiceSdkEndpoint = schema.new({
+            id = id.from(_N, "Compute", "GameLiftServiceSdkEndpoint"),
+            type = "string",
+            name = "GameLiftServiceSdkEndpoint",
+            target_id = prelude.String.id,
+        }),
+        GameLiftAgentEndpoint = schema.new({
+            id = id.from(_N, "Compute", "GameLiftAgentEndpoint"),
+            type = "string",
+            name = "GameLiftAgentEndpoint",
+            target_id = prelude.String.id,
+        }),
+        InstanceId = schema.new({
+            id = id.from(_N, "Compute", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+        }),
+        ContainerAttributes = schema.new({
+            id = id.from(_N, "Compute", "ContainerAttributes"),
+            type = "list",
+            name = "ContainerAttributes",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerAttribute,
+        }),
+        GameServerContainerGroupDefinitionArn = schema.new({
+            id = id.from(_N, "Compute", "GameServerContainerGroupDefinitionArn"),
+            type = "string",
+            name = "GameServerContainerGroupDefinitionArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConnectionPortRange = schema.new({
+    id = id.from(_N, "ConnectionPortRange"),
+    type = "structure",
+    members = {
+        FromPort = schema.new({
+            id = id.from(_N, "ConnectionPortRange", "FromPort"),
+            type = "integer",
+            name = "FromPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ToPort = schema.new({
+            id = id.from(_N, "ConnectionPortRange", "ToPort"),
+            type = "integer",
+            name = "ToPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ContainerDependency = schema.new({
+    id = id.from(_N, "ContainerDependency"),
+    type = "structure",
+    members = {
+        ContainerName = schema.new({
+            id = id.from(_N, "ContainerDependency", "ContainerName"),
+            type = "string",
+            name = "ContainerName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Condition = schema.new({
+            id = id.from(_N, "ContainerDependency", "Condition"),
+            type = "string",
+            name = "Condition",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ContainerEnvironment = schema.new({
+    id = id.from(_N, "ContainerEnvironment"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "ContainerEnvironment", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "ContainerEnvironment", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeploymentDetails = schema.new({
+    id = id.from(_N, "DeploymentDetails"),
+    type = "structure",
+    members = {
+        LatestDeploymentId = schema.new({
+            id = id.from(_N, "DeploymentDetails", "LatestDeploymentId"),
+            type = "string",
+            name = "LatestDeploymentId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GameSessionCreationLimitPolicy = schema.new({
+    id = id.from(_N, "GameSessionCreationLimitPolicy"),
+    type = "structure",
+    members = {
+        NewGameSessionsPerCreator = schema.new({
+            id = id.from(_N, "GameSessionCreationLimitPolicy", "NewGameSessionsPerCreator"),
+            type = "integer",
+            name = "NewGameSessionsPerCreator",
+            target_id = prelude.Integer.id,
+        }),
+        PolicyPeriodInMinutes = schema.new({
+            id = id.from(_N, "GameSessionCreationLimitPolicy", "PolicyPeriodInMinutes"),
+            type = "integer",
+            name = "PolicyPeriodInMinutes",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.IpPermission = schema.new({
+    id = id.from(_N, "IpPermission"),
+    type = "structure",
+    members = {
+        FromPort = schema.new({
+            id = id.from(_N, "IpPermission", "FromPort"),
+            type = "integer",
+            name = "FromPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ToPort = schema.new({
+            id = id.from(_N, "IpPermission", "ToPort"),
+            type = "integer",
+            name = "ToPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IpRange = schema.new({
+            id = id.from(_N, "IpPermission", "IpRange"),
+            type = "string",
+            name = "IpRange",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Protocol = schema.new({
+            id = id.from(_N, "IpPermission", "Protocol"),
+            type = "string",
+            name = "Protocol",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ContainerFleetLocationAttributes = schema.new({
+    id = id.from(_N, "ContainerFleetLocationAttributes"),
+    type = "structure",
+    members = {
+        Location = schema.new({
+            id = id.from(_N, "ContainerFleetLocationAttributes", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ContainerFleetLocationAttributes", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        PlayerGatewayStatus = schema.new({
+            id = id.from(_N, "ContainerFleetLocationAttributes", "PlayerGatewayStatus"),
+            type = "string",
+            name = "PlayerGatewayStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.LogConfiguration = schema.new({
+    id = id.from(_N, "LogConfiguration"),
+    type = "structure",
+    members = {
+        LogDestination = schema.new({
+            id = id.from(_N, "LogConfiguration", "LogDestination"),
+            type = "string",
+            name = "LogDestination",
+            target_id = prelude.String.id,
+        }),
+        S3BucketName = schema.new({
+            id = id.from(_N, "LogConfiguration", "S3BucketName"),
+            type = "string",
+            name = "S3BucketName",
+            target_id = prelude.String.id,
+        }),
+        LogGroupArn = schema.new({
+            id = id.from(_N, "LogConfiguration", "LogGroupArn"),
+            type = "string",
+            name = "LogGroupArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ContainerFleet = schema.new({
+    id = id.from(_N, "ContainerFleet"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "ContainerFleet", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        FleetArn = schema.new({
+            id = id.from(_N, "ContainerFleet", "FleetArn"),
+            type = "string",
+            name = "FleetArn",
+            target_id = prelude.String.id,
+        }),
+        FleetRoleArn = schema.new({
+            id = id.from(_N, "ContainerFleet", "FleetRoleArn"),
+            type = "string",
+            name = "FleetRoleArn",
+            target_id = prelude.String.id,
+        }),
+        GameServerContainerGroupDefinitionName = schema.new({
+            id = id.from(_N, "ContainerFleet", "GameServerContainerGroupDefinitionName"),
+            type = "string",
+            name = "GameServerContainerGroupDefinitionName",
+            target_id = prelude.String.id,
+        }),
+        GameServerContainerGroupDefinitionArn = schema.new({
+            id = id.from(_N, "ContainerFleet", "GameServerContainerGroupDefinitionArn"),
+            type = "string",
+            name = "GameServerContainerGroupDefinitionArn",
+            target_id = prelude.String.id,
+        }),
+        PerInstanceContainerGroupDefinitionName = schema.new({
+            id = id.from(_N, "ContainerFleet", "PerInstanceContainerGroupDefinitionName"),
+            type = "string",
+            name = "PerInstanceContainerGroupDefinitionName",
+            target_id = prelude.String.id,
+        }),
+        PerInstanceContainerGroupDefinitionArn = schema.new({
+            id = id.from(_N, "ContainerFleet", "PerInstanceContainerGroupDefinitionArn"),
+            type = "string",
+            name = "PerInstanceContainerGroupDefinitionArn",
+            target_id = prelude.String.id,
+        }),
+        InstanceConnectionPortRange = schema.new({
+            id = id.from(_N, "ContainerFleet", "InstanceConnectionPortRange"),
+            type = "structure",
+            name = "InstanceConnectionPortRange",
+            target_id = id.from(_N, "ConnectionPortRange"),
+            target = M.ConnectionPortRange,
+        }),
+        InstanceInboundPermissions = schema.new({
+            id = id.from(_N, "ContainerFleet", "InstanceInboundPermissions"),
+            type = "list",
+            name = "InstanceInboundPermissions",
+            target_id = prelude.Document.id,
+            list_member = M.IpPermission,
+        }),
+        GameServerContainerGroupsPerInstance = schema.new({
+            id = id.from(_N, "ContainerFleet", "GameServerContainerGroupsPerInstance"),
+            type = "integer",
+            name = "GameServerContainerGroupsPerInstance",
+            target_id = prelude.Integer.id,
+        }),
+        MaximumGameServerContainerGroupsPerInstance = schema.new({
+            id = id.from(_N, "ContainerFleet", "MaximumGameServerContainerGroupsPerInstance"),
+            type = "integer",
+            name = "MaximumGameServerContainerGroupsPerInstance",
+            target_id = prelude.Integer.id,
+        }),
+        InstanceType = schema.new({
+            id = id.from(_N, "ContainerFleet", "InstanceType"),
+            type = "string",
+            name = "InstanceType",
+            target_id = prelude.String.id,
+        }),
+        BillingType = schema.new({
+            id = id.from(_N, "ContainerFleet", "BillingType"),
+            type = "string",
+            name = "BillingType",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "ContainerFleet", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "ContainerFleet", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        MetricGroups = schema.new({
+            id = id.from(_N, "ContainerFleet", "MetricGroups"),
+            type = "list",
+            name = "MetricGroups",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        NewGameSessionProtectionPolicy = schema.new({
+            id = id.from(_N, "ContainerFleet", "NewGameSessionProtectionPolicy"),
+            type = "string",
+            name = "NewGameSessionProtectionPolicy",
+            target_id = prelude.String.id,
+        }),
+        GameSessionCreationLimitPolicy = schema.new({
+            id = id.from(_N, "ContainerFleet", "GameSessionCreationLimitPolicy"),
+            type = "structure",
+            name = "GameSessionCreationLimitPolicy",
+            target_id = id.from(_N, "GameSessionCreationLimitPolicy"),
+            target = M.GameSessionCreationLimitPolicy,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ContainerFleet", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        DeploymentDetails = schema.new({
+            id = id.from(_N, "ContainerFleet", "DeploymentDetails"),
+            type = "structure",
+            name = "DeploymentDetails",
+            target_id = id.from(_N, "DeploymentDetails"),
+            target = M.DeploymentDetails,
+        }),
+        LogConfiguration = schema.new({
+            id = id.from(_N, "ContainerFleet", "LogConfiguration"),
+            type = "structure",
+            name = "LogConfiguration",
+            target_id = id.from(_N, "LogConfiguration"),
+            target = M.LogConfiguration,
+        }),
+        LocationAttributes = schema.new({
+            id = id.from(_N, "ContainerFleet", "LocationAttributes"),
+            type = "list",
+            name = "LocationAttributes",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerFleetLocationAttributes,
+        }),
+        PlayerGatewayMode = schema.new({
+            id = id.from(_N, "ContainerFleet", "PlayerGatewayMode"),
+            type = "string",
+            name = "PlayerGatewayMode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ContainerMountPoint = schema.new({
+    id = id.from(_N, "ContainerMountPoint"),
+    type = "structure",
+    members = {
+        InstancePath = schema.new({
+            id = id.from(_N, "ContainerMountPoint", "InstancePath"),
+            type = "string",
+            name = "InstancePath",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ContainerPath = schema.new({
+            id = id.from(_N, "ContainerMountPoint", "ContainerPath"),
+            type = "string",
+            name = "ContainerPath",
+            target_id = prelude.String.id,
+        }),
+        AccessLevel = schema.new({
+            id = id.from(_N, "ContainerMountPoint", "AccessLevel"),
+            type = "string",
+            name = "AccessLevel",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ContainerPortRange = schema.new({
+    id = id.from(_N, "ContainerPortRange"),
+    type = "structure",
+    members = {
+        FromPort = schema.new({
+            id = id.from(_N, "ContainerPortRange", "FromPort"),
+            type = "integer",
+            name = "FromPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ToPort = schema.new({
+            id = id.from(_N, "ContainerPortRange", "ToPort"),
+            type = "integer",
+            name = "ToPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Protocol = schema.new({
+            id = id.from(_N, "ContainerPortRange", "Protocol"),
+            type = "string",
+            name = "Protocol",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ContainerPortConfiguration = schema.new({
+    id = id.from(_N, "ContainerPortConfiguration"),
+    type = "structure",
+    members = {
+        ContainerPortRanges = schema.new({
+            id = id.from(_N, "ContainerPortConfiguration", "ContainerPortRanges"),
+            type = "list",
+            name = "ContainerPortRanges",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerPortRange,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GameServerContainerDefinition = schema.new({
+    id = id.from(_N, "GameServerContainerDefinition"),
+    type = "structure",
+    members = {
+        ContainerName = schema.new({
+            id = id.from(_N, "GameServerContainerDefinition", "ContainerName"),
+            type = "string",
+            name = "ContainerName",
+            target_id = prelude.String.id,
+        }),
+        DependsOn = schema.new({
+            id = id.from(_N, "GameServerContainerDefinition", "DependsOn"),
+            type = "list",
+            name = "DependsOn",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerDependency,
+        }),
+        MountPoints = schema.new({
+            id = id.from(_N, "GameServerContainerDefinition", "MountPoints"),
+            type = "list",
+            name = "MountPoints",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerMountPoint,
+        }),
+        EnvironmentOverride = schema.new({
+            id = id.from(_N, "GameServerContainerDefinition", "EnvironmentOverride"),
+            type = "list",
+            name = "EnvironmentOverride",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerEnvironment,
+        }),
+        ImageUri = schema.new({
+            id = id.from(_N, "GameServerContainerDefinition", "ImageUri"),
+            type = "string",
+            name = "ImageUri",
+            target_id = prelude.String.id,
+        }),
+        PortConfiguration = schema.new({
+            id = id.from(_N, "GameServerContainerDefinition", "PortConfiguration"),
+            type = "structure",
+            name = "PortConfiguration",
+            target_id = id.from(_N, "ContainerPortConfiguration"),
+            target = M.ContainerPortConfiguration,
+        }),
+        ResolvedImageDigest = schema.new({
+            id = id.from(_N, "GameServerContainerDefinition", "ResolvedImageDigest"),
+            type = "string",
+            name = "ResolvedImageDigest",
+            target_id = prelude.String.id,
+        }),
+        ServerSdkVersion = schema.new({
+            id = id.from(_N, "GameServerContainerDefinition", "ServerSdkVersion"),
+            type = "string",
+            name = "ServerSdkVersion",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ContainerHealthCheck = schema.new({
+    id = id.from(_N, "ContainerHealthCheck"),
+    type = "structure",
+    members = {
+        Command = schema.new({
+            id = id.from(_N, "ContainerHealthCheck", "Command"),
+            type = "list",
+            name = "Command",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Interval = schema.new({
+            id = id.from(_N, "ContainerHealthCheck", "Interval"),
+            type = "integer",
+            name = "Interval",
+            target_id = prelude.Integer.id,
+        }),
+        Retries = schema.new({
+            id = id.from(_N, "ContainerHealthCheck", "Retries"),
+            type = "integer",
+            name = "Retries",
+            target_id = prelude.Integer.id,
+        }),
+        StartPeriod = schema.new({
+            id = id.from(_N, "ContainerHealthCheck", "StartPeriod"),
+            type = "integer",
+            name = "StartPeriod",
+            target_id = prelude.Integer.id,
+        }),
+        Timeout = schema.new({
+            id = id.from(_N, "ContainerHealthCheck", "Timeout"),
+            type = "integer",
+            name = "Timeout",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.SupportContainerDefinition = schema.new({
+    id = id.from(_N, "SupportContainerDefinition"),
+    type = "structure",
+    members = {
+        ContainerName = schema.new({
+            id = id.from(_N, "SupportContainerDefinition", "ContainerName"),
+            type = "string",
+            name = "ContainerName",
+            target_id = prelude.String.id,
+        }),
+        DependsOn = schema.new({
+            id = id.from(_N, "SupportContainerDefinition", "DependsOn"),
+            type = "list",
+            name = "DependsOn",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerDependency,
+        }),
+        MountPoints = schema.new({
+            id = id.from(_N, "SupportContainerDefinition", "MountPoints"),
+            type = "list",
+            name = "MountPoints",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerMountPoint,
+        }),
+        EnvironmentOverride = schema.new({
+            id = id.from(_N, "SupportContainerDefinition", "EnvironmentOverride"),
+            type = "list",
+            name = "EnvironmentOverride",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerEnvironment,
+        }),
+        Essential = schema.new({
+            id = id.from(_N, "SupportContainerDefinition", "Essential"),
+            type = "boolean",
+            name = "Essential",
+            target_id = prelude.Boolean.id,
+        }),
+        HealthCheck = schema.new({
+            id = id.from(_N, "SupportContainerDefinition", "HealthCheck"),
+            type = "structure",
+            name = "HealthCheck",
+            target_id = id.from(_N, "ContainerHealthCheck"),
+            target = M.ContainerHealthCheck,
+        }),
+        ImageUri = schema.new({
+            id = id.from(_N, "SupportContainerDefinition", "ImageUri"),
+            type = "string",
+            name = "ImageUri",
+            target_id = prelude.String.id,
+        }),
+        MemoryHardLimitMebibytes = schema.new({
+            id = id.from(_N, "SupportContainerDefinition", "MemoryHardLimitMebibytes"),
+            type = "integer",
+            name = "MemoryHardLimitMebibytes",
+            target_id = prelude.Integer.id,
+        }),
+        PortConfiguration = schema.new({
+            id = id.from(_N, "SupportContainerDefinition", "PortConfiguration"),
+            type = "structure",
+            name = "PortConfiguration",
+            target_id = id.from(_N, "ContainerPortConfiguration"),
+            target = M.ContainerPortConfiguration,
+        }),
+        ResolvedImageDigest = schema.new({
+            id = id.from(_N, "SupportContainerDefinition", "ResolvedImageDigest"),
+            type = "string",
+            name = "ResolvedImageDigest",
+            target_id = prelude.String.id,
+        }),
+        Vcpu = schema.new({
+            id = id.from(_N, "SupportContainerDefinition", "Vcpu"),
+            type = "double",
+            name = "Vcpu",
+            target_id = prelude.Double.id,
+        }),
+    },
+})
+
+M.ContainerGroupDefinition = schema.new({
+    id = id.from(_N, "ContainerGroupDefinition"),
+    type = "structure",
+    members = {
+        ContainerGroupDefinitionArn = schema.new({
+            id = id.from(_N, "ContainerGroupDefinition", "ContainerGroupDefinitionArn"),
+            type = "string",
+            name = "ContainerGroupDefinitionArn",
+            target_id = prelude.String.id,
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "ContainerGroupDefinition", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        OperatingSystem = schema.new({
+            id = id.from(_N, "ContainerGroupDefinition", "OperatingSystem"),
+            type = "string",
+            name = "OperatingSystem",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "ContainerGroupDefinition", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ContainerGroupType = schema.new({
+            id = id.from(_N, "ContainerGroupDefinition", "ContainerGroupType"),
+            type = "string",
+            name = "ContainerGroupType",
+            target_id = prelude.String.id,
+        }),
+        TotalMemoryLimitMebibytes = schema.new({
+            id = id.from(_N, "ContainerGroupDefinition", "TotalMemoryLimitMebibytes"),
+            type = "integer",
+            name = "TotalMemoryLimitMebibytes",
+            target_id = prelude.Integer.id,
+        }),
+        TotalVcpuLimit = schema.new({
+            id = id.from(_N, "ContainerGroupDefinition", "TotalVcpuLimit"),
+            type = "double",
+            name = "TotalVcpuLimit",
+            target_id = prelude.Double.id,
+        }),
+        GameServerContainerDefinition = schema.new({
+            id = id.from(_N, "ContainerGroupDefinition", "GameServerContainerDefinition"),
+            type = "structure",
+            name = "GameServerContainerDefinition",
+            target_id = id.from(_N, "GameServerContainerDefinition"),
+            target = M.GameServerContainerDefinition,
+        }),
+        SupportContainerDefinitions = schema.new({
+            id = id.from(_N, "ContainerGroupDefinition", "SupportContainerDefinitions"),
+            type = "list",
+            name = "SupportContainerDefinitions",
+            target_id = prelude.Document.id,
+            list_member = M.SupportContainerDefinition,
+        }),
+        VersionNumber = schema.new({
+            id = id.from(_N, "ContainerGroupDefinition", "VersionNumber"),
+            type = "integer",
+            name = "VersionNumber",
+            target_id = prelude.Integer.id,
+        }),
+        VersionDescription = schema.new({
+            id = id.from(_N, "ContainerGroupDefinition", "VersionDescription"),
+            type = "string",
+            name = "VersionDescription",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ContainerGroupDefinition", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        StatusReason = schema.new({
+            id = id.from(_N, "ContainerGroupDefinition", "StatusReason"),
+            type = "string",
+            name = "StatusReason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ContainerPortMapping = schema.new({
+    id = id.from(_N, "ContainerPortMapping"),
+    type = "structure",
+    members = {
+        ContainerPort = schema.new({
+            id = id.from(_N, "ContainerPortMapping", "ContainerPort"),
+            type = "integer",
+            name = "ContainerPort",
+            target_id = prelude.Integer.id,
+        }),
+        ConnectionPort = schema.new({
+            id = id.from(_N, "ContainerPortMapping", "ConnectionPort"),
+            type = "integer",
+            name = "ConnectionPort",
+            target_id = prelude.Integer.id,
+        }),
+        Protocol = schema.new({
+            id = id.from(_N, "ContainerPortMapping", "Protocol"),
+            type = "string",
+            name = "Protocol",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ContainerGroupPortMapping = schema.new({
+    id = id.from(_N, "ContainerGroupPortMapping"),
+    type = "structure",
+    members = {
+        ContainerName = schema.new({
+            id = id.from(_N, "ContainerGroupPortMapping", "ContainerName"),
+            type = "string",
+            name = "ContainerName",
+            target_id = prelude.String.id,
+        }),
+        ContainerRuntimeId = schema.new({
+            id = id.from(_N, "ContainerGroupPortMapping", "ContainerRuntimeId"),
+            type = "string",
+            name = "ContainerRuntimeId",
+            target_id = prelude.String.id,
+        }),
+        ContainerPortMappings = schema.new({
+            id = id.from(_N, "ContainerGroupPortMapping", "ContainerPortMappings"),
+            type = "list",
+            name = "ContainerPortMappings",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerPortMapping,
+        }),
+    },
+})
+
+M.ContainerIdentifier = schema.new({
+    id = id.from(_N, "ContainerIdentifier"),
+    type = "structure",
+    members = {
+        ContainerName = schema.new({
+            id = id.from(_N, "ContainerIdentifier", "ContainerName"),
+            type = "string",
+            name = "ContainerName",
+            target_id = prelude.String.id,
+        }),
+        ContainerRuntimeId = schema.new({
+            id = id.from(_N, "ContainerIdentifier", "ContainerRuntimeId"),
+            type = "string",
+            name = "ContainerRuntimeId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Tag = schema.new({
+    id = id.from(_N, "Tag"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "Tag", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "Tag", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateAliasInput = schema.new({
+    id = id.from(_N, "CreateAliasInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateAliasInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateAliasInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        RoutingStrategy = schema.new({
+            id = id.from(_N, "CreateAliasInput", "RoutingStrategy"),
+            type = "structure",
+            name = "RoutingStrategy",
+            target_id = id.from(_N, "RoutingStrategy"),
+            target = M.RoutingStrategy,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateAliasInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CreateAliasOutput = schema.new({
+    id = id.from(_N, "CreateAliasOutput"),
+    type = "structure",
+    members = {
+        Alias = schema.new({
+            id = id.from(_N, "CreateAliasOutput", "Alias"),
+            type = "structure",
+            name = "Alias",
+            target_id = id.from(_N, "Alias"),
+            target = M.Alias,
+        }),
+    },
+})
+
+M.LimitExceededException = schema.new({
+    id = id.from(_N, "LimitExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "LimitExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TaggingFailedException = schema.new({
+    id = id.from(_N, "TaggingFailedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "TaggingFailedException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.S3Location = schema.new({
+    id = id.from(_N, "S3Location"),
+    type = "structure",
+    members = {
+        Bucket = schema.new({
+            id = id.from(_N, "S3Location", "Bucket"),
+            type = "string",
+            name = "Bucket",
+            target_id = prelude.String.id,
+        }),
+        Key = schema.new({
+            id = id.from(_N, "S3Location", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "S3Location", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+        }),
+        ObjectVersion = schema.new({
+            id = id.from(_N, "S3Location", "ObjectVersion"),
+            type = "string",
+            name = "ObjectVersion",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateBuildInput = schema.new({
+    id = id.from(_N, "CreateBuildInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateBuildInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Version = schema.new({
+            id = id.from(_N, "CreateBuildInput", "Version"),
+            type = "string",
+            name = "Version",
+            target_id = prelude.String.id,
+        }),
+        StorageLocation = schema.new({
+            id = id.from(_N, "CreateBuildInput", "StorageLocation"),
+            type = "structure",
+            name = "StorageLocation",
+            target_id = id.from(_N, "S3Location"),
+            target = M.S3Location,
+        }),
+        OperatingSystem = schema.new({
+            id = id.from(_N, "CreateBuildInput", "OperatingSystem"),
+            type = "string",
+            name = "OperatingSystem",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateBuildInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        ServerSdkVersion = schema.new({
+            id = id.from(_N, "CreateBuildInput", "ServerSdkVersion"),
+            type = "string",
+            name = "ServerSdkVersion",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateBuildOutput = schema.new({
+    id = id.from(_N, "CreateBuildOutput"),
+    type = "structure",
+    members = {
+        Build = schema.new({
+            id = id.from(_N, "CreateBuildOutput", "Build"),
+            type = "structure",
+            name = "Build",
+            target_id = id.from(_N, "Build"),
+            target = M.Build,
+        }),
+        UploadCredentials = schema.new({
+            id = id.from(_N, "CreateBuildOutput", "UploadCredentials"),
+            type = "structure",
+            name = "UploadCredentials",
+            target_id = id.from(_N, "AwsCredentials"),
+            target = M.AwsCredentials,
+        }),
+        StorageLocation = schema.new({
+            id = id.from(_N, "CreateBuildOutput", "StorageLocation"),
+            type = "structure",
+            name = "StorageLocation",
+            target_id = id.from(_N, "S3Location"),
+            target = M.S3Location,
+        }),
+    },
+})
+
+M.LocationConfiguration = schema.new({
+    id = id.from(_N, "LocationConfiguration"),
+    type = "structure",
+    members = {
+        Location = schema.new({
+            id = id.from(_N, "LocationConfiguration", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateContainerFleetInput = schema.new({
+    id = id.from(_N, "CreateContainerFleetInput"),
+    type = "structure",
+    members = {
+        FleetRoleArn = schema.new({
+            id = id.from(_N, "CreateContainerFleetInput", "FleetRoleArn"),
+            type = "string",
+            name = "FleetRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateContainerFleetInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        GameServerContainerGroupDefinitionName = schema.new({
+            id = id.from(_N, "CreateContainerFleetInput", "GameServerContainerGroupDefinitionName"),
+            type = "string",
+            name = "GameServerContainerGroupDefinitionName",
+            target_id = prelude.String.id,
+        }),
+        PerInstanceContainerGroupDefinitionName = schema.new({
+            id = id.from(_N, "CreateContainerFleetInput", "PerInstanceContainerGroupDefinitionName"),
+            type = "string",
+            name = "PerInstanceContainerGroupDefinitionName",
+            target_id = prelude.String.id,
+        }),
+        InstanceConnectionPortRange = schema.new({
+            id = id.from(_N, "CreateContainerFleetInput", "InstanceConnectionPortRange"),
+            type = "structure",
+            name = "InstanceConnectionPortRange",
+            target_id = id.from(_N, "ConnectionPortRange"),
+            target = M.ConnectionPortRange,
+        }),
+        InstanceInboundPermissions = schema.new({
+            id = id.from(_N, "CreateContainerFleetInput", "InstanceInboundPermissions"),
+            type = "list",
+            name = "InstanceInboundPermissions",
+            target_id = prelude.Document.id,
+            list_member = M.IpPermission,
+        }),
+        GameServerContainerGroupsPerInstance = schema.new({
+            id = id.from(_N, "CreateContainerFleetInput", "GameServerContainerGroupsPerInstance"),
+            type = "integer",
+            name = "GameServerContainerGroupsPerInstance",
+            target_id = prelude.Integer.id,
+        }),
+        InstanceType = schema.new({
+            id = id.from(_N, "CreateContainerFleetInput", "InstanceType"),
+            type = "string",
+            name = "InstanceType",
+            target_id = prelude.String.id,
+        }),
+        BillingType = schema.new({
+            id = id.from(_N, "CreateContainerFleetInput", "BillingType"),
+            type = "string",
+            name = "BillingType",
+            target_id = prelude.String.id,
+        }),
+        Locations = schema.new({
+            id = id.from(_N, "CreateContainerFleetInput", "Locations"),
+            type = "list",
+            name = "Locations",
+            target_id = prelude.Document.id,
+            list_member = M.LocationConfiguration,
+        }),
+        MetricGroups = schema.new({
+            id = id.from(_N, "CreateContainerFleetInput", "MetricGroups"),
+            type = "list",
+            name = "MetricGroups",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        NewGameSessionProtectionPolicy = schema.new({
+            id = id.from(_N, "CreateContainerFleetInput", "NewGameSessionProtectionPolicy"),
+            type = "string",
+            name = "NewGameSessionProtectionPolicy",
+            target_id = prelude.String.id,
+        }),
+        GameSessionCreationLimitPolicy = schema.new({
+            id = id.from(_N, "CreateContainerFleetInput", "GameSessionCreationLimitPolicy"),
+            type = "structure",
+            name = "GameSessionCreationLimitPolicy",
+            target_id = id.from(_N, "GameSessionCreationLimitPolicy"),
+            target = M.GameSessionCreationLimitPolicy,
+        }),
+        LogConfiguration = schema.new({
+            id = id.from(_N, "CreateContainerFleetInput", "LogConfiguration"),
+            type = "structure",
+            name = "LogConfiguration",
+            target_id = id.from(_N, "LogConfiguration"),
+            target = M.LogConfiguration,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateContainerFleetInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        PlayerGatewayMode = schema.new({
+            id = id.from(_N, "CreateContainerFleetInput", "PlayerGatewayMode"),
+            type = "string",
+            name = "PlayerGatewayMode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateContainerFleetOutput = schema.new({
+    id = id.from(_N, "CreateContainerFleetOutput"),
+    type = "structure",
+    members = {
+        ContainerFleet = schema.new({
+            id = id.from(_N, "CreateContainerFleetOutput", "ContainerFleet"),
+            type = "structure",
+            name = "ContainerFleet",
+            target_id = id.from(_N, "ContainerFleet"),
+            target = M.ContainerFleet,
+        }),
+    },
+})
+
+M.GameServerContainerDefinitionInput = schema.new({
+    id = id.from(_N, "GameServerContainerDefinitionInput"),
+    type = "structure",
+    members = {
+        ContainerName = schema.new({
+            id = id.from(_N, "GameServerContainerDefinitionInput", "ContainerName"),
+            type = "string",
+            name = "ContainerName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DependsOn = schema.new({
+            id = id.from(_N, "GameServerContainerDefinitionInput", "DependsOn"),
+            type = "list",
+            name = "DependsOn",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerDependency,
+        }),
+        MountPoints = schema.new({
+            id = id.from(_N, "GameServerContainerDefinitionInput", "MountPoints"),
+            type = "list",
+            name = "MountPoints",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerMountPoint,
+        }),
+        EnvironmentOverride = schema.new({
+            id = id.from(_N, "GameServerContainerDefinitionInput", "EnvironmentOverride"),
+            type = "list",
+            name = "EnvironmentOverride",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerEnvironment,
+        }),
+        ImageUri = schema.new({
+            id = id.from(_N, "GameServerContainerDefinitionInput", "ImageUri"),
+            type = "string",
+            name = "ImageUri",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PortConfiguration = schema.new({
+            id = id.from(_N, "GameServerContainerDefinitionInput", "PortConfiguration"),
+            type = "structure",
+            name = "PortConfiguration",
+            target_id = id.from(_N, "ContainerPortConfiguration"),
+            target = M.ContainerPortConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ServerSdkVersion = schema.new({
+            id = id.from(_N, "GameServerContainerDefinitionInput", "ServerSdkVersion"),
+            type = "string",
+            name = "ServerSdkVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SupportContainerDefinitionInput = schema.new({
+    id = id.from(_N, "SupportContainerDefinitionInput"),
+    type = "structure",
+    members = {
+        ContainerName = schema.new({
+            id = id.from(_N, "SupportContainerDefinitionInput", "ContainerName"),
+            type = "string",
+            name = "ContainerName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DependsOn = schema.new({
+            id = id.from(_N, "SupportContainerDefinitionInput", "DependsOn"),
+            type = "list",
+            name = "DependsOn",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerDependency,
+        }),
+        MountPoints = schema.new({
+            id = id.from(_N, "SupportContainerDefinitionInput", "MountPoints"),
+            type = "list",
+            name = "MountPoints",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerMountPoint,
+        }),
+        EnvironmentOverride = schema.new({
+            id = id.from(_N, "SupportContainerDefinitionInput", "EnvironmentOverride"),
+            type = "list",
+            name = "EnvironmentOverride",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerEnvironment,
+        }),
+        Essential = schema.new({
+            id = id.from(_N, "SupportContainerDefinitionInput", "Essential"),
+            type = "boolean",
+            name = "Essential",
+            target_id = prelude.Boolean.id,
+        }),
+        HealthCheck = schema.new({
+            id = id.from(_N, "SupportContainerDefinitionInput", "HealthCheck"),
+            type = "structure",
+            name = "HealthCheck",
+            target_id = id.from(_N, "ContainerHealthCheck"),
+            target = M.ContainerHealthCheck,
+        }),
+        ImageUri = schema.new({
+            id = id.from(_N, "SupportContainerDefinitionInput", "ImageUri"),
+            type = "string",
+            name = "ImageUri",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MemoryHardLimitMebibytes = schema.new({
+            id = id.from(_N, "SupportContainerDefinitionInput", "MemoryHardLimitMebibytes"),
+            type = "integer",
+            name = "MemoryHardLimitMebibytes",
+            target_id = prelude.Integer.id,
+        }),
+        PortConfiguration = schema.new({
+            id = id.from(_N, "SupportContainerDefinitionInput", "PortConfiguration"),
+            type = "structure",
+            name = "PortConfiguration",
+            target_id = id.from(_N, "ContainerPortConfiguration"),
+            target = M.ContainerPortConfiguration,
+        }),
+        Vcpu = schema.new({
+            id = id.from(_N, "SupportContainerDefinitionInput", "Vcpu"),
+            type = "double",
+            name = "Vcpu",
+            target_id = prelude.Double.id,
+        }),
+    },
+})
+
+M.CreateContainerGroupDefinitionInput = schema.new({
+    id = id.from(_N, "CreateContainerGroupDefinitionInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateContainerGroupDefinitionInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ContainerGroupType = schema.new({
+            id = id.from(_N, "CreateContainerGroupDefinitionInput", "ContainerGroupType"),
+            type = "string",
+            name = "ContainerGroupType",
+            target_id = prelude.String.id,
+        }),
+        TotalMemoryLimitMebibytes = schema.new({
+            id = id.from(_N, "CreateContainerGroupDefinitionInput", "TotalMemoryLimitMebibytes"),
+            type = "integer",
+            name = "TotalMemoryLimitMebibytes",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TotalVcpuLimit = schema.new({
+            id = id.from(_N, "CreateContainerGroupDefinitionInput", "TotalVcpuLimit"),
+            type = "double",
+            name = "TotalVcpuLimit",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        GameServerContainerDefinition = schema.new({
+            id = id.from(_N, "CreateContainerGroupDefinitionInput", "GameServerContainerDefinition"),
+            type = "structure",
+            name = "GameServerContainerDefinition",
+            target_id = id.from(_N, "GameServerContainerDefinitionInput"),
+            target = M.GameServerContainerDefinitionInput,
+        }),
+        SupportContainerDefinitions = schema.new({
+            id = id.from(_N, "CreateContainerGroupDefinitionInput", "SupportContainerDefinitions"),
+            type = "list",
+            name = "SupportContainerDefinitions",
+            target_id = prelude.Document.id,
+            list_member = M.SupportContainerDefinitionInput,
+        }),
+        OperatingSystem = schema.new({
+            id = id.from(_N, "CreateContainerGroupDefinitionInput", "OperatingSystem"),
+            type = "string",
+            name = "OperatingSystem",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        VersionDescription = schema.new({
+            id = id.from(_N, "CreateContainerGroupDefinitionInput", "VersionDescription"),
+            type = "string",
+            name = "VersionDescription",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateContainerGroupDefinitionInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CreateContainerGroupDefinitionOutput = schema.new({
+    id = id.from(_N, "CreateContainerGroupDefinitionOutput"),
+    type = "structure",
+    members = {
+        ContainerGroupDefinition = schema.new({
+            id = id.from(_N, "CreateContainerGroupDefinitionOutput", "ContainerGroupDefinition"),
+            type = "structure",
+            name = "ContainerGroupDefinition",
+            target_id = id.from(_N, "ContainerGroupDefinition"),
+            target = M.ContainerGroupDefinition,
+        }),
+    },
+})
+
+M.PlayerGatewayConfiguration = schema.new({
+    id = id.from(_N, "PlayerGatewayConfiguration"),
+    type = "structure",
+    members = {
+        GameServerIpProtocolSupported = schema.new({
+            id = id.from(_N, "PlayerGatewayConfiguration", "GameServerIpProtocolSupported"),
+            type = "string",
+            name = "GameServerIpProtocolSupported",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceCreationLimitPolicy = schema.new({
+    id = id.from(_N, "ResourceCreationLimitPolicy"),
+    type = "structure",
+    members = {
+        NewGameSessionsPerCreator = schema.new({
+            id = id.from(_N, "ResourceCreationLimitPolicy", "NewGameSessionsPerCreator"),
+            type = "integer",
+            name = "NewGameSessionsPerCreator",
+            target_id = prelude.Integer.id,
+        }),
+        PolicyPeriodInMinutes = schema.new({
+            id = id.from(_N, "ResourceCreationLimitPolicy", "PolicyPeriodInMinutes"),
+            type = "integer",
+            name = "PolicyPeriodInMinutes",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ServerProcess = schema.new({
+    id = id.from(_N, "ServerProcess"),
+    type = "structure",
+    members = {
+        LaunchPath = schema.new({
+            id = id.from(_N, "ServerProcess", "LaunchPath"),
+            type = "string",
+            name = "LaunchPath",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Parameters = schema.new({
+            id = id.from(_N, "ServerProcess", "Parameters"),
+            type = "string",
+            name = "Parameters",
+            target_id = prelude.String.id,
+        }),
+        ConcurrentExecutions = schema.new({
+            id = id.from(_N, "ServerProcess", "ConcurrentExecutions"),
+            type = "integer",
+            name = "ConcurrentExecutions",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RuntimeConfiguration = schema.new({
+    id = id.from(_N, "RuntimeConfiguration"),
+    type = "structure",
+    members = {
+        ServerProcesses = schema.new({
+            id = id.from(_N, "RuntimeConfiguration", "ServerProcesses"),
+            type = "list",
+            name = "ServerProcesses",
+            target_id = prelude.Document.id,
+            list_member = M.ServerProcess,
+        }),
+        MaxConcurrentGameSessionActivations = schema.new({
+            id = id.from(_N, "RuntimeConfiguration", "MaxConcurrentGameSessionActivations"),
+            type = "integer",
+            name = "MaxConcurrentGameSessionActivations",
+            target_id = prelude.Integer.id,
+        }),
+        GameSessionActivationTimeoutSeconds = schema.new({
+            id = id.from(_N, "RuntimeConfiguration", "GameSessionActivationTimeoutSeconds"),
+            type = "integer",
+            name = "GameSessionActivationTimeoutSeconds",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.CreateFleetInput = schema.new({
+    id = id.from(_N, "CreateFleetInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateFleetInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateFleetInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        BuildId = schema.new({
+            id = id.from(_N, "CreateFleetInput", "BuildId"),
+            type = "string",
+            name = "BuildId",
+            target_id = prelude.String.id,
+        }),
+        ScriptId = schema.new({
+            id = id.from(_N, "CreateFleetInput", "ScriptId"),
+            type = "string",
+            name = "ScriptId",
+            target_id = prelude.String.id,
+        }),
+        ServerLaunchPath = schema.new({
+            id = id.from(_N, "CreateFleetInput", "ServerLaunchPath"),
+            type = "string",
+            name = "ServerLaunchPath",
+            target_id = prelude.String.id,
+        }),
+        ServerLaunchParameters = schema.new({
+            id = id.from(_N, "CreateFleetInput", "ServerLaunchParameters"),
+            type = "string",
+            name = "ServerLaunchParameters",
+            target_id = prelude.String.id,
+        }),
+        LogPaths = schema.new({
+            id = id.from(_N, "CreateFleetInput", "LogPaths"),
+            type = "list",
+            name = "LogPaths",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        EC2InstanceType = schema.new({
+            id = id.from(_N, "CreateFleetInput", "EC2InstanceType"),
+            type = "string",
+            name = "EC2InstanceType",
+            target_id = prelude.String.id,
+        }),
+        EC2InboundPermissions = schema.new({
+            id = id.from(_N, "CreateFleetInput", "EC2InboundPermissions"),
+            type = "list",
+            name = "EC2InboundPermissions",
+            target_id = prelude.Document.id,
+            list_member = M.IpPermission,
+        }),
+        NewGameSessionProtectionPolicy = schema.new({
+            id = id.from(_N, "CreateFleetInput", "NewGameSessionProtectionPolicy"),
+            type = "string",
+            name = "NewGameSessionProtectionPolicy",
+            target_id = prelude.String.id,
+        }),
+        RuntimeConfiguration = schema.new({
+            id = id.from(_N, "CreateFleetInput", "RuntimeConfiguration"),
+            type = "structure",
+            name = "RuntimeConfiguration",
+            target_id = id.from(_N, "RuntimeConfiguration"),
+            target = M.RuntimeConfiguration,
+        }),
+        ResourceCreationLimitPolicy = schema.new({
+            id = id.from(_N, "CreateFleetInput", "ResourceCreationLimitPolicy"),
+            type = "structure",
+            name = "ResourceCreationLimitPolicy",
+            target_id = id.from(_N, "ResourceCreationLimitPolicy"),
+            target = M.ResourceCreationLimitPolicy,
+        }),
+        MetricGroups = schema.new({
+            id = id.from(_N, "CreateFleetInput", "MetricGroups"),
+            type = "list",
+            name = "MetricGroups",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        PeerVpcAwsAccountId = schema.new({
+            id = id.from(_N, "CreateFleetInput", "PeerVpcAwsAccountId"),
+            type = "string",
+            name = "PeerVpcAwsAccountId",
+            target_id = prelude.String.id,
+        }),
+        PeerVpcId = schema.new({
+            id = id.from(_N, "CreateFleetInput", "PeerVpcId"),
+            type = "string",
+            name = "PeerVpcId",
+            target_id = prelude.String.id,
+        }),
+        FleetType = schema.new({
+            id = id.from(_N, "CreateFleetInput", "FleetType"),
+            type = "string",
+            name = "FleetType",
+            target_id = prelude.String.id,
+        }),
+        InstanceRoleArn = schema.new({
+            id = id.from(_N, "CreateFleetInput", "InstanceRoleArn"),
+            type = "string",
+            name = "InstanceRoleArn",
+            target_id = prelude.String.id,
+        }),
+        CertificateConfiguration = schema.new({
+            id = id.from(_N, "CreateFleetInput", "CertificateConfiguration"),
+            type = "structure",
+            name = "CertificateConfiguration",
+            target_id = id.from(_N, "CertificateConfiguration"),
+            target = M.CertificateConfiguration,
+        }),
+        Locations = schema.new({
+            id = id.from(_N, "CreateFleetInput", "Locations"),
+            type = "list",
+            name = "Locations",
+            target_id = prelude.Document.id,
+            list_member = M.LocationConfiguration,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateFleetInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        ComputeType = schema.new({
+            id = id.from(_N, "CreateFleetInput", "ComputeType"),
+            type = "string",
+            name = "ComputeType",
+            target_id = prelude.String.id,
+        }),
+        AnywhereConfiguration = schema.new({
+            id = id.from(_N, "CreateFleetInput", "AnywhereConfiguration"),
+            type = "structure",
+            name = "AnywhereConfiguration",
+            target_id = id.from(_N, "AnywhereConfiguration"),
+            target = M.AnywhereConfiguration,
+        }),
+        InstanceRoleCredentialsProvider = schema.new({
+            id = id.from(_N, "CreateFleetInput", "InstanceRoleCredentialsProvider"),
+            type = "string",
+            name = "InstanceRoleCredentialsProvider",
+            target_id = prelude.String.id,
+        }),
+        PlayerGatewayMode = schema.new({
+            id = id.from(_N, "CreateFleetInput", "PlayerGatewayMode"),
+            type = "string",
+            name = "PlayerGatewayMode",
+            target_id = prelude.String.id,
+        }),
+        PlayerGatewayConfiguration = schema.new({
+            id = id.from(_N, "CreateFleetInput", "PlayerGatewayConfiguration"),
+            type = "structure",
+            name = "PlayerGatewayConfiguration",
+            target_id = id.from(_N, "PlayerGatewayConfiguration"),
+            target = M.PlayerGatewayConfiguration,
+        }),
+    },
+})
+
+M.FleetAttributes = schema.new({
+    id = id.from(_N, "FleetAttributes"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "FleetAttributes", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        FleetArn = schema.new({
+            id = id.from(_N, "FleetAttributes", "FleetArn"),
+            type = "string",
+            name = "FleetArn",
+            target_id = prelude.String.id,
+        }),
+        FleetType = schema.new({
+            id = id.from(_N, "FleetAttributes", "FleetType"),
+            type = "string",
+            name = "FleetType",
+            target_id = prelude.String.id,
+        }),
+        InstanceType = schema.new({
+            id = id.from(_N, "FleetAttributes", "InstanceType"),
+            type = "string",
+            name = "InstanceType",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "FleetAttributes", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "FleetAttributes", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "FleetAttributes", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        TerminationTime = schema.new({
+            id = id.from(_N, "FleetAttributes", "TerminationTime"),
+            type = "timestamp",
+            name = "TerminationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "FleetAttributes", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        BuildId = schema.new({
+            id = id.from(_N, "FleetAttributes", "BuildId"),
+            type = "string",
+            name = "BuildId",
+            target_id = prelude.String.id,
+        }),
+        BuildArn = schema.new({
+            id = id.from(_N, "FleetAttributes", "BuildArn"),
+            type = "string",
+            name = "BuildArn",
+            target_id = prelude.String.id,
+        }),
+        ScriptId = schema.new({
+            id = id.from(_N, "FleetAttributes", "ScriptId"),
+            type = "string",
+            name = "ScriptId",
+            target_id = prelude.String.id,
+        }),
+        ScriptArn = schema.new({
+            id = id.from(_N, "FleetAttributes", "ScriptArn"),
+            type = "string",
+            name = "ScriptArn",
+            target_id = prelude.String.id,
+        }),
+        ServerLaunchPath = schema.new({
+            id = id.from(_N, "FleetAttributes", "ServerLaunchPath"),
+            type = "string",
+            name = "ServerLaunchPath",
+            target_id = prelude.String.id,
+        }),
+        ServerLaunchParameters = schema.new({
+            id = id.from(_N, "FleetAttributes", "ServerLaunchParameters"),
+            type = "string",
+            name = "ServerLaunchParameters",
+            target_id = prelude.String.id,
+        }),
+        LogPaths = schema.new({
+            id = id.from(_N, "FleetAttributes", "LogPaths"),
+            type = "list",
+            name = "LogPaths",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        NewGameSessionProtectionPolicy = schema.new({
+            id = id.from(_N, "FleetAttributes", "NewGameSessionProtectionPolicy"),
+            type = "string",
+            name = "NewGameSessionProtectionPolicy",
+            target_id = prelude.String.id,
+        }),
+        OperatingSystem = schema.new({
+            id = id.from(_N, "FleetAttributes", "OperatingSystem"),
+            type = "string",
+            name = "OperatingSystem",
+            target_id = prelude.String.id,
+        }),
+        ResourceCreationLimitPolicy = schema.new({
+            id = id.from(_N, "FleetAttributes", "ResourceCreationLimitPolicy"),
+            type = "structure",
+            name = "ResourceCreationLimitPolicy",
+            target_id = id.from(_N, "ResourceCreationLimitPolicy"),
+            target = M.ResourceCreationLimitPolicy,
+        }),
+        MetricGroups = schema.new({
+            id = id.from(_N, "FleetAttributes", "MetricGroups"),
+            type = "list",
+            name = "MetricGroups",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        StoppedActions = schema.new({
+            id = id.from(_N, "FleetAttributes", "StoppedActions"),
+            type = "list",
+            name = "StoppedActions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        InstanceRoleArn = schema.new({
+            id = id.from(_N, "FleetAttributes", "InstanceRoleArn"),
+            type = "string",
+            name = "InstanceRoleArn",
+            target_id = prelude.String.id,
+        }),
+        CertificateConfiguration = schema.new({
+            id = id.from(_N, "FleetAttributes", "CertificateConfiguration"),
+            type = "structure",
+            name = "CertificateConfiguration",
+            target_id = id.from(_N, "CertificateConfiguration"),
+            target = M.CertificateConfiguration,
+        }),
+        ComputeType = schema.new({
+            id = id.from(_N, "FleetAttributes", "ComputeType"),
+            type = "string",
+            name = "ComputeType",
+            target_id = prelude.String.id,
+        }),
+        AnywhereConfiguration = schema.new({
+            id = id.from(_N, "FleetAttributes", "AnywhereConfiguration"),
+            type = "structure",
+            name = "AnywhereConfiguration",
+            target_id = id.from(_N, "AnywhereConfiguration"),
+            target = M.AnywhereConfiguration,
+        }),
+        InstanceRoleCredentialsProvider = schema.new({
+            id = id.from(_N, "FleetAttributes", "InstanceRoleCredentialsProvider"),
+            type = "string",
+            name = "InstanceRoleCredentialsProvider",
+            target_id = prelude.String.id,
+        }),
+        PlayerGatewayMode = schema.new({
+            id = id.from(_N, "FleetAttributes", "PlayerGatewayMode"),
+            type = "string",
+            name = "PlayerGatewayMode",
+            target_id = prelude.String.id,
+        }),
+        PlayerGatewayConfiguration = schema.new({
+            id = id.from(_N, "FleetAttributes", "PlayerGatewayConfiguration"),
+            type = "structure",
+            name = "PlayerGatewayConfiguration",
+            target_id = id.from(_N, "PlayerGatewayConfiguration"),
+            target = M.PlayerGatewayConfiguration,
+        }),
+    },
+})
+
+M.LocationState = schema.new({
+    id = id.from(_N, "LocationState"),
+    type = "structure",
+    members = {
+        Location = schema.new({
+            id = id.from(_N, "LocationState", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "LocationState", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        PlayerGatewayStatus = schema.new({
+            id = id.from(_N, "LocationState", "PlayerGatewayStatus"),
+            type = "string",
+            name = "PlayerGatewayStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateFleetOutput = schema.new({
+    id = id.from(_N, "CreateFleetOutput"),
+    type = "structure",
+    members = {
+        FleetAttributes = schema.new({
+            id = id.from(_N, "CreateFleetOutput", "FleetAttributes"),
+            type = "structure",
+            name = "FleetAttributes",
+            target_id = id.from(_N, "FleetAttributes"),
+            target = M.FleetAttributes,
+        }),
+        LocationStates = schema.new({
+            id = id.from(_N, "CreateFleetOutput", "LocationStates"),
+            type = "list",
+            name = "LocationStates",
+            target_id = prelude.Document.id,
+            list_member = M.LocationState,
+        }),
+    },
+})
+
+M.NotReadyException = schema.new({
+    id = id.from(_N, "NotReadyException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "NotReadyException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateFleetLocationsInput = schema.new({
+    id = id.from(_N, "CreateFleetLocationsInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "CreateFleetLocationsInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Locations = schema.new({
+            id = id.from(_N, "CreateFleetLocationsInput", "Locations"),
+            type = "list",
+            name = "Locations",
+            target_id = prelude.Document.id,
+            list_member = M.LocationConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateFleetLocationsOutput = schema.new({
+    id = id.from(_N, "CreateFleetLocationsOutput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "CreateFleetLocationsOutput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        FleetArn = schema.new({
+            id = id.from(_N, "CreateFleetLocationsOutput", "FleetArn"),
+            type = "string",
+            name = "FleetArn",
+            target_id = prelude.String.id,
+        }),
+        LocationStates = schema.new({
+            id = id.from(_N, "CreateFleetLocationsOutput", "LocationStates"),
+            type = "list",
+            name = "LocationStates",
+            target_id = prelude.Document.id,
+            list_member = M.LocationState,
+        }),
+    },
+})
+
+M.InvalidFleetStatusException = schema.new({
+    id = id.from(_N, "InvalidFleetStatusException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InvalidFleetStatusException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TargetTrackingConfiguration = schema.new({
+    id = id.from(_N, "TargetTrackingConfiguration"),
+    type = "structure",
+    members = {
+        TargetValue = schema.new({
+            id = id.from(_N, "TargetTrackingConfiguration", "TargetValue"),
+            type = "double",
+            name = "TargetValue",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GameServerGroupAutoScalingPolicy = schema.new({
+    id = id.from(_N, "GameServerGroupAutoScalingPolicy"),
+    type = "structure",
+    members = {
+        EstimatedInstanceWarmup = schema.new({
+            id = id.from(_N, "GameServerGroupAutoScalingPolicy", "EstimatedInstanceWarmup"),
+            type = "integer",
+            name = "EstimatedInstanceWarmup",
+            target_id = prelude.Integer.id,
+        }),
+        TargetTrackingConfiguration = schema.new({
+            id = id.from(_N, "GameServerGroupAutoScalingPolicy", "TargetTrackingConfiguration"),
+            type = "structure",
+            name = "TargetTrackingConfiguration",
+            target_id = id.from(_N, "TargetTrackingConfiguration"),
+            target = M.TargetTrackingConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InstanceDefinition = schema.new({
+    id = id.from(_N, "InstanceDefinition"),
+    type = "structure",
+    members = {
+        InstanceType = schema.new({
+            id = id.from(_N, "InstanceDefinition", "InstanceType"),
+            type = "string",
+            name = "InstanceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        WeightedCapacity = schema.new({
+            id = id.from(_N, "InstanceDefinition", "WeightedCapacity"),
+            type = "string",
+            name = "WeightedCapacity",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.LaunchTemplateSpecification = schema.new({
+    id = id.from(_N, "LaunchTemplateSpecification"),
+    type = "structure",
+    members = {
+        LaunchTemplateId = schema.new({
+            id = id.from(_N, "LaunchTemplateSpecification", "LaunchTemplateId"),
+            type = "string",
+            name = "LaunchTemplateId",
+            target_id = prelude.String.id,
+        }),
+        LaunchTemplateName = schema.new({
+            id = id.from(_N, "LaunchTemplateSpecification", "LaunchTemplateName"),
+            type = "string",
+            name = "LaunchTemplateName",
+            target_id = prelude.String.id,
+        }),
+        Version = schema.new({
+            id = id.from(_N, "LaunchTemplateSpecification", "Version"),
+            type = "string",
+            name = "Version",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateGameServerGroupInput = schema.new({
+    id = id.from(_N, "CreateGameServerGroupInput"),
+    type = "structure",
+    members = {
+        GameServerGroupName = schema.new({
+            id = id.from(_N, "CreateGameServerGroupInput", "GameServerGroupName"),
+            type = "string",
+            name = "GameServerGroupName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "CreateGameServerGroupInput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MinSize = schema.new({
+            id = id.from(_N, "CreateGameServerGroupInput", "MinSize"),
+            type = "integer",
+            name = "MinSize",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxSize = schema.new({
+            id = id.from(_N, "CreateGameServerGroupInput", "MaxSize"),
+            type = "integer",
+            name = "MaxSize",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LaunchTemplate = schema.new({
+            id = id.from(_N, "CreateGameServerGroupInput", "LaunchTemplate"),
+            type = "structure",
+            name = "LaunchTemplate",
+            target_id = id.from(_N, "LaunchTemplateSpecification"),
+            target = M.LaunchTemplateSpecification,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InstanceDefinitions = schema.new({
+            id = id.from(_N, "CreateGameServerGroupInput", "InstanceDefinitions"),
+            type = "list",
+            name = "InstanceDefinitions",
+            target_id = prelude.Document.id,
+            list_member = M.InstanceDefinition,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AutoScalingPolicy = schema.new({
+            id = id.from(_N, "CreateGameServerGroupInput", "AutoScalingPolicy"),
+            type = "structure",
+            name = "AutoScalingPolicy",
+            target_id = id.from(_N, "GameServerGroupAutoScalingPolicy"),
+            target = M.GameServerGroupAutoScalingPolicy,
+        }),
+        BalancingStrategy = schema.new({
+            id = id.from(_N, "CreateGameServerGroupInput", "BalancingStrategy"),
+            type = "string",
+            name = "BalancingStrategy",
+            target_id = prelude.String.id,
+        }),
+        GameServerProtectionPolicy = schema.new({
+            id = id.from(_N, "CreateGameServerGroupInput", "GameServerProtectionPolicy"),
+            type = "string",
+            name = "GameServerProtectionPolicy",
+            target_id = prelude.String.id,
+        }),
+        VpcSubnets = schema.new({
+            id = id.from(_N, "CreateGameServerGroupInput", "VpcSubnets"),
+            type = "list",
+            name = "VpcSubnets",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateGameServerGroupInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.GameServerGroup = schema.new({
+    id = id.from(_N, "GameServerGroup"),
+    type = "structure",
+    members = {
+        GameServerGroupName = schema.new({
+            id = id.from(_N, "GameServerGroup", "GameServerGroupName"),
+            type = "string",
+            name = "GameServerGroupName",
+            target_id = prelude.String.id,
+        }),
+        GameServerGroupArn = schema.new({
+            id = id.from(_N, "GameServerGroup", "GameServerGroupArn"),
+            type = "string",
+            name = "GameServerGroupArn",
+            target_id = prelude.String.id,
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "GameServerGroup", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+        }),
+        InstanceDefinitions = schema.new({
+            id = id.from(_N, "GameServerGroup", "InstanceDefinitions"),
+            type = "list",
+            name = "InstanceDefinitions",
+            target_id = prelude.Document.id,
+            list_member = M.InstanceDefinition,
+        }),
+        BalancingStrategy = schema.new({
+            id = id.from(_N, "GameServerGroup", "BalancingStrategy"),
+            type = "string",
+            name = "BalancingStrategy",
+            target_id = prelude.String.id,
+        }),
+        GameServerProtectionPolicy = schema.new({
+            id = id.from(_N, "GameServerGroup", "GameServerProtectionPolicy"),
+            type = "string",
+            name = "GameServerProtectionPolicy",
+            target_id = prelude.String.id,
+        }),
+        AutoScalingGroupArn = schema.new({
+            id = id.from(_N, "GameServerGroup", "AutoScalingGroupArn"),
+            type = "string",
+            name = "AutoScalingGroupArn",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "GameServerGroup", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        StatusReason = schema.new({
+            id = id.from(_N, "GameServerGroup", "StatusReason"),
+            type = "string",
+            name = "StatusReason",
+            target_id = prelude.String.id,
+        }),
+        SuspendedActions = schema.new({
+            id = id.from(_N, "GameServerGroup", "SuspendedActions"),
+            type = "list",
+            name = "SuspendedActions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "GameServerGroup", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastUpdatedTime = schema.new({
+            id = id.from(_N, "GameServerGroup", "LastUpdatedTime"),
+            type = "timestamp",
+            name = "LastUpdatedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.CreateGameServerGroupOutput = schema.new({
+    id = id.from(_N, "CreateGameServerGroupOutput"),
+    type = "structure",
+    members = {
+        GameServerGroup = schema.new({
+            id = id.from(_N, "CreateGameServerGroupOutput", "GameServerGroup"),
+            type = "structure",
+            name = "GameServerGroup",
+            target_id = id.from(_N, "GameServerGroup"),
+            target = M.GameServerGroup,
+        }),
+    },
+})
+
+M.GameProperty = schema.new({
+    id = id.from(_N, "GameProperty"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "GameProperty", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "GameProperty", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateGameSessionInput = schema.new({
+    id = id.from(_N, "CreateGameSessionInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "CreateGameSessionInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        AliasId = schema.new({
+            id = id.from(_N, "CreateGameSessionInput", "AliasId"),
+            type = "string",
+            name = "AliasId",
+            target_id = prelude.String.id,
+        }),
+        MaximumPlayerSessionCount = schema.new({
+            id = id.from(_N, "CreateGameSessionInput", "MaximumPlayerSessionCount"),
+            type = "integer",
+            name = "MaximumPlayerSessionCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateGameSessionInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        GameProperties = schema.new({
+            id = id.from(_N, "CreateGameSessionInput", "GameProperties"),
+            type = "list",
+            name = "GameProperties",
+            target_id = prelude.Document.id,
+            list_member = M.GameProperty,
+        }),
+        CreatorId = schema.new({
+            id = id.from(_N, "CreateGameSessionInput", "CreatorId"),
+            type = "string",
+            name = "CreatorId",
+            target_id = prelude.String.id,
+        }),
+        GameSessionId = schema.new({
+            id = id.from(_N, "CreateGameSessionInput", "GameSessionId"),
+            type = "string",
+            name = "GameSessionId",
+            target_id = prelude.String.id,
+        }),
+        IdempotencyToken = schema.new({
+            id = id.from(_N, "CreateGameSessionInput", "IdempotencyToken"),
+            type = "string",
+            name = "IdempotencyToken",
+            target_id = prelude.String.id,
+        }),
+        GameSessionData = schema.new({
+            id = id.from(_N, "CreateGameSessionInput", "GameSessionData"),
+            type = "string",
+            name = "GameSessionData",
+            target_id = prelude.String.id,
+        }),
+        Location = schema.new({
+            id = id.from(_N, "CreateGameSessionInput", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GameSession = schema.new({
+    id = id.from(_N, "GameSession"),
+    type = "structure",
+    members = {
+        GameSessionId = schema.new({
+            id = id.from(_N, "GameSession", "GameSessionId"),
+            type = "string",
+            name = "GameSessionId",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "GameSession", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        FleetId = schema.new({
+            id = id.from(_N, "GameSession", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        FleetArn = schema.new({
+            id = id.from(_N, "GameSession", "FleetArn"),
+            type = "string",
+            name = "FleetArn",
+            target_id = prelude.String.id,
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "GameSession", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        TerminationTime = schema.new({
+            id = id.from(_N, "GameSession", "TerminationTime"),
+            type = "timestamp",
+            name = "TerminationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        CurrentPlayerSessionCount = schema.new({
+            id = id.from(_N, "GameSession", "CurrentPlayerSessionCount"),
+            type = "integer",
+            name = "CurrentPlayerSessionCount",
+            target_id = prelude.Integer.id,
+        }),
+        MaximumPlayerSessionCount = schema.new({
+            id = id.from(_N, "GameSession", "MaximumPlayerSessionCount"),
+            type = "integer",
+            name = "MaximumPlayerSessionCount",
+            target_id = prelude.Integer.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "GameSession", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        StatusReason = schema.new({
+            id = id.from(_N, "GameSession", "StatusReason"),
+            type = "string",
+            name = "StatusReason",
+            target_id = prelude.String.id,
+        }),
+        GameProperties = schema.new({
+            id = id.from(_N, "GameSession", "GameProperties"),
+            type = "list",
+            name = "GameProperties",
+            target_id = prelude.Document.id,
+            list_member = M.GameProperty,
+        }),
+        IpAddress = schema.new({
+            id = id.from(_N, "GameSession", "IpAddress"),
+            type = "string",
+            name = "IpAddress",
+            target_id = prelude.String.id,
+        }),
+        DnsName = schema.new({
+            id = id.from(_N, "GameSession", "DnsName"),
+            type = "string",
+            name = "DnsName",
+            target_id = prelude.String.id,
+        }),
+        Port = schema.new({
+            id = id.from(_N, "GameSession", "Port"),
+            type = "integer",
+            name = "Port",
+            target_id = prelude.Integer.id,
+        }),
+        PlayerSessionCreationPolicy = schema.new({
+            id = id.from(_N, "GameSession", "PlayerSessionCreationPolicy"),
+            type = "string",
+            name = "PlayerSessionCreationPolicy",
+            target_id = prelude.String.id,
+        }),
+        CreatorId = schema.new({
+            id = id.from(_N, "GameSession", "CreatorId"),
+            type = "string",
+            name = "CreatorId",
+            target_id = prelude.String.id,
+        }),
+        GameSessionData = schema.new({
+            id = id.from(_N, "GameSession", "GameSessionData"),
+            type = "string",
+            name = "GameSessionData",
+            target_id = prelude.String.id,
+        }),
+        MatchmakerData = schema.new({
+            id = id.from(_N, "GameSession", "MatchmakerData"),
+            type = "string",
+            name = "MatchmakerData",
+            target_id = prelude.String.id,
+        }),
+        Location = schema.new({
+            id = id.from(_N, "GameSession", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+        ComputeName = schema.new({
+            id = id.from(_N, "GameSession", "ComputeName"),
+            type = "string",
+            name = "ComputeName",
+            target_id = prelude.String.id,
+        }),
+        PlayerGatewayStatus = schema.new({
+            id = id.from(_N, "GameSession", "PlayerGatewayStatus"),
+            type = "string",
+            name = "PlayerGatewayStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateGameSessionOutput = schema.new({
+    id = id.from(_N, "CreateGameSessionOutput"),
+    type = "structure",
+    members = {
+        GameSession = schema.new({
+            id = id.from(_N, "CreateGameSessionOutput", "GameSession"),
+            type = "structure",
+            name = "GameSession",
+            target_id = id.from(_N, "GameSession"),
+            target = M.GameSession,
+        }),
+    },
+})
+
+M.FleetCapacityExceededException = schema.new({
+    id = id.from(_N, "FleetCapacityExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "FleetCapacityExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.IdempotentParameterMismatchException = schema.new({
+    id = id.from(_N, "IdempotentParameterMismatchException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "IdempotentParameterMismatchException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TerminalRoutingStrategyException = schema.new({
+    id = id.from(_N, "TerminalRoutingStrategyException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "TerminalRoutingStrategyException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GameSessionQueueDestination = schema.new({
+    id = id.from(_N, "GameSessionQueueDestination"),
+    type = "structure",
+    members = {
+        DestinationArn = schema.new({
+            id = id.from(_N, "GameSessionQueueDestination", "DestinationArn"),
+            type = "string",
+            name = "DestinationArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.FilterConfiguration = schema.new({
+    id = id.from(_N, "FilterConfiguration"),
+    type = "structure",
+    members = {
+        AllowedLocations = schema.new({
+            id = id.from(_N, "FilterConfiguration", "AllowedLocations"),
+            type = "list",
+            name = "AllowedLocations",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.PlayerLatencyPolicy = schema.new({
+    id = id.from(_N, "PlayerLatencyPolicy"),
+    type = "structure",
+    members = {
+        MaximumIndividualPlayerLatencyMilliseconds = schema.new({
+            id = id.from(_N, "PlayerLatencyPolicy", "MaximumIndividualPlayerLatencyMilliseconds"),
+            type = "integer",
+            name = "MaximumIndividualPlayerLatencyMilliseconds",
+            target_id = prelude.Integer.id,
+        }),
+        PolicyDurationSeconds = schema.new({
+            id = id.from(_N, "PlayerLatencyPolicy", "PolicyDurationSeconds"),
+            type = "integer",
+            name = "PolicyDurationSeconds",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.PriorityConfiguration = schema.new({
+    id = id.from(_N, "PriorityConfiguration"),
+    type = "structure",
+    members = {
+        PriorityOrder = schema.new({
+            id = id.from(_N, "PriorityConfiguration", "PriorityOrder"),
+            type = "list",
+            name = "PriorityOrder",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        LocationOrder = schema.new({
+            id = id.from(_N, "PriorityConfiguration", "LocationOrder"),
+            type = "list",
+            name = "LocationOrder",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.CreateGameSessionQueueInput = schema.new({
+    id = id.from(_N, "CreateGameSessionQueueInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateGameSessionQueueInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TimeoutInSeconds = schema.new({
+            id = id.from(_N, "CreateGameSessionQueueInput", "TimeoutInSeconds"),
+            type = "integer",
+            name = "TimeoutInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        PlayerLatencyPolicies = schema.new({
+            id = id.from(_N, "CreateGameSessionQueueInput", "PlayerLatencyPolicies"),
+            type = "list",
+            name = "PlayerLatencyPolicies",
+            target_id = prelude.Document.id,
+            list_member = M.PlayerLatencyPolicy,
+        }),
+        Destinations = schema.new({
+            id = id.from(_N, "CreateGameSessionQueueInput", "Destinations"),
+            type = "list",
+            name = "Destinations",
+            target_id = prelude.Document.id,
+            list_member = M.GameSessionQueueDestination,
+        }),
+        FilterConfiguration = schema.new({
+            id = id.from(_N, "CreateGameSessionQueueInput", "FilterConfiguration"),
+            type = "structure",
+            name = "FilterConfiguration",
+            target_id = id.from(_N, "FilterConfiguration"),
+            target = M.FilterConfiguration,
+        }),
+        PriorityConfiguration = schema.new({
+            id = id.from(_N, "CreateGameSessionQueueInput", "PriorityConfiguration"),
+            type = "structure",
+            name = "PriorityConfiguration",
+            target_id = id.from(_N, "PriorityConfiguration"),
+            target = M.PriorityConfiguration,
+        }),
+        CustomEventData = schema.new({
+            id = id.from(_N, "CreateGameSessionQueueInput", "CustomEventData"),
+            type = "string",
+            name = "CustomEventData",
+            target_id = prelude.String.id,
+        }),
+        NotificationTarget = schema.new({
+            id = id.from(_N, "CreateGameSessionQueueInput", "NotificationTarget"),
+            type = "string",
+            name = "NotificationTarget",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateGameSessionQueueInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.GameSessionQueue = schema.new({
+    id = id.from(_N, "GameSessionQueue"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "GameSessionQueue", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        GameSessionQueueArn = schema.new({
+            id = id.from(_N, "GameSessionQueue", "GameSessionQueueArn"),
+            type = "string",
+            name = "GameSessionQueueArn",
+            target_id = prelude.String.id,
+        }),
+        TimeoutInSeconds = schema.new({
+            id = id.from(_N, "GameSessionQueue", "TimeoutInSeconds"),
+            type = "integer",
+            name = "TimeoutInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        PlayerLatencyPolicies = schema.new({
+            id = id.from(_N, "GameSessionQueue", "PlayerLatencyPolicies"),
+            type = "list",
+            name = "PlayerLatencyPolicies",
+            target_id = prelude.Document.id,
+            list_member = M.PlayerLatencyPolicy,
+        }),
+        Destinations = schema.new({
+            id = id.from(_N, "GameSessionQueue", "Destinations"),
+            type = "list",
+            name = "Destinations",
+            target_id = prelude.Document.id,
+            list_member = M.GameSessionQueueDestination,
+        }),
+        FilterConfiguration = schema.new({
+            id = id.from(_N, "GameSessionQueue", "FilterConfiguration"),
+            type = "structure",
+            name = "FilterConfiguration",
+            target_id = id.from(_N, "FilterConfiguration"),
+            target = M.FilterConfiguration,
+        }),
+        PriorityConfiguration = schema.new({
+            id = id.from(_N, "GameSessionQueue", "PriorityConfiguration"),
+            type = "structure",
+            name = "PriorityConfiguration",
+            target_id = id.from(_N, "PriorityConfiguration"),
+            target = M.PriorityConfiguration,
+        }),
+        CustomEventData = schema.new({
+            id = id.from(_N, "GameSessionQueue", "CustomEventData"),
+            type = "string",
+            name = "CustomEventData",
+            target_id = prelude.String.id,
+        }),
+        NotificationTarget = schema.new({
+            id = id.from(_N, "GameSessionQueue", "NotificationTarget"),
+            type = "string",
+            name = "NotificationTarget",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateGameSessionQueueOutput = schema.new({
+    id = id.from(_N, "CreateGameSessionQueueOutput"),
+    type = "structure",
+    members = {
+        GameSessionQueue = schema.new({
+            id = id.from(_N, "CreateGameSessionQueueOutput", "GameSessionQueue"),
+            type = "structure",
+            name = "GameSessionQueue",
+            target_id = id.from(_N, "GameSessionQueue"),
+            target = M.GameSessionQueue,
+        }),
+    },
+})
+
+M.CreateLocationInput = schema.new({
+    id = id.from(_N, "CreateLocationInput"),
+    type = "structure",
+    members = {
+        LocationName = schema.new({
+            id = id.from(_N, "CreateLocationInput", "LocationName"),
+            type = "string",
+            name = "LocationName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateLocationInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.UDPEndpoint = schema.new({
+    id = id.from(_N, "UDPEndpoint"),
+    type = "structure",
+    members = {
+        Domain = schema.new({
+            id = id.from(_N, "UDPEndpoint", "Domain"),
+            type = "string",
+            name = "Domain",
+            target_id = prelude.String.id,
+        }),
+        Port = schema.new({
+            id = id.from(_N, "UDPEndpoint", "Port"),
+            type = "integer",
+            name = "Port",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.PingBeacon = schema.new({
+    id = id.from(_N, "PingBeacon"),
+    type = "structure",
+    members = {
+        UDPEndpoint = schema.new({
+            id = id.from(_N, "PingBeacon", "UDPEndpoint"),
+            type = "structure",
+            name = "UDPEndpoint",
+            target_id = id.from(_N, "UDPEndpoint"),
+            target = M.UDPEndpoint,
+        }),
+    },
+})
+
+M.LocationModel = schema.new({
+    id = id.from(_N, "LocationModel"),
+    type = "structure",
+    members = {
+        LocationName = schema.new({
+            id = id.from(_N, "LocationModel", "LocationName"),
+            type = "string",
+            name = "LocationName",
+            target_id = prelude.String.id,
+        }),
+        LocationArn = schema.new({
+            id = id.from(_N, "LocationModel", "LocationArn"),
+            type = "string",
+            name = "LocationArn",
+            target_id = prelude.String.id,
+        }),
+        PingBeacon = schema.new({
+            id = id.from(_N, "LocationModel", "PingBeacon"),
+            type = "structure",
+            name = "PingBeacon",
+            target_id = id.from(_N, "PingBeacon"),
+            target = M.PingBeacon,
+        }),
+    },
+})
+
+M.CreateLocationOutput = schema.new({
+    id = id.from(_N, "CreateLocationOutput"),
+    type = "structure",
+    members = {
+        Location = schema.new({
+            id = id.from(_N, "CreateLocationOutput", "Location"),
+            type = "structure",
+            name = "Location",
+            target_id = id.from(_N, "LocationModel"),
+            target = M.LocationModel,
+        }),
+    },
+})
+
+M.CreateMatchmakingConfigurationInput = schema.new({
+    id = id.from(_N, "CreateMatchmakingConfigurationInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateMatchmakingConfigurationInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateMatchmakingConfigurationInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        GameSessionQueueArns = schema.new({
+            id = id.from(_N, "CreateMatchmakingConfigurationInput", "GameSessionQueueArns"),
+            type = "list",
+            name = "GameSessionQueueArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        RequestTimeoutSeconds = schema.new({
+            id = id.from(_N, "CreateMatchmakingConfigurationInput", "RequestTimeoutSeconds"),
+            type = "integer",
+            name = "RequestTimeoutSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AcceptanceTimeoutSeconds = schema.new({
+            id = id.from(_N, "CreateMatchmakingConfigurationInput", "AcceptanceTimeoutSeconds"),
+            type = "integer",
+            name = "AcceptanceTimeoutSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        AcceptanceRequired = schema.new({
+            id = id.from(_N, "CreateMatchmakingConfigurationInput", "AcceptanceRequired"),
+            type = "boolean",
+            name = "AcceptanceRequired",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RuleSetName = schema.new({
+            id = id.from(_N, "CreateMatchmakingConfigurationInput", "RuleSetName"),
+            type = "string",
+            name = "RuleSetName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NotificationTarget = schema.new({
+            id = id.from(_N, "CreateMatchmakingConfigurationInput", "NotificationTarget"),
+            type = "string",
+            name = "NotificationTarget",
+            target_id = prelude.String.id,
+        }),
+        AdditionalPlayerCount = schema.new({
+            id = id.from(_N, "CreateMatchmakingConfigurationInput", "AdditionalPlayerCount"),
+            type = "integer",
+            name = "AdditionalPlayerCount",
+            target_id = prelude.Integer.id,
+        }),
+        CustomEventData = schema.new({
+            id = id.from(_N, "CreateMatchmakingConfigurationInput", "CustomEventData"),
+            type = "string",
+            name = "CustomEventData",
+            target_id = prelude.String.id,
+        }),
+        GameProperties = schema.new({
+            id = id.from(_N, "CreateMatchmakingConfigurationInput", "GameProperties"),
+            type = "list",
+            name = "GameProperties",
+            target_id = prelude.Document.id,
+            list_member = M.GameProperty,
+        }),
+        GameSessionData = schema.new({
+            id = id.from(_N, "CreateMatchmakingConfigurationInput", "GameSessionData"),
+            type = "string",
+            name = "GameSessionData",
+            target_id = prelude.String.id,
+        }),
+        BackfillMode = schema.new({
+            id = id.from(_N, "CreateMatchmakingConfigurationInput", "BackfillMode"),
+            type = "string",
+            name = "BackfillMode",
+            target_id = prelude.String.id,
+        }),
+        FlexMatchMode = schema.new({
+            id = id.from(_N, "CreateMatchmakingConfigurationInput", "FlexMatchMode"),
+            type = "string",
+            name = "FlexMatchMode",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateMatchmakingConfigurationInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.MatchmakingConfiguration = schema.new({
+    id = id.from(_N, "MatchmakingConfiguration"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "MatchmakingConfiguration", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        ConfigurationArn = schema.new({
+            id = id.from(_N, "MatchmakingConfiguration", "ConfigurationArn"),
+            type = "string",
+            name = "ConfigurationArn",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "MatchmakingConfiguration", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        GameSessionQueueArns = schema.new({
+            id = id.from(_N, "MatchmakingConfiguration", "GameSessionQueueArns"),
+            type = "list",
+            name = "GameSessionQueueArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        RequestTimeoutSeconds = schema.new({
+            id = id.from(_N, "MatchmakingConfiguration", "RequestTimeoutSeconds"),
+            type = "integer",
+            name = "RequestTimeoutSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        AcceptanceTimeoutSeconds = schema.new({
+            id = id.from(_N, "MatchmakingConfiguration", "AcceptanceTimeoutSeconds"),
+            type = "integer",
+            name = "AcceptanceTimeoutSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        AcceptanceRequired = schema.new({
+            id = id.from(_N, "MatchmakingConfiguration", "AcceptanceRequired"),
+            type = "boolean",
+            name = "AcceptanceRequired",
+            target_id = prelude.Boolean.id,
+        }),
+        RuleSetName = schema.new({
+            id = id.from(_N, "MatchmakingConfiguration", "RuleSetName"),
+            type = "string",
+            name = "RuleSetName",
+            target_id = prelude.String.id,
+        }),
+        RuleSetArn = schema.new({
+            id = id.from(_N, "MatchmakingConfiguration", "RuleSetArn"),
+            type = "string",
+            name = "RuleSetArn",
+            target_id = prelude.String.id,
+        }),
+        NotificationTarget = schema.new({
+            id = id.from(_N, "MatchmakingConfiguration", "NotificationTarget"),
+            type = "string",
+            name = "NotificationTarget",
+            target_id = prelude.String.id,
+        }),
+        AdditionalPlayerCount = schema.new({
+            id = id.from(_N, "MatchmakingConfiguration", "AdditionalPlayerCount"),
+            type = "integer",
+            name = "AdditionalPlayerCount",
+            target_id = prelude.Integer.id,
+        }),
+        CustomEventData = schema.new({
+            id = id.from(_N, "MatchmakingConfiguration", "CustomEventData"),
+            type = "string",
+            name = "CustomEventData",
+            target_id = prelude.String.id,
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "MatchmakingConfiguration", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        GameProperties = schema.new({
+            id = id.from(_N, "MatchmakingConfiguration", "GameProperties"),
+            type = "list",
+            name = "GameProperties",
+            target_id = prelude.Document.id,
+            list_member = M.GameProperty,
+        }),
+        GameSessionData = schema.new({
+            id = id.from(_N, "MatchmakingConfiguration", "GameSessionData"),
+            type = "string",
+            name = "GameSessionData",
+            target_id = prelude.String.id,
+        }),
+        BackfillMode = schema.new({
+            id = id.from(_N, "MatchmakingConfiguration", "BackfillMode"),
+            type = "string",
+            name = "BackfillMode",
+            target_id = prelude.String.id,
+        }),
+        FlexMatchMode = schema.new({
+            id = id.from(_N, "MatchmakingConfiguration", "FlexMatchMode"),
+            type = "string",
+            name = "FlexMatchMode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateMatchmakingConfigurationOutput = schema.new({
+    id = id.from(_N, "CreateMatchmakingConfigurationOutput"),
+    type = "structure",
+    members = {
+        Configuration = schema.new({
+            id = id.from(_N, "CreateMatchmakingConfigurationOutput", "Configuration"),
+            type = "structure",
+            name = "Configuration",
+            target_id = id.from(_N, "MatchmakingConfiguration"),
+            target = M.MatchmakingConfiguration,
+        }),
+    },
+})
+
+M.CreateMatchmakingRuleSetInput = schema.new({
+    id = id.from(_N, "CreateMatchmakingRuleSetInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateMatchmakingRuleSetInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RuleSetBody = schema.new({
+            id = id.from(_N, "CreateMatchmakingRuleSetInput", "RuleSetBody"),
+            type = "string",
+            name = "RuleSetBody",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateMatchmakingRuleSetInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.MatchmakingRuleSet = schema.new({
+    id = id.from(_N, "MatchmakingRuleSet"),
+    type = "structure",
+    members = {
+        RuleSetName = schema.new({
+            id = id.from(_N, "MatchmakingRuleSet", "RuleSetName"),
+            type = "string",
+            name = "RuleSetName",
+            target_id = prelude.String.id,
+        }),
+        RuleSetArn = schema.new({
+            id = id.from(_N, "MatchmakingRuleSet", "RuleSetArn"),
+            type = "string",
+            name = "RuleSetArn",
+            target_id = prelude.String.id,
+        }),
+        RuleSetBody = schema.new({
+            id = id.from(_N, "MatchmakingRuleSet", "RuleSetBody"),
+            type = "string",
+            name = "RuleSetBody",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "MatchmakingRuleSet", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.CreateMatchmakingRuleSetOutput = schema.new({
+    id = id.from(_N, "CreateMatchmakingRuleSetOutput"),
+    type = "structure",
+    members = {
+        RuleSet = schema.new({
+            id = id.from(_N, "CreateMatchmakingRuleSetOutput", "RuleSet"),
+            type = "structure",
+            name = "RuleSet",
+            target_id = id.from(_N, "MatchmakingRuleSet"),
+            target = M.MatchmakingRuleSet,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreatePlayerSessionInput = schema.new({
+    id = id.from(_N, "CreatePlayerSessionInput"),
+    type = "structure",
+    members = {
+        GameSessionId = schema.new({
+            id = id.from(_N, "CreatePlayerSessionInput", "GameSessionId"),
+            type = "string",
+            name = "GameSessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PlayerId = schema.new({
+            id = id.from(_N, "CreatePlayerSessionInput", "PlayerId"),
+            type = "string",
+            name = "PlayerId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PlayerData = schema.new({
+            id = id.from(_N, "CreatePlayerSessionInput", "PlayerData"),
+            type = "string",
+            name = "PlayerData",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PlayerSession = schema.new({
+    id = id.from(_N, "PlayerSession"),
+    type = "structure",
+    members = {
+        PlayerSessionId = schema.new({
+            id = id.from(_N, "PlayerSession", "PlayerSessionId"),
+            type = "string",
+            name = "PlayerSessionId",
+            target_id = prelude.String.id,
+        }),
+        PlayerId = schema.new({
+            id = id.from(_N, "PlayerSession", "PlayerId"),
+            type = "string",
+            name = "PlayerId",
+            target_id = prelude.String.id,
+        }),
+        GameSessionId = schema.new({
+            id = id.from(_N, "PlayerSession", "GameSessionId"),
+            type = "string",
+            name = "GameSessionId",
+            target_id = prelude.String.id,
+        }),
+        FleetId = schema.new({
+            id = id.from(_N, "PlayerSession", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        FleetArn = schema.new({
+            id = id.from(_N, "PlayerSession", "FleetArn"),
+            type = "string",
+            name = "FleetArn",
+            target_id = prelude.String.id,
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "PlayerSession", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        TerminationTime = schema.new({
+            id = id.from(_N, "PlayerSession", "TerminationTime"),
+            type = "timestamp",
+            name = "TerminationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "PlayerSession", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        IpAddress = schema.new({
+            id = id.from(_N, "PlayerSession", "IpAddress"),
+            type = "string",
+            name = "IpAddress",
+            target_id = prelude.String.id,
+        }),
+        DnsName = schema.new({
+            id = id.from(_N, "PlayerSession", "DnsName"),
+            type = "string",
+            name = "DnsName",
+            target_id = prelude.String.id,
+        }),
+        Port = schema.new({
+            id = id.from(_N, "PlayerSession", "Port"),
+            type = "integer",
+            name = "Port",
+            target_id = prelude.Integer.id,
+        }),
+        PlayerData = schema.new({
+            id = id.from(_N, "PlayerSession", "PlayerData"),
+            type = "string",
+            name = "PlayerData",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreatePlayerSessionOutput = schema.new({
+    id = id.from(_N, "CreatePlayerSessionOutput"),
+    type = "structure",
+    members = {
+        PlayerSession = schema.new({
+            id = id.from(_N, "CreatePlayerSessionOutput", "PlayerSession"),
+            type = "structure",
+            name = "PlayerSession",
+            target_id = id.from(_N, "PlayerSession"),
+            target = M.PlayerSession,
+        }),
+    },
+})
+
+M.GameSessionFullException = schema.new({
+    id = id.from(_N, "GameSessionFullException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "GameSessionFullException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidGameSessionStatusException = schema.new({
+    id = id.from(_N, "InvalidGameSessionStatusException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InvalidGameSessionStatusException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreatePlayerSessionsInput = schema.new({
+    id = id.from(_N, "CreatePlayerSessionsInput"),
+    type = "structure",
+    members = {
+        GameSessionId = schema.new({
+            id = id.from(_N, "CreatePlayerSessionsInput", "GameSessionId"),
+            type = "string",
+            name = "GameSessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PlayerIds = schema.new({
+            id = id.from(_N, "CreatePlayerSessionsInput", "PlayerIds"),
+            type = "list",
+            name = "PlayerIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PlayerDataMap = schema.new({
+            id = id.from(_N, "CreatePlayerSessionsInput", "PlayerDataMap"),
+            type = "map",
+            name = "PlayerDataMap",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreatePlayerSessionsOutput = schema.new({
+    id = id.from(_N, "CreatePlayerSessionsOutput"),
+    type = "structure",
+    members = {
+        PlayerSessions = schema.new({
+            id = id.from(_N, "CreatePlayerSessionsOutput", "PlayerSessions"),
+            type = "list",
+            name = "PlayerSessions",
+            target_id = prelude.Document.id,
+            list_member = M.PlayerSession,
+        }),
+    },
+})
+
+M.CreateScriptInput = schema.new({
+    id = id.from(_N, "CreateScriptInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateScriptInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Version = schema.new({
+            id = id.from(_N, "CreateScriptInput", "Version"),
+            type = "string",
+            name = "Version",
+            target_id = prelude.String.id,
+        }),
+        StorageLocation = schema.new({
+            id = id.from(_N, "CreateScriptInput", "StorageLocation"),
+            type = "structure",
+            name = "StorageLocation",
+            target_id = id.from(_N, "S3Location"),
+            target = M.S3Location,
+        }),
+        ZipFile = schema.new({
+            id = id.from(_N, "CreateScriptInput", "ZipFile"),
+            type = "blob",
+            name = "ZipFile",
+            target_id = prelude.Blob.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateScriptInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        NodeJsVersion = schema.new({
+            id = id.from(_N, "CreateScriptInput", "NodeJsVersion"),
+            type = "string",
+            name = "NodeJsVersion",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Script = schema.new({
+    id = id.from(_N, "Script"),
+    type = "structure",
+    members = {
+        ScriptId = schema.new({
+            id = id.from(_N, "Script", "ScriptId"),
+            type = "string",
+            name = "ScriptId",
+            target_id = prelude.String.id,
+        }),
+        ScriptArn = schema.new({
+            id = id.from(_N, "Script", "ScriptArn"),
+            type = "string",
+            name = "ScriptArn",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "Script", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Version = schema.new({
+            id = id.from(_N, "Script", "Version"),
+            type = "string",
+            name = "Version",
+            target_id = prelude.String.id,
+        }),
+        SizeOnDisk = schema.new({
+            id = id.from(_N, "Script", "SizeOnDisk"),
+            type = "long",
+            name = "SizeOnDisk",
+            target_id = prelude.Long.id,
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "Script", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        StorageLocation = schema.new({
+            id = id.from(_N, "Script", "StorageLocation"),
+            type = "structure",
+            name = "StorageLocation",
+            target_id = id.from(_N, "S3Location"),
+            target = M.S3Location,
+        }),
+        NodeJsVersion = schema.new({
+            id = id.from(_N, "Script", "NodeJsVersion"),
+            type = "string",
+            name = "NodeJsVersion",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateScriptOutput = schema.new({
+    id = id.from(_N, "CreateScriptOutput"),
+    type = "structure",
+    members = {
+        Script = schema.new({
+            id = id.from(_N, "CreateScriptOutput", "Script"),
+            type = "structure",
+            name = "Script",
+            target_id = id.from(_N, "Script"),
+            target = M.Script,
+        }),
+    },
+})
+
+M.CreateVpcPeeringAuthorizationInput = schema.new({
+    id = id.from(_N, "CreateVpcPeeringAuthorizationInput"),
+    type = "structure",
+    members = {
+        GameLiftAwsAccountId = schema.new({
+            id = id.from(_N, "CreateVpcPeeringAuthorizationInput", "GameLiftAwsAccountId"),
+            type = "string",
+            name = "GameLiftAwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PeerVpcId = schema.new({
+            id = id.from(_N, "CreateVpcPeeringAuthorizationInput", "PeerVpcId"),
+            type = "string",
+            name = "PeerVpcId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.VpcPeeringAuthorization = schema.new({
+    id = id.from(_N, "VpcPeeringAuthorization"),
+    type = "structure",
+    members = {
+        GameLiftAwsAccountId = schema.new({
+            id = id.from(_N, "VpcPeeringAuthorization", "GameLiftAwsAccountId"),
+            type = "string",
+            name = "GameLiftAwsAccountId",
+            target_id = prelude.String.id,
+        }),
+        PeerVpcAwsAccountId = schema.new({
+            id = id.from(_N, "VpcPeeringAuthorization", "PeerVpcAwsAccountId"),
+            type = "string",
+            name = "PeerVpcAwsAccountId",
+            target_id = prelude.String.id,
+        }),
+        PeerVpcId = schema.new({
+            id = id.from(_N, "VpcPeeringAuthorization", "PeerVpcId"),
+            type = "string",
+            name = "PeerVpcId",
+            target_id = prelude.String.id,
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "VpcPeeringAuthorization", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        ExpirationTime = schema.new({
+            id = id.from(_N, "VpcPeeringAuthorization", "ExpirationTime"),
+            type = "timestamp",
+            name = "ExpirationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.CreateVpcPeeringAuthorizationOutput = schema.new({
+    id = id.from(_N, "CreateVpcPeeringAuthorizationOutput"),
+    type = "structure",
+    members = {
+        VpcPeeringAuthorization = schema.new({
+            id = id.from(_N, "CreateVpcPeeringAuthorizationOutput", "VpcPeeringAuthorization"),
+            type = "structure",
+            name = "VpcPeeringAuthorization",
+            target_id = id.from(_N, "VpcPeeringAuthorization"),
+            target = M.VpcPeeringAuthorization,
+        }),
+    },
+})
+
+M.CreateVpcPeeringConnectionInput = schema.new({
+    id = id.from(_N, "CreateVpcPeeringConnectionInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "CreateVpcPeeringConnectionInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PeerVpcAwsAccountId = schema.new({
+            id = id.from(_N, "CreateVpcPeeringConnectionInput", "PeerVpcAwsAccountId"),
+            type = "string",
+            name = "PeerVpcAwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PeerVpcId = schema.new({
+            id = id.from(_N, "CreateVpcPeeringConnectionInput", "PeerVpcId"),
+            type = "string",
+            name = "PeerVpcId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateVpcPeeringConnectionOutput = schema.new({
+    id = id.from(_N, "CreateVpcPeeringConnectionOutput"),
+    type = "structure",
+})
+
+M.DeleteAliasInput = schema.new({
+    id = id.from(_N, "DeleteAliasInput"),
+    type = "structure",
+    members = {
+        AliasId = schema.new({
+            id = id.from(_N, "DeleteAliasInput", "AliasId"),
+            type = "string",
+            name = "AliasId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAliasOutput = schema.new({
+    id = id.from(_N, "DeleteAliasOutput"),
+    type = "structure",
+})
+
+M.DeleteBuildInput = schema.new({
+    id = id.from(_N, "DeleteBuildInput"),
+    type = "structure",
+    members = {
+        BuildId = schema.new({
+            id = id.from(_N, "DeleteBuildInput", "BuildId"),
+            type = "string",
+            name = "BuildId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteBuildOutput = schema.new({
+    id = id.from(_N, "DeleteBuildOutput"),
+    type = "structure",
+})
+
+M.DeleteContainerFleetInput = schema.new({
+    id = id.from(_N, "DeleteContainerFleetInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "DeleteContainerFleetInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteContainerFleetOutput = schema.new({
+    id = id.from(_N, "DeleteContainerFleetOutput"),
+    type = "structure",
+})
+
+M.DeleteContainerGroupDefinitionInput = schema.new({
+    id = id.from(_N, "DeleteContainerGroupDefinitionInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "DeleteContainerGroupDefinitionInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        VersionNumber = schema.new({
+            id = id.from(_N, "DeleteContainerGroupDefinitionInput", "VersionNumber"),
+            type = "integer",
+            name = "VersionNumber",
+            target_id = prelude.Integer.id,
+        }),
+        VersionCountToRetain = schema.new({
+            id = id.from(_N, "DeleteContainerGroupDefinitionInput", "VersionCountToRetain"),
+            type = "integer",
+            name = "VersionCountToRetain",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.DeleteContainerGroupDefinitionOutput = schema.new({
+    id = id.from(_N, "DeleteContainerGroupDefinitionOutput"),
+    type = "structure",
+})
+
+M.DeleteFleetInput = schema.new({
+    id = id.from(_N, "DeleteFleetInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "DeleteFleetInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteFleetOutput = schema.new({
+    id = id.from(_N, "DeleteFleetOutput"),
+    type = "structure",
+})
+
+M.DeleteFleetLocationsInput = schema.new({
+    id = id.from(_N, "DeleteFleetLocationsInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "DeleteFleetLocationsInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Locations = schema.new({
+            id = id.from(_N, "DeleteFleetLocationsInput", "Locations"),
+            type = "list",
+            name = "Locations",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteFleetLocationsOutput = schema.new({
+    id = id.from(_N, "DeleteFleetLocationsOutput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "DeleteFleetLocationsOutput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        FleetArn = schema.new({
+            id = id.from(_N, "DeleteFleetLocationsOutput", "FleetArn"),
+            type = "string",
+            name = "FleetArn",
+            target_id = prelude.String.id,
+        }),
+        LocationStates = schema.new({
+            id = id.from(_N, "DeleteFleetLocationsOutput", "LocationStates"),
+            type = "list",
+            name = "LocationStates",
+            target_id = prelude.Document.id,
+            list_member = M.LocationState,
+        }),
+    },
+})
+
+M.DeleteGameServerGroupInput = schema.new({
+    id = id.from(_N, "DeleteGameServerGroupInput"),
+    type = "structure",
+    members = {
+        GameServerGroupName = schema.new({
+            id = id.from(_N, "DeleteGameServerGroupInput", "GameServerGroupName"),
+            type = "string",
+            name = "GameServerGroupName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DeleteOption = schema.new({
+            id = id.from(_N, "DeleteGameServerGroupInput", "DeleteOption"),
+            type = "string",
+            name = "DeleteOption",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteGameServerGroupOutput = schema.new({
+    id = id.from(_N, "DeleteGameServerGroupOutput"),
+    type = "structure",
+    members = {
+        GameServerGroup = schema.new({
+            id = id.from(_N, "DeleteGameServerGroupOutput", "GameServerGroup"),
+            type = "structure",
+            name = "GameServerGroup",
+            target_id = id.from(_N, "GameServerGroup"),
+            target = M.GameServerGroup,
+        }),
+    },
+})
+
+M.DeleteGameSessionQueueInput = schema.new({
+    id = id.from(_N, "DeleteGameSessionQueueInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "DeleteGameSessionQueueInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteGameSessionQueueOutput = schema.new({
+    id = id.from(_N, "DeleteGameSessionQueueOutput"),
+    type = "structure",
+})
+
+M.DeleteLocationInput = schema.new({
+    id = id.from(_N, "DeleteLocationInput"),
+    type = "structure",
+    members = {
+        LocationName = schema.new({
+            id = id.from(_N, "DeleteLocationInput", "LocationName"),
+            type = "string",
+            name = "LocationName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteLocationOutput = schema.new({
+    id = id.from(_N, "DeleteLocationOutput"),
+    type = "structure",
+})
+
+M.DeleteMatchmakingConfigurationInput = schema.new({
+    id = id.from(_N, "DeleteMatchmakingConfigurationInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "DeleteMatchmakingConfigurationInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteMatchmakingConfigurationOutput = schema.new({
+    id = id.from(_N, "DeleteMatchmakingConfigurationOutput"),
+    type = "structure",
+})
+
+M.DeleteMatchmakingRuleSetInput = schema.new({
+    id = id.from(_N, "DeleteMatchmakingRuleSetInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "DeleteMatchmakingRuleSetInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteMatchmakingRuleSetOutput = schema.new({
+    id = id.from(_N, "DeleteMatchmakingRuleSetOutput"),
+    type = "structure",
+})
+
+M.DeleteScalingPolicyInput = schema.new({
+    id = id.from(_N, "DeleteScalingPolicyInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "DeleteScalingPolicyInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FleetId = schema.new({
+            id = id.from(_N, "DeleteScalingPolicyInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteScalingPolicyOutput = schema.new({
+    id = id.from(_N, "DeleteScalingPolicyOutput"),
+    type = "structure",
+})
+
+M.DeleteScriptInput = schema.new({
+    id = id.from(_N, "DeleteScriptInput"),
+    type = "structure",
+    members = {
+        ScriptId = schema.new({
+            id = id.from(_N, "DeleteScriptInput", "ScriptId"),
+            type = "string",
+            name = "ScriptId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteScriptOutput = schema.new({
+    id = id.from(_N, "DeleteScriptOutput"),
+    type = "structure",
+})
+
+M.DeleteVpcPeeringAuthorizationInput = schema.new({
+    id = id.from(_N, "DeleteVpcPeeringAuthorizationInput"),
+    type = "structure",
+    members = {
+        GameLiftAwsAccountId = schema.new({
+            id = id.from(_N, "DeleteVpcPeeringAuthorizationInput", "GameLiftAwsAccountId"),
+            type = "string",
+            name = "GameLiftAwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PeerVpcId = schema.new({
+            id = id.from(_N, "DeleteVpcPeeringAuthorizationInput", "PeerVpcId"),
+            type = "string",
+            name = "PeerVpcId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteVpcPeeringAuthorizationOutput = schema.new({
+    id = id.from(_N, "DeleteVpcPeeringAuthorizationOutput"),
+    type = "structure",
+})
+
+M.DeleteVpcPeeringConnectionInput = schema.new({
+    id = id.from(_N, "DeleteVpcPeeringConnectionInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "DeleteVpcPeeringConnectionInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        VpcPeeringConnectionId = schema.new({
+            id = id.from(_N, "DeleteVpcPeeringConnectionInput", "VpcPeeringConnectionId"),
+            type = "string",
+            name = "VpcPeeringConnectionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteVpcPeeringConnectionOutput = schema.new({
+    id = id.from(_N, "DeleteVpcPeeringConnectionOutput"),
+    type = "structure",
+})
+
+M.DeploymentConfiguration = schema.new({
+    id = id.from(_N, "DeploymentConfiguration"),
+    type = "structure",
+    members = {
+        ProtectionStrategy = schema.new({
+            id = id.from(_N, "DeploymentConfiguration", "ProtectionStrategy"),
+            type = "string",
+            name = "ProtectionStrategy",
+            target_id = prelude.String.id,
+        }),
+        MinimumHealthyPercentage = schema.new({
+            id = id.from(_N, "DeploymentConfiguration", "MinimumHealthyPercentage"),
+            type = "integer",
+            name = "MinimumHealthyPercentage",
+            target_id = prelude.Integer.id,
+        }),
+        ImpairmentStrategy = schema.new({
+            id = id.from(_N, "DeploymentConfiguration", "ImpairmentStrategy"),
+            type = "string",
+            name = "ImpairmentStrategy",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeregisterComputeInput = schema.new({
+    id = id.from(_N, "DeregisterComputeInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "DeregisterComputeInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ComputeName = schema.new({
+            id = id.from(_N, "DeregisterComputeInput", "ComputeName"),
+            type = "string",
+            name = "ComputeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeregisterComputeOutput = schema.new({
+    id = id.from(_N, "DeregisterComputeOutput"),
+    type = "structure",
+})
+
+M.DeregisterGameServerInput = schema.new({
+    id = id.from(_N, "DeregisterGameServerInput"),
+    type = "structure",
+    members = {
+        GameServerGroupName = schema.new({
+            id = id.from(_N, "DeregisterGameServerInput", "GameServerGroupName"),
+            type = "string",
+            name = "GameServerGroupName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        GameServerId = schema.new({
+            id = id.from(_N, "DeregisterGameServerInput", "GameServerId"),
+            type = "string",
+            name = "GameServerId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeregisterGameServerOutput = schema.new({
+    id = id.from(_N, "DeregisterGameServerOutput"),
+    type = "structure",
+})
+
+M.DescribeAliasInput = schema.new({
+    id = id.from(_N, "DescribeAliasInput"),
+    type = "structure",
+    members = {
+        AliasId = schema.new({
+            id = id.from(_N, "DescribeAliasInput", "AliasId"),
+            type = "string",
+            name = "AliasId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeAliasOutput = schema.new({
+    id = id.from(_N, "DescribeAliasOutput"),
+    type = "structure",
+    members = {
+        Alias = schema.new({
+            id = id.from(_N, "DescribeAliasOutput", "Alias"),
+            type = "structure",
+            name = "Alias",
+            target_id = id.from(_N, "Alias"),
+            target = M.Alias,
+        }),
+    },
+})
+
+M.DescribeBuildInput = schema.new({
+    id = id.from(_N, "DescribeBuildInput"),
+    type = "structure",
+    members = {
+        BuildId = schema.new({
+            id = id.from(_N, "DescribeBuildInput", "BuildId"),
+            type = "string",
+            name = "BuildId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeBuildOutput = schema.new({
+    id = id.from(_N, "DescribeBuildOutput"),
+    type = "structure",
+    members = {
+        Build = schema.new({
+            id = id.from(_N, "DescribeBuildOutput", "Build"),
+            type = "structure",
+            name = "Build",
+            target_id = id.from(_N, "Build"),
+            target = M.Build,
+        }),
+    },
+})
+
+M.DescribeComputeInput = schema.new({
+    id = id.from(_N, "DescribeComputeInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "DescribeComputeInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ComputeName = schema.new({
+            id = id.from(_N, "DescribeComputeInput", "ComputeName"),
+            type = "string",
+            name = "ComputeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeComputeOutput = schema.new({
+    id = id.from(_N, "DescribeComputeOutput"),
+    type = "structure",
+    members = {
+        Compute = schema.new({
+            id = id.from(_N, "DescribeComputeOutput", "Compute"),
+            type = "structure",
+            name = "Compute",
+            target_id = id.from(_N, "Compute"),
+            target = M.Compute,
+        }),
+    },
+})
+
+M.DescribeContainerFleetInput = schema.new({
+    id = id.from(_N, "DescribeContainerFleetInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "DescribeContainerFleetInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeContainerFleetOutput = schema.new({
+    id = id.from(_N, "DescribeContainerFleetOutput"),
+    type = "structure",
+    members = {
+        ContainerFleet = schema.new({
+            id = id.from(_N, "DescribeContainerFleetOutput", "ContainerFleet"),
+            type = "structure",
+            name = "ContainerFleet",
+            target_id = id.from(_N, "ContainerFleet"),
+            target = M.ContainerFleet,
+        }),
+    },
+})
+
+M.DescribeContainerGroupDefinitionInput = schema.new({
+    id = id.from(_N, "DescribeContainerGroupDefinitionInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "DescribeContainerGroupDefinitionInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        VersionNumber = schema.new({
+            id = id.from(_N, "DescribeContainerGroupDefinitionInput", "VersionNumber"),
+            type = "integer",
+            name = "VersionNumber",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.DescribeContainerGroupDefinitionOutput = schema.new({
+    id = id.from(_N, "DescribeContainerGroupDefinitionOutput"),
+    type = "structure",
+    members = {
+        ContainerGroupDefinition = schema.new({
+            id = id.from(_N, "DescribeContainerGroupDefinitionOutput", "ContainerGroupDefinition"),
+            type = "structure",
+            name = "ContainerGroupDefinition",
+            target_id = id.from(_N, "ContainerGroupDefinition"),
+            target = M.ContainerGroupDefinition,
+        }),
+    },
+})
+
+M.DescribeContainerGroupPortMappingsInput = schema.new({
+    id = id.from(_N, "DescribeContainerGroupPortMappingsInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "DescribeContainerGroupPortMappingsInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ContainerGroupType = schema.new({
+            id = id.from(_N, "DescribeContainerGroupPortMappingsInput", "ContainerGroupType"),
+            type = "string",
+            name = "ContainerGroupType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ComputeName = schema.new({
+            id = id.from(_N, "DescribeContainerGroupPortMappingsInput", "ComputeName"),
+            type = "string",
+            name = "ComputeName",
+            target_id = prelude.String.id,
+        }),
+        InstanceId = schema.new({
+            id = id.from(_N, "DescribeContainerGroupPortMappingsInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+        }),
+        ContainerName = schema.new({
+            id = id.from(_N, "DescribeContainerGroupPortMappingsInput", "ContainerName"),
+            type = "string",
+            name = "ContainerName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeContainerGroupPortMappingsOutput = schema.new({
+    id = id.from(_N, "DescribeContainerGroupPortMappingsOutput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "DescribeContainerGroupPortMappingsOutput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        Location = schema.new({
+            id = id.from(_N, "DescribeContainerGroupPortMappingsOutput", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+        ContainerGroupDefinitionArn = schema.new({
+            id = id.from(_N, "DescribeContainerGroupPortMappingsOutput", "ContainerGroupDefinitionArn"),
+            type = "string",
+            name = "ContainerGroupDefinitionArn",
+            target_id = prelude.String.id,
+        }),
+        ContainerGroupType = schema.new({
+            id = id.from(_N, "DescribeContainerGroupPortMappingsOutput", "ContainerGroupType"),
+            type = "string",
+            name = "ContainerGroupType",
+            target_id = prelude.String.id,
+        }),
+        ComputeName = schema.new({
+            id = id.from(_N, "DescribeContainerGroupPortMappingsOutput", "ComputeName"),
+            type = "string",
+            name = "ComputeName",
+            target_id = prelude.String.id,
+        }),
+        InstanceId = schema.new({
+            id = id.from(_N, "DescribeContainerGroupPortMappingsOutput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+        }),
+        ContainerGroupPortMappings = schema.new({
+            id = id.from(_N, "DescribeContainerGroupPortMappingsOutput", "ContainerGroupPortMappings"),
+            type = "list",
+            name = "ContainerGroupPortMappings",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerGroupPortMapping,
+        }),
+    },
+})
+
+M.DescribeEC2InstanceLimitsInput = schema.new({
+    id = id.from(_N, "DescribeEC2InstanceLimitsInput"),
+    type = "structure",
+    members = {
+        EC2InstanceType = schema.new({
+            id = id.from(_N, "DescribeEC2InstanceLimitsInput", "EC2InstanceType"),
+            type = "string",
+            name = "EC2InstanceType",
+            target_id = prelude.String.id,
+        }),
+        Location = schema.new({
+            id = id.from(_N, "DescribeEC2InstanceLimitsInput", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EC2InstanceLimit = schema.new({
+    id = id.from(_N, "EC2InstanceLimit"),
+    type = "structure",
+    members = {
+        EC2InstanceType = schema.new({
+            id = id.from(_N, "EC2InstanceLimit", "EC2InstanceType"),
+            type = "string",
+            name = "EC2InstanceType",
+            target_id = prelude.String.id,
+        }),
+        CurrentInstances = schema.new({
+            id = id.from(_N, "EC2InstanceLimit", "CurrentInstances"),
+            type = "integer",
+            name = "CurrentInstances",
+            target_id = prelude.Integer.id,
+        }),
+        InstanceLimit = schema.new({
+            id = id.from(_N, "EC2InstanceLimit", "InstanceLimit"),
+            type = "integer",
+            name = "InstanceLimit",
+            target_id = prelude.Integer.id,
+        }),
+        Location = schema.new({
+            id = id.from(_N, "EC2InstanceLimit", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeEC2InstanceLimitsOutput = schema.new({
+    id = id.from(_N, "DescribeEC2InstanceLimitsOutput"),
+    type = "structure",
+    members = {
+        EC2InstanceLimits = schema.new({
+            id = id.from(_N, "DescribeEC2InstanceLimitsOutput", "EC2InstanceLimits"),
+            type = "list",
+            name = "EC2InstanceLimits",
+            target_id = prelude.Document.id,
+            list_member = M.EC2InstanceLimit,
+        }),
+    },
+})
+
+M.DescribeFleetAttributesInput = schema.new({
+    id = id.from(_N, "DescribeFleetAttributesInput"),
+    type = "structure",
+    members = {
+        FleetIds = schema.new({
+            id = id.from(_N, "DescribeFleetAttributesInput", "FleetIds"),
+            type = "list",
+            name = "FleetIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "DescribeFleetAttributesInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeFleetAttributesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeFleetAttributesOutput = schema.new({
+    id = id.from(_N, "DescribeFleetAttributesOutput"),
+    type = "structure",
+    members = {
+        FleetAttributes = schema.new({
+            id = id.from(_N, "DescribeFleetAttributesOutput", "FleetAttributes"),
+            type = "list",
+            name = "FleetAttributes",
+            target_id = prelude.Document.id,
+            list_member = M.FleetAttributes,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeFleetAttributesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeFleetCapacityInput = schema.new({
+    id = id.from(_N, "DescribeFleetCapacityInput"),
+    type = "structure",
+    members = {
+        FleetIds = schema.new({
+            id = id.from(_N, "DescribeFleetCapacityInput", "FleetIds"),
+            type = "list",
+            name = "FleetIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "DescribeFleetCapacityInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeFleetCapacityInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GameServerContainerGroupCounts = schema.new({
+    id = id.from(_N, "GameServerContainerGroupCounts"),
+    type = "structure",
+    members = {
+        PENDING = schema.new({
+            id = id.from(_N, "GameServerContainerGroupCounts", "PENDING"),
+            type = "integer",
+            name = "PENDING",
+            target_id = prelude.Integer.id,
+        }),
+        ACTIVE = schema.new({
+            id = id.from(_N, "GameServerContainerGroupCounts", "ACTIVE"),
+            type = "integer",
+            name = "ACTIVE",
+            target_id = prelude.Integer.id,
+        }),
+        IDLE = schema.new({
+            id = id.from(_N, "GameServerContainerGroupCounts", "IDLE"),
+            type = "integer",
+            name = "IDLE",
+            target_id = prelude.Integer.id,
+        }),
+        TERMINATING = schema.new({
+            id = id.from(_N, "GameServerContainerGroupCounts", "TERMINATING"),
+            type = "integer",
+            name = "TERMINATING",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.EC2InstanceCounts = schema.new({
+    id = id.from(_N, "EC2InstanceCounts"),
+    type = "structure",
+    members = {
+        DESIRED = schema.new({
+            id = id.from(_N, "EC2InstanceCounts", "DESIRED"),
+            type = "integer",
+            name = "DESIRED",
+            target_id = prelude.Integer.id,
+        }),
+        MINIMUM = schema.new({
+            id = id.from(_N, "EC2InstanceCounts", "MINIMUM"),
+            type = "integer",
+            name = "MINIMUM",
+            target_id = prelude.Integer.id,
+        }),
+        MAXIMUM = schema.new({
+            id = id.from(_N, "EC2InstanceCounts", "MAXIMUM"),
+            type = "integer",
+            name = "MAXIMUM",
+            target_id = prelude.Integer.id,
+        }),
+        PENDING = schema.new({
+            id = id.from(_N, "EC2InstanceCounts", "PENDING"),
+            type = "integer",
+            name = "PENDING",
+            target_id = prelude.Integer.id,
+        }),
+        ACTIVE = schema.new({
+            id = id.from(_N, "EC2InstanceCounts", "ACTIVE"),
+            type = "integer",
+            name = "ACTIVE",
+            target_id = prelude.Integer.id,
+        }),
+        IDLE = schema.new({
+            id = id.from(_N, "EC2InstanceCounts", "IDLE"),
+            type = "integer",
+            name = "IDLE",
+            target_id = prelude.Integer.id,
+        }),
+        TERMINATING = schema.new({
+            id = id.from(_N, "EC2InstanceCounts", "TERMINATING"),
+            type = "integer",
+            name = "TERMINATING",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ManagedCapacityConfiguration = schema.new({
+    id = id.from(_N, "ManagedCapacityConfiguration"),
+    type = "structure",
+    members = {
+        ZeroCapacityStrategy = schema.new({
+            id = id.from(_N, "ManagedCapacityConfiguration", "ZeroCapacityStrategy"),
+            type = "string",
+            name = "ZeroCapacityStrategy",
+            target_id = prelude.String.id,
+        }),
+        ScaleInAfterInactivityMinutes = schema.new({
+            id = id.from(_N, "ManagedCapacityConfiguration", "ScaleInAfterInactivityMinutes"),
+            type = "integer",
+            name = "ScaleInAfterInactivityMinutes",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.FleetCapacity = schema.new({
+    id = id.from(_N, "FleetCapacity"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "FleetCapacity", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        FleetArn = schema.new({
+            id = id.from(_N, "FleetCapacity", "FleetArn"),
+            type = "string",
+            name = "FleetArn",
+            target_id = prelude.String.id,
+        }),
+        InstanceType = schema.new({
+            id = id.from(_N, "FleetCapacity", "InstanceType"),
+            type = "string",
+            name = "InstanceType",
+            target_id = prelude.String.id,
+        }),
+        InstanceCounts = schema.new({
+            id = id.from(_N, "FleetCapacity", "InstanceCounts"),
+            type = "structure",
+            name = "InstanceCounts",
+            target_id = id.from(_N, "EC2InstanceCounts"),
+            target = M.EC2InstanceCounts,
+        }),
+        Location = schema.new({
+            id = id.from(_N, "FleetCapacity", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+        GameServerContainerGroupCounts = schema.new({
+            id = id.from(_N, "FleetCapacity", "GameServerContainerGroupCounts"),
+            type = "structure",
+            name = "GameServerContainerGroupCounts",
+            target_id = id.from(_N, "GameServerContainerGroupCounts"),
+            target = M.GameServerContainerGroupCounts,
+        }),
+        ManagedCapacityConfiguration = schema.new({
+            id = id.from(_N, "FleetCapacity", "ManagedCapacityConfiguration"),
+            type = "structure",
+            name = "ManagedCapacityConfiguration",
+            target_id = id.from(_N, "ManagedCapacityConfiguration"),
+            target = M.ManagedCapacityConfiguration,
+        }),
+    },
+})
+
+M.DescribeFleetCapacityOutput = schema.new({
+    id = id.from(_N, "DescribeFleetCapacityOutput"),
+    type = "structure",
+    members = {
+        FleetCapacity = schema.new({
+            id = id.from(_N, "DescribeFleetCapacityOutput", "FleetCapacity"),
+            type = "list",
+            name = "FleetCapacity",
+            target_id = prelude.Document.id,
+            list_member = M.FleetCapacity,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeFleetCapacityOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeFleetDeploymentInput = schema.new({
+    id = id.from(_N, "DescribeFleetDeploymentInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "DescribeFleetDeploymentInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DeploymentId = schema.new({
+            id = id.from(_N, "DescribeFleetDeploymentInput", "DeploymentId"),
+            type = "string",
+            name = "DeploymentId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.FleetDeployment = schema.new({
+    id = id.from(_N, "FleetDeployment"),
+    type = "structure",
+    members = {
+        DeploymentId = schema.new({
+            id = id.from(_N, "FleetDeployment", "DeploymentId"),
+            type = "string",
+            name = "DeploymentId",
+            target_id = prelude.String.id,
+        }),
+        FleetId = schema.new({
+            id = id.from(_N, "FleetDeployment", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        GameServerBinaryArn = schema.new({
+            id = id.from(_N, "FleetDeployment", "GameServerBinaryArn"),
+            type = "string",
+            name = "GameServerBinaryArn",
+            target_id = prelude.String.id,
+        }),
+        RollbackGameServerBinaryArn = schema.new({
+            id = id.from(_N, "FleetDeployment", "RollbackGameServerBinaryArn"),
+            type = "string",
+            name = "RollbackGameServerBinaryArn",
+            target_id = prelude.String.id,
+        }),
+        PerInstanceBinaryArn = schema.new({
+            id = id.from(_N, "FleetDeployment", "PerInstanceBinaryArn"),
+            type = "string",
+            name = "PerInstanceBinaryArn",
+            target_id = prelude.String.id,
+        }),
+        RollbackPerInstanceBinaryArn = schema.new({
+            id = id.from(_N, "FleetDeployment", "RollbackPerInstanceBinaryArn"),
+            type = "string",
+            name = "RollbackPerInstanceBinaryArn",
+            target_id = prelude.String.id,
+        }),
+        DeploymentStatus = schema.new({
+            id = id.from(_N, "FleetDeployment", "DeploymentStatus"),
+            type = "string",
+            name = "DeploymentStatus",
+            target_id = prelude.String.id,
+        }),
+        DeploymentConfiguration = schema.new({
+            id = id.from(_N, "FleetDeployment", "DeploymentConfiguration"),
+            type = "structure",
+            name = "DeploymentConfiguration",
+            target_id = id.from(_N, "DeploymentConfiguration"),
+            target = M.DeploymentConfiguration,
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "FleetDeployment", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.LocationalDeployment = schema.new({
+    id = id.from(_N, "LocationalDeployment"),
+    type = "structure",
+    members = {
+        DeploymentStatus = schema.new({
+            id = id.from(_N, "LocationalDeployment", "DeploymentStatus"),
+            type = "string",
+            name = "DeploymentStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeFleetDeploymentOutput = schema.new({
+    id = id.from(_N, "DescribeFleetDeploymentOutput"),
+    type = "structure",
+    members = {
+        FleetDeployment = schema.new({
+            id = id.from(_N, "DescribeFleetDeploymentOutput", "FleetDeployment"),
+            type = "structure",
+            name = "FleetDeployment",
+            target_id = id.from(_N, "FleetDeployment"),
+            target = M.FleetDeployment,
+        }),
+        LocationalDeployments = schema.new({
+            id = id.from(_N, "DescribeFleetDeploymentOutput", "LocationalDeployments"),
+            type = "map",
+            name = "LocationalDeployments",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.LocationalDeployment,
+        }),
+    },
+})
+
+M.DescribeFleetEventsInput = schema.new({
+    id = id.from(_N, "DescribeFleetEventsInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "DescribeFleetEventsInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StartTime = schema.new({
+            id = id.from(_N, "DescribeFleetEventsInput", "StartTime"),
+            type = "timestamp",
+            name = "StartTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "DescribeFleetEventsInput", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "DescribeFleetEventsInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeFleetEventsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Event = schema.new({
+    id = id.from(_N, "Event"),
+    type = "structure",
+    members = {
+        EventId = schema.new({
+            id = id.from(_N, "Event", "EventId"),
+            type = "string",
+            name = "EventId",
+            target_id = prelude.String.id,
+        }),
+        ResourceId = schema.new({
+            id = id.from(_N, "Event", "ResourceId"),
+            type = "string",
+            name = "ResourceId",
+            target_id = prelude.String.id,
+        }),
+        EventCode = schema.new({
+            id = id.from(_N, "Event", "EventCode"),
+            type = "string",
+            name = "EventCode",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "Event", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        EventTime = schema.new({
+            id = id.from(_N, "Event", "EventTime"),
+            type = "timestamp",
+            name = "EventTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        PreSignedLogUrl = schema.new({
+            id = id.from(_N, "Event", "PreSignedLogUrl"),
+            type = "string",
+            name = "PreSignedLogUrl",
+            target_id = prelude.String.id,
+        }),
+        Count = schema.new({
+            id = id.from(_N, "Event", "Count"),
+            type = "long",
+            name = "Count",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.DescribeFleetEventsOutput = schema.new({
+    id = id.from(_N, "DescribeFleetEventsOutput"),
+    type = "structure",
+    members = {
+        Events = schema.new({
+            id = id.from(_N, "DescribeFleetEventsOutput", "Events"),
+            type = "list",
+            name = "Events",
+            target_id = prelude.Document.id,
+            list_member = M.Event,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeFleetEventsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeFleetLocationAttributesInput = schema.new({
+    id = id.from(_N, "DescribeFleetLocationAttributesInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "DescribeFleetLocationAttributesInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Locations = schema.new({
+            id = id.from(_N, "DescribeFleetLocationAttributesInput", "Locations"),
+            type = "list",
+            name = "Locations",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "DescribeFleetLocationAttributesInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeFleetLocationAttributesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.LocationAttributes = schema.new({
+    id = id.from(_N, "LocationAttributes"),
+    type = "structure",
+    members = {
+        LocationState = schema.new({
+            id = id.from(_N, "LocationAttributes", "LocationState"),
+            type = "structure",
+            name = "LocationState",
+            target_id = id.from(_N, "LocationState"),
+            target = M.LocationState,
+        }),
+        StoppedActions = schema.new({
+            id = id.from(_N, "LocationAttributes", "StoppedActions"),
+            type = "list",
+            name = "StoppedActions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        UpdateStatus = schema.new({
+            id = id.from(_N, "LocationAttributes", "UpdateStatus"),
+            type = "string",
+            name = "UpdateStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeFleetLocationAttributesOutput = schema.new({
+    id = id.from(_N, "DescribeFleetLocationAttributesOutput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "DescribeFleetLocationAttributesOutput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        FleetArn = schema.new({
+            id = id.from(_N, "DescribeFleetLocationAttributesOutput", "FleetArn"),
+            type = "string",
+            name = "FleetArn",
+            target_id = prelude.String.id,
+        }),
+        LocationAttributes = schema.new({
+            id = id.from(_N, "DescribeFleetLocationAttributesOutput", "LocationAttributes"),
+            type = "list",
+            name = "LocationAttributes",
+            target_id = prelude.Document.id,
+            list_member = M.LocationAttributes,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeFleetLocationAttributesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeFleetLocationCapacityInput = schema.new({
+    id = id.from(_N, "DescribeFleetLocationCapacityInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "DescribeFleetLocationCapacityInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Location = schema.new({
+            id = id.from(_N, "DescribeFleetLocationCapacityInput", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeFleetLocationCapacityOutput = schema.new({
+    id = id.from(_N, "DescribeFleetLocationCapacityOutput"),
+    type = "structure",
+    members = {
+        FleetCapacity = schema.new({
+            id = id.from(_N, "DescribeFleetLocationCapacityOutput", "FleetCapacity"),
+            type = "structure",
+            name = "FleetCapacity",
+            target_id = id.from(_N, "FleetCapacity"),
+            target = M.FleetCapacity,
+        }),
+    },
+})
+
+M.DescribeFleetLocationUtilizationInput = schema.new({
+    id = id.from(_N, "DescribeFleetLocationUtilizationInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "DescribeFleetLocationUtilizationInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Location = schema.new({
+            id = id.from(_N, "DescribeFleetLocationUtilizationInput", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.FleetUtilization = schema.new({
+    id = id.from(_N, "FleetUtilization"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "FleetUtilization", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        FleetArn = schema.new({
+            id = id.from(_N, "FleetUtilization", "FleetArn"),
+            type = "string",
+            name = "FleetArn",
+            target_id = prelude.String.id,
+        }),
+        ActiveServerProcessCount = schema.new({
+            id = id.from(_N, "FleetUtilization", "ActiveServerProcessCount"),
+            type = "integer",
+            name = "ActiveServerProcessCount",
+            target_id = prelude.Integer.id,
+        }),
+        ActiveGameSessionCount = schema.new({
+            id = id.from(_N, "FleetUtilization", "ActiveGameSessionCount"),
+            type = "integer",
+            name = "ActiveGameSessionCount",
+            target_id = prelude.Integer.id,
+        }),
+        CurrentPlayerSessionCount = schema.new({
+            id = id.from(_N, "FleetUtilization", "CurrentPlayerSessionCount"),
+            type = "integer",
+            name = "CurrentPlayerSessionCount",
+            target_id = prelude.Integer.id,
+        }),
+        MaximumPlayerSessionCount = schema.new({
+            id = id.from(_N, "FleetUtilization", "MaximumPlayerSessionCount"),
+            type = "integer",
+            name = "MaximumPlayerSessionCount",
+            target_id = prelude.Integer.id,
+        }),
+        Location = schema.new({
+            id = id.from(_N, "FleetUtilization", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeFleetLocationUtilizationOutput = schema.new({
+    id = id.from(_N, "DescribeFleetLocationUtilizationOutput"),
+    type = "structure",
+    members = {
+        FleetUtilization = schema.new({
+            id = id.from(_N, "DescribeFleetLocationUtilizationOutput", "FleetUtilization"),
+            type = "structure",
+            name = "FleetUtilization",
+            target_id = id.from(_N, "FleetUtilization"),
+            target = M.FleetUtilization,
+        }),
+    },
+})
+
+M.DescribeFleetPortSettingsInput = schema.new({
+    id = id.from(_N, "DescribeFleetPortSettingsInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "DescribeFleetPortSettingsInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Location = schema.new({
+            id = id.from(_N, "DescribeFleetPortSettingsInput", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeFleetPortSettingsOutput = schema.new({
+    id = id.from(_N, "DescribeFleetPortSettingsOutput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "DescribeFleetPortSettingsOutput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        FleetArn = schema.new({
+            id = id.from(_N, "DescribeFleetPortSettingsOutput", "FleetArn"),
+            type = "string",
+            name = "FleetArn",
+            target_id = prelude.String.id,
+        }),
+        InboundPermissions = schema.new({
+            id = id.from(_N, "DescribeFleetPortSettingsOutput", "InboundPermissions"),
+            type = "list",
+            name = "InboundPermissions",
+            target_id = prelude.Document.id,
+            list_member = M.IpPermission,
+        }),
+        UpdateStatus = schema.new({
+            id = id.from(_N, "DescribeFleetPortSettingsOutput", "UpdateStatus"),
+            type = "string",
+            name = "UpdateStatus",
+            target_id = prelude.String.id,
+        }),
+        Location = schema.new({
+            id = id.from(_N, "DescribeFleetPortSettingsOutput", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeFleetUtilizationInput = schema.new({
+    id = id.from(_N, "DescribeFleetUtilizationInput"),
+    type = "structure",
+    members = {
+        FleetIds = schema.new({
+            id = id.from(_N, "DescribeFleetUtilizationInput", "FleetIds"),
+            type = "list",
+            name = "FleetIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "DescribeFleetUtilizationInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeFleetUtilizationInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeFleetUtilizationOutput = schema.new({
+    id = id.from(_N, "DescribeFleetUtilizationOutput"),
+    type = "structure",
+    members = {
+        FleetUtilization = schema.new({
+            id = id.from(_N, "DescribeFleetUtilizationOutput", "FleetUtilization"),
+            type = "list",
+            name = "FleetUtilization",
+            target_id = prelude.Document.id,
+            list_member = M.FleetUtilization,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeFleetUtilizationOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeGameServerInput = schema.new({
+    id = id.from(_N, "DescribeGameServerInput"),
+    type = "structure",
+    members = {
+        GameServerGroupName = schema.new({
+            id = id.from(_N, "DescribeGameServerInput", "GameServerGroupName"),
+            type = "string",
+            name = "GameServerGroupName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        GameServerId = schema.new({
+            id = id.from(_N, "DescribeGameServerInput", "GameServerId"),
+            type = "string",
+            name = "GameServerId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeGameServerOutput = schema.new({
+    id = id.from(_N, "DescribeGameServerOutput"),
+    type = "structure",
+    members = {
+        GameServer = schema.new({
+            id = id.from(_N, "DescribeGameServerOutput", "GameServer"),
+            type = "structure",
+            name = "GameServer",
+            target_id = id.from(_N, "GameServer"),
+            target = M.GameServer,
+        }),
+    },
+})
+
+M.DescribeGameServerGroupInput = schema.new({
+    id = id.from(_N, "DescribeGameServerGroupInput"),
+    type = "structure",
+    members = {
+        GameServerGroupName = schema.new({
+            id = id.from(_N, "DescribeGameServerGroupInput", "GameServerGroupName"),
+            type = "string",
+            name = "GameServerGroupName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeGameServerGroupOutput = schema.new({
+    id = id.from(_N, "DescribeGameServerGroupOutput"),
+    type = "structure",
+    members = {
+        GameServerGroup = schema.new({
+            id = id.from(_N, "DescribeGameServerGroupOutput", "GameServerGroup"),
+            type = "structure",
+            name = "GameServerGroup",
+            target_id = id.from(_N, "GameServerGroup"),
+            target = M.GameServerGroup,
+        }),
+    },
+})
+
+M.DescribeGameServerInstancesInput = schema.new({
+    id = id.from(_N, "DescribeGameServerInstancesInput"),
+    type = "structure",
+    members = {
+        GameServerGroupName = schema.new({
+            id = id.from(_N, "DescribeGameServerInstancesInput", "GameServerGroupName"),
+            type = "string",
+            name = "GameServerGroupName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InstanceIds = schema.new({
+            id = id.from(_N, "DescribeGameServerInstancesInput", "InstanceIds"),
+            type = "list",
+            name = "InstanceIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "DescribeGameServerInstancesInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeGameServerInstancesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GameServerInstance = schema.new({
+    id = id.from(_N, "GameServerInstance"),
+    type = "structure",
+    members = {
+        GameServerGroupName = schema.new({
+            id = id.from(_N, "GameServerInstance", "GameServerGroupName"),
+            type = "string",
+            name = "GameServerGroupName",
+            target_id = prelude.String.id,
+        }),
+        GameServerGroupArn = schema.new({
+            id = id.from(_N, "GameServerInstance", "GameServerGroupArn"),
+            type = "string",
+            name = "GameServerGroupArn",
+            target_id = prelude.String.id,
+        }),
+        InstanceId = schema.new({
+            id = id.from(_N, "GameServerInstance", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+        }),
+        InstanceStatus = schema.new({
+            id = id.from(_N, "GameServerInstance", "InstanceStatus"),
+            type = "string",
+            name = "InstanceStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeGameServerInstancesOutput = schema.new({
+    id = id.from(_N, "DescribeGameServerInstancesOutput"),
+    type = "structure",
+    members = {
+        GameServerInstances = schema.new({
+            id = id.from(_N, "DescribeGameServerInstancesOutput", "GameServerInstances"),
+            type = "list",
+            name = "GameServerInstances",
+            target_id = prelude.Document.id,
+            list_member = M.GameServerInstance,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeGameServerInstancesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeGameSessionDetailsInput = schema.new({
+    id = id.from(_N, "DescribeGameSessionDetailsInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "DescribeGameSessionDetailsInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        GameSessionId = schema.new({
+            id = id.from(_N, "DescribeGameSessionDetailsInput", "GameSessionId"),
+            type = "string",
+            name = "GameSessionId",
+            target_id = prelude.String.id,
+        }),
+        AliasId = schema.new({
+            id = id.from(_N, "DescribeGameSessionDetailsInput", "AliasId"),
+            type = "string",
+            name = "AliasId",
+            target_id = prelude.String.id,
+        }),
+        Location = schema.new({
+            id = id.from(_N, "DescribeGameSessionDetailsInput", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+        StatusFilter = schema.new({
+            id = id.from(_N, "DescribeGameSessionDetailsInput", "StatusFilter"),
+            type = "string",
+            name = "StatusFilter",
+            target_id = prelude.String.id,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "DescribeGameSessionDetailsInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeGameSessionDetailsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GameSessionDetail = schema.new({
+    id = id.from(_N, "GameSessionDetail"),
+    type = "structure",
+    members = {
+        GameSession = schema.new({
+            id = id.from(_N, "GameSessionDetail", "GameSession"),
+            type = "structure",
+            name = "GameSession",
+            target_id = id.from(_N, "GameSession"),
+            target = M.GameSession,
+        }),
+        ProtectionPolicy = schema.new({
+            id = id.from(_N, "GameSessionDetail", "ProtectionPolicy"),
+            type = "string",
+            name = "ProtectionPolicy",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeGameSessionDetailsOutput = schema.new({
+    id = id.from(_N, "DescribeGameSessionDetailsOutput"),
+    type = "structure",
+    members = {
+        GameSessionDetails = schema.new({
+            id = id.from(_N, "DescribeGameSessionDetailsOutput", "GameSessionDetails"),
+            type = "list",
+            name = "GameSessionDetails",
+            target_id = prelude.Document.id,
+            list_member = M.GameSessionDetail,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeGameSessionDetailsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeGameSessionPlacementInput = schema.new({
+    id = id.from(_N, "DescribeGameSessionPlacementInput"),
+    type = "structure",
+    members = {
+        PlacementId = schema.new({
+            id = id.from(_N, "DescribeGameSessionPlacementInput", "PlacementId"),
+            type = "string",
+            name = "PlacementId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PlacedPlayerSession = schema.new({
+    id = id.from(_N, "PlacedPlayerSession"),
+    type = "structure",
+    members = {
+        PlayerId = schema.new({
+            id = id.from(_N, "PlacedPlayerSession", "PlayerId"),
+            type = "string",
+            name = "PlayerId",
+            target_id = prelude.String.id,
+        }),
+        PlayerSessionId = schema.new({
+            id = id.from(_N, "PlacedPlayerSession", "PlayerSessionId"),
+            type = "string",
+            name = "PlayerSessionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PlayerLatency = schema.new({
+    id = id.from(_N, "PlayerLatency"),
+    type = "structure",
+    members = {
+        PlayerId = schema.new({
+            id = id.from(_N, "PlayerLatency", "PlayerId"),
+            type = "string",
+            name = "PlayerId",
+            target_id = prelude.String.id,
+        }),
+        RegionIdentifier = schema.new({
+            id = id.from(_N, "PlayerLatency", "RegionIdentifier"),
+            type = "string",
+            name = "RegionIdentifier",
+            target_id = prelude.String.id,
+        }),
+        LatencyInMilliseconds = schema.new({
+            id = id.from(_N, "PlayerLatency", "LatencyInMilliseconds"),
+            type = "float",
+            name = "LatencyInMilliseconds",
+            target_id = prelude.Float.id,
+        }),
+    },
+})
+
+M.PriorityConfigurationOverride = schema.new({
+    id = id.from(_N, "PriorityConfigurationOverride"),
+    type = "structure",
+    members = {
+        PlacementFallbackStrategy = schema.new({
+            id = id.from(_N, "PriorityConfigurationOverride", "PlacementFallbackStrategy"),
+            type = "string",
+            name = "PlacementFallbackStrategy",
+            target_id = prelude.String.id,
+        }),
+        LocationOrder = schema.new({
+            id = id.from(_N, "PriorityConfigurationOverride", "LocationOrder"),
+            type = "list",
+            name = "LocationOrder",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GameSessionPlacement = schema.new({
+    id = id.from(_N, "GameSessionPlacement"),
+    type = "structure",
+    members = {
+        PlacementId = schema.new({
+            id = id.from(_N, "GameSessionPlacement", "PlacementId"),
+            type = "string",
+            name = "PlacementId",
+            target_id = prelude.String.id,
+        }),
+        GameSessionQueueName = schema.new({
+            id = id.from(_N, "GameSessionPlacement", "GameSessionQueueName"),
+            type = "string",
+            name = "GameSessionQueueName",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "GameSessionPlacement", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        GameProperties = schema.new({
+            id = id.from(_N, "GameSessionPlacement", "GameProperties"),
+            type = "list",
+            name = "GameProperties",
+            target_id = prelude.Document.id,
+            list_member = M.GameProperty,
+        }),
+        MaximumPlayerSessionCount = schema.new({
+            id = id.from(_N, "GameSessionPlacement", "MaximumPlayerSessionCount"),
+            type = "integer",
+            name = "MaximumPlayerSessionCount",
+            target_id = prelude.Integer.id,
+        }),
+        GameSessionName = schema.new({
+            id = id.from(_N, "GameSessionPlacement", "GameSessionName"),
+            type = "string",
+            name = "GameSessionName",
+            target_id = prelude.String.id,
+        }),
+        GameSessionId = schema.new({
+            id = id.from(_N, "GameSessionPlacement", "GameSessionId"),
+            type = "string",
+            name = "GameSessionId",
+            target_id = prelude.String.id,
+        }),
+        GameSessionArn = schema.new({
+            id = id.from(_N, "GameSessionPlacement", "GameSessionArn"),
+            type = "string",
+            name = "GameSessionArn",
+            target_id = prelude.String.id,
+        }),
+        GameSessionRegion = schema.new({
+            id = id.from(_N, "GameSessionPlacement", "GameSessionRegion"),
+            type = "string",
+            name = "GameSessionRegion",
+            target_id = prelude.String.id,
+        }),
+        PlayerLatencies = schema.new({
+            id = id.from(_N, "GameSessionPlacement", "PlayerLatencies"),
+            type = "list",
+            name = "PlayerLatencies",
+            target_id = prelude.Document.id,
+            list_member = M.PlayerLatency,
+        }),
+        StartTime = schema.new({
+            id = id.from(_N, "GameSessionPlacement", "StartTime"),
+            type = "timestamp",
+            name = "StartTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "GameSessionPlacement", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        IpAddress = schema.new({
+            id = id.from(_N, "GameSessionPlacement", "IpAddress"),
+            type = "string",
+            name = "IpAddress",
+            target_id = prelude.String.id,
+        }),
+        DnsName = schema.new({
+            id = id.from(_N, "GameSessionPlacement", "DnsName"),
+            type = "string",
+            name = "DnsName",
+            target_id = prelude.String.id,
+        }),
+        Port = schema.new({
+            id = id.from(_N, "GameSessionPlacement", "Port"),
+            type = "integer",
+            name = "Port",
+            target_id = prelude.Integer.id,
+        }),
+        PlacedPlayerSessions = schema.new({
+            id = id.from(_N, "GameSessionPlacement", "PlacedPlayerSessions"),
+            type = "list",
+            name = "PlacedPlayerSessions",
+            target_id = prelude.Document.id,
+            list_member = M.PlacedPlayerSession,
+        }),
+        GameSessionData = schema.new({
+            id = id.from(_N, "GameSessionPlacement", "GameSessionData"),
+            type = "string",
+            name = "GameSessionData",
+            target_id = prelude.String.id,
+        }),
+        MatchmakerData = schema.new({
+            id = id.from(_N, "GameSessionPlacement", "MatchmakerData"),
+            type = "string",
+            name = "MatchmakerData",
+            target_id = prelude.String.id,
+        }),
+        PriorityConfigurationOverride = schema.new({
+            id = id.from(_N, "GameSessionPlacement", "PriorityConfigurationOverride"),
+            type = "structure",
+            name = "PriorityConfigurationOverride",
+            target_id = id.from(_N, "PriorityConfigurationOverride"),
+            target = M.PriorityConfigurationOverride,
+        }),
+        PlayerGatewayStatus = schema.new({
+            id = id.from(_N, "GameSessionPlacement", "PlayerGatewayStatus"),
+            type = "string",
+            name = "PlayerGatewayStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeGameSessionPlacementOutput = schema.new({
+    id = id.from(_N, "DescribeGameSessionPlacementOutput"),
+    type = "structure",
+    members = {
+        GameSessionPlacement = schema.new({
+            id = id.from(_N, "DescribeGameSessionPlacementOutput", "GameSessionPlacement"),
+            type = "structure",
+            name = "GameSessionPlacement",
+            target_id = id.from(_N, "GameSessionPlacement"),
+            target = M.GameSessionPlacement,
+        }),
+    },
+})
+
+M.DescribeGameSessionQueuesInput = schema.new({
+    id = id.from(_N, "DescribeGameSessionQueuesInput"),
+    type = "structure",
+    members = {
+        Names = schema.new({
+            id = id.from(_N, "DescribeGameSessionQueuesInput", "Names"),
+            type = "list",
+            name = "Names",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "DescribeGameSessionQueuesInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeGameSessionQueuesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeGameSessionQueuesOutput = schema.new({
+    id = id.from(_N, "DescribeGameSessionQueuesOutput"),
+    type = "structure",
+    members = {
+        GameSessionQueues = schema.new({
+            id = id.from(_N, "DescribeGameSessionQueuesOutput", "GameSessionQueues"),
+            type = "list",
+            name = "GameSessionQueues",
+            target_id = prelude.Document.id,
+            list_member = M.GameSessionQueue,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeGameSessionQueuesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeGameSessionsInput = schema.new({
+    id = id.from(_N, "DescribeGameSessionsInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "DescribeGameSessionsInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        GameSessionId = schema.new({
+            id = id.from(_N, "DescribeGameSessionsInput", "GameSessionId"),
+            type = "string",
+            name = "GameSessionId",
+            target_id = prelude.String.id,
+        }),
+        AliasId = schema.new({
+            id = id.from(_N, "DescribeGameSessionsInput", "AliasId"),
+            type = "string",
+            name = "AliasId",
+            target_id = prelude.String.id,
+        }),
+        Location = schema.new({
+            id = id.from(_N, "DescribeGameSessionsInput", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+        StatusFilter = schema.new({
+            id = id.from(_N, "DescribeGameSessionsInput", "StatusFilter"),
+            type = "string",
+            name = "StatusFilter",
+            target_id = prelude.String.id,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "DescribeGameSessionsInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeGameSessionsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeGameSessionsOutput = schema.new({
+    id = id.from(_N, "DescribeGameSessionsOutput"),
+    type = "structure",
+    members = {
+        GameSessions = schema.new({
+            id = id.from(_N, "DescribeGameSessionsOutput", "GameSessions"),
+            type = "list",
+            name = "GameSessions",
+            target_id = prelude.Document.id,
+            list_member = M.GameSession,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeGameSessionsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeInstancesInput = schema.new({
+    id = id.from(_N, "DescribeInstancesInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "DescribeInstancesInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InstanceId = schema.new({
+            id = id.from(_N, "DescribeInstancesInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "DescribeInstancesInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeInstancesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        Location = schema.new({
+            id = id.from(_N, "DescribeInstancesInput", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Instance = schema.new({
+    id = id.from(_N, "Instance"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "Instance", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        FleetArn = schema.new({
+            id = id.from(_N, "Instance", "FleetArn"),
+            type = "string",
+            name = "FleetArn",
+            target_id = prelude.String.id,
+        }),
+        InstanceId = schema.new({
+            id = id.from(_N, "Instance", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+        }),
+        IpAddress = schema.new({
+            id = id.from(_N, "Instance", "IpAddress"),
+            type = "string",
+            name = "IpAddress",
+            target_id = prelude.String.id,
+        }),
+        DnsName = schema.new({
+            id = id.from(_N, "Instance", "DnsName"),
+            type = "string",
+            name = "DnsName",
+            target_id = prelude.String.id,
+        }),
+        OperatingSystem = schema.new({
+            id = id.from(_N, "Instance", "OperatingSystem"),
+            type = "string",
+            name = "OperatingSystem",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "Instance", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "Instance", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "Instance", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        Location = schema.new({
+            id = id.from(_N, "Instance", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeInstancesOutput = schema.new({
+    id = id.from(_N, "DescribeInstancesOutput"),
+    type = "structure",
+    members = {
+        Instances = schema.new({
+            id = id.from(_N, "DescribeInstancesOutput", "Instances"),
+            type = "list",
+            name = "Instances",
+            target_id = prelude.Document.id,
+            list_member = M.Instance,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeInstancesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeMatchmakingInput = schema.new({
+    id = id.from(_N, "DescribeMatchmakingInput"),
+    type = "structure",
+    members = {
+        TicketIds = schema.new({
+            id = id.from(_N, "DescribeMatchmakingInput", "TicketIds"),
+            type = "list",
+            name = "TicketIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.MatchedPlayerSession = schema.new({
+    id = id.from(_N, "MatchedPlayerSession"),
+    type = "structure",
+    members = {
+        PlayerId = schema.new({
+            id = id.from(_N, "MatchedPlayerSession", "PlayerId"),
+            type = "string",
+            name = "PlayerId",
+            target_id = prelude.String.id,
+        }),
+        PlayerSessionId = schema.new({
+            id = id.from(_N, "MatchedPlayerSession", "PlayerSessionId"),
+            type = "string",
+            name = "PlayerSessionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GameSessionConnectionInfo = schema.new({
+    id = id.from(_N, "GameSessionConnectionInfo"),
+    type = "structure",
+    members = {
+        GameSessionArn = schema.new({
+            id = id.from(_N, "GameSessionConnectionInfo", "GameSessionArn"),
+            type = "string",
+            name = "GameSessionArn",
+            target_id = prelude.String.id,
+        }),
+        IpAddress = schema.new({
+            id = id.from(_N, "GameSessionConnectionInfo", "IpAddress"),
+            type = "string",
+            name = "IpAddress",
+            target_id = prelude.String.id,
+        }),
+        DnsName = schema.new({
+            id = id.from(_N, "GameSessionConnectionInfo", "DnsName"),
+            type = "string",
+            name = "DnsName",
+            target_id = prelude.String.id,
+        }),
+        Port = schema.new({
+            id = id.from(_N, "GameSessionConnectionInfo", "Port"),
+            type = "integer",
+            name = "Port",
+            target_id = prelude.Integer.id,
+        }),
+        MatchedPlayerSessions = schema.new({
+            id = id.from(_N, "GameSessionConnectionInfo", "MatchedPlayerSessions"),
+            type = "list",
+            name = "MatchedPlayerSessions",
+            target_id = prelude.Document.id,
+            list_member = M.MatchedPlayerSession,
+        }),
+        PlayerGatewayStatus = schema.new({
+            id = id.from(_N, "GameSessionConnectionInfo", "PlayerGatewayStatus"),
+            type = "string",
+            name = "PlayerGatewayStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Player = schema.new({
+    id = id.from(_N, "Player"),
+    type = "structure",
+    members = {
+        PlayerId = schema.new({
+            id = id.from(_N, "Player", "PlayerId"),
+            type = "string",
+            name = "PlayerId",
+            target_id = prelude.String.id,
+        }),
+        PlayerAttributes = schema.new({
+            id = id.from(_N, "Player", "PlayerAttributes"),
+            type = "map",
+            name = "PlayerAttributes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.AttributeValue,
+        }),
+        Team = schema.new({
+            id = id.from(_N, "Player", "Team"),
+            type = "string",
+            name = "Team",
+            target_id = prelude.String.id,
+        }),
+        LatencyInMs = schema.new({
+            id = id.from(_N, "Player", "LatencyInMs"),
+            type = "map",
+            name = "LatencyInMs",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.Integer,
+        }),
+    },
+})
+
+M.MatchmakingTicket = schema.new({
+    id = id.from(_N, "MatchmakingTicket"),
+    type = "structure",
+    members = {
+        TicketId = schema.new({
+            id = id.from(_N, "MatchmakingTicket", "TicketId"),
+            type = "string",
+            name = "TicketId",
+            target_id = prelude.String.id,
+        }),
+        ConfigurationName = schema.new({
+            id = id.from(_N, "MatchmakingTicket", "ConfigurationName"),
+            type = "string",
+            name = "ConfigurationName",
+            target_id = prelude.String.id,
+        }),
+        ConfigurationArn = schema.new({
+            id = id.from(_N, "MatchmakingTicket", "ConfigurationArn"),
+            type = "string",
+            name = "ConfigurationArn",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "MatchmakingTicket", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        StatusReason = schema.new({
+            id = id.from(_N, "MatchmakingTicket", "StatusReason"),
+            type = "string",
+            name = "StatusReason",
+            target_id = prelude.String.id,
+        }),
+        StatusMessage = schema.new({
+            id = id.from(_N, "MatchmakingTicket", "StatusMessage"),
+            type = "string",
+            name = "StatusMessage",
+            target_id = prelude.String.id,
+        }),
+        StartTime = schema.new({
+            id = id.from(_N, "MatchmakingTicket", "StartTime"),
+            type = "timestamp",
+            name = "StartTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "MatchmakingTicket", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        Players = schema.new({
+            id = id.from(_N, "MatchmakingTicket", "Players"),
+            type = "list",
+            name = "Players",
+            target_id = prelude.Document.id,
+            list_member = M.Player,
+        }),
+        GameSessionConnectionInfo = schema.new({
+            id = id.from(_N, "MatchmakingTicket", "GameSessionConnectionInfo"),
+            type = "structure",
+            name = "GameSessionConnectionInfo",
+            target_id = id.from(_N, "GameSessionConnectionInfo"),
+            target = M.GameSessionConnectionInfo,
+        }),
+        EstimatedWaitTime = schema.new({
+            id = id.from(_N, "MatchmakingTicket", "EstimatedWaitTime"),
+            type = "integer",
+            name = "EstimatedWaitTime",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.DescribeMatchmakingOutput = schema.new({
+    id = id.from(_N, "DescribeMatchmakingOutput"),
+    type = "structure",
+    members = {
+        TicketList = schema.new({
+            id = id.from(_N, "DescribeMatchmakingOutput", "TicketList"),
+            type = "list",
+            name = "TicketList",
+            target_id = prelude.Document.id,
+            list_member = M.MatchmakingTicket,
+        }),
+    },
+})
+
+M.DescribeMatchmakingConfigurationsInput = schema.new({
+    id = id.from(_N, "DescribeMatchmakingConfigurationsInput"),
+    type = "structure",
+    members = {
+        Names = schema.new({
+            id = id.from(_N, "DescribeMatchmakingConfigurationsInput", "Names"),
+            type = "list",
+            name = "Names",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        RuleSetName = schema.new({
+            id = id.from(_N, "DescribeMatchmakingConfigurationsInput", "RuleSetName"),
+            type = "string",
+            name = "RuleSetName",
+            target_id = prelude.String.id,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "DescribeMatchmakingConfigurationsInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeMatchmakingConfigurationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeMatchmakingConfigurationsOutput = schema.new({
+    id = id.from(_N, "DescribeMatchmakingConfigurationsOutput"),
+    type = "structure",
+    members = {
+        Configurations = schema.new({
+            id = id.from(_N, "DescribeMatchmakingConfigurationsOutput", "Configurations"),
+            type = "list",
+            name = "Configurations",
+            target_id = prelude.Document.id,
+            list_member = M.MatchmakingConfiguration,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeMatchmakingConfigurationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeMatchmakingRuleSetsInput = schema.new({
+    id = id.from(_N, "DescribeMatchmakingRuleSetsInput"),
+    type = "structure",
+    members = {
+        Names = schema.new({
+            id = id.from(_N, "DescribeMatchmakingRuleSetsInput", "Names"),
+            type = "list",
+            name = "Names",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "DescribeMatchmakingRuleSetsInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeMatchmakingRuleSetsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeMatchmakingRuleSetsOutput = schema.new({
+    id = id.from(_N, "DescribeMatchmakingRuleSetsOutput"),
+    type = "structure",
+    members = {
+        RuleSets = schema.new({
+            id = id.from(_N, "DescribeMatchmakingRuleSetsOutput", "RuleSets"),
+            type = "list",
+            name = "RuleSets",
+            target_id = prelude.Document.id,
+            list_member = M.MatchmakingRuleSet,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeMatchmakingRuleSetsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribePlayerSessionsInput = schema.new({
+    id = id.from(_N, "DescribePlayerSessionsInput"),
+    type = "structure",
+    members = {
+        GameSessionId = schema.new({
+            id = id.from(_N, "DescribePlayerSessionsInput", "GameSessionId"),
+            type = "string",
+            name = "GameSessionId",
+            target_id = prelude.String.id,
+        }),
+        PlayerId = schema.new({
+            id = id.from(_N, "DescribePlayerSessionsInput", "PlayerId"),
+            type = "string",
+            name = "PlayerId",
+            target_id = prelude.String.id,
+        }),
+        PlayerSessionId = schema.new({
+            id = id.from(_N, "DescribePlayerSessionsInput", "PlayerSessionId"),
+            type = "string",
+            name = "PlayerSessionId",
+            target_id = prelude.String.id,
+        }),
+        PlayerSessionStatusFilter = schema.new({
+            id = id.from(_N, "DescribePlayerSessionsInput", "PlayerSessionStatusFilter"),
+            type = "string",
+            name = "PlayerSessionStatusFilter",
+            target_id = prelude.String.id,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "DescribePlayerSessionsInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribePlayerSessionsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribePlayerSessionsOutput = schema.new({
+    id = id.from(_N, "DescribePlayerSessionsOutput"),
+    type = "structure",
+    members = {
+        PlayerSessions = schema.new({
+            id = id.from(_N, "DescribePlayerSessionsOutput", "PlayerSessions"),
+            type = "list",
+            name = "PlayerSessions",
+            target_id = prelude.Document.id,
+            list_member = M.PlayerSession,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribePlayerSessionsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeRuntimeConfigurationInput = schema.new({
+    id = id.from(_N, "DescribeRuntimeConfigurationInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "DescribeRuntimeConfigurationInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeRuntimeConfigurationOutput = schema.new({
+    id = id.from(_N, "DescribeRuntimeConfigurationOutput"),
+    type = "structure",
+    members = {
+        RuntimeConfiguration = schema.new({
+            id = id.from(_N, "DescribeRuntimeConfigurationOutput", "RuntimeConfiguration"),
+            type = "structure",
+            name = "RuntimeConfiguration",
+            target_id = id.from(_N, "RuntimeConfiguration"),
+            target = M.RuntimeConfiguration,
+        }),
+    },
+})
+
+M.DescribeScalingPoliciesInput = schema.new({
+    id = id.from(_N, "DescribeScalingPoliciesInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "DescribeScalingPoliciesInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StatusFilter = schema.new({
+            id = id.from(_N, "DescribeScalingPoliciesInput", "StatusFilter"),
+            type = "string",
+            name = "StatusFilter",
+            target_id = prelude.String.id,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "DescribeScalingPoliciesInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeScalingPoliciesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        Location = schema.new({
+            id = id.from(_N, "DescribeScalingPoliciesInput", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TargetConfiguration = schema.new({
+    id = id.from(_N, "TargetConfiguration"),
+    type = "structure",
+    members = {
+        TargetValue = schema.new({
+            id = id.from(_N, "TargetConfiguration", "TargetValue"),
+            type = "double",
+            name = "TargetValue",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ScalingPolicy = schema.new({
+    id = id.from(_N, "ScalingPolicy"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "ScalingPolicy", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        FleetArn = schema.new({
+            id = id.from(_N, "ScalingPolicy", "FleetArn"),
+            type = "string",
+            name = "FleetArn",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "ScalingPolicy", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ScalingPolicy", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        ScalingAdjustment = schema.new({
+            id = id.from(_N, "ScalingPolicy", "ScalingAdjustment"),
+            type = "integer",
+            name = "ScalingAdjustment",
+            target_id = prelude.Integer.id,
+        }),
+        ScalingAdjustmentType = schema.new({
+            id = id.from(_N, "ScalingPolicy", "ScalingAdjustmentType"),
+            type = "string",
+            name = "ScalingAdjustmentType",
+            target_id = prelude.String.id,
+        }),
+        ComparisonOperator = schema.new({
+            id = id.from(_N, "ScalingPolicy", "ComparisonOperator"),
+            type = "string",
+            name = "ComparisonOperator",
+            target_id = prelude.String.id,
+        }),
+        Threshold = schema.new({
+            id = id.from(_N, "ScalingPolicy", "Threshold"),
+            type = "double",
+            name = "Threshold",
+            target_id = prelude.Double.id,
+        }),
+        EvaluationPeriods = schema.new({
+            id = id.from(_N, "ScalingPolicy", "EvaluationPeriods"),
+            type = "integer",
+            name = "EvaluationPeriods",
+            target_id = prelude.Integer.id,
+        }),
+        MetricName = schema.new({
+            id = id.from(_N, "ScalingPolicy", "MetricName"),
+            type = "string",
+            name = "MetricName",
+            target_id = prelude.String.id,
+        }),
+        PolicyType = schema.new({
+            id = id.from(_N, "ScalingPolicy", "PolicyType"),
+            type = "string",
+            name = "PolicyType",
+            target_id = prelude.String.id,
+        }),
+        TargetConfiguration = schema.new({
+            id = id.from(_N, "ScalingPolicy", "TargetConfiguration"),
+            type = "structure",
+            name = "TargetConfiguration",
+            target_id = id.from(_N, "TargetConfiguration"),
+            target = M.TargetConfiguration,
+        }),
+        UpdateStatus = schema.new({
+            id = id.from(_N, "ScalingPolicy", "UpdateStatus"),
+            type = "string",
+            name = "UpdateStatus",
+            target_id = prelude.String.id,
+        }),
+        Location = schema.new({
+            id = id.from(_N, "ScalingPolicy", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeScalingPoliciesOutput = schema.new({
+    id = id.from(_N, "DescribeScalingPoliciesOutput"),
+    type = "structure",
+    members = {
+        ScalingPolicies = schema.new({
+            id = id.from(_N, "DescribeScalingPoliciesOutput", "ScalingPolicies"),
+            type = "list",
+            name = "ScalingPolicies",
+            target_id = prelude.Document.id,
+            list_member = M.ScalingPolicy,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeScalingPoliciesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeScriptInput = schema.new({
+    id = id.from(_N, "DescribeScriptInput"),
+    type = "structure",
+    members = {
+        ScriptId = schema.new({
+            id = id.from(_N, "DescribeScriptInput", "ScriptId"),
+            type = "string",
+            name = "ScriptId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeScriptOutput = schema.new({
+    id = id.from(_N, "DescribeScriptOutput"),
+    type = "structure",
+    members = {
+        Script = schema.new({
+            id = id.from(_N, "DescribeScriptOutput", "Script"),
+            type = "structure",
+            name = "Script",
+            target_id = id.from(_N, "Script"),
+            target = M.Script,
+        }),
+    },
+})
+
+M.DescribeVpcPeeringAuthorizationsInput = schema.new({
+    id = id.from(_N, "DescribeVpcPeeringAuthorizationsInput"),
+    type = "structure",
+})
+
+M.DescribeVpcPeeringAuthorizationsOutput = schema.new({
+    id = id.from(_N, "DescribeVpcPeeringAuthorizationsOutput"),
+    type = "structure",
+    members = {
+        VpcPeeringAuthorizations = schema.new({
+            id = id.from(_N, "DescribeVpcPeeringAuthorizationsOutput", "VpcPeeringAuthorizations"),
+            type = "list",
+            name = "VpcPeeringAuthorizations",
+            target_id = prelude.Document.id,
+            list_member = M.VpcPeeringAuthorization,
+        }),
+    },
+})
+
+M.DescribeVpcPeeringConnectionsInput = schema.new({
+    id = id.from(_N, "DescribeVpcPeeringConnectionsInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "DescribeVpcPeeringConnectionsInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.VpcPeeringConnectionStatus = schema.new({
+    id = id.from(_N, "VpcPeeringConnectionStatus"),
+    type = "structure",
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "VpcPeeringConnectionStatus", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "VpcPeeringConnectionStatus", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.VpcPeeringConnection = schema.new({
+    id = id.from(_N, "VpcPeeringConnection"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "VpcPeeringConnection", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        FleetArn = schema.new({
+            id = id.from(_N, "VpcPeeringConnection", "FleetArn"),
+            type = "string",
+            name = "FleetArn",
+            target_id = prelude.String.id,
+        }),
+        IpV4CidrBlock = schema.new({
+            id = id.from(_N, "VpcPeeringConnection", "IpV4CidrBlock"),
+            type = "string",
+            name = "IpV4CidrBlock",
+            target_id = prelude.String.id,
+        }),
+        VpcPeeringConnectionId = schema.new({
+            id = id.from(_N, "VpcPeeringConnection", "VpcPeeringConnectionId"),
+            type = "string",
+            name = "VpcPeeringConnectionId",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "VpcPeeringConnection", "Status"),
+            type = "structure",
+            name = "Status",
+            target_id = id.from(_N, "VpcPeeringConnectionStatus"),
+            target = M.VpcPeeringConnectionStatus,
+        }),
+        PeerVpcId = schema.new({
+            id = id.from(_N, "VpcPeeringConnection", "PeerVpcId"),
+            type = "string",
+            name = "PeerVpcId",
+            target_id = prelude.String.id,
+        }),
+        GameLiftVpcId = schema.new({
+            id = id.from(_N, "VpcPeeringConnection", "GameLiftVpcId"),
+            type = "string",
+            name = "GameLiftVpcId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeVpcPeeringConnectionsOutput = schema.new({
+    id = id.from(_N, "DescribeVpcPeeringConnectionsOutput"),
+    type = "structure",
+    members = {
+        VpcPeeringConnections = schema.new({
+            id = id.from(_N, "DescribeVpcPeeringConnectionsOutput", "VpcPeeringConnections"),
+            type = "list",
+            name = "VpcPeeringConnections",
+            target_id = prelude.Document.id,
+            list_member = M.VpcPeeringConnection,
+        }),
+    },
+})
+
+M.DesiredPlayerSession = schema.new({
+    id = id.from(_N, "DesiredPlayerSession"),
+    type = "structure",
+    members = {
+        PlayerId = schema.new({
+            id = id.from(_N, "DesiredPlayerSession", "PlayerId"),
+            type = "string",
+            name = "PlayerId",
+            target_id = prelude.String.id,
+        }),
+        PlayerData = schema.new({
+            id = id.from(_N, "DesiredPlayerSession", "PlayerData"),
+            type = "string",
+            name = "PlayerData",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetComputeAccessInput = schema.new({
+    id = id.from(_N, "GetComputeAccessInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "GetComputeAccessInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ComputeName = schema.new({
+            id = id.from(_N, "GetComputeAccessInput", "ComputeName"),
+            type = "string",
+            name = "ComputeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetComputeAccessOutput = schema.new({
+    id = id.from(_N, "GetComputeAccessOutput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "GetComputeAccessOutput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        FleetArn = schema.new({
+            id = id.from(_N, "GetComputeAccessOutput", "FleetArn"),
+            type = "string",
+            name = "FleetArn",
+            target_id = prelude.String.id,
+        }),
+        ComputeName = schema.new({
+            id = id.from(_N, "GetComputeAccessOutput", "ComputeName"),
+            type = "string",
+            name = "ComputeName",
+            target_id = prelude.String.id,
+        }),
+        ComputeArn = schema.new({
+            id = id.from(_N, "GetComputeAccessOutput", "ComputeArn"),
+            type = "string",
+            name = "ComputeArn",
+            target_id = prelude.String.id,
+        }),
+        Credentials = schema.new({
+            id = id.from(_N, "GetComputeAccessOutput", "Credentials"),
+            type = "structure",
+            name = "Credentials",
+            target_id = id.from(_N, "AwsCredentials"),
+            target = M.AwsCredentials,
+        }),
+        Target = schema.new({
+            id = id.from(_N, "GetComputeAccessOutput", "Target"),
+            type = "string",
+            name = "Target",
+            target_id = prelude.String.id,
+        }),
+        ContainerIdentifiers = schema.new({
+            id = id.from(_N, "GetComputeAccessOutput", "ContainerIdentifiers"),
+            type = "list",
+            name = "ContainerIdentifiers",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerIdentifier,
+        }),
+    },
+})
+
+M.GetComputeAuthTokenInput = schema.new({
+    id = id.from(_N, "GetComputeAuthTokenInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "GetComputeAuthTokenInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ComputeName = schema.new({
+            id = id.from(_N, "GetComputeAuthTokenInput", "ComputeName"),
+            type = "string",
+            name = "ComputeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetComputeAuthTokenOutput = schema.new({
+    id = id.from(_N, "GetComputeAuthTokenOutput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "GetComputeAuthTokenOutput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        FleetArn = schema.new({
+            id = id.from(_N, "GetComputeAuthTokenOutput", "FleetArn"),
+            type = "string",
+            name = "FleetArn",
+            target_id = prelude.String.id,
+        }),
+        ComputeName = schema.new({
+            id = id.from(_N, "GetComputeAuthTokenOutput", "ComputeName"),
+            type = "string",
+            name = "ComputeName",
+            target_id = prelude.String.id,
+        }),
+        ComputeArn = schema.new({
+            id = id.from(_N, "GetComputeAuthTokenOutput", "ComputeArn"),
+            type = "string",
+            name = "ComputeArn",
+            target_id = prelude.String.id,
+        }),
+        AuthToken = schema.new({
+            id = id.from(_N, "GetComputeAuthTokenOutput", "AuthToken"),
+            type = "string",
+            name = "AuthToken",
+            target_id = prelude.String.id,
+        }),
+        ExpirationTimestamp = schema.new({
+            id = id.from(_N, "GetComputeAuthTokenOutput", "ExpirationTimestamp"),
+            type = "timestamp",
+            name = "ExpirationTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.GetGameSessionLogUrlInput = schema.new({
+    id = id.from(_N, "GetGameSessionLogUrlInput"),
+    type = "structure",
+    members = {
+        GameSessionId = schema.new({
+            id = id.from(_N, "GetGameSessionLogUrlInput", "GameSessionId"),
+            type = "string",
+            name = "GameSessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetGameSessionLogUrlOutput = schema.new({
+    id = id.from(_N, "GetGameSessionLogUrlOutput"),
+    type = "structure",
+    members = {
+        PreSignedUrl = schema.new({
+            id = id.from(_N, "GetGameSessionLogUrlOutput", "PreSignedUrl"),
+            type = "string",
+            name = "PreSignedUrl",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetInstanceAccessInput = schema.new({
+    id = id.from(_N, "GetInstanceAccessInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "GetInstanceAccessInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InstanceId = schema.new({
+            id = id.from(_N, "GetInstanceAccessInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InstanceCredentials = schema.new({
+    id = id.from(_N, "InstanceCredentials"),
+    type = "structure",
+    members = {
+        UserName = schema.new({
+            id = id.from(_N, "InstanceCredentials", "UserName"),
+            type = "string",
+            name = "UserName",
+            target_id = prelude.String.id,
+        }),
+        Secret = schema.new({
+            id = id.from(_N, "InstanceCredentials", "Secret"),
+            type = "string",
+            name = "Secret",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InstanceAccess = schema.new({
+    id = id.from(_N, "InstanceAccess"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "InstanceAccess", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        InstanceId = schema.new({
+            id = id.from(_N, "InstanceAccess", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+        }),
+        IpAddress = schema.new({
+            id = id.from(_N, "InstanceAccess", "IpAddress"),
+            type = "string",
+            name = "IpAddress",
+            target_id = prelude.String.id,
+        }),
+        OperatingSystem = schema.new({
+            id = id.from(_N, "InstanceAccess", "OperatingSystem"),
+            type = "string",
+            name = "OperatingSystem",
+            target_id = prelude.String.id,
+        }),
+        Credentials = schema.new({
+            id = id.from(_N, "InstanceAccess", "Credentials"),
+            type = "structure",
+            name = "Credentials",
+            target_id = id.from(_N, "InstanceCredentials"),
+            target = M.InstanceCredentials,
+        }),
+    },
+})
+
+M.GetInstanceAccessOutput = schema.new({
+    id = id.from(_N, "GetInstanceAccessOutput"),
+    type = "structure",
+    members = {
+        InstanceAccess = schema.new({
+            id = id.from(_N, "GetInstanceAccessOutput", "InstanceAccess"),
+            type = "structure",
+            name = "InstanceAccess",
+            target_id = id.from(_N, "InstanceAccess"),
+            target = M.InstanceAccess,
+        }),
+    },
+})
+
+M.GetPlayerConnectionDetailsInput = schema.new({
+    id = id.from(_N, "GetPlayerConnectionDetailsInput"),
+    type = "structure",
+    members = {
+        GameSessionId = schema.new({
+            id = id.from(_N, "GetPlayerConnectionDetailsInput", "GameSessionId"),
+            type = "string",
+            name = "GameSessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PlayerIds = schema.new({
+            id = id.from(_N, "GetPlayerConnectionDetailsInput", "PlayerIds"),
+            type = "list",
+            name = "PlayerIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PlayerConnectionEndpoint = schema.new({
+    id = id.from(_N, "PlayerConnectionEndpoint"),
+    type = "structure",
+    members = {
+        IpAddress = schema.new({
+            id = id.from(_N, "PlayerConnectionEndpoint", "IpAddress"),
+            type = "string",
+            name = "IpAddress",
+            target_id = prelude.String.id,
+        }),
+        Port = schema.new({
+            id = id.from(_N, "PlayerConnectionEndpoint", "Port"),
+            type = "integer",
+            name = "Port",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.PlayerConnectionDetail = schema.new({
+    id = id.from(_N, "PlayerConnectionDetail"),
+    type = "structure",
+    members = {
+        PlayerId = schema.new({
+            id = id.from(_N, "PlayerConnectionDetail", "PlayerId"),
+            type = "string",
+            name = "PlayerId",
+            target_id = prelude.String.id,
+        }),
+        Endpoints = schema.new({
+            id = id.from(_N, "PlayerConnectionDetail", "Endpoints"),
+            type = "list",
+            name = "Endpoints",
+            target_id = prelude.Document.id,
+            list_member = M.PlayerConnectionEndpoint,
+        }),
+        PlayerGatewayToken = schema.new({
+            id = id.from(_N, "PlayerConnectionDetail", "PlayerGatewayToken"),
+            type = "string",
+            name = "PlayerGatewayToken",
+            target_id = prelude.String.id,
+        }),
+        Expiration = schema.new({
+            id = id.from(_N, "PlayerConnectionDetail", "Expiration"),
+            type = "timestamp",
+            name = "Expiration",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.GetPlayerConnectionDetailsOutput = schema.new({
+    id = id.from(_N, "GetPlayerConnectionDetailsOutput"),
+    type = "structure",
+    members = {
+        GameSessionId = schema.new({
+            id = id.from(_N, "GetPlayerConnectionDetailsOutput", "GameSessionId"),
+            type = "string",
+            name = "GameSessionId",
+            target_id = prelude.String.id,
+        }),
+        PlayerConnectionDetails = schema.new({
+            id = id.from(_N, "GetPlayerConnectionDetailsOutput", "PlayerConnectionDetails"),
+            type = "list",
+            name = "PlayerConnectionDetails",
+            target_id = prelude.Document.id,
+            list_member = M.PlayerConnectionDetail,
+        }),
+    },
+})
+
+M.ListAliasesInput = schema.new({
+    id = id.from(_N, "ListAliasesInput"),
+    type = "structure",
+    members = {
+        RoutingStrategyType = schema.new({
+            id = id.from(_N, "ListAliasesInput", "RoutingStrategyType"),
+            type = "string",
+            name = "RoutingStrategyType",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "ListAliasesInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "ListAliasesInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAliasesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAliasesOutput = schema.new({
+    id = id.from(_N, "ListAliasesOutput"),
+    type = "structure",
+    members = {
+        Aliases = schema.new({
+            id = id.from(_N, "ListAliasesOutput", "Aliases"),
+            type = "list",
+            name = "Aliases",
+            target_id = prelude.Document.id,
+            list_member = M.Alias,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAliasesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListBuildsInput = schema.new({
+    id = id.from(_N, "ListBuildsInput"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "ListBuildsInput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "ListBuildsInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListBuildsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListBuildsOutput = schema.new({
+    id = id.from(_N, "ListBuildsOutput"),
+    type = "structure",
+    members = {
+        Builds = schema.new({
+            id = id.from(_N, "ListBuildsOutput", "Builds"),
+            type = "list",
+            name = "Builds",
+            target_id = prelude.Document.id,
+            list_member = M.Build,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListBuildsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListComputeInput = schema.new({
+    id = id.from(_N, "ListComputeInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "ListComputeInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Location = schema.new({
+            id = id.from(_N, "ListComputeInput", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+        ContainerGroupDefinitionName = schema.new({
+            id = id.from(_N, "ListComputeInput", "ContainerGroupDefinitionName"),
+            type = "string",
+            name = "ContainerGroupDefinitionName",
+            target_id = prelude.String.id,
+        }),
+        ComputeStatus = schema.new({
+            id = id.from(_N, "ListComputeInput", "ComputeStatus"),
+            type = "string",
+            name = "ComputeStatus",
+            target_id = prelude.String.id,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "ListComputeInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListComputeInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListComputeOutput = schema.new({
+    id = id.from(_N, "ListComputeOutput"),
+    type = "structure",
+    members = {
+        ComputeList = schema.new({
+            id = id.from(_N, "ListComputeOutput", "ComputeList"),
+            type = "list",
+            name = "ComputeList",
+            target_id = prelude.Document.id,
+            list_member = M.Compute,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListComputeOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListContainerFleetsInput = schema.new({
+    id = id.from(_N, "ListContainerFleetsInput"),
+    type = "structure",
+    members = {
+        ContainerGroupDefinitionName = schema.new({
+            id = id.from(_N, "ListContainerFleetsInput", "ContainerGroupDefinitionName"),
+            type = "string",
+            name = "ContainerGroupDefinitionName",
+            target_id = prelude.String.id,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "ListContainerFleetsInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListContainerFleetsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListContainerFleetsOutput = schema.new({
+    id = id.from(_N, "ListContainerFleetsOutput"),
+    type = "structure",
+    members = {
+        ContainerFleets = schema.new({
+            id = id.from(_N, "ListContainerFleetsOutput", "ContainerFleets"),
+            type = "list",
+            name = "ContainerFleets",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerFleet,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListContainerFleetsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListContainerGroupDefinitionsInput = schema.new({
+    id = id.from(_N, "ListContainerGroupDefinitionsInput"),
+    type = "structure",
+    members = {
+        ContainerGroupType = schema.new({
+            id = id.from(_N, "ListContainerGroupDefinitionsInput", "ContainerGroupType"),
+            type = "string",
+            name = "ContainerGroupType",
+            target_id = prelude.String.id,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "ListContainerGroupDefinitionsInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListContainerGroupDefinitionsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListContainerGroupDefinitionsOutput = schema.new({
+    id = id.from(_N, "ListContainerGroupDefinitionsOutput"),
+    type = "structure",
+    members = {
+        ContainerGroupDefinitions = schema.new({
+            id = id.from(_N, "ListContainerGroupDefinitionsOutput", "ContainerGroupDefinitions"),
+            type = "list",
+            name = "ContainerGroupDefinitions",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerGroupDefinition,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListContainerGroupDefinitionsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListContainerGroupDefinitionVersionsInput = schema.new({
+    id = id.from(_N, "ListContainerGroupDefinitionVersionsInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "ListContainerGroupDefinitionVersionsInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "ListContainerGroupDefinitionVersionsInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListContainerGroupDefinitionVersionsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListContainerGroupDefinitionVersionsOutput = schema.new({
+    id = id.from(_N, "ListContainerGroupDefinitionVersionsOutput"),
+    type = "structure",
+    members = {
+        ContainerGroupDefinitions = schema.new({
+            id = id.from(_N, "ListContainerGroupDefinitionVersionsOutput", "ContainerGroupDefinitions"),
+            type = "list",
+            name = "ContainerGroupDefinitions",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerGroupDefinition,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListContainerGroupDefinitionVersionsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListFleetDeploymentsInput = schema.new({
+    id = id.from(_N, "ListFleetDeploymentsInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "ListFleetDeploymentsInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "ListFleetDeploymentsInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListFleetDeploymentsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListFleetDeploymentsOutput = schema.new({
+    id = id.from(_N, "ListFleetDeploymentsOutput"),
+    type = "structure",
+    members = {
+        FleetDeployments = schema.new({
+            id = id.from(_N, "ListFleetDeploymentsOutput", "FleetDeployments"),
+            type = "list",
+            name = "FleetDeployments",
+            target_id = prelude.Document.id,
+            list_member = M.FleetDeployment,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListFleetDeploymentsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListFleetsInput = schema.new({
+    id = id.from(_N, "ListFleetsInput"),
+    type = "structure",
+    members = {
+        BuildId = schema.new({
+            id = id.from(_N, "ListFleetsInput", "BuildId"),
+            type = "string",
+            name = "BuildId",
+            target_id = prelude.String.id,
+        }),
+        ScriptId = schema.new({
+            id = id.from(_N, "ListFleetsInput", "ScriptId"),
+            type = "string",
+            name = "ScriptId",
+            target_id = prelude.String.id,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "ListFleetsInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListFleetsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListFleetsOutput = schema.new({
+    id = id.from(_N, "ListFleetsOutput"),
+    type = "structure",
+    members = {
+        FleetIds = schema.new({
+            id = id.from(_N, "ListFleetsOutput", "FleetIds"),
+            type = "list",
+            name = "FleetIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListFleetsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListGameServerGroupsInput = schema.new({
+    id = id.from(_N, "ListGameServerGroupsInput"),
+    type = "structure",
+    members = {
+        Limit = schema.new({
+            id = id.from(_N, "ListGameServerGroupsInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListGameServerGroupsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListGameServerGroupsOutput = schema.new({
+    id = id.from(_N, "ListGameServerGroupsOutput"),
+    type = "structure",
+    members = {
+        GameServerGroups = schema.new({
+            id = id.from(_N, "ListGameServerGroupsOutput", "GameServerGroups"),
+            type = "list",
+            name = "GameServerGroups",
+            target_id = prelude.Document.id,
+            list_member = M.GameServerGroup,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListGameServerGroupsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListGameServersInput = schema.new({
+    id = id.from(_N, "ListGameServersInput"),
+    type = "structure",
+    members = {
+        GameServerGroupName = schema.new({
+            id = id.from(_N, "ListGameServersInput", "GameServerGroupName"),
+            type = "string",
+            name = "GameServerGroupName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SortOrder = schema.new({
+            id = id.from(_N, "ListGameServersInput", "SortOrder"),
+            type = "string",
+            name = "SortOrder",
+            target_id = prelude.String.id,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "ListGameServersInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListGameServersInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListGameServersOutput = schema.new({
+    id = id.from(_N, "ListGameServersOutput"),
+    type = "structure",
+    members = {
+        GameServers = schema.new({
+            id = id.from(_N, "ListGameServersOutput", "GameServers"),
+            type = "list",
+            name = "GameServers",
+            target_id = prelude.Document.id,
+            list_member = M.GameServer,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListGameServersOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListLocationsInput = schema.new({
+    id = id.from(_N, "ListLocationsInput"),
+    type = "structure",
+    members = {
+        Filters = schema.new({
+            id = id.from(_N, "ListLocationsInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "ListLocationsInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListLocationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListLocationsOutput = schema.new({
+    id = id.from(_N, "ListLocationsOutput"),
+    type = "structure",
+    members = {
+        Locations = schema.new({
+            id = id.from(_N, "ListLocationsOutput", "Locations"),
+            type = "list",
+            name = "Locations",
+            target_id = prelude.Document.id,
+            list_member = M.LocationModel,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListLocationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListScriptsInput = schema.new({
+    id = id.from(_N, "ListScriptsInput"),
+    type = "structure",
+    members = {
+        Limit = schema.new({
+            id = id.from(_N, "ListScriptsInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListScriptsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListScriptsOutput = schema.new({
+    id = id.from(_N, "ListScriptsOutput"),
+    type = "structure",
+    members = {
+        Scripts = schema.new({
+            id = id.from(_N, "ListScriptsOutput", "Scripts"),
+            type = "list",
+            name = "Scripts",
+            target_id = prelude.Document.id,
+            list_member = M.Script,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListScriptsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceInput"),
+    type = "structure",
+    members = {
+        ResourceARN = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "ResourceARN"),
+            type = "string",
+            name = "ResourceARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceOutput"),
+    type = "structure",
+    members = {
+        Tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.PutScalingPolicyInput = schema.new({
+    id = id.from(_N, "PutScalingPolicyInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "PutScalingPolicyInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FleetId = schema.new({
+            id = id.from(_N, "PutScalingPolicyInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ScalingAdjustment = schema.new({
+            id = id.from(_N, "PutScalingPolicyInput", "ScalingAdjustment"),
+            type = "integer",
+            name = "ScalingAdjustment",
+            target_id = prelude.Integer.id,
+        }),
+        ScalingAdjustmentType = schema.new({
+            id = id.from(_N, "PutScalingPolicyInput", "ScalingAdjustmentType"),
+            type = "string",
+            name = "ScalingAdjustmentType",
+            target_id = prelude.String.id,
+        }),
+        Threshold = schema.new({
+            id = id.from(_N, "PutScalingPolicyInput", "Threshold"),
+            type = "double",
+            name = "Threshold",
+            target_id = prelude.Double.id,
+        }),
+        ComparisonOperator = schema.new({
+            id = id.from(_N, "PutScalingPolicyInput", "ComparisonOperator"),
+            type = "string",
+            name = "ComparisonOperator",
+            target_id = prelude.String.id,
+        }),
+        EvaluationPeriods = schema.new({
+            id = id.from(_N, "PutScalingPolicyInput", "EvaluationPeriods"),
+            type = "integer",
+            name = "EvaluationPeriods",
+            target_id = prelude.Integer.id,
+        }),
+        MetricName = schema.new({
+            id = id.from(_N, "PutScalingPolicyInput", "MetricName"),
+            type = "string",
+            name = "MetricName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PolicyType = schema.new({
+            id = id.from(_N, "PutScalingPolicyInput", "PolicyType"),
+            type = "string",
+            name = "PolicyType",
+            target_id = prelude.String.id,
+        }),
+        TargetConfiguration = schema.new({
+            id = id.from(_N, "PutScalingPolicyInput", "TargetConfiguration"),
+            type = "structure",
+            name = "TargetConfiguration",
+            target_id = id.from(_N, "TargetConfiguration"),
+            target = M.TargetConfiguration,
+        }),
+    },
+})
+
+M.PutScalingPolicyOutput = schema.new({
+    id = id.from(_N, "PutScalingPolicyOutput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "PutScalingPolicyOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RegisterComputeInput = schema.new({
+    id = id.from(_N, "RegisterComputeInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "RegisterComputeInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ComputeName = schema.new({
+            id = id.from(_N, "RegisterComputeInput", "ComputeName"),
+            type = "string",
+            name = "ComputeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CertificatePath = schema.new({
+            id = id.from(_N, "RegisterComputeInput", "CertificatePath"),
+            type = "string",
+            name = "CertificatePath",
+            target_id = prelude.String.id,
+        }),
+        DnsName = schema.new({
+            id = id.from(_N, "RegisterComputeInput", "DnsName"),
+            type = "string",
+            name = "DnsName",
+            target_id = prelude.String.id,
+        }),
+        IpAddress = schema.new({
+            id = id.from(_N, "RegisterComputeInput", "IpAddress"),
+            type = "string",
+            name = "IpAddress",
+            target_id = prelude.String.id,
+        }),
+        Location = schema.new({
+            id = id.from(_N, "RegisterComputeInput", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RegisterComputeOutput = schema.new({
+    id = id.from(_N, "RegisterComputeOutput"),
+    type = "structure",
+    members = {
+        Compute = schema.new({
+            id = id.from(_N, "RegisterComputeOutput", "Compute"),
+            type = "structure",
+            name = "Compute",
+            target_id = id.from(_N, "Compute"),
+            target = M.Compute,
+        }),
+    },
+})
+
+M.RegisterGameServerInput = schema.new({
+    id = id.from(_N, "RegisterGameServerInput"),
+    type = "structure",
+    members = {
+        GameServerGroupName = schema.new({
+            id = id.from(_N, "RegisterGameServerInput", "GameServerGroupName"),
+            type = "string",
+            name = "GameServerGroupName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        GameServerId = schema.new({
+            id = id.from(_N, "RegisterGameServerInput", "GameServerId"),
+            type = "string",
+            name = "GameServerId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InstanceId = schema.new({
+            id = id.from(_N, "RegisterGameServerInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ConnectionInfo = schema.new({
+            id = id.from(_N, "RegisterGameServerInput", "ConnectionInfo"),
+            type = "string",
+            name = "ConnectionInfo",
+            target_id = prelude.String.id,
+        }),
+        GameServerData = schema.new({
+            id = id.from(_N, "RegisterGameServerInput", "GameServerData"),
+            type = "string",
+            name = "GameServerData",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RegisterGameServerOutput = schema.new({
+    id = id.from(_N, "RegisterGameServerOutput"),
+    type = "structure",
+    members = {
+        GameServer = schema.new({
+            id = id.from(_N, "RegisterGameServerOutput", "GameServer"),
+            type = "structure",
+            name = "GameServer",
+            target_id = id.from(_N, "GameServer"),
+            target = M.GameServer,
+        }),
+    },
+})
+
+M.RequestUploadCredentialsInput = schema.new({
+    id = id.from(_N, "RequestUploadCredentialsInput"),
+    type = "structure",
+    members = {
+        BuildId = schema.new({
+            id = id.from(_N, "RequestUploadCredentialsInput", "BuildId"),
+            type = "string",
+            name = "BuildId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RequestUploadCredentialsOutput = schema.new({
+    id = id.from(_N, "RequestUploadCredentialsOutput"),
+    type = "structure",
+    members = {
+        UploadCredentials = schema.new({
+            id = id.from(_N, "RequestUploadCredentialsOutput", "UploadCredentials"),
+            type = "structure",
+            name = "UploadCredentials",
+            target_id = id.from(_N, "AwsCredentials"),
+            target = M.AwsCredentials,
+        }),
+        StorageLocation = schema.new({
+            id = id.from(_N, "RequestUploadCredentialsOutput", "StorageLocation"),
+            type = "structure",
+            name = "StorageLocation",
+            target_id = id.from(_N, "S3Location"),
+            target = M.S3Location,
+        }),
+    },
+})
+
+M.ResolveAliasInput = schema.new({
+    id = id.from(_N, "ResolveAliasInput"),
+    type = "structure",
+    members = {
+        AliasId = schema.new({
+            id = id.from(_N, "ResolveAliasInput", "AliasId"),
+            type = "string",
+            name = "AliasId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ResolveAliasOutput = schema.new({
+    id = id.from(_N, "ResolveAliasOutput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "ResolveAliasOutput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        FleetArn = schema.new({
+            id = id.from(_N, "ResolveAliasOutput", "FleetArn"),
+            type = "string",
+            name = "FleetArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResumeGameServerGroupInput = schema.new({
+    id = id.from(_N, "ResumeGameServerGroupInput"),
+    type = "structure",
+    members = {
+        GameServerGroupName = schema.new({
+            id = id.from(_N, "ResumeGameServerGroupInput", "GameServerGroupName"),
+            type = "string",
+            name = "GameServerGroupName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResumeActions = schema.new({
+            id = id.from(_N, "ResumeGameServerGroupInput", "ResumeActions"),
+            type = "list",
+            name = "ResumeActions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ResumeGameServerGroupOutput = schema.new({
+    id = id.from(_N, "ResumeGameServerGroupOutput"),
+    type = "structure",
+    members = {
+        GameServerGroup = schema.new({
+            id = id.from(_N, "ResumeGameServerGroupOutput", "GameServerGroup"),
+            type = "structure",
+            name = "GameServerGroup",
+            target_id = id.from(_N, "GameServerGroup"),
+            target = M.GameServerGroup,
+        }),
+    },
+})
+
+M.SearchGameSessionsInput = schema.new({
+    id = id.from(_N, "SearchGameSessionsInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "SearchGameSessionsInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        AliasId = schema.new({
+            id = id.from(_N, "SearchGameSessionsInput", "AliasId"),
+            type = "string",
+            name = "AliasId",
+            target_id = prelude.String.id,
+        }),
+        Location = schema.new({
+            id = id.from(_N, "SearchGameSessionsInput", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+        FilterExpression = schema.new({
+            id = id.from(_N, "SearchGameSessionsInput", "FilterExpression"),
+            type = "string",
+            name = "FilterExpression",
+            target_id = prelude.String.id,
+        }),
+        SortExpression = schema.new({
+            id = id.from(_N, "SearchGameSessionsInput", "SortExpression"),
+            type = "string",
+            name = "SortExpression",
+            target_id = prelude.String.id,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "SearchGameSessionsInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "SearchGameSessionsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SearchGameSessionsOutput = schema.new({
+    id = id.from(_N, "SearchGameSessionsOutput"),
+    type = "structure",
+    members = {
+        GameSessions = schema.new({
+            id = id.from(_N, "SearchGameSessionsOutput", "GameSessions"),
+            type = "list",
+            name = "GameSessions",
+            target_id = prelude.Document.id,
+            list_member = M.GameSession,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "SearchGameSessionsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StartFleetActionsInput = schema.new({
+    id = id.from(_N, "StartFleetActionsInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "StartFleetActionsInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Actions = schema.new({
+            id = id.from(_N, "StartFleetActionsInput", "Actions"),
+            type = "list",
+            name = "Actions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Location = schema.new({
+            id = id.from(_N, "StartFleetActionsInput", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StartFleetActionsOutput = schema.new({
+    id = id.from(_N, "StartFleetActionsOutput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "StartFleetActionsOutput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        FleetArn = schema.new({
+            id = id.from(_N, "StartFleetActionsOutput", "FleetArn"),
+            type = "string",
+            name = "FleetArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StartGameSessionPlacementInput = schema.new({
+    id = id.from(_N, "StartGameSessionPlacementInput"),
+    type = "structure",
+    members = {
+        PlacementId = schema.new({
+            id = id.from(_N, "StartGameSessionPlacementInput", "PlacementId"),
+            type = "string",
+            name = "PlacementId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        GameSessionQueueName = schema.new({
+            id = id.from(_N, "StartGameSessionPlacementInput", "GameSessionQueueName"),
+            type = "string",
+            name = "GameSessionQueueName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        GameProperties = schema.new({
+            id = id.from(_N, "StartGameSessionPlacementInput", "GameProperties"),
+            type = "list",
+            name = "GameProperties",
+            target_id = prelude.Document.id,
+            list_member = M.GameProperty,
+        }),
+        MaximumPlayerSessionCount = schema.new({
+            id = id.from(_N, "StartGameSessionPlacementInput", "MaximumPlayerSessionCount"),
+            type = "integer",
+            name = "MaximumPlayerSessionCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        GameSessionName = schema.new({
+            id = id.from(_N, "StartGameSessionPlacementInput", "GameSessionName"),
+            type = "string",
+            name = "GameSessionName",
+            target_id = prelude.String.id,
+        }),
+        PlayerLatencies = schema.new({
+            id = id.from(_N, "StartGameSessionPlacementInput", "PlayerLatencies"),
+            type = "list",
+            name = "PlayerLatencies",
+            target_id = prelude.Document.id,
+            list_member = M.PlayerLatency,
+        }),
+        DesiredPlayerSessions = schema.new({
+            id = id.from(_N, "StartGameSessionPlacementInput", "DesiredPlayerSessions"),
+            type = "list",
+            name = "DesiredPlayerSessions",
+            target_id = prelude.Document.id,
+            list_member = M.DesiredPlayerSession,
+        }),
+        GameSessionData = schema.new({
+            id = id.from(_N, "StartGameSessionPlacementInput", "GameSessionData"),
+            type = "string",
+            name = "GameSessionData",
+            target_id = prelude.String.id,
+        }),
+        PriorityConfigurationOverride = schema.new({
+            id = id.from(_N, "StartGameSessionPlacementInput", "PriorityConfigurationOverride"),
+            type = "structure",
+            name = "PriorityConfigurationOverride",
+            target_id = id.from(_N, "PriorityConfigurationOverride"),
+            target = M.PriorityConfigurationOverride,
+        }),
+    },
+})
+
+M.StartGameSessionPlacementOutput = schema.new({
+    id = id.from(_N, "StartGameSessionPlacementOutput"),
+    type = "structure",
+    members = {
+        GameSessionPlacement = schema.new({
+            id = id.from(_N, "StartGameSessionPlacementOutput", "GameSessionPlacement"),
+            type = "structure",
+            name = "GameSessionPlacement",
+            target_id = id.from(_N, "GameSessionPlacement"),
+            target = M.GameSessionPlacement,
+        }),
+    },
+})
+
+M.StartMatchBackfillInput = schema.new({
+    id = id.from(_N, "StartMatchBackfillInput"),
+    type = "structure",
+    members = {
+        TicketId = schema.new({
+            id = id.from(_N, "StartMatchBackfillInput", "TicketId"),
+            type = "string",
+            name = "TicketId",
+            target_id = prelude.String.id,
+        }),
+        ConfigurationName = schema.new({
+            id = id.from(_N, "StartMatchBackfillInput", "ConfigurationName"),
+            type = "string",
+            name = "ConfigurationName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        GameSessionArn = schema.new({
+            id = id.from(_N, "StartMatchBackfillInput", "GameSessionArn"),
+            type = "string",
+            name = "GameSessionArn",
+            target_id = prelude.String.id,
+        }),
+        Players = schema.new({
+            id = id.from(_N, "StartMatchBackfillInput", "Players"),
+            type = "list",
+            name = "Players",
+            target_id = prelude.Document.id,
+            list_member = M.Player,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StartMatchBackfillOutput = schema.new({
+    id = id.from(_N, "StartMatchBackfillOutput"),
+    type = "structure",
+    members = {
+        MatchmakingTicket = schema.new({
+            id = id.from(_N, "StartMatchBackfillOutput", "MatchmakingTicket"),
+            type = "structure",
+            name = "MatchmakingTicket",
+            target_id = id.from(_N, "MatchmakingTicket"),
+            target = M.MatchmakingTicket,
+        }),
+    },
+})
+
+M.StartMatchmakingInput = schema.new({
+    id = id.from(_N, "StartMatchmakingInput"),
+    type = "structure",
+    members = {
+        TicketId = schema.new({
+            id = id.from(_N, "StartMatchmakingInput", "TicketId"),
+            type = "string",
+            name = "TicketId",
+            target_id = prelude.String.id,
+        }),
+        ConfigurationName = schema.new({
+            id = id.from(_N, "StartMatchmakingInput", "ConfigurationName"),
+            type = "string",
+            name = "ConfigurationName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Players = schema.new({
+            id = id.from(_N, "StartMatchmakingInput", "Players"),
+            type = "list",
+            name = "Players",
+            target_id = prelude.Document.id,
+            list_member = M.Player,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StartMatchmakingOutput = schema.new({
+    id = id.from(_N, "StartMatchmakingOutput"),
+    type = "structure",
+    members = {
+        MatchmakingTicket = schema.new({
+            id = id.from(_N, "StartMatchmakingOutput", "MatchmakingTicket"),
+            type = "structure",
+            name = "MatchmakingTicket",
+            target_id = id.from(_N, "MatchmakingTicket"),
+            target = M.MatchmakingTicket,
+        }),
+    },
+})
+
+M.StopFleetActionsInput = schema.new({
+    id = id.from(_N, "StopFleetActionsInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "StopFleetActionsInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Actions = schema.new({
+            id = id.from(_N, "StopFleetActionsInput", "Actions"),
+            type = "list",
+            name = "Actions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Location = schema.new({
+            id = id.from(_N, "StopFleetActionsInput", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StopFleetActionsOutput = schema.new({
+    id = id.from(_N, "StopFleetActionsOutput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "StopFleetActionsOutput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        FleetArn = schema.new({
+            id = id.from(_N, "StopFleetActionsOutput", "FleetArn"),
+            type = "string",
+            name = "FleetArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StopGameSessionPlacementInput = schema.new({
+    id = id.from(_N, "StopGameSessionPlacementInput"),
+    type = "structure",
+    members = {
+        PlacementId = schema.new({
+            id = id.from(_N, "StopGameSessionPlacementInput", "PlacementId"),
+            type = "string",
+            name = "PlacementId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StopGameSessionPlacementOutput = schema.new({
+    id = id.from(_N, "StopGameSessionPlacementOutput"),
+    type = "structure",
+    members = {
+        GameSessionPlacement = schema.new({
+            id = id.from(_N, "StopGameSessionPlacementOutput", "GameSessionPlacement"),
+            type = "structure",
+            name = "GameSessionPlacement",
+            target_id = id.from(_N, "GameSessionPlacement"),
+            target = M.GameSessionPlacement,
+        }),
+    },
+})
+
+M.StopMatchmakingInput = schema.new({
+    id = id.from(_N, "StopMatchmakingInput"),
+    type = "structure",
+    members = {
+        TicketId = schema.new({
+            id = id.from(_N, "StopMatchmakingInput", "TicketId"),
+            type = "string",
+            name = "TicketId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StopMatchmakingOutput = schema.new({
+    id = id.from(_N, "StopMatchmakingOutput"),
+    type = "structure",
+})
+
+M.SuspendGameServerGroupInput = schema.new({
+    id = id.from(_N, "SuspendGameServerGroupInput"),
+    type = "structure",
+    members = {
+        GameServerGroupName = schema.new({
+            id = id.from(_N, "SuspendGameServerGroupInput", "GameServerGroupName"),
+            type = "string",
+            name = "GameServerGroupName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SuspendActions = schema.new({
+            id = id.from(_N, "SuspendGameServerGroupInput", "SuspendActions"),
+            type = "list",
+            name = "SuspendActions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SuspendGameServerGroupOutput = schema.new({
+    id = id.from(_N, "SuspendGameServerGroupOutput"),
+    type = "structure",
+    members = {
+        GameServerGroup = schema.new({
+            id = id.from(_N, "SuspendGameServerGroupOutput", "GameServerGroup"),
+            type = "structure",
+            name = "GameServerGroup",
+            target_id = id.from(_N, "GameServerGroup"),
+            target = M.GameServerGroup,
+        }),
+    },
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceARN = schema.new({
+            id = id.from(_N, "TagResourceInput", "ResourceARN"),
+            type = "string",
+            name = "ResourceARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceOutput"),
+    type = "structure",
+})
+
+M.TerminateGameSessionInput = schema.new({
+    id = id.from(_N, "TerminateGameSessionInput"),
+    type = "structure",
+    members = {
+        GameSessionId = schema.new({
+            id = id.from(_N, "TerminateGameSessionInput", "GameSessionId"),
+            type = "string",
+            name = "GameSessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TerminationMode = schema.new({
+            id = id.from(_N, "TerminateGameSessionInput", "TerminationMode"),
+            type = "string",
+            name = "TerminationMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TerminateGameSessionOutput = schema.new({
+    id = id.from(_N, "TerminateGameSessionOutput"),
+    type = "structure",
+    members = {
+        GameSession = schema.new({
+            id = id.from(_N, "TerminateGameSessionOutput", "GameSession"),
+            type = "structure",
+            name = "GameSession",
+            target_id = id.from(_N, "GameSession"),
+            target = M.GameSession,
+        }),
+    },
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceInput"),
+    type = "structure",
+    members = {
+        ResourceARN = schema.new({
+            id = id.from(_N, "UntagResourceInput", "ResourceARN"),
+            type = "string",
+            name = "ResourceARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "TagKeys"),
+            type = "list",
+            name = "TagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
+M.UpdateAliasInput = schema.new({
+    id = id.from(_N, "UpdateAliasInput"),
+    type = "structure",
+    members = {
+        AliasId = schema.new({
+            id = id.from(_N, "UpdateAliasInput", "AliasId"),
+            type = "string",
+            name = "AliasId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateAliasInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateAliasInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        RoutingStrategy = schema.new({
+            id = id.from(_N, "UpdateAliasInput", "RoutingStrategy"),
+            type = "structure",
+            name = "RoutingStrategy",
+            target_id = id.from(_N, "RoutingStrategy"),
+            target = M.RoutingStrategy,
+        }),
+    },
+})
+
+M.UpdateAliasOutput = schema.new({
+    id = id.from(_N, "UpdateAliasOutput"),
+    type = "structure",
+    members = {
+        Alias = schema.new({
+            id = id.from(_N, "UpdateAliasOutput", "Alias"),
+            type = "structure",
+            name = "Alias",
+            target_id = id.from(_N, "Alias"),
+            target = M.Alias,
+        }),
+    },
+})
+
+M.UpdateBuildInput = schema.new({
+    id = id.from(_N, "UpdateBuildInput"),
+    type = "structure",
+    members = {
+        BuildId = schema.new({
+            id = id.from(_N, "UpdateBuildInput", "BuildId"),
+            type = "string",
+            name = "BuildId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateBuildInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Version = schema.new({
+            id = id.from(_N, "UpdateBuildInput", "Version"),
+            type = "string",
+            name = "Version",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateBuildOutput = schema.new({
+    id = id.from(_N, "UpdateBuildOutput"),
+    type = "structure",
+    members = {
+        Build = schema.new({
+            id = id.from(_N, "UpdateBuildOutput", "Build"),
+            type = "structure",
+            name = "Build",
+            target_id = id.from(_N, "Build"),
+            target = M.Build,
+        }),
+    },
+})
+
+M.UpdateContainerFleetInput = schema.new({
+    id = id.from(_N, "UpdateContainerFleetInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "UpdateContainerFleetInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        GameServerContainerGroupDefinitionName = schema.new({
+            id = id.from(_N, "UpdateContainerFleetInput", "GameServerContainerGroupDefinitionName"),
+            type = "string",
+            name = "GameServerContainerGroupDefinitionName",
+            target_id = prelude.String.id,
+        }),
+        PerInstanceContainerGroupDefinitionName = schema.new({
+            id = id.from(_N, "UpdateContainerFleetInput", "PerInstanceContainerGroupDefinitionName"),
+            type = "string",
+            name = "PerInstanceContainerGroupDefinitionName",
+            target_id = prelude.String.id,
+        }),
+        GameServerContainerGroupsPerInstance = schema.new({
+            id = id.from(_N, "UpdateContainerFleetInput", "GameServerContainerGroupsPerInstance"),
+            type = "integer",
+            name = "GameServerContainerGroupsPerInstance",
+            target_id = prelude.Integer.id,
+        }),
+        InstanceConnectionPortRange = schema.new({
+            id = id.from(_N, "UpdateContainerFleetInput", "InstanceConnectionPortRange"),
+            type = "structure",
+            name = "InstanceConnectionPortRange",
+            target_id = id.from(_N, "ConnectionPortRange"),
+            target = M.ConnectionPortRange,
+        }),
+        InstanceInboundPermissionAuthorizations = schema.new({
+            id = id.from(_N, "UpdateContainerFleetInput", "InstanceInboundPermissionAuthorizations"),
+            type = "list",
+            name = "InstanceInboundPermissionAuthorizations",
+            target_id = prelude.Document.id,
+            list_member = M.IpPermission,
+        }),
+        InstanceInboundPermissionRevocations = schema.new({
+            id = id.from(_N, "UpdateContainerFleetInput", "InstanceInboundPermissionRevocations"),
+            type = "list",
+            name = "InstanceInboundPermissionRevocations",
+            target_id = prelude.Document.id,
+            list_member = M.IpPermission,
+        }),
+        DeploymentConfiguration = schema.new({
+            id = id.from(_N, "UpdateContainerFleetInput", "DeploymentConfiguration"),
+            type = "structure",
+            name = "DeploymentConfiguration",
+            target_id = id.from(_N, "DeploymentConfiguration"),
+            target = M.DeploymentConfiguration,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateContainerFleetInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        MetricGroups = schema.new({
+            id = id.from(_N, "UpdateContainerFleetInput", "MetricGroups"),
+            type = "list",
+            name = "MetricGroups",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        NewGameSessionProtectionPolicy = schema.new({
+            id = id.from(_N, "UpdateContainerFleetInput", "NewGameSessionProtectionPolicy"),
+            type = "string",
+            name = "NewGameSessionProtectionPolicy",
+            target_id = prelude.String.id,
+        }),
+        GameSessionCreationLimitPolicy = schema.new({
+            id = id.from(_N, "UpdateContainerFleetInput", "GameSessionCreationLimitPolicy"),
+            type = "structure",
+            name = "GameSessionCreationLimitPolicy",
+            target_id = id.from(_N, "GameSessionCreationLimitPolicy"),
+            target = M.GameSessionCreationLimitPolicy,
+        }),
+        LogConfiguration = schema.new({
+            id = id.from(_N, "UpdateContainerFleetInput", "LogConfiguration"),
+            type = "structure",
+            name = "LogConfiguration",
+            target_id = id.from(_N, "LogConfiguration"),
+            target = M.LogConfiguration,
+        }),
+        RemoveAttributes = schema.new({
+            id = id.from(_N, "UpdateContainerFleetInput", "RemoveAttributes"),
+            type = "list",
+            name = "RemoveAttributes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.UpdateContainerFleetOutput = schema.new({
+    id = id.from(_N, "UpdateContainerFleetOutput"),
+    type = "structure",
+    members = {
+        ContainerFleet = schema.new({
+            id = id.from(_N, "UpdateContainerFleetOutput", "ContainerFleet"),
+            type = "structure",
+            name = "ContainerFleet",
+            target_id = id.from(_N, "ContainerFleet"),
+            target = M.ContainerFleet,
+        }),
+    },
+})
+
+M.UpdateContainerGroupDefinitionInput = schema.new({
+    id = id.from(_N, "UpdateContainerGroupDefinitionInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "UpdateContainerGroupDefinitionInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        GameServerContainerDefinition = schema.new({
+            id = id.from(_N, "UpdateContainerGroupDefinitionInput", "GameServerContainerDefinition"),
+            type = "structure",
+            name = "GameServerContainerDefinition",
+            target_id = id.from(_N, "GameServerContainerDefinitionInput"),
+            target = M.GameServerContainerDefinitionInput,
+        }),
+        SupportContainerDefinitions = schema.new({
+            id = id.from(_N, "UpdateContainerGroupDefinitionInput", "SupportContainerDefinitions"),
+            type = "list",
+            name = "SupportContainerDefinitions",
+            target_id = prelude.Document.id,
+            list_member = M.SupportContainerDefinitionInput,
+        }),
+        TotalMemoryLimitMebibytes = schema.new({
+            id = id.from(_N, "UpdateContainerGroupDefinitionInput", "TotalMemoryLimitMebibytes"),
+            type = "integer",
+            name = "TotalMemoryLimitMebibytes",
+            target_id = prelude.Integer.id,
+        }),
+        TotalVcpuLimit = schema.new({
+            id = id.from(_N, "UpdateContainerGroupDefinitionInput", "TotalVcpuLimit"),
+            type = "double",
+            name = "TotalVcpuLimit",
+            target_id = prelude.Double.id,
+        }),
+        VersionDescription = schema.new({
+            id = id.from(_N, "UpdateContainerGroupDefinitionInput", "VersionDescription"),
+            type = "string",
+            name = "VersionDescription",
+            target_id = prelude.String.id,
+        }),
+        SourceVersionNumber = schema.new({
+            id = id.from(_N, "UpdateContainerGroupDefinitionInput", "SourceVersionNumber"),
+            type = "integer",
+            name = "SourceVersionNumber",
+            target_id = prelude.Integer.id,
+        }),
+        OperatingSystem = schema.new({
+            id = id.from(_N, "UpdateContainerGroupDefinitionInput", "OperatingSystem"),
+            type = "string",
+            name = "OperatingSystem",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateContainerGroupDefinitionOutput = schema.new({
+    id = id.from(_N, "UpdateContainerGroupDefinitionOutput"),
+    type = "structure",
+    members = {
+        ContainerGroupDefinition = schema.new({
+            id = id.from(_N, "UpdateContainerGroupDefinitionOutput", "ContainerGroupDefinition"),
+            type = "structure",
+            name = "ContainerGroupDefinition",
+            target_id = id.from(_N, "ContainerGroupDefinition"),
+            target = M.ContainerGroupDefinition,
+        }),
+    },
+})
+
+M.UpdateFleetAttributesInput = schema.new({
+    id = id.from(_N, "UpdateFleetAttributesInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "UpdateFleetAttributesInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateFleetAttributesInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateFleetAttributesInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        NewGameSessionProtectionPolicy = schema.new({
+            id = id.from(_N, "UpdateFleetAttributesInput", "NewGameSessionProtectionPolicy"),
+            type = "string",
+            name = "NewGameSessionProtectionPolicy",
+            target_id = prelude.String.id,
+        }),
+        ResourceCreationLimitPolicy = schema.new({
+            id = id.from(_N, "UpdateFleetAttributesInput", "ResourceCreationLimitPolicy"),
+            type = "structure",
+            name = "ResourceCreationLimitPolicy",
+            target_id = id.from(_N, "ResourceCreationLimitPolicy"),
+            target = M.ResourceCreationLimitPolicy,
+        }),
+        MetricGroups = schema.new({
+            id = id.from(_N, "UpdateFleetAttributesInput", "MetricGroups"),
+            type = "list",
+            name = "MetricGroups",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        AnywhereConfiguration = schema.new({
+            id = id.from(_N, "UpdateFleetAttributesInput", "AnywhereConfiguration"),
+            type = "structure",
+            name = "AnywhereConfiguration",
+            target_id = id.from(_N, "AnywhereConfiguration"),
+            target = M.AnywhereConfiguration,
+        }),
+    },
+})
+
+M.UpdateFleetAttributesOutput = schema.new({
+    id = id.from(_N, "UpdateFleetAttributesOutput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "UpdateFleetAttributesOutput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        FleetArn = schema.new({
+            id = id.from(_N, "UpdateFleetAttributesOutput", "FleetArn"),
+            type = "string",
+            name = "FleetArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateFleetCapacityInput = schema.new({
+    id = id.from(_N, "UpdateFleetCapacityInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "UpdateFleetCapacityInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DesiredInstances = schema.new({
+            id = id.from(_N, "UpdateFleetCapacityInput", "DesiredInstances"),
+            type = "integer",
+            name = "DesiredInstances",
+            target_id = prelude.Integer.id,
+        }),
+        MinSize = schema.new({
+            id = id.from(_N, "UpdateFleetCapacityInput", "MinSize"),
+            type = "integer",
+            name = "MinSize",
+            target_id = prelude.Integer.id,
+        }),
+        MaxSize = schema.new({
+            id = id.from(_N, "UpdateFleetCapacityInput", "MaxSize"),
+            type = "integer",
+            name = "MaxSize",
+            target_id = prelude.Integer.id,
+        }),
+        Location = schema.new({
+            id = id.from(_N, "UpdateFleetCapacityInput", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+        ManagedCapacityConfiguration = schema.new({
+            id = id.from(_N, "UpdateFleetCapacityInput", "ManagedCapacityConfiguration"),
+            type = "structure",
+            name = "ManagedCapacityConfiguration",
+            target_id = id.from(_N, "ManagedCapacityConfiguration"),
+            target = M.ManagedCapacityConfiguration,
+        }),
+    },
+})
+
+M.UpdateFleetCapacityOutput = schema.new({
+    id = id.from(_N, "UpdateFleetCapacityOutput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "UpdateFleetCapacityOutput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        FleetArn = schema.new({
+            id = id.from(_N, "UpdateFleetCapacityOutput", "FleetArn"),
+            type = "string",
+            name = "FleetArn",
+            target_id = prelude.String.id,
+        }),
+        Location = schema.new({
+            id = id.from(_N, "UpdateFleetCapacityOutput", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+        ManagedCapacityConfiguration = schema.new({
+            id = id.from(_N, "UpdateFleetCapacityOutput", "ManagedCapacityConfiguration"),
+            type = "structure",
+            name = "ManagedCapacityConfiguration",
+            target_id = id.from(_N, "ManagedCapacityConfiguration"),
+            target = M.ManagedCapacityConfiguration,
+        }),
+    },
+})
+
+M.UpdateFleetPortSettingsInput = schema.new({
+    id = id.from(_N, "UpdateFleetPortSettingsInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "UpdateFleetPortSettingsInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InboundPermissionAuthorizations = schema.new({
+            id = id.from(_N, "UpdateFleetPortSettingsInput", "InboundPermissionAuthorizations"),
+            type = "list",
+            name = "InboundPermissionAuthorizations",
+            target_id = prelude.Document.id,
+            list_member = M.IpPermission,
+        }),
+        InboundPermissionRevocations = schema.new({
+            id = id.from(_N, "UpdateFleetPortSettingsInput", "InboundPermissionRevocations"),
+            type = "list",
+            name = "InboundPermissionRevocations",
+            target_id = prelude.Document.id,
+            list_member = M.IpPermission,
+        }),
+    },
+})
+
+M.UpdateFleetPortSettingsOutput = schema.new({
+    id = id.from(_N, "UpdateFleetPortSettingsOutput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "UpdateFleetPortSettingsOutput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        FleetArn = schema.new({
+            id = id.from(_N, "UpdateFleetPortSettingsOutput", "FleetArn"),
+            type = "string",
+            name = "FleetArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateGameServerInput = schema.new({
+    id = id.from(_N, "UpdateGameServerInput"),
+    type = "structure",
+    members = {
+        GameServerGroupName = schema.new({
+            id = id.from(_N, "UpdateGameServerInput", "GameServerGroupName"),
+            type = "string",
+            name = "GameServerGroupName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        GameServerId = schema.new({
+            id = id.from(_N, "UpdateGameServerInput", "GameServerId"),
+            type = "string",
+            name = "GameServerId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        GameServerData = schema.new({
+            id = id.from(_N, "UpdateGameServerInput", "GameServerData"),
+            type = "string",
+            name = "GameServerData",
+            target_id = prelude.String.id,
+        }),
+        UtilizationStatus = schema.new({
+            id = id.from(_N, "UpdateGameServerInput", "UtilizationStatus"),
+            type = "string",
+            name = "UtilizationStatus",
+            target_id = prelude.String.id,
+        }),
+        HealthCheck = schema.new({
+            id = id.from(_N, "UpdateGameServerInput", "HealthCheck"),
+            type = "string",
+            name = "HealthCheck",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateGameServerOutput = schema.new({
+    id = id.from(_N, "UpdateGameServerOutput"),
+    type = "structure",
+    members = {
+        GameServer = schema.new({
+            id = id.from(_N, "UpdateGameServerOutput", "GameServer"),
+            type = "structure",
+            name = "GameServer",
+            target_id = id.from(_N, "GameServer"),
+            target = M.GameServer,
+        }),
+    },
+})
+
+M.UpdateGameServerGroupInput = schema.new({
+    id = id.from(_N, "UpdateGameServerGroupInput"),
+    type = "structure",
+    members = {
+        GameServerGroupName = schema.new({
+            id = id.from(_N, "UpdateGameServerGroupInput", "GameServerGroupName"),
+            type = "string",
+            name = "GameServerGroupName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "UpdateGameServerGroupInput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+        }),
+        InstanceDefinitions = schema.new({
+            id = id.from(_N, "UpdateGameServerGroupInput", "InstanceDefinitions"),
+            type = "list",
+            name = "InstanceDefinitions",
+            target_id = prelude.Document.id,
+            list_member = M.InstanceDefinition,
+        }),
+        GameServerProtectionPolicy = schema.new({
+            id = id.from(_N, "UpdateGameServerGroupInput", "GameServerProtectionPolicy"),
+            type = "string",
+            name = "GameServerProtectionPolicy",
+            target_id = prelude.String.id,
+        }),
+        BalancingStrategy = schema.new({
+            id = id.from(_N, "UpdateGameServerGroupInput", "BalancingStrategy"),
+            type = "string",
+            name = "BalancingStrategy",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateGameServerGroupOutput = schema.new({
+    id = id.from(_N, "UpdateGameServerGroupOutput"),
+    type = "structure",
+    members = {
+        GameServerGroup = schema.new({
+            id = id.from(_N, "UpdateGameServerGroupOutput", "GameServerGroup"),
+            type = "structure",
+            name = "GameServerGroup",
+            target_id = id.from(_N, "GameServerGroup"),
+            target = M.GameServerGroup,
+        }),
+    },
+})
+
+M.UpdateGameSessionInput = schema.new({
+    id = id.from(_N, "UpdateGameSessionInput"),
+    type = "structure",
+    members = {
+        GameSessionId = schema.new({
+            id = id.from(_N, "UpdateGameSessionInput", "GameSessionId"),
+            type = "string",
+            name = "GameSessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaximumPlayerSessionCount = schema.new({
+            id = id.from(_N, "UpdateGameSessionInput", "MaximumPlayerSessionCount"),
+            type = "integer",
+            name = "MaximumPlayerSessionCount",
+            target_id = prelude.Integer.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateGameSessionInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        PlayerSessionCreationPolicy = schema.new({
+            id = id.from(_N, "UpdateGameSessionInput", "PlayerSessionCreationPolicy"),
+            type = "string",
+            name = "PlayerSessionCreationPolicy",
+            target_id = prelude.String.id,
+        }),
+        ProtectionPolicy = schema.new({
+            id = id.from(_N, "UpdateGameSessionInput", "ProtectionPolicy"),
+            type = "string",
+            name = "ProtectionPolicy",
+            target_id = prelude.String.id,
+        }),
+        GameProperties = schema.new({
+            id = id.from(_N, "UpdateGameSessionInput", "GameProperties"),
+            type = "list",
+            name = "GameProperties",
+            target_id = prelude.Document.id,
+            list_member = M.GameProperty,
+        }),
+    },
+})
+
+M.UpdateGameSessionOutput = schema.new({
+    id = id.from(_N, "UpdateGameSessionOutput"),
+    type = "structure",
+    members = {
+        GameSession = schema.new({
+            id = id.from(_N, "UpdateGameSessionOutput", "GameSession"),
+            type = "structure",
+            name = "GameSession",
+            target_id = id.from(_N, "GameSession"),
+            target = M.GameSession,
+        }),
+    },
+})
+
+M.UpdateGameSessionQueueInput = schema.new({
+    id = id.from(_N, "UpdateGameSessionQueueInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "UpdateGameSessionQueueInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TimeoutInSeconds = schema.new({
+            id = id.from(_N, "UpdateGameSessionQueueInput", "TimeoutInSeconds"),
+            type = "integer",
+            name = "TimeoutInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        PlayerLatencyPolicies = schema.new({
+            id = id.from(_N, "UpdateGameSessionQueueInput", "PlayerLatencyPolicies"),
+            type = "list",
+            name = "PlayerLatencyPolicies",
+            target_id = prelude.Document.id,
+            list_member = M.PlayerLatencyPolicy,
+        }),
+        Destinations = schema.new({
+            id = id.from(_N, "UpdateGameSessionQueueInput", "Destinations"),
+            type = "list",
+            name = "Destinations",
+            target_id = prelude.Document.id,
+            list_member = M.GameSessionQueueDestination,
+        }),
+        FilterConfiguration = schema.new({
+            id = id.from(_N, "UpdateGameSessionQueueInput", "FilterConfiguration"),
+            type = "structure",
+            name = "FilterConfiguration",
+            target_id = id.from(_N, "FilterConfiguration"),
+            target = M.FilterConfiguration,
+        }),
+        PriorityConfiguration = schema.new({
+            id = id.from(_N, "UpdateGameSessionQueueInput", "PriorityConfiguration"),
+            type = "structure",
+            name = "PriorityConfiguration",
+            target_id = id.from(_N, "PriorityConfiguration"),
+            target = M.PriorityConfiguration,
+        }),
+        CustomEventData = schema.new({
+            id = id.from(_N, "UpdateGameSessionQueueInput", "CustomEventData"),
+            type = "string",
+            name = "CustomEventData",
+            target_id = prelude.String.id,
+        }),
+        NotificationTarget = schema.new({
+            id = id.from(_N, "UpdateGameSessionQueueInput", "NotificationTarget"),
+            type = "string",
+            name = "NotificationTarget",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateGameSessionQueueOutput = schema.new({
+    id = id.from(_N, "UpdateGameSessionQueueOutput"),
+    type = "structure",
+    members = {
+        GameSessionQueue = schema.new({
+            id = id.from(_N, "UpdateGameSessionQueueOutput", "GameSessionQueue"),
+            type = "structure",
+            name = "GameSessionQueue",
+            target_id = id.from(_N, "GameSessionQueue"),
+            target = M.GameSessionQueue,
+        }),
+    },
+})
+
+M.UpdateMatchmakingConfigurationInput = schema.new({
+    id = id.from(_N, "UpdateMatchmakingConfigurationInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "UpdateMatchmakingConfigurationInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateMatchmakingConfigurationInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        GameSessionQueueArns = schema.new({
+            id = id.from(_N, "UpdateMatchmakingConfigurationInput", "GameSessionQueueArns"),
+            type = "list",
+            name = "GameSessionQueueArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        RequestTimeoutSeconds = schema.new({
+            id = id.from(_N, "UpdateMatchmakingConfigurationInput", "RequestTimeoutSeconds"),
+            type = "integer",
+            name = "RequestTimeoutSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        AcceptanceTimeoutSeconds = schema.new({
+            id = id.from(_N, "UpdateMatchmakingConfigurationInput", "AcceptanceTimeoutSeconds"),
+            type = "integer",
+            name = "AcceptanceTimeoutSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        AcceptanceRequired = schema.new({
+            id = id.from(_N, "UpdateMatchmakingConfigurationInput", "AcceptanceRequired"),
+            type = "boolean",
+            name = "AcceptanceRequired",
+            target_id = prelude.Boolean.id,
+        }),
+        RuleSetName = schema.new({
+            id = id.from(_N, "UpdateMatchmakingConfigurationInput", "RuleSetName"),
+            type = "string",
+            name = "RuleSetName",
+            target_id = prelude.String.id,
+        }),
+        NotificationTarget = schema.new({
+            id = id.from(_N, "UpdateMatchmakingConfigurationInput", "NotificationTarget"),
+            type = "string",
+            name = "NotificationTarget",
+            target_id = prelude.String.id,
+        }),
+        AdditionalPlayerCount = schema.new({
+            id = id.from(_N, "UpdateMatchmakingConfigurationInput", "AdditionalPlayerCount"),
+            type = "integer",
+            name = "AdditionalPlayerCount",
+            target_id = prelude.Integer.id,
+        }),
+        CustomEventData = schema.new({
+            id = id.from(_N, "UpdateMatchmakingConfigurationInput", "CustomEventData"),
+            type = "string",
+            name = "CustomEventData",
+            target_id = prelude.String.id,
+        }),
+        GameProperties = schema.new({
+            id = id.from(_N, "UpdateMatchmakingConfigurationInput", "GameProperties"),
+            type = "list",
+            name = "GameProperties",
+            target_id = prelude.Document.id,
+            list_member = M.GameProperty,
+        }),
+        GameSessionData = schema.new({
+            id = id.from(_N, "UpdateMatchmakingConfigurationInput", "GameSessionData"),
+            type = "string",
+            name = "GameSessionData",
+            target_id = prelude.String.id,
+        }),
+        BackfillMode = schema.new({
+            id = id.from(_N, "UpdateMatchmakingConfigurationInput", "BackfillMode"),
+            type = "string",
+            name = "BackfillMode",
+            target_id = prelude.String.id,
+        }),
+        FlexMatchMode = schema.new({
+            id = id.from(_N, "UpdateMatchmakingConfigurationInput", "FlexMatchMode"),
+            type = "string",
+            name = "FlexMatchMode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateMatchmakingConfigurationOutput = schema.new({
+    id = id.from(_N, "UpdateMatchmakingConfigurationOutput"),
+    type = "structure",
+    members = {
+        Configuration = schema.new({
+            id = id.from(_N, "UpdateMatchmakingConfigurationOutput", "Configuration"),
+            type = "structure",
+            name = "Configuration",
+            target_id = id.from(_N, "MatchmakingConfiguration"),
+            target = M.MatchmakingConfiguration,
+        }),
+    },
+})
+
+M.UpdateRuntimeConfigurationInput = schema.new({
+    id = id.from(_N, "UpdateRuntimeConfigurationInput"),
+    type = "structure",
+    members = {
+        FleetId = schema.new({
+            id = id.from(_N, "UpdateRuntimeConfigurationInput", "FleetId"),
+            type = "string",
+            name = "FleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RuntimeConfiguration = schema.new({
+            id = id.from(_N, "UpdateRuntimeConfigurationInput", "RuntimeConfiguration"),
+            type = "structure",
+            name = "RuntimeConfiguration",
+            target_id = id.from(_N, "RuntimeConfiguration"),
+            target = M.RuntimeConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateRuntimeConfigurationOutput = schema.new({
+    id = id.from(_N, "UpdateRuntimeConfigurationOutput"),
+    type = "structure",
+    members = {
+        RuntimeConfiguration = schema.new({
+            id = id.from(_N, "UpdateRuntimeConfigurationOutput", "RuntimeConfiguration"),
+            type = "structure",
+            name = "RuntimeConfiguration",
+            target_id = id.from(_N, "RuntimeConfiguration"),
+            target = M.RuntimeConfiguration,
+        }),
+    },
+})
+
+M.UpdateScriptInput = schema.new({
+    id = id.from(_N, "UpdateScriptInput"),
+    type = "structure",
+    members = {
+        ScriptId = schema.new({
+            id = id.from(_N, "UpdateScriptInput", "ScriptId"),
+            type = "string",
+            name = "ScriptId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateScriptInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Version = schema.new({
+            id = id.from(_N, "UpdateScriptInput", "Version"),
+            type = "string",
+            name = "Version",
+            target_id = prelude.String.id,
+        }),
+        StorageLocation = schema.new({
+            id = id.from(_N, "UpdateScriptInput", "StorageLocation"),
+            type = "structure",
+            name = "StorageLocation",
+            target_id = id.from(_N, "S3Location"),
+            target = M.S3Location,
+        }),
+        ZipFile = schema.new({
+            id = id.from(_N, "UpdateScriptInput", "ZipFile"),
+            type = "blob",
+            name = "ZipFile",
+            target_id = prelude.Blob.id,
+        }),
+    },
+})
+
+M.UpdateScriptOutput = schema.new({
+    id = id.from(_N, "UpdateScriptOutput"),
+    type = "structure",
+    members = {
+        Script = schema.new({
+            id = id.from(_N, "UpdateScriptOutput", "Script"),
+            type = "structure",
+            name = "Script",
+            target_id = id.from(_N, "Script"),
+            target = M.Script,
+        }),
+    },
+})
+
+M.ValidateMatchmakingRuleSetInput = schema.new({
+    id = id.from(_N, "ValidateMatchmakingRuleSetInput"),
+    type = "structure",
+    members = {
+        RuleSetBody = schema.new({
+            id = id.from(_N, "ValidateMatchmakingRuleSetInput", "RuleSetBody"),
+            type = "string",
+            name = "RuleSetBody",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ValidateMatchmakingRuleSetOutput = schema.new({
+    id = id.from(_N, "ValidateMatchmakingRuleSetOutput"),
+    type = "structure",
+    members = {
+        Valid = schema.new({
+            id = id.from(_N, "ValidateMatchmakingRuleSetOutput", "Valid"),
+            type = "boolean",
+            name = "Valid",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+return M

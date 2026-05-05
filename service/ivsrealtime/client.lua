@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("ivsrealtime.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("ivsrealtime.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("ivsrealtime.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createEncoderConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateEncoderConfiguration",
-        input_schema = types.CreateEncoderConfigurationInput,
-        output_schema = types.CreateEncoderConfigurationOutput,
+        input_schema = schemas.CreateEncoderConfigurationInput,
+        output_schema = schemas.CreateEncoderConfigurationOutput,
         http_method = "POST",
         http_path = "/CreateEncoderConfiguration",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createIngestConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateIngestConfiguration",
-        input_schema = types.CreateIngestConfigurationInput,
-        output_schema = types.CreateIngestConfigurationOutput,
+        input_schema = schemas.CreateIngestConfigurationInput,
+        output_schema = schemas.CreateIngestConfigurationOutput,
         http_method = "POST",
         http_path = "/CreateIngestConfiguration",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createParticipantToken(input, options)
     return self:invokeOperation(input, {
         name = "CreateParticipantToken",
-        input_schema = types.CreateParticipantTokenInput,
-        output_schema = types.CreateParticipantTokenOutput,
+        input_schema = schemas.CreateParticipantTokenInput,
+        output_schema = schemas.CreateParticipantTokenOutput,
         http_method = "POST",
         http_path = "/CreateParticipantToken",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createStage(input, options)
     return self:invokeOperation(input, {
         name = "CreateStage",
-        input_schema = types.CreateStageInput,
-        output_schema = types.CreateStageOutput,
+        input_schema = schemas.CreateStageInput,
+        output_schema = schemas.CreateStageOutput,
         http_method = "POST",
         http_path = "/CreateStage",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createStorageConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateStorageConfiguration",
-        input_schema = types.CreateStorageConfigurationInput,
-        output_schema = types.CreateStorageConfigurationOutput,
+        input_schema = schemas.CreateStorageConfigurationInput,
+        output_schema = schemas.CreateStorageConfigurationOutput,
         http_method = "POST",
         http_path = "/CreateStorageConfiguration",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteEncoderConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteEncoderConfiguration",
-        input_schema = types.DeleteEncoderConfigurationInput,
-        output_schema = types.DeleteEncoderConfigurationOutput,
+        input_schema = schemas.DeleteEncoderConfigurationInput,
+        output_schema = schemas.DeleteEncoderConfigurationOutput,
         http_method = "POST",
         http_path = "/DeleteEncoderConfiguration",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteIngestConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIngestConfiguration",
-        input_schema = types.DeleteIngestConfigurationInput,
-        output_schema = types.DeleteIngestConfigurationOutput,
+        input_schema = schemas.DeleteIngestConfigurationInput,
+        output_schema = schemas.DeleteIngestConfigurationOutput,
         http_method = "POST",
         http_path = "/DeleteIngestConfiguration",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deletePublicKey(input, options)
     return self:invokeOperation(input, {
         name = "DeletePublicKey",
-        input_schema = types.DeletePublicKeyInput,
-        output_schema = types.DeletePublicKeyOutput,
+        input_schema = schemas.DeletePublicKeyInput,
+        output_schema = schemas.DeletePublicKeyOutput,
         http_method = "POST",
         http_path = "/DeletePublicKey",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteStage(input, options)
     return self:invokeOperation(input, {
         name = "DeleteStage",
-        input_schema = types.DeleteStageInput,
-        output_schema = types.DeleteStageOutput,
+        input_schema = schemas.DeleteStageInput,
+        output_schema = schemas.DeleteStageOutput,
         http_method = "POST",
         http_path = "/DeleteStage",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteStorageConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteStorageConfiguration",
-        input_schema = types.DeleteStorageConfigurationInput,
-        output_schema = types.DeleteStorageConfigurationOutput,
+        input_schema = schemas.DeleteStorageConfigurationInput,
+        output_schema = schemas.DeleteStorageConfigurationOutput,
         http_method = "POST",
         http_path = "/DeleteStorageConfiguration",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:disconnectParticipant(input, options)
     return self:invokeOperation(input, {
         name = "DisconnectParticipant",
-        input_schema = types.DisconnectParticipantInput,
-        output_schema = types.DisconnectParticipantOutput,
+        input_schema = schemas.DisconnectParticipantInput,
+        output_schema = schemas.DisconnectParticipantOutput,
         http_method = "POST",
         http_path = "/DisconnectParticipant",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getComposition(input, options)
     return self:invokeOperation(input, {
         name = "GetComposition",
-        input_schema = types.GetCompositionInput,
-        output_schema = types.GetCompositionOutput,
+        input_schema = schemas.GetCompositionInput,
+        output_schema = schemas.GetCompositionOutput,
         http_method = "POST",
         http_path = "/GetComposition",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getEncoderConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetEncoderConfiguration",
-        input_schema = types.GetEncoderConfigurationInput,
-        output_schema = types.GetEncoderConfigurationOutput,
+        input_schema = schemas.GetEncoderConfigurationInput,
+        output_schema = schemas.GetEncoderConfigurationOutput,
         http_method = "POST",
         http_path = "/GetEncoderConfiguration",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getIngestConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetIngestConfiguration",
-        input_schema = types.GetIngestConfigurationInput,
-        output_schema = types.GetIngestConfigurationOutput,
+        input_schema = schemas.GetIngestConfigurationInput,
+        output_schema = schemas.GetIngestConfigurationOutput,
         http_method = "POST",
         http_path = "/GetIngestConfiguration",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getParticipant(input, options)
     return self:invokeOperation(input, {
         name = "GetParticipant",
-        input_schema = types.GetParticipantInput,
-        output_schema = types.GetParticipantOutput,
+        input_schema = schemas.GetParticipantInput,
+        output_schema = schemas.GetParticipantOutput,
         http_method = "POST",
         http_path = "/GetParticipant",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getPublicKey(input, options)
     return self:invokeOperation(input, {
         name = "GetPublicKey",
-        input_schema = types.GetPublicKeyInput,
-        output_schema = types.GetPublicKeyOutput,
+        input_schema = schemas.GetPublicKeyInput,
+        output_schema = schemas.GetPublicKeyOutput,
         http_method = "POST",
         http_path = "/GetPublicKey",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getStage(input, options)
     return self:invokeOperation(input, {
         name = "GetStage",
-        input_schema = types.GetStageInput,
-        output_schema = types.GetStageOutput,
+        input_schema = schemas.GetStageInput,
+        output_schema = schemas.GetStageOutput,
         http_method = "POST",
         http_path = "/GetStage",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getStageSession(input, options)
     return self:invokeOperation(input, {
         name = "GetStageSession",
-        input_schema = types.GetStageSessionInput,
-        output_schema = types.GetStageSessionOutput,
+        input_schema = schemas.GetStageSessionInput,
+        output_schema = schemas.GetStageSessionOutput,
         http_method = "POST",
         http_path = "/GetStageSession",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getStorageConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetStorageConfiguration",
-        input_schema = types.GetStorageConfigurationInput,
-        output_schema = types.GetStorageConfigurationOutput,
+        input_schema = schemas.GetStorageConfigurationInput,
+        output_schema = schemas.GetStorageConfigurationOutput,
         http_method = "POST",
         http_path = "/GetStorageConfiguration",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:importPublicKey(input, options)
     return self:invokeOperation(input, {
         name = "ImportPublicKey",
-        input_schema = types.ImportPublicKeyInput,
-        output_schema = types.ImportPublicKeyOutput,
+        input_schema = schemas.ImportPublicKeyInput,
+        output_schema = schemas.ImportPublicKeyOutput,
         http_method = "POST",
         http_path = "/ImportPublicKey",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listCompositions(input, options)
     return self:invokeOperation(input, {
         name = "ListCompositions",
-        input_schema = types.ListCompositionsInput,
-        output_schema = types.ListCompositionsOutput,
+        input_schema = schemas.ListCompositionsInput,
+        output_schema = schemas.ListCompositionsOutput,
         http_method = "POST",
         http_path = "/ListCompositions",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listEncoderConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListEncoderConfigurations",
-        input_schema = types.ListEncoderConfigurationsInput,
-        output_schema = types.ListEncoderConfigurationsOutput,
+        input_schema = schemas.ListEncoderConfigurationsInput,
+        output_schema = schemas.ListEncoderConfigurationsOutput,
         http_method = "POST",
         http_path = "/ListEncoderConfigurations",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listIngestConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListIngestConfigurations",
-        input_schema = types.ListIngestConfigurationsInput,
-        output_schema = types.ListIngestConfigurationsOutput,
+        input_schema = schemas.ListIngestConfigurationsInput,
+        output_schema = schemas.ListIngestConfigurationsOutput,
         http_method = "POST",
         http_path = "/ListIngestConfigurations",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listParticipantEvents(input, options)
     return self:invokeOperation(input, {
         name = "ListParticipantEvents",
-        input_schema = types.ListParticipantEventsInput,
-        output_schema = types.ListParticipantEventsOutput,
+        input_schema = schemas.ListParticipantEventsInput,
+        output_schema = schemas.ListParticipantEventsOutput,
         http_method = "POST",
         http_path = "/ListParticipantEvents",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listParticipantReplicas(input, options)
     return self:invokeOperation(input, {
         name = "ListParticipantReplicas",
-        input_schema = types.ListParticipantReplicasInput,
-        output_schema = types.ListParticipantReplicasOutput,
+        input_schema = schemas.ListParticipantReplicasInput,
+        output_schema = schemas.ListParticipantReplicasOutput,
         http_method = "POST",
         http_path = "/ListParticipantReplicas",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listParticipants(input, options)
     return self:invokeOperation(input, {
         name = "ListParticipants",
-        input_schema = types.ListParticipantsInput,
-        output_schema = types.ListParticipantsOutput,
+        input_schema = schemas.ListParticipantsInput,
+        output_schema = schemas.ListParticipantsOutput,
         http_method = "POST",
         http_path = "/ListParticipants",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listPublicKeys(input, options)
     return self:invokeOperation(input, {
         name = "ListPublicKeys",
-        input_schema = types.ListPublicKeysInput,
-        output_schema = types.ListPublicKeysOutput,
+        input_schema = schemas.ListPublicKeysInput,
+        output_schema = schemas.ListPublicKeysOutput,
         http_method = "POST",
         http_path = "/ListPublicKeys",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listStages(input, options)
     return self:invokeOperation(input, {
         name = "ListStages",
-        input_schema = types.ListStagesInput,
-        output_schema = types.ListStagesOutput,
+        input_schema = schemas.ListStagesInput,
+        output_schema = schemas.ListStagesOutput,
         http_method = "POST",
         http_path = "/ListStages",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listStageSessions(input, options)
     return self:invokeOperation(input, {
         name = "ListStageSessions",
-        input_schema = types.ListStageSessionsInput,
-        output_schema = types.ListStageSessionsOutput,
+        input_schema = schemas.ListStageSessionsInput,
+        output_schema = schemas.ListStageSessionsOutput,
         http_method = "POST",
         http_path = "/ListStageSessions",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:listStorageConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListStorageConfigurations",
-        input_schema = types.ListStorageConfigurationsInput,
-        output_schema = types.ListStorageConfigurationsOutput,
+        input_schema = schemas.ListStorageConfigurationsInput,
+        output_schema = schemas.ListStorageConfigurationsOutput,
         http_method = "POST",
         http_path = "/ListStorageConfigurations",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:startComposition(input, options)
     return self:invokeOperation(input, {
         name = "StartComposition",
-        input_schema = types.StartCompositionInput,
-        output_schema = types.StartCompositionOutput,
+        input_schema = schemas.StartCompositionInput,
+        output_schema = schemas.StartCompositionOutput,
         http_method = "POST",
         http_path = "/StartComposition",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:startParticipantReplication(input, options)
     return self:invokeOperation(input, {
         name = "StartParticipantReplication",
-        input_schema = types.StartParticipantReplicationInput,
-        output_schema = types.StartParticipantReplicationOutput,
+        input_schema = schemas.StartParticipantReplicationInput,
+        output_schema = schemas.StartParticipantReplicationOutput,
         http_method = "POST",
         http_path = "/StartParticipantReplication",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:stopComposition(input, options)
     return self:invokeOperation(input, {
         name = "StopComposition",
-        input_schema = types.StopCompositionInput,
-        output_schema = types.StopCompositionOutput,
+        input_schema = schemas.StopCompositionInput,
+        output_schema = schemas.StopCompositionOutput,
         http_method = "POST",
         http_path = "/StopComposition",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:stopParticipantReplication(input, options)
     return self:invokeOperation(input, {
         name = "StopParticipantReplication",
-        input_schema = types.StopParticipantReplicationInput,
-        output_schema = types.StopParticipantReplicationOutput,
+        input_schema = schemas.StopParticipantReplicationInput,
+        output_schema = schemas.StopParticipantReplicationOutput,
         http_method = "POST",
         http_path = "/StopParticipantReplication",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:updateIngestConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateIngestConfiguration",
-        input_schema = types.UpdateIngestConfigurationInput,
-        output_schema = types.UpdateIngestConfigurationOutput,
+        input_schema = schemas.UpdateIngestConfigurationInput,
+        output_schema = schemas.UpdateIngestConfigurationOutput,
         http_method = "POST",
         http_path = "/UpdateIngestConfiguration",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:updateStage(input, options)
     return self:invokeOperation(input, {
         name = "UpdateStage",
-        input_schema = types.UpdateStageInput,
-        output_schema = types.UpdateStageOutput,
+        input_schema = schemas.UpdateStageInput,
+        output_schema = schemas.UpdateStageOutput,
         http_method = "POST",
         http_path = "/UpdateStage",
         effective_auth_schemes = {

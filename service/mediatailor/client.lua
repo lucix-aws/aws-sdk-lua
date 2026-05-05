@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("mediatailor.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("mediatailor.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("mediatailor.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:configureLogsForChannel(input, options)
     return self:invokeOperation(input, {
         name = "ConfigureLogsForChannel",
-        input_schema = types.ConfigureLogsForChannelInput,
-        output_schema = types.ConfigureLogsForChannelOutput,
+        input_schema = schemas.ConfigureLogsForChannelInput,
+        output_schema = schemas.ConfigureLogsForChannelOutput,
         http_method = "PUT",
         http_path = "/configureLogs/channel",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:configureLogsForPlaybackConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "ConfigureLogsForPlaybackConfiguration",
-        input_schema = types.ConfigureLogsForPlaybackConfigurationInput,
-        output_schema = types.ConfigureLogsForPlaybackConfigurationOutput,
+        input_schema = schemas.ConfigureLogsForPlaybackConfigurationInput,
+        output_schema = schemas.ConfigureLogsForPlaybackConfigurationOutput,
         http_method = "PUT",
         http_path = "/configureLogs/playbackConfiguration",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createChannel(input, options)
     return self:invokeOperation(input, {
         name = "CreateChannel",
-        input_schema = types.CreateChannelInput,
-        output_schema = types.CreateChannelOutput,
+        input_schema = schemas.CreateChannelInput,
+        output_schema = schemas.CreateChannelOutput,
         http_method = "POST",
         http_path = "/channel/{ChannelName}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createLiveSource(input, options)
     return self:invokeOperation(input, {
         name = "CreateLiveSource",
-        input_schema = types.CreateLiveSourceInput,
-        output_schema = types.CreateLiveSourceOutput,
+        input_schema = schemas.CreateLiveSourceInput,
+        output_schema = schemas.CreateLiveSourceOutput,
         http_method = "POST",
         http_path = "/sourceLocation/{SourceLocationName}/liveSource/{LiveSourceName}",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createPrefetchSchedule(input, options)
     return self:invokeOperation(input, {
         name = "CreatePrefetchSchedule",
-        input_schema = types.CreatePrefetchScheduleInput,
-        output_schema = types.CreatePrefetchScheduleOutput,
+        input_schema = schemas.CreatePrefetchScheduleInput,
+        output_schema = schemas.CreatePrefetchScheduleOutput,
         http_method = "POST",
         http_path = "/prefetchSchedule/{PlaybackConfigurationName}/{Name}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createProgram(input, options)
     return self:invokeOperation(input, {
         name = "CreateProgram",
-        input_schema = types.CreateProgramInput,
-        output_schema = types.CreateProgramOutput,
+        input_schema = schemas.CreateProgramInput,
+        output_schema = schemas.CreateProgramOutput,
         http_method = "POST",
         http_path = "/channel/{ChannelName}/program/{ProgramName}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createSourceLocation(input, options)
     return self:invokeOperation(input, {
         name = "CreateSourceLocation",
-        input_schema = types.CreateSourceLocationInput,
-        output_schema = types.CreateSourceLocationOutput,
+        input_schema = schemas.CreateSourceLocationInput,
+        output_schema = schemas.CreateSourceLocationOutput,
         http_method = "POST",
         http_path = "/sourceLocation/{SourceLocationName}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createVodSource(input, options)
     return self:invokeOperation(input, {
         name = "CreateVodSource",
-        input_schema = types.CreateVodSourceInput,
-        output_schema = types.CreateVodSourceOutput,
+        input_schema = schemas.CreateVodSourceInput,
+        output_schema = schemas.CreateVodSourceOutput,
         http_method = "POST",
         http_path = "/sourceLocation/{SourceLocationName}/vodSource/{VodSourceName}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteChannel(input, options)
     return self:invokeOperation(input, {
         name = "DeleteChannel",
-        input_schema = types.DeleteChannelInput,
-        output_schema = types.DeleteChannelOutput,
+        input_schema = schemas.DeleteChannelInput,
+        output_schema = schemas.DeleteChannelOutput,
         http_method = "DELETE",
         http_path = "/channel/{ChannelName}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteChannelPolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeleteChannelPolicy",
-        input_schema = types.DeleteChannelPolicyInput,
-        output_schema = types.DeleteChannelPolicyOutput,
+        input_schema = schemas.DeleteChannelPolicyInput,
+        output_schema = schemas.DeleteChannelPolicyOutput,
         http_method = "DELETE",
         http_path = "/channel/{ChannelName}/policy",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteLiveSource(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLiveSource",
-        input_schema = types.DeleteLiveSourceInput,
-        output_schema = types.DeleteLiveSourceOutput,
+        input_schema = schemas.DeleteLiveSourceInput,
+        output_schema = schemas.DeleteLiveSourceOutput,
         http_method = "DELETE",
         http_path = "/sourceLocation/{SourceLocationName}/liveSource/{LiveSourceName}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deletePlaybackConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeletePlaybackConfiguration",
-        input_schema = types.DeletePlaybackConfigurationInput,
-        output_schema = types.DeletePlaybackConfigurationOutput,
+        input_schema = schemas.DeletePlaybackConfigurationInput,
+        output_schema = schemas.DeletePlaybackConfigurationOutput,
         http_method = "DELETE",
         http_path = "/playbackConfiguration/{Name}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deletePrefetchSchedule(input, options)
     return self:invokeOperation(input, {
         name = "DeletePrefetchSchedule",
-        input_schema = types.DeletePrefetchScheduleInput,
-        output_schema = types.DeletePrefetchScheduleOutput,
+        input_schema = schemas.DeletePrefetchScheduleInput,
+        output_schema = schemas.DeletePrefetchScheduleOutput,
         http_method = "DELETE",
         http_path = "/prefetchSchedule/{PlaybackConfigurationName}/{Name}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteProgram(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProgram",
-        input_schema = types.DeleteProgramInput,
-        output_schema = types.DeleteProgramOutput,
+        input_schema = schemas.DeleteProgramInput,
+        output_schema = schemas.DeleteProgramOutput,
         http_method = "DELETE",
         http_path = "/channel/{ChannelName}/program/{ProgramName}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:deleteSourceLocation(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSourceLocation",
-        input_schema = types.DeleteSourceLocationInput,
-        output_schema = types.DeleteSourceLocationOutput,
+        input_schema = schemas.DeleteSourceLocationInput,
+        output_schema = schemas.DeleteSourceLocationOutput,
         http_method = "DELETE",
         http_path = "/sourceLocation/{SourceLocationName}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:deleteVodSource(input, options)
     return self:invokeOperation(input, {
         name = "DeleteVodSource",
-        input_schema = types.DeleteVodSourceInput,
-        output_schema = types.DeleteVodSourceOutput,
+        input_schema = schemas.DeleteVodSourceInput,
+        output_schema = schemas.DeleteVodSourceOutput,
         http_method = "DELETE",
         http_path = "/sourceLocation/{SourceLocationName}/vodSource/{VodSourceName}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:describeChannel(input, options)
     return self:invokeOperation(input, {
         name = "DescribeChannel",
-        input_schema = types.DescribeChannelInput,
-        output_schema = types.DescribeChannelOutput,
+        input_schema = schemas.DescribeChannelInput,
+        output_schema = schemas.DescribeChannelOutput,
         http_method = "GET",
         http_path = "/channel/{ChannelName}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:describeLiveSource(input, options)
     return self:invokeOperation(input, {
         name = "DescribeLiveSource",
-        input_schema = types.DescribeLiveSourceInput,
-        output_schema = types.DescribeLiveSourceOutput,
+        input_schema = schemas.DescribeLiveSourceInput,
+        output_schema = schemas.DescribeLiveSourceOutput,
         http_method = "GET",
         http_path = "/sourceLocation/{SourceLocationName}/liveSource/{LiveSourceName}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:describeProgram(input, options)
     return self:invokeOperation(input, {
         name = "DescribeProgram",
-        input_schema = types.DescribeProgramInput,
-        output_schema = types.DescribeProgramOutput,
+        input_schema = schemas.DescribeProgramInput,
+        output_schema = schemas.DescribeProgramOutput,
         http_method = "GET",
         http_path = "/channel/{ChannelName}/program/{ProgramName}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:describeSourceLocation(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSourceLocation",
-        input_schema = types.DescribeSourceLocationInput,
-        output_schema = types.DescribeSourceLocationOutput,
+        input_schema = schemas.DescribeSourceLocationInput,
+        output_schema = schemas.DescribeSourceLocationOutput,
         http_method = "GET",
         http_path = "/sourceLocation/{SourceLocationName}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:describeVodSource(input, options)
     return self:invokeOperation(input, {
         name = "DescribeVodSource",
-        input_schema = types.DescribeVodSourceInput,
-        output_schema = types.DescribeVodSourceOutput,
+        input_schema = schemas.DescribeVodSourceInput,
+        output_schema = schemas.DescribeVodSourceOutput,
         http_method = "GET",
         http_path = "/sourceLocation/{SourceLocationName}/vodSource/{VodSourceName}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:getChannelPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetChannelPolicy",
-        input_schema = types.GetChannelPolicyInput,
-        output_schema = types.GetChannelPolicyOutput,
+        input_schema = schemas.GetChannelPolicyInput,
+        output_schema = schemas.GetChannelPolicyOutput,
         http_method = "GET",
         http_path = "/channel/{ChannelName}/policy",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:getChannelSchedule(input, options)
     return self:invokeOperation(input, {
         name = "GetChannelSchedule",
-        input_schema = types.GetChannelScheduleInput,
-        output_schema = types.GetChannelScheduleOutput,
+        input_schema = schemas.GetChannelScheduleInput,
+        output_schema = schemas.GetChannelScheduleOutput,
         http_method = "GET",
         http_path = "/channel/{ChannelName}/schedule",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:getPlaybackConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetPlaybackConfiguration",
-        input_schema = types.GetPlaybackConfigurationInput,
-        output_schema = types.GetPlaybackConfigurationOutput,
+        input_schema = schemas.GetPlaybackConfigurationInput,
+        output_schema = schemas.GetPlaybackConfigurationOutput,
         http_method = "GET",
         http_path = "/playbackConfiguration/{Name}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:getPrefetchSchedule(input, options)
     return self:invokeOperation(input, {
         name = "GetPrefetchSchedule",
-        input_schema = types.GetPrefetchScheduleInput,
-        output_schema = types.GetPrefetchScheduleOutput,
+        input_schema = schemas.GetPrefetchScheduleInput,
+        output_schema = schemas.GetPrefetchScheduleOutput,
         http_method = "GET",
         http_path = "/prefetchSchedule/{PlaybackConfigurationName}/{Name}",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listAlerts(input, options)
     return self:invokeOperation(input, {
         name = "ListAlerts",
-        input_schema = types.ListAlertsInput,
-        output_schema = types.ListAlertsOutput,
+        input_schema = schemas.ListAlertsInput,
+        output_schema = schemas.ListAlertsOutput,
         http_method = "GET",
         http_path = "/alerts",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listChannels(input, options)
     return self:invokeOperation(input, {
         name = "ListChannels",
-        input_schema = types.ListChannelsInput,
-        output_schema = types.ListChannelsOutput,
+        input_schema = schemas.ListChannelsInput,
+        output_schema = schemas.ListChannelsOutput,
         http_method = "GET",
         http_path = "/channels",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listLiveSources(input, options)
     return self:invokeOperation(input, {
         name = "ListLiveSources",
-        input_schema = types.ListLiveSourcesInput,
-        output_schema = types.ListLiveSourcesOutput,
+        input_schema = schemas.ListLiveSourcesInput,
+        output_schema = schemas.ListLiveSourcesOutput,
         http_method = "GET",
         http_path = "/sourceLocation/{SourceLocationName}/liveSources",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listPlaybackConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListPlaybackConfigurations",
-        input_schema = types.ListPlaybackConfigurationsInput,
-        output_schema = types.ListPlaybackConfigurationsOutput,
+        input_schema = schemas.ListPlaybackConfigurationsInput,
+        output_schema = schemas.ListPlaybackConfigurationsOutput,
         http_method = "GET",
         http_path = "/playbackConfigurations",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:listPrefetchSchedules(input, options)
     return self:invokeOperation(input, {
         name = "ListPrefetchSchedules",
-        input_schema = types.ListPrefetchSchedulesInput,
-        output_schema = types.ListPrefetchSchedulesOutput,
+        input_schema = schemas.ListPrefetchSchedulesInput,
+        output_schema = schemas.ListPrefetchSchedulesOutput,
         http_method = "POST",
         http_path = "/prefetchSchedule/{PlaybackConfigurationName}",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:listSourceLocations(input, options)
     return self:invokeOperation(input, {
         name = "ListSourceLocations",
-        input_schema = types.ListSourceLocationsInput,
-        output_schema = types.ListSourceLocationsOutput,
+        input_schema = schemas.ListSourceLocationsInput,
+        output_schema = schemas.ListSourceLocationsOutput,
         http_method = "GET",
         http_path = "/sourceLocations",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:listVodSources(input, options)
     return self:invokeOperation(input, {
         name = "ListVodSources",
-        input_schema = types.ListVodSourcesInput,
-        output_schema = types.ListVodSourcesOutput,
+        input_schema = schemas.ListVodSourcesInput,
+        output_schema = schemas.ListVodSourcesOutput,
         http_method = "GET",
         http_path = "/sourceLocation/{SourceLocationName}/vodSources",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:putChannelPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutChannelPolicy",
-        input_schema = types.PutChannelPolicyInput,
-        output_schema = types.PutChannelPolicyOutput,
+        input_schema = schemas.PutChannelPolicyInput,
+        output_schema = schemas.PutChannelPolicyOutput,
         http_method = "PUT",
         http_path = "/channel/{ChannelName}/policy",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:putPlaybackConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "PutPlaybackConfiguration",
-        input_schema = types.PutPlaybackConfigurationInput,
-        output_schema = types.PutPlaybackConfigurationOutput,
+        input_schema = schemas.PutPlaybackConfigurationInput,
+        output_schema = schemas.PutPlaybackConfigurationOutput,
         http_method = "PUT",
         http_path = "/playbackConfiguration",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:startChannel(input, options)
     return self:invokeOperation(input, {
         name = "StartChannel",
-        input_schema = types.StartChannelInput,
-        output_schema = types.StartChannelOutput,
+        input_schema = schemas.StartChannelInput,
+        output_schema = schemas.StartChannelOutput,
         http_method = "PUT",
         http_path = "/channel/{ChannelName}/start",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:stopChannel(input, options)
     return self:invokeOperation(input, {
         name = "StopChannel",
-        input_schema = types.StopChannelInput,
-        output_schema = types.StopChannelOutput,
+        input_schema = schemas.StopChannelInput,
+        output_schema = schemas.StopChannelOutput,
         http_method = "PUT",
         http_path = "/channel/{ChannelName}/stop",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:updateChannel(input, options)
     return self:invokeOperation(input, {
         name = "UpdateChannel",
-        input_schema = types.UpdateChannelInput,
-        output_schema = types.UpdateChannelOutput,
+        input_schema = schemas.UpdateChannelInput,
+        output_schema = schemas.UpdateChannelOutput,
         http_method = "PUT",
         http_path = "/channel/{ChannelName}",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:updateLiveSource(input, options)
     return self:invokeOperation(input, {
         name = "UpdateLiveSource",
-        input_schema = types.UpdateLiveSourceInput,
-        output_schema = types.UpdateLiveSourceOutput,
+        input_schema = schemas.UpdateLiveSourceInput,
+        output_schema = schemas.UpdateLiveSourceOutput,
         http_method = "PUT",
         http_path = "/sourceLocation/{SourceLocationName}/liveSource/{LiveSourceName}",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:updateProgram(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProgram",
-        input_schema = types.UpdateProgramInput,
-        output_schema = types.UpdateProgramOutput,
+        input_schema = schemas.UpdateProgramInput,
+        output_schema = schemas.UpdateProgramOutput,
         http_method = "PUT",
         http_path = "/channel/{ChannelName}/program/{ProgramName}",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:updateSourceLocation(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSourceLocation",
-        input_schema = types.UpdateSourceLocationInput,
-        output_schema = types.UpdateSourceLocationOutput,
+        input_schema = schemas.UpdateSourceLocationInput,
+        output_schema = schemas.UpdateSourceLocationOutput,
         http_method = "PUT",
         http_path = "/sourceLocation/{SourceLocationName}",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:updateVodSource(input, options)
     return self:invokeOperation(input, {
         name = "UpdateVodSource",
-        input_schema = types.UpdateVodSourceInput,
-        output_schema = types.UpdateVodSourceOutput,
+        input_schema = schemas.UpdateVodSourceInput,
+        output_schema = schemas.UpdateVodSourceOutput,
         http_method = "PUT",
         http_path = "/sourceLocation/{SourceLocationName}/vodSource/{VodSourceName}",
         effective_auth_schemes = {

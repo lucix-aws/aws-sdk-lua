@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("cloudsearch.endpoint_rules")
 local query_protocol = require("protocol.query")
+local schemas = require("cloudsearch.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("cloudsearch.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:buildSuggesters(input, options)
     return self:invokeOperation(input, {
         name = "BuildSuggesters",
-        input_schema = types.BuildSuggestersInput,
-        output_schema = types.BuildSuggestersOutput,
+        input_schema = schemas.BuildSuggestersInput,
+        output_schema = schemas.BuildSuggestersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createDomain(input, options)
     return self:invokeOperation(input, {
         name = "CreateDomain",
-        input_schema = types.CreateDomainInput,
-        output_schema = types.CreateDomainOutput,
+        input_schema = schemas.CreateDomainInput,
+        output_schema = schemas.CreateDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:defineAnalysisScheme(input, options)
     return self:invokeOperation(input, {
         name = "DefineAnalysisScheme",
-        input_schema = types.DefineAnalysisSchemeInput,
-        output_schema = types.DefineAnalysisSchemeOutput,
+        input_schema = schemas.DefineAnalysisSchemeInput,
+        output_schema = schemas.DefineAnalysisSchemeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:defineExpression(input, options)
     return self:invokeOperation(input, {
         name = "DefineExpression",
-        input_schema = types.DefineExpressionInput,
-        output_schema = types.DefineExpressionOutput,
+        input_schema = schemas.DefineExpressionInput,
+        output_schema = schemas.DefineExpressionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:defineIndexField(input, options)
     return self:invokeOperation(input, {
         name = "DefineIndexField",
-        input_schema = types.DefineIndexFieldInput,
-        output_schema = types.DefineIndexFieldOutput,
+        input_schema = schemas.DefineIndexFieldInput,
+        output_schema = schemas.DefineIndexFieldOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:defineSuggester(input, options)
     return self:invokeOperation(input, {
         name = "DefineSuggester",
-        input_schema = types.DefineSuggesterInput,
-        output_schema = types.DefineSuggesterOutput,
+        input_schema = schemas.DefineSuggesterInput,
+        output_schema = schemas.DefineSuggesterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteAnalysisScheme(input, options)
     return self:invokeOperation(input, {
         name = "DeleteAnalysisScheme",
-        input_schema = types.DeleteAnalysisSchemeInput,
-        output_schema = types.DeleteAnalysisSchemeOutput,
+        input_schema = schemas.DeleteAnalysisSchemeInput,
+        output_schema = schemas.DeleteAnalysisSchemeOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteDomain(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDomain",
-        input_schema = types.DeleteDomainInput,
-        output_schema = types.DeleteDomainOutput,
+        input_schema = schemas.DeleteDomainInput,
+        output_schema = schemas.DeleteDomainOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteExpression(input, options)
     return self:invokeOperation(input, {
         name = "DeleteExpression",
-        input_schema = types.DeleteExpressionInput,
-        output_schema = types.DeleteExpressionOutput,
+        input_schema = schemas.DeleteExpressionInput,
+        output_schema = schemas.DeleteExpressionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteIndexField(input, options)
     return self:invokeOperation(input, {
         name = "DeleteIndexField",
-        input_schema = types.DeleteIndexFieldInput,
-        output_schema = types.DeleteIndexFieldOutput,
+        input_schema = schemas.DeleteIndexFieldInput,
+        output_schema = schemas.DeleteIndexFieldOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteSuggester(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSuggester",
-        input_schema = types.DeleteSuggesterInput,
-        output_schema = types.DeleteSuggesterOutput,
+        input_schema = schemas.DeleteSuggesterInput,
+        output_schema = schemas.DeleteSuggesterOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:describeAnalysisSchemes(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAnalysisSchemes",
-        input_schema = types.DescribeAnalysisSchemesInput,
-        output_schema = types.DescribeAnalysisSchemesOutput,
+        input_schema = schemas.DescribeAnalysisSchemesInput,
+        output_schema = schemas.DescribeAnalysisSchemesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:describeAvailabilityOptions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAvailabilityOptions",
-        input_schema = types.DescribeAvailabilityOptionsInput,
-        output_schema = types.DescribeAvailabilityOptionsOutput,
+        input_schema = schemas.DescribeAvailabilityOptionsInput,
+        output_schema = schemas.DescribeAvailabilityOptionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:describeDomainEndpointOptions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDomainEndpointOptions",
-        input_schema = types.DescribeDomainEndpointOptionsInput,
-        output_schema = types.DescribeDomainEndpointOptionsOutput,
+        input_schema = schemas.DescribeDomainEndpointOptionsInput,
+        output_schema = schemas.DescribeDomainEndpointOptionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:describeDomains(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDomains",
-        input_schema = types.DescribeDomainsInput,
-        output_schema = types.DescribeDomainsOutput,
+        input_schema = schemas.DescribeDomainsInput,
+        output_schema = schemas.DescribeDomainsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:describeExpressions(input, options)
     return self:invokeOperation(input, {
         name = "DescribeExpressions",
-        input_schema = types.DescribeExpressionsInput,
-        output_schema = types.DescribeExpressionsOutput,
+        input_schema = schemas.DescribeExpressionsInput,
+        output_schema = schemas.DescribeExpressionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:describeIndexFields(input, options)
     return self:invokeOperation(input, {
         name = "DescribeIndexFields",
-        input_schema = types.DescribeIndexFieldsInput,
-        output_schema = types.DescribeIndexFieldsOutput,
+        input_schema = schemas.DescribeIndexFieldsInput,
+        output_schema = schemas.DescribeIndexFieldsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:describeScalingParameters(input, options)
     return self:invokeOperation(input, {
         name = "DescribeScalingParameters",
-        input_schema = types.DescribeScalingParametersInput,
-        output_schema = types.DescribeScalingParametersOutput,
+        input_schema = schemas.DescribeScalingParametersInput,
+        output_schema = schemas.DescribeScalingParametersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:describeServiceAccessPolicies(input, options)
     return self:invokeOperation(input, {
         name = "DescribeServiceAccessPolicies",
-        input_schema = types.DescribeServiceAccessPoliciesInput,
-        output_schema = types.DescribeServiceAccessPoliciesOutput,
+        input_schema = schemas.DescribeServiceAccessPoliciesInput,
+        output_schema = schemas.DescribeServiceAccessPoliciesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:describeSuggesters(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSuggesters",
-        input_schema = types.DescribeSuggestersInput,
-        output_schema = types.DescribeSuggestersOutput,
+        input_schema = schemas.DescribeSuggestersInput,
+        output_schema = schemas.DescribeSuggestersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:indexDocuments(input, options)
     return self:invokeOperation(input, {
         name = "IndexDocuments",
-        input_schema = types.IndexDocumentsInput,
-        output_schema = types.IndexDocumentsOutput,
+        input_schema = schemas.IndexDocumentsInput,
+        output_schema = schemas.IndexDocumentsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listDomainNames(input, options)
     return self:invokeOperation(input, {
         name = "ListDomainNames",
-        input_schema = types.ListDomainNamesInput,
-        output_schema = types.ListDomainNamesOutput,
+        input_schema = schemas.ListDomainNamesInput,
+        output_schema = schemas.ListDomainNamesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:updateAvailabilityOptions(input, options)
     return self:invokeOperation(input, {
         name = "UpdateAvailabilityOptions",
-        input_schema = types.UpdateAvailabilityOptionsInput,
-        output_schema = types.UpdateAvailabilityOptionsOutput,
+        input_schema = schemas.UpdateAvailabilityOptionsInput,
+        output_schema = schemas.UpdateAvailabilityOptionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:updateDomainEndpointOptions(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDomainEndpointOptions",
-        input_schema = types.UpdateDomainEndpointOptionsInput,
-        output_schema = types.UpdateDomainEndpointOptionsOutput,
+        input_schema = schemas.UpdateDomainEndpointOptionsInput,
+        output_schema = schemas.UpdateDomainEndpointOptionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:updateScalingParameters(input, options)
     return self:invokeOperation(input, {
         name = "UpdateScalingParameters",
-        input_schema = types.UpdateScalingParametersInput,
-        output_schema = types.UpdateScalingParametersOutput,
+        input_schema = schemas.UpdateScalingParametersInput,
+        output_schema = schemas.UpdateScalingParametersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:updateServiceAccessPolicies(input, options)
     return self:invokeOperation(input, {
         name = "UpdateServiceAccessPolicies",
-        input_schema = types.UpdateServiceAccessPoliciesInput,
-        output_schema = types.UpdateServiceAccessPoliciesOutput,
+        input_schema = schemas.UpdateServiceAccessPoliciesInput,
+        output_schema = schemas.UpdateServiceAccessPoliciesOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

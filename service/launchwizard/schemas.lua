@@ -1,0 +1,1267 @@
+local id = require("smithy.shape_id")
+local schema = require("smithy.schema")
+local prelude = require("smithy.prelude")
+local traits = require("smithy.traits")
+
+local _N = "com.amazonaws.launchwizard"
+
+local M = {}
+
+M.CreateDeploymentInput = schema.new({
+    id = id.from(_N, "CreateDeploymentInput"),
+    type = "structure",
+    members = {
+        workloadName = schema.new({
+            id = id.from(_N, "CreateDeploymentInput", "workloadName"),
+            type = "string",
+            name = "workloadName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        deploymentPatternName = schema.new({
+            id = id.from(_N, "CreateDeploymentInput", "deploymentPatternName"),
+            type = "string",
+            name = "deploymentPatternName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "CreateDeploymentInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        specifications = schema.new({
+            id = id.from(_N, "CreateDeploymentInput", "specifications"),
+            type = "map",
+            name = "specifications",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        dryRun = schema.new({
+            id = id.from(_N, "CreateDeploymentInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateDeploymentInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateDeploymentOutput = schema.new({
+    id = id.from(_N, "CreateDeploymentOutput"),
+    type = "structure",
+    members = {
+        deploymentId = schema.new({
+            id = id.from(_N, "CreateDeploymentOutput", "deploymentId"),
+            type = "string",
+            name = "deploymentId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InternalServerException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceLimitException = schema.new({
+    id = id.from(_N, "ResourceLimitException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceLimitException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteDeploymentInput = schema.new({
+    id = id.from(_N, "DeleteDeploymentInput"),
+    type = "structure",
+    members = {
+        deploymentId = schema.new({
+            id = id.from(_N, "DeleteDeploymentInput", "deploymentId"),
+            type = "string",
+            name = "deploymentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteDeploymentOutput = schema.new({
+    id = id.from(_N, "DeleteDeploymentOutput"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "DeleteDeploymentOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "DeleteDeploymentOutput", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListDeploymentEventsInput = schema.new({
+    id = id.from(_N, "ListDeploymentEventsInput"),
+    type = "structure",
+    members = {
+        deploymentId = schema.new({
+            id = id.from(_N, "ListDeploymentEventsInput", "deploymentId"),
+            type = "string",
+            name = "deploymentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListDeploymentEventsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListDeploymentEventsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeploymentEventDataSummary = schema.new({
+    id = id.from(_N, "DeploymentEventDataSummary"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "DeploymentEventDataSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "DeploymentEventDataSummary", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "DeploymentEventDataSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "DeploymentEventDataSummary", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        timestamp = schema.new({
+            id = id.from(_N, "DeploymentEventDataSummary", "timestamp"),
+            type = "timestamp",
+            name = "timestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListDeploymentEventsOutput = schema.new({
+    id = id.from(_N, "ListDeploymentEventsOutput"),
+    type = "structure",
+    members = {
+        deploymentEvents = schema.new({
+            id = id.from(_N, "ListDeploymentEventsOutput", "deploymentEvents"),
+            type = "list",
+            name = "deploymentEvents",
+            target_id = prelude.Document.id,
+            list_member = M.DeploymentEventDataSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListDeploymentEventsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetDeploymentInput = schema.new({
+    id = id.from(_N, "GetDeploymentInput"),
+    type = "structure",
+    members = {
+        deploymentId = schema.new({
+            id = id.from(_N, "GetDeploymentInput", "deploymentId"),
+            type = "string",
+            name = "deploymentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeploymentData = schema.new({
+    id = id.from(_N, "DeploymentData"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "DeploymentData", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        id = schema.new({
+            id = id.from(_N, "DeploymentData", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+        workloadName = schema.new({
+            id = id.from(_N, "DeploymentData", "workloadName"),
+            type = "string",
+            name = "workloadName",
+            target_id = prelude.String.id,
+        }),
+        patternName = schema.new({
+            id = id.from(_N, "DeploymentData", "patternName"),
+            type = "string",
+            name = "patternName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "DeploymentData", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "DeploymentData", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        modifiedAt = schema.new({
+            id = id.from(_N, "DeploymentData", "modifiedAt"),
+            type = "timestamp",
+            name = "modifiedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        specifications = schema.new({
+            id = id.from(_N, "DeploymentData", "specifications"),
+            type = "map",
+            name = "specifications",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        resourceGroup = schema.new({
+            id = id.from(_N, "DeploymentData", "resourceGroup"),
+            type = "string",
+            name = "resourceGroup",
+            target_id = prelude.String.id,
+        }),
+        deletedAt = schema.new({
+            id = id.from(_N, "DeploymentData", "deletedAt"),
+            type = "timestamp",
+            name = "deletedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "DeploymentData", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        deploymentArn = schema.new({
+            id = id.from(_N, "DeploymentData", "deploymentArn"),
+            type = "string",
+            name = "deploymentArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetDeploymentOutput = schema.new({
+    id = id.from(_N, "GetDeploymentOutput"),
+    type = "structure",
+    members = {
+        deployment = schema.new({
+            id = id.from(_N, "GetDeploymentOutput", "deployment"),
+            type = "structure",
+            name = "deployment",
+            target_id = id.from(_N, "DeploymentData"),
+            target = M.DeploymentData,
+        }),
+    },
+})
+
+M.DeploymentFilter = schema.new({
+    id = id.from(_N, "DeploymentFilter"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "DeploymentFilter", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        values = schema.new({
+            id = id.from(_N, "DeploymentFilter", "values"),
+            type = "list",
+            name = "values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ListDeploymentsInput = schema.new({
+    id = id.from(_N, "ListDeploymentsInput"),
+    type = "structure",
+    members = {
+        filters = schema.new({
+            id = id.from(_N, "ListDeploymentsInput", "filters"),
+            type = "list",
+            name = "filters",
+            target_id = prelude.Document.id,
+            list_member = M.DeploymentFilter,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListDeploymentsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListDeploymentsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeploymentDataSummary = schema.new({
+    id = id.from(_N, "DeploymentDataSummary"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "DeploymentDataSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        id = schema.new({
+            id = id.from(_N, "DeploymentDataSummary", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+        workloadName = schema.new({
+            id = id.from(_N, "DeploymentDataSummary", "workloadName"),
+            type = "string",
+            name = "workloadName",
+            target_id = prelude.String.id,
+        }),
+        patternName = schema.new({
+            id = id.from(_N, "DeploymentDataSummary", "patternName"),
+            type = "string",
+            name = "patternName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "DeploymentDataSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "DeploymentDataSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        modifiedAt = schema.new({
+            id = id.from(_N, "DeploymentDataSummary", "modifiedAt"),
+            type = "timestamp",
+            name = "modifiedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListDeploymentsOutput = schema.new({
+    id = id.from(_N, "ListDeploymentsOutput"),
+    type = "structure",
+    members = {
+        deployments = schema.new({
+            id = id.from(_N, "ListDeploymentsOutput", "deployments"),
+            type = "list",
+            name = "deployments",
+            target_id = prelude.Document.id,
+            list_member = M.DeploymentDataSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListDeploymentsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateDeploymentInput = schema.new({
+    id = id.from(_N, "UpdateDeploymentInput"),
+    type = "structure",
+    members = {
+        deploymentId = schema.new({
+            id = id.from(_N, "UpdateDeploymentInput", "deploymentId"),
+            type = "string",
+            name = "deploymentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        specifications = schema.new({
+            id = id.from(_N, "UpdateDeploymentInput", "specifications"),
+            type = "map",
+            name = "specifications",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        workloadVersionName = schema.new({
+            id = id.from(_N, "UpdateDeploymentInput", "workloadVersionName"),
+            type = "string",
+            name = "workloadVersionName",
+            target_id = prelude.String.id,
+        }),
+        deploymentPatternVersionName = schema.new({
+            id = id.from(_N, "UpdateDeploymentInput", "deploymentPatternVersionName"),
+            type = "string",
+            name = "deploymentPatternVersionName",
+            target_id = prelude.String.id,
+        }),
+        dryRun = schema.new({
+            id = id.from(_N, "UpdateDeploymentInput", "dryRun"),
+            type = "boolean",
+            name = "dryRun",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        force = schema.new({
+            id = id.from(_N, "UpdateDeploymentInput", "force"),
+            type = "boolean",
+            name = "force",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+    },
+})
+
+M.UpdateDeploymentOutput = schema.new({
+    id = id.from(_N, "UpdateDeploymentOutput"),
+    type = "structure",
+    members = {
+        deployment = schema.new({
+            id = id.from(_N, "UpdateDeploymentOutput", "deployment"),
+            type = "structure",
+            name = "deployment",
+            target_id = id.from(_N, "DeploymentDataSummary"),
+            target = M.DeploymentDataSummary,
+        }),
+    },
+})
+
+M.DeploymentConditionalField = schema.new({
+    id = id.from(_N, "DeploymentConditionalField"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "DeploymentConditionalField", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        value = schema.new({
+            id = id.from(_N, "DeploymentConditionalField", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+        }),
+        comparator = schema.new({
+            id = id.from(_N, "DeploymentConditionalField", "comparator"),
+            type = "string",
+            name = "comparator",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetDeploymentPatternVersionInput = schema.new({
+    id = id.from(_N, "GetDeploymentPatternVersionInput"),
+    type = "structure",
+    members = {
+        workloadName = schema.new({
+            id = id.from(_N, "GetDeploymentPatternVersionInput", "workloadName"),
+            type = "string",
+            name = "workloadName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        deploymentPatternName = schema.new({
+            id = id.from(_N, "GetDeploymentPatternVersionInput", "deploymentPatternName"),
+            type = "string",
+            name = "deploymentPatternName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        deploymentPatternVersionName = schema.new({
+            id = id.from(_N, "GetDeploymentPatternVersionInput", "deploymentPatternVersionName"),
+            type = "string",
+            name = "deploymentPatternVersionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeploymentPatternVersionDataSummary = schema.new({
+    id = id.from(_N, "DeploymentPatternVersionDataSummary"),
+    type = "structure",
+    members = {
+        deploymentPatternVersionName = schema.new({
+            id = id.from(_N, "DeploymentPatternVersionDataSummary", "deploymentPatternVersionName"),
+            type = "string",
+            name = "deploymentPatternVersionName",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "DeploymentPatternVersionDataSummary", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        documentationUrl = schema.new({
+            id = id.from(_N, "DeploymentPatternVersionDataSummary", "documentationUrl"),
+            type = "string",
+            name = "documentationUrl",
+            target_id = prelude.String.id,
+        }),
+        workloadName = schema.new({
+            id = id.from(_N, "DeploymentPatternVersionDataSummary", "workloadName"),
+            type = "string",
+            name = "workloadName",
+            target_id = prelude.String.id,
+        }),
+        deploymentPatternName = schema.new({
+            id = id.from(_N, "DeploymentPatternVersionDataSummary", "deploymentPatternName"),
+            type = "string",
+            name = "deploymentPatternName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetDeploymentPatternVersionOutput = schema.new({
+    id = id.from(_N, "GetDeploymentPatternVersionOutput"),
+    type = "structure",
+    members = {
+        deploymentPatternVersion = schema.new({
+            id = id.from(_N, "GetDeploymentPatternVersionOutput", "deploymentPatternVersion"),
+            type = "structure",
+            name = "deploymentPatternVersion",
+            target_id = id.from(_N, "DeploymentPatternVersionDataSummary"),
+            target = M.DeploymentPatternVersionDataSummary,
+        }),
+    },
+})
+
+M.DeploymentPatternVersionFilter = schema.new({
+    id = id.from(_N, "DeploymentPatternVersionFilter"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "DeploymentPatternVersionFilter", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        values = schema.new({
+            id = id.from(_N, "DeploymentPatternVersionFilter", "values"),
+            type = "list",
+            name = "values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListDeploymentPatternVersionsInput = schema.new({
+    id = id.from(_N, "ListDeploymentPatternVersionsInput"),
+    type = "structure",
+    members = {
+        workloadName = schema.new({
+            id = id.from(_N, "ListDeploymentPatternVersionsInput", "workloadName"),
+            type = "string",
+            name = "workloadName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        deploymentPatternName = schema.new({
+            id = id.from(_N, "ListDeploymentPatternVersionsInput", "deploymentPatternName"),
+            type = "string",
+            name = "deploymentPatternName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListDeploymentPatternVersionsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListDeploymentPatternVersionsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        filters = schema.new({
+            id = id.from(_N, "ListDeploymentPatternVersionsInput", "filters"),
+            type = "list",
+            name = "filters",
+            target_id = prelude.Document.id,
+            list_member = M.DeploymentPatternVersionFilter,
+        }),
+    },
+})
+
+M.ListDeploymentPatternVersionsOutput = schema.new({
+    id = id.from(_N, "ListDeploymentPatternVersionsOutput"),
+    type = "structure",
+    members = {
+        deploymentPatternVersions = schema.new({
+            id = id.from(_N, "ListDeploymentPatternVersionsOutput", "deploymentPatternVersions"),
+            type = "list",
+            name = "deploymentPatternVersions",
+            target_id = prelude.Document.id,
+            list_member = M.DeploymentPatternVersionDataSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListDeploymentPatternVersionsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeploymentSpecificationsField = schema.new({
+    id = id.from(_N, "DeploymentSpecificationsField"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "DeploymentSpecificationsField", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "DeploymentSpecificationsField", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        allowedValues = schema.new({
+            id = id.from(_N, "DeploymentSpecificationsField", "allowedValues"),
+            type = "list",
+            name = "allowedValues",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        required = schema.new({
+            id = id.from(_N, "DeploymentSpecificationsField", "required"),
+            type = "string",
+            name = "required",
+            target_id = prelude.String.id,
+        }),
+        conditionals = schema.new({
+            id = id.from(_N, "DeploymentSpecificationsField", "conditionals"),
+            type = "list",
+            name = "conditionals",
+            target_id = prelude.Document.id,
+            list_member = M.DeploymentConditionalField,
+        }),
+    },
+})
+
+M.GetWorkloadInput = schema.new({
+    id = id.from(_N, "GetWorkloadInput"),
+    type = "structure",
+    members = {
+        workloadName = schema.new({
+            id = id.from(_N, "GetWorkloadInput", "workloadName"),
+            type = "string",
+            name = "workloadName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.WorkloadData = schema.new({
+    id = id.from(_N, "WorkloadData"),
+    type = "structure",
+    members = {
+        workloadName = schema.new({
+            id = id.from(_N, "WorkloadData", "workloadName"),
+            type = "string",
+            name = "workloadName",
+            target_id = prelude.String.id,
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "WorkloadData", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "WorkloadData", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "WorkloadData", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        documentationUrl = schema.new({
+            id = id.from(_N, "WorkloadData", "documentationUrl"),
+            type = "string",
+            name = "documentationUrl",
+            target_id = prelude.String.id,
+        }),
+        iconUrl = schema.new({
+            id = id.from(_N, "WorkloadData", "iconUrl"),
+            type = "string",
+            name = "iconUrl",
+            target_id = prelude.String.id,
+        }),
+        statusMessage = schema.new({
+            id = id.from(_N, "WorkloadData", "statusMessage"),
+            type = "string",
+            name = "statusMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetWorkloadOutput = schema.new({
+    id = id.from(_N, "GetWorkloadOutput"),
+    type = "structure",
+    members = {
+        workload = schema.new({
+            id = id.from(_N, "GetWorkloadOutput", "workload"),
+            type = "structure",
+            name = "workload",
+            target_id = id.from(_N, "WorkloadData"),
+            target = M.WorkloadData,
+        }),
+    },
+})
+
+M.GetWorkloadDeploymentPatternInput = schema.new({
+    id = id.from(_N, "GetWorkloadDeploymentPatternInput"),
+    type = "structure",
+    members = {
+        workloadName = schema.new({
+            id = id.from(_N, "GetWorkloadDeploymentPatternInput", "workloadName"),
+            type = "string",
+            name = "workloadName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        deploymentPatternName = schema.new({
+            id = id.from(_N, "GetWorkloadDeploymentPatternInput", "deploymentPatternName"),
+            type = "string",
+            name = "deploymentPatternName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.WorkloadDeploymentPatternData = schema.new({
+    id = id.from(_N, "WorkloadDeploymentPatternData"),
+    type = "structure",
+    members = {
+        workloadName = schema.new({
+            id = id.from(_N, "WorkloadDeploymentPatternData", "workloadName"),
+            type = "string",
+            name = "workloadName",
+            target_id = prelude.String.id,
+        }),
+        deploymentPatternName = schema.new({
+            id = id.from(_N, "WorkloadDeploymentPatternData", "deploymentPatternName"),
+            type = "string",
+            name = "deploymentPatternName",
+            target_id = prelude.String.id,
+        }),
+        workloadVersionName = schema.new({
+            id = id.from(_N, "WorkloadDeploymentPatternData", "workloadVersionName"),
+            type = "string",
+            name = "workloadVersionName",
+            target_id = prelude.String.id,
+        }),
+        deploymentPatternVersionName = schema.new({
+            id = id.from(_N, "WorkloadDeploymentPatternData", "deploymentPatternVersionName"),
+            type = "string",
+            name = "deploymentPatternVersionName",
+            target_id = prelude.String.id,
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "WorkloadDeploymentPatternData", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "WorkloadDeploymentPatternData", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "WorkloadDeploymentPatternData", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusMessage = schema.new({
+            id = id.from(_N, "WorkloadDeploymentPatternData", "statusMessage"),
+            type = "string",
+            name = "statusMessage",
+            target_id = prelude.String.id,
+        }),
+        specifications = schema.new({
+            id = id.from(_N, "WorkloadDeploymentPatternData", "specifications"),
+            type = "list",
+            name = "specifications",
+            target_id = prelude.Document.id,
+            list_member = M.DeploymentSpecificationsField,
+        }),
+    },
+})
+
+M.GetWorkloadDeploymentPatternOutput = schema.new({
+    id = id.from(_N, "GetWorkloadDeploymentPatternOutput"),
+    type = "structure",
+    members = {
+        workloadDeploymentPattern = schema.new({
+            id = id.from(_N, "GetWorkloadDeploymentPatternOutput", "workloadDeploymentPattern"),
+            type = "structure",
+            name = "workloadDeploymentPattern",
+            target_id = id.from(_N, "WorkloadDeploymentPatternData"),
+            target = M.WorkloadDeploymentPatternData,
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceOutput"),
+    type = "structure",
+    members = {
+        tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "TagResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceOutput"),
+    type = "structure",
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceInput"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "UntagResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        tagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "tagKeys"),
+            type = "list",
+            name = "tagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "tagKeys" },
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceOutput"),
+    type = "structure",
+})
+
+M.ListWorkloadsInput = schema.new({
+    id = id.from(_N, "ListWorkloadsInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListWorkloadsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListWorkloadsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.WorkloadDataSummary = schema.new({
+    id = id.from(_N, "WorkloadDataSummary"),
+    type = "structure",
+    members = {
+        workloadName = schema.new({
+            id = id.from(_N, "WorkloadDataSummary", "workloadName"),
+            type = "string",
+            name = "workloadName",
+            target_id = prelude.String.id,
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "WorkloadDataSummary", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "WorkloadDataSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListWorkloadsOutput = schema.new({
+    id = id.from(_N, "ListWorkloadsOutput"),
+    type = "structure",
+    members = {
+        workloads = schema.new({
+            id = id.from(_N, "ListWorkloadsOutput", "workloads"),
+            type = "list",
+            name = "workloads",
+            target_id = prelude.Document.id,
+            list_member = M.WorkloadDataSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListWorkloadsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListWorkloadDeploymentPatternsInput = schema.new({
+    id = id.from(_N, "ListWorkloadDeploymentPatternsInput"),
+    type = "structure",
+    members = {
+        workloadName = schema.new({
+            id = id.from(_N, "ListWorkloadDeploymentPatternsInput", "workloadName"),
+            type = "string",
+            name = "workloadName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListWorkloadDeploymentPatternsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListWorkloadDeploymentPatternsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.WorkloadDeploymentPatternDataSummary = schema.new({
+    id = id.from(_N, "WorkloadDeploymentPatternDataSummary"),
+    type = "structure",
+    members = {
+        workloadName = schema.new({
+            id = id.from(_N, "WorkloadDeploymentPatternDataSummary", "workloadName"),
+            type = "string",
+            name = "workloadName",
+            target_id = prelude.String.id,
+        }),
+        deploymentPatternName = schema.new({
+            id = id.from(_N, "WorkloadDeploymentPatternDataSummary", "deploymentPatternName"),
+            type = "string",
+            name = "deploymentPatternName",
+            target_id = prelude.String.id,
+        }),
+        workloadVersionName = schema.new({
+            id = id.from(_N, "WorkloadDeploymentPatternDataSummary", "workloadVersionName"),
+            type = "string",
+            name = "workloadVersionName",
+            target_id = prelude.String.id,
+        }),
+        deploymentPatternVersionName = schema.new({
+            id = id.from(_N, "WorkloadDeploymentPatternDataSummary", "deploymentPatternVersionName"),
+            type = "string",
+            name = "deploymentPatternVersionName",
+            target_id = prelude.String.id,
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "WorkloadDeploymentPatternDataSummary", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "WorkloadDeploymentPatternDataSummary", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "WorkloadDeploymentPatternDataSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusMessage = schema.new({
+            id = id.from(_N, "WorkloadDeploymentPatternDataSummary", "statusMessage"),
+            type = "string",
+            name = "statusMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListWorkloadDeploymentPatternsOutput = schema.new({
+    id = id.from(_N, "ListWorkloadDeploymentPatternsOutput"),
+    type = "structure",
+    members = {
+        workloadDeploymentPatterns = schema.new({
+            id = id.from(_N, "ListWorkloadDeploymentPatternsOutput", "workloadDeploymentPatterns"),
+            type = "list",
+            name = "workloadDeploymentPatterns",
+            target_id = prelude.Document.id,
+            list_member = M.WorkloadDeploymentPatternDataSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListWorkloadDeploymentPatternsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+return M

@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("databrew.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("databrew.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("databrew.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:batchDeleteRecipeVersion(input, options)
     return self:invokeOperation(input, {
         name = "BatchDeleteRecipeVersion",
-        input_schema = types.BatchDeleteRecipeVersionInput,
-        output_schema = types.BatchDeleteRecipeVersionOutput,
+        input_schema = schemas.BatchDeleteRecipeVersionInput,
+        output_schema = schemas.BatchDeleteRecipeVersionOutput,
         http_method = "POST",
         http_path = "/recipes/{Name}/batchDeleteRecipeVersion",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createDataset(input, options)
     return self:invokeOperation(input, {
         name = "CreateDataset",
-        input_schema = types.CreateDatasetInput,
-        output_schema = types.CreateDatasetOutput,
+        input_schema = schemas.CreateDatasetInput,
+        output_schema = schemas.CreateDatasetOutput,
         http_method = "POST",
         http_path = "/datasets",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createProfileJob(input, options)
     return self:invokeOperation(input, {
         name = "CreateProfileJob",
-        input_schema = types.CreateProfileJobInput,
-        output_schema = types.CreateProfileJobOutput,
+        input_schema = schemas.CreateProfileJobInput,
+        output_schema = schemas.CreateProfileJobOutput,
         http_method = "POST",
         http_path = "/profileJobs",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createProject(input, options)
     return self:invokeOperation(input, {
         name = "CreateProject",
-        input_schema = types.CreateProjectInput,
-        output_schema = types.CreateProjectOutput,
+        input_schema = schemas.CreateProjectInput,
+        output_schema = schemas.CreateProjectOutput,
         http_method = "POST",
         http_path = "/projects",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createRecipe(input, options)
     return self:invokeOperation(input, {
         name = "CreateRecipe",
-        input_schema = types.CreateRecipeInput,
-        output_schema = types.CreateRecipeOutput,
+        input_schema = schemas.CreateRecipeInput,
+        output_schema = schemas.CreateRecipeOutput,
         http_method = "POST",
         http_path = "/recipes",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createRecipeJob(input, options)
     return self:invokeOperation(input, {
         name = "CreateRecipeJob",
-        input_schema = types.CreateRecipeJobInput,
-        output_schema = types.CreateRecipeJobOutput,
+        input_schema = schemas.CreateRecipeJobInput,
+        output_schema = schemas.CreateRecipeJobOutput,
         http_method = "POST",
         http_path = "/recipeJobs",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createRuleset(input, options)
     return self:invokeOperation(input, {
         name = "CreateRuleset",
-        input_schema = types.CreateRulesetInput,
-        output_schema = types.CreateRulesetOutput,
+        input_schema = schemas.CreateRulesetInput,
+        output_schema = schemas.CreateRulesetOutput,
         http_method = "POST",
         http_path = "/rulesets",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:createSchedule(input, options)
     return self:invokeOperation(input, {
         name = "CreateSchedule",
-        input_schema = types.CreateScheduleInput,
-        output_schema = types.CreateScheduleOutput,
+        input_schema = schemas.CreateScheduleInput,
+        output_schema = schemas.CreateScheduleOutput,
         http_method = "POST",
         http_path = "/schedules",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deleteDataset(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDataset",
-        input_schema = types.DeleteDatasetInput,
-        output_schema = types.DeleteDatasetOutput,
+        input_schema = schemas.DeleteDatasetInput,
+        output_schema = schemas.DeleteDatasetOutput,
         http_method = "DELETE",
         http_path = "/datasets/{Name}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deleteJob(input, options)
     return self:invokeOperation(input, {
         name = "DeleteJob",
-        input_schema = types.DeleteJobInput,
-        output_schema = types.DeleteJobOutput,
+        input_schema = schemas.DeleteJobInput,
+        output_schema = schemas.DeleteJobOutput,
         http_method = "DELETE",
         http_path = "/jobs/{Name}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteProject(input, options)
     return self:invokeOperation(input, {
         name = "DeleteProject",
-        input_schema = types.DeleteProjectInput,
-        output_schema = types.DeleteProjectOutput,
+        input_schema = schemas.DeleteProjectInput,
+        output_schema = schemas.DeleteProjectOutput,
         http_method = "DELETE",
         http_path = "/projects/{Name}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:deleteRecipeVersion(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRecipeVersion",
-        input_schema = types.DeleteRecipeVersionInput,
-        output_schema = types.DeleteRecipeVersionOutput,
+        input_schema = schemas.DeleteRecipeVersionInput,
+        output_schema = schemas.DeleteRecipeVersionOutput,
         http_method = "DELETE",
         http_path = "/recipes/{Name}/recipeVersion/{RecipeVersion}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:deleteRuleset(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRuleset",
-        input_schema = types.DeleteRulesetInput,
-        output_schema = types.DeleteRulesetOutput,
+        input_schema = schemas.DeleteRulesetInput,
+        output_schema = schemas.DeleteRulesetOutput,
         http_method = "DELETE",
         http_path = "/rulesets/{Name}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:deleteSchedule(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSchedule",
-        input_schema = types.DeleteScheduleInput,
-        output_schema = types.DeleteScheduleOutput,
+        input_schema = schemas.DeleteScheduleInput,
+        output_schema = schemas.DeleteScheduleOutput,
         http_method = "DELETE",
         http_path = "/schedules/{Name}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:describeDataset(input, options)
     return self:invokeOperation(input, {
         name = "DescribeDataset",
-        input_schema = types.DescribeDatasetInput,
-        output_schema = types.DescribeDatasetOutput,
+        input_schema = schemas.DescribeDatasetInput,
+        output_schema = schemas.DescribeDatasetOutput,
         http_method = "GET",
         http_path = "/datasets/{Name}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:describeJob(input, options)
     return self:invokeOperation(input, {
         name = "DescribeJob",
-        input_schema = types.DescribeJobInput,
-        output_schema = types.DescribeJobOutput,
+        input_schema = schemas.DescribeJobInput,
+        output_schema = schemas.DescribeJobOutput,
         http_method = "GET",
         http_path = "/jobs/{Name}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:describeJobRun(input, options)
     return self:invokeOperation(input, {
         name = "DescribeJobRun",
-        input_schema = types.DescribeJobRunInput,
-        output_schema = types.DescribeJobRunOutput,
+        input_schema = schemas.DescribeJobRunInput,
+        output_schema = schemas.DescribeJobRunOutput,
         http_method = "GET",
         http_path = "/jobs/{Name}/jobRun/{RunId}",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:describeProject(input, options)
     return self:invokeOperation(input, {
         name = "DescribeProject",
-        input_schema = types.DescribeProjectInput,
-        output_schema = types.DescribeProjectOutput,
+        input_schema = schemas.DescribeProjectInput,
+        output_schema = schemas.DescribeProjectOutput,
         http_method = "GET",
         http_path = "/projects/{Name}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:describeRecipe(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRecipe",
-        input_schema = types.DescribeRecipeInput,
-        output_schema = types.DescribeRecipeOutput,
+        input_schema = schemas.DescribeRecipeInput,
+        output_schema = schemas.DescribeRecipeOutput,
         http_method = "GET",
         http_path = "/recipes/{Name}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:describeRuleset(input, options)
     return self:invokeOperation(input, {
         name = "DescribeRuleset",
-        input_schema = types.DescribeRulesetInput,
-        output_schema = types.DescribeRulesetOutput,
+        input_schema = schemas.DescribeRulesetInput,
+        output_schema = schemas.DescribeRulesetOutput,
         http_method = "GET",
         http_path = "/rulesets/{Name}",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:describeSchedule(input, options)
     return self:invokeOperation(input, {
         name = "DescribeSchedule",
-        input_schema = types.DescribeScheduleInput,
-        output_schema = types.DescribeScheduleOutput,
+        input_schema = schemas.DescribeScheduleInput,
+        output_schema = schemas.DescribeScheduleOutput,
         http_method = "GET",
         http_path = "/schedules/{Name}",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listDatasets(input, options)
     return self:invokeOperation(input, {
         name = "ListDatasets",
-        input_schema = types.ListDatasetsInput,
-        output_schema = types.ListDatasetsOutput,
+        input_schema = schemas.ListDatasetsInput,
+        output_schema = schemas.ListDatasetsOutput,
         http_method = "GET",
         http_path = "/datasets",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listJobRuns(input, options)
     return self:invokeOperation(input, {
         name = "ListJobRuns",
-        input_schema = types.ListJobRunsInput,
-        output_schema = types.ListJobRunsOutput,
+        input_schema = schemas.ListJobRunsInput,
+        output_schema = schemas.ListJobRunsOutput,
         http_method = "GET",
         http_path = "/jobs/{Name}/jobRuns",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListJobs",
-        input_schema = types.ListJobsInput,
-        output_schema = types.ListJobsOutput,
+        input_schema = schemas.ListJobsInput,
+        output_schema = schemas.ListJobsOutput,
         http_method = "GET",
         http_path = "/jobs",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listProjects(input, options)
     return self:invokeOperation(input, {
         name = "ListProjects",
-        input_schema = types.ListProjectsInput,
-        output_schema = types.ListProjectsOutput,
+        input_schema = schemas.ListProjectsInput,
+        output_schema = schemas.ListProjectsOutput,
         http_method = "GET",
         http_path = "/projects",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:listRecipes(input, options)
     return self:invokeOperation(input, {
         name = "ListRecipes",
-        input_schema = types.ListRecipesInput,
-        output_schema = types.ListRecipesOutput,
+        input_schema = schemas.ListRecipesInput,
+        output_schema = schemas.ListRecipesOutput,
         http_method = "GET",
         http_path = "/recipes",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:listRecipeVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListRecipeVersions",
-        input_schema = types.ListRecipeVersionsInput,
-        output_schema = types.ListRecipeVersionsOutput,
+        input_schema = schemas.ListRecipeVersionsInput,
+        output_schema = schemas.ListRecipeVersionsOutput,
         http_method = "GET",
         http_path = "/recipeVersions",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:listRulesets(input, options)
     return self:invokeOperation(input, {
         name = "ListRulesets",
-        input_schema = types.ListRulesetsInput,
-        output_schema = types.ListRulesetsOutput,
+        input_schema = schemas.ListRulesetsInput,
+        output_schema = schemas.ListRulesetsOutput,
         http_method = "GET",
         http_path = "/rulesets",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:listSchedules(input, options)
     return self:invokeOperation(input, {
         name = "ListSchedules",
-        input_schema = types.ListSchedulesInput,
-        output_schema = types.ListSchedulesOutput,
+        input_schema = schemas.ListSchedulesInput,
+        output_schema = schemas.ListSchedulesOutput,
         http_method = "GET",
         http_path = "/schedules",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:publishRecipe(input, options)
     return self:invokeOperation(input, {
         name = "PublishRecipe",
-        input_schema = types.PublishRecipeInput,
-        output_schema = types.PublishRecipeOutput,
+        input_schema = schemas.PublishRecipeInput,
+        output_schema = schemas.PublishRecipeOutput,
         http_method = "POST",
         http_path = "/recipes/{Name}/publishRecipe",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:sendProjectSessionAction(input, options)
     return self:invokeOperation(input, {
         name = "SendProjectSessionAction",
-        input_schema = types.SendProjectSessionActionInput,
-        output_schema = types.SendProjectSessionActionOutput,
+        input_schema = schemas.SendProjectSessionActionInput,
+        output_schema = schemas.SendProjectSessionActionOutput,
         http_method = "PUT",
         http_path = "/projects/{Name}/sendProjectSessionAction",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:startJobRun(input, options)
     return self:invokeOperation(input, {
         name = "StartJobRun",
-        input_schema = types.StartJobRunInput,
-        output_schema = types.StartJobRunOutput,
+        input_schema = schemas.StartJobRunInput,
+        output_schema = schemas.StartJobRunOutput,
         http_method = "POST",
         http_path = "/jobs/{Name}/startJobRun",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:startProjectSession(input, options)
     return self:invokeOperation(input, {
         name = "StartProjectSession",
-        input_schema = types.StartProjectSessionInput,
-        output_schema = types.StartProjectSessionOutput,
+        input_schema = schemas.StartProjectSessionInput,
+        output_schema = schemas.StartProjectSessionOutput,
         http_method = "PUT",
         http_path = "/projects/{Name}/startProjectSession",
         effective_auth_schemes = {
@@ -491,8 +491,8 @@ end
 function Client:stopJobRun(input, options)
     return self:invokeOperation(input, {
         name = "StopJobRun",
-        input_schema = types.StopJobRunInput,
-        output_schema = types.StopJobRunOutput,
+        input_schema = schemas.StopJobRunInput,
+        output_schema = schemas.StopJobRunOutput,
         http_method = "POST",
         http_path = "/jobs/{Name}/jobRun/{RunId}/stopJobRun",
         effective_auth_schemes = {
@@ -504,8 +504,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -517,8 +517,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{ResourceArn}",
         effective_auth_schemes = {
@@ -530,8 +530,8 @@ end
 function Client:updateDataset(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDataset",
-        input_schema = types.UpdateDatasetInput,
-        output_schema = types.UpdateDatasetOutput,
+        input_schema = schemas.UpdateDatasetInput,
+        output_schema = schemas.UpdateDatasetOutput,
         http_method = "PUT",
         http_path = "/datasets/{Name}",
         effective_auth_schemes = {
@@ -543,8 +543,8 @@ end
 function Client:updateProfileJob(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProfileJob",
-        input_schema = types.UpdateProfileJobInput,
-        output_schema = types.UpdateProfileJobOutput,
+        input_schema = schemas.UpdateProfileJobInput,
+        output_schema = schemas.UpdateProfileJobOutput,
         http_method = "PUT",
         http_path = "/profileJobs/{Name}",
         effective_auth_schemes = {
@@ -556,8 +556,8 @@ end
 function Client:updateProject(input, options)
     return self:invokeOperation(input, {
         name = "UpdateProject",
-        input_schema = types.UpdateProjectInput,
-        output_schema = types.UpdateProjectOutput,
+        input_schema = schemas.UpdateProjectInput,
+        output_schema = schemas.UpdateProjectOutput,
         http_method = "PUT",
         http_path = "/projects/{Name}",
         effective_auth_schemes = {
@@ -569,8 +569,8 @@ end
 function Client:updateRecipe(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRecipe",
-        input_schema = types.UpdateRecipeInput,
-        output_schema = types.UpdateRecipeOutput,
+        input_schema = schemas.UpdateRecipeInput,
+        output_schema = schemas.UpdateRecipeOutput,
         http_method = "PUT",
         http_path = "/recipes/{Name}",
         effective_auth_schemes = {
@@ -582,8 +582,8 @@ end
 function Client:updateRecipeJob(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRecipeJob",
-        input_schema = types.UpdateRecipeJobInput,
-        output_schema = types.UpdateRecipeJobOutput,
+        input_schema = schemas.UpdateRecipeJobInput,
+        output_schema = schemas.UpdateRecipeJobOutput,
         http_method = "PUT",
         http_path = "/recipeJobs/{Name}",
         effective_auth_schemes = {
@@ -595,8 +595,8 @@ end
 function Client:updateRuleset(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRuleset",
-        input_schema = types.UpdateRulesetInput,
-        output_schema = types.UpdateRulesetOutput,
+        input_schema = schemas.UpdateRulesetInput,
+        output_schema = schemas.UpdateRulesetOutput,
         http_method = "PUT",
         http_path = "/rulesets/{Name}",
         effective_auth_schemes = {
@@ -608,8 +608,8 @@ end
 function Client:updateSchedule(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSchedule",
-        input_schema = types.UpdateScheduleInput,
-        output_schema = types.UpdateScheduleOutput,
+        input_schema = schemas.UpdateScheduleInput,
+        output_schema = schemas.UpdateScheduleOutput,
         http_method = "PUT",
         http_path = "/schedules/{Name}",
         effective_auth_schemes = {

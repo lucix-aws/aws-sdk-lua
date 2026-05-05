@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("serverlessapplicationrepository.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("serverlessapplicationrepository.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("serverlessapplicationrepository.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createApplication(input, options)
     return self:invokeOperation(input, {
         name = "CreateApplication",
-        input_schema = types.CreateApplicationInput,
-        output_schema = types.CreateApplicationOutput,
+        input_schema = schemas.CreateApplicationInput,
+        output_schema = schemas.CreateApplicationOutput,
         http_method = "POST",
         http_path = "/applications",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createApplicationVersion(input, options)
     return self:invokeOperation(input, {
         name = "CreateApplicationVersion",
-        input_schema = types.CreateApplicationVersionInput,
-        output_schema = types.CreateApplicationVersionOutput,
+        input_schema = schemas.CreateApplicationVersionInput,
+        output_schema = schemas.CreateApplicationVersionOutput,
         http_method = "PUT",
         http_path = "/applications/{ApplicationId}/versions/{SemanticVersion}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createCloudFormationChangeSet(input, options)
     return self:invokeOperation(input, {
         name = "CreateCloudFormationChangeSet",
-        input_schema = types.CreateCloudFormationChangeSetInput,
-        output_schema = types.CreateCloudFormationChangeSetOutput,
+        input_schema = schemas.CreateCloudFormationChangeSetInput,
+        output_schema = schemas.CreateCloudFormationChangeSetOutput,
         http_method = "POST",
         http_path = "/applications/{ApplicationId}/changesets",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createCloudFormationTemplate(input, options)
     return self:invokeOperation(input, {
         name = "CreateCloudFormationTemplate",
-        input_schema = types.CreateCloudFormationTemplateInput,
-        output_schema = types.CreateCloudFormationTemplateOutput,
+        input_schema = schemas.CreateCloudFormationTemplateInput,
+        output_schema = schemas.CreateCloudFormationTemplateOutput,
         http_method = "POST",
         http_path = "/applications/{ApplicationId}/templates",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteApplication(input, options)
     return self:invokeOperation(input, {
         name = "DeleteApplication",
-        input_schema = types.DeleteApplicationInput,
-        output_schema = types.DeleteApplicationOutput,
+        input_schema = schemas.DeleteApplicationInput,
+        output_schema = schemas.DeleteApplicationOutput,
         http_method = "DELETE",
         http_path = "/applications/{ApplicationId}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getApplication(input, options)
     return self:invokeOperation(input, {
         name = "GetApplication",
-        input_schema = types.GetApplicationInput,
-        output_schema = types.GetApplicationOutput,
+        input_schema = schemas.GetApplicationInput,
+        output_schema = schemas.GetApplicationOutput,
         http_method = "GET",
         http_path = "/applications/{ApplicationId}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:getApplicationPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetApplicationPolicy",
-        input_schema = types.GetApplicationPolicyInput,
-        output_schema = types.GetApplicationPolicyOutput,
+        input_schema = schemas.GetApplicationPolicyInput,
+        output_schema = schemas.GetApplicationPolicyOutput,
         http_method = "GET",
         http_path = "/applications/{ApplicationId}/policy",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getCloudFormationTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetCloudFormationTemplate",
-        input_schema = types.GetCloudFormationTemplateInput,
-        output_schema = types.GetCloudFormationTemplateOutput,
+        input_schema = schemas.GetCloudFormationTemplateInput,
+        output_schema = schemas.GetCloudFormationTemplateOutput,
         http_method = "GET",
         http_path = "/applications/{ApplicationId}/templates/{TemplateId}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listApplicationDependencies(input, options)
     return self:invokeOperation(input, {
         name = "ListApplicationDependencies",
-        input_schema = types.ListApplicationDependenciesInput,
-        output_schema = types.ListApplicationDependenciesOutput,
+        input_schema = schemas.ListApplicationDependenciesInput,
+        output_schema = schemas.ListApplicationDependenciesOutput,
         http_method = "GET",
         http_path = "/applications/{ApplicationId}/dependencies",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listApplications(input, options)
     return self:invokeOperation(input, {
         name = "ListApplications",
-        input_schema = types.ListApplicationsInput,
-        output_schema = types.ListApplicationsOutput,
+        input_schema = schemas.ListApplicationsInput,
+        output_schema = schemas.ListApplicationsOutput,
         http_method = "GET",
         http_path = "/applications",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listApplicationVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListApplicationVersions",
-        input_schema = types.ListApplicationVersionsInput,
-        output_schema = types.ListApplicationVersionsOutput,
+        input_schema = schemas.ListApplicationVersionsInput,
+        output_schema = schemas.ListApplicationVersionsOutput,
         http_method = "GET",
         http_path = "/applications/{ApplicationId}/versions",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:putApplicationPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutApplicationPolicy",
-        input_schema = types.PutApplicationPolicyInput,
-        output_schema = types.PutApplicationPolicyOutput,
+        input_schema = schemas.PutApplicationPolicyInput,
+        output_schema = schemas.PutApplicationPolicyOutput,
         http_method = "PUT",
         http_path = "/applications/{ApplicationId}/policy",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:unshareApplication(input, options)
     return self:invokeOperation(input, {
         name = "UnshareApplication",
-        input_schema = types.UnshareApplicationInput,
-        output_schema = types.UnshareApplicationOutput,
+        input_schema = schemas.UnshareApplicationInput,
+        output_schema = schemas.UnshareApplicationOutput,
         http_method = "POST",
         http_path = "/applications/{ApplicationId}/unshare",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:updateApplication(input, options)
     return self:invokeOperation(input, {
         name = "UpdateApplication",
-        input_schema = types.UpdateApplicationInput,
-        output_schema = types.UpdateApplicationOutput,
+        input_schema = schemas.UpdateApplicationInput,
+        output_schema = schemas.UpdateApplicationOutput,
         http_method = "PATCH",
         http_path = "/applications/{ApplicationId}",
         effective_auth_schemes = {

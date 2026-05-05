@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("codeconnections.endpoint_rules")
+local schemas = require("codeconnections.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("codeconnections.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createConnection(input, options)
     return self:invokeOperation(input, {
         name = "CreateConnection",
-        input_schema = types.CreateConnectionInput,
-        output_schema = types.CreateConnectionOutput,
+        input_schema = schemas.CreateConnectionInput,
+        output_schema = schemas.CreateConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createHost(input, options)
     return self:invokeOperation(input, {
         name = "CreateHost",
-        input_schema = types.CreateHostInput,
-        output_schema = types.CreateHostOutput,
+        input_schema = schemas.CreateHostInput,
+        output_schema = schemas.CreateHostOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createRepositoryLink(input, options)
     return self:invokeOperation(input, {
         name = "CreateRepositoryLink",
-        input_schema = types.CreateRepositoryLinkInput,
-        output_schema = types.CreateRepositoryLinkOutput,
+        input_schema = schemas.CreateRepositoryLinkInput,
+        output_schema = schemas.CreateRepositoryLinkOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createSyncConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "CreateSyncConfiguration",
-        input_schema = types.CreateSyncConfigurationInput,
-        output_schema = types.CreateSyncConfigurationOutput,
+        input_schema = schemas.CreateSyncConfigurationInput,
+        output_schema = schemas.CreateSyncConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteConnection(input, options)
     return self:invokeOperation(input, {
         name = "DeleteConnection",
-        input_schema = types.DeleteConnectionInput,
-        output_schema = types.DeleteConnectionOutput,
+        input_schema = schemas.DeleteConnectionInput,
+        output_schema = schemas.DeleteConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteHost(input, options)
     return self:invokeOperation(input, {
         name = "DeleteHost",
-        input_schema = types.DeleteHostInput,
-        output_schema = types.DeleteHostOutput,
+        input_schema = schemas.DeleteHostInput,
+        output_schema = schemas.DeleteHostOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteRepositoryLink(input, options)
     return self:invokeOperation(input, {
         name = "DeleteRepositoryLink",
-        input_schema = types.DeleteRepositoryLinkInput,
-        output_schema = types.DeleteRepositoryLinkOutput,
+        input_schema = schemas.DeleteRepositoryLinkInput,
+        output_schema = schemas.DeleteRepositoryLinkOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteSyncConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSyncConfiguration",
-        input_schema = types.DeleteSyncConfigurationInput,
-        output_schema = types.DeleteSyncConfigurationOutput,
+        input_schema = schemas.DeleteSyncConfigurationInput,
+        output_schema = schemas.DeleteSyncConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getConnection(input, options)
     return self:invokeOperation(input, {
         name = "GetConnection",
-        input_schema = types.GetConnectionInput,
-        output_schema = types.GetConnectionOutput,
+        input_schema = schemas.GetConnectionInput,
+        output_schema = schemas.GetConnectionOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getHost(input, options)
     return self:invokeOperation(input, {
         name = "GetHost",
-        input_schema = types.GetHostInput,
-        output_schema = types.GetHostOutput,
+        input_schema = schemas.GetHostInput,
+        output_schema = schemas.GetHostOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getRepositoryLink(input, options)
     return self:invokeOperation(input, {
         name = "GetRepositoryLink",
-        input_schema = types.GetRepositoryLinkInput,
-        output_schema = types.GetRepositoryLinkOutput,
+        input_schema = schemas.GetRepositoryLinkInput,
+        output_schema = schemas.GetRepositoryLinkOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getRepositorySyncStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetRepositorySyncStatus",
-        input_schema = types.GetRepositorySyncStatusInput,
-        output_schema = types.GetRepositorySyncStatusOutput,
+        input_schema = schemas.GetRepositorySyncStatusInput,
+        output_schema = schemas.GetRepositorySyncStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getResourceSyncStatus(input, options)
     return self:invokeOperation(input, {
         name = "GetResourceSyncStatus",
-        input_schema = types.GetResourceSyncStatusInput,
-        output_schema = types.GetResourceSyncStatusOutput,
+        input_schema = schemas.GetResourceSyncStatusInput,
+        output_schema = schemas.GetResourceSyncStatusOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getSyncBlockerSummary(input, options)
     return self:invokeOperation(input, {
         name = "GetSyncBlockerSummary",
-        input_schema = types.GetSyncBlockerSummaryInput,
-        output_schema = types.GetSyncBlockerSummaryOutput,
+        input_schema = schemas.GetSyncBlockerSummaryInput,
+        output_schema = schemas.GetSyncBlockerSummaryOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getSyncConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetSyncConfiguration",
-        input_schema = types.GetSyncConfigurationInput,
-        output_schema = types.GetSyncConfigurationOutput,
+        input_schema = schemas.GetSyncConfigurationInput,
+        output_schema = schemas.GetSyncConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:listConnections(input, options)
     return self:invokeOperation(input, {
         name = "ListConnections",
-        input_schema = types.ListConnectionsInput,
-        output_schema = types.ListConnectionsOutput,
+        input_schema = schemas.ListConnectionsInput,
+        output_schema = schemas.ListConnectionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:listHosts(input, options)
     return self:invokeOperation(input, {
         name = "ListHosts",
-        input_schema = types.ListHostsInput,
-        output_schema = types.ListHostsOutput,
+        input_schema = schemas.ListHostsInput,
+        output_schema = schemas.ListHostsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listRepositoryLinks(input, options)
     return self:invokeOperation(input, {
         name = "ListRepositoryLinks",
-        input_schema = types.ListRepositoryLinksInput,
-        output_schema = types.ListRepositoryLinksOutput,
+        input_schema = schemas.ListRepositoryLinksInput,
+        output_schema = schemas.ListRepositoryLinksOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listRepositorySyncDefinitions(input, options)
     return self:invokeOperation(input, {
         name = "ListRepositorySyncDefinitions",
-        input_schema = types.ListRepositorySyncDefinitionsInput,
-        output_schema = types.ListRepositorySyncDefinitionsOutput,
+        input_schema = schemas.ListRepositorySyncDefinitionsInput,
+        output_schema = schemas.ListRepositorySyncDefinitionsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listSyncConfigurations(input, options)
     return self:invokeOperation(input, {
         name = "ListSyncConfigurations",
-        input_schema = types.ListSyncConfigurationsInput,
-        output_schema = types.ListSyncConfigurationsOutput,
+        input_schema = schemas.ListSyncConfigurationsInput,
+        output_schema = schemas.ListSyncConfigurationsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:updateHost(input, options)
     return self:invokeOperation(input, {
         name = "UpdateHost",
-        input_schema = types.UpdateHostInput,
-        output_schema = types.UpdateHostOutput,
+        input_schema = schemas.UpdateHostInput,
+        output_schema = schemas.UpdateHostOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:updateRepositoryLink(input, options)
     return self:invokeOperation(input, {
         name = "UpdateRepositoryLink",
-        input_schema = types.UpdateRepositoryLinkInput,
-        output_schema = types.UpdateRepositoryLinkOutput,
+        input_schema = schemas.UpdateRepositoryLinkInput,
+        output_schema = schemas.UpdateRepositoryLinkOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:updateSyncBlocker(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSyncBlocker",
-        input_schema = types.UpdateSyncBlockerInput,
-        output_schema = types.UpdateSyncBlockerOutput,
+        input_schema = schemas.UpdateSyncBlockerInput,
+        output_schema = schemas.UpdateSyncBlockerOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:updateSyncConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSyncConfiguration",
-        input_schema = types.UpdateSyncConfigurationInput,
-        output_schema = types.UpdateSyncConfigurationOutput,
+        input_schema = schemas.UpdateSyncConfigurationInput,
+        output_schema = schemas.UpdateSyncConfigurationOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

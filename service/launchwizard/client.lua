@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("launchwizard.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("launchwizard.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("launchwizard.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:createDeployment(input, options)
     return self:invokeOperation(input, {
         name = "CreateDeployment",
-        input_schema = types.CreateDeploymentInput,
-        output_schema = types.CreateDeploymentOutput,
+        input_schema = schemas.CreateDeploymentInput,
+        output_schema = schemas.CreateDeploymentOutput,
         http_method = "POST",
         http_path = "/createDeployment",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:deleteDeployment(input, options)
     return self:invokeOperation(input, {
         name = "DeleteDeployment",
-        input_schema = types.DeleteDeploymentInput,
-        output_schema = types.DeleteDeploymentOutput,
+        input_schema = schemas.DeleteDeploymentInput,
+        output_schema = schemas.DeleteDeploymentOutput,
         http_method = "POST",
         http_path = "/deleteDeployment",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:getDeployment(input, options)
     return self:invokeOperation(input, {
         name = "GetDeployment",
-        input_schema = types.GetDeploymentInput,
-        output_schema = types.GetDeploymentOutput,
+        input_schema = schemas.GetDeploymentInput,
+        output_schema = schemas.GetDeploymentOutput,
         http_method = "POST",
         http_path = "/getDeployment",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:getDeploymentPatternVersion(input, options)
     return self:invokeOperation(input, {
         name = "GetDeploymentPatternVersion",
-        input_schema = types.GetDeploymentPatternVersionInput,
-        output_schema = types.GetDeploymentPatternVersionOutput,
+        input_schema = schemas.GetDeploymentPatternVersionInput,
+        output_schema = schemas.GetDeploymentPatternVersionOutput,
         http_method = "POST",
         http_path = "/getDeploymentPatternVersion",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getWorkload(input, options)
     return self:invokeOperation(input, {
         name = "GetWorkload",
-        input_schema = types.GetWorkloadInput,
-        output_schema = types.GetWorkloadOutput,
+        input_schema = schemas.GetWorkloadInput,
+        output_schema = schemas.GetWorkloadOutput,
         http_method = "POST",
         http_path = "/getWorkload",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getWorkloadDeploymentPattern(input, options)
     return self:invokeOperation(input, {
         name = "GetWorkloadDeploymentPattern",
-        input_schema = types.GetWorkloadDeploymentPatternInput,
-        output_schema = types.GetWorkloadDeploymentPatternOutput,
+        input_schema = schemas.GetWorkloadDeploymentPatternInput,
+        output_schema = schemas.GetWorkloadDeploymentPatternOutput,
         http_method = "POST",
         http_path = "/getWorkloadDeploymentPattern",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listDeploymentEvents(input, options)
     return self:invokeOperation(input, {
         name = "ListDeploymentEvents",
-        input_schema = types.ListDeploymentEventsInput,
-        output_schema = types.ListDeploymentEventsOutput,
+        input_schema = schemas.ListDeploymentEventsInput,
+        output_schema = schemas.ListDeploymentEventsOutput,
         http_method = "POST",
         http_path = "/listDeploymentEvents",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listDeploymentPatternVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListDeploymentPatternVersions",
-        input_schema = types.ListDeploymentPatternVersionsInput,
-        output_schema = types.ListDeploymentPatternVersionsOutput,
+        input_schema = schemas.ListDeploymentPatternVersionsInput,
+        output_schema = schemas.ListDeploymentPatternVersionsOutput,
         http_method = "POST",
         http_path = "/listDeploymentPatternVersions",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listDeployments(input, options)
     return self:invokeOperation(input, {
         name = "ListDeployments",
-        input_schema = types.ListDeploymentsInput,
-        output_schema = types.ListDeploymentsOutput,
+        input_schema = schemas.ListDeploymentsInput,
+        output_schema = schemas.ListDeploymentsOutput,
         http_method = "POST",
         http_path = "/listDeployments",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:listWorkloadDeploymentPatterns(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkloadDeploymentPatterns",
-        input_schema = types.ListWorkloadDeploymentPatternsInput,
-        output_schema = types.ListWorkloadDeploymentPatternsOutput,
+        input_schema = schemas.ListWorkloadDeploymentPatternsInput,
+        output_schema = schemas.ListWorkloadDeploymentPatternsOutput,
         http_method = "POST",
         http_path = "/listWorkloadDeploymentPatterns",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:listWorkloads(input, options)
     return self:invokeOperation(input, {
         name = "ListWorkloads",
-        input_schema = types.ListWorkloadsInput,
-        output_schema = types.ListWorkloadsOutput,
+        input_schema = schemas.ListWorkloadsInput,
+        output_schema = schemas.ListWorkloadsOutput,
         http_method = "POST",
         http_path = "/listWorkloads",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:updateDeployment(input, options)
     return self:invokeOperation(input, {
         name = "UpdateDeployment",
-        input_schema = types.UpdateDeploymentInput,
-        output_schema = types.UpdateDeploymentOutput,
+        input_schema = schemas.UpdateDeploymentInput,
+        output_schema = schemas.UpdateDeploymentOutput,
         http_method = "POST",
         http_path = "/updateDeployment",
         effective_auth_schemes = {

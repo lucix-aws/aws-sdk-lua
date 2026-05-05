@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("marketplacedeployment.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("marketplacedeployment.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("marketplacedeployment.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:putDeploymentParameter(input, options)
     return self:invokeOperation(input, {
         name = "PutDeploymentParameter",
-        input_schema = types.PutDeploymentParameterInput,
-        output_schema = types.PutDeploymentParameterOutput,
+        input_schema = schemas.PutDeploymentParameterInput,
+        output_schema = schemas.PutDeploymentParameterOutput,
         http_method = "POST",
         http_path = "/catalogs/{catalog}/products/{productId}/deployment-parameters",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {

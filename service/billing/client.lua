@@ -3,8 +3,8 @@ local base_client = require("client")
 local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("billing.endpoint_rules")
+local schemas = require("billing.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("billing.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateSourceViews(input, options)
     return self:invokeOperation(input, {
         name = "AssociateSourceViews",
-        input_schema = types.AssociateSourceViewsInput,
-        output_schema = types.AssociateSourceViewsOutput,
+        input_schema = schemas.AssociateSourceViewsInput,
+        output_schema = schemas.AssociateSourceViewsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createBillingView(input, options)
     return self:invokeOperation(input, {
         name = "CreateBillingView",
-        input_schema = types.CreateBillingViewInput,
-        output_schema = types.CreateBillingViewOutput,
+        input_schema = schemas.CreateBillingViewInput,
+        output_schema = schemas.CreateBillingViewOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:deleteBillingView(input, options)
     return self:invokeOperation(input, {
         name = "DeleteBillingView",
-        input_schema = types.DeleteBillingViewInput,
-        output_schema = types.DeleteBillingViewOutput,
+        input_schema = schemas.DeleteBillingViewInput,
+        output_schema = schemas.DeleteBillingViewOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:disassociateSourceViews(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateSourceViews",
-        input_schema = types.DisassociateSourceViewsInput,
-        output_schema = types.DisassociateSourceViewsOutput,
+        input_schema = schemas.DisassociateSourceViewsInput,
+        output_schema = schemas.DisassociateSourceViewsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:getBillingView(input, options)
     return self:invokeOperation(input, {
         name = "GetBillingView",
-        input_schema = types.GetBillingViewInput,
-        output_schema = types.GetBillingViewOutput,
+        input_schema = schemas.GetBillingViewInput,
+        output_schema = schemas.GetBillingViewOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:getResourcePolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetResourcePolicy",
-        input_schema = types.GetResourcePolicyInput,
-        output_schema = types.GetResourcePolicyOutput,
+        input_schema = schemas.GetResourcePolicyInput,
+        output_schema = schemas.GetResourcePolicyOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:listBillingViews(input, options)
     return self:invokeOperation(input, {
         name = "ListBillingViews",
-        input_schema = types.ListBillingViewsInput,
-        output_schema = types.ListBillingViewsOutput,
+        input_schema = schemas.ListBillingViewsInput,
+        output_schema = schemas.ListBillingViewsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:listSourceViewsForBillingView(input, options)
     return self:invokeOperation(input, {
         name = "ListSourceViewsForBillingView",
-        input_schema = types.ListSourceViewsForBillingViewInput,
-        output_schema = types.ListSourceViewsForBillingViewOutput,
+        input_schema = schemas.ListSourceViewsForBillingViewInput,
+        output_schema = schemas.ListSourceViewsForBillingViewOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:updateBillingView(input, options)
     return self:invokeOperation(input, {
         name = "UpdateBillingView",
-        input_schema = types.UpdateBillingViewInput,
-        output_schema = types.UpdateBillingViewOutput,
+        input_schema = schemas.UpdateBillingViewInput,
+        output_schema = schemas.UpdateBillingViewOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

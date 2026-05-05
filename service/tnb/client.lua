@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("tnb.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("tnb.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("tnb.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:cancelSolNetworkOperation(input, options)
     return self:invokeOperation(input, {
         name = "CancelSolNetworkOperation",
-        input_schema = types.CancelSolNetworkOperationInput,
-        output_schema = types.CancelSolNetworkOperationOutput,
+        input_schema = schemas.CancelSolNetworkOperationInput,
+        output_schema = schemas.CancelSolNetworkOperationOutput,
         http_method = "POST",
         http_path = "/sol/nslcm/v1/ns_lcm_op_occs/{nsLcmOpOccId}/cancel",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:createSolFunctionPackage(input, options)
     return self:invokeOperation(input, {
         name = "CreateSolFunctionPackage",
-        input_schema = types.CreateSolFunctionPackageInput,
-        output_schema = types.CreateSolFunctionPackageOutput,
+        input_schema = schemas.CreateSolFunctionPackageInput,
+        output_schema = schemas.CreateSolFunctionPackageOutput,
         http_method = "POST",
         http_path = "/sol/vnfpkgm/v1/vnf_packages",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createSolNetworkInstance(input, options)
     return self:invokeOperation(input, {
         name = "CreateSolNetworkInstance",
-        input_schema = types.CreateSolNetworkInstanceInput,
-        output_schema = types.CreateSolNetworkInstanceOutput,
+        input_schema = schemas.CreateSolNetworkInstanceInput,
+        output_schema = schemas.CreateSolNetworkInstanceOutput,
         http_method = "POST",
         http_path = "/sol/nslcm/v1/ns_instances",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createSolNetworkPackage(input, options)
     return self:invokeOperation(input, {
         name = "CreateSolNetworkPackage",
-        input_schema = types.CreateSolNetworkPackageInput,
-        output_schema = types.CreateSolNetworkPackageOutput,
+        input_schema = schemas.CreateSolNetworkPackageInput,
+        output_schema = schemas.CreateSolNetworkPackageOutput,
         http_method = "POST",
         http_path = "/sol/nsd/v1/ns_descriptors",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:deleteSolFunctionPackage(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSolFunctionPackage",
-        input_schema = types.DeleteSolFunctionPackageInput,
-        output_schema = types.DeleteSolFunctionPackageOutput,
+        input_schema = schemas.DeleteSolFunctionPackageInput,
+        output_schema = schemas.DeleteSolFunctionPackageOutput,
         http_method = "DELETE",
         http_path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:deleteSolNetworkInstance(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSolNetworkInstance",
-        input_schema = types.DeleteSolNetworkInstanceInput,
-        output_schema = types.DeleteSolNetworkInstanceOutput,
+        input_schema = schemas.DeleteSolNetworkInstanceInput,
+        output_schema = schemas.DeleteSolNetworkInstanceOutput,
         http_method = "DELETE",
         http_path = "/sol/nslcm/v1/ns_instances/{nsInstanceId}",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:deleteSolNetworkPackage(input, options)
     return self:invokeOperation(input, {
         name = "DeleteSolNetworkPackage",
-        input_schema = types.DeleteSolNetworkPackageInput,
-        output_schema = types.DeleteSolNetworkPackageOutput,
+        input_schema = schemas.DeleteSolNetworkPackageInput,
+        output_schema = schemas.DeleteSolNetworkPackageOutput,
         http_method = "DELETE",
         http_path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:getSolFunctionInstance(input, options)
     return self:invokeOperation(input, {
         name = "GetSolFunctionInstance",
-        input_schema = types.GetSolFunctionInstanceInput,
-        output_schema = types.GetSolFunctionInstanceOutput,
+        input_schema = schemas.GetSolFunctionInstanceInput,
+        output_schema = schemas.GetSolFunctionInstanceOutput,
         http_method = "GET",
         http_path = "/sol/vnflcm/v1/vnf_instances/{vnfInstanceId}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:getSolFunctionPackage(input, options)
     return self:invokeOperation(input, {
         name = "GetSolFunctionPackage",
-        input_schema = types.GetSolFunctionPackageInput,
-        output_schema = types.GetSolFunctionPackageOutput,
+        input_schema = schemas.GetSolFunctionPackageInput,
+        output_schema = schemas.GetSolFunctionPackageOutput,
         http_method = "GET",
         http_path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:getSolFunctionPackageContent(input, options)
     return self:invokeOperation(input, {
         name = "GetSolFunctionPackageContent",
-        input_schema = types.GetSolFunctionPackageContentInput,
-        output_schema = types.GetSolFunctionPackageContentOutput,
+        input_schema = schemas.GetSolFunctionPackageContentInput,
+        output_schema = schemas.GetSolFunctionPackageContentOutput,
         http_method = "GET",
         http_path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}/package_content",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:getSolFunctionPackageDescriptor(input, options)
     return self:invokeOperation(input, {
         name = "GetSolFunctionPackageDescriptor",
-        input_schema = types.GetSolFunctionPackageDescriptorInput,
-        output_schema = types.GetSolFunctionPackageDescriptorOutput,
+        input_schema = schemas.GetSolFunctionPackageDescriptorInput,
+        output_schema = schemas.GetSolFunctionPackageDescriptorOutput,
         http_method = "GET",
         http_path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}/vnfd",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:getSolNetworkInstance(input, options)
     return self:invokeOperation(input, {
         name = "GetSolNetworkInstance",
-        input_schema = types.GetSolNetworkInstanceInput,
-        output_schema = types.GetSolNetworkInstanceOutput,
+        input_schema = schemas.GetSolNetworkInstanceInput,
+        output_schema = schemas.GetSolNetworkInstanceOutput,
         http_method = "GET",
         http_path = "/sol/nslcm/v1/ns_instances/{nsInstanceId}",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:getSolNetworkOperation(input, options)
     return self:invokeOperation(input, {
         name = "GetSolNetworkOperation",
-        input_schema = types.GetSolNetworkOperationInput,
-        output_schema = types.GetSolNetworkOperationOutput,
+        input_schema = schemas.GetSolNetworkOperationInput,
+        output_schema = schemas.GetSolNetworkOperationOutput,
         http_method = "GET",
         http_path = "/sol/nslcm/v1/ns_lcm_op_occs/{nsLcmOpOccId}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getSolNetworkPackage(input, options)
     return self:invokeOperation(input, {
         name = "GetSolNetworkPackage",
-        input_schema = types.GetSolNetworkPackageInput,
-        output_schema = types.GetSolNetworkPackageOutput,
+        input_schema = schemas.GetSolNetworkPackageInput,
+        output_schema = schemas.GetSolNetworkPackageOutput,
         http_method = "GET",
         http_path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getSolNetworkPackageContent(input, options)
     return self:invokeOperation(input, {
         name = "GetSolNetworkPackageContent",
-        input_schema = types.GetSolNetworkPackageContentInput,
-        output_schema = types.GetSolNetworkPackageContentOutput,
+        input_schema = schemas.GetSolNetworkPackageContentInput,
+        output_schema = schemas.GetSolNetworkPackageContentOutput,
         http_method = "GET",
         http_path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}/nsd_content",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getSolNetworkPackageDescriptor(input, options)
     return self:invokeOperation(input, {
         name = "GetSolNetworkPackageDescriptor",
-        input_schema = types.GetSolNetworkPackageDescriptorInput,
-        output_schema = types.GetSolNetworkPackageDescriptorOutput,
+        input_schema = schemas.GetSolNetworkPackageDescriptorInput,
+        output_schema = schemas.GetSolNetworkPackageDescriptorOutput,
         http_method = "GET",
         http_path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}/nsd",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:instantiateSolNetworkInstance(input, options)
     return self:invokeOperation(input, {
         name = "InstantiateSolNetworkInstance",
-        input_schema = types.InstantiateSolNetworkInstanceInput,
-        output_schema = types.InstantiateSolNetworkInstanceOutput,
+        input_schema = schemas.InstantiateSolNetworkInstanceInput,
+        output_schema = schemas.InstantiateSolNetworkInstanceOutput,
         http_method = "POST",
         http_path = "/sol/nslcm/v1/ns_instances/{nsInstanceId}/instantiate",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:listSolFunctionInstances(input, options)
     return self:invokeOperation(input, {
         name = "ListSolFunctionInstances",
-        input_schema = types.ListSolFunctionInstancesInput,
-        output_schema = types.ListSolFunctionInstancesOutput,
+        input_schema = schemas.ListSolFunctionInstancesInput,
+        output_schema = schemas.ListSolFunctionInstancesOutput,
         http_method = "GET",
         http_path = "/sol/vnflcm/v1/vnf_instances",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:listSolFunctionPackages(input, options)
     return self:invokeOperation(input, {
         name = "ListSolFunctionPackages",
-        input_schema = types.ListSolFunctionPackagesInput,
-        output_schema = types.ListSolFunctionPackagesOutput,
+        input_schema = schemas.ListSolFunctionPackagesInput,
+        output_schema = schemas.ListSolFunctionPackagesOutput,
         http_method = "GET",
         http_path = "/sol/vnfpkgm/v1/vnf_packages",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listSolNetworkInstances(input, options)
     return self:invokeOperation(input, {
         name = "ListSolNetworkInstances",
-        input_schema = types.ListSolNetworkInstancesInput,
-        output_schema = types.ListSolNetworkInstancesOutput,
+        input_schema = schemas.ListSolNetworkInstancesInput,
+        output_schema = schemas.ListSolNetworkInstancesOutput,
         http_method = "GET",
         http_path = "/sol/nslcm/v1/ns_instances",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listSolNetworkOperations(input, options)
     return self:invokeOperation(input, {
         name = "ListSolNetworkOperations",
-        input_schema = types.ListSolNetworkOperationsInput,
-        output_schema = types.ListSolNetworkOperationsOutput,
+        input_schema = schemas.ListSolNetworkOperationsInput,
+        output_schema = schemas.ListSolNetworkOperationsOutput,
         http_method = "GET",
         http_path = "/sol/nslcm/v1/ns_lcm_op_occs",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listSolNetworkPackages(input, options)
     return self:invokeOperation(input, {
         name = "ListSolNetworkPackages",
-        input_schema = types.ListSolNetworkPackagesInput,
-        output_schema = types.ListSolNetworkPackagesOutput,
+        input_schema = schemas.ListSolNetworkPackagesInput,
+        output_schema = schemas.ListSolNetworkPackagesOutput,
         http_method = "GET",
         http_path = "/sol/nsd/v1/ns_descriptors",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:putSolFunctionPackageContent(input, options)
     return self:invokeOperation(input, {
         name = "PutSolFunctionPackageContent",
-        input_schema = types.PutSolFunctionPackageContentInput,
-        output_schema = types.PutSolFunctionPackageContentOutput,
+        input_schema = schemas.PutSolFunctionPackageContentInput,
+        output_schema = schemas.PutSolFunctionPackageContentOutput,
         http_method = "PUT",
         http_path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}/package_content",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:putSolNetworkPackageContent(input, options)
     return self:invokeOperation(input, {
         name = "PutSolNetworkPackageContent",
-        input_schema = types.PutSolNetworkPackageContentInput,
-        output_schema = types.PutSolNetworkPackageContentOutput,
+        input_schema = schemas.PutSolNetworkPackageContentInput,
+        output_schema = schemas.PutSolNetworkPackageContentOutput,
         http_method = "PUT",
         http_path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}/nsd_content",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:terminateSolNetworkInstance(input, options)
     return self:invokeOperation(input, {
         name = "TerminateSolNetworkInstance",
-        input_schema = types.TerminateSolNetworkInstanceInput,
-        output_schema = types.TerminateSolNetworkInstanceOutput,
+        input_schema = schemas.TerminateSolNetworkInstanceInput,
+        output_schema = schemas.TerminateSolNetworkInstanceOutput,
         http_method = "POST",
         http_path = "/sol/nslcm/v1/ns_instances/{nsInstanceId}/terminate",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "DELETE",
         http_path = "/tags/{resourceArn}",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:updateSolFunctionPackage(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSolFunctionPackage",
-        input_schema = types.UpdateSolFunctionPackageInput,
-        output_schema = types.UpdateSolFunctionPackageOutput,
+        input_schema = schemas.UpdateSolFunctionPackageInput,
+        output_schema = schemas.UpdateSolFunctionPackageOutput,
         http_method = "PATCH",
         http_path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:updateSolNetworkInstance(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSolNetworkInstance",
-        input_schema = types.UpdateSolNetworkInstanceInput,
-        output_schema = types.UpdateSolNetworkInstanceOutput,
+        input_schema = schemas.UpdateSolNetworkInstanceInput,
+        output_schema = schemas.UpdateSolNetworkInstanceOutput,
         http_method = "POST",
         http_path = "/sol/nslcm/v1/ns_instances/{nsInstanceId}/update",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:updateSolNetworkPackage(input, options)
     return self:invokeOperation(input, {
         name = "UpdateSolNetworkPackage",
-        input_schema = types.UpdateSolNetworkPackageInput,
-        output_schema = types.UpdateSolNetworkPackageOutput,
+        input_schema = schemas.UpdateSolNetworkPackageInput,
+        output_schema = schemas.UpdateSolNetworkPackageOutput,
         http_method = "PATCH",
         http_path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:validateSolFunctionPackageContent(input, options)
     return self:invokeOperation(input, {
         name = "ValidateSolFunctionPackageContent",
-        input_schema = types.ValidateSolFunctionPackageContentInput,
-        output_schema = types.ValidateSolFunctionPackageContentOutput,
+        input_schema = schemas.ValidateSolFunctionPackageContentInput,
+        output_schema = schemas.ValidateSolFunctionPackageContentOutput,
         http_method = "PUT",
         http_path = "/sol/vnfpkgm/v1/vnf_packages/{vnfPkgId}/package_content/validate",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:validateSolNetworkPackageContent(input, options)
     return self:invokeOperation(input, {
         name = "ValidateSolNetworkPackageContent",
-        input_schema = types.ValidateSolNetworkPackageContentInput,
-        output_schema = types.ValidateSolNetworkPackageContentOutput,
+        input_schema = schemas.ValidateSolNetworkPackageContentInput,
+        output_schema = schemas.ValidateSolNetworkPackageContentOutput,
         http_method = "PUT",
         http_path = "/sol/nsd/v1/ns_descriptors/{nsdInfoId}/nsd_content/validate",
         effective_auth_schemes = {

@@ -3,8 +3,8 @@ local defaults = require("defaults")
 local endpoint = require("endpoint")
 local endpoint_rules = require("mediaconvert.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
+local schemas = require("mediaconvert.schemas")
 local sdk_defaults = require("sdk_defaults")
-local types = require("mediaconvert.types")
 
 local M = {}
 
@@ -49,8 +49,8 @@ end
 function Client:associateCertificate(input, options)
     return self:invokeOperation(input, {
         name = "AssociateCertificate",
-        input_schema = types.AssociateCertificateInput,
-        output_schema = types.AssociateCertificateOutput,
+        input_schema = schemas.AssociateCertificateInput,
+        output_schema = schemas.AssociateCertificateOutput,
         http_method = "POST",
         http_path = "/2017-08-29/certificates",
         effective_auth_schemes = {
@@ -62,8 +62,8 @@ end
 function Client:cancelJob(input, options)
     return self:invokeOperation(input, {
         name = "CancelJob",
-        input_schema = types.CancelJobInput,
-        output_schema = types.CancelJobOutput,
+        input_schema = schemas.CancelJobInput,
+        output_schema = schemas.CancelJobOutput,
         http_method = "DELETE",
         http_path = "/2017-08-29/jobs/{Id}",
         effective_auth_schemes = {
@@ -75,8 +75,8 @@ end
 function Client:createJob(input, options)
     return self:invokeOperation(input, {
         name = "CreateJob",
-        input_schema = types.CreateJobInput,
-        output_schema = types.CreateJobOutput,
+        input_schema = schemas.CreateJobInput,
+        output_schema = schemas.CreateJobOutput,
         http_method = "POST",
         http_path = "/2017-08-29/jobs",
         effective_auth_schemes = {
@@ -88,8 +88,8 @@ end
 function Client:createJobTemplate(input, options)
     return self:invokeOperation(input, {
         name = "CreateJobTemplate",
-        input_schema = types.CreateJobTemplateInput,
-        output_schema = types.CreateJobTemplateOutput,
+        input_schema = schemas.CreateJobTemplateInput,
+        output_schema = schemas.CreateJobTemplateOutput,
         http_method = "POST",
         http_path = "/2017-08-29/jobTemplates",
         effective_auth_schemes = {
@@ -101,8 +101,8 @@ end
 function Client:createPreset(input, options)
     return self:invokeOperation(input, {
         name = "CreatePreset",
-        input_schema = types.CreatePresetInput,
-        output_schema = types.CreatePresetOutput,
+        input_schema = schemas.CreatePresetInput,
+        output_schema = schemas.CreatePresetOutput,
         http_method = "POST",
         http_path = "/2017-08-29/presets",
         effective_auth_schemes = {
@@ -114,8 +114,8 @@ end
 function Client:createQueue(input, options)
     return self:invokeOperation(input, {
         name = "CreateQueue",
-        input_schema = types.CreateQueueInput,
-        output_schema = types.CreateQueueOutput,
+        input_schema = schemas.CreateQueueInput,
+        output_schema = schemas.CreateQueueOutput,
         http_method = "POST",
         http_path = "/2017-08-29/queues",
         effective_auth_schemes = {
@@ -127,8 +127,8 @@ end
 function Client:createResourceShare(input, options)
     return self:invokeOperation(input, {
         name = "CreateResourceShare",
-        input_schema = types.CreateResourceShareInput,
-        output_schema = types.CreateResourceShareOutput,
+        input_schema = schemas.CreateResourceShareInput,
+        output_schema = schemas.CreateResourceShareOutput,
         http_method = "POST",
         http_path = "/2017-08-29/resourceShares",
         effective_auth_schemes = {
@@ -140,8 +140,8 @@ end
 function Client:deleteJobTemplate(input, options)
     return self:invokeOperation(input, {
         name = "DeleteJobTemplate",
-        input_schema = types.DeleteJobTemplateInput,
-        output_schema = types.DeleteJobTemplateOutput,
+        input_schema = schemas.DeleteJobTemplateInput,
+        output_schema = schemas.DeleteJobTemplateOutput,
         http_method = "DELETE",
         http_path = "/2017-08-29/jobTemplates/{Name}",
         effective_auth_schemes = {
@@ -153,8 +153,8 @@ end
 function Client:deletePolicy(input, options)
     return self:invokeOperation(input, {
         name = "DeletePolicy",
-        input_schema = types.DeletePolicyInput,
-        output_schema = types.DeletePolicyOutput,
+        input_schema = schemas.DeletePolicyInput,
+        output_schema = schemas.DeletePolicyOutput,
         http_method = "DELETE",
         http_path = "/2017-08-29/policy",
         effective_auth_schemes = {
@@ -166,8 +166,8 @@ end
 function Client:deletePreset(input, options)
     return self:invokeOperation(input, {
         name = "DeletePreset",
-        input_schema = types.DeletePresetInput,
-        output_schema = types.DeletePresetOutput,
+        input_schema = schemas.DeletePresetInput,
+        output_schema = schemas.DeletePresetOutput,
         http_method = "DELETE",
         http_path = "/2017-08-29/presets/{Name}",
         effective_auth_schemes = {
@@ -179,8 +179,8 @@ end
 function Client:deleteQueue(input, options)
     return self:invokeOperation(input, {
         name = "DeleteQueue",
-        input_schema = types.DeleteQueueInput,
-        output_schema = types.DeleteQueueOutput,
+        input_schema = schemas.DeleteQueueInput,
+        output_schema = schemas.DeleteQueueOutput,
         http_method = "DELETE",
         http_path = "/2017-08-29/queues/{Name}",
         effective_auth_schemes = {
@@ -192,8 +192,8 @@ end
 function Client:describeEndpoints(input, options)
     return self:invokeOperation(input, {
         name = "DescribeEndpoints",
-        input_schema = types.DescribeEndpointsInput,
-        output_schema = types.DescribeEndpointsOutput,
+        input_schema = schemas.DescribeEndpointsInput,
+        output_schema = schemas.DescribeEndpointsOutput,
         http_method = "POST",
         http_path = "/2017-08-29/endpoints",
         effective_auth_schemes = {
@@ -205,8 +205,8 @@ end
 function Client:disassociateCertificate(input, options)
     return self:invokeOperation(input, {
         name = "DisassociateCertificate",
-        input_schema = types.DisassociateCertificateInput,
-        output_schema = types.DisassociateCertificateOutput,
+        input_schema = schemas.DisassociateCertificateInput,
+        output_schema = schemas.DisassociateCertificateOutput,
         http_method = "DELETE",
         http_path = "/2017-08-29/certificates/{Arn}",
         effective_auth_schemes = {
@@ -218,8 +218,8 @@ end
 function Client:getJob(input, options)
     return self:invokeOperation(input, {
         name = "GetJob",
-        input_schema = types.GetJobInput,
-        output_schema = types.GetJobOutput,
+        input_schema = schemas.GetJobInput,
+        output_schema = schemas.GetJobOutput,
         http_method = "GET",
         http_path = "/2017-08-29/jobs/{Id}",
         effective_auth_schemes = {
@@ -231,8 +231,8 @@ end
 function Client:getJobsQueryResults(input, options)
     return self:invokeOperation(input, {
         name = "GetJobsQueryResults",
-        input_schema = types.GetJobsQueryResultsInput,
-        output_schema = types.GetJobsQueryResultsOutput,
+        input_schema = schemas.GetJobsQueryResultsInput,
+        output_schema = schemas.GetJobsQueryResultsOutput,
         http_method = "GET",
         http_path = "/2017-08-29/jobsQueries/{Id}",
         effective_auth_schemes = {
@@ -244,8 +244,8 @@ end
 function Client:getJobTemplate(input, options)
     return self:invokeOperation(input, {
         name = "GetJobTemplate",
-        input_schema = types.GetJobTemplateInput,
-        output_schema = types.GetJobTemplateOutput,
+        input_schema = schemas.GetJobTemplateInput,
+        output_schema = schemas.GetJobTemplateOutput,
         http_method = "GET",
         http_path = "/2017-08-29/jobTemplates/{Name}",
         effective_auth_schemes = {
@@ -257,8 +257,8 @@ end
 function Client:getPolicy(input, options)
     return self:invokeOperation(input, {
         name = "GetPolicy",
-        input_schema = types.GetPolicyInput,
-        output_schema = types.GetPolicyOutput,
+        input_schema = schemas.GetPolicyInput,
+        output_schema = schemas.GetPolicyOutput,
         http_method = "GET",
         http_path = "/2017-08-29/policy",
         effective_auth_schemes = {
@@ -270,8 +270,8 @@ end
 function Client:getPreset(input, options)
     return self:invokeOperation(input, {
         name = "GetPreset",
-        input_schema = types.GetPresetInput,
-        output_schema = types.GetPresetOutput,
+        input_schema = schemas.GetPresetInput,
+        output_schema = schemas.GetPresetOutput,
         http_method = "GET",
         http_path = "/2017-08-29/presets/{Name}",
         effective_auth_schemes = {
@@ -283,8 +283,8 @@ end
 function Client:getQueue(input, options)
     return self:invokeOperation(input, {
         name = "GetQueue",
-        input_schema = types.GetQueueInput,
-        output_schema = types.GetQueueOutput,
+        input_schema = schemas.GetQueueInput,
+        output_schema = schemas.GetQueueOutput,
         http_method = "GET",
         http_path = "/2017-08-29/queues/{Name}",
         effective_auth_schemes = {
@@ -296,8 +296,8 @@ end
 function Client:listJobs(input, options)
     return self:invokeOperation(input, {
         name = "ListJobs",
-        input_schema = types.ListJobsInput,
-        output_schema = types.ListJobsOutput,
+        input_schema = schemas.ListJobsInput,
+        output_schema = schemas.ListJobsOutput,
         http_method = "GET",
         http_path = "/2017-08-29/jobs",
         effective_auth_schemes = {
@@ -309,8 +309,8 @@ end
 function Client:listJobTemplates(input, options)
     return self:invokeOperation(input, {
         name = "ListJobTemplates",
-        input_schema = types.ListJobTemplatesInput,
-        output_schema = types.ListJobTemplatesOutput,
+        input_schema = schemas.ListJobTemplatesInput,
+        output_schema = schemas.ListJobTemplatesOutput,
         http_method = "GET",
         http_path = "/2017-08-29/jobTemplates",
         effective_auth_schemes = {
@@ -322,8 +322,8 @@ end
 function Client:listPresets(input, options)
     return self:invokeOperation(input, {
         name = "ListPresets",
-        input_schema = types.ListPresetsInput,
-        output_schema = types.ListPresetsOutput,
+        input_schema = schemas.ListPresetsInput,
+        output_schema = schemas.ListPresetsOutput,
         http_method = "GET",
         http_path = "/2017-08-29/presets",
         effective_auth_schemes = {
@@ -335,8 +335,8 @@ end
 function Client:listQueues(input, options)
     return self:invokeOperation(input, {
         name = "ListQueues",
-        input_schema = types.ListQueuesInput,
-        output_schema = types.ListQueuesOutput,
+        input_schema = schemas.ListQueuesInput,
+        output_schema = schemas.ListQueuesOutput,
         http_method = "GET",
         http_path = "/2017-08-29/queues",
         effective_auth_schemes = {
@@ -348,8 +348,8 @@ end
 function Client:listTagsForResource(input, options)
     return self:invokeOperation(input, {
         name = "ListTagsForResource",
-        input_schema = types.ListTagsForResourceInput,
-        output_schema = types.ListTagsForResourceOutput,
+        input_schema = schemas.ListTagsForResourceInput,
+        output_schema = schemas.ListTagsForResourceOutput,
         http_method = "GET",
         http_path = "/2017-08-29/tags/{Arn}",
         effective_auth_schemes = {
@@ -361,8 +361,8 @@ end
 function Client:listVersions(input, options)
     return self:invokeOperation(input, {
         name = "ListVersions",
-        input_schema = types.ListVersionsInput,
-        output_schema = types.ListVersionsOutput,
+        input_schema = schemas.ListVersionsInput,
+        output_schema = schemas.ListVersionsOutput,
         http_method = "GET",
         http_path = "/2017-08-29/versions",
         effective_auth_schemes = {
@@ -374,8 +374,8 @@ end
 function Client:probe(input, options)
     return self:invokeOperation(input, {
         name = "Probe",
-        input_schema = types.ProbeInput,
-        output_schema = types.ProbeOutput,
+        input_schema = schemas.ProbeInput,
+        output_schema = schemas.ProbeOutput,
         http_method = "POST",
         http_path = "/2017-08-29/probe",
         effective_auth_schemes = {
@@ -387,8 +387,8 @@ end
 function Client:putPolicy(input, options)
     return self:invokeOperation(input, {
         name = "PutPolicy",
-        input_schema = types.PutPolicyInput,
-        output_schema = types.PutPolicyOutput,
+        input_schema = schemas.PutPolicyInput,
+        output_schema = schemas.PutPolicyOutput,
         http_method = "PUT",
         http_path = "/2017-08-29/policy",
         effective_auth_schemes = {
@@ -400,8 +400,8 @@ end
 function Client:searchJobs(input, options)
     return self:invokeOperation(input, {
         name = "SearchJobs",
-        input_schema = types.SearchJobsInput,
-        output_schema = types.SearchJobsOutput,
+        input_schema = schemas.SearchJobsInput,
+        output_schema = schemas.SearchJobsOutput,
         http_method = "GET",
         http_path = "/2017-08-29/search",
         effective_auth_schemes = {
@@ -413,8 +413,8 @@ end
 function Client:startJobsQuery(input, options)
     return self:invokeOperation(input, {
         name = "StartJobsQuery",
-        input_schema = types.StartJobsQueryInput,
-        output_schema = types.StartJobsQueryOutput,
+        input_schema = schemas.StartJobsQueryInput,
+        output_schema = schemas.StartJobsQueryOutput,
         http_method = "POST",
         http_path = "/2017-08-29/jobsQueries",
         effective_auth_schemes = {
@@ -426,8 +426,8 @@ end
 function Client:tagResource(input, options)
     return self:invokeOperation(input, {
         name = "TagResource",
-        input_schema = types.TagResourceInput,
-        output_schema = types.TagResourceOutput,
+        input_schema = schemas.TagResourceInput,
+        output_schema = schemas.TagResourceOutput,
         http_method = "POST",
         http_path = "/2017-08-29/tags",
         effective_auth_schemes = {
@@ -439,8 +439,8 @@ end
 function Client:untagResource(input, options)
     return self:invokeOperation(input, {
         name = "UntagResource",
-        input_schema = types.UntagResourceInput,
-        output_schema = types.UntagResourceOutput,
+        input_schema = schemas.UntagResourceInput,
+        output_schema = schemas.UntagResourceOutput,
         http_method = "PUT",
         http_path = "/2017-08-29/tags/{Arn}",
         effective_auth_schemes = {
@@ -452,8 +452,8 @@ end
 function Client:updateJobTemplate(input, options)
     return self:invokeOperation(input, {
         name = "UpdateJobTemplate",
-        input_schema = types.UpdateJobTemplateInput,
-        output_schema = types.UpdateJobTemplateOutput,
+        input_schema = schemas.UpdateJobTemplateInput,
+        output_schema = schemas.UpdateJobTemplateOutput,
         http_method = "PUT",
         http_path = "/2017-08-29/jobTemplates/{Name}",
         effective_auth_schemes = {
@@ -465,8 +465,8 @@ end
 function Client:updatePreset(input, options)
     return self:invokeOperation(input, {
         name = "UpdatePreset",
-        input_schema = types.UpdatePresetInput,
-        output_schema = types.UpdatePresetOutput,
+        input_schema = schemas.UpdatePresetInput,
+        output_schema = schemas.UpdatePresetOutput,
         http_method = "PUT",
         http_path = "/2017-08-29/presets/{Name}",
         effective_auth_schemes = {
@@ -478,8 +478,8 @@ end
 function Client:updateQueue(input, options)
     return self:invokeOperation(input, {
         name = "UpdateQueue",
-        input_schema = types.UpdateQueueInput,
-        output_schema = types.UpdateQueueOutput,
+        input_schema = schemas.UpdateQueueInput,
+        output_schema = schemas.UpdateQueueOutput,
         http_method = "PUT",
         http_path = "/2017-08-29/queues/{Name}",
         effective_auth_schemes = {
