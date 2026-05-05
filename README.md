@@ -67,21 +67,3 @@ for _, name in ipairs(result.TableNames) do
     print(name)
 end
 ```
-
-## Project Structure
-
-```
-aws-sdk-lua/
-├── runtime/aws/          -- SDK-specific runtime (credentials, config)
-├── service/              -- Generated service clients (425 services)
-│   ├── dynamodb/
-│   ├── s3/
-│   ├── sts/
-│   └── ...
-└── codegen/              -- Java codegen plugin (extends smithy-lua)
-```
-
-## Dependencies
-
-- **JSON**: requires `cjson` (bundled with LuaJIT/OpenResty) or `dkjson`
-- **HTTP**: pluggable interface; defaults to luasocket if available
