@@ -973,15 +973,15 @@ local record TooManyRequestsException
     message: string
 end
 
+local type IdentityType = "EMAIL_ADDRESS" | "DOMAIN" | "MANAGED_DOMAIN"
+
 local type TlsPolicy = "REQUIRE" | "OPTIONAL"
+
+local type BehaviorOnMxFailure = "USE_DEFAULT_VALUE" | "REJECT_MESSAGE"
 
 local type DeliverabilityDashboardAccountStatus = "ACTIVE" | "PENDING_EXPIRATION" | "DISABLED"
 
 local type DeliverabilityTestStatus = "IN_PROGRESS" | "COMPLETED"
-
-local type IdentityType = "EMAIL_ADDRESS" | "DOMAIN" | "MANAGED_DOMAIN"
-
-local type BehaviorOnMxFailure = "USE_DEFAULT_VALUE" | "REJECT_MESSAGE"
 
 local record M
     CreateConfigurationSetInput: CreateConfigurationSetInput

@@ -1424,7 +1424,7 @@ M.DocumentCharLocation = {
         start = {
             type = "integer",
         },
-        end = {
+        ["end"] = {
             type = "integer",
         },
     },
@@ -1440,7 +1440,7 @@ M.DocumentChunkLocation = {
         start = {
             type = "integer",
         },
-        end = {
+        ["end"] = {
             type = "integer",
         },
     },
@@ -1456,7 +1456,7 @@ M.DocumentPageLocation = {
         start = {
             type = "integer",
         },
-        end = {
+        ["end"] = {
             type = "integer",
         },
     },
@@ -1472,7 +1472,7 @@ M.SearchResultLocation = {
         start = {
             type = "integer",
         },
-        end = {
+        ["end"] = {
             type = "integer",
         },
     },

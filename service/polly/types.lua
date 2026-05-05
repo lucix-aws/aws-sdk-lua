@@ -6,6 +6,9 @@ M.AudioEvent = {
     members = {
         AudioChunk = {
             type = "blob",
+            traits = {
+                event_payload = true,
+            },
         },
     },
 }

@@ -1664,6 +1664,7 @@ function Client:selectObjectContent(input, options)
         output_schema = types.SelectObjectContentOutput,
         http_method = "POST",
         http_path = "/{Bucket}/{Key+}?select&select-type=2",
+        event_stream = types.SelectObjectContentEventStream,
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },

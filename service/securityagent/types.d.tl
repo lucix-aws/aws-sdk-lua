@@ -866,33 +866,33 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type TargetDomainStatus = "PENDING" | "VERIFIED" | "FAILED" | "UNREACHABLE"
-
-local type ResourceType = "CODE_REPOSITORY"
-
-local type StepName = "PREFLIGHT" | "STATIC_ANALYSIS" | "PENTEST" | "FINALIZING"
-
-local type CodeRemediationStrategy = "AUTOMATIC" | "DISABLED"
+local type DomainVerificationMethod = "DNS_TXT" | "HTTP_ROUTE"
 
 local type ArtifactType = "TXT" | "PNG" | "JPEG" | "MD" | "PDF" | "DOCX" | "DOC" | "JSON" | "YAML"
 
+local type StepName = "PREFLIGHT" | "STATIC_ANALYSIS" | "PENTEST" | "FINALIZING"
+
 local type RiskLevel = "UNKNOWN" | "INFORMATIONAL" | "LOW" | "MEDIUM" | "HIGH" | "CRITICAL"
-
-local type MembershipTypeFilter = "USER" | "ALL"
-
-local type JobStatus = "IN_PROGRESS" | "STOPPING" | "STOPPED" | "FAILED" | "COMPLETED"
-
-local type MembershipType = "USER"
 
 local type ConfidenceLevel = "FALSE_POSITIVE" | "UNCONFIRMED" | "LOW" | "MEDIUM" | "HIGH"
 
-local type DomainVerificationMethod = "DNS_TXT" | "HTTP_ROUTE"
-
 local type ProviderType = "SOURCE_CODE" | "DOCUMENTATION"
+
+local type TargetDomainStatus = "PENDING" | "VERIFIED" | "FAILED" | "UNREACHABLE"
+
+local type MembershipTypeFilter = "USER" | "ALL"
+
+local type CodeRemediationStrategy = "AUTOMATIC" | "DISABLED"
+
+local type JobStatus = "IN_PROGRESS" | "STOPPING" | "STOPPED" | "FAILED" | "COMPLETED"
 
 local type Provider = "GITHUB"
 
 local type FindingStatus = "ACTIVE" | "RESOLVED" | "ACCEPTED" | "FALSE_POSITIVE"
+
+local type ResourceType = "CODE_REPOSITORY"
+
+local type MembershipType = "USER"
 
 local record M
     AddArtifactInput: AddArtifactInput

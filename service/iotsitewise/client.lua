@@ -846,6 +846,7 @@ function Client:invokeAssistant(input, options)
         output_schema = types.InvokeAssistantOutput,
         http_method = "POST",
         http_path = "/assistant/invocation",
+        event_stream = types.ResponseStream,
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },

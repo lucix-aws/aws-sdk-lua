@@ -2759,27 +2759,27 @@ local record UnsupportedOperationException
     Message: string
 end
 
-local type UserRole = "USER" | "RESOURCE" | "SYSTEM_USER" | "REMOTE_USER"
+local type DnsRecordVerificationStatus = "PENDING" | "VERIFIED" | "FAILED"
 
 local type MobileDeviceAccessRuleEffect = "ALLOW" | "DENY"
 
-local type AccessControlRuleEffect = "ALLOW" | "DENY"
+local type ImpersonationRoleType = "FULL_ACCESS" | "READ_ONLY"
 
 local type AccessEffect = "ALLOW" | "DENY"
 
-local type EntityState = "ENABLED" | "DISABLED" | "DELETED"
+local type UserRole = "USER" | "RESOURCE" | "SYSTEM_USER" | "REMOTE_USER"
 
 local type EntityType = "GROUP" | "USER" | "RESOURCE"
 
-local type ImpersonationRoleType = "FULL_ACCESS" | "READ_ONLY"
-
-local type IdentityProviderAuthenticationMode = "IDENTITY_PROVIDER_ONLY" | "IDENTITY_PROVIDER_AND_DIRECTORY"
-
 local type ResourceType = "ROOM" | "EQUIPMENT"
 
-local type DnsRecordVerificationStatus = "PENDING" | "VERIFIED" | "FAILED"
+local type EntityState = "ENABLED" | "DISABLED" | "DELETED"
 
 local type MailboxExportJobState = "RUNNING" | "COMPLETED" | "FAILED" | "CANCELLED"
+
+local type AccessControlRuleEffect = "ALLOW" | "DENY"
+
+local type IdentityProviderAuthenticationMode = "IDENTITY_PROVIDER_ONLY" | "IDENTITY_PROVIDER_AND_DIRECTORY"
 
 local record M
     AssociateDelegateToResourceInput: AssociateDelegateToResourceInput

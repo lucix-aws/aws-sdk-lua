@@ -10059,7 +10059,9 @@ M.ProgressEvent = {
     type = "structure",
     id = "ProgressEvent",
     members = {
-        Details = M.Progress,
+        Details = setmetatable({ traits = {
+            event_payload = true,
+        } }, { __index = M.Progress }),
     },
 }
 
@@ -10069,6 +10071,9 @@ M.RecordsEvent = {
     members = {
         Payload = {
             type = "blob",
+            traits = {
+                event_payload = true,
+            },
         },
     },
 }
@@ -10093,7 +10098,9 @@ M.StatsEvent = {
     type = "structure",
     id = "StatsEvent",
     members = {
-        Details = M.Stats,
+        Details = setmetatable({ traits = {
+            event_payload = true,
+        } }, { __index = M.Stats }),
     },
 }
 

@@ -4515,6 +4515,9 @@ M.InvokeResponseStreamUpdate = {
     members = {
         Payload = {
             type = "blob",
+            traits = {
+                event_payload = true,
+            },
         },
     },
 }

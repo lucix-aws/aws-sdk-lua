@@ -3150,47 +3150,47 @@ local record ValidationException
     message: string
 end
 
-local type Distribution = "Random" | "ByLogStream"
-
-local type QueryStatus = "Scheduled" | "Running" | "Complete" | "Failed" | "Cancelled" | "Timeout" | "Unknown"
-
-local type PolicyScope = "ACCOUNT" | "RESOURCE"
-
-local type EvaluationFrequency = "ONE_MIN" | "FIVE_MIN" | "TEN_MIN" | "FIFTEEN_MIN" | "THIRTY_MIN" | "ONE_HOUR"
-
-local type ExecutionStatus = "Running" | "InvalidQuery" | "Complete" | "Failed" | "Timeout"
-
-local type Scope = "ALL"
-
-local type SuppressionState = "SUPPRESSED" | "UNSUPPRESSED"
-
-local type AnomalyDetectorStatus = "INITIALIZING" | "TRAINING" | "ANALYZING" | "FAILED" | "DELETED" | "PAUSED"
-
-local type ExportTaskStatusCode = "CANCELLED" | "COMPLETED" | "FAILED" | "PENDING" | "PENDING_CANCEL" | "RUNNING"
-
 local type DeliveryDestinationType = "S3" | "CWL" | "FH" | "XRAY"
 
-local type SuppressionType = "LIMITED" | "INFINITE"
+local type ImportStatus = "IN_PROGRESS" | "CANCELLED" | "COMPLETED" | "FAILED"
 
 local type PolicyType = "DATA_PROTECTION_POLICY" | "SUBSCRIPTION_FILTER_POLICY" | "FIELD_INDEX_POLICY" | "TRANSFORMER_POLICY" | "METRIC_EXTRACTION_POLICY"
+
+local type OrderBy = "LogStreamName" | "LastEventTime"
 
 local type OutputFormat = "json" | "plain" | "w3c" | "raw" | "parquet"
 
 local type IntegrationType = "OPENSEARCH"
 
-local type OrderBy = "LogStreamName" | "LastEventTime"
+local type SuppressionState = "SUPPRESSED" | "UNSUPPRESSED"
 
 local type ScheduledQueryState = "ENABLED" | "DISABLED"
 
 local type LogGroupClass = "STANDARD" | "INFREQUENT_ACCESS" | "DELIVERY"
 
-local type ImportStatus = "IN_PROGRESS" | "CANCELLED" | "COMPLETED" | "FAILED"
-
-local type IntegrationStatus = "PROVISIONING" | "ACTIVE" | "FAILED"
-
 local type QueryLanguage = "CWLI" | "SQL" | "PPL"
 
 local type ListAggregateLogGroupSummariesGroupBy = "DATA_SOURCE_NAME_TYPE_AND_FORMAT" | "DATA_SOURCE_NAME_AND_TYPE"
+
+local type PolicyScope = "ACCOUNT" | "RESOURCE"
+
+local type AnomalyDetectorStatus = "INITIALIZING" | "TRAINING" | "ANALYZING" | "FAILED" | "DELETED" | "PAUSED"
+
+local type Distribution = "Random" | "ByLogStream"
+
+local type EvaluationFrequency = "ONE_MIN" | "FIVE_MIN" | "TEN_MIN" | "FIFTEEN_MIN" | "THIRTY_MIN" | "ONE_HOUR"
+
+local type IntegrationStatus = "PROVISIONING" | "ACTIVE" | "FAILED"
+
+local type ExecutionStatus = "Running" | "InvalidQuery" | "Complete" | "Failed" | "Timeout"
+
+local type Scope = "ALL"
+
+local type QueryStatus = "Scheduled" | "Running" | "Complete" | "Failed" | "Cancelled" | "Timeout" | "Unknown"
+
+local type SuppressionType = "LIMITED" | "INFINITE"
+
+local type ExportTaskStatusCode = "CANCELLED" | "COMPLETED" | "FAILED" | "PENDING" | "PENDING_CANCEL" | "RUNNING"
 
 local record M
     AssociateKmsKeyInput: AssociateKmsKeyInput

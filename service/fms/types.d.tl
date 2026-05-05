@@ -1019,9 +1019,9 @@ local record ResourceNotFoundException
     Message: string
 end
 
-local type SecurityServiceType = "WAF" | "WAFV2" | "SHIELD_ADVANCED" | "SECURITY_GROUPS_COMMON" | "SECURITY_GROUPS_CONTENT_AUDIT" | "SECURITY_GROUPS_USAGE_AUDIT" | "NETWORK_FIREWALL" | "DNS_FIREWALL" | "THIRD_PARTY_FIREWALL" | "IMPORT_NETWORK_FIREWALL" | "NETWORK_ACL_COMMON"
-
 local type AccountRoleStatus = "READY" | "CREATING" | "PENDING_DELETION" | "DELETING" | "DELETED"
+
+local type MarketplaceSubscriptionOnboardingStatus = "NO_SUBSCRIPTION" | "NOT_COMPLETE" | "COMPLETE"
 
 local type ThirdPartyFirewallAssociationStatus = "ONBOARDING" | "ONBOARD_COMPLETE" | "OFFBOARDING" | "OFFBOARD_COMPLETE" | "NOT_EXIST"
 
@@ -1029,7 +1029,7 @@ local type OrganizationStatus = "ONBOARDING" | "ONBOARDING_COMPLETE" | "OFFBOARD
 
 local type ThirdPartyFirewall = "PALO_ALTO_NETWORKS_CLOUD_NGFW" | "FORTIGATE_CLOUD_NATIVE_FIREWALL"
 
-local type MarketplaceSubscriptionOnboardingStatus = "NO_SUBSCRIPTION" | "NOT_COMPLETE" | "COMPLETE"
+local type SecurityServiceType = "WAF" | "WAFV2" | "SHIELD_ADVANCED" | "SECURITY_GROUPS_COMMON" | "SECURITY_GROUPS_CONTENT_AUDIT" | "SECURITY_GROUPS_USAGE_AUDIT" | "NETWORK_FIREWALL" | "DNS_FIREWALL" | "THIRD_PARTY_FIREWALL" | "IMPORT_NETWORK_FIREWALL" | "NETWORK_ACL_COMMON"
 
 local record M
     AssociateAdminAccountInput: AssociateAdminAccountInput

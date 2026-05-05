@@ -682,9 +682,9 @@ end
 
 local type Category = "AWSIoT"
 
-local type SigningProfileStatus = "Active" | "Canceled" | "Revoked"
-
 local type SigningStatus = "InProgress" | "Failed" | "Succeeded"
+
+local type SigningProfileStatus = "Active" | "Canceled" | "Revoked"
 
 local record M
     AddProfilePermissionInput: AddProfilePermissionInput

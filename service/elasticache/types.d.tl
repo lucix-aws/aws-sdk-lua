@@ -2709,19 +2709,19 @@ end
 
 local type IpDiscovery = "ipv4" | "ipv6"
 
+local type ClusterMode = "enabled" | "disabled" | "compatible"
+
 local type AuthTokenUpdateStrategyType = "SET" | "ROTATE" | "DELETE"
 
 local type SourceType = "cache-cluster" | "cache-parameter-group" | "cache-security-group" | "cache-subnet-group" | "replication-group" | "serverless-cache" | "serverless-cache-snapshot" | "user" | "user-group"
 
-local type NetworkType = "ipv4" | "ipv6" | "dual_stack"
-
-local type TransitEncryptionMode = "preferred" | "required"
-
-local type ClusterMode = "enabled" | "disabled" | "compatible"
+local type OutpostMode = "single-outpost" | "cross-outpost"
 
 local type AZMode = "single-az" | "cross-az"
 
-local type OutpostMode = "single-outpost" | "cross-outpost"
+local type NetworkType = "ipv4" | "ipv6" | "dual_stack"
+
+local type TransitEncryptionMode = "preferred" | "required"
 
 local record M
     AddTagsToResourceInput: AddTagsToResourceInput

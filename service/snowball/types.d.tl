@@ -563,25 +563,25 @@ local record InvalidResourceException
     ResourceType: string
 end
 
-local type JobType = "IMPORT" | "EXPORT" | "LOCAL_USE"
+local type ShipmentState = "RECEIVED" | "RETURNED"
 
 local type RemoteManagement = "INSTALLED_ONLY" | "INSTALLED_AUTOSTART" | "NOT_INSTALLED"
-
-local type ServiceName = "KUBERNETES" | "EKS_ANYWHERE"
 
 local type ShippingLabelStatus = "InProgress" | "TimedOut" | "Succeeded" | "Failed"
 
 local type ImpactLevel = "IL2" | "IL4" | "IL5" | "IL6" | "IL99"
 
-local type ShippingOption = "SECOND_DAY" | "NEXT_DAY" | "EXPRESS" | "STANDARD"
+local type ServiceName = "KUBERNETES" | "EKS_ANYWHERE"
+
+local type SnowballType = "STANDARD" | "EDGE" | "EDGE_C" | "EDGE_CG" | "EDGE_S" | "SNC1_HDD" | "SNC1_SSD" | "V3_5C" | "V3_5S" | "RACK_5U_C"
 
 local type SnowballCapacity = "T50" | "T80" | "T100" | "T42" | "T98" | "T8" | "T14" | "T32" | "NoPreference" | "T240" | "T13"
 
+local type ShippingOption = "SECOND_DAY" | "NEXT_DAY" | "EXPRESS" | "STANDARD"
+
+local type JobType = "IMPORT" | "EXPORT" | "LOCAL_USE"
+
 local type LongTermPricingType = "OneYear" | "ThreeYear" | "OneMonth"
-
-local type ShipmentState = "RECEIVED" | "RETURNED"
-
-local type SnowballType = "STANDARD" | "EDGE" | "EDGE_C" | "EDGE_CG" | "EDGE_S" | "SNC1_HDD" | "SNC1_SSD" | "V3_5C" | "V3_5S" | "RACK_5U_C"
 
 local record M
     CancelClusterInput: CancelClusterInput

@@ -2365,31 +2365,17 @@ local record ThrottlingException
     Message: string
 end
 
-local type SortOrder = "ASCENDING" | "DESCENDING"
-
-local type Action = "ALLOW" | "BLOCK" | "ALERT"
-
-local type BlockOverrideDnsType = "CNAME"
-
-local type Validation = "ENABLE" | "DISABLE" | "USE_LOCAL_RESOURCE_SETTING"
+local type MutationProtectionStatus = "ENABLED" | "DISABLED"
 
 local type ConfidenceThreshold = "LOW" | "MEDIUM" | "HIGH"
 
-local type BlockResponse = "NODATA" | "NXDOMAIN" | "OVERRIDE"
+local type Validation = "ENABLE" | "DISABLE" | "USE_LOCAL_RESOURCE_SETTING"
 
 local type FirewallDomainListStatus = "COMPLETE" | "COMPLETE_IMPORT_FAILED" | "IMPORTING" | "DELETING" | "UPDATING"
 
-local type RuleTypeOption = "FORWARD" | "SYSTEM" | "RECURSIVE" | "DELEGATE"
-
-local type FirewallDomainImportOperation = "REPLACE"
-
-local type ResolverEndpointDirection = "INBOUND" | "OUTBOUND" | "INBOUND_DELEGATION"
-
 local type FirewallDomainRedirectionAction = "INSPECT_REDIRECTION_DOMAIN" | "TRUST_REDIRECTION_DOMAIN"
 
-local type FirewallRuleGroupAssociationStatus = "COMPLETE" | "DELETING" | "UPDATING"
-
-local type AutodefinedReverseFlag = "ENABLE" | "DISABLE" | "USE_LOCAL_RESOURCE_SETTING"
+local type BlockResponse = "NODATA" | "NXDOMAIN" | "OVERRIDE"
 
 local type FirewallDomainUpdateOperation = "ADD" | "REMOVE" | "REPLACE"
 
@@ -2397,9 +2383,23 @@ local type ResolverEndpointType = "IPV6" | "IPV4" | "DUALSTACK"
 
 local type DnsThreatProtection = "DGA" | "DNS_TUNNELING" | "DICTIONARY_DGA"
 
+local type AutodefinedReverseFlag = "ENABLE" | "DISABLE" | "USE_LOCAL_RESOURCE_SETTING"
+
 local type FirewallFailOpenStatus = "ENABLED" | "DISABLED" | "USE_LOCAL_RESOURCE_SETTING"
 
-local type MutationProtectionStatus = "ENABLED" | "DISABLED"
+local type FirewallRuleGroupAssociationStatus = "COMPLETE" | "DELETING" | "UPDATING"
+
+local type ResolverEndpointDirection = "INBOUND" | "OUTBOUND" | "INBOUND_DELEGATION"
+
+local type BlockOverrideDnsType = "CNAME"
+
+local type SortOrder = "ASCENDING" | "DESCENDING"
+
+local type RuleTypeOption = "FORWARD" | "SYSTEM" | "RECURSIVE" | "DELEGATE"
+
+local type FirewallDomainImportOperation = "REPLACE"
+
+local type Action = "ALLOW" | "BLOCK" | "ALERT"
 
 local record M
     AssociateFirewallRuleGroupInput: AssociateFirewallRuleGroupInput

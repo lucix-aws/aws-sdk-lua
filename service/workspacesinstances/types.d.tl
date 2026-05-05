@@ -516,9 +516,9 @@ end
 
 local type VolumeTypeEnum = "standard" | "io1" | "io2" | "gp2" | "sc1" | "st1" | "gp3"
 
-local type ProvisionStateEnum = "ALLOCATING" | "ALLOCATED" | "DEALLOCATING" | "DEALLOCATED" | "ERROR_ALLOCATING" | "ERROR_DEALLOCATING"
-
 local type DisassociateModeEnum = "FORCE" | "NO_FORCE"
+
+local type ProvisionStateEnum = "ALLOCATING" | "ALLOCATED" | "DEALLOCATING" | "DEALLOCATED" | "ERROR_ALLOCATING" | "ERROR_DEALLOCATING"
 
 local record M
     AssociateVolumeInput: AssociateVolumeInput

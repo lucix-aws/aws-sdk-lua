@@ -885,6 +885,7 @@ function Client:getLogObject(input, options)
         output_schema = types.GetLogObjectOutput,
         http_method = "POST",
         http_path = "/",
+        event_stream = types.GetLogObjectResponseStream,
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -1340,6 +1341,7 @@ function Client:startLiveTail(input, options)
         output_schema = types.StartLiveTailOutput,
         http_method = "POST",
         http_path = "/",
+        event_stream = types.StartLiveTailResponseStream,
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },

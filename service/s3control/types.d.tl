@@ -1126,25 +1126,25 @@ local record TooManyRequestsException
     Message: string
 end
 
-local type NetworkOrigin = "Internet" | "VPC"
-
-local type BucketVersioningStatus = "Enabled" | "Suspended"
-
-local type RequestedJobStatus = "Cancelled" | "Ready"
-
-local type Privilege = "Minimal" | "Default"
-
-local type GranteeType = "DIRECTORY_USER" | "DIRECTORY_GROUP" | "IAM"
-
 local type Permission = "READ" | "WRITE" | "READWRITE"
 
-local type MFADeleteStatus = "Enabled" | "Disabled"
-
 local type BucketCannedACL = "private" | "public-read" | "public-read-write" | "authenticated-read"
+
+local type MFADeleteStatus = "Enabled" | "Disabled"
 
 local type S3PrefixType = "Object"
 
 local type JobStatus = "Active" | "Cancelled" | "Cancelling" | "Complete" | "Completing" | "Failed" | "Failing" | "New" | "Paused" | "Pausing" | "Preparing" | "Ready" | "Suspended"
+
+local type NetworkOrigin = "Internet" | "VPC"
+
+local type RequestedJobStatus = "Cancelled" | "Ready"
+
+local type BucketVersioningStatus = "Enabled" | "Suspended"
+
+local type GranteeType = "DIRECTORY_USER" | "DIRECTORY_GROUP" | "IAM"
+
+local type Privilege = "Minimal" | "Default"
 
 local record M
     AssociateAccessGrantsIdentityCenterInput: AssociateAccessGrantsIdentityCenterInput

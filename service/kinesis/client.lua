@@ -566,6 +566,7 @@ function Client:subscribeToShard(input, options)
         output_schema = types.SubscribeToShardOutput,
         http_method = "POST",
         http_path = "/",
+        event_stream = types.SubscribeToShardEventStream,
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },

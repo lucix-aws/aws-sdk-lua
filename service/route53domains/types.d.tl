@@ -827,13 +827,13 @@ local type ReachabilityStatus = "PENDING" | "DONE" | "EXPIRED"
 
 local type ListOperationsSortAttributeName = "SubmittedDate"
 
-local type DomainAvailability = "AVAILABLE" | "AVAILABLE_RESERVED" | "AVAILABLE_PREORDER" | "UNAVAILABLE" | "UNAVAILABLE_PREMIUM" | "UNAVAILABLE_RESTRICTED" | "RESERVED" | "DONT_KNOW" | "INVALID_NAME_FOR_TLD" | "PENDING"
-
-local type SortOrder = "ASC" | "DESC"
-
 local type OperationStatus = "SUBMITTED" | "IN_PROGRESS" | "ERROR" | "SUCCESSFUL" | "FAILED"
 
+local type DomainAvailability = "AVAILABLE" | "AVAILABLE_RESERVED" | "AVAILABLE_PREORDER" | "UNAVAILABLE" | "UNAVAILABLE_PREMIUM" | "UNAVAILABLE_RESTRICTED" | "RESERVED" | "DONT_KNOW" | "INVALID_NAME_FOR_TLD" | "PENDING"
+
 local type StatusFlag = "PENDING_ACCEPTANCE" | "PENDING_CUSTOMER_ACTION" | "PENDING_AUTHORIZATION" | "PENDING_PAYMENT_VERIFICATION" | "PENDING_SUPPORT_CASE"
+
+local type SortOrder = "ASC" | "DESC"
 
 local record M
     AcceptDomainTransferFromAnotherAwsAccountInput: AcceptDomainTransferFromAnotherAwsAccountInput

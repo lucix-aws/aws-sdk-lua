@@ -625,6 +625,7 @@ function Client:invokeWithResponseStream(input, options)
         output_schema = types.InvokeWithResponseStreamOutput,
         http_method = "POST",
         http_path = "/2021-11-15/functions/{FunctionName}/response-streaming-invocations",
+        event_stream = types.InvokeWithResponseStreamResponseEvent,
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },

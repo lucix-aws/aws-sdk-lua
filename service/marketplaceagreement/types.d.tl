@@ -671,21 +671,21 @@ local record ValidationException
     fields: {ValidationExceptionField}
 end
 
-local type AgreementCancellationRequestStatus = "PENDING_APPROVAL" | "APPROVED" | "REJECTED" | "CANCELLED" | "VALIDATION_FAILED"
-
-local type InvoiceType = "INVOICE" | "CREDIT_MEMO"
-
-local type BillingAdjustmentReasonCode = "INCORRECT_TERMS_ACCEPTED" | "INCORRECT_METERING" | "TEST_ENVIRONMENT_CHARGES" | "ALTERNATIVE_PROCUREMENT_CHANNEL" | "UNINTENDED_RENEWAL" | "BUYER_DISSATISFACTION" | "OTHER"
-
-local type AgreementCancellationRequestReasonCode = "INCORRECT_TERMS_ACCEPTED" | "REPLACING_AGREEMENT" | "TEST_AGREEMENT" | "ALTERNATIVE_PROCUREMENT_CHANNEL" | "PRODUCT_DISCONTINUED" | "UNINTENDED_RENEWAL" | "BUYER_DISSATISFACTION" | "OTHER"
-
-local type PaymentRequestStatus = "VALIDATING" | "VALIDATION_FAILED" | "PENDING_APPROVAL" | "APPROVED" | "REJECTED" | "CANCELLED"
-
-local type AgreementStatus = "ACTIVE" | "ARCHIVED" | "CANCELLED" | "EXPIRED" | "RENEWED" | "REPLACED" | "ROLLED_BACK" | "SUPERSEDED" | "TERMINATED"
+local type LineItemGroupBy = "INVOICE_ID"
 
 local type BillingAdjustmentStatus = "PENDING" | "VALIDATION_FAILED" | "COMPLETED"
 
-local type LineItemGroupBy = "INVOICE_ID"
+local type AgreementCancellationRequestStatus = "PENDING_APPROVAL" | "APPROVED" | "REJECTED" | "CANCELLED" | "VALIDATION_FAILED"
+
+local type AgreementCancellationRequestReasonCode = "INCORRECT_TERMS_ACCEPTED" | "REPLACING_AGREEMENT" | "TEST_AGREEMENT" | "ALTERNATIVE_PROCUREMENT_CHANNEL" | "PRODUCT_DISCONTINUED" | "UNINTENDED_RENEWAL" | "BUYER_DISSATISFACTION" | "OTHER"
+
+local type BillingAdjustmentReasonCode = "INCORRECT_TERMS_ACCEPTED" | "INCORRECT_METERING" | "TEST_ENVIRONMENT_CHARGES" | "ALTERNATIVE_PROCUREMENT_CHANNEL" | "UNINTENDED_RENEWAL" | "BUYER_DISSATISFACTION" | "OTHER"
+
+local type PaymentRequestStatus = "VALIDATING" | "VALIDATION_FAILED" | "PENDING_APPROVAL" | "APPROVED" | "REJECTED" | "CANCELLED"
+
+local type InvoiceType = "INVOICE" | "CREDIT_MEMO"
+
+local type AgreementStatus = "ACTIVE" | "ARCHIVED" | "CANCELLED" | "EXPIRED" | "RENEWED" | "REPLACED" | "ROLLED_BACK" | "SUPERSEDED" | "TERMINATED"
 
 local record M
     BatchCreateBillingAdjustmentRequestInput: BatchCreateBillingAdjustmentRequestInput

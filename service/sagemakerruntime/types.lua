@@ -391,6 +391,9 @@ M.PayloadPart = {
     members = {
         Bytes = {
             type = "blob",
+            traits = {
+                event_payload = true,
+            },
         },
     },
 }

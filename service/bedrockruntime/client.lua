@@ -81,6 +81,7 @@ function Client:converseStream(input, options)
         output_schema = types.ConverseStreamOperationOutput,
         http_method = "POST",
         http_path = "/model/{modelId}/converse-stream",
+        event_stream = types.ConverseStreamOutput,
         effective_auth_schemes = {
             "aws.auth#sigv4",
             "smithy.api#httpBearerAuth",
@@ -130,20 +131,6 @@ function Client:invokeModel(input, options)
     }, options)
 end
 
-function Client:invokeModelWithBidirectionalStream(input, options)
-    return self:invokeOperation(input, {
-        name = "InvokeModelWithBidirectionalStream",
-        input_schema = types.InvokeModelWithBidirectionalStreamOperationInput,
-        output_schema = types.InvokeModelWithBidirectionalStreamOperationOutput,
-        http_method = "POST",
-        http_path = "/model/{modelId}/invoke-with-bidirectional-stream",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-            "smithy.api#httpBearerAuth",
-        },
-    }, options)
-end
-
 function Client:invokeModelWithResponseStream(input, options)
     return self:invokeOperation(input, {
         name = "InvokeModelWithResponseStream",
@@ -151,6 +138,7 @@ function Client:invokeModelWithResponseStream(input, options)
         output_schema = types.InvokeModelWithResponseStreamOutput,
         http_method = "POST",
         http_path = "/model/{modelId}/invoke-with-response-stream",
+        event_stream = types.ResponseStream,
         effective_auth_schemes = {
             "aws.auth#sigv4",
             "smithy.api#httpBearerAuth",

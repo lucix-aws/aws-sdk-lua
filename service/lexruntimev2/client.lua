@@ -111,17 +111,4 @@ function Client:recognizeUtterance(input, options)
     }, options)
 end
 
-function Client:startConversation(input, options)
-    return self:invokeOperation(input, {
-        name = "StartConversation",
-        input_schema = types.StartConversationInput,
-        output_schema = types.StartConversationOutput,
-        http_method = "POST",
-        http_path = "/bots/{botId}/botAliases/{botAliasId}/botLocales/{localeId}/sessions/{sessionId}/conversation",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
-end
-
 return M

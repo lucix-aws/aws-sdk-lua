@@ -533,9 +533,9 @@ local record ValidationException
     reason: string
 end
 
-local type AutoshiftObserverNotificationStatus = "ENABLED" | "DISABLED"
-
 local type ZonalShiftStatus = "ACTIVE" | "EXPIRED" | "CANCELED"
+
+local type AutoshiftObserverNotificationStatus = "ENABLED" | "DISABLED"
 
 local type ZonalAutoshiftStatus = "ENABLED" | "DISABLED"
 

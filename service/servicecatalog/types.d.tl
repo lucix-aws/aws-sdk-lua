@@ -1928,39 +1928,39 @@ local record TagOptionNotMigratedException
     Message: string
 end
 
-local type ProductViewSortBy = "Title" | "VersionCount" | "CreationDate"
-
-local type ProvisionedProductPlanType = "CLOUDFORMATION"
-
-local type EngineWorkflowStatus = "SUCCEEDED" | "FAILED"
-
-local type RecordStatus = "CREATED" | "IN_PROGRESS" | "IN_PROGRESS_IN_ERROR" | "SUCCEEDED" | "FAILED"
-
-local type PrincipalType = "IAM" | "IAM_PATTERN"
-
-local type ProductType = "CLOUD_FORMATION_TEMPLATE" | "MARKETPLACE" | "TERRAFORM_OPEN_SOURCE" | "TERRAFORM_CLOUD" | "EXTERNAL"
-
-local type ProvisioningArtifactGuidance = "DEFAULT" | "DEPRECATED"
-
-local type ShareStatus = "NOT_STARTED" | "IN_PROGRESS" | "COMPLETED" | "COMPLETED_WITH_ERRORS" | "ERROR"
-
 local type SortOrder = "ASCENDING" | "DESCENDING"
-
-local type OrganizationNodeType = "ORGANIZATION" | "ORGANIZATIONAL_UNIT" | "ACCOUNT"
-
-local type ServiceActionDefinitionType = "SSM_AUTOMATION"
-
-local type ProductSource = "ACCOUNT"
-
-local type Status = "AVAILABLE" | "CREATING" | "FAILED"
 
 local type CopyProductStatus = "SUCCEEDED" | "IN_PROGRESS" | "FAILED"
 
+local type ProductSource = "ACCOUNT"
+
+local type OrganizationNodeType = "ORGANIZATION" | "ORGANIZATIONAL_UNIT" | "ACCOUNT"
+
+local type RecordStatus = "CREATED" | "IN_PROGRESS" | "IN_PROGRESS_IN_ERROR" | "SUCCEEDED" | "FAILED"
+
+local type ProductType = "CLOUD_FORMATION_TEMPLATE" | "MARKETPLACE" | "TERRAFORM_OPEN_SOURCE" | "TERRAFORM_CLOUD" | "EXTERNAL"
+
+local type PortfolioShareType = "IMPORTED" | "AWS_SERVICECATALOG" | "AWS_ORGANIZATIONS"
+
 local type AccessStatus = "ENABLED" | "UNDER_CHANGE" | "DISABLED"
+
+local type EngineWorkflowStatus = "SUCCEEDED" | "FAILED"
 
 local type DescribePortfolioShareType = "ACCOUNT" | "ORGANIZATION" | "ORGANIZATIONAL_UNIT" | "ORGANIZATION_MEMBER_ACCOUNT"
 
-local type PortfolioShareType = "IMPORTED" | "AWS_SERVICECATALOG" | "AWS_ORGANIZATIONS"
+local type ShareStatus = "NOT_STARTED" | "IN_PROGRESS" | "COMPLETED" | "COMPLETED_WITH_ERRORS" | "ERROR"
+
+local type ProductViewSortBy = "Title" | "VersionCount" | "CreationDate"
+
+local type ProvisioningArtifactGuidance = "DEFAULT" | "DEPRECATED"
+
+local type PrincipalType = "IAM" | "IAM_PATTERN"
+
+local type Status = "AVAILABLE" | "CREATING" | "FAILED"
+
+local type ServiceActionDefinitionType = "SSM_AUTOMATION"
+
+local type ProvisionedProductPlanType = "CLOUDFORMATION"
 
 local record M
     AcceptPortfolioShareInput: AcceptPortfolioShareInput

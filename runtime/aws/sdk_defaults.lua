@@ -42,6 +42,9 @@ function M.resolve_identity_resolver(cfg)
     end
 
     cfg.identity_resolver = chain.new(providers)
+    -- Wire into the identity_resolvers map that the auth system uses
+    if not cfg.identity_resolvers then cfg.identity_resolvers = {} end
+    cfg.identity_resolvers["aws_credentials"] = cfg.identity_resolver
 end
 
 return M

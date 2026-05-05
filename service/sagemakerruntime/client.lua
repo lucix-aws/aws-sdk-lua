@@ -79,6 +79,7 @@ function Client:invokeEndpointWithResponseStream(input, options)
         output_schema = types.InvokeEndpointWithResponseStreamOutput,
         http_method = "POST",
         http_path = "/endpoints/{EndpointName}/invocations-response-stream",
+        event_stream = types.ResponseStream,
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },

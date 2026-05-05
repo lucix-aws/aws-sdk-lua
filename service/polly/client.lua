@@ -137,19 +137,6 @@ function Client:putLexicon(input, options)
     }, options)
 end
 
-function Client:startSpeechSynthesisStream(input, options)
-    return self:invokeOperation(input, {
-        name = "StartSpeechSynthesisStream",
-        input_schema = types.StartSpeechSynthesisStreamInput,
-        output_schema = types.StartSpeechSynthesisStreamOutput,
-        http_method = "POST",
-        http_path = "/v1/synthesisStream",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
-end
-
 function Client:startSpeechSynthesisTask(input, options)
     return self:invokeOperation(input, {
         name = "StartSpeechSynthesisTask",

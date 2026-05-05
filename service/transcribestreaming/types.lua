@@ -100,6 +100,9 @@ M.AudioEvent = {
     members = {
         AudioChunk = {
             type = "blob",
+            traits = {
+                event_payload = true,
+            },
         },
     },
 }
@@ -924,6 +927,7 @@ M.MedicalScribeAudioEvent = {
         AudioChunk = {
             type = "blob",
             traits = {
+                event_payload = true,
                 required = true,
             },
         },

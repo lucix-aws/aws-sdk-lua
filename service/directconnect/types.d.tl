@@ -1637,19 +1637,19 @@ local record DirectConnectServerException
     message: string
 end
 
-local type HasLogicalRedundancy = "unknown" | "yes" | "no"
-
 local type AddressFamily = "ipv4" | "ipv6"
-
-local type LagState = "requested" | "pending" | "available" | "down" | "deleting" | "deleted" | "unknown"
-
-local type LoaContentType = "application/pdf"
-
-local type VirtualInterfaceState = "confirming" | "verifying" | "pending" | "available" | "down" | "testing" | "deleting" | "deleted" | "rejected" | "unknown"
 
 local type ConnectionState = "ordering" | "requested" | "pending" | "available" | "down" | "deleting" | "deleted" | "rejected" | "unknown"
 
+local type LoaContentType = "application/pdf"
+
+local type LagState = "requested" | "pending" | "available" | "down" | "deleting" | "deleted" | "unknown"
+
+local type VirtualInterfaceState = "confirming" | "verifying" | "pending" | "available" | "down" | "testing" | "deleting" | "deleted" | "rejected" | "unknown"
+
 local type NniPartnerType = "v1" | "v2" | "nonPartner"
+
+local type HasLogicalRedundancy = "unknown" | "yes" | "no"
 
 local type InterconnectState = "requested" | "pending" | "available" | "down" | "deleting" | "deleted" | "unknown"
 

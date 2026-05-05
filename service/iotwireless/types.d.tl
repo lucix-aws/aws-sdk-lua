@@ -3764,47 +3764,47 @@ local record ValidationException
     Message: string
 end
 
-local type WirelessGatewayTaskStatus = "PENDING" | "IN_PROGRESS" | "FIRST_RETRY" | "SECOND_RETRY" | "COMPLETED" | "FAILED"
-
-local type WirelessGatewayIdType = "GatewayEui" | "WirelessGatewayId" | "ThingName"
-
-local type EventNotificationPartnerType = "Sidewalk"
-
-local type LogLevel = "INFO" | "ERROR" | "DISABLED"
-
-local type ImportTaskStatus = "INITIALIZING" | "INITIALIZED" | "PENDING" | "COMPLETE" | "FAILED" | "DELETING"
-
-local type PositionResourceType = "WirelessDevice" | "WirelessGateway"
-
-local type OnboardStatus = "INITIALIZED" | "PENDING" | "ONBOARDED" | "FAILED"
-
-local type FuotaTaskStatus = "Pending" | "FuotaSession_Waiting" | "In_FuotaSession" | "FuotaDone" | "Delete_Waiting"
-
-local type DeviceProfileType = "Sidewalk" | "LoRaWAN"
+local type PositionSolverProvider = "Semtech"
 
 local type WirelessDeviceType = "Sidewalk" | "LoRaWAN"
 
-local type EventNotificationResourceType = "SidewalkAccount" | "WirelessDevice" | "WirelessGateway"
+local type PositionResourceType = "WirelessDevice" | "WirelessGateway"
 
 local type IdentifierType = "PartnerAccountId" | "DevEui" | "GatewayEui" | "WirelessDeviceId" | "WirelessGatewayId"
 
+local type ImportTaskStatus = "INITIALIZING" | "INITIALIZED" | "PENDING" | "COMPLETE" | "FAILED" | "DELETING"
+
+local type OnboardStatus = "INITIALIZED" | "PENDING" | "ONBOARDED" | "FAILED"
+
 local type WirelessDeviceIdType = "WirelessDeviceId" | "DevEui" | "ThingName" | "SidewalkManufacturingSn"
 
-local type PositionSolverProvider = "Semtech"
-
-local type WirelessGatewayServiceType = "CUPS" | "LNS"
+local type PositioningConfigStatus = "Enabled" | "Disabled"
 
 local type PositionSolverType = "GNSS"
 
 local type PartnerType = "Sidewalk"
 
-local type PositioningConfigStatus = "Enabled" | "Disabled"
+local type ConnectionStatus = "Connected" | "Disconnected"
+
+local type EventNotificationResourceType = "SidewalkAccount" | "WirelessDevice" | "WirelessGateway"
 
 local type WirelessGatewayTaskDefinitionType = "UPDATE"
 
+local type EventNotificationPartnerType = "Sidewalk"
+
+local type LogLevel = "INFO" | "ERROR" | "DISABLED"
+
 local type ExpressionType = "RuleName" | "MqttTopic"
 
-local type ConnectionStatus = "Connected" | "Disconnected"
+local type WirelessGatewayTaskStatus = "PENDING" | "IN_PROGRESS" | "FIRST_RETRY" | "SECOND_RETRY" | "COMPLETED" | "FAILED"
+
+local type WirelessGatewayServiceType = "CUPS" | "LNS"
+
+local type WirelessGatewayIdType = "GatewayEui" | "WirelessGatewayId" | "ThingName"
+
+local type DeviceProfileType = "Sidewalk" | "LoRaWAN"
+
+local type FuotaTaskStatus = "Pending" | "FuotaSession_Waiting" | "In_FuotaSession" | "FuotaDone" | "Delete_Waiting"
 
 local record M
     AssociateAwsAccountWithPartnerAccountInput: AssociateAwsAccountWithPartnerAccountInput

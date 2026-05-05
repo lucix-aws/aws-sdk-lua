@@ -482,6 +482,7 @@ function Client:sendMessage(input, options)
         output_schema = types.SendMessageOutput,
         http_method = "POST",
         http_path = "/agents/agent-space/{agentSpaceId}/chat/sendMessage",
+        event_stream = types.SendMessageEvents,
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },

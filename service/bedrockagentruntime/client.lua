@@ -196,6 +196,7 @@ function Client:invokeAgent(input, options)
         output_schema = types.InvokeAgentOutput,
         http_method = "POST",
         http_path = "/agents/{agentId}/agentAliases/{agentAliasId}/sessions/{sessionId}/text",
+        event_stream = types.ResponseStream,
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -209,6 +210,7 @@ function Client:invokeFlow(input, options)
         output_schema = types.InvokeFlowOutput,
         http_method = "POST",
         http_path = "/flows/{flowIdentifier}/aliases/{flowAliasIdentifier}",
+        event_stream = types.FlowResponseStream,
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -222,6 +224,7 @@ function Client:invokeInlineAgent(input, options)
         output_schema = types.InvokeInlineAgentOutput,
         http_method = "POST",
         http_path = "/agents/{sessionId}",
+        event_stream = types.InlineAgentResponseStream,
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -313,6 +316,7 @@ function Client:optimizePrompt(input, options)
         output_schema = types.OptimizePromptOutput,
         http_method = "POST",
         http_path = "/optimize-prompt",
+        event_stream = types.OptimizedPromptStream,
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -378,6 +382,7 @@ function Client:retrieveAndGenerateStream(input, options)
         output_schema = types.RetrieveAndGenerateStreamOutput,
         http_method = "POST",
         http_path = "/retrieveAndGenerateStream",
+        event_stream = types.RetrieveAndGenerateStreamResponseOutput,
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },

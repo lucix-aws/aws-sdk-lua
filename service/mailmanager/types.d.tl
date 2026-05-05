@@ -1407,21 +1407,21 @@ local record ValidationException
     Message: string
 end
 
-local type ArchiveState = "ACTIVE" | "PENDING_DELETION"
+local type IngressPointType = "OPEN" | "AUTH" | "MTLS"
 
-local type TrustStoreResponseOption = "EXCLUDE" | "INCLUDE"
+local type TlsPolicy = "REQUIRED" | "OPTIONAL" | "FIPS"
+
+local type AcceptAction = "ALLOW" | "DENY"
+
+local type ImportJobStatus = "CREATED" | "PROCESSING" | "COMPLETED" | "FAILED" | "STOPPED"
 
 local type IngressPointStatusToUpdate = "ACTIVE" | "CLOSED"
 
 local type IngressPointStatus = "PROVISIONING" | "DEPROVISIONING" | "UPDATING" | "ACTIVE" | "CLOSED" | "FAILED" | "ASSOCIATED_VPC_ENDPOINT_DOES_NOT_EXIST"
 
-local type ImportJobStatus = "CREATED" | "PROCESSING" | "COMPLETED" | "FAILED" | "STOPPED"
+local type TrustStoreResponseOption = "EXCLUDE" | "INCLUDE"
 
-local type IngressPointType = "OPEN" | "AUTH" | "MTLS"
-
-local type AcceptAction = "ALLOW" | "DENY"
-
-local type TlsPolicy = "REQUIRED" | "OPTIONAL" | "FIPS"
+local type ArchiveState = "ACTIVE" | "PENDING_DELETION"
 
 local record M
     CreateAddonInstanceInput: CreateAddonInstanceInput

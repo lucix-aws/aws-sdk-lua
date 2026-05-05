@@ -2790,31 +2790,31 @@ local record ValidationException
     message: string
 end
 
-local type TimeRange = "MONTH_TO_DATE" | "PAST_30_DAYS"
-
-local type GroupBy = "resourcesAffected.s3Bucket.name" | "type" | "classificationDetails.jobId" | "severity.description"
-
-local type FindingsFilterAction = "ARCHIVE" | "NOOP"
-
-local type RevealRequestStatus = "SUCCESS" | "PROCESSING" | "ERROR"
-
-local type AutomatedDiscoveryStatus = "ENABLED" | "DISABLED"
-
-local type AutoEnableMode = "ALL" | "NEW" | "NONE"
-
-local type FindingPublishingFrequency = "FIFTEEN_MINUTES" | "ONE_HOUR" | "SIX_HOURS"
-
 local type RelationshipStatus = "Enabled" | "Paused" | "Invited" | "Created" | "Removed" | "Resigned" | "EmailVerificationInProgress" | "EmailVerificationFailed" | "RegionDisabled" | "AccountSuspended"
 
-local type MacieStatus = "PAUSED" | "ENABLED"
+local type FindingsFilterAction = "ARCHIVE" | "NOOP"
 
 local type JobType = "ONE_TIME" | "SCHEDULED"
 
 local type JobStatus = "RUNNING" | "PAUSED" | "CANCELLED" | "COMPLETE" | "IDLE" | "USER_PAUSED"
 
+local type ManagedDataIdentifierSelector = "ALL" | "EXCLUDE" | "INCLUDE" | "NONE" | "RECOMMENDED"
+
+local type MacieStatus = "PAUSED" | "ENABLED"
+
 local type AvailabilityCode = "AVAILABLE" | "UNAVAILABLE"
 
-local type ManagedDataIdentifierSelector = "ALL" | "EXCLUDE" | "INCLUDE" | "NONE" | "RECOMMENDED"
+local type TimeRange = "MONTH_TO_DATE" | "PAST_30_DAYS"
+
+local type GroupBy = "resourcesAffected.s3Bucket.name" | "type" | "classificationDetails.jobId" | "severity.description"
+
+local type AutoEnableMode = "ALL" | "NEW" | "NONE"
+
+local type FindingPublishingFrequency = "FIFTEEN_MINUTES" | "ONE_HOUR" | "SIX_HOURS"
+
+local type AutomatedDiscoveryStatus = "ENABLED" | "DISABLED"
+
+local type RevealRequestStatus = "SUCCESS" | "PROCESSING" | "ERROR"
 
 local record M
     AcceptInvitationInput: AcceptInvitationInput

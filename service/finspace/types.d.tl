@@ -1990,29 +1990,29 @@ local record ValidationException
     message: string
 end
 
-local type KxAzMode = "SINGLE" | "MULTI"
-
-local type FederationMode = "FEDERATED" | "LOCAL"
-
 local type dnsStatus = "NONE" | "UPDATE_REQUESTED" | "UPDATING" | "FAILED_UPDATE" | "SUCCESSFULLY_UPDATED"
 
 local type KxClusterStatus = "PENDING" | "CREATING" | "CREATE_FAILED" | "RUNNING" | "UPDATING" | "DELETING" | "DELETED" | "DELETE_FAILED"
 
-local type KxDataviewStatus = "CREATING" | "ACTIVE" | "UPDATING" | "FAILED" | "DELETING"
+local type FederationMode = "FEDERATED" | "LOCAL"
+
+local type KxAzMode = "SINGLE" | "MULTI"
 
 local type EnvironmentStatus = "CREATE_REQUESTED" | "CREATING" | "CREATED" | "DELETE_REQUESTED" | "DELETING" | "DELETED" | "FAILED_CREATION" | "RETRY_DELETION" | "FAILED_DELETION" | "UPDATE_NETWORK_REQUESTED" | "UPDATING_NETWORK" | "FAILED_UPDATING_NETWORK" | "SUSPENDED"
 
-local type ChangesetStatus = "PENDING" | "PROCESSING" | "FAILED" | "COMPLETED"
+local type KxDataviewStatus = "CREATING" | "ACTIVE" | "UPDATING" | "FAILED" | "DELETING"
 
 local type tgwStatus = "NONE" | "UPDATE_REQUESTED" | "UPDATING" | "FAILED_UPDATE" | "SUCCESSFULLY_UPDATED"
 
 local type KxVolumeType = "NAS_1"
 
-local type KxVolumeStatus = "CREATING" | "CREATE_FAILED" | "ACTIVE" | "UPDATING" | "UPDATED" | "UPDATE_FAILED" | "DELETING" | "DELETED" | "DELETE_FAILED"
+local type ChangesetStatus = "PENDING" | "PROCESSING" | "FAILED" | "COMPLETED"
+
+local type KxScalingGroupStatus = "CREATING" | "CREATE_FAILED" | "ACTIVE" | "DELETING" | "DELETED" | "DELETE_FAILED"
 
 local type KxClusterType = "HDB" | "RDB" | "GATEWAY" | "GP" | "TICKERPLANT"
 
-local type KxScalingGroupStatus = "CREATING" | "CREATE_FAILED" | "ACTIVE" | "DELETING" | "DELETED" | "DELETE_FAILED"
+local type KxVolumeStatus = "CREATING" | "CREATE_FAILED" | "ACTIVE" | "UPDATING" | "UPDATED" | "UPDATE_FAILED" | "DELETING" | "DELETED" | "DELETE_FAILED"
 
 local record M
     CreateEnvironmentInput: CreateEnvironmentInput

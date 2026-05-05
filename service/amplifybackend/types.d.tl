@@ -992,9 +992,9 @@ local record TooManyRequestsException
     Message: string
 end
 
-local type ServiceName = "S3"
-
 local type Status = "LATEST" | "STALE"
+
+local type ServiceName = "S3"
 
 local record M
     CloneBackendInput: CloneBackendInput

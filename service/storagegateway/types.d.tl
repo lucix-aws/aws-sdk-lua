@@ -2054,23 +2054,23 @@ local record InvalidGatewayRequestException
     error: StorageGatewayError
 end
 
-local type AvailabilityMonitorTestStatus = "COMPLETE" | "FAILED" | "PENDING"
-
-local type EncryptionType = "SseS3" | "SseKms" | "DsseKms"
-
-local type ObjectACL = "private" | "public-read" | "public-read-write" | "authenticated-read" | "bucket-owner-read" | "bucket-owner-full-control" | "aws-exec-read"
-
-local type HostEnvironment = "VMWARE" | "HYPER-V" | "EC2" | "KVM" | "OTHER" | "SNOWBALL"
-
-local type CaseSensitivity = "ClientSpecified" | "CaseSensitive"
-
-local type GatewayCapacity = "Small" | "Medium" | "Large"
-
-local type RetentionLockType = "COMPLIANCE" | "GOVERNANCE" | "NONE"
+local type TapeStorageClass = "DEEP_ARCHIVE" | "GLACIER"
 
 local type ActiveDirectoryStatus = "ACCESS_DENIED" | "DETACHED" | "JOINED" | "JOINING" | "NETWORK_ERROR" | "TIMEOUT" | "UNKNOWN_ERROR" | "INSUFFICIENT_PERMISSIONS"
 
-local type TapeStorageClass = "DEEP_ARCHIVE" | "GLACIER"
+local type CaseSensitivity = "ClientSpecified" | "CaseSensitive"
+
+local type AvailabilityMonitorTestStatus = "COMPLETE" | "FAILED" | "PENDING"
+
+local type GatewayCapacity = "Small" | "Medium" | "Large"
+
+local type HostEnvironment = "VMWARE" | "HYPER-V" | "EC2" | "KVM" | "OTHER" | "SNOWBALL"
+
+local type ObjectACL = "private" | "public-read" | "public-read-write" | "authenticated-read" | "bucket-owner-read" | "bucket-owner-full-control" | "aws-exec-read"
+
+local type EncryptionType = "SseS3" | "SseKms" | "DsseKms"
+
+local type RetentionLockType = "COMPLIANCE" | "GOVERNANCE" | "NONE"
 
 local type SMBSecurityStrategy = "ClientSpecified" | "MandatorySigning" | "MandatoryEncryption" | "MandatoryEncryptionNoAes128"
 

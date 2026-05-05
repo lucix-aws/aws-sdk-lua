@@ -415,9 +415,9 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type HeritageStatus = "OptIn" | "OptOut"
-
 local type TaxRegistrationStatus = "Verified" | "Pending" | "Deleted" | "Rejected"
+
+local type HeritageStatus = "OptIn" | "OptOut"
 
 local record M
     BatchDeleteTaxRegistrationInput: BatchDeleteTaxRegistrationInput

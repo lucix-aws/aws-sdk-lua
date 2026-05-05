@@ -1813,25 +1813,25 @@ local record TriggerTargetsLimitExceededException
     message: string
 end
 
-local type SortOrder = "ascending" | "descending"
-
-local type ApplicationRevisionSortBy = "registerTime" | "firstUsedTime" | "lastUsedTime"
-
-local type LifecycleEventStatus = "Pending" | "InProgress" | "Succeeded" | "Failed" | "Skipped" | "Unknown"
+local type ListStateFilterAction = "include" | "exclude" | "ignore"
 
 local type ComputePlatform = "Server" | "Lambda" | "ECS"
 
-local type DeploymentWaitType = "READY_WAIT" | "TERMINATION_WAIT"
-
-local type ListStateFilterAction = "include" | "exclude" | "ignore"
-
-local type FileExistsBehavior = "DISALLOW" | "OVERWRITE" | "RETAIN"
-
 local type StopStatus = "Pending" | "Succeeded"
+
+local type OutdatedInstancesStrategy = "UPDATE" | "IGNORE"
 
 local type RegistrationStatus = "Registered" | "Deregistered"
 
-local type OutdatedInstancesStrategy = "UPDATE" | "IGNORE"
+local type LifecycleEventStatus = "Pending" | "InProgress" | "Succeeded" | "Failed" | "Skipped" | "Unknown"
+
+local type FileExistsBehavior = "DISALLOW" | "OVERWRITE" | "RETAIN"
+
+local type SortOrder = "ascending" | "descending"
+
+local type DeploymentWaitType = "READY_WAIT" | "TERMINATION_WAIT"
+
+local type ApplicationRevisionSortBy = "registerTime" | "firstUsedTime" | "lastUsedTime"
 
 local record M
     AddTagsToOnPremisesInstancesInput: AddTagsToOnPremisesInstancesInput

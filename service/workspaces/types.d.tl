@@ -2498,47 +2498,47 @@ local record ResourceNotFoundException
     ResourceId: string
 end
 
-local type PoolsRunningMode = "AUTO_STOP" | "ALWAYS_ON"
-
-local type UserIdentityType = "CUSTOMER_MANAGED" | "AWS_DIRECTORY_SERVICE" | "AWS_IAM_IDENTITY_CENTER"
-
-local type EndpointEncryptionMode = "STANDARD_TLS" | "FIPS_VALIDATED"
-
-local type WorkspaceImageState = "AVAILABLE" | "PENDING" | "ERROR"
-
-local type DataReplication = "NO_REPLICATION" | "PRIMARY_AS_SOURCE"
-
-local type TargetWorkspaceState = "AVAILABLE" | "ADMIN_MAINTENANCE"
-
-local type ImageComputeType = "BASE" | "GRAPHICS_G4DN" | "GRAPHICS_G6"
-
-local type CustomWorkspaceImageImportState = "PENDING" | "IN_PROGRESS" | "PROCESSING_SOURCE_IMAGE" | "IMAGE_TESTING_START" | "UPDATING_OPERATING_SYSTEM" | "IMAGE_COMPATIBILITY_CHECKING" | "IMAGE_TESTING_GENERALIZATION" | "CREATING_TEST_INSTANCE" | "INSTALLING_COMPONENTS" | "GENERALIZING" | "VALIDATING" | "PUBLISHING" | "COMPLETED" | "ERROR"
-
-local type CustomImageProtocol = "PCOIP" | "DCV" | "BYOP"
-
-local type Platform = "WINDOWS"
-
-local type DedicatedTenancyAccountType = "SOURCE_ACCOUNT" | "TARGET_ACCOUNT"
-
-local type WorkspaceType = "PERSONAL" | "POOLS"
+local type OSVersion = "Windows_10" | "Windows_11"
 
 local type WorkSpaceApplicationLicenseType = "LICENSED" | "UNLICENSED"
 
-local type DedicatedTenancySupportEnum = "ENABLED"
-
-local type OSVersion = "Windows_10" | "Windows_11"
-
-local type DedicatedTenancySupportResultEnum = "ENABLED" | "DISABLED"
-
-local type ImageType = "OWNED" | "SHARED"
+local type WorkspaceImageIngestionProcess = "BYOL_REGULAR" | "BYOL_GRAPHICS" | "BYOL_GRAPHICSPRO" | "BYOL_GRAPHICS_G4DN" | "BYOL_REGULAR_WSP" | "BYOL_GRAPHICS_G4DN_WSP" | "BYOL_REGULAR_BYOP" | "BYOL_GRAPHICS_G4DN_BYOP"
 
 local type WorkspaceImageRequiredTenancy = "DEFAULT" | "DEDICATED"
 
 local type WorkspaceDirectoryState = "REGISTERING" | "REGISTERED" | "DEREGISTERING" | "DEREGISTERED" | "ERROR"
 
-local type WorkspaceImageIngestionProcess = "BYOL_REGULAR" | "BYOL_GRAPHICS" | "BYOL_GRAPHICSPRO" | "BYOL_GRAPHICS_G4DN" | "BYOL_REGULAR_WSP" | "BYOL_GRAPHICS_G4DN_WSP" | "BYOL_REGULAR_BYOP" | "BYOL_GRAPHICS_G4DN_BYOP"
-
 local type Tenancy = "DEDICATED" | "SHARED"
+
+local type EndpointEncryptionMode = "STANDARD_TLS" | "FIPS_VALIDATED"
+
+local type WorkspaceType = "PERSONAL" | "POOLS"
+
+local type ImageType = "OWNED" | "SHARED"
+
+local type CustomWorkspaceImageImportState = "PENDING" | "IN_PROGRESS" | "PROCESSING_SOURCE_IMAGE" | "IMAGE_TESTING_START" | "UPDATING_OPERATING_SYSTEM" | "IMAGE_COMPATIBILITY_CHECKING" | "IMAGE_TESTING_GENERALIZATION" | "CREATING_TEST_INSTANCE" | "INSTALLING_COMPONENTS" | "GENERALIZING" | "VALIDATING" | "PUBLISHING" | "COMPLETED" | "ERROR"
+
+local type PoolsRunningMode = "AUTO_STOP" | "ALWAYS_ON"
+
+local type WorkspaceImageState = "AVAILABLE" | "PENDING" | "ERROR"
+
+local type DataReplication = "NO_REPLICATION" | "PRIMARY_AS_SOURCE"
+
+local type DedicatedTenancyAccountType = "SOURCE_ACCOUNT" | "TARGET_ACCOUNT"
+
+local type TargetWorkspaceState = "AVAILABLE" | "ADMIN_MAINTENANCE"
+
+local type DedicatedTenancySupportResultEnum = "ENABLED" | "DISABLED"
+
+local type UserIdentityType = "CUSTOMER_MANAGED" | "AWS_DIRECTORY_SERVICE" | "AWS_IAM_IDENTITY_CENTER"
+
+local type ImageComputeType = "BASE" | "GRAPHICS_G4DN" | "GRAPHICS_G6"
+
+local type CustomImageProtocol = "PCOIP" | "DCV" | "BYOP"
+
+local type DedicatedTenancySupportEnum = "ENABLED"
+
+local type Platform = "WINDOWS"
 
 local record M
     AcceptAccountLinkInvitationInput: AcceptAccountLinkInvitationInput

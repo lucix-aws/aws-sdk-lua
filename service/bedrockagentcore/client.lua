@@ -391,6 +391,7 @@ function Client:invokeAgentRuntimeCommand(input, options)
         output_schema = types.InvokeAgentRuntimeCommandOutput,
         http_method = "POST",
         http_path = "/runtimes/{agentRuntimeArn}/commands",
+        event_stream = types.InvokeAgentRuntimeCommandStreamOutput,
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -417,6 +418,7 @@ function Client:invokeCodeInterpreter(input, options)
         output_schema = types.InvokeCodeInterpreterOutput,
         http_method = "POST",
         http_path = "/code-interpreters/{codeInterpreterIdentifier}/tools/invoke",
+        event_stream = types.CodeInterpreterStreamOutput,
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -430,6 +432,7 @@ function Client:invokeHarness(input, options)
         output_schema = types.InvokeHarnessOutput,
         http_method = "POST",
         http_path = "/harnesses/invoke",
+        event_stream = types.InvokeHarnessStreamOutput,
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },

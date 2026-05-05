@@ -9859,63 +9859,63 @@ local record UnauthenticatedException
     tip: string
 end
 
-local type Status = "startExpired" | "notStarted" | "started" | "starting" | "stopped" | "stopping" | "settingUpInstance" | "failedInstanceCreation" | "failedStartingGUISession" | "failedStoppingGUISession"
-
-local type RelationalDatabaseMetricName = "CPUUtilization" | "DatabaseConnections" | "DiskQueueDepth" | "FreeStorageSpace" | "NetworkReceiveThroughput" | "NetworkTransmitThroughput"
-
-local type ContainerServiceMetricName = "CPUUtilization" | "MemoryUtilization"
-
-local type RegionName = "us-east-1" | "us-east-2" | "us-west-1" | "us-west-2" | "eu-west-1" | "eu-west-2" | "eu-west-3" | "eu-central-1" | "eu-north-1" | "ca-central-1" | "ap-south-1" | "ap-southeast-1" | "ap-southeast-2" | "ap-northeast-1" | "ap-northeast-2" | "ap-southeast-3" | "ap-southeast-5"
-
-local type ContainerServicePowerName = "nano" | "micro" | "small" | "medium" | "large" | "xlarge"
-
-local type ResourceBucketAccess = "allow" | "deny"
-
-local type BucketMetricName = "BucketSizeBytes" | "NumberOfObjects"
-
-local type HttpProtocolIpv6 = "disabled" | "enabled"
-
-local type HttpEndpoint = "disabled" | "enabled"
-
-local type IpAddressType = "dualstack" | "ipv4" | "ipv6"
+local type CertificateProvider = "LetsEncrypt"
 
 local type ComparisonOperator = "GreaterThanOrEqualToThreshold" | "GreaterThanThreshold" | "LessThanThreshold" | "LessThanOrEqualToThreshold"
 
-local type AppCategory = "LfR"
-
 local type LoadBalancerMetricName = "ClientTLSNegotiationErrorCount" | "HealthyHostCount" | "UnhealthyHostCount" | "HTTPCode_LB_4XX_Count" | "HTTPCode_LB_5XX_Count" | "HTTPCode_Instance_2XX_Count" | "HTTPCode_Instance_3XX_Count" | "HTTPCode_Instance_4XX_Count" | "HTTPCode_Instance_5XX_Count" | "InstanceResponseTime" | "RejectedConnectionCount" | "RequestCount"
 
-local type ResourceType = "ContainerService" | "Instance" | "StaticIp" | "KeyPair" | "InstanceSnapshot" | "Domain" | "PeeredVpc" | "LoadBalancer" | "LoadBalancerTlsCertificate" | "Disk" | "DiskSnapshot" | "RelationalDatabase" | "RelationalDatabaseSnapshot" | "ExportSnapshotRecord" | "CloudFormationStackRecord" | "Alarm" | "ContactMethod" | "Distribution" | "Certificate" | "Bucket"
+local type AlarmState = "OK" | "ALARM" | "INSUFFICIENT_DATA"
 
 local type MetricUnit = "Seconds" | "Microseconds" | "Milliseconds" | "Bytes" | "Kilobytes" | "Megabytes" | "Gigabytes" | "Terabytes" | "Bits" | "Kilobits" | "Megabits" | "Gigabits" | "Terabits" | "Percent" | "Count" | "Bytes/Second" | "Kilobytes/Second" | "Megabytes/Second" | "Gigabytes/Second" | "Terabytes/Second" | "Bits/Second" | "Kilobits/Second" | "Megabits/Second" | "Gigabits/Second" | "Terabits/Second" | "Count/Second" | "None"
+
+local type ViewerMinimumTlsProtocolVersionEnum = "TLSv1.1_2016" | "TLSv1.2_2018" | "TLSv1.2_2019" | "TLSv1.2_2021"
 
 local type ContactProtocol = "Email" | "SMS"
 
 local type AddOnType = "AutoSnapshot" | "StopInstanceOnIdle"
 
-local type HttpTokens = "optional" | "required"
-
-local type LoadBalancerAttributeName = "HealthCheckPath" | "SessionStickinessEnabled" | "SessionStickiness_LB_CookieDurationSeconds" | "HttpsRedirectionEnabled" | "TlsPolicyName"
-
-local type AlarmState = "OK" | "ALARM" | "INSUFFICIENT_DATA"
-
-local type DistributionMetricName = "Requests" | "BytesDownloaded" | "BytesUploaded" | "TotalErrorRate" | "Http4xxErrorRate" | "Http5xxErrorRate"
+local type ContainerServiceMetricName = "CPUUtilization" | "MemoryUtilization"
 
 local type RelationalDatabasePasswordVersion = "CURRENT" | "PREVIOUS" | "PENDING"
 
-local type InstanceMetricName = "CPUUtilization" | "NetworkIn" | "NetworkOut" | "StatusCheckFailed" | "StatusCheckFailed_Instance" | "StatusCheckFailed_System" | "BurstCapacityTime" | "BurstCapacityPercentage" | "MetadataNoToken"
-
-local type ViewerMinimumTlsProtocolVersionEnum = "TLSv1.1_2016" | "TLSv1.2_2018" | "TLSv1.2_2019" | "TLSv1.2_2021"
-
-local type CertificateProvider = "LetsEncrypt"
-
 local type MetricName = "CPUUtilization" | "NetworkIn" | "NetworkOut" | "StatusCheckFailed" | "StatusCheckFailed_Instance" | "StatusCheckFailed_System" | "ClientTLSNegotiationErrorCount" | "HealthyHostCount" | "UnhealthyHostCount" | "HTTPCode_LB_4XX_Count" | "HTTPCode_LB_5XX_Count" | "HTTPCode_Instance_2XX_Count" | "HTTPCode_Instance_3XX_Count" | "HTTPCode_Instance_4XX_Count" | "HTTPCode_Instance_5XX_Count" | "InstanceResponseTime" | "RejectedConnectionCount" | "RequestCount" | "DatabaseConnections" | "DiskQueueDepth" | "FreeStorageSpace" | "NetworkReceiveThroughput" | "NetworkTransmitThroughput" | "BurstCapacityTime" | "BurstCapacityPercentage"
 
-local type ContactMethodVerificationProtocol = "Email"
+local type AppCategory = "LfR"
 
 local type InstanceAccessProtocol = "ssh" | "rdp"
 
+local type ResourceType = "ContainerService" | "Instance" | "StaticIp" | "KeyPair" | "InstanceSnapshot" | "Domain" | "PeeredVpc" | "LoadBalancer" | "LoadBalancerTlsCertificate" | "Disk" | "DiskSnapshot" | "RelationalDatabase" | "RelationalDatabaseSnapshot" | "ExportSnapshotRecord" | "CloudFormationStackRecord" | "Alarm" | "ContactMethod" | "Distribution" | "Certificate" | "Bucket"
+
+local type IpAddressType = "dualstack" | "ipv4" | "ipv6"
+
+local type RegionName = "us-east-1" | "us-east-2" | "us-west-1" | "us-west-2" | "eu-west-1" | "eu-west-2" | "eu-west-3" | "eu-central-1" | "eu-north-1" | "ca-central-1" | "ap-south-1" | "ap-southeast-1" | "ap-southeast-2" | "ap-northeast-1" | "ap-northeast-2" | "ap-southeast-3" | "ap-southeast-5"
+
+local type ContactMethodVerificationProtocol = "Email"
+
+local type ResourceBucketAccess = "allow" | "deny"
+
 local type TreatMissingData = "breaching" | "notBreaching" | "ignore" | "missing"
+
+local type RelationalDatabaseMetricName = "CPUUtilization" | "DatabaseConnections" | "DiskQueueDepth" | "FreeStorageSpace" | "NetworkReceiveThroughput" | "NetworkTransmitThroughput"
+
+local type InstanceMetricName = "CPUUtilization" | "NetworkIn" | "NetworkOut" | "StatusCheckFailed" | "StatusCheckFailed_Instance" | "StatusCheckFailed_System" | "BurstCapacityTime" | "BurstCapacityPercentage" | "MetadataNoToken"
+
+local type DistributionMetricName = "Requests" | "BytesDownloaded" | "BytesUploaded" | "TotalErrorRate" | "Http4xxErrorRate" | "Http5xxErrorRate"
+
+local type Status = "startExpired" | "notStarted" | "started" | "starting" | "stopped" | "stopping" | "settingUpInstance" | "failedInstanceCreation" | "failedStartingGUISession" | "failedStoppingGUISession"
+
+local type LoadBalancerAttributeName = "HealthCheckPath" | "SessionStickinessEnabled" | "SessionStickiness_LB_CookieDurationSeconds" | "HttpsRedirectionEnabled" | "TlsPolicyName"
+
+local type ContainerServicePowerName = "nano" | "micro" | "small" | "medium" | "large" | "xlarge"
+
+local type HttpProtocolIpv6 = "disabled" | "enabled"
+
+local type HttpEndpoint = "disabled" | "enabled"
+
+local type BucketMetricName = "BucketSizeBytes" | "NumberOfObjects"
+
+local type HttpTokens = "optional" | "required"
 
 local record M
     AllocateStaticIpInput: AllocateStaticIpInput

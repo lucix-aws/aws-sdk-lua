@@ -599,9 +599,9 @@ local record ValidationException
     Message: string
 end
 
-local type PermissionActionType = "RESTORE"
-
 local type ConfigurationCheckOperationListingMode = "ALL_OPERATIONS" | "LATEST_PER_CHECK"
+
+local type PermissionActionType = "RESTORE"
 
 local type ApplicationType = "HANA" | "SAP_ABAP"
 

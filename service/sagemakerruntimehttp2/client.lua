@@ -4,7 +4,6 @@ local endpoint = require("endpoint")
 local endpoint_rules = require("sagemakerruntimehttp2.endpoint_rules")
 local restjson_protocol = require("protocol.restjson")
 local sdk_defaults = require("sdk_defaults")
-local types = require("sagemakerruntimehttp2.types")
 
 local M = {}
 
@@ -44,19 +43,6 @@ function M.new(cfg)
     sdk_defaults.resolve_identity_resolver(cfg)
     local self = setmetatable(base_client.new(cfg), Client)
     return self
-end
-
-function Client:invokeEndpointWithBidirectionalStream(input, options)
-    return self:invokeOperation(input, {
-        name = "InvokeEndpointWithBidirectionalStream",
-        input_schema = types.InvokeEndpointWithBidirectionalStreamInput,
-        output_schema = types.InvokeEndpointWithBidirectionalStreamOutput,
-        http_method = "POST",
-        http_path = "/endpoints/{EndpointName}/invocations-bidirectional-stream",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
 end
 
 return M

@@ -1142,17 +1142,17 @@ local record ValidationException
     Fields: {ValidationExceptionField}
 end
 
-local type InsightType = "REACTIVE" | "PROACTIVE"
-
-local type Locale = "DE_DE" | "EN_US" | "EN_GB" | "ES_ES" | "FR_FR" | "IT_IT" | "JA_JP" | "KO_KR" | "PT_BR" | "ZH_CN" | "ZH_TW"
-
 local type CostEstimationStatus = "ONGOING" | "COMPLETED"
 
-local type OrganizationResourceCollectionType = "AWS_CLOUD_FORMATION" | "AWS_SERVICE" | "AWS_ACCOUNT" | "AWS_TAGS"
+local type InsightType = "REACTIVE" | "PROACTIVE"
 
 local type ResourceCollectionType = "AWS_CLOUD_FORMATION" | "AWS_SERVICE" | "AWS_TAGS"
 
 local type UpdateResourceCollectionAction = "ADD" | "REMOVE"
+
+local type OrganizationResourceCollectionType = "AWS_CLOUD_FORMATION" | "AWS_SERVICE" | "AWS_ACCOUNT" | "AWS_TAGS"
+
+local type Locale = "DE_DE" | "EN_US" | "EN_GB" | "ES_ES" | "FR_FR" | "IT_IT" | "JA_JP" | "KO_KR" | "PT_BR" | "ZH_CN" | "ZH_TW"
 
 local record M
     AddNotificationChannelInput: AddNotificationChannelInput

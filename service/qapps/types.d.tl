@@ -1643,11 +1643,11 @@ end
 
 local type DocumentScope = "APPLICATION" | "SESSION"
 
-local type LibraryItemStatus = "PUBLISHED" | "DISABLED"
-
 local type AppStatus = "PUBLISHED" | "DRAFT" | "DELETED"
 
 local type ExecutionStatus = "IN_PROGRESS" | "WAITING" | "COMPLETED" | "ERROR"
+
+local type LibraryItemStatus = "PUBLISHED" | "DISABLED"
 
 local record M
     AssociateLibraryItemReviewInput: AssociateLibraryItemReviewInput

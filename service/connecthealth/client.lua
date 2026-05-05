@@ -202,19 +202,6 @@ function Client:listTagsForResource(input, options)
     }, options)
 end
 
-function Client:startMedicalScribeListeningSession(input, options)
-    return self:invokeOperation(input, {
-        name = "StartMedicalScribeListeningSession",
-        input_schema = types.StartMedicalScribeListeningSessionInput,
-        output_schema = types.StartMedicalScribeListeningSessionOutput,
-        http_method = "POST",
-        http_path = "/medical-scribe-stream/",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
-end
-
 function Client:startPatientInsightsJob(input, options)
     return self:invokeOperation(input, {
         name = "StartPatientInsightsJob",

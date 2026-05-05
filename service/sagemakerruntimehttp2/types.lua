@@ -45,15 +45,27 @@ M.RequestPayloadPart = {
     members = {
         Bytes = {
             type = "blob",
+            traits = {
+                event_payload = true,
+            },
         },
         DataType = {
             type = "string",
+            traits = {
+                event_header = true,
+            },
         },
         CompletionState = {
             type = "string",
+            traits = {
+                event_header = true,
+            },
         },
         P = {
             type = "string",
+            traits = {
+                event_header = true,
+            },
         },
     },
 }
@@ -122,15 +134,27 @@ M.ResponsePayloadPart = {
     members = {
         Bytes = {
             type = "blob",
+            traits = {
+                event_payload = true,
+            },
         },
         DataType = {
             type = "string",
+            traits = {
+                event_header = true,
+            },
         },
         CompletionState = {
             type = "string",
+            traits = {
+                event_header = true,
+            },
         },
         P = {
             type = "string",
+            traits = {
+                event_header = true,
+            },
         },
     },
 }

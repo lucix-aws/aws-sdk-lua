@@ -1324,31 +1324,31 @@ local record InvalidRequestException
     datasyncErrorCode: string
 end
 
-local type TaskStatus = "AVAILABLE" | "CREATING" | "QUEUED" | "RUNNING" | "UNAVAILABLE"
-
-local type AzureBlobAuthenticationType = "SAS" | "NONE"
-
-local type EfsInTransitEncryption = "NONE" | "TLS1_2"
-
-local type HdfsAuthenticationType = "SIMPLE" | "KERBEROS"
+local type TaskMode = "BASIC" | "ENHANCED"
 
 local type SmbAuthenticationType = "NTLM" | "KERBEROS"
 
+local type TaskStatus = "AVAILABLE" | "CREATING" | "QUEUED" | "RUNNING" | "UNAVAILABLE"
+
 local type AgentStatus = "ONLINE" | "OFFLINE"
+
+local type HdfsAuthenticationType = "SIMPLE" | "KERBEROS"
 
 local type EndpointType = "PUBLIC" | "PRIVATE_LINK" | "FIPS" | "FIPS_PRIVATE_LINK"
 
 local type ObjectStorageServerProtocol = "HTTPS" | "HTTP"
 
-local type TaskExecutionStatus = "QUEUED" | "CANCELLING" | "LAUNCHING" | "PREPARING" | "TRANSFERRING" | "VERIFYING" | "SUCCESS" | "ERROR"
-
-local type AzureAccessTier = "HOT" | "COOL" | "ARCHIVE"
-
-local type AzureBlobType = "BLOCK"
+local type EfsInTransitEncryption = "NONE" | "TLS1_2"
 
 local type S3StorageClass = "STANDARD" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_INSTANT_RETRIEVAL"
 
-local type TaskMode = "BASIC" | "ENHANCED"
+local type AzureAccessTier = "HOT" | "COOL" | "ARCHIVE"
+
+local type AzureBlobAuthenticationType = "SAS" | "NONE"
+
+local type AzureBlobType = "BLOCK"
+
+local type TaskExecutionStatus = "QUEUED" | "CANCELLING" | "LAUNCHING" | "PREPARING" | "TRANSFERRING" | "VERIFYING" | "SUCCESS" | "ERROR"
 
 local record M
     CancelTaskExecutionInput: CancelTaskExecutionInput

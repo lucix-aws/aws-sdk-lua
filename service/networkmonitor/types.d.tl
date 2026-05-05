@@ -430,9 +430,9 @@ local record ValidationException
     message: string
 end
 
-local type Protocol = "TCP" | "ICMP"
-
 local type AddressFamily = "IPV4" | "IPV6"
+
+local type Protocol = "TCP" | "ICMP"
 
 local type ProbeState = "PENDING" | "ACTIVE" | "INACTIVE" | "ERROR" | "DELETING" | "DELETED"
 

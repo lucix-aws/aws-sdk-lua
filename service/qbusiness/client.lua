@@ -98,19 +98,6 @@ function Client:cancelSubscription(input, options)
     }, options)
 end
 
-function Client:chat(input, options)
-    return self:invokeOperation(input, {
-        name = "Chat",
-        input_schema = types.ChatInput,
-        output_schema = types.ChatOutput,
-        http_method = "POST",
-        http_path = "/applications/{applicationId}/conversations",
-        effective_auth_schemes = {
-            "aws.auth#sigv4",
-        },
-    }, options)
-end
-
 function Client:chatSync(input, options)
     return self:invokeOperation(input, {
         name = "ChatSync",

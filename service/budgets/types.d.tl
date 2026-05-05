@@ -944,9 +944,9 @@ local type NotificationType = "ACTUAL" | "FORECASTED"
 
 local type ApprovalModel = "AUTOMATIC" | "MANUAL"
 
-local type ActionType = "APPLY_IAM_POLICY" | "APPLY_SCP_POLICY" | "RUN_SSM_DOCUMENTS"
-
 local type ExecutionType = "APPROVE_BUDGET_ACTION" | "RETRY_BUDGET_ACTION" | "REVERSE_BUDGET_ACTION" | "RESET_BUDGET_ACTION"
+
+local type ActionType = "APPLY_IAM_POLICY" | "APPLY_SCP_POLICY" | "RUN_SSM_DOCUMENTS"
 
 local record M
     CreateBudgetInput: CreateBudgetInput
