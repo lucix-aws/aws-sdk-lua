@@ -6591,7 +6591,7 @@ M.WaypointOptimizationDrivingDistanceOptions = schema.new({
             target_id = prelude.Long.id,
             traits = {
                 [traits.REQUIRED] = {},
-                [traits.DEFAULT] = { value = 0 },
+                [traits.DEFAULT] = { value = 5 },
             },
         }),
     },

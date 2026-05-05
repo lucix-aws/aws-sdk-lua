@@ -176,6 +176,19 @@ function Client:deleteChannelPolicy(input, options)
     }, options)
 end
 
+function Client:deleteFunction(input, options)
+    return self:invokeOperation(input, {
+        name = "DeleteFunction",
+        input_schema = schemas.DeleteFunctionInput,
+        output_schema = schemas.DeleteFunctionOutput,
+        http_method = "DELETE",
+        http_path = "/function/{FunctionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
+    }, options)
+end
+
 function Client:deleteLiveSource(input, options)
     return self:invokeOperation(input, {
         name = "DeleteLiveSource",
@@ -345,6 +358,19 @@ function Client:getChannelSchedule(input, options)
     }, options)
 end
 
+function Client:getFunction(input, options)
+    return self:invokeOperation(input, {
+        name = "GetFunction",
+        input_schema = schemas.GetFunctionInput,
+        output_schema = schemas.GetFunctionOutput,
+        http_method = "GET",
+        http_path = "/function/{FunctionId}",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
+    }, options)
+end
+
 function Client:getPlaybackConfiguration(input, options)
     return self:invokeOperation(input, {
         name = "GetPlaybackConfiguration",
@@ -391,6 +417,19 @@ function Client:listChannels(input, options)
         output_schema = schemas.ListChannelsOutput,
         http_method = "GET",
         http_path = "/channels",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
+    }, options)
+end
+
+function Client:listFunctions(input, options)
+    return self:invokeOperation(input, {
+        name = "ListFunctions",
+        input_schema = schemas.ListFunctionsInput,
+        output_schema = schemas.ListFunctionsOutput,
+        http_method = "GET",
+        http_path = "/functions",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },
@@ -482,6 +521,19 @@ function Client:putChannelPolicy(input, options)
         output_schema = schemas.PutChannelPolicyOutput,
         http_method = "PUT",
         http_path = "/channel/{ChannelName}/policy",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
+    }, options)
+end
+
+function Client:putFunction(input, options)
+    return self:invokeOperation(input, {
+        name = "PutFunction",
+        input_schema = schemas.PutFunctionInput,
+        output_schema = schemas.PutFunctionOutput,
+        http_method = "PUT",
+        http_path = "/function/{FunctionId}",
         effective_auth_schemes = {
             "aws.auth#sigv4",
         },

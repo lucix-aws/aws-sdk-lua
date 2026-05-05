@@ -636,11 +636,11 @@ end
 
 local type TargetDeviceStatus = "DEREGISTERED" | "ARCHIVED"
 
-local type SoftwareSetUpdateSchedule = "USE_MAINTENANCE_WINDOW" | "APPLY_IMMEDIATELY"
-
 local type SoftwareSetValidationStatus = "VALIDATED" | "NOT_VALIDATED"
 
 local type SoftwareSetUpdateMode = "USE_LATEST" | "USE_DESIRED"
+
+local type SoftwareSetUpdateSchedule = "USE_MAINTENANCE_WINDOW" | "APPLY_IMMEDIATELY"
 
 local record M
     CreateEnvironmentInput: CreateEnvironmentInput

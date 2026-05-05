@@ -27,6 +27,8 @@ M.LogTypes = schema.new({ type = "list", list_member = prelude.String })
 
 M.__listOfScheduleEntry = schema.new({ type = "list", list_member = M.ScheduleEntry })
 
+M.__listOfFunctionsResponse = schema.new({ type = "list", list_member = M.Function })
+
 M.__listOfLiveSource = schema.new({ type = "list", list_member = M.LiveSource })
 
 M.HttpPackageConfigurations = schema.new({ type = "list", list_member = M.HttpPackageConfiguration })
@@ -34,6 +36,8 @@ M.HttpPackageConfigurations = schema.new({ type = "list", list_member = M.HttpPa
 M.__listOfPlaybackConfiguration = schema.new({ type = "list", list_member = M.PlaybackConfiguration })
 
 M.ConfigurationAliasesRequest = schema.new({ type = "map", map_key = prelude.String, map_value = M.__mapOf__string })
+
+M.FunctionMapping = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.ConfigurationAliasesResponse = schema.new({ type = "map", map_key = prelude.String, map_value = M.__mapOf__string })
 
@@ -51,11 +55,15 @@ M.__adsInteractionPublishOptInEventTypesList = schema.new({ type = "list", list_
 
 M.__adsInteractionExcludeEventTypesList = schema.new({ type = "list", list_member = prelude.String })
 
+M.__manifestServicePublishOptInEventTypesList = schema.new({ type = "list", list_member = prelude.String })
+
 M.__manifestServiceExcludeEventTypesList = schema.new({ type = "list", list_member = prelude.String })
 
 M.__listOfAdBreak = schema.new({ type = "list", list_member = M.AdBreak })
 
 M.__listOfAudienceMedia = schema.new({ type = "list", list_member = M.AudienceMedia })
+
+M.__listOfFunctionsRef = schema.new({ type = "list", list_member = M.FunctionRef })
 
 M.__listOfAvailMatchingCriteria = schema.new({ type = "list", list_member = M.AvailMatchingCriteria })
 
@@ -675,6 +683,226 @@ M.Channel = schema.new({
     },
 })
 
+M.FunctionRef = schema.new({
+    id = id.from(_N, "FunctionRef"),
+    type = "structure",
+    members = {
+        RunCondition = schema.new({
+            id = id.from(_N, "FunctionRef", "RunCondition"),
+            type = "string",
+            name = "RunCondition",
+            target_id = prelude.String.id,
+        }),
+        FunctionId = schema.new({
+            id = id.from(_N, "FunctionRef", "FunctionId"),
+            type = "string",
+            name = "FunctionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CustomOutputConfiguration = schema.new({
+    id = id.from(_N, "CustomOutputConfiguration"),
+    type = "structure",
+    members = {
+        Runtime = schema.new({
+            id = id.from(_N, "CustomOutputConfiguration", "Runtime"),
+            type = "string",
+            name = "Runtime",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Output = schema.new({
+            id = id.from(_N, "CustomOutputConfiguration", "Output"),
+            type = "map",
+            name = "Output",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.HttpRequestConfiguration = schema.new({
+    id = id.from(_N, "HttpRequestConfiguration"),
+    type = "structure",
+    members = {
+        Runtime = schema.new({
+            id = id.from(_N, "HttpRequestConfiguration", "Runtime"),
+            type = "string",
+            name = "Runtime",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Output = schema.new({
+            id = id.from(_N, "HttpRequestConfiguration", "Output"),
+            type = "map",
+            name = "Output",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        MethodType = schema.new({
+            id = id.from(_N, "HttpRequestConfiguration", "MethodType"),
+            type = "string",
+            name = "MethodType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestTimeoutMilliseconds = schema.new({
+            id = id.from(_N, "HttpRequestConfiguration", "RequestTimeoutMilliseconds"),
+            type = "integer",
+            name = "RequestTimeoutMilliseconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Url = schema.new({
+            id = id.from(_N, "HttpRequestConfiguration", "Url"),
+            type = "string",
+            name = "Url",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Body = schema.new({
+            id = id.from(_N, "HttpRequestConfiguration", "Body"),
+            type = "string",
+            name = "Body",
+            target_id = prelude.String.id,
+        }),
+        Headers = schema.new({
+            id = id.from(_N, "HttpRequestConfiguration", "Headers"),
+            type = "map",
+            name = "Headers",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.SequentialExecutorConfiguration = schema.new({
+    id = id.from(_N, "SequentialExecutorConfiguration"),
+    type = "structure",
+    members = {
+        Runtime = schema.new({
+            id = id.from(_N, "SequentialExecutorConfiguration", "Runtime"),
+            type = "string",
+            name = "Runtime",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Output = schema.new({
+            id = id.from(_N, "SequentialExecutorConfiguration", "Output"),
+            type = "map",
+            name = "Output",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        FunctionList = schema.new({
+            id = id.from(_N, "SequentialExecutorConfiguration", "FunctionList"),
+            type = "list",
+            name = "FunctionList",
+            target_id = prelude.Document.id,
+            list_member = M.FunctionRef,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TimeoutMilliseconds = schema.new({
+            id = id.from(_N, "SequentialExecutorConfiguration", "TimeoutMilliseconds"),
+            type = "integer",
+            name = "TimeoutMilliseconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Function = schema.new({
+    id = id.from(_N, "Function"),
+    type = "structure",
+    members = {
+        FunctionId = schema.new({
+            id = id.from(_N, "Function", "FunctionId"),
+            type = "string",
+            name = "FunctionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FunctionType = schema.new({
+            id = id.from(_N, "Function", "FunctionType"),
+            type = "string",
+            name = "FunctionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "Function", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        HttpRequestConfiguration = schema.new({
+            id = id.from(_N, "Function", "HttpRequestConfiguration"),
+            type = "structure",
+            name = "HttpRequestConfiguration",
+            target_id = id.from(_N, "HttpRequestConfiguration"),
+            target = M.HttpRequestConfiguration,
+        }),
+        CustomOutputConfiguration = schema.new({
+            id = id.from(_N, "Function", "CustomOutputConfiguration"),
+            type = "structure",
+            name = "CustomOutputConfiguration",
+            target_id = id.from(_N, "CustomOutputConfiguration"),
+            target = M.CustomOutputConfiguration,
+        }),
+        SequentialExecutorConfiguration = schema.new({
+            id = id.from(_N, "Function", "SequentialExecutorConfiguration"),
+            type = "structure",
+            name = "SequentialExecutorConfiguration",
+            target_id = id.from(_N, "SequentialExecutorConfiguration"),
+            target = M.SequentialExecutorConfiguration,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "Function", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "Function", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.HttpPackageConfiguration = schema.new({
     id = id.from(_N, "HttpPackageConfiguration"),
     type = "structure",
@@ -990,6 +1218,13 @@ M.ManifestServiceInteractionLog = schema.new({
     id = id.from(_N, "ManifestServiceInteractionLog"),
     type = "structure",
     members = {
+        PublishOptInEventTypes = schema.new({
+            id = id.from(_N, "ManifestServiceInteractionLog", "PublishOptInEventTypes"),
+            type = "list",
+            name = "PublishOptInEventTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
         ExcludeEventTypes = schema.new({
             id = id.from(_N, "ManifestServiceInteractionLog", "ExcludeEventTypes"),
             type = "list",
@@ -1226,6 +1461,14 @@ M.PlaybackConfiguration = schema.new({
             name = "AdDecisionServerConfiguration",
             target_id = id.from(_N, "AdDecisionServerConfiguration"),
             target = M.AdDecisionServerConfiguration,
+        }),
+        FunctionMapping = schema.new({
+            id = id.from(_N, "PlaybackConfiguration", "FunctionMapping"),
+            type = "map",
+            name = "FunctionMapping",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
         }),
     },
 })
@@ -3950,6 +4193,28 @@ M.DashConfigurationForPut = schema.new({
     },
 })
 
+M.DeleteFunctionInput = schema.new({
+    id = id.from(_N, "DeleteFunctionRequest"),
+    type = "structure",
+    members = {
+        FunctionId = schema.new({
+            id = id.from(_N, "DeleteFunctionInput", "FunctionId"),
+            type = "string",
+            name = "FunctionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteFunctionOutput = schema.new({
+    id = id.from(_N, "DeleteFunctionResponse"),
+    type = "structure",
+})
+
 M.DeleteLiveSourceInput = schema.new({
     id = id.from(_N, "DeleteLiveSourceRequest"),
     type = "structure",
@@ -4366,6 +4631,270 @@ M.DescribeVodSourceOutput = schema.new({
     },
 })
 
+M.GetFunctionInput = schema.new({
+    id = id.from(_N, "GetFunctionRequest"),
+    type = "structure",
+    members = {
+        FunctionId = schema.new({
+            id = id.from(_N, "GetFunctionInput", "FunctionId"),
+            type = "string",
+            name = "FunctionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetFunctionOutput = schema.new({
+    id = id.from(_N, "GetFunctionResponse"),
+    type = "structure",
+    members = {
+        FunctionId = schema.new({
+            id = id.from(_N, "GetFunctionOutput", "FunctionId"),
+            type = "string",
+            name = "FunctionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FunctionType = schema.new({
+            id = id.from(_N, "GetFunctionOutput", "FunctionType"),
+            type = "string",
+            name = "FunctionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "GetFunctionOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        HttpRequestConfiguration = schema.new({
+            id = id.from(_N, "GetFunctionOutput", "HttpRequestConfiguration"),
+            type = "structure",
+            name = "HttpRequestConfiguration",
+            target_id = id.from(_N, "HttpRequestConfiguration"),
+            target = M.HttpRequestConfiguration,
+        }),
+        CustomOutputConfiguration = schema.new({
+            id = id.from(_N, "GetFunctionOutput", "CustomOutputConfiguration"),
+            type = "structure",
+            name = "CustomOutputConfiguration",
+            target_id = id.from(_N, "CustomOutputConfiguration"),
+            target = M.CustomOutputConfiguration,
+        }),
+        SequentialExecutorConfiguration = schema.new({
+            id = id.from(_N, "GetFunctionOutput", "SequentialExecutorConfiguration"),
+            type = "structure",
+            name = "SequentialExecutorConfiguration",
+            target_id = id.from(_N, "SequentialExecutorConfiguration"),
+            target = M.SequentialExecutorConfiguration,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "GetFunctionOutput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "GetFunctionOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListFunctionsInput = schema.new({
+    id = id.from(_N, "ListFunctionsRequest"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListFunctionsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "MaxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListFunctionsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "NextToken" },
+            },
+        }),
+    },
+})
+
+M.ListFunctionsOutput = schema.new({
+    id = id.from(_N, "ListFunctionsResponse"),
+    type = "structure",
+    members = {
+        Items = schema.new({
+            id = id.from(_N, "ListFunctionsOutput", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.Function,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListFunctionsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PutFunctionInput = schema.new({
+    id = id.from(_N, "PutFunctionRequest"),
+    type = "structure",
+    members = {
+        FunctionId = schema.new({
+            id = id.from(_N, "PutFunctionInput", "FunctionId"),
+            type = "string",
+            name = "FunctionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        FunctionType = schema.new({
+            id = id.from(_N, "PutFunctionInput", "FunctionType"),
+            type = "string",
+            name = "FunctionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "PutFunctionInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        HttpRequestConfiguration = schema.new({
+            id = id.from(_N, "PutFunctionInput", "HttpRequestConfiguration"),
+            type = "structure",
+            name = "HttpRequestConfiguration",
+            target_id = id.from(_N, "HttpRequestConfiguration"),
+            target = M.HttpRequestConfiguration,
+        }),
+        CustomOutputConfiguration = schema.new({
+            id = id.from(_N, "PutFunctionInput", "CustomOutputConfiguration"),
+            type = "structure",
+            name = "CustomOutputConfiguration",
+            target_id = id.from(_N, "CustomOutputConfiguration"),
+            target = M.CustomOutputConfiguration,
+        }),
+        SequentialExecutorConfiguration = schema.new({
+            id = id.from(_N, "PutFunctionInput", "SequentialExecutorConfiguration"),
+            type = "structure",
+            name = "SequentialExecutorConfiguration",
+            target_id = id.from(_N, "SequentialExecutorConfiguration"),
+            target = M.SequentialExecutorConfiguration,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "PutFunctionInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+    },
+})
+
+M.PutFunctionOutput = schema.new({
+    id = id.from(_N, "PutFunctionResponse"),
+    type = "structure",
+    members = {
+        FunctionId = schema.new({
+            id = id.from(_N, "PutFunctionOutput", "FunctionId"),
+            type = "string",
+            name = "FunctionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FunctionType = schema.new({
+            id = id.from(_N, "PutFunctionOutput", "FunctionType"),
+            type = "string",
+            name = "FunctionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "PutFunctionOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        HttpRequestConfiguration = schema.new({
+            id = id.from(_N, "PutFunctionOutput", "HttpRequestConfiguration"),
+            type = "structure",
+            name = "HttpRequestConfiguration",
+            target_id = id.from(_N, "HttpRequestConfiguration"),
+            target = M.HttpRequestConfiguration,
+        }),
+        CustomOutputConfiguration = schema.new({
+            id = id.from(_N, "PutFunctionOutput", "CustomOutputConfiguration"),
+            type = "structure",
+            name = "CustomOutputConfiguration",
+            target_id = id.from(_N, "CustomOutputConfiguration"),
+            target = M.CustomOutputConfiguration,
+        }),
+        SequentialExecutorConfiguration = schema.new({
+            id = id.from(_N, "PutFunctionOutput", "SequentialExecutorConfiguration"),
+            type = "structure",
+            name = "SequentialExecutorConfiguration",
+            target_id = id.from(_N, "SequentialExecutorConfiguration"),
+            target = M.SequentialExecutorConfiguration,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "PutFunctionOutput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "PutFunctionOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.GetPlaybackConfigurationInput = schema.new({
     id = id.from(_N, "GetPlaybackConfigurationRequest"),
     type = "structure",
@@ -4538,6 +5067,14 @@ M.GetPlaybackConfigurationOutput = schema.new({
             name = "AdDecisionServerConfiguration",
             target_id = id.from(_N, "AdDecisionServerConfiguration"),
             target = M.AdDecisionServerConfiguration,
+        }),
+        FunctionMapping = schema.new({
+            id = id.from(_N, "GetPlaybackConfigurationOutput", "FunctionMapping"),
+            type = "map",
+            name = "FunctionMapping",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
         }),
     },
 })
@@ -5214,6 +5751,14 @@ M.PutPlaybackConfigurationInput = schema.new({
             target_id = id.from(_N, "AdDecisionServerConfiguration"),
             target = M.AdDecisionServerConfiguration,
         }),
+        FunctionMapping = schema.new({
+            id = id.from(_N, "PutPlaybackConfigurationInput", "FunctionMapping"),
+            type = "map",
+            name = "FunctionMapping",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
     },
 })
 
@@ -5372,6 +5917,14 @@ M.PutPlaybackConfigurationOutput = schema.new({
             name = "AdDecisionServerConfiguration",
             target_id = id.from(_N, "AdDecisionServerConfiguration"),
             target = M.AdDecisionServerConfiguration,
+        }),
+        FunctionMapping = schema.new({
+            id = id.from(_N, "PutPlaybackConfigurationOutput", "FunctionMapping"),
+            type = "map",
+            name = "FunctionMapping",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
         }),
     },
 })

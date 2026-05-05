@@ -1267,17 +1267,17 @@ end
 
 local type ServiceType = "ASSIGNMENT" | "ID_MAPPING"
 
-local type DeleteUniqueIdStatus = "COMPLETED" | "ACCEPTED"
-
 local type ProcessingType = "CONSISTENT" | "EVENTUAL" | "EVENTUAL_NO_LOOKUP"
-
-local type JobStatus = "RUNNING" | "SUCCEEDED" | "FAILED" | "QUEUED"
 
 local type StatementEffect = "Allow" | "Deny"
 
+local type IdNamespaceType = "SOURCE" | "TARGET"
+
 local type JobType = "BATCH" | "INCREMENTAL" | "DELETE_ONLY"
 
-local type IdNamespaceType = "SOURCE" | "TARGET"
+local type DeleteUniqueIdStatus = "COMPLETED" | "ACCEPTED"
+
+local type JobStatus = "RUNNING" | "SUCCEEDED" | "FAILED" | "QUEUED"
 
 local record M
     AddPolicyStatementInput: AddPolicyStatementInput

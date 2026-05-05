@@ -2914,35 +2914,35 @@ end
 
 local type PermissionType = "READONLY" | "CONTRIBUTOR"
 
-local type ImportLensStatus = "IN_PROGRESS" | "COMPLETE" | "ERROR"
+local type ShareStatus = "ACCEPTED" | "REJECTED" | "PENDING" | "REVOKED" | "EXPIRED" | "ASSOCIATING" | "ASSOCIATED" | "FAILED"
 
 local type AnswerReason = "OUT_OF_SCOPE" | "BUSINESS_PRIORITIES" | "ARCHITECTURE_CONSTRAINTS" | "OTHER" | "NONE"
 
 local type ShareInvitationAction = "ACCEPT" | "REJECT"
 
-local type ShareResourceType = "WORKLOAD" | "LENS" | "PROFILE" | "TEMPLATE"
+local type DiscoveryIntegrationStatus = "ENABLED" | "DISABLED"
 
-local type LensType = "AWS_OFFICIAL" | "CUSTOM_SHARED" | "CUSTOM_SELF"
+local type LensStatusType = "ALL" | "DRAFT" | "PUBLISHED"
+
+local type ReportFormat = "PDF" | "JSON"
+
+local type IntegratingService = "JIRA"
+
+local type ImportLensStatus = "IN_PROGRESS" | "COMPLETE" | "ERROR"
+
+local type WorkloadEnvironment = "PRODUCTION" | "PREPRODUCTION"
 
 local type QuestionPriority = "PRIORITIZED" | "NONE"
 
 local type WorkloadImprovementStatus = "NOT_APPLICABLE" | "NOT_STARTED" | "IN_PROGRESS" | "COMPLETE" | "RISK_ACKNOWLEDGED"
 
-local type WorkloadEnvironment = "PRODUCTION" | "PREPRODUCTION"
-
-local type ReportFormat = "PDF" | "JSON"
-
-local type DiscoveryIntegrationStatus = "ENABLED" | "DISABLED"
-
-local type LensStatusType = "ALL" | "DRAFT" | "PUBLISHED"
-
-local type OrganizationSharingStatus = "ENABLED" | "DISABLED"
-
 local type ProfileOwnerType = "SELF" | "SHARED"
 
-local type ShareStatus = "ACCEPTED" | "REJECTED" | "PENDING" | "REVOKED" | "EXPIRED" | "ASSOCIATING" | "ASSOCIATED" | "FAILED"
+local type LensType = "AWS_OFFICIAL" | "CUSTOM_SHARED" | "CUSTOM_SELF"
 
-local type IntegratingService = "JIRA"
+local type ShareResourceType = "WORKLOAD" | "LENS" | "PROFILE" | "TEMPLATE"
+
+local type OrganizationSharingStatus = "ENABLED" | "DISABLED"
 
 local record M
     AssociateLensesInput: AssociateLensesInput

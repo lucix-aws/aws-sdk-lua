@@ -2673,21 +2673,21 @@ local record TooManyRequestsException
     Message: string
 end
 
-local type DocumentClassifierMode = "MULTI_CLASS" | "MULTI_LABEL"
+local type DatasetType = "TRAIN" | "TEST"
 
 local type SentimentType = "POSITIVE" | "NEGATIVE" | "NEUTRAL" | "MIXED"
 
-local type DatasetType = "TRAIN" | "TEST"
+local type PiiEntitiesDetectionMode = "ONLY_REDACTION" | "ONLY_OFFSETS"
+
+local type LanguageCode = "en" | "es" | "fr" | "de" | "it" | "pt" | "ar" | "hi" | "ja" | "ko" | "zh" | "zh-TW"
+
+local type JobStatus = "SUBMITTED" | "IN_PROGRESS" | "COMPLETED" | "FAILED" | "STOP_REQUESTED" | "STOPPED"
 
 local type ModelType = "DOCUMENT_CLASSIFIER" | "ENTITY_RECOGNIZER"
 
 local type SyntaxLanguageCode = "en" | "es" | "fr" | "de" | "it" | "pt"
 
-local type JobStatus = "SUBMITTED" | "IN_PROGRESS" | "COMPLETED" | "FAILED" | "STOP_REQUESTED" | "STOPPED"
-
-local type PiiEntitiesDetectionMode = "ONLY_REDACTION" | "ONLY_OFFSETS"
-
-local type LanguageCode = "en" | "es" | "fr" | "de" | "it" | "pt" | "ar" | "hi" | "ja" | "ko" | "zh" | "zh-TW"
+local type DocumentClassifierMode = "MULTI_CLASS" | "MULTI_LABEL"
 
 local record M
     BatchDetectDominantLanguageInput: BatchDetectDominantLanguageInput

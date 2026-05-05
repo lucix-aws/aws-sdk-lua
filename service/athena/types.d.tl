@@ -1522,17 +1522,17 @@ end
 
 local type ExecutorState = "CREATING" | "CREATED" | "REGISTERED" | "TERMINATING" | "TERMINATED" | "FAILED"
 
-local type WorkGroupState = "ENABLED" | "DISABLED"
+local type CalculationExecutionState = "CREATING" | "CREATED" | "QUEUED" | "RUNNING" | "CANCELING" | "CANCELED" | "COMPLETED" | "FAILED"
 
 local type DataCatalogType = "LAMBDA" | "GLUE" | "HIVE" | "FEDERATED"
 
-local type CalculationExecutionState = "CREATING" | "CREATED" | "QUEUED" | "RUNNING" | "CANCELING" | "CANCELED" | "COMPLETED" | "FAILED"
+local type NotebookType = "IPYNB"
 
-local type QueryResultType = "DATA_MANIFEST" | "DATA_ROWS"
+local type WorkGroupState = "ENABLED" | "DISABLED"
 
 local type SessionState = "CREATING" | "CREATED" | "IDLE" | "BUSY" | "TERMINATING" | "TERMINATED" | "DEGRADED" | "FAILED"
 
-local type NotebookType = "IPYNB"
+local type QueryResultType = "DATA_MANIFEST" | "DATA_ROWS"
 
 local record M
     BatchGetNamedQueryInput: BatchGetNamedQueryInput

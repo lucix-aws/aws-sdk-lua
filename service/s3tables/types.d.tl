@@ -1718,9 +1718,9 @@ local type TableBucketMaintenanceType = "icebergUnreferencedFileRemoval"
 
 local type TableRecordExpirationJobStatus = "NotYetRun" | "Successful" | "Failed" | "Disabled"
 
-local type TableType = "customer" | "aws"
-
 local type OpenTableFormat = "ICEBERG"
+
+local type TableType = "customer" | "aws"
 
 local type TableMaintenanceType = "icebergCompaction" | "icebergSnapshotManagement"
 

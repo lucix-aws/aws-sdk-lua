@@ -21,6 +21,8 @@ M.DatastoreSummaries = schema.new({ type = "list", list_member = M.DatastoreSumm
 
 M.SearchFilters = schema.new({ type = "list", list_member = M.SearchFilter })
 
+M.DicomMetadataMappings = schema.new({ type = "list", list_member = M.DicomMetadataMapping })
+
 M.SearchByAttributeValues = schema.new({ type = "list", list_member = M.SearchByAttributeValue })
 
 M.AccessDeniedException = schema.new({
@@ -869,6 +871,68 @@ M.GetDICOMImportJobInput = schema.new({
     },
 })
 
+M.DicomMetadataMapping = schema.new({
+    id = id.from(_N, "DicomMetadataMapping"),
+    type = "structure",
+    members = {
+        studyInstanceUID = schema.new({
+            id = id.from(_N, "DicomMetadataMapping", "studyInstanceUID"),
+            type = "string",
+            name = "studyInstanceUID",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        seriesInstanceUID = schema.new({
+            id = id.from(_N, "DicomMetadataMapping", "seriesInstanceUID"),
+            type = "string",
+            name = "seriesInstanceUID",
+            target_id = prelude.String.id,
+        }),
+        metadataFilePath = schema.new({
+            id = id.from(_N, "DicomMetadataMapping", "metadataFilePath"),
+            type = "string",
+            name = "metadataFilePath",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DicomJsonMetadataImportConfiguration = schema.new({
+    id = id.from(_N, "DicomJsonMetadataImportConfiguration"),
+    type = "structure",
+    members = {
+        dicomMetadataMappings = schema.new({
+            id = id.from(_N, "DicomJsonMetadataImportConfiguration", "dicomMetadataMappings"),
+            type = "list",
+            name = "dicomMetadataMappings",
+            target_id = prelude.Document.id,
+            list_member = M.DicomMetadataMapping,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ImportConfiguration = schema.new({
+    id = id.from(_N, "ImportConfiguration"),
+    type = "union",
+    members = {
+        dicomJsonMetadataImportConfiguration = schema.new({
+            id = id.from(_N, "ImportConfiguration", "dicomJsonMetadataImportConfiguration"),
+            type = "structure",
+            name = "dicomJsonMetadataImportConfiguration",
+            target_id = id.from(_N, "DicomJsonMetadataImportConfiguration"),
+            target = M.DicomJsonMetadataImportConfiguration,
+        }),
+    },
+})
+
 M.DICOMImportJobProperties = schema.new({
     id = id.from(_N, "DICOMImportJobProperties"),
     type = "structure",
@@ -953,6 +1017,13 @@ M.DICOMImportJobProperties = schema.new({
             type = "string",
             name = "message",
             target_id = prelude.String.id,
+        }),
+        importConfiguration = schema.new({
+            id = id.from(_N, "DICOMImportJobProperties", "importConfiguration"),
+            type = "union",
+            name = "importConfiguration",
+            target_id = id.from(_N, "ImportConfiguration"),
+            target = M.ImportConfiguration,
         }),
     },
 })
@@ -2091,6 +2162,13 @@ M.StartDICOMImportJobInput = schema.new({
             type = "string",
             name = "inputOwnerAccountId",
             target_id = prelude.String.id,
+        }),
+        importConfiguration = schema.new({
+            id = id.from(_N, "StartDICOMImportJobInput", "importConfiguration"),
+            type = "union",
+            name = "importConfiguration",
+            target_id = id.from(_N, "ImportConfiguration"),
+            target = M.ImportConfiguration,
         }),
     },
 })

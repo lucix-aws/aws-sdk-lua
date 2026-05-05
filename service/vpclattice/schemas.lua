@@ -1638,6 +1638,12 @@ M.CreateResourceGatewayInput = schema.new({
             name = "ipv4AddressesPerEni",
             target_id = prelude.Integer.id,
         }),
+        resourceConfigDnsResolution = schema.new({
+            id = id.from(_N, "CreateResourceGatewayInput", "resourceConfigDnsResolution"),
+            type = "string",
+            name = "resourceConfigDnsResolution",
+            target_id = prelude.String.id,
+        }),
         tags = schema.new({
             id = id.from(_N, "CreateResourceGatewayInput", "tags"),
             type = "map",
@@ -1708,6 +1714,12 @@ M.CreateResourceGatewayOutput = schema.new({
             type = "integer",
             name = "ipv4AddressesPerEni",
             target_id = prelude.Integer.id,
+        }),
+        resourceConfigDnsResolution = schema.new({
+            id = id.from(_N, "CreateResourceGatewayOutput", "resourceConfigDnsResolution"),
+            type = "string",
+            name = "resourceConfigDnsResolution",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -3891,6 +3903,18 @@ M.GetResourceGatewayOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
+        serviceManaged = schema.new({
+            id = id.from(_N, "GetResourceGatewayOutput", "serviceManaged"),
+            type = "boolean",
+            name = "serviceManaged",
+            target_id = prelude.Boolean.id,
+        }),
+        managedBy = schema.new({
+            id = id.from(_N, "GetResourceGatewayOutput", "managedBy"),
+            type = "string",
+            name = "managedBy",
+            target_id = prelude.String.id,
+        }),
         securityGroupIds = schema.new({
             id = id.from(_N, "GetResourceGatewayOutput", "securityGroupIds"),
             type = "list",
@@ -3909,6 +3933,12 @@ M.GetResourceGatewayOutput = schema.new({
             type = "integer",
             name = "ipv4AddressesPerEni",
             target_id = prelude.Integer.id,
+        }),
+        resourceConfigDnsResolution = schema.new({
+            id = id.from(_N, "GetResourceGatewayOutput", "resourceConfigDnsResolution"),
+            type = "string",
+            name = "resourceConfigDnsResolution",
+            target_id = prelude.String.id,
         }),
         createdAt = schema.new({
             id = id.from(_N, "GetResourceGatewayOutput", "createdAt"),
@@ -5341,6 +5371,12 @@ M.ResourceGatewaySummary = schema.new({
             type = "integer",
             name = "ipv4AddressesPerEni",
             target_id = prelude.Integer.id,
+        }),
+        resourceConfigDnsResolution = schema.new({
+            id = id.from(_N, "ResourceGatewaySummary", "resourceConfigDnsResolution"),
+            type = "string",
+            name = "resourceConfigDnsResolution",
+            target_id = prelude.String.id,
         }),
         createdAt = schema.new({
             id = id.from(_N, "ResourceGatewaySummary", "createdAt"),

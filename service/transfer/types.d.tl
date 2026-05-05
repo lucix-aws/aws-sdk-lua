@@ -2307,31 +2307,31 @@ end
 
 local type WebAppEndpointPolicy = "FIPS" | "STANDARD"
 
-local type CustomStepStatus = "SUCCESS" | "FAILURE"
+local type CertificateUsageType = "SIGNING" | "ENCRYPTION" | "TLS"
 
-local type IpAddressType = "IPV4" | "DUALSTACK"
+local type CustomStepStatus = "SUCCESS" | "FAILURE"
 
 local type PreserveFilenameType = "ENABLED" | "DISABLED"
 
+local type AgreementStatusType = "ACTIVE" | "INACTIVE"
+
 local type Domain = "S3" | "EFS"
 
-local type Protocol = "SFTP" | "FTP" | "FTPS" | "AS2"
-
-local type HomeDirectoryType = "PATH" | "LOGICAL"
-
-local type EnforceMessageSigningType = "ENABLED" | "DISABLED"
-
-local type CertificateUsageType = "SIGNING" | "ENCRYPTION" | "TLS"
+local type IdentityProviderType = "SERVICE_MANAGED" | "API_GATEWAY" | "AWS_DIRECTORY_SERVICE" | "AWS_LAMBDA"
 
 local type EndpointType = "PUBLIC" | "VPC" | "VPC_ENDPOINT"
 
 local type ConnectorsIpAddressType = "IPV4" | "DUALSTACK"
 
-local type IdentityProviderType = "SERVICE_MANAGED" | "API_GATEWAY" | "AWS_DIRECTORY_SERVICE" | "AWS_LAMBDA"
-
-local type AgreementStatusType = "ACTIVE" | "INACTIVE"
-
 local type ProfileType = "LOCAL" | "PARTNER"
+
+local type Protocol = "SFTP" | "FTP" | "FTPS" | "AS2"
+
+local type EnforceMessageSigningType = "ENABLED" | "DISABLED"
+
+local type HomeDirectoryType = "PATH" | "LOGICAL"
+
+local type IpAddressType = "IPV4" | "DUALSTACK"
 
 local record M
     CreateAccessInput: CreateAccessInput

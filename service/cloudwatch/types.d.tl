@@ -956,25 +956,25 @@ local record ResourceNotFoundException
     Message: string
 end
 
-local type Statistic = "SampleCount" | "Average" | "Sum" | "Minimum" | "Maximum"
-
-local type HistoryItemType = "ConfigurationUpdate" | "StateUpdate" | "Action" | "AlarmContributorStateUpdate" | "AlarmContributorAction"
-
-local type OTelEnrichmentStatus = "Running" | "Stopped"
-
 local type MetricStreamOutputFormat = "json" | "opentelemetry0.7" | "opentelemetry1.0"
 
-local type AlarmMuteRuleStatus = "SCHEDULED" | "ACTIVE" | "EXPIRED"
+local type StandardUnit = "Seconds" | "Microseconds" | "Milliseconds" | "Bytes" | "Kilobytes" | "Megabytes" | "Gigabytes" | "Terabytes" | "Bits" | "Kilobits" | "Megabits" | "Gigabits" | "Terabits" | "Percent" | "Count" | "Bytes/Second" | "Kilobytes/Second" | "Megabytes/Second" | "Gigabytes/Second" | "Terabytes/Second" | "Bits/Second" | "Kilobits/Second" | "Megabits/Second" | "Gigabits/Second" | "Terabits/Second" | "Count/Second" | "None"
 
 local type StateValue = "OK" | "ALARM" | "INSUFFICIENT_DATA"
 
 local type ScanBy = "TimestampDescending" | "TimestampAscending"
 
+local type RecentlyActive = "PT3H"
+
+local type OTelEnrichmentStatus = "Running" | "Stopped"
+
+local type HistoryItemType = "ConfigurationUpdate" | "StateUpdate" | "Action" | "AlarmContributorStateUpdate" | "AlarmContributorAction"
+
 local type ComparisonOperator = "GreaterThanOrEqualToThreshold" | "GreaterThanThreshold" | "LessThanThreshold" | "LessThanOrEqualToThreshold" | "LessThanLowerOrGreaterThanUpperThreshold" | "LessThanLowerThreshold" | "GreaterThanUpperThreshold"
 
-local type StandardUnit = "Seconds" | "Microseconds" | "Milliseconds" | "Bytes" | "Kilobytes" | "Megabytes" | "Gigabytes" | "Terabytes" | "Bits" | "Kilobits" | "Megabits" | "Gigabits" | "Terabits" | "Percent" | "Count" | "Bytes/Second" | "Kilobytes/Second" | "Megabytes/Second" | "Gigabytes/Second" | "Terabytes/Second" | "Bits/Second" | "Kilobits/Second" | "Megabits/Second" | "Gigabits/Second" | "Terabits/Second" | "Count/Second" | "None"
+local type AlarmMuteRuleStatus = "SCHEDULED" | "ACTIVE" | "EXPIRED"
 
-local type RecentlyActive = "PT3H"
+local type Statistic = "SampleCount" | "Average" | "Sum" | "Minimum" | "Maximum"
 
 local record M
     DeleteAlarmMuteRuleInput: DeleteAlarmMuteRuleInput

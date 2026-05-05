@@ -6247,6 +6247,32 @@ M.GatewayPolicyEngineConfiguration = schema.new({
     },
 })
 
+M.SessionConfiguration = schema.new({
+    id = id.from(_N, "SessionConfiguration"),
+    type = "structure",
+    members = {
+        sessionTimeoutInSeconds = schema.new({
+            id = id.from(_N, "SessionConfiguration", "sessionTimeoutInSeconds"),
+            type = "integer",
+            name = "sessionTimeoutInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.StreamingConfiguration = schema.new({
+    id = id.from(_N, "StreamingConfiguration"),
+    type = "structure",
+    members = {
+        enableResponseStreaming = schema.new({
+            id = id.from(_N, "StreamingConfiguration", "enableResponseStreaming"),
+            type = "boolean",
+            name = "enableResponseStreaming",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
 M.MCPGatewayConfiguration = schema.new({
     id = id.from(_N, "MCPGatewayConfiguration"),
     type = "structure",
@@ -6269,6 +6295,20 @@ M.MCPGatewayConfiguration = schema.new({
             type = "string",
             name = "searchType",
             target_id = prelude.String.id,
+        }),
+        sessionConfiguration = schema.new({
+            id = id.from(_N, "MCPGatewayConfiguration", "sessionConfiguration"),
+            type = "structure",
+            name = "sessionConfiguration",
+            target_id = id.from(_N, "SessionConfiguration"),
+            target = M.SessionConfiguration,
+        }),
+        streamingConfiguration = schema.new({
+            id = id.from(_N, "MCPGatewayConfiguration", "streamingConfiguration"),
+            type = "structure",
+            name = "streamingConfiguration",
+            target_id = id.from(_N, "StreamingConfiguration"),
+            target = M.StreamingConfiguration,
         }),
     },
 })

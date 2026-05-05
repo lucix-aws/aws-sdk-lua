@@ -363,6 +363,28 @@ M.CheckDomainAvailabilityOutput = schema.new({
     },
 })
 
+M.TLDInMaintenance = schema.new({
+    id = id.from(_N, "TLDInMaintenance"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "TLDInMaintenance", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+        tld = schema.new({
+            id = id.from(_N, "TLDInMaintenance", "tld"),
+            type = "string",
+            name = "tld",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.CheckDomainTransferabilityInput = schema.new({
     id = id.from(_N, "CheckDomainTransferabilityRequest"),
     type = "structure",
@@ -1935,9 +1957,6 @@ M.TransferDomainInput = schema.new({
             type = "integer",
             name = "DurationInYears",
             target_id = prelude.Integer.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         Nameservers = schema.new({
             id = id.from(_N, "TransferDomainInput", "Nameservers"),

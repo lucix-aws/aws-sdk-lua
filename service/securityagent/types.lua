@@ -154,6 +154,7 @@ M.DNSRecordType = {
 M.DomainVerificationMethod = {
     DNS_TXT = "DNS_TXT",
     HTTP_ROUTE = "HTTP_ROUTE",
+    PRIVATE_VPC = "PRIVATE_VPC",
 }
 
 M.TargetDomainStatus = {

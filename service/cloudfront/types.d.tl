@@ -174,6 +174,7 @@ local record CreateFunctionInput
     Name: string
     FunctionConfig: FunctionConfig
     FunctionCode: string
+    Tags: Tags
 end
 
 local record CreateFunctionOutput
@@ -216,6 +217,7 @@ local record CreateKeyValueStoreInput
     Name: string
     Comment: string
     ImportSource: ImportSource
+    Tags: Tags
 end
 
 local record CreateKeyValueStoreOutput
@@ -5857,17 +5859,17 @@ local record InvalidArgument
     Message: string
 end
 
+local type ConnectionMode = "direct" | "tenant-only"
+
 local type IpAddressType = "ipv4" | "ipv6" | "dualstack"
+
+local type ResponseHeadersPolicyType = "managed" | "custom"
 
 local type FunctionStage = "DEVELOPMENT" | "LIVE"
 
 local type CachePolicyType = "managed" | "custom"
 
 local type OriginRequestPolicyType = "managed" | "custom"
-
-local type ResponseHeadersPolicyType = "managed" | "custom"
-
-local type ConnectionMode = "direct" | "tenant-only"
 
 local record M
     AssociateAliasInput: AssociateAliasInput

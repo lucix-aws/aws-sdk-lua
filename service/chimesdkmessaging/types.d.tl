@@ -2280,15 +2280,15 @@ local record UnauthorizedClientException
     Message: string
 end
 
-local type SortOrder = "ASCENDING" | "DESCENDING"
-
-local type ChannelPrivacy = "PUBLIC" | "PRIVATE"
+local type ChannelMembershipType = "DEFAULT" | "HIDDEN"
 
 local type NetworkType = "IPV4_ONLY" | "DUAL_STACK"
 
-local type ChannelMembershipType = "DEFAULT" | "HIDDEN"
+local type SortOrder = "ASCENDING" | "DESCENDING"
 
 local type ChannelMessageType = "STANDARD" | "CONTROL"
+
+local type ChannelPrivacy = "PUBLIC" | "PRIVATE"
 
 local type ChannelMode = "UNRESTRICTED" | "RESTRICTED"
 

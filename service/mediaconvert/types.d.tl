@@ -1299,29 +1299,29 @@ local record TooManyRequestsException
     Message: string
 end
 
+local type PresetListBy = "NAME" | "CREATION_DATE" | "SYSTEM"
+
 local type SimulateReservedQueue = "DISABLED" | "ENABLED"
 
-local type PresetListBy = "NAME" | "CREATION_DATE" | "SYSTEM"
+local type QueueListBy = "NAME" | "CREATION_DATE"
+
+local type QueueStatus = "ACTIVE" | "PAUSED"
+
+local type JobsQueryStatus = "SUBMITTED" | "PROGRESSING" | "COMPLETE" | "ERROR"
+
+local type StatusUpdateInterval = "SECONDS_10" | "SECONDS_12" | "SECONDS_15" | "SECONDS_20" | "SECONDS_30" | "SECONDS_60" | "SECONDS_120" | "SECONDS_180" | "SECONDS_240" | "SECONDS_300" | "SECONDS_360" | "SECONDS_420" | "SECONDS_480" | "SECONDS_540" | "SECONDS_600"
+
+local type JobTemplateListBy = "NAME" | "CREATION_DATE" | "SYSTEM"
+
+local type BillingTagsSource = "QUEUE" | "PRESET" | "JOB_TEMPLATE" | "JOB"
 
 local type DescribeEndpointsMode = "DEFAULT" | "GET_ONLY"
 
 local type Order = "ASCENDING" | "DESCENDING"
 
-local type QueueStatus = "ACTIVE" | "PAUSED"
-
-local type JobStatus = "SUBMITTED" | "PROGRESSING" | "COMPLETE" | "CANCELED" | "ERROR"
-
 local type PricingPlan = "ON_DEMAND" | "RESERVED"
 
-local type QueueListBy = "NAME" | "CREATION_DATE"
-
-local type BillingTagsSource = "QUEUE" | "PRESET" | "JOB_TEMPLATE" | "JOB"
-
-local type StatusUpdateInterval = "SECONDS_10" | "SECONDS_12" | "SECONDS_15" | "SECONDS_20" | "SECONDS_30" | "SECONDS_60" | "SECONDS_120" | "SECONDS_180" | "SECONDS_240" | "SECONDS_300" | "SECONDS_360" | "SECONDS_420" | "SECONDS_480" | "SECONDS_540" | "SECONDS_600"
-
-local type JobsQueryStatus = "SUBMITTED" | "PROGRESSING" | "COMPLETE" | "ERROR"
-
-local type JobTemplateListBy = "NAME" | "CREATION_DATE" | "SYSTEM"
+local type JobStatus = "SUBMITTED" | "PROGRESSING" | "COMPLETE" | "CANCELED" | "ERROR"
 
 local record M
     AssociateCertificateInput: AssociateCertificateInput

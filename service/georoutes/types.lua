@@ -243,6 +243,8 @@ M.RouteFerryNoticeCode = {
     VIOLATED_AVOID_RAIL_FERRY = "ViolatedAvoidRailFerry",
     SEASONAL_CLOSURE = "SeasonalClosure",
     POTENTIAL_VIOLATED_VEHICLE_RESTRICTION_USAGE = "PotentialViolatedVehicleRestrictionUsage",
+    VIOLATED_AVOID_AREAS = "ViolatedAvoidAreas",
+    VIOLATED_VEHICLE_RESTRICTION = "ViolatedVehicleRestriction",
 }
 
 M.RouteFerryTravelStepType = {
@@ -262,6 +264,7 @@ M.RoutePedestrianNoticeCode = {
     VIOLATED_AVOID_DIRT_ROAD = "ViolatedAvoidDirtRoad",
     VIOLATED_AVOID_TUNNEL = "ViolatedAvoidTunnel",
     VIOLATED_PEDESTRIAN_OPTION = "ViolatedPedestrianOption",
+    VIOLATED_AVOID_AREAS = "ViolatedAvoidAreas",
 }
 
 M.RouteSpanPedestrianAccessAttribute = {
@@ -388,6 +391,7 @@ M.RouteVehicleNoticeCode = {
     VIOLATED_TURN_RESTRICTION = "ViolatedTurnRestriction",
     VIOLATED_VEHICLE_RESTRICTION = "ViolatedVehicleRestriction",
     VIOLATED_ZONE_RESTRICTION = "ViolatedZoneRestriction",
+    TRAVEL_TIME_EXCEEDS_DRIVER_WORK_HOURS = "TravelTimeExceedsDriverWorkHours",
 }
 
 M.RouteWeightConstraintType = {

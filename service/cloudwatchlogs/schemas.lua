@@ -113,6 +113,8 @@ M.ScheduledQuerySummaryList = schema.new({ type = "list", list_member = M.Schedu
 
 M.S3TableIntegrationSources = schema.new({ type = "list", list_member = M.S3TableIntegrationSource })
 
+M.DeliverySourceConfiguration = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.InputLogEvents = schema.new({ type = "list", list_member = M.InputLogEvent })
 
 M.MetricTransformations = schema.new({ type = "list", list_member = M.MetricTransformation })
@@ -148,6 +150,8 @@ M.AllowedFields = schema.new({ type = "list", list_member = M.RecordField })
 M.OutputFormats = schema.new({ type = "list", list_member = prelude.String })
 
 M.AllowedFieldDelimiters = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeliverySourceConfigurationSchemas = schema.new({ type = "list", list_member = M.DeliverySourceConfigurationSchema })
 
 M.InheritedProperties = schema.new({ type = "list", list_member = prelude.String })
 
@@ -198,6 +202,8 @@ M.TrimStringWithKeys = schema.new({ type = "list", list_member = prelude.String 
 M.TypeConverterEntries = schema.new({ type = "list", list_member = M.TypeConverterEntry })
 
 M.UpperCaseStringWithKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeliverySourceConfigurationSupportedValues = schema.new({ type = "list", list_member = prelude.String })
 
 M.Enumerations = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Long })
 
@@ -1033,6 +1039,78 @@ M.ConfigurationTemplateDeliveryConfigValues = schema.new({
     },
 })
 
+M.DeliverySourceConfigurationSchema = schema.new({
+    id = id.from(_N, "DeliverySourceConfigurationSchema"),
+    type = "structure",
+    members = {
+        keyName = schema.new({
+            id = id.from(_N, "DeliverySourceConfigurationSchema", "keyName"),
+            type = "string",
+            name = "keyName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        valueType = schema.new({
+            id = id.from(_N, "DeliverySourceConfigurationSchema", "valueType"),
+            type = "string",
+            name = "valueType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        defaultValue = schema.new({
+            id = id.from(_N, "DeliverySourceConfigurationSchema", "defaultValue"),
+            type = "string",
+            name = "defaultValue",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        supportedValues = schema.new({
+            id = id.from(_N, "DeliverySourceConfigurationSchema", "supportedValues"),
+            type = "list",
+            name = "supportedValues",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        minValue = schema.new({
+            id = id.from(_N, "DeliverySourceConfigurationSchema", "minValue"),
+            type = "double",
+            name = "minValue",
+            target_id = prelude.Double.id,
+        }),
+        maxValue = schema.new({
+            id = id.from(_N, "DeliverySourceConfigurationSchema", "maxValue"),
+            type = "double",
+            name = "maxValue",
+            target_id = prelude.Double.id,
+        }),
+    },
+})
+
+M.S3TablesIntegration = schema.new({
+    id = id.from(_N, "S3TablesIntegration"),
+    type = "structure",
+    members = {
+        datasourceName = schema.new({
+            id = id.from(_N, "S3TablesIntegration", "datasourceName"),
+            type = "string",
+            name = "datasourceName",
+            target_id = prelude.String.id,
+        }),
+        datasourceType = schema.new({
+            id = id.from(_N, "S3TablesIntegration", "datasourceType"),
+            type = "string",
+            name = "datasourceType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ConfigurationTemplate = schema.new({
     id = id.from(_N, "ConfigurationTemplate"),
     type = "structure",
@@ -1101,6 +1179,20 @@ M.ConfigurationTemplate = schema.new({
             name = "allowedSuffixPathFields",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        deliverySourceConfiguration = schema.new({
+            id = id.from(_N, "ConfigurationTemplate", "deliverySourceConfiguration"),
+            type = "list",
+            name = "deliverySourceConfiguration",
+            target_id = prelude.Document.id,
+            list_member = M.DeliverySourceConfigurationSchema,
+        }),
+        s3TablesIntegration = schema.new({
+            id = id.from(_N, "ConfigurationTemplate", "s3TablesIntegration"),
+            type = "structure",
+            name = "s3TablesIntegration",
+            target_id = id.from(_N, "S3TablesIntegration"),
+            target = M.S3TablesIntegration,
         }),
     },
 })
@@ -2587,6 +2679,26 @@ M.DeliverySource = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+        deliverySourceConfiguration = schema.new({
+            id = id.from(_N, "DeliverySource", "deliverySourceConfiguration"),
+            type = "map",
+            name = "deliverySourceConfiguration",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        status = schema.new({
+            id = id.from(_N, "DeliverySource", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "DeliverySource", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -8019,6 +8131,14 @@ M.PutDeliverySourceInput = schema.new({
             id = id.from(_N, "PutDeliverySourceInput", "tags"),
             type = "map",
             name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        deliverySourceConfiguration = schema.new({
+            id = id.from(_N, "PutDeliverySourceInput", "deliverySourceConfiguration"),
+            type = "map",
+            name = "deliverySourceConfiguration",
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,

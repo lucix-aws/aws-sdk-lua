@@ -5,6 +5,8 @@ local record M
     items_list_alerts: function(client: table, input: table): function(): any
     pages_list_channels: function(client: table, input: table): function(): table, table
     items_list_channels: function(client: table, input: table): function(): any
+    pages_list_functions: function(client: table, input: table): function(): table, table
+    items_list_functions: function(client: table, input: table): function(): any
     pages_list_live_sources: function(client: table, input: table): function(): table, table
     items_list_live_sources: function(client: table, input: table): function(): any
     pages_list_playback_configurations: function(client: table, input: table): function(): table, table

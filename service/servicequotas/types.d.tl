@@ -930,17 +930,17 @@ end
 
 local type OptInType = "NotifyOnly" | "NotifyAndAdjust"
 
+local type OptInLevel = "ACCOUNT"
+
 local type ServiceQuotaTemplateAssociationStatus = "ASSOCIATED" | "DISASSOCIATED"
-
-local type ReportStatus = "PENDING" | "IN_PROGRESS" | "COMPLETED" | "FAILED"
-
-local type OptInStatus = "ENABLED" | "DISABLED"
 
 local type RequestStatus = "PENDING" | "CASE_OPENED" | "APPROVED" | "DENIED" | "CASE_CLOSED" | "NOT_APPROVED" | "INVALID_REQUEST"
 
-local type AppliedLevelEnum = "ACCOUNT" | "RESOURCE" | "ALL"
+local type OptInStatus = "ENABLED" | "DISABLED"
 
-local type OptInLevel = "ACCOUNT"
+local type ReportStatus = "PENDING" | "IN_PROGRESS" | "COMPLETED" | "FAILED"
+
+local type AppliedLevelEnum = "ACCOUNT" | "RESOURCE" | "ALL"
 
 local record M
     AssociateServiceQuotaTemplateInput: AssociateServiceQuotaTemplateInput

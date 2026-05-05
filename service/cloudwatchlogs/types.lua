@@ -65,6 +65,14 @@ M.DeliveryDestinationType = {
     XRAY = "XRAY",
 }
 
+M.DeliverySourceConfigurationSchemaValueType = {
+    STRING = "string",
+    BOOLEAN = "boolean",
+    INT = "int",
+    DOUBLE = "double",
+    LONG = "long",
+}
+
 M.LogGroupClass = {
     STANDARD = "STANDARD",
     INFREQUENT_ACCESS = "INFREQUENT_ACCESS",
@@ -87,6 +95,15 @@ M.DataProtectionStatus = {
     DELETED = "DELETED",
     ARCHIVED = "ARCHIVED",
     DISABLED = "DISABLED",
+}
+
+M.DeliverySourceStatus = {
+    ACTIVE = "ACTIVE",
+    INACTIVE = "INACTIVE",
+}
+
+M.DeliverySourceStatusReason = {
+    RESOURCE_DELETED = "RESOURCE_DELETED",
 }
 
 M.ExportTaskStatusCode = {

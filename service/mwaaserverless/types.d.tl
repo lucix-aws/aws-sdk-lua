@@ -700,9 +700,9 @@ end
 
 local type TaskInstanceStatus = "QUEUED" | "FAILED" | "SCHEDULED" | "RUNNING" | "SUCCESS" | "UP_FOR_RESCHEDULE" | "UP_FOR_RETRY" | "UPSTREAM_FAILED" | "REMOVED" | "RESTARTING" | "DEFERRED" | "NONE" | "CANCELLED" | "TIMEOUT"
 
-local type RunType = "ON_DEMAND" | "SCHEDULED"
-
 local type WorkflowRunStatus = "STARTING" | "QUEUED" | "RUNNING" | "SUCCESS" | "FAILED" | "TIMEOUT" | "STOPPING" | "STOPPED"
+
+local type RunType = "ON_DEMAND" | "SCHEDULED"
 
 local type WorkflowStatus = "READY" | "DELETING"
 

@@ -56,6 +56,24 @@ function M.items_list_channels(client, input)
     })
 end
 
+--- Returns a page iterator for listFunctions.
+function M.pages_list_functions(client, input)
+    return paginator.pages(client, "listFunctions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listFunctions.
+function M.items_list_functions(client, input)
+    return paginator.items(client, "listFunctions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
 --- Returns a page iterator for listLiveSources.
 function M.pages_list_live_sources(client, input)
     return paginator.pages(client, "listLiveSources", input, {

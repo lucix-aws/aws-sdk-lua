@@ -728,15 +728,15 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
+local type Program = "SOLUTION_PROVIDER" | "DISTRIBUTION" | "DISTRIBUTION_SELLER"
+
 local type HandshakeType = "START_SERVICE_PERIOD" | "REVOKE_SERVICE_PERIOD" | "PROGRAM_MANAGEMENT_ACCOUNT"
+
+local type ParticipantType = "SENDER" | "RECEIVER"
 
 local type AssociationType = "DOWNSTREAM_SELLER" | "END_CUSTOMER" | "INTERNAL"
 
 local type Sector = "COMMERCIAL" | "GOVERNMENT" | "GOVERNMENT_EXCEPTION"
-
-local type ParticipantType = "SENDER" | "RECEIVER"
-
-local type Program = "SOLUTION_PROVIDER" | "DISTRIBUTION" | "DISTRIBUTION_SELLER"
 
 local type ResaleAccountModel = "DISTRIBUTOR" | "END_CUSTOMER" | "SOLUTION_PROVIDER"
 

@@ -535,11 +535,11 @@ end
 
 local type ZonalShiftStatus = "ACTIVE" | "EXPIRED" | "CANCELED"
 
+local type AutoshiftExecutionStatus = "ACTIVE" | "COMPLETED"
+
 local type ZonalAutoshiftStatus = "ENABLED" | "DISABLED"
 
 local type AutoshiftObserverNotificationStatus = "ENABLED" | "DISABLED"
-
-local type AutoshiftExecutionStatus = "ACTIVE" | "COMPLETED"
 
 local record M
     CancelPracticeRunInput: CancelPracticeRunInput

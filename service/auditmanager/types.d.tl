@@ -1791,25 +1791,25 @@ local record ValidationException
     fields: {ValidationExceptionField}
 end
 
-local type SettingAttribute = "ALL" | "IS_AWS_ORG_ENABLED" | "SNS_TOPIC" | "DEFAULT_ASSESSMENT_REPORTS_DESTINATION" | "DEFAULT_PROCESS_OWNERS" | "EVIDENCE_FINDER_ENABLEMENT" | "DEREGISTRATION_POLICY" | "DEFAULT_EXPORT_DESTINATION"
-
 local type ControlSetStatus = "ACTIVE" | "UNDER_REVIEW" | "REVIEWED"
 
-local type AssessmentStatus = "ACTIVE" | "INACTIVE"
+local type SettingAttribute = "ALL" | "IS_AWS_ORG_ENABLED" | "SNS_TOPIC" | "DEFAULT_ASSESSMENT_REPORTS_DESTINATION" | "DEFAULT_PROCESS_OWNERS" | "EVIDENCE_FINDER_ENABLEMENT" | "DEREGISTRATION_POLICY" | "DEFAULT_EXPORT_DESTINATION"
 
 local type ShareRequestAction = "ACCEPT" | "DECLINE" | "REVOKE"
 
 local type ControlType = "Standard" | "Custom" | "Core"
 
-local type FrameworkType = "Standard" | "Custom"
+local type ShareRequestType = "SENT" | "RECEIVED"
+
+local type AccountStatus = "ACTIVE" | "INACTIVE" | "PENDING_ACTIVATION"
 
 local type ControlStatus = "UNDER_REVIEW" | "REVIEWED" | "INACTIVE"
 
 local type DataSourceType = "AWS_Cloudtrail" | "AWS_Config" | "AWS_Security_Hub" | "AWS_API_Call" | "MANUAL"
 
-local type AccountStatus = "ACTIVE" | "INACTIVE" | "PENDING_ACTIVATION"
+local type AssessmentStatus = "ACTIVE" | "INACTIVE"
 
-local type ShareRequestType = "SENT" | "RECEIVED"
+local type FrameworkType = "Standard" | "Custom"
 
 local record M
     AssociateAssessmentReportEvidenceFolderInput: AssociateAssessmentReportEvidenceFolderInput

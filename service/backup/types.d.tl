@@ -4432,51 +4432,51 @@ local record ServiceUnavailableException
     Context: string
 end
 
-local type AggregationPeriod = "ONE_DAY" | "SEVEN_DAYS" | "FOURTEEN_DAYS"
+local type CopyJobStatus = "CREATED" | "RUNNING" | "ABORTING" | "ABORTED" | "COMPLETING" | "COMPLETED" | "FAILING" | "FAILED" | "PARTIAL" | "AGGREGATE_ALL" | "ANY"
 
 local type ScanMode = "FULL_SCAN" | "INCREMENTAL_SCAN"
 
-local type ScanState = "CANCELED" | "COMPLETED" | "COMPLETED_WITH_ISSUES" | "CREATED" | "FAILED" | "RUNNING"
-
 local type VaultType = "BACKUP_VAULT" | "LOGICALLY_AIR_GAPPED_BACKUP_VAULT" | "RESTORE_ACCESS_BACKUP_VAULT"
 
-local type CopyJobStatus = "CREATED" | "RUNNING" | "ABORTING" | "ABORTED" | "COMPLETING" | "COMPLETED" | "FAILING" | "FAILED" | "PARTIAL" | "AGGREGATE_ALL" | "ANY"
-
-local type RestoreDeletionStatus = "DELETING" | "FAILED" | "SUCCESSFUL"
-
-local type RestoreJobStatus = "PENDING" | "RUNNING" | "COMPLETED" | "ABORTED" | "FAILED"
-
-local type BackupJobStatus = "CREATED" | "PENDING" | "RUNNING" | "ABORTING" | "ABORTED" | "COMPLETED" | "FAILED" | "EXPIRED" | "PARTIAL" | "AGGREGATE_ALL" | "ANY"
-
-local type MalwareScanner = "GUARDDUTY"
-
-local type StorageClass = "WARM" | "COLD" | "DELETED"
-
-local type RestoreValidationStatus = "FAILED" | "SUCCESSFUL" | "TIMED_OUT" | "VALIDATING"
-
-local type ScanJobStatus = "CREATED" | "COMPLETED" | "COMPLETED_WITH_ISSUES" | "RUNNING" | "FAILED" | "CANCELED" | "AGGREGATE_ALL" | "ANY"
-
-local type RecoveryPointStatus = "COMPLETED" | "PARTIAL" | "DELETING" | "EXPIRED" | "AVAILABLE" | "STOPPED" | "CREATING"
+local type AggregationPeriod = "ONE_DAY" | "SEVEN_DAYS" | "FOURTEEN_DAYS"
 
 local type BackupJobState = "CREATED" | "PENDING" | "RUNNING" | "ABORTING" | "ABORTED" | "COMPLETED" | "FAILED" | "EXPIRED" | "PARTIAL"
 
 local type LegalHoldStatus = "CREATING" | "ACTIVE" | "CANCELING" | "CANCELED"
 
-local type ScanResultStatus = "NO_THREATS_FOUND" | "THREATS_FOUND"
+local type RecoveryPointStatus = "COMPLETED" | "PARTIAL" | "DELETING" | "EXPIRED" | "AVAILABLE" | "STOPPED" | "CREATING"
 
-local type Index = "ENABLED" | "DISABLED"
+local type ScanState = "CANCELED" | "COMPLETED" | "COMPLETED_WITH_ISSUES" | "CREATED" | "FAILED" | "RUNNING"
+
+local type StorageClass = "WARM" | "COLD" | "DELETED"
+
+local type RestoreDeletionStatus = "DELETING" | "FAILED" | "SUCCESSFUL"
+
+local type ScanResourceType = "EBS" | "EC2" | "S3"
+
+local type ScanResultStatus = "NO_THREATS_FOUND" | "THREATS_FOUND"
 
 local type RestoreJobState = "CREATED" | "PENDING" | "RUNNING" | "ABORTED" | "COMPLETED" | "FAILED" | "AGGREGATE_ALL" | "ANY"
 
 local type IndexStatus = "PENDING" | "ACTIVE" | "FAILED" | "DELETING"
 
+local type ScanJobStatus = "CREATED" | "COMPLETED" | "COMPLETED_WITH_ISSUES" | "RUNNING" | "FAILED" | "CANCELED" | "AGGREGATE_ALL" | "ANY"
+
 local type CopyJobState = "CREATED" | "RUNNING" | "COMPLETED" | "FAILED" | "PARTIAL"
 
-local type EncryptionKeyType = "AWS_OWNED_KMS_KEY" | "CUSTOMER_MANAGED_KMS_KEY"
+local type Index = "ENABLED" | "DISABLED"
+
+local type RestoreJobStatus = "PENDING" | "RUNNING" | "COMPLETED" | "ABORTED" | "FAILED"
 
 local type VaultState = "CREATING" | "AVAILABLE" | "FAILED"
 
-local type ScanResourceType = "EBS" | "EC2" | "S3"
+local type EncryptionKeyType = "AWS_OWNED_KMS_KEY" | "CUSTOMER_MANAGED_KMS_KEY"
+
+local type RestoreValidationStatus = "FAILED" | "SUCCESSFUL" | "TIMED_OUT" | "VALIDATING"
+
+local type BackupJobStatus = "CREATED" | "PENDING" | "RUNNING" | "ABORTING" | "ABORTED" | "COMPLETED" | "FAILED" | "EXPIRED" | "PARTIAL" | "AGGREGATE_ALL" | "ANY"
+
+local type MalwareScanner = "GUARDDUTY"
 
 local record M
     AssociateBackupVaultMpaApprovalTeamInput: AssociateBackupVaultMpaApprovalTeamInput

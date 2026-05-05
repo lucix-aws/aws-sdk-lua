@@ -11,6 +11,7 @@ local record Client
     createVodSource: function(Client, types.CreateVodSourceInput): types.CreateVodSourceOutput, table
     deleteChannel: function(Client, types.DeleteChannelInput): types.DeleteChannelOutput, table
     deleteChannelPolicy: function(Client, types.DeleteChannelPolicyInput): types.DeleteChannelPolicyOutput, table
+    deleteFunction: function(Client, types.DeleteFunctionInput): types.DeleteFunctionOutput, table
     deleteLiveSource: function(Client, types.DeleteLiveSourceInput): types.DeleteLiveSourceOutput, table
     deletePlaybackConfiguration: function(Client, types.DeletePlaybackConfigurationInput): types.DeletePlaybackConfigurationOutput, table
     deletePrefetchSchedule: function(Client, types.DeletePrefetchScheduleInput): types.DeletePrefetchScheduleOutput, table
@@ -24,10 +25,12 @@ local record Client
     describeVodSource: function(Client, types.DescribeVodSourceInput): types.DescribeVodSourceOutput, table
     getChannelPolicy: function(Client, types.GetChannelPolicyInput): types.GetChannelPolicyOutput, table
     getChannelSchedule: function(Client, types.GetChannelScheduleInput): types.GetChannelScheduleOutput, table
+    getFunction: function(Client, types.GetFunctionInput): types.GetFunctionOutput, table
     getPlaybackConfiguration: function(Client, types.GetPlaybackConfigurationInput): types.GetPlaybackConfigurationOutput, table
     getPrefetchSchedule: function(Client, types.GetPrefetchScheduleInput): types.GetPrefetchScheduleOutput, table
     listAlerts: function(Client, types.ListAlertsInput): types.ListAlertsOutput, table
     listChannels: function(Client, types.ListChannelsInput): types.ListChannelsOutput, table
+    listFunctions: function(Client, types.ListFunctionsInput): types.ListFunctionsOutput, table
     listLiveSources: function(Client, types.ListLiveSourcesInput): types.ListLiveSourcesOutput, table
     listPlaybackConfigurations: function(Client, types.ListPlaybackConfigurationsInput): types.ListPlaybackConfigurationsOutput, table
     listPrefetchSchedules: function(Client, types.ListPrefetchSchedulesInput): types.ListPrefetchSchedulesOutput, table
@@ -35,6 +38,7 @@ local record Client
     listTagsForResource: function(Client, types.ListTagsForResourceInput): types.ListTagsForResourceOutput, table
     listVodSources: function(Client, types.ListVodSourcesInput): types.ListVodSourcesOutput, table
     putChannelPolicy: function(Client, types.PutChannelPolicyInput): types.PutChannelPolicyOutput, table
+    putFunction: function(Client, types.PutFunctionInput): types.PutFunctionOutput, table
     putPlaybackConfiguration: function(Client, types.PutPlaybackConfigurationInput): types.PutPlaybackConfigurationOutput, table
     startChannel: function(Client, types.StartChannelInput): types.StartChannelOutput, table
     stopChannel: function(Client, types.StopChannelInput): types.StopChannelOutput, table

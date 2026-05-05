@@ -1638,13 +1638,13 @@ end
 
 local type AcceptType = "DELIVERED" | "READ"
 
-local type ActivationStatus = "ACTIVATED" | "NOT_ACTIVATED"
-
 local type ChannelType = "SMS" | "VOICE" | "EMAIL"
 
-local type ContactType = "PERSONAL" | "ESCALATION" | "ONCALL_SCHEDULE"
-
 local type AcceptCodeValidation = "IGNORE" | "ENFORCE"
+
+local type ActivationStatus = "ACTIVATED" | "NOT_ACTIVATED"
+
+local type ContactType = "PERSONAL" | "ESCALATION" | "ONCALL_SCHEDULE"
 
 local record M
     AcceptPageInput: AcceptPageInput

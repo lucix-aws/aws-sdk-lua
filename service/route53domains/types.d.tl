@@ -422,12 +422,22 @@ local record InvalidInput
     message: string
 end
 
+local record TLDInMaintenance
+    message: string
+    tld: string
+end
+
 local record UnsupportedTLD
     message: string
 end
 
 local record InvalidInput
     message: string
+end
+
+local record TLDInMaintenance
+    message: string
+    tld: string
 end
 
 local record UnsupportedTLD
@@ -481,39 +491,6 @@ local record InvalidInput
 end
 
 local record OperationLimitExceeded
-    message: string
-end
-
-local record TLDRulesViolation
-    message: string
-end
-
-local record UnsupportedTLD
-    message: string
-end
-
-local record DuplicateRequest
-    requestId: string
-    message: string
-end
-
-local record InvalidInput
-    message: string
-end
-
-local record OperationLimitExceeded
-    message: string
-end
-
-local record TLDRulesViolation
-    message: string
-end
-
-local record UnsupportedTLD
-    message: string
-end
-
-local record InvalidInput
     message: string
 end
 
@@ -550,6 +527,39 @@ local record InvalidInput
     message: string
 end
 
+local record TLDRulesViolation
+    message: string
+end
+
+local record UnsupportedTLD
+    message: string
+end
+
+local record DuplicateRequest
+    requestId: string
+    message: string
+end
+
+local record InvalidInput
+    message: string
+end
+
+local record OperationLimitExceeded
+    message: string
+end
+
+local record TLDRulesViolation
+    message: string
+end
+
+local record UnsupportedTLD
+    message: string
+end
+
+local record InvalidInput
+    message: string
+end
+
 local record OperationLimitExceeded
     message: string
 end
@@ -570,6 +580,11 @@ local record InvalidInput
     message: string
 end
 
+local record TLDInMaintenance
+    message: string
+    tld: string
+end
+
 local record UnsupportedTLD
     message: string
 end
@@ -612,6 +627,11 @@ end
 
 local record OperationLimitExceeded
     message: string
+end
+
+local record TLDInMaintenance
+    message: string
+    tld: string
 end
 
 local record UnsupportedTLD
@@ -684,6 +704,11 @@ local record OperationLimitExceeded
     message: string
 end
 
+local record TLDInMaintenance
+    message: string
+    tld: string
+end
+
 local record UnsupportedTLD
     message: string
 end
@@ -692,8 +717,18 @@ local record InvalidInput
     message: string
 end
 
+local record TLDInMaintenance
+    message: string
+    tld: string
+end
+
 local record InvalidInput
     message: string
+end
+
+local record TLDInMaintenance
+    message: string
+    tld: string
 end
 
 local record UnsupportedTLD
@@ -821,19 +856,19 @@ local record InvalidInput
     message: string
 end
 
-local type SortOrder = "ASC" | "DESC"
-
-local type OperationStatus = "SUBMITTED" | "IN_PROGRESS" | "ERROR" | "SUCCESSFUL" | "FAILED"
-
-local type StatusFlag = "PENDING_ACCEPTANCE" | "PENDING_CUSTOMER_ACTION" | "PENDING_AUTHORIZATION" | "PENDING_PAYMENT_VERIFICATION" | "PENDING_SUPPORT_CASE"
+local type ListOperationsSortAttributeName = "SubmittedDate"
 
 local type OperationType = "REGISTER_DOMAIN" | "DELETE_DOMAIN" | "TRANSFER_IN_DOMAIN" | "UPDATE_DOMAIN_CONTACT" | "UPDATE_NAMESERVER" | "CHANGE_PRIVACY_PROTECTION" | "DOMAIN_LOCK" | "ENABLE_AUTORENEW" | "DISABLE_AUTORENEW" | "ADD_DNSSEC" | "REMOVE_DNSSEC" | "EXPIRE_DOMAIN" | "TRANSFER_OUT_DOMAIN" | "CHANGE_DOMAIN_OWNER" | "RENEW_DOMAIN" | "PUSH_DOMAIN" | "INTERNAL_TRANSFER_OUT_DOMAIN" | "INTERNAL_TRANSFER_IN_DOMAIN" | "RELEASE_TO_GANDI" | "TRANSFER_ON_RENEW" | "RESTORE_DOMAIN"
 
 local type ReachabilityStatus = "PENDING" | "DONE" | "EXPIRED"
 
-local type DomainAvailability = "AVAILABLE" | "AVAILABLE_RESERVED" | "AVAILABLE_PREORDER" | "UNAVAILABLE" | "UNAVAILABLE_PREMIUM" | "UNAVAILABLE_RESTRICTED" | "RESERVED" | "DONT_KNOW" | "INVALID_NAME_FOR_TLD" | "PENDING"
+local type StatusFlag = "PENDING_ACCEPTANCE" | "PENDING_CUSTOMER_ACTION" | "PENDING_AUTHORIZATION" | "PENDING_PAYMENT_VERIFICATION" | "PENDING_SUPPORT_CASE"
 
-local type ListOperationsSortAttributeName = "SubmittedDate"
+local type SortOrder = "ASC" | "DESC"
+
+local type OperationStatus = "SUBMITTED" | "IN_PROGRESS" | "ERROR" | "SUCCESSFUL" | "FAILED"
+
+local type DomainAvailability = "AVAILABLE" | "AVAILABLE_RESERVED" | "AVAILABLE_PREORDER" | "UNAVAILABLE" | "UNAVAILABLE_PREMIUM" | "UNAVAILABLE_RESTRICTED" | "RESERVED" | "DONT_KNOW" | "INVALID_NAME_FOR_TLD" | "PENDING"
 
 local record M
     AcceptDomainTransferFromAnotherAwsAccountInput: AcceptDomainTransferFromAnotherAwsAccountInput

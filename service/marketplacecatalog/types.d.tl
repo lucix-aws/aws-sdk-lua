@@ -409,9 +409,9 @@ local record ValidationException
     Message: string
 end
 
-local type OwnershipType = "SELF" | "SHARED"
-
 local type Intent = "VALIDATE" | "APPLY"
+
+local type OwnershipType = "SELF" | "SHARED"
 
 local type ChangeStatus = "PREPARING" | "APPLYING" | "SUCCEEDED" | "CANCELLED" | "FAILED"
 

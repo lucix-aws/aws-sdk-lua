@@ -1535,9 +1535,9 @@ local record UserNotFoundFault
     message: string
 end
 
-local type IpDiscovery = "ipv4" | "ipv6"
-
 local type SourceType = "node" | "parameter-group" | "subnet-group" | "cluster" | "user" | "acl"
+
+local type IpDiscovery = "ipv4" | "ipv6"
 
 local type NetworkType = "ipv4" | "ipv6" | "dual_stack"
 

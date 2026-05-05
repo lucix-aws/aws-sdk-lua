@@ -176,6 +176,7 @@ local record CreateTargetDomainOutput
     targetDomainId: string
     domainName: string
     verificationStatus: string
+    verificationStatusReason: string
     verificationDetails: VerificationDetails
     createdAt: number
     verifiedAt: number
@@ -561,6 +562,7 @@ local record UpdateTargetDomainOutput
     targetDomainId: string
     domainName: string
     verificationStatus: string
+    verificationStatusReason: string
     verificationDetails: VerificationDetails
     createdAt: number
     verifiedAt: number
@@ -577,6 +579,7 @@ local record VerifyTargetDomainOutput
     updatedAt: number
     verifiedAt: number
     status: string
+    verificationStatusReason: string
 end
 
 local record AccessDeniedException
@@ -839,6 +842,11 @@ local record ThrottlingException
     quotaCode: string
 end
 
+local record ValidationException
+    message: string
+    fieldList: {ValidationExceptionField}
+end
+
 local record AccessDeniedException
     message: string
 end
@@ -865,34 +873,34 @@ local record ValidationException
     message: string
     fieldList: {ValidationExceptionField}
 end
-
-local type ConfidenceLevel = "FALSE_POSITIVE" | "UNCONFIRMED" | "LOW" | "MEDIUM" | "HIGH"
-
-local type DomainVerificationMethod = "DNS_TXT" | "HTTP_ROUTE"
-
-local type Provider = "GITHUB"
-
-local type StepName = "PREFLIGHT" | "STATIC_ANALYSIS" | "PENTEST" | "FINALIZING"
-
-local type RiskLevel = "UNKNOWN" | "INFORMATIONAL" | "LOW" | "MEDIUM" | "HIGH" | "CRITICAL"
 
 local type ProviderType = "SOURCE_CODE" | "DOCUMENTATION"
 
+local type StepName = "PREFLIGHT" | "STATIC_ANALYSIS" | "PENTEST" | "FINALIZING"
+
+local type Provider = "GITHUB"
+
 local type ResourceType = "CODE_REPOSITORY"
 
-local type MembershipType = "USER"
-
-local type FindingStatus = "ACTIVE" | "RESOLVED" | "ACCEPTED" | "FALSE_POSITIVE"
-
-local type CodeRemediationStrategy = "AUTOMATIC" | "DISABLED"
-
-local type JobStatus = "IN_PROGRESS" | "STOPPING" | "STOPPED" | "FAILED" | "COMPLETED"
-
-local type MembershipTypeFilter = "USER" | "ALL"
+local type TargetDomainStatus = "PENDING" | "VERIFIED" | "FAILED" | "UNREACHABLE"
 
 local type ArtifactType = "TXT" | "PNG" | "JPEG" | "MD" | "PDF" | "DOCX" | "DOC" | "JSON" | "YAML"
 
-local type TargetDomainStatus = "PENDING" | "VERIFIED" | "FAILED" | "UNREACHABLE"
+local type DomainVerificationMethod = "DNS_TXT" | "HTTP_ROUTE" | "PRIVATE_VPC"
+
+local type ConfidenceLevel = "FALSE_POSITIVE" | "UNCONFIRMED" | "LOW" | "MEDIUM" | "HIGH"
+
+local type CodeRemediationStrategy = "AUTOMATIC" | "DISABLED"
+
+local type MembershipTypeFilter = "USER" | "ALL"
+
+local type FindingStatus = "ACTIVE" | "RESOLVED" | "ACCEPTED" | "FALSE_POSITIVE"
+
+local type MembershipType = "USER"
+
+local type JobStatus = "IN_PROGRESS" | "STOPPING" | "STOPPED" | "FAILED" | "COMPLETED"
+
+local type RiskLevel = "UNKNOWN" | "INFORMATIONAL" | "LOW" | "MEDIUM" | "HIGH" | "CRITICAL"
 
 local record M
     AddArtifactInput: AddArtifactInput

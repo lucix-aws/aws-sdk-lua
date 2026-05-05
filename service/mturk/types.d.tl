@@ -809,13 +809,13 @@ local record ServiceFault
     TurkErrorCode: string
 end
 
-local type QualificationTypeStatus = "Active" | "Inactive"
+local type QualificationStatus = "Granted" | "Revoked"
 
-local type EventType = "AssignmentAccepted" | "AssignmentAbandoned" | "AssignmentReturned" | "AssignmentSubmitted" | "AssignmentRejected" | "AssignmentApproved" | "HITCreated" | "HITExpired" | "HITReviewable" | "HITExtended" | "HITDisposed" | "Ping"
+local type QualificationTypeStatus = "Active" | "Inactive"
 
 local type ReviewableHITStatus = "Reviewable" | "Reviewing"
 
-local type QualificationStatus = "Granted" | "Revoked"
+local type EventType = "AssignmentAccepted" | "AssignmentAbandoned" | "AssignmentReturned" | "AssignmentSubmitted" | "AssignmentRejected" | "AssignmentApproved" | "HITCreated" | "HITExpired" | "HITReviewable" | "HITExtended" | "HITDisposed" | "Ping"
 
 local record M
     AcceptQualificationRequestInput: AcceptQualificationRequestInput

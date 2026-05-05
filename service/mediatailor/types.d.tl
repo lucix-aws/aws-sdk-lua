@@ -170,6 +170,13 @@ end
 local record DeleteChannelPolicyOutput
 end
 
+local record DeleteFunctionInput
+    FunctionId: string
+end
+
+local record DeleteFunctionOutput
+end
+
 local record DeleteLiveSourceInput
     LiveSourceName: string
     SourceLocationName: string
@@ -325,6 +332,21 @@ local record GetChannelScheduleOutput
     NextToken: string
 end
 
+local record GetFunctionInput
+    FunctionId: string
+end
+
+local record GetFunctionOutput
+    FunctionId: string
+    FunctionType: string
+    Description: string
+    HttpRequestConfiguration: HttpRequestConfiguration
+    CustomOutputConfiguration: CustomOutputConfiguration
+    SequentialExecutorConfiguration: SequentialExecutorConfiguration
+    Tags: {string : string}
+    Arn: string
+end
+
 local record GetPlaybackConfigurationInput
     Name: string
 end
@@ -352,6 +374,7 @@ local record GetPlaybackConfigurationOutput
     VideoContentSourceUrl: string
     AdConditioningConfiguration: AdConditioningConfiguration
     AdDecisionServerConfiguration: AdDecisionServerConfiguration
+    FunctionMapping: {string : string}
 end
 
 local record GetPrefetchScheduleInput
@@ -389,6 +412,16 @@ end
 
 local record ListChannelsOutput
     Items: {Channel}
+    NextToken: string
+end
+
+local record ListFunctionsInput
+    MaxResults: number
+    NextToken: string
+end
+
+local record ListFunctionsOutput
+    Items: {Function}
     NextToken: string
 end
 
@@ -463,6 +496,27 @@ end
 local record PutChannelPolicyOutput
 end
 
+local record PutFunctionInput
+    FunctionId: string
+    FunctionType: string
+    Description: string
+    HttpRequestConfiguration: HttpRequestConfiguration
+    CustomOutputConfiguration: CustomOutputConfiguration
+    SequentialExecutorConfiguration: SequentialExecutorConfiguration
+    Tags: {string : string}
+end
+
+local record PutFunctionOutput
+    FunctionId: string
+    FunctionType: string
+    Description: string
+    HttpRequestConfiguration: HttpRequestConfiguration
+    CustomOutputConfiguration: CustomOutputConfiguration
+    SequentialExecutorConfiguration: SequentialExecutorConfiguration
+    Tags: {string : string}
+    Arn: string
+end
+
 local record PutPlaybackConfigurationInput
     AdDecisionServerUrl: string
     AvailSuppression: AvailSuppression
@@ -481,6 +535,7 @@ local record PutPlaybackConfigurationInput
     VideoContentSourceUrl: string
     AdConditioningConfiguration: AdConditioningConfiguration
     AdDecisionServerConfiguration: AdDecisionServerConfiguration
+    FunctionMapping: {string : string}
 end
 
 local record PutPlaybackConfigurationOutput
@@ -506,6 +561,7 @@ local record PutPlaybackConfigurationOutput
     VideoContentSourceUrl: string
     AdConditioningConfiguration: AdConditioningConfiguration
     AdDecisionServerConfiguration: AdDecisionServerConfiguration
+    FunctionMapping: {string : string}
 end
 
 local record StartChannelInput
@@ -653,13 +709,15 @@ local type InsertionMode = "STITCHED_ONLY" | "PLAYER_SELECT"
 
 local type ChannelState = "RUNNING" | "STOPPED"
 
-local type PrefetchScheduleType = "SINGLE" | "RECURRING"
-
 local type PlaybackMode = "LOOP" | "LINEAR"
 
 local type ListPrefetchScheduleType = "SINGLE" | "RECURRING" | "ALL"
 
 local type Tier = "BASIC" | "STANDARD"
+
+local type PrefetchScheduleType = "SINGLE" | "RECURRING"
+
+local type FunctionType = "HTTP_REQUEST" | "CUSTOM_OUTPUT" | "SEQUENTIAL_EXECUTOR"
 
 local record M
     ConfigureLogsForChannelInput: ConfigureLogsForChannelInput
@@ -682,6 +740,8 @@ local record M
     DeleteChannelOutput: DeleteChannelOutput
     DeleteChannelPolicyInput: DeleteChannelPolicyInput
     DeleteChannelPolicyOutput: DeleteChannelPolicyOutput
+    DeleteFunctionInput: DeleteFunctionInput
+    DeleteFunctionOutput: DeleteFunctionOutput
     DeleteLiveSourceInput: DeleteLiveSourceInput
     DeleteLiveSourceOutput: DeleteLiveSourceOutput
     DeletePlaybackConfigurationInput: DeletePlaybackConfigurationInput
@@ -708,6 +768,8 @@ local record M
     GetChannelPolicyOutput: GetChannelPolicyOutput
     GetChannelScheduleInput: GetChannelScheduleInput
     GetChannelScheduleOutput: GetChannelScheduleOutput
+    GetFunctionInput: GetFunctionInput
+    GetFunctionOutput: GetFunctionOutput
     GetPlaybackConfigurationInput: GetPlaybackConfigurationInput
     GetPlaybackConfigurationOutput: GetPlaybackConfigurationOutput
     GetPrefetchScheduleInput: GetPrefetchScheduleInput
@@ -716,6 +778,8 @@ local record M
     ListAlertsOutput: ListAlertsOutput
     ListChannelsInput: ListChannelsInput
     ListChannelsOutput: ListChannelsOutput
+    ListFunctionsInput: ListFunctionsInput
+    ListFunctionsOutput: ListFunctionsOutput
     ListLiveSourcesInput: ListLiveSourcesInput
     ListLiveSourcesOutput: ListLiveSourcesOutput
     ListPlaybackConfigurationsInput: ListPlaybackConfigurationsInput
@@ -730,6 +794,8 @@ local record M
     ListVodSourcesOutput: ListVodSourcesOutput
     PutChannelPolicyInput: PutChannelPolicyInput
     PutChannelPolicyOutput: PutChannelPolicyOutput
+    PutFunctionInput: PutFunctionInput
+    PutFunctionOutput: PutFunctionOutput
     PutPlaybackConfigurationInput: PutPlaybackConfigurationInput
     PutPlaybackConfigurationOutput: PutPlaybackConfigurationOutput
     StartChannelInput: StartChannelInput

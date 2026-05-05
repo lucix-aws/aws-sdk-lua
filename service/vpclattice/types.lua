@@ -61,6 +61,11 @@ M.ResourceGatewayIpAddressType = {
     DUALSTACK = "DUALSTACK",
 }
 
+M.ResourceConfigDnsResolution = {
+    IN_VPC = "IN_VPC",
+    PUBLIC = "PUBLIC",
+}
+
 M.ResourceGatewayStatus = {
     ACTIVE = "ACTIVE",
     CREATE_IN_PROGRESS = "CREATE_IN_PROGRESS",

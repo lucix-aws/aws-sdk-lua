@@ -1416,11 +1416,11 @@ local type RuleHealth = "Healthy" | "Unhealthy" | "Provisioning"
 
 local type TelemetryEnrichmentStatus = "Running" | "Stopped" | "Impaired"
 
+local type CentralizationFailureReason = "TRUSTED_ACCESS_NOT_ENABLED" | "DESTINATION_ACCOUNT_NOT_IN_ORGANIZATION" | "INTERNAL_SERVER_ERROR"
+
 local type Status = "NOT_STARTED" | "STARTING" | "FAILED_START" | "RUNNING" | "STOPPING" | "FAILED_STOP" | "STOPPED"
 
 local type IntegrationStatus = "ACTIVE" | "DELETING"
-
-local type CentralizationFailureReason = "TRUSTED_ACCESS_NOT_ENABLED" | "DESTINATION_ACCOUNT_NOT_IN_ORGANIZATION" | "INTERNAL_SERVER_ERROR"
 
 local record M
     CreateCentralizationRuleForOrganizationInput: CreateCentralizationRuleForOrganizationInput

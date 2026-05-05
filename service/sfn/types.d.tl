@@ -1212,27 +1212,27 @@ end
 
 local type ValidateStateMachineDefinitionSeverity = "ERROR" | "WARNING"
 
-local type StateMachineType = "STANDARD" | "EXPRESS"
-
 local type IncludedData = "ALL_DATA" | "METADATA_ONLY"
-
-local type ExecutionRedriveStatus = "REDRIVABLE" | "NOT_REDRIVABLE" | "REDRIVABLE_BY_MAP_RUN"
 
 local type InspectionLevel = "INFO" | "DEBUG" | "TRACE"
 
-local type StateMachineStatus = "ACTIVE" | "DELETING"
+local type SyncExecutionStatus = "SUCCEEDED" | "FAILED" | "TIMED_OUT"
 
 local type ExecutionRedriveFilter = "REDRIVEN" | "NOT_REDRIVEN"
 
 local type ValidateStateMachineDefinitionResultCode = "OK" | "FAIL"
 
-local type TestExecutionStatus = "SUCCEEDED" | "FAILED" | "RETRIABLE" | "CAUGHT_ERROR"
+local type ExecutionRedriveStatus = "REDRIVABLE" | "NOT_REDRIVABLE" | "REDRIVABLE_BY_MAP_RUN"
 
 local type ExecutionStatus = "RUNNING" | "SUCCEEDED" | "FAILED" | "TIMED_OUT" | "ABORTED" | "PENDING_REDRIVE"
 
-local type SyncExecutionStatus = "SUCCEEDED" | "FAILED" | "TIMED_OUT"
+local type TestExecutionStatus = "SUCCEEDED" | "FAILED" | "RETRIABLE" | "CAUGHT_ERROR"
 
 local type MapRunStatus = "RUNNING" | "SUCCEEDED" | "FAILED" | "ABORTED"
+
+local type StateMachineStatus = "ACTIVE" | "DELETING"
+
+local type StateMachineType = "STANDARD" | "EXPRESS"
 
 local record M
     CreateActivityInput: CreateActivityInput

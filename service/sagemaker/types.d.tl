@@ -7198,317 +7198,313 @@ local record ResourceLimitExceeded
     Message: string
 end
 
-local type NotebookInstanceLifecycleConfigSortOrder = "Ascending" | "Descending"
-
-local type FlowDefinitionStatus = "Initializing" | "Active" | "Failed" | "Deleting"
-
-local type FeatureGroupSortBy = "Name" | "FeatureGroupStatus" | "OfflineStoreStatus" | "CreationTime"
-
-local type ModelCardVersionSortBy = "Version"
-
-local type MonitoringJobDefinitionSortKey = "Name" | "CreationTime"
-
-local type TrainingJobStatus = "InProgress" | "Completed" | "Failed" | "Stopping" | "Stopped" | "Deleting"
-
-local type VolumeAttachmentStatus = "attaching" | "attached" | "detaching" | "detached" | "busy"
-
-local type ProjectSortOrder = "Ascending" | "Descending"
-
-local type AuthMode = "SSO" | "IAM"
-
-local type SagemakerServicecatalogStatus = "Enabled" | "Disabled"
-
-local type ModelPackageGroupStatus = "Pending" | "InProgress" | "Completed" | "Failed" | "Deleting" | "DeleteFailed"
-
-local type InstanceType = "ml.t2.medium" | "ml.t2.large" | "ml.t2.xlarge" | "ml.t2.2xlarge" | "ml.t3.medium" | "ml.t3.large" | "ml.t3.xlarge" | "ml.t3.2xlarge" | "ml.m4.xlarge" | "ml.m4.2xlarge" | "ml.m4.4xlarge" | "ml.m4.10xlarge" | "ml.m4.16xlarge" | "ml.m5.xlarge" | "ml.m5.2xlarge" | "ml.m5.4xlarge" | "ml.m5.12xlarge" | "ml.m5.24xlarge" | "ml.m5d.large" | "ml.m5d.xlarge" | "ml.m5d.2xlarge" | "ml.m5d.4xlarge" | "ml.m5d.8xlarge" | "ml.m5d.12xlarge" | "ml.m5d.16xlarge" | "ml.m5d.24xlarge" | "ml.c4.xlarge" | "ml.c4.2xlarge" | "ml.c4.4xlarge" | "ml.c4.8xlarge" | "ml.c5.xlarge" | "ml.c5.2xlarge" | "ml.c5.4xlarge" | "ml.c5.9xlarge" | "ml.c5.18xlarge" | "ml.c5d.xlarge" | "ml.c5d.2xlarge" | "ml.c5d.4xlarge" | "ml.c5d.9xlarge" | "ml.c5d.18xlarge" | "ml.p2.xlarge" | "ml.p2.8xlarge" | "ml.p2.16xlarge" | "ml.p3.2xlarge" | "ml.p3.8xlarge" | "ml.p3.16xlarge" | "ml.p3dn.24xlarge" | "ml.g4dn.xlarge" | "ml.g4dn.2xlarge" | "ml.g4dn.4xlarge" | "ml.g4dn.8xlarge" | "ml.g4dn.12xlarge" | "ml.g4dn.16xlarge" | "ml.r5.large" | "ml.r5.xlarge" | "ml.r5.2xlarge" | "ml.r5.4xlarge" | "ml.r5.8xlarge" | "ml.r5.12xlarge" | "ml.r5.16xlarge" | "ml.r5.24xlarge" | "ml.g5.xlarge" | "ml.g5.2xlarge" | "ml.g5.4xlarge" | "ml.g5.8xlarge" | "ml.g5.16xlarge" | "ml.g5.12xlarge" | "ml.g5.24xlarge" | "ml.g5.48xlarge" | "ml.inf1.xlarge" | "ml.inf1.2xlarge" | "ml.inf1.6xlarge" | "ml.inf1.24xlarge" | "ml.trn1.2xlarge" | "ml.trn1.32xlarge" | "ml.trn1n.32xlarge" | "ml.inf2.xlarge" | "ml.inf2.8xlarge" | "ml.inf2.24xlarge" | "ml.inf2.48xlarge" | "ml.p4d.24xlarge" | "ml.p4de.24xlarge" | "ml.p5.48xlarge" | "ml.p6-b200.48xlarge" | "ml.m6i.large" | "ml.m6i.xlarge" | "ml.m6i.2xlarge" | "ml.m6i.4xlarge" | "ml.m6i.8xlarge" | "ml.m6i.12xlarge" | "ml.m6i.16xlarge" | "ml.m6i.24xlarge" | "ml.m6i.32xlarge" | "ml.m7i.large" | "ml.m7i.xlarge" | "ml.m7i.2xlarge" | "ml.m7i.4xlarge" | "ml.m7i.8xlarge" | "ml.m7i.12xlarge" | "ml.m7i.16xlarge" | "ml.m7i.24xlarge" | "ml.m7i.48xlarge" | "ml.c6i.large" | "ml.c6i.xlarge" | "ml.c6i.2xlarge" | "ml.c6i.4xlarge" | "ml.c6i.8xlarge" | "ml.c6i.12xlarge" | "ml.c6i.16xlarge" | "ml.c6i.24xlarge" | "ml.c6i.32xlarge" | "ml.c7i.large" | "ml.c7i.xlarge" | "ml.c7i.2xlarge" | "ml.c7i.4xlarge" | "ml.c7i.8xlarge" | "ml.c7i.12xlarge" | "ml.c7i.16xlarge" | "ml.c7i.24xlarge" | "ml.c7i.48xlarge" | "ml.r6i.large" | "ml.r6i.xlarge" | "ml.r6i.2xlarge" | "ml.r6i.4xlarge" | "ml.r6i.8xlarge" | "ml.r6i.12xlarge" | "ml.r6i.16xlarge" | "ml.r6i.24xlarge" | "ml.r6i.32xlarge" | "ml.r7i.large" | "ml.r7i.xlarge" | "ml.r7i.2xlarge" | "ml.r7i.4xlarge" | "ml.r7i.8xlarge" | "ml.r7i.12xlarge" | "ml.r7i.16xlarge" | "ml.r7i.24xlarge" | "ml.r7i.48xlarge" | "ml.m6id.large" | "ml.m6id.xlarge" | "ml.m6id.2xlarge" | "ml.m6id.4xlarge" | "ml.m6id.8xlarge" | "ml.m6id.12xlarge" | "ml.m6id.16xlarge" | "ml.m6id.24xlarge" | "ml.m6id.32xlarge" | "ml.c6id.large" | "ml.c6id.xlarge" | "ml.c6id.2xlarge" | "ml.c6id.4xlarge" | "ml.c6id.8xlarge" | "ml.c6id.12xlarge" | "ml.c6id.16xlarge" | "ml.c6id.24xlarge" | "ml.c6id.32xlarge" | "ml.r6id.large" | "ml.r6id.xlarge" | "ml.r6id.2xlarge" | "ml.r6id.4xlarge" | "ml.r6id.8xlarge" | "ml.r6id.12xlarge" | "ml.r6id.16xlarge" | "ml.r6id.24xlarge" | "ml.r6id.32xlarge" | "ml.g6.xlarge" | "ml.g6.2xlarge" | "ml.g6.4xlarge" | "ml.g6.8xlarge" | "ml.g6.12xlarge" | "ml.g6.16xlarge" | "ml.g6.24xlarge" | "ml.g6.48xlarge"
-
-local type PartnerAppStatus = "Creating" | "Updating" | "Deleting" | "Available" | "Failed" | "UpdateFailed" | "Deleted"
-
-local type RecommendationStepType = "BENCHMARK"
-
-local type AIRecommendationJobStatus = "InProgress" | "Completed" | "Failed" | "Stopping" | "Stopped"
-
-local type VendorGuidance = "NOT_PROVIDED" | "STABLE" | "TO_BE_ARCHIVED" | "ARCHIVED"
-
-local type ClusterStatus = "Creating" | "Deleting" | "Failed" | "InService" | "RollingBack" | "SystemUpdating" | "Updating"
-
-local type InferenceComponentStatus = "InService" | "Creating" | "Updating" | "Failed" | "Deleting"
-
-local type RecommendationJobStatus = "PENDING" | "IN_PROGRESS" | "COMPLETED" | "FAILED" | "STOPPING" | "STOPPED" | "DELETING" | "DELETED"
-
-local type ModelCardStatus = "Draft" | "PendingReview" | "Approved" | "Archived"
-
-local type ListDeviceFleetsSortBy = "NAME" | "CREATION_TIME" | "LAST_MODIFIED_TIME"
-
-local type BatchStrategy = "MultiRecord" | "SingleRecord"
-
-local type SortOrder = "Ascending" | "Descending"
-
-local type ModelCardSortOrder = "Ascending" | "Descending"
-
-local type PartnerAppAuthType = "IAM"
-
-local type ImageVersionSortBy = "CREATION_TIME" | "LAST_MODIFIED_TIME" | "VERSION"
-
-local type ModelPackageType = "Versioned" | "Unversioned" | "Both"
-
-local type ListOptimizationJobsSortBy = "Name" | "CreationTime" | "Status"
-
-local type MlflowAppStatus = "Creating" | "Created" | "CreateFailed" | "Updating" | "Updated" | "UpdateFailed" | "Deleting" | "DeleteFailed" | "Deleted"
-
-local type AlgorithmSortBy = "Name" | "CreationTime"
-
-local type ModelApprovalStatus = "Approved" | "Rejected" | "PendingManualApproval"
-
-local type EndpointConfigSortKey = "Name" | "CreationTime"
-
-local type PipelineStatus = "Active" | "Deleting"
-
-local type AccountDefaultStatus = "ENABLED" | "DISABLED"
-
-local type ListWorkforcesSortByOptions = "Name" | "CreateDate"
-
-local type StudioLifecycleConfigSortKey = "CreationTime" | "LastModifiedTime" | "Name"
-
-local type SortQuotaBy = "Name" | "CreationTime" | "Status" | "ClusterArn"
-
-local type MonitoringAlertHistorySortKey = "CreationTime" | "Status"
-
-local type AIBenchmarkJobStatus = "InProgress" | "Completed" | "Failed" | "Stopping" | "Stopped"
-
-local type IsTrackingServerActive = "Active" | "Inactive"
-
-local type ClusterNodeProvisioningMode = "Continuous"
-
-local type SortClusterSchedulerConfigBy = "Name" | "CreationTime" | "Status"
-
-local type CompilationJobStatus = "INPROGRESS" | "COMPLETED" | "FAILED" | "STARTING" | "STOPPING" | "STOPPED"
-
-local type ModelCardExportJobStatus = "InProgress" | "Completed" | "Failed"
-
-local type TrainingJobSortByOptions = "Name" | "CreationTime" | "Status" | "FinalObjectiveMetricValue"
-
-local type AutoMLJobStatus = "Completed" | "InProgress" | "Failed" | "Stopped" | "Stopping"
-
-local type ModelPackageStatus = "Pending" | "InProgress" | "Completed" | "Failed" | "Deleting"
-
-local type TrainingPlanStatus = "Pending" | "Active" | "Scheduled" | "Expired" | "Failed"
-
-local type AppImageConfigSortKey = "CreationTime" | "LastModifiedTime" | "Name"
+local type SortTrialComponentsBy = "Name" | "CreationTime"
 
 local type ResourceCatalogSortBy = "CreationTime"
 
-local type ModelSortKey = "Name" | "CreationTime"
-
-local type SecondaryStatus = "Starting" | "LaunchingMLInstances" | "PreparingTrainingStack" | "Downloading" | "DownloadingTrainingImage" | "Training" | "Uploading" | "Stopping" | "Stopped" | "MaxRuntimeExceeded" | "Completed" | "Failed" | "Interrupted" | "MaxWaitTimeExceeded" | "Updating" | "Restarting" | "Pending"
-
-local type HyperParameterTuningJobStatus = "Completed" | "InProgress" | "Failed" | "Stopped" | "Stopping" | "Deleting" | "DeleteFailed"
-
-local type FeatureType = "Integral" | "Fractional" | "String"
-
-local type ResourceType = "TrainingJob" | "Experiment" | "ExperimentTrial" | "ExperimentTrialComponent" | "Endpoint" | "Model" | "ModelPackage" | "ModelPackageGroup" | "Pipeline" | "PipelineExecution" | "FeatureGroup" | "FeatureMetadata" | "Image" | "ImageVersion" | "Project" | "HyperParameterTuningJob" | "ModelCard" | "PipelineVersion"
-
-local type StudioLifecycleConfigAppType = "JupyterServer" | "KernelGateway" | "CodeEditor" | "JupyterLab"
-
-local type Direction = "Both" | "Ascendants" | "Descendants"
+local type TrainingPlanSortBy = "TrainingPlanName" | "StartTime" | "Status"
 
 local type ImageSortBy = "CREATION_TIME" | "LAST_MODIFIED_TIME" | "IMAGE_NAME"
 
-local type InferenceExperimentStatus = "Creating" | "Created" | "Updating" | "Running" | "Starting" | "Stopping" | "Completed" | "Cancelled"
+local type StudioLifecycleConfigAppType = "JupyterServer" | "KernelGateway" | "CodeEditor" | "JupyterLab"
 
-local type NotebookInstanceStatus = "Pending" | "InService" | "Stopping" | "Stopped" | "Failed" | "Deleting" | "Updating"
-
-local type ListWorkteamsSortByOptions = "Name" | "CreateDate"
+local type AppNetworkAccessType = "PublicInternetOnly" | "VpcOnly"
 
 local type ProcessingJobStatus = "InProgress" | "Completed" | "Failed" | "Stopping" | "Stopped"
 
-local type SortActionsBy = "Name" | "CreationTime"
+local type ProjectSortBy = "Name" | "CreationTime"
 
-local type ListAIRecommendationJobsSortBy = "Name" | "CreationTime" | "Status"
+local type ClusterEventResourceType = "Cluster" | "InstanceGroup" | "Instance"
 
-local type InferenceComponentSortKey = "Name" | "CreationTime" | "Status"
+local type MonitoringExecutionSortKey = "CreationTime" | "ScheduledTime" | "Status"
 
-local type SortExperimentsBy = "Name" | "CreationTime"
+local type IsTrackingServerActive = "Active" | "Inactive"
 
-local type InferenceExperimentType = "ShadowMode"
+local type HumanTaskUiStatus = "Active" | "Deleting"
 
-local type EndpointSortKey = "Name" | "CreationTime" | "Status"
+local type CodeRepositorySortBy = "Name" | "CreationTime" | "LastModifiedTime"
 
-local type ProblemType = "BinaryClassification" | "MulticlassClassification" | "Regression"
+local type ListLabelingJobsForWorkteamSortByOptions = "CreationTime"
 
-local type SkipModelValidation = "All" | "None"
+local type TrainingJobSortByOptions = "Name" | "CreationTime" | "Status" | "FinalObjectiveMetricValue"
 
-local type ModelPackageRegistrationType = "Logged" | "Registered"
+local type InferenceExperimentStopDesiredState = "Completed" | "Cancelled"
 
-local type ReservedCapacityStatus = "Pending" | "Active" | "Scheduled" | "Expired" | "Failed"
+local type AutoMLJobStatus = "Completed" | "InProgress" | "Failed" | "Stopped" | "Stopping"
 
-local type LabelingJobStatus = "Initializing" | "InProgress" | "Completed" | "Failed" | "Stopping" | "Stopped"
-
-local type ActionStatus = "Unknown" | "InProgress" | "Completed" | "Failed" | "Stopping" | "Stopped"
-
-local type ModelCardExportJobSortBy = "Name" | "CreationTime" | "Status"
-
-local type ProfilingStatus = "Enabled" | "Disabled"
-
-local type EventSortBy = "EventTime"
-
-local type SortTrialsBy = "Name" | "CreationTime"
+local type SortPipelinesBy = "Name" | "CreationTime"
 
 local type ReservedCapacityInstanceType = "ml.p4d.24xlarge" | "ml.p5.48xlarge" | "ml.p5e.48xlarge" | "ml.p5en.48xlarge" | "ml.trn1.32xlarge" | "ml.trn2.48xlarge" | "ml.p6-b200.48xlarge" | "ml.p4de.24xlarge" | "ml.p6e-gb200.36xlarge" | "ml.p5.4xlarge" | "ml.p6-b300.48xlarge"
 
-local type AutoMLSortBy = "Name" | "CreationTime" | "Status"
-
-local type WorkforceIpAddressType = "ipv4" | "dualstack"
-
-local type ModelCardSortBy = "Name" | "CreationTime"
+local type ClusterNodeProvisioningMode = "Continuous"
 
 local type SpaceSortKey = "CreationTime" | "LastModifiedTime"
 
-local type AppStatus = "Deleted" | "Deleting" | "Failed" | "InService" | "Pending"
+local type HubContentType = "Model" | "Notebook" | "ModelReference" | "DataSet" | "JsonDoc"
 
-local type ProjectSortBy = "Name" | "CreationTime"
+local type UserProfileSortKey = "CreationTime" | "LastModifiedTime"
 
-local type DirectInternetAccess = "Enabled" | "Disabled"
+local type AutoMLSortOrder = "Ascending" | "Descending"
 
-local type ListLabelingJobsForWorkteamSortByOptions = "CreationTime"
+local type SortInferenceExperimentsBy = "Name" | "CreationTime" | "Status"
+
+local type ModelPackageType = "Versioned" | "Unversioned" | "Both"
+
+local type SortContextsBy = "Name" | "CreationTime"
+
+local type HubContentStatus = "Available" | "Importing" | "Deleting" | "ImportFailed" | "DeleteFailed" | "PendingImport" | "PendingDelete"
+
+local type ListAIBenchmarkJobsSortBy = "Name" | "CreationTime" | "Status"
+
+local type MonitoringAlertHistorySortKey = "CreationTime" | "Status"
+
+local type SortBy = "Name" | "CreationTime" | "Status"
+
+local type ModelPackageGroupStatus = "Pending" | "InProgress" | "Completed" | "Failed" | "Deleting" | "DeleteFailed"
+
+local type OfflineStoreStatusValue = "Active" | "Blocked" | "Disabled"
+
+local type SortClusterSchedulerConfigBy = "Name" | "CreationTime" | "Status"
+
+local type VolumeAttachmentStatus = "attaching" | "attached" | "detaching" | "detached" | "busy"
+
+local type ImageVersionStatus = "CREATING" | "CREATED" | "CREATE_FAILED" | "DELETING" | "DELETE_FAILED"
+
+local type ImageVersionSortOrder = "ASCENDING" | "DESCENDING"
+
+local type StudioLifecycleConfigSortKey = "CreationTime" | "LastModifiedTime" | "Name"
+
+local type CandidateSortBy = "CreationTime" | "Status" | "FinalObjectiveMetricValue"
+
+local type ListWorkteamsSortByOptions = "Name" | "CreateDate"
+
+local type WarmPoolResourceStatus = "Available" | "Terminated" | "Reused" | "InUse"
+
+local type EndpointConfigSortKey = "Name" | "CreationTime"
+
+local type ModelPackageSortBy = "Name" | "CreationTime"
+
+local type OptimizationJobDeploymentInstanceType = "ml.p4d.24xlarge" | "ml.p4de.24xlarge" | "ml.p5.48xlarge" | "ml.p5e.48xlarge" | "ml.p5en.48xlarge" | "ml.g4dn.xlarge" | "ml.g4dn.2xlarge" | "ml.g4dn.4xlarge" | "ml.g4dn.8xlarge" | "ml.g4dn.12xlarge" | "ml.g4dn.16xlarge" | "ml.g5.xlarge" | "ml.g5.2xlarge" | "ml.g5.4xlarge" | "ml.g5.8xlarge" | "ml.g5.12xlarge" | "ml.g5.16xlarge" | "ml.g5.24xlarge" | "ml.g5.48xlarge" | "ml.g6.xlarge" | "ml.g6.2xlarge" | "ml.g6.4xlarge" | "ml.g6.8xlarge" | "ml.g6.12xlarge" | "ml.g6.16xlarge" | "ml.g6.24xlarge" | "ml.g6.48xlarge" | "ml.g6e.xlarge" | "ml.g6e.2xlarge" | "ml.g6e.4xlarge" | "ml.g6e.8xlarge" | "ml.g6e.12xlarge" | "ml.g6e.16xlarge" | "ml.g6e.24xlarge" | "ml.g6e.48xlarge" | "ml.inf2.xlarge" | "ml.inf2.8xlarge" | "ml.inf2.24xlarge" | "ml.inf2.48xlarge" | "ml.trn1.2xlarge" | "ml.trn1.32xlarge" | "ml.trn1n.32xlarge"
+
+local type FeatureGroupSortBy = "Name" | "FeatureGroupStatus" | "OfflineStoreStatus" | "CreationTime"
+
+local type ExecutionStatus = "Pending" | "Completed" | "CompletedWithViolations" | "InProgress" | "Failed" | "Stopping" | "Stopped"
+
+local type TrackingServerMaintenanceStatus = "MaintenanceInProgress" | "MaintenanceComplete" | "MaintenanceFailed"
 
 local type SpaceStatus = "Deleting" | "Failed" | "InService" | "Pending" | "Updating" | "Update_Failed" | "Delete_Failed"
 
 local type ModelCardExportJobSortOrder = "Ascending" | "Descending"
 
-local type ExecutionStatus = "Pending" | "Completed" | "CompletedWithViolations" | "InProgress" | "Failed" | "Stopping" | "Stopped"
-
-local type OptimizationJobStatus = "INPROGRESS" | "COMPLETED" | "FAILED" | "STARTING" | "STOPPING" | "STOPPED"
-
-local type EdgePackagingJobStatus = "STARTING" | "INPROGRESS" | "COMPLETED" | "FAILED" | "STOPPING" | "STOPPED"
-
-local type MonitoringType = "DataQuality" | "ModelQuality" | "ModelBias" | "ModelExplainability"
-
-local type MonitoringScheduleSortKey = "Name" | "CreationTime" | "Status"
-
 local type ImageSortOrder = "ASCENDING" | "DESCENDING"
-
-local type SortArtifactsBy = "CreationTime"
-
-local type ScheduleStatus = "Pending" | "Failed" | "Scheduled" | "Stopped"
-
-local type CandidateSortBy = "CreationTime" | "Status" | "FinalObjectiveMetricValue"
-
-local type SortMlflowAppBy = "Name" | "CreationTime" | "Status"
-
-local type SchedulerResourceStatus = "Creating" | "CreateFailed" | "CreateRollbackFailed" | "Created" | "Updating" | "UpdateFailed" | "UpdateRollbackFailed" | "Updated" | "Deleting" | "DeleteFailed" | "DeleteRollbackFailed" | "Deleted"
-
-local type AppSortKey = "CreationTime"
-
-local type FeatureStatus = "ENABLED" | "DISABLED"
-
-local type AlgorithmStatus = "Pending" | "InProgress" | "Completed" | "Failed" | "Deleting"
-
-local type TrackingServerStatus = "Creating" | "Created" | "CreateFailed" | "Updating" | "Updated" | "UpdateFailed" | "Deleting" | "DeleteFailed" | "Stopping" | "Stopped" | "StopFailed" | "Starting" | "Started" | "StartFailed" | "MaintenanceInProgress" | "MaintenanceComplete" | "MaintenanceFailed"
-
-local type UserProfileSortKey = "CreationTime" | "LastModifiedTime"
-
-local type SortPipelineExecutionsBy = "CreationTime" | "PipelineExecutionArn"
-
-local type DomainStatus = "Deleting" | "Failed" | "InService" | "Pending" | "Updating" | "Update_Failed" | "Delete_Failed"
-
-local type Processor = "CPU" | "GPU"
-
-local type NotebookInstanceSortKey = "Name" | "CreationTime" | "Status"
-
-local type WarmPoolResourceStatus = "Available" | "Terminated" | "Reused" | "InUse"
-
-local type TagPropagation = "ENABLED" | "DISABLED"
-
-local type ImageVersionSortOrder = "ASCENDING" | "DESCENDING"
-
-local type AppType = "JupyterServer" | "KernelGateway" | "DetailedProfiler" | "TensorBoard" | "CodeEditor" | "JupyterLab" | "RStudioServerPro" | "RSessionGateway" | "Canvas"
-
-local type ImageVersionStatus = "CREATING" | "CREATED" | "CREATE_FAILED" | "DELETING" | "DELETE_FAILED"
-
-local type SortInferenceExperimentsBy = "Name" | "CreationTime" | "Status"
-
-local type ClusterNodeRecovery = "Automatic" | "None"
-
-local type SortAssociationsBy = "SourceArn" | "DestinationArn" | "SourceType" | "DestinationType" | "CreationTime"
-
-local type ReservedCapacityType = "UltraServer" | "Instance"
-
-local type ModelPackageGroupSortBy = "Name" | "CreationTime"
-
-local type TrainingPlanSortOrder = "Ascending" | "Descending"
-
-local type MonitoringAlertStatus = "InAlert" | "OK"
-
-local type ListCompilationJobsSortBy = "Name" | "CreationTime" | "Status"
 
 local type UserProfileStatus = "Deleting" | "Failed" | "InService" | "Pending" | "Updating" | "Update_Failed" | "Delete_Failed"
 
-local type HubStatus = "InService" | "Creating" | "Updating" | "Deleting" | "CreateFailed" | "UpdateFailed" | "DeleteFailed"
+local type SortAssociationsBy = "SourceArn" | "DestinationArn" | "SourceType" | "DestinationType" | "CreationTime"
 
-local type ClusterEventResourceType = "Cluster" | "InstanceGroup" | "Instance"
+local type ClusterNodeRecovery = "Automatic" | "None"
 
-local type OfflineStoreStatusValue = "Active" | "Blocked" | "Disabled"
-
-local type AppSecurityGroupManagement = "Service" | "Customer"
-
-local type FeatureGroupStatus = "Creating" | "Created" | "CreateFailed" | "Deleting" | "DeleteFailed"
-
-local type NotebookInstanceLifecycleConfigSortKey = "Name" | "CreationTime" | "LastModifiedTime"
-
-local type AutoMLSortOrder = "Ascending" | "Descending"
+local type AutoMLSortBy = "Name" | "CreationTime" | "Status"
 
 local type AutoMLJobSecondaryStatus = "Starting" | "MaxCandidatesReached" | "Failed" | "Stopped" | "MaxAutoMLJobRuntimeReached" | "Stopping" | "CandidateDefinitionsGenerated" | "Completed" | "ExplainabilityError" | "DeployingModel" | "ModelDeploymentError" | "GeneratingModelInsightsReport" | "ModelInsightsError" | "AnalyzingData" | "FeatureEngineering" | "ModelTuning" | "GeneratingExplainabilityReport" | "TrainingModels" | "PreTraining"
 
-local type CodeRepositorySortBy = "Name" | "CreationTime" | "LastModifiedTime"
+local type AuthMode = "SSO" | "IAM"
 
-local type TrackingServerMaintenanceStatus = "MaintenanceInProgress" | "MaintenanceComplete" | "MaintenanceFailed"
+local type MonitoringJobDefinitionSortKey = "Name" | "CreationTime"
 
-local type HubContentSortBy = "HubContentName" | "CreationTime" | "HubContentStatus"
+local type ModelCardSortBy = "Name" | "CreationTime"
 
-local type SortTrialComponentsBy = "Name" | "CreationTime"
+local type SortPipelineExecutionsBy = "CreationTime" | "PipelineExecutionArn"
 
-local type TrainingPlanSortBy = "TrainingPlanName" | "StartTime" | "Status"
+local type SkipModelValidation = "All" | "None"
 
-local type ModelPackageSortBy = "Name" | "CreationTime"
+local type AppStatus = "Deleted" | "Deleting" | "Failed" | "InService" | "Pending"
 
-local type ImageStatus = "CREATING" | "CREATED" | "CREATE_FAILED" | "UPDATING" | "UPDATE_FAILED" | "DELETING" | "DELETE_FAILED"
+local type ListWorkforcesSortByOptions = "Name" | "CreateDate"
+
+local type ReservedCapacityStatus = "Pending" | "Active" | "Scheduled" | "Expired" | "Failed"
+
+local type ModelCardExportJobSortBy = "Name" | "CreationTime" | "Status"
+
+local type ModelCardSortOrder = "Ascending" | "Descending"
+
+local type EndpointSortKey = "Name" | "CreationTime" | "Status"
+
+local type SortExperimentsBy = "Name" | "CreationTime"
+
+local type ActionStatus = "Unknown" | "InProgress" | "Completed" | "Failed" | "Stopping" | "Stopped"
+
+local type LabelingJobStatus = "Initializing" | "InProgress" | "Completed" | "Failed" | "Stopping" | "Stopped"
+
+local type RecommendationStepType = "BENCHMARK"
+
+local type ModelPackageRegistrationType = "Logged" | "Registered"
+
+local type ListAIRecommendationJobsSortBy = "Name" | "CreationTime" | "Status"
+
+local type ProblemType = "BinaryClassification" | "MulticlassClassification" | "Regression"
+
+local type AlgorithmSortBy = "Name" | "CreationTime"
+
+local type EventSortBy = "EventTime"
+
+local type ImageVersionSortBy = "CREATION_TIME" | "LAST_MODIFIED_TIME" | "VERSION"
+
+local type ClusterStatus = "Creating" | "Deleting" | "Failed" | "InService" | "RollingBack" | "SystemUpdating" | "Updating"
+
+local type SortOrder = "Ascending" | "Descending"
+
+local type SecondaryStatus = "Starting" | "LaunchingMLInstances" | "PreparingTrainingStack" | "Downloading" | "DownloadingTrainingImage" | "Training" | "Uploading" | "Stopping" | "Stopped" | "MaxRuntimeExceeded" | "Completed" | "Failed" | "Interrupted" | "MaxWaitTimeExceeded" | "Updating" | "Restarting" | "Pending"
+
+local type SortActionsBy = "Name" | "CreationTime"
+
+local type PartnerAppAuthType = "IAM"
+
+local type AppSortKey = "CreationTime"
+
+local type NotebookInstanceStatus = "Pending" | "InService" | "Stopping" | "Stopped" | "Failed" | "Deleting" | "Updating"
+
+local type InferenceExperimentType = "ShadowMode"
+
+local type InferenceExperimentStatus = "Creating" | "Created" | "Updating" | "Running" | "Starting" | "Stopping" | "Completed" | "Cancelled"
+
+local type AppImageConfigSortKey = "CreationTime" | "LastModifiedTime" | "Name"
+
+local type Direction = "Both" | "Ascendants" | "Descendants"
+
+local type ModelPackageStatus = "Pending" | "InProgress" | "Completed" | "Failed" | "Deleting"
+
+local type JobType = "TRAINING" | "INFERENCE" | "NOTEBOOK_KERNEL"
+
+local type FeatureType = "Integral" | "Fractional" | "String"
+
+local type AutoMLProblemTypeConfigName = "ImageClassification" | "TextClassification" | "TimeSeriesForecasting" | "Tabular" | "TextGeneration"
+
+local type ListCompilationJobsSortBy = "Name" | "CreationTime" | "Status"
+
+local type WorkforceIpAddressType = "ipv4" | "dualstack"
+
+local type DirectInternetAccess = "Enabled" | "Disabled"
 
 local type PipelineExecutionStatus = "Executing" | "Stopping" | "Stopped" | "Failed" | "Succeeded"
+
+local type TrainingPlanStatus = "Pending" | "Active" | "Scheduled" | "Expired" | "Failed"
+
+local type AIBenchmarkJobStatus = "InProgress" | "Completed" | "Failed" | "Stopping" | "Stopped"
+
+local type HubStatus = "InService" | "Creating" | "Updating" | "Deleting" | "CreateFailed" | "UpdateFailed" | "DeleteFailed"
+
+local type SortTrialsBy = "Name" | "CreationTime"
+
+local type SortQuotaBy = "Name" | "CreationTime" | "Status" | "ClusterArn"
+
+local type ProfilingStatus = "Enabled" | "Disabled"
 
 local type ProjectStatus = "Pending" | "CreateInProgress" | "CreateCompleted" | "CreateFailed" | "DeleteInProgress" | "DeleteFailed" | "DeleteCompleted" | "UpdateInProgress" | "UpdateCompleted" | "UpdateFailed"
 
 local type SearchSortOrder = "Ascending" | "Descending"
 
-local type OptimizationJobDeploymentInstanceType = "ml.p4d.24xlarge" | "ml.p4de.24xlarge" | "ml.p5.48xlarge" | "ml.p5e.48xlarge" | "ml.p5en.48xlarge" | "ml.g4dn.xlarge" | "ml.g4dn.2xlarge" | "ml.g4dn.4xlarge" | "ml.g4dn.8xlarge" | "ml.g4dn.12xlarge" | "ml.g4dn.16xlarge" | "ml.g5.xlarge" | "ml.g5.2xlarge" | "ml.g5.4xlarge" | "ml.g5.8xlarge" | "ml.g5.12xlarge" | "ml.g5.16xlarge" | "ml.g5.24xlarge" | "ml.g5.48xlarge" | "ml.g6.xlarge" | "ml.g6.2xlarge" | "ml.g6.4xlarge" | "ml.g6.8xlarge" | "ml.g6.12xlarge" | "ml.g6.16xlarge" | "ml.g6.24xlarge" | "ml.g6.48xlarge" | "ml.g6e.xlarge" | "ml.g6e.2xlarge" | "ml.g6e.4xlarge" | "ml.g6e.8xlarge" | "ml.g6e.12xlarge" | "ml.g6e.16xlarge" | "ml.g6e.24xlarge" | "ml.g6e.48xlarge" | "ml.inf2.xlarge" | "ml.inf2.8xlarge" | "ml.inf2.24xlarge" | "ml.inf2.48xlarge" | "ml.trn1.2xlarge" | "ml.trn1.32xlarge" | "ml.trn1n.32xlarge"
+local type AppSecurityGroupManagement = "Service" | "Customer"
 
-local type OrderKey = "Ascending" | "Descending"
+local type AppType = "JupyterServer" | "KernelGateway" | "DetailedProfiler" | "TensorBoard" | "CodeEditor" | "JupyterLab" | "RStudioServerPro" | "RSessionGateway" | "Canvas"
 
-local type HubSortBy = "HubName" | "CreationTime" | "HubStatus" | "AccountIdOwner"
+local type NotebookInstanceLifecycleConfigSortKey = "Name" | "CreationTime" | "LastModifiedTime"
 
-local type HumanTaskUiStatus = "Active" | "Deleting"
+local type ModelApprovalStatus = "Approved" | "Rejected" | "PendingManualApproval"
 
-local type TransformJobStatus = "InProgress" | "Completed" | "Failed" | "Stopping" | "Stopped"
+local type Processor = "CPU" | "GPU"
 
-local type JobType = "TRAINING" | "INFERENCE" | "NOTEBOOK_KERNEL"
-
-local type TrackingServerSize = "Small" | "Medium" | "Large"
-
-local type EndpointStatus = "OutOfService" | "Creating" | "Updating" | "SystemUpdating" | "RollingBack" | "InService" | "Deleting" | "Failed" | "UpdateRollbackFailed"
-
-local type ResourceCatalogSortOrder = "Ascending" | "Descending"
-
-local type ListEdgeDeploymentPlansSortBy = "NAME" | "DEVICE_FLEET_NAME" | "CREATION_TIME" | "LAST_MODIFIED_TIME"
-
-local type HubContentSupportStatus = "Supported" | "Deprecated" | "Restricted"
-
-local type SortContextsBy = "Name" | "CreationTime"
-
-local type SortBy = "Name" | "CreationTime" | "Status"
+local type HyperParameterTuningJobStatus = "Completed" | "InProgress" | "Failed" | "Stopped" | "Stopping" | "Deleting" | "DeleteFailed"
 
 local type NotebookInstanceSortOrder = "Ascending" | "Descending"
 
-local type ListAIBenchmarkJobsSortBy = "Name" | "CreationTime" | "Status"
+local type AlgorithmStatus = "Pending" | "InProgress" | "Completed" | "Failed" | "Deleting"
+
+local type ModelCardExportJobStatus = "InProgress" | "Completed" | "Failed"
+
+local type InferenceComponentSortKey = "Name" | "CreationTime" | "Status"
+
+local type HubContentSortBy = "HubContentName" | "CreationTime" | "HubContentStatus"
+
+local type BatchStrategy = "MultiRecord" | "SingleRecord"
+
+local type NotebookInstanceSortKey = "Name" | "CreationTime" | "Status"
+
+local type CompilationJobStatus = "INPROGRESS" | "COMPLETED" | "FAILED" | "STARTING" | "STOPPING" | "STOPPED"
+
+local type MlflowAppStatus = "Creating" | "Created" | "CreateFailed" | "Updating" | "Updated" | "UpdateFailed" | "Deleting" | "DeleteFailed" | "Deleted"
+
+local type SchedulerResourceStatus = "Creating" | "CreateFailed" | "CreateRollbackFailed" | "Created" | "Updating" | "UpdateFailed" | "UpdateRollbackFailed" | "Updated" | "Deleting" | "DeleteFailed" | "DeleteRollbackFailed" | "Deleted"
+
+local type ListEdgeDeploymentPlansSortBy = "NAME" | "DEVICE_FLEET_NAME" | "CREATION_TIME" | "LAST_MODIFIED_TIME"
+
+local type AIRecommendationJobStatus = "InProgress" | "Completed" | "Failed" | "Stopping" | "Stopped"
+
+local type AccountDefaultStatus = "ENABLED" | "DISABLED"
+
+local type ReservedCapacityType = "UltraServer" | "Instance"
+
+local type TrainingPlanSortOrder = "Ascending" | "Descending"
+
+local type ResourceType = "TrainingJob" | "Experiment" | "ExperimentTrial" | "ExperimentTrialComponent" | "Endpoint" | "Model" | "ModelPackage" | "ModelPackageGroup" | "Pipeline" | "PipelineExecution" | "FeatureGroup" | "FeatureMetadata" | "Image" | "ImageVersion" | "Project" | "HyperParameterTuningJob" | "ModelCard" | "PipelineVersion"
+
+local type ModelSortKey = "Name" | "CreationTime"
+
+local type VendorGuidance = "NOT_PROVIDED" | "STABLE" | "TO_BE_ARCHIVED" | "ARCHIVED"
+
+local type EdgePackagingJobStatus = "STARTING" | "INPROGRESS" | "COMPLETED" | "FAILED" | "STOPPING" | "STOPPED"
+
+local type OptimizationJobStatus = "INPROGRESS" | "COMPLETED" | "FAILED" | "STARTING" | "STOPPING" | "STOPPED"
+
+local type FlowDefinitionStatus = "Initializing" | "Active" | "Failed" | "Deleting"
+
+local type SagemakerServicecatalogStatus = "Enabled" | "Disabled"
+
+local type TrainingJobStatus = "InProgress" | "Completed" | "Failed" | "Stopping" | "Stopped" | "Deleting"
+
+local type ProjectSortOrder = "Ascending" | "Descending"
+
+local type InferenceComponentStatus = "InService" | "Creating" | "Updating" | "Failed" | "Deleting"
+
+local type FeatureStatus = "ENABLED" | "DISABLED"
+
+local type FeatureGroupStatus = "Creating" | "Created" | "CreateFailed" | "Deleting" | "DeleteFailed"
+
+local type MonitoringType = "DataQuality" | "ModelQuality" | "ModelBias" | "ModelExplainability"
+
+local type ListAIWorkloadConfigsSortBy = "Name" | "CreationTime"
+
+local type ClusterSortBy = "CREATION_TIME" | "NAME"
+
+local type IPAddressType = "ipv4" | "dualstack"
+
+local type MonitoringAlertStatus = "InAlert" | "OK"
+
+local type MaintenanceStatus = "MaintenanceInProgress" | "MaintenanceComplete" | "MaintenanceFailed"
+
+local type FeatureGroupSortOrder = "Ascending" | "Descending"
+
+local type ListEdgePackagingJobsSortBy = "NAME" | "MODEL_NAME" | "CREATION_TIME" | "LAST_MODIFIED_TIME" | "STATUS"
+
+local type MonitoringScheduleSortKey = "Name" | "CreationTime" | "Status"
+
+local type PartnerAppStatus = "Creating" | "Updating" | "Deleting" | "Available" | "Failed" | "UpdateFailed" | "Deleted"
+
+local type SortMlflowAppBy = "Name" | "CreationTime" | "Status"
+
+local type SortLineageGroupsBy = "Name" | "CreationTime"
+
+local type DomainStatus = "Deleting" | "Failed" | "InService" | "Pending" | "Updating" | "Update_Failed" | "Delete_Failed"
+
+local type CandidateStatus = "Completed" | "InProgress" | "Failed" | "Stopped" | "Stopping"
+
+local type ModelPackageGroupSortBy = "Name" | "CreationTime"
+
+local type RootAccess = "Enabled" | "Disabled"
+
+local type NotebookInstanceLifecycleConfigSortOrder = "Ascending" | "Descending"
+
+local type TrackingServerStatus = "Creating" | "Created" | "CreateFailed" | "Updating" | "Updated" | "UpdateFailed" | "Deleting" | "DeleteFailed" | "Stopping" | "Stopped" | "StopFailed" | "Starting" | "Started" | "StartFailed" | "MaintenanceInProgress" | "MaintenanceComplete" | "MaintenanceFailed"
 
 local type CodeRepositorySortOrder = "Ascending" | "Descending"
 
@@ -7516,53 +7512,57 @@ local type ActivationState = "Enabled" | "Disabled"
 
 local type HyperParameterTuningJobSortByOptions = "Name" | "Status" | "CreationTime"
 
-local type SortTrackingServerBy = "Name" | "CreationTime" | "Status"
-
-local type HubContentType = "Model" | "Notebook" | "ModelReference" | "DataSet" | "JsonDoc"
-
-local type SortPipelinesBy = "Name" | "CreationTime"
-
-local type CrossAccountFilterOption = "SameAccount" | "CrossAccount"
-
-local type HubContentStatus = "Available" | "Importing" | "Deleting" | "ImportFailed" | "DeleteFailed" | "PendingImport" | "PendingDelete"
-
-local type ClusterSortBy = "CREATION_TIME" | "NAME"
-
-local type PartnerAppType = "lakera-guard" | "comet" | "deepchecks-llm-evaluation" | "fiddler"
-
-local type MonitoringExecutionSortKey = "CreationTime" | "ScheduledTime" | "Status"
-
-local type SortLineageGroupsBy = "Name" | "CreationTime"
-
 local type ModelRegistrationMode = "AutoModelRegistrationEnabled" | "AutoModelRegistrationDisabled"
 
-local type ListEdgePackagingJobsSortBy = "NAME" | "MODEL_NAME" | "CREATION_TIME" | "LAST_MODIFIED_TIME" | "STATUS"
-
-local type AssociationEdgeType = "ContributedTo" | "AssociatedWith" | "DerivedFrom" | "Produced" | "SameAs"
-
-local type IPAddressType = "ipv4" | "dualstack"
-
-local type ListAIWorkloadConfigsSortBy = "Name" | "CreationTime"
-
-local type RootAccess = "Enabled" | "Disabled"
-
-local type InferenceExperimentStopDesiredState = "Completed" | "Cancelled"
-
-local type AutoMLProblemTypeConfigName = "ImageClassification" | "TextClassification" | "TimeSeriesForecasting" | "Tabular" | "TextGeneration"
-
-local type ListInferenceRecommendationsJobsSortBy = "Name" | "CreationTime" | "Status"
-
-local type CandidateStatus = "Completed" | "InProgress" | "Failed" | "Stopped" | "Stopping"
-
-local type FeatureGroupSortOrder = "Ascending" | "Descending"
-
-local type MaintenanceStatus = "MaintenanceInProgress" | "MaintenanceComplete" | "MaintenanceFailed"
+local type PipelineStatus = "Active" | "Deleting"
 
 local type RecommendationJobType = "Default" | "Advanced"
 
+local type ModelCardStatus = "Draft" | "PendingReview" | "Approved" | "Archived"
+
+local type TagPropagation = "ENABLED" | "DISABLED"
+
 local type ModelCardProcessingStatus = "DeleteInProgress" | "DeletePending" | "ContentDeleted" | "ExportJobsDeleted" | "DeleteCompleted" | "DeleteFailed"
 
-local type AppNetworkAccessType = "PublicInternetOnly" | "VpcOnly"
+local type RecommendationJobStatus = "PENDING" | "IN_PROGRESS" | "COMPLETED" | "FAILED" | "STOPPING" | "STOPPED" | "DELETING" | "DELETED"
+
+local type ListInferenceRecommendationsJobsSortBy = "Name" | "CreationTime" | "Status"
+
+local type TrackingServerSize = "Small" | "Medium" | "Large"
+
+local type SortTrackingServerBy = "Name" | "CreationTime" | "Status"
+
+local type ListDeviceFleetsSortBy = "NAME" | "CREATION_TIME" | "LAST_MODIFIED_TIME"
+
+local type HubSortBy = "HubName" | "CreationTime" | "HubStatus" | "AccountIdOwner"
+
+local type OrderKey = "Ascending" | "Descending"
+
+local type ResourceCatalogSortOrder = "Ascending" | "Descending"
+
+local type TransformJobStatus = "InProgress" | "Completed" | "Failed" | "Stopping" | "Stopped"
+
+local type PartnerAppType = "lakera-guard" | "comet" | "deepchecks-llm-evaluation" | "fiddler"
+
+local type AssociationEdgeType = "ContributedTo" | "AssociatedWith" | "DerivedFrom" | "Produced" | "SameAs"
+
+local type InstanceType = "ml.t2.medium" | "ml.t2.large" | "ml.t2.xlarge" | "ml.t2.2xlarge" | "ml.t3.medium" | "ml.t3.large" | "ml.t3.xlarge" | "ml.t3.2xlarge" | "ml.m4.xlarge" | "ml.m4.2xlarge" | "ml.m4.4xlarge" | "ml.m4.10xlarge" | "ml.m4.16xlarge" | "ml.m5.xlarge" | "ml.m5.2xlarge" | "ml.m5.4xlarge" | "ml.m5.12xlarge" | "ml.m5.24xlarge" | "ml.m5d.large" | "ml.m5d.xlarge" | "ml.m5d.2xlarge" | "ml.m5d.4xlarge" | "ml.m5d.8xlarge" | "ml.m5d.12xlarge" | "ml.m5d.16xlarge" | "ml.m5d.24xlarge" | "ml.c4.xlarge" | "ml.c4.2xlarge" | "ml.c4.4xlarge" | "ml.c4.8xlarge" | "ml.c5.xlarge" | "ml.c5.2xlarge" | "ml.c5.4xlarge" | "ml.c5.9xlarge" | "ml.c5.18xlarge" | "ml.c5d.xlarge" | "ml.c5d.2xlarge" | "ml.c5d.4xlarge" | "ml.c5d.9xlarge" | "ml.c5d.18xlarge" | "ml.p2.xlarge" | "ml.p2.8xlarge" | "ml.p2.16xlarge" | "ml.p3.2xlarge" | "ml.p3.8xlarge" | "ml.p3.16xlarge" | "ml.p3dn.24xlarge" | "ml.g4dn.xlarge" | "ml.g4dn.2xlarge" | "ml.g4dn.4xlarge" | "ml.g4dn.8xlarge" | "ml.g4dn.12xlarge" | "ml.g4dn.16xlarge" | "ml.r5.large" | "ml.r5.xlarge" | "ml.r5.2xlarge" | "ml.r5.4xlarge" | "ml.r5.8xlarge" | "ml.r5.12xlarge" | "ml.r5.16xlarge" | "ml.r5.24xlarge" | "ml.g5.xlarge" | "ml.g5.2xlarge" | "ml.g5.4xlarge" | "ml.g5.8xlarge" | "ml.g5.16xlarge" | "ml.g5.12xlarge" | "ml.g5.24xlarge" | "ml.g5.48xlarge" | "ml.inf1.xlarge" | "ml.inf1.2xlarge" | "ml.inf1.6xlarge" | "ml.inf1.24xlarge" | "ml.trn1.2xlarge" | "ml.trn1.32xlarge" | "ml.trn1n.32xlarge" | "ml.inf2.xlarge" | "ml.inf2.8xlarge" | "ml.inf2.24xlarge" | "ml.inf2.48xlarge" | "ml.p4d.24xlarge" | "ml.p4de.24xlarge" | "ml.p5.48xlarge" | "ml.p6-b200.48xlarge" | "ml.m6i.large" | "ml.m6i.xlarge" | "ml.m6i.2xlarge" | "ml.m6i.4xlarge" | "ml.m6i.8xlarge" | "ml.m6i.12xlarge" | "ml.m6i.16xlarge" | "ml.m6i.24xlarge" | "ml.m6i.32xlarge" | "ml.m7i.large" | "ml.m7i.xlarge" | "ml.m7i.2xlarge" | "ml.m7i.4xlarge" | "ml.m7i.8xlarge" | "ml.m7i.12xlarge" | "ml.m7i.16xlarge" | "ml.m7i.24xlarge" | "ml.m7i.48xlarge" | "ml.c6i.large" | "ml.c6i.xlarge" | "ml.c6i.2xlarge" | "ml.c6i.4xlarge" | "ml.c6i.8xlarge" | "ml.c6i.12xlarge" | "ml.c6i.16xlarge" | "ml.c6i.24xlarge" | "ml.c6i.32xlarge" | "ml.c7i.large" | "ml.c7i.xlarge" | "ml.c7i.2xlarge" | "ml.c7i.4xlarge" | "ml.c7i.8xlarge" | "ml.c7i.12xlarge" | "ml.c7i.16xlarge" | "ml.c7i.24xlarge" | "ml.c7i.48xlarge" | "ml.r6i.large" | "ml.r6i.xlarge" | "ml.r6i.2xlarge" | "ml.r6i.4xlarge" | "ml.r6i.8xlarge" | "ml.r6i.12xlarge" | "ml.r6i.16xlarge" | "ml.r6i.24xlarge" | "ml.r6i.32xlarge" | "ml.r7i.large" | "ml.r7i.xlarge" | "ml.r7i.2xlarge" | "ml.r7i.4xlarge" | "ml.r7i.8xlarge" | "ml.r7i.12xlarge" | "ml.r7i.16xlarge" | "ml.r7i.24xlarge" | "ml.r7i.48xlarge" | "ml.m6id.large" | "ml.m6id.xlarge" | "ml.m6id.2xlarge" | "ml.m6id.4xlarge" | "ml.m6id.8xlarge" | "ml.m6id.12xlarge" | "ml.m6id.16xlarge" | "ml.m6id.24xlarge" | "ml.m6id.32xlarge" | "ml.c6id.large" | "ml.c6id.xlarge" | "ml.c6id.2xlarge" | "ml.c6id.4xlarge" | "ml.c6id.8xlarge" | "ml.c6id.12xlarge" | "ml.c6id.16xlarge" | "ml.c6id.24xlarge" | "ml.c6id.32xlarge" | "ml.r6id.large" | "ml.r6id.xlarge" | "ml.r6id.2xlarge" | "ml.r6id.4xlarge" | "ml.r6id.8xlarge" | "ml.r6id.12xlarge" | "ml.r6id.16xlarge" | "ml.r6id.24xlarge" | "ml.r6id.32xlarge" | "ml.g6.xlarge" | "ml.g6.2xlarge" | "ml.g6.4xlarge" | "ml.g6.8xlarge" | "ml.g6.12xlarge" | "ml.g6.16xlarge" | "ml.g6.24xlarge" | "ml.g6.48xlarge"
+
+local type ListOptimizationJobsSortBy = "Name" | "CreationTime" | "Status"
+
+local type HubContentSupportStatus = "Supported" | "Deprecated" | "Restricted"
+
+local type ScheduleStatus = "Pending" | "Failed" | "Scheduled" | "Stopped"
+
+local type EndpointStatus = "OutOfService" | "Creating" | "Updating" | "SystemUpdating" | "RollingBack" | "InService" | "Deleting" | "Failed" | "UpdateRollbackFailed"
+
+local type ModelCardVersionSortBy = "Version"
+
+local type ImageStatus = "CREATING" | "CREATED" | "CREATE_FAILED" | "UPDATING" | "UPDATE_FAILED" | "DELETING" | "DELETE_FAILED"
+
+local type SortArtifactsBy = "CreationTime"
+
+local type CrossAccountFilterOption = "SameAccount" | "CrossAccount"
 
 local record M
     AddAssociationInput: AddAssociationInput

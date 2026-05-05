@@ -2369,37 +2369,37 @@ local type FirewallDomainImportOperation = "REPLACE"
 
 local type MutationProtectionStatus = "ENABLED" | "DISABLED"
 
-local type FirewallDomainListStatus = "COMPLETE" | "COMPLETE_IMPORT_FAILED" | "IMPORTING" | "DELETING" | "UPDATING"
+local type RuleTypeOption = "FORWARD" | "SYSTEM" | "RECURSIVE" | "DELEGATE"
+
+local type ResolverEndpointType = "IPV6" | "IPV4" | "DUALSTACK"
 
 local type BlockResponse = "NODATA" | "NXDOMAIN" | "OVERRIDE"
 
+local type Validation = "ENABLE" | "DISABLE" | "USE_LOCAL_RESOURCE_SETTING"
+
 local type ConfidenceThreshold = "LOW" | "MEDIUM" | "HIGH"
 
-local type FirewallDomainRedirectionAction = "INSPECT_REDIRECTION_DOMAIN" | "TRUST_REDIRECTION_DOMAIN"
+local type FirewallDomainListStatus = "COMPLETE" | "COMPLETE_IMPORT_FAILED" | "IMPORTING" | "DELETING" | "UPDATING"
+
+local type FirewallRuleGroupAssociationStatus = "COMPLETE" | "DELETING" | "UPDATING"
 
 local type ResolverEndpointDirection = "INBOUND" | "OUTBOUND" | "INBOUND_DELEGATION"
 
-local type Action = "ALLOW" | "BLOCK" | "ALERT"
+local type FirewallDomainUpdateOperation = "ADD" | "REMOVE" | "REPLACE"
+
+local type AutodefinedReverseFlag = "ENABLE" | "DISABLE" | "USE_LOCAL_RESOURCE_SETTING"
+
+local type FirewallFailOpenStatus = "ENABLED" | "DISABLED" | "USE_LOCAL_RESOURCE_SETTING"
+
+local type BlockOverrideDnsType = "CNAME"
 
 local type DnsThreatProtection = "DGA" | "DNS_TUNNELING" | "DICTIONARY_DGA"
 
 local type SortOrder = "ASCENDING" | "DESCENDING"
 
-local type ResolverEndpointType = "IPV6" | "IPV4" | "DUALSTACK"
+local type Action = "ALLOW" | "BLOCK" | "ALERT"
 
-local type BlockOverrideDnsType = "CNAME"
-
-local type FirewallRuleGroupAssociationStatus = "COMPLETE" | "DELETING" | "UPDATING"
-
-local type FirewallFailOpenStatus = "ENABLED" | "DISABLED" | "USE_LOCAL_RESOURCE_SETTING"
-
-local type AutodefinedReverseFlag = "ENABLE" | "DISABLE" | "USE_LOCAL_RESOURCE_SETTING"
-
-local type RuleTypeOption = "FORWARD" | "SYSTEM" | "RECURSIVE" | "DELEGATE"
-
-local type FirewallDomainUpdateOperation = "ADD" | "REMOVE" | "REPLACE"
-
-local type Validation = "ENABLE" | "DISABLE" | "USE_LOCAL_RESOURCE_SETTING"
+local type FirewallDomainRedirectionAction = "INSPECT_REDIRECTION_DOMAIN" | "TRUST_REDIRECTION_DOMAIN"
 
 local record M
     AssociateFirewallRuleGroupInput: AssociateFirewallRuleGroupInput

@@ -2922,19 +2922,19 @@ end
 
 local type StartReplicationTaskTypeValue = "start-replication" | "resume-processing" | "reload-target"
 
+local type OriginTypeValue = "SOURCE" | "TARGET"
+
 local type DmsSslModeValue = "none" | "require" | "verify-ca" | "verify-full"
 
-local type ReplicationEndpointTypeValue = "source" | "target"
+local type ReloadOptionValue = "data-reload" | "validate-only"
 
 local type MigrationTypeValue = "full-load" | "cdc" | "full-load-and-cdc"
 
 local type StartReplicationMigrationTypeValue = "reload-target" | "resume-processing" | "start-replication"
 
+local type ReplicationEndpointTypeValue = "source" | "target"
+
 local type SourceType = "replication-instance"
-
-local type ReloadOptionValue = "data-reload" | "validate-only"
-
-local type OriginTypeValue = "SOURCE" | "TARGET"
 
 local record M
     AddTagsToResourceInput: AddTagsToResourceInput

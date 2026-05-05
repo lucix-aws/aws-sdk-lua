@@ -1256,35 +1256,35 @@ local record ValidationException
     reason: string
 end
 
-local type ParquetType = "COLUMNAR"
-
 local type QueryStateInput = "ALL" | "RUNNING" | "WAITING" | "CANCELLING"
 
-local type ExplainMode = "STATIC" | "DETAILS"
-
 local type QueryState = "RUNNING" | "WAITING" | "CANCELLING"
+
+local type QueryLanguage = "OPEN_CYPHER"
+
+local type GraphSummaryMode = "BASIC" | "DETAILED"
+
+local type ExplainMode = "STATIC" | "DETAILS"
 
 local type PlanCacheType = "ENABLED" | "DISABLED" | "AUTO"
 
 local type ExportFormat = "PARQUET" | "CSV"
 
-local type GraphStatus = "CREATING" | "AVAILABLE" | "DELETING" | "RESETTING" | "UPDATING" | "SNAPSHOTTING" | "FAILED" | "IMPORTING" | "STARTING" | "STOPPING" | "STOPPED"
-
 local type ImportTaskStatus = "INITIALIZING" | "EXPORTING" | "ANALYZING_DATA" | "IMPORTING" | "REPROVISIONING" | "ROLLING_BACK" | "SUCCEEDED" | "FAILED" | "CANCELLING" | "CANCELLED" | "DELETED"
 
 local type Format = "CSV" | "OPEN_CYPHER" | "PARQUET" | "NTRIPLES"
 
-local type SnapshotStatus = "CREATING" | "AVAILABLE" | "DELETING" | "FAILED"
-
 local type PrivateGraphEndpointStatus = "CREATING" | "AVAILABLE" | "DELETING" | "FAILED"
 
-local type GraphSummaryMode = "BASIC" | "DETAILED"
+local type BlankNodeHandling = "convertToIri"
+
+local type GraphStatus = "CREATING" | "AVAILABLE" | "DELETING" | "RESETTING" | "UPDATING" | "SNAPSHOTTING" | "FAILED" | "IMPORTING" | "STARTING" | "STOPPING" | "STOPPED"
+
+local type SnapshotStatus = "CREATING" | "AVAILABLE" | "DELETING" | "FAILED"
+
+local type ParquetType = "COLUMNAR"
 
 local type ExportTaskStatus = "INITIALIZING" | "EXPORTING" | "SUCCEEDED" | "FAILED" | "CANCELLING" | "CANCELLED" | "DELETED"
-
-local type QueryLanguage = "OPEN_CYPHER"
-
-local type BlankNodeHandling = "convertToIri"
 
 local record M
     CancelExportTaskInput: CancelExportTaskInput

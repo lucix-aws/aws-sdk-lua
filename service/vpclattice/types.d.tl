@@ -91,6 +91,7 @@ local record CreateResourceGatewayInput
     securityGroupIds: {string}
     ipAddressType: string
     ipv4AddressesPerEni: number
+    resourceConfigDnsResolution: string
     tags: {string : string}
 end
 
@@ -104,6 +105,7 @@ local record CreateResourceGatewayOutput
     securityGroupIds: {string}
     ipAddressType: string
     ipv4AddressesPerEni: number
+    resourceConfigDnsResolution: string
 end
 
 local record CreateRuleInput
@@ -471,9 +473,12 @@ local record GetResourceGatewayOutput
     status: string
     vpcId: string
     subnetIds: {string}
+    serviceManaged: boolean
+    managedBy: string
     securityGroupIds: {string}
     ipAddressType: string
     ipv4AddressesPerEni: number
+    resourceConfigDnsResolution: string
     createdAt: number
     lastUpdatedAt: number
 end
@@ -3293,6 +3298,8 @@ local record ValidationException
     reason: string
     fieldList: {ValidationExceptionField}
 end
+
+local type ResourceConfigurationType = "GROUP" | "CHILD" | "SINGLE" | "ARN"
 
 local record M
     BatchUpdateRuleInput: BatchUpdateRuleInput

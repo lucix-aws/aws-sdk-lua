@@ -6576,6 +6576,13 @@ M.CreateFunctionInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateFunctionInput", "Tags"),
+            type = "structure",
+            name = "Tags",
+            target_id = id.from(_N, "Tags"),
+            target = M.Tags,
+        }),
     },
 })
 
@@ -7179,6 +7186,13 @@ M.CreateKeyValueStoreInput = schema.new({
             name = "ImportSource",
             target_id = id.from(_N, "ImportSource"),
             target = M.ImportSource,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateKeyValueStoreInput", "Tags"),
+            type = "structure",
+            name = "Tags",
+            target_id = id.from(_N, "Tags"),
+            target = M.Tags,
         }),
     },
 })

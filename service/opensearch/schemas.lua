@@ -2643,6 +2643,12 @@ M.VPCOptions = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
+        EgressEnabled = schema.new({
+            id = id.from(_N, "VPCOptions", "EgressEnabled"),
+            type = "boolean",
+            name = "EgressEnabled",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -2986,6 +2992,12 @@ M.VPCDerivedInfo = schema.new({
             name = "SecurityGroupIds",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        EgressEnabled = schema.new({
+            id = id.from(_N, "VPCDerivedInfo", "EgressEnabled"),
+            type = "boolean",
+            name = "EgressEnabled",
+            target_id = prelude.Boolean.id,
         }),
     },
 })

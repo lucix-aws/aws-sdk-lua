@@ -1155,11 +1155,11 @@ end
 
 local type UriSeparator = "UNDERSCORE" | "HYPHEN"
 
+local type InputType = "HLS" | "CMAF"
+
 local type HarvestJobStatus = "QUEUED" | "IN_PROGRESS" | "CANCELLED" | "COMPLETED" | "FAILED"
 
 local type ContainerType = "TS" | "CMAF" | "ISM"
-
-local type InputType = "HLS" | "CMAF"
 
 local record M
     CancelHarvestJobInput: CancelHarvestJobInput

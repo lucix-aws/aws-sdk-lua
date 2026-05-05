@@ -1333,9 +1333,9 @@ local record UnauthorizedClientException
     Message: string
 end
 
-local type AllowMessages = "ALL" | "NONE"
-
 local type AppInstanceUserEndpointType = "APNS" | "APNS_SANDBOX" | "GCM"
+
+local type AllowMessages = "ALL" | "NONE"
 
 local record M
     CreateAppInstanceInput: CreateAppInstanceInput

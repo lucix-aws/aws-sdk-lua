@@ -187,6 +187,8 @@ M.__listOfInputRequestDestinationRoute = schema.new({ type = "list", list_member
 
 M.__listOfMediaResourceNeighbor = schema.new({ type = "list", list_member = M.MediaResourceNeighbor })
 
+M.MediaConnectRouterOutputConnections = schema.new({ type = "map", map_key = prelude.String, map_value = M.MediaConnectRouterOutputConnection })
+
 M.__listOfInputDestinationRoute = schema.new({ type = "list", list_member = M.InputDestinationRoute })
 
 M.__listOfThumbnail = schema.new({ type = "list", list_member = M.Thumbnail })
@@ -10793,6 +10795,22 @@ M.OutputGroup = schema.new({
     },
 })
 
+M.MediaConnectRouterOutputConnection = schema.new({
+    id = id.from(_N, "MediaConnectRouterOutputConnection"),
+    type = "structure",
+    members = {
+        RouterInputArn = schema.new({
+            id = id.from(_N, "MediaConnectRouterOutputConnection", "RouterInputArn"),
+            type = "string",
+            name = "RouterInputArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "routerInputArn" },
+            },
+        }),
+    },
+})
+
 M.PipelineDetail = schema.new({
     id = id.from(_N, "PipelineDetail"),
     type = "structure",
@@ -10850,6 +10868,17 @@ M.PipelineDetail = schema.new({
             target = M.ChannelEngineVersionResponse,
             traits = {
                 [traits.JSON_NAME] = { name = "channelEngineVersion" },
+            },
+        }),
+        MediaConnectRouterOutputConnectionMap = schema.new({
+            id = id.from(_N, "PipelineDetail", "MediaConnectRouterOutputConnectionMap"),
+            type = "map",
+            name = "MediaConnectRouterOutputConnectionMap",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.MediaConnectRouterOutputConnection,
+            traits = {
+                [traits.JSON_NAME] = { name = "mediaConnectRouterOutputConnectionMap" },
             },
         }),
     },

@@ -222,6 +222,10 @@ local record ValidationException
     FieldList: {ValidationExceptionField}
 end
 
+local type GeometryFormat = "FlexiblePolyline" | "Simple"
+
+local type MeasurementSystem = "Metric" | "Imperial"
+
 local record M
     CalculateIsolinesInput: CalculateIsolinesInput
     CalculateIsolinesOutput: CalculateIsolinesOutput

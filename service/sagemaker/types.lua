@@ -1088,6 +1088,7 @@ M.AppInstanceType = {
     ML_R6ID_16XLARGE = "ml.r6id.16xlarge",
     ML_R6ID_24XLARGE = "ml.r6id.24xlarge",
     ML_R6ID_32XLARGE = "ml.r6id.32xlarge",
+    ML_P5_4XLARGE = "ml.p5.4xlarge",
 }
 
 M.AppStatus = {

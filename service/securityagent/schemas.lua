@@ -2598,6 +2598,12 @@ M.TargetDomain = schema.new({
             name = "verificationStatus",
             target_id = prelude.String.id,
         }),
+        verificationStatusReason = schema.new({
+            id = id.from(_N, "TargetDomain", "verificationStatusReason"),
+            type = "string",
+            name = "verificationStatusReason",
+            target_id = prelude.String.id,
+        }),
         verificationDetails = schema.new({
             id = id.from(_N, "TargetDomain", "verificationDetails"),
             type = "structure",
@@ -3063,6 +3069,12 @@ M.CreateTargetDomainOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        verificationStatusReason = schema.new({
+            id = id.from(_N, "CreateTargetDomainOutput", "verificationStatusReason"),
+            type = "string",
+            name = "verificationStatusReason",
+            target_id = prelude.String.id,
         }),
         verificationDetails = schema.new({
             id = id.from(_N, "CreateTargetDomainOutput", "verificationDetails"),
@@ -5010,6 +5022,12 @@ M.UpdateTargetDomainOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        verificationStatusReason = schema.new({
+            id = id.from(_N, "UpdateTargetDomainOutput", "verificationStatusReason"),
+            type = "string",
+            name = "verificationStatusReason",
+            target_id = prelude.String.id,
+        }),
         verificationDetails = schema.new({
             id = id.from(_N, "UpdateTargetDomainOutput", "verificationDetails"),
             type = "structure",
@@ -5364,6 +5382,12 @@ M.VerifyTargetDomainOutput = schema.new({
             id = id.from(_N, "VerifyTargetDomainOutput", "status"),
             type = "string",
             name = "status",
+            target_id = prelude.String.id,
+        }),
+        verificationStatusReason = schema.new({
+            id = id.from(_N, "VerifyTargetDomainOutput", "verificationStatusReason"),
+            type = "string",
+            name = "verificationStatusReason",
             target_id = prelude.String.id,
         }),
     },

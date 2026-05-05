@@ -46,11 +46,63 @@ function M.new(cfg)
     return self
 end
 
+function Client:acceptAgreementCancellationRequest(input, options)
+    return self:invokeOperation(input, {
+        name = "AcceptAgreementCancellationRequest",
+        input_schema = schemas.AcceptAgreementCancellationRequestInput,
+        output_schema = schemas.AcceptAgreementCancellationRequestOutput,
+        http_method = "POST",
+        http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
+    }, options)
+end
+
+function Client:acceptAgreementPaymentRequest(input, options)
+    return self:invokeOperation(input, {
+        name = "AcceptAgreementPaymentRequest",
+        input_schema = schemas.AcceptAgreementPaymentRequestInput,
+        output_schema = schemas.AcceptAgreementPaymentRequestOutput,
+        http_method = "POST",
+        http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
+    }, options)
+end
+
+function Client:acceptAgreementRequest(input, options)
+    return self:invokeOperation(input, {
+        name = "AcceptAgreementRequest",
+        input_schema = schemas.AcceptAgreementRequestInput,
+        output_schema = schemas.AcceptAgreementRequestOutput,
+        http_method = "POST",
+        http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
+    }, options)
+end
+
 function Client:batchCreateBillingAdjustmentRequest(input, options)
     return self:invokeOperation(input, {
         name = "BatchCreateBillingAdjustmentRequest",
         input_schema = schemas.BatchCreateBillingAdjustmentRequestInput,
         output_schema = schemas.BatchCreateBillingAdjustmentRequestOutput,
+        http_method = "POST",
+        http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
+    }, options)
+end
+
+function Client:cancelAgreement(input, options)
+    return self:invokeOperation(input, {
+        name = "CancelAgreement",
+        input_schema = schemas.CancelAgreementInput,
+        output_schema = schemas.CancelAgreementOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -85,6 +137,19 @@ function Client:cancelAgreementPaymentRequest(input, options)
     }, options)
 end
 
+function Client:createAgreementRequest(input, options)
+    return self:invokeOperation(input, {
+        name = "CreateAgreementRequest",
+        input_schema = schemas.CreateAgreementRequestInput,
+        output_schema = schemas.CreateAgreementRequestOutput,
+        http_method = "POST",
+        http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
+    }, options)
+end
+
 function Client:describeAgreement(input, options)
     return self:invokeOperation(input, {
         name = "DescribeAgreement",
@@ -103,6 +168,19 @@ function Client:getAgreementCancellationRequest(input, options)
         name = "GetAgreementCancellationRequest",
         input_schema = schemas.GetAgreementCancellationRequestInput,
         output_schema = schemas.GetAgreementCancellationRequestOutput,
+        http_method = "POST",
+        http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
+    }, options)
+end
+
+function Client:getAgreementEntitlements(input, options)
+    return self:invokeOperation(input, {
+        name = "GetAgreementEntitlements",
+        input_schema = schemas.GetAgreementEntitlementsInput,
+        output_schema = schemas.GetAgreementEntitlementsOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {
@@ -163,6 +241,19 @@ function Client:listAgreementCancellationRequests(input, options)
     }, options)
 end
 
+function Client:listAgreementCharges(input, options)
+    return self:invokeOperation(input, {
+        name = "ListAgreementCharges",
+        input_schema = schemas.ListAgreementChargesInput,
+        output_schema = schemas.ListAgreementChargesOutput,
+        http_method = "POST",
+        http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
+    }, options)
+end
+
 function Client:listAgreementInvoiceLineItems(input, options)
     return self:invokeOperation(input, {
         name = "ListAgreementInvoiceLineItems",
@@ -202,6 +293,32 @@ function Client:listBillingAdjustmentRequests(input, options)
     }, options)
 end
 
+function Client:rejectAgreementCancellationRequest(input, options)
+    return self:invokeOperation(input, {
+        name = "RejectAgreementCancellationRequest",
+        input_schema = schemas.RejectAgreementCancellationRequestInput,
+        output_schema = schemas.RejectAgreementCancellationRequestOutput,
+        http_method = "POST",
+        http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
+    }, options)
+end
+
+function Client:rejectAgreementPaymentRequest(input, options)
+    return self:invokeOperation(input, {
+        name = "RejectAgreementPaymentRequest",
+        input_schema = schemas.RejectAgreementPaymentRequestInput,
+        output_schema = schemas.RejectAgreementPaymentRequestOutput,
+        http_method = "POST",
+        http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
+    }, options)
+end
+
 function Client:searchAgreements(input, options)
     return self:invokeOperation(input, {
         name = "SearchAgreements",
@@ -233,6 +350,19 @@ function Client:sendAgreementPaymentRequest(input, options)
         name = "SendAgreementPaymentRequest",
         input_schema = schemas.SendAgreementPaymentRequestInput,
         output_schema = schemas.SendAgreementPaymentRequestOutput,
+        http_method = "POST",
+        http_path = "/",
+        effective_auth_schemes = {
+            "aws.auth#sigv4",
+        },
+    }, options)
+end
+
+function Client:updatePurchaseOrders(input, options)
+    return self:invokeOperation(input, {
+        name = "UpdatePurchaseOrders",
+        input_schema = schemas.UpdatePurchaseOrdersInput,
+        output_schema = schemas.UpdatePurchaseOrdersOutput,
         http_method = "POST",
         http_path = "/",
         effective_auth_schemes = {

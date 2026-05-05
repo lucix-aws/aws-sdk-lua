@@ -94278,6 +94278,9 @@ M.ModifyManagedResourceVisibilityInput = schema.new({
             type = "string",
             name = "DefaultVisibility",
             target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -97636,6 +97639,12 @@ M.ModifyVpnConnectionOptionsInput = schema.new({
             id = id.from(_N, "ModifyVpnConnectionOptionsInput", "RemoteIpv6NetworkCidr"),
             type = "string",
             name = "RemoteIpv6NetworkCidr",
+            target_id = prelude.String.id,
+        }),
+        TunnelBandwidth = schema.new({
+            id = id.from(_N, "ModifyVpnConnectionOptionsInput", "TunnelBandwidth"),
+            type = "string",
+            name = "TunnelBandwidth",
             target_id = prelude.String.id,
         }),
         DryRun = schema.new({
