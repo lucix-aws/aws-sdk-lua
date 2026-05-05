@@ -3095,17 +3095,11 @@ local record TooManyRequestsException
     Message: string
 end
 
-local type IntegrationType = "AWS" | "HTTP" | "MOCK" | "HTTP_PROXY" | "AWS_PROXY"
+local type ProtocolType = "WEBSOCKET" | "HTTP"
 
-local type AuthorizationType = "NONE" | "AWS_IAM" | "CUSTOM" | "JWT"
+local type TryItState = "ENABLED" | "DISABLED"
 
-local type AuthorizerType = "REQUEST" | "JWT"
-
-local type RoutingMode = "API_MAPPING_ONLY" | "ROUTING_RULE_ONLY" | "ROUTING_RULE_THEN_API_MAPPING"
-
-local type IpAddressType = "ipv4" | "dualstack"
-
-local type Status = "AVAILABLE" | "IN_PROGRESS" | "FAILED"
+local type DeploymentStatus = "PENDING" | "FAILED" | "DEPLOYED"
 
 local type PublishStatus = "PUBLISHED" | "PUBLISH_IN_PROGRESS" | "PUBLISH_FAILED" | "DISABLE_IN_PROGRESS" | "DISABLE_FAILED" | "DISABLED"
 
@@ -3113,17 +3107,23 @@ local type PassthroughBehavior = "WHEN_NO_MATCH" | "NEVER" | "WHEN_NO_TEMPLATES"
 
 local type ConnectionType = "INTERNET" | "VPC_LINK"
 
-local type TryItState = "ENABLED" | "DISABLED"
+local type RoutingMode = "API_MAPPING_ONLY" | "ROUTING_RULE_ONLY" | "ROUTING_RULE_THEN_API_MAPPING"
 
-local type ProtocolType = "WEBSOCKET" | "HTTP"
+local type IntegrationType = "AWS" | "HTTP" | "MOCK" | "HTTP_PROXY" | "AWS_PROXY"
 
-local type DeploymentStatus = "PENDING" | "FAILED" | "DEPLOYED"
+local type IpAddressType = "ipv4" | "dualstack"
+
+local type AuthorizationType = "NONE" | "AWS_IAM" | "CUSTOM" | "JWT"
+
+local type AuthorizerType = "REQUEST" | "JWT"
+
+local type Status = "AVAILABLE" | "IN_PROGRESS" | "FAILED"
+
+local type VpcLinkStatus = "PENDING" | "AVAILABLE" | "DELETING" | "FAILED" | "INACTIVE"
 
 local type VpcLinkVersion = "V2"
 
 local type ContentHandlingStrategy = "CONVERT_TO_BINARY" | "CONVERT_TO_TEXT"
-
-local type VpcLinkStatus = "PENDING" | "AVAILABLE" | "DELETING" | "FAILED" | "INACTIVE"
 
 local record M
     CreateApiInput: CreateApiInput

@@ -659,9 +659,9 @@ local type DatastoreStatus = "CREATING" | "CREATE_FAILED" | "ACTIVE" | "DELETING
 
 local type JobStatus = "SUBMITTED" | "IN_PROGRESS" | "COMPLETED" | "FAILED"
 
-local type StorageTier = "FREQUENT_ACCESS" | "ARCHIVE_INSTANT_ACCESS"
-
 local type ImageSetState = "ACTIVE" | "LOCKED" | "DELETED"
+
+local type StorageTier = "FREQUENT_ACCESS" | "ARCHIVE_INSTANT_ACCESS"
 
 local record M
     CopyImageSetInput: CopyImageSetInput

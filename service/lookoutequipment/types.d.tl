@@ -1772,6 +1772,18 @@ local record ValidationException
     Message: string
 end
 
+local type ModelQuality = "QUALITY_THRESHOLD_MET" | "CANNOT_DETERMINE_QUALITY" | "POOR_QUALITY_DETECTED"
+
+local type RetrainingSchedulerStatus = "PENDING" | "RUNNING" | "STOPPING" | "STOPPED"
+
+local type ModelVersionStatus = "IN_PROGRESS" | "SUCCESS" | "FAILED" | "IMPORT_IN_PROGRESS" | "CANCELED"
+
+local type LatestInferenceResult = "ANOMALOUS" | "NORMAL"
+
+local type InferenceSchedulerStatus = "PENDING" | "RUNNING" | "STOPPING" | "STOPPED"
+
+local type InferenceDataImportStrategy = "NO_IMPORT" | "ADD_WHEN_EMPTY" | "OVERWRITE"
+
 local type ModelVersionSourceType = "TRAINING" | "RETRAINING" | "IMPORT"
 
 local type IngestionJobStatus = "IN_PROGRESS" | "SUCCESS" | "FAILED" | "IMPORT_IN_PROGRESS"
@@ -1780,27 +1792,15 @@ local type LabelRating = "ANOMALY" | "NO_ANOMALY" | "NEUTRAL"
 
 local type DatasetStatus = "CREATED" | "INGESTION_IN_PROGRESS" | "ACTIVE" | "IMPORT_IN_PROGRESS"
 
-local type LatestInferenceResult = "ANOMALOUS" | "NORMAL"
-
-local type InferenceDataImportStrategy = "NO_IMPORT" | "ADD_WHEN_EMPTY" | "OVERWRITE"
-
-local type ModelVersionStatus = "IN_PROGRESS" | "SUCCESS" | "FAILED" | "IMPORT_IN_PROGRESS" | "CANCELED"
-
-local type ModelQuality = "QUALITY_THRESHOLD_MET" | "CANNOT_DETERMINE_QUALITY" | "POOR_QUALITY_DETECTED"
-
-local type RetrainingSchedulerStatus = "PENDING" | "RUNNING" | "STOPPING" | "STOPPED"
-
-local type InferenceSchedulerStatus = "PENDING" | "RUNNING" | "STOPPING" | "STOPPED"
+local type ModelPromoteMode = "MANAGED" | "MANUAL"
 
 local type AutoPromotionResult = "MODEL_PROMOTED" | "MODEL_NOT_PROMOTED" | "RETRAINING_INTERNAL_ERROR" | "RETRAINING_CUSTOMER_ERROR" | "RETRAINING_CANCELLED"
 
-local type ModelPromoteMode = "MANAGED" | "MANUAL"
-
 local type DataUploadFrequency = "PT5M" | "PT10M" | "PT15M" | "PT30M" | "PT1H"
 
-local type InferenceExecutionStatus = "IN_PROGRESS" | "SUCCESS" | "FAILED"
-
 local type ModelStatus = "IN_PROGRESS" | "SUCCESS" | "FAILED" | "IMPORT_IN_PROGRESS"
+
+local type InferenceExecutionStatus = "IN_PROGRESS" | "SUCCESS" | "FAILED"
 
 local record M
     CreateDatasetInput: CreateDatasetInput

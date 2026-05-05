@@ -1607,11 +1607,11 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type ResourceStatus = "AVAILABLE" | "FAILED" | "PROVISIONING" | "TERMINATED" | "TERMINATING" | "UPDATING" | "MAINTENANCE_IN_PROGRESS"
-
 local type DbNodeResourceStatus = "AVAILABLE" | "FAILED" | "PROVISIONING" | "TERMINATED" | "TERMINATING" | "UPDATING" | "STOPPING" | "STOPPED" | "STARTING"
 
 local type Access = "ENABLED" | "DISABLED"
+
+local type ResourceStatus = "AVAILABLE" | "FAILED" | "PROVISIONING" | "TERMINATED" | "TERMINATING" | "UPDATING" | "MAINTENANCE_IN_PROGRESS"
 
 local type SupportedAwsIntegration = "KmsTde"
 

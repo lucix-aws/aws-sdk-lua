@@ -3022,11 +3022,11 @@ local record ValidationException
     Message: string
 end
 
-local type ConsistencyLevel = "SERIALIZABLE" | "EVENTUAL"
+local type ObjectType = "NODE" | "LEAF_NODE" | "POLICY" | "INDEX"
 
 local type DirectoryState = "ENABLED" | "DISABLED" | "DELETED"
 
-local type ObjectType = "NODE" | "LEAF_NODE" | "POLICY" | "INDEX"
+local type ConsistencyLevel = "SERIALIZABLE" | "EVENTUAL"
 
 local type FacetStyle = "STATIC" | "DYNAMIC"
 

@@ -634,9 +634,9 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type SoftwareSetUpdateMode = "USE_LATEST" | "USE_DESIRED"
-
 local type SoftwareSetValidationStatus = "VALIDATED" | "NOT_VALIDATED"
+
+local type SoftwareSetUpdateMode = "USE_LATEST" | "USE_DESIRED"
 
 local type TargetDeviceStatus = "DEREGISTERED" | "ARCHIVED"
 

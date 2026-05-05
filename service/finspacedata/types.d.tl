@@ -1122,17 +1122,17 @@ local record ValidationException
     reason: string
 end
 
-local type IngestionStatus = "PENDING" | "FAILED" | "SUCCESS" | "RUNNING" | "STOP_REQUESTED"
-
-local type ChangeType = "REPLACE" | "APPEND" | "MODIFY"
-
 local type DatasetKind = "TABULAR" | "NON_TABULAR"
 
 local type locationType = "INGESTION" | "SAGEMAKER"
 
+local type ChangeType = "REPLACE" | "APPEND" | "MODIFY"
+
 local type UserStatus = "CREATING" | "ENABLED" | "DISABLED"
 
 local type DatasetStatus = "PENDING" | "FAILED" | "SUCCESS" | "RUNNING"
+
+local type IngestionStatus = "PENDING" | "FAILED" | "SUCCESS" | "RUNNING" | "STOP_REQUESTED"
 
 local type ApiAccess = "ENABLED" | "DISABLED"
 

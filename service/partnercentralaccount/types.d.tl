@@ -1228,15 +1228,15 @@ local record ValidationException
     ErrorDetails: {ValidationError}
 end
 
+local type PrimarySolutionType = "SOFTWARE_PRODUCTS" | "CONSULTING_SERVICES" | "PROFESSIONAL_SERVICES" | "MANAGED_SERVICES" | "HARDWARE_PRODUCTS" | "COMMUNICATION_SERVICES" | "VALUE_ADDED_RESALE_AWS_SERVICES" | "TRAINING_SERVICES"
+
+local type ProfileVisibility = "PRIVATE" | "PUBLIC"
+
 local type ParticipantType = "SENDER" | "RECEIVER"
 
 local type AccessType = "ALLOW_ALL" | "DENY_ALL" | "ALLOW_BY_DEFAULT_DENY_SOME"
 
 local type InvitationStatus = "PENDING" | "ACCEPTED" | "REJECTED" | "CANCELED" | "EXPIRED"
-
-local type ProfileVisibility = "PRIVATE" | "PUBLIC"
-
-local type PrimarySolutionType = "SOFTWARE_PRODUCTS" | "CONSULTING_SERVICES" | "PROFESSIONAL_SERVICES" | "MANAGED_SERVICES" | "HARDWARE_PRODUCTS" | "COMMUNICATION_SERVICES" | "VALUE_ADDED_RESALE_AWS_SERVICES" | "TRAINING_SERVICES"
 
 local type ConnectionType = "OPPORTUNITY_COLLABORATION" | "SUBSIDIARY"
 

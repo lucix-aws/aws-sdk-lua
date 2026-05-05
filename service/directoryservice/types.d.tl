@@ -3031,27 +3031,15 @@ local record UnsupportedOperationException
     RequestId: string
 end
 
-local type DirectorySize = "Small" | "Large"
-
-local type HybridUpdateType = "SelfManagedInstances" | "HybridAdministratorAccount"
+local type ShareMethod = "ORGANIZATIONS" | "HANDSHAKE"
 
 local type LDAPSType = "Client"
 
-local type NetworkType = "Dual-stack" | "IPv4" | "IPv6"
-
-local type DirectoryConfigurationStatus = "Requested" | "Updating" | "Updated" | "Failed" | "Default"
-
-local type ClientAuthenticationType = "SmartCard" | "SmartCardOrPassword"
-
-local type CaEnrollmentPolicyStatus = "InProgress" | "Success" | "Failed" | "Disabling" | "Disabled" | "Impaired"
-
-local type CertificateType = "ClientCertAuth" | "ClientLDAPS"
-
 local type TrustDirection = "One-Way: Outgoing" | "One-Way: Incoming" | "Two-Way"
 
-local type UpdateType = "OS" | "NETWORK" | "SIZE"
+local type NetworkType = "Dual-stack" | "IPv4" | "IPv6"
 
-local type ShareMethod = "ORGANIZATIONS" | "HANDSHAKE"
+local type UpdateType = "OS" | "NETWORK" | "SIZE"
 
 local type SelectiveAuth = "Enabled" | "Disabled"
 
@@ -3060,6 +3048,18 @@ local type TrustType = "Forest" | "External"
 local type DataAccessStatus = "Disabled" | "Disabling" | "Enabled" | "Enabling" | "Failed"
 
 local type DirectoryEdition = "Enterprise" | "Standard" | "Hybrid"
+
+local type ClientAuthenticationType = "SmartCard" | "SmartCardOrPassword"
+
+local type DirectoryConfigurationStatus = "Requested" | "Updating" | "Updated" | "Failed" | "Default"
+
+local type CaEnrollmentPolicyStatus = "InProgress" | "Success" | "Failed" | "Disabling" | "Disabled" | "Impaired"
+
+local type DirectorySize = "Small" | "Large"
+
+local type HybridUpdateType = "SelfManagedInstances" | "HybridAdministratorAccount"
+
+local type CertificateType = "ClientCertAuth" | "ClientLDAPS"
 
 local record M
     AcceptSharedDirectoryInput: AcceptSharedDirectoryInput

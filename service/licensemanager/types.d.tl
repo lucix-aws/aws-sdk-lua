@@ -2374,23 +2374,23 @@ local record ValidationException
     Message: string
 end
 
-local type LicenseAssetGroupStatus = "ACTIVE" | "DISABLED" | "DELETED"
-
-local type LicenseConversionTaskStatus = "IN_PROGRESS" | "SUCCEEDED" | "FAILED"
-
-local type LicenseConfigurationStatus = "AVAILABLE" | "DISABLED"
-
-local type LicenseStatus = "AVAILABLE" | "PENDING_AVAILABLE" | "DEACTIVATED" | "SUSPENDED" | "EXPIRED" | "PENDING_DELETE" | "DELETED"
-
-local type CheckoutType = "PROVISIONAL" | "PERPETUAL"
-
-local type LicenseDeletionStatus = "PENDING_DELETE" | "DELETED"
-
 local type TokenType = "REFRESH_TOKEN"
 
 local type LicenseCountingType = "vCPU" | "Instance" | "Core" | "Socket"
 
 local type GrantStatus = "PENDING_WORKFLOW" | "PENDING_ACCEPT" | "REJECTED" | "ACTIVE" | "FAILED_WORKFLOW" | "DELETED" | "PENDING_DELETE" | "DISABLED" | "WORKFLOW_COMPLETED"
+
+local type CheckoutType = "PROVISIONAL" | "PERPETUAL"
+
+local type LicenseConfigurationStatus = "AVAILABLE" | "DISABLED"
+
+local type LicenseDeletionStatus = "PENDING_DELETE" | "DELETED"
+
+local type LicenseAssetGroupStatus = "ACTIVE" | "DISABLED" | "DELETED"
+
+local type LicenseConversionTaskStatus = "IN_PROGRESS" | "SUCCEEDED" | "FAILED"
+
+local type LicenseStatus = "AVAILABLE" | "PENDING_AVAILABLE" | "DEACTIVATED" | "SUSPENDED" | "EXPIRED" | "PENDING_DELETE" | "DELETED"
 
 local type DigitalSignatureMethod = "JWT_PS384"
 

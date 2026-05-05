@@ -705,11 +705,11 @@ end
 
 local type ConnectionMode = "Public" | "Private"
 
-local type FlowStatus = "Active" | "Deprecated" | "Deleted" | "Draft" | "Errored" | "Suspended"
+local type ConnectorProvisioningType = "LAMBDA"
 
 local type ConnectorType = "Salesforce" | "Singular" | "Slack" | "Redshift" | "S3" | "Marketo" | "Googleanalytics" | "Zendesk" | "Servicenow" | "Datadog" | "Trendmicro" | "Snowflake" | "Dynatrace" | "Infornexus" | "Amplitude" | "Veeva" | "EventBridge" | "LookoutMetrics" | "Upsolver" | "Honeycode" | "CustomerProfiles" | "SAPOData" | "CustomConnector" | "Pardot"
 
-local type ConnectorProvisioningType = "LAMBDA"
+local type FlowStatus = "Active" | "Deprecated" | "Deleted" | "Draft" | "Errored" | "Suspended"
 
 local record M
     CancelFlowExecutionsInput: CancelFlowExecutionsInput

@@ -866,18 +866,6 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type MembershipType = "USER"
-
-local type FindingStatus = "ACTIVE" | "RESOLVED" | "ACCEPTED" | "FALSE_POSITIVE"
-
-local type CodeRemediationStrategy = "AUTOMATIC" | "DISABLED"
-
-local type MembershipTypeFilter = "USER" | "ALL"
-
-local type TargetDomainStatus = "PENDING" | "VERIFIED" | "FAILED" | "UNREACHABLE"
-
-local type ProviderType = "SOURCE_CODE" | "DOCUMENTATION"
-
 local type RiskLevel = "UNKNOWN" | "INFORMATIONAL" | "LOW" | "MEDIUM" | "HIGH" | "CRITICAL"
 
 local type ArtifactType = "TXT" | "PNG" | "JPEG" | "MD" | "PDF" | "DOCX" | "DOC" | "JSON" | "YAML"
@@ -888,9 +876,21 @@ local type DomainVerificationMethod = "DNS_TXT" | "HTTP_ROUTE"
 
 local type Provider = "GITHUB"
 
-local type ResourceType = "CODE_REPOSITORY"
+local type MembershipTypeFilter = "USER" | "ALL"
+
+local type TargetDomainStatus = "PENDING" | "VERIFIED" | "FAILED" | "UNREACHABLE"
+
+local type ProviderType = "SOURCE_CODE" | "DOCUMENTATION"
+
+local type MembershipType = "USER"
+
+local type FindingStatus = "ACTIVE" | "RESOLVED" | "ACCEPTED" | "FALSE_POSITIVE"
+
+local type CodeRemediationStrategy = "AUTOMATIC" | "DISABLED"
 
 local type JobStatus = "IN_PROGRESS" | "STOPPING" | "STOPPED" | "FAILED" | "COMPLETED"
+
+local type ResourceType = "CODE_REPOSITORY"
 
 local type StepName = "PREFLIGHT" | "STATIC_ANALYSIS" | "PENTEST" | "FINALIZING"
 

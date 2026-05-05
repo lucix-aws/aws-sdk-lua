@@ -1856,9 +1856,9 @@ local type DataRetentionActionType = "ENABLE" | "DISABLE" | "PUBKEY_MSG_ACK"
 
 local type SortDirection = "ASC" | "DESC"
 
-local type UserStatus = 1 | 2
-
 local type BotStatus = 1 | 2
+
+local type UserStatus = 1 | 2
 
 local record M
     BatchCreateUserInput: BatchCreateUserInput

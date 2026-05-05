@@ -973,11 +973,11 @@ local record TooManyRequestsException
     message: string
 end
 
-local type BehaviorOnMxFailure = "USE_DEFAULT_VALUE" | "REJECT_MESSAGE"
+local type IdentityType = "EMAIL_ADDRESS" | "DOMAIN" | "MANAGED_DOMAIN"
 
 local type TlsPolicy = "REQUIRE" | "OPTIONAL"
 
-local type IdentityType = "EMAIL_ADDRESS" | "DOMAIN" | "MANAGED_DOMAIN"
+local type BehaviorOnMxFailure = "USE_DEFAULT_VALUE" | "REJECT_MESSAGE"
 
 local type DeliverabilityDashboardAccountStatus = "ACTIVE" | "PENDING_EXPIRATION" | "DISABLED"
 

@@ -1,4 +1,4 @@
-local paginator = require("paginator")
+local paginator = require("smithy.paginator")
 
 local M = {}
 

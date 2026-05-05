@@ -2002,15 +2002,15 @@ end
 
 local type IPAddressVersion = "IPV4" | "IPV6"
 
+local type ResourceType = "APPLICATION_LOAD_BALANCER" | "API_GATEWAY" | "APPSYNC" | "COGNITO_USER_POOL" | "APP_RUNNER_SERVICE" | "VERIFIED_ACCESS_INSTANCE" | "AMPLIFY"
+
 local type LogType = "WAF_LOGS"
-
-local type LogScope = "CUSTOMER" | "SECURITY_LAKE" | "CLOUDWATCH_TELEMETRY_RULE_MANAGED"
-
-local type Scope = "CLOUDFRONT" | "REGIONAL"
 
 local type Platform = "IOS" | "ANDROID"
 
-local type ResourceType = "APPLICATION_LOAD_BALANCER" | "API_GATEWAY" | "APPSYNC" | "COGNITO_USER_POOL" | "APP_RUNNER_SERVICE" | "VERIFIED_ACCESS_INSTANCE" | "AMPLIFY"
+local type Scope = "CLOUDFRONT" | "REGIONAL"
+
+local type LogScope = "CUSTOMER" | "SECURITY_LAKE" | "CLOUDWATCH_TELEMETRY_RULE_MANAGED"
 
 local record M
     AssociateWebACLInput: AssociateWebACLInput

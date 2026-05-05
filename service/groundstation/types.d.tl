@@ -1079,9 +1079,9 @@ local record ResourceNotFoundException
     message: string
 end
 
-local type EphemerisType = "TLE" | "OEM" | "AZ_EL" | "SERVICE_MANAGED"
-
 local type EphemerisStatus = "VALIDATING" | "INVALID" | "ERROR" | "ENABLED" | "DISABLED" | "EXPIRED"
+
+local type EphemerisType = "TLE" | "OEM" | "AZ_EL" | "SERVICE_MANAGED"
 
 local type EphemerisInvalidReason = "METADATA_INVALID" | "TIME_RANGE_INVALID" | "TRAJECTORY_INVALID" | "KMS_KEY_INVALID" | "VALIDATION_ERROR"
 

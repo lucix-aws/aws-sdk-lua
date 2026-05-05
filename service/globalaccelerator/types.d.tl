@@ -1541,11 +1541,11 @@ local record InvalidArgumentException
     Message: string
 end
 
+local type ClientAffinity = "NONE" | "SOURCE_IP"
+
 local type HealthCheckProtocol = "TCP" | "HTTP" | "HTTPS"
 
 local type Protocol = "TCP" | "UDP"
-
-local type ClientAffinity = "NONE" | "SOURCE_IP"
 
 local type IpAddressType = "IPV4" | "DUAL_STACK"
 

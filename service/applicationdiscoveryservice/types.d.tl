@@ -897,11 +897,11 @@ local record ServerInternalErrorException
     message: string
 end
 
-local type DeletionConfigurationItemType = "SERVER"
-
 local type ConfigurationItemType = "SERVER" | "PROCESS" | "CONNECTION" | "APPLICATION"
 
 local type DataSource = "AGENT"
+
+local type DeletionConfigurationItemType = "SERVER"
 
 local record M
     AssociateConfigurationItemsToApplicationInput: AssociateConfigurationItemsToApplicationInput

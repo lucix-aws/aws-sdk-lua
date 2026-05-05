@@ -1265,15 +1265,15 @@ local record ValidationException
     message: string
 end
 
-local type StatementEffect = "Allow" | "Deny"
-
-local type JobType = "BATCH" | "INCREMENTAL" | "DELETE_ONLY"
-
 local type DeleteUniqueIdStatus = "COMPLETED" | "ACCEPTED"
 
 local type ServiceType = "ASSIGNMENT" | "ID_MAPPING"
 
 local type IdNamespaceType = "SOURCE" | "TARGET"
+
+local type JobType = "BATCH" | "INCREMENTAL" | "DELETE_ONLY"
+
+local type StatementEffect = "Allow" | "Deny"
 
 local type ProcessingType = "CONSISTENT" | "EVENTUAL" | "EVENTUAL_NO_LOOKUP"
 

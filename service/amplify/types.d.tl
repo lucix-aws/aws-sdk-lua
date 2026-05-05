@@ -1108,9 +1108,9 @@ local record UnauthorizedException
     message: string
 end
 
-local type JobType = "RELEASE" | "RETRY" | "MANUAL" | "WEB_HOOK"
-
 local type Stage = "PRODUCTION" | "BETA" | "DEVELOPMENT" | "EXPERIMENTAL" | "PULL_REQUEST"
+
+local type JobType = "RELEASE" | "RETRY" | "MANUAL" | "WEB_HOOK"
 
 local type Platform = "WEB" | "WEB_DYNAMIC" | "WEB_COMPUTE"
 

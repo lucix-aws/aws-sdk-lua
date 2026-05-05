@@ -1,10 +1,10 @@
-local awsjson_protocol = require("protocol.awsjson")
-local base_client = require("client")
-local defaults = require("defaults")
-local endpoint = require("endpoint")
+local awsjson_protocol = require("smithy.protocol.awsjson")
+local base_client = require("smithy.client")
+local defaults = require("smithy.defaults")
+local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("kinesis.endpoint_rules")
 local schemas = require("kinesis.schemas")
-local sdk_defaults = require("sdk_defaults")
+local sdk_defaults = require("aws.sdk_defaults")
 
 local M = {}
 

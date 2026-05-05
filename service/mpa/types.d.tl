@@ -714,11 +714,7 @@ local record ValidationException
     Message: string
 end
 
-local type PolicyType = "AWS_MANAGED" | "AWS_RAM"
-
-local type IdentitySourceStatusCode = "ACCESS_DENIED" | "DELETION_FAILED" | "IDC_INSTANCE_NOT_FOUND" | "IDC_INSTANCE_NOT_VALID"
-
-local type ActionCompletionStrategy = "AUTO_COMPLETION_UPON_APPROVAL"
+local type SessionStatus = "PENDING" | "CANCELLED" | "APPROVED" | "FAILED" | "CREATING"
 
 local type IdentitySourceType = "IAM_IDENTITY_CENTER"
 
@@ -728,7 +724,11 @@ local type SessionExecutionStatus = "EXECUTED" | "FAILED" | "PENDING"
 
 local type ApprovalTeamStatus = "ACTIVE" | "INACTIVE" | "DELETING" | "PENDING"
 
-local type SessionStatus = "PENDING" | "CANCELLED" | "APPROVED" | "FAILED" | "CREATING"
+local type PolicyType = "AWS_MANAGED" | "AWS_RAM"
+
+local type IdentitySourceStatusCode = "ACCESS_DENIED" | "DELETION_FAILED" | "IDC_INSTANCE_NOT_FOUND" | "IDC_INSTANCE_NOT_VALID"
+
+local type ActionCompletionStrategy = "AUTO_COMPLETION_UPON_APPROVAL"
 
 local type IdentitySourceStatus = "CREATING" | "ACTIVE" | "DELETING" | "ERROR"
 

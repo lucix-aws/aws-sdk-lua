@@ -1293,19 +1293,19 @@ local record ValidationException
     message: string
 end
 
-local type FlowExecutionStatus = "Running" | "Succeeded" | "Failed" | "TimedOut" | "Aborted"
-
-local type SessionStatus = "ACTIVE" | "EXPIRED" | "ENDED"
-
-local type MemoryType = "SESSION_SUMMARY"
+local type FlowExecutionEventType = "Node" | "Flow"
 
 local type OrchestrationType = "DEFAULT" | "CUSTOM_ORCHESTRATION"
 
-local type FlowExecutionEventType = "Node" | "Flow"
+local type FlowExecutionStatus = "Running" | "Succeeded" | "Failed" | "TimedOut" | "Aborted"
+
+local type MemoryType = "SESSION_SUMMARY"
 
 local type GuadrailAction = "INTERVENED" | "NONE"
 
 local type AgentCollaboration = "SUPERVISOR" | "SUPERVISOR_ROUTER" | "DISABLED"
+
+local type SessionStatus = "ACTIVE" | "EXPIRED" | "ENDED"
 
 local record M
     CreateInvocationInput: CreateInvocationInput

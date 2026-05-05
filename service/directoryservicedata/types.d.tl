@@ -726,9 +726,9 @@ local record ValidationException
     Reason: string
 end
 
-local type GroupScope = "DomainLocal" | "Global" | "Universal" | "BuiltinLocal"
-
 local type UpdateType = "ADD" | "REPLACE" | "REMOVE"
+
+local type GroupScope = "DomainLocal" | "Global" | "Universal" | "BuiltinLocal"
 
 local type GroupType = "Distribution" | "Security"
 

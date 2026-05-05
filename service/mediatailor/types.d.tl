@@ -649,15 +649,15 @@ local record BadRequestException
     Message: string
 end
 
-local type ListPrefetchScheduleType = "SINGLE" | "RECURRING" | "ALL"
-
-local type PlaybackMode = "LOOP" | "LINEAR"
-
-local type Tier = "BASIC" | "STANDARD"
-
 local type PrefetchScheduleType = "SINGLE" | "RECURRING"
 
 local type ChannelState = "RUNNING" | "STOPPED"
+
+local type Tier = "BASIC" | "STANDARD"
+
+local type ListPrefetchScheduleType = "SINGLE" | "RECURRING" | "ALL"
+
+local type PlaybackMode = "LOOP" | "LINEAR"
 
 local type InsertionMode = "STITCHED_ONLY" | "PLAYER_SELECT"
 

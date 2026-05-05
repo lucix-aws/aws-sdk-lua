@@ -1712,15 +1712,15 @@ local record TooManyRequestsException
     message: string
 end
 
-local type TableMaintenanceType = "icebergCompaction" | "icebergSnapshotManagement"
-
-local type TableType = "customer" | "aws"
-
 local type OpenTableFormat = "ICEBERG"
 
 local type TableBucketType = "customer" | "aws"
 
 local type TableRecordExpirationJobStatus = "NotYetRun" | "Successful" | "Failed" | "Disabled"
+
+local type TableMaintenanceType = "icebergCompaction" | "icebergSnapshotManagement"
+
+local type TableType = "customer" | "aws"
 
 local type TableBucketMaintenanceType = "icebergUnreferencedFileRemoval"
 

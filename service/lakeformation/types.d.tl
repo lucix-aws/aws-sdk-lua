@@ -1869,15 +1869,15 @@ local record InvalidInputException
     Message: string
 end
 
-local type ResourceShareType = "FOREIGN" | "ALL"
-
-local type TransactionType = "READ_AND_WRITE" | "READ_ONLY"
-
 local type CredentialsScope = "READ" | "READWRITE"
 
 local type ApplicationStatus = "ENABLED" | "DISABLED"
 
 local type OptimizerType = "COMPACTION" | "GARBAGE_COLLECTION" | "ALL"
+
+local type TransactionType = "READ_AND_WRITE" | "READ_ONLY"
+
+local type ResourceShareType = "FOREIGN" | "ALL"
 
 local type TransactionStatus = "ACTIVE" | "COMMITTED" | "ABORTED" | "COMMIT_IN_PROGRESS"
 

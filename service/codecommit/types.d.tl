@@ -5306,15 +5306,15 @@ local record RepositoryNameRequiredException
     message: string
 end
 
-local type OrderEnum = "ascending" | "descending"
-
 local type PullRequestStatusEnum = "OPEN" | "CLOSED"
 
 local type ConflictDetailLevelTypeEnum = "FILE_LEVEL" | "LINE_LEVEL"
 
+local type SortByEnum = "repositoryName" | "lastModifiedDate"
+
 local type OverrideStatus = "OVERRIDE" | "REVOKE"
 
-local type SortByEnum = "repositoryName" | "lastModifiedDate"
+local type OrderEnum = "ascending" | "descending"
 
 local type ConflictResolutionStrategyTypeEnum = "NONE" | "ACCEPT_SOURCE" | "ACCEPT_DESTINATION" | "AUTOMERGE"
 

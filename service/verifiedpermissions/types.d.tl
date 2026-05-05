@@ -1369,13 +1369,13 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type DeletionProtection = "ENABLED" | "DISABLED"
-
-local type PolicyEffect = "Permit" | "Forbid"
-
 local type AliasState = "Active" | "PendingDeletion"
 
 local type PolicyType = "STATIC" | "TEMPLATE_LINKED"
+
+local type DeletionProtection = "ENABLED" | "DISABLED"
+
+local type PolicyEffect = "Permit" | "Forbid"
 
 local type Decision = "ALLOW" | "DENY"
 

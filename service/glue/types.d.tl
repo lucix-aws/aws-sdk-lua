@@ -8783,35 +8783,7 @@ local record OperationTimeoutException
     Message: string
 end
 
-local type SchemaDiffType = "SYNTAX_DIFF"
-
-local type TransformStatusType = "NOT_READY" | "READY" | "DELETING"
-
-local type InclusionAnnotationValue = "INCLUDE" | "EXCLUDE"
-
-local type ResourceShareType = "FOREIGN" | "ALL" | "FEDERATED"
-
-local type RegistryStatus = "AVAILABLE" | "DELETING"
-
-local type Language = "PYTHON" | "SCALA"
-
-local type IntegrationStatus = "CREATING" | "ACTIVE" | "MODIFYING" | "FAILED" | "DELETING" | "SYNCING" | "NEEDS_ATTENTION"
-
-local type DataQualityModelStatus = "RUNNING" | "SUCCEEDED" | "FAILED"
-
-local type JobMode = "SCRIPT" | "VISUAL" | "NOTEBOOK"
-
-local type SourceControlAuthStrategy = "PERSONAL_ACCESS_TOKEN" | "AWS_SECRETS_MANAGER"
-
-local type TableOptimizerType = "compaction" | "retention" | "orphan_file_deletion"
-
-local type DataFormat = "AVRO" | "JSON" | "PROTOBUF"
-
-local type SchemaVersionStatus = "AVAILABLE" | "PENDING" | "FAILURE" | "DELETING"
-
-local type ViewUpdateAction = "ADD" | "REPLACE" | "ADD_OR_REPLACE" | "DROP"
-
-local type EnableHybridValues = "TRUE" | "FALSE"
+local type ExistCondition = "MUST_EXIST" | "NOT_EXIST" | "NONE"
 
 local type Compatibility = "NONE" | "DISABLED" | "BACKWARD" | "BACKWARD_ALL" | "FORWARD" | "FORWARD_ALL" | "FULL" | "FULL_ALL"
 
@@ -8819,23 +8791,51 @@ local type ExecutionClass = "FLEX" | "STANDARD"
 
 local type TriggerType = "SCHEDULED" | "CONDITIONAL" | "ON_DEMAND" | "EVENT"
 
-local type FunctionType = "REGULAR_FUNCTION" | "AGGREGATE_FUNCTION" | "STORED_PROCEDURE"
+local type ViewUpdateAction = "ADD" | "REPLACE" | "ADD_OR_REPLACE" | "DROP"
 
-local type ExistCondition = "MUST_EXIST" | "NOT_EXIST" | "NONE"
+local type Language = "PYTHON" | "SCALA"
+
+local type DataFormat = "AVRO" | "JSON" | "PROTOBUF"
+
+local type JobMode = "SCRIPT" | "VISUAL" | "NOTEBOOK"
 
 local type SchemaStatus = "AVAILABLE" | "PENDING" | "DELETING"
 
-local type ConnectionStatus = "READY" | "IN_PROGRESS" | "FAILED"
-
-local type TaskStatusType = "STARTING" | "RUNNING" | "STOPPING" | "STOPPED" | "SUCCEEDED" | "FAILED" | "TIMEOUT"
-
-local type ComputeEnvironment = "SPARK" | "ATHENA" | "PYTHON"
-
-local type IntegrationType = "REST"
+local type ResourceShareType = "FOREIGN" | "ALL" | "FEDERATED"
 
 local type SourceControlProvider = "GITHUB" | "GITLAB" | "BITBUCKET" | "AWS_CODE_COMMIT"
 
+local type SourceControlAuthStrategy = "PERSONAL_ACCESS_TOKEN" | "AWS_SECRETS_MANAGER"
+
+local type SchemaVersionStatus = "AVAILABLE" | "PENDING" | "FAILURE" | "DELETING"
+
+local type EnableHybridValues = "TRUE" | "FALSE"
+
+local type RegistryStatus = "AVAILABLE" | "DELETING"
+
+local type IntegrationStatus = "CREATING" | "ACTIVE" | "MODIFYING" | "FAILED" | "DELETING" | "SYNCING" | "NEEDS_ATTENTION"
+
+local type FunctionType = "REGULAR_FUNCTION" | "AGGREGATE_FUNCTION" | "STORED_PROCEDURE"
+
+local type TableOptimizerType = "compaction" | "retention" | "orphan_file_deletion"
+
+local type ComputeEnvironment = "SPARK" | "ATHENA" | "PYTHON"
+
 local type WorkerType = "Standard" | "G.1X" | "G.2X" | "G.025X" | "G.4X" | "G.8X" | "Z.2X"
+
+local type InclusionAnnotationValue = "INCLUDE" | "EXCLUDE"
+
+local type SchemaDiffType = "SYNTAX_DIFF"
+
+local type TransformStatusType = "NOT_READY" | "READY" | "DELETING"
+
+local type TaskStatusType = "STARTING" | "RUNNING" | "STOPPING" | "STOPPED" | "SUCCEEDED" | "FAILED" | "TIMEOUT"
+
+local type IntegrationType = "REST"
+
+local type ConnectionStatus = "READY" | "IN_PROGRESS" | "FAILED"
+
+local type DataQualityModelStatus = "RUNNING" | "SUCCEEDED" | "FAILED"
 
 local record M
     BatchCreatePartitionInput: BatchCreatePartitionInput

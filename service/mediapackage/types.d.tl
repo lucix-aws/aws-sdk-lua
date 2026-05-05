@@ -681,9 +681,9 @@ local record UnprocessableEntityException
     Message: string
 end
 
-local type Status = "IN_PROGRESS" | "SUCCEEDED" | "FAILED"
-
 local type Origination = "ALLOW" | "DENY"
+
+local type Status = "IN_PROGRESS" | "SUCCEEDED" | "FAILED"
 
 local record M
     ConfigureLogsInput: ConfigureLogsInput

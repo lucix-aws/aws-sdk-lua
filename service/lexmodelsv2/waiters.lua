@@ -1,4 +1,4 @@
-local waiter = require("waiter")
+local waiter = require("smithy.waiter")
 
 local M = {}
 

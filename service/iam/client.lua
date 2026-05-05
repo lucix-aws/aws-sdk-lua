@@ -1,10 +1,10 @@
-local base_client = require("client")
-local defaults = require("defaults")
-local endpoint = require("endpoint")
+local base_client = require("smithy.client")
+local defaults = require("smithy.defaults")
+local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("iam.endpoint_rules")
-local query_protocol = require("protocol.query")
+local query_protocol = require("smithy.protocol.query")
 local schemas = require("iam.schemas")
-local sdk_defaults = require("sdk_defaults")
+local sdk_defaults = require("aws.sdk_defaults")
 
 local M = {}
 

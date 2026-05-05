@@ -836,19 +836,19 @@ local record ValidationException
     reason: string
 end
 
-local type DeploymentType = "SINGLE_AZ" | "WITH_MULTIAZ_STANDBY"
+local type InstanceMode = "PRIMARY" | "STANDBY" | "REPLICA" | "INGEST" | "QUERY" | "COMPACT" | "PROCESS"
+
+local type Status = "CREATING" | "AVAILABLE" | "DELETING" | "MODIFYING" | "UPDATING" | "DELETED" | "FAILED" | "UPDATING_DEPLOYMENT_TYPE" | "UPDATING_INSTANCE_TYPE" | "MAINTENANCE" | "REBOOTING" | "REBOOT_FAILED"
 
 local type EngineType = "INFLUXDB_V2" | "INFLUXDB_V3_CORE" | "INFLUXDB_V3_ENTERPRISE"
 
 local type ClusterStatus = "CREATING" | "UPDATING" | "DELETING" | "AVAILABLE" | "FAILED" | "DELETED" | "MAINTENANCE" | "UPDATING_INSTANCE_TYPE" | "REBOOTING" | "REBOOT_FAILED" | "PARTIALLY_AVAILABLE"
 
-local type ClusterDeploymentType = "MULTI_NODE_READ_REPLICAS"
-
 local type FailoverMode = "AUTOMATIC" | "NO_FAILOVER"
 
-local type Status = "CREATING" | "AVAILABLE" | "DELETING" | "MODIFYING" | "UPDATING" | "DELETED" | "FAILED" | "UPDATING_DEPLOYMENT_TYPE" | "UPDATING_INSTANCE_TYPE" | "MAINTENANCE" | "REBOOTING" | "REBOOT_FAILED"
+local type ClusterDeploymentType = "MULTI_NODE_READ_REPLICAS"
 
-local type InstanceMode = "PRIMARY" | "STANDBY" | "REPLICA" | "INGEST" | "QUERY" | "COMPACT" | "PROCESS"
+local type DeploymentType = "SINGLE_AZ" | "WITH_MULTIAZ_STANDBY"
 
 local type NetworkType = "IPV4" | "DUAL"
 

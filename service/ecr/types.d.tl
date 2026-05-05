@@ -1747,11 +1747,11 @@ local record ValidationException
     message: string
 end
 
-local type ImageStatus = "ACTIVE" | "ARCHIVED" | "ACTIVATING"
+local type ScanType = "BASIC" | "ENHANCED"
 
 local type ImageTagMutability = "MUTABLE" | "IMMUTABLE" | "IMMUTABLE_WITH_EXCLUSION" | "MUTABLE_WITH_EXCLUSION"
 
-local type ScanType = "BASIC" | "ENHANCED"
+local type ImageStatus = "ACTIVE" | "ARCHIVED" | "ACTIVATING"
 
 local type UpstreamRegistry = "ecr" | "ecr-public" | "quay" | "k8s" | "docker-hub" | "github-container-registry" | "azure-container-registry" | "gitlab-container-registry" | "chainguard"
 

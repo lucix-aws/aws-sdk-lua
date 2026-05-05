@@ -2127,25 +2127,23 @@ local record ServiceQuotaExceededException
     message: string
 end
 
-local type TaskSortField = "CREATED_AT" | "PRIORITY"
-
-local type GoalType = "CUSTOMER_DEFINED" | "ONCALL_REPORT"
-
-local type TaskType = "INVESTIGATION" | "EVALUATION"
-
-local type PrivateConnectionType = "SELF_MANAGED" | "SERVICE_MANAGED"
-
-local type TaskStatus = "PENDING_TRIAGE" | "LINKED" | "PENDING_START" | "IN_PROGRESS" | "PENDING_CUSTOMER_APPROVAL" | "COMPLETED" | "FAILED" | "TIMED_OUT" | "CANCELED"
-
-local type PostRegisterServiceSupportedService = "dynatrace" | "servicenow" | "pagerduty" | "gitlab" | "eventChannel" | "mcpservernewrelic" | "mcpservergrafana" | "mcpserverdatadog" | "mcpserver" | "mcpserversplunk" | "azureidentity"
+local type TaskSortOrder = "ASC" | "DESC"
 
 local type Service = "github" | "slack" | "azure" | "azuredevops" | "dynatrace" | "servicenow" | "pagerduty" | "gitlab" | "eventChannel" | "mcpservernewrelic" | "mcpservergrafana" | "mcpserverdatadog" | "mcpserver" | "mcpserversplunk" | "azureidentity"
 
 local type RecommendationStatus = "PROPOSED" | "ACCEPTED" | "REJECTED" | "CLOSED" | "COMPLETED" | "UPDATE_IN_PROGRESS"
 
-local type TaskSortOrder = "ASC" | "DESC"
-
 local type GoalStatus = "ACTIVE" | "PAUSED" | "COMPLETE"
+
+local type PostRegisterServiceSupportedService = "dynatrace" | "servicenow" | "pagerduty" | "gitlab" | "eventChannel" | "mcpservernewrelic" | "mcpservergrafana" | "mcpserverdatadog" | "mcpserver" | "mcpserversplunk" | "azureidentity"
+
+local type TaskStatus = "PENDING_TRIAGE" | "LINKED" | "PENDING_START" | "IN_PROGRESS" | "PENDING_CUSTOMER_APPROVAL" | "COMPLETED" | "FAILED" | "TIMED_OUT" | "CANCELED"
+
+local type GoalType = "CUSTOMER_DEFINED" | "ONCALL_REPORT"
+
+local type PrivateConnectionType = "SELF_MANAGED" | "SERVICE_MANAGED"
+
+local type TaskSortField = "CREATED_AT" | "PRIORITY"
 
 local type Priority = "CRITICAL" | "HIGH" | "MEDIUM" | "LOW" | "MINIMAL"
 
@@ -2156,6 +2154,8 @@ local type PrivateConnectionStatus = "ACTIVE" | "CREATE_IN_PROGRESS" | "CREATE_F
 local type AuthFlow = "iam" | "idc" | "idp"
 
 local type RecommendationPriority = "HIGH" | "MEDIUM" | "LOW"
+
+local type TaskType = "INVESTIGATION" | "EVALUATION"
 
 local type OrderType = "ASC" | "DESC"
 

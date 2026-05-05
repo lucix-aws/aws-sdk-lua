@@ -2853,29 +2853,29 @@ local record ValidationException
     Reason: string
 end
 
-local type PrincipalType = "USER" | "GROUP"
+local type AuthenticationMethodType = "IAM"
 
-local type GrantType = "authorization_code" | "refresh_token" | "urn:ietf:params:oauth:grant-type:jwt-bearer" | "urn:ietf:params:oauth:grant-type:token-exchange"
+local type FederationProtocol = "SAML" | "OAUTH"
 
-local type TargetType = "AWS_ACCOUNT"
+local type InstanceStatus = "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "DELETE_IN_PROGRESS" | "ACTIVE"
 
-local type TrustedTokenIssuerType = "OIDC_JWT"
+local type ProvisionTargetType = "AWS_ACCOUNT" | "ALL_PROVISIONED_ACCOUNTS"
+
+local type InstanceAccessControlAttributeConfigurationStatus = "ENABLED" | "CREATION_IN_PROGRESS" | "CREATION_FAILED"
 
 local type ProvisioningStatus = "LATEST_PERMISSION_SET_PROVISIONED" | "LATEST_PERMISSION_SET_NOT_PROVISIONED"
 
 local type UserBackgroundSessionApplicationStatus = "ENABLED" | "DISABLED"
 
-local type FederationProtocol = "SAML" | "OAUTH"
+local type TargetType = "AWS_ACCOUNT"
 
-local type ProvisionTargetType = "AWS_ACCOUNT" | "ALL_PROVISIONED_ACCOUNTS"
+local type PrincipalType = "USER" | "GROUP"
 
-local type InstanceStatus = "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "DELETE_IN_PROGRESS" | "ACTIVE"
+local type GrantType = "authorization_code" | "refresh_token" | "urn:ietf:params:oauth:grant-type:jwt-bearer" | "urn:ietf:params:oauth:grant-type:token-exchange"
 
-local type InstanceAccessControlAttributeConfigurationStatus = "ENABLED" | "CREATION_IN_PROGRESS" | "CREATION_FAILED"
+local type TrustedTokenIssuerType = "OIDC_JWT"
 
 local type RegionStatus = "ACTIVE" | "ADDING" | "REMOVING"
-
-local type AuthenticationMethodType = "IAM"
 
 local type ApplicationStatus = "ENABLED" | "DISABLED"
 

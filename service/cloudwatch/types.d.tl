@@ -956,17 +956,17 @@ local record ResourceNotFoundException
     Message: string
 end
 
-local type ScanBy = "TimestampDescending" | "TimestampAscending"
-
-local type StandardUnit = "Seconds" | "Microseconds" | "Milliseconds" | "Bytes" | "Kilobytes" | "Megabytes" | "Gigabytes" | "Terabytes" | "Bits" | "Kilobits" | "Megabits" | "Gigabits" | "Terabits" | "Percent" | "Count" | "Bytes/Second" | "Kilobytes/Second" | "Megabytes/Second" | "Gigabytes/Second" | "Terabytes/Second" | "Bits/Second" | "Kilobits/Second" | "Megabits/Second" | "Gigabits/Second" | "Terabits/Second" | "Count/Second" | "None"
-
-local type MetricStreamOutputFormat = "json" | "opentelemetry0.7" | "opentelemetry1.0"
-
-local type RecentlyActive = "PT3H"
+local type OTelEnrichmentStatus = "Running" | "Stopped"
 
 local type HistoryItemType = "ConfigurationUpdate" | "StateUpdate" | "Action" | "AlarmContributorStateUpdate" | "AlarmContributorAction"
 
-local type OTelEnrichmentStatus = "Running" | "Stopped"
+local type RecentlyActive = "PT3H"
+
+local type MetricStreamOutputFormat = "json" | "opentelemetry0.7" | "opentelemetry1.0"
+
+local type StandardUnit = "Seconds" | "Microseconds" | "Milliseconds" | "Bytes" | "Kilobytes" | "Megabytes" | "Gigabytes" | "Terabytes" | "Bits" | "Kilobits" | "Megabits" | "Gigabits" | "Terabits" | "Percent" | "Count" | "Bytes/Second" | "Kilobytes/Second" | "Megabytes/Second" | "Gigabytes/Second" | "Terabytes/Second" | "Bits/Second" | "Kilobits/Second" | "Megabits/Second" | "Gigabits/Second" | "Terabits/Second" | "Count/Second" | "None"
+
+local type ScanBy = "TimestampDescending" | "TimestampAscending"
 
 local type StateValue = "OK" | "ALARM" | "INSUFFICIENT_DATA"
 

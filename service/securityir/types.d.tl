@@ -1442,25 +1442,25 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type AwsRegion = "af-south-1" | "ap-east-1" | "ap-east-2" | "ap-northeast-1" | "ap-northeast-2" | "ap-northeast-3" | "ap-south-1" | "ap-south-2" | "ap-southeast-1" | "ap-southeast-2" | "ap-southeast-3" | "ap-southeast-4" | "ap-southeast-5" | "ap-southeast-6" | "ap-southeast-7" | "ca-central-1" | "ca-west-1" | "cn-north-1" | "cn-northwest-1" | "eu-central-1" | "eu-central-2" | "eu-north-1" | "eu-south-1" | "eu-south-2" | "eu-west-1" | "eu-west-2" | "eu-west-3" | "il-central-1" | "me-central-1" | "me-south-1" | "mx-central-1" | "sa-east-1" | "us-east-1" | "us-east-2" | "us-west-1" | "us-west-2"
-
-local type CustomerType = "Standalone" | "Organization"
-
-local type SelfManagedCaseStatus = "Submitted" | "Detection and Analysis" | "Containment, Eradication and Recovery" | "Post-incident Activities"
-
-local type CaseStatus = "Submitted" | "Acknowledged" | "Detection and Analysis" | "Containment, Eradication and Recovery" | "Post-incident Activities" | "Ready to Close" | "Closed"
-
 local type ClosureCode = "Investigation Completed" | "Not Resolved" | "False Positive" | "Duplicate"
 
 local type EngagementType = "Security Incident" | "Investigation"
 
 local type UsefulnessRating = "USEFUL" | "NOT_USEFUL"
 
+local type CaseStatus = "Submitted" | "Acknowledged" | "Detection and Analysis" | "Containment, Eradication and Recovery" | "Post-incident Activities" | "Ready to Close" | "Closed"
+
+local type AwsRegion = "af-south-1" | "ap-east-1" | "ap-east-2" | "ap-northeast-1" | "ap-northeast-2" | "ap-northeast-3" | "ap-south-1" | "ap-south-2" | "ap-southeast-1" | "ap-southeast-2" | "ap-southeast-3" | "ap-southeast-4" | "ap-southeast-5" | "ap-southeast-6" | "ap-southeast-7" | "ca-central-1" | "ca-west-1" | "cn-north-1" | "cn-northwest-1" | "eu-central-1" | "eu-central-2" | "eu-north-1" | "eu-south-1" | "eu-south-2" | "eu-west-1" | "eu-west-2" | "eu-west-3" | "il-central-1" | "me-central-1" | "me-south-1" | "mx-central-1" | "sa-east-1" | "us-east-1" | "us-east-2" | "us-west-1" | "us-west-2"
+
+local type SelfManagedCaseStatus = "Submitted" | "Detection and Analysis" | "Containment, Eradication and Recovery" | "Post-incident Activities"
+
+local type CustomerType = "Standalone" | "Organization"
+
 local type PendingAction = "Customer" | "None"
 
-local type MembershipStatus = "Active" | "Cancelled" | "Terminated"
-
 local type ResolverType = "AWS" | "Self"
+
+local type MembershipStatus = "Active" | "Cancelled" | "Terminated"
 
 local record M
     BatchGetMemberAccountDetailsInput: BatchGetMemberAccountDetailsInput

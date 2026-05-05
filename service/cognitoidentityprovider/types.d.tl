@@ -5374,33 +5374,33 @@ local record UserNotFoundException
     message: string
 end
 
-local type UserPoolTierType = "LITE" | "ESSENTIALS" | "PLUS"
-
-local type UserStatusType = "UNCONFIRMED" | "CONFIRMED" | "ARCHIVED" | "COMPROMISED" | "UNKNOWN" | "RESET_REQUIRED" | "FORCE_CHANGE_PASSWORD" | "EXTERNAL_PROVIDER"
-
-local type TermsSourceType = "LINK"
-
-local type DeviceRememberedStatusType = "remembered" | "not_remembered"
-
-local type ChallengeNameType = "SMS_MFA" | "EMAIL_OTP" | "SOFTWARE_TOKEN_MFA" | "SELECT_MFA_TYPE" | "MFA_SETUP" | "PASSWORD_VERIFIER" | "CUSTOM_CHALLENGE" | "SELECT_CHALLENGE" | "DEVICE_SRP_AUTH" | "DEVICE_PASSWORD_VERIFIER" | "ADMIN_NO_SRP_AUTH" | "NEW_PASSWORD_REQUIRED" | "SMS_OTP" | "PASSWORD" | "WEB_AUTHN" | "PASSWORD_SRP"
-
-local type VerifySoftwareTokenResponseType = "SUCCESS" | "ERROR"
-
-local type TermsEnforcementType = "NONE"
-
 local type IdentityProviderTypeType = "SAML" | "Facebook" | "Google" | "LoginWithAmazon" | "SignInWithApple" | "OIDC"
-
-local type PreventUserExistenceErrorTypes = "LEGACY" | "ENABLED"
 
 local type MessageActionType = "RESEND" | "SUPPRESS"
 
-local type FeedbackValueType = "Valid" | "Invalid"
+local type TermsEnforcementType = "NONE"
 
-local type UserPoolMfaType = "OFF" | "ON" | "OPTIONAL"
+local type ChallengeNameType = "SMS_MFA" | "EMAIL_OTP" | "SOFTWARE_TOKEN_MFA" | "SELECT_MFA_TYPE" | "MFA_SETUP" | "PASSWORD_VERIFIER" | "CUSTOM_CHALLENGE" | "SELECT_CHALLENGE" | "DEVICE_SRP_AUTH" | "DEVICE_PASSWORD_VERIFIER" | "ADMIN_NO_SRP_AUTH" | "NEW_PASSWORD_REQUIRED" | "SMS_OTP" | "PASSWORD" | "WEB_AUTHN" | "PASSWORD_SRP"
+
+local type TermsSourceType = "LINK"
+
+local type UserPoolTierType = "LITE" | "ESSENTIALS" | "PLUS"
+
+local type PreventUserExistenceErrorTypes = "LEGACY" | "ENABLED"
+
+local type FeedbackValueType = "Valid" | "Invalid"
 
 local type AuthFlowType = "USER_SRP_AUTH" | "REFRESH_TOKEN_AUTH" | "REFRESH_TOKEN" | "CUSTOM_AUTH" | "ADMIN_NO_SRP_AUTH" | "USER_PASSWORD_AUTH" | "ADMIN_USER_PASSWORD_AUTH" | "USER_AUTH"
 
 local type DeletionProtectionType = "ACTIVE" | "INACTIVE"
+
+local type UserPoolMfaType = "OFF" | "ON" | "OPTIONAL"
+
+local type UserStatusType = "UNCONFIRMED" | "CONFIRMED" | "ARCHIVED" | "COMPROMISED" | "UNKNOWN" | "RESET_REQUIRED" | "FORCE_CHANGE_PASSWORD" | "EXTERNAL_PROVIDER"
+
+local type VerifySoftwareTokenResponseType = "SUCCESS" | "ERROR"
+
+local type DeviceRememberedStatusType = "remembered" | "not_remembered"
 
 local record M
     AddCustomAttributesInput: AddCustomAttributesInput

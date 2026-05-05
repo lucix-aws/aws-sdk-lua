@@ -3034,33 +3034,49 @@ local record ValidationException
     Message: string
 end
 
+local type ConnectorEventOperation = "DEVICE_COMMAND_RESPONSE" | "DEVICE_DISCOVERY" | "DEVICE_EVENT" | "DEVICE_COMMAND_REQUEST"
+
+local type LogLevel = "DEBUG" | "ERROR" | "INFO" | "WARN"
+
+local type EncryptionType = "MANAGED_INTEGRATIONS_DEFAULT_ENCRYPTION" | "CUSTOMER_KEY_ENCRYPTION"
+
 local type CloudConnectorType = "LISTED" | "UNLISTED"
 
+local type SchemaVersionType = "capability" | "definition"
+
 local type ProvisioningType = "FLEET_PROVISIONING" | "JITR"
+
+local type DisconnectReasonValue = "AUTH_ERROR" | "CLIENT_INITIATED_DISCONNECT" | "CLIENT_ERROR" | "CONNECTION_LOST" | "DUPLICATE_CLIENTID" | "FORBIDDEN_ACCESS" | "MQTT_KEEP_ALIVE_TIMEOUT" | "SERVER_ERROR" | "SERVER_INITIATED_DISCONNECT" | "THROTTLED" | "WEBSOCKET_TTL_EXPIRATION" | "CUSTOMAUTH_TTL_EXPIRATION" | "UNKNOWN" | "NONE"
+
+local type OtaStatus = "IN_PROGRESS" | "CANCELED" | "COMPLETED" | "DELETION_IN_PROGRESS" | "SCHEDULED"
+
+local type ProtocolType = "ZWAVE" | "ZIGBEE" | "CUSTOM"
+
+local type ProvisioningStatus = "UNASSOCIATED" | "PRE_ASSOCIATED" | "DISCOVERED" | "ACTIVATED" | "DELETION_FAILED" | "DELETE_IN_PROGRESS" | "ISOLATED" | "DELETED"
+
+local type ProvisioningProfileStatus = "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "CREATED" | "DELETE_IN_PROGRESS" | "DELETE_FAILED"
+
+local type DeliveryDestinationType = "KINESIS"
+
+local type SchemaVersionFormat = "AWS" | "ZCL" | "CONNECTOR"
+
+local type OtaMechanism = "PUSH"
+
+local type DiscoveryType = "ZWAVE" | "ZIGBEE" | "CLOUD" | "CUSTOM" | "CONTROLLER_CAPABILITY_REDISCOVERY"
 
 local type AuthType = "OAUTH"
 
 local type OtaProtocol = "HTTP"
 
-local type OtaStatus = "IN_PROGRESS" | "CANCELED" | "COMPLETED" | "DELETION_IN_PROGRESS" | "SCHEDULED"
+local type HubNetworkMode = "STANDARD" | "NETWORK_WIDE_EXCLUSION"
 
 local type DiscoveryAuthMaterialType = "ZWAVE_INSTALL_CODE"
 
-local type ProtocolType = "ZWAVE" | "ZIGBEE" | "CUSTOM"
+local type DeviceDiscoveryStatus = "RUNNING" | "SUCCEEDED" | "FAILED" | "TIMED_OUT"
 
 local type AuthMaterialType = "CUSTOM_PROTOCOL_QR_BAR_CODE" | "WIFI_SETUP_QR_BAR_CODE" | "ZWAVE_QR_BAR_CODE" | "ZIGBEE_QR_BAR_CODE" | "DISCOVERED_DEVICE" | "PRE_ONBOARDED_CLOUD"
 
-local type LogLevel = "DEBUG" | "ERROR" | "INFO" | "WARN"
-
-local type SchemaVersionFormat = "AWS" | "ZCL" | "CONNECTOR"
-
-local type DiscoveryType = "ZWAVE" | "ZIGBEE" | "CLOUD" | "CUSTOM" | "CONTROLLER_CAPABILITY_REDISCOVERY"
-
-local type OtaMechanism = "PUSH"
-
-local type ConnectorEventOperation = "DEVICE_COMMAND_RESPONSE" | "DEVICE_DISCOVERY" | "DEVICE_EVENT" | "DEVICE_COMMAND_REQUEST"
-
-local type DeliveryDestinationType = "KINESIS"
+local type EventType = "DEVICE_COMMAND" | "DEVICE_COMMAND_REQUEST" | "DEVICE_DISCOVERY_STATUS" | "DEVICE_EVENT" | "DEVICE_LIFE_CYCLE" | "DEVICE_STATE" | "DEVICE_OTA" | "DEVICE_WSS" | "CONNECTOR_ASSOCIATION" | "ACCOUNT_ASSOCIATION" | "CONNECTOR_ERROR_REPORT"
 
 local type AssociationState = "ASSOCIATION_IN_PROGRESS" | "ASSOCIATION_FAILED" | "ASSOCIATION_SUCCEEDED" | "ASSOCIATION_DELETING" | "REFRESH_TOKEN_EXPIRED"
 
@@ -3071,22 +3087,6 @@ local type SchemaVersionVisibility = "PUBLIC" | "PRIVATE"
 local type OtaType = "ONE_TIME" | "CONTINUOUS"
 
 local type EndpointType = "LAMBDA"
-
-local type SchemaVersionType = "capability" | "definition"
-
-local type HubNetworkMode = "STANDARD" | "NETWORK_WIDE_EXCLUSION"
-
-local type DeviceDiscoveryStatus = "RUNNING" | "SUCCEEDED" | "FAILED" | "TIMED_OUT"
-
-local type DisconnectReasonValue = "AUTH_ERROR" | "CLIENT_INITIATED_DISCONNECT" | "CLIENT_ERROR" | "CONNECTION_LOST" | "DUPLICATE_CLIENTID" | "FORBIDDEN_ACCESS" | "MQTT_KEEP_ALIVE_TIMEOUT" | "SERVER_ERROR" | "SERVER_INITIATED_DISCONNECT" | "THROTTLED" | "WEBSOCKET_TTL_EXPIRATION" | "CUSTOMAUTH_TTL_EXPIRATION" | "UNKNOWN" | "NONE"
-
-local type EventType = "DEVICE_COMMAND" | "DEVICE_COMMAND_REQUEST" | "DEVICE_DISCOVERY_STATUS" | "DEVICE_EVENT" | "DEVICE_LIFE_CYCLE" | "DEVICE_STATE" | "DEVICE_OTA" | "DEVICE_WSS" | "CONNECTOR_ASSOCIATION" | "ACCOUNT_ASSOCIATION" | "CONNECTOR_ERROR_REPORT"
-
-local type EncryptionType = "MANAGED_INTEGRATIONS_DEFAULT_ENCRYPTION" | "CUSTOMER_KEY_ENCRYPTION"
-
-local type ProvisioningProfileStatus = "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "CREATED" | "DELETE_IN_PROGRESS" | "DELETE_FAILED"
-
-local type ProvisioningStatus = "UNASSOCIATED" | "PRE_ASSOCIATED" | "DISCOVERED" | "ACTIVATED" | "DELETION_FAILED" | "DELETE_IN_PROGRESS" | "ISOLATED" | "DELETED"
 
 local record M
     CreateAccountAssociationInput: CreateAccountAssociationInput

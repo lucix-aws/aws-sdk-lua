@@ -833,9 +833,9 @@ local type QueryStatus = "QUEUED" | "RUNNING" | "SUCCEEDED" | "FAILED" | "CANCEL
 
 local type MonitorStatus = "PENDING" | "ACTIVE" | "INACTIVE" | "ERROR" | "DELETING"
 
-local type MonitorMetric = "ROUND_TRIP_TIME" | "TIMEOUTS" | "RETRANSMISSIONS" | "DATA_TRANSFERRED"
-
 local type DestinationCategory = "INTRA_AZ" | "INTER_AZ" | "INTER_VPC" | "UNCLASSIFIED" | "AMAZON_S3" | "AMAZON_DYNAMODB" | "INTER_REGION"
+
+local type MonitorMetric = "ROUND_TRIP_TIME" | "TIMEOUTS" | "RETRANSMISSIONS" | "DATA_TRANSFERRED"
 
 local type MetricUnit = "Seconds" | "Microseconds" | "Milliseconds" | "Bytes" | "Kilobytes" | "Megabytes" | "Gigabytes" | "Terabytes" | "Bits" | "Kilobits" | "Megabits" | "Gigabits" | "Terabits" | "Percent" | "Count" | "Bytes/Second" | "Kilobytes/Second" | "Megabytes/Second" | "Gigabytes/Second" | "Terabytes/Second" | "Bits/Second" | "Kilobits/Second" | "Megabits/Second" | "Gigabits/Second" | "Terabits/Second" | "Count/Second" | "None"
 

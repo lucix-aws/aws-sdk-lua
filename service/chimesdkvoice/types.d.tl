@@ -4477,21 +4477,21 @@ local record UnauthorizedClientException
     Message: string
 end
 
-local type CallLegType = "Caller" | "Callee"
-
-local type LanguageCode = "en-US"
-
-local type VoiceConnectorIntegrationType = "CONNECT_CALL_TRANSFER_CONNECTOR" | "CONNECT_ANALYTICS_CONNECTOR"
+local type NumberSelectionBehavior = "PreferSticky" | "AvoidSticky"
 
 local type SipRuleTriggerType = "ToPhoneNumber" | "RequestUriHostname"
 
-local type NumberSelectionBehavior = "PreferSticky" | "AvoidSticky"
-
 local type GeoMatchLevel = "Country" | "AreaCode"
+
+local type VoiceConnectorIntegrationType = "CONNECT_CALL_TRANSFER_CONNECTOR" | "CONNECT_ANALYTICS_CONNECTOR"
 
 local type NetworkType = "IPV4_ONLY" | "DUAL_STACK"
 
 local type ProxySessionStatus = "Open" | "InProgress" | "Closed"
+
+local type LanguageCode = "en-US"
+
+local type CallLegType = "Caller" | "Callee"
 
 local type PhoneNumberType = "Local" | "TollFree"
 

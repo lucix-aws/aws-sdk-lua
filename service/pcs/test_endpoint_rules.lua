@@ -2,7 +2,7 @@
 
 package.path = "runtime/?.lua;runtime/?/init.lua;" .. package.path
 
-local endpoint = require("endpoint")
+local endpoint = require("smithy.endpoint")
 local ruleset = require("pcs.endpoint_rules")
 
 local pass_count = 0

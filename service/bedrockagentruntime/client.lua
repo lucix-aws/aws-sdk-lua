@@ -1,10 +1,10 @@
-local base_client = require("client")
-local defaults = require("defaults")
-local endpoint = require("endpoint")
+local base_client = require("smithy.client")
+local defaults = require("smithy.defaults")
+local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("bedrockagentruntime.endpoint_rules")
-local restjson_protocol = require("protocol.restjson")
+local restjson_protocol = require("smithy.protocol.restjson")
 local schemas = require("bedrockagentruntime.schemas")
-local sdk_defaults = require("sdk_defaults")
+local sdk_defaults = require("aws.sdk_defaults")
 
 local M = {}
 

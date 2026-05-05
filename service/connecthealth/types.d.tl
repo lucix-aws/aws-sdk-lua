@@ -385,9 +385,9 @@ local record ValidationException
     message: string
 end
 
-local type MedicalScribeMediaEncoding = "pcm" | "flac"
-
 local type JobStatus = "SUBMITTED" | "IN_PROGRESS" | "FAILED" | "SUCCEEDED"
+
+local type MedicalScribeMediaEncoding = "pcm" | "flac"
 
 local type MedicalScribeLanguageCode = "en-US"
 

@@ -14,7 +14,7 @@ public final class AwsSdkIntegration implements LuaIntegration {
     public List<ConfigResolver> getConfigResolvers(LuaContext context) {
         return List.of(
                 new ConfigResolver(
-                        "sdk_defaults",
+                        "aws.sdk_defaults",
                         "sdk_defaults",
                         "sdk_defaults.resolve_identity_resolver(cfg)"
                 )

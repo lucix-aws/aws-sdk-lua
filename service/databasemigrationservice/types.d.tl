@@ -2920,21 +2920,21 @@ local record InvalidResourceStateFault
     message: string
 end
 
-local type ReplicationEndpointTypeValue = "source" | "target"
-
-local type DmsSslModeValue = "none" | "require" | "verify-ca" | "verify-full"
-
-local type ReloadOptionValue = "data-reload" | "validate-only"
+local type SourceType = "replication-instance"
 
 local type StartReplicationMigrationTypeValue = "reload-target" | "resume-processing" | "start-replication"
 
+local type DmsSslModeValue = "none" | "require" | "verify-ca" | "verify-full"
+
 local type OriginTypeValue = "SOURCE" | "TARGET"
 
-local type SourceType = "replication-instance"
+local type ReloadOptionValue = "data-reload" | "validate-only"
 
-local type MigrationTypeValue = "full-load" | "cdc" | "full-load-and-cdc"
+local type ReplicationEndpointTypeValue = "source" | "target"
 
 local type StartReplicationTaskTypeValue = "start-replication" | "resume-processing" | "reload-target"
+
+local type MigrationTypeValue = "full-load" | "cdc" | "full-load-and-cdc"
 
 local record M
     AddTagsToResourceInput: AddTagsToResourceInput

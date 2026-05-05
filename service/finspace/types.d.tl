@@ -1990,9 +1990,13 @@ local record ValidationException
     message: string
 end
 
-local type KxClusterType = "HDB" | "RDB" | "GATEWAY" | "GP" | "TICKERPLANT"
+local type dnsStatus = "NONE" | "UPDATE_REQUESTED" | "UPDATING" | "FAILED_UPDATE" | "SUCCESSFULLY_UPDATED"
 
-local type KxAzMode = "SINGLE" | "MULTI"
+local type KxClusterStatus = "PENDING" | "CREATING" | "CREATE_FAILED" | "RUNNING" | "UPDATING" | "DELETING" | "DELETED" | "DELETE_FAILED"
+
+local type KxDataviewStatus = "CREATING" | "ACTIVE" | "UPDATING" | "FAILED" | "DELETING"
+
+local type KxScalingGroupStatus = "CREATING" | "CREATE_FAILED" | "ACTIVE" | "DELETING" | "DELETED" | "DELETE_FAILED"
 
 local type KxVolumeType = "NAS_1"
 
@@ -2002,13 +2006,9 @@ local type EnvironmentStatus = "CREATE_REQUESTED" | "CREATING" | "CREATED" | "DE
 
 local type tgwStatus = "NONE" | "UPDATE_REQUESTED" | "UPDATING" | "FAILED_UPDATE" | "SUCCESSFULLY_UPDATED"
 
-local type dnsStatus = "NONE" | "UPDATE_REQUESTED" | "UPDATING" | "FAILED_UPDATE" | "SUCCESSFULLY_UPDATED"
+local type KxClusterType = "HDB" | "RDB" | "GATEWAY" | "GP" | "TICKERPLANT"
 
-local type KxClusterStatus = "PENDING" | "CREATING" | "CREATE_FAILED" | "RUNNING" | "UPDATING" | "DELETING" | "DELETED" | "DELETE_FAILED"
-
-local type KxDataviewStatus = "CREATING" | "ACTIVE" | "UPDATING" | "FAILED" | "DELETING"
-
-local type KxScalingGroupStatus = "CREATING" | "CREATE_FAILED" | "ACTIVE" | "DELETING" | "DELETED" | "DELETE_FAILED"
+local type KxAzMode = "SINGLE" | "MULTI"
 
 local type ChangesetStatus = "PENDING" | "PROCESSING" | "FAILED" | "COMPLETED"
 

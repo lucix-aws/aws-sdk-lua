@@ -824,13 +824,13 @@ local record NotFoundException
     Message: string
 end
 
+local type EngineType = "ACTIVEMQ" | "RABBITMQ"
+
 local type PromoteMode = "SWITCHOVER" | "FAILOVER"
 
 local type DeploymentMode = "SINGLE_INSTANCE" | "ACTIVE_STANDBY_MULTI_AZ" | "CLUSTER_MULTI_AZ"
 
 local type BrokerStorageType = "EBS" | "EFS"
-
-local type EngineType = "ACTIVEMQ" | "RABBITMQ"
 
 local type DataReplicationMode = "NONE" | "CRDR"
 

@@ -840,9 +840,9 @@ local record ThrottlingException
     message: string
 end
 
-local type AnalysisStatus = "RUNNING" | "COMPLETE" | "FAILED"
-
 local type AlarmModelVersionStatus = "ACTIVE" | "ACTIVATING" | "INACTIVE" | "FAILED"
+
+local type AnalysisStatus = "RUNNING" | "COMPLETE" | "FAILED"
 
 local type EvaluationMethod = "BATCH" | "SERIAL"
 

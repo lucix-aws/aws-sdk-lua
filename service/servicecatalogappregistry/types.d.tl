@@ -593,9 +593,9 @@ local record ValidationException
     message: string
 end
 
-local type ResourceType = "CFN_STACK" | "RESOURCE_TAG_VALUE"
-
 local type SyncAction = "START_SYNC" | "NO_ACTION"
+
+local type ResourceType = "CFN_STACK" | "RESOURCE_TAG_VALUE"
 
 local record M
     AssociateAttributeGroupInput: AssociateAttributeGroupInput

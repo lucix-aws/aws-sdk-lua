@@ -2912,37 +2912,37 @@ local record ValidationException
     Fields: {ValidationExceptionField}
 end
 
-local type ShareStatus = "ACCEPTED" | "REJECTED" | "PENDING" | "REVOKED" | "EXPIRED" | "ASSOCIATING" | "ASSOCIATED" | "FAILED"
-
-local type AnswerReason = "OUT_OF_SCOPE" | "BUSINESS_PRIORITIES" | "ARCHITECTURE_CONSTRAINTS" | "OTHER" | "NONE"
-
-local type ShareResourceType = "WORKLOAD" | "LENS" | "PROFILE" | "TEMPLATE"
-
-local type PermissionType = "READONLY" | "CONTRIBUTOR"
-
-local type ProfileOwnerType = "SELF" | "SHARED"
-
-local type OrganizationSharingStatus = "ENABLED" | "DISABLED"
-
-local type IntegratingService = "JIRA"
-
-local type WorkloadEnvironment = "PRODUCTION" | "PREPRODUCTION"
-
-local type ShareInvitationAction = "ACCEPT" | "REJECT"
-
-local type LensType = "AWS_OFFICIAL" | "CUSTOM_SHARED" | "CUSTOM_SELF"
-
-local type ImportLensStatus = "IN_PROGRESS" | "COMPLETE" | "ERROR"
+local type WorkloadImprovementStatus = "NOT_APPLICABLE" | "NOT_STARTED" | "IN_PROGRESS" | "COMPLETE" | "RISK_ACKNOWLEDGED"
 
 local type DiscoveryIntegrationStatus = "ENABLED" | "DISABLED"
 
 local type QuestionPriority = "PRIORITIZED" | "NONE"
 
-local type ReportFormat = "PDF" | "JSON"
+local type WorkloadEnvironment = "PRODUCTION" | "PREPRODUCTION"
+
+local type LensType = "AWS_OFFICIAL" | "CUSTOM_SHARED" | "CUSTOM_SELF"
+
+local type IntegratingService = "JIRA"
 
 local type LensStatusType = "ALL" | "DRAFT" | "PUBLISHED"
 
-local type WorkloadImprovementStatus = "NOT_APPLICABLE" | "NOT_STARTED" | "IN_PROGRESS" | "COMPLETE" | "RISK_ACKNOWLEDGED"
+local type ReportFormat = "PDF" | "JSON"
+
+local type ImportLensStatus = "IN_PROGRESS" | "COMPLETE" | "ERROR"
+
+local type ShareInvitationAction = "ACCEPT" | "REJECT"
+
+local type ShareStatus = "ACCEPTED" | "REJECTED" | "PENDING" | "REVOKED" | "EXPIRED" | "ASSOCIATING" | "ASSOCIATED" | "FAILED"
+
+local type PermissionType = "READONLY" | "CONTRIBUTOR"
+
+local type AnswerReason = "OUT_OF_SCOPE" | "BUSINESS_PRIORITIES" | "ARCHITECTURE_CONSTRAINTS" | "OTHER" | "NONE"
+
+local type ShareResourceType = "WORKLOAD" | "LENS" | "PROFILE" | "TEMPLATE"
+
+local type ProfileOwnerType = "SELF" | "SHARED"
+
+local type OrganizationSharingStatus = "ENABLED" | "DISABLED"
 
 local record M
     AssociateLensesInput: AssociateLensesInput

@@ -2479,33 +2479,33 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type ListResponseScope = "METADATA_ONLY"
-
-local type VehicleAssociationBehavior = "CreateIotThing" | "ValidateIotThingExists"
+local type EncryptionStatus = "PENDING" | "SUCCESS" | "FAILURE"
 
 local type UpdateMode = "Overwrite" | "Merge"
 
-local type SpoolingMode = "OFF" | "TO_DISK"
+local type DiagnosticsMode = "OFF" | "SEND_ACTIVE_DTCS"
 
-local type DefaultForUnmappedSignalsType = "CUSTOM_DECODING"
+local type SignalNodeType = "SENSOR" | "ACTUATOR" | "ATTRIBUTE" | "BRANCH" | "CUSTOM_STRUCT" | "CUSTOM_PROPERTY"
 
-local type Compression = "OFF" | "SNAPPY"
+local type ListResponseScope = "METADATA_ONLY"
 
 local type UpdateCampaignAction = "APPROVE" | "SUSPEND" | "RESUME" | "UPDATE"
 
 local type EncryptionType = "KMS_BASED_ENCRYPTION" | "FLEETWISE_DEFAULT_ENCRYPTION"
 
-local type EncryptionStatus = "PENDING" | "SUCCESS" | "FAILURE"
-
-local type SignalNodeType = "SENSOR" | "ACTUATOR" | "ATTRIBUTE" | "BRANCH" | "CUSTOM_STRUCT" | "CUSTOM_PROPERTY"
-
 local type ManifestStatus = "ACTIVE" | "DRAFT" | "INVALID" | "VALIDATING"
 
-local type DiagnosticsMode = "OFF" | "SEND_ACTIVE_DTCS"
+local type CampaignStatus = "CREATING" | "WAITING_FOR_APPROVAL" | "RUNNING" | "SUSPENDED"
 
 local type RegistrationStatus = "REGISTRATION_PENDING" | "REGISTRATION_SUCCESS" | "REGISTRATION_FAILURE"
 
-local type CampaignStatus = "CREATING" | "WAITING_FOR_APPROVAL" | "RUNNING" | "SUSPENDED"
+local type SpoolingMode = "OFF" | "TO_DISK"
+
+local type VehicleAssociationBehavior = "CreateIotThing" | "ValidateIotThingExists"
+
+local type Compression = "OFF" | "SNAPPY"
+
+local type DefaultForUnmappedSignalsType = "CUSTOM_DECODING"
 
 local record M
     AssociateVehicleFleetInput: AssociateVehicleFleetInput
