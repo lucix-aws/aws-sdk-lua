@@ -1237,21 +1237,21 @@ local record ThrottlingException
     message: string
 end
 
-local type FileFormat = "Csv"
+local type InferredWorkloadTypesPreference = "Active" | "Inactive"
 
 local type MetricStatistic = "Maximum" | "Average"
 
-local type SavingsEstimationMode = "AfterDiscounts" | "BeforeDiscounts"
-
 local type Status = "Active" | "Inactive" | "Pending" | "Failed"
-
-local type ResourceType = "Ec2Instance" | "AutoScalingGroup" | "EbsVolume" | "LambdaFunction" | "NotApplicable" | "EcsService" | "License" | "RdsDBInstance" | "AuroraDBClusterStorage" | "Idle"
 
 local type EnhancedInfrastructureMetrics = "Active" | "Inactive"
 
+local type SavingsEstimationMode = "AfterDiscounts" | "BeforeDiscounts"
+
 local type LookBackPeriodPreference = "DAYS_14" | "DAYS_32" | "DAYS_93"
 
-local type InferredWorkloadTypesPreference = "Active" | "Inactive"
+local type FileFormat = "Csv"
+
+local type ResourceType = "Ec2Instance" | "AutoScalingGroup" | "EbsVolume" | "LambdaFunction" | "NotApplicable" | "EcsService" | "License" | "RdsDBInstance" | "AuroraDBClusterStorage" | "Idle"
 
 local record M
     DeleteRecommendationPreferencesInput: DeleteRecommendationPreferencesInput

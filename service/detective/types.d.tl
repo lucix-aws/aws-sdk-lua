@@ -956,15 +956,15 @@ local record ValidationException
     ErrorCodeReason: string
 end
 
-local type EntityType = "IAM_ROLE" | "IAM_USER"
-
 local type IndicatorType = "TTP_OBSERVED" | "IMPOSSIBLE_TRAVEL" | "FLAGGED_IP_ADDRESS" | "NEW_GEOLOCATION" | "NEW_ASO" | "NEW_USER_AGENT" | "RELATED_FINDING" | "RELATED_FINDING_GROUP"
+
+local type Status = "RUNNING" | "FAILED" | "SUCCESSFUL"
 
 local type Severity = "INFORMATIONAL" | "LOW" | "MEDIUM" | "HIGH" | "CRITICAL"
 
-local type State = "ACTIVE" | "ARCHIVED"
+local type EntityType = "IAM_ROLE" | "IAM_USER"
 
-local type Status = "RUNNING" | "FAILED" | "SUCCESSFUL"
+local type State = "ACTIVE" | "ARCHIVED"
 
 local record M
     AcceptInvitationInput: AcceptInvitationInput

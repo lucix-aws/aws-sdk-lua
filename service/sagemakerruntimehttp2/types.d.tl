@@ -1,13 +1,13 @@
 local record InvokeEndpointWithBidirectionalStreamInput
     EndpointName: string
-    Body: RequestStreamEvent
+    Body: function(): string, string
     TargetVariant: string
     ModelInvocationPath: string
     ModelQueryString: string
 end
 
 local record InvokeEndpointWithBidirectionalStreamOutput
-    Body: ResponseStreamEvent
+    Body: function(): string, string
     InvokedProductionVariant: string
 end
 

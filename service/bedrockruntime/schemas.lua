@@ -4404,6 +4404,10 @@ M.ConverseStreamOperationOutput = schema.new({
             target = M.ConverseStreamOutput,
             traits = {
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
     },
@@ -4594,6 +4598,11 @@ M.InvokeModelWithBidirectionalStreamOperationInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
     },
@@ -4679,6 +4688,11 @@ M.InvokeModelWithBidirectionalStreamOperationOutput = schema.new({
             target_id = id.from(_N, "InvokeModelWithBidirectionalStreamOutput"),
             target = M.InvokeModelWithBidirectionalStreamOutput,
             traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
             },
@@ -4856,6 +4870,11 @@ M.InvokeModelWithResponseStreamOutput = schema.new({
             target_id = id.from(_N, "ResponseStream"),
             target = M.ResponseStream,
             traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
             },

@@ -55,7 +55,7 @@ local record InvokeEndpointWithResponseStreamInput
 end
 
 local record InvokeEndpointWithResponseStreamOutput
-    Body: ResponseStream
+    Body: function(): string, string
     ContentType: string
     InvokedProductionVariant: string
     CustomAttributes: string

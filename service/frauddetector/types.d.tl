@@ -2243,29 +2243,29 @@ local record ValidationException
     message: string
 end
 
-local type ModelVersionStatus = "ACTIVE" | "INACTIVE" | "TRAINING_CANCELLED"
-
-local type ListUpdateMode = "REPLACE" | "APPEND" | "REMOVE"
-
-local type RuleExecutionMode = "ALL_MATCHED" | "FIRST_MATCHED"
-
-local type Language = "DETECTORPL"
+local type DataType = "STRING" | "INTEGER" | "FLOAT" | "BOOLEAN" | "DATETIME"
 
 local type AsyncJobStatus = "IN_PROGRESS_INITIALIZING" | "IN_PROGRESS" | "CANCEL_IN_PROGRESS" | "CANCELED" | "COMPLETE" | "FAILED"
 
+local type DataSource = "EVENT" | "MODEL_SCORE" | "EXTERNAL_MODEL_SCORE"
+
 local type ModelTypeEnum = "ONLINE_FRAUD_INSIGHTS" | "TRANSACTION_FRAUD_INSIGHTS" | "ACCOUNT_TAKEOVER_INSIGHTS"
 
-local type ModelEndpointStatus = "ASSOCIATED" | "DISSOCIATED"
+local type Language = "DETECTORPL"
 
-local type TrainingDataSourceEnum = "EXTERNAL_EVENTS" | "INGESTED_EVENTS"
-
-local type DataType = "STRING" | "INTEGER" | "FLOAT" | "BOOLEAN" | "DATETIME"
+local type ModelVersionStatus = "ACTIVE" | "INACTIVE" | "TRAINING_CANCELLED"
 
 local type ModelSource = "SAGEMAKER"
 
+local type RuleExecutionMode = "ALL_MATCHED" | "FIRST_MATCHED"
+
 local type DetectorVersionStatus = "DRAFT" | "ACTIVE" | "INACTIVE"
 
-local type DataSource = "EVENT" | "MODEL_SCORE" | "EXTERNAL_MODEL_SCORE"
+local type TrainingDataSourceEnum = "EXTERNAL_EVENTS" | "INGESTED_EVENTS"
+
+local type ListUpdateMode = "REPLACE" | "APPEND" | "REMOVE"
+
+local type ModelEndpointStatus = "ASSOCIATED" | "DISSOCIATED"
 
 local type EventIngestion = "ENABLED" | "DISABLED"
 

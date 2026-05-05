@@ -4979,6 +4979,11 @@ M.InvokeFlowOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
         executionId = schema.new({
@@ -5860,6 +5865,11 @@ M.InvokeAgentOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
         contentType = schema.new({
@@ -6333,6 +6343,11 @@ M.InvokeInlineAgentOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
         contentType = schema.new({
@@ -6721,6 +6736,11 @@ M.OptimizePromptOutput = schema.new({
             target_id = id.from(_N, "OptimizedPromptStream"),
             target = M.OptimizedPromptStream,
             traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
             },
@@ -7581,6 +7601,11 @@ M.RetrieveAndGenerateStreamOutput = schema.new({
             target_id = id.from(_N, "RetrieveAndGenerateStreamResponseOutput"),
             target = M.RetrieveAndGenerateStreamResponseOutput,
             traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
             },

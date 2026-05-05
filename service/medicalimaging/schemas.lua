@@ -1130,6 +1130,11 @@ M.GetImageFrameOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
         contentType = schema.new({
@@ -1362,6 +1367,11 @@ M.GetImageSetMetadataOutput = schema.new({
             name = "imageSetMetadataBlob",
             target_id = prelude.Blob.id,
             traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
             },

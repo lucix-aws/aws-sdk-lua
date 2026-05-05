@@ -186,6 +186,11 @@ M.GetObjectOutput = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = "" },
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.DEFAULT] = { value = "" },
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
         CacheControl = schema.new({
@@ -379,6 +384,11 @@ M.PutObjectInput = schema.new({
             name = "Body",
             target_id = prelude.Blob.id,
             traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
             },

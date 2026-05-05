@@ -123,6 +123,11 @@ M.GetMediaOutput = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = "" },
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.DEFAULT] = { value = "" },
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
     },

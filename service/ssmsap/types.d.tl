@@ -599,13 +599,13 @@ local record ValidationException
     Message: string
 end
 
-local type ConnectedEntityType = "DBMS"
+local type ApplicationType = "HANA" | "SAP_ABAP"
 
 local type PermissionActionType = "RESTORE"
 
 local type ConfigurationCheckOperationListingMode = "ALL_OPERATIONS" | "LATEST_PER_CHECK"
 
-local type ApplicationType = "HANA" | "SAP_ABAP"
+local type ConnectedEntityType = "DBMS"
 
 local record M
     DeleteResourcePermissionInput: DeleteResourcePermissionInput

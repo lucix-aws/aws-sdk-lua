@@ -43,7 +43,7 @@ local record PutSessionOutput
     sessionState: string
     requestAttributes: string
     sessionId: string
-    audioStream: string
+    audioStream: function(): string, string
 end
 
 local record RecognizeTextInput
@@ -74,7 +74,7 @@ local record RecognizeUtteranceInput
     requestAttributes: string
     requestContentType: string
     responseContentType: string
-    inputStream: string
+    inputStream: function(): string, string
 end
 
 local record RecognizeUtteranceOutput
@@ -86,7 +86,7 @@ local record RecognizeUtteranceOutput
     requestAttributes: string
     sessionId: string
     inputTranscript: string
-    audioStream: string
+    audioStream: function(): string, string
     recognizedBotMember: string
 end
 
@@ -96,11 +96,11 @@ local record StartConversationInput
     localeId: string
     sessionId: string
     conversationMode: string
-    requestEventStream: StartConversationRequestEventStream
+    requestEventStream: function(): string, string
 end
 
 local record StartConversationOutput
-    responseEventStream: StartConversationResponseEventStream
+    responseEventStream: function(): string, string
 end
 
 local record AccessDeniedException

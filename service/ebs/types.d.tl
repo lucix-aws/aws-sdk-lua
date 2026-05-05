@@ -18,7 +18,7 @@ end
 
 local record GetSnapshotBlockOutput
     DataLength: number
-    BlockData: string
+    BlockData: function(): string, string
     Checksum: string
     ChecksumAlgorithm: string
 end
@@ -57,7 +57,7 @@ end
 local record PutSnapshotBlockInput
     SnapshotId: string
     BlockIndex: number
-    BlockData: string
+    BlockData: function(): string, string
     DataLength: number
     Progress: number
     Checksum: string
@@ -276,11 +276,11 @@ local record ValidationException
     Reason: string
 end
 
-local type SSEType = "sse-ebs" | "sse-kms" | "none"
+local type ChecksumAlgorithm = "SHA256"
 
 local type ChecksumAggregationMethod = "LINEAR"
 
-local type ChecksumAlgorithm = "SHA256"
+local type SSEType = "sse-ebs" | "sse-kms" | "none"
 
 local type Status = "completed" | "pending" | "error"
 

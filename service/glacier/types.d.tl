@@ -149,7 +149,7 @@ local record GetJobOutputInput
 end
 
 local record GetJobOutputOutput
-    body: string
+    body: function(): string, string
     checksum: string
     status: number
     contentRange: string
@@ -342,7 +342,7 @@ local record UploadArchiveInput
     accountId: string
     archiveDescription: string
     checksum: string
-    body: string
+    body: function(): string, string
 end
 
 local record UploadArchiveOutput
@@ -357,7 +357,7 @@ local record UploadMultipartPartInput
     uploadId: string
     checksum: string
     range: string
-    body: string
+    body: function(): string, string
 end
 
 local record UploadMultipartPartOutput
@@ -1366,9 +1366,9 @@ local record ServiceUnavailableException
     message: string
 end
 
-local type StatusCode = "InProgress" | "Succeeded" | "Failed"
-
 local type ActionCode = "ArchiveRetrieval" | "InventoryRetrieval" | "Select"
+
+local type StatusCode = "InProgress" | "Succeeded" | "Failed"
 
 local record M
     AbortMultipartUploadInput: AbortMultipartUploadInput

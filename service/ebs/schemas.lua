@@ -343,6 +343,11 @@ M.GetSnapshotBlockOutput = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = "" },
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.DEFAULT] = { value = "" },
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
         Checksum = schema.new({
@@ -569,6 +574,11 @@ M.PutSnapshotBlockInput = schema.new({
             name = "BlockData",
             target_id = prelude.Blob.id,
             traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
             },

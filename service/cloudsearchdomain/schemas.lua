@@ -591,6 +591,11 @@ M.UploadDocumentsInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
         contentType = schema.new({

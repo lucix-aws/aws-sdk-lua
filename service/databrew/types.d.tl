@@ -1021,15 +1021,15 @@ local record ValidationException
     Message: string
 end
 
-local type SessionStatus = "ASSIGNED" | "FAILED" | "INITIALIZING" | "PROVISIONING" | "READY" | "RECYCLING" | "ROTATING" | "TERMINATED" | "TERMINATING" | "UPDATING"
-
-local type JobRunState = "STARTING" | "RUNNING" | "STOPPING" | "STOPPED" | "SUCCEEDED" | "FAILED" | "TIMEOUT"
-
 local type EncryptionMode = "SSE-KMS" | "SSE-S3"
+
+local type LogSubscription = "ENABLE" | "DISABLE"
 
 local type JobType = "PROFILE" | "RECIPE"
 
-local type LogSubscription = "ENABLE" | "DISABLE"
+local type JobRunState = "STARTING" | "RUNNING" | "STOPPING" | "STOPPED" | "SUCCEEDED" | "FAILED" | "TIMEOUT"
+
+local type SessionStatus = "ASSIGNED" | "FAILED" | "INITIALIZING" | "PROVISIONING" | "READY" | "RECYCLING" | "ROTATING" | "TERMINATED" | "TERMINATING" | "UPDATING"
 
 local type Source = "S3" | "DATA-CATALOG" | "DATABASE"
 

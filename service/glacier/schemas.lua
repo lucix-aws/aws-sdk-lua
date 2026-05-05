@@ -1360,6 +1360,11 @@ M.GetJobOutputOutput = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = "" },
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.DEFAULT] = { value = "" },
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
         checksum = schema.new({
@@ -2821,6 +2826,11 @@ M.UploadArchiveInput = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = "" },
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.DEFAULT] = { value = "" },
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
     },
@@ -2918,6 +2928,11 @@ M.UploadMultipartPartInput = schema.new({
             name = "body",
             target_id = prelude.Blob.id,
             traits = {
+                [traits.DEFAULT] = { value = "" },
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.DEFAULT] = { value = "" },
                 [traits.HTTP_PAYLOAD] = {},
             },

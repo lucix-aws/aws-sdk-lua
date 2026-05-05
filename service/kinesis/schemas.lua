@@ -2749,6 +2749,10 @@ M.SubscribeToShardOutput = schema.new({
             target = M.SubscribeToShardEventStream,
             traits = {
                 [traits.REQUIRED] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
             },
         }),
     },

@@ -23,7 +23,7 @@ local record GetObjectInput
 end
 
 local record GetObjectOutput
-    Body: string
+    Body: function(): string, string
     CacheControl: string
     ContentRange: string
     ContentLength: number
@@ -45,7 +45,7 @@ local record ListItemsOutput
 end
 
 local record PutObjectInput
-    Body: string
+    Body: function(): string, string
     Path: string
     ContentType: string
     CacheControl: string

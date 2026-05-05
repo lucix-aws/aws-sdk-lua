@@ -21768,6 +21768,12 @@ M.DescribeInputDeviceThumbnailOutput = schema.new({
                 [traits.DEFAULT] = { value = "" },
                 [traits.HTTP_PAYLOAD] = {},
                 [traits.JSON_NAME] = { name = "body" },
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.DEFAULT] = { value = "" },
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.JSON_NAME] = { name = "body" },
             },
         }),
         ContentType = schema.new({

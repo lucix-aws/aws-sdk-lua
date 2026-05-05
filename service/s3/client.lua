@@ -17,7 +17,7 @@ function M.new(cfg)
     cfg = cfg or {}
     cfg.service_id = "AmazonS3"
     if not cfg.protocol then
-        cfg.protocol = restxml_protocol.new()
+        cfg.protocol = restxml_protocol.new({ no_error_wrapping = true })
     end
     if not cfg.endpoint_provider then
         cfg.endpoint_provider = function(params)

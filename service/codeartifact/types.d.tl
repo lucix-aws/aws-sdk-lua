@@ -273,7 +273,7 @@ local record GetPackageVersionAssetInput
 end
 
 local record GetPackageVersionAssetOutput
-    asset: string
+    asset: function(): string, string
     assetName: string
     packageVersion: string
     packageVersionRevision: string
@@ -509,7 +509,7 @@ local record PublishPackageVersionInput
     namespace: string
     package: string
     packageVersion: string
-    assetContent: string
+    assetContent: function(): string, string
     assetName: string
     assetSHA256: string
     unfinished: boolean
@@ -1962,23 +1962,23 @@ local record ValidationException
     reason: string
 end
 
+local type AllowPublish = "ALLOW" | "BLOCK"
+
 local type PackageGroupAssociationType = "STRONG" | "WEAK"
-
-local type PackageVersionStatus = "Published" | "Unfinished" | "Unlisted" | "Archived" | "Disposed" | "Deleted"
-
-local type PackageVersionSortType = "PUBLISHED_TIME"
-
-local type AllowUpstream = "ALLOW" | "BLOCK"
 
 local type PackageFormat = "npm" | "pypi" | "maven" | "nuget" | "generic" | "ruby" | "swift" | "cargo"
 
-local type AllowPublish = "ALLOW" | "BLOCK"
+local type PackageGroupOriginRestrictionType = "EXTERNAL_UPSTREAM" | "INTERNAL_UPSTREAM" | "PUBLISH"
+
+local type PackageVersionStatus = "Published" | "Unfinished" | "Unlisted" | "Archived" | "Disposed" | "Deleted"
 
 local type EndpointType = "dualstack" | "ipv4"
 
-local type PackageGroupOriginRestrictionType = "EXTERNAL_UPSTREAM" | "INTERNAL_UPSTREAM" | "PUBLISH"
+local type AllowUpstream = "ALLOW" | "BLOCK"
 
 local type PackageVersionOriginType = "INTERNAL" | "EXTERNAL" | "UNKNOWN"
+
+local type PackageVersionSortType = "PUBLISHED_TIME"
 
 local record M
     AssociateExternalConnectionInput: AssociateExternalConnectionInput

@@ -6,7 +6,7 @@ end
 
 local record GetMediaOutput
     ContentType: string
-    Payload: string
+    Payload: function(): string, string
 end
 
 local record ClientLimitExceededException

@@ -1480,13 +1480,7 @@ local record UnknownResourceException
     message: string
 end
 
-local type ResourceShareAssociationType = "PRINCIPAL" | "RESOURCE" | "SOURCE"
-
-local type PermissionTypeFilter = "ALL" | "AWS_MANAGED" | "CUSTOMER_MANAGED"
-
-local type PermissionStatus = "ATTACHABLE" | "UNATTACHABLE" | "DELETING" | "DELETED"
-
-local type ResourceOwner = "SELF" | "OTHER-ACCOUNTS"
+local type ResourceShareAssociationStatus = "ASSOCIATING" | "ASSOCIATED" | "FAILED" | "DISASSOCIATING" | "DISASSOCIATED" | "SUSPENDED" | "SUSPENDING" | "RESTORING"
 
 local type ResourceShareStatus = "PENDING" | "ACTIVE" | "FAILED" | "DELETING" | "DELETED"
 
@@ -1494,9 +1488,15 @@ local type ResourceRegionScopeFilter = "ALL" | "REGIONAL" | "GLOBAL"
 
 local type PermissionFeatureSet = "CREATED_FROM_POLICY" | "PROMOTING_TO_STANDARD" | "STANDARD"
 
+local type ResourceOwner = "SELF" | "OTHER-ACCOUNTS"
+
+local type PermissionStatus = "ATTACHABLE" | "UNATTACHABLE" | "DELETING" | "DELETED"
+
+local type PermissionTypeFilter = "ALL" | "AWS_MANAGED" | "CUSTOMER_MANAGED"
+
 local type ReplacePermissionAssociationsWorkStatus = "IN_PROGRESS" | "COMPLETED" | "FAILED"
 
-local type ResourceShareAssociationStatus = "ASSOCIATING" | "ASSOCIATED" | "FAILED" | "DISASSOCIATING" | "DISASSOCIATED" | "SUSPENDED" | "SUSPENDING" | "RESTORING"
+local type ResourceShareAssociationType = "PRINCIPAL" | "RESOURCE" | "SOURCE"
 
 local record M
     AcceptResourceShareInvitationInput: AcceptResourceShareInvitationInput

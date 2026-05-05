@@ -1040,6 +1040,10 @@ M.StartSpeechSynthesisStreamInput = schema.new({
             target = M.StartSpeechSynthesisStreamActionStream,
             traits = {
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
     },
@@ -1223,6 +1227,10 @@ M.StartSpeechSynthesisStreamOutput = schema.new({
             target_id = id.from(_N, "StartSpeechSynthesisStreamEventStream"),
             target = M.StartSpeechSynthesisStreamEventStream,
             traits = {
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.HTTP_PAYLOAD] = {},
             },
         }),
@@ -1450,6 +1458,11 @@ M.SynthesizeSpeechOutput = schema.new({
             name = "AudioStream",
             target_id = prelude.Blob.id,
             traits = {
+                [traits.DEFAULT] = { value = "" },
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.DEFAULT] = { value = "" },
                 [traits.HTTP_PAYLOAD] = {},
             },

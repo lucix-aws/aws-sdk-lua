@@ -1369,17 +1369,17 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type CedarVersion = "CEDAR_2" | "CEDAR_4"
+local type PolicyEffect = "Permit" | "Forbid"
 
 local type DeletionProtection = "ENABLED" | "DISABLED"
 
-local type PolicyEffect = "Permit" | "Forbid"
-
 local type PolicyType = "STATIC" | "TEMPLATE_LINKED"
 
-local type Decision = "ALLOW" | "DENY"
+local type CedarVersion = "CEDAR_2" | "CEDAR_4"
 
 local type AliasState = "Active" | "PendingDeletion"
+
+local type Decision = "ALLOW" | "DENY"
 
 local record M
     BatchGetPolicyInput: BatchGetPolicyInput

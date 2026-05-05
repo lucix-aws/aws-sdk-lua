@@ -3151,47 +3151,47 @@ local record ValidationException
     message: string
 end
 
-local type LogGroupClass = "STANDARD" | "INFREQUENT_ACCESS" | "DELIVERY"
-
-local type IntegrationType = "OPENSEARCH"
-
-local type ImportStatus = "IN_PROGRESS" | "CANCELLED" | "COMPLETED" | "FAILED"
-
-local type DeliveryDestinationType = "S3" | "CWL" | "FH" | "XRAY"
-
-local type ScheduledQueryState = "ENABLED" | "DISABLED"
-
-local type QueryLanguage = "CWLI" | "SQL" | "PPL"
-
-local type OutputFormat = "json" | "plain" | "w3c" | "raw" | "parquet"
-
-local type OrderBy = "LogStreamName" | "LastEventTime"
-
-local type SuppressionType = "LIMITED" | "INFINITE"
-
-local type PolicyType = "DATA_PROTECTION_POLICY" | "SUBSCRIPTION_FILTER_POLICY" | "FIELD_INDEX_POLICY" | "TRANSFORMER_POLICY" | "METRIC_EXTRACTION_POLICY"
+local type Scope = "ALL"
 
 local type SuppressionState = "SUPPRESSED" | "UNSUPPRESSED"
 
-local type PolicyScope = "ACCOUNT" | "RESOURCE"
-
-local type ExecutionStatus = "Running" | "InvalidQuery" | "Complete" | "Failed" | "Timeout"
-
 local type QueryStatus = "Scheduled" | "Running" | "Complete" | "Failed" | "Cancelled" | "Timeout" | "Unknown"
+
+local type LogGroupClass = "STANDARD" | "INFREQUENT_ACCESS" | "DELIVERY"
 
 local type ListAggregateLogGroupSummariesGroupBy = "DATA_SOURCE_NAME_TYPE_AND_FORMAT" | "DATA_SOURCE_NAME_AND_TYPE"
 
-local type AnomalyDetectorStatus = "INITIALIZING" | "TRAINING" | "ANALYZING" | "FAILED" | "DELETED" | "PAUSED"
+local type PolicyScope = "ACCOUNT" | "RESOURCE"
+
+local type SuppressionType = "LIMITED" | "INFINITE"
 
 local type IntegrationStatus = "PROVISIONING" | "ACTIVE" | "FAILED"
 
-local type Scope = "ALL"
+local type QueryLanguage = "CWLI" | "SQL" | "PPL"
+
+local type IntegrationType = "OPENSEARCH"
+
+local type ScheduledQueryState = "ENABLED" | "DISABLED"
+
+local type ExecutionStatus = "Running" | "InvalidQuery" | "Complete" | "Failed" | "Timeout"
+
+local type ImportStatus = "IN_PROGRESS" | "CANCELLED" | "COMPLETED" | "FAILED"
+
+local type OrderBy = "LogStreamName" | "LastEventTime"
 
 local type EvaluationFrequency = "ONE_MIN" | "FIVE_MIN" | "TEN_MIN" | "FIFTEEN_MIN" | "THIRTY_MIN" | "ONE_HOUR"
 
+local type PolicyType = "DATA_PROTECTION_POLICY" | "SUBSCRIPTION_FILTER_POLICY" | "FIELD_INDEX_POLICY" | "TRANSFORMER_POLICY" | "METRIC_EXTRACTION_POLICY"
+
+local type AnomalyDetectorStatus = "INITIALIZING" | "TRAINING" | "ANALYZING" | "FAILED" | "DELETED" | "PAUSED"
+
 local type Distribution = "Random" | "ByLogStream"
 
+local type OutputFormat = "json" | "plain" | "w3c" | "raw" | "parquet"
+
 local type ExportTaskStatusCode = "CANCELLED" | "COMPLETED" | "FAILED" | "PENDING" | "PENDING_CANCEL" | "RUNNING"
+
+local type DeliveryDestinationType = "S3" | "CWL" | "FH" | "XRAY"
 
 local record M
     AssociateKmsKeyInput: AssociateKmsKeyInput

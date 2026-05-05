@@ -59,7 +59,7 @@ local record ConverseStreamInput
 end
 
 local record ConverseStreamOperationOutput
-    stream: ConverseStreamOutput
+    stream: function(): string, string
 end
 
 local record CountTokensOperationInput
@@ -108,11 +108,11 @@ end
 
 local record InvokeModelWithBidirectionalStreamOperationInput
     modelId: string
-    body: InvokeModelWithBidirectionalStreamInput
+    body: function(): string, string
 end
 
 local record InvokeModelWithBidirectionalStreamOperationOutput
-    body: InvokeModelWithBidirectionalStreamOutput
+    body: function(): string, string
 end
 
 local record InvokeModelWithResponseStreamInput
@@ -128,7 +128,7 @@ local record InvokeModelWithResponseStreamInput
 end
 
 local record InvokeModelWithResponseStreamOutput
-    body: ResponseStream
+    body: function(): string, string
     contentType: string
     performanceConfigLatency: string
     serviceTier: string
@@ -491,21 +491,21 @@ local record ValidationException
     message: string
 end
 
-local type Trace = "ENABLED" | "DISABLED" | "ENABLED_FULL"
-
-local type PerformanceConfigLatency = "standard" | "optimized"
-
-local type GuardrailOutputScope = "INTERVENTIONS" | "FULL"
-
-local type SortAsyncInvocationBy = "SubmissionTime"
-
 local type AsyncInvokeStatus = "InProgress" | "Completed" | "Failed"
-
-local type ServiceTierType = "priority" | "default" | "flex" | "reserved"
 
 local type GuardrailContentSource = "INPUT" | "OUTPUT"
 
+local type ServiceTierType = "priority" | "default" | "flex" | "reserved"
+
+local type SortAsyncInvocationBy = "SubmissionTime"
+
 local type StopReason = "end_turn" | "tool_use" | "max_tokens" | "stop_sequence" | "guardrail_intervened" | "content_filtered" | "malformed_model_output" | "malformed_tool_use" | "model_context_window_exceeded"
+
+local type GuardrailOutputScope = "INTERVENTIONS" | "FULL"
+
+local type Trace = "ENABLED" | "DISABLED" | "ENABLED_FULL"
+
+local type PerformanceConfigLatency = "standard" | "optimized"
 
 local type GuardrailAction = "NONE" | "GUARDRAIL_INTERVENED"
 

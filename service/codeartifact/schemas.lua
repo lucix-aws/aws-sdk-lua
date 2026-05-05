@@ -2510,6 +2510,11 @@ M.GetPackageVersionAssetOutput = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = "" },
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.DEFAULT] = { value = "" },
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
         assetName = schema.new({
@@ -4150,6 +4155,11 @@ M.PublishPackageVersionInput = schema.new({
             name = "assetContent",
             target_id = prelude.Blob.id,
             traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
             },

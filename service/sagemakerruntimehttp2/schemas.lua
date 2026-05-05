@@ -147,6 +147,11 @@ M.InvokeEndpointWithBidirectionalStreamInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
         TargetVariant = schema.new({
@@ -283,6 +288,11 @@ M.InvokeEndpointWithBidirectionalStreamOutput = schema.new({
             target_id = id.from(_N, "ResponseStreamEvent"),
             target = M.ResponseStreamEvent,
             traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
             },

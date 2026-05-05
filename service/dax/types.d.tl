@@ -699,11 +699,11 @@ local record SubnetQuotaExceededFault
     message: string
 end
 
-local type ClusterEndpointEncryptionType = "NONE" | "TLS"
+local type NetworkType = "ipv4" | "ipv6" | "dual_stack"
 
 local type SourceType = "CLUSTER" | "PARAMETER_GROUP" | "SUBNET_GROUP"
 
-local type NetworkType = "ipv4" | "ipv6" | "dual_stack"
+local type ClusterEndpointEncryptionType = "NONE" | "TLS"
 
 local record M
     CreateClusterInput: CreateClusterInput

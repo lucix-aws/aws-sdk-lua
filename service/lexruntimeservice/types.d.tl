@@ -34,7 +34,7 @@ local record PostContentInput
     requestAttributes: string
     contentType: string
     accept: string
-    inputStream: string
+    inputStream: function(): string, string
     activeContexts: string
 end
 
@@ -53,7 +53,7 @@ local record PostContentOutput
     slotToElicit: string
     inputTranscript: string
     encodedInputTranscript: string
-    audioStream: string
+    audioStream: function(): string, string
     botVersion: string
     sessionId: string
     activeContexts: string
@@ -107,7 +107,7 @@ local record PutSessionOutput
     messageFormat: string
     dialogState: string
     slotToElicit: string
-    audioStream: string
+    audioStream: function(): string, string
     sessionId: string
     activeContexts: string
 end
@@ -261,9 +261,9 @@ local record NotFoundException
     message: string
 end
 
-local type MessageFormatType = "PlainText" | "CustomPayload" | "SSML" | "Composite"
-
 local type DialogState = "ElicitIntent" | "ConfirmIntent" | "ElicitSlot" | "Fulfilled" | "ReadyForFulfillment" | "Failed"
+
+local type MessageFormatType = "PlainText" | "CustomPayload" | "SSML" | "Composite"
 
 local record M
     DeleteSessionInput: DeleteSessionInput

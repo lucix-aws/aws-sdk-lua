@@ -1237,11 +1237,11 @@ local record ServiceUnavailableException
     Message: string
 end
 
-local type DiscovererState = "STARTED" | "STOPPED"
+local type CodeGenerationStatus = "CREATE_IN_PROGRESS" | "CREATE_COMPLETE" | "CREATE_FAILED"
 
 local type Type = "OpenApi3" | "JSONSchemaDraft4"
 
-local type CodeGenerationStatus = "CREATE_IN_PROGRESS" | "CREATE_COMPLETE" | "CREATE_FAILED"
+local type DiscovererState = "STARTED" | "STOPPED"
 
 local record M
     CreateDiscovererInput: CreateDiscovererInput

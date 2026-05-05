@@ -7250,6 +7250,11 @@ M.InvokeAsyncInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
     },
@@ -7435,6 +7440,10 @@ M.InvokeWithResponseStreamOutput = schema.new({
             target_id = id.from(_N, "InvokeWithResponseStreamResponseEvent"),
             target = M.InvokeWithResponseStreamResponseEvent,
             traits = {
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.HTTP_PAYLOAD] = {},
             },
         }),

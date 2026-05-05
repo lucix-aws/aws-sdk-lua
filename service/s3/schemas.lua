@@ -6948,6 +6948,11 @@ M.GetObjectOutput = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = "" },
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.DEFAULT] = { value = "" },
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
         DeleteMarker = schema.new({
@@ -8267,6 +8272,11 @@ M.GetObjectTorrentOutput = schema.new({
             name = "Body",
             target_id = prelude.Blob.id,
             traits = {
+                [traits.DEFAULT] = { value = "" },
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.DEFAULT] = { value = "" },
                 [traits.HTTP_PAYLOAD] = {},
             },
@@ -12273,6 +12283,11 @@ M.PutObjectInput = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = "" },
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.DEFAULT] = { value = "" },
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
         Bucket = schema.new({
@@ -14471,6 +14486,10 @@ M.SelectObjectContentOutput = schema.new({
             target = M.SelectObjectContentEventStream,
             traits = {
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
     },
@@ -14783,6 +14802,11 @@ M.UploadPartInput = schema.new({
             name = "Body",
             target_id = prelude.Blob.id,
             traits = {
+                [traits.DEFAULT] = { value = "" },
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.DEFAULT] = { value = "" },
                 [traits.HTTP_PAYLOAD] = {},
             },
@@ -15524,6 +15548,11 @@ M.WriteGetObjectResponseInput = schema.new({
             name = "Body",
             target_id = prelude.Blob.id,
             traits = {
+                [traits.DEFAULT] = { value = "" },
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.DEFAULT] = { value = "" },
                 [traits.HTTP_PAYLOAD] = {},
             },

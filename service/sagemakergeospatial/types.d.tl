@@ -96,7 +96,7 @@ local record GetTileInput
 end
 
 local record GetTileOutput
-    BinaryFile: string
+    BinaryFile: function(): string, string
 end
 
 local record GetVectorEnrichmentJobInput

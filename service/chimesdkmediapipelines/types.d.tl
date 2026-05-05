@@ -1681,11 +1681,11 @@ end
 
 local type MediaPipelineSinkType = "S3Bucket"
 
+local type MediaPipelineStatusUpdate = "Pause" | "Resume"
+
 local type VoiceAnalyticsLanguageCode = "en-US"
 
 local type MediaPipelineSourceType = "ChimeSdkMeeting"
-
-local type MediaPipelineStatusUpdate = "Pause" | "Resume"
 
 local record M
     CreateMediaCapturePipelineInput: CreateMediaCapturePipelineInput

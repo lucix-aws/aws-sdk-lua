@@ -546,7 +546,7 @@ local record GetReadSetInput
 end
 
 local record GetReadSetOutput
-    payload: string
+    payload: function(): string, string
 end
 
 local record GetReadSetActivationJobInput
@@ -630,7 +630,7 @@ local record GetReferenceInput
 end
 
 local record GetReferenceOutput
-    payload: string
+    payload: function(): string, string
 end
 
 local record GetReferenceImportJobInput
@@ -1529,7 +1529,7 @@ local record UploadReadSetPartInput
     uploadId: string
     partSource: string
     partNumber: number
-    payload: string
+    payload: function(): string, string
 end
 
 local record UploadReadSetPartOutput

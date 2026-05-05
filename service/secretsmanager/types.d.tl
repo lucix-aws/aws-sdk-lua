@@ -746,9 +746,9 @@ local record ResourceNotFoundException
     Message: string
 end
 
-local type SortByType = "created-date" | "last-accessed-date" | "last-changed-date" | "name"
-
 local type SortOrderType = "asc" | "desc"
+
+local type SortByType = "created-date" | "last-accessed-date" | "last-changed-date" | "name"
 
 local record M
     BatchGetSecretValueInput: BatchGetSecretValueInput

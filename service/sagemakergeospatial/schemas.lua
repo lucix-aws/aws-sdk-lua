@@ -1652,6 +1652,7 @@ M.GetTileOutput = schema.new({
                 [traits.DEFAULT] = { value = "" },
                 [traits.HTTP_PAYLOAD] = {},
                 [traits.MEDIA_TYPE] = { value = "application/x-binary" },
+                [traits.STREAMING] = {},
             },
             direct_traits = {
                 [traits.DEFAULT] = { value = "" },

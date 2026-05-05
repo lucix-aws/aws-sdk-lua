@@ -655,7 +655,7 @@ local record GetObjectInput
 end
 
 local record GetObjectOutput
-    Body: string
+    Body: function(): string, string
     DeleteMarker: boolean
     AcceptRanges: string
     Expiration: string
@@ -794,7 +794,7 @@ local record GetObjectTorrentInput
 end
 
 local record GetObjectTorrentOutput
-    Body: string
+    Body: function(): string, string
     RequestCharged: string
 end
 
@@ -1327,7 +1327,7 @@ end
 
 local record PutObjectInput
     ACL: string
-    Body: string
+    Body: function(): string, string
     Bucket: string
     CacheControl: string
     ContentDisposition: string
@@ -1540,7 +1540,7 @@ local record SelectObjectContentInput
 end
 
 local record SelectObjectContentOutput
-    Payload: SelectObjectContentEventStream
+    Payload: function(): string, string
 end
 
 local record UpdateBucketMetadataInventoryTableConfigurationInput
@@ -1581,7 +1581,7 @@ local record UpdateObjectEncryptionOutput
 end
 
 local record UploadPartInput
-    Body: string
+    Body: function(): string, string
     Bucket: string
     ContentLength: number
     ContentMD5: string
@@ -1662,7 +1662,7 @@ end
 local record WriteGetObjectResponseInput
     RequestRoute: string
     RequestToken: string
-    Body: string
+    Body: function(): string, string
     StatusCode: number
     ErrorCode: string
     ErrorMessage: string
@@ -1782,59 +1782,59 @@ end
 local record NoSuchKey
 end
 
-local type BucketLocationConstraint = "af-south-1" | "ap-east-1" | "ap-east-2" | "ap-northeast-1" | "ap-northeast-2" | "ap-northeast-3" | "ap-south-1" | "ap-south-2" | "ap-southeast-1" | "ap-southeast-2" | "ap-southeast-3" | "ap-southeast-4" | "ap-southeast-5" | "ap-southeast-6" | "ap-southeast-7" | "ca-central-1" | "ca-west-1" | "cn-north-1" | "cn-northwest-1" | "EU" | "eu-central-1" | "eu-central-2" | "eu-north-1" | "eu-south-1" | "eu-south-2" | "eu-west-1" | "eu-west-2" | "eu-west-3" | "il-central-1" | "me-central-1" | "me-south-1" | "mx-central-1" | "sa-east-1" | "us-east-2" | "us-gov-east-1" | "us-gov-west-1" | "us-west-1" | "us-west-2"
-
-local type BucketNamespace = "account-regional" | "global"
-
-local type ObjectOwnership = "BucketOwnerPreferred" | "ObjectWriter" | "BucketOwnerEnforced"
-
-local type ChecksumMode = "ENABLED"
-
-local type RequestPayer = "requester"
-
-local type ServerSideEncryption = "AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse"
-
-local type BucketAccelerateStatus = "Enabled" | "Suspended"
-
-local type BucketCannedACL = "private" | "public-read" | "public-read-write" | "authenticated-read"
-
-local type Payer = "Requester" | "BucketOwner"
-
 local type ReplicationStatus = "COMPLETE" | "PENDING" | "FAILED" | "REPLICA" | "COMPLETED"
-
-local type TaggingDirective = "COPY" | "REPLACE"
-
-local type ChecksumType = "COMPOSITE" | "FULL_OBJECT"
-
-local type ExpressionType = "SQL"
-
-local type ObjectLockMode = "GOVERNANCE" | "COMPLIANCE"
-
-local type SessionMode = "ReadOnly" | "ReadWrite"
-
-local type MetadataDirective = "COPY" | "REPLACE"
 
 local type BucketVersioningStatus = "Enabled" | "Suspended"
 
+local type BucketCannedACL = "private" | "public-read" | "public-read-write" | "authenticated-read"
+
+local type ServerSideEncryption = "AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse"
+
 local type ArchiveStatus = "ARCHIVE_ACCESS" | "DEEP_ARCHIVE_ACCESS"
+
+local type BucketLocationConstraint = "af-south-1" | "ap-east-1" | "ap-east-2" | "ap-northeast-1" | "ap-northeast-2" | "ap-northeast-3" | "ap-south-1" | "ap-south-2" | "ap-southeast-1" | "ap-southeast-2" | "ap-southeast-3" | "ap-southeast-4" | "ap-southeast-5" | "ap-southeast-6" | "ap-southeast-7" | "ca-central-1" | "ca-west-1" | "cn-north-1" | "cn-northwest-1" | "EU" | "eu-central-1" | "eu-central-2" | "eu-north-1" | "eu-south-1" | "eu-south-2" | "eu-west-1" | "eu-west-2" | "eu-west-3" | "il-central-1" | "me-central-1" | "me-south-1" | "mx-central-1" | "sa-east-1" | "us-east-2" | "us-gov-east-1" | "us-gov-west-1" | "us-west-1" | "us-west-2"
+
+local type ObjectLockMode = "GOVERNANCE" | "COMPLIANCE"
+
+local type ExpressionType = "SQL"
+
+local type BucketAccelerateStatus = "Enabled" | "Suspended"
+
+local type SessionMode = "ReadOnly" | "ReadWrite"
+
+local type ChecksumType = "COMPOSITE" | "FULL_OBJECT"
+
+local type TaggingDirective = "COPY" | "REPLACE"
+
+local type MetadataDirective = "COPY" | "REPLACE"
+
+local type EncodingType = "url"
+
+local type Payer = "Requester" | "BucketOwner"
+
+local type ObjectLockLegalHoldStatus = "ON" | "OFF"
+
+local type BucketNamespace = "account-regional" | "global"
+
+local type StorageClass = "STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP"
+
+local type ObjectOwnership = "BucketOwnerPreferred" | "ObjectWriter" | "BucketOwnerEnforced"
+
+local type RequestCharged = "requester"
+
+local type RequestPayer = "requester"
+
+local type TransitionDefaultMinimumObjectSize = "varies_by_storage_class" | "all_storage_classes_128K"
 
 local type MFADeleteStatus = "Enabled" | "Disabled"
 
-local type ObjectLockLegalHoldStatus = "ON" | "OFF"
+local type ChecksumAlgorithm = "CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME" | "SHA512" | "MD5" | "XXHASH64" | "XXHASH3" | "XXHASH128"
+
+local type ChecksumMode = "ENABLED"
 
 local type LocationType = "AvailabilityZone" | "LocalZone"
 
 local type ObjectCannedACL = "private" | "public-read" | "public-read-write" | "authenticated-read" | "aws-exec-read" | "bucket-owner-read" | "bucket-owner-full-control"
-
-local type ChecksumAlgorithm = "CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME" | "SHA512" | "MD5" | "XXHASH64" | "XXHASH3" | "XXHASH128"
-
-local type RequestCharged = "requester"
-
-local type StorageClass = "STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP"
-
-local type EncodingType = "url"
-
-local type TransitionDefaultMinimumObjectSize = "varies_by_storage_class" | "all_storage_classes_128K"
 
 local record M
     AbortMultipartUploadInput: AbortMultipartUploadInput

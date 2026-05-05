@@ -5686,69 +5686,69 @@ local record ValidationException
     context: {string : string}
 end
 
+local type JobLifecycleStatus = "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "CREATE_COMPLETE" | "UPLOAD_IN_PROGRESS" | "UPLOAD_FAILED" | "UPDATE_IN_PROGRESS" | "UPDATE_FAILED" | "UPDATE_SUCCEEDED" | "ARCHIVED"
+
+local type StorageProfileOperatingSystemFamily = "WINDOWS" | "LINUX" | "MACOS"
+
+local type JobTargetTaskRunStatus = "READY" | "FAILED" | "SUCCEEDED" | "CANCELED" | "SUSPENDED" | "PENDING"
+
+local type QueueBlockedReason = "NO_BUDGET_CONFIGURED" | "BUDGET_THRESHOLD_REACHED"
+
 local type TaskTargetRunStatus = "READY" | "FAILED" | "SUCCEEDED" | "CANCELED" | "SUSPENDED" | "PENDING"
 
-local type StepTargetTaskRunStatus = "READY" | "FAILED" | "SUCCEEDED" | "CANCELED" | "SUSPENDED" | "PENDING"
+local type SessionLifecycleTargetStatus = "ENDED"
 
-local type FleetStatus = "ACTIVE" | "CREATE_IN_PROGRESS" | "UPDATE_IN_PROGRESS" | "CREATE_FAILED" | "UPDATE_FAILED" | "SUSPENDED"
+local type QueueStatus = "IDLE" | "SCHEDULING" | "SCHEDULING_BLOCKED"
 
-local type UpdateQueueLimitAssociationStatus = "ACTIVE" | "STOP_LIMIT_USAGE_AND_COMPLETE_TASKS" | "STOP_LIMIT_USAGE_AND_CANCEL_TASKS"
+local type SessionLifecycleStatus = "STARTED" | "UPDATE_IN_PROGRESS" | "UPDATE_SUCCEEDED" | "UPDATE_FAILED" | "ENDED"
 
-local type MembershipLevel = "VIEWER" | "CONTRIBUTOR" | "OWNER" | "MANAGER"
+local type Period = "HOURLY" | "DAILY" | "WEEKLY" | "MONTHLY"
 
 local type StepLifecycleStatus = "CREATE_COMPLETE" | "UPDATE_IN_PROGRESS" | "UPDATE_FAILED" | "UPDATE_SUCCEEDED"
 
 local type QueueLimitAssociationStatus = "ACTIVE" | "STOP_LIMIT_USAGE_AND_COMPLETE_TASKS" | "STOP_LIMIT_USAGE_AND_CANCEL_TASKS" | "STOPPED"
 
-local type Period = "HOURLY" | "DAILY" | "WEEKLY" | "MONTHLY"
+local type MembershipLevel = "VIEWER" | "CONTRIBUTOR" | "OWNER" | "MANAGER"
 
-local type QueueStatus = "IDLE" | "SCHEDULING" | "SCHEDULING_BLOCKED"
+local type StepTargetTaskRunStatus = "READY" | "FAILED" | "SUCCEEDED" | "CANCELED" | "SUSPENDED" | "PENDING"
+
+local type UpdateQueueLimitAssociationStatus = "ACTIVE" | "STOP_LIMIT_USAGE_AND_COMPLETE_TASKS" | "STOP_LIMIT_USAGE_AND_CANCEL_TASKS"
 
 local type UpdateJobLifecycleStatus = "ARCHIVED"
 
+local type FleetStatus = "ACTIVE" | "CREATE_IN_PROGRESS" | "UPDATE_IN_PROGRESS" | "CREATE_FAILED" | "UPDATE_FAILED" | "SUSPENDED"
+
+local type BudgetStatus = "ACTIVE" | "INACTIVE"
+
 local type UpdateQueueFleetAssociationStatus = "ACTIVE" | "STOP_SCHEDULING_AND_COMPLETE_TASKS" | "STOP_SCHEDULING_AND_CANCEL_TASKS"
 
-local type TaskRunStatus = "PENDING" | "READY" | "ASSIGNED" | "STARTING" | "SCHEDULED" | "INTERRUPTING" | "RUNNING" | "SUSPENDED" | "CANCELED" | "FAILED" | "SUCCEEDED" | "NOT_COMPATIBLE"
-
-local type DeadlinePrincipalType = "USER" | "GROUP"
-
-local type SessionLifecycleStatus = "STARTED" | "UPDATE_IN_PROGRESS" | "UPDATE_SUCCEEDED" | "UPDATE_FAILED" | "ENDED"
+local type EnvironmentTemplateType = "JSON" | "YAML"
 
 local type SessionsStatisticsAggregationStatus = "IN_PROGRESS" | "TIMEOUT" | "FAILED" | "COMPLETED"
 
 local type QueueFleetAssociationStatus = "ACTIVE" | "STOP_SCHEDULING_AND_COMPLETE_TASKS" | "STOP_SCHEDULING_AND_CANCEL_TASKS" | "STOPPED"
 
-local type JobLifecycleStatus = "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "CREATE_COMPLETE" | "UPLOAD_IN_PROGRESS" | "UPLOAD_FAILED" | "UPDATE_IN_PROGRESS" | "UPDATE_FAILED" | "UPDATE_SUCCEEDED" | "ARCHIVED"
-
-local type EnvironmentTemplateType = "JSON" | "YAML"
-
-local type BudgetStatus = "ACTIVE" | "INACTIVE"
-
-local type JobTargetTaskRunStatus = "READY" | "FAILED" | "SUCCEEDED" | "CANCELED" | "SUSPENDED" | "PENDING"
-
-local type SessionActionStatus = "ASSIGNED" | "RUNNING" | "CANCELING" | "SUCCEEDED" | "FAILED" | "INTERRUPTED" | "CANCELED" | "NEVER_ATTEMPTED" | "SCHEDULED" | "RECLAIMING" | "RECLAIMED"
-
 local type WorkerStatus = "CREATED" | "STARTED" | "STOPPING" | "STOPPED" | "NOT_RESPONDING" | "NOT_COMPATIBLE" | "RUNNING" | "IDLE"
 
-local type JobTemplateType = "JSON" | "YAML"
-
-local type SessionLifecycleTargetStatus = "ENDED"
-
-local type LicenseEndpointStatus = "CREATE_IN_PROGRESS" | "DELETE_IN_PROGRESS" | "READY" | "NOT_READY"
-
-local type DefaultQueueBudgetAction = "NONE" | "STOP_SCHEDULING_AND_COMPLETE_TASKS" | "STOP_SCHEDULING_AND_CANCEL_TASKS"
-
-local type QueueBlockedReason = "NO_BUDGET_CONFIGURED" | "BUDGET_THRESHOLD_REACHED"
-
-local type DesiredWorkerStatus = "STOPPED"
+local type TaskRunStatus = "PENDING" | "READY" | "ASSIGNED" | "STARTING" | "SCHEDULED" | "INTERRUPTING" | "RUNNING" | "SUSPENDED" | "CANCELED" | "FAILED" | "SUCCEEDED" | "NOT_COMPATIBLE"
 
 local type UpdatedWorkerStatus = "STARTED" | "STOPPING" | "STOPPED"
 
-local type CreateJobTargetTaskRunStatus = "READY" | "SUSPENDED"
-
 local type AutoScalingStatus = "GROWING" | "STEADY" | "SHRINKING"
 
-local type StorageProfileOperatingSystemFamily = "WINDOWS" | "LINUX" | "MACOS"
+local type LicenseEndpointStatus = "CREATE_IN_PROGRESS" | "DELETE_IN_PROGRESS" | "READY" | "NOT_READY"
+
+local type CreateJobTargetTaskRunStatus = "READY" | "SUSPENDED"
+
+local type SessionActionStatus = "ASSIGNED" | "RUNNING" | "CANCELING" | "SUCCEEDED" | "FAILED" | "INTERRUPTED" | "CANCELED" | "NEVER_ATTEMPTED" | "SCHEDULED" | "RECLAIMING" | "RECLAIMED"
+
+local type DefaultQueueBudgetAction = "NONE" | "STOP_SCHEDULING_AND_COMPLETE_TASKS" | "STOP_SCHEDULING_AND_CANCEL_TASKS"
+
+local type DeadlinePrincipalType = "USER" | "GROUP"
+
+local type DesiredWorkerStatus = "STOPPED"
+
+local type JobTemplateType = "JSON" | "YAML"
 
 local record M
     AssociateMemberToFarmInput: AssociateMemberToFarmInput

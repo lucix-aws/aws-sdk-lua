@@ -145,7 +145,7 @@ local record InvokeAgentInput
 end
 
 local record InvokeAgentOutput
-    completion: ResponseStream
+    completion: function(): string, string
     contentType: string
     sessionId: string
     memoryId: string
@@ -161,7 +161,7 @@ local record InvokeFlowInput
 end
 
 local record InvokeFlowOutput
-    responseStream: FlowResponseStream
+    responseStream: function(): string, string
     executionId: string
 end
 
@@ -191,7 +191,7 @@ local record InvokeInlineAgentInput
 end
 
 local record InvokeInlineAgentOutput
-    completion: InlineAgentResponseStream
+    completion: function(): string, string
     contentType: string
     sessionId: string
 end
@@ -269,7 +269,7 @@ local record OptimizePromptInput
 end
 
 local record OptimizePromptOutput
-    optimizedPrompt: OptimizedPromptStream
+    optimizedPrompt: function(): string, string
 end
 
 local record PutInvocationStepInput
@@ -332,7 +332,7 @@ local record RetrieveAndGenerateStreamInput
 end
 
 local record RetrieveAndGenerateStreamOutput
-    stream: RetrieveAndGenerateStreamResponseOutput
+    stream: function(): string, string
     sessionId: string
 end
 
@@ -1293,19 +1293,19 @@ local record ValidationException
     message: string
 end
 
-local type SessionStatus = "ACTIVE" | "EXPIRED" | "ENDED"
+local type AgentCollaboration = "SUPERVISOR" | "SUPERVISOR_ROUTER" | "DISABLED"
 
 local type MemoryType = "SESSION_SUMMARY"
 
-local type AgentCollaboration = "SUPERVISOR" | "SUPERVISOR_ROUTER" | "DISABLED"
+local type FlowExecutionEventType = "Node" | "Flow"
 
 local type GuadrailAction = "INTERVENED" | "NONE"
 
-local type FlowExecutionEventType = "Node" | "Flow"
+local type FlowExecutionStatus = "Running" | "Succeeded" | "Failed" | "TimedOut" | "Aborted"
+
+local type SessionStatus = "ACTIVE" | "EXPIRED" | "ENDED"
 
 local type OrchestrationType = "DEFAULT" | "CUSTOM_ORCHESTRATION"
-
-local type FlowExecutionStatus = "Running" | "Succeeded" | "Failed" | "TimedOut" | "Aborted"
 
 local record M
     CreateInvocationInput: CreateInvocationInput

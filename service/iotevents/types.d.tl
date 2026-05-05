@@ -842,9 +842,9 @@ end
 
 local type AnalysisStatus = "RUNNING" | "COMPLETE" | "FAILED"
 
-local type AlarmModelVersionStatus = "ACTIVE" | "ACTIVATING" | "INACTIVE" | "FAILED"
-
 local type EvaluationMethod = "BATCH" | "SERIAL"
+
+local type AlarmModelVersionStatus = "ACTIVE" | "ACTIVATING" | "INACTIVE" | "FAILED"
 
 local record M
     CreateAlarmModelInput: CreateAlarmModelInput

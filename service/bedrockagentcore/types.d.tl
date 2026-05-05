@@ -347,7 +347,7 @@ local record InvokeAgentRuntimeOutput
     traceState: string
     baggage: string
     contentType: string
-    response: string
+    response: function(): string, string
     statusCode: number
 end
 
@@ -373,7 +373,7 @@ local record InvokeAgentRuntimeCommandOutput
     baggage: string
     contentType: string
     statusCode: number
-    stream: InvokeAgentRuntimeCommandStreamOutput
+    stream: function(): string, string
 end
 
 local record InvokeBrowserInput
@@ -398,7 +398,7 @@ end
 
 local record InvokeCodeInterpreterOutput
     sessionId: string
-    stream: CodeInterpreterStreamOutput
+    stream: function(): string, string
 end
 
 local record InvokeHarnessInput
@@ -417,7 +417,7 @@ local record InvokeHarnessInput
 end
 
 local record InvokeHarnessOutput
-    stream: InvokeHarnessStreamOutput
+    stream: function(): string, string
 end
 
 local record ListABTestsInput
@@ -2251,25 +2251,25 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type RecommendationType = "SYSTEM_PROMPT_RECOMMENDATION" | "TOOL_DESCRIPTION_RECOMMENDATION"
-
-local type CodeInterpreterSessionStatus = "READY" | "TERMINATED"
-
 local type BrowserSessionStatus = "READY" | "TERMINATED"
-
-local type RecommendationStatus = "PENDING" | "IN_PROGRESS" | "COMPLETED" | "FAILED" | "DELETING"
 
 local type SessionStatus = "IN_PROGRESS" | "FAILED"
 
-local type ABTestExecutionStatus = "PAUSED" | "RUNNING" | "STOPPED" | "NOT_STARTED"
+local type RecommendationStatus = "PENDING" | "IN_PROGRESS" | "COMPLETED" | "FAILED" | "DELETING"
 
 local type BatchEvaluationStatus = "PENDING" | "IN_PROGRESS" | "COMPLETED" | "COMPLETED_WITH_ERRORS" | "FAILED" | "STOPPING" | "STOPPED" | "DELETING"
 
-local type ABTestStatus = "CREATING" | "ACTIVE" | "CREATE_FAILED" | "UPDATING" | "UPDATE_FAILED" | "DELETING" | "DELETE_FAILED" | "FAILED"
+local type RecommendationType = "SYSTEM_PROMPT_RECOMMENDATION" | "TOOL_DESCRIPTION_RECOMMENDATION"
 
 local type Oauth2FlowType = "USER_FEDERATION" | "M2M" | "ON_BEHALF_OF_TOKEN_EXCHANGE"
 
+local type ABTestExecutionStatus = "PAUSED" | "RUNNING" | "STOPPED" | "NOT_STARTED"
+
 local type ToolName = "executeCode" | "executeCommand" | "readFiles" | "listFiles" | "removeFiles" | "writeFiles" | "startCommandExecution" | "getTask" | "stopTask"
+
+local type CodeInterpreterSessionStatus = "READY" | "TERMINATED"
+
+local type ABTestStatus = "CREATING" | "ACTIVE" | "CREATE_FAILED" | "UPDATING" | "UPDATE_FAILED" | "DELETING" | "DELETE_FAILED" | "FAILED"
 
 local record M
     BatchCreateMemoryRecordsInput: BatchCreateMemoryRecordsInput

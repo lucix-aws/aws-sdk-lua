@@ -3583,53 +3583,53 @@ local record ThrottlingException
     Message: string
 end
 
-local type Status = "NOT_STARTED" | "IN_PROGRESS" | "COMPLETE" | "FAILED" | "SPLIT" | "RETRY" | "CANCELLED"
-
-local type IdentityResolutionJobStatus = "PENDING" | "PREPROCESSING" | "FIND_MATCHING" | "MERGING" | "COMPLETED" | "PARTIAL_SUCCESS" | "FAILED"
-
-local type Gender = "MALE" | "FEMALE" | "UNSPECIFIED"
-
-local type DataFormat = "CSV" | "JSONL" | "ORC"
-
-local type LayoutType = "PROFILE_EXPLORER"
-
-local type ReadinessStatus = "PREPARING" | "IN_PROGRESS" | "COMPLETED" | "FAILED"
-
-local type ActionType = "ADDED_PROFILE_KEY" | "DELETED_PROFILE_KEY" | "CREATED" | "UPDATED" | "INGESTED" | "DELETED_BY_CUSTOMER" | "EXPIRED" | "MERGED" | "DELETED_BY_MERGE"
-
-local type Scope = "PROFILE" | "DOMAIN"
-
-local type RecommenderSchemaStatus = "ACTIVE" | "DELETING"
-
-local type EventStreamState = "RUNNING" | "STOPPED"
-
-local type ProfileType = "ACCOUNT_PROFILE" | "PROFILE"
-
-local type SegmentType = "CLASSIC" | "ENHANCED"
-
 local type MatchType = "RULE_BASED_MATCHING" | "ML_BASED_MATCHING"
-
-local type EstimateStatus = "RUNNING" | "SUCCEEDED" | "FAILED"
-
-local type RecommenderStatus = "PENDING" | "IN_PROGRESS" | "ACTIVE" | "FAILED" | "STOPPING" | "INACTIVE" | "STARTING" | "DELETING"
-
-local type WorkflowType = "APPFLOW_INTEGRATION"
-
-local type RecommenderRecipeName = "recommended-for-you" | "similar-items" | "frequently-paired-items" | "popular-items" | "trending-now" | "personalized-ranking"
-
-local type Statistic = "FIRST_OCCURRENCE" | "LAST_OCCURRENCE" | "COUNT" | "SUM" | "MINIMUM" | "MAXIMUM" | "AVERAGE" | "MAX_OCCURRENCE"
-
-local type UploadJobStatus = "CREATED" | "IN_PROGRESS" | "PARTIALLY_SUCCEEDED" | "SUCCEEDED" | "FAILED" | "STOPPED"
 
 local type logicalOperator = "AND" | "OR"
 
-local type SegmentSnapshotStatus = "COMPLETED" | "IN_PROGRESS" | "FAILED"
+local type RecommenderRecipeName = "recommended-for-you" | "similar-items" | "frequently-paired-items" | "popular-items" | "trending-now" | "personalized-ranking"
+
+local type Scope = "PROFILE" | "DOMAIN"
 
 local type PartyType = "INDIVIDUAL" | "BUSINESS" | "OTHER"
 
-local type StatusReason = "VALIDATION_FAILURE" | "INTERNAL_FAILURE"
+local type SegmentSnapshotStatus = "COMPLETED" | "IN_PROGRESS" | "FAILED"
+
+local type LayoutType = "PROFILE_EXPLORER"
+
+local type SegmentType = "CLASSIC" | "ENHANCED"
+
+local type UploadJobStatus = "CREATED" | "IN_PROGRESS" | "PARTIALLY_SUCCEEDED" | "SUCCEEDED" | "FAILED" | "STOPPED"
+
+local type ActionType = "ADDED_PROFILE_KEY" | "DELETED_PROFILE_KEY" | "CREATED" | "UPDATED" | "INGESTED" | "DELETED_BY_CUSTOMER" | "EXPIRED" | "MERGED" | "DELETED_BY_MERGE"
+
+local type ProfileType = "ACCOUNT_PROFILE" | "PROFILE"
+
+local type EventStreamState = "RUNNING" | "STOPPED"
+
+local type DataFormat = "CSV" | "JSONL" | "ORC"
+
+local type RecommenderSchemaStatus = "ACTIVE" | "DELETING"
+
+local type Status = "NOT_STARTED" | "IN_PROGRESS" | "COMPLETE" | "FAILED" | "SPLIT" | "RETRY" | "CANCELLED"
+
+local type Gender = "MALE" | "FEMALE" | "UNSPECIFIED"
+
+local type WorkflowType = "APPFLOW_INTEGRATION"
+
+local type IdentityResolutionJobStatus = "PENDING" | "PREPROCESSING" | "FIND_MATCHING" | "MERGING" | "COMPLETED" | "PARTIAL_SUCCESS" | "FAILED"
+
+local type RecommenderStatus = "PENDING" | "IN_PROGRESS" | "ACTIVE" | "FAILED" | "STOPPING" | "INACTIVE" | "STARTING" | "DELETING"
+
+local type EstimateStatus = "RUNNING" | "SUCCEEDED" | "FAILED"
 
 local type RecommenderFilterStatus = "ACTIVE" | "PENDING" | "IN_PROGRESS" | "FAILED" | "DELETING"
+
+local type Statistic = "FIRST_OCCURRENCE" | "LAST_OCCURRENCE" | "COUNT" | "SUM" | "MINIMUM" | "MAXIMUM" | "AVERAGE" | "MAX_OCCURRENCE"
+
+local type ReadinessStatus = "PREPARING" | "IN_PROGRESS" | "COMPLETED" | "FAILED"
+
+local type StatusReason = "VALIDATION_FAILURE" | "INTERNAL_FAILURE"
 
 local record M
     AddProfileKeyInput: AddProfileKeyInput

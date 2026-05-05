@@ -702,9 +702,9 @@ local record ServiceNotFound
     Message: string
 end
 
-local type ServiceTypeOption = "HTTP"
-
 local type CustomHealthStatus = "HEALTHY" | "UNHEALTHY"
+
+local type ServiceTypeOption = "HTTP"
 
 local type HealthStatusFilter = "HEALTHY" | "UNHEALTHY" | "ALL" | "HEALTHY_OR_ELSE_ALL"
 

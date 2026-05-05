@@ -966,6 +966,11 @@ M.InvokeAgentRuntimeOutput = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = "" },
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.DEFAULT] = { value = "" },
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
         statusCode = schema.new({
@@ -1327,6 +1332,11 @@ M.InvokeAgentRuntimeCommandOutput = schema.new({
             target_id = id.from(_N, "InvokeAgentRuntimeCommandStreamOutput"),
             target = M.InvokeAgentRuntimeCommandStreamOutput,
             traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
             },
@@ -7174,6 +7184,11 @@ M.InvokeCodeInterpreterOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
     },
@@ -8352,6 +8367,11 @@ M.InvokeHarnessOutput = schema.new({
             target_id = id.from(_N, "InvokeHarnessStreamOutput"),
             target = M.InvokeHarnessStreamOutput,
             traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
             },

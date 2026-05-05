@@ -761,17 +761,17 @@ local record ThrottledException
     Message: string
 end
 
-local type TimeRangeType = "TraceId" | "Event" | "Service"
-
-local type TraceSegmentDestinationStatus = "PENDING" | "ACTIVE"
+local type EncryptionType = "NONE" | "KMS"
 
 local type RetrievalStatus = "SCHEDULED" | "RUNNING" | "COMPLETE" | "FAILED" | "CANCELLED" | "TIMEOUT"
 
 local type TraceFormatType = "XRAY" | "OTEL"
 
-local type EncryptionType = "NONE" | "KMS"
+local type TimeRangeType = "TraceId" | "Event" | "Service"
 
 local type TraceSegmentDestination = "XRay" | "CloudWatchLogs"
+
+local type TraceSegmentDestinationStatus = "PENDING" | "ACTIVE"
 
 local record M
     BatchGetTracesInput: BatchGetTracesInput

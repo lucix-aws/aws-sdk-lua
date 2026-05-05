@@ -1239,21 +1239,21 @@ local record ResourceNotFoundException
     message: string
 end
 
-local type ApiDestinationState = "ACTIVE" | "INACTIVE"
-
-local type ReplayState = "STARTING" | "RUNNING" | "CANCELLING" | "COMPLETED" | "CANCELLED" | "FAILED"
-
-local type ConnectionAuthorizationType = "BASIC" | "OAUTH_CLIENT_CREDENTIALS" | "API_KEY"
-
-local type RuleState = "ENABLED" | "DISABLED"
+local type ArchiveState = "ENABLED" | "DISABLED" | "CREATING" | "UPDATING" | "CREATE_FAILED" | "UPDATE_FAILED"
 
 local type EventSourceState = "PENDING" | "ACTIVE" | "DELETED"
 
-local type ArchiveState = "ENABLED" | "DISABLED" | "CREATING" | "UPDATING" | "CREATE_FAILED" | "UPDATE_FAILED"
-
-local type ApiDestinationHttpMethod = "POST" | "GET" | "HEAD" | "OPTIONS" | "PUT" | "PATCH" | "DELETE"
+local type RuleState = "ENABLED" | "DISABLED"
 
 local type ConnectionState = "CREATING" | "UPDATING" | "DELETING" | "AUTHORIZED" | "DEAUTHORIZED" | "AUTHORIZING" | "DEAUTHORIZING"
+
+local type ReplayState = "STARTING" | "RUNNING" | "CANCELLING" | "COMPLETED" | "CANCELLED" | "FAILED"
+
+local type ApiDestinationState = "ACTIVE" | "INACTIVE"
+
+local type ConnectionAuthorizationType = "BASIC" | "OAUTH_CLIENT_CREDENTIALS" | "API_KEY"
+
+local type ApiDestinationHttpMethod = "POST" | "GET" | "HEAD" | "OPTIONS" | "PUT" | "PATCH" | "DELETE"
 
 local record M
     ActivateEventSourceInput: ActivateEventSourceInput

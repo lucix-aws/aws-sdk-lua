@@ -136,9 +136,9 @@ local record ValidationException
     Message: string
 end
 
-local type HumanLoopStatus = "InProgress" | "Failed" | "Completed" | "Stopped" | "Stopping"
-
 local type SortOrder = "Ascending" | "Descending"
+
+local type HumanLoopStatus = "InProgress" | "Failed" | "Completed" | "Stopped" | "Stopping"
 
 local record M
     DeleteHumanLoopInput: DeleteHumanLoopInput

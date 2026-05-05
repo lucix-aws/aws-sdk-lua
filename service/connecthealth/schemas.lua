@@ -1933,6 +1933,10 @@ M.StartMedicalScribeListeningSessionInput = schema.new({
             target = M.MedicalScribeInputStream,
             traits = {
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
     },
@@ -2097,6 +2101,10 @@ M.StartMedicalScribeListeningSessionOutput = schema.new({
             target_id = id.from(_N, "MedicalScribeOutputStream"),
             target = M.MedicalScribeOutputStream,
             traits = {
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.HTTP_PAYLOAD] = {},
             },
         }),

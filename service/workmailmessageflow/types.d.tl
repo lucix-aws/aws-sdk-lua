@@ -3,7 +3,7 @@ local record GetRawMessageContentInput
 end
 
 local record GetRawMessageContentOutput
-    messageContent: string
+    messageContent: function(): string, string
 end
 
 local record PutRawMessageContentInput

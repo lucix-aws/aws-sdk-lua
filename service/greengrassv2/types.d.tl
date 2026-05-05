@@ -1030,21 +1030,21 @@ local record ValidationException
     fields: {ValidationExceptionField}
 end
 
-local type ComponentVisibilityScope = "PRIVATE" | "PUBLIC"
-
-local type DeploymentStatus = "ACTIVE" | "COMPLETED" | "CANCELED" | "FAILED" | "INACTIVE"
-
-local type S3EndpointType = "REGIONAL" | "GLOBAL"
-
-local type DeploymentHistoryFilter = "ALL" | "LATEST_ONLY"
-
-local type RecipeOutputFormat = "JSON" | "YAML"
-
-local type CoreDeviceStatus = "HEALTHY" | "UNHEALTHY"
+local type IotEndpointType = "fips" | "standard"
 
 local type InstalledComponentTopologyFilter = "ALL" | "ROOT"
 
-local type IotEndpointType = "fips" | "standard"
+local type DeploymentHistoryFilter = "ALL" | "LATEST_ONLY"
+
+local type CoreDeviceStatus = "HEALTHY" | "UNHEALTHY"
+
+local type S3EndpointType = "REGIONAL" | "GLOBAL"
+
+local type RecipeOutputFormat = "JSON" | "YAML"
+
+local type DeploymentStatus = "ACTIVE" | "COMPLETED" | "CANCELED" | "FAILED" | "INACTIVE"
+
+local type ComponentVisibilityScope = "PRIVATE" | "PUBLIC"
 
 local record M
     AssociateServiceRoleToAccountInput: AssociateServiceRoleToAccountInput

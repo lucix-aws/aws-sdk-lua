@@ -581,6 +581,11 @@ M.PostContentInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
         activeContexts = schema.new({
@@ -751,6 +756,11 @@ M.PostContentOutput = schema.new({
             name = "audioStream",
             target_id = prelude.Blob.id,
             traits = {
+                [traits.DEFAULT] = { value = "" },
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.DEFAULT] = { value = "" },
                 [traits.HTTP_PAYLOAD] = {},
             },
@@ -1316,6 +1326,11 @@ M.PutSessionOutput = schema.new({
             name = "audioStream",
             target_id = prelude.Blob.id,
             traits = {
+                [traits.DEFAULT] = { value = "" },
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.DEFAULT] = { value = "" },
                 [traits.HTTP_PAYLOAD] = {},
             },

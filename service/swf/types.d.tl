@@ -837,9 +837,9 @@ local record UnknownResourceFault
     message: string
 end
 
-local type ChildPolicy = "TERMINATE" | "REQUEST_CANCEL" | "ABANDON"
-
 local type RegistrationStatus = "REGISTERED" | "DEPRECATED"
+
+local type ChildPolicy = "TERMINATE" | "REQUEST_CANCEL" | "ABANDON"
 
 local record M
     CountClosedWorkflowExecutionsInput: CountClosedWorkflowExecutionsInput

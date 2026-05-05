@@ -5702,6 +5702,9 @@ M.GetLogObjectOutput = schema.new({
             name = "fieldStream",
             target_id = id.from(_N, "GetLogObjectResponseStream"),
             target = M.GetLogObjectResponseStream,
+            traits = {
+                [traits.STREAMING] = {},
+            },
         }),
     },
 })
@@ -9002,6 +9005,9 @@ M.StartLiveTailOutput = schema.new({
             name = "responseStream",
             target_id = id.from(_N, "StartLiveTailResponseStream"),
             target = M.StartLiveTailResponseStream,
+            traits = {
+                [traits.STREAMING] = {},
+            },
         }),
     },
 })

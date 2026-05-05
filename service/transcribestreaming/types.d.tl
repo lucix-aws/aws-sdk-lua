@@ -12,7 +12,7 @@ local record StartCallAnalyticsStreamTranscriptionInput
     MediaEncoding: string
     VocabularyName: string
     SessionId: string
-    AudioStream: AudioStream
+    AudioStream: function(): string, string
     VocabularyFilterName: string
     VocabularyFilterMethod: string
     LanguageModelName: string
@@ -35,7 +35,7 @@ local record StartCallAnalyticsStreamTranscriptionOutput
     MediaEncoding: string
     VocabularyName: string
     SessionId: string
-    CallAnalyticsTranscriptResultStream: CallAnalyticsTranscriptResultStream
+    CallAnalyticsTranscriptResultStream: function(): string, string
     VocabularyFilterName: string
     VocabularyFilterMethod: string
     LanguageModelName: string
@@ -56,7 +56,7 @@ local record StartMedicalScribeStreamInput
     LanguageCode: string
     MediaSampleRateHertz: number
     MediaEncoding: string
-    InputStream: MedicalScribeInputStream
+    InputStream: function(): string, string
 end
 
 local record StartMedicalScribeStreamOutput
@@ -65,7 +65,7 @@ local record StartMedicalScribeStreamOutput
     LanguageCode: string
     MediaSampleRateHertz: number
     MediaEncoding: string
-    ResultStream: MedicalScribeResultStream
+    ResultStream: function(): string, string
 end
 
 local record StartMedicalStreamTranscriptionInput
@@ -77,7 +77,7 @@ local record StartMedicalStreamTranscriptionInput
     Type: string
     ShowSpeakerLabel: boolean
     SessionId: string
-    AudioStream: AudioStream
+    AudioStream: function(): string, string
     EnableChannelIdentification: boolean
     NumberOfChannels: number
     ContentIdentificationType: string
@@ -93,7 +93,7 @@ local record StartMedicalStreamTranscriptionOutput
     Type: string
     ShowSpeakerLabel: boolean
     SessionId: string
-    TranscriptResultStream: MedicalTranscriptResultStream
+    TranscriptResultStream: function(): string, string
     EnableChannelIdentification: boolean
     NumberOfChannels: number
     ContentIdentificationType: string
@@ -105,7 +105,7 @@ local record StartStreamTranscriptionInput
     MediaEncoding: string
     VocabularyName: string
     SessionId: string
-    AudioStream: AudioStream
+    AudioStream: function(): string, string
     VocabularyFilterName: string
     VocabularyFilterMethod: string
     ShowSpeakerLabel: boolean
@@ -133,7 +133,7 @@ local record StartStreamTranscriptionOutput
     MediaEncoding: string
     VocabularyName: string
     SessionId: string
-    TranscriptResultStream: TranscriptResultStream
+    TranscriptResultStream: function(): string, string
     VocabularyFilterName: string
     VocabularyFilterMethod: string
     ShowSpeakerLabel: boolean
@@ -250,29 +250,29 @@ local record ServiceUnavailableException
     Message: string
 end
 
-local type Specialty = "PRIMARYCARE" | "CARDIOLOGY" | "NEUROLOGY" | "ONCOLOGY" | "RADIOLOGY" | "UROLOGY"
+local type ContentIdentificationType = "PII"
 
-local type MediaEncoding = "pcm" | "ogg-opus" | "flac"
+local type PartialResultsStability = "high" | "medium" | "low"
+
+local type Type = "CONVERSATION" | "DICTATION"
 
 local type MedicalContentIdentificationType = "PHI"
+
+local type CallAnalyticsLanguageCode = "en-US" | "en-GB" | "es-US" | "fr-CA" | "fr-FR" | "en-AU" | "it-IT" | "de-DE" | "pt-BR"
 
 local type LanguageCode = "en-US" | "en-GB" | "es-US" | "fr-CA" | "fr-FR" | "en-AU" | "it-IT" | "de-DE" | "pt-BR" | "ja-JP" | "ko-KR" | "zh-CN" | "th-TH" | "es-ES" | "ar-SA" | "pt-PT" | "ca-ES" | "ar-AE" | "hi-IN" | "zh-HK" | "nl-NL" | "no-NO" | "sv-SE" | "pl-PL" | "fi-FI" | "zh-TW" | "en-IN" | "en-IE" | "en-NZ" | "en-AB" | "en-ZA" | "en-WL" | "de-CH" | "af-ZA" | "eu-ES" | "hr-HR" | "cs-CZ" | "da-DK" | "fa-IR" | "gl-ES" | "el-GR" | "he-IL" | "id-ID" | "lv-LV" | "ms-MY" | "ro-RO" | "ru-RU" | "sr-RS" | "sk-SK" | "so-SO" | "tl-PH" | "uk-UA" | "vi-VN" | "zu-ZA" | "am-ET" | "be-BY" | "bg-BG" | "bn-IN" | "bs-BA" | "ckb-IQ" | "ckb-IR" | "cy-WL" | "es-MX" | "et-ET" | "fa-AF" | "gu-IN" | "ht-HT" | "hu-HU" | "hy-AM" | "is-IS" | "jv-ID" | "ka-GE" | "kab-DZ" | "kk-KZ" | "km-KH" | "kn-IN" | "lg-IN" | "lt-LT" | "mk-MK" | "ml-IN" | "mr-IN" | "my-MM" | "ne-NP" | "or-IN" | "pa-IN" | "ps-AF" | "si-LK" | "sl-SI" | "sq-AL" | "su-ID" | "sw-BI" | "sw-KE" | "sw-RW" | "sw-TZ" | "sw-UG" | "ta-IN" | "te-IN" | "tr-TR" | "uz-UZ"
 
 local type VocabularyFilterMethod = "remove" | "mask" | "tag"
 
-local type ContentIdentificationType = "PII"
-
-local type Type = "CONVERSATION" | "DICTATION"
-
-local type ContentRedactionType = "PII"
-
-local type CallAnalyticsLanguageCode = "en-US" | "en-GB" | "es-US" | "fr-CA" | "fr-FR" | "en-AU" | "it-IT" | "de-DE" | "pt-BR"
-
-local type PartialResultsStability = "high" | "medium" | "low"
+local type MediaEncoding = "pcm" | "ogg-opus" | "flac"
 
 local type MedicalScribeMediaEncoding = "pcm" | "ogg-opus" | "flac"
 
 local type MedicalScribeLanguageCode = "en-US"
+
+local type ContentRedactionType = "PII"
+
+local type Specialty = "PRIMARYCARE" | "CARDIOLOGY" | "NEUROLOGY" | "ONCOLOGY" | "RADIOLOGY" | "UROLOGY"
 
 local record M
     GetMedicalScribeStreamInput: GetMedicalScribeStreamInput

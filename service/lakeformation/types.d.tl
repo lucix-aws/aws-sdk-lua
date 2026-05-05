@@ -361,7 +361,7 @@ local record GetWorkUnitResultsInput
 end
 
 local record GetWorkUnitResultsOutput
-    ResultStream: string
+    ResultStream: function(): string, string
 end
 
 local record GetWorkUnitsInput
@@ -1869,23 +1869,23 @@ local record InvalidInputException
     Message: string
 end
 
-local type DataLakeResourceType = "CATALOG" | "DATABASE" | "TABLE" | "DATA_LOCATION" | "LF_TAG" | "LF_TAG_POLICY" | "LF_TAG_POLICY_DATABASE" | "LF_TAG_POLICY_TABLE" | "LF_NAMED_TAG_EXPRESSION"
+local type ResourceShareType = "FOREIGN" | "ALL"
+
+local type ApplicationStatus = "ENABLED" | "DISABLED"
 
 local type TransactionStatusFilter = "ALL" | "COMPLETED" | "ACTIVE" | "COMMITTED" | "ABORTED"
 
 local type OptimizerType = "COMPACTION" | "GARBAGE_COLLECTION" | "ALL"
 
-local type ResourceShareType = "FOREIGN" | "ALL"
+local type TransactionType = "READ_AND_WRITE" | "READ_ONLY"
 
-local type ApplicationStatus = "ENABLED" | "DISABLED"
+local type TransactionStatus = "ACTIVE" | "COMMITTED" | "ABORTED" | "COMMIT_IN_PROGRESS"
+
+local type DataLakeResourceType = "CATALOG" | "DATABASE" | "TABLE" | "DATA_LOCATION" | "LF_TAG" | "LF_TAG_POLICY" | "LF_TAG_POLICY_DATABASE" | "LF_TAG_POLICY_TABLE" | "LF_NAMED_TAG_EXPRESSION"
 
 local type CredentialsScope = "READ" | "READWRITE"
 
-local type TransactionType = "READ_AND_WRITE" | "READ_ONLY"
-
 local type QueryStateString = "PENDING" | "WORKUNITS_AVAILABLE" | "ERROR" | "FINISHED" | "EXPIRED"
-
-local type TransactionStatus = "ACTIVE" | "COMMITTED" | "ABORTED" | "COMMIT_IN_PROGRESS"
 
 local record M
     AddLFTagsToResourceInput: AddLFTagsToResourceInput

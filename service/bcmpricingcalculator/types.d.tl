@@ -1695,15 +1695,15 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type BillEstimateStatus = "IN_PROGRESS" | "COMPLETE" | "FAILED"
+local type WorkloadEstimateStatus = "UPDATING" | "VALID" | "INVALID" | "ACTION_NEEDED"
 
 local type CurrencyCode = "USD"
 
-local type WorkloadEstimateStatus = "UPDATING" | "VALID" | "INVALID" | "ACTION_NEEDED"
+local type BillScenarioStatus = "READY" | "LOCKED" | "FAILED" | "STALE"
 
 local type WorkloadEstimateRateType = "BEFORE_DISCOUNTS" | "AFTER_DISCOUNTS" | "AFTER_DISCOUNTS_AND_COMMITMENTS"
 
-local type BillScenarioStatus = "READY" | "LOCKED" | "FAILED" | "STALE"
+local type BillEstimateStatus = "IN_PROGRESS" | "COMPLETE" | "FAILED"
 
 local type GroupSharingPreferenceEnum = "OPEN" | "PRIORITIZED" | "RESTRICTED"
 

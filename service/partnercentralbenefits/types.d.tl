@@ -672,11 +672,11 @@ local record ValidationException
     FieldList: {ValidationExceptionField}
 end
 
-local type BenefitAllocationStatus = "ACTIVE" | "INACTIVE" | "FULFILLED"
+local type FulfillmentType = "CREDITS" | "CASH" | "ACCESS"
 
 local type BenefitStatus = "ACTIVE" | "INACTIVE"
 
-local type FulfillmentType = "CREDITS" | "CASH" | "ACCESS"
+local type BenefitAllocationStatus = "ACTIVE" | "INACTIVE" | "FULFILLED"
 
 local type BenefitApplicationStatus = "PENDING_SUBMISSION" | "IN_REVIEW" | "ACTION_REQUIRED" | "APPROVED" | "REJECTED" | "CANCELED"
 

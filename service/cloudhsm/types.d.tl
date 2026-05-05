@@ -506,13 +506,13 @@ local record InvalidRequestException
     retryable: boolean
 end
 
-local type SubscriptionType = "PRODUCTION"
-
-local type HsmStatus = "PENDING" | "RUNNING" | "UPDATING" | "SUSPENDED" | "TERMINATING" | "TERMINATED" | "DEGRADED"
+local type ClientVersion = "5.1" | "5.3"
 
 local type CloudHsmObjectState = "READY" | "UPDATING" | "DEGRADED"
 
-local type ClientVersion = "5.1" | "5.3"
+local type HsmStatus = "PENDING" | "RUNNING" | "UPDATING" | "SUSPENDED" | "TERMINATING" | "TERMINATED" | "DEGRADED"
+
+local type SubscriptionType = "PRODUCTION"
 
 local record M
     AddTagsToResourceInput: AddTagsToResourceInput

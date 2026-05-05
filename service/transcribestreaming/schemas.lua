@@ -1744,6 +1744,11 @@ M.StartCallAnalyticsStreamTranscriptionInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
         VocabularyFilterName = schema.new({
@@ -1934,6 +1939,10 @@ M.StartCallAnalyticsStreamTranscriptionOutput = schema.new({
             target = M.CallAnalyticsTranscriptResultStream,
             traits = {
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
         VocabularyFilterName = schema.new({
@@ -2110,6 +2119,11 @@ M.StartMedicalScribeStreamInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
     },
@@ -2171,6 +2185,10 @@ M.StartMedicalScribeStreamOutput = schema.new({
             target_id = id.from(_N, "MedicalScribeResultStream"),
             target = M.MedicalScribeResultStream,
             traits = {
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.HTTP_PAYLOAD] = {},
             },
         }),
@@ -2266,6 +2284,11 @@ M.StartMedicalStreamTranscriptionInput = schema.new({
             target_id = id.from(_N, "AudioStream"),
             target = M.AudioStream,
             traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
             },
@@ -2395,6 +2418,10 @@ M.StartMedicalStreamTranscriptionOutput = schema.new({
             target = M.MedicalTranscriptResultStream,
             traits = {
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
         EnableChannelIdentification = schema.new({
@@ -2486,6 +2513,11 @@ M.StartStreamTranscriptionInput = schema.new({
             target_id = id.from(_N, "AudioStream"),
             target = M.AudioStream,
             traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
             },
@@ -2802,6 +2834,10 @@ M.StartStreamTranscriptionOutput = schema.new({
             target_id = id.from(_N, "TranscriptResultStream"),
             target = M.TranscriptResultStream,
             traits = {
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.HTTP_PAYLOAD] = {},
             },
         }),

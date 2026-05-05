@@ -846,7 +846,7 @@ local record InvokeAssistantInput
 end
 
 local record InvokeAssistantOutput
-    body: ResponseStream
+    body: function(): string, string
     conversationId: string
 end
 
@@ -3475,61 +3475,61 @@ local record ThrottlingException
     message: string
 end
 
-local type PortalType = "SITEWISE_PORTAL_V1" | "SITEWISE_PORTAL_V2"
+local type DisassociatedDataStorageState = "ENABLED" | "DISABLED"
 
-local type ListTimeSeriesType = "ASSOCIATED" | "DISASSOCIATED"
-
-local type CapabilitySyncStatus = "IN_SYNC" | "OUT_OF_SYNC" | "SYNC_FAILED" | "UNKNOWN" | "NOT_APPLICABLE"
-
-local type AssetModelVersionType = "LATEST" | "ACTIVE"
+local type Quality = "GOOD" | "BAD" | "UNCERTAIN"
 
 local type DatasetSourceType = "KENDRA"
 
+local type PropertyNotificationState = "ENABLED" | "DISABLED"
+
+local type EncryptionType = "SITEWISE_DEFAULT_ENCRYPTION" | "KMS_BASED_ENCRYPTION"
+
+local type ResolveToResourceType = "ASSET"
+
+local type PropertyDataType = "STRING" | "INTEGER" | "DOUBLE" | "BOOLEAN" | "STRUCT"
+
+local type ListBulkImportJobsFilter = "ALL" | "PENDING" | "RUNNING" | "CANCELLED" | "FAILED" | "COMPLETED_WITH_FAILURES" | "COMPLETED"
+
+local type JobStatus = "PENDING" | "CANCELLED" | "RUNNING" | "COMPLETED" | "FAILED" | "COMPLETED_WITH_FAILURES"
+
+local type ListTimeSeriesType = "ASSOCIATED" | "DISASSOCIATED"
+
+local type TimeOrdering = "ASCENDING" | "DESCENDING"
+
+local type TraversalDirection = "PARENT" | "CHILD"
+
 local type AssetModelType = "ASSET_MODEL" | "COMPONENT_MODEL" | "INTERFACE"
+
+local type ListAssetPropertiesFilter = "ALL" | "BASE"
+
+local type CapabilitySyncStatus = "IN_SYNC" | "OUT_OF_SYNC" | "SYNC_FAILED" | "UNKNOWN" | "NOT_APPLICABLE"
+
+local type TraversalType = "PATH_TO_ROOT"
+
+local type AuthMode = "IAM" | "SSO"
+
+local type WarmTierState = "ENABLED" | "DISABLED"
+
+local type ListAssetsFilter = "ALL" | "TOP_LEVEL"
+
+local type ListAssetModelPropertiesFilter = "ALL" | "BASE"
 
 local type ComputationModelType = "ANOMALY_DETECTION"
 
 local type Permission = "ADMINISTRATOR" | "VIEWER"
 
-local type PropertyNotificationState = "ENABLED" | "DISABLED"
-
-local type WarmTierState = "ENABLED" | "DISABLED"
-
-local type TraversalType = "PATH_TO_ROOT"
-
-local type TimeOrdering = "ASCENDING" | "DESCENDING"
-
-local type ListAssetPropertiesFilter = "ALL" | "BASE"
-
-local type AuthMode = "IAM" | "SSO"
-
-local type TraversalDirection = "PARENT" | "CHILD"
-
-local type JobStatus = "PENDING" | "CANCELLED" | "RUNNING" | "COMPLETED" | "FAILED" | "COMPLETED_WITH_FAILURES"
+local type ResourceType = "PORTAL" | "PROJECT"
 
 local type IdentityType = "USER" | "GROUP" | "IAM"
 
-local type DisassociatedDataStorageState = "ENABLED" | "DISABLED"
-
-local type PropertyDataType = "STRING" | "INTEGER" | "DOUBLE" | "BOOLEAN" | "STRUCT"
-
-local type Quality = "GOOD" | "BAD" | "UNCERTAIN"
-
-local type EncryptionType = "SITEWISE_DEFAULT_ENCRYPTION" | "KMS_BASED_ENCRYPTION"
-
-local type ListBulkImportJobsFilter = "ALL" | "PENDING" | "RUNNING" | "CANCELLED" | "FAILED" | "COMPLETED_WITH_FAILURES" | "COMPLETED"
-
-local type ListAssetsFilter = "ALL" | "TOP_LEVEL"
+local type AssetModelVersionType = "LATEST" | "ACTIVE"
 
 local type TargetResourceType = "ASSET" | "COMPUTATION_MODEL"
 
+local type PortalType = "SITEWISE_PORTAL_V1" | "SITEWISE_PORTAL_V2"
+
 local type StorageType = "SITEWISE_DEFAULT_STORAGE" | "MULTI_LAYER_STORAGE"
-
-local type ResolveToResourceType = "ASSET"
-
-local type ListAssetModelPropertiesFilter = "ALL" | "BASE"
-
-local type ResourceType = "PORTAL" | "PROJECT"
 
 local record M
     AssociateAssetsInput: AssociateAssetsInput

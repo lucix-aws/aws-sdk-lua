@@ -1681,13 +1681,13 @@ local record ValidationException
     ErrorList: {ValidationExceptionError}
 end
 
-local type OpportunityType = "Net New Business" | "Flat Renewal" | "Expansion"
-
-local type InvitationStatus = "ACCEPTED" | "PENDING" | "REJECTED" | "EXPIRED"
-
 local type EngagementInvitationPayloadType = "OpportunityInvitation" | "LeadInvitation"
 
-local type InvolvementTypeChangeReason = "Expansion Opportunity" | "Change in Deal Information" | "Customer Requested" | "Technical Complexity" | "Risk Mitigation"
+local type EngagementContextType = "CustomerProject" | "Lead"
+
+local type ReasonCode = "InvitationAccessDenied" | "InvitationValidationFailed" | "EngagementAccessDenied" | "OpportunityAccessDenied" | "ResourceSnapshotJobAccessDenied" | "ResourceSnapshotJobValidationFailed" | "ResourceSnapshotJobConflict" | "EngagementValidationFailed" | "EngagementConflict" | "OpportunitySubmissionFailed" | "EngagementInvitationConflict" | "InternalError" | "OpportunityValidationFailed" | "OpportunityConflict" | "ResourceSnapshotAccessDenied" | "ResourceSnapshotValidationFailed" | "ResourceSnapshotConflict" | "ServiceQuotaExceeded" | "RequestThrottled" | "ContextNotFound" | "CustomerProjectContextNotPermitted" | "DisqualifiedLeadNotPermitted"
+
+local type ParticipantType = "SENDER" | "RECEIVER"
 
 local type ResourceType = "Opportunity"
 
@@ -1695,21 +1695,21 @@ local type OpportunityOrigin = "AWS Referral" | "Partner Referral"
 
 local type TaskStatus = "IN_PROGRESS" | "COMPLETE" | "FAILED"
 
-local type EngagementContextType = "CustomerProject" | "Lead"
-
-local type ReasonCode = "InvitationAccessDenied" | "InvitationValidationFailed" | "EngagementAccessDenied" | "OpportunityAccessDenied" | "ResourceSnapshotJobAccessDenied" | "ResourceSnapshotJobValidationFailed" | "ResourceSnapshotJobConflict" | "EngagementValidationFailed" | "EngagementConflict" | "OpportunitySubmissionFailed" | "EngagementInvitationConflict" | "InternalError" | "OpportunityValidationFailed" | "OpportunityConflict" | "ResourceSnapshotAccessDenied" | "ResourceSnapshotValidationFailed" | "ResourceSnapshotConflict" | "ServiceQuotaExceeded" | "RequestThrottled" | "ContextNotFound" | "CustomerProjectContextNotPermitted" | "DisqualifiedLeadNotPermitted"
+local type InvitationStatus = "ACCEPTED" | "PENDING" | "REJECTED" | "EXPIRED"
 
 local type SalesInvolvementType = "For Visibility Only" | "Co-Sell"
 
-local type ParticipantType = "SENDER" | "RECEIVER"
+local type OpportunityType = "Net New Business" | "Flat Renewal" | "Expansion"
+
+local type RelatedEntityType = "Solutions" | "AwsProducts" | "AwsMarketplaceOffers" | "AwsMarketplaceOfferSets"
+
+local type InvolvementTypeChangeReason = "Expansion Opportunity" | "Change in Deal Information" | "Customer Requested" | "Technical Complexity" | "Risk Mitigation"
+
+local type ResourceSnapshotJobStatus = "Running" | "Stopped"
 
 local type NationalSecurity = "Yes" | "No"
 
 local type Visibility = "Full" | "Limited"
-
-local type RelatedEntityType = "Solutions" | "AwsProducts" | "AwsMarketplaceOffers" | "AwsMarketplaceOfferSets"
-
-local type ResourceSnapshotJobStatus = "Running" | "Stopped"
 
 local record M
     AcceptEngagementInvitationInput: AcceptEngagementInvitationInput

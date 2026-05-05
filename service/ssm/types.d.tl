@@ -4146,73 +4146,73 @@ local record TooManyUpdates
     Message: string
 end
 
+local type OperatingSystem = "WINDOWS" | "AMAZON_LINUX" | "AMAZON_LINUX_2" | "AMAZON_LINUX_2022" | "UBUNTU" | "REDHAT_ENTERPRISE_LINUX" | "SUSE" | "CENTOS" | "ORACLE_LINUX" | "DEBIAN" | "MACOS" | "RASPBIAN" | "ROCKY_LINUX" | "ALMA_LINUX" | "AMAZON_LINUX_2023"
+
+local type ConnectionStatus = "connected" | "notconnected"
+
+local type ReviewStatus = "APPROVED" | "NOT_REVIEWED" | "PENDING" | "REJECTED"
+
+local type DocumentFormat = "YAML" | "JSON" | "TEXT"
+
+local type PatchComplianceLevel = "CRITICAL" | "HIGH" | "MEDIUM" | "LOW" | "INFORMATIONAL" | "UNSPECIFIED"
+
+local type PatchProperty = "PRODUCT" | "PRODUCT_FAMILY" | "CLASSIFICATION" | "MSRC_SEVERITY" | "PRIORITY" | "SEVERITY"
+
+local type AccessRequestStatus = "Approved" | "Rejected" | "Revoked" | "Expired" | "Pending"
+
+local type CalendarState = "OPEN" | "CLOSED"
+
+local type DocumentPermissionType = "Share"
+
+local type DocumentStatus = "Creating" | "Active" | "Updating" | "Deleting" | "Failed"
+
+local type MaintenanceWindowResourceType = "INSTANCE" | "RESOURCE_GROUP"
+
+local type MaintenanceWindowExecutionStatus = "PENDING" | "IN_PROGRESS" | "SUCCESS" | "FAILED" | "TIMED_OUT" | "CANCELLING" | "CANCELLED" | "SKIPPED_OVERLAPPING"
+
+local type AssociationComplianceSeverity = "CRITICAL" | "HIGH" | "MEDIUM" | "LOW" | "UNSPECIFIED"
+
+local type ComplianceUploadType = "COMPLETE" | "PARTIAL"
+
+local type CommandInvocationStatus = "Pending" | "InProgress" | "Delayed" | "Success" | "Cancelled" | "TimedOut" | "Failed" | "Cancelling"
+
+local type SessionState = "Active" | "History"
+
+local type StopType = "Complete" | "Cancel"
+
+local type SignalType = "Approve" | "Reject" | "StartStep" | "StopStep" | "Resume" | "Revoke"
+
+local type ExecutionPreviewStatus = "Pending" | "InProgress" | "Success" | "Failed"
+
+local type DocumentType = "Command" | "Policy" | "Automation" | "Session" | "Package" | "ApplicationConfiguration" | "ApplicationConfigurationSchema" | "DeploymentStrategy" | "ChangeCalendar" | "Automation.ChangeTemplate" | "ProblemAnalysis" | "ProblemAnalysisTemplate" | "CloudFormation" | "ConformancePackTemplate" | "QuickSetup" | "ManualApprovalPolicy" | "AutoApprovalPolicy"
+
+local type ExecutionMode = "Auto" | "Interactive"
+
 local type DocumentHashType = "Sha256" | "Sha1"
+
+local type MaintenanceWindowTaskCutoffBehavior = "CONTINUE_TASK" | "CANCEL_TASK"
+
+local type ParameterType = "String" | "StringList" | "SecureString"
 
 local type MaintenanceWindowTaskType = "RUN_COMMAND" | "AUTOMATION" | "STEP_FUNCTIONS" | "LAMBDA"
 
 local type PatchAction = "ALLOW_AS_DEPENDENCY" | "BLOCK"
 
-local type AccessRequestStatus = "Approved" | "Rejected" | "Revoked" | "Expired" | "Pending"
+local type PatchSet = "OS" | "APPLICATION"
 
-local type SignalType = "Approve" | "Reject" | "StartStep" | "StopStep" | "Resume" | "Revoke"
-
-local type ExecutionMode = "Auto" | "Interactive"
-
-local type MaintenanceWindowTaskCutoffBehavior = "CONTINUE_TASK" | "CANCEL_TASK"
-
-local type DocumentType = "Command" | "Policy" | "Automation" | "Session" | "Package" | "ApplicationConfiguration" | "ApplicationConfigurationSchema" | "DeploymentStrategy" | "ChangeCalendar" | "Automation.ChangeTemplate" | "ProblemAnalysis" | "ProblemAnalysisTemplate" | "CloudFormation" | "ConformancePackTemplate" | "QuickSetup" | "ManualApprovalPolicy" | "AutoApprovalPolicy"
+local type PatchComplianceStatus = "COMPLIANT" | "NON_COMPLIANT"
 
 local type InventorySchemaDeleteOption = "DisableSchema" | "DeleteSchema"
 
 local type AssociationSyncCompliance = "AUTO" | "MANUAL"
 
-local type PatchComplianceStatus = "COMPLIANT" | "NON_COMPLIANT"
-
-local type ParameterTier = "Standard" | "Advanced" | "Intelligent-Tiering"
-
-local type ConnectionStatus = "connected" | "notconnected"
-
-local type ExecutionPreviewStatus = "Pending" | "InProgress" | "Success" | "Failed"
-
-local type PatchSet = "OS" | "APPLICATION"
-
 local type OpsItemStatus = "Open" | "InProgress" | "Resolved" | "Pending" | "TimedOut" | "Cancelling" | "Cancelled" | "Failed" | "CompletedWithSuccess" | "CompletedWithFailure" | "Scheduled" | "RunbookInProgress" | "PendingChangeCalendarOverride" | "ChangeCalendarOverrideApproved" | "ChangeCalendarOverrideRejected" | "PendingApproval" | "Approved" | "Revoked" | "Rejected" | "Closed"
 
 local type DocumentMetadataEnum = "DocumentReviews"
 
-local type PatchComplianceLevel = "CRITICAL" | "HIGH" | "MEDIUM" | "LOW" | "INFORMATIONAL" | "UNSPECIFIED"
-
-local type MaintenanceWindowExecutionStatus = "PENDING" | "IN_PROGRESS" | "SUCCESS" | "FAILED" | "TIMED_OUT" | "CANCELLING" | "CANCELLED" | "SKIPPED_OVERLAPPING"
-
-local type ComplianceUploadType = "COMPLETE" | "PARTIAL"
-
 local type ResourceTypeForTagging = "Document" | "ManagedInstance" | "MaintenanceWindow" | "Parameter" | "PatchBaseline" | "OpsItem" | "OpsMetadata" | "Automation" | "Association"
 
-local type ReviewStatus = "APPROVED" | "NOT_REVIEWED" | "PENDING" | "REJECTED"
-
-local type OperatingSystem = "WINDOWS" | "AMAZON_LINUX" | "AMAZON_LINUX_2" | "AMAZON_LINUX_2022" | "UBUNTU" | "REDHAT_ENTERPRISE_LINUX" | "SUSE" | "CENTOS" | "ORACLE_LINUX" | "DEBIAN" | "MACOS" | "RASPBIAN" | "ROCKY_LINUX" | "ALMA_LINUX" | "AMAZON_LINUX_2023"
-
-local type DocumentPermissionType = "Share"
-
-local type CalendarState = "OPEN" | "CLOSED"
-
-local type ParameterType = "String" | "StringList" | "SecureString"
-
-local type PatchProperty = "PRODUCT" | "PRODUCT_FAMILY" | "CLASSIFICATION" | "MSRC_SEVERITY" | "PRIORITY" | "SEVERITY"
-
-local type DocumentStatus = "Creating" | "Active" | "Updating" | "Deleting" | "Failed"
-
-local type AssociationComplianceSeverity = "CRITICAL" | "HIGH" | "MEDIUM" | "LOW" | "UNSPECIFIED"
-
-local type DocumentFormat = "YAML" | "JSON" | "TEXT"
-
-local type StopType = "Complete" | "Cancel"
-
-local type CommandInvocationStatus = "Pending" | "InProgress" | "Delayed" | "Success" | "Cancelled" | "TimedOut" | "Failed" | "Cancelling"
-
-local type MaintenanceWindowResourceType = "INSTANCE" | "RESOURCE_GROUP"
-
-local type SessionState = "Active" | "History"
+local type ParameterTier = "Standard" | "Advanced" | "Intelligent-Tiering"
 
 local record M
     AddTagsToResourceInput: AddTagsToResourceInput

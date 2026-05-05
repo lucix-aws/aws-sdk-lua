@@ -587,8 +587,6 @@ local record TooManyRequestsException
     Message: string
 end
 
-local type JobStatus = "SUBMITTED" | "IN_PROGRESS" | "COMPLETED" | "COMPLETED_WITH_ERROR" | "FAILED" | "STOP_REQUESTED" | "STOPPED"
-
 local type DisplayLanguageCode = "de" | "en" | "es" | "fr" | "it" | "ja" | "ko" | "pt" | "zh" | "zh-TW"
 
 local type MergeStrategy = "OVERWRITE"
@@ -596,6 +594,8 @@ local type MergeStrategy = "OVERWRITE"
 local type ParallelDataStatus = "CREATING" | "UPDATING" | "ACTIVE" | "DELETING" | "FAILED"
 
 local type TerminologyDataFormat = "CSV" | "TMX" | "TSV"
+
+local type JobStatus = "SUBMITTED" | "IN_PROGRESS" | "COMPLETED" | "COMPLETED_WITH_ERROR" | "FAILED" | "STOP_REQUESTED" | "STOPPED"
 
 local record M
     CreateParallelDataInput: CreateParallelDataInput

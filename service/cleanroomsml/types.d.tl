@@ -1692,13 +1692,13 @@ local record ValidationException
     message: string
 end
 
-local type PolicyExistenceCondition = "POLICY_MUST_EXIST" | "POLICY_MUST_NOT_EXIST"
+local type LogsStatus = "PUBLISH_SUCCEEDED" | "PUBLISH_FAILED"
 
 local type TagOnCreatePolicy = "FROM_PARENT_RESOURCE" | "NONE"
 
-local type TrainedModelInferenceJobStatus = "CREATE_PENDING" | "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "ACTIVE" | "CANCEL_PENDING" | "CANCEL_IN_PROGRESS" | "CANCEL_FAILED" | "INACTIVE"
+local type PolicyExistenceCondition = "POLICY_MUST_EXIST" | "POLICY_MUST_NOT_EXIST"
 
-local type TrainingDatasetStatus = "ACTIVE"
+local type TrainedModelInferenceJobStatus = "CREATE_PENDING" | "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "ACTIVE" | "CANCEL_PENDING" | "CANCEL_IN_PROGRESS" | "CANCEL_FAILED" | "INACTIVE"
 
 local type AudienceModelStatus = "CREATE_PENDING" | "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "ACTIVE" | "DELETE_PENDING" | "DELETE_IN_PROGRESS" | "DELETE_FAILED"
 
@@ -1706,13 +1706,13 @@ local type TrainingInputMode = "File" | "FastFile" | "Pipe"
 
 local type AudienceGenerationJobStatus = "CREATE_PENDING" | "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "ACTIVE" | "DELETE_PENDING" | "DELETE_IN_PROGRESS" | "DELETE_FAILED"
 
-local type LogsStatus = "PUBLISH_SUCCEEDED" | "PUBLISH_FAILED"
-
-local type MLInputChannelStatus = "CREATE_PENDING" | "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "ACTIVE" | "DELETE_PENDING" | "DELETE_IN_PROGRESS" | "DELETE_FAILED" | "INACTIVE"
+local type TrainingDatasetStatus = "ACTIVE"
 
 local type ConfiguredAudienceModelStatus = "ACTIVE"
 
 local type MetricsStatus = "PUBLISH_SUCCEEDED" | "PUBLISH_FAILED"
+
+local type MLInputChannelStatus = "CREATE_PENDING" | "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "ACTIVE" | "DELETE_PENDING" | "DELETE_IN_PROGRESS" | "DELETE_FAILED" | "INACTIVE"
 
 local type TrainedModelStatus = "CREATE_PENDING" | "CREATE_IN_PROGRESS" | "CREATE_FAILED" | "ACTIVE" | "DELETE_PENDING" | "DELETE_IN_PROGRESS" | "DELETE_FAILED" | "INACTIVE" | "CANCEL_PENDING" | "CANCEL_IN_PROGRESS" | "CANCEL_FAILED"
 

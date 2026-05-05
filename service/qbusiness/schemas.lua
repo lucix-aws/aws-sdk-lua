@@ -5973,6 +5973,10 @@ M.ChatOutput = schema.new({
             target = M.ChatOutputStream,
             traits = {
                 [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
     },
@@ -9962,6 +9966,10 @@ M.ChatInput = schema.new({
             target_id = id.from(_N, "ChatInputStream"),
             target = M.ChatInputStream,
             traits = {
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
                 [traits.HTTP_PAYLOAD] = {},
             },
         }),
