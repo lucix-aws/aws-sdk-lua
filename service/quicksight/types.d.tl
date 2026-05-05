@@ -11217,83 +11217,83 @@ local record UnsupportedUserEditionException
     RequestId: string
 end
 
-local type IncludeGeneratedAnswer = "INCLUDE" | "EXCLUDE"
+local type AssetBundleImportFailureAction = "DO_NOTHING" | "ROLLBACK"
 
-local type DataSetImportMode = "SPICE" | "DIRECT_QUERY"
+local type MemberType = "DASHBOARD" | "ANALYSIS" | "DATASET" | "DATASOURCE" | "TOPIC"
 
-local type ResourceStatus = "CREATION_IN_PROGRESS" | "CREATION_SUCCESSFUL" | "CREATION_FAILED" | "UPDATE_IN_PROGRESS" | "UPDATE_SUCCESSFUL" | "UPDATE_FAILED" | "DELETED"
+local type Role = "ADMIN" | "AUTHOR" | "READER" | "ADMIN_PRO" | "AUTHOR_PRO" | "READER_PRO"
 
-local type SnapshotJobStatus = "QUEUED" | "RUNNING" | "COMPLETED" | "FAILED"
-
-local type ServiceType = "REDSHIFT" | "QBUSINESS" | "ATHENA"
-
-local type VPCConnectionAvailabilityStatus = "AVAILABLE" | "UNAVAILABLE" | "PARTIALLY_AVAILABLE"
-
-local type IncludeQuickSightQIndex = "INCLUDE" | "EXCLUDE"
-
-local type EmbeddingIdentityType = "IAM" | "QUICKSIGHT" | "ANONYMOUS"
-
-local type IdentityType = "IAM" | "QUICKSIGHT" | "IAM_IDENTITY_CENTER"
-
-local type PersonalizationMode = "ENABLED" | "DISABLED"
-
-local type Edition = "STANDARD" | "ENTERPRISE" | "ENTERPRISE_AND_Q"
-
-local type IdentityStore = "QUICKSIGHT"
-
-local type NamespaceStatus = "CREATED" | "CREATING" | "DELETING" | "RETRYABLE_FAILURE" | "NON_RETRYABLE_FAILURE"
+local type ActionConnectorType = "GENERIC_HTTP" | "SERVICENOW_NOW_PLATFORM" | "SALESFORCE_CRM" | "MICROSOFT_OUTLOOK" | "PAGERDUTY_ADVANCE" | "JIRA_CLOUD" | "ATLASSIAN_CONFLUENCE" | "AMAZON_S3" | "AMAZON_BEDROCK_AGENT_RUNTIME" | "AMAZON_BEDROCK_RUNTIME" | "AMAZON_BEDROCK_DATA_AUTOMATION_RUNTIME" | "AMAZON_TEXTRACT" | "AMAZON_COMPREHEND" | "AMAZON_COMPREHEND_MEDICAL" | "MICROSOFT_ONEDRIVE" | "MICROSOFT_SHAREPOINT" | "MICROSOFT_TEAMS" | "SAP_BUSINESSPARTNER" | "SAP_PRODUCTMASTERDATA" | "SAP_PHYSICALINVENTORY" | "SAP_BILLOFMATERIALS" | "SAP_MATERIALSTOCK" | "ZENDESK_SUITE" | "SMARTSHEET" | "SLACK" | "ASANA" | "BAMBOO_HR"
 
 local type AuthenticationMethodOption = "IAM_AND_QUICKSIGHT" | "IAM_ONLY" | "ACTIVE_DIRECTORY" | "IAM_IDENTITY_CENTER"
-
-local type DataSetUseAs = "RLS_RULES"
-
-local type ThemeType = "QUICKSIGHT" | "CUSTOM" | "ALL"
 
 local type AssetBundleExportFormat = "CLOUDFORMATION_JSON" | "QUICKSIGHT_JSON"
 
 local type SelfUpgradeAdminAction = "APPROVE" | "DENY" | "VERIFY"
 
+local type PersonalizationMode = "ENABLED" | "DISABLED"
+
 local type SelfUpgradeStatus = "AUTO_APPROVAL" | "ADMIN_APPROVAL"
-
-local type PurchaseMode = "MANUAL" | "AUTO_PURCHASE"
-
-local type VPCConnectionResourceStatus = "CREATION_IN_PROGRESS" | "CREATION_SUCCESSFUL" | "CREATION_FAILED" | "UPDATE_IN_PROGRESS" | "UPDATE_SUCCESSFUL" | "UPDATE_FAILED" | "DELETION_IN_PROGRESS" | "DELETION_FAILED" | "DELETED"
-
-local type DashboardsQAStatus = "ENABLED" | "DISABLED"
-
-local type Role = "ADMIN" | "AUTHOR" | "READER" | "ADMIN_PRO" | "AUTHOR_PRO" | "READER_PRO"
-
-local type MemberType = "DASHBOARD" | "ANALYSIS" | "DATASET" | "DATASOURCE" | "TOPIC"
-
-local type ActionConnectorType = "GENERIC_HTTP" | "SERVICENOW_NOW_PLATFORM" | "SALESFORCE_CRM" | "MICROSOFT_OUTLOOK" | "PAGERDUTY_ADVANCE" | "JIRA_CLOUD" | "ATLASSIAN_CONFLUENCE" | "AMAZON_S3" | "AMAZON_BEDROCK_AGENT_RUNTIME" | "AMAZON_BEDROCK_RUNTIME" | "AMAZON_BEDROCK_DATA_AUTOMATION_RUNTIME" | "AMAZON_TEXTRACT" | "AMAZON_COMPREHEND" | "AMAZON_COMPREHEND_MEDICAL" | "MICROSOFT_ONEDRIVE" | "MICROSOFT_SHAREPOINT" | "MICROSOFT_TEAMS" | "SAP_BUSINESSPARTNER" | "SAP_PRODUCTMASTERDATA" | "SAP_PHYSICALINVENTORY" | "SAP_BILLOFMATERIALS" | "SAP_MATERIALSTOCK" | "ZENDESK_SUITE" | "SMARTSHEET" | "SLACK" | "ASANA" | "BAMBOO_HR"
-
-local type AssetBundleImportFailureAction = "DO_NOTHING" | "ROLLBACK"
-
-local type AutomationJobStatus = "FAILED" | "RUNNING" | "SUCCEEDED" | "QUEUED" | "STOPPED"
-
-local type UserRole = "ADMIN" | "AUTHOR" | "READER" | "RESTRICTED_AUTHOR" | "RESTRICTED_READER" | "ADMIN_PRO" | "AUTHOR_PRO" | "READER_PRO"
-
-local type AssetBundleExportJobStatus = "QUEUED_FOR_IMMEDIATE_EXECUTION" | "IN_PROGRESS" | "SUCCESSFUL" | "FAILED"
-
-local type AssignmentStatus = "ENABLED" | "DRAFT" | "DISABLED"
 
 local type SharingModel = "ACCOUNT" | "NAMESPACE"
 
-local type FolderType = "SHARED" | "RESTRICTED"
+local type UserRole = "ADMIN" | "AUTHOR" | "READER" | "RESTRICTED_AUTHOR" | "RESTRICTED_READER" | "ADMIN_PRO" | "AUTHOR_PRO" | "READER_PRO"
+
+local type VPCConnectionResourceStatus = "CREATION_IN_PROGRESS" | "CREATION_SUCCESSFUL" | "CREATION_FAILED" | "UPDATE_IN_PROGRESS" | "UPDATE_SUCCESSFUL" | "UPDATE_FAILED" | "DELETION_IN_PROGRESS" | "DELETION_FAILED" | "DELETED"
 
 local type AssetBundleImportJobStatus = "QUEUED_FOR_IMMEDIATE_EXECUTION" | "IN_PROGRESS" | "SUCCESSFUL" | "FAILED" | "FAILED_ROLLBACK_IN_PROGRESS" | "FAILED_ROLLBACK_COMPLETED" | "FAILED_ROLLBACK_ERROR"
 
-local type IngestionStatus = "INITIALIZED" | "QUEUED" | "RUNNING" | "FAILED" | "COMPLETED" | "CANCELLED"
+local type Edition = "STANDARD" | "ENTERPRISE" | "ENTERPRISE_AND_Q"
+
+local type AutomationJobStatus = "FAILED" | "RUNNING" | "SUCCEEDED" | "QUEUED" | "STOPPED"
+
+local type DataSetUseAs = "RLS_RULES"
+
+local type IdentityStore = "QUICKSIGHT"
+
+local type ServiceType = "REDSHIFT" | "QBUSINESS" | "ATHENA"
+
+local type ResourceStatus = "CREATION_IN_PROGRESS" | "CREATION_SUCCESSFUL" | "CREATION_FAILED" | "UPDATE_IN_PROGRESS" | "UPDATE_SUCCESSFUL" | "UPDATE_FAILED" | "DELETED"
+
+local type IncludeQuickSightQIndex = "INCLUDE" | "EXCLUDE"
 
 local type FlowPublishState = "PUBLISHED" | "DRAFT" | "PENDING_APPROVAL"
 
-local type DataSourceType = "ADOBE_ANALYTICS" | "AMAZON_ELASTICSEARCH" | "ATHENA" | "AURORA" | "AURORA_POSTGRESQL" | "AWS_IOT_ANALYTICS" | "GITHUB" | "JIRA" | "MARIADB" | "MYSQL" | "ORACLE" | "POSTGRESQL" | "PRESTO" | "REDSHIFT" | "S3" | "S3_TABLES" | "SALESFORCE" | "SERVICENOW" | "SNOWFLAKE" | "SPARK" | "SQLSERVER" | "TERADATA" | "TWITTER" | "TIMESTREAM" | "AMAZON_OPENSEARCH" | "EXASOL" | "DATABRICKS" | "STARBURST" | "TRINO" | "BIGQUERY" | "GOOGLESHEETS" | "GOOGLE_DRIVE" | "CONFLUENCE" | "SHAREPOINT" | "ONE_DRIVE" | "WEB_CRAWLER" | "S3_KNOWLEDGE_BASE" | "QBUSINESS"
+local type EmbeddingIdentityType = "IAM" | "QUICKSIGHT" | "ANONYMOUS"
+
+local type DataSetImportMode = "SPICE" | "DIRECT_QUERY"
+
+local type FolderType = "SHARED" | "RESTRICTED"
+
+local type ThemeType = "QUICKSIGHT" | "CUSTOM" | "ALL"
+
+local type NamespaceStatus = "CREATED" | "CREATING" | "DELETING" | "RETRYABLE_FAILURE" | "NON_RETRYABLE_FAILURE"
+
+local type VPCConnectionAvailabilityStatus = "AVAILABLE" | "UNAVAILABLE" | "PARTIALLY_AVAILABLE"
+
+local type IdentityType = "IAM" | "QUICKSIGHT" | "IAM_IDENTITY_CENTER"
+
+local type IncludeGeneratedAnswer = "INCLUDE" | "EXCLUDE"
+
+local type AssignmentStatus = "ENABLED" | "DRAFT" | "DISABLED"
+
+local type SnapshotJobStatus = "QUEUED" | "RUNNING" | "COMPLETED" | "FAILED"
 
 local type IncludeFolderMembers = "RECURSE" | "ONE_LEVEL" | "NONE"
 
-local type QSearchStatus = "ENABLED" | "DISABLED"
+local type PurchaseMode = "MANUAL" | "AUTO_PURCHASE"
+
+local type AssetBundleExportJobStatus = "QUEUED_FOR_IMMEDIATE_EXECUTION" | "IN_PROGRESS" | "SUCCESSFUL" | "FAILED"
+
+local type DashboardsQAStatus = "ENABLED" | "DISABLED"
+
+local type IngestionStatus = "INITIALIZED" | "QUEUED" | "RUNNING" | "FAILED" | "COMPLETED" | "CANCELLED"
 
 local type IngestionType = "INCREMENTAL_REFRESH" | "FULL_REFRESH"
+
+local type QSearchStatus = "ENABLED" | "DISABLED"
+
+local type DataSourceType = "ADOBE_ANALYTICS" | "AMAZON_ELASTICSEARCH" | "ATHENA" | "AURORA" | "AURORA_POSTGRESQL" | "AWS_IOT_ANALYTICS" | "GITHUB" | "JIRA" | "MARIADB" | "MYSQL" | "ORACLE" | "POSTGRESQL" | "PRESTO" | "REDSHIFT" | "S3" | "S3_TABLES" | "SALESFORCE" | "SERVICENOW" | "SNOWFLAKE" | "SPARK" | "SQLSERVER" | "TERADATA" | "TWITTER" | "TIMESTREAM" | "AMAZON_OPENSEARCH" | "EXASOL" | "DATABRICKS" | "STARBURST" | "TRINO" | "BIGQUERY" | "GOOGLESHEETS" | "GOOGLE_DRIVE" | "CONFLUENCE" | "SHAREPOINT" | "ONE_DRIVE" | "WEB_CRAWLER" | "S3_KNOWLEDGE_BASE" | "QBUSINESS"
 
 local record M
     BatchCreateTopicReviewedAnswerInput: BatchCreateTopicReviewedAnswerInput

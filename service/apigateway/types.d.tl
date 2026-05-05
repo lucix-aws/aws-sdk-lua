@@ -4502,47 +4502,47 @@ local record UnauthorizedException
     message: string
 end
 
-local type SecurityPolicy = "TLS_1_0" | "TLS_1_2" | "SecurityPolicy_TLS13_1_3_2025_09" | "SecurityPolicy_TLS13_1_3_FIPS_2025_09" | "SecurityPolicy_TLS13_1_2_PFS_PQ_2025_09" | "SecurityPolicy_TLS13_1_2_FIPS_PQ_2025_09" | "SecurityPolicy_TLS13_1_2_FIPS_PFS_PQ_2025_09" | "SecurityPolicy_TLS13_1_2_PQ_2025_09" | "SecurityPolicy_TLS13_1_2_2021_06" | "SecurityPolicy_TLS13_2025_EDGE" | "SecurityPolicy_TLS12_PFS_2025_EDGE" | "SecurityPolicy_TLS12_2018_EDGE"
-
 local type CacheClusterStatus = "CREATE_IN_PROGRESS" | "AVAILABLE" | "DELETE_IN_PROGRESS" | "NOT_AVAILABLE" | "FLUSH_IN_PROGRESS"
 
-local type RoutingMode = "BASE_PATH_MAPPING_ONLY" | "ROUTING_RULE_ONLY" | "ROUTING_RULE_THEN_BASE_PATH_MAPPING"
+local type AuthorizerType = "TOKEN" | "REQUEST" | "COGNITO_USER_POOLS"
 
-local type ApiStatus = "UPDATING" | "AVAILABLE" | "PENDING" | "FAILED"
-
-local type ApiKeySourceType = "HEADER" | "AUTHORIZER"
+local type PutMode = "merge" | "overwrite"
 
 local type EndpointAccessMode = "BASIC" | "STRICT"
 
-local type DomainNameStatus = "AVAILABLE" | "UPDATING" | "PENDING" | "PENDING_CERTIFICATE_REIMPORT" | "PENDING_OWNERSHIP_VERIFICATION" | "FAILED"
-
-local type ConnectionType = "INTERNET" | "VPC_LINK"
+local type DocumentationPartType = "API" | "AUTHORIZER" | "MODEL" | "RESOURCE" | "METHOD" | "PATH_PARAMETER" | "QUERY_PARAMETER" | "REQUEST_HEADER" | "REQUEST_BODY" | "RESPONSE" | "RESPONSE_HEADER" | "RESPONSE_BODY"
 
 local type ResponseTransferMode = "BUFFERED" | "STREAM"
 
-local type VpcLinkStatus = "AVAILABLE" | "PENDING" | "DELETING" | "FAILED"
+local type RoutingMode = "BASE_PATH_MAPPING_ONLY" | "ROUTING_RULE_ONLY" | "ROUTING_RULE_THEN_BASE_PATH_MAPPING"
+
+local type ResourceOwner = "SELF" | "OTHER_ACCOUNTS"
 
 local type LocationStatusType = "DOCUMENTED" | "UNDOCUMENTED"
 
-local type GatewayResponseType = "DEFAULT_4XX" | "DEFAULT_5XX" | "RESOURCE_NOT_FOUND" | "UNAUTHORIZED" | "INVALID_API_KEY" | "ACCESS_DENIED" | "AUTHORIZER_FAILURE" | "AUTHORIZER_CONFIGURATION_ERROR" | "INVALID_SIGNATURE" | "EXPIRED_TOKEN" | "MISSING_AUTHENTICATION_TOKEN" | "INTEGRATION_FAILURE" | "INTEGRATION_TIMEOUT" | "API_CONFIGURATION_ERROR" | "UNSUPPORTED_MEDIA_TYPE" | "BAD_REQUEST_PARAMETERS" | "BAD_REQUEST_BODY" | "REQUEST_TOO_LARGE" | "THROTTLED" | "QUOTA_EXCEEDED" | "WAF_FILTERED"
+local type VpcLinkStatus = "AVAILABLE" | "PENDING" | "DELETING" | "FAILED"
 
-local type AccessAssociationSourceType = "VPCE"
-
-local type DocumentationPartType = "API" | "AUTHORIZER" | "MODEL" | "RESOURCE" | "METHOD" | "PATH_PARAMETER" | "QUERY_PARAMETER" | "REQUEST_HEADER" | "REQUEST_BODY" | "RESPONSE" | "RESPONSE_HEADER" | "RESPONSE_BODY"
+local type ApiKeysFormat = "csv"
 
 local type IntegrationType = "HTTP" | "AWS" | "MOCK" | "HTTP_PROXY" | "AWS_PROXY"
 
 local type CacheClusterSize = "0.5" | "1.6" | "6.1" | "13.5" | "28.4" | "58.2" | "118" | "237"
 
-local type PutMode = "merge" | "overwrite"
-
 local type ContentHandlingStrategy = "CONVERT_TO_BINARY" | "CONVERT_TO_TEXT"
 
-local type AuthorizerType = "TOKEN" | "REQUEST" | "COGNITO_USER_POOLS"
+local type SecurityPolicy = "TLS_1_0" | "TLS_1_2" | "SecurityPolicy_TLS13_1_3_2025_09" | "SecurityPolicy_TLS13_1_3_FIPS_2025_09" | "SecurityPolicy_TLS13_1_2_PFS_PQ_2025_09" | "SecurityPolicy_TLS13_1_2_FIPS_PQ_2025_09" | "SecurityPolicy_TLS13_1_2_FIPS_PFS_PQ_2025_09" | "SecurityPolicy_TLS13_1_2_PQ_2025_09" | "SecurityPolicy_TLS13_1_2_2021_06" | "SecurityPolicy_TLS13_2025_EDGE" | "SecurityPolicy_TLS12_PFS_2025_EDGE" | "SecurityPolicy_TLS12_2018_EDGE"
 
-local type ResourceOwner = "SELF" | "OTHER_ACCOUNTS"
+local type DomainNameStatus = "AVAILABLE" | "UPDATING" | "PENDING" | "PENDING_CERTIFICATE_REIMPORT" | "PENDING_OWNERSHIP_VERIFICATION" | "FAILED"
 
-local type ApiKeysFormat = "csv"
+local type ConnectionType = "INTERNET" | "VPC_LINK"
+
+local type AccessAssociationSourceType = "VPCE"
+
+local type ApiStatus = "UPDATING" | "AVAILABLE" | "PENDING" | "FAILED"
+
+local type GatewayResponseType = "DEFAULT_4XX" | "DEFAULT_5XX" | "RESOURCE_NOT_FOUND" | "UNAUTHORIZED" | "INVALID_API_KEY" | "ACCESS_DENIED" | "AUTHORIZER_FAILURE" | "AUTHORIZER_CONFIGURATION_ERROR" | "INVALID_SIGNATURE" | "EXPIRED_TOKEN" | "MISSING_AUTHENTICATION_TOKEN" | "INTEGRATION_FAILURE" | "INTEGRATION_TIMEOUT" | "API_CONFIGURATION_ERROR" | "UNSUPPORTED_MEDIA_TYPE" | "BAD_REQUEST_PARAMETERS" | "BAD_REQUEST_BODY" | "REQUEST_TOO_LARGE" | "THROTTLED" | "QUOTA_EXCEEDED" | "WAF_FILTERED"
+
+local type ApiKeySourceType = "HEADER" | "AUTHORIZER"
 
 local record M
     CreateApiKeyInput: CreateApiKeyInput

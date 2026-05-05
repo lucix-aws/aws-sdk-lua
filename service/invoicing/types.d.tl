@@ -667,11 +667,11 @@ end
 
 local type BuyerDomain = "NetworkID"
 
+local type SupplierDomain = "NetworkID"
+
 local type ProcurementPortalPreferenceStatus = "PENDING_VERIFICATION" | "TEST_INITIALIZED" | "TEST_INITIALIZATION_FAILED" | "TEST_FAILED" | "ACTIVE" | "SUSPENDED"
 
 local type ProcurementPortalName = "SAP_BUSINESS_NETWORK" | "COUPA"
-
-local type SupplierDomain = "NetworkID"
 
 local record M
     BatchGetInvoiceProfileInput: BatchGetInvoiceProfileInput

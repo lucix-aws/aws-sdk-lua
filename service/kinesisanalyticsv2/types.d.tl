@@ -996,11 +996,11 @@ end
 
 local type ApplicationMode = "STREAMING" | "INTERACTIVE"
 
+local type OperationStatus = "IN_PROGRESS" | "CANCELLED" | "SUCCESSFUL" | "FAILED"
+
 local type UrlType = "FLINK_DASHBOARD_URL" | "ZEPPELIN_UI_URL"
 
 local type RuntimeEnvironment = "SQL-1_0" | "FLINK-1_6" | "FLINK-1_8" | "ZEPPELIN-FLINK-1_0" | "FLINK-1_11" | "FLINK-1_13" | "ZEPPELIN-FLINK-2_0" | "FLINK-1_15" | "ZEPPELIN-FLINK-3_0" | "FLINK-1_18" | "FLINK-1_19" | "FLINK-1_20" | "FLINK-2_2"
-
-local type OperationStatus = "IN_PROGRESS" | "CANCELLED" | "SUCCESSFUL" | "FAILED"
 
 local record M
     AddApplicationCloudWatchLoggingOptionInput: AddApplicationCloudWatchLoggingOptionInput

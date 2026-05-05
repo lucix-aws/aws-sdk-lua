@@ -491,25 +491,25 @@ local record ValidationException
     message: string
 end
 
-local type PerformanceConfigLatency = "standard" | "optimized"
-
-local type SortAsyncInvocationBy = "SubmissionTime"
-
-local type SortOrder = "Ascending" | "Descending"
-
-local type GuardrailOutputScope = "INTERVENTIONS" | "FULL"
+local type StopReason = "end_turn" | "tool_use" | "max_tokens" | "stop_sequence" | "guardrail_intervened" | "content_filtered" | "malformed_model_output" | "malformed_tool_use" | "model_context_window_exceeded"
 
 local type GuardrailContentSource = "INPUT" | "OUTPUT"
 
-local type AsyncInvokeStatus = "InProgress" | "Completed" | "Failed"
-
-local type StopReason = "end_turn" | "tool_use" | "max_tokens" | "stop_sequence" | "guardrail_intervened" | "content_filtered" | "malformed_model_output" | "malformed_tool_use" | "model_context_window_exceeded"
-
 local type ServiceTierType = "priority" | "default" | "flex" | "reserved"
+
+local type SortOrder = "Ascending" | "Descending"
+
+local type SortAsyncInvocationBy = "SubmissionTime"
+
+local type Trace = "ENABLED" | "DISABLED" | "ENABLED_FULL"
+
+local type PerformanceConfigLatency = "standard" | "optimized"
+
+local type GuardrailOutputScope = "INTERVENTIONS" | "FULL"
 
 local type GuardrailAction = "NONE" | "GUARDRAIL_INTERVENED"
 
-local type Trace = "ENABLED" | "DISABLED" | "ENABLED_FULL"
+local type AsyncInvokeStatus = "InProgress" | "Completed" | "Failed"
 
 local record M
     ApplyGuardrailInput: ApplyGuardrailInput

@@ -308,11 +308,11 @@ local record ValidationException
     Reason: string
 end
 
-local type RuleStatus = "pending" | "available"
+local type ResourceType = "EBS_SNAPSHOT" | "EC2_IMAGE" | "EBS_VOLUME"
 
 local type LockState = "locked" | "pending_unlock" | "unlocked"
 
-local type ResourceType = "EBS_SNAPSHOT" | "EC2_IMAGE" | "EBS_VOLUME"
+local type RuleStatus = "pending" | "available"
 
 local record M
     CreateRuleInput: CreateRuleInput

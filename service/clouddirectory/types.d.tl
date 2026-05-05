@@ -3024,11 +3024,11 @@ end
 
 local type DirectoryState = "ENABLED" | "DISABLED" | "DELETED"
 
-local type FacetStyle = "STATIC" | "DYNAMIC"
+local type ObjectType = "NODE" | "LEAF_NODE" | "POLICY" | "INDEX"
 
 local type ConsistencyLevel = "SERIALIZABLE" | "EVENTUAL"
 
-local type ObjectType = "NODE" | "LEAF_NODE" | "POLICY" | "INDEX"
+local type FacetStyle = "STATIC" | "DYNAMIC"
 
 local record M
     AddFacetToObjectInput: AddFacetToObjectInput

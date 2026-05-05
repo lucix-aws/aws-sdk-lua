@@ -2842,45 +2842,45 @@ local record UnsupportedFeatureException
     message: string
 end
 
-local type DaemonStatus = "ACTIVE" | "DELETE_IN_PROGRESS"
-
-local type DaemonTaskDefinitionStatusFilter = "ACTIVE" | "DELETE_IN_PROGRESS" | "ALL"
+local type TargetType = "container-instance"
 
 local type TaskDefinitionFamilyStatus = "ACTIVE" | "INACTIVE" | "ALL"
 
-local type StopServiceDeploymentStopType = "ABORT" | "ROLLBACK"
-
 local type AvailabilityZoneRebalancing = "ENABLED" | "DISABLED"
-
-local type PidMode = "host" | "task"
-
-local type SchedulingStrategy = "REPLICA" | "DAEMON"
-
-local type SortOrder = "ASC" | "DESC"
-
-local type DesiredStatus = "RUNNING" | "PENDING" | "STOPPED"
-
-local type ContainerInstanceStatus = "ACTIVE" | "DRAINING" | "REGISTERING" | "DEREGISTERING" | "REGISTRATION_FAILED"
-
-local type NetworkMode = "bridge" | "host" | "awsvpc" | "none"
-
-local type SettingName = "serviceLongArnFormat" | "taskLongArnFormat" | "containerInstanceLongArnFormat" | "awsvpcTrunking" | "containerInsights" | "fargateFIPSMode" | "tagResourceAuthorization" | "fargateTaskRetirementWaitPeriod" | "guardDutyActivate" | "defaultLogDriverMode" | "fargateEventWindows"
-
-local type IpcMode = "host" | "task" | "none"
-
-local type DaemonPropagateTags = "DAEMON" | "NONE"
 
 local type ResourceManagementType = "CUSTOMER" | "ECS"
 
+local type DaemonTaskDefinitionStatusFilter = "ACTIVE" | "DELETE_IN_PROGRESS" | "ALL"
+
+local type PidMode = "host" | "task"
+
+local type IpcMode = "host" | "task" | "none"
+
+local type ContainerInstanceStatus = "ACTIVE" | "DRAINING" | "REGISTERING" | "DEREGISTERING" | "REGISTRATION_FAILED"
+
+local type SortOrder = "ASC" | "DESC"
+
+local type StopServiceDeploymentStopType = "ABORT" | "ROLLBACK"
+
+local type SchedulingStrategy = "REPLICA" | "DAEMON"
+
+local type SettingName = "serviceLongArnFormat" | "taskLongArnFormat" | "containerInstanceLongArnFormat" | "awsvpcTrunking" | "containerInsights" | "fargateFIPSMode" | "tagResourceAuthorization" | "fargateTaskRetirementWaitPeriod" | "guardDutyActivate" | "defaultLogDriverMode" | "fargateEventWindows"
+
 local type PropagateTags = "TASK_DEFINITION" | "SERVICE" | "NONE"
 
-local type TargetType = "container-instance"
+local type NetworkMode = "bridge" | "host" | "awsvpc" | "none"
 
 local type DaemonTaskDefinitionRevisionFilter = "LAST_REGISTERED"
 
 local type TaskDefinitionStatus = "ACTIVE" | "INACTIVE" | "DELETE_IN_PROGRESS"
 
+local type DesiredStatus = "RUNNING" | "PENDING" | "STOPPED"
+
 local type LaunchType = "EC2" | "FARGATE" | "EXTERNAL" | "MANAGED_INSTANCES"
+
+local type DaemonPropagateTags = "DAEMON" | "NONE"
+
+local type DaemonStatus = "ACTIVE" | "DELETE_IN_PROGRESS"
 
 local record M
     CreateCapacityProviderInput: CreateCapacityProviderInput

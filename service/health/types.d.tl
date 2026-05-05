@@ -204,9 +204,9 @@ local record ConcurrentModificationException
     message: string
 end
 
-local type eventScopeCode = "PUBLIC" | "ACCOUNT_SPECIFIC" | "NONE"
-
 local type eventAggregateField = "eventTypeCategory"
+
+local type eventScopeCode = "PUBLIC" | "ACCOUNT_SPECIFIC" | "NONE"
 
 local record M
     DescribeAffectedAccountsForOrganizationInput: DescribeAffectedAccountsForOrganizationInput

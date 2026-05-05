@@ -915,9 +915,19 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type BlueprintStage = "DEVELOPMENT" | "LIVE"
+local type BlueprintStageFilter = "DEVELOPMENT" | "LIVE" | "ALL"
+
+local type LibraryIngestionJobOperationType = "UPSERT" | "DELETE"
+
+local type Type = "DOCUMENT" | "IMAGE" | "AUDIO" | "VIDEO"
+
+local type DataAutomationProjectStatus = "COMPLETED" | "IN_PROGRESS" | "FAILED"
 
 local type DataAutomationProjectStageFilter = "DEVELOPMENT" | "LIVE" | "ALL"
+
+local type BlueprintStage = "DEVELOPMENT" | "LIVE"
+
+local type DataAutomationProjectType = "ASYNC" | "SYNC"
 
 local type BlueprintOptimizationJobStatus = "Created" | "InProgress" | "Success" | "ServiceError" | "ClientError"
 
@@ -925,19 +935,9 @@ local type ResourceOwner = "SERVICE" | "ACCOUNT"
 
 local type DataAutomationLibraryStatus = "ACTIVE" | "DELETING"
 
-local type DataAutomationProjectStatus = "COMPLETED" | "IN_PROGRESS" | "FAILED"
-
-local type Type = "DOCUMENT" | "IMAGE" | "AUDIO" | "VIDEO"
-
-local type LibraryIngestionJobOperationType = "UPSERT" | "DELETE"
+local type EntityType = "VOCABULARY"
 
 local type DataAutomationProjectStage = "DEVELOPMENT" | "LIVE"
-
-local type DataAutomationProjectType = "ASYNC" | "SYNC"
-
-local type BlueprintStageFilter = "DEVELOPMENT" | "LIVE" | "ALL"
-
-local type EntityType = "VOCABULARY"
 
 local record M
     CopyBlueprintStageInput: CopyBlueprintStageInput

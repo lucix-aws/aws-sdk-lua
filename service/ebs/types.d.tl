@@ -278,11 +278,11 @@ end
 
 local type Status = "completed" | "pending" | "error"
 
+local type ChecksumAggregationMethod = "LINEAR"
+
 local type SSEType = "sse-ebs" | "sse-kms" | "none"
 
 local type ChecksumAlgorithm = "SHA256"
-
-local type ChecksumAggregationMethod = "LINEAR"
 
 local record M
     CompleteSnapshotInput: CompleteSnapshotInput

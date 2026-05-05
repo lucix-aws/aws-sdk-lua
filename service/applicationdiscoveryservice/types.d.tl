@@ -899,9 +899,9 @@ end
 
 local type ConfigurationItemType = "SERVER" | "PROCESS" | "CONNECTION" | "APPLICATION"
 
-local type DataSource = "AGENT"
-
 local type DeletionConfigurationItemType = "SERVER"
+
+local type DataSource = "AGENT"
 
 local record M
     AssociateConfigurationItemsToApplicationInput: AssociateConfigurationItemsToApplicationInput

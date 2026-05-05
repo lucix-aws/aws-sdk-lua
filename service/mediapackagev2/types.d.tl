@@ -1153,11 +1153,11 @@ local record ValidationException
     ValidationExceptionType: string
 end
 
+local type HarvestJobStatus = "QUEUED" | "IN_PROGRESS" | "CANCELLED" | "COMPLETED" | "FAILED"
+
 local type InputType = "HLS" | "CMAF"
 
 local type ContainerType = "TS" | "CMAF" | "ISM"
-
-local type HarvestJobStatus = "QUEUED" | "IN_PROGRESS" | "CANCELLED" | "COMPLETED" | "FAILED"
 
 local type UriSeparator = "UNDERSCORE" | "HYPHEN"
 

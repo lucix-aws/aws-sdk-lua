@@ -2282,35 +2282,35 @@ local record ValidationException
     fieldList: {ValidationExceptionField}
 end
 
-local type IpAddressType = "IPV4" | "IPV6"
-
-local type FirewallRulesFailOpenType = "ENABLED" | "DISABLED"
-
 local type EdnsClientSubnetType = "ENABLED" | "DISABLED"
-
-local type ConfidenceThreshold = "LOW" | "MEDIUM" | "HIGH"
-
-local type DnsSecValidationType = "ENABLED" | "DISABLED"
 
 local type DnsAdvancedProtection = "DGA" | "DNS_TUNNELING" | "DICTIONARY_DGA"
 
-local type HostedZoneAssociationStatus = "CREATING" | "OPERATIONAL" | "DELETING"
+local type DnsProtocol = "DO53" | "DOH" | "DOT"
 
-local type GlobalResolverIpAddressType = "IPV4" | "DUAL_STACK"
-
-local type BlockOverrideDnsQueryType = "CNAME"
-
-local type ProfileResourceStatus = "CREATING" | "OPERATIONAL" | "UPDATING" | "ENABLING" | "DISABLING" | "DISABLED" | "DELETING"
-
-local type TokenStatus = "CREATING" | "OPERATIONAL" | "DELETING"
-
-local type CRResourceStatus = "CREATING" | "OPERATIONAL" | "UPDATING" | "DELETING"
+local type FirewallRulesFailOpenType = "ENABLED" | "DISABLED"
 
 local type FirewallRuleAction = "ALLOW" | "ALERT" | "BLOCK"
 
+local type DnsSecValidationType = "ENABLED" | "DISABLED"
+
+local type IpAddressType = "IPV4" | "IPV6"
+
+local type TokenStatus = "CREATING" | "OPERATIONAL" | "DELETING"
+
 local type FirewallBlockResponse = "NODATA" | "NXDOMAIN" | "OVERRIDE"
 
-local type DnsProtocol = "DO53" | "DOH" | "DOT"
+local type GlobalResolverIpAddressType = "IPV4" | "DUAL_STACK"
+
+local type ProfileResourceStatus = "CREATING" | "OPERATIONAL" | "UPDATING" | "ENABLING" | "DISABLING" | "DISABLED" | "DELETING"
+
+local type CRResourceStatus = "CREATING" | "OPERATIONAL" | "UPDATING" | "DELETING"
+
+local type ConfidenceThreshold = "LOW" | "MEDIUM" | "HIGH"
+
+local type BlockOverrideDnsQueryType = "CNAME"
+
+local type HostedZoneAssociationStatus = "CREATING" | "OPERATIONAL" | "DELETING"
 
 local record M
     AssociateHostedZoneInput: AssociateHostedZoneInput

@@ -1636,11 +1636,11 @@ local record ValidationException
     Fields: {ValidationExceptionField}
 end
 
-local type AcceptType = "DELIVERED" | "READ"
-
 local type ActivationStatus = "ACTIVATED" | "NOT_ACTIVATED"
 
 local type AcceptCodeValidation = "IGNORE" | "ENFORCE"
+
+local type AcceptType = "DELIVERED" | "READ"
 
 local type ContactType = "PERSONAL" | "ESCALATION" | "ONCALL_SCHEDULE"
 

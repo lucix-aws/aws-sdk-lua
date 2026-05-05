@@ -732,13 +732,13 @@ local type HandshakeType = "START_SERVICE_PERIOD" | "REVOKE_SERVICE_PERIOD" | "P
 
 local type ParticipantType = "SENDER" | "RECEIVER"
 
+local type Sector = "COMMERCIAL" | "GOVERNMENT" | "GOVERNMENT_EXCEPTION"
+
 local type AssociationType = "DOWNSTREAM_SELLER" | "END_CUSTOMER" | "INTERNAL"
 
 local type Program = "SOLUTION_PROVIDER" | "DISTRIBUTION" | "DISTRIBUTION_SELLER"
 
 local type ResaleAccountModel = "DISTRIBUTOR" | "END_CUSTOMER" | "SOLUTION_PROVIDER"
-
-local type Sector = "COMMERCIAL" | "GOVERNMENT" | "GOVERNMENT_EXCEPTION"
 
 local record M
     AcceptChannelHandshakeInput: AcceptChannelHandshakeInput

@@ -811,11 +811,11 @@ end
 
 local type ReviewableHITStatus = "Reviewable" | "Reviewing"
 
-local type QualificationStatus = "Granted" | "Revoked"
-
 local type QualificationTypeStatus = "Active" | "Inactive"
 
 local type EventType = "AssignmentAccepted" | "AssignmentAbandoned" | "AssignmentReturned" | "AssignmentSubmitted" | "AssignmentRejected" | "AssignmentApproved" | "HITCreated" | "HITExpired" | "HITReviewable" | "HITExtended" | "HITDisposed" | "Ping"
+
+local type QualificationStatus = "Granted" | "Revoked"
 
 local record M
     AcceptQualificationRequestInput: AcceptQualificationRequestInput

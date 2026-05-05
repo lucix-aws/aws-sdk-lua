@@ -4079,53 +4079,53 @@ local record ValidationException
     message: string
 end
 
-local type SearchOrder = "Ascending" | "Descending"
-
-local type MergeStrategy = "Overwrite" | "FailOnConflict" | "Append"
-
-local type GenerationStatus = "Failed" | "Complete" | "InProgress"
-
-local type TestSetGenerationStatus = "Generating" | "Ready" | "Failed" | "Pending"
-
-local type BotAnalyzerStatus = "Processing" | "Available" | "Failed" | "Stopping" | "Stopped"
-
 local type BotType = "Bot" | "BotNetwork"
 
 local type TestExecutionApiMode = "Streaming" | "NonStreaming"
 
-local type BotLocaleStatus = "Creating" | "Building" | "Built" | "ReadyExpressTesting" | "Failed" | "Deleting" | "NotBuilt" | "Importing" | "Processing"
-
-local type TestExecutionModality = "Text" | "Audio"
-
-local type BotStatus = "Creating" | "Available" | "Inactive" | "Deleting" | "Failed" | "Versioning" | "Importing" | "Updating"
+local type MergeStrategy = "Overwrite" | "FailOnConflict" | "Append"
 
 local type TestSetModality = "Text" | "Audio"
 
-local type BotAliasStatus = "Creating" | "Available" | "Deleting" | "Failed"
-
-local type Effect = "Allow" | "Deny"
-
-local type BotRecommendationStatus = "Processing" | "Deleting" | "Deleted" | "Downloading" | "Updating" | "Available" | "Failed" | "Stopping" | "Stopped"
-
-local type ExportStatus = "InProgress" | "Completed" | "Failed" | "Deleting"
+local type BotLocaleStatus = "Creating" | "Building" | "Built" | "ReadyExpressTesting" | "Failed" | "Deleting" | "NotBuilt" | "Importing" | "Processing"
 
 local type SpeechDetectionSensitivity = "Default" | "HighNoiseTolerance" | "MaximumNoiseTolerance"
 
-local type TestSetStatus = "Importing" | "PendingAnnotation" | "Deleting" | "ValidationError" | "Ready"
+local type Effect = "Allow" | "Deny"
+
+local type BotStatus = "Creating" | "Available" | "Inactive" | "Deleting" | "Failed" | "Versioning" | "Importing" | "Updating"
 
 local type AnalysisScope = "BotLocale"
 
-local type ImportStatus = "InProgress" | "Completed" | "Failed" | "Deleting"
+local type TestExecutionModality = "Text" | "Audio"
 
-local type TestExecutionStatus = "Pending" | "Waiting" | "InProgress" | "Completed" | "Failed" | "Stopping" | "Stopped"
+local type ExportStatus = "InProgress" | "Completed" | "Failed" | "Deleting"
+
+local type ImportStatus = "InProgress" | "Completed" | "Failed" | "Deleting"
 
 local type ImportExportFileFormat = "LexJson" | "TSV" | "CSV"
 
-local type CustomVocabularyStatus = "Ready" | "Deleting" | "Exporting" | "Importing" | "Creating"
+local type TestSetGenerationStatus = "Generating" | "Ready" | "Failed" | "Pending"
+
+local type TestExecutionStatus = "Pending" | "Waiting" | "InProgress" | "Completed" | "Failed" | "Stopping" | "Stopped"
+
+local type GenerationStatus = "Failed" | "Complete" | "InProgress"
+
+local type BotAnalyzerStatus = "Processing" | "Available" | "Failed" | "Stopping" | "Stopped"
 
 local type TestSetDiscrepancyReportStatus = "InProgress" | "Completed" | "Failed"
 
+local type TestSetStatus = "Importing" | "PendingAnnotation" | "Deleting" | "ValidationError" | "Ready"
+
 local type BotReplicaStatus = "Enabling" | "Enabled" | "Deleting" | "Failed"
+
+local type SearchOrder = "Ascending" | "Descending"
+
+local type BotAliasStatus = "Creating" | "Available" | "Deleting" | "Failed"
+
+local type CustomVocabularyStatus = "Ready" | "Deleting" | "Exporting" | "Importing" | "Creating"
+
+local type BotRecommendationStatus = "Processing" | "Deleting" | "Deleted" | "Downloading" | "Updating" | "Available" | "Failed" | "Stopping" | "Stopped"
 
 local record M
     BatchCreateCustomVocabularyItemInput: BatchCreateCustomVocabularyItemInput

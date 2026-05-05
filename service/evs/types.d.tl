@@ -501,9 +501,9 @@ end
 
 local type EntitlementType = "WINDOWS_SERVER"
 
-local type VcfVersion = "VCF-5.2.1" | "VCF-5.2.2"
-
 local type ConnectorType = "VCENTER"
+
+local type VcfVersion = "VCF-5.2.1" | "VCF-5.2.2"
 
 local record M
     AssociateEipToVlanInput: AssociateEipToVlanInput

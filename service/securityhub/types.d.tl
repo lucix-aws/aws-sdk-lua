@@ -3830,37 +3830,37 @@ local record ResourceNotFoundException
     Code: string
 end
 
-local type ConfigurationPolicyAssociationStatus = "PENDING" | "SUCCESS" | "FAILED"
+local type ConnectorProviderName = "JIRA_CLOUD" | "SERVICENOW"
 
-local type AutoEnableStandards = "NONE" | "DEFAULT"
+local type RuleStatus = "ENABLED" | "DISABLED"
 
-local type VerificationState = "UNKNOWN" | "TRUE_POSITIVE" | "FALSE_POSITIVE" | "BENIGN_POSITIVE"
+local type ControlStatus = "ENABLED" | "DISABLED"
 
-local type ControlFindingGenerator = "STANDARD_CONTROL" | "SECURITY_CONTROL"
+local type RecordState = "ACTIVE" | "ARCHIVED"
 
 local type RuleStatusV2 = "ENABLED" | "DISABLED"
 
 local type TargetType = "ACCOUNT" | "ORGANIZATIONAL_UNIT" | "ROOT"
 
-local type RecordState = "ACTIVE" | "ARCHIVED"
+local type VerificationState = "UNKNOWN" | "TRUE_POSITIVE" | "FALSE_POSITIVE" | "BENIGN_POSITIVE"
+
+local type SortOrder = "asc" | "desc"
+
+local type ControlFindingGenerator = "STANDARD_CONTROL" | "SECURITY_CONTROL"
+
+local type AutoEnableStandards = "NONE" | "DEFAULT"
+
+local type ConnectorStatus = "CONNECTED" | "FAILED_TO_CONNECT" | "PENDING_CONFIGURATION" | "PENDING_AUTHORIZATION"
 
 local type SecurityHubFeature = "SecurityHub" | "SecurityHubV2"
-
-local type ConnectorProviderName = "JIRA_CLOUD" | "SERVICENOW"
-
-local type ControlStatus = "ENABLED" | "DISABLED"
-
-local type TicketCreationMode = "DRYRUN"
 
 local type AssociationType = "INHERITED" | "APPLIED"
 
 local type GranularityField = "Daily" | "Weekly" | "Monthly"
 
-local type ConnectorStatus = "CONNECTED" | "FAILED_TO_CONNECT" | "PENDING_CONFIGURATION" | "PENDING_AUTHORIZATION"
+local type TicketCreationMode = "DRYRUN"
 
-local type SortOrder = "asc" | "desc"
-
-local type RuleStatus = "ENABLED" | "DISABLED"
+local type ConfigurationPolicyAssociationStatus = "PENDING" | "SUCCESS" | "FAILED"
 
 local record M
     AcceptAdministratorInvitationInput: AcceptAdministratorInvitationInput

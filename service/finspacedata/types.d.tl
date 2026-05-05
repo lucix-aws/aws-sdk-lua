@@ -1126,19 +1126,19 @@ local type UserStatus = "CREATING" | "ENABLED" | "DISABLED"
 
 local type DatasetKind = "TABULAR" | "NON_TABULAR"
 
+local type UserType = "SUPER_USER" | "APP_USER"
+
 local type DatasetStatus = "PENDING" | "FAILED" | "SUCCESS" | "RUNNING"
 
-local type ApiAccess = "ENABLED" | "DISABLED"
+local type DataViewStatus = "RUNNING" | "STARTING" | "FAILED" | "CANCELLED" | "TIMEOUT" | "SUCCESS" | "PENDING" | "FAILED_CLEANUP_FAILED"
+
+local type ChangeType = "REPLACE" | "APPEND" | "MODIFY"
 
 local type IngestionStatus = "PENDING" | "FAILED" | "SUCCESS" | "RUNNING" | "STOP_REQUESTED"
 
 local type locationType = "INGESTION" | "SAGEMAKER"
 
-local type ChangeType = "REPLACE" | "APPEND" | "MODIFY"
-
-local type UserType = "SUPER_USER" | "APP_USER"
-
-local type DataViewStatus = "RUNNING" | "STARTING" | "FAILED" | "CANCELLED" | "TIMEOUT" | "SUCCESS" | "PENDING" | "FAILED_CLEANUP_FAILED"
+local type ApiAccess = "ENABLED" | "DISABLED"
 
 local record M
     AssociateUserToPermissionGroupInput: AssociateUserToPermissionGroupInput

@@ -1159,15 +1159,15 @@ end
 
 local type TransformerJobStatus = "running" | "succeeded" | "failed"
 
-local type FileFormat = "XML" | "JSON" | "NOT_USED"
-
-local type MappingType = "JSONATA" | "XSLT"
+local type Logging = "ENABLED" | "DISABLED"
 
 local type CapabilityType = "edi"
 
 local type TransformerStatus = "active" | "inactive"
 
-local type Logging = "ENABLED" | "DISABLED"
+local type FileFormat = "XML" | "JSON" | "NOT_USED"
+
+local type MappingType = "JSONATA" | "XSLT"
 
 local record M
     CreateCapabilityInput: CreateCapabilityInput

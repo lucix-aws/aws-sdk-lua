@@ -2860,41 +2860,41 @@ local record TooManyRequestsException
     Message: string
 end
 
-local type RouterOutputState = "CREATING" | "STANDBY" | "STARTING" | "ACTIVE" | "STOPPING" | "DELETING" | "UPDATING" | "ERROR" | "RECOVERING" | "MIGRATING"
-
-local type BridgePlacement = "AVAILABLE" | "LOCKED"
-
-local type RouterOutputTier = "OUTPUT_100" | "OUTPUT_50" | "OUTPUT_20"
-
-local type RouterInputState = "CREATING" | "STANDBY" | "STARTING" | "ACTIVE" | "STOPPING" | "DELETING" | "UPDATING" | "ERROR" | "RECOVERING" | "MIGRATING"
-
-local type Protocol = "zixi-push" | "rtp-fec" | "rtp" | "zixi-pull" | "rist" | "st2110-jpegxs" | "cdi" | "srt-listener" | "srt-caller" | "fujitsu-qos" | "udp" | "ndi-speed-hq"
-
-local type RouterInputTier = "INPUT_100" | "INPUT_50" | "INPUT_20"
-
-local type RoutingScope = "REGIONAL" | "GLOBAL"
-
-local type MaintenanceScheduleType = "WINDOW"
-
-local type Status = "STANDBY" | "ACTIVE" | "UPDATING" | "DELETING" | "STARTING" | "STOPPING" | "ERROR"
-
-local type OutputStatus = "ENABLED" | "DISABLED"
-
-local type RouterNetworkInterfaceState = "CREATING" | "ACTIVE" | "UPDATING" | "DELETING" | "ERROR" | "RECOVERING"
-
 local type InstanceState = "REGISTERING" | "ACTIVE" | "DEREGISTERING" | "DEREGISTERED" | "REGISTRATION_ERROR" | "DEREGISTRATION_ERROR"
 
-local type RouterOutputRoutedState = "ROUTED" | "ROUTING" | "UNROUTED"
-
-local type EntitlementStatus = "ENABLED" | "DISABLED"
+local type RouterNetworkInterfaceState = "CREATING" | "ACTIVE" | "UPDATING" | "DELETING" | "ERROR" | "RECOVERING"
 
 local type DesiredState = "ACTIVE" | "STANDBY" | "DELETED"
 
 local type State = "ENABLED" | "DISABLED"
 
-local type FlowSize = "MEDIUM" | "LARGE" | "LARGE_4X"
+local type RoutingScope = "REGIONAL" | "GLOBAL"
+
+local type RouterOutputRoutedState = "ROUTED" | "ROUTING" | "UNROUTED"
+
+local type RouterOutputTier = "OUTPUT_100" | "OUTPUT_50" | "OUTPUT_20"
+
+local type OutputStatus = "ENABLED" | "DISABLED"
+
+local type MaintenanceScheduleType = "WINDOW"
+
+local type RouterInputTier = "INPUT_100" | "INPUT_50" | "INPUT_20"
+
+local type BridgePlacement = "AVAILABLE" | "LOCKED"
+
+local type Status = "STANDBY" | "ACTIVE" | "UPDATING" | "DELETING" | "STARTING" | "STOPPING" | "ERROR"
 
 local type MediaStreamType = "video" | "audio" | "ancillary-data"
+
+local type RouterOutputState = "CREATING" | "STANDBY" | "STARTING" | "ACTIVE" | "STOPPING" | "DELETING" | "UPDATING" | "ERROR" | "RECOVERING" | "MIGRATING"
+
+local type FlowSize = "MEDIUM" | "LARGE" | "LARGE_4X"
+
+local type Protocol = "zixi-push" | "rtp-fec" | "rtp" | "zixi-pull" | "rist" | "st2110-jpegxs" | "cdi" | "srt-listener" | "srt-caller" | "fujitsu-qos" | "udp" | "ndi-speed-hq"
+
+local type EntitlementStatus = "ENABLED" | "DISABLED"
+
+local type RouterInputState = "CREATING" | "STANDBY" | "STARTING" | "ACTIVE" | "STOPPING" | "DELETING" | "UPDATING" | "ERROR" | "RECOVERING" | "MIGRATING"
 
 local record M
     AddBridgeOutputsInput: AddBridgeOutputsInput

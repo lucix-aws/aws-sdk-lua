@@ -3031,35 +3031,35 @@ local record UnsupportedOperationException
     RequestId: string
 end
 
-local type DirectoryConfigurationStatus = "Requested" | "Updating" | "Updated" | "Failed" | "Default"
-
-local type HybridUpdateType = "SelfManagedInstances" | "HybridAdministratorAccount"
-
-local type SelectiveAuth = "Enabled" | "Disabled"
-
-local type TrustType = "Forest" | "External"
-
-local type DataAccessStatus = "Disabled" | "Disabling" | "Enabled" | "Enabling" | "Failed"
-
-local type DirectoryEdition = "Enterprise" | "Standard" | "Hybrid"
-
-local type UpdateType = "OS" | "NETWORK" | "SIZE"
-
-local type TrustDirection = "One-Way: Outgoing" | "One-Way: Incoming" | "Two-Way"
-
 local type ShareMethod = "ORGANIZATIONS" | "HANDSHAKE"
-
-local type NetworkType = "Dual-stack" | "IPv4" | "IPv6"
-
-local type CaEnrollmentPolicyStatus = "InProgress" | "Success" | "Failed" | "Disabling" | "Disabled" | "Impaired"
 
 local type LDAPSType = "Client"
 
-local type DirectorySize = "Small" | "Large"
+local type TrustType = "Forest" | "External"
+
+local type NetworkType = "Dual-stack" | "IPv4" | "IPv6"
+
+local type TrustDirection = "One-Way: Outgoing" | "One-Way: Incoming" | "Two-Way"
+
+local type DirectoryEdition = "Enterprise" | "Standard" | "Hybrid"
+
+local type SelectiveAuth = "Enabled" | "Disabled"
+
+local type DirectoryConfigurationStatus = "Requested" | "Updating" | "Updated" | "Failed" | "Default"
+
+local type DataAccessStatus = "Disabled" | "Disabling" | "Enabled" | "Enabling" | "Failed"
+
+local type CaEnrollmentPolicyStatus = "InProgress" | "Success" | "Failed" | "Disabling" | "Disabled" | "Impaired"
+
+local type CertificateType = "ClientCertAuth" | "ClientLDAPS"
 
 local type ClientAuthenticationType = "SmartCard" | "SmartCardOrPassword"
 
-local type CertificateType = "ClientCertAuth" | "ClientLDAPS"
+local type DirectorySize = "Small" | "Large"
+
+local type UpdateType = "OS" | "NETWORK" | "SIZE"
+
+local type HybridUpdateType = "SelfManagedInstances" | "HybridAdministratorAccount"
 
 local record M
     AcceptSharedDirectoryInput: AcceptSharedDirectoryInput

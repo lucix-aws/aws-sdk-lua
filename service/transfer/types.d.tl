@@ -2305,33 +2305,33 @@ local record ThrottlingException
     RetryAfterSeconds: string
 end
 
-local type WebAppEndpointPolicy = "FIPS" | "STANDARD"
-
-local type IpAddressType = "IPV4" | "DUALSTACK"
-
-local type CertificateUsageType = "SIGNING" | "ENCRYPTION" | "TLS"
-
-local type Protocol = "SFTP" | "FTP" | "FTPS" | "AS2"
-
-local type AgreementStatusType = "ACTIVE" | "INACTIVE"
-
-local type Domain = "S3" | "EFS"
+local type IdentityProviderType = "SERVICE_MANAGED" | "API_GATEWAY" | "AWS_DIRECTORY_SERVICE" | "AWS_LAMBDA"
 
 local type ConnectorsIpAddressType = "IPV4" | "DUALSTACK"
 
-local type EndpointType = "PUBLIC" | "VPC" | "VPC_ENDPOINT"
-
-local type EnforceMessageSigningType = "ENABLED" | "DISABLED"
+local type PreserveFilenameType = "ENABLED" | "DISABLED"
 
 local type ProfileType = "LOCAL" | "PARTNER"
 
-local type HomeDirectoryType = "PATH" | "LOGICAL"
+local type Domain = "S3" | "EFS"
 
-local type PreserveFilenameType = "ENABLED" | "DISABLED"
+local type EndpointType = "PUBLIC" | "VPC" | "VPC_ENDPOINT"
 
-local type IdentityProviderType = "SERVICE_MANAGED" | "API_GATEWAY" | "AWS_DIRECTORY_SERVICE" | "AWS_LAMBDA"
+local type AgreementStatusType = "ACTIVE" | "INACTIVE"
+
+local type IpAddressType = "IPV4" | "DUALSTACK"
+
+local type WebAppEndpointPolicy = "FIPS" | "STANDARD"
 
 local type CustomStepStatus = "SUCCESS" | "FAILURE"
+
+local type HomeDirectoryType = "PATH" | "LOGICAL"
+
+local type Protocol = "SFTP" | "FTP" | "FTPS" | "AS2"
+
+local type CertificateUsageType = "SIGNING" | "ENCRYPTION" | "TLS"
+
+local type EnforceMessageSigningType = "ENABLED" | "DISABLED"
 
 local record M
     CreateAccessInput: CreateAccessInput

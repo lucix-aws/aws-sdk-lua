@@ -1237,17 +1237,17 @@ local record ThrottlingException
     message: string
 end
 
+local type ResourceType = "Ec2Instance" | "AutoScalingGroup" | "EbsVolume" | "LambdaFunction" | "NotApplicable" | "EcsService" | "License" | "RdsDBInstance" | "AuroraDBClusterStorage" | "Idle"
+
 local type Status = "Active" | "Inactive" | "Pending" | "Failed"
-
-local type EnhancedInfrastructureMetrics = "Active" | "Inactive"
-
-local type LookBackPeriodPreference = "DAYS_14" | "DAYS_32" | "DAYS_93"
 
 local type FileFormat = "Csv"
 
 local type InferredWorkloadTypesPreference = "Active" | "Inactive"
 
-local type ResourceType = "Ec2Instance" | "AutoScalingGroup" | "EbsVolume" | "LambdaFunction" | "NotApplicable" | "EcsService" | "License" | "RdsDBInstance" | "AuroraDBClusterStorage" | "Idle"
+local type LookBackPeriodPreference = "DAYS_14" | "DAYS_32" | "DAYS_93"
+
+local type EnhancedInfrastructureMetrics = "Active" | "Inactive"
 
 local type MetricStatistic = "Maximum" | "Average"
 

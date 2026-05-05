@@ -170,9 +170,9 @@ local record ValidationException
     Message: string
 end
 
-local type ControlBehavior = "PREVENTIVE" | "PROACTIVE" | "DETECTIVE"
-
 local type ControlSeverity = "LOW" | "MEDIUM" | "HIGH" | "CRITICAL"
+
+local type ControlBehavior = "PREVENTIVE" | "PROACTIVE" | "DETECTIVE"
 
 local record M
     GetControlInput: GetControlInput

@@ -2395,31 +2395,31 @@ local record ValidationException
     message: string
 end
 
-local type AssessmentInvoker = "User" | "System"
-
-local type AppAssessmentScheduleType = "Disabled" | "Daily"
+local type ResourceImportStrategyType = "AddOnly" | "ReplaceAll"
 
 local type MetricsExportStatusType = "Pending" | "InProgress" | "Failed" | "Success"
 
-local type ResourceImportStrategyType = "AddOnly" | "ReplaceAll"
-
-local type TemplateFormat = "CfnYaml" | "CfnJson"
-
-local type AssessmentStatus = "Pending" | "InProgress" | "Failed" | "Success"
-
-local type ResourcesGroupingRecGenStatusType = "Pending" | "InProgress" | "Failed" | "Success"
-
-local type DataLocationConstraint = "AnyLocation" | "SameContinent" | "SameCountry"
+local type ResiliencyPolicyTier = "MissionCritical" | "Critical" | "Important" | "CoreServices" | "NonCritical" | "NotApplicable"
 
 local type ResourceResolutionStatusType = "Pending" | "InProgress" | "Failed" | "Success"
 
-local type ResiliencyPolicyTier = "MissionCritical" | "Critical" | "Important" | "CoreServices" | "NonCritical" | "NotApplicable"
+local type AssessmentStatus = "Pending" | "InProgress" | "Failed" | "Success"
 
 local type ComplianceStatus = "PolicyBreached" | "PolicyMet" | "NotApplicable" | "MissingPolicy"
+
+local type TemplateFormat = "CfnYaml" | "CfnJson"
 
 local type ResourceImportStatusType = "Pending" | "InProgress" | "Failed" | "Success"
 
 local type RecommendationTemplateStatus = "Pending" | "InProgress" | "Failed" | "Success"
+
+local type DataLocationConstraint = "AnyLocation" | "SameContinent" | "SameCountry"
+
+local type AppAssessmentScheduleType = "Disabled" | "Daily"
+
+local type AssessmentInvoker = "User" | "System"
+
+local type ResourcesGroupingRecGenStatusType = "Pending" | "InProgress" | "Failed" | "Success"
 
 local record M
     AcceptResourceGroupingRecommendationsInput: AcceptResourceGroupingRecommendationsInput

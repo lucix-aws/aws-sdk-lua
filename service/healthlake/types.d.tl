@@ -353,11 +353,11 @@ end
 
 local type DatastoreStatus = "CREATING" | "ACTIVE" | "DELETING" | "DELETED" | "CREATE_FAILED"
 
-local type JobStatus = "SUBMITTED" | "QUEUED" | "IN_PROGRESS" | "COMPLETED_WITH_ERRORS" | "COMPLETED" | "FAILED" | "CANCEL_SUBMITTED" | "CANCEL_IN_PROGRESS" | "CANCEL_COMPLETED" | "CANCEL_FAILED"
+local type ValidationLevel = "strict" | "structure-only" | "minimal"
 
 local type FHIRVersion = "R4"
 
-local type ValidationLevel = "strict" | "structure-only" | "minimal"
+local type JobStatus = "SUBMITTED" | "QUEUED" | "IN_PROGRESS" | "COMPLETED_WITH_ERRORS" | "COMPLETED" | "FAILED" | "CANCEL_SUBMITTED" | "CANCEL_IN_PROGRESS" | "CANCEL_COMPLETED" | "CANCEL_FAILED"
 
 local record M
     CreateFHIRDatastoreInput: CreateFHIRDatastoreInput

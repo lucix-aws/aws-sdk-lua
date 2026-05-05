@@ -777,15 +777,15 @@ end
 
 local type ChannelRole = "ASKER" | "EXPERT" | "MODERATOR" | "SUPPORTREQUESTOR"
 
+local type VanityDomainStatus = "PENDING" | "APPROVED" | "UNAPPROVED"
+
 local type TierLevel = "BASIC" | "STANDARD"
-
-local type ChannelStatus = "CREATED" | "CREATING" | "CREATE_FAILED" | "DELETED" | "DELETING" | "DELETE_FAILED"
-
-local type Role = "EXPERT" | "MODERATOR" | "ADMINISTRATOR" | "SUPPORTREQUESTOR"
 
 local type ConfigurationStatus = "CONFIGURED" | "UNCONFIGURED"
 
-local type VanityDomainStatus = "PENDING" | "APPROVED" | "UNAPPROVED"
+local type Role = "EXPERT" | "MODERATOR" | "ADMINISTRATOR" | "SUPPORTREQUESTOR"
+
+local type ChannelStatus = "CREATED" | "CREATING" | "CREATE_FAILED" | "DELETED" | "DELETING" | "DELETE_FAILED"
 
 local record M
     BatchAddChannelRoleToAccessorsInput: BatchAddChannelRoleToAccessorsInput
